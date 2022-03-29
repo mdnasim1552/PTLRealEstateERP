@@ -2409,7 +2409,7 @@
                                   <Value>=Fields!empnam.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2442,7 +2442,7 @@
                                   <Value>=Fields!idcardno.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2477,7 +2477,7 @@
                                   <Value>=Fields!col1s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2492,6 +2492,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col1s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2512,7 +2513,7 @@
                                   <Value>=Fields!col2s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2527,6 +2528,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col2s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2547,7 +2549,7 @@
                                   <Value>=Fields!col3s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2562,6 +2564,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col3s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2582,7 +2585,7 @@
                                   <Value>=Fields!col4s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2597,6 +2600,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col4s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2617,7 +2621,7 @@
                                   <Value>=Fields!col5s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2632,6 +2636,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col5s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2652,7 +2657,7 @@
                                   <Value>=Fields!col6s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2667,6 +2672,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col6s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2687,7 +2693,7 @@
                                   <Value>=Fields!col7s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2702,6 +2708,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col7s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2722,7 +2729,7 @@
                                   <Value>=Fields!col8s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2737,6 +2744,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col8s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2757,7 +2765,7 @@
                                   <Value>=Fields!col9s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2772,6 +2780,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col9s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2792,7 +2801,7 @@
                                   <Value>=Fields!col10s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2807,6 +2816,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col10s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2827,7 +2837,7 @@
                                   <Value>=Fields!col11s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2842,6 +2852,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col11s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2862,7 +2873,7 @@
                                   <Value>=Fields!col12s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2877,6 +2888,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col12s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2897,7 +2909,7 @@
                                   <Value>=Fields!col13s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2912,6 +2924,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col13s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2932,7 +2945,7 @@
                                   <Value>=Fields!col14s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2947,6 +2960,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col14s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2967,7 +2981,7 @@
                                   <Value>=Fields!col15s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2982,6 +2996,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col15s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3002,7 +3017,7 @@
                                   <Value>=Fields!col16s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3017,6 +3032,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col16s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3037,7 +3053,7 @@
                                   <Value>=Fields!col17s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3052,6 +3068,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col17s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3072,7 +3089,7 @@
                                   <Value>=Fields!col18s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3087,6 +3104,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col18s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3107,7 +3125,7 @@
                                   <Value>=Fields!col19s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3122,6 +3140,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col19s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3142,7 +3161,7 @@
                                   <Value>=Fields!col20s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3157,6 +3176,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col20s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3177,7 +3197,7 @@
                                   <Value>=Fields!col21s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3192,6 +3212,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col21s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3212,7 +3233,7 @@
                                   <Value>=Fields!col22s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3227,6 +3248,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col22s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3247,7 +3269,7 @@
                                   <Value>=Fields!col23s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3262,6 +3284,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col23s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3282,7 +3305,7 @@
                                   <Value>=Fields!col24s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3297,6 +3320,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col24s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3317,7 +3341,7 @@
                                   <Value>=Fields!col25s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3332,6 +3356,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col25s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3352,7 +3377,7 @@
                                   <Value>=Fields!col26s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3367,6 +3392,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col26s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3387,7 +3413,7 @@
                                   <Value>=Fields!col27s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3402,6 +3428,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col27s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3422,7 +3449,7 @@
                                   <Value>=Fields!col28s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3437,6 +3464,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col28s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3457,7 +3485,7 @@
                                   <Value>=Fields!col29s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3472,6 +3500,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col29s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3492,7 +3521,7 @@
                                   <Value>=Fields!col30s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3507,6 +3536,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col30s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3527,7 +3557,7 @@
                                   <Value>=Fields!col31s.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3542,6 +3572,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>=iif(Fields!col31s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3562,12 +3593,12 @@
                                   <Value>=Format(Fields!present.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3597,12 +3628,12 @@
                                   <Value>=Format(Fields!late.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3632,12 +3663,12 @@
                                   <Value>=Format(Fields!abslate.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3667,12 +3698,12 @@
                                   <Value>=Format(Fields!absnt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3702,12 +3733,12 @@
                                   <Value>=Format(Fields!holyday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3737,12 +3768,12 @@
                                   <Value>=Format(Fields!tleav.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3772,12 +3803,12 @@
                                   <Value>=Format(Fields!tpayable.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3818,7 +3849,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3835,47 +3866,11 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>2</ColSpan>
+                        <ColSpan>33</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox38">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>6pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox38</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <BackgroundColor>WhiteSmoke</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>31</ColSpan>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -3919,11 +3914,12 @@
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3955,11 +3951,12 @@
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3991,11 +3988,12 @@
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4027,11 +4025,12 @@
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4063,11 +4062,12 @@
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4099,11 +4099,12 @@
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4135,11 +4136,12 @@
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4181,7 +4183,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4201,50 +4203,12 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>2</ColSpan>
+                        <ColSpan>33</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox82">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>6pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox82</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <TopBorder>
-                              <Width>0.75pt</Width>
-                            </TopBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>31</ColSpan>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -4293,7 +4257,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4333,7 +4297,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4373,7 +4337,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4413,7 +4377,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4453,7 +4417,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4493,7 +4457,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -4533,7 +4497,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>

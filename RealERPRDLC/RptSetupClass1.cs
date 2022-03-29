@@ -104,6 +104,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptWorkOrder": Rpt1a = SetRptWorkOrder(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_09_PIMP.RptWorkOrder2": Rpt1a = SetRptWorkOrder2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptWorkOrderP2PBN": Rpt1a = SetRptWorkOrderP2PBN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptWorkOrderSuvastu": Rpt1a = SetRptWorkOrderSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptWorkOrderAcme": Rpt1a = SetRptWorkOrderAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_90_PF.RptIndvPfAlli": Rpt1a = SetRptIndvPf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -728,6 +729,10 @@ namespace RealERPRDLC
 
                 #endregion
 
+                #region Marketing Procurement
+                case "R_28_MPro.RptMktRequisition": Rpt1a = SetRptMktRequisition(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                #endregion
+
                 #region MIS Module
                 case "R_32_Mis.RptProjectSummary": Rpt1a = SetRptProjectSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_32_Mis.RptProjectWisResource": Rpt1a = SetRptProjectWisResource(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -776,6 +781,7 @@ namespace RealERPRDLC
                 case "R_34_Mgt.RptOtherReqPrint": Rpt1a = SetRptOtherReqPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqPrintSuvasto": Rpt1a = SetRptOtherReqPrintSuvasto(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqStatus": Rpt1a = SetRptOtherReqStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_34_Mgt.RptOtherReqStatusISBL": Rpt1a = SetRptOtherReqStatusISBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.UserLogDetails": Rpt1a = SetRptUserLogDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
 
@@ -1249,6 +1255,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptWorkOrderP2PBN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
+            return Rpt1a;
+        } 
 
         private static LocalReport SetRptChequeIBBL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -1941,6 +1952,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptOtherReqStatus(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassOtherReq>)rptDataSet));
+            return rpt1a;
+        } 
+        private static LocalReport SetRptOtherReqStatusISBL(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassOtherReq>)rptDataSet));
             return rpt1a;
@@ -5722,6 +5738,10 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptMktRequisition(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseRequisition>)RptDataSet));
+            return Rpt1a;
+        }
     }
 }

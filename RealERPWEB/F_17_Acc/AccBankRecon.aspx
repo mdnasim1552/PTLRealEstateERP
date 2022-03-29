@@ -188,9 +188,9 @@
                                                 Width="80px"></asp:Label>--%>
 
 
-                                        <asp:TextBox ID="txtgvRECNDT" runat="server" Font-Size="11px"
+                                        <asp:TextBox ID="txtgvRECNDT" runat="server" Font-Size="11px" 
                                             Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).ToString("dd.MM.yyyy")) %>'
-                                            Width="85px" BackColor="Transparent" BorderStyle="None"></asp:TextBox>
+                                            Width="85px" BackColor="Transparent" BorderStyle="None" ></asp:TextBox>
 
                                         <cc1:CalendarExtender ID="txtgvRECNDT_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd.MM.yyyy" TargetControlID="txtgvRECNDT"></cc1:CalendarExtender>

@@ -2368,6 +2368,16 @@ namespace RealERPWEB.F_12_Inv
                 this.gvResInfo_DataBind();
             }
 
+            else
+            {
+                
+                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+                
+
+            }
+
         }
         //protected void lnkDeleteReqNo_Click(object sender, EventArgs e)
         //{
@@ -2466,7 +2476,7 @@ namespace RealERPWEB.F_12_Inv
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "DELETEREQNO", mREQNO, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Deleted Failed";
+                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
 

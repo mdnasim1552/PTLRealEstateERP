@@ -2208,6 +2208,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
     <Content Include="F_28_MPro\MktMRREntry.aspx" />
     <Content Include="F_28_MPro\MktPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
@@ -2973,6 +2974,7 @@
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptHREmpLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\TimeOfLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
@@ -3032,6 +3034,7 @@
     <Content Include="F_81_Hrm\F_91_ACR\LinkRptPerAppraisal.aspx" />
     <Content Include="F_81_Hrm\F_91_ACR\RptPerAppraisal.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\AllEmpList.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
@@ -3042,6 +3045,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\HREmpConfirmation.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx" />
@@ -3825,6 +3829,13 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\MktMarketSurvey.aspx.cs">
+      <DependentUpon>MktMarketSurvey.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktMarketSurvey.aspx.designer.cs">
+      <DependentUpon>MktMarketSurvey.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_28_MPro\MktMRREntry.aspx.cs">
       <DependentUpon>MktMRREntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4322,6 +4333,13 @@
     <Compile Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx.designer.cs">
       <DependentUpon>RptYearlyLeaveRecord.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\TimeOfLeave.aspx.cs">
+      <DependentUpon>TimeOfLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\TimeOfLeave.aspx.designer.cs">
+      <DependentUpon>TimeOfLeave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx.cs">
       <DependentUpon>UploadLeavExcel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4469,6 +4487,13 @@
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.designer.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.cs">
+      <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.designer.cs">
+      <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4482,6 +4507,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx.designer.cs">
       <DependentUpon>EntrySectionWisePermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx.cs">
+      <DependentUpon>InterfaceAttApp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx.designer.cs">
+      <DependentUpon>InterfaceAttApp.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.cs">
       <DependentUpon>InterfaceHR.aspx</DependentUpon>
@@ -11954,7 +11986,9 @@
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
+    <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>

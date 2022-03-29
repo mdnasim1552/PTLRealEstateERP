@@ -104,5 +104,59 @@ namespace RealEntity.C_12_Inv
             public double actstock { get; set; }
 
         }
+
+        [Serializable]
+        public class MaterialWiseStock
+        {
+            public string gp { get; set; }
+            public string grp { get; set; }
+            public string isuno { get; set; }
+            public string isuno1 { get; set; }
+            public string exdate { get; set; }
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
+            public string subcode { get; set; }
+            public string subdesc { get; set; }
+            public string spcfcod { get; set; }
+            public string spcfdesc { get; set; }
+            public string unit { get; set; }
+            public double inqty { get; set; }
+            public double outqty { get; set; }
+            public double stock { get; set; }
+            public string ssircode { get; set; }
+            public string ssirdesc { get; set; }
+            public double rate { get; set; }
+
+
+        }
+
+         [Serializable]
+        public class MktPurchaseOrderInfo
+        {
+            public string orderno { get; set; }
+            public string grp { get; set; }
+            public int rowid { get; set; }
+            public string grpdesc { get; set; }
+            public string comcod { get; set; }
+            public string reqno { get; set; }
+            public string mrfno { get; set; }
+            public string prtype { get; set; }
+            public string acttype { get; set; }
+            public string mkttype { get; set; }
+            public string prtypedesc { get; set; }
+            public string acttypedesc { get; set; }
+            public string mkttypedesc { get; set; }
+            public double ordrqty { get; set; }
+            public double aprvqty { get; set; }
+            public double reqrat { get; set; }
+            public double ordramt { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string proadd { get; set; }
+            public string reqnar { get; set; }
+            public double dispercnt { get; set; }
+
+            public MktPurchaseOrderInfo() { }
+        }
     }
 }

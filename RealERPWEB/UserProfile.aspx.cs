@@ -106,8 +106,8 @@ namespace RealERPWEB
 
                     this.lnkOrintation.Visible = true;
                     this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
-                    this.HyperCodeofConduct.Visible = true;
-                    this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false); ;
+                    this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
+                    this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
 
                     break;
                 default:
@@ -137,8 +137,9 @@ namespace RealERPWEB
             }
             this.UDptment.InnerHtml = hst["dptdesc"].ToString();
             this.UDesignation.InnerHtml = hst["usrdesig"].ToString();
-            UserName.InnerHtml = "Hi, " + hst["username"].ToString();
-            UserName1.InnerHtml = "Hey <b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
+
+            UserName.InnerHtml =  hst["userfname"].ToString();
+            UserName1.InnerHtml = "<b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
             userimg.ImageUrl = hst["userimg"].ToString();
             if (hst["events"].ToString() == "True")
             {
@@ -190,26 +191,28 @@ namespace RealERPWEB
             ViewState.Remove("tblgrph");
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
-
-            //this.lblServHead.Visible = true;
-            //this.lbAttHead.Visible = true;
-            //this.lblgraph.Visible = true;
-            //this.lblleaveHis.Visible = true;
-            //this.EmpUserImg.Visible = true;
-            //   this.AttHistoryGraph.Visible = true;
-            //this.hyplPreviewCv.Visible = true;
-            //this.Lbljobres.Visible = true;
-
-
-            // this.EmpUserImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgUser";
-            //ViewState.Remove("tblservices");
+            string empid = hst["empid"].ToString(); 
             string comcod = this.GetCompCode();
 
             string qempid = this.Request.QueryString["empid"] ?? "";
-
+            string calltype = "";
             string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTMYSERVICES", empid, Date, "", "", "", "", "", "", "");
+            //string Date = this.txtDate.Text.Trim();
+            switch (comcod)
+            {
+               // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+                case "3365":
+                    calltype = "RPTMYSERVICESBTI";
+                    break;
+
+                default:
+                    calltype = "RPTMYSERVICES";
+                    break;
+            }
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", calltype, empid, Date, "", "", "", "", "", "", "");
+           
+           // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTMYSERVICES", empid, Date, "", "", "", "", "", "", "");
             //this.lbldesg.Visible = true;
 
             if (ds1 == null)
@@ -241,8 +244,6 @@ namespace RealERPWEB
             }
 
             DataTable dt3 = (DataTable)ViewState["tblAttHist"];
-
-
             DataTable dt1 = (DataTable)ViewState["tblgrph"];
 
             DataRow dr1 = dt1.NewRow();
@@ -253,6 +254,11 @@ namespace RealERPWEB
             dr1["leave"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0;(#,##0)"); ; ;
             dt1.Rows.Add(dr1);
             ViewState["tblgrph"] = dt1;
+
+            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETMYALLINFORMATION", empid, Date, "", "", "", "", "", "", "");
+
+
+
             this.Data_Bind();
 
 
@@ -267,7 +273,32 @@ namespace RealERPWEB
                 HyperLink lnkyearmon = (HyperLink)e.Item.FindControl("hlnkbtnadd");
                 string comcod = this.GetCompCode();
                 string ymonid = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "ymonid")).ToString();
-                string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/01/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
+                string frmdate = "";
+                string date = "";
+                switch (comcod)
+                {
+                    case "3365":
+                    case "3101":
+                        date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
+                        frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                        //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                        break;
+
+                    default:
+                        date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
+                        frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                        break;
+                }
+
+                //string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/"+ Convert.ToDateTime(ymonid.Substring(4, 2) + "/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
+                //string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                //string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
+                //lnkyearmon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+
+                //HyperLink lnkyearmon = (HyperLink)e.Item.FindControl("hlnkbtnadd");
+                //string comcod = this.GetCompCode();
+                //string ymonid = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "ymonid")).ToString();
+                //string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/01/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
                 lnkyearmon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
@@ -371,9 +402,8 @@ namespace RealERPWEB
                 string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-
-
-                this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+               
+                //this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
@@ -631,6 +661,35 @@ namespace RealERPWEB
             this.gvSpHolidyas.PageIndex = e.NewPageIndex;
             this.LoadGridHolidays();
 
+        }
+
+        protected void hlnkbtnNext_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+
+            string comcod = this.GetCompCode();
+      
+            string frmdate = "";
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = Convert.ToDateTime("26-Dec-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+                    frmdate = Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                default:
+                    date = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+                    frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                    break;
+            }
+
+            //string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            Response.Redirect("~/F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate);        
         }
     }
 }

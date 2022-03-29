@@ -134,7 +134,7 @@ namespace RealERPWEB.F_23_CR
                         case "3310": //RCU
 
                         case "3349":
-                        //case "3101":
+                        case "3364":
                             this.chkConsolidate.Checked = false;
                             this.chkConsolidate.Visible = false;
                             break;
@@ -2412,17 +2412,6 @@ namespace RealERPWEB.F_23_CR
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-
-
-
-
-
-
-
-
-
-
         }
 
         private void PrintCleintLedgergen()
@@ -2731,9 +2720,10 @@ namespace RealERPWEB.F_23_CR
                     break;
 
                 case "3348"://Credence
-                //case "3101":
+                case "3101": // pintech
                 case "3353":// Manama
-                case "3355":// Manama
+                case "3355":// greenwwod
+                case "3364":// JBS
                     this.PrintCleintLedgerManama();
                     break;
 

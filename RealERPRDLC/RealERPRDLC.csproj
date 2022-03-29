@@ -106,7 +106,9 @@
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+SubConAllBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+InventoryAmountBasis.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+InventoryQtyBasisPeriodic.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+MktPurchaseOrderInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PaymentOtherCost.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurOrderTermsCondition.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
@@ -128,6 +130,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseRequisition.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
@@ -147,6 +150,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptLabIssueRup.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptWorkOrderP2PBN.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasisPeriodic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisPeriodic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
@@ -761,6 +765,7 @@
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkSan.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptRegisrationStatusAllPro.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptSalesPermissionCost.rdlc" />
+    <EmbeddedResource Include="R_28_MPro\RptMktRequisition.rdlc" />
     <EmbeddedResource Include="R_29_Fxt\RptDepricationCharge.rdlc" />
     <EmbeddedResource Include="R_29_Fxt\RptDeptITStock.rdlc" />
     <EmbeddedResource Include="R_29_Fxt\RptEquipStEmpWise.rdlc" />
@@ -813,6 +818,7 @@
     <EmbeddedResource Include="R_32_Mis\RptTrialBalance2.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrint.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintSuvasto.rdlc" />
+    <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusISBL.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatus.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLogDetails.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLoginInfo.rdlc" />
@@ -931,6 +937,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipPEB.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipTro.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryAssSecurity01.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryBTI_Old.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsJbs.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEntrust.rdlc" />

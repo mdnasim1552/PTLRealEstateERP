@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="PurConWrkOrderEntry.aspx.cs" Inherits="RealERPWEB.F_09_PImp.PurConWrkOrderEntry" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="PurConWrkOrderEntry.aspx.cs" Inherits="RealERPWEB.F_09_PImp.PurConWrkOrderEntry" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
@@ -25,6 +24,20 @@
     </script>
     <style type="text/css">
         .lineheight {
+        }
+        .customchk{
+            padding:2px;
+            margin-left:20px;
+        }
+        .customchk label {
+            padding-left:5px;
+        }
+        .moduleItemWrpper .btn-info {
+            background-color: #5bc0de; 
+            color: #000;
+            font-weight: bold;
+            border: 1px solid #155273 !important;
+            display: inline-table !important;
         }
     </style>
 
@@ -248,7 +261,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdes")) %>' Width="100px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                        <%-- <asp:TemplateField HeaderText="Spec">
+                                    <%-- <asp:TemplateField HeaderText="Spec">
 
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtspec" runat="server"
@@ -289,7 +302,7 @@
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="left" />
                                     </asp:TemplateField>
 
-                                       <asp:TemplateField HeaderText="Qty">
+                                    <asp:TemplateField HeaderText="Qty">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordqty")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -306,7 +319,7 @@
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Amount">
+                                    <asp:TemplateField HeaderText="Amount">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvAmount" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordamt")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -360,6 +373,9 @@
                                                 <asp:TextBox ID="txtcompltdat" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
                                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtcompltdat"></cc1:CalendarExtender>
+
+                                                <asp:CheckBox ID="ChkLanguage" runat="server" AutoPostBack="True" Text="Terms & Conditions Bangla" CssClass="btn btn-info customchk"
+                                                    Visible="False" />
                                             </div>
                                         </div>
                                     </div>

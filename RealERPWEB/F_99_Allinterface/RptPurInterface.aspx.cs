@@ -1727,6 +1727,11 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3354": // Edison
                     case "3366": // Lanco
 
+                    case "1108": // assure
+                    case "1109": // assure
+                    case "3315": // assure
+                    case "3316": // assure
+
                         hlink1.Visible = false;
                         break;
                     default:

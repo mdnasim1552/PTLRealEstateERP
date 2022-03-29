@@ -1352,10 +1352,24 @@ namespace RealERPLIB
 
             #endregion
 
-            #region Marketing Procument
+            #region Marketing Procurement
             tblObj.Rows.Add(new Object[] { "2801000", "2801001", "F_28_MPro", "MktProGenCodeBook?", "Type=Entry", "General Code(M. Procurement) ", "Marketing Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2801000", "2801002", "F_28_MPro", "MKTPurReqEntry?", "InputType=Entry", "Material Requisition", "Marketing Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2801000", "2801020", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqCheck", "Material Requisition (1st Approval)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801030", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqApproval", "Material Requisition (Final Approval)", "Marketing Procurement", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "2801000", "2801035", "F_28_MPro", "MktMarketSurvey?", "Type=Entry", "CS Preparation", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801036", "F_28_MPro", "MktMarketSurvey?", "Type=Approval", "CS Approval", "Marketing Procurement", "False", "False", "False", "False" });
+
+
+
+            tblObj.Rows.Add(new Object[] { "2801000", "2801040", "F_28_MPro", "MktWorkOrderEntry?", "InputType=OrderEntry", "Marketing Purchase Order", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801042", "F_28_MPro", "MktWorkOrderEntry?", "InputType=FirstApp", "Marketing Purchase Order(1st App)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801045", "F_28_MPro", "MktWorkOrderEntry?", "InputType=SecondApp", "Marketing Purchase Order(Final App)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801050", "F_28_MPro", "MktMRREntry?", "Type=Entry", "Marketing Material Receive", "Marketing Procurement", "False", "False", "False", "False" });
+
+
+            
 
 
             tblObj.Rows.Add(new Object[] { "2851000", "2851001", "F_99_Allinterface", "MKTProInterface?", "Type=Report", "Marketing Procurement", "Marketing Procurement", "False", "False", "False", "False" });
@@ -1892,6 +1906,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8101000", "8101013", "F_81_Hrm/F_82_App", "EmpDesignationlinkDeptWise", "", "Designation link Dept Wise", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8101000", "8101014", "F_81_Hrm/F_92_Mgt", "RptSettlementStatus", "", "Employee Settlement Top Sheet", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101015", "F_81_Hrm/F_92_Mgt", "EmpSettlement?", "Type=Entry", "Employee Settlement Entry", "Employee Settlement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink", "", "Department Code Link", "Appointment", "False", "False", "False", "False" });
 
 
 
@@ -8205,14 +8220,14 @@ namespace RealERPLIB
 
 
 
-            
 
- 
+
+
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "", "", "", true, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Material Requisition", "F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "02. Material Requisition (1st Approval)", "F_28_MPro/MKTPurReqEntry?InputType=ReqCheck&prjcode=&genno=", "", true, "" });           
-            mnuTbl1.Rows.Add(new Object[] { "0301000003","", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000003", "03. CS Preparation", "F_28_MPro/MktMarketSurvey?Type=Entry&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000004","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000005","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000006","", "", "", true, "" });
@@ -14585,12 +14600,16 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000003", "03. Personal Information Code", "F_81_Hrm/F_82_App/HRCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Designation Code", "F_81_Hrm/F_82_App/HRDesigCode", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Designation Link Dept Wise", "F_81_Hrm/F_82_App/EmpDesignationlinkDeptWise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Department Code Link", "F_81_Hrm/F_92_Mgt/DeparmentCodeLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000007", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000008", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpMarket", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000009", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000010", "09. Planning Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpPlan", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000011", "09. Department Wise Group Setup", "F_17_Acc/AccGenCodeBook", "", true, "" });
 
+
+         
             // D. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0203000001", "02. Earn Leave Opening", "F_81_Hrm/F_84_Lea/HRLeaveOpening", "", true, "" });

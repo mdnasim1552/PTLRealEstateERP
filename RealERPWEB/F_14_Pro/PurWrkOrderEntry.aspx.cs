@@ -1747,9 +1747,6 @@ namespace RealERPWEB.F_14_Pro
 
                 default:
                     break;
-
-
-
             }
 
 
@@ -1761,7 +1758,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
 
-                case "3101":
+                //case "3101":
                 case "3366": // lanco
                 case "3357": // Cube
                     terms = txtOrderNarrP.Text.Trim().ToString();
@@ -2345,7 +2342,7 @@ namespace RealERPWEB.F_14_Pro
                     //this.ImagePanel.Visible = false;
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3357":
                 case "3366":
                     this.divtermsp2p.Visible = true;
@@ -2367,7 +2364,7 @@ namespace RealERPWEB.F_14_Pro
             string msg = "";
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "3357":
                     msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
                         "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
@@ -2732,7 +2729,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3311":
                 case "2305":
                 case "2306":
-                case "3101":
+                //case "3101":
                     comserial = "Rup";
                     break;
 

@@ -132,6 +132,8 @@ contain the p elements to be scrolled  */
 
                                 <p class="text-muted  mb-0" id="UDesignation" runat="server">Project Manager @CreativeDivision </p>
                                 <p class="text-muted" id="UDptment" runat="server">Project Manager @UDptment </p>
+                                <p class="text-muted" id="offiTime" runat="server">Office Time- 09:00-05:00</p>
+
                                 <asp:HyperLink ID="hylnkUserProfileEdit" runat="server" NavigateUrl="~/F_81_Hrm/F_82_App/EmpProfileEdit.aspx" Target="_blank" ToolTip="Edit Your Profile"><i class="fas fa-user-edit">&nbsp;Edit</i></asp:HyperLink>
                             </div>
 
@@ -450,7 +452,7 @@ contain the p elements to be scrolled  */
                                         <span class="mr-auto">LEAVE HISTORY</span>
                                         <!-- .card-header-control -->
 
-                                        <asp:HyperLink ID="hlnkbtnNext" runat="server" NavigateUrl="#" Target="_blank" CssClass="btn btn-sm btn-info primaryBtn pull-right" Text="View all"></asp:HyperLink>
+                                       <asp:LinkButton ID="hlnkbtnNext" runat="server" CssClass="btn btn-sm btn-info primaryBtn pull-right" OnClick="hlnkbtnNext_Click" Text="View all"></asp:LinkButton>
 
 
 

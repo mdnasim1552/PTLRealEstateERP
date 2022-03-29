@@ -574,7 +574,7 @@
                                   <Value>=Fields!refdesc.Value</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "12pt", Fields!refno.Value = "BBBBBBBBBBBB","12pt", Fields!refno.Value = "00000000000","12pt")</FontSize>
                                     <FontWeight>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "Bold", Fields!refno.Value = "BBBBBBBBBBBB", "Bold", Fields!refno.Value = "00000000000","Bold")</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -941,7 +941,7 @@
       <Width>10.63416in</Width>
       <Page>
         <PageHeader>
-          <Height>0.78125in</Height>
+          <Height>0.71306in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -949,6 +949,7 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
+              <Top>0.00473in</Top>
               <Height>0.65361in</Height>
               <Width>1.5in</Width>
               <Style>
@@ -967,7 +968,7 @@
                       <Value>=Parameters!comnam.Value</Value>
                       <Style>
                         <FontFamily>calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1012,9 +1013,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox20</rd:DefaultName>
-              <Top>0.26611in</Top>
+              <Top>0.27361in</Top>
               <Left>1.55209in</Left>
-              <Height>0.1875in</Height>
+              <Height>0.17222in</Height>
               <Width>7.57514in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -1116,7 +1117,7 @@
         <PageWidth>11.69in</PageWidth>
         <LeftMargin>0.5in</LeftMargin>
         <RightMargin>0.5in</RightMargin>
-        <TopMargin>0.25in</TopMargin>
+        <TopMargin>0.1in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>
         <Style />
       </Page>

@@ -330,6 +330,7 @@
             },
             error: function (res, status) {
                 if (status == "error") {
+                    console.log(res.responseText);
                     alert(res.responseText);
                 }
             }

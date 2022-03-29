@@ -739,7 +739,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //manama, p2p 
                 // Entrust Collection
-                //case "3101":
+                case "3101":
                 case "3358":
                 case "3359":
                 case "3360":
@@ -752,7 +752,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintJBS";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
@@ -1641,9 +1641,9 @@ namespace RealERPWEB.F_17_Acc
                     if (ASTUtility.Left(vounum, 2) == "JV")
                     {
                         var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherCube", list, null, null);
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherEntrust01", list, null, null);
                         Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                        Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No: " + vounum));
                         Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
                         Rpt1.SetParameters(new ReportParameter("refnum", refnum));
                         Rpt1.SetParameters(new ReportParameter("voutype", voutype));

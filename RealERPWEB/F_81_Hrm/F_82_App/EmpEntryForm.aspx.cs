@@ -19,6 +19,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
     public partial class EmpEntryForm : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -51,20 +52,27 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
 
 
-
+        private string GetLastUSerID()
+        {
+            string comcod = this.GetComeCode();
+           
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETLASTUSERID", "", "", "", "", "", "", "", "", "");
+            string userid = ds1.Tables[0].Rows[0]["userid"].ToString();
+            return (userid);
+        }
 
 
         private void GetCompany()
         {
             string comcod = this.GetComeCode();
-            string txtCompany =  "%";
+            string txtCompany = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETCOMPANY", txtCompany, "", "", "", "", "", "", "", "");
             this.ddlCompName.DataTextField = "sirdesc";
             this.ddlCompName.DataValueField = "sircode";
             this.ddlCompName.DataSource = ds1.Tables[0];
             this.ddlCompName.DataBind();
             ds1.Dispose();
-          
+
 
         }
 
@@ -81,15 +89,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.GetCompany();
 
         }
-        
-     
-      
-       
-    
-      
+
+
+
+
+
+
         protected void lnkbtnSave_Click(object sender, EventArgs e)
         {
-            
+
             string comcod = this.GetComeCode();
             string empdept = "9301";//this.ddlDept.SelectedValue.ToString().Trim().Substring(0, 9);
             string empname = this.txtEmpName.Text;
@@ -104,12 +112,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             if (empcode.Length > 0)
             {
-               
+
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "UPDATEEMPNAME", empcode, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
             }
             else
             {
-               // result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAME", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                // result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAME", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
             }
             if (result)
@@ -148,7 +156,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             if (this.chkNewEmp.Checked)
             {
-                
+
                 this.txtEmpName.Text = "";
             }
 
@@ -224,7 +232,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 dv.RowFilter = "idcardno =''";
 
             }
-            else if(filtertype == "02")
+            else if (filtertype == "02")
             {
                 dv.RowFilter = "idcardno <>''";
             }
@@ -336,6 +344,61 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void ddlfilterby_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetEmpList();
+        }
+
+        protected void lnkUserGenarate_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string Message;
+            string msg;
+            string comcod = this.GetComeCode();
+            string usrid = this.GetLastUSerID();
+            string empid = ((Label)this.gvEmpList.Rows[index].FindControl("lblEmpid")).Text.ToString();
+            string usrfname = ((Label)this.gvEmpList.Rows[index].FindControl("lblEmpName")).Text.ToString();
+            string usrsname = ((Label)this.gvEmpList.Rows[index].FindControl("lblgvcardnoemp")).Text.ToString();
+            string usrdesig = ((Label)this.gvEmpList.Rows[index].FindControl("lblgvdesignationemp")).Text.ToString();             
+            string usrpass = "123";
+            string usrrmrk = "";
+            string active ="1";
+            usrsname = (comcod == "3365" ? "bti"+ usrsname : usrsname);
+            string usermail = "";
+            string webmailpwd = "";
+            string userRole = "1";
+            usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
+            bool result = HRData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
+                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
+            if (!result)
+            {
+                msg = HRData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "New User Created Failed!" + "');", true);
+                return;
+
+            }
+
+            //user page permission auto 
+              result = HRData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTPAGEPERMISSION_AUTO", usrid, "",
+                     "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            msg = "New User Created Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+            GetEmpList();
+
+
+            string eventtype = "User Login From";
+            string eventdesc = "Update ID";
+            string eventdesc2 = "Your profile Updated,";
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+            // for notification
+            // title  details recvier id
+            //bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
+             
         }
     }
 }

@@ -38,11 +38,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
-                double day = Convert.ToInt32(System.DateTime.Today.ToString("dd")) - 1;
-                this.txFdate.Text = DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");
-                // this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(2).AddDays(-1).ToString("dd-MMM-yyyy");
-
+                
+                this.SelectDate();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
                 GetStep();                
@@ -51,6 +48,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
 
             }
+        }
+
+        private void SelectDate()
+        {
+            string comcod = this.GetCompCode();
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
+            this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
         }
         private void GetStep()
         {
@@ -242,23 +253,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
         }
 
-        protected void gvProSlInfo_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyOrderPrint");
-                
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
-                string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
-                string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
-                 
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-            }
-        }
-
-        
+     
         private void Data_Bind(string gv, DataTable dt)
         {
 
@@ -308,7 +303,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
         }
-
 
 
         protected void gvInprocess_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -423,6 +417,37 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
         }
 
+        protected void gvConfirm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyOrderPrint");
+                LinkButton hlinkForward = (LinkButton)e.Row.FindControl("lnkRemoveForward");
+
+                
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+                string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
+                string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
+
+             
+              
+                string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
+                string urefno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
+              
+                string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
+                string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
+              
+                string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
+
+                hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
+                
+                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+
+            }
+        }
         protected void gvfiApproved_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -502,6 +527,51 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.SaleRequRpt();
 
 
+
+        }
+
+        protected void lnkRemoveForward_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string usrid = hst["usrid"].ToString();
+            int index = row.RowIndex;
+            string empid = ((Label)this.gvConfirm.Rows[index].FindControl("lblgvempid")).Text.ToString();
+            string leavid = ((Label)this.gvConfirm.Rows[index].FindControl("lblLeavId")).Text.ToString();
+            string lvdptuid = ((Label)this.gvConfirm.Rows[index].FindControl("lbldptusid")).Text.ToString();
+            
+            DataTable dt = (DataTable)ViewState["tbltotalleav"];
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "LEVAAPPFROWARD", leavid, empid, lvdptuid, usrid, "", "", "", "", "", "", "", "", "", "");
+            if (result)
+            {
+                //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
+                string Messaged = "Leave Forward  successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentl('" + Messaged + "');", true);
+
+                int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
+                dt.Rows[ins].Delete();
+                ViewState.Remove("tbltotalleav");
+                DataView dv = dt.DefaultView;
+                ViewState["tbltotalleav"] = dv.ToTable();
+
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Leave Requset Forward";
+                    string eventdesc = "Leave Requset Forward";
+                    string eventdesc2 = leavid;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+            }
+            this.SaleRequRpt();
 
         }
 
