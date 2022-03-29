@@ -955,9 +955,7 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <HeaderTemplate>
                                                                     <asp:TextBox ID="txtSearchrefnumrchq" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqChk')"></asp:TextBox><br />
-
                                                                 </HeaderTemplate>
-
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvmrfno" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno"))%>' Width="90px"></asp:Label>
@@ -1078,7 +1076,6 @@
                                                         ShowFooter="True" OnRowDataBound="gvReqApp_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
-
 
                                                             <asp:TemplateField HeaderText="Sl">
                                                                 <ItemTemplate>

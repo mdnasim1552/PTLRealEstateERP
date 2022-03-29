@@ -57,28 +57,8 @@ namespace RealERPWEB.F_28_MPro
 
         private void DupMRR()
         {
-            string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-
-                case "3340":
-                case "3335":
-                case "1301":
-                case "3301":
-                //case "3101":          
-
-                case "1205": //p2p Engineering
-                case "3351": //WECON Properties
-                case "3352": //P2P 360
-                case "3354": //Edison Real Estate
-                    this.chkdupMRR.Enabled = false;
-                    this.chkdupMRR.Checked = true;
-                    break;
-                default:
-                    this.chkdupMRR.Visible = false;
-                    this.chkdupMRR.Checked = false;
-                    break;
-            }
+            this.chkdupMRR.Visible = false;
+            this.chkdupMRR.Checked = false;
         }
 
 
