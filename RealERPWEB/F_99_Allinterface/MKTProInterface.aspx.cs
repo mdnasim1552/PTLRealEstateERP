@@ -405,7 +405,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                hlnkgvgvmrfno.NavigateUrl = "~/F_14_Pro/RptPurchasetracking?Type=Purchasetrk&reqno=" + reqno + "&comcod=" + comcod1;
+                hlnkgvgvmrfno.NavigateUrl = "~/F_28_MPro/RptMktPurchaseTracking?Type=PurchaseTrk&reqno=" + reqno + "&comcod=" + comcod1;
 
 
             }
