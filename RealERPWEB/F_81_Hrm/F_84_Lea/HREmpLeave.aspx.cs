@@ -286,14 +286,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void ShowValue()
         {
             Session.Remove("YearLeav");
-
+            string empcode = this.txtEmpSearch.Text.Trim();
             string comcod = this.GetComeCode();         
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"%";//(this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
             string yearid = this.txtdate.Text;
-            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string empcode = this.txtEmpSearch.Text.Trim() + "%";
+            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? company : this.ddlProjectName.SelectedValue.ToString() + "%";           
+            pactcode = (empcode.Length == 0) ? pactcode : company;
+             empcode = empcode + "%"; // for alwayes search empcode wise
+
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPLEAVE", yearid, pactcode, company, empcode, "", "", "", "", "");
             if (ds4 == null)
             {

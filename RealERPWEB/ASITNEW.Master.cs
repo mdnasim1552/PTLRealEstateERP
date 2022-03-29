@@ -131,7 +131,7 @@ namespace RealERPWEB
             switch (comcod)
             {
                 case "3365":
-                    // case "3101":
+                     case "3101":
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true); 
