@@ -299,9 +299,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             ddlDegreeList.DataTextField = "gdesc";
             ddlDegreeList.DataValueField = "gcod";
             ddlDegreeList.DataSource = ds2.Tables[0];
-            ddlDegreeList.DataBind(); 
+            ddlDegreeList.DataBind();
             ds2.Dispose();
-            ddlDegreeList_SelectedIndexChanged(null,null);
+            ddlDegreeList_SelectedIndexChanged(null, null);
 
         }
         private void ShowPersonalInformation()
@@ -430,7 +430,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     case "01003": // Datetime
                     case "01007":
                     case "01008":
-                        
+
 
                         ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
@@ -514,7 +514,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = gdesc1==""? "29001" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ddlgval.SelectedValue = gdesc1 == "" ? "29001" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
 
 
@@ -573,7 +573,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             DataSet copSetup = compUtility.GetCompUtility();
             bool langbang = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LANG_BANG"]);
-             
+
             this.gvPersonalInfo.Columns[6].Visible = langbang; // for Bangla column
             this.gvPersonalInfo2.Columns[6].Visible = langbang; // for Bangla column
 
@@ -920,7 +920,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
             }
-             
+
             DataTable dtuser = (DataTable)Session["UserLog"];
             string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
             string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
@@ -943,7 +943,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             bool result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPLINF", empid, empname, PostedByid, PostSession, Posttrmid, Posteddat,
                     EditByid, Editdat, Editrmid, "", "", "", "", "", "", "", "", "", "", "", "");
-             
+
             if (result == false)
                 return;
 
@@ -960,7 +960,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                     Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                 }
-                 
+
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
                             "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn);
@@ -980,7 +980,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string gtype = ((Label)this.gvPersonalInfo2.Rows[i].FindControl("lgvgval")).Text.Trim();
                 string gvalueBn = ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvValBn")).Text.Trim();
                 string Gvalue = (((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                
+
                 if (Gcode == "01999")
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-jan-1900" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim();
@@ -988,7 +988,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
-                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn); 
+                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail" + "');", true);
@@ -1414,9 +1414,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ddl2.DataBind();
                         ds3.Dispose();
                         break;
-
-
-
                 }
 
 
@@ -1452,6 +1449,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
 
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPJOBRESPONDEL", empid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
+                return;
+            }
             for (int i = 0; i < this.grvJobRespo.Rows.Count; i++)
             {
                 string Gcode = ((Label)this.grvJobRespo.Rows[i].FindControl("lblgvItmCode1")).Text.Trim();
@@ -1460,12 +1463,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 if (jobRespons.Length > 0)
                     HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPJOBRESPONINSUPDATE", empid, Gcode, jobRespons, "", "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-
             }
+
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
-
-
-
         }
         protected void ddlAcadegree_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1858,7 +1858,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPACADEGREE", empid, "", "", "", "", "", "", "", "");
             if (ds3 == null)
                 return;
-            DataSet ds1 = (DataSet)Session["tblacadeg"]; 
+            DataSet ds1 = (DataSet)Session["tblacadeg"];
             //Academic Degree
             DataTable dt1 = ds1.Tables[1].Copy();
             DataView dv1 = dt1.DefaultView;
@@ -1867,7 +1867,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlAcadegreeList.DataValueField = "subcode";
             this.ddlAcadegreeList.DataSource = dv1.ToTable();
             this.ddlAcadegreeList.DataBind();
-            ddlAcadegreeList_SelectedIndexChanged(null,null);
+            ddlAcadegreeList_SelectedIndexChanged(null, null);
 
 
 
@@ -1876,17 +1876,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void ddlAcadegreeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             string accdegree = this.ddlDegreeList.SelectedValue.ToString();
-            DataSet ds1 = (DataSet)Session["tblacadeg"];           
+            DataSet ds1 = (DataSet)Session["tblacadeg"];
             DataTable dt1 = ds1.Tables[3].Copy();
-          
+
             ddlMajorSubjList.DataTextField = "gdesc";
             ddlMajorSubjList.DataValueField = "gcod";
             ddlMajorSubjList.DataSource = dt1;
             ddlMajorSubjList.DataBind();
-            ddlMajorSubjList_SelectedIndexChanged(null,null);
+            ddlMajorSubjList_SelectedIndexChanged(null, null);
         }
 
-      
+
 
         protected void ddlMajorSubjList_SelectedIndexChanged(object sender, EventArgs e)
         {
