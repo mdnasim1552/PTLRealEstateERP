@@ -734,6 +734,8 @@ namespace RealERPRDLC
 
                 #region Marketing Procurement
                 case "R_28_MPro.RptMktRequisition": Rpt1a = SetRptMktRequisition(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_28_MPro.RptMktPurMarketSurvey": Rpt1a = SetRptMktPurMarketSurvey(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_28_MPro.RptMktPurMRR": Rpt1a = SetRptMktPurMRR(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_28_MPro.RptMktPurchaseTracking": Rpt1a = SetRptMktPurchaseTracking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
 
@@ -5760,6 +5762,17 @@ namespace RealERPRDLC
         private static LocalReport SetRptMktRequisition(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseRequisition>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptMktPurMarketSurvey(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.ComparativeStatementCreate>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.ComparativeStatementCreate>)RptDataSet2));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptMktPurMRR(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseMrr>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptMktPurchaseTracking(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

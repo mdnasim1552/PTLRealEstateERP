@@ -518,11 +518,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
         //    }
-
-
-
-
-
         //    return dt1;
 
         //}
@@ -536,11 +531,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             this.ShowData();
         }
-
-
-
-
-
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {

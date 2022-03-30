@@ -52,15 +52,24 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void SelectDate()
         {
             string comcod = this.GetCompCode();
+            //DataSet datSetup = compUtility.GetCompUtility();
+            //if (datSetup == null)
+            //    return;
+
+            //string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            //this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            //this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
+            //this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            DateTime date = Convert.ToDateTime(txFdate.Text);
             DataSet datSetup = compUtility.GetCompUtility();
             if (datSetup == null)
                 return;
-
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-            this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
-            this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            //  string curdate=System.DateTime.Today.ToString("")
+            string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            frmdate = startdate + frmdate.Substring(2);
 
+            string tdate = date.ToString("dd-MMM-yyyy");
         }
         private void GetStep()
         {
@@ -74,6 +83,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+
         }
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
@@ -287,21 +297,22 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "susrid")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
+                string reqtyp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvtype")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
 
                 if (userid == dptusrid)
                 {
                     hlink3.Visible = false;
                     lnkbtnDptApp.Visible = true;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT"+"&Reqtype="+ reqtyp;
 
-
+                    
                 }
                 if (userid == suserid)
                 {
                     lnkbtnDptApp.Visible = false;
                     hlink3.Visible = true;
-                    hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=SUP";
+                    hlink3.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=SUP" + "&Reqtype="+ reqtyp;
 
                 }
 
@@ -309,14 +320,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     lnkbtnDptApp.Visible = true;
                     hlink3.Visible = false;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT" + "&Reqtype="+ reqtyp;
 
                 }
                 hlnDel.Visible = (userid == empusrid) ? true : false;
                 hlnEdit.Visible = (userid == empusrid) ? true : false;
 
-                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="; ;
+                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="+ reqtyp;
 
             }
         }
@@ -337,10 +348,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
                 string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+                string reqtyp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvtype")).ToString();
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
 
                 hlink3.Visible = ((userid == dptusid) && (lvstatus != "Approved")) ? true : false;
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                hlink3.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT" + "&Reqtype=" + reqtyp;
                 hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
             }

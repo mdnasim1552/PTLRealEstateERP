@@ -2209,6 +2209,7 @@
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
+    <Content Include="F_28_MPro\MktMatIssue.aspx" />
     <Content Include="F_28_MPro\MktMRREntry.aspx" />
     <Content Include="F_28_MPro\MktPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
@@ -3837,6 +3838,13 @@
     </Compile>
     <Compile Include="F_28_MPro\MktMarketSurvey.aspx.designer.cs">
       <DependentUpon>MktMarketSurvey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktMatIssue.aspx.cs">
+      <DependentUpon>MktMatIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktMatIssue.aspx.designer.cs">
+      <DependentUpon>MktMatIssue.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\MktMRREntry.aspx.cs">
       <DependentUpon>MktMRREntry.aspx</DependentUpon>
