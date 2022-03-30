@@ -474,7 +474,7 @@
 
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>
-
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>'>Request Interface</a>
 
                                     <%--  <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Target="_blank" Visible="false" runat="server" Text="Apply Leave MGT"></asp:HyperLink>
                                     --%>

@@ -457,10 +457,13 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Leave Type">
+                                                            <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                     <asp:Label ID="lblAttReq" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 
                                                                 </ItemTemplate>
@@ -606,10 +609,14 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Leave Type">
+                                                            <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                      <asp:Label ID="lblAttReq" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                    
+                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 
                                                                 </ItemTemplate>
@@ -771,10 +778,14 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Leave Type">
+                                                            <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                     <asp:Label ID="lblAttReq" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 
                                                                 </ItemTemplate>
@@ -912,6 +923,9 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Leave Type">
                                                                 <ItemTemplate>
+                                                                     <asp:Label ID="lblAttReqfi" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
                                                                     <asp:Label ID="lglvtypefi" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
                                                                         Width="80px"></asp:Label>
