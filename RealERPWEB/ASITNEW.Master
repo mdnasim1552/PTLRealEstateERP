@@ -311,6 +311,7 @@
                 <asp:ScriptReference Path="~/Scripts/bootstrap-multiselect.js" />
                 <asp:ScriptReference Path="~/Scripts/ScrollableGridPlugin.js" />
                 <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVer.min.js" />
+                <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVertworow.min.js" />
                 <asp:ScriptReference Path="~/Scripts/ScrollableTablePlugin.js" />
                 <asp:ScriptReference Path="~/Scripts/chosen.jquery.js" />
                   <asp:ScriptReference Path="~/Scripts/waypoints.min.js" />
