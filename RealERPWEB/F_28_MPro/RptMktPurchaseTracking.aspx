@@ -34,7 +34,7 @@
                             </asp:Label>
                             <div class="table-responsive">
                                 <asp:GridView ID="gvPurstk01" runat="server" AutoGenerateColumns="False"
-                                    ShowFooter="True" CssClass=" table-responsive  table-bordered grvContentarea">
+                                    ShowFooter="True" CssClass="table-striped table-bordered grvContentarea">
                                     <PagerSettings Position="Top" />
                                     <RowStyle />
                                     <Columns>
@@ -131,14 +131,14 @@
                                         <asp:TemplateField HeaderText="Supplier Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvSupplier01" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
-                                                    Width="120px"></asp:Label>
+                                                    Width="160px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="User Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvusername" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrname")) %>'
-                                                    Width="120px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>                                         
                                         </asp:TemplateField>
 

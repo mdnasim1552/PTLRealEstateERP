@@ -450,7 +450,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
                     string eventdesc = "Show Data Sub-Ledger ";
-                    string eventdesc2 = "Head "+this.ddlConAccHead.SelectedItem.Text.ToString()+ " Resource Head : " +" " +this.ddlConAccResHead.SelectedItem.Text +" "+ "(From " + date1 + "To " + date2 + " )";
+                    string eventdesc2 = "Head " + this.ddlConAccHead.SelectedItem.Text.ToString() + " Resource Head : " + " " + this.ddlConAccResHead.SelectedItem.Text + " " + "(From " + date1 + "To " + date2 + " )";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -472,7 +472,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
                     string eventdesc = "Show Data Accounts-Ledger ";
-                    string eventdesc2 = "Account's Head "+ " "+ this.ddlConAccHead.SelectedItem.Text.ToString() +" "+ "( From " + date1 + "To " + date2 + " )";
+                    string eventdesc2 = "Account's Head " + " " + this.ddlConAccHead.SelectedItem.Text.ToString() + " " + "( From " + date1 + "To " + date2 + " )";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -529,7 +529,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
                 string eventdesc = "Show Data Special Ledger ";
-                string eventdesc2 = "Resource Head  " + this.ddlRescode.SelectedItem.Text.ToString() + " ( From " + frmdate + "To "+ todate+ " )";
+                string eventdesc2 = "Resource Head  " + this.ddlRescode.SelectedItem.Text.ToString() + " ( From " + frmdate + "To " + todate + " )";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -836,7 +836,7 @@ namespace RealERPWEB.F_17_Acc
                 this.PrintDetailLedger();
             }
 
-            else if (rbtnLedger.SelectedValue.ToString()=="DetailLedger02")
+            else if (rbtnLedger.SelectedValue.ToString() == "DetailLedger02")
             {
                 this.PrintDetailLedger02();
             }
@@ -891,7 +891,16 @@ namespace RealERPWEB.F_17_Acc
                 return;
             var lst = dt1.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger", lst, null, null);
+            switch (comcod)
+            {
+                case "3101":
+                case "3356":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedgerIntect", lst, null, null);
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger", lst, null, null);
+                    break;
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("txtCompanyName", comnam.ToUpper()));
             Rpt1.SetParameters(new ReportParameter("prjname", "Name : " + prjname2));
@@ -940,14 +949,23 @@ namespace RealERPWEB.F_17_Acc
 
             var list = dt1.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger02", list, null, null);
+            switch (comcod)
+            {
+                case "3101":
+                case "3356":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger02Intech", list, null, null);
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger02", list, null, null);
+                    break;
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + fdate + " To " + tdate + ")"));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "SPECIAL LEDGER " + txthead));
-            Rpt1.SetParameters(new ReportParameter("suppName", "Supplier Name: " + suppName));
+            Rpt1.SetParameters(new ReportParameter("suppName", "Resource Name: " + suppName));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", txtuserinfo));
 
 
@@ -964,8 +982,6 @@ namespace RealERPWEB.F_17_Acc
             string comledger = "";
             switch (comcod)
             {
-
-
 
                 //case "3101":
                 case "3337"://Suvastu
@@ -993,8 +1009,6 @@ namespace RealERPWEB.F_17_Acc
                     comledger = "LedgerTerranova";
                     break;
 
-
-
                 case "2305":
                 case "3305":
                 case "3306":
@@ -1006,8 +1020,13 @@ namespace RealERPWEB.F_17_Acc
 
 
                 case "3357":
-                case "3101":
+                    //case "3101":
                     comledger = "LedgerCube";
+                    break;
+
+                case "3356":
+                case "3101":
+                    comledger = "LedgerIntech";
                     break;
 
                 default:
@@ -1098,7 +1117,7 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-            else if (comledger== "LedgerCube")
+            else if (comledger == "LedgerCube")
             {
                 string checkby = "Checked/Recommended By";
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerCube", lst, null, null);
@@ -1106,6 +1125,13 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("txtcheckedby", checkby));
             }
 
+            else if (comledger == "LedgerIntech")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerIntech", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("txtcheckedby", "Recommended By"));
+
+            }
             else
             {
 

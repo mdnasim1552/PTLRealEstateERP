@@ -41,7 +41,7 @@
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 6
             });
-            gvProDetials.gridviewScroll();
+          //  gvProDetials.gridviewScroll();
             //gvresdet.gridviewScroll();
 
 
@@ -579,6 +579,7 @@
 
 
                             <asp:View ID="ViewCashFlow" runat="server">
+                                  <div class="table-responsive">
                                 <asp:GridView ID="gvProDetials" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvProDetials_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True">
                                     <RowStyle />
@@ -1192,6 +1193,7 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
+                                 </div>
                             </asp:View>
                         </asp:MultiView>
                     </div>

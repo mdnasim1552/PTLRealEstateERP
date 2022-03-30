@@ -1354,6 +1354,7 @@ namespace RealERPLIB
 
             #region Marketing Procurement
             tblObj.Rows.Add(new Object[] { "2801000", "2801001", "F_28_MPro", "MktProGenCodeBook?", "Type=Entry", "General Code(M. Procurement) ", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801002", "F_28_MPro", "MktMatIssue?", "InputType=Entry", "Marketing Material Issue", "Marketing Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2801000", "2801005", "F_17_Acc", "AccSubCodeBook?", "InputType=Marketing", "Marketing Code", "Marketing Procurement", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "2802000", "2802002", "F_28_MPro", "MKTPurReqEntry?", "InputType=Entry", "Material Requisition", "Marketing Procurement", "False", "False", "False", "False" });
@@ -8162,7 +8163,7 @@ namespace RealERPLIB
         {
 
             mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. General Code(M. Procurement)", "F_28_MPro/MktProGenCodeBook?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Marketing Material Issue", "F_28_MPro/MktMatIssue?InputType=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0204000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
