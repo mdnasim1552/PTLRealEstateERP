@@ -124,15 +124,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void Data_Bind()
         {
             DataTable dt = (DataTable)ViewState["tblSalaryRecon"];
-            this.gvSalaryRecon.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue.ToString());
             this.gvSalaryRecon.DataSource=dt;
             this.gvSalaryRecon.DataBind();
         }
 
-        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Data_Bind();
-        }
+      
 
         protected void gvSalaryRecon_RowDataBound(object sender, GridViewRowEventArgs e)
         {
