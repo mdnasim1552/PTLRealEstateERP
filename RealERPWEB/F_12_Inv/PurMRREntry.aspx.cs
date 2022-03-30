@@ -85,6 +85,9 @@ namespace RealERPWEB.F_12_Inv
                 case "3351": //WECON Properties
                 case "3352": //P2P 360
                 case "3354": //Edison Real Estate
+                case "3353": //Manama
+
+
                     this.chkdupMRR.Enabled = false;
                     this.chkdupMRR.Checked = true;
                     break;

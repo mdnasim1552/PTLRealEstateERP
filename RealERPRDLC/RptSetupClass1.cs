@@ -355,6 +355,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAccLedgerRup": Rpt1a = SetRptRptAccLedgerRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccSLedger": Rpt1a = SetRptAccSLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerCube":Rpt1a = SetRptAccLedgerCube(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAccLedgerIntech": Rpt1a = SetRptAccLedgerIntech(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                     
 
 
@@ -362,6 +363,8 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptSPLedger": Rpt1a = SetRptSPLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSPLedgerRup": Rpt1a = SetRptSPLedgerRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSPLedger02": Rpt1a = SetRptSPLedger02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptSPLedger02Intech": Rpt1a = SetRptSPLedger02Intech(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptSPLedgerIntect": Rpt1a = SetRptSPLedgerIntect(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_17_Acc.RptPettyCashBillApprSheet": Rpt1a = SetRptPettyCashBillApprSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -731,6 +734,8 @@ namespace RealERPRDLC
 
                 #region Marketing Procurement
                 case "R_28_MPro.RptMktRequisition": Rpt1a = SetRptMktRequisition(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_28_MPro.RptMktPurMarketSurvey": Rpt1a = SetRptMktPurMarketSurvey(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_28_MPro.RptMktPurMRR": Rpt1a = SetRptMktPurMRR(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_28_MPro.RptMktPurchaseTracking": Rpt1a = SetRptMktPurchaseTracking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
 
@@ -4471,7 +4476,17 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptSPLedgerIntect(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptSPLedger02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>)RptDataSet));
+            return Rpt1a;
+        } 
+        private static LocalReport SetRptSPLedger02Intech(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>)RptDataSet));
             return Rpt1a;
@@ -4480,7 +4495,7 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>)RptDataSet));
             return Rpt1a;
-        }
+        } 
 
 
 
@@ -4527,6 +4542,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptAccLedgerIntech(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
+            return Rpt1a;
+        } 
         
 
         private static LocalReport SetRptAccSLedger(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -5742,6 +5762,17 @@ namespace RealERPRDLC
         private static LocalReport SetRptMktRequisition(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseRequisition>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptMktPurMarketSurvey(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.ComparativeStatementCreate>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.ComparativeStatementCreate>)RptDataSet2));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptMktPurMRR(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseMrr>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptMktPurchaseTracking(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

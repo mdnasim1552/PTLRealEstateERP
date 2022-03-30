@@ -311,6 +311,7 @@
                 <asp:ScriptReference Path="~/Scripts/bootstrap-multiselect.js" />
                 <asp:ScriptReference Path="~/Scripts/ScrollableGridPlugin.js" />
                 <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVer.min.js" />
+                <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVertworow.min.js" />
                 <asp:ScriptReference Path="~/Scripts/ScrollableTablePlugin.js" />
                 <asp:ScriptReference Path="~/Scripts/chosen.jquery.js" />
                   <asp:ScriptReference Path="~/Scripts/waypoints.min.js" />
@@ -474,14 +475,7 @@
 
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>'>Request Interface</a>
-
-
-                                    <%--  <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Target="_blank" Visible="false" runat="server" Text="Apply Leave MGT"></asp:HyperLink>
-                                    --%>
-
-
-
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>'>Request Interface</a>  
                                     <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" Text="Time Of leave"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
                                 </div>
