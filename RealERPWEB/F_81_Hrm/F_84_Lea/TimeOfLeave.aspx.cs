@@ -12,9 +12,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 {
     public partial class TimeOfLeave : System.Web.UI.Page
     {
+        public List<TimeSpan> list = new List<TimeSpan>();
+
         ProcessAccess HRData = new ProcessAccess();
         SendNotifyForUsers UserNotify = new SendNotifyForUsers();
         private Hashtable _errObj;
+        Common compUtility = new Common();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,8 +26,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtaplydate.Text = nextday;
                 GetRemaningTime();
-                this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm:ss");
-                this.txtToTime.Text = System.DateTime.Now.ToString("HH:mm:ss");
+                this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
+                this.txtToTime.Text = System.DateTime.Now.ToString("HH:mm");
+                 
+
             }
         }
 
@@ -37,11 +43,44 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
             string comcod = this.GetCompCode();
-            string date = this.txtaplydate.Text.Trim();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, date, "", "", "", "", "", "", "");
+            DateTime date = Convert.ToDateTime(txtaplydate.Text);
+
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            //  string curdate=System.DateTime.Today.ToString("")
+            string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            frmdate = startdate + frmdate.Substring(2);
+
+            string tdate = date.ToString("dd-MMM-yyyy");
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, frmdate, tdate, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-           // this.txtTimeLVRem.Text = ds1.Tables[0].Rows[0][""].ToString();
+
+            DateTime useTime = ds1.Tables[1].Rows.Count==0? DateTime.Parse("00:00"):DateTime.Parse(ds1.Tables[1].Rows[0]["USETIME"].ToString());
+            DateTime maxTime = DateTime.Parse("06:00");
+           
+            this.gvLvReq.DataSource = (ds1.Tables[0]);
+            this.gvLvReq.DataBind();
+
+            this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
+            if (useTime > maxTime)
+            {
+                string errMsg = "Already Use Time "+ useTime.ToString();
+                
+                this.btnSave.Visible = false;
+                this.ApplicFrm.Visible = false;
+                this.divError.Visible = true;
+                this.spnErrorTxt.InnerText = errMsg;
+            }
+            else
+            {
+                this.btnSave.Visible = true;
+                this.ApplicFrm.Visible = true;
+                this.divError.Visible = false;
+            }
 
         }
         public string GetEmpID()
@@ -69,20 +108,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             frmdate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtFromTime.Text.ToString());
             todate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtToTime.Text.ToString());
-           
+
+            DateTime remTime = DateTime.Parse(txtTimeLVRem.Text);
             DateTime d1 = DateTime.Parse(txtFromTime.Text);
             DateTime d2 = DateTime.Parse(txtToTime.Text);
-            string cdate =Convert.ToDateTime(txtaplydate.Text).ToString("dd-MMM-yyyy");
+            string cdate = Convert.ToDateTime(txtaplydate.Text).ToString("dd-MMM-yyyy");
             TimeSpan timeDiff;
-            DateTime luntime_st =Convert.ToDateTime( cdate+ " 01:00 PM");
+            DateTime luntime_st = Convert.ToDateTime(cdate + " 01:00 PM");
             DateTime luntime_end = Convert.ToDateTime(cdate + " 02:00 PM");
             DateTime Offic_end = Convert.ToDateTime(cdate + " 05:30 PM");
+
 
             if (frmdate <= luntime_st && todate >= luntime_end)
             {
                 TimeSpan timeFrom = TimeSpan.Parse(d1.ToString("HH:mm"));
-                TimeSpan timeTo = TimeSpan.Parse(d2.ToString("HH:mm"));          
-
+                TimeSpan timeTo = TimeSpan.Parse(d2.ToString("HH:mm"));
                 TimeSpan lunchddif = luntime_end.Subtract(luntime_st);
                 if (timeFrom.TotalSeconds > timeTo.TotalSeconds)
                 {
@@ -92,15 +132,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 else
                 {
                     timeDiff = (d2.Subtract(d1)).Subtract(lunchddif);
-
                 }
 
             }
-            else 
+            else
             {
                 TimeSpan timeFrom = TimeSpan.Parse(d1.ToString("HH:mm"));
                 TimeSpan timeTo = TimeSpan.Parse(d2.ToString("HH:mm"));
-              
 
                 if (timeFrom.TotalSeconds > timeTo.TotalSeconds)
                 {
@@ -112,11 +150,31 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     timeDiff = d2.Subtract(d1);
                 }
             }
-           
-            this.txtUseTime.Text = timeDiff.ToString();
 
-            
+ 
+            TimeSpan remTimeConvt = TimeSpan.Parse(remTime.ToString("HH:mm"));
+            TimeSpan time3 = timeDiff + remTimeConvt;
+            TimeSpan maxTime = TimeSpan.Parse("06:00");
+
+
+            if (time3 > maxTime)
+            {
+                string Messaged = "Your office Time exceed ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                this.btnSave.Enabled = false;                
+                this.txtUseTime.Text = "0";
+            }
+            else
+            {
+                this.txtUseTime.Text = timeDiff.ToString();
+                this.btnSave.Enabled = true;
+
+            }
+
+
+
         }
+
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -148,7 +206,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string usetime = this.txtUseTime.Text.Trim();
             string postDat = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             string qtype = this.Request.QueryString["Type"] ?? "";
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype,  reqtimeOUT, reqtimeIN, txtReson, usetime, usrid, postDat, "");
+            if (usetime == "00:00:00")
+                return;
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeOUT, reqtimeIN, txtReson, usetime, usrid, postDat, "");
             //reqtimeOUT actual INTIME, reqtimeIN actual OUTTIME its change only for time of leave case simarlar other type  insert data, any issue discuse with emdad,nahid, ibrahim
 
 
@@ -162,7 +222,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             else
             {
-                htmtableboyd = "Details: Apply Date: " + reqdate+ ", <br>  Out time :" + reqtimeOUT +",  In time :"+ reqtimeIN + ",<br>  Use Time:" + usetime+ " Hour, <br>  Previous Use Time :" + remTime + ",<br> Reason/Remarks "+ txtReson;
+                htmtableboyd = "Details: Apply Date: " + reqdate + ", <br>  Out time :" + reqtimeOUT + ",  In time :" + reqtimeIN + ",<br>  Use Time:" + usetime + " Hour, <br>  Previous Use Time :" + remTime + ",<br> Reason/Remarks " + txtReson;
 
 
                 string trnid = this.GetattAppId(empid);
@@ -174,8 +234,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 }
 
-                string eventdesc2 =  htmtableboyd;
+                string eventdesc2 = htmtableboyd;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Request for " + reqfor, htmtableboyd, Messaged);
+                GetRemaningTime();
             }
         }
         private string GetattAppId(string empid)
@@ -191,6 +252,27 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void txtFromTime_TextChanged(object sender, EventArgs e)
         {
+            string cdate = Convert.ToDateTime(txtaplydate.Text).ToString("dd-MMM-yyyy");
+            DateTime todate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtToTime.Text.ToString());
+            DateTime fodate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtFromTime.Text.ToString());
+            DateTime Offic_end = Convert.ToDateTime(cdate + " 05:30 PM");
+            DateTime Offic_ST = Convert.ToDateTime(cdate + " 09:00 AM");
+            if (Offic_ST > fodate || Offic_end < fodate)
+            {
+                this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
+                string Messaged = "Your office Time exceed ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                return;
+            }
+
+            if (todate > fodate)
+            {
+                this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm");                
+                string Messaged = "Your office Time exceed ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                return;
+            }
+
             GetUseTimeCalCulate();
 
         }
@@ -199,11 +281,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             string cdate = Convert.ToDateTime(txtaplydate.Text).ToString("dd-MMM-yyyy");
             DateTime Offic_end = Convert.ToDateTime(cdate + " 05:30 PM");
+            DateTime Offic_ST = Convert.ToDateTime(cdate + " 09:00 AM");
             DateTime todate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtToTime.Text.ToString());
+            DateTime fodate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtFromTime.Text.ToString());
 
-          if(todate > Offic_end)
+            if (todate > Offic_end)
             {
-                this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm:ss");
+                this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm");
+                string Messaged = "Your office Time exceed ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+
+            }
+
+            if (todate < fodate)
+            {
+                this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm");
                 string Messaged = "Your office Time exceed ";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
 
@@ -292,6 +384,39 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
+        }
+
+        protected void gvLvReq_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            
+            
+        }
+
+        protected void lkDelete_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string trnid = ((Label)this.gvLvReq.Rows[RowIndex].FindControl("lbllevid")).Text.Trim();
+            string empid = ((Label)this.gvLvReq.Rows[RowIndex].FindControl("lblgvempid")).Text.Trim();
+
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "DELETEMPTIMEOFLEAVE", empid, trnid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                string Messaged = "Deleted Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                return;
+            }
+
+
+            string Messagesd = "Deleted Success";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+             
+            GetRemaningTime();
+
+            string eventdesc2 = "Leave Request deleted, Request ID by:  "+ trnid;
+            bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "Delete Time Of Leave Request", eventdesc2, "");
         }
     }
 }

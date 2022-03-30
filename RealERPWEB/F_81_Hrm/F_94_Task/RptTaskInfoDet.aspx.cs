@@ -237,10 +237,7 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
                 double value3 = value2 == 0 ? 0 : value2 / 60;
                 double value4 = value2 == 0 ? 0 : value2 % 60;
                 lblamount.Text = value3.ToString("#,##0;(#,##0); ") + "Hr" + value4.ToString("#,##0;(#,##0); ") + "Min";     //value3.Hours.ToString() + "Hr" + value.Minutes.ToString() + "Min";
-
-
-
-
+                 
             }
 
         }
