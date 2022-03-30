@@ -77,12 +77,17 @@ namespace RealERPWEB.F_99_Allinterface
                     this.printMRReceipt();
                     break;
 
+                //Marketing Procurement Print
                 case "MktReqPrint":
                     this.MktReqPrint();
                     break;
 
                 case "MktOrderPrint":
                     this.MktOrderPrint();
+                    break;
+
+                case "MktMRRPrint":
+                    this.MktMRRPrint();
                     break;
 
                 default:
@@ -4721,6 +4726,55 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
+
+        private void MktMRRPrint()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            string mMRRNo = this.Request.QueryString["mrno"].ToString();
+            string CurDate1 = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_PUR_MRR_INFO", mMRRNo, CurDate1,
+                         "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            string suppliername = ds1.Tables[1].Rows[0]["ssirdesc1"].ToString();
+            string prjname = ds1.Tables[1].Rows[0]["pactdesc"].ToString();
+
+            DataTable dt = this.HiddenSameDataMktMRR(ds1.Tables[0]);
+
+            string mrrno1 = ds1.Tables[1].Rows[0]["mrrno1"].ToString();
+            string porno = ds1.Tables[1].Rows[0]["orderno1"].ToString();
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseMrr>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_28_MPro.RptMktPurMRR", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtprjname", "Project Name : " + prjname));
+            Rpt1.SetParameters(new ReportParameter("txtSubName", "Supplier Name : " + suppliername));
+            Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No : " + ds1.Tables[1].Rows[0]["chlnno"]));
+            Rpt1.SetParameters(new ReportParameter("txtMrrno", "MRR No : " + mrrno1));
+            Rpt1.SetParameters(new ReportParameter("txtMrrRef", "MRR Ref : " + ds1.Tables[1].Rows[0]["mrrref"]));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd.MM.yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtQc", "Quality Certificate : " + ds1.Tables[1].Rows[0]["qcno"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("txtOrder", ds1.Tables[1].Rows[0]["pordref"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("txtpostedby", ds1.Tables[1].Rows[0]["usrnam"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Marketing Material Received"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("txtOrderno", "Order No : " + porno));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+        }
         void LoadSubReport(object sender, SubreportProcessingEventArgs e)
         {
             List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule> lst = (List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule>)ViewState["tblpaysch"];
@@ -6538,6 +6592,73 @@ namespace RealERPWEB.F_99_Allinterface
             return dt1;
         }
 
+        private DataTable HiddenSameDataMktMRR(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
 
+            string reqno = dt1.Rows[0]["reqno"].ToString();
+            string prtype = dt1.Rows[0]["prtype"].ToString();
+            string acttype = dt1.Rows[0]["acttype"].ToString();
+            string mkttype = dt1.Rows[0]["mkttype"].ToString();
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["reqno"].ToString() == reqno && dt1.Rows[j]["prtype"].ToString() == prtype && dt1.Rows[j]["acttype"].ToString() == acttype && dt1.Rows[j]["mkttype"].ToString() == mkttype)
+                {
+                    dt1.Rows[j]["reqno1"] = "";
+                    dt1.Rows[j]["prtypedesc"] = "";
+                    dt1.Rows[j]["acttypedesc"] = "";
+                    dt1.Rows[j]["mkttypedesc"] = "";
+
+                    reqno = dt1.Rows[j]["reqno"].ToString();
+                    prtype = dt1.Rows[j]["prtype"].ToString();
+                    acttype = dt1.Rows[j]["acttype"].ToString();
+                    mkttype = dt1.Rows[j]["mkttype"].ToString();
+                }
+
+                else if (dt1.Rows[j]["reqno"].ToString() == reqno && dt1.Rows[j]["prtype"].ToString() == prtype && dt1.Rows[j]["acttype"].ToString() == acttype)
+                {
+                    dt1.Rows[j]["reqno1"] = "";
+                    dt1.Rows[j]["prtypedesc"] = "";
+                    dt1.Rows[j]["acttypedesc"] = "";
+
+                    reqno = dt1.Rows[j]["reqno"].ToString();
+                    prtype = dt1.Rows[j]["prtype"].ToString();
+                    acttype = dt1.Rows[j]["acttype"].ToString();
+                }
+                else if (dt1.Rows[j]["reqno"].ToString() == reqno && dt1.Rows[j]["prtype"].ToString() == prtype)
+                {
+                    dt1.Rows[j]["reqno1"] = "";
+                    dt1.Rows[j]["prtypedesc"] = "";
+
+                    reqno = dt1.Rows[j]["reqno"].ToString();
+                    prtype = dt1.Rows[j]["prtype"].ToString();
+                }
+
+                else
+                {
+                    if (dt1.Rows[j]["reqno"].ToString() == reqno)
+                        dt1.Rows[j]["reqno1"] = "";
+
+                    if (dt1.Rows[j]["prtype"].ToString() == prtype)
+                        dt1.Rows[j]["prtypedesc"] = "";
+
+                    if (dt1.Rows[j]["acttype"].ToString() == acttype)
+                        dt1.Rows[j]["acttypedesc"] = "";
+
+                    if (dt1.Rows[j]["mkttype"].ToString() == mkttype)
+                        dt1.Rows[j]["mkttypedesc"] = "";
+
+                    reqno = dt1.Rows[j]["reqno"].ToString();
+                    prtype = dt1.Rows[j]["prtype"].ToString();
+                    acttype = dt1.Rows[j]["acttype"].ToString();
+                    mkttype = dt1.Rows[j]["mkttype"].ToString();
+                }
+
+            }
+
+            return dt1;
+        }
     }
 }

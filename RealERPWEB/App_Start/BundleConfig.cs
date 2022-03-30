@@ -55,11 +55,12 @@ namespace RealERPWEB
                  "~/Scripts/jquery-migrate-1.3.0.js",
                "~/Scripts/jquery.tablesorter.widgets.js"));
 
-  
 
+            
          // Common
             bundles.Add(new ScriptBundle("~/bundles/gridviewscroll").Include(               
-               "~/Scripts/ScrollableGridPlugin.js",  
+               "~/Scripts/ScrollableGridPlugin.js",
+               "~/Scripts/gridviewScrollHaVertworow.min.js",
                 "~/Scripts/gridviewScrollHaVer.min.js"));
 
 
