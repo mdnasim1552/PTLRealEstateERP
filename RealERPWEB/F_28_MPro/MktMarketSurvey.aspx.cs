@@ -215,16 +215,14 @@ namespace RealERPWEB.F_28_MPro
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
-            string comnam = hst["comnam"].ToString();  //company name
-            string comadd = hst["comadd1"].ToString();  //address
-            string compname = hst["compname"].ToString();
+            string comnam = hst["comnam"].ToString(); 
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
             string Reqno = this.ddlReqList.SelectedValue.ToString();
             string msrno = ASTUtility.Left(this.lblCurMSRNo1.Text.Trim(), 3) + ASTUtility.Right(this.txtCurMSRDate.Text.Trim(), 4) + this.lblCurMSRNo1.Text.Trim().Substring(3, 2) + this.txtCurMSRNo2.Text.Trim();
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMATREQWISE", Reqno,
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "GETMATREQWISE", Reqno,
                         "%", CurDate1, "", "", "", "", "", "");
 
 
@@ -243,27 +241,27 @@ namespace RealERPWEB.F_28_MPro
             string SVJ2 = ds2.Tables[2].Rows[0]["msrnar2"].ToString();
             string SVJ3 = ds2.Tables[2].Rows[0]["msrnar3"].ToString();
 
-            LocalReport rpt1 = new LocalReport();
-            rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("RD_07_Inv.RptPurMktSurvey02", lst, lst1, null);
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_28_MPro.RptMktPurMarketSurvey", lst, lst1, null);
+            Rpt1.SetParameters(new ReportParameter("BestS", "Best Selection"));
+            Rpt1.SetParameters(new ReportParameter("CS", "Comparative Statement"));
+            Rpt1.SetParameters(new ReportParameter("SVJ", "Purchase Justification: " + SVJ));
+            Rpt1.SetParameters(new ReportParameter("SVJ2", "Audit Justification: " + SVJ2));
+            Rpt1.SetParameters(new ReportParameter("SVJ3", "MD Justification: " + SVJ3));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("msrno", "MSR No: " + msrno));
+            Rpt1.SetParameters(new ReportParameter("Reqno", "Req No: " + Reqno));
+            Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Marketing Market Survey Information"));
+            Rpt1.SetParameters(new ReportParameter("preparedby", preparedby));
+            Rpt1.SetParameters(new ReportParameter("checkedby", checkedby));
+            Rpt1.SetParameters(new ReportParameter("varifiedby", varifiedby));
+            Rpt1.SetParameters(new ReportParameter("paystatus", ""));
+            Rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
 
-            rpt1.SetParameters(new ReportParameter("BestS", "Best Selection"));
-            rpt1.SetParameters(new ReportParameter("CS", "Comparative Statement"));
-            rpt1.SetParameters(new ReportParameter("SVJ", "Purchase Justification: " + SVJ));
-            rpt1.SetParameters(new ReportParameter("SVJ2", "Audit Justification: " + SVJ2));
-            rpt1.SetParameters(new ReportParameter("SVJ3", "MD Justification: " + SVJ3));
-            rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            rpt1.SetParameters(new ReportParameter("msrno", "MSR No: " + msrno));
-            rpt1.SetParameters(new ReportParameter("Reqno", "Req No: " + Reqno));
-            rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
-            rpt1.SetParameters(new ReportParameter("RptTitle", "Market Survey Information Input/Edit Screen "));
-            rpt1.SetParameters(new ReportParameter("preparedby", preparedby));
-            rpt1.SetParameters(new ReportParameter("checkedby", checkedby));
-            rpt1.SetParameters(new ReportParameter("varifiedby", varifiedby));
-            rpt1.SetParameters(new ReportParameter("paystatus", ""));
-            rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
-            Session["Report1"] = rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
-               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
         private void Get_Survey_Info()
         {
