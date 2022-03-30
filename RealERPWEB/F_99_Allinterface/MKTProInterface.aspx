@@ -692,18 +692,16 @@
                                     <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
-                                        <asp:HyperLink ID="hyplnkCrReqMkt" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition Marketing</asp:HyperLink>
+                                        <asp:HyperLink ID="hyplnkCrReqMkt" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition</asp:HyperLink>
                                         <%--<asp:HyperLink ID="hyplnkCrReqIT" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition IT</asp:HyperLink>
                                         <asp:HyperLink ID="hyplnkCrReqAdmin" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition Admin</asp:HyperLink>--%>
-                                        
+                                        <asp:HyperLink ID="hyplnkCrMatIssue" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MktMatIssue?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Material Issue</asp:HyperLink>
+
                                           <div class="dropdown-divider"></div>
                                          <asp:HyperLink ID="hlnkgencode" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MktProGenCodeBook?Type=Entry" CssClass="dropdown-item" Style="padding: 0 10px">General Code</asp:HyperLink>
                                          <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=Marketing" CssClass="dropdown-item" Style="padding: 0 10px">Marketing Code</asp:HyperLink>
                                          <asp:HyperLink ID="hlnkbudget" runat="server" Target="_blank" NavigateUrl="~/F_04_Bgd/BgdMaster?InputType=BgdMain&prjcode=" CssClass="dropdown-item" Style="padding: 0 10px">Budget</asp:HyperLink>
 
-                                       
-                                       
-                                        
                                         <div class="dropdown-divider"></div>
                                          <asp:HyperLink ID="hlnk" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Material Stock</asp:HyperLink>
                                         </div>
