@@ -1354,19 +1354,21 @@ namespace RealERPLIB
 
             #region Marketing Procurement
             tblObj.Rows.Add(new Object[] { "2801000", "2801001", "F_28_MPro", "MktProGenCodeBook?", "Type=Entry", "General Code(M. Procurement) ", "Marketing Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2801000", "2801002", "F_28_MPro", "MKTPurReqEntry?", "InputType=Entry", "Material Requisition", "Marketing Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2801000", "2801020", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqCheck", "Material Requisition (1st Approval)", "Marketing Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2801000", "2801030", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqApproval", "Material Requisition (Final Approval)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801005", "F_17_Acc", "AccSubCodeBook?", "InputType=Marketing", "Marketing Code", "Marketing Procurement", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "2801000", "2801035", "F_28_MPro", "MktMarketSurvey?", "Type=Entry", "CS Preparation", "Marketing Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2801000", "2801036", "F_28_MPro", "MktMarketSurvey?", "Type=Approval", "CS Approval", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802002", "F_28_MPro", "MKTPurReqEntry?", "InputType=Entry", "Material Requisition", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802020", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqCheck", "Material Requisition (1st Approval)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802030", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqApproval", "Material Requisition (Final Approval)", "Marketing Procurement", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "2802000", "2802035", "F_28_MPro", "MktMarketSurvey?", "Type=Entry", "CS Preparation", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802036", "F_28_MPro", "MktMarketSurvey?", "Type=Approval", "CS Approval", "Marketing Procurement", "False", "False", "False", "False" });
 
 
 
-            tblObj.Rows.Add(new Object[] { "2801000", "2801040", "F_28_MPro", "MktWorkOrderEntry?", "InputType=OrderEntry", "Marketing Purchase Order", "Marketing Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2801000", "2801042", "F_28_MPro", "MktWorkOrderEntry?", "InputType=FirstApp", "Marketing Purchase Order(1st App)", "Marketing Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2801000", "2801045", "F_28_MPro", "MktWorkOrderEntry?", "InputType=SecondApp", "Marketing Purchase Order(Final App)", "Marketing Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2801000", "2801050", "F_28_MPro", "MktMRREntry?", "Type=Entry", "Marketing Material Receive", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802040", "F_28_MPro", "MktWorkOrderEntry?", "InputType=OrderEntry", "Marketing Purchase Order", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802042", "F_28_MPro", "MktWorkOrderEntry?", "InputType=FirstApp", "Marketing Purchase Order(1st App)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802045", "F_28_MPro", "MktWorkOrderEntry?", "InputType=SecondApp", "Marketing Purchase Order(Final App)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2802000", "2802050", "F_28_MPro", "MktMRREntry?", "Type=Entry", "Marketing Material Receive", "Marketing Procurement", "False", "False", "False", "False" });
 
 
             
