@@ -57,7 +57,7 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblPrjName" runat="server" class="control-label  lblmargin-top9px" Text="Cost Center"></asp:Label>
-                                    <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control chzn-select form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-3 ml-1">
@@ -73,11 +73,11 @@
                                 <div class="form-group">
                                     <%--<asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Click for Prev." OnClick="ImgbtnFindReq_Click"><i class="fas fa-search"></i></asp:LinkButton>--%>
                                     <asp:LinkButton ID="ImgbtnFindReq" runat="server" Text="Prev. Req.List" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>
-                                    <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
                                 </div>
                             </div>
 
-                            <div class="col-2 ml-2">
+                            <div class="col-2 ml-3">
                                 <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
                                 <asp:LinkButton ID="lbtnSurVey" runat="server" CssClass="btn btn-primary btn-sm" Visible="False">Survey</asp:LinkButton>
                             </div>
@@ -113,20 +113,20 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblPRType" runat="server" class="control-label  lblmargin-top9px" Text="Pur. Req. Type"></asp:Label>
-                                    <asp:DropDownList ID="ddlPRType" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPRType_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPRType" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPRType_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-3 ml-1">
                                 <div class="form-group">
                                     <asp:Label ID="lblActType" runat="server" class="control-label  lblmargin-top9px" Text="Activity Type"></asp:Label>
-                                    <asp:DropDownList ID="ddlActType" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlActType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblMatType" runat="server" class="control-label  lblmargin-top9px" Text="Marketing Type"></asp:Label>
-                                    <asp:DropDownList ID="ddlMarkType" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlMarkType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
 

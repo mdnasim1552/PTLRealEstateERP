@@ -39,8 +39,6 @@ namespace RealERPWEB.F_28_MPro
                 }
                 this.txtCurISSDate_CalendarExtender.EndDate = System.DateTime.Today;
 
-                this.Visible();
-
             }
 
 
@@ -54,26 +52,6 @@ namespace RealERPWEB.F_28_MPro
 
         }
 
-
-        private void Visible()
-        {
-            string comcod = this.GetCompCode();
-
-            switch (comcod)
-            {
-                case "3340":
-
-                    this.Label9.Text = "SRF";
-                    this.Label3.Text = "DMMS";
-
-                    break;
-                default:
-
-                    break;
-
-            }
-
-        }
         protected void lbtnFindProject_Click(object sender, EventArgs e)
         {
             if (this.lbtnOk.Text == "Ok")
@@ -116,12 +94,6 @@ namespace RealERPWEB.F_28_MPro
 
                 }
 
-                //else {
-                //    this.ddlPrevISSList.DataTextField = "maxmisuno1";
-                //    this.ddlPrevISSList.DataValueField = "maxmisuno";
-                //    this.ddlPrevISSList.DataSource = ds2.Tables[0];
-                //    this.ddlPrevISSList.DataBind();
-                //}
             }
         }
         private void GetProjectList()
@@ -347,19 +319,15 @@ namespace RealERPWEB.F_28_MPro
                 this.lbtnPrevISSList.Visible = true;
                 this.ddlPrevISSList.Visible = true;
                 this.ddlPrevISSList.Items.Clear();
-
-                this.ddlprjlist.Visible = true;
-                this.lblddlProject.Visible = false;
+                this.ddlprjlist.Enabled = true;
                 this.txtCurISSDate.Enabled = true;
                 this.lblCurISSNo1.Text = "ISU" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurISSNo2.Text = "";
                 this.ddlMaterials.Items.Clear();
                 this.txtISSNarr.Text = "";
-
                 this.PnlRes.Visible = false;
                 this.PnlNarration.Visible = false;
                 this.txtMIsuRef.Text = "";
-
                 this.txtsmcr.Text = "";
                 this.grvissue.DataSource = null;
                 this.grvissue.DataBind();
@@ -367,10 +335,7 @@ namespace RealERPWEB.F_28_MPro
             }
             this.lbtnPrevISSList.Visible = false;
             this.ddlPrevISSList.Visible = false;
-            //this.txtsmcr.Visible = false;
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.ddlprjlist.Visible = false;//it will be used
-            this.lblddlProject.Visible = true;
+            this.ddlprjlist.Enabled=false;
             this.PnlRes.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
@@ -425,12 +390,9 @@ namespace RealERPWEB.F_28_MPro
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["isuno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["isudat"]).ToString("dd-MMM-yyyy");
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.txtISSNarr.Text = ds1.Tables[1].Rows[0]["rmrks"].ToString();
             this.txtMIsuRef.Text = ds1.Tables[1].Rows[0]["isurefno"].ToString();
             this.txtsmcr.Text = ds1.Tables[1].Rows[0]["smcrno"].ToString();
-
-
             this.grvissue_DataBind();
         }
 
@@ -524,22 +486,6 @@ namespace RealERPWEB.F_28_MPro
 
         private void GetSpecification()
         {
-
-            ////string mResCode = this.ddlMaterials.SelectedValue.ToString();
-
-            ////DataTable dt = ((DataTable)Session["itemlist"]).Copy();
-            ////DataView dv = dt.DefaultView;
-
-            ////dv.RowFilter = ("rsircode='" + mResCode + "'");
-
-            ////this.ddlSpecification.DataTextField = "spcfdesc";
-            ////this.ddlSpecification.DataValueField = "spcfcod";
-            ////this.ddlSpecification.DataSource = dv.ToTable();
-            ////this.ddlSpecification.DataBind();
-
-
-            /////
-            //string mResCode = this.ddlMaterials.SelectedValue.ToString().Substring(0,9);
             string mResCode = this.ddlMaterials.SelectedValue.ToString();
             DataTable tbl1 = (DataTable)Session["specification"];
             DataView dv1 = tbl1.DefaultView;
@@ -550,15 +496,6 @@ namespace RealERPWEB.F_28_MPro
             this.ddlSpecification.DataSource = dv1.ToTable();
             this.ddlSpecification.DataBind();
 
-
-
-            //DataTable tbl1 = (DataTable)Session["specification"];
-            //DataView dv1 = tbl1.DefaultView;
-            //dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
-            //this.ddlSpecification.DataTextField = "spcfdesc";
-            //this.ddlSpecification.DataValueField = "spcfcod";
-            //this.ddlSpecification.DataSource = dv1.ToTable();
-            //this.ddlSpecification.DataBind();
         }
 
         protected void lbtnSelect_Click(object sender, EventArgs e)
@@ -597,23 +534,10 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnSelectReaSpesAll_Click(object sender, EventArgs e)
         {
 
-
-
-
-
-
-            //////////
             DataTable dt = (DataTable)ViewState["tblmatissue"];
 
             DataTable dt2 = ((DataTable)Session["specification"]).Copy();
 
-
-            // string rsircode = this.ddlMaterials.SelectedValue.ToString();
-            // string mSpcfCod = this.ddlSpecification.SelectedValue.ToString();
-
-
-            // DataTable dt3 = new DataTable(); 
-            //for (int i = 0; i < dt2.Rows.Count; i++)
             for (int i = 0; i < this.ddlMaterials.Items.Count; i++)
             {
 
@@ -681,7 +605,6 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }
 
-            // ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Enabled = false;
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
@@ -706,14 +629,6 @@ namespace RealERPWEB.F_28_MPro
             this.SaveValue();
             DataTable tbl2 = (DataTable)ViewState["tblmatissue"];
 
-            //DataRow[] dr = tbl2.Select("isuqty=0.00");
-
-            //if (dr.Length > 0)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Qtuantity Field ";
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
 
             string comcod = this.GetCompCode();
 
@@ -820,28 +735,16 @@ namespace RealERPWEB.F_28_MPro
 
 
 
-
-
-
-
             string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
             string mISURNAR = this.txtISSNarr.Text.Trim();
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEB",
                              mISUNO, mISUDAT, mPACTCODE, mISURNAR, mRef, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, mSmcr, "", "");
-            //if (!result)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
+         
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
-
-
-
 
 
             for (int i = 0; i < tbl2.Rows.Count; i++)
@@ -871,11 +774,7 @@ namespace RealERPWEB.F_28_MPro
                 return;
             this.XmlDataInsert(mISUNO, dsx);
 
-            //((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
-            //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Data Updated successfully');", true);
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Issue Update Successfully" + "');", true);
 
             this.txtCurISSDate.Enabled = false;
             if (ConstantInfo.LogStatus == true)
@@ -913,39 +812,6 @@ namespace RealERPWEB.F_28_MPro
             ViewState["tblmatissue"] = dt;
         }
 
-
-        protected void grvissue_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblmatissue"];
-            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
-            string MatCode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
-            string spcfcode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblgvspcfcode")).Text.Trim();
-
-            if (dt.Rows.Count > 0)
-            {
-                DataSet ds1 = new DataSet();
-                ds1.Tables.Add(dt);
-                //this.XmlDataDeleted(mISUNO, ds1);
-            }
-
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUE", mISUNO, MatCode, spcfcode, "", "", "", "", "", "", "", "", "", "", "", "");
-
-            if (result == true)
-            {
-                int rowindex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + e.RowIndex;
-                dt.Rows[rowindex].Delete();
-            }
-
-            DataView dv = dt.DefaultView;
-            ViewState.Remove("tblmatissue");
-            ViewState["tblmatissue"] = dv.ToTable();
-            this.grvissue_DataBind();
-
-
-        }
-
-
         protected void lbtnDelete_Click(object sender, EventArgs e)
         {
             DataTable tbl1 = (DataTable)ViewState["tblmatissue"];
@@ -962,12 +828,6 @@ namespace RealERPWEB.F_28_MPro
 
 
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUEALL", mISUNO, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            //if (!result)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
 
             if (!result)
             {
@@ -978,9 +838,6 @@ namespace RealERPWEB.F_28_MPro
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Delete Successfully" + "');", true);
             }
-
-            //((Label)this.Master.FindControl("lblmsg")).Text = "Data Delete  successfully";
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
 
         }
@@ -1097,6 +954,37 @@ namespace RealERPWEB.F_28_MPro
 
 
             return true;
+        }
+
+        protected void lbtngvMatDelete_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblmatissue"];
+            int gvRowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowIndex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + gvRowIndex; 
+            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string MatCode = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblitemcode")).Text.Trim();
+            string spcfcode = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblgvspcfcode")).Text.Trim();
+
+            if (dt.Rows.Count > 0)
+            {
+                DataSet ds1 = new DataSet();
+                ds1.Tables.Add(dt);
+            }
+
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUE", mISUNO, MatCode, spcfcode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {                
+                dt.Rows[rowIndex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblmatissue");
+            ViewState["tblmatissue"] = dv.ToTable();
+            this.grvissue_DataBind();
+
+
         }
     }
 }
