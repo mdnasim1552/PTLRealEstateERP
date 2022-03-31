@@ -47,7 +47,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     GetLeavType();
                     GetSupvisorCheck();
                     getVisibilty();
-                    
+
                     this.EmpLeaveInfo();
                     this.ShowEmppLeave();
                     GetCalCulateDay();
@@ -363,7 +363,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
 
 
-               
+
 
 
                 GetCalCulateDay();
@@ -412,7 +412,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-            
+
         }
 
         protected void chkHalfDay_CheckedChanged(object sender, EventArgs e)
@@ -486,7 +486,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string addentime = this.txtaddofenjoytime.Text.Trim();
                     string remarks = this.txtLeavRemarks.Text.Trim();
                     string dnameadesig = this.txtdutiesnameandDesig.Text.Trim();
-                    string APRdate = (qtype=="MGT"? applydat:"");
+                    string APRdate = (qtype == "MGT" ? applydat : "");
 
                     bool result = false;
                     //below code for if apply without date range 
@@ -528,7 +528,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         string Messaged = "Successfully applied for leave, please wait for approval";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
-                        if(qtype != "MGT")
+                        if (qtype != "MGT")
                         {
                             this.SendNotificaion(frmdate, todate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
 
@@ -874,7 +874,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-            
+
         }
 
         private void ShowEmppLeave()
@@ -890,13 +890,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string calltype = "";
                 switch (comcod)
                 {
-                   /* case "3101":*/  // For BTI as Per concern Nahid Vai  create by Md Ibrahim Khalil
+                    /* case "3101":*/  // For BTI as Per concern Nahid Vai  create by Md Ibrahim Khalil
                     case "3365":
                         calltype = "LEAVE_STATUS02BTI";
                         break;
 
                     default:
-                        calltype = "LEAVE_STATUS02";
+                        calltype = "LEAVESTATUS02";
                         break;
                 }
 
@@ -917,7 +917,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-           
+
 
         }
         private void Data_Bind()
@@ -963,7 +963,22 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void gvleaveInfo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkbtn = (LinkButton)e.Row.FindControl("lnkDelete");
+                string isapproved = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "isapproved")).ToString();
+                string grpsl = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grpsl")).ToString();
 
+                if (isapproved == "true")
+                {
+                    lnkbtn.Visible = false;
+                }
+                if ((this.Request.QueryString["Type"] == "MGT") && grpsl == "AAAAA")
+                {
+                    lnkbtn.Visible = true;
+                }
+
+            }
         }
 
 
@@ -983,6 +998,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Messaged = "Deleted Fail";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
+            }
+            if (result)
+            {
+                string eventdesc2 = "LeaveDelete: " + "Leave ID" + trnid + ", " + lvid;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "Leave Request Deleted", eventdesc2, "");
             }
             string Messagesd = "Deleted Success";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
@@ -1017,7 +1037,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     return;
                 }
-                if (dt1== null)
+                if (dt1 == null)
                 {
                     return;
                 }
@@ -1034,14 +1054,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.gvInterstLev.DataSource = dt1;
                 this.gvInterstLev.DataBind();
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 string Messaged = "Oops!! " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
 
-           
+
         }
         protected void lnkIntsLvDelete_Click(object sender, EventArgs e)
         {
@@ -1073,7 +1093,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 diSkippDay.Visible = true;
                 diSkippDayDetails.Visible = true;
                 divDurStatus.Visible = false;
-                 ViewState.Remove("tblSlevDay");
+                ViewState.Remove("tblSlevDay");
             }
             this.Duration.Value = "0";
             CreateTable();
@@ -1119,9 +1139,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 chkBoxSkippWH_CheckedChanged(null, null);
                 frmdate.InnerText = "Leave Day";
                 todate.InnerText = "For Duty/Off Day";
-                this.divDurStatus.Visible = false; 
+                this.divDurStatus.Visible = false;
             }
-            
+
             txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
             txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
