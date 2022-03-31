@@ -95,7 +95,7 @@
                                             <div class="form-group">
 
                                                 <asp:LinkButton ID="lbtnSelect" runat="server" CssClass="btn btn-sm btn-primary okBtn" OnClick="Select_Click">Select</asp:LinkButton>
-                                                <asp:LinkButton ID="lbtnSelectAll" runat="server" CssClass="btn  btn-sm btn-primary okBtn" OnClick="SelectAll_Click">Select All</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnSelectAll" runat="server" Visible="false" CssClass="btn  btn-sm btn-primary okBtn" OnClick="SelectAll_Click">Select All</asp:LinkButton>
 
                                             </div>
                                         </div>
