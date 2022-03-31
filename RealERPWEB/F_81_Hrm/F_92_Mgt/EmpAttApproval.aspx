@@ -70,6 +70,8 @@
                                   <header class="card-header text-center">APPROVE INFORMATION</header>
                                 <div class="card-body">
                                     <div class="text-center">
+                                       
+
                                         <h2 class="h4 mt-2 mb-0" id="H1" runat="server">Mr.Rahim</h2>
 
                                         <p class="text-muted  mb-0" id="P1" runat="server">Project Manager HOD </p>
@@ -85,7 +87,9 @@
                         <div class="col-9">
                             <!-- form grid -->
                             <div class="card card-fluid">
-                                 <header class="card-header">REQUEST APPROVAL</header>
+                                 <header class="card-header">REQUEST APPROVAL
+                                      <p class="text-muted  mb-0 fa-pull-right" id="Reqst" runat="server"> </p>
+                                 </header>
                                 <div class="card-body">
                                      <div class="form-row">
                                     <div class="col-md-6 mb-3">
@@ -109,7 +113,10 @@
                                         <label for="validationTooltip02">
                                             Date 
                                         </label>
-                                        <asp:Label ID="lbldadte" runat="server" class="form-control"></asp:Label>
+                                            <asp:TextBox ID="lbldadte" runat="server" CssClass="form-control"></asp:TextBox>
+
+                                            <%--<asp:TextBox ID="lbldadte" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                        <%--<asp:Label ID="lbldadte" runat="server" class="form-control"></asp:Label>--%>
 
                                     </div>
                                        <div class="col-md-3 mb-3">
@@ -118,7 +125,8 @@
                                         </label>
                                         <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>
-                                        <asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>
+                                        <%--<asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>--%>
+                                            <asp:TextBox ID="lbldadteTime" runat="server" CssClass="form-control"></asp:TextBox>
 
                                     </div>
                                     </div>
@@ -141,7 +149,7 @@
                                     </div>
 
                                     <div class="col-12 mb-2 fa-pull-right">
-                                              <asp:LinkButton ID="lnkApproved" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn "  BorderStyle="None">Approved</asp:LinkButton>
+                                              <asp:LinkButton ID="lnkApproved" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn " OnClick="lnkApproved_Click"  BorderStyle="None">Approved</asp:LinkButton>
 
                                             <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" BorderStyle="None">Cancel</asp:LinkButton>
 

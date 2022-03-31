@@ -13,16 +13,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
     public partial class EmpAttApproval : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 GetDptUserCheck();
                 this.ShowData();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE APPROVAL";//
             }
-
-
-           
         }
 
         private void ShowData()
@@ -61,12 +61,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string empreson = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empreson"].ToString();
             string atttyp= dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["lvtype"].ToString();
             string reqdate= dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["strtdat"].ToString();
+            string restatus = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["lvstatus1"].ToString();
 
             this.lbldadte.Text =Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
             this.ddlReqType.SelectedValue = reqtype;
 
             /// for employee information 
-            /// 
+            
 
             this.UserName.InnerText = empname;
             this.UDesignation.InnerText = empdesig;
@@ -74,6 +75,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.idcard.InnerText = "ID Card - "+ idcard;
             this.txtAreaReson.Text = empreson;
             //this.lblRemarks.Text = ds.Tables[1].Rows[0]["usrname"].ToString();
+            //// Approval Part 
+            ///
+            this.Reqst.InnerHtml ="Current Status : "+ restatus;
+
+
         }
 
         public string GetCompCode()
@@ -218,5 +224,224 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
         }
+
+   
+        private void SendNotificaion(string ltrnid, string deptcode, string roletype, string isForward, string compsms, string compmail, string ssl, string sendUsername, string sendDptdesc, string sendUsrdesig, string compName)
+        {
+            try
+            {
+
+                string comcod = this.GetCompCode();
+             
+                string date = this.Request.QueryString["Date"] ?? "";
+                string frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                DataTable dt = (DataTable)ViewState["tblattreq"];
+                string supapp = "Your Request approved has been approved by the Supervisor, please waiting for Department/Section Head approval.";
+                string dptapp = "Your Request has been approved by the Department/Section Head.";
+
+                string empUsrID = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empuserid"].ToString();
+                string empEmail = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empEmail"].ToString();
+                string idcard = dt.Rows.Count == 0 ? "" : dt.Rows[0]["idcard"].ToString();
+                string deptName = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deptanme"].ToString();
+                string empdesig = dt.Rows.Count == 0 ? "" : dt.Rows[0]["desig"].ToString();
+                string empname = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empname"].ToString();
+                string reqdesc = dt.Rows.Count == 0 ? "" : dt.Rows[0]["attstatus"].ToString();
+
+
+
+                ///GET SMTP AND SMS API INFORMATION
+                #region
+                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+
+                //SMTP
+                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                #endregion
+
+
+
+
+                string roletypeCHk = (roletype == "SUP") ? "DPT" : "MGT";
+                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETAPPRVPMAIL", deptcode, roletypeCHk, "", "", "", "", "", "", "");
+
+                // var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "HRAPPROVAL_DPT_HEAD_USERID", deptcode, roletypeCHk, "", "", "", "", "", "", "");
+                if (ds == null)
+                    return;
+
+                #region
+
+                string subj = "New Request for "+ reqdesc;
+
+
+
+                #endregion
+
+                #region
+                // User profile notifcation 
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
+                    string phone = ds.Tables[0].Rows[i]["phone"].ToString();
+                    string tomail = ds.Tables[0].Rows[i]["mail"].ToString();
+                    string isrole = (roletype == "SUP" ? "DPT" :
+                                    roletype == "DPT" ? "MGT" : "MGT");
+
+                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid + "&RoleType=" + isrole;
+                    string totalpath = uhostname + currentptah;
+
+                    string maildescription = "Dear Sir, Please Approve "+ reqdesc + " Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + reqdesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+
+
+                    string msgbody = maildescription;
+
+                    bool result2 = UserNotify.SendNotification(subj, msgbody, appusrid);
+
+                    if (compsms == "True")
+                    {
+                        SendSmsProcess sms = new SendSmsProcess();
+                        string SMSText = "Request approved from : " + frmdate + " To " + todate;// 
+                        bool resultsms = sms.SendSmmsPwd(comcod, SMSText, phone);
+                    }
+                    if (compmail == "True")
+                    {
+                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, sendUsername, sendUsrdesig, sendDptdesc, compName, tomail, msgbody);
+                        if (Result_email == false)
+                        {
+                            string Messagesd = "Request Approved, Notification did not send";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        }
+                    }
+                }
+
+
+                // for applied user send notification
+
+                string toMSgBody = (roletype == "SUP" ? supapp :
+                                     roletype == "DPT" ? dptapp : "Your Request has been approved");
+                string toEmpsub = "Request Approved";
+                bool result3 = UserNotify.SendNotification(toEmpsub, toMSgBody, empUsrID);
+                if (result3 == false)
+                {
+                    string Messagesd = "Request Approved, Notification did not send";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                }
+                //end user profile notifcaion
+                #endregion
+
+                /// SMS and EMail SEND 
+
+                #region
+                if (compsms == "True")
+                {
+                    // bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, appusrid);
+
+                }
+                if (compmail == "True")
+                {
+                    // bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, appusrid);
+                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, toEmpsub, sendUsername, sendUsrdesig, sendDptdesc, compName, empEmail, toMSgBody);
+
+                }
+                #endregion
+
+
+            }
+            catch (Exception ex)
+            {
+                string Messagesd = "Request Approved, Notification did not send " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+            }
+
+        }
+
+        protected void lnkApproved_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ////DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //if (!Convert.ToBoolean(dr1[0]["entry"]))
+                //{
+                //    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //    return;
+                //}
+
+                //this.CheckValue();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string compsms = hst["compsms"].ToString();
+                string compmail = hst["compmail"].ToString();
+                string ssl = hst["ssl"].ToString();
+                //Sender Informaiton
+                string comcod = hst["comcod"].ToString();
+                string sendUsername = hst["userfname"].ToString();
+
+                string sendDptdesc = hst["dptdesc"].ToString();
+                string sendUsrdesig = hst["usrdesig"].ToString();
+                string compName = hst["comnam"].ToString();
+
+
+                string ApprovByid = hst["usrid"].ToString();
+                string Approvtrmid = hst["compname"].ToString();
+                string ApprovSession = hst["session"].ToString();
+               /// this.SaveLeave();
+                string isForward = "";// Convert.ToBoolean(this.Chboxforward.Checked).ToString();
+
+
+                string roletype = this.Request.QueryString["RoleType"].ToString();
+                string approvdat = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                string Centrid = this.Request.QueryString["refno"] ?? "";
+                string Orderno = this.Request.QueryString["ltrnid"] ?? "";
+                bool result = false;
+                string apDate = System.DateTime.Now.ToString(); ;
+                DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "GETCEHCKAPPROVALBYID", Orderno, roletype, Centrid, "", "", "", "", "", "");
+                if (ds4.Tables[0].Rows.Count != 0)
+                {
+                    string Messagesd = "Request Already Approved";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    return;
+                }
+                else
+                {
+                   // this.LeaveUpdate();
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATEATTAPPREQ", Orderno, ApprovByid, Approvtrmid, ApprovSession, approvdat, Centrid, roletype, isForward, "", "", "", "", "", "", "");
+                    if (result == false)
+                    {
+                        string Messagesd = "Request Approved Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        return;
+                    }
+                    else
+                    {
+                        this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName);
+                        string Messagesd = "Request Approved";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+
+                        string eventdesc2 = "Details: " + sendUsername + sendDptdesc + sendUsrdesig + compName;
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string Messagesd = "Something Wrong !!" + ex.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                return;
+            }
+        }
+
+
+      
     }
 }
