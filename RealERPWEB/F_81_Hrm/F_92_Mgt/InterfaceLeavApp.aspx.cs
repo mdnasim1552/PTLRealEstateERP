@@ -141,9 +141,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.RadioButtonList1.Items[3].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["fappcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Final Approval" + "</span>";
             this.RadioButtonList1.Items[4].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Leave Confirmed" + "</span>";
 
-             
-           
-            
             // All Order
             DataTable dt = new DataTable();
 
@@ -174,9 +171,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dv.RowFilter = ("lvstatus = 'Final Approved'");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvfiApproved", dv.ToTable());
-
-            
-
 
             //Confirm
             dt = ((DataTable)ds1.Tables[0]).Copy();
