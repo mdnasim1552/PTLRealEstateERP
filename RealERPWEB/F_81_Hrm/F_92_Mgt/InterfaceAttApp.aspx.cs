@@ -51,25 +51,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         private void SelectDate()
         {
-            string comcod = this.GetCompCode();
-            //DataSet datSetup = compUtility.GetCompUtility();
-            //if (datSetup == null)
-            //    return;
-
-            //string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            //this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-            //this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
-            //this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            string comcod = this.GetCompCode();          
+            this.txFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
             DateTime date = Convert.ToDateTime(txFdate.Text);
             DataSet datSetup = compUtility.GetCompUtility();
             if (datSetup == null)
                 return;
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            //  string curdate=System.DateTime.Today.ToString("")
             string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
             frmdate = startdate + frmdate.Substring(2);
-
-            string tdate = date.ToString("dd-MMM-yyyy");
+            this.txFdate.Text = frmdate;
+            this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+           //string tdate = date.ToString("dd-MMM-yyyy");
         }
         private void GetStep()
         {
