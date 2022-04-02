@@ -464,47 +464,47 @@ namespace RealERPWEB.F_17_Acc
             if (ds1 == null)
                 return;
 
-            //Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
-            //Session["recandpayFo"] = ds1.Tables[1];
-            //ViewState["recandpayNote"] = ds1.Tables[2];
+            Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
+            Session["recandpayFo"] = ds1.Tables[1];
+            ViewState["recandpayNote"] = ds1.Tables[2];
 
-            //this.gvRecptPayment.DataSource = ds1.Tables[0];
-            //this.gvRecptPayment.DataBind();
-            //this.RPNote1();
+            this.gvRecptPayment.DataSource = ds1.Tables[0];
+            this.gvRecptPayment.DataBind();
+            this.RPNote1();
 
-            //for (int i = 0; i < gvRecptPayment.Rows.Count; i++)
-            //{
-            //    string recpcode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvrecpcodep")).Text.Trim();
-            //    string paycode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvpaycodep")).Text.Trim();
-            //    LinkButton lbtn1 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnRecDescp");
-            //    LinkButton lbtn2 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnPayDescp");
-            //    if (lbtn1 != null)
-            //    {
-            //        if (lbtn1.Text.Trim().Length > 0)
-            //            lbtn1.CommandArgument = recpcode;
-            //    }
-            //    if (lbtn2 != null)
-            //    {
-            //        if (lbtn2.Text.Trim().Length > 0)
-            //            lbtn2.CommandArgument = paycode;
-            //    }
-            //}
+            for (int i = 0; i < gvRecptPayment.Rows.Count; i++)
+            {
+                string recpcode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvrecpcodep")).Text.Trim();
+                string paycode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvpaycodep")).Text.Trim();
+                LinkButton lbtn1 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnRecDescp");
+                LinkButton lbtn2 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnPayDescp");
+                if (lbtn1 != null)
+                {
+                    if (lbtn1.Text.Trim().Length > 0)
+                        lbtn1.CommandArgument = recpcode;
+                }
+                if (lbtn2 != null)
+                {
+                    if (lbtn2.Text.Trim().Length > 0)
+                        lbtn2.CommandArgument = paycode;
+                }
+            }
 
 
-            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-            //if (ds1.Tables[0].Rows.Count > 0)
-            //    ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).Enabled = (dr1.Length == 0) ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+            if (ds1.Tables[0].Rows.Count > 0)
+                ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).Enabled = (dr1.Length == 0) ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
-            //this.FooterCalculation(ds1.Tables[0], "gvRecptPayment");
-            //ds1.Dispose();
-            //Session["Report1"] = gvRecptPayment;
-            //if (ds1.Tables[0].Rows.Count > 0)
-            //{
-            //    ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            this.FooterCalculation(ds1.Tables[0], "gvRecptPayment");
+            ds1.Dispose();
+            Session["Report1"] = gvRecptPayment;
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-            //    //((HyperLink)this.gvrecandpay.FooterRow.FindControl("lgvFNetBalance")).NavigateUrl = "LinkAccount.aspx?Type=BalConfirmation&Date1=" + this.txtfromdate.Text + "&Date2=" + this.txttodate.Text;
+                //((HyperLink)this.gvrecandpay.FooterRow.FindControl("lgvFNetBalance")).NavigateUrl = "LinkAccount.aspx?Type=BalConfirmation&Date1=" + this.txtfromdate.Text + "&Date2=" + this.txttodate.Text;
 
-            //}
+            }
         }
         private void ReceiptAndPayment()
         {

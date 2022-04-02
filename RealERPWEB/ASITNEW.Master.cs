@@ -131,7 +131,6 @@ namespace RealERPWEB
             switch (comcod)
             {
                 case "3365":
-                     case "3101":
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true); 
@@ -140,8 +139,16 @@ namespace RealERPWEB
                     this.lnkFormLink.Visible = true;
                     this.hypTimeOfleave.Visible = true;
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
-                    break;                   
+                    break;
+               
+                case "3101":
+                case "3338":
+                case "1108":
+                case "1109":
                 case "3315":
+                case "3316":
+                case "3348":
+                case "3364":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
                 case "3347":
