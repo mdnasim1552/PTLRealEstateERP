@@ -130,6 +130,16 @@ namespace RealERPWEB
             string userrole = hst["userrole"].ToString();
             switch (comcod)
             {
+                case "3101":
+                    //sidebar nav off for bti general user                    
+                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = true;
+                    this.hypTimeOfleave.Visible = true;
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
+                    break;
                 case "3365":
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
@@ -141,7 +151,6 @@ namespace RealERPWEB
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
                     break;
                
-                case "3101":
                 case "3338":
                 case "1108":
                 case "1109":
