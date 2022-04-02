@@ -525,7 +525,7 @@
                                                                     <asp:HyperLink ID="lnkbtnEditUser" Visible="false" CssClass="btn btn-xs btn-default" Target="_blank" runat="server">
                                                                         <span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank" 
+                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank" Visible="false"
                                                                         ForeColor="Black" CssClass="btn btn-xs btn-default" Font-Underline="false">
                                                                         <span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
@@ -686,9 +686,9 @@
 
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
-                                                                    <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"> <span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" Visible="false" CssClass="btn btn-xs btn-default"> <span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"> <span class="fa fa-edit"></i>
+                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Visible="false" Font-Underline="false" CssClass="btn btn-xs btn-default"> <span class="fa fa-edit"></i>
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
@@ -834,7 +834,7 @@
 
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
-                                                                    <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Visible="false" Font-Underline="false" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnEditIN" Visible="false" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
@@ -1069,7 +1069,7 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Leave Type">
+                                                            <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lglvtype" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
@@ -1128,7 +1128,7 @@
                                                         <asp:LinkButton ID="lnkbtnView" runat="server"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </asp:LinkButton>--%>
 
-                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Visible="false" Target="_blank" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
 
                                                                      <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
