@@ -213,31 +213,31 @@ namespace RealERPWEB.F_28_MPro
         protected global::System.Web.UI.WebControls.LinkButton ibtnSearchMaterisl;
 
         /// <summary>
-        /// ddlMaterials control.
+        /// ddlPrType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMaterials;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrType;
 
         /// <summary>
-        /// lblSpecification control.
+        /// lblActivity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSpecification;
+        protected global::System.Web.UI.WebControls.Label lblActivity;
 
         /// <summary>
-        /// ddlSpecification control.
+        /// ddlActType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSpecification;
+        protected global::System.Web.UI.WebControls.DropDownList ddlActType;
 
         /// <summary>
         /// lbtnSelect control.

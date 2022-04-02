@@ -2602,6 +2602,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3315": // assure
                 case "3316": // assure
 
+                case "3357": // Cube
+
 
                     this.OrderPrintRDLC();
                     break;
@@ -3993,7 +3995,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
                     terms9 = "", terms10 = "", terms11 = "", terms12 = "";
-                string pperson1 = "", pperson2 = "";
+                string pperson1 = "", pperson2 = "", pcperson="";
 
 
                 switch (comcod)
@@ -4061,12 +4063,17 @@ namespace RealERPWEB.F_99_Allinterface
 
                     //case "3101": // ASIT
                     case "3366": // Lanco
-                    case "3357": // Cube
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
                         terms1 = terms.ToString();
-                        break;
+                        break;                   
+                    
+                    case "3101": // ptl 
+                    case "3357": // Cube 
+                        terms1 = terms.ToString();
+                        pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", "+ _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
+                        break;                
 
                     case "3335": // Edison Properties
 
@@ -4145,7 +4152,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    case "3101":                 
+                    //case "3101":                 
                     case "1108":                 
                     case "1109":                 
                     case "3315":                 
@@ -4183,7 +4190,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderAcme.rdlc";
                         break;
 
-                    case "3101": //Assure
+                    //case "3101": //Assure
                     case "1108": //Assure
                     case "1109": //Assure
                     case "3315": //Assure
@@ -4263,7 +4270,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
-                    //case "3101"://Asit
+                    case "3101"://Asit
                     case "3357": //Cube
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
@@ -4344,7 +4351,10 @@ namespace RealERPWEB.F_99_Allinterface
                 if (comcod == "3354")
                 {
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
-
+                }
+                if (comcod == "3101" || comcod == "3357")
+                {
+                    Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }
 
 

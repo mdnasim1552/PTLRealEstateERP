@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                     <div class="input-group input-group-alt">
                                         <div class="input-group-prepend ">
-                                            <span class="input-group-text">Materials</span>
+                                            <span class="input-group-text">PR Type</span>
                                         </div>
                                         <asp:TextBox ID="txtSearchMaterials" runat="server" CssClass="form-control"></asp:TextBox>
                                         <div class="input-group-append">
@@ -128,14 +128,14 @@
                             </div>
                             <div class="col-2 ml-1">
                                 <div class="form-group">
-                                    <asp:DropDownList ID="ddlMaterials" runat="server" CssClass="chzn-select form-control" OnSelectedIndexChanged="ddlMaterials_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPrType" runat="server" CssClass="chzn-select form-control" OnSelectedIndexChanged="ddlPrType_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-1 ml-1">
-                                <asp:Label ID="lblSpecification" runat="server" class="control-label  lblmargin-top9px" Text="Specification"></asp:Label>
+                                <asp:Label ID="lblActivity" runat="server" class="control-label  lblmargin-top9px" Text="Activity Type"></asp:Label>
                             </div>
                             <div class="col-2">
-                                <asp:DropDownList ID="ddlSpecification" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlActType" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                             </div>
                             <div class="col-2">
                                 <asp:LinkButton ID="lbtnSelect" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnSelect_Click">Select</asp:LinkButton>
@@ -190,25 +190,25 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Item Code" Visible="False">
+                                <asp:TemplateField HeaderText="PR Type" Visible="False">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblitemcode" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
+                                        <asp:Label ID="lblPRType" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtype")) %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Spcf Code" Visible="False">
+                                <asp:TemplateField HeaderText="Activity Type" Visible="False">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvspcfcode" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'></asp:Label>
+                                        <asp:Label ID="lblgvActType" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Description">
+                                <asp:TemplateField HeaderText="Pur. Req. Type">
                                     <ItemTemplate>
                                         <asp:Label ID="lblwrkdesc" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
-                                            Width="250px"></asp:Label>
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtypedesc")) %>'
+                                            Width="150px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm primaryBtn" OnClientClick="return Confirmation();"
@@ -219,24 +219,15 @@
                                     <ItemStyle Font-Size="10pt" HorizontalAlign="Left" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Unit">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label14" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
-                                            Width="40px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle Font-Size="10pt" HorizontalAlign="left" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Specifition">
+                                <asp:TemplateField HeaderText="Activity Type">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-success btn-sm primaryBtn"
                                             OnClick="lnkupdate_Click" OnClientClick="javascript:return FunConfirmSave();">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvspecifition" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
-                                            Width="100px"></asp:Label>
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")) %>'
+                                            Width="250px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle Font-Size="10pt" HorizontalAlign="left" />
                                 </asp:TemplateField>
@@ -259,20 +250,11 @@
                                     </ItemTemplate>
                                     <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Use of location">
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="txtlocation" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "useoflocation")) %>'
-                                            Width="100px" BackColor="Transparent" BorderColor="#660033"
-                                            BorderStyle="Solid" BorderWidth="1px"></asp:TextBox>
-                                    </ItemTemplate>
-                                    <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
-                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Remarks">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtisurmk" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'
-                                            Width="100px" BackColor="Transparent" BorderColor="#660033"
+                                            Width="180px" BackColor="Transparent" BorderColor="#660033"
                                             BorderStyle="Solid" BorderWidth="1px"></asp:TextBox>
                                     </ItemTemplate>
                                     <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />

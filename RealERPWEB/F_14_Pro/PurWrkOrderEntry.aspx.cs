@@ -2362,6 +2362,7 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetCompCode();
             string msg = "";
+            string date1 = DateTime.Today.ToString("dd.MM.yyyy");
             switch (comcod)
             {
                 //case "3101":
@@ -2371,10 +2372,11 @@ namespace RealERPWEB.F_14_Pro
                         "\n3. Product delivery time must be on time." +
                         "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
                         "\n5. Delivery place: at project site " +
-                        "\n6. Delivery date: ……………………" +
+                        "\n6. Delivery date: " + date1 +
                         "\n7. Cube Holdings Ltd. has the right to cancel the work order in any time." +
-                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
-                        "\n9. Please send all bill in duplicate.";
+                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3 percent" +
+                        "\n9. Please send all bill in duplicate."+
+                        "\n10. Contact Person : ";
                     break;
 
                 case "3366":
