@@ -8,8 +8,6 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
  
-
-
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -30,7 +28,7 @@
 
 
             <div class="card-fluid container-data  mt-2">
-                <div class="row" id="divError" runat="server">
+                <div class="row" id="divError" runat="server" visible="false">
                     <div class="col-12 col-lg-12 col-xl-12">
                         <div class="section-block">
 

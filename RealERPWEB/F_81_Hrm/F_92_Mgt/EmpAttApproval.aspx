@@ -104,7 +104,7 @@
                                             <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
                                             <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
                                             <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="TL">Time of Leave</asp:ListItem>
+                                            <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>
                                         </asp:DropDownList>
 
                                     </div>

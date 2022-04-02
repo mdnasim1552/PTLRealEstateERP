@@ -185,10 +185,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     string isrole = (roletype == "SUP" ? "DPT" :
                                     roletype == "DPT" ? "MGT" : "MGT");
 
-                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid + "&RoleType=" + isrole;
+                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_92_Mgt/";
+                    string currentptah = "EmpAttApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid + "&RoleType=" + isrole+ "&Reqtype=TLV";
                     string totalpath = uhostname + currentptah;
-
+                   
                     string maildescription = "Dear Sir, Please Approve "+ reqdesc + " Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                       "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + reqdesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
@@ -271,7 +271,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 //    return;
                 //}
-
                 //this.CheckValue();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string compsms = hst["compsms"].ToString();

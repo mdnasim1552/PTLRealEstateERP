@@ -335,7 +335,7 @@
                                                 <asp:TemplateField HeaderText="Card #">
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lbtnTotalDay" runat="server" OnClick="lbtnTotalDay_Click"
-                                                            CssClass="btn   btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                                            CssClass="btn  btn-primary primarygrdBtn">Total</asp:LinkButton>
                                                     </FooterTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvCardnoearn" runat="server" Height="16px"
