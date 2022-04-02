@@ -40,10 +40,10 @@ namespace RealERPWEB.F_28_MPro
                 this.chkdupMRF.Enabled = false;
                 this.chkdupMRF.Checked = true;
                 this.chkneBudget.Enabled = false;
-                this.chkneBudget.Checked = true;
-                //this.DupMRR();
+                this.chkneBudget.Checked = true;                
                 this.Load_Project_Combo();
                 this.GetPRType();
+               
                 this.GetMarkType();
 
                 this.VisibleGrid();
@@ -150,6 +150,31 @@ namespace RealERPWEB.F_28_MPro
            
 
         }
+        private void GetMaterial()
+        {
+            try
+            {
+
+
+                string comcod = this.GetCompCode();
+                string ReFindProject = (this.Request.QueryString["prjcode"].ToString().Length == 0 ?this.ddlProject.SelectedValue.ToString() : this.Request.QueryString["prjcode"].ToString());
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GETMATLIST", ReFindProject, "", "", "", "", "", "", "", "");
+                if (ds2 == null)
+                    return;
+
+                ViewState["tblmaterial"] = ds2.Tables[0];
+
+            }
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +ex.Message+ "');", true);
+                return;
+
+            }
+
+
+        }
         protected void GetPRType()
         {
             
@@ -168,7 +193,7 @@ namespace RealERPWEB.F_28_MPro
             this.ddlPRType.DataBind();
 
             ViewState["tblddllist"] = ds2.Tables[0];
-            this.ddlPRType_SelectedIndexChanged(null, null);
+          
 
         }
         protected void GetMarkType()
@@ -194,7 +219,7 @@ namespace RealERPWEB.F_28_MPro
                 this.ImgbtnFindReq.Visible = true;
                 this.ddlPrevReqList.Visible = true;
                 this.ddlPrevReqList.Items.Clear();
-                this.ddlProject.Visible = true;               
+              //  this.ddlProject.Visible = true;               
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.lblCurReqNo1.Text = "MRQ" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurReqDate.Enabled = true;
@@ -242,8 +267,9 @@ namespace RealERPWEB.F_28_MPro
             this.pnlSpeDet.Visible = true;
             this.dNarr.Visible = true;         
             this.lbtnOk.Text = "New";
-            this.Get_Requisition_Info();
-            this.LinkMarketSurvey();           
+            this.Get_Requisition_Info();            
+            this.GetMaterial();
+            this.ddlPRType_SelectedIndexChanged(null, null);
            
 
         }
@@ -337,17 +363,7 @@ namespace RealERPWEB.F_28_MPro
             this.gvResInfo_DataBind();
         }
 
-        private void LinkMarketSurvey()
-        {
-
-            string reqno = this.ddlPrevReqList.SelectedValue.ToString();
-            if (reqno == "")
-                return;
-            string QryStr = "reqno=" + reqno;
-            string TString = "javascript:window.showModalDialog('../F_12_Inv/LinkMktSurvey.aspx?" + QryStr + "', 'Unit Description', 'dialogHeight:800px;dialogWidth:900px;status:no')";
-            this.lbtnSurVey.Attributes.Add("OnClick", TString);
-
-        }
+      
    
         private void GetApprQty()
         {
@@ -1075,14 +1091,15 @@ namespace RealERPWEB.F_28_MPro
         protected void ddlPRType_SelectedIndexChanged(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblddllist"];
+            DataTable dt = (DataTable)ViewState["tblmaterial"];
             string code = this.ddlPRType.SelectedValue;
             DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = "code like ('" + code + "')";
-            this.ddlActType.DataTextField = "gdesc";
-            this.ddlActType.DataValueField = "gcod";
+            dv1.RowFilter = "mapcode like ('" + code + "')";
+            this.ddlActType.DataTextField = "rsirdesc";
+            this.ddlActType.DataValueField = "rsircode";
             this.ddlActType.DataSource = dv1.ToTable();
             this.ddlActType.DataBind();
+            
         }
 
         protected void lbtngvReqDelete_Click(object sender, EventArgs e)
