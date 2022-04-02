@@ -17,6 +17,7 @@ namespace RealERPWEB
     public partial class UserProfile : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
 
         string Upload = "";
         int size = 0;
@@ -667,27 +668,57 @@ namespace RealERPWEB
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
-
             string comcod = this.GetCompCode();
-      
-            string frmdate = "";
-            string date = "";
-            switch (comcod)
-            {
-                case "3365":
-                case "3101":
-                    date = Convert.ToDateTime("26-Dec-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
-                    frmdate = Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
-                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    break;
 
-                default:
-                    date = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
-                    frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
-                    break;
+            string monName;
+            if (comcod == "3365" || comcod == "3101")
+            {
+                monName = "-Dec-";
+            }
+            else
+            {
+                monName = "-Jan-";
+
             }
 
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+
+            string date1 = Convert.ToDateTime(startdate + monName + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            // string frmdate = Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+
+            DateTime date = Convert.ToDateTime(date1);
+
+
+            //string date1 = Convert.ToDateTime(Convert.ToInt32(startdate)+ "-Dec-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+
+            string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? Convert.ToDateTime(date).ToString("dd-MMM-yyyy") : Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+
+
+            //string frmdate = startdate + "-Dec-"  + this.txtDate.Text.Substring(7);
+            //this.txtDate.Text = frmdate; 
+
+            //string frmdate = "";
+            //string date = "";
+            //switch (comcod)
+            //{
+            //    case "3365":
+            //    case "3101":
+            //        date = Convert.ToDateTime("26-Dec-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            //        frmdate = Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+            //        //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+            //        break;
+
+            //    default:
+            //        date = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            //        frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+            //        break;
+            //}
+
             //string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+
             string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
             Response.Redirect("~/F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate);        
         }
