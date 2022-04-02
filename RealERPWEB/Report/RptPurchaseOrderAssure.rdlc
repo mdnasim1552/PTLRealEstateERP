@@ -1987,7 +1987,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2024,7 +2024,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!dispercnt.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!dispercnt.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2050,6 +2050,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2061,7 +2062,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4167,7 +4168,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.18208in</Top>
             <Height>6.58052in</Height>
-            <Width>8.04458in</Width>
+            <Width>8.04456in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4175,7 +4176,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.78189in</Height>
+        <Height>6.81314in</Height>
         <Style />
       </Body>
       <Width>8.04458in</Width>

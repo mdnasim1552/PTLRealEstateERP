@@ -114,4 +114,16 @@ namespace RealEntity.C_81_Hrm.C_81_Rec
         public string userdesc { get; set; }
         public CodeBookInfo() { }
     }
+
+    [Serializable]
+    public class HrgInfo
+    {
+        //comcod,hrgcod,hrgdesc,percnt
+        public string comcod { get; set; }
+        public string hrgcod { get; set; }
+        public string hrgdesc { get; set; }
+        public double percnt { get; set; }
+
+        public HrgInfo() { }
+    }
 }

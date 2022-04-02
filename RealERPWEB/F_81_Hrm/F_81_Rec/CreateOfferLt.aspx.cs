@@ -271,6 +271,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
 
             ViewState["tblSalinf"] = ds1.Tables[0];
+            ViewState["tblhrginf"] = ds1.Tables[2];
             this.Data_DataBind();
 
         }
@@ -290,7 +291,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             this.GetSalInfo();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
-            //string comcod = hst["comcod"].ToString();
+            string comcod = hst["comcod"].ToString();
             //string comadd = hst["comadd1"].ToString();
             //string compname = hst["compname"].ToString();
             //string session = hst["session"].ToString();
@@ -300,6 +301,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             //string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             DataTable dt1 = (DataTable)ViewState["tblln"];
             DataTable dt2 = (DataTable)ViewState["tblSalinf"];
+
 
             var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt>();
             var list1 = list.FindAll(p => p.gcod == "0202002" || p.gcod == "0202003" || p.gcod == "0202004" || p.gcod == "0202005" || p.gcod == "0202006");
@@ -314,8 +316,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             string txtdear = list.FindAll(l => l.gcod == "0202001")[0].descp;
             string benefit = list.FindAll(l => l.gcod == "0202008")[0].descp;
             string effect = list.FindAll(l => l.gcod == "0202007")[0].descp;
-
-
             string bodytxt = "";
 
 
@@ -338,14 +338,36 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
             list.RemoveAll(l => l.gcod == "0201001" || l.gcod == "0201002" || l.gcod == "0201003" || l.gcod == "0202001");
 
-
-
-
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RDLCAccountSetup.GetLocalReport("R_81_Hrm.R_81_Rec.RptCreateOffLt", list1, list2, list3);
+            //string basic, house, medical, conven, mobile, internet;
+            //string tbasic, thouse, tmedical, tconven, tmobile, tinternet;
+            //double basicp, housep, medicalp, convenp, mobilep, internetp;
+            switch (comcod)
+            {
+                case "3338":
+                    //DataTable dt3 = (DataTable)ViewState["tblhrginf"];
+                    //var list4 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.HrgInfo>();
+                    //basic = list4.FindAll(l => l.hrgcod == "04001")[0].hrgdesc;
+                    //basicp = list4.FindAll(l => l.hrgcod == "04001")[0].percnt;
+                    //house = list4.FindAll(l => l.hrgcod == "04002")[0].hrgdesc;
+                    //housep = list4.FindAll(l => l.hrgcod == "04002")[0].percnt;
+                    //medical = list4.FindAll(l => l.hrgcod == "04003")[0].hrgdesc;
+                    //medicalp = list4.FindAll(l => l.hrgcod == "04003")[0].percnt;
+                    //conven = list4.FindAll(l => l.hrgcod == "04004")[0].hrgdesc;
+                    //convenp = list4.FindAll(l => l.hrgcod == "04004")[0].percnt;
+                    //mobile = list4.FindAll(l => l.hrgcod == "04008")[0].hrgdesc;
+                    //mobilep = list4.FindAll(l => l.hrgcod == "04008")[0].percnt;
+                    //internet = list4.FindAll(l => l.hrgcod == "04009")[0].hrgdesc;
+                    //internetp = list4.FindAll(l => l.hrgcod == "04009")[0].percnt;
 
+                    Rpt1 = RDLCAccountSetup.GetLocalReport("R_81_Hrm.R_81_Rec.RptCreateOffLtAcme", list1, list2, list3);
+                    break;
+                default:
+                    Rpt1 = RDLCAccountSetup.GetLocalReport("R_81_Hrm.R_81_Rec.RptCreateOffLt", list1, list2, list3);
 
+                    break;
 
+            }
             Rpt1.SetParameters(new ReportParameter("txtname", name));
             Rpt1.SetParameters(new ReportParameter("txtAddress", address));
             Rpt1.SetParameters(new ReportParameter("txtLetterType", lettype));
@@ -410,11 +432,11 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             double tpt = 0;
             double mob = 0;
             double internet = 0;
-            double acbsal = 0; 
+            double acbsal = 0;
 
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "3338":
                     acbsal = gross;  // todo for acme calculate based on basic salary
                     hrent = acbsal == 0 ? 0 : (acbsal / 100) * 100;
@@ -455,29 +477,41 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            this.GetSalInfo();
-            DataTable dt = (DataTable)ViewState["tblSalinf"];
-            //if(dt.Rows.Count==0){
-            //    return;
-            //}
-            this.txtcat.Text = dt.Rows.Count > 0 ? dt.Rows[0]["cat"].ToString() : "";
-            this.txtgrade.Text = dt.Rows.Count > 0 ? dt.Rows[0]["grade"].ToString() : "";
-            this.txtdesignation.Text = dt.Rows.Count > 0 ? dt.Rows[0]["desig"].ToString() : "";
-            this.txtgross.Text = dt.Rows.Count > 0 ? dt.Rows[0]["gross"].ToString() : "";
-            this.txtrmks.Text = dt.Rows.Count > 0 ? dt.Rows[0]["rmks"].ToString() : "";
-
-            switch (this.GetComeCode())
+            try
             {
-                case "3101":
-                case "3338":
-                    this.lblSalary.InnerText = "Basic Salary";
-                    break;
-                default:
-                    this.lblSalary.InnerText = "Gross Salary";
-                    break;
+                this.GetSalInfo();
+                DataTable dt = (DataTable)ViewState["tblSalinf"];
+                //if(dt.Rows.Count==0){
+                //    return;
+                //}
+                this.txtcat.Text = dt.Rows.Count > 0 ? dt.Rows[0]["cat"].ToString() : "";
+                this.txtgrade.Text = dt.Rows.Count > 0 ? dt.Rows[0]["grade"].ToString() : "";
+                this.txtdesignation.Text = dt.Rows.Count > 0 ? dt.Rows[0]["desig"].ToString() : "";
+                this.txtrmks.Text = dt.Rows.Count > 0 ? dt.Rows[0]["rmks"].ToString() : "";
+
+                switch (this.GetComeCode())
+                {
+                    //case "3101":
+                    case "3338":
+                        this.lblSalary.InnerText = "Basic Salary";
+                        this.txtgross.Text = dt.Rows.Count > 0 ? dt.Rows[0]["bassal"].ToString() : "";
+
+                        break;
+                    default:
+                        this.lblSalary.InnerText = "Gross Salary";
+                        this.txtgross.Text = dt.Rows.Count > 0 ? dt.Rows[0]["gross"].ToString() : "";
+
+                        break;
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
             }
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ShowModal();", true);
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
         }
     }
 }
