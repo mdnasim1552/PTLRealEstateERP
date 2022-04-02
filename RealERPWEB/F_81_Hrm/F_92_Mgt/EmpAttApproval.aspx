@@ -148,10 +148,13 @@
                                         <asp:TextBox ID="txtremarks" runat="server" class="form-control" Rows="1" TextMode="MultiLine"></asp:TextBox>
                                     </div>
 
-                                    <div class="col-12 mb-2 fa-pull-right">
-                                              <asp:LinkButton ID="lnkApproved" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn " OnClick="lnkApproved_Click"  BorderStyle="None">Approved</asp:LinkButton>
+                                    <div class="col-12 mb-2 ">
+                                            <asp:LinkButton ID="lnkCancel" runat="server" OnClientClick="return confirm('Are you sure to cancel this item?');" CssClass="btn btn-danger btn-sm ApprovedBtn fa-pull-right" OnClick="lnkCancel_Click" BorderStyle="None">Cancel</asp:LinkButton>
 
-                                            <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" BorderStyle="None">Cancel</asp:LinkButton>
+                                           <asp:LinkButton ID="lnkApproved" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn fa-pull-right  mr-4" OnClick="lnkApproved_Click"  BorderStyle="None">Approved</asp:LinkButton>
+
+                                    </div>
+                                    <div class="col-2 mb-2 fa-pull-right">
 
                                     </div>
                                 </div>

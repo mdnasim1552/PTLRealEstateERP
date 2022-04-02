@@ -59,11 +59,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             if (ds1 == null)
                 return;
 
-            DateTime useTime = ds1.Tables[1].Rows.Count==0? DateTime.Parse("00:00"):DateTime.Parse(ds1.Tables[1].Rows[0]["USETIME"].ToString());
+            DateTime useTime = ds1.Tables[2].Rows.Count==0? DateTime.Parse("00:00"):DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
             DateTime maxTime = DateTime.Parse("06:00");
            
             this.gvLvReq.DataSource = (ds1.Tables[0]);
             this.gvLvReq.DataBind();
+            ((Label)this.gvLvReq.FooterRow.FindControl("lblAmtTotalremtime")).Text = ds1.Tables[1].Rows.Count == 0 ? "" : (ds1.Tables[1].Rows[0]["footSum"].ToString());
 
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
             if (useTime > maxTime)
@@ -179,7 +180,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-
+            GetUseTimeCalCulate();
             string compsms = hst["compsms"].ToString();
             string compmail = hst["compmail"].ToString();
             string ssl = hst["ssl"].ToString();
@@ -265,13 +266,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             }
 
-            if (todate > fodate)
-            {
-                this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm");                
-                string Messaged = "Your office Time exceed ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                return;
-            }
+            //if (todate > fodate)
+            //{
+            //    this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm");                
+            //    string Messaged = "Your office Time exceed ";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+            //    return;
+            //}
 
             GetUseTimeCalCulate();
 
