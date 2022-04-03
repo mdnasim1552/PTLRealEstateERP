@@ -272,7 +272,10 @@ namespace RealERPWEB.F_22_Sal
             //  string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             // string frmdate = "01-" + ASTUtility.Right(date, 8);
             string todate = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTINTEREST", pactcode, custid, frmdate, todate, "", "", "", "", "");
+            string permonth = this.txtinpermonth.Text.Trim().Replace("%", "");
+
+
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTINTEREST", pactcode, custid, frmdate, todate, permonth, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvInterest.DataSource = null;
