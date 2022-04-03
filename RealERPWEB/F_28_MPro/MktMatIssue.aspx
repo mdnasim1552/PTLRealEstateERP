@@ -211,7 +211,7 @@
                                             Width="150px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm primaryBtn" OnClientClick="return Confirmation();"
+                                        <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm" OnClientClick="return Confirmation();"
                                             OnClick="lbtnDelete_Click">Delete All</asp:LinkButton>
 
                                     </FooterTemplate>
@@ -221,7 +221,7 @@
 
                                 <asp:TemplateField HeaderText="Activity Type">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-success btn-sm primaryBtn"
+                                        <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-success btn-sm"
                                             OnClick="lnkupdate_Click" OnClientClick="javascript:return FunConfirmSave();">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>

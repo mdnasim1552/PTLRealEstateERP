@@ -24,7 +24,7 @@
                 allow_single_deselect: true
             });
 
-          
+
 
         };
     </script>
@@ -123,7 +123,7 @@
                             <div class="row">
 
                                 <asp:GridView ID="gvAprovInfo" runat="server"
-                                    AutoGenerateColumns="False" ShowFooter="True" Width="482px" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                    AutoGenerateColumns="False" ShowFooter="True" Width="482px" CssClass="table-striped table-bordered grvContentarea">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
@@ -201,7 +201,7 @@
                                                     Width="180px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lbtnSelectedOrdr" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnSelectedOrdr_Click">Selected Order</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnSelectedOrdr" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbtnSelectedOrdr_Click">Selected Order</asp:LinkButton>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
@@ -281,68 +281,62 @@
                                         </asp:TemplateField>
 
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                             </div>
 
                         </asp:View>
                         <asp:View ID="WorkOrdr" runat="server">
-
-                            <fieldset class="scheduler-border fieldset_Nar">
-                                <div class="form-horizontal">
+                            <div class="row">
+                                <div class="col-6">
                                     <div class="form-group">
-                                        <div class="col-6 pading5px ">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-prepend">
-                                                    <asp:Label ID="Label12" runat="server" Text="Subject:"></asp:Label>
-                                                </span>
-                                                <asp:TextBox ID="txtSubject" runat="server" class="form-control inputTxt"></asp:TextBox>
+                                        <div class="input-group input-group-sm input-group-alt">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group-text">Subject:</span>
                                             </div>
+                                            <asp:TextBox ID="txtSubject" runat="server" class="form-control inputTxt"></asp:TextBox>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-6 pading5px">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-prepend">
-                                                    <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName" Text="Dear Sir,"></asp:Label>
-                                                </span>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-6 pading5px mb-2">
-                                            <div class="input-group">
-                                                <span class="input-group-prepend">
-                                                    <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName" Text=":"></asp:Label>
-                                                </span>
-                                                <asp:TextBox ID="txtLETDES" runat="server" class="form-control inputTxt"></asp:TextBox>
-                                                <div class="input-group-prepend">
-                                                    <asp:CheckBox ID="chkCharging" runat="server" AutoPostBack="True"
-                                                        OnCheckedChanged="chkCharging_CheckedChanged" Text="Charging" CssClass="btn btn-primary checkBox btn-sm" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                 </div>
-
-                            </fieldset>
-
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-sm ">
+                                            <span class="input-group-prepend">
+                                                <span class="input-group-text">Dear Sir,</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-2">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-prepend">
+                                                <span class="input-group-text">:</span>
+                                            </span>
+                                            <asp:TextBox ID="txtLETDES" runat="server" class="form-control inputTxt"></asp:TextBox>
+                                            <div class="input-group-prepend">
+                                                <asp:CheckBox ID="chkCharging" runat="server" AutoPostBack="True"
+                                                    OnCheckedChanged="chkCharging_CheckedChanged" Text="Charging" CssClass="btn btn-primary checkBox btn-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <asp:Panel ID="PnlCharging" runat="server" Visible="False">
                                 <div class="row">
                                     <div class="col-2">
                                         <div class="input-group input-group-sm">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon4">Project Name:</span>
+                                                <span class="input-group-text" id="basic-addon4">Project</span>
                                             </div>
                                             <asp:TextBox ID="txtSrchProjectName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                             <div class="input-group-prepend">
@@ -383,7 +377,7 @@
                             <div class="table-responsive mb-2">
                                 <asp:GridView ID="gvOrderInfo" runat="server"
                                     AutoGenerateColumns="False" ShowFooter="true"
-                                    CssClass="table-striped table-hover table-bordered grvContentarea" OnPageIndexChanging="gvOrderInfo_PageIndexChanging">
+                                    CssClass="table-striped table-bordered grvContentarea" OnPageIndexChanging="gvOrderInfo_PageIndexChanging">
 
                                     <RowStyle />
                                     <Columns>
@@ -481,7 +475,7 @@
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-primary primarygrdBtn btn-sm" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                             </FooterTemplate>
                                         </asp:TemplateField>
 
@@ -492,7 +486,7 @@
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lbtnUpdatePurOrder" runat="server" CssClass="btn btn-success primaryBtn btn-sm" OnClientClick="return Confirmation();" OnClick="lbtnUpdatePurOrder_Click">Final Update</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnUpdatePurOrder" runat="server" CssClass="btn btn-danger btn-sm" OnClientClick="return Confirmation();" OnClick="lbtnUpdatePurOrder_Click">Final Update</asp:LinkButton>
                                             </FooterTemplate>
                                         </asp:TemplateField>
 
@@ -512,7 +506,7 @@
                                                     Width="70px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:CheckBox ID="lblfchkbox"  Text=" Forward" runat="server" Width="70px"></asp:CheckBox>
+                                                <asp:CheckBox ID="lblfchkbox" Text=" Forward" runat="server" Width="70px"></asp:CheckBox>
                                             </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -544,11 +538,11 @@
                                         </asp:TemplateField>
 
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                             </div>
 
@@ -561,15 +555,15 @@
                                     <div class="input-group input-group-alt">
                                         <div class="input-group-prepend ">
                                             <span class="input-group-text">Advanced</span>
-                                          
+
                                         </div>
-                                         <asp:TextBox ID="txtadvAmt" runat="server" class="form-control" Style="text-align: right" ></asp:TextBox>
-                                       
-                                        
+                                        <asp:TextBox ID="txtadvAmt" runat="server" class="form-control" Style="text-align: right"></asp:TextBox>
+
+
                                     </div>
 
-                                   
-                                   
+
+
                                 </div>
                             </div>
 
@@ -805,7 +799,7 @@
                                             <div class="table-responsive">
                                                 <asp:GridView ID="gvOrderTerms" runat="server" AllowPaging="True"
                                                     AutoGenerateColumns="False" PageSize="30" ShowFooter="true"
-                                                    CssClass="table table-striped table-hover table-bordered grvContentarea">
+                                                    CssClass="table table-striped table-bordered grvContentarea">
                                                     <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                                         Mode="NumericFirstLast" />
                                                     <Columns>
@@ -876,11 +870,11 @@
                                                         </asp:TemplateField>
 
                                                     </Columns>
-                                                    <FooterStyle BackColor="#F5F5F5" />
+                                                    <FooterStyle CssClass="grvFooterNew" />
                                                     <EditRowStyle />
                                                     <AlternatingRowStyle />
                                                     <PagerStyle CssClass="gvPagination" />
-                                                    <HeaderStyle CssClass="grvHeader" />
+                                                    <HeaderStyle CssClass="grvHeaderNew" />
                                                 </asp:GridView>
 
                                             </div>
