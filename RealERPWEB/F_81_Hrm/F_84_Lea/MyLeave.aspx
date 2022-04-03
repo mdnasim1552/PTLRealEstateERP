@@ -420,8 +420,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkDelete"
-                                                        Visible='<%# Eval("isapproved").ToString() == "True" ? true : false %>'
+                                                    <asp:LinkButton ID="lnkDelete" Visible="false"
+                                                      
                                                         runat="server" Font-Bold="True" ToolTip="Delete" OnClick="lnkDelete_Click">
                                                          <i class=" fa fa-trash"></i></asp:LinkButton>
                                                 </ItemTemplate>
@@ -429,7 +429,7 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-
+                                              <%--Visible='<%# Eval("isapproved").ToString() == "True" ? true : false %>'--%>
 
 
 

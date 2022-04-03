@@ -58,28 +58,34 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, frmdate, tdate, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-
-            DateTime useTime = ds1.Tables[1].Rows.Count==0? DateTime.Parse("00:00"):DateTime.Parse(ds1.Tables[1].Rows[0]["USETIME"].ToString());
-            DateTime maxTime = DateTime.Parse("06:00");
-           
-            this.gvLvReq.DataSource = (ds1.Tables[0]);
-            this.gvLvReq.DataBind();
-
+            DateTime useTime = ds1.Tables[2].Rows.Count == 0 ? DateTime.Parse("00:00") : DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
-            if (useTime > maxTime)
+            if (ds1.Tables[0].Rows.Count != 0)
             {
-                string errMsg = "Already Use Time "+ useTime.ToString();
+               
+                DateTime maxTime = DateTime.Parse("06:00");
+
+                this.gvLvReq.DataSource = (ds1.Tables[0]);
+                this.gvLvReq.DataBind();
+
+                ((Label)this.gvLvReq.FooterRow.FindControl("lblAmtTotalremtime")).Text = ds1.Tables[1].Rows[0]["footSum"].ToString().Length == 0 ? "0" : ds1.Tables[1].Rows[0]["footSum"].ToString();
+
                 
-                this.btnSave.Visible = false;
-                this.ApplicFrm.Visible = false;
-                this.divError.Visible = true;
-                this.spnErrorTxt.InnerText = errMsg;
-            }
-            else
-            {
-                this.btnSave.Visible = true;
-                this.ApplicFrm.Visible = true;
-                this.divError.Visible = false;
+                if (useTime > maxTime)
+                {
+                    string errMsg = "Already Use Time " + useTime.ToString();
+
+                    this.btnSave.Visible = false;
+                    this.ApplicFrm.Visible = false;
+                    this.divError.Visible = true;
+                    this.spnErrorTxt.InnerText = errMsg;
+                }
+                else
+                {
+                    this.btnSave.Visible = true;
+                    this.ApplicFrm.Visible = true;
+                    this.divError.Visible = false;
+                }
             }
 
         }
@@ -179,7 +185,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-
+            GetUseTimeCalCulate();
             string compsms = hst["compsms"].ToString();
             string compmail = hst["compmail"].ToString();
             string ssl = hst["ssl"].ToString();
@@ -265,13 +271,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             }
 
-            if (todate > fodate)
-            {
-                this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm");                
-                string Messaged = "Your office Time exceed ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                return;
-            }
+            //if (todate > fodate)
+            //{
+            //    this.txtToTime.Text = Convert.ToDateTime(Offic_end).ToString("HH:mm");                
+            //    string Messaged = "Your office Time exceed ";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+            //    return;
+            //}
 
             GetUseTimeCalCulate();
 
@@ -327,8 +333,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string empname = (string)ds1.Tables[1].Rows[0]["name"];
                 string empdesig = (string)ds1.Tables[1].Rows[0]["desig"];
                 string deptname = (string)ds1.Tables[1].Rows[0]["deptname"];
-                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=SUP";
+                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_92_Mgt/";
+                string currentptah = "EmpAttApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=SUP"+ "&Reqtype=TLV";
                 string totalpath = uhostname + currentptah;
 
 

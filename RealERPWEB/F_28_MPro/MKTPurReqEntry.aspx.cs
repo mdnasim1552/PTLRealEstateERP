@@ -573,7 +573,7 @@ namespace RealERPWEB.F_28_MPro
                 
                 double mPREQTY = Convert.ToDouble(dr1["preqty"]);
                 double mAREQTY = Convert.ToDouble(dr1["areqty"]);
-                string mREQRAT = dr1["reqrat"].ToString();
+                double mREQRAT = Convert.ToDouble( dr1["reqrat"]);
                 string prType = dr1["prtype"].ToString();
                 string actType = dr1["acttype"].ToString(); 
                 string mrkType = dr1["mkttype"].ToString();
@@ -581,11 +581,15 @@ namespace RealERPWEB.F_28_MPro
                 string reqNote = dr1["reqnote"].ToString();
                 string filePath = dr1["filepath"].ToString();
                 string justific = dr1["justific"].ToString();
-
+                //if(mREQRAT<=0)
+                //{
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Insert Apprx. Unit Price " + "');", true);
+                //    return;
+                //}
                 if (mPREQTY >= mAREQTY)
                 {
                     result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
-                                mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, prType, actType, mrkType,
+                                mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT.ToString(), prType, actType, mrkType,
                                 expectDate, filePath, reqNote, justific, "", "", "", "");
 
 

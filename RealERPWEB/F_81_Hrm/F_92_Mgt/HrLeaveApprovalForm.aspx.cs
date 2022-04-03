@@ -149,6 +149,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 DataTable dt = (DataTable)ViewState["tblAllDpt"];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                     centrid = dt.Rows[i]["actcode"].ToString();
 
                     DataRow[] dr = UserInfoTable.Select("usrid='" + usrid + "' and centrid='" + centrid + "'");
                     if (dr.Length == 0)

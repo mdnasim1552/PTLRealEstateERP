@@ -700,6 +700,7 @@
     <EmbeddedResource Include="R_23_CR\RptClientDOBMrrDay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientInfo.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptClientLedger02Cube.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedgerBridge.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedgerBridge02.rdlc" />
@@ -837,6 +838,7 @@
     <EmbeddedResource Include="R_81_Hrm\LetterDefault01.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptAssYearly.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptConfmlt.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptCreateOffLtAcme.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptCreateOffLt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptEmpAss.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpAllInformationENG.rdlc" />
