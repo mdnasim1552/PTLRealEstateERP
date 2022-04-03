@@ -150,6 +150,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryGrandT.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptLabIssueRup.rdlc" />
