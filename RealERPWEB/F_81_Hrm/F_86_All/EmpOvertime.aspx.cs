@@ -206,7 +206,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.ddlpreyearmonoth.DataTextField = "yearmon";
             this.ddlpreyearmonoth.DataValueField = "ymon";
             this.ddlpreyearmonoth.DataSource = ds1.Tables[0];
-            this.ddlpreyearmonoth.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
+            this.ddlpreyearmonoth.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
             this.ddlpreyearmonoth.DataBind();
 
             ds1.Dispose();
@@ -745,7 +745,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, "", "", "");
+            string field = "";
+            string comothdedtype = this.GetCompOtherDeduc();
+          
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype);
             if (ds2 == null)
             {
                 this.gvEmpOtherded.DataSource = null;
@@ -2583,6 +2587,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 
                 }
 
+               
+
                 //if (item.SelectedValue == "000")
                 //{
 
@@ -2591,13 +2597,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                 //else
                 //{ 
-                
-                
+
+
                 //}
 
             }
+            field = field.Length > 0 ? field.Substring(0, field.Length - 1) : field;
             string comothdedtype = this.GetCompOtherDeduc();
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype, "");
+            string monthid = this.ddlyearmon.SelectedValue.ToString();
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "COPYEMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype, monthid);
             if (ds2 == null)
             {
                 this.gvEmpOtherded.DataSource = null;
@@ -2634,7 +2642,49 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHEARNING", compname, MonthId, date, deptname, Empcode, section, "", "", "");
+
+            string field = "";
+            for (int i = 0; i < this.chkotherearn.Items.Count; i++)
+            {
+
+                if (chkotherearn.Items[i].Selected)
+                {
+                    if (chkotherearn.Items[i].Value.ToString() == "000")
+                    {
+                        field = "";
+                        break;
+                    }
+
+                    else
+                    {
+                        field = field + chkotherearn.Items[i].Value.ToString() + ",";
+
+
+                    }
+
+
+                }
+
+
+
+                //if (item.SelectedValue == "000")
+                //{
+
+                //    break;
+                //}
+
+                //else
+                //{ 
+
+
+                //}
+
+            }
+            field = field.Length > 0 ? field.Substring(0, field.Length - 1) : field;
+            string comothdedtype = this.GetCompOtherDeduc();
+            string monthid = this.ddlyearmon.SelectedValue.ToString();
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "COPYEMPOTHEARNING", compname, MonthId, date, deptname, Empcode, section, field, comothdedtype, monthid);
             if (ds2 == null)
             {
                 this.gvothearn.DataSource = null;
@@ -2643,9 +2693,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
             Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
-            this.Data_Bind();
+           
             this.ChkEarn.Checked = false;
-            this.ChkEarn_CheckedChanged(null, null);
+            this.PnlEarn.Visible = (this.ChkEarn.Checked);
+            // this.ChkEarn_CheckedChanged(null, null);
         }
 
         private void GetPreYearmEarn()
@@ -2657,7 +2708,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.ddlPremEarn.DataTextField = "yearmon";
             this.ddlPremEarn.DataValueField = "ymon";
             this.ddlPremEarn.DataSource = ds1.Tables[0];
-            this.ddlPremEarn.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
+            this.ddlPremEarn.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
             this.ddlPremEarn.DataBind();
 
             ds1.Dispose();
@@ -2670,6 +2721,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 this.GetPreYearmEarn();
             }
             this.PnlEarn.Visible = (this.ChkEarn.Checked);
+            this.Data_Bind();
         }
 
         protected void imgbtnSecSrch_Click(object sender, EventArgs e)
