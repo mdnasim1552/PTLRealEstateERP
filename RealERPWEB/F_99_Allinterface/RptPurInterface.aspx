@@ -893,13 +893,8 @@
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
                             </div>
                         </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
+                        
 
-
-                                <asp:HyperLink ID="HyperLnkRept" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/PurReportInterface" CssClass=" btn btn-warning">Reports</asp:HyperLink>
-                            </div>
-                        </div>
                         <div class="col-md-1">
                             <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
                                 <button type="button" class="btn btn-danger">Opera</button>
@@ -936,6 +931,17 @@
                             <asp:TextBox runat="server" ID="txtTrack" AutoPostBack="true" CssClass="inputtextbox" OnTextChanged="txtTrack_TextChanged"></asp:TextBox>
                             <asp:Button ID="lblMIMEInfo" runat="server" CssClass="smLbl_to" Height="20px" Style="text-align: center; line-height: 20px; padding: 0; float: right;" Text="Search" />
                         </div>
+
+                          <div class="col-md-1">
+                            <div class="form-group">
+
+      
+
+                                <asp:HyperLink ID="hlnkMktInterface" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/MKTProInterface?Type=Report" Visible="false" CssClass=" btn btn-warning">Mar. Interface</asp:HyperLink>
+                            </div>
+                        </div>
+
+                      
 
                     </div>
 

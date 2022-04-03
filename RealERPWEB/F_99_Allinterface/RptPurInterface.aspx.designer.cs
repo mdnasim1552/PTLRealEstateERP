@@ -21,7 +21,6 @@ namespace RealERPWEB.F_99_Allinterface
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        
         protected global::System.Web.UI.Timer Timer1;
 
         /// <summary>
@@ -95,15 +94,6 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnok;
-
-        /// <summary>
-        /// HyperLnkRept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLnkRept;
 
         /// <summary>
         /// HyperLink7 control.
@@ -275,6 +265,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button lblMIMEInfo;
+
+        /// <summary>
+        /// hlnkMktInterface control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlnkMktInterface;
 
         /// <summary>
         /// pnlInterf control.
