@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>15ea586e-9f3b-420a-bae1-d7fcfc056383</rd:DataSourceID>
+      <rd:DataSourceID>9a724cb3-0c66-4369-bb7a-40f7fa1039e8</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -53,12 +53,16 @@
           <DataField>bsal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="carloan">
+          <DataField>carloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="cashamt">
           <DataField>cashamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="CHEQUEPAY">
-          <DataField>CHEQUEPAY</DataField>
+        <Field Name="chequepay">
+          <DataField>chequepay</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="comadd">
@@ -97,12 +101,16 @@
           <DataField>desigid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="dresslon">
+          <DataField>dresslon</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="elallow">
           <DataField>elallow</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="EMPCONT">
-          <DataField>EMPCONT</DataField>
+        <Field Name="empcont">
+          <DataField>empcont</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="empid">
@@ -117,12 +125,20 @@
           <DataField>entaint</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="FALLDED">
-          <DataField>FALLDED</DataField>
+        <Field Name="fallded">
+          <DataField>fallded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="foodal">
+          <DataField>foodal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="fuel">
           <DataField>fuel</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="genloan">
+          <DataField>genloan</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="grossal1">
@@ -139,6 +155,10 @@
         </Field>
         <Field Name="gssal">
           <DataField>gssal</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="haircutal">
+          <DataField>haircutal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="hallow">
@@ -159,6 +179,10 @@
         </Field>
         <Field Name="itax">
           <DataField>itax</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="kpi">
+          <DataField>kpi</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="loanins">
@@ -201,6 +225,18 @@
           <DataField>monthid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="motolon">
+          <DataField>motolon</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="mscloan">
+          <DataField>mscloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="msetloan">
+          <DataField>msetloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="netpay">
           <DataField>netpay</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -235,6 +271,14 @@
         </Field>
         <Field Name="othearn">
           <DataField>othearn</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="perbon">
+          <DataField>perbon</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="perloan">
+          <DataField>perloan</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="pfund">
@@ -305,6 +349,14 @@
           <DataField>totaldeduction</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="tptallow">
+          <DataField>tptallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="transded">
+          <DataField>transded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="wd">
           <DataField>wd</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -317,7 +369,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_89_Pay</rd:DataSetName>
         <rd:TableName>SalaryPaySlip</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -1288,7 +1340,7 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>3.56254in</Top>
-                              <Left>2.34896in</Left>
+                              <Left>2.32765in</Left>
                               <Height>0.19792in</Height>
                               <Width>0.96181in</Width>
                               <ZIndex>26</ZIndex>
@@ -1479,7 +1531,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Format(Fields!FALLDED.Value,"#,##0;(#,##0); ")</Value>
+                                      <Value>=Format(Fields!fallded.Value,"#,##0;(#,##0); ")</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
                                       </Style>
@@ -1719,7 +1771,7 @@
                             <Rectangle Name="Rectangle2">
                               <KeepTogether>true</KeepTogether>
                               <Top>3.53052in</Top>
-                              <Left>2.3073in</Left>
+                              <Left>2.32396in</Left>
                               <Height>1.85841in</Height>
                               <Width>1.03521in</Width>
                               <ZIndex>39</ZIndex>
