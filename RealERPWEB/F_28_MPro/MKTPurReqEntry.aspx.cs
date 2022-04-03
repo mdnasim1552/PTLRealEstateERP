@@ -267,7 +267,9 @@ namespace RealERPWEB.F_28_MPro
             this.pnlSpeDet.Visible = true;
             this.dNarr.Visible = true;         
             this.lbtnOk.Text = "New";
-            this.Get_Requisition_Info();            
+            this.Get_Requisition_Info();
+            
+            //emdad
             this.GetMaterial();
             this.ddlPRType_SelectedIndexChanged(null, null);
             //mar
