@@ -62,7 +62,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.GetCompanyName();
-
+                this.CompanyVisibility();
 
                 //string mcomcod = hst["mcomcod"].ToString().Trim();
 
@@ -77,6 +77,25 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        private void CompanyVisibility()
+        {
+
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3354"://ERL
+                case "3101":
+                    this.hlnkMktInterface.Visible = true;
+                    break;
+
+                default:
+                    this.hlnkMktInterface.Visible = false;
+                    break;
+            
+            
+            }
+        
+        }
         private void GetComNameAAdd()
         {
             string comcod = this.GetCompCode();

@@ -850,7 +850,7 @@ namespace RealERPWEB.F_23_CR
             try
             {
                 DataTable dt = (DataTable)Session["tblAccRec"];
-                string comcod=this.GetCompCode();
+                string comcod = this.GetCompCode();
 
                 string type = this.Request.QueryString["Type"].ToString();
                 int i, j;
@@ -879,8 +879,6 @@ namespace RealERPWEB.F_23_CR
 
 
                     case "MonthlyColSchedule":
-
-
                         for (i = 5; i < this.gvmoncollsch.Columns.Count - 1; i++)
                             this.gvmoncollsch.Columns[i].Visible = false;
                         j = 5;
@@ -897,21 +895,16 @@ namespace RealERPWEB.F_23_CR
                         this.gvmoncollsch.DataSource = dt;
                         this.gvmoncollsch.DataBind();
 
+                        if (dt.Rows.Count > 0)
+                        {
+                            Session["Report1"] = gvmoncollsch;
+                            ((HyperLink)this.gvmoncollsch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-                        Session["Report1"] = gvmoncollsch;
-                        ((HyperLink)this.gvmoncollsch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-
-
-
-
-
-
-
+                        }
                         break;
 
                     case "MonthlyColl":
-                        
+
 
                         for (i = 7; i < this.gvmoncoll.Columns.Count - 1; i++)
                             this.gvmoncoll.Columns[i].Visible = false;
@@ -1577,7 +1570,7 @@ namespace RealERPWEB.F_23_CR
                     lgvtotal.Font.Bold = true;
                     custname.Style.Add("text-align", "right");
                 }
-               
+
 
             }
         }
