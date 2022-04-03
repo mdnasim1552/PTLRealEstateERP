@@ -628,7 +628,23 @@ namespace RealERPWEB.F_28_MPro
             }
 
             this.txtCurReqDate.Enabled = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Requisition Updated successfully" + "');", true);
+            string Type = this.Request.QueryString["InputType"].ToString();
+            string msg = "";
+            switch (Type)
+            {
+                case "ReqCheck":
+                msg = "HOD Approval Updated successfully";
+                    break;
+
+                case "ReqApproval":
+                    msg = "DIV Approval Updated successfully";
+                    break;
+
+                default:
+                    msg = "Requisition Updated successfully";
+                    break;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
 

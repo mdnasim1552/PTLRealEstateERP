@@ -90,7 +90,7 @@
                                 <label for="ddlLvType">
                                     Remaning Time   
                                 </label>
-                                <asp:TextBox ID="txtTimeLVRem" runat="server" ReadOnly="true" AutoPostBack="true" class="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtTimeLVRem" runat="server" ReadOnly="true" AutoPostBack="true" class="form-control bg-green" Font-Bold="false" ForeColor="White"></asp:TextBox>
 
                             </div>
                             <div class="row">
@@ -205,6 +205,10 @@
                                                                  <ItemStyle HorizontalAlign="Center" />
                                                                 <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                                <FooterTemplate>
+                                                                    Total
+                                                                </FooterTemplate>
+
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Use Time">
                                                                 <ItemTemplate>
@@ -213,7 +217,9 @@
                                                                         Width="80px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                   Total
+                                                                    <asp:Label ID="lblAmtTotalremtime" runat="server" CssClass="badge bg-danger text-white"></asp:Label>
+
+                                                                   
                                                                 </FooterTemplate>
                                                                 <ItemStyle HorizontalAlign="Center" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -227,7 +233,6 @@
                                                                         Width="80px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblAmtTotalremtime" runat="server" CssClass="badge bg-danger text-white"></asp:Label>
                                                                 </FooterTemplate>
                                                                 <ItemStyle HorizontalAlign="Center" />
                                                                 <FooterStyle HorizontalAlign="Center" Font-Bold="true" />

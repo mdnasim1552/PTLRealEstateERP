@@ -736,8 +736,19 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }
 
+            string Type = this.Request.QueryString["Type"].ToString();
+            string msg = "";
+            switch (Type)
+            {
+                case "Approval":
+                    msg = "Market Survey Approved successfully";
+                    break;
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Market Survey Updated successfully" + "');", true);
+                default:
+                    msg = "Market Survey Updated successfully";
+                    break;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             if (ConstantInfo.LogStatus == true)
             {
