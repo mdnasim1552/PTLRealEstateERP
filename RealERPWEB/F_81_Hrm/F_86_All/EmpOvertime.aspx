@@ -1050,7 +1050,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Mobile bill  ">
+                                <asp:TemplateField HeaderText="Mobile bill ">
                                     <ItemTemplate>
                                         <asp:TextBox ID="gvtxtmbill" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="12px" Style="text-align: right"

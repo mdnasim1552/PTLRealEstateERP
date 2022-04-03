@@ -62,15 +62,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
             if (ds1.Tables[0].Rows.Count != 0)
             {
-               
+
                 DateTime maxTime = DateTime.Parse("06:00");
 
                 this.gvLvReq.DataSource = (ds1.Tables[0]);
                 this.gvLvReq.DataBind();
 
                 ((Label)this.gvLvReq.FooterRow.FindControl("lblAmtTotalremtime")).Text = ds1.Tables[1].Rows[0]["footSum"].ToString().Length == 0 ? "0" : ds1.Tables[1].Rows[0]["footSum"].ToString();
-
-                
+ 
                 if (useTime > maxTime)
                 {
                     string errMsg = "Already Use Time " + useTime.ToString();
@@ -159,13 +158,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
  
             TimeSpan remTimeConvt = TimeSpan.Parse(remTime.ToString("HH:mm"));
-            TimeSpan time3 = timeDiff + remTimeConvt;
+            TimeSpan time3 = timeDiff;
             TimeSpan maxTime = TimeSpan.Parse("06:00");
+             maxTime = maxTime- remTimeConvt;
 
 
             if (time3 > maxTime)
             {
-                string Messaged = "Your office Time exceed ";
+                string Messaged = "Your office Time exceed";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;                
                 this.txtUseTime.Text = "0";
