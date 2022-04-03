@@ -2527,6 +2527,28 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
         }
+        private string GetCompOtherDeduc()
+        {
+            string comothdedtype = "";
+            string comcod = this.GetComeCode();
+            switch (comcod)
+            {
+                case "3365"://BTI
+                    comothdedtype = "comothdedtype";
+                    break;
+
+                default:
+                    break;
+
+
+
+
+            }
+            return comothdedtype;
+
+
+
+        }
 
         protected void lblbtncopyoth_Click(object sender, EventArgs e)
         {
@@ -2574,8 +2596,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 //}
 
             }
-
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, "", "");
+            string comothdedtype = this.GetCompOtherDeduc();
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype, "");
             if (ds2 == null)
             {
                 this.gvEmpOtherded.DataSource = null;
