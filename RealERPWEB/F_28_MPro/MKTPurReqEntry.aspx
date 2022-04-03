@@ -141,7 +141,7 @@
                 <div class="card-body" style="min-height: 350px;">
                     <div class="table-responsive">
                         <asp:GridView ID="gvReqInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCancelingEdit="gvReqInfo_RowCancelingEdit"
-                            OnRowEditing="gvReqInfo_RowEditing" OnRowUpdating="gvReqInfo_RowUpdating" PageSize="15" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
+                            OnRowEditing="gvReqInfo_RowEditing" OnRowUpdating="gvReqInfo_RowUpdating" PageSize="15" ShowFooter="True" CssClass="table-striped table-bordered grvContentarea">
                             <PagerSettings Visible="False" />
                             <RowStyle />
                             <Columns>
@@ -191,7 +191,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click"
-                                            CssClass="btn btn-primary  primarygrdBtn btn-sm">Total</asp:LinkButton>
+                                            CssClass="btn btn-success btn-sm">Total</asp:LinkButton>
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
@@ -204,13 +204,12 @@
 
                                     <FooterTemplate>
 
-                                        <asp:LinkButton ID="lbtnCheecked" runat="server" OnClientClick="return FunCheckConfirm();" OnClick="lbtnCheecked_Click" CssClass="btn  btn-primary primarygrdBtn">Approved</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnCheecked" runat="server" OnClientClick="return FunCheckConfirm();" OnClick="lbtnCheecked_Click" CssClass="btn  btn-danger btn-sm">Approved</asp:LinkButton>
 
                                     </FooterTemplate>
 
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
-                                    <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
-                                    <HeaderStyle ForeColor="Blue" />
+                                    <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />                                   
                                 </asp:TemplateField>
 
 
@@ -218,10 +217,7 @@
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvReqappQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
-                                    </ItemTemplate>
-
-
-                                  
+                                    </ItemTemplate>                                 
 
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
@@ -236,7 +232,7 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.00;(#,##0.00); ") %>' Width="84px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClick="lbtnUpdateResReq_Click" CssClass="btn  btn-danger primarygrdBtn btn-sm">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClick="lbtnUpdateResReq_Click" CssClass="btn btn-danger btn-sm">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
@@ -293,11 +289,11 @@
                                         </EditItemTemplate>
                                     </asp:TemplateField>--%>
                             </Columns>
-                            <FooterStyle CssClass="grvFooter" />
+                            <FooterStyle CssClass="grvFooterNew" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
 

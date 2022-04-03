@@ -487,8 +487,8 @@ namespace RealERPWEB.F_28_MPro
                 dr1["prtypedesc"] = this.ddlPrType.SelectedItem.Text.Trim();
                 dr1["acttype"] = this.ddlActType.SelectedValue.ToString();
                 dr1["acttypedesc"] = this.ddlActType.SelectedItem.Text.Trim();
-                dr1["balqty"] = ((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'")).Length == 0) ? "0.00" : 
-                                Convert.ToDouble((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
+                dr1["balqty"] = ((dt1.Select("prtype='" + prtype + "' and acttype='" + acttype + "'")).Length == 0) ? "0.00" : 
+                                Convert.ToDouble((dt1.Select("prtype='" + prtype + "' and acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
                 dr1["isuqty"] = 0.00;
                 dr1["remarks"] = "";
                 dt.Rows.Add(dr1);
@@ -503,33 +503,28 @@ namespace RealERPWEB.F_28_MPro
         {
 
             DataTable dt = (DataTable)ViewState["tblmatissue"];
+            DataTable dt1 = (DataTable)Session["itemlist"];
             DataTable dt2 = ((DataTable)Session["acttypelist"]).Copy();
-
-
-            string prtype = this.ddlPrType.SelectedValue.ToString();
-            string acttype = this.ddlActType.SelectedValue.ToString();
 
             for (int j = 0; j < dt2.Rows.Count; j++)
             {
-                DataRow[] dr2 = dt.Select("prtype = '" + prtype + "' and  acttype='" + acttype + "'");
+                string acttype = dt2.Rows[j]["acttype"].ToString();
+                DataRow[] dr2 = dt.Select("acttype = '" + acttype + "'");
                 if (dr2.Length == 0)
                 {
                     DataRow dr1 = dt.NewRow();
-                    dr1["prtype"] = prtype;
-                    dr1["prtypedesc"] = this.ddlPrType.SelectedItem.Text;
+                    dr1["prtype"] = dt1.Select("acttype='"+acttype+"'")[0]["prtype"].ToString();
+                    dr1["prtypedesc"] = dt1.Select("acttype='"+acttype+"'")[0]["prtypedesc"].ToString();
                     dr1["acttype"] = acttype;
-                    dr1["acttypedesc"] = this.ddlActType.SelectedItem.Text;
-                    dr1["balqty"] = ((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'")).Length == 0) ? "0.00" :
-                                    Convert.ToDouble((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
+                    dr1["acttypedesc"] = dt2.Rows[j]["acttypedesc"].ToString();
+                    dr1["balqty"] = ((dt1.Select("acttype='" + acttype + "'")).Length == 0) ? "0.00" :
+                                    Convert.ToDouble((dt1.Select("acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
                     dr1["isuqty"] = 0.00;                  
                     dr1["remarks"] = "";
 
                     dt.Rows.Add(dr1);
 
                 }
-
-
-
             }
 
             ViewState["tblmatissue"] = dt;
@@ -860,8 +855,8 @@ namespace RealERPWEB.F_28_MPro
             int gvRowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowIndex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + gvRowIndex; 
             string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
-            string MatCode = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblPRType")).Text.Trim();
-            string spcfcode = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblgvActType")).Text.Trim();
+            string prtype = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblPRType")).Text.Trim();
+            string acttype = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblgvActType")).Text.Trim();
 
             if (dt.Rows.Count > 0)
             {
@@ -869,7 +864,7 @@ namespace RealERPWEB.F_28_MPro
                 ds1.Tables.Add(dt);
             }
 
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUE", mISUNO, MatCode, spcfcode, "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "DELETE_ISSUED_MAT", mISUNO, prtype, acttype, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {                
@@ -880,7 +875,7 @@ namespace RealERPWEB.F_28_MPro
             ViewState.Remove("tblmatissue");
             ViewState["tblmatissue"] = dv.ToTable();
             this.grvissue_DataBind();
-
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Deleted Successfully" + "');", true);
 
         }
     }

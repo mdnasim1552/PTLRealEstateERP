@@ -456,7 +456,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
-                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MKtReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_28_MPro/MktMarketSurvey?Type=Entry&genno=" + reqno;
 
 
@@ -468,9 +468,10 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsap");               
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrintcsap");               
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsap");
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktCSPrint&reqno=" + reqno;
                 hlink2.NavigateUrl = "~/F_28_MPro/MktMarketSurvey?Type=Approval&genno=" + reqno;
 
 
@@ -546,10 +547,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
-
                 string reqNo = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=PurApproval&approvno=" + aprovno + "&approvdat=" + approvdat;
-
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktCSPrint&reqno=" + reqNo;
                 hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=OrderEntry&genno=" + reqNo;
 
             }
