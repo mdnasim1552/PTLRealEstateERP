@@ -82,6 +82,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.MktReqPrint();
                     break;
 
+                case "MktCSPrint":
+                    this.MktCSPrint();
+                    break;
+
                 case "MktOrderPrint":
                     this.MktOrderPrint();
                     break;
@@ -4502,6 +4506,57 @@ namespace RealERPWEB.F_99_Allinterface
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
 
+        private void MktCSPrint()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string CurDate1 = this.GetStdDate(DateTime.Today.ToString("dd.MM.yyyy"));
+            string Reqno = this.Request.QueryString["reqno"].ToString();
+            
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "GETMATREQWISE", Reqno,
+                        "%", CurDate1, "", "", "", "", "", "");
+
+
+            DataTable dt = ds2.Tables[1];
+            DataTable dt1 = ds2.Tables[0];
+
+
+            var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.ComparativeStatementCreate>();
+            var lst1 = dt1.DataTableToList<RealEntity.C_14_Pro.EClassPur.ComparativeStatementCreate>();
+            string msrno = ds2.Tables[2].Rows[0]["msrno"].ToString();
+            string preparedby = ds2.Tables[2].Rows[0]["postedname"].ToString() + "\n" + ds2.Tables[2].Rows[0]["posteddat"];
+            string checkedby = ds2.Tables[2].Rows[0]["fwdname"].ToString() + "\n" + ds2.Tables[2].Rows[0]["fwddat"];
+            string varifiedby = ds2.Tables[2].Rows[0]["auditname"].ToString() + "\n" + ds2.Tables[2].Rows[0]["auditdat"];
+
+            string SVJ = ds2.Tables[2].Rows[0]["msrnar"].ToString();
+            string SVJ2 = ds2.Tables[2].Rows[0]["msrnar2"].ToString();
+            string SVJ3 = ds2.Tables[2].Rows[0]["msrnar3"].ToString();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_28_MPro.RptMktPurMarketSurvey", lst, lst1, null);
+            Rpt1.SetParameters(new ReportParameter("BestS", "Best Selection"));
+            Rpt1.SetParameters(new ReportParameter("CS", "Comparative Statement"));
+            Rpt1.SetParameters(new ReportParameter("SVJ", "Purchase Justification: " + SVJ));
+            Rpt1.SetParameters(new ReportParameter("SVJ2", "Audit Justification: " + SVJ2));
+            Rpt1.SetParameters(new ReportParameter("SVJ3", "MD Justification: " + SVJ3));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("msrno", "MSR No: " + msrno));
+            Rpt1.SetParameters(new ReportParameter("Reqno", "Req No: " + Reqno));
+            Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Marketing Market Survey Information"));
+            Rpt1.SetParameters(new ReportParameter("preparedby", preparedby));
+            Rpt1.SetParameters(new ReportParameter("checkedby", checkedby));
+            Rpt1.SetParameters(new ReportParameter("varifiedby", varifiedby));
+            Rpt1.SetParameters(new ReportParameter("paystatus", ""));
+            Rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+        }
         private void MktOrderPrint()
         {
             try
@@ -6601,7 +6656,13 @@ namespace RealERPWEB.F_99_Allinterface
 
             return dt1;
         }
-
+        protected string GetStdDate(string Date1)
+        {
+            Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
+            string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
+            return Date1;
+        }
         private DataTable HiddenSameDataMktMRR(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)

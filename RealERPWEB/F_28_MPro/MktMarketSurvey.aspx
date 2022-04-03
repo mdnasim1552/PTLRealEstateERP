@@ -253,7 +253,7 @@
                         </div>
                         <div class="card-body" style="min-height: 200px;">
                             
-                                <asp:GridView ID="gvBestSelect" runat="server" AllowPaging="False" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                <asp:GridView ID="gvBestSelect" runat="server" AllowPaging="False" AutoGenerateColumns="False" CssClass="table-striped table-bordered grvContentarea"
                                     ShowFooter="True" Width="1009px">
                                     <PagerSettings Visible="False" />
                                     <RowStyle />
@@ -528,11 +528,11 @@
 
 
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                            
                         </div>
@@ -543,7 +543,7 @@
                         </div>
                         <div class="card-body" style="min-height: 200px;">
                             <div class="table-responsive">
-                                <asp:GridView ID="gvResInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                <asp:GridView ID="gvResInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-bordered grvContentarea"
                                     ShowFooter="True" Width="1009px" OnRowDataBound="gvResInfo_RowDataBound">
                                     <PagerSettings Visible="False" />
                                     <RowStyle />
@@ -800,11 +800,11 @@
 
 
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                             </div>
                         </div>
@@ -816,9 +816,9 @@
                                     <div class="panel with-nav-tabs panel-primary">
                                         <div class="panel-heading">
                                             <ul class="nav nav-tabs">
-                                                <li><a href="#tab2primary" data-toggle="tab"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;Justification&nbsp;&nbsp;</a></li>
+                                                <li class="active"><a href="#tab2primary" data-toggle="tab"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;Justification&nbsp;&nbsp;</a></li>
                                                 <li><a href="#tab3primary" data-toggle="tab"><i class="fas fa-file-upload"></i>&nbsp;&nbsp;Upload&nbsp;&nbsp;</a></li>
-                                                <li class="active"><a href="#tab1primary" data-toggle="tab"><i class="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;Charging</a></li>
+                                                <li><a href="#tab1primary" data-toggle="tab"><i class="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;Charging</a></li>
                                             </ul>
                                         </div>
                                     </div>

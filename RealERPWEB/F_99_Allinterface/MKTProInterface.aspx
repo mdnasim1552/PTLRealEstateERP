@@ -992,11 +992,10 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" ForeColor="Blue" Font-Underline="false"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" ToolTip="Print Requisition" ForeColor="Blue" Font-Underline="false"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
-
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" ToolTip="Check for Approval" Font-Underline="false" CssClass="btn btn-xs btn-default"><i class="fas fa-check-circle"></i>
                                                                     </asp:HyperLink>
 
                                                                     <asp:LinkButton ID="btnDelReq" OnClick="btnDelReq_Click" CssClass="btn btn-default  btn-xs" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server"><span  style="color:red"  class="fa   fa-recycle "></span> </asp:LinkButton>
@@ -1010,7 +1009,7 @@
 
 
 
-                                                                <ItemStyle Width="100px" />
+                                                                <ItemStyle Width="140px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="167px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
@@ -1155,12 +1154,12 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Requisition" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
 
-                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" ToolTip="Check for Approval" CssClass="btn btn-default btn-xs"><i class="fas fa-check-circle"></i>
 
                                                                     </asp:HyperLink>
 
@@ -1314,16 +1313,16 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintcsp" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintcsp" runat="server" ToolTip="Print Requisition" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
 
-                                                                    <asp:HyperLink ID="hlnkbtnEntrycsp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="hlnkbtnEntrycsp" runat="server" Target="_blank" ToolTip="Check for CS Preparation" CssClass="btn btn-default btn-xs"><i class="fas fa-check-circle"></i>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnDelcsp" OnClick="btnDelReqApp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class=" fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelcsp" OnClick="btnDelReqApp_Click" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class=" fa fa-recycle"></span> </asp:LinkButton>
 
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="140px" />
@@ -1473,16 +1472,16 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintcsap" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintcsap" runat="server" ToolTip="Print CS" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
 
-                                                                    <asp:HyperLink ID="hlnkbtnEntrycsap" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="hlnkbtnEntrycsap" runat="server" ToolTip="Check for CS Approved" Target="_blank" CssClass="btn btn-default btn-xs"><i class="fas fa-check-circle"></i>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnDelcsap" OnClick="btnDelReqApp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class=" fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelcsap" OnClick="btnDelReqApp_Click" ToolTip="Cencel" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class=" fa fa-recycle"></span> </asp:LinkButton>
 
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="140px" />
@@ -1594,11 +1593,11 @@
 
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
-                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print CS" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" ToolTip="Check for Work Order" Target="_blank" CssClass="btn btn-default btn-xs"><i class="fas fa-check-circle"></i>
                                                                     </asp:HyperLink>
-                                                                    <asp:LinkButton ID="btnDelAprovedNo_Click" OnClick="btnDelAprovedNo_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelAprovedNo_Click" ToolTip="Cancel" OnClick="btnDelAprovedNo_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="110px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
@@ -1769,20 +1768,20 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintofapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintofapp" runat="server" ToolTip="Print Work Order" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="lnkbtnEntryofapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntryofapp" runat="server" ToolTip="Check for 1st Approval" Target="_blank" CssClass="btn btn-default btn-xs"><i class="fas fa-check-circle"></i>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnofapp" OnClick="btnofapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnofapp" OnClick="btnofapp_Click" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>
                                                                     <%-- <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>--%>
 
 
-                                                                    <asp:LinkButton ID="btnDelOrderAprv" runat="server" OnClick="btnDelOrderAprv_Click" OnClientClick="javascript:return FunConfirm();" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelOrderAprv" runat="server" ToolTip="Cancel" OnClick="btnDelOrderAprv_Click" OnClientClick="javascript:return FunConfirm();" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
 
 
                                                                 </ItemTemplate>
@@ -1943,15 +1942,15 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Req Info" CssClass="btn btn-default btn-xs"> <span  style="color:green" class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Requisition" CssClass="btn btn-default btn-xs"> <span  style="color:green" class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Order Approval" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Work Order" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
 
 
-                                                                    <asp:HyperLink ID="lnkbtnEntryosapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntryosapp" runat="server" Target="_blank" ToolTip="Check for Final Approval" CssClass="btn btn-default btn-xs"><i class="fas fa-check-circle"></i>
 
                                                                     </asp:HyperLink>
 
@@ -1959,7 +1958,7 @@
                                                                     <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
 
 
                                                                 </ItemTemplate>
@@ -2164,16 +2163,16 @@
                                                                 <ItemTemplate>
 
                                                                     
-                                                                    <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print Work Order" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
 
-                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" ToolTip="Check for Material Received" Target="_blank" CssClass="btn btn-default btn-xs"><i class="fas fa-check-circle"></i>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnDelOrder" OnClick="btnDelOrder_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelOrder" OnClick="btnDelOrder_Click" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
 
 
                                                                     <asp:LinkButton ID="lbtnSendMail" OnClick="lbtnSendMail_Click" ToolTip="Send mail" OnClientClick="javascript:return FunConfirmMail() ;" runat="server" CssClass="btn btn-default btn-xs"><span style="color:black" class=" fa fa-mail-bulk"></span> </asp:LinkButton>
