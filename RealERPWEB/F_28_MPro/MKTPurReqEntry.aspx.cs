@@ -270,6 +270,7 @@ namespace RealERPWEB.F_28_MPro
             this.Get_Requisition_Info();            
             this.GetMaterial();
             this.ddlPRType_SelectedIndexChanged(null, null);
+            //mar
            
 
         }
