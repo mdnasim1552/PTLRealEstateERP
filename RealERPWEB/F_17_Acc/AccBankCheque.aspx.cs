@@ -247,7 +247,9 @@ namespace RealERPWEB.F_17_Acc
                 string s = (string)converter.ConvertTo(chqueno, typeof(string));
 
 
-                dr["chequeno"] = (comcod == "3336" || comcod == "3337" || comcod == "3101") ? (s) : (a + i).ToString();
+                // dr["chequeno"] = (comcod == "3336" || comcod == "3337" || comcod == "3101") ? (s) : (a + i).ToString();
+           
+                dr["chequeno"] = (comcod == "3336" || comcod == "3337" || comcod == "3101") ? ASTUtility.Right("0000000" + (s), 7) : (a + i).ToString();
                 dr["flag"] = false;
                 dr["vounum"] = "";
                 dr["bstatus"] = "";
