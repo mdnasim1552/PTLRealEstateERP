@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2209,6 +2209,7 @@
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
+    <Content Include="F_28_MPro\MktMatIssue.aspx" />
     <Content Include="F_28_MPro\MktMRREntry.aspx" />
     <Content Include="F_28_MPro\MktPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
@@ -2646,6 +2647,7 @@
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
     <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
+    <Content Include="F_28_MPro\RptMktPurchaseTracking.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
     <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
@@ -3037,6 +3039,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
@@ -3836,6 +3839,13 @@
     <Compile Include="F_28_MPro\MktMarketSurvey.aspx.designer.cs">
       <DependentUpon>MktMarketSurvey.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\MktMatIssue.aspx.cs">
+      <DependentUpon>MktMatIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktMatIssue.aspx.designer.cs">
+      <DependentUpon>MktMatIssue.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_28_MPro\MktMRREntry.aspx.cs">
       <DependentUpon>MktMRREntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4038,6 +4048,13 @@
     </Compile>
     <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
       <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\RptMktPurchaseTracking.aspx.cs">
+      <DependentUpon>RptMktPurchaseTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\RptMktPurchaseTracking.aspx.designer.cs">
+      <DependentUpon>RptMktPurchaseTracking.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
@@ -4493,6 +4510,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.designer.cs">
       <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx.cs">
+      <DependentUpon>EmpAttApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx.designer.cs">
+      <DependentUpon>EmpAttApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
@@ -11986,6 +12010,7 @@
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
+    <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />

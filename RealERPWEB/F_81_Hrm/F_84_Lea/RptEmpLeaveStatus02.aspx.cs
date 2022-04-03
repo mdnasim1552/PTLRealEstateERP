@@ -101,7 +101,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 case "yearlylvRegister":
 
                     DateTime curdate = System.DateTime.Today;
-                    this.txtfrmDate.Text = Convert.ToDateTime("01-Jan-" + curdate.ToString("yyyy")).ToString("dd-MMM-yyyy");
+                    string pyear =Convert.ToString( Convert.ToInt32(curdate.ToString("yyyy"))-1);
+                    
+                    this.txtfrmDate.Text = Convert.ToDateTime("26-Dec-" + pyear).ToString("dd-MMM-yyyy");
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");                    
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
@@ -963,7 +965,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 TableCell cell11 = new TableCell();
                 cell11.Text = "Jul";
                 cell11.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell11.ColumnSpan = 4;
+                cell11.ColumnSpan = 3;
                 gvrow.Cells.Add(cell11);
 
                 TableCell cell12 = new TableCell();

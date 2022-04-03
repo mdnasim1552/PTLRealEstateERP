@@ -38,31 +38,31 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
+                ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE";//
 
                 this.SelectDate();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
                 GetStep();
-
                 this.SaleRequRpt();
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
-
             }
         }
 
         private void SelectDate()
         {
-            string comcod = this.GetCompCode();
+            string comcod = this.GetCompCode();          
+            this.txFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DateTime date = Convert.ToDateTime(txFdate.Text);
             DataSet datSetup = compUtility.GetCompUtility();
             if (datSetup == null)
                 return;
-
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-            this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
+            string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            frmdate = startdate + frmdate.Substring(2);
+            this.txFdate.Text = frmdate;
             this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-
+           //string tdate = date.ToString("dd-MMM-yyyy");
         }
         private void GetStep()
         {
@@ -77,9 +77,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void Timer1_Tick(object sender, EventArgs e)
         {
 
-
         }
-
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             this.SaleRequRpt();
@@ -132,18 +130,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
 
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", fDate, tDate, usrid, type, DeptHead, "", "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead, "", "", "", "");
             if (ds1 == null)
                 return;
 
             this.RadioButtonList1.Items[0].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</span></h4>" + "<span class='lbldata2'>" + "Request" + "</span>";
             this.RadioButtonList1.Items[1].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Process" + "</span>";
             this.RadioButtonList1.Items[2].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Approval" + "</span>";
-
             this.RadioButtonList1.Items[3].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Confirmed" + "</span>";
-
-
-
+            this.RadioButtonList1.Items[4].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcancel"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Canceled" + "</span>";
 
             // All Order
             DataTable dt = new DataTable();
@@ -151,16 +146,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataView dv = new DataView();
             dt = ((DataTable)ds1.Tables[0]).Copy();
             ViewState["tbltotalleav"] = dt;
-            this.Data_Bind("gvLvReq", dt);
+            this.Data_Bind("gvAttReq", dt);
 
             //In-process
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
             //dv.RowFilter = ("sostatus = 'In-process' or  sostatus = 'Request' ");
-            dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' ");
+            dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' and lvstatus <> 'Canceled'");
+           
+
             this.Data_Bind("gvInprocess", dv.ToTable());
-
-
 
             //Approved
             dt = ((DataTable)ds1.Tables[0]).Copy();
@@ -169,15 +164,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvApproved", dv.ToTable());
 
-            //Final Approved
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("lvstatus = 'Final Approved'");
-            //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
-            this.Data_Bind("gvfiApproved", dv.ToTable());
-
-
-
+          
 
             //Confirm
             dt = ((DataTable)ds1.Tables[0]).Copy();
@@ -186,8 +173,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvConfirm", dv.ToTable());
 
-        }
 
+            //Canceled Data
+            dt = ((DataTable)ds1.Tables[0]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("lvstatus = 'Canceled'");
+            //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
+            this.Data_Bind("gvfiApproved", dv.ToTable());
+
+        }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
@@ -198,15 +192,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (value)
             {
                 case "0":
-
-
                     this.pnlallReq.Visible = true;
                     this.PnlProcess.Visible = false;
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
                     this.RadioButtonList1.Items[0].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
-
                     break;
 
                 case "1":
@@ -216,7 +207,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
                     this.RadioButtonList1.Items[1].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
-
                     break;
                 case "2":
                     this.pnlallReq.Visible = false;
@@ -225,45 +215,33 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
                     this.RadioButtonList1.Items[2].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
-
                     break;
-
-
                 case "3":
                     this.pnlallReq.Visible = false;
                     this.PnlProcess.Visible = false;
                     this.PnlApp.Visible = false;
-                    this.pnlFApp.Visible = true;
-                    this.PnlConfrm.Visible = false;
-
+                    this.pnlFApp.Visible = false;
+                    this.PnlConfrm.Visible = true;
                     this.RadioButtonList1.Items[3].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
-
                     break;
 
                 case "4":
                     this.pnlallReq.Visible = false;
                     this.PnlProcess.Visible = false;
                     this.PnlApp.Visible = false;
-                    this.pnlFApp.Visible = false;
-                    this.PnlConfrm.Visible = true;
+                    this.pnlFApp.Visible = true;
+                    this.PnlConfrm.Visible = false;
                     this.RadioButtonList1.Items[4].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
-
                     break;
-
-
             }
         }
-
-
         private void Data_Bind(string gv, DataTable dt)
         {
-
-
             switch (gv)
             {
-                case "gvLvReq":
-                    this.gvLvReq.DataSource = (dt);
-                    this.gvLvReq.DataBind();
+                case "gvAttReq":
+                    this.gvAttReq.DataSource = (dt);
+                    this.gvAttReq.DataBind();
 
                     if (dt.Rows.Count == 0)
                         return;
@@ -296,21 +274,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     if (dt.Rows.Count == 0)
                         return;
                     break;
-
-
             }
-
-
-
-
         }
-
-
         protected void gvInprocess_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HylvPrint");
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnApp");
                 HyperLink lnkbtnDptApp = (HyperLink)e.Row.FindControl("lnkbtnDptApp");
@@ -328,21 +297,22 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "susrid")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
+                string reqtyp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvtype")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
 
                 if (userid == dptusrid)
                 {
                     hlink3.Visible = false;
                     lnkbtnDptApp.Visible = true;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT"+"&Reqtype="+ reqtyp;
 
-
+                    
                 }
                 if (userid == suserid)
                 {
                     lnkbtnDptApp.Visible = false;
                     hlink3.Visible = true;
-                    hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=SUP";
+                    hlink3.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=SUP" + "&Reqtype="+ reqtyp;
 
                 }
 
@@ -350,17 +320,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     lnkbtnDptApp.Visible = true;
                     hlink3.Visible = false;
-
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT" + "&Reqtype="+ reqtyp;
 
                 }
+                //hlnDel.Visible = (userid == empusrid) ? true : false;
+                //hlnEdit.Visible = (userid == empusrid) ? true : false;
 
-
-                hlnDel.Visible = (userid == empusrid) ? true : false;
-                hlnEdit.Visible = (userid == empusrid) ? true : false;
-
-                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                //hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="; ;
+                //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="+ reqtyp;
 
             }
         }
@@ -381,15 +348,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
                 string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+                string reqtyp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvtype")).ToString();
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
 
                 hlink3.Visible = ((userid == dptusid) && (lvstatus != "Approved")) ? true : false;
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                hlink3.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT" + "&Reqtype=" + reqtyp;
+                //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
             }
         }
-        protected void gvLvReq_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvAttReq_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -406,13 +374,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
-
-
-                hlnEdit.Visible = ((usrid == empusrid) && (lvstatus != "Approved")) ? true : false;
-
-
-                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                //hlnEdit.Visible = ((usrid == empusrid) && (lvstatus != "Approved")) ? true : false;
+                //hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
 
             }
@@ -433,8 +397,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
 
-
-
                 string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string urefno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
 
@@ -444,7 +406,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
 
                 hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
-
                 hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
             }

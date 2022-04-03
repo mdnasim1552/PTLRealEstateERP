@@ -42,5 +42,56 @@ namespace RealEntity.C_28_Mpro
             public RptMktPurchaseRequisition() { }
 
         }
+
+        [Serializable]
+        public class RptMktPurchaseTrack
+        {
+            public string grp { get; set; }
+            public string grpdesc { get; set; }
+            public string genno { get; set; }
+            public string gdate { get; set; }
+            public string refno { get; set; }
+            public string chlno { get; set; }
+            public string prtypedesc { get; set; }
+            public string acttypedesc { get; set; }
+            public string mkttypedesc { get; set; }
+            public double qty { get; set; }
+            public double rate { get; set; }
+            public double amt { get; set; }
+            public string ssirdesc { get; set; }
+            public string usrname { get; set; }
+            public RptMktPurchaseTrack() { }
+        }
+
+        [Serializable]
+        public class RptMktPurchaseMrr
+        {
+            public string orderno { get; set; }
+            public string prtype { get; set; }
+            public string acttype { get; set; }
+            public string mkttype { get; set; }
+            public string prtypedesc { get; set; }
+            public string acttypedesc { get; set; }
+            public string mkttypedesc { get; set; }
+            public string reqno { get; set; }
+            public string reqno1 { get; set; }
+            public DateTime orderdat { get; set; }
+            public decimal orderqty { get; set; }
+            public decimal mrrqty { get; set; }
+            public decimal orderbal { get; set; }
+            public decimal recup { get; set; }
+            public decimal mrrrate { get; set; }
+            public decimal mrramt { get; set; }
+            public string mrrnote { get; set; }
+            public decimal chlnqty { get; set; }
+            public DateTime challandat { get; set; }
+            public decimal oqty { get; set; }
+            public DateTime reqdat { get; set; }
+            public string mrfno { get; set; }
+            public decimal areqty { get; set; }
+            public string pordref { get; set; }
+            public RptMktPurchaseMrr() { }
+
+        }
     }
 }

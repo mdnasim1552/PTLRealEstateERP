@@ -362,8 +362,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.gvLeaveStatus.DataBind();
                 return "";
             }
-
-
             this.gvLeaveStatus.DataSource = ds1.Tables[0];
             this.gvLeaveStatus.DataBind();
 
@@ -372,8 +370,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void lstOrderNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ShowData();
-
-
         }
         protected void lnkbtnDelete_Click(object sender, EventArgs e)
         {
@@ -393,25 +389,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 ((Label)this.Master.FindControl("lblANMgsBox")).Visible = true;
                 ((Label)this.Master.FindControl("lblANMgsBox")).Text = "Please select your item for Delete";
-
-
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             }
-
-
-
-
-
-
+            
             bool result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_SALES_ORDER_APPROVAL", "ORDERAPPDELETE", pactcode, Orderno, "", "", "");
 
             if (result == true)
             {
-
                 ((Label)this.Master.FindControl("lblANMgsBox")).Visible = true;
                 ((Label)this.Master.FindControl("lblANMgsBox")).Text = "Successfully Deleted";
                 ((Label)this.Master.FindControl("lblANMgsBox")).Attributes["style"] = "background:Green;";
-
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
                 this.ShowData();
             }
@@ -420,15 +407,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void Data_Bind()
         {
 
-            var lst = (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>)ViewState["tblt01"];
-             
+            var lst = (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>)ViewState["tblt01"];             
             this.gvLvReq.DataSource = lst;
             this.gvLvReq.DataBind();
 
             DataTable dt = (DataTable)ViewState["tbltype"];
-
             DropDownList ddlgval;
-
             for (int i = 0; i < this.gvLvReq.Rows.Count; i++)
             {
                 ddlgval = ((DropDownList)this.gvLvReq.Rows[i].FindControl("ddlLvtype"));
@@ -438,20 +422,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ddlgval.DataBind();
                 ddlgval.SelectedValue = ((Label)this.gvLvReq.Rows[i].FindControl("lblgvgcod")).Text.Trim();
             }
-
-            
-
-
         }
-
-
-
         //private DataTable HiddenSameDate(DataTable dt1)
         //{
-
         //    if (dt1.Rows.Count == 0)
         //        return dt1;
-
         //    if (dt1.Rows.Count == 0)
         //        return dt1;
 
@@ -460,9 +435,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         //    string custcode = dt1.Rows[0]["custcode"].ToString();
 
         //    int j;
-
-
-
         //    for (j = 1; j < dt1.Rows.Count; j++)
         //    {
         //        if (dt1.Rows[0]["centrid"].ToString() == centrid && dt1.Rows[j]["orderno"].ToString() == orderno && dt1.Rows[j]["custcode"].ToString() == custcode)
@@ -486,61 +458,31 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         //                dt1.Rows[j]["orderno1"] = "";
         //                dt1.Rows[j]["refno"] = "";
         //                dt1.Rows[j]["orderdat"] = "";
-
-
         //            }
-
         //            if (dt1.Rows[j]["centrid"].ToString() == centrid)
         //            {
         //                dt1.Rows[j]["centrdesc"] = "";
-
-
-
         //            }
-
         //            if (dt1.Rows[j]["custcode"].ToString() == custcode)
         //            {
         //                dt1.Rows[j]["custdesc"] = "";
         //                dt1.Rows[j]["teamdesc"] = "";
         //                //dt1.Rows[j]["rsirunit"] = "";
-
-
         //            }
-
-
-
         //        }
-
         //        centrid = dt1.Rows[j]["centrid"].ToString();
         //        orderno = dt1.Rows[j]["orderno"].ToString();
         //        custcode = dt1.Rows[j]["custcode"].ToString();
-
-
-
         //    }
-
-
-
-
-
         //    return dt1;
 
         //}
-
-
-
-
 
         protected void imgbtnSearchCheqNO_Click(object sender, ImageClickEventArgs e)
         {
 
             this.ShowData();
         }
-
-
-
-
-
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {

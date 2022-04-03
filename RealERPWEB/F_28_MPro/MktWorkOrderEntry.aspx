@@ -24,7 +24,7 @@
                 allow_single_deselect: true
             });
 
-            $(".select2").select2();
+          
 
         };
     </script>

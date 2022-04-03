@@ -1683,7 +1683,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     dtsaladd.Rows[i]["gval"] = Math.Round((percent * basic * 0.01), 0);
                     dtsaladd.Rows[i]["percnt"] = percent;
                 }
-                if(comcod=="3338" || comcod=="3101")
+                if(comcod=="3338")
                 {
                     dtsaladd.Rows[0]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
                 }               

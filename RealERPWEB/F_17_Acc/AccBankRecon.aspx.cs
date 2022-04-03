@@ -360,6 +360,51 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+
+        //protected void txtgvRECNDT_TextChanged(object sender, EventArgs e)
+        //{
+
+        //    ((LinkButton)this.gv1.FooterRow.FindControl("lbtnUpdate")).Enabled = true;
+        //    int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+
+        //    string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+
+        //    string mRECNDT1 = ((TextBox)this.gv1.Rows[index].FindControl("txtgvRECNDT")).Text.Trim() + "01.01.1900";
+
+        //    mRECNDT1 = mRECNDT1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(mRECNDT1.Substring(3, 2))] + "-" + mRECNDT1.Substring(6, 4);
+
+        //    // string mRECNDT1 = ((TextBox)this.gv1.Rows[i].FindControl("txtgvRECNDT")).Text.Trim() + "01.01.1900";
+
+        //    string chequedate = ((Label)this.gv1.Rows[index].FindControl("lblgvchequedat")).Text.Trim();
+
+      
+        //    //DateTime birthDate = Convert.ToDateTime(recondate);
+
+        //    //string recondate1 = Convert.ToDateTime(birthDate).ToString("dd-MMM-yyyy");
+        //    //dd.MM.yyyy
+
+
+
+        //    DateTime date1 = DateTime.Parse(chequedate);
+        //    DateTime date2 = DateTime.Parse(mRECNDT1);  //Moment
+
+
+        //    //double adjqty = Convert.ToDouble("0" + ((TextBox)this.gv1.Rows[index].FindControl("txtgvadjqty")).Text.Trim());
+
+
+        //    if (date2 <= date1)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bank Reconcilation date must be equal or greater cheque date');", true);
+        //        ((LinkButton)this.gv1.FooterRow.FindControl("lbtnUpdate")).Enabled = false;
+                
+        //        return;
+        //    }
+        //}
+
+
+
+
+
         protected void gv1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.SaveValue();
@@ -944,38 +989,5 @@ namespace RealERPWEB.F_17_Acc
             return excelWorkSheet;
         }
 
-        ////protected void txtgvRECNDT_TextChanged(object sender, EventArgs e)
-        ////{
-        ////    int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-
-        ////   // string mRECNDT1 = ((TextBox)this.gv1.Rows[i].FindControl("txtgvRECNDT")).Text.Trim() + "01.01.1900";
-
-        ////    string chequedate =  ((Label)this.gv1.Rows[index].FindControl("lblgvchequedat")).Text.Trim();
-
-        ////    TextBox dd=  (TextBox)this.gv1.Rows[index].FindControl("txtgvRECNDT") as TextBox;
-
-
-
-        ////    string recondate = dd.Text;
-        ////    DateTime birthDate = Convert.ToDateTime(recondate);
-
-        ////    string recondate1 = Convert.ToDateTime(birthDate).ToString("dd-MMM-yyyy");
-        ////    //dd.MM.yyyy
-
-
-
-        ////    DateTime date1 = DateTime.Parse(chequedate);
-        ////    DateTime date2 = DateTime.Parse(recondate1);  //Moment
-
-
-        ////    //double adjqty = Convert.ToDouble("0" + ((TextBox)this.gv1.Rows[index].FindControl("txtgvadjqty")).Text.Trim());
-
-
-        ////    if (date2 <= date1)
-        ////    {
-        ////        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bank Reconcilation date must be equal or greater cheque date');", true);
-        ////        return;
-        ////    }
-        ////}
     }
 }
