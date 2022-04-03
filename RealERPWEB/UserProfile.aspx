@@ -404,26 +404,26 @@ contain the p elements to be scrolled  */
                                                         <asp:HyperLink ID="hlnkbtnadd" runat="server" Target="_blank" Text='<%# Eval("yearmon") %>'></asp:HyperLink>
 
                                                     </td>
-                                                    <td style="width: 80px; text-align: right !important;">
+                                                    <td style="width: 80px; text-align: center !important;">
                                                         <asp:Label ID="lblacintimed" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acintime")).ToString("#, ##0;(#, ##0); ") %>'></asp:Label>
                                                     </td>
 
-                                                    <td style="width: 80px; text-align: right !important;">
+                                                    <td style="width: 80px; text-align: center !important;">
                                                         <asp:Label ID="lblLate" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aclate")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
                                                     </td>
-                                                    <td style="width: 80px; text-align: right !important;">
+                                                    <td style="width: 80px; text-align: center !important;">
                                                         <asp:Label ID="lblAbsent" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                     </td>
-                                                    <td style="width: 80px; text-align: right !important;">
+                                                    <td style="width: 80px; text-align: center !important;">
                                                         <asp:Label ID="lblLeave" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leave")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
                                                     </td>
 
-                                                    <td style="width: 80px; text-align: right !important;">
+                                                    <td style="width: 80px; text-align: center !important;">
                                                         <asp:Label ID="lbllvadj" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lvadj")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
                                                     </td>
 
 
-                                                    <td style="width: 80px; text-align: right !important;">
+                                                    <td style="width: 80px; text-align: center !important;">
                                                         <asp:Label ID="lblrlateapp" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lateapp")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
                                                     </td>
 
@@ -433,45 +433,45 @@ contain the p elements to be scrolled  */
                                                 <tr>
                                                     <td style="width: 80px">
                                                         <asp:Label ID="ttl" runat="server" CssClass=" smLbl_to" Text="Total"></asp:Label></td>
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblacintime" runat="server" Style="text-align: right"></asp:Label>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lblacintime" runat="server" Style="text-align: center"></asp:Label>
                                                     </td>
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lbltotallate" runat="server" Style="text-align: right"></asp:Label></td>
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lbltotalabs" runat="server" Style="text-align: right"></asp:Label>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lbltotallate" runat="server" Style="text-align: center"></asp:Label></td>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lbltotalabs" runat="server" Style="text-align: center"></asp:Label>
                                                     </td>
 
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lbltotalleave" runat="server" Style="text-align: right"></asp:Label></td>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lbltotalleave" runat="server" Style="text-align: center"></asp:Label></td>
 
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lbltolvadj" runat="server" Style="text-align: right"></asp:Label></td>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lbltolvadj" runat="server" Style="text-align: center"></asp:Label></td>
 
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblfrtolateapp" runat="server" Style="text-align: right"></asp:Label></td>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lblfrtolateapp" runat="server" Style="text-align: center"></asp:Label></td>
 
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 80px">
                                                         <asp:Label ID="Label2" runat="server" CssClass=" smLbl_to" Text="In %"></asp:Label></td>
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblperIntime" runat="server" Style="text-align: right"></asp:Label>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lblperIntime" runat="server" Style="text-align: center"></asp:Label>
                                                     </td>
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblperLate" runat="server" Style="text-align: right"></asp:Label></td>
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblPerabs" runat="server" Style="text-align: right"></asp:Label>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lblperLate" runat="server" Style="text-align: center"></asp:Label></td>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lblPerabs" runat="server" Style="text-align: center"></asp:Label>
                                                     </td>
 
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblperleave" runat="server" Style="text-align: right"></asp:Label></td>
+                                                    <td style="width: 80px; text-align: center !important;">
+                                                        <asp:Label ID="lblperleave" runat="server" Style="text-align: center"></asp:Label></td>
 
                                                     <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblfperlvadj" runat="server" Style="text-align: right"></asp:Label></td>
+                                                        <asp:Label ID="lblfperlvadj" runat="server" Style="text-align: center"></asp:Label></td>
 
                                                     <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblfrperlateapp" runat="server" Style="text-align: right"></asp:Label></td>
+                                                        <asp:Label ID="lblfrperlateapp" runat="server" Style="text-align: center"></asp:Label></td>
 
                                                 </tr>
                                                 </table>
@@ -536,16 +536,16 @@ contain the p elements to be scrolled  */
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="right" />
+                                                    <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Availed">
+                                                <asp:TemplateField HeaderText="Enjoyed">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvlentitled01" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ltaken")).ToString("#,##0;(#,##0); ") %>'
                                                             Width="40px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="right" />
+                                                    <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Balance">
                                                     <ItemTemplate>
@@ -553,7 +553,7 @@ contain the p elements to be scrolled  */
                                                             Width="60px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="right" />
+                                                    <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Last Leave End Date">
