@@ -211,6 +211,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             ds1.Dispose();
         }
+        
 
         private void GetPreYearArrear()
         {
@@ -1968,19 +1969,19 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                 double toamt = Convert.ToDouble(dt.Rows[i]["toamt"]);
                 double fineday = Convert.ToDouble(dt.Rows[i]["finedays"]);
-                if (toamt > 0)
-                {
+                //if (toamt > 0)
+                //{
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, transded, "", "");
                     if (!result)
                         return;
-                }
-                else if (toamt == 0 && fineday > 0)
-                {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, transded, "", "");
-                    if (!result)
-                        return;
-                }
-            }
+                //}
+                //else if (toamt == 0 && fineday > 0)
+                //{
+                //    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, transded, "", "");
+                //    if (!result)
+                //        return;
+                //}
+           }
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
@@ -2526,6 +2527,28 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
         }
+        private string GetCompOtherDeduc()
+        {
+            string comothdedtype = "";
+            string comcod = this.GetComeCode();
+            switch (comcod)
+            {
+                case "3365"://BTI
+                    comothdedtype = "comothdedtype";
+                    break;
+
+                default:
+                    break;
+
+
+
+
+            }
+            return comothdedtype;
+
+
+
+        }
 
         protected void lblbtncopyoth_Click(object sender, EventArgs e)
         {
@@ -2538,7 +2561,43 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, "", "", "");
+            string field = "";
+            for (int i=0;  i<chkfield.Items.Count; i++)
+            {
+
+                if (chkfield.Items[i].Selected)
+                {
+                    if (chkfield.Items[i].Value.ToString() == "000")
+                    {
+                        field = "";
+                        break;
+                    }
+
+                    else
+                    {
+                        field = field+ chkfield.Items[i].Value.ToString()+",";
+
+
+                    }
+                
+                
+                }
+
+                //if (item.SelectedValue == "000")
+                //{
+
+                //    break;
+                //}
+
+                //else
+                //{ 
+                
+                
+                //}
+
+            }
+            string comothdedtype = this.GetCompOtherDeduc();
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype, "");
             if (ds2 == null)
             {
                 this.gvEmpOtherded.DataSource = null;
