@@ -95,7 +95,7 @@
                                     <asp:TextBox ID="txtCurReqNo2" runat="server" CssClass="form-control form-control-sm" ReadOnly="true">00000</asp:TextBox>
                                 </div>
                             </div>
-                            <div class="col-3 ml-1">
+                            <div class="col-3 ml-1 display-none">
                                 <div class="form-group">
                                     <asp:Label ID="lblmrfno" runat="server" class="control-label  lblmargin-top9px" for="ReqNoCur">M.R.F. No.</asp:Label>
                                     <asp:TextBox ID="txtMRFNo" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
