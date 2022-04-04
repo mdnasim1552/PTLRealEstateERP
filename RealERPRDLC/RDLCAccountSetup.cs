@@ -50,6 +50,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptMonWiseColBuyer": Rpt1a = SetRptMonWiseColBuyer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptRecAndPaymentCredence": Rpt1a = SetRptRecAndPaymentCredence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
                 case "R_17_Acc.RptRecAndPaymentEntrust": Rpt1a = SetRptRecAndPaymentEntrust(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
+                case "R_17_Acc.RptRecAndPaymentCube": Rpt1a = SetRptRecAndPaymentCube(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
                     
                 case "R_21_Mkt.RptClietList": Rpt1a = RptClietList (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_81_Rec.RptCreateOffLt": Rpt1a = RptCreateOffLt (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -145,6 +146,11 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptRecAndPayment ( LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset )
+        {
+            Rpt1a.DataSources.Add (new ReportDataSource ("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>)RptDataSet));
+            return Rpt1a;
+        }        
+        private static LocalReport SetRptRecAndPaymentCube( LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset )
         {
             Rpt1a.DataSources.Add (new ReportDataSource ("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>)RptDataSet));
             return Rpt1a;
