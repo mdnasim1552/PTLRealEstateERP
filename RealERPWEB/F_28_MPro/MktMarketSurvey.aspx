@@ -8,6 +8,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
+        .chzn-container-single .chzn-single {
+             height: 28px !important;
+            line-height: 28px !important;
+        }
+
         .lblHead {
             color: deeppink;
             font-size: 14px !important;
