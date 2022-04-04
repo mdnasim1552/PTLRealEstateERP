@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccProjectCode.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.AccProjectCode" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccProjectCode.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.AccProjectCode" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -20,49 +20,167 @@
         });
         function pageLoaded() {
 
-            //$("input, select").bind("keydown", function (event) {
-            //    var k1 = new KeyPress();
-            //    k1.textBoxHandler(event);
-
-            //});
             $('.chzn-select').chosen({ search_contains: true });
         }
 
     </script>
 
-
+    <style>
+        .isNewprj label {
+            margin-bottom: 0;
+        }
+    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="card card-fluid container-data mt-5" style="min-height: 1000px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2" id="div2" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    <asp:LinkButton ID="imgbtnMainCode" runat="server" OnClick="imgbtnMainCode_Click">
+                                                  Main</asp:LinkButton>
+                                </label>
+                                <asp:DropDownList ID="ddlMainCode" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlMainCode_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-2" id="div3" runat="server">
 
-            <div class="container moduleItemWrpper">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    <asp:LinkButton ID="ingbtnSub1" runat="server" OnClick="ingbtnSub1_Click">
+                                                  Sub-1</asp:LinkButton>
+                                </label>
+                                <asp:DropDownList ID="ddlSub1" OnSelectedIndexChanged="ddlSub1_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="div4" runat="server">
+                            <div class="form-group">
+                                <label class="d-block" for="ddlLvType">
+                                    <asp:LinkButton ID="imgbtnSub2" runat="server" OnClick="imgbtnSub2_Click">
+                                                 Sub-2 
+                                    </asp:LinkButton>
+                                    <asp:CheckBox ID="chkNewProject" runat="server" CssClass="float-right badge badge-success isNewprj" Text=" New Project" OnCheckedChanged="chkNewProject_CheckedChanged"
+                                        AutoPostBack="True" />
+                                </label>
+                                <asp:DropDownList ID="ddlSub2" OnSelectedIndexChanged="ddlSub2_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="prvProjt" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType" class="d-block">
+                                    <asp:LinkButton ID="mgbtnPreDetails" runat="server" OnClick="mgbtnPreDetails_Click">
+                                                Previous Project</asp:LinkButton>
+                                    
+                                    <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-danger isNewprj" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
+                                    <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="float-right badge badge-info isNewprj" OnClick="lnkBtnShow_Click">Set Project Permission</asp:LinkButton>
+
+                                </label>
+                                <asp:DropDownList ID="ddlProjectList" OnSelectedIndexChanged="ddlProjectList_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2" id="div1" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Project Name
+                                </label>
+                                <asp:TextBox ID="txtProjectName" runat="server" Placeholder="English Name" CssClass="form-control"></asp:TextBox>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2" id="div6" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Project Name Bangla(if need)
+                                </label>
+                                <asp:TextBox ID="txtProjectNameBN" runat="server" Placeholder="Bangla Name" CssClass="form-control"></asp:TextBox>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2" id="div5" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Short Name
+                                </label>
+                                <asp:TextBox ID="txtShortName" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive d-none">
+                        <asp:GridView ID="gvPrjCode" runat="server" AutoGenerateColumns="False" ClientIDMode="Static"
+                            OnPageIndexChanging="gvPrjCode_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+                            PageSize="15">
+                            <PagerSettings Position="Top" />
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Project Name">
+                                    <ItemTemplate>
+
+
+                                        <asp:Label ID="Label5" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'
+                                            Width="180px"></asp:Label>
+                                        <asp:Label ID="lblgvSection" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttdesc")) %>'
+                                            Width="300px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="left" />
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="right" />
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                            </Columns>
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
+            <div class="container moduleItemWrpper d-none">
                 <div class="contentPart">
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
-
-
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName">Main</asp:Label>
                                         <asp:TextBox ID="txtsrchMainCode" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnMainCode" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnMainCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        <asp:LinkButton ID="ximgbtnMainCode" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnMainCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlMainCode" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlMainCode_SelectedIndexChanged">
+                                        <asp:DropDownList ID="xddlMainCode" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlMainCode_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
-
-
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Sub-1</asp:Label>
                                         <asp:TextBox ID="txtSrcSub1" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="ingbtnSub1" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ingbtnSub1_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        <asp:LinkButton ID="xingbtnSub1" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ingbtnSub1_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlSub1" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlSub1_SelectedIndexChanged">
+                                        <asp:DropDownList ID="xddlSub1" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlSub1_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
 
@@ -72,10 +190,10 @@
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblPreSLNo" runat="server" CssClass="lblTxt lblName">Sub-2:</asp:Label>
                                         <asp:TextBox ID="txtSrcSub2" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnSub2" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnSub2_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        <asp:LinkButton ID="ximgbtnSub2" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnSub2_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlSub2" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlSub2_SelectedIndexChanged">
+                                        <asp:DropDownList ID="xddlSub2" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlSub2_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
 
@@ -89,41 +207,34 @@
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Pre. Project</asp:Label>
                                         <asp:TextBox ID="txtSrcDetails" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="mgbtnPreDetails" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="mgbtnPreDetails_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        <asp:LinkButton ID="xmgbtnPreDetails" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="mgbtnPreDetails_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
 
                                         <%-- <asp:DropDownList ID="ddlProjectList" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectList_SelectedIndexChanged">
                                         </asp:DropDownList>--%>
 
-                                        <asp:DropDownList ID="ddlProjectList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectList_SelectedIndexChanged">
+                                        <asp:DropDownList ID="xddlProjectList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 pading5px asitCol2">
                                         <%--<a href="#" id="lnkBtnShow" onclick="ShowEmployeeInfos();">Show<sup><span class="badgei" id="lblShow" runat="server"></span></sup></a>--%></li>
-                                         <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="btn  btn-primary primaryBtn" OnClick="lnkBtnShow_Click">Show</asp:LinkButton>
                                         <%--<button class="btn btn-primary primaryBtn" data-target="#modalEmpInfo" data-toggle="modal">Show</button>--%>
                                     </div>
 
                                 </div>
-
-
                                 <div class="form-group">
                                     <div class="col-md-2 pading5px ">
                                         <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Project Name:</asp:Label>
-                                        <asp:CheckBox ID="chkNewProject" runat="server" Text="New Project" CssClass=" checkbox-inline" OnCheckedChanged="chkNewProject_CheckedChanged"
-                                            AutoPostBack="True" />
-
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
-                                        <asp:TextBox ID="txtProjectName" runat="server" CssClass="inputTxt inputName inpPixedWidth" Style="margin-left: 5px;" Width="200"></asp:TextBox>
+                                        <asp:TextBox ID="xtxtProjectName" runat="server" CssClass="inputTxt inputName inpPixedWidth" Style="margin-left: 5px;" Width="200"></asp:TextBox>
                                     </div>
-                                     <div class="col-md-3 pading5px asitCol3">
-                                        <asp:TextBox ID="txtProjectNameBN" runat="server" Placeholder="Bangla Name" CssClass="inputTxt inputName inpPixedWidth" Style="margin-left: 5px;" Width="200"></asp:TextBox>
+                                    <div class="col-md-3 pading5px asitCol3">
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="Label4" runat="server" CssClass=" smLbl_to">Short Name:</asp:Label>
-                                        <asp:TextBox ID="txtShortName" runat="server" CssClass="inputTxt inputName inpPixedWidth" Width="100"></asp:TextBox>
+                                        <asp:TextBox ID="xtxtShortName" runat="server" CssClass="inputTxt inputName inpPixedWidth" Width="100"></asp:TextBox>
 
 
 
@@ -143,34 +254,15 @@
 
                 </div>
             </div>
-
-
-
-            <div id="modalEmpInfo" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-dialog-full-width">
-                    <div class="modal-content modal-content-full-width">
-                        <div class="modal-header">
-                            <h4 class="modal-title">
-                                <i class="fa fa-hand-point-right"></i>Project Information </h4>
-                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            <asp:Label ID="lblprjname" runat="server" Text="Project Name" ForeColor="DodgerBlue" Font-Size="Large">
-                            </asp:Label>
+            <div id="modalEmpInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content col-md-12 col-sm-12 ">
+                        <div class="modal-header hedcon">                            
+                    <h4>Project Information </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div class="modal-body ">
-                            <%--<div class="table-responsive">
-                        <table id="tblinformation" class="table-striped table-hover table-bordered  grvContentarea">
-                            <thead>
-                                <tr class="grvHeader">
-                                    <th class='tId'>User ID</th>
-                                    <th class='tname'>Name</th>
-                                    <th class='tdesig'>Designation</th>
-                                    <th class='tstatus'>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>--%>
-
+                        <div class="modal-body">
+                            <asp:Label ID="lblprjname" runat="server" Text="Project Name" ForeColor="DodgerBlue" CssClass="d-block" Font-Size="Large"></asp:Label>
                             <asp:GridView ID="gvEmployeeInfo" runat="server" AutoGenerateColumns="False"
                                 CssClass="table-condensed tblborder grvContentarea ml-3">
                                 <RowStyle />
@@ -235,8 +327,8 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
-                        </div>
 
+                        </div>
                         <div class="modal-footer">
                             <asp:LinkButton ID="btnSaveEmp" runat="server" OnClick="btnSaveEmp_Click" OnClientClick="CloseMOdal();" CssClass="btn btn-primary">Save</asp:LinkButton>
                             <button class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -244,7 +336,6 @@
                     </div>
                 </div>
             </div>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 
