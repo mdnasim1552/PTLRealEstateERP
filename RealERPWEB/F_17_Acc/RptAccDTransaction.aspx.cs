@@ -1174,12 +1174,17 @@ namespace RealERPWEB.F_17_Acc
                             this.PrintReceiveAndPayment01Credence();
                             break;
 
-                        case "3101":
+                        //case "3101":
                         case "3358":
                         case "3359":
                         case "3360":
                         case "3361":
                             this.PrintReceiveAndPaymentEnt();
+                            break;
+
+                        case "3101":
+                        case "3357":
+                            this.PrintReceiveAndPaymentCube();
                             break;
 
                         default:
@@ -1430,7 +1435,6 @@ namespace RealERPWEB.F_17_Acc
             string session = hst["session"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string Todate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-
             string txtVouType = this.ddlVoucharCash.SelectedValue.ToString().Trim();
 
             string Ftdate = "(From " + this.txtfromdate.Text + " To " + this.txttodate.Text + ")";
@@ -1449,11 +1453,53 @@ namespace RealERPWEB.F_17_Acc
             Rpt2.SetParameters(new ReportParameter("comnam", comnam));
             Rpt2.SetParameters(new ReportParameter("comadd", comadd));
             Rpt2.SetParameters(new ReportParameter("Ftdate", Ftdate));
-
             Rpt2.SetParameters(new ReportParameter("TotoRes", TotoRes.ToString("#,##0;(#,##0); ")));
             Rpt2.SetParameters(new ReportParameter("TotoPay", TotoPay.ToString("#,##0;(#,##0); ")));
             Rpt2.SetParameters(new ReportParameter("NetAmt", NetAmt.ToString("#,##0;(#,##0); ")));
 
+            //  Rpt2.SetParameters(new ReportParameter("VouType", "Voucher Type: " + txtVouType));
+
+            Rpt2.SetParameters(new ReportParameter("RptTitle", "RECEIPTS & PAYMENT"));
+            Rpt2.SetParameters(new ReportParameter("txtuserinfo", "Print Source :" + username + " , " + session + " , " + printdate));
+            Session["Report1"] = Rpt2;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        } 
+        private void PrintReceiveAndPaymentCube() 
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string comcod = GetCompCode();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string Todate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string txtVouType = this.ddlVoucharCash.SelectedValue.ToString().Trim();
+
+            string Ftdate = "(From " + this.txtfromdate.Text + " To " + this.txttodate.Text + ")";
+
+            DataTable dt = (DataTable)Session["recandpay"];
+            DataTable dt1 = (DataTable)Session["recandpayFo"];
+            DataTable dt2 = (DataTable)ViewState["recandpayNote"];
+
+
+            double TotoRes = Convert.ToDouble(dt1.Rows[0]["recpam"]);
+            double TotoPay = Convert.ToDouble(dt1.Rows[0]["payam"]);
+            double NetAmt = TotoRes - TotoPay;
+            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>();
+            LocalReport Rpt2 = new LocalReport();
+            Rpt2 = RDLCAccountSetup.GetLocalReport("R_17_Acc.RptRecAndPaymentCube", lst, null, null);
+            Rpt2.EnableExternalImages = true;
+            Rpt2.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt2.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt2.SetParameters(new ReportParameter("Ftdate", Ftdate));
+            Rpt2.SetParameters(new ReportParameter("TotoRes", TotoRes.ToString("#,##0;(#,##0); ")));
+            Rpt2.SetParameters(new ReportParameter("TotoPay", TotoPay.ToString("#,##0;(#,##0); ")));
+            Rpt2.SetParameters(new ReportParameter("NetAmt", NetAmt.ToString("#,##0;(#,##0); "))); 
+            Rpt2.SetParameters(new ReportParameter("ComLogo", ComLogo));
             //  Rpt2.SetParameters(new ReportParameter("VouType", "Voucher Type: " + txtVouType));
 
             Rpt2.SetParameters(new ReportParameter("RptTitle", "RECEIPTS & PAYMENT"));

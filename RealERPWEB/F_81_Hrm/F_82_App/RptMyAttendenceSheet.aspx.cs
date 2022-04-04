@@ -395,7 +395,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string maildescription = "Dear Sir, Please Approve My Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                      "Department Name : " + deptname + "," + "<br>" + "Request Type : " + reqfor + ",<br>" + " Request id: " + ltrnid + ". <br>";
                 maildescription += htmtableboyd;
-                maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+                maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Request Interface</div>" + "<br/>";
 
                 
                 ///GET SMTP AND SMS API INFORMATION
@@ -413,7 +413,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 #region
 
-                string subj = "New Request ";
+                string subj = "New Request "+ reqfor; ;
                 string msgbody = maildescription;
 
 
@@ -432,7 +432,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody);
                     if (Result_email == false)
                     {
-                        string Messagesd = "Leave Applied but Notification has not been sent";
+                        string Messagesd = "Request Applied but Notification has not been sent";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     }
                 }
@@ -440,7 +440,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             catch (Exception ex)
             {
-                string Messagesd = "Leave Applied but Notification has not been sent " + ex.Message;
+                string Messagesd = "Request Applied but Notification has not been sent " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
