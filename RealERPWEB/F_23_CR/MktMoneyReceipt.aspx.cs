@@ -1030,6 +1030,12 @@ namespace RealERPWEB.F_23_CR
 
                             break;
 
+                        case "3339":
+                        //case "3101":
+
+                            PactCode = (RecType == "54004" || RecType == "54006" || RecType == "54009" || RecType == "54012" || RecType == "54015" || RecType == "54018" || RecType == "54020") ? ("27" + this.ddlProjectName.SelectedValue.ToString().Substring(2)) : this.ddlProjectName.SelectedValue.ToString();
+                            break;
+
                         default:
                             PactCode = (RecType == "54004" || RecType == "54006" || RecType == "54009" || RecType == "54012" || RecType == "54015" || RecType == "54018" || RecType == "54020") ? ("25" + this.ddlProjectName.SelectedValue.ToString().Substring(2)) : this.ddlProjectName.SelectedValue.ToString();
                             break;
