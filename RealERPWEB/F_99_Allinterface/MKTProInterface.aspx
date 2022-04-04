@@ -703,7 +703,7 @@
                                          <asp:HyperLink ID="hlnkbudget" runat="server" Target="_blank" NavigateUrl="~/F_04_Bgd/BgdMaster?InputType=BgdMain&prjcode=" CssClass="dropdown-item" Style="padding: 0 10px">Budget</asp:HyperLink>
 
                                         <div class="dropdown-divider"></div>
-                                         <asp:HyperLink ID="hlnk" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Material Stock</asp:HyperLink>
+                                         <asp:HyperLink ID="hyplnkRptMktStock" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/RptMktProjectStock?Type=RptMktStock&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Material Stock</asp:HyperLink>
                                         </div>
                                 </div>
                             </div>
