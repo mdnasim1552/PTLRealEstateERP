@@ -207,7 +207,6 @@
                                 <FooterStyle HorizontalAlign="Right" />
 
                                 <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
                         </Columns>
