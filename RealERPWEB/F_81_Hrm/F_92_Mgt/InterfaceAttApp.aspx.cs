@@ -405,8 +405,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
 
-                hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                //hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
+                //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
             }
         }
