@@ -31,7 +31,10 @@ namespace RealERPWEB.F_34_Mgt
                 this.GeProjectMainCode();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Project Code Information";
                 //  this.ddlProjectList_SelectedIndexChanged(null, null);
-
+                chkNewProject.Checked = true;
+                this.chkNewProject_CheckedChanged(null, null);
+                //previois
+                GetProjectDetailsCode();
             }
         }
 
@@ -109,19 +112,30 @@ namespace RealERPWEB.F_34_Mgt
             this.ddlProjectList.DataValueField = "actcode";
             this.ddlProjectList.DataBind();
             ViewState["tblprolist"] = ds1.Tables[0];
-            ds1.Dispose();
+           
             this.ddlProjectList_SelectedIndexChanged(null, null);
 
-
+            this.gvPrjCode.DataSource = ds1.Tables[0];
+            this.gvPrjCode.DataBind();
+            ds1.Dispose();
         }
 
         protected void chkNewProject_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.chkNewProject.Checked)
+            if (this.chkNewProject.Checked==true)
             {
-                this.ddlProjectList.Items.Clear();
-                // this.txtProjectName.Text = "";
+                this.ddlProjectList.Items.Clear(); 
                 this.txtShortName.Text = "";
+                this.txtProjectName.Text = "";
+                this.txtProjectNameBN.Text = "";
+                
+                prvProjt.Visible = false;
+            }
+            else 
+            {
+                prvProjt.Visible = true;
+
+                GetProjectDetailsCode();
             }
 
         }
@@ -228,7 +242,7 @@ namespace RealERPWEB.F_34_Mgt
             this.txtProjectNameBN.Text = ds1.Tables[0].Rows[0]["actdescbn"].ToString();
             isLoadDataEmployeeGv(procode);
 
-
+            this.lnkBtnPrjDetails.NavigateUrl = "~/F_04_Bgd/PrjInformation?Type=Report&prjcode=";
         }
 
         private void isLoadDataEmployeeGv(string pCode)
@@ -346,6 +360,11 @@ namespace RealERPWEB.F_34_Mgt
             }
 
             return true;
+        }
+
+        protected void gvPrjCode_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
         }
     }
 }

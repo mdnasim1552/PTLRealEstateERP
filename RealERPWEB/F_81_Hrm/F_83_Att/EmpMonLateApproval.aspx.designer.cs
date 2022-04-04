@@ -132,13 +132,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// imgbtnSearchEmployee control.
+        /// imgbtnSearchEmployees control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnSearchEmployee;
+        protected global::System.Web.UI.WebControls.LinkButton imgbtnSearchEmployees;
 
         /// <summary>
         /// txtSrcEmployee control.
@@ -148,6 +148,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSrcEmployee;
+
+        /// <summary>
+        /// imgbtnSearchEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton imgbtnSearchEmployee;
 
         /// <summary>
         /// lnkbtnShow control.
