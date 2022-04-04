@@ -2647,6 +2647,7 @@
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
     <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
+    <Content Include="F_28_MPro\RptMktProjectStock.aspx" />
     <Content Include="F_28_MPro\RptMktPurchaseTracking.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
@@ -4048,6 +4049,13 @@
     </Compile>
     <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
       <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\RptMktProjectStock.aspx.cs">
+      <DependentUpon>RptMktProjectStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\RptMktProjectStock.aspx.designer.cs">
+      <DependentUpon>RptMktProjectStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\RptMktPurchaseTracking.aspx.cs">
       <DependentUpon>RptMktPurchaseTracking.aspx</DependentUpon>

@@ -4,7 +4,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-     
+      .chzn-container-single .chzn-single {
+             height: 28px !important;
+            line-height: 28px !important;
+        }
     </style>
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
@@ -72,7 +75,7 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <%--<asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Click for Prev." OnClick="ImgbtnFindReq_Click"><i class="fas fa-search"></i></asp:LinkButton>--%>
-                                    <asp:LinkButton ID="ImgbtnFindReq" runat="server" Text="Prev. Req.List" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>
+                                    <asp:LinkButton ID="ImgbtnFindReq" runat="server" Text="Prev. Req.List" Font-Underline="false" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>
                                     <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
                                 </div>
                             </div>
@@ -299,7 +302,7 @@
 
                     <div class="col-6 mt-2" id="dNarr" runat="server">
                         <div class="form-group">
-                            <asp:Label ID="lblNarr" runat="server" CssClass="control-label  lblmargin-top9px" Text="Narration"></asp:Label>
+                            <asp:Label ID="lblNarr" runat="server" CssClass="control-label  lblmargin-top9px" Font-Bold="true" Text="Narration"></asp:Label>
                             <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" TextMode="MultiLine" Rows="4"></asp:TextBox>
                         </div>
                     </div>
