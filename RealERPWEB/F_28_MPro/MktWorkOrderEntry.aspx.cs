@@ -488,19 +488,28 @@ namespace RealERPWEB.F_28_MPro
                 return dt1;
 
             string pactcode = dt1.Rows[0]["pactcode"].ToString();
+            string ssircode = dt1.Rows[0]["ssircode"].ToString();
 
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode && dt1.Rows[j]["ssircode"].ToString()==ssircode)
                 {
+                    dt1.Rows[j]["projdesc1"] = "";
+                    dt1.Rows[j]["ssirdesc1"] = "";
 
+                }
+
+                else if (dt1.Rows[j]["pactcode"].ToString() == pactcode )
+                {
                     dt1.Rows[j]["projdesc1"] = "";
                 }
-
-                else
+                else if (dt1.Rows[j]["ssircode"].ToString()==ssircode)
                 {
-                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                    dt1.Rows[j]["ssirdesc1"] = "";
                 }
+
+                pactcode = dt1.Rows[j]["pactcode"].ToString();
+                ssircode = dt1.Rows[j]["ssircode"].ToString();
 
             }
 
@@ -1232,42 +1241,17 @@ namespace RealERPWEB.F_28_MPro
 
         private string bindDataText()
         {
-            string comcod = this.GetCompCode();
-            string msg = "";
-            switch (comcod)
-            {
-                case "3101":
-                case "3357":
-                    msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
-                        "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
-                        "\n3. Product delivery time must be on time." +
-                        "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
-                        "\n5. Delivery place: at project site " +
-                        "\n6. Delivery date: ……………………" +
-                        "\n7. Cube Holdings Ltd. has the right to cancel the work order in any time." +
-                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
-                        "\n9. Please send all bill in duplicate.";
-                    break;
-
-                case "3366":
-                    msg = "1. Delivery Place : " +
-                        "\n2. Delivery Date : " +
-                        "\n3. Contact Person : " +
-                        "\n4. Cell Number : " +
-                        "\n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
-                        "\n6. Copy of delivery challan must be signed by proprietor of supplying designation with seal containing name of his organization. " +
-                        "\n7. Supply must be completed within 24 hours of any purchase order otherwise the purchase order will be cancelled unless otherwise instructed." +
-                        "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque." +
-                        "\n9. Payment shall have to be received from this office through money receipt of the company." +
-                        "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
-                    break;
-
-                default:
-                    msg = "";
-                    break;
-            }
-
+          string  msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
+                      "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
+                      "\n3. Product delivery time must be on time." +
+                      "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
+                      "\n5. Delivery place: at project site " +
+                      "\n6. Delivery date: ……………………" +
+                      "\n7. Edison Real Estate Ltd. has the right to cancel the work order in any time." +
+                      "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
+                      "\n9. Please send all bill in duplicate.";
             return msg;
+            
         }
 
         protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)

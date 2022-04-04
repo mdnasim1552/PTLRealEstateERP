@@ -179,10 +179,7 @@
             });
         }
 
-
-
-
-             var gvAttReq = $('#<%=this.gvAttReq.ClientID %>');
+            var gvAttReq = $('#<%=this.gvAttReq.ClientID %>');
                 gvAttReq.Scrollable();
 
             var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
@@ -307,9 +304,6 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
 
                             </div>
-
-
-
 
                         </div>
 
@@ -461,9 +455,12 @@
                                                             <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
                                                                      <asp:Label ID="lblAttReq" runat="server" Visible="false"
+                                                                          
+                                             
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
                                                                         Width="80px"></asp:Label>
-                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                    <asp:Label ID="lglvtype" runat="server" 
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 
@@ -614,10 +611,12 @@
                                                             <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
                                                                       <asp:Label ID="lblAttReq" runat="server" Visible="false"
+                                                                           CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
                                                                         Width="80px"></asp:Label>
                                                                     
                                                                     <asp:Label ID="lglvtype" runat="server"
+                                                                         CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 
@@ -784,10 +783,12 @@
                                                             <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
                                                                      <asp:Label ID="lblAttReq" runat="server" Visible="false"
+                                                                          
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
                                                                         Width="80px"></asp:Label>
 
                                                                     <asp:Label ID="lglvtype" runat="server"
+                                                                         CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 
@@ -930,7 +931,8 @@
                                                                      <asp:Label ID="lblAttReqfi" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
                                                                         Width="80px"></asp:Label>
-                                                                    <asp:Label ID="lglvtypefi" runat="server"
+                                                                    <asp:Label ID="lglvtypefi" runat="server" 
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 
@@ -1077,6 +1079,7 @@
                                                             <asp:TemplateField HeaderText="Request Type">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lglvtype" runat="server"
+                                                                         CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
                                                                         Width="80px"></asp:Label>
 

@@ -206,7 +206,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.ddlpreyearmonoth.DataTextField = "yearmon";
             this.ddlpreyearmonoth.DataValueField = "ymon";
             this.ddlpreyearmonoth.DataSource = ds1.Tables[0];
-            this.ddlpreyearmonoth.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
+            this.ddlpreyearmonoth.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
             this.ddlpreyearmonoth.DataBind();
 
             ds1.Dispose();
@@ -745,7 +745,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, "", "", "");
+            string field = "";
+            string comothdedtype = this.GetCompOtherDeduc();
+          
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype);
             if (ds2 == null)
             {
                 this.gvEmpOtherded.DataSource = null;
@@ -941,19 +945,20 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.gvEmpOtherded.DataSource = dt;
                     this.gvEmpOtherded.DataBind();
                     this.FooterCalculation();
-                    if (comcod == "3365")//For BTI
+                    if (comcod == "3365" || comcod== "3101")//For BTI
                     {
                         this.gvEmpOtherded.Columns[6].Visible = false;
                         this.gvEmpOtherded.Columns[7].Visible = false;
                         this.gvEmpOtherded.Columns[8].Visible = false;
                         this.gvEmpOtherded.Columns[12].Visible = true;
-                        this.gvEmpOtherded.Columns[13].Visible = false;
+                        this.gvEmpOtherded.Columns[13].Visible = true;
                         this.gvEmpOtherded.Columns[14].Visible = false;
                         this.gvEmpOtherded.Columns[15].Visible = false;
                         this.gvEmpOtherded.Columns[17].Visible = false;
                         this.gvEmpOtherded.Columns[18].Visible = false;
                         this.gvEmpOtherded.Columns[9].Visible = false;
                         this.gvEmpOtherded.Columns[9].HeaderText = "Food";
+                        this.gvEmpOtherded.HeaderRow.Cells[13].Text = "Penalty";
                     }
 
                     break;
@@ -2583,6 +2588,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 
                 }
 
+               
+
                 //if (item.SelectedValue == "000")
                 //{
 
@@ -2591,13 +2598,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                 //else
                 //{ 
-                
-                
+
+
                 //}
 
             }
+            field = field.Length > 0 ? field.Substring(0, field.Length - 1) : field;
             string comothdedtype = this.GetCompOtherDeduc();
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype, "");
+            string monthid = this.ddlyearmon.SelectedValue.ToString();
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "COPYEMPOTHERDEDUCTION", deptname, MonthId, date, comnam, Empcode, section, field, comothdedtype, monthid);
             if (ds2 == null)
             {
                 this.gvEmpOtherded.DataSource = null;
@@ -2634,7 +2643,49 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPOTHEARNING", compname, MonthId, date, deptname, Empcode, section, "", "", "");
+
+            string field = "";
+            for (int i = 0; i < this.chkotherearn.Items.Count; i++)
+            {
+
+                if (chkotherearn.Items[i].Selected)
+                {
+                    if (chkotherearn.Items[i].Value.ToString() == "000")
+                    {
+                        field = "";
+                        break;
+                    }
+
+                    else
+                    {
+                        field = field + chkotherearn.Items[i].Value.ToString() + ",";
+
+
+                    }
+
+
+                }
+
+
+
+                //if (item.SelectedValue == "000")
+                //{
+
+                //    break;
+                //}
+
+                //else
+                //{ 
+
+
+                //}
+
+            }
+            field = field.Length > 0 ? field.Substring(0, field.Length - 1) : field;
+            string comothdedtype = this.GetCompOtherDeduc();
+            string monthid = this.ddlyearmon.SelectedValue.ToString();
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "COPYEMPOTHEARNING", compname, MonthId, date, deptname, Empcode, section, field, comothdedtype, monthid);
             if (ds2 == null)
             {
                 this.gvothearn.DataSource = null;
@@ -2643,9 +2694,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
             Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
-            this.Data_Bind();
+           
             this.ChkEarn.Checked = false;
-            this.ChkEarn_CheckedChanged(null, null);
+            this.PnlEarn.Visible = (this.ChkEarn.Checked);
+            // this.ChkEarn_CheckedChanged(null, null);
         }
 
         private void GetPreYearmEarn()
@@ -2657,7 +2709,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.ddlPremEarn.DataTextField = "yearmon";
             this.ddlPremEarn.DataValueField = "ymon";
             this.ddlPremEarn.DataSource = ds1.Tables[0];
-            this.ddlPremEarn.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
+            this.ddlPremEarn.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
             this.ddlPremEarn.DataBind();
 
             ds1.Dispose();
@@ -2670,6 +2722,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 this.GetPreYearmEarn();
             }
             this.PnlEarn.Visible = (this.ChkEarn.Checked);
+            this.Data_Bind();
         }
 
         protected void imgbtnSecSrch_Click(object sender, EventArgs e)
@@ -3151,6 +3204,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         string Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
                         string Other_Deduction = dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString();
                         string Transport = dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Transport"].ToString();
+                        string Penalty = dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Penalty"].ToString();
 
                         if (Card.Length == 0)
                         {
@@ -3172,6 +3226,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         {
                             dt.Rows[i]["Transport"] = 0.00;
                         }
+
+                        // Check Penalty is Number or not.
+                        if (!IsNuoDecimal(Penalty))
+                        {
+                            dt.Rows[i]["Penalty"] = 0.00;
+                        }
                         dt.AcceptChanges();
                         isAllValid = true;
                     }
@@ -3187,11 +3247,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                 double Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
                                 double transded = Convert.ToDouble("0" + (rows[0]["Transport"]));
                                 double otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
-                                double ttlamt = Mobile_Bill + transded + otherded;
+                                double Penalty = Convert.ToDouble("0" + (rows[0]["Penalty"]));
+                                double ttlamt = Mobile_Bill + transded + otherded+ Penalty;
 
                                 dt1.Rows[i]["mbillded"] = Mobile_Bill;
                                 dt1.Rows[i]["transded"] = transded;
                                 dt1.Rows[i]["otherded"] = otherded;
+                                dt1.Rows[i]["fine"] = Penalty;
                                 dt1.Rows[i]["toamt"] = ttlamt;
                                 rowCount++;
                                 dt1.AcceptChanges();
