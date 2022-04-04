@@ -48,33 +48,30 @@ namespace RealERPWEB.F_21_MKT
             string srchempid = "%";           
             string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-
            
-            //DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Area,
-            //    Block, TxtVal, "%");
 
-
+          
 
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-                Pri, Status, Other, TxtVal, todate, srchempid);
+                 Pri, Status, Other, TxtVal, todate, srchempid);
 
 
-           // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-           //Pri, Status, Other, TxtVal, todate, srchempid);
+            // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
+            //Pri, Status, Other, TxtVal, todate, srchempid);
 
 
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
 
 
-            ViewState["tblsummData"] = ds3.Tables[0];
+            Session["tblsummData"] = ds3.Tables[0];
             this.dataBindGV();
          
         }
 
         private void dataBindGV()
         {
-            DataTable dt = (DataTable)ViewState["tblsummData"];
+            DataTable dt = (DataTable)Session["tblsummData"];
             DataView dv1 = dt.Copy().DefaultView;
             dv1.RowFilter = ("active='True'");
 
@@ -87,7 +84,7 @@ namespace RealERPWEB.F_21_MKT
         private void Excel_Bind()
         {
 
-            DataTable dt = (DataTable)ViewState["tblsummData"];
+            DataTable dt = (DataTable)Session["tblsummData"];
             if (dt.Rows.Count == 0)
                 return;
 

@@ -695,8 +695,11 @@
                                         <asp:HyperLink ID="hyplnkCrReqMkt" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition</asp:HyperLink>
                                         <%--<asp:HyperLink ID="hyplnkCrReqIT" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition IT</asp:HyperLink>
                                         <asp:HyperLink ID="hyplnkCrReqAdmin" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition Admin</asp:HyperLink>--%>
-                                        <asp:HyperLink ID="hyplnkCrMatIssue" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MktMatIssue?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Material Issue</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MktMatIssue?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Material Issue</asp:HyperLink>
+                                        <asp:HyperLink ID="hlnkmktsurvey" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurMktSurvey?Type=SurveyLink" CssClass="dropdown-item" Style="padding: 0 10px">Market Survey</asp:HyperLink>
 
+
+      
                                           <div class="dropdown-divider"></div>
                                          <asp:HyperLink ID="hlnkgencode" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MktProGenCodeBook?Type=Entry" CssClass="dropdown-item" Style="padding: 0 10px">General Code</asp:HyperLink>
                                          <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=Marketing" CssClass="dropdown-item" Style="padding: 0 10px">Marketing Code</asp:HyperLink>
