@@ -601,6 +601,7 @@
     <EmbeddedResource Include="R_17_Acc\RptRatioAnalysis.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRealCollDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRealCollDetailsOLD.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptRecAndPaymentCube.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRecAndPaymentEntrust.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRecAndPayment.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRecAndPaymentActual.rdlc" />
@@ -769,6 +770,7 @@
     <EmbeddedResource Include="R_24_CC\RptCustLnStatus.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptHandOverWork.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptLoanStatus.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkAssure.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrk.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkSan.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptRegisrationStatusAllPro.rdlc" />
