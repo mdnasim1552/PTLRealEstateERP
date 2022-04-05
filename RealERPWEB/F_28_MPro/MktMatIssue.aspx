@@ -5,6 +5,12 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
+         .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+    </style>
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -78,7 +84,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <asp:LinkButton ID="lbtnPrevISSList" runat="server" Text="Prev. Issue. List:" OnClick="lbtnPrevISSList_Click"></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnPrevISSList" runat="server" Text="Prev. Issue. List:" Font-Underline="false" OnClick="lbtnPrevISSList_Click"></asp:LinkButton>
                                     <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
@@ -86,13 +92,13 @@
                         <div class="row">
                             <div class="col-2">
                                 <div class="form-group">
-                                    <div class="input-group input-group-alt">
+                                    <div class="input-group input-group-alt input-group-sm">
                                         <div class="input-group-prepend ">
                                             <span class="input-group-text">Project</span>
                                         </div>
                                         <asp:TextBox ID="txtsrchproject" runat="server" CssClass="form-control"></asp:TextBox>
                                         <div class="input-group-append">
-                                            <asp:LinkButton ID="lbtnFindProject" CssClass="btn btn-secondary" runat="server" OnClick="lbtnFindProject_Click" TabIndex="2"><i class="fa fa-search"></i></asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnFindProject" CssClass="btn btn-secondary btn-sm" runat="server" OnClick="lbtnFindProject_Click" TabIndex="2"><i class="fa fa-search"></i></asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -115,13 +121,13 @@
                         <div class="row">
                             <div class="col-2">
                                 <div class="form-group">
-                                    <div class="input-group input-group-alt">
+                                    <div class="input-group input-group-alt input-group-sm">
                                         <div class="input-group-prepend ">
                                             <span class="input-group-text">PR Type</span>
                                         </div>
                                         <asp:TextBox ID="txtSearchMaterials" runat="server" CssClass="form-control"></asp:TextBox>
                                         <div class="input-group-append">
-                                            <asp:LinkButton ID="ibtnSearchMaterisl" CssClass="btn btn-secondary " runat="server" OnClick="ibtnSearchMaterisl_Click" TabIndex="2"><i class="fa fa-search"></i></asp:LinkButton>
+                                            <asp:LinkButton ID="ibtnSearchMaterisl" CssClass="btn btn-secondary btn-sm" runat="server" OnClick="ibtnSearchMaterisl_Click" TabIndex="2"><i class="fa fa-search"></i></asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +149,7 @@
                             </div>
                             <div class="col-2">
                                 <div class="form-group">
-                                    <div class="input-group input-group-alt">
+                                    <div class="input-group input-group-alt input-group-sm">
                                         <div class="input-group-prepend ">
                                             <span class="input-group-text">Page</span>
                                         </div>

@@ -221,7 +221,6 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
-
             if (this.lbtnOk.Text == "New")
             {
                 this.MultiView1.ActiveViewIndex = -1;
@@ -239,11 +238,7 @@ namespace RealERPWEB.F_28_MPro
                 //For Charging
                 ViewState.Remove("tblproject");
                 this.ddlProjectName.Items.Clear();
-
-
-
-                this.txtPreparedBy.Text = "";
-                
+                this.txtPreparedBy.Text = "";                
                 this.txtOrderNarr.Text = "";
                 this.lblissueno.Text = "";
                 this.gvOrderInfo.DataSource = null;
@@ -257,26 +252,21 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }
 
-
-            this.lbtnPrevOrderList.Visible = false;
-            this.ddlPrevOrderList.Visible = false;
-            this.txtCurOrderNo2.ReadOnly = true;
-            // this.lblissueno.Enabled = true;
-            this.lbtnOk.Text = "New";
-
-            if (this.ddlPrevOrderList.Items.Count <= 0)
+            else if (this.ddlPrevOrderList.Items.Count <= 0)
             {
                 this.MultiView1.ActiveViewIndex = 0;
                 this.pnlSupplier.Visible= true;
                 this.ResourceForOrder();
                 return;
-
             }
+
+            this.lbtnPrevOrderList.Visible = false;
+            this.ddlPrevOrderList.Visible = false;
+            this.txtCurOrderNo2.ReadOnly = true;
+            this.lbtnOk.Text = "New";
             this.MultiView1.ActiveViewIndex = 1;
             this.Get_Pur_Order_Info();
-            //this.lbtnPrevOrderList_Click(null, null);
             this.ShowProjectFiles();
-            this.hideTermsConditions();
         }
 
         private void GetProConPerson(string pactcode)
@@ -1193,13 +1183,9 @@ namespace RealERPWEB.F_28_MPro
                 }
 
                 this.lblreqnaration.Text = "Req Naration : " + Narration.Substring(0, (Narration.Length) - 2);
-
                 this.MultiView1.ActiveViewIndex = 1;
-                this.hideTermsConditions();
-
                 ViewState["tblOrder"] = this.HiddenSameData(dt1);
                 this.gvOrderInfo_DataBind();
-
                 this.ShowProjectFiles();
             }
             catch (Exception ex)
@@ -1208,35 +1194,6 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }           
 
-        }
-
-        private void hideTermsConditions()
-        {
-            string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-                case "1205":
-                case "3351":
-                case "3352":
-                    this.divtermsp2p.Visible = true;
-                    this.divterms.Visible = false;
-                    //this.ImagePanel.Visible = false;
-                    break;
-
-                case "3101":
-                case "3357":
-                case "3366":
-                    this.divtermsp2p.Visible = true;
-                    this.divterms.Visible = false;
-                    this.txtOrderNarrP.Text = this.bindDataText();
-                    break;
-
-                default:
-                    this.divtermsp2p.Visible = false;
-                    this.divterms.Visible = true;
-                    //this.ImagePanel.Visible = true;
-                    break;
-            }
         }
 
         private string bindDataText()
