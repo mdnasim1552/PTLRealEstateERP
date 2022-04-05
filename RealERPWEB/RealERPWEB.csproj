@@ -12019,6 +12019,7 @@
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
+    <Content Include="Report\RptPaymentScheduleAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
