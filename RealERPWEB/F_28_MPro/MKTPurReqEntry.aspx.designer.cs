@@ -150,24 +150,6 @@ namespace RealERPWEB.F_28_MPro
         protected global::System.Web.UI.WebControls.TextBox txtCurReqNo2;
 
         /// <summary>
-        /// lblmrfno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmrfno;
-
-        /// <summary>
-        /// txtMRFNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMRFNo;
-
-        /// <summary>
         /// chkdupMRF control.
         /// </summary>
         /// <remarks>
