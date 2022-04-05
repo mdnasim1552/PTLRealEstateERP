@@ -232,58 +232,58 @@
         .app-header-dark .top-bar-brand {
             background: none;
         }
+
         .chzn-container-single .chzn-single {
-            height:35px;
-            line-height:35px;
+            height: 35px;
+            line-height: 35px;
         }
 
-         .GridViewScrollHeader TH, .GridViewScrollHeader TD {
-  
-    font-weight: normal;
-    white-space: nowrap;
-    border-right: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
-    background-color: #F4F4F4;
-    color: #999999;
-    text-align: left;
-    vertical-align: bottom;
-}
+        .GridViewScrollHeader TH, .GridViewScrollHeader TD {
+            font-weight: normal;
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #999999;
+            text-align: left;
+            vertical-align: bottom;
+        }
 
-.GridViewScrollItem TD {
-  
-    white-space: nowrap;
-    border-right: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
-    background-color: #FFFFFF;
-    color: #444444;
-}
+        .GridViewScrollItem TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FFFFFF;
+            color: #444444;
+        }
 
-.GridViewScrollItemFreeze TD {
-    
-    white-space: nowrap;
-    border-right: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
-    background-color: #FAFAFA;
-    color: #444444;
-}
+        .GridViewScrollItemFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FAFAFA;
+            color: #444444;
+        }
 
-.GridViewScrollFooterFreeze TD {
-  
-    white-space: nowrap;
-    border-right: 1px solid #e6e6e6;
-    border-top: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
-    background-color: #F4F4F4;
-    color: #444444;
-}
+        .GridViewScrollFooterFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #444444;
+        }
 
-
+        #pnlTopMenu .nav-link {
+            color: #fff !important;
+            font-size:18px;
+        }
     </style>
 
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-     
+
 </head>
 <body>
 
@@ -347,9 +347,7 @@
                             <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="toggle menu"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
                             <!-- /toggle menu -->
                         </div>
-                        <!-- /.top-bar-item -->
-                        <!-- .top-bar-item -->
-                        <%--<div class="top-bar-item top-bar-item-full ">--%>
+
                         <div class=" top-bar-item ">
 
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -372,13 +370,8 @@
 
                             <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                 <ContentTemplate>
-
                                     <span class="account-summary pr-lg-4 d-none d-lg-block">
-
                                         <asp:Label ID="lblmsg" ClientIDMode="Static" CssClass="Message" runat="server"></asp:Label>
-
-
-
                                     </span>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -467,15 +460,15 @@
                                     <asp:HyperLink class="dropdown-item" ID="hypGroupChat" Visible="false" runat="server" NavigateUrl='<%=this.ResolveUrl("~/F_33_Doc/GroupChat")%>' Text="Group Chat"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=")%>'>PABX List</a>
                                     <asp:HyperLink class="dropdown-item" ID="lnkFormLink" Target="_blank" Visible="false" runat="server" Text="bti Form"></asp:HyperLink>
-                                    
+
                                     <asp:HyperLink class="dropdown-item" ID="hypOnlineAttendance" Visible="false" runat="server" Text="Online Attendance"></asp:HyperLink>
 
                                     <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
 
-                                   
+
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>'>Request Interface</a>  
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>'>Request Interface</a>
                                     <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" Text="Time Of leave"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
                                 </div>
@@ -503,7 +496,232 @@
                     <!-- /.toast -->
                 </div>
 
+                <asp:Panel ID="pnlTopMenu" runat="server" Visible="false">
+
+                    <nav class="navbar navbar-light navbar-expand-lg mt-0 mb-0" id="mainNavTOP" style="background: #0371B0">
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavTOP" aria-controls="mainNavTOP" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <a href="#" class="navbar-brand"></a>
+                        <div class="collapse navbar-collapse" id="mainNav">
+                            <ul class="navbar-nav ml-auto nav-fill">
+
+                                <li class="nav-item px-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="AppointmentDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointment</a>
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="AppointmentDropdown">
+
+                                        <div class="d-md-flex align-items-start justify-content-start">
+                                            <div>
+                                                <div class="dropdown-header">One time Entry</div>
+                                                <a class="dropdown-item" href="#">Department Code</a>
+                                                <a class="dropdown-item" href="#">New Employee Code</a>
+                                                <a class="dropdown-item" href="#">Earn Leave Opening</a>
+                                                <a class="dropdown-item" href="#">Company Leave Rule</a>
+                                                <a class="dropdown-item" href="#">Employee Off Days</a>
+                                                <a class="dropdown-item" href="#">Office Time Setup</a>
+
+
+                                            </div>
+                                            <div>
+                                                <div class="dropdown-header">Employee Modifcation</div>
+                                                <a class="dropdown-item" href="#">Personal Information</a>
+                                                <a class="dropdown-item" href="#">Employee Agreement</a>
+                                                <a class="dropdown-item" href="#">Employee Image Upload</a>
+                                                <a class="dropdown-item" href="#">Pending Employee Confirmation</a>
+                                                <a class="dropdown-item" href="#">Employee Confirmation</a>
+                                                <a class="dropdown-item" href="#">Promotion</a>
+                                                <a class="dropdown-item" href="#">Annual Increment</a>
+                                                <a class="dropdown-item" href="#"> Annual Increment Updated</a>
+                                                 
+
+                                            </div>
+
+
+                                            <div>
+                                                <div class="dropdown-header">Report</div>
+                                                <a class="dropdown-item" href="#">Employee List</a>
+                                                <a class="dropdown-item" href="#">Department Wise Employee List</a>
+                                                <a class="dropdown-item" href="#">Employee Manpower Report</a>
+                                                <a class="dropdown-item" href="#">Employee Settlement Top Sheet</a>
+                                                <a class="dropdown-item" href="#"> Increment Report</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item px-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="AttendanceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Attendance</a>
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="Attendance">
+
+                                        <div class="d-md-flex align-items-start justify-content-start">
+                                            <div>
+                                                <div class="dropdown-header">Attendance System</div>
+                                                <a class="dropdown-item" href="#">Online Attendance</a>
+                                                <a class="dropdown-item" href="#">Daily Attendance - System</a>
+                                                <a class="dropdown-item" href="#">Daily Attendance - Manually</a>
+                                                <a class="dropdown-item" href="#">Monthly Absent Approval(Punch)</a>
+                                                <a class="dropdown-item" href="#">Employee Monthly Late Approval</a>
+                                                <a class="dropdown-item" href="#">Monthly Approval (LP)</a>
+                                            </div>
+
+                                            <div>
+                                                <div class="dropdown-header">Reports</div>
+                                                <a class="dropdown-item" href="#">Attendance Information</a>
+                                                <a class="dropdown-item" href="#">Employee Monthly Late Attendance</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item px-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="LeaveDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Leave </a>
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="LeaveDropdown">
+
+                                        <div class="d-md-flex align-items-start justify-content-start">
+                                            <div>
+                                                <div class="dropdown-header">Leave Monitoring</div>
+                                                <a class="dropdown-item" href="#">Apply Leave </a>
+                                                <a class="dropdown-item" href="#">Apply Leave (Manual)</a>
+                                                <a class="dropdown-item" href="#">Leave Interface</a>
+                                                <a class="dropdown-item" href="#">Time of Leave</a>
+                                                <a class="dropdown-item" href="#">Request Interface</a>
+                                            </div>
+
+                                            <div>
+                                                <div class="dropdown-header">Reports</div>
+                                                <a class="dropdown-item" href="#">Individual Employee Leave Status</a>
+                                                <a class="dropdown-item" href="#">Leave Status- Company Wise</a>
+                                                <a class="dropdown-item" href="#">Employee Leave- Month Wise</a>
+                                                <a class="dropdown-item" href="#">Leave Register(Yearly)</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                                <li class="nav-item px-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="PayrollDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payroll System</a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="PayrollDropdown">
+
+                                        <div class="d-md-flex align-items-start justify-content-start">
+                                            <div>
+                                                <div class="dropdown-header">Payroll Entry</div>
+                                                <a class="dropdown-item" href="#">Arrear Salary</a>
+                                                <a class="dropdown-item" href="#">Deduction</a>
+                                                <a class="dropdown-item" href="#">Other Earning</a>
+                                                <a class="dropdown-item" href="#">Bonus Sheet</a>
+                                                <a class="dropdown-item" href="#">Salary Hold</a>
+                                                <a class="dropdown-item" href="#">Salary Transfer Statement Lock</a>
+                                                <a class="dropdown-item" href="#">Salary Sheet Lock</a>
+                                            </div>
+
+
+
+                                            <div>
+                                                <div class="dropdown-header">Reports</div>
+                                                <a class="dropdown-item" href="#">Actual Salary Sheet</a>
+                                                <a class="dropdown-item" href="#">Actual Salary Sheet(Resign)</a>
+                                                <a class="dropdown-item" href="#">Festival Bonus</a>
+                                                <a class="dropdown-item" href="#">Special Purpose Bonus</a>
+                                                <a class="dropdown-item" href="#">Pay Slip</a>
+                                                  <a class="dropdown-item" href="#">Signature Sheet</a>
+                                                <a class="dropdown-item" href="#">Salary Statement (Cash)</a>
+                                                <a class="dropdown-item" href="#">Month Wise Salary</a>
+                                                <a class="dropdown-item" href="#">Salary Transfer Statement</a>
+                                            </div>
+                                            <div>
+                                                <div class="dropdown-header">Reports</div>
+                                              
+                                                <a class="dropdown-item" href="#">Details Salary Summary</a>
+                                                <a class="dropdown-item" href="#">Monthly Loan,Adv,Cell,Arrear Data Sheet</a>
+                                                <a class="dropdown-item" href="#">Overtime Salary</a>
+                                                <a class="dropdown-item" href="#">Salary Reconciliation</a>
+                                                <a class="dropdown-item" href="#">Salary Statement Summary</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                                <li class="nav-item px-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="LoanDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Loan</a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="LoanDropdown">
+
+                                        <div class="d-md-flex align-items-start justify-content-start">
+                                            <div>
+                                                <div class="dropdown-header">Loan Entry</div>
+                                                <a class="dropdown-item" href="#">Loan Installment</a>
+                                                 
+                                            </div>
+                                           
+                                            <div>
+                                                <div class="dropdown-header">Fixed Price Services</div>
+                                                <a class="dropdown-item" href="#"> Employee Loan Status</a>
+                                                <a class="dropdown-item" href="#">Employee Loan Installment Details</a>
+                                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                              
+
+                         
+
+
+
+                                <li class="nav-item px-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="ReportsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="ReportsDropdown">
+
+                                        <div class="d-md-flex align-items-start justify-content-start">
+                                            <div>
+                                                <div class="dropdown-header">Reports</div>
+                                                <a class="dropdown-item" href="#"> AIT Purpose Salary Statement</a>
+                                              
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item px-4 dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="settingsTopMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="settingsTopMenu">
+
+                                        <div class="d-md-flex align-items-start justify-content-start">
+                                            <div>
+                                                <div class="dropdown-header">Admin Settings</div>
+                                                <a class="dropdown-item" href="#">Company Page Permission</a>
+                                                <a class="dropdown-item" href="#">Company Image Upload</a>
+                                                <a class="dropdown-item" href="#">User Permission</a>
+                                                <a class="dropdown-item" href="#">User Menu Permission</a>
+                                                <a class="dropdown-item" href="#">User Menu Permission</a>
+                                            </div>
+                                            <div>
+                                                <div class="dropdown-header">End User Settings</div>
+                                                <a class="dropdown-item" href="#">Cash & Bank Create </a>
+                                                <a class="dropdown-item" href="#">HR Leave Approval Setup</a>
+                                                <a class="dropdown-item" href="#">Notice Create</a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                </asp:Panel>
             </header>
+
             <!-- /.app-header -->
             <!-- .app-aside -->
             <aside class="app-aside app-aside-expand-md app-aside-light sidenav" id="mySidenav" runat="server" onclick="clickinside();">
@@ -715,6 +933,7 @@
                         </nav>
                         <!-- .page -->
                         <div class="page">
+
 
                             <asp:Panel class="page-message" ID="AlertArea" ClientIDMode="Static" Visible="false" runat="server" role="alert">
                                 <i class="fa fa-fw fa-info"></i>
@@ -975,7 +1194,7 @@
         function GetNotifications() {
             try {
                 var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
-                var  userid =  <%=this.GetUserId()%>;
+                var userid =  <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
 
@@ -1018,7 +1237,7 @@
             }
         }
 
-       
+
 
     </script>
 
