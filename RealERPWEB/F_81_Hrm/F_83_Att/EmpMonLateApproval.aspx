@@ -340,7 +340,7 @@
                                                 <asp:TemplateField HeaderText="Card #">
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lbtnTotalDay" runat="server" OnClick="lbtnTotalDay_Click"
-                                                            CssClass="btn  btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                                            CssClass="btn btn-sm  btn-primary primarygrdBtn">Total</asp:LinkButton>
                                                     </FooterTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvCardnoearn" runat="server" Height="16px"
@@ -1118,7 +1118,7 @@
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="btnUpdateDayAdjlp" runat="server" OnClick="btnUpdateDayAdjlp_Click"
-                                                            CssClass="btn   btn-danger primarygrdBtn">Update</asp:LinkButton>
+                                                            CssClass="btn  btn-sm btn-danger primarygrdBtn">Update</asp:LinkButton>
                                                     </FooterTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
@@ -1480,7 +1480,7 @@
                             </div>
                             <div class="modal-footer">
                                 <asp:LinkButton ID="ModalUpdateBtn" OnClientClick="CloseModal();" OnClick="ModalUpdateBtn_Click"
-                                    runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
 
                                 <asp:LinkButton ID="ModallnkBtnLateAFTER10AM" OnClientClick="CloseModal();" OnClick="ModallnkBtnLateAFTER10AM_Click" Visible="false"
                                     runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
@@ -1692,8 +1692,8 @@
                             </div>
                             <div class="modal-footer">
                                 <asp:LinkButton ID="lnkearapp" OnClientClick="CloseEar();" OnClick="lnkearapp_OnClick"
-                                    runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
+                                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
 
 
 
@@ -1873,8 +1873,8 @@
                             </div>
                             <div class="modal-footer">
                                 <asp:LinkButton ID="lbntnAbsentApproval" OnClientClick="CloseModalAbs();" OnClick="lbntnAbsentApproval_Click"
-                                    runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
+                                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
 
 
 
