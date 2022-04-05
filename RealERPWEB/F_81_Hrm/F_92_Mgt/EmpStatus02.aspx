@@ -133,7 +133,7 @@
 
 
                     </div>
-                    <div id="pnlDesig" runat="server" visible="false">
+                    <div id="pnlDesig" runat="server" >
                         <div class="row">
 
                             <div class="col-md-2">
