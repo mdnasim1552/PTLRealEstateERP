@@ -405,7 +405,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
 
-                //hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
+                hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
                 //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
             }
@@ -417,7 +417,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //DataTable dte = (DataTable)Session["tblmaproved"];
                 //DataTable dt = (DataTable)Session["tbleaproved"];
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnAppfi");
-
+                LinkButton hlink1 = (LinkButton)e.Row.FindControl("lnkRemoveFAp");
+             
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string usrid = hst["usrid"].ToString();
@@ -425,6 +426,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string urefno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
+                string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
+                string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
+
                 switch (comcod)
                 {
                     case "3348": //Credence
@@ -438,7 +442,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                         break;
                 }
-
+                hlink1.Visible = ((usrid == dptusid) && (lvstatus == "Canceled")) ? true : false;
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=MGT";
 
 
@@ -494,12 +498,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lnkRemoveForward_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["delete"]))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-                return;
-            }
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["delete"]))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+            //    return;
+            //}
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -511,11 +515,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string lvdptuid = ((Label)this.gvConfirm.Rows[index].FindControl("lbldptusid")).Text.ToString();
 
             DataTable dt = (DataTable)ViewState["tbltotalleav"];
-            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "LEVAAPPFROWARD", leavid, empid, lvdptuid, usrid, "", "", "", "", "", "", "", "", "", "");
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "ATTREQUESTAPPFROWARD", leavid, empid, lvdptuid, usrid, "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
                 //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
-                string Messaged = "Leave Forward  successfully";
+                string Messaged = "Approved Request Forward  successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentl('" + Messaged + "');", true);
 
                 int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
@@ -527,8 +531,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (ConstantInfo.LogStatus == true)
                 {
-                    string eventtype = "Leave Requset Forward";
-                    string eventdesc = "Leave Requset Forward";
+                    string eventtype = "Requset Forward";
+                    string eventdesc = "Requset Forward";
                     string eventdesc2 = leavid;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
@@ -581,26 +585,26 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lnkRemoveFAp_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["delete"]))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-                return;
-            }
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["delete"]))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+            //    return;
+            //}
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string usrid = hst["usrid"].ToString();
             int index = row.RowIndex;
-            string empid = ((Label)this.gvfiApproved.Rows[index].FindControl("lblgvempid")).Text.ToString();
-            string leavid = ((Label)this.gvfiApproved.Rows[index].FindControl("lblLeavId")).Text.ToString();
+            string empid = ((Label)this.gvfiApproved.Rows[index].FindControl("lblgvempidfi")).Text.ToString();
+            string leavid = ((Label)this.gvfiApproved.Rows[index].FindControl("lblLeavIdfi")).Text.ToString();
             //ViewState["tbltotalleav"] = dt;
             DataTable dt = (DataTable)ViewState["tbltotalleav"];
-            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "ATTREQUESTAPPFROWARD", leavid, empid, usrid, "cancel", "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Canceled Request Forward  successfully')", true);
                 int ins = this.gvfiApproved.PageSize * this.gvfiApproved.PageIndex + index;
                 dt.Rows[ins].Delete();
                 ViewState.Remove("tbltotalleav");
@@ -609,8 +613,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (ConstantInfo.LogStatus == true)
                 {
-                    string eventtype = "Leave Requset Delete";
-                    string eventdesc = "Leave Requset Delete, Employe id" + empid;
+                    string eventtype = "Requset Canceld";
+                    string eventdesc = "Requset Cancel, Employe id" + empid;
                     string eventdesc2 = leavid;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }

@@ -158,5 +158,16 @@ namespace RealEntity.C_12_Inv
 
             public MktPurchaseOrderInfo() { }
         }
+
+        [Serializable]
+        public class MktPurchasePayment
+        {
+
+            public string comcod { get; set; }
+            public string billno { get; set; }
+            public DateTime voudat { get; set; }
+            public double trnam { get; set; }
+            public MktPurchasePayment() { }
+        }
     }
 }

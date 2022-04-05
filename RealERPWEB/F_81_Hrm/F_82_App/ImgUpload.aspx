@@ -5,23 +5,16 @@
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" language="javascript">
 
-        $(document).ready(function () {
-
+        $(document).ready(function ()
+        {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
         });
 
-        function pageLoaded() {
-
-
+        function pageLoaded()
+        {
             $('.chzn-select').chosen({ search_contains: true });
-
         }
-
     </script>
-
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -45,7 +38,6 @@
 
 
             <div class="card card-fluid container-data mt-5" style="min-height: 1000px;">
-
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-2" id="div1" runat="server">
@@ -196,10 +188,6 @@
                 </div>
 
             </div>
-
-
-
-            
 
         </ContentTemplate>
     </asp:UpdatePanel>
