@@ -62,7 +62,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.GetCompanyName();
-
+                this.CompanyVisibility();
 
                 //string mcomcod = hst["mcomcod"].ToString().Trim();
 
@@ -77,6 +77,25 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        private void CompanyVisibility()
+        {
+
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3354"://ERL
+                case "3101":
+                    this.hlnkMktInterface.Visible = true;
+                    break;
+
+                default:
+                    this.hlnkMktInterface.Visible = false;
+                    break;
+            
+            
+            }
+        
+        }
         private void GetComNameAAdd()
         {
             string comcod = this.GetCompCode();
@@ -1726,6 +1745,12 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3339": // Tropical
                     case "3354": // Edison
                     case "3366": // Lanco
+
+                    case "1108": // assure
+                    case "1109": // assure
+                    case "3315": // assure
+                    case "3316": // assure
+                    case "3357": // assure
 
                         hlink1.Visible = false;
                         break;

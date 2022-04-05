@@ -210,7 +210,7 @@ namespace RealERPWEB.F_32_Mis
             // For Status 0
             foreach (DataRow dr2 in dt.Rows)
             {
-                if (dr2["prjgrp"] != prjgrp)
+                if (dr2["prjgrp"].ToString() != prjgrp)
                 {
                     dr2["colst"] = "0";
 

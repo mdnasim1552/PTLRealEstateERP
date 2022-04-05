@@ -43,10 +43,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
                 else
                 {
+                    CreateTable();
                     GetLeavType();
                     GetSupvisorCheck();
                     getVisibilty();
-                    CreateTable();
+
                     this.EmpLeaveInfo();
                     this.ShowEmppLeave();
                     GetCalCulateDay();
@@ -325,6 +326,18 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.btnSave.Enabled = false;
                     return;
                 }
+                else if (gcod == "51999")
+                {
+
+                    //txtgvenjoydt2_CalendarExtender.StartDate = DateTime.Now.AddMonths(1);
+
+                }
+                else
+                {
+                    nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
+                    this.txtgvenjoydt2.Text = nextday;
+                    txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+                }
 
                 if (chkBoxSkippWH.Checked == true)
                 {
@@ -346,24 +359,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     if (isvalidate == false)
                         return;
-
-
                     seLvDate();
                 }
 
 
-                if (gcod == "51999")
-                {
 
-                    //txtgvenjoydt2_CalendarExtender.StartDate = DateTime.Now.AddMonths(1);
-
-                }
-                else
-                {
-                    nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
-                    this.txtgvenjoydt2.Text = nextday;
-                    txtgvenjoydt2_CalendarExtender.StartDate = fdate;
-                }
 
 
                 GetCalCulateDay();
@@ -412,7 +412,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-            
+
         }
 
         protected void chkHalfDay_CheckedChanged(object sender, EventArgs e)
@@ -486,7 +486,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string addentime = this.txtaddofenjoytime.Text.Trim();
                     string remarks = this.txtLeavRemarks.Text.Trim();
                     string dnameadesig = this.txtdutiesnameandDesig.Text.Trim();
-                    string APRdate = (qtype=="MGT"? applydat:"");
+                    string APRdate = (qtype == "MGT" ? applydat : "");
 
                     bool result = false;
                     //below code for if apply without date range 
@@ -528,7 +528,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         string Messaged = "Successfully applied for leave, please wait for approval";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
-                        this.SendNotificaion(frmdate, todate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
+                        if (qtype != "MGT")
+                        {
+                            this.SendNotificaion(frmdate, todate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
+
+                        }
+
                         string eventdesc2 = "Details: " + htmtableboyd;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", htmtableboyd, Messaged);
                     }
@@ -869,7 +874,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-            
+
         }
 
         private void ShowEmppLeave()
@@ -882,9 +887,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string comcod = this.GetComeCode();
                 string empid = this.GetEmpID();
                 string aplydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("dd-MMM-yyyy");
+                string calltype = "";
+                switch (comcod)
+                {
+                    /* case "3101":*/  // For BTI as Per concern Nahid Vai  create by Md Ibrahim Khalil
+                    case "3365":
+                        calltype = "LEAVE_STATUS02BTI";
+                        break;
 
+                    default:
+                        calltype = "LEAVESTATUS02";
+                        break;
+                }
 
-                DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "LEAVESTATUS02", empid, aplydat, "", "", "", "", "", "", "");
+                DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", calltype, empid, aplydat, "", "", "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvLeaveStatus.DataSource = null;
@@ -901,7 +917,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-           
+
 
         }
         private void Data_Bind()
@@ -947,7 +963,22 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void gvleaveInfo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkbtn = (LinkButton)e.Row.FindControl("lnkDelete");
+                string isapproved = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "isapproved")).ToString();
+                string grpsl = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grpsl")).ToString();
 
+                if (isapproved == "true")
+                {
+                    lnkbtn.Visible = false;
+                }
+                if ((this.Request.QueryString["Type"] == "MGT") && grpsl == "AAAAA")
+                {
+                    lnkbtn.Visible = true;
+                }
+
+            }
         }
 
 
@@ -967,6 +998,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Messaged = "Deleted Fail";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
+            }
+            if (result)
+            {
+                string eventdesc2 = "LeaveDelete: " + "Leave ID" + trnid + ", " + lvid;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "Leave Request Deleted", eventdesc2, "");
             }
             string Messagesd = "Deleted Success";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
@@ -1001,6 +1037,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     return;
                 }
+                if (dt1 == null)
+                {
+                    return;
+                }
                 DataRow[] dr2 = dt1.Select("leavday='" + leavday + "'");
                 if (dr2.Length > 0)
                 {
@@ -1014,14 +1054,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.gvInterstLev.DataSource = dt1;
                 this.gvInterstLev.DataBind();
             }
-             catch (Exception ex)
+            catch (Exception ex)
             {
                 string Messaged = "Oops!! " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
 
-           
+
         }
         protected void lnkIntsLvDelete_Click(object sender, EventArgs e)
         {
@@ -1045,6 +1085,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 divBTWDay.Visible = true;
                 diSkippDay.Visible = false;
                 diSkippDayDetails.Visible = false;
+                ViewState.Remove("tblSlevDay");
             }
             else
             {
@@ -1052,9 +1093,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 diSkippDay.Visible = true;
                 diSkippDayDetails.Visible = true;
                 divDurStatus.Visible = false;
+                ViewState.Remove("tblSlevDay");
             }
             this.Duration.Value = "0";
-            ViewState.Remove("tblSlevDay");
+            CreateTable();
+
 
 
         }
@@ -1062,6 +1105,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             seLvDate();
+            GetCalCulateDay();
         }
         private void SetError(Exception exp)
         {
@@ -1096,20 +1140,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 frmdate.InnerText = "Leave Day";
                 todate.InnerText = "For Duty/Off Day";
                 this.divDurStatus.Visible = false;
-
-                txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
             }
-            else
-            {
 
-            }
-            string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
-            this.txtgvenjoydt1.Text = nextday;
-            this.txtgvenjoydt2.Text = nextday;
-            //   GetCalCulateDay();
+            txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
 
 

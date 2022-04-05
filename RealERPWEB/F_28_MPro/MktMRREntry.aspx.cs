@@ -16,12 +16,10 @@ namespace RealERPWEB.F_28_MPro
         {
             if (!IsPostBack)
             {
-                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                //    Response.Redirect("~/AcceessError.aspx");
-
-                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+               
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
 
 
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
@@ -59,28 +57,8 @@ namespace RealERPWEB.F_28_MPro
 
         private void DupMRR()
         {
-            string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-
-                case "3340":
-                case "3335":
-                case "1301":
-                case "3301":
-                //case "3101":          
-
-                case "1205": //p2p Engineering
-                case "3351": //WECON Properties
-                case "3352": //P2P 360
-                case "3354": //Edison Real Estate
-                    this.chkdupMRR.Enabled = false;
-                    this.chkdupMRR.Checked = true;
-                    break;
-                default:
-                    this.chkdupMRR.Visible = false;
-                    this.chkdupMRR.Checked = false;
-                    break;
-            }
+            this.chkdupMRR.Visible = false;
+            this.chkdupMRR.Checked = false;
         }
 
 
@@ -117,175 +95,11 @@ namespace RealERPWEB.F_28_MPro
         }
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();   //GetComeCode();
-            switch (comcod)
-            {
-                case "3330":
-                case "3101":
-
-
-
-                    this.PrintMrrBridge();
-                    break;
-
-                // case"3101":
-                case "3335":
-                    this.PrintMrrEdision();
-                    break;
-                default:
-                    this.PrintMrrGen();                   //PrintMonLeave();
-                    break;
-
-            }
-
-
-        }
-
-
-
-        private void PrintMrrEdision()
-        {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            DataTable dt = (DataTable)ViewState["tblMRR"];
-            string CurDate1 = this.GetStdDate(this.txtCurMRRDate.Text.Trim());
-            string mMRRNo = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURMRRINFO", mMRRNo, CurDate1,
-                         "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-
-            LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEdison", lst, null, null);
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            Rpt1.SetParameters(new ReportParameter("txtprjname", "Project Name: " + ddlProject.SelectedItem.Text.Substring(14)));
-            Rpt1.SetParameters(new ReportParameter("txtSubName", "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No: " + this.txtChalanNo.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtMrrno", "MRR No: " + this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtMrrRef", "MRR Ref: " + this.txtMRRRef.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + this.txtCurMRRDate.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtQc", "Quality Certificate: " + this.txtQc.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtOrder", ds1.Tables[1].Rows[0]["pordref"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("txtpostedby", ds1.Tables[1].Rows[0]["usrnam"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("txtMrfno", "Mrf No : " + ds1.Tables[0].Rows[0]["mrfno"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Material Receiving Report"));
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-        }
-
-        private void PrintMrrGen()
-        {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
-            string CurDate1 = this.GetStdDate(this.txtCurMRRDate.Text.Trim());
-            string mMRRNo = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURMRRINFO", mMRRNo, CurDate1,
-                         "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            DataTable dt = this.HiddenSameData(ds1.Tables[0]);
-
-            LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntry", lst, null, null);
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            Rpt1.SetParameters(new ReportParameter("txtprjname", "Project Name: " + ddlProject.SelectedItem.Text.Substring(14)));
-            Rpt1.SetParameters(new ReportParameter("txtSubName", "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No: " + this.txtChalanNo.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtMrrno", "MRR No: " + this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtMrrRef", "MRR Ref: " + this.txtMRRRef.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + this.txtCurMRRDate.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtQc", "Quality Certificate: " + this.txtQc.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtOrder", ds1.Tables[1].Rows[0]["pordref"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("txtpostedby", ds1.Tables[1].Rows[0]["usrnam"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Material Receiving Report"));
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-        }
-
-        private void PrintMrrBridge()
-        {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-            string CurDate1 = this.GetStdDate(this.txtCurMRRDate.Text.Trim());
-            string mMRRNo = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURMRRINFO", mMRRNo, CurDate1,
-                         "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            DataTable dt = this.HiddenSameData(ds1.Tables[0]);
-            string desig = ds1.Tables[1].Rows[0]["usrnam"].ToString() + "," + ds1.Tables[1].Rows[0]["deg"].ToString() + "\n" + Convert.ToDateTime(ds1.Tables[1].Rows[0]["apprdat"]).ToString("dd-MMM-yyyy");
-            string txtreqno = dt.Rows[0]["reqno"].ToString().Substring(0, 3) + dt.Rows[0]["reqno"].ToString().Substring(7, 2) + '-' + dt.Rows[0]["reqno"].ToString().Substring(9);
-
-            LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryBridge", lst, null, null);
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            Rpt1.SetParameters(new ReportParameter("txtprjname", this.ddlProject.SelectedItem.Text.Substring(14)));
-            Rpt1.SetParameters(new ReportParameter("txtSubName", this.ddlSupList.SelectedItem.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtchalanno", this.txtChalanNo.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtMrrno", this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtMrrRef", this.txtMRRRef.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtDate", this.txtCurMRRDate.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtOrder", ds1.Tables[1].Rows[0]["pordref"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("txtdesig", desig));
-            Rpt1.SetParameters(new ReportParameter("txtaddress", ds1.Tables[1].Rows[0]["address"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("txtreqno", txtreqno));
-            Rpt1.SetParameters(new ReportParameter("txtreqdate", Convert.ToDateTime(dt.Rows[0]["reqdat"]).ToString("dd.MM.yyyy")));
-            Rpt1.SetParameters(new ReportParameter("narrationname", this.txtMRRNarr.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtorderdat", Convert.ToDateTime(dt.Rows[0]["orderdat"]).ToString("dd.MM.yyyy")));
-            Rpt1.SetParameters(new ReportParameter("txtchlnnoDate", txtChaDate.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Material Receiving Report"));
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            string mMRRNO = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            string currentptah = "PurchasePrint.aspx?Type=MktMRRPrint&mrno=" + mMRRNO;
+            string totalpath = hostname + currentptah;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
         }
 
@@ -699,15 +513,15 @@ namespace RealERPWEB.F_28_MPro
         }
         protected void lbtnUpdateMRR_Click(object sender, EventArgs e)
         {
-            
-            //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-            //if (!Convert.ToBoolean(dr1[0]["entry"]))
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
+
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
 
@@ -771,9 +585,9 @@ namespace RealERPWEB.F_28_MPro
                 for (int i = 0; i < tbl1.Rows.Count; i++)
                 {
                     string mreqno = tbl1.Rows[i]["reqno"].ToString();
-                    string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                    string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
-                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "BAL_ORDER_QTY", mORDERNO, mreqno, mRSIRCODE, mSPCFCOD, "", "", "", "", "");
+                    string prtype = tbl1.Rows[i]["prtype"].ToString();
+                    string acttype = tbl1.Rows[i]["acttype"].ToString();
+                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "BAL_ORDER_QTY", mORDERNO, mreqno, prtype, acttype, "", "", "", "", "");
                     if (ds.Tables[0].Rows.Count == 0) continue;
                     else if (Convert.ToDouble(ds.Tables[0].Rows[0]["balqty"]) <= 0)
                     {
@@ -853,8 +667,7 @@ namespace RealERPWEB.F_28_MPro
 
                 string orderno = tbl1.Rows[i]["orderno"].ToString();
                 string mreqno = tbl1.Rows[i]["reqno"].ToString();
-                string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
+              
                 double orbal = Convert.ToDouble(tbl1.Rows[i]["orderbal"].ToString());
                 double mMRRQTY = Convert.ToDouble(tbl1.Rows[i]["mrrqty"].ToString());
                 string mMRRAMT = tbl1.Rows[i]["mrramt"].ToString();
@@ -867,7 +680,7 @@ namespace RealERPWEB.F_28_MPro
                 {
                     if (mMRRQTY > 0)
                         result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "UPDATE_MKT_MRR_INFO", "MKTMRRA",
-                                 mMRRNO, mRSIRCODE, mSPCFCOD, mMRRQTY.ToString(), mMRRAMT, mreqno, prtype, acttype, orderno, mkttype, mMRRNOTE, "", "", "", "", "", "","","","");
+                                 mMRRNO, "", "", mMRRQTY.ToString(), mMRRAMT, mreqno, prtype, acttype, orderno, mkttype, mMRRNOTE, "", "", "", "", "", "","","","");
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);

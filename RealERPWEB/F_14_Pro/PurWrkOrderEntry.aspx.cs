@@ -1747,9 +1747,6 @@ namespace RealERPWEB.F_14_Pro
 
                 default:
                     break;
-
-
-
             }
 
 
@@ -1761,7 +1758,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
 
-                case "3101":
+                //case "3101":
                 case "3366": // lanco
                 case "3357": // Cube
                     terms = txtOrderNarrP.Text.Trim().ToString();
@@ -2345,7 +2342,7 @@ namespace RealERPWEB.F_14_Pro
                     //this.ImagePanel.Visible = false;
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3357":
                 case "3366":
                     this.divtermsp2p.Visible = true;
@@ -2365,19 +2362,21 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetCompCode();
             string msg = "";
+            string date1 = DateTime.Today.ToString("dd.MM.yyyy");
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "3357":
                     msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
                         "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
                         "\n3. Product delivery time must be on time." +
                         "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
                         "\n5. Delivery place: at project site " +
-                        "\n6. Delivery date: ……………………" +
+                        "\n6. Delivery date: " + date1 +
                         "\n7. Cube Holdings Ltd. has the right to cancel the work order in any time." +
-                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
-                        "\n9. Please send all bill in duplicate.";
+                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3 percent" +
+                        "\n9. Please send all bill in duplicate."+
+                        "\n10. Contact Person : ";
                     break;
 
                 case "3366":
@@ -2732,7 +2731,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3311":
                 case "2305":
                 case "2306":
-                case "3101":
+                //case "3101":
                     comserial = "Rup";
                     break;
 

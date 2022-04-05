@@ -76,7 +76,7 @@ namespace RealERPWEB.F_17_Acc
                 if (comcod == "1103")
                 {
                     this.chkwitransfer.Checked = false;
-                }
+                } 
             }
 
 
@@ -464,47 +464,47 @@ namespace RealERPWEB.F_17_Acc
             if (ds1 == null)
                 return;
 
-            //Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
-            //Session["recandpayFo"] = ds1.Tables[1];
-            //ViewState["recandpayNote"] = ds1.Tables[2];
+            Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
+            Session["recandpayFo"] = ds1.Tables[1];
+            ViewState["recandpayNote"] = ds1.Tables[2];
 
-            //this.gvRecptPayment.DataSource = ds1.Tables[0];
-            //this.gvRecptPayment.DataBind();
-            //this.RPNote1();
+            this.gvRecptPayment.DataSource = ds1.Tables[0];
+            this.gvRecptPayment.DataBind();
+            this.RPNote1();
 
-            //for (int i = 0; i < gvRecptPayment.Rows.Count; i++)
-            //{
-            //    string recpcode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvrecpcodep")).Text.Trim();
-            //    string paycode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvpaycodep")).Text.Trim();
-            //    LinkButton lbtn1 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnRecDescp");
-            //    LinkButton lbtn2 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnPayDescp");
-            //    if (lbtn1 != null)
-            //    {
-            //        if (lbtn1.Text.Trim().Length > 0)
-            //            lbtn1.CommandArgument = recpcode;
-            //    }
-            //    if (lbtn2 != null)
-            //    {
-            //        if (lbtn2.Text.Trim().Length > 0)
-            //            lbtn2.CommandArgument = paycode;
-            //    }
-            //}
+            for (int i = 0; i < gvRecptPayment.Rows.Count; i++)
+            {
+                string recpcode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvrecpcodep")).Text.Trim();
+                string paycode = ((Label)gvRecptPayment.Rows[i].FindControl("lblgvpaycodep")).Text.Trim();
+                LinkButton lbtn1 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnRecDescp");
+                LinkButton lbtn2 = (LinkButton)gvRecptPayment.Rows[i].FindControl("btnPayDescp");
+                if (lbtn1 != null)
+                {
+                    if (lbtn1.Text.Trim().Length > 0)
+                        lbtn1.CommandArgument = recpcode;
+                }
+                if (lbtn2 != null)
+                {
+                    if (lbtn2.Text.Trim().Length > 0)
+                        lbtn2.CommandArgument = paycode;
+                }
+            }
 
 
-            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-            //if (ds1.Tables[0].Rows.Count > 0)
-            //    ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).Enabled = (dr1.Length == 0) ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+            if (ds1.Tables[0].Rows.Count > 0)
+                ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).Enabled = (dr1.Length == 0) ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
-            //this.FooterCalculation(ds1.Tables[0], "gvRecptPayment");
-            //ds1.Dispose();
-            //Session["Report1"] = gvRecptPayment;
-            //if (ds1.Tables[0].Rows.Count > 0)
-            //{
-            //    ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            this.FooterCalculation(ds1.Tables[0], "gvRecptPayment");
+            ds1.Dispose();
+            Session["Report1"] = gvRecptPayment;
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                ((HyperLink)this.gvRecptPayment.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-            //    //((HyperLink)this.gvrecandpay.FooterRow.FindControl("lgvFNetBalance")).NavigateUrl = "LinkAccount.aspx?Type=BalConfirmation&Date1=" + this.txtfromdate.Text + "&Date2=" + this.txttodate.Text;
+                //((HyperLink)this.gvrecandpay.FooterRow.FindControl("lgvFNetBalance")).NavigateUrl = "LinkAccount.aspx?Type=BalConfirmation&Date1=" + this.txtfromdate.Text + "&Date2=" + this.txttodate.Text;
 
-            //}
+            }
         }
         private void ReceiptAndPayment()
         {
@@ -1182,6 +1182,11 @@ namespace RealERPWEB.F_17_Acc
                             this.PrintReceiveAndPaymentEnt();
                             break;
 
+                        case "3101":
+                        case "3357":
+                            this.PrintReceiveAndPaymentCube();
+                            break;
+
                         default:
                             this.PrintReceiveAndPayment01();
                             break;
@@ -1430,7 +1435,6 @@ namespace RealERPWEB.F_17_Acc
             string session = hst["session"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string Todate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-
             string txtVouType = this.ddlVoucharCash.SelectedValue.ToString().Trim();
 
             string Ftdate = "(From " + this.txtfromdate.Text + " To " + this.txttodate.Text + ")";
@@ -1449,11 +1453,53 @@ namespace RealERPWEB.F_17_Acc
             Rpt2.SetParameters(new ReportParameter("comnam", comnam));
             Rpt2.SetParameters(new ReportParameter("comadd", comadd));
             Rpt2.SetParameters(new ReportParameter("Ftdate", Ftdate));
-
             Rpt2.SetParameters(new ReportParameter("TotoRes", TotoRes.ToString("#,##0;(#,##0); ")));
             Rpt2.SetParameters(new ReportParameter("TotoPay", TotoPay.ToString("#,##0;(#,##0); ")));
             Rpt2.SetParameters(new ReportParameter("NetAmt", NetAmt.ToString("#,##0;(#,##0); ")));
 
+            //  Rpt2.SetParameters(new ReportParameter("VouType", "Voucher Type: " + txtVouType));
+
+            Rpt2.SetParameters(new ReportParameter("RptTitle", "RECEIPTS & PAYMENT"));
+            Rpt2.SetParameters(new ReportParameter("txtuserinfo", "Print Source :" + username + " , " + session + " , " + printdate));
+            Session["Report1"] = Rpt2;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        } 
+        private void PrintReceiveAndPaymentCube() 
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string comcod = GetCompCode();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string Todate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string txtVouType = this.ddlVoucharCash.SelectedValue.ToString().Trim();
+
+            string Ftdate = "(From " + this.txtfromdate.Text + " To " + this.txttodate.Text + ")";
+
+            DataTable dt = (DataTable)Session["recandpay"];
+            DataTable dt1 = (DataTable)Session["recandpayFo"];
+            DataTable dt2 = (DataTable)ViewState["recandpayNote"];
+
+
+            double TotoRes = Convert.ToDouble(dt1.Rows[0]["recpam"]);
+            double TotoPay = Convert.ToDouble(dt1.Rows[0]["payam"]);
+            double NetAmt = TotoRes - TotoPay;
+            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>();
+            LocalReport Rpt2 = new LocalReport();
+            Rpt2 = RDLCAccountSetup.GetLocalReport("R_17_Acc.RptRecAndPaymentCube", lst, null, null);
+            Rpt2.EnableExternalImages = true;
+            Rpt2.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt2.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt2.SetParameters(new ReportParameter("Ftdate", Ftdate));
+            Rpt2.SetParameters(new ReportParameter("TotoRes", TotoRes.ToString("#,##0;(#,##0); ")));
+            Rpt2.SetParameters(new ReportParameter("TotoPay", TotoPay.ToString("#,##0;(#,##0); ")));
+            Rpt2.SetParameters(new ReportParameter("NetAmt", NetAmt.ToString("#,##0;(#,##0); "))); 
+            Rpt2.SetParameters(new ReportParameter("ComLogo", ComLogo));
             //  Rpt2.SetParameters(new ReportParameter("VouType", "Voucher Type: " + txtVouType));
 
             Rpt2.SetParameters(new ReportParameter("RptTitle", "RECEIPTS & PAYMENT"));
@@ -2230,14 +2276,14 @@ namespace RealERPWEB.F_17_Acc
             Session.Remove("recandpay");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string fromdate = Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodat2.Text).ToString("dd-MMM-yyyy");
             string comcod = GetCompCode();
             string rp = "RP";
             string CBorBoth = (this.rbtncashbank2.SelectedIndex == 0) ? "C" : (this.rbtncashbank2.SelectedIndex == 1) ? "B" : "";
             string prjcode = this.ddlproject2.SelectedValue.ToString();
-            //string CallType = (this.rbtnlistrp02.SelectedIndex == 0 || this.rbtnlistrp02.SelectedIndex == 1) ? "RPTRECEIPTPAYMENTCASHORBANK" : "RPTRECEIPTPAYMENT";
-            
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", "RPTRECEIPTPAYMENTPRJWISE", fromdate, todate, rp, CBorBoth, prjcode, "", "", "", "");
+            string CallType = (this.rbtncashbank2.SelectedIndex == 0 || this.rbtncashbank2.SelectedIndex == 1) ? "RPTRECEIPTPAYMENTCASHORBANKPRJWISE" : "RPTRECEIPTPAYMENTPRJWISE";
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, prjcode, "", "", "", "");
             if (ds1 == null)
                 return;
 

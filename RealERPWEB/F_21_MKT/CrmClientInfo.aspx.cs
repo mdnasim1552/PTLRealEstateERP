@@ -511,12 +511,20 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302003": //Team Leader
+
+                        gempid = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+
                         dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView; ;
                         if (userrole == "1")
                             dv1.RowFilter = ("gcod like '93%'");
                         else
+                        {
+                            if(gempid.Length>0)
+                                dv1.RowFilter = ("gcod like '" + teamid + "' or gcod like '"+ gempid + "'");
 
-                            dv1.RowFilter = ("gcod like '" + teamid + "'");
+                            else 
+                                dv1.RowFilter = ("gcod like '" + teamid + "'");
+                        }
 
 
 
@@ -528,7 +536,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
                         //ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
-                        gempid = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                       
                         // empid = gempid.Length == 0 ? empid : gempid;
                         ddlgval.SelectedValue = gempid;
 
@@ -2534,31 +2542,6 @@ namespace RealERPWEB.F_21_MKT
             dt1.Columns.Add("gval");
             dt1.Columns.Add("gvalue");
             dt1.Columns.Add("remarks");
-            //dt2.Clear();
-            //dt2.Columns.Add("gcod");
-            //dt2.Columns.Add("gval");
-            //dt2.Columns.Add("gvalue");
-            //dt2.Columns.Add("remarks");
-            //dt3.Clear();
-            //dt3.Columns.Add("gcod");
-            //dt3.Columns.Add("gval");
-            //dt3.Columns.Add("gvalue");
-            //dt3.Columns.Add("remarks");
-            //dt4.Clear();
-            //dt4.Columns.Add("gcod");
-            //dt4.Columns.Add("gval");
-            //dt4.Columns.Add("gvalue");
-            //dt4.Columns.Add("remarks");
-            //dt5.Clear();
-            //dt5.Columns.Add("gcod");
-            //dt5.Columns.Add("gval");
-            //dt5.Columns.Add("gvalue");
-            //dt5.Columns.Add("remarks");
-            //dt6.Clear();
-            //dt6.Columns.Add("gcod");
-            //dt6.Columns.Add("gval");
-            //dt6.Columns.Add("gvalue");
-            //dt6.Columns.Add("remarks");
             string Name = "";
             string Phone = "";
             string altphone1 = "";
@@ -2957,18 +2940,8 @@ namespace RealERPWEB.F_21_MKT
             DataSet ds = new DataSet("ds1");
             //ds.Merge(dt);
 
-            ds.Tables.Add(dv.ToTable());
-            //ds.Tables.Add(dt2);
-            //ds.Tables.Add(dt3);
-            //ds.Tables.Add(dt4);
-            //ds.Tables.Add(dt5);
-            //ds.Tables.Add(dt6);
+            ds.Tables.Add(dv.ToTable());           
             ds.Tables[0].TableName = "tbl";
-            //ds.Tables[1].TableName = "tbl2";
-            //ds.Tables[2].TableName = "tbl3";
-            //ds.Tables[3].TableName = "tbl4";
-            //ds.Tables[4].TableName = "tbl5";
-            //ds.Tables[5].TableName = "tbl6";
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();

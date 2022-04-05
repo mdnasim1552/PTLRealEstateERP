@@ -117,11 +117,12 @@ namespace RealERPWEB.F_17_Acc
             {
 
                 string Querytype = this.Request.QueryString["InputType"];
-
+                
                 string coderange = (Querytype == "res") ? "sircode like '[0-9]%'" : (Querytype == "Overhead") ? "sircode like '0[89]%'  or  sircode like '1[0-9]%' or sircode like '20%'"
                    : (Querytype == "Assets") ? "sircode like '2[1-9]%'" : (Querytype == "Liabilities") ? "sircode like '31%'" : (Querytype == "HOverhead") ? "sircode like '32%'"
                    : (Querytype == "Wrkschedule") ? "sircode like '4[1-5]%'" : (Querytype == "UnitCode") ? "sircode like '5[1-9]%'" : (Querytype == "customer") ? "sircode like '6[1-9]%'"
-                   : (Querytype == "Subcontractor") ? "sircode like '98%'" : (Querytype == "ResCodePrint") ? "sircode like '99%'" : (Querytype == "Supplier") ? "sircode like '99%'" : (Querytype == "Mat") ? "sircode like '01'"
+                   : (Querytype == "Marketing") ? "sircode like '63%'"
+                   : (Querytype == "Subcontractor") ? "sircode like '98%'"  : (Querytype == "ResCodePrint") ? "sircode like '99%'" : (Querytype == "Supplier") ? "sircode like '99%'" : (Querytype == "Mat") ? "sircode like '01'"
                    : (Querytype == "TaxVatAndSd") ? "sircode like '97%'" : (Querytype == "GenAdv") ? "sircode like '9[56]%'" : (Querytype == "Labour") ? "sircode like '04%'" : (Querytype == "Materials") ? "sircode like '01%'"
                    : (Querytype == "Employee") ? "sircode like '93%'" : (Querytype == "DeptCode") ? "sircode like '94%'" : "sircode like '%'";
 
@@ -953,6 +954,7 @@ namespace RealERPWEB.F_17_Acc
                     : ((isircode != tsircode) ? tsircode : isircode);
 
                 string mnumber = (isircode == tsircode) ? "" : "manual";
+                
 
                 string Desc = this.txtresourcehead.Text.Trim();
                 string DescBN = this.txtresourceheadBN.Text.Trim();
@@ -968,6 +970,7 @@ namespace RealERPWEB.F_17_Acc
                 string txtTDetails = this.txtTDetails.Text.Trim();
 
                 string sphone = this.txtSupPhone.Text.ToString();
+                string ssno = ASTUtility.Left(tsircode, 2)+"%";
 
                 bool isResultValid = true;
                 bool isSupPhone = false;
@@ -999,7 +1002,7 @@ namespace RealERPWEB.F_17_Acc
 
                         if ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99"))
                         {
-                            DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, "", "", "", "", "", "", "");
+                            DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, ssno, "", "", "", "", "", "");
                             if (ds1.Tables[0].Rows.Count > 0)
                             {
                                 msg = "Mobile/Phone Number Already Exist";

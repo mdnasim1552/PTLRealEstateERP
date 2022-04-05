@@ -65,7 +65,9 @@ namespace RealERPWEB.F_17_Acc
 
             DataTable dt = ds1.Tables[0];
             string printdat = System.DateTime.Today.ToString("dd-MM-yyyy");
-            string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
+           // string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
+            string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy") == "01-01-1900" ? "" : Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
+
             string cheqeno = dt.Rows[0]["refnum"].ToString();
             string bankname = dt.Rows[0]["actdesc"].ToString();
             string pactname = dt.Rows[0]["cactdesc"].ToString().Replace("AP-", "");
@@ -316,7 +318,9 @@ namespace RealERPWEB.F_17_Acc
                     return;
                 DataTable dt = ds1.Tables[0];
                 string printdat = System.DateTime.Today.ToString("dd-MM-yyyy");
-                string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
+                string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy") == "01-01-1900" ? "" : Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
+
+                //string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
                 string cheqeno = dt.Rows[0]["refnum"].ToString();
                 string bankname = dt.Rows[0]["actdesc"].ToString();
                 string naration = dt.Rows[0]["vounar"].ToString();
@@ -424,7 +428,7 @@ namespace RealERPWEB.F_17_Acc
                     return;
                 DataTable dt = ds1.Tables[0];
                 string printdat = System.DateTime.Today.ToString("dd-MM-yyyy");
-                string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
+                string chequedat = Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy")=="01-01-1900"? "" : Convert.ToDateTime(dt.Rows[0]["chequedat"]).ToString("dd-MM-yyyy");
                 string cheqeno = dt.Rows[0]["refnum"].ToString();
                 string pactname = dt.Rows[0]["cactdesc"].ToString();
                 string bankname = dt.Rows[0]["actdesc"].ToString();

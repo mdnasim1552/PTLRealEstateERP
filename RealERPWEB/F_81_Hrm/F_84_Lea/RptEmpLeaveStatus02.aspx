@@ -649,7 +649,8 @@
                              <asp:View ID="ViewYearlyleave" runat="server">
                                  <div class="row"> 
                                
-                             <asp:GridView ID="gvyearlylv" runat="server"  ClientIDMode="Static"  AutoGenerateColumns="False"  CssClass="table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvyearlylv_RowCreated" OnRowDataBound="gvyearlylv_RowDataBound" ShowFooter="True" >
+                             <asp:GridView ID="gvyearlylv" runat="server"  ClientIDMode="Static"  AutoGenerateColumns="False"  
+                                 CssClass="table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvyearlylv_RowCreated" OnRowDataBound="gvyearlylv_RowDataBound" ShowFooter="True" >
                             
                                 <RowStyle />
                                 <Columns>

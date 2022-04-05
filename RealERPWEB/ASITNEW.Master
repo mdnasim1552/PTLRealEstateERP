@@ -232,12 +232,58 @@
         .app-header-dark .top-bar-brand {
             background: none;
         }
+        .chzn-container-single .chzn-single {
+            height:35px;
+            line-height:35px;
+        }
+
+         .GridViewScrollHeader TH, .GridViewScrollHeader TD {
+  
+    font-weight: normal;
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #F4F4F4;
+    color: #999999;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.GridViewScrollItem TD {
+  
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #FFFFFF;
+    color: #444444;
+}
+
+.GridViewScrollItemFreeze TD {
+    
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #FAFAFA;
+    color: #444444;
+}
+
+.GridViewScrollFooterFreeze TD {
+  
+    white-space: nowrap;
+    border-right: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #F4F4F4;
+    color: #444444;
+}
+
+
     </style>
 
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+     
 </head>
 <body>
 
@@ -265,6 +311,7 @@
                 <asp:ScriptReference Path="~/Scripts/bootstrap-multiselect.js" />
                 <asp:ScriptReference Path="~/Scripts/ScrollableGridPlugin.js" />
                 <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVer.min.js" />
+                <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVertworow.min.js" />
                 <asp:ScriptReference Path="~/Scripts/ScrollableTablePlugin.js" />
                 <asp:ScriptReference Path="~/Scripts/chosen.jquery.js" />
                   <asp:ScriptReference Path="~/Scripts/waypoints.min.js" />
@@ -425,16 +472,10 @@
 
                                     <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
 
-
+                                   
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>
-
-
-                                    <%--  <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Target="_blank" Visible="false" runat="server" Text="Apply Leave MGT"></asp:HyperLink>
-                                    --%>
-
-
-
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>'>Request Interface</a>  
                                     <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" Text="Time Of leave"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
                                 </div>
@@ -847,6 +888,16 @@
             }
         }
 
+
+        function FunCheckConfirm() {
+            if (confirm('Are you sure you want to Checked this  Item?')) {
+                return;
+            } else {
+                return false;
+            }
+        }
+
+
         function HideLabel(id) {
 
 
@@ -924,7 +975,7 @@
         function GetNotifications() {
             try {
                 var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
-                var userid = <%=this.GetUserId()%>;
+                var  userid =  <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
 

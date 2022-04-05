@@ -85,7 +85,7 @@ namespace RealERPWEB
 
             }
 
-            string Cont = "Copyright © " + System.DateTime.Today.ToString("yyyy") + ".";
+            string Cont = "Developed by :"; //+ System.DateTime.Today.ToString("yyyy") + ".";
 
             var CopyRight = "<div class='copyright'>" + Cont +
                                      " <a href='http://pintechltd.com/' target='_blank'>" + "Pinovation Tech Ltd." + " </a>" +
@@ -119,6 +119,10 @@ namespace RealERPWEB
         {
             string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            DataSet ds = (DataSet)Session["tblusrlog"]; 
+            DataView dv = ds.Tables[1].DefaultView;
+            dv.RowFilter = ("frmid = '8102113'");
+            DataTable dt = dv.ToTable(); 
             if (hst == null)
             {
                 return;
@@ -126,32 +130,39 @@ namespace RealERPWEB
             string userrole = hst["userrole"].ToString();
             switch (comcod)
             {
-                case "3365":
-                    // case "3101":
-
-                    //sidebar nav off for bti general user
-                    hypOnlineAttendance.Visible= (userrole == "3" ? false : true);
+                case "3101":
+                    //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
-                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);                   
-
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.hypGroupChat.Visible = false;
                     this.HypOldModules.Visible = false;
-                   // this.hypApplyLV.Visible = true;
                     this.lnkFormLink.Visible = true;
                     this.hypTimeOfleave.Visible = true;
-                    this.hypTimeOfleave.NavigateUrl = "#";
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
                     break;
-                   
-                case "3315":
-                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
-
+                case "3365":
+                    //sidebar nav off for bti general user                    
+                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true); 
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;                 
+                    this.lnkFormLink.Visible = true;
+                    this.hypTimeOfleave.Visible = true;
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
                     break;
-
+               
+                case "3338":
+                case "1108":
+                case "1109":
+                case "3315":
+                case "3316":
+                case "3348":
+                case "3364":
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    break;
                 case "3347":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
-
                 default:
                     this.lnkFormLink.Text = "Forum";
                     this.lnkFormLink.Visible = true;
@@ -160,8 +171,11 @@ namespace RealERPWEB
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd";
                     break;
             }
+            hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
+            this.hypTimeOfleave.NavigateUrl = "~/F_81_Hrm/F_84_Lea/TimeOfLeave?Type=Ind";
+
 
         }
 
@@ -494,8 +508,10 @@ namespace RealERPWEB
 
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            //Int32 usrid =(Int32) (hst["usrid"].ToString());
 
-            return (hst["usrid"].ToString());
+            //return (usrid);
+           return (hst["usrid"].ToString());
 
 
             //Hashtable hst = (Hashtable)Session["tblLogin"];

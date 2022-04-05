@@ -141,7 +141,11 @@
 
                                  <asp:TemplateField HeaderText="Cheque Date">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvDate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "chequedat")).ToString("dd-MM-yyyy") %>'
+                                        
+                                        
+                                        <asp:Label ID="lblgvDate" runat="server" 
+                                      
+                                      Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "chequedat")).ToString("dd-MM-yyyy") %>'
                                             Width="65px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>

@@ -17,6 +17,7 @@ namespace RealERPWEB
     public partial class UserProfile : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
 
         string Upload = "";
         int size = 0;
@@ -137,8 +138,9 @@ namespace RealERPWEB
             }
             this.UDptment.InnerHtml = hst["dptdesc"].ToString();
             this.UDesignation.InnerHtml = hst["usrdesig"].ToString();
-            UserName.InnerHtml = "Hi, " + hst["username"].ToString();
-            UserName1.InnerHtml = "Hey <b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
+
+            UserName.InnerHtml =  hst["userfname"].ToString();
+            UserName1.InnerHtml = "<b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
             userimg.ImageUrl = hst["userimg"].ToString();
             if (hst["events"].ToString() == "True")
             {
@@ -190,20 +192,7 @@ namespace RealERPWEB
             ViewState.Remove("tblgrph");
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
-
-            //this.lblServHead.Visible = true;
-            //this.lbAttHead.Visible = true;
-            //this.lblgraph.Visible = true;
-            //this.lblleaveHis.Visible = true;
-            //this.EmpUserImg.Visible = true;
-            //   this.AttHistoryGraph.Visible = true;
-            //this.hyplPreviewCv.Visible = true;
-            //this.Lbljobres.Visible = true;
-
-
-            // this.EmpUserImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgUser";
-            //ViewState.Remove("tblservices");
+            string empid = hst["empid"].ToString(); 
             string comcod = this.GetCompCode();
 
             string qempid = this.Request.QueryString["empid"] ?? "";
@@ -212,7 +201,7 @@ namespace RealERPWEB
             //string Date = this.txtDate.Text.Trim();
             switch (comcod)
             {
-                case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+               // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
                 case "3365":
                     calltype = "RPTMYSERVICESBTI";
                     break;
@@ -256,8 +245,6 @@ namespace RealERPWEB
             }
 
             DataTable dt3 = (DataTable)ViewState["tblAttHist"];
-
-
             DataTable dt1 = (DataTable)ViewState["tblgrph"];
 
             DataRow dr1 = dt1.NewRow();
@@ -268,6 +255,11 @@ namespace RealERPWEB
             dr1["leave"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0;(#,##0)"); ; ;
             dt1.Rows.Add(dr1);
             ViewState["tblgrph"] = dt1;
+
+            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETMYALLINFORMATION", empid, Date, "", "", "", "", "", "", "");
+
+
+
             this.Data_Bind();
 
 
@@ -338,7 +330,7 @@ namespace RealERPWEB
                 ((Label)e.Item.FindControl("lblperIntime")).Text = Convert.ToDouble(dt5.Rows[0]["perpontow"]).ToString("#,##0.00;(#,##0.00)");
                 ((Label)e.Item.FindControl("lblPerabs")).Text = Convert.ToDouble(dt5.Rows[0]["perab"]).ToString("#,##0.00;(#,##0.00)");
                 ((Label)e.Item.FindControl("lblperLate")).Text = Convert.ToDouble(dt5.Rows[0]["perlate"]).ToString("#,##0.00;(#,##0.00)");
-                ((Label)e.Item.FindControl("lblperleave")).Text = Convert.ToDouble(dt5.Rows[0]["perleave"]).ToString("#,##0.00;(#,##0.00)");
+                ((Label)e.Item.FindControl("lblperleave")).Text = Convert.ToDouble(dt5.Rows[0]["perleave"]).ToString("#,##0.00;(#,##0.00) ");
 
 
 
@@ -411,9 +403,8 @@ namespace RealERPWEB
                 string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-
-
-                this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+               
+                //this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
@@ -671,6 +662,65 @@ namespace RealERPWEB
             this.gvSpHolidyas.PageIndex = e.NewPageIndex;
             this.LoadGridHolidays();
 
+        }
+
+        protected void hlnkbtnNext_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            string comcod = this.GetCompCode();
+
+            string monName;
+            if (comcod == "3365" || comcod == "3101")
+            {
+                monName = "-Dec-";
+            }
+            else
+            {
+                monName = "-Jan-";
+
+            }
+
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+
+            string date1 = Convert.ToDateTime(startdate + monName + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            // string frmdate = Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+
+            DateTime date = Convert.ToDateTime(date1);
+
+
+            //string date1 = Convert.ToDateTime(Convert.ToInt32(startdate)+ "-Dec-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+
+            string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? Convert.ToDateTime(date).ToString("dd-MMM-yyyy") : Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+
+
+            //string frmdate = startdate + "-Dec-"  + this.txtDate.Text.Substring(7);
+            //this.txtDate.Text = frmdate; 
+
+            //string frmdate = "";
+            //string date = "";
+            //switch (comcod)
+            //{
+            //    case "3365":
+            //    case "3101":
+            //        date = Convert.ToDateTime("26-Dec-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            //        frmdate = Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+            //        //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+            //        break;
+
+            //    default:
+            //        date = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            //        frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+            //        break;
+            //}
+
+            //string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+
+            string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            Response.Redirect("~/F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate);        
         }
     }
 }

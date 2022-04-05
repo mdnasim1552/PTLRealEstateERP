@@ -486,7 +486,19 @@ namespace RealERPWEB.F_24_CC
             DataTable dt = (DataTable)Session["tbladwork"];
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
+            switch (comcod)
+            {
+                case "3101":
+                case "1108":
+                case "1109":
+                case "3315":
+                case "3316":
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAssure", lst, null, null);
+                    break;
+                default:
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
+                    break;
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
@@ -568,33 +580,33 @@ namespace RealERPWEB.F_24_CC
             DataRow[] dr = dt.Select("gcod='" + gcod + "'");
             //if (dr.Length == 0)
             //{
-                DataRow dr1 = dt.NewRow();
-                dr1["id"] = 0;
-                dr1["gcod"] = gcod;
-                dr1["gdesc"] = this.ddlItemName.SelectedItem.Text.Trim();
-                dr1["unit"] = (((DataTable)ViewState["tblwrk"]).Select("gcod='" + gcod + "'"))[0]["unit"];
-                dr1["wrkdesc"] = "";
-                dr1["qty"] = 0.00;
-                dr1["comqty"] = 0.00;
-                dr1["comamt"] = 0.00;
-                // dr1["clamt"] = 0.00;
-                dr1["rate"] = 0.00;
-                dr1["crate"] = 0.00;
-                dr1["comlrate"] = 0.00;
-                dr1["clrate"] = 0.00;
-                dr1["cllrate"] = 0.00;
-                dr1["amt"] = 0.00;
-                dr1["disamt"] = 0.00;
-                dr1["netamt"] = 0.00;
-                dr1["comamt"] = 0.00;
-                dr1["clamt"] = 0.00;
-                dr1["nrefund"] = 0.00;
-                dr1["ndemand"] = 0.00;
-                dr1["location"] = "";
-             //   dr1["seq"] = "0";
-                
-            
-                dt.Rows.Add(dr1);
+            DataRow dr1 = dt.NewRow();
+            dr1["id"] = 0;
+            dr1["gcod"] = gcod;
+            dr1["gdesc"] = this.ddlItemName.SelectedItem.Text.Trim();
+            dr1["unit"] = (((DataTable)ViewState["tblwrk"]).Select("gcod='" + gcod + "'"))[0]["unit"];
+            dr1["wrkdesc"] = "";
+            dr1["qty"] = 0.00;
+            dr1["comqty"] = 0.00;
+            dr1["comamt"] = 0.00;
+            // dr1["clamt"] = 0.00;
+            dr1["rate"] = 0.00;
+            dr1["crate"] = 0.00;
+            dr1["comlrate"] = 0.00;
+            dr1["clrate"] = 0.00;
+            dr1["cllrate"] = 0.00;
+            dr1["amt"] = 0.00;
+            dr1["disamt"] = 0.00;
+            dr1["netamt"] = 0.00;
+            dr1["comamt"] = 0.00;
+            dr1["clamt"] = 0.00;
+            dr1["nrefund"] = 0.00;
+            dr1["ndemand"] = 0.00;
+            dr1["location"] = "";
+            //   dr1["seq"] = "0";
+
+
+            dt.Rows.Add(dr1);
             //}
             this.SaveValue();
 
@@ -609,7 +621,7 @@ namespace RealERPWEB.F_24_CC
             {
                 TblRowIndex = (gvAddWork.PageIndex) * gvAddWork.PageSize + i;
                 string seq = ((Label)this.gvAddWork.Rows[i].FindControl("lblgvSlNo3")).Text.Trim();
-                
+
                 string wrkdesc = ((TextBox)this.gvAddWork.Rows[i].FindControl("txtgvdesclchoice")).Text.Trim();
                 string txtgvlocateion = ((TextBox)this.gvAddWork.Rows[i].FindControl("txtgvlocateion")).Text.Trim();
                 double qty = Convert.ToDouble("0" + ((TextBox)this.gvAddWork.Rows[i].FindControl("txtgvqty")).Text.Trim());
@@ -894,7 +906,7 @@ namespace RealERPWEB.F_24_CC
                     {
                         this.CreateDataTable();
                         DataTable dt = (DataTable)ViewState["tblapproval"];
-                        if (comcod == "3315" || comcod == "3316" ||comcod=="3364" )
+                        if (comcod == "3315" || comcod == "3316" || comcod == "3364")
                         {
                             DataRow dr1 = dt.NewRow();
                             dr1["chkbyid"] = usrid;
@@ -1112,13 +1124,13 @@ namespace RealERPWEB.F_24_CC
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
 
             string paysch = "";
-            if (comcod=="3315" || comcod=="3316"|| comcod=="3317"|| comcod=="3364" )
+            if (comcod == "3315" || comcod == "3316" || comcod == "3317" || comcod == "3364")
             {
                 paysch = this.GetSchCode();
             }
             else
             {
-                 paysch = (this.lblSchCode.Text.Trim() == "") ? this.GetSchCode() : this.lblSchCode.Text.Trim();
+                paysch = (this.lblSchCode.Text.Trim() == "") ? this.GetSchCode() : this.lblSchCode.Text.Trim();
 
 
             }
@@ -1138,8 +1150,8 @@ namespace RealERPWEB.F_24_CC
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 Gcode = dt.Rows[i]["gcod"].ToString();
-                
-                string seq = (i+1).ToString();
+
+                string seq = (i + 1).ToString();
                 string id = dt.Rows[i]["id"].ToString();
                 string wrkdesc = dt.Rows[i]["wrkdesc"].ToString();
                 string location = dt.Rows[i]["location"].ToString();
@@ -1288,7 +1300,7 @@ namespace RealERPWEB.F_24_CC
             string id = ((Label)this.gvAddWork.Rows[rownum].FindControl("lblgbID")).Text.Trim();
 
 
-            
+
             bool result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "DELETEADDWRK",
                        id, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
@@ -1299,7 +1311,7 @@ namespace RealERPWEB.F_24_CC
 
             if (!result)
             {
-                 
+
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Data Delete Fail" + "');", true);
 
                 return;

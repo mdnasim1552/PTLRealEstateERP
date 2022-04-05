@@ -178,7 +178,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -240,6 +240,16 @@
                                             <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="User Create">
+                                            <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkUserGenarate" ToolTip="User Create" OnClick="lnkUserGenarate_Click" 
+                                                                runat="server" Visible='<%#Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "genbtn"))%>' 
+                                                                CssClass="btn btn-sm btn-primary "> User Generate</asp:LinkButton>
+                                                
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="">
@@ -251,7 +261,8 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" 
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
                                                         </li>
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkView" Target="_blank" ToolTip="Employee Information view"
@@ -337,17 +348,13 @@
         <div class="modal-dialog ">
             <div class="modal-content col-md-12 col-sm-12 ">
                 <div class="modal-header hedcon">
-                    <%--<button type="button" class="close clsicon" data-dismiss="modal">&times;</button>--%>
+                     
                     <h4>Employee Name Entry</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>--%>
-                    <%--<asp:LinkButton ID="lnkClosIcon" runat="server" dismiss="modal"  CssClass="close clsicon">&times;</asp:LinkButton>--%>
+                    
                 </div>
                 <div class="modal-body">
-                    <%--     <div class="card card-fluid container-data mt-5">--%>
-
-                    <%--    <div class="card-body">
-                    <div class="row">--%>
+                     
                     <div class="col-md-12 col-sm-12 col-lg-12">
 
                         <div class="form-group">
@@ -370,17 +377,8 @@
                         <div class="form-group">
                             <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" OnClientClick="CloseModal();" CssClass="btn btn-danger btn-sm">Add</asp:LinkButton>
                             <asp:Label ID="lblEmplastId" runat="server" Visible="false"></asp:Label>
-                        </div>
-
-
-
-
-
-                    </div>
-                    <%--    </div>
-                </div>--%>
-
-                    <%--  </div>--%>
+                        </div> 
+                    </div> 
                 </div>
             </div>
         </div>

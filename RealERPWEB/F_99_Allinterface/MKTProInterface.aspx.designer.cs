@@ -105,6 +105,60 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.HyperLink hyplnkCrReqMkt;
 
         /// <summary>
+        /// HyperLink3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+
+        /// <summary>
+        /// hlnkmktsurvey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlnkmktsurvey;
+
+        /// <summary>
+        /// hlnkgencode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlnkgencode;
+
+        /// <summary>
+        /// HyperLink1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+
+        /// <summary>
+        /// hlnkbudget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlnkbudget;
+
+        /// <summary>
+        /// hyplnkRptMktStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyplnkRptMktStock;
+
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -186,24 +240,6 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView gvReqChk;
 
         /// <summary>
-        /// pnlFirstApp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFirstApp;
-
-        /// <summary>
-        /// gvreqfapproved control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvreqfapproved;
-
-        /// <summary>
         /// pnlFinalApp control.
         /// </summary>
         /// <remarks>
@@ -213,49 +249,49 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlFinalApp;
 
         /// <summary>
-        /// gvreqsecapproved control.
+        /// gvReqApp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvreqsecapproved;
+        protected global::System.Web.UI.WebControls.GridView gvReqApp;
 
         /// <summary>
-        /// pnlCSPrep control.
+        /// pnlcsprepared control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCSPrep;
+        protected global::System.Web.UI.WebControls.Panel pnlcsprepared;
 
         /// <summary>
-        /// gvRatePro control.
+        /// gvcsprepared control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRatePro;
+        protected global::System.Web.UI.WebControls.GridView gvcsprepared;
 
         /// <summary>
-        /// pnlCSChq control.
+        /// pnlcsapproved control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCSChq;
+        protected global::System.Web.UI.WebControls.Panel pnlcsapproved;
 
         /// <summary>
-        /// gvFRec control.
+        /// gvcsapproved control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFRec;
+        protected global::System.Web.UI.WebControls.GridView gvcsapproved;
 
         /// <summary>
         /// pnlWorkOrder control.
@@ -274,6 +310,42 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvWrkOrd;
+
+        /// <summary>
+        /// pnlorderfapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlorderfapp;
+
+        /// <summary>
+        /// gvordfapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvordfapp;
+
+        /// <summary>
+        /// pnlordersapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlordersapp;
+
+        /// <summary>
+        /// gvordsapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvordsapp;
 
         /// <summary>
         /// pnlMatRec control.

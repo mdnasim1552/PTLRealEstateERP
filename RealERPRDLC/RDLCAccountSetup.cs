@@ -50,9 +50,11 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptMonWiseColBuyer": Rpt1a = SetRptMonWiseColBuyer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptRecAndPaymentCredence": Rpt1a = SetRptRecAndPaymentCredence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
                 case "R_17_Acc.RptRecAndPaymentEntrust": Rpt1a = SetRptRecAndPaymentEntrust(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
+                case "R_17_Acc.RptRecAndPaymentCube": Rpt1a = SetRptRecAndPaymentCube(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
                     
                 case "R_21_Mkt.RptClietList": Rpt1a = RptClietList (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_81_Rec.RptCreateOffLt": Rpt1a = RptCreateOffLt (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_81_Rec.RptCreateOffLtAcme": Rpt1a = SetRptCreateOffLtAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_81_Rec.RptEmpAss": Rpt1a = RptEmpAss (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
               //  case "R_81_Hrm.R_91_ACR.RptEmpEvaluation": Rpt1a = RptEmpEvaluation (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_81_Rec.RptConfmlt": Rpt1a = RptConfmlt (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -147,6 +149,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add (new ReportDataSource ("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>)RptDataSet));
             return Rpt1a;
+        }        
+        private static LocalReport SetRptRecAndPaymentCube( LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset )
+        {
+            Rpt1a.DataSources.Add (new ReportDataSource ("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>)RptDataSet));
+            return Rpt1a;
         }
         
         private static LocalReport SetRptRecAndPaymentEntrust( LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset )
@@ -164,6 +171,16 @@ namespace RealERPRDLC
         {
             //Hashtable hshParm = (Hashtable)RptDataSet;
 
+            //test dsfdsfdsf s
+            //Rpt1a.SetParameters(new ReportParameter("companyname", hshParm["companyname"].ToString()));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_81_Rec.SalInfo>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt>)UserDataset));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptCreateOffLtAcme(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            //Hashtable hshParm = (Hashtable)RptDataSet;
             //test dsfdsfdsf s
             //Rpt1a.SetParameters(new ReportParameter("companyname", hshParm["companyname"].ToString()));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt>)RptDataSet));

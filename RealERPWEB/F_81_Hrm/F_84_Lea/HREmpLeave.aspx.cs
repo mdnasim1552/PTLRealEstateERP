@@ -286,14 +286,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void ShowValue()
         {
             Session.Remove("YearLeav");
-
+            string empcode = this.txtEmpSearch.Text.Trim();
             string comcod = this.GetComeCode();         
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"%";//(this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
             string yearid = this.txtdate.Text;
-            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string empcode = this.txtEmpSearch.Text.Trim() + "%";
+            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? company : this.ddlProjectName.SelectedValue.ToString() + "%";           
+            pactcode = (empcode.Length == 0) ? pactcode : company;
+             empcode = empcode + "%"; // for alwayes search empcode wise
+
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPLEAVE", yearid, pactcode, company, empcode, "", "", "", "", "");
             if (ds4 == null)
             {
@@ -381,6 +383,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string trpleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvTrL")).Text.Trim()).ToString();
                 string lonproidleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnProba")).Text.Trim()).ToString();
                 string lonsepaleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnSepa")).Text.Trim()).ToString();
+                string LOnApprentice = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnApprentice")).Text.Trim()).ToString();
                 
 
 
@@ -396,6 +399,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 dt.Rows[TblRowIndex]["trpleave"] = trpleave;
                 dt.Rows[TblRowIndex]["lonproidleave"] = lonproidleave;
                 dt.Rows[TblRowIndex]["lonsepaleave"] = lonsepaleave;
+                dt.Rows[TblRowIndex]["lappreleave"] = LOnApprentice;
 
 
             }
@@ -444,13 +448,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string lonproidleave = dt.Rows[i]["lonproidleave"].ToString();
                 string lonsepaid = dt.Rows[i]["lonsepaid"].ToString();
                 string lonsepaleave = dt.Rows[i]["lonsepaleave"].ToString();
+                string lappretiship = dt.Rows[i]["lappretiship"].ToString();
+                string lappreleave = dt.Rows[i]["lappreleave"].ToString();
 
-
+                
 
 
 
                 bool result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAV", yearid, empid, ernid, ernleave, csid, csleave, skid, 
-                    skleave, mtid, mtleave, wpid, wpleave, trpid, trpleave, ptid, ptleave, lonproid, lonproidleave, lonsepaid, lonsepaleave);
+                    skleave, mtid, mtleave, wpid, wpleave, trpid, trpleave, ptid, ptleave, lonproid, lonproidleave, lonsepaid, lonsepaleave, lappretiship, lappreleave);
                 if (result == false)
                 {
 
@@ -757,7 +763,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     dt.Rows[i]["lapplied"] = leaveday;
                     dt.Rows[i]["lenjoydt1"] = stdat;
                     dt.Rows[i]["lenjoydt2"] = endat;
-                    double enjleave = Convert.ToDouble(dt1.Rows[i]["ltaken"]);
+                    //double enjleave = Convert.ToDouble(dt1.Rows[i]["ltaken"]);
                     double Clsleave = Convert.ToDouble(dt1.Rows[i]["pbal"]);
                     dt1.Rows[i]["applyday"] = leaveday;
                     dt1.Rows[i]["appday"] = leaveday;

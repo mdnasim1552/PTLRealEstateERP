@@ -1466,7 +1466,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!txtSchamt.Value</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1500,9 +1500,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!txtSchamt.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontFamily>Times New Roman</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2014,6 +2014,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

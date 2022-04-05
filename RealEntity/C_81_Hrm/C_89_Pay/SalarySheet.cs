@@ -596,7 +596,12 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double bank4 { get; set; }
             public double bank5 { get; set; }
             public double bank6 { get; set; }
-
+            public string maingrpdesc { get; set; }
+            public string maingrp { get; set; }
+            public string grpcod { get; set; }
+            public string fgrp { get; set; }
+            public string ftdesc { get; set; }
+           
             public RptSalarySheet ()
             {
 

@@ -53,6 +53,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     {
                         this.ShowEmp.Visible = false;
                     }
+                    lblCurrentDate.Text= "Current Time: "+ System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 }
                 
                 
@@ -148,6 +149,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void GetEmpName()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string empid = hst["empid"].ToString();
+
             string comcod = this.GetCompCode();
             string ProjectCode = (this.ddlSection.SelectedValue.Trim().Length > 0) ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
             string txtSProject = "%%";
@@ -156,6 +161,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlEmpNameAllInfo.DataValueField = "empid";
             this.ddlEmpNameAllInfo.DataSource = ds5.Tables[0];
             this.ddlEmpNameAllInfo.DataBind();
+            if (userrole == "3")
+            {
+                this.ddlEmpNameAllInfo.SelectedValue = empid;
+                this.ddlEmpNameAllInfo.Enabled=false;
+
+            }
             ViewState["tblemp"] = ds5.Tables[0];
 
         }

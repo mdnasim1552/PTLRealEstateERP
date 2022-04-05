@@ -28,10 +28,20 @@
 
         });
 
-        function pageLoaded() {
+        function pageLoaded()
+        {
 
-            var gvSummary = $('#<%=this.gvSummary.ClientID %>');
-            gvSummary.Scrollable();
+
+
+            try {
+
+                var gvSummary = $('#<%=this.gvSummary.ClientID %>');
+                gvSummary.Scrollable();
+            }
+            catch (e)
+            {
+                alert(e.message);
+            }
         }
 
         function onchangetrigger() {
@@ -207,7 +217,7 @@
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="serialno" runat="server" Style="text-align: left" CssClass="table-data"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>

@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script src="../../Scripts/gridviewScrollHaVertworow.min.js"></script>
 
 
     <script type="text/javascript">
@@ -11,15 +12,40 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
+            try {
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
 
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
+                });
+                $('.chzn-select').chosen({ search_contains: true });
 
-            });
-            var gvLeaveRule = $('#<%=this.gvLeaveRule.ClientID %>');
-            gvLeaveRule.Scrollable();
-            $('.chzn-select').chosen({ search_contains: true });
+           <%-- var gvLeaveRule = $('#<%=this.gvLeaveRule.ClientID %>');
+            gvLeaveRule.Scrollable()--%>;
+
+                var gridViewScroll = new GridViewScroll({
+                    elementID: "gvLeaveRule",
+                    width: 1450,
+                    height: 550,
+                    freezeColumn: false,
+                    freezeFooter: true,
+                   // freezeColumnCssClass: "GridViewScrollItemFreeze",
+                    freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                   // freezeHeaderRowCount: 2,
+                   // freezeColumnCount: 12,
+
+                });
+                gridViewScroll.enhance();
+
+
+
+            }
+
+            catch (e) {
+                alert(e);
+
+
+            }
         }
 
     </script>
@@ -44,6 +70,7 @@
                 </asp:UpdateProgress>
             </div>
 
+             
             <div class="row justify-content-md-center mt-4 mb-1">
                 <div class="col-9"></div>
 
@@ -59,55 +86,53 @@
                 <div class="card-header">
                     <div class="row">
 
-                        <div class="col-2" id="divLeaveApp" runat="server">
-                            <div class="input-group input-group-alt ">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary ml-1" type="button">Yearly Leave</button>
-                                </div>
+                        <div class="col-md-1" id="divLeaveApp" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Yearly Leave   
+                                </label>
                                 <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
 
-                        <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="col-1 col-form-label" OnClick="imgbtnCompany_Click">
+                        <div class="col-md-2" id="div1" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    <asp:LinkButton ID="imgbtnCompany" runat="server" OnClick="imgbtnCompany_Click">
                                                   Company</asp:LinkButton>
-
-                        <div class="col-3">
-                            <asp:DropDownList ID="ddlCompany" runat="server" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control" TabIndex="2">
-                            </asp:DropDownList>
-                        </div>
-                        <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="col-1 col-form-label" OnClick="imgbtnProSrch_Click">
-                                     Section Name</asp:LinkButton>
-
-
-                        <div class="col-3">
-
-                            <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" runat="server" CssClass="chzn-select form-control" TabIndex="6">
-                            </asp:DropDownList>
-
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group input-group-alt ">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary ml-1" id="lblEmpIdSearch" runat="server" type="button">Emp. Code</button>
-                                </div>
-                                <asp:TextBox ID="txtEmpSearch" runat="server" CssClass="form-control"></asp:TextBox>
-                                <div class="input-group-prepend">
-                                    <asp:LinkButton ID="imgbtnEmpSeach" runat="server" CssClass="btn btn-secondary ml-1" OnClick="imgbtnEmpSeach_Click"><i class="fas fa-search "></i></asp:LinkButton>
-                                </div>
-
+                                </label>
+                                <asp:DropDownList ID="ddlCompany" runat="server" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control" TabIndex="2">
+                                </asp:DropDownList>
                             </div>
                         </div>
 
+                        <div class="col-md-3" id="div2" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    <asp:LinkButton ID="imgbtnProSrch" runat="server" OnClick="imgbtnProSrch_Click">
+                                                  Section Name</asp:LinkButton>
+                                </label>
+                                <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-2" id="lblEmpIdSearch" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Emp. Code
+                                    <asp:LinkButton ID="imgbtnEmpSeach" runat="server" OnClick="imgbtnEmpSeach_Click"><i class="fas fa-search "></i></asp:LinkButton>
+                                </label>
+                                <asp:TextBox ID="txtEmpSearch" runat="server" CssClass="form-control"></asp:TextBox>
 
-
-
-                        <div class="col-2" id="divPage" runat="server">
-                            <div class="input-group input-group-alt ">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary ml-1" type="button">Page Size</button>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1" id="divPage" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Page Size
+                                </label>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                    <asp:ListItem>10</asp:ListItem>                                                           
+                                    <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>50</asp:ListItem>
                                     <asp:ListItem>100</asp:ListItem>
                                     <asp:ListItem>150</asp:ListItem>
@@ -119,26 +144,29 @@
 
                             </div>
                         </div>
-
-                        
-
-
-                        <div class="col-1">
-
-                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click" Text="Ok"></asp:LinkButton>
-
-
-
-                        </div>
-
-                        <div class="col-2" id="divType" runat="server">
-                            
-                             <asp:DropDownList ID="ddlModiType" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlModiType_SelectedIndexChanged" >
+                        <div class="col-md-1" id="div5" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Search Type
+                                </label>
+                                <asp:DropDownList ID="ddlModiType" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlModiType_SelectedIndexChanged">
                                     <asp:ListItem id="All">All</asp:ListItem>
                                     <asp:ListItem id="Updated">Updated</asp:ListItem>
                                     <asp:ListItem id="Notupdate">Notupdate</asp:ListItem>
                                 </asp:DropDownList>
+
+                            </div>
                         </div>
+                        <div class="col-md-1" id="div6" runat="server">
+                            <div class="form-group">
+
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-md mt-4" OnClick="lbtnOk_Click" Text="Ok"></asp:LinkButton>
+
+                            </div>
+                        </div>
+
+
+
 
                     </div>
 
@@ -252,9 +280,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="table-responsives">
-                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False"
-                                        OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" Width="834px" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                <div class="table-responsive">
+                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False" ClientIDMode="Static"
+                                        OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         PageSize="15">
                                         <PagerSettings Position="Top" />
                                         <RowStyle />
@@ -368,7 +396,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                        
+
 
                                             <asp:TemplateField HeaderText="Maternity Leave">
                                                 <ItemTemplate>
@@ -389,7 +417,7 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Without Pay Leave">
+                                            <asp:TemplateField HeaderText="Without Pay <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvWPl" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wpleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -398,7 +426,7 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Training Leave">
+                                            <asp:TemplateField HeaderText="Training <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvTrL" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trpleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -408,7 +436,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Leave On Probation">
+                                            <asp:TemplateField HeaderText="Paternity <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -417,10 +445,20 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Leave On Separation">
+                                            <asp:TemplateField HeaderText="Leave On <br> PROBITION">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnSepa" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonsepaleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="70px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Leave On <br> APPRENTICE">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvLOnApprentice" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lappreleave")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="70px"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="right" />
