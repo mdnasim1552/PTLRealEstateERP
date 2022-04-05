@@ -3770,6 +3770,8 @@ namespace RealERPWEB.F_99_Allinterface
                 List<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition> termscondition = _ReportDataSet.Tables[2].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition>();
                 List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule> paymentschedule = _ReportDataSet.Tables[5].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule>();
                 ViewState["tblpaysch"] = paymentschedule;
+                List<RealEntity.C_12_Inv.EclassPurchase.MktPurchasePayment> payment01 = _ReportDataSet.Tables[6].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.MktPurchasePayment>();
+                ViewState["tblpayment01"] = payment01;
                 string orderno = _ReportDataSet.Tables[4].Rows[0]["orderno"].ToString().Substring(0, 3) + _ReportDataSet.Tables[4].Rows[0]["orderno"].ToString().Substring(7, 2) + "-" + ASTUtility.Right(_ReportDataSet.Tables[4].Rows[0]["orderno"].ToString(), 5);
                 string oissueno = _ReportDataSet.Tables[4].Rows[0]["oissueno"].ToString();
                 string porderno = this.ComOrderNo(orderno, oissueno);
@@ -3999,7 +4001,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
                     terms9 = "", terms10 = "", terms11 = "", terms12 = "";
-                string pperson1 = "", pperson2 = "", pcperson="";
+                string pperson1 = "", pperson2 = "", pcperson = "";
 
 
                 switch (comcod)
@@ -4071,13 +4073,13 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3351"://P2P
                     case "3352"://P2P 
                         terms1 = terms.ToString();
-                        break;                   
-                    
+                        break;
+
                     case "3101": // ptl 
                     case "3357": // Cube 
                         terms1 = terms.ToString();
-                        pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", "+ _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
-                        break;                
+                        pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", " + _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
+                        break;
 
                     case "3335": // Edison Properties
 
@@ -4157,10 +4159,10 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                     //case "3101":                 
-                    case "1108":                 
-                    case "1109":                 
-                    case "3315":                 
-                    case "3316":                 
+                    case "1108":
+                    case "1109":
+                    case "3315":
+                    case "3316":
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
                         terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
@@ -4304,7 +4306,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptPurchaseOrder", purlist, termscondition, null);
                 Rpt1.EnableExternalImages = true;
 
-                if (comcod == "3351" || comcod == "1205" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316")
+                if (comcod == "3351" || comcod == "1205" || comcod == "3352")
                 {
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
@@ -4320,9 +4322,8 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cost3", cost3));
                     Rpt1.SetParameters(new ReportParameter("cost4", cost4));
                     Rpt1.SetParameters(new ReportParameter("cost5", cost5));
-
-
                 }
+
                 if (comcod == "3353")
                 {
                     Rpt1.SetParameters(new ReportParameter("refno01", mrfno1));
@@ -4408,9 +4409,30 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("inword", inword));
                 Rpt1.SetParameters(new ReportParameter("pordnar", pordnar));
+                switch (comcod)
+                {
+                    case "1108":
+                    case "1109":
+                    case "3315":
+                    case "3316":
+                        Rpt1.SetParameters(new ReportParameter("subcompname", ""));
+                        Rpt1.SetParameters(new ReportParameter("costa", costa));
+                        Rpt1.SetParameters(new ReportParameter("costb", costb));
+                        Rpt1.SetParameters(new ReportParameter("costc", costc));
+                        Rpt1.SetParameters(new ReportParameter("costd", costd));
+                        Rpt1.SetParameters(new ReportParameter("coste", coste));
+                        Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                        Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                        Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                        Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                        Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+                        Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReportAssure);
+                        break;
+                    default:
+                        Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
+                        break;
+                }
 
-
-                Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
@@ -4441,7 +4463,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             DataTable dt1 = ds1.Tables[1];
-           // DataTable dt = ds1.Tables[2];
+            // DataTable dt = ds1.Tables[2];
 
             string txtcrno = dt1.Rows[0]["reqno1"].ToString();
             string txtcrdate = Convert.ToDateTime(dt1.Rows[0]["reqdat"].ToString()).ToString("dd-MMM-yyyy");
@@ -4515,7 +4537,7 @@ namespace RealERPWEB.F_99_Allinterface
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string CurDate1 = this.GetStdDate(DateTime.Today.ToString("dd.MM.yyyy"));
             string Reqno = this.Request.QueryString["reqno"].ToString();
-            
+
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "GETMATREQWISE", Reqno,
                         "%", CurDate1, "", "", "", "", "", "");
 
@@ -4635,7 +4657,7 @@ namespace RealERPWEB.F_99_Allinterface
                 /// signature       // appnam - PURAPROVB and ordnam - purorder     
                 switch (comcod)
                 {
-                 
+
                     case "3354": //Edison Real Estate
                     case "3101":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
@@ -4681,7 +4703,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 switch (comcod)
-                {                  
+                {
 
                     case "3354": // Edison Real estate
                     case "3101":
@@ -4843,9 +4865,12 @@ namespace RealERPWEB.F_99_Allinterface
         void LoadSubReport(object sender, SubreportProcessingEventArgs e)
         {
             List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule> lst = (List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule>)ViewState["tblpaysch"];
-
             e.DataSources.Add(new ReportDataSource("DataSet1", lst));
-
+        }
+        void LoadSubReportAssure(object sender, SubreportProcessingEventArgs e) 
+        {
+            List<RealEntity.C_12_Inv.EclassPurchase.MktPurchasePayment> lst = (List<RealEntity.C_12_Inv.EclassPurchase.MktPurchasePayment>)ViewState["tblpayment01"];
+            e.DataSources.Add(new ReportDataSource("DataSet1", lst));
         }
         private string CompanyBill()
         {
