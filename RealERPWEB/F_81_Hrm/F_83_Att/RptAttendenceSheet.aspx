@@ -57,8 +57,8 @@
             });
    
 
-           var gvMonthlyattSummary = $('#<%=this.gvMonthlyattSummary.ClientID %>');
-            gvMonthlyattSummary.Scrollable();
+          <%-- var gvMonthlyattSummary = $('#<%=this.gvMonthlyattSummary.ClientID %>');
+            gvMonthlyattSummary.Scrollable();--%>
 
             var gvemplateatt = $('#<%=this.gvemplateatt.ClientID %>');
             gvemplateatt.Scrollable();
@@ -672,6 +672,7 @@
                                 </asp:GridView>
                             </div>
 
+                            
                             <div class="table-responsive" id="SummaryAttinfo" runat="server">
                                 <div class="col-3">
                                   <div class="input-group input-group-alt">
@@ -693,18 +694,18 @@
                                                 <asp:Label ID="lgvNameSumm" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empnam")) %>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
 
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Id Card">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgidcardsumm" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                                    Width="120px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
 
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
 
