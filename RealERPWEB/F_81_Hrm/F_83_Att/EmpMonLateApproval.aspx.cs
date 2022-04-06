@@ -31,10 +31,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 //this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetCompName();
                 this.GetDesignation();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Monthly Late  Approval Information"
+                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Employee Monthly Late Approval"
                     : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly Absent / Punch Approval"
                     : (this.Request.QueryString["Type"].ToString() == "MEarlyleave") ? "Monthly Early Leave Approval Information"
                     : (this.Request.QueryString["Type"].ToString() == "LPAproval") ? "Monthly (L.P) Late Approval"
+                    : (this.Request.QueryString["Type"].ToString() == "MabsentApp") ? "Monthly Approval (LP)"
                     : "Monthly Absent Approval";
                 this.ViewSaction();
 
@@ -590,7 +591,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void ShowMabsentApp()
         {
-
+            // this process for Late present 
+            // late start time for bti 10:00 am recom by Nazmul bti
             Session.Remove("tblover");
             string comcod = this.GetCompCode();
             string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
@@ -614,11 +616,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-
+           
             string frmdesig = "0399999";
             string todesig = "0300001";
             switch (comcod)
             {
+               
                 case "3102":
                     //pnlDesig.Visible = true;
 
@@ -629,7 +632,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     //pnlDesig.Visible = false;
                     break;
             }
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPMONABSADJUSTMENT", compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
+            string calltype = "EMPMONABSADJUSTMENT";
+
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", calltype, compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
             if (ds2 == null)
             {
                 this.grvAdjDay.DataSource = null;
