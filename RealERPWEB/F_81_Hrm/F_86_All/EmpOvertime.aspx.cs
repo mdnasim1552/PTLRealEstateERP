@@ -2358,12 +2358,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 string tripal = Convert.ToDouble(dr["tripal"]).ToString();
 
 
-                if (totalam > 0)
-                {
+                //if (totalam > 0)
+                //{
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTOTHEARN", Monthid, empid, tptallow, kpi, perbon, othearn, haircutal, foodal, nfoodal, factualday, hardship, tripday, tripal, "", "");
-                    if (!result)
-                        return;
+                if (!result)
+                {
+                  
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
                 }
+               // }
             }
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
