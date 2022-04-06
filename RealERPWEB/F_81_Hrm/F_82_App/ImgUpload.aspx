@@ -178,6 +178,9 @@
 
                         
                 <div class="col-md-4 pading5px col-md-offset-2 text-center">
+                    
+                    <asp:Button ID="btnGenerate" OnClick = "GenerateThumbnail" runat="server" Text="Generate Thumbnail" />
+
                     <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger" OnClick="lbtnDelete_Click">Delete</asp:LinkButton>
                     <asp:LinkButton ID="lbtnUpdateImg" runat="server" CssClass="btn btn-success" OnClick="lbtnUpdateImg_Click">Update</asp:LinkButton>
 
