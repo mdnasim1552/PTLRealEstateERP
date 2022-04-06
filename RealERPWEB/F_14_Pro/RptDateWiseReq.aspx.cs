@@ -169,6 +169,9 @@ namespace RealERPWEB.F_14_Pro
                     this.gvPurStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvPurStatus.DataSource = (DataTable)Session["tblpurchase"];
                     this.gvPurStatus.DataBind();
+                   
+                    Session["Report1"] = gvPurStatus;
+                    ((HyperLink)this.gvPurStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                     break;
 
