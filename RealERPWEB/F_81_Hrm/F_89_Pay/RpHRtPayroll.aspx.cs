@@ -499,7 +499,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtnPayType.Visible = true;
                     this.rbtnMantype.Visible = true;
                     break;
-
+                
+                case "3365"://BTI
+                    this.rbtlBonSheet.SelectedIndex=13;
+                    break;
 
 
                 default://Bridge  , Terranova        
@@ -1005,7 +1008,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.lblComBonLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
 
             string Calltype = (this.rbtlBonSheet.SelectedIndex == 0) ? "EMPBONUS" : (this.rbtlBonSheet.SelectedIndex == 1) ? "EMPBONUS1" : (this.rbtlBonSheet.SelectedIndex == 5) ? "EMPBONUS2" : (this.rbtlBonSheet.SelectedIndex == 2) ? "EMPBONUSSAN" : (this.rbtlBonSheet.SelectedIndex == 6) ? "EMPBONUSBRIDGE" : (this.rbtlBonSheet.SelectedIndex == 7) ? "EMPBONUSALLIANCE"
-                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : "EMPBONUSGEN";
+                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : (this.rbtlBonSheet.SelectedIndex == 13) ? "EMPBONUSBTI" : "EMPBONUSGEN";
             string afterdays = Convert.ToDouble("0" + this.txtafterdays.Text.Trim()).ToString();
             string comgross = this.Companygross();
             string bonpaytype = this.companyBonusPayType();

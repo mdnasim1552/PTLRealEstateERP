@@ -718,6 +718,7 @@ namespace RealERPRDLC
                 //Crystal to RDLC
                 case "R_24_CC.rptClientChoice": SetrptClientChoice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptMaintenanceWrk": SetRptMaintenanceWrk(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_24_CC.RptMaintenanceWrkAssure": SetRptMaintenanceWrkAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptMaintenanceWrkSan": SetRptMaintenanceWrkSan(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptCustLnStatus": SetRptCustLnStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptHandOverWork": SetRptHandOverWork(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -738,6 +739,7 @@ namespace RealERPRDLC
                 case "R_28_MPro.RptMktPurMarketSurvey": Rpt1a = SetRptMktPurMarketSurvey(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_28_MPro.RptMktPurMRR": Rpt1a = SetRptMktPurMRR(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_28_MPro.RptMktPurchaseTracking": Rpt1a = SetRptMktPurchaseTracking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_28_MPro.RptMktMatIssue": Rpt1a = SetRptMktMatIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
 
                 #region MIS Module
@@ -2616,6 +2618,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptMaintenanceWrk(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>)RptDataSet));
+            return Rpt1a;
+        } 
+        private static LocalReport SetRptMaintenanceWrkAssure(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>)RptDataSet));
             return Rpt1a;
@@ -5783,6 +5790,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptMktPurchaseTracking(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseTrack>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptMktMatIssue(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktMatIssue>)RptDataSet));
             return Rpt1a;
         }
     }

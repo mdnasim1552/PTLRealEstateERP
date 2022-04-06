@@ -20,6 +20,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
     {
         ProcessAccess HRData = new ProcessAccess();
         SendNotifyForUsers UserNotify = new SendNotifyForUsers();
+        Common compUtility = new Common();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,13 +28,59 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
-
+                string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtgvenjoydt1.Text = nextday;
+                this.txtgvenjoydt2.Text = nextday;
+                SelectDate();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "  Employee Status";
-                this.getMyAttData();
+                string qtype = this.Request.QueryString["Type"].ToString();
+                if (qtype == "MGT")
+                {
+                    this.mgtCard.Visible = true;
+                    this.empMgt.Visible = true;
+                    GetEmpLoyee();
+                    // GetSupvisorCheck();
+                    this.ddlEmpName_SelectedIndexChanged(null, null);
+                    //GetLeavType();
+                }
+                else
+                {
+                    this.mgtCard.Visible = false;
+                    this.empMgt.Visible = false;
+                    this.getMyAttData();
+
+                }
 
             }
         }
 
+        private void SelectDate()
+        {
+            string comcod = this.GetComeCode();
+            this.txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DateTime date = Convert.ToDateTime(txtgvenjoydt1.Text);
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            frmdate = startdate + frmdate.Substring(2);
+            this.txtgvenjoydt1.Text = frmdate;
+            this.txtgvenjoydt2.Text = Convert.ToDateTime(this.txtgvenjoydt1.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            //string tdate = date.ToString("dd-MMM-yyyy");
+        }
+        private void GetEmpLoyee()
+        {
+
+            string comcod = this.GetComeCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlEmpName.DataTextField = "empname";
+            this.ddlEmpName.DataValueField = "empid";
+            this.ddlEmpName.DataSource = ds1.Tables[0];
+            this.ddlEmpName.DataBind();
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -68,10 +115,26 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         private void getMyAttData()
         {
             string comcod = this.GetComeCode();
-            string frmdate = this.Request.QueryString["frmdate"].ToString();
-            string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            string empid = this.Request.QueryString["empid"].ToString();
-            string Actime = this.GetComLateAccTime();
+
+            string type = this.Request.QueryString["Type"].ToString();
+            string frmdate = "";
+            string todate = "";
+            string empid = "";
+         
+            if (type == "MGT")
+            {
+                frmdate = this.txtgvenjoydt1.Text.ToString();
+                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                empid = this.ddlEmpName.SelectedValue.ToString(); ;    
+            }
+            else
+            {
+                frmdate = this.Request.QueryString["frmdate"].ToString();
+                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                empid = this.Request.QueryString["empid"].ToString();         
+            }
+
+           string Actime = this.GetComLateAccTime();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTNIDWISE", frmdate, todate, empid, Actime, "", "", "", "", "");
 
@@ -86,6 +149,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lbldpt.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
             this.lbldesg.Text = ds1.Tables[0].Rows[0]["empdsg"].ToString();
             this.lblcard.Text = ds1.Tables[0].Rows[0]["idcardno"].ToString();
+            this.empdeptid.Value = ds1.Tables[0].Rows[0]["empdeptid"].ToString();
             this.lblIntime.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["offintime1"]).ToString("hh:mm tt");
             this.lblout.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["stdtimeout"]).ToString("hh:mm tt");
             this.lblwork.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["twrkday"]).ToString("#, ##0;(#, ##0);");
@@ -100,12 +164,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.RptMyAttenView.DataSource = ds1;
             this.RptMyAttenView.DataBind();
 
-
-
-
         }
-
-
 
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
@@ -212,13 +271,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                         }
+
+
                         else
                         {
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
 
                         }
 
-
+                        if (lateapp == "True")
+                        {
+                            ((LinkButton)e.Item.FindControl("lnkApproved")).Visible = true;
+                   
+                            ((LinkButton)e.Item.FindControl("lnkApproved")).Enabled=false;
+                        }
                         break;
                     default:
                         if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
@@ -233,14 +299,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
-
-
                         }
                         break;
                 }
-
-
-
 
             }
 
@@ -292,7 +353,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             //lblIntime
 
-
             this.lbldadteIntime.Text = lblIntime.Text;
             this.lbldadte.Text = issuedate.Text;
             this.lbldadteTime.Text = actualin.Text;
@@ -320,8 +380,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string usrid = hst["usrid"].ToString();
             string deptcode = hst["deptcode"].ToString();
             
-
-
             string reqtype = this.ddlReqType.SelectedValue.ToString();
             string reqfor = reqtype == "AB" ? "Absent Approval" : reqtype == "LP" ? "Late Present Approval" : reqtype == "LA"? "Late Approval" : "Time of Correction";
             string reqdate = this.lbldadte.Text.Trim();
@@ -334,7 +392,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string qtype = this.Request.QueryString["Type"] ?? "";
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeIN, reqtimeOUT, txtReson, usetime, usrid, postDat, "");
 
-
             if (!result)
             {
 
@@ -346,6 +403,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             else
             {
                 string trnid = this.GetattAppId(empid);
+          
+              
                 string Messaged = "Successfully applied for "+ reqfor + ", please wait for approval";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
                 if (qtype != "MGT")
@@ -353,7 +412,74 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.SendNotificaion(reqdate, reqdate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
 
                 }
+                else
+                {
+                    string roletype = "DPT";
+                    string Centrid = this.empdeptid.Value;
+                    DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "GETCEHCKAPPROVALBYID", trnid, roletype, Centrid, "", "", "", "", "", "");
+                    if (ds4.Tables[0].Rows.Count != 0)
+                    {
+                        string Messagesd = "Request Already Approved";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        return;
+                    }
+                    else
+                    {
+                        string ApprovByid = hst["usrid"].ToString();
+                        string Approvtrmid = hst["compname"].ToString();
+                        string ApprovSession = hst["session"].ToString();
+                        string approvdat = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                        string remarks = "Approved by Department Head";
+                        // this.LeaveUpdate();
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATEATTAPPREQ", trnid, ApprovByid, Approvtrmid, ApprovSession, approvdat, Centrid, roletype, remarks, reqtype, "", "", "", "", "", "");
+                        if (result == false)
+                        {
+                            string Messagesd = "Request Approved Fail";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                            return;
+                        }
+                        else
+                        {
+                            string date = this.lbldadte.Text.ToString();
+                            string idcard = this.lblcard.Text.ToString();
+                            string Messagesd = "Request Approved";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+                            string absapp = "0";
+                            if (reqtype == "AB")
+                            {
+                                absapp = "1";
+                                string frmdate = this.lbldadte.Text.ToString();
+                                string todate = this.lbldadte.Text.ToString();
+                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "", "", "", "", "", "", "", "", "", "");
+                            }
 
+                            else if (reqtype == "LP")
+                            {
+                                string lateapp = "1";
+                                string remarkss = "Late Present Approval";
+                               
+                                string frmdate =  Convert.ToDateTime(date).ToString("yyyyMMdd");
+                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, lateapp, remarkss, usrid, "", "", "", "", "", "", "", "");
+                            }
+                            else if (reqtype == "LA")
+                            {
+                                string lateapp = "1";
+                                string remarkss = "Late Approval";
+                                string frmdate = Convert.ToDateTime(date).ToString("yyyyMMdd");
+                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, lateapp, remarkss, usrid, "", "", "", "", "", "", "");
+                            }
+
+                            else if (reqtype == "TC")
+                            {
+                                absapp = "0";
+                                string remarkss = "Time Correction";
+                                string frmdate = Convert.ToDateTime(date).ToString("yyyyMMdd");
+                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, "0", remarkss, usrid, reqtype, "", "", "", "", "", "");
+                            }
+
+                        }
+                    }
+                }
                 string eventdesc2 = "Details: " + htmtableboyd;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Request for "+ reqfor, htmtableboyd, Messaged);
             }
@@ -395,7 +521,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string maildescription = "Dear Sir, Please Approve My Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                      "Department Name : " + deptname + "," + "<br>" + "Request Type : " + reqfor + ",<br>" + " Request id: " + ltrnid + ". <br>";
                 maildescription += htmtableboyd;
-                maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+                maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Request Interface</div>" + "<br/>";
 
                 
                 ///GET SMTP AND SMS API INFORMATION
@@ -413,7 +539,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 #region
 
-                string subj = "New Request ";
+                string subj = "New Request "+ reqfor; ;
                 string msgbody = maildescription;
 
 
@@ -432,7 +558,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody);
                     if (Result_email == false)
                     {
-                        string Messagesd = "Leave Applied but Notification has not been sent";
+                        string Messagesd = "Request Applied but Notification has not been sent";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     }
                 }
@@ -440,7 +566,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             catch (Exception ex)
             {
-                string Messagesd = "Leave Applied but Notification has not been sent " + ex.Message;
+                string Messagesd = "Request Applied but Notification has not been sent " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
@@ -462,6 +588,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             return (Empid);
 
+        }
+
+        protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getMyAttData();
         }
     }
 }

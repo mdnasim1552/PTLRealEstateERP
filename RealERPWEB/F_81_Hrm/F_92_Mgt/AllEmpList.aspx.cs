@@ -118,7 +118,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             //string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
             //string DesigTo = this.ddlToDesig.SelectedValue.ToString();
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS03", "RPTALLEMPLISTWITHPIC", "", "", "", "", "", "", "", "", "");
+            string empcard = this.txtEmpSearch.Text == "" ? "%%" : this.txtEmpSearch.Text.Trim()+"%";
+
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS03", "RPTALLEMPLISTWITHPIC", empcard, "", "", "", "", "", "", "", "");
             if (ds4 == null)
             {
 
@@ -188,8 +190,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
+            this.GetEmpList();
+            this.LoadSection();
             string secid = this.ddlsection.SelectedValue == "000000000000" ? "%" : this.ddlsection.SelectedValue;
+            
             ShowData(secid);
 
 
@@ -203,6 +207,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             try
             {
                 DataTable dt = (DataTable)Session["tblEmpstatus"];
+                
                 DataTable dtsec = (DataTable)ViewState["sectiondata"];
                 // DataTable dtnew = new DataTable();
                 // dtnew = dt.Clone();
@@ -210,16 +215,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 int num = (Data == "%") ? dtsec.Rows.Count : 2;
                 for (int i = 1; i < num; i++)
                 {
-                    DataView dv = dt.DefaultView;
+                    DataView dv1 = dt.DefaultView;
                     if (Data == "%")
                     {
-                        dv.RowFilter = "secid like '" + dtsec.Rows[i]["sircode"].ToString() + "'";
+                        dv1.RowFilter = "secid like '" + dtsec.Rows[i]["sircode"].ToString() + "'";
                     }
                     else
                     {
-                        dv.RowFilter = "secid like '" + Data + "'";
+                        dv1.RowFilter = "secid like '" + Data + "'";
                     }
-                    DataTable dt1 = dv.ToTable();
+                     
+
+                    DataTable dt1 = dv1.ToTable();
+
+                     
 
                     int j = 0;
                     string topview = "";
@@ -331,6 +340,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
             }
+        }
+
+        protected void imgbtnEmpSeach_Click(object sender, EventArgs e)
+        {
+            lbtnOk_Click(null, null);
         }
     }
 }

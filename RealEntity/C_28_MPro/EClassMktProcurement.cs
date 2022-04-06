@@ -93,5 +93,23 @@ namespace RealEntity.C_28_Mpro
             public RptMktPurchaseMrr() { }
 
         }
+
+        [Serializable]
+        public class RptMktMatIssue
+        {
+            public string prtype { get; set; }
+            public string prtypedesc { get; set; }
+            public string acttype { get; set; }
+            public string acttypedesc { get; set; }            
+            public decimal balqty { get; set; }
+            public decimal isuqty { get; set; }
+            public string remarks { get; set; }
+            public RptMktMatIssue()
+            {
+
+            }
+
+        }
+
     }
 }

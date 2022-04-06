@@ -3354,7 +3354,7 @@
                     <TablixCell>
                       <CellContents>
                         <Subreport Name="Subreport3">
-                          <ReportName>RptPaymentSchedule</ReportName>
+                          <ReportName>RptPaymentScheduleAssure</ReportName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -4135,11 +4135,14 @@
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=iif(Fields!grp.Value="B",True,False)</Hidden>
+                        <Hidden>=iif(Fields!grp.Value="B",True, False)</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!grp.Value="B",True, False)</Hidden>
+                      </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>

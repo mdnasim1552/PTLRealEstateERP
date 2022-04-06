@@ -762,14 +762,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group" id="divtermsp2p" runat="server" visible="false">
+                                        <div class="form-group" id="divtermsp2p" runat="server">
                                             <div class="col-md-6 pading5px">
                                                 <asp:Label ID="lblReqNarrP" runat="server" CssClass="lblTxt lblName" Font-Bold="true">Terms & Conditions </asp:Label>
                                                 <asp:TextBox ID="txtOrderNarrP" runat="server" CssClass="form-control" Rows="6" TextMode="MultiLine"></asp:TextBox>
                                             </div>
                                         </div>
 
-                                        <div class="form-group" id="divterms" runat="server" visible="true">
+                                        <div class="form-group" id="divterms" runat="server" visible="false">
                                             <div class="form-group" style="margin-top: 10px;">
                                                 <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName" Text="Type:"></asp:Label>
                                                 <div class="col-md-2 pading5px">
@@ -800,7 +800,7 @@
                                             </div>
 
                                             <div class="table-responsive">
-                                                <asp:GridView ID="gvOrderTerms" runat="server" AllowPaging="True"
+                                                <asp:GridView ID="gvOrderTerms" Visible="false" runat="server" AllowPaging="True"
                                                     AutoGenerateColumns="False" PageSize="30" ShowFooter="true"
                                                     CssClass="table table-striped table-bordered grvContentarea">
                                                     <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
