@@ -83,8 +83,7 @@
                                     </div>
                                     <div class="col-md-3 pading5px">
 
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" Font-Bold="True" CssClass=" form-control chzn-select "
-                                          >
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" Font-Bold="True" CssClass=" form-control chzn-select ">
                                         </asp:DropDownList>
                                         <cc1:ListSearchExtender ID="ddlProjectName_ListSearchExtender2" runat="server" QueryPattern="Contains"
                                             TargetControlID="ddlProjectName">
@@ -93,9 +92,9 @@
 
                                     <div class="col-md-3">
                                         <asp:LinkButton ID="lbtnOk0" runat="server" CssClass="btn btn-primary primaryBtn"
-                                        OnClick="lbtnOk_Click" TabIndex="4">Ok</asp:LinkButton>
+                                            OnClick="lbtnOk_Click" TabIndex="4">Ok</asp:LinkButton>
                                     </div>
-                                    
+
 
                                 </div>
                                 <div class="form-group">
@@ -160,9 +159,14 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="MRF No">
+                                            <HeaderTemplate>
+                                                <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="MRF No" Width="80px"></asp:Label>
+                                                <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                </asp:HyperLink>
+                                            </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvMrfNo0" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno")) %>'
-                                                    Width="75px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
