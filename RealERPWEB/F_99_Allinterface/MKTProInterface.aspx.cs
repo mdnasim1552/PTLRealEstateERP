@@ -210,7 +210,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "2":
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
-                    dv.RowFilter = ("cstatus = 'Requisition Approval' ");
+                    dv.RowFilter = ("cstatus = 'DIV Approval' ");
                     dt1 = dv.ToTable();
                     this.Data_Bind("gvReqApp", dt1);
 

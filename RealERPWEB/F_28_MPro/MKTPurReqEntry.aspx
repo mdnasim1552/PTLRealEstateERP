@@ -242,7 +242,7 @@
 
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
-                                    <HeaderStyle ForeColor="Blue" />
+                                   
                                 </asp:TemplateField>
 
 
