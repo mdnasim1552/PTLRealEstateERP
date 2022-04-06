@@ -965,31 +965,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void ShowBonus()
         {
-            //Session.Remove("tblpay");
-            //string comcod = this.GetCompCode();
-            //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            //string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
-            //string projectcode = this.ddlProjectName.SelectedValue.ToString();
-            //string section = this.ddlSection.SelectedValue.ToString();
-
-            //string dt1 = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            //string curdate = Convert.ToDateTime(DateTime.Now).ToString("dd-MMM-yyyy");
-            //mon = this.Datediffday1(Convert.ToDateTime(curdate), Convert.ToDateTime(dt1));
-            //DataSet ds3;
-
-
-
-            //string CallType = (this.rbtSalSheet.SelectedIndex == 7) ? "PAYROLL_DETAIL06" : (this.rbtSalSheet.SelectedIndex == 8) ? "PAYROLL_DETAIL07" : (this.rbtSalSheet.SelectedIndex == 6) ? "PAYROLL_DETAIL4" : (this.rbtSalSheet.SelectedIndex == 5) ? "PAYROLL_DETAIL3"
-            //    : (this.rbtSalSheet.SelectedIndex == 4) ? "PAYROLL_DETAIL2" : (this.rbtSalSheet.SelectedIndex == 2) ? "PAYROLL_DETAIL1" : (this.rbtSalSheet.SelectedIndex == 9) ? "PAYROLL_DETAIL08" : (this.rbtSalSheet.SelectedIndex == 10) ? "PAYROLL_DETAIL09" : (this.rbtSalSheet.SelectedIndex == 11) ? "PAYROLL_DETAIL10" : "PAYROLL_DETAIL";
-
-            //string ProName = ((this.rbtSalSheet.SelectedIndex == 8) || (this.rbtSalSheet.SelectedIndex == 9) || (this.rbtSalSheet.SelectedIndex == 7) || (this.rbtSalSheet.SelectedIndex == 6) || (this.rbtSalSheet.SelectedIndex == 10)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : (this.rbtSalSheet.SelectedIndex == 5) ? "dbo_hrm.SP_REPORT_PAYROLL01" : (this.rbtSalSheet.SelectedIndex == 11) ? "dbo_hrm.SP_REPORT_PAYROLL03" : "dbo_hrm.SP_REPORT_PAYROLL";
-
-            //DataTable dt = HiddenSameData(ds3.Tables[0]);
-            //Session["tblpay"] = dt;
-
-
-
 
             Session.Remove("tblpay");
             string comcod = this.GetCompCode();
@@ -998,7 +973,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
 
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            // string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
+            string compBranch = this.ddlBranch.SelectedValue.ToString();
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
             string section = this.ddlSection.SelectedValue.ToString();
             string monthid = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyyMM").ToString();
@@ -1041,7 +1016,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
 
-                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, "");
+                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, compBranch);
             }
 
 
@@ -1417,7 +1392,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Bonus":
 
                     // this.gvBonus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvBonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Duration(Month)";
+                    this.gvBonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Joining Date";
                     this.gvBonus.DataSource = dt;
                     this.gvBonus.DataBind();
                     ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
