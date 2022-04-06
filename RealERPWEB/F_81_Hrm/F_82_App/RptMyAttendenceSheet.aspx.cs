@@ -347,9 +347,24 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             else
             {
+
+                DateTime acint = DateTime.Parse(actualin.Text);
+                TimeSpan acintime = TimeSpan.Parse(acint.ToString("HH:mm"));
+                TimeSpan maxTime = TimeSpan.Parse("10:00");
+                if (acintime >= maxTime)
+                {
+                    ddlReqType.SelectedValue = "LP";
+
+                }
+                else
+                {
+                    ddlReqType.SelectedValue = "LA";
+                }
+
                 ListItem removeItem = ddlReqType.Items.FindByValue("AB");
-                ddlReqType.Items.Remove(removeItem);
+               // ddlReqType.Items.Remove(removeItem);
             }
+            
 
             //lblIntime
 
@@ -358,7 +373,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lbldadteTime.Text = actualin.Text;
             this.lbldadteOuttime.Text = lblIntime.Text;
             
-
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
         }
 
@@ -403,28 +417,32 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             else
             {
                 string trnid = this.GetattAppId(empid);
-          
-              
-                string Messaged = "Successfully applied for "+ reqfor + ", please wait for approval";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
+
+
+                string Messaged = "";
                 if (qtype != "MGT")
                 {
+                     Messaged = "Successfully applied for " + reqfor + ", please wait for approval";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
                     this.SendNotificaion(reqdate, reqdate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
 
                 }
                 else
                 {
+                     Messaged = "Your request approved Successfully " + reqfor ;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
+
                     string roletype = "DPT";
                     string Centrid = this.empdeptid.Value;
-                    DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "GETCEHCKAPPROVALBYID", trnid, roletype, Centrid, "", "", "", "", "", "");
-                    if (ds4.Tables[0].Rows.Count != 0)
-                    {
-                        string Messagesd = "Request Already Approved";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-                        return;
-                    }
-                    else
-                    {
+                    //DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "GETCEHCKAPPROVALBYID", trnid, roletype, Centrid, "", "", "", "", "", "");
+                    //if (ds4.Tables[0].Rows.Count != 0)
+                    //{
+                    //    string Messagesd = "Request Already Approved";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    //    return;
+                    //}
+                    //else
+                    //{
                         string ApprovByid = hst["usrid"].ToString();
                         string Approvtrmid = hst["compname"].ToString();
                         string ApprovSession = hst["session"].ToString();
@@ -471,14 +489,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                             else if (reqtype == "TC")
                             {
-                                absapp = "0";
+                                absapp = "1";
                                 string remarkss = "Time Correction";
                                 string frmdate = Convert.ToDateTime(date).ToString("yyyyMMdd");
-                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, "0", remarkss, usrid, reqtype, "", "", "", "", "", "");
+                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, absapp, remarkss, usrid, reqtype, "", "", "", "", "", "");
                             }
-
+                            this.getMyAttData();
                         }
-                    }
+                    //}
                 }
                 string eventdesc2 = "Details: " + htmtableboyd;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Request for "+ reqfor, htmtableboyd, Messaged);
@@ -541,9 +559,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 string subj = "New Request "+ reqfor; ;
                 string msgbody = maildescription;
-
-
-
+                
                 bool result2 = UserNotify.SendNotification(subj, msgbody, suserid);
 
                 if (compsms == "True")

@@ -1300,9 +1300,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         company = dt1.Rows[j]["company"].ToString();
                     }
                     break;
-
-
-
             }
 
 
