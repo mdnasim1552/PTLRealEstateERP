@@ -1996,14 +1996,16 @@ namespace RealERPWEB.F_17_Acc
             }
 
 
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (ds1.Tables[0].Rows.Count > 0)
-                ((HyperLink)this.gvrecandpay02.HeaderRow.FindControl("hlbtnRcvPayCdataExelrp02")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (ds1.Tables[0].Rows.Count > 0)
+            //    ((HyperLink)this.gvrecandpay02.HeaderRow.FindControl("hlbtnRcvPayCdataExelrp02")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
 
-            Session["Report1"] = gvrecandpay;
+            Session["Report1"] = gvrecandpay02;
             if (ds1.Tables[0].Rows.Count > 0)
             {
+
+
                 ((HyperLink)this.gvrecandpay02.HeaderRow.FindControl("hlbtnRcvPayCdataExelrp02")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
 
@@ -2422,16 +2424,13 @@ namespace RealERPWEB.F_17_Acc
 
         protected void btnRecDescrp02_Click(object sender, EventArgs e)
         {
-
-        }
-        protected void btnPayDescrp02_Click(object sender, EventArgs e)
-        {
+           
             int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string mACTDESC = ((DataTable)Session["recandpay"]).Rows[index]["paydesc"].ToString();
-            string mRESCODE = ((DataTable)Session["recandpay"]).Rows[index]["paycode"].ToString();
-            string mACTCODE = ((DataTable)Session["recandpay"]).Rows[index]["paycode2"].ToString();
-            string mTRNDAT1 = this.txtfrmdat.Text;
-            string mTRNDAT2 = this.txttodat.Text;
+            string mACTDESC = ((DataTable)Session["recandpay"]).Rows[index]["recpdesc"].ToString();
+            string mRESCODE = ((DataTable)Session["recandpay"]).Rows[index]["recpcode"].ToString();
+            string mACTCODE = ((DataTable)Session["recandpay"]).Rows[index]["recpcode2"].ToString();
+            string mTRNDAT1 = this.txtfromdate.Text;
+            string mTRNDAT2 = this.txttodate.Text;
             string mCOMCOD = this.GetCompCode();
 
 
@@ -2441,6 +2440,35 @@ namespace RealERPWEB.F_17_Acc
             {
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccMultiReport.aspx?rpttype=spledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE + "&rescode=" + mRESCODE + "&actdesc=" + mACTDESC + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&opnoption=" + opnoption + "', target='_blank');</script>";
             }
+
+
+
+        }
+        protected void btnPayDescrp02_Click(object sender, EventArgs e)
+        {
+
+            //string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string mACTDESC = ((DataTable)Session["recandpay"]).Rows[index]["paydesc"].ToString();
+            string mRESCODE = ((DataTable)Session["recandpay"]).Rows[index]["paycode"].ToString();
+            string mACTCODE = ((DataTable)Session["recandpay"]).Rows[index]["paycode2"].ToString();
+            string mTRNDAT1 = this.txtfromdate.Text;
+            string mTRNDAT2 = this.txttodate.Text;
+            string mCOMCOD = this.GetCompCode();
+
+
+            string opnoption = "withoutopening";
+
+            if (mRESCODE != "000000000000")
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccMultiReport.aspx?rpttype=spledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE + "&rescode=" + mRESCODE + "&actdesc=" + mACTDESC + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&opnoption=" + opnoption + "', target='_blank');</script>";
+            }
+
+            //if (mRESCODE != "000000000000")
+            //{
+            //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccMultiReport.aspx?rpttype=spledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE + "&rescode=" + mRESCODE + "&actdesc=" + mACTDESC + "&Date1=" + fromdate + "&Date2=" + todate + "&opnoption=" + opnoption + "', target='_blank');</script>";
+            //}
 
 
 
