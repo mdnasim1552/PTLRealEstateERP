@@ -148,7 +148,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
+                            <div class="form-row" hidden="hidden">
                                 <label for="input04" class="col-md-3  mb-0">Department:</label>
                                 <div class="col-md-9 ">
                                     <asp:Label ID="lbldpt" runat="server" CssClass="control-label"> Card</asp:Label>
