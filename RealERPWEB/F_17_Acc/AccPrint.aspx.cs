@@ -162,7 +162,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintManama";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3325":
                 case "2325":
                     vouprint = "VocherPrintLeisure";
@@ -192,8 +192,8 @@ namespace RealERPWEB.F_17_Acc
                 case "3364":
                     vouprint = "VocherPrintJBS";
                     break;
-                
-                case "3101":
+
+                //case "3101":
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
@@ -256,8 +256,6 @@ namespace RealERPWEB.F_17_Acc
 
             try
             {
-
-
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string comnam = hst["comnam"].ToString();
@@ -333,7 +331,7 @@ namespace RealERPWEB.F_17_Acc
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher", list, null, null);
                     Rpt1.EnableExternalImages = true;
-                }               
+                }
 
 
                 else if (Type == "VocherPrintAlliance")
@@ -400,13 +398,9 @@ namespace RealERPWEB.F_17_Acc
 
                 else if (Type == "VocherPrintLeisure")
                 {
-
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
-
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherLeisure", list, null, null);
                     Rpt1.EnableExternalImages = true;
-
-
 
                 }
 
@@ -1492,7 +1486,7 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
                         Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
                         Rpt1.SetParameters(new ReportParameter("username", "Prepared By : " + postuser));
-                        Rpt1.SetParameters(new ReportParameter("txtissuno", "Approved By : "+ aprvuser));
+                        Rpt1.SetParameters(new ReportParameter("txtissuno", "Approved By : " + aprvuser));
                     }
                     else
                     {
@@ -1521,7 +1515,7 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             //Rpt1.SetParameters(new ReportParameter("paytoorecived", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
-                            Rpt1.SetParameters(new ReportParameter("username", "Prepared By : " +postuser));
+                            Rpt1.SetParameters(new ReportParameter("username", "Prepared By : " + postuser));
                             Rpt1.SetParameters(new ReportParameter("txtissuno", "Approved By : " + aprvuser));
 
                         }

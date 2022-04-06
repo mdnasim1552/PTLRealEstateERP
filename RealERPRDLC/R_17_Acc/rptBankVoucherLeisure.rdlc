@@ -1865,7 +1865,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>MD/Chairman</Value>
+                      <Value>Chairman</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>cambria</FontFamily>
@@ -1907,7 +1907,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>COO</Value>
+                      <Value>DMD</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>cambria</FontFamily>
