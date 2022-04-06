@@ -592,29 +592,50 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+        private DataTable HiddenSameDataSp02(DataTable dt1)
+        {
+
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string vounum = dt1.Rows[0]["vounum"].ToString();
+            string actcode = dt1.Rows[0]["actcode"].ToString();
+
+            string grp = dt1.Rows[0]["grp"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["grp"].ToString() == grp)
+                {
+                    grp = dt1.Rows[j]["grp"].ToString();
+                    dt1.Rows[j]["grpdesc"] = "";
+                }
+                if ((dt1.Rows[j]["actcode"].ToString() == actcode) && (dt1.Rows[j]["vounum"].ToString() == vounum))
+                {
+                    actcode = dt1.Rows[j]["actcode"].ToString();
+                    vounum = dt1.Rows[j]["vounum"].ToString();
+                    //dt1.Rows[j]["actdesc"] = "";
+                    dt1.Rows[j]["vounum"] = "";
+                }
+                else
+                {                
+                    actcode = dt1.Rows[j]["actcode"].ToString();
+                    vounum = dt1.Rows[j]["vounum"].ToString();
+                    grp = dt1.Rows[j]["grp"].ToString();
+                }
+            }
+            return dt1;
+
+        }
+
         private DataTable BalCalculationSp(DataTable dt)
         {
             if (dt.Rows.Count == 0)
                 return dt;
             double opnam, dramt, cramt, bbalamt = 0.00;
 
-
-
-
-
-
-
-
-
-
-
             string type = this.rbtnLedger.SelectedValue.ToString();
             switch (type)
             {
-
-
-
-
                 case "DetailLedger":
                     bool result = this.Checkdaywise.Checked;
                     switch (result)
@@ -684,7 +705,6 @@ namespace RealERPWEB.F_17_Acc
                         bbalamt = bbalamt + (opnam + dramt - cramt);
                         dr1["clsam"] = bbalamt;
                     }
-
                     break;
 
 
@@ -797,7 +817,7 @@ namespace RealERPWEB.F_17_Acc
                 this.gvspleder02.DataBind();
                 return;
             }
-            DataTable dt = ds1.Tables[0];
+            DataTable dt =  HiddenSameDataSp02(ds1.Tables[0]);
             DataTable dt1 = BalCalculationSp(dt);
             Session["tblspledger"] = dt1;
             this.gvspleder02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
@@ -816,9 +836,6 @@ namespace RealERPWEB.F_17_Acc
                 string eventdesc = "Show Data Special Ledger ";
                 string eventdesc2 = "Resource Head  " + this.ddlRescode.SelectedItem.Text.ToString() + " ( From " + frmdate + "To " + todate + " )";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-
-
             }
 
         }

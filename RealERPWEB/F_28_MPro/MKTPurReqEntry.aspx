@@ -4,8 +4,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-      .chzn-container-single .chzn-single {
-             height: 28px !important;
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
             line-height: 28px !important;
         }
     </style>
@@ -95,12 +95,12 @@
                                     <asp:TextBox ID="txtCurReqNo2" runat="server" CssClass="form-control form-control-sm" ReadOnly="true">00000</asp:TextBox>
                                 </div>
                             </div>
-                            <div class="col-3 ml-1 display-none">
+                            <%--<div class="col-3 ml-1 display-none">
                                 <div class="form-group">
                                     <asp:Label ID="lblmrfno" runat="server" class="control-label  lblmargin-top9px" for="ReqNoCur">M.R.F. No.</asp:Label>
                                     <asp:TextBox ID="txtMRFNo" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="col-2">
                                 <asp:CheckBox ID="chkdupMRF" runat="server" Text="Dup.M.R.F" CssClass="btn btn-primary checkBox" Visible="false" />
                                 <asp:CheckBox ID="chkneBudget" runat="server" Text="Not Exceed Budget" CssClass="btn btn-primary checkBox" Visible="false" />
@@ -187,15 +187,33 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Justification">
+                                <asp:TemplateField HeaderText="Description">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvJustification" runat="server" BackColor="Transparent" BorderStyle="none"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "justific")) %>'  Width="120px"></asp:TextBox>
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "justific")) %>' Width="120px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click"
                                             CssClass="btn btn-success btn-sm">Total</asp:LinkButton>
                                     </FooterTemplate>
+                                </asp:TemplateField>
+
+                                 <asp:TemplateField HeaderText="Budgeted Qty">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvBgdqty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
+                                    </ItemTemplate>
+
+
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Balance Qty">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvBgdBal" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bbgdqty")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
+                                    </ItemTemplate>
+
+
+                                    <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Quantity">
@@ -212,15 +230,15 @@
                                     </FooterTemplate>
 
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
-                                    <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />                                   
+                                    <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
                                 </asp:TemplateField>
 
 
-                                 <asp:TemplateField HeaderText="Approved Qty" Visible="false">
+                                <asp:TemplateField HeaderText="Approved Qty" Visible="false">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvReqappQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
-                                    </ItemTemplate>                                 
+                                    </ItemTemplate>
 
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
@@ -253,7 +271,7 @@
                                 </asp:TemplateField>
 
 
-                                  <asp:TemplateField HeaderText="Amount" Visible="false">
+                                <asp:TemplateField HeaderText="Amount" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvareqamt" runat="server" Font-Size="11px" Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>

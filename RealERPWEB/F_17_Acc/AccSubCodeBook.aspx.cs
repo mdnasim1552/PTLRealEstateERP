@@ -39,7 +39,32 @@ namespace RealERPWEB.F_17_Acc
             if (!IsPostBack)
             {
 
-                CommonButton();
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString() ;
+
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+
+
+                //string title = (this.Request.QueryString["InputType"].ToString() == "res") ? "Resource Code"
+                // : (this.Request.QueryString["InputType"].ToString() == "Overhead") ? "Design & Consultancy"
+                // : (this.Request.QueryString["InputType"].ToString() == "Wrkschedule") ? "Work List"
+                // : (this.Request.QueryString["InputType"].ToString() == "Employee") ? "Employee Code"
+                // : (this.Request.QueryString["InputType"].ToString() == "DeptCode") ? "Department Code"
+                // : (this.Request.QueryString["InputType"].ToString() == "Supplier") ? "Supplier Code"
+                // : (this.Request.QueryString["InputType"].ToString() == "UnitCode") ? "New Unit Code" 
+                // : (this.Request.QueryString["InputType"].ToString() == "Marketing") ? "Marketing Code"
+                // : "Sub -Contractor Code";
+
+
+
+
+
+                //CommonButton();
 
             }
 
@@ -47,6 +72,18 @@ namespace RealERPWEB.F_17_Acc
         public void CommonButton()
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
+           
+
+        }
+
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             //Commented
             //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
@@ -65,16 +102,6 @@ namespace RealERPWEB.F_17_Acc
             ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
-
-        }
-
-
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            // Create an event handler for the master page's contentCallEvent event
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-
-            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 

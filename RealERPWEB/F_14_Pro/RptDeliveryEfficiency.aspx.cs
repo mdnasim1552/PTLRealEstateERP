@@ -111,6 +111,10 @@ namespace RealERPWEB.F_14_Pro
             this.gvRptDelEff.DataSource = (DataTable)Session["tbDeEffi"];
             this.gvRptDelEff.DataBind();
 
+
+            Session["Report1"] = gvRptDelEff;
+            ((HyperLink)this.gvRptDelEff.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
         }
         private DataTable HiddenSameData(DataTable dt1)
         {
@@ -124,7 +128,6 @@ namespace RealERPWEB.F_14_Pro
                     pactcode = dt1.Rows[j]["pactcode"].ToString();
                     dt1.Rows[j]["pactdesc"] = "";
                 }
-
                 else
                 {
                     pactcode = dt1.Rows[j]["pactcode"].ToString();
