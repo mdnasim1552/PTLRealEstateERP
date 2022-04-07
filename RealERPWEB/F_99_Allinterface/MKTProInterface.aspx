@@ -739,6 +739,7 @@
                                                         <asp:ListItem Value="6"></asp:ListItem>
                                                         <asp:ListItem Value="7"></asp:ListItem>
                                                         <asp:ListItem Value="8"></asp:ListItem>
+                                                        <asp:ListItem Value="9"></asp:ListItem>
 
 
 
@@ -2189,6 +2190,197 @@
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="140px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="140px" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+
+                                                        </Columns>
+                                                        <FooterStyle CssClass="grvFooterNew" />
+                                                        <EditRowStyle />
+                                                        <AlternatingRowStyle />
+                                                        <PagerStyle CssClass="gvPagination" />
+                                                        <HeaderStyle CssClass="grvHeaderNew" />
+                                                        <RowStyle CssClass="grvRows" />
+                                                    </asp:GridView>
+                                                </div>
+                                            </div>
+                                        </asp:Panel>
+
+
+                                             <asp:Panel ID="pnlComplete" Visible="false" runat="server">
+                                            <div class="row">
+                                                <div class="table-responsive col-lg-12">
+
+                                                    <asp:GridView ID="gvPurcom" runat="server" AutoGenerateColumns="False" CssClass="table-striped  table-bordered grvContentarea"
+                                                        ShowFooter="True" OnRowDataBound="gvPurcom_RowDataBound">
+                                                        <RowStyle />
+                                                        <Columns>
+
+
+                                                            <asp:TemplateField HeaderText="Sl">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvDSlNocom" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                                </ItemTemplate>
+                                                               
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="reqno#" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvreqnocom" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno"))%>' Width="15px"></asp:Label>
+                                                                </ItemTemplate>
+                                                               
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="mrrno#" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvmrrnocom" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrno"))%>' Width="15px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="orderno#" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvordernocom" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno"))%>' Width="15px"></asp:Label>
+                                                                </ItemTemplate>
+                                                               
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Project Name">
+                                                                <HeaderTemplate>
+                                                                    <asp:TextBox ID="txtSearchProNameBill" runat="server"  BorderStyle="None" SortExpression="project name" Width="180px" placeholder="Project Name" onkeyup="Search_Gridview(this,1,'gvPurBill')"></asp:TextBox><br />
+                                                                </HeaderTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvpatcdesccom" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                                                        Width="180px" Font-Bold="true"></asp:Label>
+                                                                </ItemTemplate>
+                                                              
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Supplier">
+                                                                <HeaderTemplate>
+                                                                    <asp:TextBox ID="txtSearchSupplierBill" runat="server"  BorderStyle="None" SortExpression="supplier" Width="150px" placeholder="Supplier" onkeyup="Search_Gridview(this,2,'gvPurBill')"></asp:TextBox><br />
+                                                                </HeaderTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvsupplierbillcom" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
+                                                                        Width="150px" Font-Bold="true"></asp:Label>
+                                                                </ItemTemplate>
+                                                          
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Recevied <br>  Date">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lnkgvmrrdatcom" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrdat1")) %>'
+                                                                        Width="70px"></asp:Label>
+
+
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="MRR No">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvmrrno1com" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrno1"))%>' Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+                                                              
+                                                            </asp:TemplateField>
+
+
+                                                            <asp:TemplateField HeaderText="MRR Ref">
+
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvmrrrefcom" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrref"))%>' Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+                                                                
+                                                            </asp:TemplateField>
+
+
+                                                            <asp:TemplateField HeaderText="Order No">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvorderno1com" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno1"))%>' Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+                                                                
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText=" Req. No">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvreqno1com" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1"))%>' Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+                                                               
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Mrf No.">
+                                                                <HeaderTemplate>
+                                                                    <asp:TextBox ID="txtSearchrefnumbill" SortExpression="mrfno"  BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,8,'gvPurBill')"></asp:TextBox><br />
+
+                                                                </HeaderTemplate>
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvmrfnocom" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno"))%>' Width="90px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <ItemStyle Width="90px" />
+                                                                
+                                                            </asp:TemplateField>
+
+
+
+                                                            <asp:TemplateField HeaderText="pactcode" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvpactcodecom" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
+                                                                        Width="120px"></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Resource</br> Count">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblitemcountcom" runat="server" Font-Bold="True"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemcount"))%>' Width="40px"></asp:Label>
+                                                                </ItemTemplate>
+                                                               
+                                                                <ItemStyle HorizontalAlign="Right" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Total Amount">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvmrramtcom" runat="server" Style="text-align: right"
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrramt")).ToString("#,##0;(#,##0);") %>'
+                                                                        Width="50px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblgvFmrramtcom" runat="server" Style="text-align: right"></asp:Label>
+                                                                </FooterTemplate>
+                                                                <FooterStyle HorizontalAlign="Right" Font-Bold="true" Width="50px" />
+                                                            </asp:TemplateField>
+                                                            <%--<asp:TemplateField HeaderText="Curent Status">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblcurrentSt" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                                            </asp:TemplateField>--%>
+                                                            <asp:TemplateField HeaderText="">
+                                                                <ItemTemplate>
+
+                                                                    <asp:HyperLink ID="hlnkmrrPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+
+                                                                    </asp:HyperLink>
+
+                                                                  
+                                                                </ItemTemplate>
+                                                                <ItemStyle Width="110px" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
 

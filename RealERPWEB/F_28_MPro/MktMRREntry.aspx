@@ -278,7 +278,7 @@
                             <asp:TemplateField HeaderText="This MRR">
                                 <FooterTemplate>
                                     <asp:LinkButton ID="lbtnResFooterTotal" runat="server"
-                                        OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-success btn-sm">Total :</asp:LinkButton>
+                                        OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary btn-sm form-control">Total :</asp:LinkButton>
                                 </FooterTemplate>
 
                                 <ItemTemplate>
@@ -291,7 +291,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Rate">
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lbtnUpdateMRR" runat="server" OnClientClick="return Confirmation()" OnClick="lbtnUpdateMRR_Click" CssClass="btn btn-danger btn-sm">Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnUpdateMRR" runat="server" OnClientClick="return Confirmation()" OnClick="lbtnUpdateMRR_Click" CssClass="btn btn-success btn-sm form-control">Update</asp:LinkButton>
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvMRRRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"

@@ -251,8 +251,12 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlSuplierList.Items.Clear();
                 return;
             }
+            this.lbtnPrevOrderList.Visible = false;
+            this.ddlPrevOrderList.Visible = false;
+            this.txtCurOrderNo2.ReadOnly = true;
+            this.lbtnOk.Text = "New";
 
-            else if (this.ddlPrevOrderList.Items.Count <= 0)
+            if (this.ddlPrevOrderList.Items.Count <= 0)
             {
                 this.MultiView1.ActiveViewIndex = 0;
                 this.pnlSupplier.Visible= true;
@@ -260,10 +264,7 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }
 
-            this.lbtnPrevOrderList.Visible = false;
-            this.ddlPrevOrderList.Visible = false;
-            this.txtCurOrderNo2.ReadOnly = true;
-            this.lbtnOk.Text = "New";
+            
             this.MultiView1.ActiveViewIndex = 1;
             this.Get_Pur_Order_Info();
             this.ShowProjectFiles();
