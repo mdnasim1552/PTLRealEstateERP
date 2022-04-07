@@ -181,7 +181,6 @@
                           <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
@@ -220,7 +219,6 @@ Date</Value>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
@@ -258,7 +256,6 @@ Date</Value>
                           <rd:DefaultName>Textbox14</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
@@ -315,7 +312,6 @@ Date</Value>
                                         <rd:DefaultName>Textbox20</rd:DefaultName>
                                         <Style>
                                           <Border>
-                                            <Color>LightGrey</Color>
                                             <Style>Solid</Style>
                                           </Border>
                                           <VerticalAlign>Middle</VerticalAlign>
@@ -360,7 +356,6 @@ Date</Value>
                                         <rd:DefaultName>Textbox26</rd:DefaultName>
                                         <Style>
                                           <Border>
-                                            <Color>LightGrey</Color>
                                             <Style>Solid</Style>
                                           </Border>
                                           <VerticalAlign>Middle</VerticalAlign>
@@ -397,7 +392,6 @@ Date</Value>
                                         <rd:DefaultName>Textbox27</rd:DefaultName>
                                         <Style>
                                           <Border>
-                                            <Color>LightGrey</Color>
                                             <Style>Solid</Style>
                                           </Border>
                                           <VerticalAlign>Middle</VerticalAlign>
@@ -434,7 +428,6 @@ Date</Value>
                                         <rd:DefaultName>Textbox28</rd:DefaultName>
                                         <Style>
                                           <Border>
-                                            <Color>LightGrey</Color>
                                             <Style>Solid</Style>
                                           </Border>
                                           <VerticalAlign>Middle</VerticalAlign>
@@ -501,7 +494,6 @@ Date</Value>
                           <rd:DefaultName>Textbox29</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
@@ -539,7 +531,6 @@ Date</Value>
                           <rd:DefaultName>Textbox31</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
@@ -577,7 +568,6 @@ Date</Value>
                           <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
@@ -617,7 +607,6 @@ Date</Value>
                           <rd:DefaultName>actdesc</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -650,7 +639,6 @@ Date</Value>
                           <rd:DefaultName>voudat1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -688,7 +676,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "Balance:","Bold",
                           <rd:DefaultName>vounum1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -728,7 +715,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "Balance:","Bold",
                           <rd:DefaultName>dram</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -768,7 +754,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "Balance:","Bold",
                           <rd:DefaultName>cram</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -808,7 +793,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "Balance:","Bold",
                           <rd:DefaultName>clsam</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -841,7 +825,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "Balance:","Bold",
                           <rd:DefaultName>refnum</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -874,7 +857,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "Balance:","Bold",
                           <rd:DefaultName>venar</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -907,7 +889,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "Balance:","Bold",
                           <rd:DefaultName>trnrmrk</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>

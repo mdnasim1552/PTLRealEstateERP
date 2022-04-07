@@ -2002,6 +2002,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102069", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=TotalEmplist", "Total Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102071", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=PenEmpCon", "Pending Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102072", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpCon", "Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
@@ -14854,6 +14855,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0403000012", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000013", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000014", "07. Employee Absent Count List", "F_81_Hrm/F_83_Att/RptEmpAbsCount?Type=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000015", "08. Yearly Holidays", "F_81_Hrm/F_84_Lea/YearlyHoliday?Type=", "", true, "" });
             // d. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0404000001", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });

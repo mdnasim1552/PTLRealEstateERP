@@ -384,13 +384,13 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.96973in</Width>
+                                <Width>0.94196in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.93849in</Width>
+                                <Width>1.00446in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.1205in</Width>
+                                <Width>1.0823in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -634,8 +634,7 @@
                           </Visibility>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -672,8 +671,7 @@
                           </Visibility>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -708,8 +706,7 @@
                           </Visibility>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -745,8 +742,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>Textbox15</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -784,8 +780,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>dram</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -823,8 +818,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>cram</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -861,8 +855,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>balamt</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>

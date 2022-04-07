@@ -711,7 +711,9 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double perbon { get; set; }
             public double foodal { get; set; }
             public double transded { get; set; }
-           
+            public DateTime joindate { get; set; }
+
+
             public SalaryPaySlip()
             {
 
