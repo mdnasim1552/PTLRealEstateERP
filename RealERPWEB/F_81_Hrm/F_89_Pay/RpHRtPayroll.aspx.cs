@@ -3572,7 +3572,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
             string month = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM-yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
@@ -3678,15 +3678,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             else if (comcod == "3365" )
             {
-                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
+                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM-yyyy");
                 string txtsign1 = "Md. Saiful Islam\nSenior Executive";
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
                 Rpt1.EnableExternalImages = true;
-
+                
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("compName", comnam));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtHeader2", "(Month of " + todate1 + ")"));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", todate1+ " (Month of salary disbursement)"));
                 Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +

@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2965,6 +2965,7 @@
     <Content Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\YearlyHoliday.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\MyLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLeaveStatus.aspx" />
@@ -4273,6 +4274,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx.designer.cs">
       <DependentUpon>RptWeekPresence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\YearlyHoliday.aspx.cs">
+      <DependentUpon>YearlyHoliday.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\YearlyHoliday.aspx.designer.cs">
+      <DependentUpon>YearlyHoliday.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.cs">
       <DependentUpon>MyLeave.aspx</DependentUpon>
