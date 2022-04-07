@@ -9,11 +9,18 @@
       </ConnectionProperties>
       <rd:DataSourceID>f96b890f-2f30-4fd6-868f-b9f5c5a4fd79</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="RealEntityC_81_HrmC_89_Pay1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>0379cfd9-51ed-4679-be45-e48bac2c3eee</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>RealEntityC_81_HrmC_89_Pay</DataSourceName>
+        <DataSourceName>RealEntityC_81_HrmC_89_Pay1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -180,6 +187,10 @@
         <Field Name="itax">
           <DataField>itax</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="joindate">
+          <DataField>joindate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="kpi">
           <DataField>kpi</DataField>
@@ -774,7 +785,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox21">
+                        <Textbox Name="joindate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -784,11 +795,15 @@
                                   <Value>: </Value>
                                   <Style />
                                 </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!joindate.Value</Value>
+                                  <Style />
+                                </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <rd:DefaultName>joindate</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -885,6 +900,7 @@
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
             <Top>0.24444in</Top>
             <Left>0.02083in</Left>
             <Height>1in</Height>
@@ -1199,14 +1215,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox43">
+                        <Textbox Name="acat">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>:</Value>
+                                  <Value>=Format(Fields!wd.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1216,7 +1232,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox43</rd:DefaultName>
+                          <rd:DefaultName>acat</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -4244,7 +4260,7 @@
             <Top>2.5175in</Top>
             <Left>0.02083in</Left>
             <Height>2.875in</Height>
-            <Width>7.09892in</Width>
+            <Width>7.09891in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -4481,7 +4497,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Verified by</Value>
+                    <Value>=Parameters!txtsign1.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
