@@ -576,7 +576,7 @@
 
                             <div class="col-md-7 ">
 
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="min-height: 360px">
 
                                     <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea "
                                         ShowFooter="True" Width="650px" OnRowDataBound="dgv1_RowDataBound" OnRowDeleting="dgv1_RowDeleting" OnRowEditing="dgv1_RowEditing" OnRowUpdating="dgv1_RowUpdating" OnRowCancelingEdit="dgv1_RowCancelingEdit">
@@ -622,7 +622,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="">
                                                 <HeaderTemplate>
-                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Head of Accounts" Width="230px"></asp:Label>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Head of Accounts" Width="200px"></asp:Label>
 
                                                     <asp:HyperLink ID="hlbtntbGrdExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
                                                     </asp:HyperLink>
@@ -643,7 +643,7 @@
                                                                         " &nbsp;&nbsp;&nbsp;&nbsp;"+Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")).Trim(): "")  + 
                                                                          (DataBinder.Eval(Container.DataItem, "spcldesc").ToString().Trim().Length>0 ? 
                                                                          " [" + Convert.ToString(DataBinder.Eval(Container.DataItem, "spcldesc")).Trim() + "]": "") %>'
-                                                        Width="275px" Font-Names="Verdana"></asp:HyperLink>
+                                                        Width="250px" Font-Names="Verdana"></asp:HyperLink>
 
                                                     <asp:Label ID="lblAccdesc" runat="server"
                                                         Font-Size="11px" Visible="False"
@@ -662,9 +662,8 @@
                                                                 <div class="col-md-3 pading5px asitCol3">
                                                                     <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Accounts Head</asp:Label>
                                                                     <div class="col-md-3 pading5px">
-
                                                                         <asp:DropDownList ID="ddlgrdacccode" runat="server" CssClass="form-control chzn-select"
-                                                                            TabIndex="28" Style="width: 213px;" AutoPostBack="True" OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged">
+                                                                            TabIndex="28" Style="width: 130px;" AutoPostBack="True" OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged">
                                                                         </asp:DropDownList>
                                                                     </div>
 
@@ -693,7 +692,7 @@
 
                                                                     <div class="col-md-3 pading5px">
                                                                         <asp:DropDownList ID="ddlrgrdesuorcecode" runat="server" CssClass="chzn-select"
-                                                                            TabIndex="31" Style="width: 213px;">
+                                                                            TabIndex="28" Style="width: 130px;">
                                                                         </asp:DropDownList>
 
                                                                     </div>
@@ -712,8 +711,10 @@
                                                         </div>
                                                     </fieldset>
                                                 </EditItemTemplate>
-                                                <FooterStyle HorizontalAlign="Right" />
-                                                <HeaderStyle HorizontalAlign="Left" />
+                                                <FooterStyle HorizontalAlign="Right" Width="325px" />
+                                                <HeaderStyle HorizontalAlign="Left" Width="325px" />
+                                                <ItemStyle Width="325px" />
+                                                
                                             </asp:TemplateField>
 
 
