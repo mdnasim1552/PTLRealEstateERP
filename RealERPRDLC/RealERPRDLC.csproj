@@ -144,6 +144,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+yearlyholiday.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+YearlyLeaveRecord.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+AllBankSummary.datasource" />
@@ -883,6 +884,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptHrEmpLeave03.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptMonWiseEmpLeave.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptMonWiseLeaveBR.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\rptYearlyHolidayGov.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\rptYearlyHoliday.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptYearlyLeaveRecord.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_85_Lon\rptEmpLoanInsDetails.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_85_Lon\rptEmpLoanStatus.rdlc" />
