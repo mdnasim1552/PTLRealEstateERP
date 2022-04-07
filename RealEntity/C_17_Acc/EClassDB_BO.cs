@@ -362,6 +362,7 @@ namespace RealEntity.C_17_Acc
             public double dram { get; set; }
             public double cram { get; set; }
             public double clsam { get; set; }
+            public double rate { get; set; } 
             public string trnrmrk { get; set; }
             public string refnum { get; set; }
             public string chequedat { get; set; }

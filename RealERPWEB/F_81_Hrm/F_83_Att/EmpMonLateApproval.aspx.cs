@@ -1174,7 +1174,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                     string tdays = (leaveadj > 1 ? "1" : leaveadj.ToString("#,##0.00;(#,##0.00);"));
                                     bool ishalfday = (leaveadj <= 0.5 ? true : false);
                                     frmdate = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
-                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51002", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), usrid, "");
+                                    string dayid = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("yyyyMMdd");
+                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51002", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), dayid, usrid);
                                     dtel.Rows.RemoveAt(j);
                                     leaveadj = leaveadj - 1;
                                     if (leaveadj <= 0)
@@ -1193,7 +1194,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                     string tdays = (leaveadjel > 1 ? "1" : leaveadjel.ToString("#,##0.00;(#,##0.00);"));
                                     bool ishalfday = (leaveadjel <= 0.5 ? true : false);
                                     frmdate = Convert.ToDateTime(dtel.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
-                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51001", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), usrid, "");
+                                    string dayid = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("yyyyMMdd");
+
+                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51001", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), dayid, usrid);
                                     dtel.Rows.RemoveAt(j);
                                     leaveadjel = leaveadjel - 1;
                                     if (leaveadjel <= 0)
@@ -1374,7 +1377,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
                         double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
                         double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
-                        double dedday = 0.00;// Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
+                        double dedday =   Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
 
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
                         double redelay = delayday - Aprvday;

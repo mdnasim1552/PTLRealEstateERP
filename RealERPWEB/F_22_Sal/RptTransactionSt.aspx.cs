@@ -849,7 +849,7 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             string actual = (this.rbtnList1.SelectedIndex == 2) ? "Actualdate"
-                     :(this.rbtnList1.SelectedIndex == 3)?"Reconcliedate" : "";
+                     :(this.rbtnList1.SelectedIndex == 3)?"Reconcliedate" : (this.rbtnList1.SelectedIndex == 4) ? "EntryDate" : "";
 
             string coltype = this.companytype();
 
@@ -860,7 +860,7 @@ namespace RealERPWEB.F_22_Sal
                 this.grvTrnDatWise.DataBind();
                 return;
             }
-            Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : CollectCurDate(HiddenSameData(ds1.Tables[0]));
+            Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 4) ? HiddenSameData(ds1.Tables[0]): CollectCurDate(HiddenSameData(ds1.Tables[0]));
 
             this.Data_Bind();
 
