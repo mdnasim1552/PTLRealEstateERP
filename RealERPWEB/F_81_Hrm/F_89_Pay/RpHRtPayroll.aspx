@@ -1183,7 +1183,7 @@
                                         <asp:TemplateField HeaderText="Duration(Month)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvDuration" runat="server"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
@@ -1195,7 +1195,7 @@
                                                 <asp:TextBox ID="lgPerBonus" runat="server" BackColor="Transparent"
                                                     BorderColor="#660033" BorderStyle="Solid" BorderWidth="1px"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perbon")).ToString("#,##0.00;(#,##0.00);") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perbon")).ToString("#,##0.000000;(#,##0.000000);") %>'
                                                     Width="60px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
