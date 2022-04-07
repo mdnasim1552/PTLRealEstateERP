@@ -555,17 +555,21 @@ namespace RealERPWEB
                 string masterurl = (ds5.Tables[4].Rows.Count == 0) ? "" : ds5.Tables[4].Rows[0]["url"].ToString();
                 String hrmodule = dsmodule.Tables[1].Rows.Count==0 ? "" : dsmodule.Tables[1].Rows[0]["moduleid"].ToString();
 
-
+                string dptcod = ds5.Tables[0].Rows[0]["deptcode"].ToString().Substring(0, 4);
 
                 if (userrole == "2")
                 {
                     Url1 = "AllGraph";
                 }
+                
                 else if(userrole == "3" && hrmodule=="81")
                 {
+                    //use nahid for crm users 
+                    string crmlink = "F_99_Allinterface/CRMDashboard";
                     Url1 = "UserProfile";
-
+                    Url1 = dptcod == "9402"? crmlink : Url1;
                 }
+               
                 else if (userrole == "4" && hrmodule == "81")
                 {
                     Url1 = "DashboardHRM_NEW";
@@ -575,6 +579,7 @@ namespace RealERPWEB
                 {
                     Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
                 }
+               
 
                 else
                 {
