@@ -140,19 +140,22 @@
                   <Width>0.29977in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.72686in</Width>
+                  <Width>0.71644in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.71991in</Width>
+                  <Width>0.67824in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.47811in</Width>
+                  <Width>1.44686in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.59963in</Width>
+                  <Width>1.52671in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.64352in</Width>
+                  <Width>0.5706in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.51042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.71866in</Width>
@@ -389,6 +392,43 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.3pt</Width>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Qty</Value>
+                                  <Style>
+                                    <FontFamily>Century Gothic</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -725,6 +765,41 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="trnqty">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!trnqty.Value,"#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>Century Gothic</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>trnqty</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.3pt</Width>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="dram">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -846,6 +921,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -863,7 +939,7 @@
             <Top>1.06528in</Top>
             <Left>0.01294in</Left>
             <Height>0.625in</Height>
-            <Width>7.71878in</Width>
+            <Width>8.00003in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -985,7 +1061,6 @@
                     <Value>=Parameters!txtDate.Value</Value>
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -997,8 +1072,8 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.70487in</Top>
-            <Left>4.61786in</Left>
-            <Height>0.19375in</Height>
+            <Left>4.86786in</Left>
+            <Height>0.21458in</Height>
             <Width>3.12423in</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -1036,7 +1111,6 @@
                     <Value>=Parameters!suppName.Value</Value>
                     <Style>
                       <FontFamily>Century Gothic</FontFamily>
-                      <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1047,8 +1121,8 @@
             <rd:DefaultName>suppName</rd:DefaultName>
             <Top>0.70487in</Top>
             <Left>0.03377in</Left>
-            <Height>0.19375in</Height>
-            <Width>4.58409in</Width>
+            <Height>0.21458in</Height>
+            <Width>4.8202in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1078,7 +1152,7 @@
             <Top>1.78646in</Top>
             <Left>0.00252in</Left>
             <Height>0.72917in</Height>
-            <Width>7.72916in</Width>
+            <Width>8.00001in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1211,7 +1285,7 @@
         <Height>2.57292in</Height>
         <Style />
       </Body>
-      <Width>7.74211in</Width>
+      <Width>8.01297in</Width>
       <Page>
         <PageFooter>
           <Height>0.2118in</Height>
@@ -1275,7 +1349,7 @@
               <Top>0.00139in</Top>
               <Left>6.1171in</Left>
               <Height>0.17708in</Height>
-              <Width>1.61458in</Width>
+              <Width>1.88543in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1296,8 +1370,8 @@
         </PageFooter>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.15in</RightMargin>
+        <LeftMargin>0.1in</LeftMargin>
+        <RightMargin>0.1in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>
         <Style />

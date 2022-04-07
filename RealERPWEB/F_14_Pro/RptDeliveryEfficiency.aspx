@@ -72,6 +72,11 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem>600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
+                                            <asp:ListItem>1200</asp:ListItem>
+                                            <asp:ListItem>1500</asp:ListItem>
+                                            <asp:ListItem>3000</asp:ListItem>
                                         </asp:DropDownList>
 
                                         <asp:LinkButton ID="lnkbtnOk" runat="server"
@@ -90,7 +95,7 @@
                             AutoGenerateColumns="False"
                             ShowFooter="True"
                             OnPageIndexChanging="gvRptDelEff_PageIndexChanging">
-                            <RowStyle  />
+                            <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
                                     <ItemTemplate>
@@ -128,6 +133,12 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Materials Description">
+                                    <HeaderTemplate>
+                                        <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Materials Description" Width="160px"></asp:Label>
+                                        <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                        </asp:HyperLink>
+                                    </HeaderTemplate>
+
                                     <ItemTemplate>
                                         <asp:Label ID="lgvmatDesc" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
