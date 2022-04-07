@@ -163,6 +163,16 @@ namespace RealERPWEB
                 case "3347":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
+
+                case "3343":
+                    this.HypLinkApplyLvCommon.Visible =false;
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = false;
+                    this.hypTimeOfleave.Visible = false;
+                    this.hypOnlineAttendance.Visible = false;
+                    break;
+                    
                 default:
                     this.lnkFormLink.Text = "Forum";
                     this.lnkFormLink.Visible = true;
