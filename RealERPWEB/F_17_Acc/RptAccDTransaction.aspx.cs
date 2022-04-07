@@ -2436,12 +2436,18 @@ namespace RealERPWEB.F_17_Acc
 
             string opnoption = "withoutopening";
 
+            //if(ASTUtility.Left(mACTCODE,2)=="19" || ASTUtility.Left(mACTCODE, 2) == "29")
+            //{
+            //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccMultiReport.aspx?rpttype=ledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE  + "&actdesc=" + mACTDESC + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&opnoption=" + opnoption + "', target='_blank');</script>";
+
+            //}
+
             if (mRESCODE != "000000000000")
             {
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccMultiReport.aspx?rpttype=spledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE + "&rescode=" + mRESCODE + "&actdesc=" + mACTDESC + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&opnoption=" + opnoption + "', target='_blank');</script>";
             }
 
-
+            
 
         }
         protected void btnPayDescrp02_Click(object sender, EventArgs e)
