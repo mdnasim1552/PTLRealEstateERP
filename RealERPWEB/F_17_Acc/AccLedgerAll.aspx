@@ -302,24 +302,7 @@
 
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Qty">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvtrnqty" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="70px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Right" />
-                                            <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Rate">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvtrnrate" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrate")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Right" />
-                                            <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>                
 
                                         <asp:TemplateField HeaderText="Dr. Amount">
                                             <ItemTemplate>
@@ -808,10 +791,24 @@
                                           <asp:TemplateField HeaderText="Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvtrnqty" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFgvtrnqty" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    Style="text-align: right" Width="60px"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvrate" runat="server" CssClass="GridLebel"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFgvrate" runat="server" Font-Bold="True" Font-Size="12px"
                                                     Style="text-align: right" Width="70px"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
@@ -822,7 +819,7 @@
                                         <asp:TemplateField HeaderText=" Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvCrAmountsp02" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cram")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cram")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFCrAmtsp02" runat="server" Font-Bold="True" Font-Size="12px"
@@ -837,7 +834,7 @@
                                         <asp:TemplateField HeaderText=" Paid Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvDrAmountsp02" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFDrAmtsp02" runat="server" Font-Bold="True" Font-Size="12px"
@@ -852,7 +849,7 @@
                                         <asp:TemplateField HeaderText="Due Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvClAmountsp02" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "clsam")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "clsam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFClsAmtsp02" runat="server" Font-Bold="True" Font-Size="12px"
