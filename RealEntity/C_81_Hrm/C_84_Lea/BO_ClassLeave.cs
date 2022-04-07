@@ -412,6 +412,18 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string sectionname { get; set; }
             public YearlyLeaveRecord() { }
         }
+        [Serializable]
+        public class yearlyholiday
+        {
+            //comcod,wkdate,wkdate2,reason,dstatus, diff
+           public  string comcod { get; set; }
+            public DateTime wkdate { get; set; }
+            public DateTime wkdate2 { get; set; }
+            public string reason { get; set; }
+            public string dstatus { get; set; }
+            public int diff { get; set; }
+            public yearlyholiday() { }
+        }
 
 
 
