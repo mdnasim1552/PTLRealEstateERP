@@ -1434,7 +1434,9 @@ d) 6 Days Late = 3 CL & half day leave
 
         });
 
-
+        function PrintRpt(printype) {
+            window.open('../../RDLCViewerWin.aspx?PrintOpt=' + printype + '', '_blank');
+        }
 
     </script>
 </asp:Content>
