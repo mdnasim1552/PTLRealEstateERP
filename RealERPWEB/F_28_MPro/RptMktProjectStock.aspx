@@ -120,14 +120,14 @@
 
                             <asp:TemplateField HeaderText="Resource Description">
                                 <HeaderTemplate>
-                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Resource Description" Width="100px"></asp:Label>
+                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Resource Description" Width="200px"></asp:Label>
                                     <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i>
                                     </asp:HyperLink>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvDescription" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rptdesc1")) %>'
-                                        Width="180px"></asp:Label>
+                                        Width="300px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -146,7 +146,7 @@
                             <asp:TemplateField HeaderText="Budgeted Qty">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvbudgetqty" runat="server"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
@@ -159,7 +159,7 @@
                             <asp:TemplateField HeaderText="Opening Qty">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvOp" runat="server"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
@@ -172,7 +172,7 @@
                             <asp:TemplateField HeaderText="Received Qty">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvRecamt" runat="server"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rcvqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rcvqty")).ToString("#,##0.00;(#,##0.00); ")%>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
@@ -185,7 +185,7 @@
                             <asp:TemplateField HeaderText="Issue Qty">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvIsuamt" runat="server"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.00;(#,##0.00); ")%>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
@@ -198,7 +198,7 @@
                             <asp:TemplateField HeaderText="Stock">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvAcSamt" runat="server"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acstock")).ToString("#,##0.0000;(#,##0.0000); ")%>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acstock")).ToString("#,##0.00;(#,##0.00); ")%>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
