@@ -71,7 +71,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_84_Lea.EmpLeavApp": Rpt1a = SetEmpLeavApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_84_Lea.RptHrEmpLeave02": Rpt1a = SetRptHrEmpLeave02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_84_Lea.RptHrEmpLeave03": Rpt1a = SetRptHrEmpLeave03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                    
+                case "R_81_Hrm.R_84_Lea.rptYearlyHoliday": Rpt1a = SetrptYearlyHoliday(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_84_Lea.rptYearlyHolidayGov": Rpt1a = SetrptYearlyHolidayGov(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_90_PF.RptMonthWisePFAlliance": Rpt1a = SetRptPFAlliance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_90_PF.RptProvidedFund": Rpt1a = SetRptProvidedFund(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_93_AnnInc.RptIncrementStatus": Rpt1a = SetRptIncrementStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -168,6 +169,18 @@ namespace RealERPRDLC
         private static LocalReport SetRptHrEmpLeave03(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpLeaveAPP>)rptDataSet));
+            return rpt1a;
+        }
+
+        private static LocalReport SetrptYearlyHoliday(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.yearlyholiday>)rptDataSet));
+            return rpt1a;
+        }
+
+        private static LocalReport SetrptYearlyHolidayGov(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.yearlyholiday>)rptDataSet));
             return rpt1a;
         }
         private static LocalReport SetRptDailyAttendenceCHL(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)

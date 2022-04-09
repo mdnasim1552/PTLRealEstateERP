@@ -810,18 +810,16 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetTro": Rpt1a = SetRptBonusSheetTro(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetTerranova": Rpt1a = SetRptBonusSheetTera(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetGreenWood": Rpt1a = SetRptBonusSheetGreenWood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
-
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebCash": Rpt1a = SetRptBonusSheetPebCash(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebBank": Rpt1a = SetRptBonusSheetPebBank(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebFactory": Rpt1a = SetRptBonusSheetPebFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebFactoryCash": Rpt1a = SetRptBonusSheetPebFactoryCash(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebFactoryBank": Rpt1a = SetRptBonusSheetPebFactoryBank(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
                 case "R_81_Hrm.R_89_Pay.RptEmpBonusAssure": Rpt1a = SetRptEmpBonusAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
-
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetAcme": Rpt1a = SetRptBonusSheetAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptBonusSheetBTI": Rpt1a = SetRptBonusSheetBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+
                 case "R_81_Hrm.R_89_Pay.RptSalaryGrndT": Rpt1a = SetRptSalaryGrndT(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryGrndTotalTropical": Rpt1a = SetRptSalaryGrndTotalTropical(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -4896,7 +4894,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-
+        private static LocalReport SetRptBonusSheetBTI(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptBonusSheetPebCash(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheetPEB>)RptDataSet));

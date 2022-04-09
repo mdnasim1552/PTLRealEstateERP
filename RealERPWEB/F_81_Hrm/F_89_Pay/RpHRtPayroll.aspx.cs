@@ -502,6 +502,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 
                 case "3365"://BTI
                     this.rbtlBonSheet.SelectedIndex=13;
+                    this.txtafterdays.Text="90";
                     break;
 
 
@@ -1160,13 +1161,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void LoadGrid()
         {
 
+            string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tblpay"];
             string type = this.Request.QueryString["Type"].ToString().Trim();
             switch (type)
             {
                 case "Salary":
                 case "SalResign":
-                    string comcod = this.GetCompCode();
                     if (comcod == "3365")
                     {
                         this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
@@ -1264,8 +1265,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "Bonus":
 
-                    // this.gvBonus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvBonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Joining Date";
+                    if (comcod == "3365")//BTI
+                    {
+                        this.gvBonus.Columns[9].HeaderText = "Duration(Year)";
+                    }
                     this.gvBonus.DataSource = dt;
                     this.gvBonus.DataBind();
                     ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
@@ -1670,7 +1674,41 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
+        private void PrintBonusBTI()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = this.ddlCompany.SelectedItem.Text;
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
 
+            DataTable dt3 = (DataTable)Session["tblpay"];
+            var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
+            double tAmt = list.Select(p => p.bonamt).Sum();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTI", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", bonusType +" BONUS/ "+ frmdate));
+            Rpt1.SetParameters(new ReportParameter("bonusType", "BONUS " +(this.chkBonustype.Checked ? "AZHA" : "FITR")+ "("+frmdate+")"));
+            Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
+            Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
 
         private void PrintBonusSheet()
         {
@@ -3191,15 +3229,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetTerranova();
                         break;
 
-
                     case "3355": //Greenwood
-
                         this.PrintBonusSheetGreenWood();
                         break;
+
                     case "3101":
                     case "3347": //PEBSteel
-
                         this.PrintBonusSheetPEB();
+                        break;
+
+                    case "3365"://BTI
+                        this.PrintBonusBTI();
                         break;
 
                     default:
@@ -3572,7 +3612,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
             string month = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM-yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
@@ -3678,15 +3718,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             else if (comcod == "3365" )
             {
-                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
+                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM-yyyy");
                 string txtsign1 = "Md. Saiful Islam\nSenior Executive";
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
                 Rpt1.EnableExternalImages = true;
-
+                
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("compName", comnam));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtHeader2", "(Month of " + todate1 + ")"));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", todate1+ " (Month of salary disbursement)"));
                 Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
