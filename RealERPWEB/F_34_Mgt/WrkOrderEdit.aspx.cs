@@ -634,71 +634,301 @@ namespace RealERPWEB.F_34_Mgt
 
 
             DataTable tbl1 = (DataTable)Session["tblpurchase"];
+            DataTable tbl2 = ((DataTable)Session["tblpurchase"]).Copy();
 
             double reqty = 0;
+            double reqty2 = 0;
+            double reqty3 = 0;
             DataRow[] dr1;
+            DataRow[] dr2;
+            DataRow[] dr3;
 
-            switch (grp)
+            bool ispscf = this.isSpecification();
+            if (ispscf)
             {
-                case "A":
-                    dr1 = tbl1.Select("(grp ='B' or grp ='C' or grp ='D' or grp ='E') and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
-                    if (dr1.Length != 0)
-                    {
-                        reqty = Convert.ToDouble(dr1[0]["qty"]);
-                        if (qty < reqty)
+                switch (grp)
+                {
+                    case "A":
+                        dr1 = tbl1.Select("(grp ='B' or grp ='C' or grp ='D' or grp ='E') and rsircode='" + rsircode +"' ");
+                        if (dr1.Length != 0)
                         {
-                            this.RiseError("Requisition Qty Should Large than Further Qty ");
+                            reqty = Convert.ToDouble(dr1[0]["qty"]);
+                            if (qty < reqty)
+                            {
+                                this.RiseError("Requisition Qty Should Large than Further Qty ");
+                                ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                                return;
+                            }
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        break;
+
+                    case "B":
+
+                        dr1 = tbl1.Select("grp ='A' and rsircode='" + rsircode +"' ");
+                        reqty = Convert.ToDouble(dr1[0]["qty"]);
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Order Process Qty Cann't Large Req Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
                             return;
                         }
-                    }
+                        dr3 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr3)
+                        {
+                            reqty3 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 < reqty3)
+                        {
+                            this.RiseError("Order Process Qty Should be Larger then Purchase Order Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
 
-                    tbl1.Rows[index]["qty"] = qty;
-                    break;
+                    case "C":
+                        dr1 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr1)
+                        {
+                            reqty += Convert.ToDouble(dr["qty"]);
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Purhcase Order Qty Cann't Large OrderProcess Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        dr3 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr3)
+                        {
+                            reqty3 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 < reqty3)
+                        {
+                            this.RiseError("Purchase Order Qty Should be Larger then Receive Qty");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
 
-                case "B":
+                    case "D":
+                        dr1 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr1)
+                        {
+                            reqty += Convert.ToDouble(dr["qty"]);
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Receive Qty Cann't Large Order Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        dr3 = tbl1.Select("grp ='E' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr3)
+                        {
+                            reqty3 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 < reqty3)
+                        {
+                            this.RiseError("Receive Qty Should be Larger then Bill Qty");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
 
-                    dr1 = tbl1.Select("grp ='A' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
-                    reqty = Convert.ToDouble(dr1[0]["qty"]);
-                    if (qty > reqty)
-                    {
-                        this.RiseError("Order Process Qty Cann't Large Req Qty ");
-                        return;
-                    }
-                    break;
+                    case "E":
+                        dr1 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' ");
+                        foreach (DataRow dr in dr1)
+                        {
+                            reqty += Convert.ToDouble(dr["qty"]);
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='E' and rsircode='" + rsircode + "'");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Bill Qty Cann't Large Received Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
 
-                case "C":
-                    dr1 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
-                    reqty = Convert.ToDouble(dr1[0]["qty"]);
-                    if (qty > reqty)
-                    {
-                        this.RiseError("Purhcase Order Qty Cann't Large OrderProcess Qty ");
-                        return;
-                    }
-                    break;
+                    default:
+                        break;
+                }
 
-                case "D":
-                    dr1 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
-                    reqty = Convert.ToDouble(dr1[0]["qty"]);
-                    if (qty > reqty)
-                    {
-                        this.RiseError("Receive Qty Cann't Large Order Qty ");
-                        return;
-                    }
-                    break;
-
-                case "E":
-                    dr1 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
-                    reqty = Convert.ToDouble(dr1[0]["qty"]);
-                    if (qty > reqty)
-                    {
-                        this.RiseError("BIll Qty Cann't Large Received Qty ");
-                        return;
-                    }
-                    break;
-
-                default:
-                    break;
             }
+            else
+            {
+                switch (grp)
+                {
+                    case "A":
+                        dr1 = tbl1.Select("(grp ='B' or grp ='C' or grp ='D' or grp ='E') and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        if (dr1.Length != 0)
+                        {
+                            reqty = Convert.ToDouble(dr1[0]["qty"]);
+                            if (qty < reqty)
+                            {
+                                this.RiseError("Requisition Qty Should Large than Further Qty ");
+                                ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                                return;
+                            }
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        break;
+
+                    case "B":
+
+                        dr1 = tbl1.Select("grp ='A' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        reqty = Convert.ToDouble(dr1[0]["qty"]);
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Order Process Qty Cann't Large Req Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        dr3 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr3)
+                        {
+                            reqty3 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 < reqty3)
+                        {
+                            this.RiseError("Order Process Qty Should be Larger then Purchase Order Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
+
+                    case "C":
+                        dr1 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr1)
+                        {
+                            reqty += Convert.ToDouble(dr["qty"]);
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Purhcase Order Qty Cann't Large OrderProcess Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        dr3 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr3)
+                        {
+                            reqty3 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 < reqty3)
+                        {
+                            this.RiseError("Purchase Order Qty Should be Larger then Receive Qty");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
+
+                    case "D":
+                        dr1 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr1)
+                        {
+                            reqty += Convert.ToDouble(dr["qty"]);
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Receive Qty Cann't Large Order Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        dr3 = tbl1.Select("grp ='E' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr3)
+                        {
+                            reqty3 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 < reqty3)
+                        {
+                            this.RiseError("Receive Qty Should be Larger then Bill Qty");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
+
+                    case "E":
+                        dr1 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr1)
+                        {
+                            reqty += Convert.ToDouble(dr["qty"]);
+                        }
+                        tbl1.Rows[index]["qty"] = qty;
+                        dr2 = tbl1.Select("grp ='E' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                        foreach (DataRow dr in dr2)
+                        {
+                            reqty2 += Convert.ToDouble(dr["qty"]);
+                        }
+                        if (reqty2 > reqty)
+                        {
+                            this.RiseError("Bill Qty Cann't Large Received Qty ");
+                            tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
+                            ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text = Convert.ToDouble(tbl2.Rows[index]["qty"]).ToString("#,##0.00;(#,##0.00); ");
+                            return;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+
 
             tbl1.Rows[index]["qty"] = qty;
             tbl1.Rows[index]["srate"] = srate;
@@ -710,6 +940,25 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
+        private bool isSpecification()
+        {
+            bool isspcf = false;
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "1108":
+                case "1109":
+                case "3315":
+                case "3316":
+                    isspcf = true;
+                    break;
+                default:
+                    isspcf = false;
+                    break;
+            }
+            return isspcf;
+
+        }
 
         private void RiseError(string msg)
         {
