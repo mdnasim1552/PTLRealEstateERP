@@ -303,6 +303,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventBirthday;
 
         /// <summary>
+        /// gvholidayprint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton gvholidayprint;
+
+        /// <summary>
         /// GvHoliday control.
         /// </summary>
         /// <remarks>
@@ -310,6 +319,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GvHoliday;
+
+        /// <summary>
+        /// spholidayprint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton spholidayprint;
 
         /// <summary>
         /// gvSpHolidyas control.
