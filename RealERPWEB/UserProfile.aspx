@@ -871,6 +871,9 @@ contain the p elements to be scrolled  */
                                     <div class="card-header border-0">
                                         <div class="d-flex align-items-center mb-0">
                                             <h3 class="card-title mr-auto mb-0">Goverment Holidys</h3>
+                                           <asp:LinkButton ID="gvholidayprint" runat="server" OnClick="gvholidayprint_Click"
+                                                CssClass="btn btn-primary"> <i class="fa fa-print"></i></asp:LinkButton>
+                                         
                                         </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
@@ -950,7 +953,9 @@ contain the p elements to be scrolled  */
                                     <div class="card-header border-0">
                                         <div class="d-flex align-items-center mb-0">
                                             <h3 class="card-title mr-auto mb-0">Special Holidys</h3>
-                                        </div>
+                                               <asp:LinkButton ID="spholidayprint" runat="server" OnClick="spholidayprint_Click" CssClass="btn btn-primary"> <i class="fa fa-print"></i></asp:LinkButton>
+                    
+                                            </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
                                         <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table-striped table-hover table-bordered"
