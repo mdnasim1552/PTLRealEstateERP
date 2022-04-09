@@ -138,17 +138,21 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string chkbal = this.Chkbalance.Checked ? "Length" : "";
             string loantype = this.ddlLoantype.SelectedValue.ToString()==""?"%%": this.ddlLoantype.SelectedValue.ToString();
             string calltype = "";
+            string procedure = "";
+
             switch (comcod)
             {
                 case "3365":
                 case "3101":
                     calltype = "EMPLOANSTATUSBTI";
+                    procedure = "[dbo_hrm].[SP_REPORT_HR_INTERFACE]";
                     break;
                  default:
                     calltype = "EMPLOANSTATUS";
+                    procedure = "dbo_hrm.SP_REPORT_PAYROLL";
                     break;
             }
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", calltype, date, deptname, comnam, chkbal, loantype, "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, procedure, calltype, date, deptname, comnam, chkbal, loantype, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpLoanStatus.DataSource = null;
