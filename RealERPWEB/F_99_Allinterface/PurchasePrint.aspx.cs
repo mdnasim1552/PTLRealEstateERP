@@ -4652,7 +4652,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string inword = "In Word: " + ASTUtility.Trans(amtmat + amtcar - amtdis, 2);
 
 
-                string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "";
+                string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "", sign8 = "";
 
                 /// signature       // appnam - PURAPROVB and ordnam - purorder     
                 switch (comcod)
@@ -4662,11 +4662,12 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3101":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
-                        //sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
-                        //sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["csprep"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["csprepdat"].ToString();
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
                         sign7 = _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
+                        sign8 = _ReportDataSet.Tables[3].Rows[0]["csapp"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["csappdat"].ToString();
                         break;
 
                     default:
@@ -4781,6 +4782,7 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("sign5", sign5));
                 Rpt1.SetParameters(new ReportParameter("sign6", sign6));
                 Rpt1.SetParameters(new ReportParameter("sign7", sign7));
+                Rpt1.SetParameters(new ReportParameter("sign8", sign8));
 
                 // Terms & Condition send to report//
                 Rpt1.SetParameters(new ReportParameter("terms1", terms1));
