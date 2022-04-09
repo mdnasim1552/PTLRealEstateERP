@@ -11,6 +11,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using RealERPLIB;
 using CrystalDecisions.CrystalReports.Engine;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 
 namespace RealERPWEB
 {
@@ -721,6 +723,97 @@ namespace RealERPWEB
 
             string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
             Response.Redirect("~/F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate);        
+        }
+
+
+
+
+
+        protected void gvholidayprint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dddd");
+          //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") ?? "";
+            //string todate = this.txttodate.Text.ToString() ?? "";
+            //string type = this.ddlholidayType.SelectedValue.ToString();
+            string curdate = System.DateTime.Now.ToString("yyyy");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dtx = (DataTable)Session["tblHolidays"];
+            DataView dv1 = dtx.DefaultView;
+            dv1.RowFilter = ("dstatus ='H'");
+            DataTable dt = dv1.ToTable();
+
+            if (dt == null)
+            {
+                return;
+            }
+ 
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.yearlyholiday>();
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptYearlyHolidayGov", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("rptTitle", curdate));
+
+
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", "test"));
+
+            Session["Report1"] = Rpt1;
+
+            string printype =  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
+
+
+        }
+
+        protected void spholidayprint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dddd");
+         //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") ?? "";
+            //string todate = this.txttodate.Text.ToString() ?? "";
+            //string type = this.ddlholidayType.SelectedValue.ToString();
+            string curdate = System.DateTime.Now.ToString("yyyy");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dtx = (DataTable)Session["tblHolidays"];
+            DataView dv2 = dtx.DefaultView;
+            dv2.RowFilter = ("dstatus ='ST'");
+            DataTable dt2 = dv2.ToTable();
+
+            if (dt2 == null)
+            {
+                return;
+            }
+
+            var list = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.yearlyholiday>();
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptYearlyHoliday", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("rptTitle", curdate));
+
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo","test"));
+
+            Session["Report1"] = Rpt1;
+            string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
         }
     }
 }
