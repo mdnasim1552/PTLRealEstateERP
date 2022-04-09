@@ -29,22 +29,25 @@
             var gvAllPayroll = $('#<%=this.gvEmpLoanStatus.ClientID %>');
             gvAllPayroll.Scrollable();
            
-
         };
 
-        function Search_Gridview(strKey) {
+        function Search_Gridview(strKey)
+        {
 
             var strData = strKey.value.toLowerCase().split(" ");
             var tblData = document.getElementById("<%=gvEmpLoanStatus.ClientID %>");
             var rowData;
-            for (var i = 1; i < tblData.rows.length; i++) {
+            for (var i = 1; i < tblData.rows.length; i++)
+            {
 
                 rowData = tblData.rows[i].innerHTML;
                 var styleDisplay = 'none';
-                for (var j = 0; j < strData.length; j++) {
+                for (var j = 0; j < strData.length; j++)
+                {
                     if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
                         styleDisplay = '';
-                    else {
+                    else
+                    {
                         styleDisplay = 'none';
                         break;
                     }

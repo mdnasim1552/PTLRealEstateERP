@@ -39,7 +39,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ((Label)this.Master.FindControl("lblTitle")).Text ="Employee Attendance Information";
                 this.SelectDate();
                 this.hideOptions();
-            }
+                string comcod = this.GetComCode();
+                if (comcod == "3365")
+                {
+                    this.rbtnAttStatus.SelectedIndex = 1;
+                }
+                else
+                {
+                    this.rbtnAttStatus.SelectedIndex = 0;
+                }
+
+
+                }
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -171,6 +182,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
+                    this.rbtnAttStatus.Visible = true;
+                    
 
                     this.lblSection.Visible = true;
                     this.PnlSection.Visible = true;
@@ -354,11 +367,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.txtfromdate.Text = (this.rbtnAtten.SelectedIndex == 1 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtfromdate.Text.Trim());
             this.lbltodate.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 3) || (this.rbtnAtten.SelectedIndex == 4 || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6));
             this.txttodate.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 3) || (this.rbtnAtten.SelectedIndex == 4) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
-
+            this.rbtnAttStatus.Visible = (this.rbtnAtten.SelectedIndex == 3);
             this.PanelVisivility();
 
         }
-        protected void lnkbtnShow_Click(object sender, EventArgs e)
+
+
+
+
+
+            protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
             this.PanelVisivility();
             int index = this.rbtnAtten.SelectedIndex;
@@ -702,7 +720,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case 3:
 
 
-                    if (comcod == "3365"||comcod=="3101")
+                    if (this.rbtnAttStatus.SelectedIndex==1)
                     {
                         int i;
                         DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
@@ -726,15 +744,27 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                             this.StatusReport.Visible = true;
                         }
-                       
+                        this.DelaisAttinfo.Visible = false;
+
+                        this.SummaryAttinfo.Visible = true;
+
 
                         this.gvMonthlyattSummary.DataSource = dt;
                         this.gvMonthlyattSummary.DataBind();
+                
                     }
                     else
                     {
+                        this.DelaisAttinfo.Visible = true;
+
+                        this.SummaryAttinfo.Visible = false;
+
                         this.gvMonthlyAtt.DataSource = dt;
                         this.gvMonthlyAtt.DataBind();
+             
+
+
+
                     }
                     break;
 
