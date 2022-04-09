@@ -189,6 +189,19 @@
 
                         </div>
 
+                        <div class="col-2">
+                                          <asp:RadioButtonList ID="rbtnAttStatus" runat="server" AutoPostBack="True"
+                 CssClass="custom-control custom-control-inline custom-checkbox"
+                                Font-Bold="True" Font-Size="12px" ForeColor="Black"
+                               
+                                RepeatDirection="Horizontal">
+                                <asp:ListItem>Time wise</asp:ListItem>
+                                <asp:ListItem>Att Status</asp:ListItem>
+
+                            </asp:RadioButtonList>
+
+                        </div>
+
                         <div class="col-1">
                             <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnShow_Click">Show</asp:LinkButton>
                         </div>

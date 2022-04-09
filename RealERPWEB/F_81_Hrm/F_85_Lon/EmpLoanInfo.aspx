@@ -13,7 +13,8 @@
 
         });
 
-        function pageLoaded() {
+        function pageLoaded()
+        {
 
             $('.chzn-select').chosen({ search_contains: true });
             $(".chosen-select").chosen({
