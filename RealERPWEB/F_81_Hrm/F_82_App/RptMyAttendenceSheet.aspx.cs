@@ -601,7 +601,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string qtype = this.Request.QueryString["Type"] ?? "";
             if (qtype == "MGT")
             {
-                Empid = this.Request.QueryString["empid"] ??"";//this.ddlEmpName.SelectedValue.ToString();
+                Empid = this.ddlEmpName.SelectedValue.ToString();
 
             }
             else

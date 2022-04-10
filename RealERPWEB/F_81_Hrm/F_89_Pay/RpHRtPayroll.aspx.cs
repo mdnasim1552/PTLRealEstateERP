@@ -484,6 +484,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3101":
                 case "3339"://Tropical
                     this.rbtlBonSheet.SelectedIndex = 10;
+                    this.txtafterdays.Text = "90";
                     break;
 
 
@@ -557,12 +558,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         }
 
-
-
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetBranch();
-
         }
 
 
@@ -645,7 +643,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void GetEmpName()
         {
             string comcod = this.GetCompCode();
-            string ProjectCode = (this.txtEmpSrcInfo.Text.Trim().Length > 0) ? "%" : this.ddlCompany.SelectedValue.ToString() + "%";
+            string ProjectCode = (this.txtEmpSrcInfo.Text.Trim().Length > 0) ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
             string txtSProject = "%" + this.txtEmpSrcInfo.Text + "%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPAYSLIPEMPNAMEALL", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpNameAllInfo.DataTextField = "empname";
@@ -1712,7 +1710,40 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+        private void PrintBonusEdison()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = this.ddlCompany.SelectedItem.Text;
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
 
+            DataTable dt3 = (DataTable)Session["tblpay"];
+            var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
+            double tAmt = list.Select(p => p.bonamt).Sum();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetEdison", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Festival Bonus for " + bonusType +" - "+ frmdate));
+            Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
+            Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
         private void PrintBonusSheet()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -3236,13 +3267,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetGreenWood();
                         break;
 
-                    case "3101":
+                    
                     case "3347": //PEBSteel
                         this.PrintBonusSheetPEB();
                         break;
 
                     case "3365"://BTI
                         this.PrintBonusBTI();
+                        break;
+
+                    case "3101":
+                    case "3354"://Edison
+                        this.PrintBonusEdison();
                         break;
 
                     default:
@@ -4026,6 +4062,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     break;
 
+                case "3339":
+                case "3101":
+
+                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    {
+
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        double gssal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvGsalb")).Text.Trim());
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
+
+                        double bonamt = (perbonus==0 ?0 :  gssal / perbonus);
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                    }
+
+                    break;
+
+
                 default:
 
                     for (int i = 0; i < this.gvBonus.Rows.Count; i++)
@@ -4386,7 +4441,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 case "3333":
-                case "3101":
+               // case "3101":
 
 
                     foreach (DataRow dr1 in dt.Rows)
@@ -4410,6 +4465,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     }
                     break;
+
+
+                    
 
 
                 default:
