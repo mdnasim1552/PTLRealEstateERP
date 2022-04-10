@@ -76,7 +76,7 @@
 
                             <div class="col-1 ml-3">
                                 <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
-                                <asp:LinkButton ID="lbtnSurVey" runat="server" CssClass="btn btn-primary btn-sm" Visible="False">Survey</asp:LinkButton>
+                              
                             </div>
 
                             <div class="col-md-2 offset-md-2">

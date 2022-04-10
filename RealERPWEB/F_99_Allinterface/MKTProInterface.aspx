@@ -417,6 +417,9 @@
         .circle-tile-heading.chocolate:hover {
             background-color: #32CD32;
         }
+        .circle-tile-heading.blue-violet:hover {
+            background-color: #FF1493;
+        }
         .tile-img {
             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
         }
@@ -474,6 +477,9 @@
         .chocolate{
             background-color:#A52A2A;
         }
+        .blue-violet{
+            background-color:#8A2BE2;
+        }
         .text-dark-blue {
             color: #34495E;
         }
@@ -511,7 +517,9 @@
         .text-chocolate{
             color: #A52A2A;
         }
-        
+        .text-blue-violet{
+            color: #8A2BE2;
+        }
         .text-faded {
             color: rgba(255, 255, 255, 0.7);
         }
@@ -693,6 +701,7 @@
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
                                         <asp:HyperLink ID="hyplnkCrReqMkt" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition</asp:HyperLink>
+                                        <asp:HyperLink ID="hyplnkMktReqEdit" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=ReqEdit&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Requisition Edit</asp:HyperLink>
                                         <%--<asp:HyperLink ID="hyplnkCrReqIT" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition IT</asp:HyperLink>
                                         <asp:HyperLink ID="hyplnkCrReqAdmin" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition Admin</asp:HyperLink>--%>
                                         <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MktMatIssue?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Material Issue</asp:HyperLink>
