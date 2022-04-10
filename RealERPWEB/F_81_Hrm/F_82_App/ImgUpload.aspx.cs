@@ -127,15 +127,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             string txtCompany = "%%"; //(this.Request.QueryString["Type"].ToString().Trim() == "Aggrement") ? this.txtSrcCompanyAgg.Text.Trim() + "%" : this.txtSrcCompany.Text.Trim() + "%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
-
-           
             this.ddlCompanyAgg.DataTextField = "actdesc";
             this.ddlCompanyAgg.DataValueField = "actcode";
             this.ddlCompanyAgg.DataSource = ds5.Tables[0];
             this.ddlCompanyAgg.DataBind();
             this.GetDepartment();
-            
-
         }
 
         private void GetDepartment()
@@ -154,29 +150,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             this.GetProjectName();
             this.ddlProjectName_SelectedIndexChanged(null, null);
-
-
-
         }
-
-
 
         private void GetProjectName()
         {
-
             string comcod = this.GetCompCode();
             //string type = this.Request.QueryString["Type"].ToString().Trim();
             //string Company = this.ddlCompanyAgg.SelectedValue.ToString().Trim();
             //string deptcode = this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2) + "%";
-
-
             string deptcode = (this.ddldepartmentagg.SelectedValue.ToString() == "000000000000")? "94%" : (this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2)+ "%");
             // : this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string txtSProject = "%%";// ;// (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
                                       //string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "EmpAllInfo") ? "GETPROJECTNAME" : "GETPROJECTNAMEFOT";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", deptcode, txtSProject, "", "", "", "", "", "", "");
-
-
 
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -185,14 +171,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
            // this.GetEmployeeName();
              this.ddlProjectName_SelectedIndexChanged(null, null);
             //this.GetEmpName();
-
-
-
-
-
         }
-
-        
 
         private string GetCompCode()
         {
@@ -378,30 +357,25 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             }
 
-
-
         }
 
         private void ShowImage()
         {
-
-
+            Session.Remove("tblEmpimg");
+            this.EmpImg.ImageUrl = "";
+            this.EmpSig.ImageUrl = "";
             string comcod = this.GetCompCode();
             ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
             string empid = this.ddlEmpName.SelectedValue.ToString();
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "SHOWIMG", empid, "", "", "", "", "", "", "", "");
-
-
             if (ds1 == null)
             {
                 return;
 
             }
-
             Session["tblEmpimg"] = ds1.Tables[0];
             this.EmpImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgEmp";
             this.EmpSig.ImageUrl = "~/GetImage.aspx?ImgID=HREmpSign";
-
 
         }
         

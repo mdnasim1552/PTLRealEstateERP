@@ -446,7 +446,6 @@ namespace RealERPWEB.F_14_Pro
                 case "DaywPur":
                     this.RptDayPurchase();
                     break;
-
                 case "PurSum":
                     this.RptPurchaseSum();
                     break;
@@ -505,23 +504,21 @@ namespace RealERPWEB.F_14_Pro
 
             switch (comcod)
             {
-
                 case "3330":
-                case "3101":
+                    //case "3101":
                     this.RptDayPurchaseBridge();
+                    break;
+
+                case "3101":
+                case "3354":
+                    this.RptDayPurchaseEdison();
                     break;
 
                 default:
                     this.RptDayPurchaseGen();
                     break;
 
-
             }
-
-
-
-
-
         }
 
         private void RptDayPurchaseBridge()
@@ -543,6 +540,38 @@ namespace RealERPWEB.F_14_Pro
             LocalReport Rpt1 = new LocalReport();
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptDayWisePurchase", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("date", "From " + fromdate + " To " + todate));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Day Wise Purchase Report"));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+            // Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }   
+        private void RptDayPurchaseEdison()
+        {
+
+            DataTable dt = (DataTable)Session["tblpurchase"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd MMMM, yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd MMMM, yyyy");
+
+            string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
+            var lst = dt.DataTableToList<RealEntity.C_12_Inv.RptDayWisePurchase>();
+
+
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptDayWisePurchaseEdison", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("date", "From " + fromdate + " To " + todate));
@@ -1652,7 +1681,7 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-                        
+
                         break;
 
 
@@ -1831,8 +1860,8 @@ namespace RealERPWEB.F_14_Pro
                 if (grpdesc == "")
                 {
                     btnPrint.Visible = false;
-                    return;                 
-                    
+                    return;
+
                 }
                 else
                 {
@@ -1907,7 +1936,7 @@ namespace RealERPWEB.F_14_Pro
                     if (reqinfo2 == "JV" || reqinfo2 == "BC" || reqinfo2 == "CC" || reqinfo2 == "BD" || reqinfo2 == "CD")
                     {
                         url = path3 + "accVou&vounum=" + reqno + "&paytype=" + "0";
-                    }                   
+                    }
                     break;
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "printTracking('" + hostname + url + "');", true);
@@ -2010,6 +2039,6 @@ namespace RealERPWEB.F_14_Pro
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-       
+
     }
 }

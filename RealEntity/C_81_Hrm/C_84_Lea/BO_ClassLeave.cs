@@ -99,6 +99,9 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public double duration { get; set; }
             public string refdesc { get; set; }
             public string sectionname { get; set; }
+            public string slength { get; set; }
+            public string categorydesc { get; set; }
+            public string rmrks { get; set; }
             public BonusSheet() { }
         }
         
