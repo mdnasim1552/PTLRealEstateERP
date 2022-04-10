@@ -316,6 +316,7 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 //this.ddlDepartment.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
                 // this.ddlProjectName_SelectedIndexChanged(null,null);
                 this.ddlprjlistfrom.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
+                this.txtEmpDesignation.Text = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["desig"].ToString();
             }
         }
         protected void Load_Cur_Trans_NO()
