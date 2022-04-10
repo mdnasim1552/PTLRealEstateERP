@@ -305,9 +305,35 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+        protected void BtnVouDetials_Click(object sender, EventArgs e)
+        {
 
 
+            string comcod = this.GetCompCode();
+           // this.lblabsheading.Text = "Individual Monthly Absent Approval Details Information. Date :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
+            //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
+            //int index = row.RowIndex;
 
+            //string frmdate = this.txtfrmDate.Text.Trim();
+            //string todate = this.txttoDate.Text.Trim();
+            //string Empcode = ((Label)this.gvabsapp02.Rows[index].FindControl("lgvEmpIdabs02")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
+
+            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPMONABSENT", frmdate, todate, Empcode);
+            //if (ds2 == null)
+            //{
+            //    this.mgvmonabsent.DataSource = null;
+            //    this.mgvmonabsent.DataBind();
+            //    return;
+            //}
+            //this.mgvmonabsent.DataSource = ds2.Tables[0];
+            //this.mgvmonabsent.DataBind();
+            //Session["Report1"] = mgvbreakdown;
+            //if (ds2.Tables[0].Rows.Count > 0)
+            //    ((HyperLink)this.mgvmonabsent.HeaderRow.FindControl("mhlbtntbCdataExelabs02")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+
+        }
     }
 }
