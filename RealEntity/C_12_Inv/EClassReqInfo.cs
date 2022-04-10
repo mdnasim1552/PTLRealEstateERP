@@ -513,7 +513,7 @@ namespace RealEntity.C_12_Inv
         public string bldcod { get; set; }
         public string rptcod { get; set; }
       
-        public double   opqty { get; set; }
+        public double opqty { get; set; }
         public double rcvqty { get; set; }
         public double trninqty { get; set; }
         public double trnoutqty { get; set; }
@@ -537,7 +537,6 @@ namespace RealEntity.C_12_Inv
     [Serializable]
     public class RptDayWisePurchase
     {
-        
         public string comcod { get; set; }
         public string mrrno { get; set; }
         public string mrrref { get; set; }
@@ -558,12 +557,14 @@ namespace RealEntity.C_12_Inv
         public string orderno { get; set; }
         public string orderno1 { get; set; }
         public string orderref { get; set; }
+        public DateTime orderdat { get; set; }
         public string reqno { get; set; }
 
         public string reqno1 { get; set; }
         public string billno { get; set; }
         public string billno1 { get; set; }
         public string mrfno { get; set; }
+        public DateTime reqdat { get; set; } 
         public string resdesc { get; set; }
 
         public string resunit { get; set; }
