@@ -1124,7 +1124,7 @@ namespace RealERPWEB.F_12_Inv
                     case "3316":
                     case "3315":
                     case "3317":
-                    case "3101":
+                    //case "3101":
                         crmchekd = ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Checked == true ? "1" : "0";
                         if (crmchekd == "1")
                         {
