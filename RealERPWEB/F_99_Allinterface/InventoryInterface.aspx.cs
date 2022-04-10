@@ -153,12 +153,11 @@ namespace RealERPWEB.F_99_Allinterface
             //string frmdate = this.txtdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
             //string catcode = this.ddlcatag.SelectedValue.ToString() + "%";
+            string mtrrf = "%" + this.txtmtrrf.Text.Trim().ToString()+ "%";
 
-
-            DataSet ds2 = feaData.GetTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "TRANSFERINTERFACE", todate, "", "", "", "", "", "", "", "");
+            DataSet ds2 = feaData.GetTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "TRANSFERINTERFACE", todate, mtrrf, "", "", "", "", "", "", "");
             if (ds2 == null)
             {
-
                 return;
             }
             string gatePass = "";
