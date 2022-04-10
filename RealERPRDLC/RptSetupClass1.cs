@@ -805,6 +805,7 @@ namespace RealERPRDLC
 
                 case "R_81_Hrm.R_82_App.RptHRCodeBookInfo": Rpt1a = SetRptHRCodeBookInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+                //Bonus Sheet
                 case "R_81_Hrm.R_89_Pay.RptBankFordLetter": Rpt1a = SetRptBankFord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheet": Rpt1a = SetRptBonusSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetTro": Rpt1a = SetRptBonusSheetTro(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -818,6 +819,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptEmpBonusAssure": Rpt1a = SetRptEmpBonusAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetAcme": Rpt1a = SetRptBonusSheetAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetBTI": Rpt1a = SetRptBonusSheetBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptBonusSheetEdison": Rpt1a = SetRptBonusSheetEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_81_Hrm.R_89_Pay.RptSalaryGrndT": Rpt1a = SetRptSalaryGrndT(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4895,6 +4897,11 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptBonusSheetBTI(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptBonusSheetEdison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
             return Rpt1a;
