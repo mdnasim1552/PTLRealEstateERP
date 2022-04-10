@@ -664,9 +664,11 @@ namespace RealERPWEB.F_34_Mgt
                         break;
 
                     case "B":
-
                         dr1 = tbl1.Select("grp ='A' and rsircode='" + rsircode +"' ");
-                        reqty = Convert.ToDouble(dr1[0]["qty"]);
+                        if (dr1.Length != 0)
+                        {
+                            reqty = Convert.ToDouble(dr1[0]["qty"]);
+                        }
                         tbl1.Rows[index]["qty"] = qty;
                         dr2 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' ");
                         foreach (DataRow dr in dr2)
@@ -808,7 +810,10 @@ namespace RealERPWEB.F_34_Mgt
                     case "B":
 
                         dr1 = tbl1.Select("grp ='A' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
-                        reqty = Convert.ToDouble(dr1[0]["qty"]);
+                        if (dr1.Length != 0)
+                        {
+                            reqty = Convert.ToDouble(dr1[0]["qty"]);
+                        }
                         tbl1.Rows[index]["qty"] = qty;
                         dr2 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
                         foreach (DataRow dr in dr2)
@@ -946,6 +951,7 @@ namespace RealERPWEB.F_34_Mgt
             string comcod = this.GetCompCode();
             switch (comcod)
             {
+                case "3101":
                 case "1108":
                 case "1109":
                 case "3315":
