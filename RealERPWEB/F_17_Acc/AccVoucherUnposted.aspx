@@ -10,6 +10,20 @@
 
 
         });
+
+        function openModalAbs() {
+            //    $('#myModal').modal('show');
+            // alert("Hello");
+            $('#myModal').modal('toggle');
+        }
+
+        function CloseMOdal() {
+
+            $('#myModal').modal('hide');
+        }
+
+
+
         function pageLoaded() {
             try {
                 $("input, select")
@@ -275,11 +289,15 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
+                                           <%-- <asp:LinkButton ID="BtnVouDetials" runat="server" ToolTip="Delete" OnClick="BtnVouDetials_Click" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>--%>
                                             <%--<asp:LinkButton ID="lnkbtnPrintIN" runat="server" OnClick="lnkbtnPrintRD_Click" ToolTip="Print" CssClass="btn btn-default btn-xs"><span style="color:green" class="fa fa-print"></span> </asp:LinkButton>--%>
                                             <asp:HyperLink ID="hlnkVoucherPrint" runat="server" Target="_blank" ToolTip="Voucher Print" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
                                             <asp:HyperLink ID="hlnkVoucherEdit" runat="server" ToolTip="Edit" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-edit"></span></asp:HyperLink>
                                             <asp:LinkButton ID="lbtnVoucherApp" runat="server" ToolTip="Approved" OnClick="lbtnVoucherApp_Click" Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv")) == "True" ? false : true %>'
                                                 CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span> </asp:LinkButton>
+                                           
+                                            
+                                            
                                             <asp:LinkButton ID="lbtnDeleteVoucher" runat="server" ToolTip="Delete" OnClick="lbtnDeleteVoucher_Click" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
 
                                         </ItemTemplate>
@@ -310,6 +328,36 @@
                             </asp:GridView>
                         </div>
                     </div>
+
+                    <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                    <asp:Label ID="lbmodalheading" runat="server"></asp:Label></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+                            </div>
+                            <div class="modal-body">
+                                <p id="EmpDeatials" class="m-0" runat="server">Name</p>
+                          
+                            </div>
+                            <div class="modal-footer">
+                              <%--  <asp:LinkButton ID="ModalUpdateBtn" OnClientClick="CloseModal();" OnClick="ModalUpdateBtn_Click"
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>--%>
+
+                             <%--   <asp:LinkButton ID="ModallnkBtnLateAFTER10AM" OnClientClick="CloseModal();" OnClick="ModallnkBtnLateAFTER10AM_Click" Visible="false"
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>--%>
+
+                                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
 

@@ -46,14 +46,19 @@
             // $('.chzn-select').chosen({ search_contains: true });
 
         }
+
+        
     </script>
     <style>
         .clname{
             font-size:35px;
         }
-
+        ol.ollist{
+     margin: 0 !important;
+}
         ol 
         {
+            margin:0 !important;
           counter-reset: item;
         }
 
@@ -94,7 +99,13 @@
                 position: fixed;
                 bottom: 0;
             }
-
+             ol 
+        {
+          margin: 0 !important;
+        }
+ol.ollist{
+     margin: 0 !important;
+}
             .content-block, p {
                 page-break-inside: avoid;
                 margin: 0 !important;

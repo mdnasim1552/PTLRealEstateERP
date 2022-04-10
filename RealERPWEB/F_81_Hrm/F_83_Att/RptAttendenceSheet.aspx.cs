@@ -755,6 +755,30 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     }
                     else
                     {
+
+                        int i;
+                        DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+                        DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+                        int tcount;
+                        tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
+                        for (i = 2; i < tcount; i++)
+                            this.gvMonthlyAtt.Columns[i].Visible = false;
+                        int j = 2;
+                        for (i = 0; i < tcount; i++)
+                        {
+                            //if (datefrm > dateto)
+                            //    break;
+
+                            this.gvMonthlyAtt.Columns[j].Visible = true;
+                            this.gvMonthlyAtt.Columns[j].HeaderText = datefrm.ToString("dd") + "<br/>" + datefrm.ToString("dddd").Substring(0, 1);
+                            //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
+                            datefrm = datefrm.AddDays(1);
+                            j++;
+
+                            this.StatusReport.Visible = true;
+                        }
+
                         this.DelaisAttinfo.Visible = true;
 
                         this.SummaryAttinfo.Visible = false;
