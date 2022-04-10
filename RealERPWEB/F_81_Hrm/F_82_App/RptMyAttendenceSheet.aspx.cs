@@ -231,6 +231,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
 
                 string comcod = this.GetComeCode();
+                string applyReq = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "applyReq")).ToString().Trim();
                 string ahleave = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "leav")).ToString().Trim();
                 string lateapp = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "lateapp")).ToString().Trim();
 
@@ -251,7 +252,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
                             ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
-                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq==""? true:false;
+                            ((LinkButton)e.Item.FindControl("lnkRequested")).Visible = applyReq==""? false : true;
+                             
 
                         }
                         else if (ahleave == "H" || ahleave == "Lv")
@@ -267,24 +270,29 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
-                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
-
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
+                            ((LinkButton)e.Item.FindControl("lnkRequested")).Visible = applyReq == "" ? false : true;
 
                         }
-
-
                         else
                         {
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
+                            ((LinkButton)e.Item.FindControl("lnkRequested")).Visible = false;
+
+                            
 
                         }
+
+
 
                         if (lateapp == "True")
                         {
-                            ((LinkButton)e.Item.FindControl("lnkApproved")).Visible = true;
-                   
+                            ((LinkButton)e.Item.FindControl("lnkApproved")).Visible = true;                   
                             ((LinkButton)e.Item.FindControl("lnkApproved")).Enabled=false;
                         }
+
+
+
                         break;
                     default:
                         if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
