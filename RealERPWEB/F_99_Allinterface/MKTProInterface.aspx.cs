@@ -377,7 +377,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlWorkOrder.Visible = false;
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = true;
-                    this.pnlMatRec.Visible = true;
+                    this.pnlMatRec.Visible = false;
                     this.pnlComplete.Visible = true;
                     this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
                     break;

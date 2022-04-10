@@ -484,6 +484,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3101":
                 case "3339"://Tropical
                     this.rbtlBonSheet.SelectedIndex = 10;
+                    this.txtafterdays.Text = "90";
                     break;
 
 
@@ -4026,6 +4027,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     break;
 
+                case "3339":
+                case "3101":
+
+                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    {
+
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        double gssal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvGsalb")).Text.Trim());
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
+
+                        double bonamt = (perbonus==0 ?0 :  gssal / perbonus);
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                    }
+
+                    break;
+
+
                 default:
 
                     for (int i = 0; i < this.gvBonus.Rows.Count; i++)
@@ -4386,7 +4406,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 case "3333":
-                case "3101":
+               // case "3101":
 
 
                     foreach (DataRow dr1 in dt.Rows)
@@ -4410,6 +4430,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     }
                     break;
+
+
+                    
 
 
                 default:

@@ -100,9 +100,9 @@ namespace RealERPWEB.F_28_MPro
                 case "ReqApproval":                
                 case "ReqEdit":
                
-                    this.gvReqInfo.Columns[9].Visible = true;
-                    this.gvReqInfo.Columns[11].Visible = false;
-                    this.gvReqInfo.Columns[12].Visible = true;
+                    this.gvReqInfo.Columns[11].Visible = true;
+                    this.gvReqInfo.Columns[13].Visible = false;
+                    this.gvReqInfo.Columns[14].Visible = true;
                     
                     break;
 
@@ -407,7 +407,9 @@ namespace RealERPWEB.F_28_MPro
                 dr1["actdesc"] = this.ddlActType.SelectedItem.Text.Trim();
                 dr1["mktdesc"] = this.ddlMarkType.SelectedItem.Text.Trim();
                 dr1["bgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdqty"];
-                dr1["bbgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdqty"]; ;
+                dr1["bgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdamt"];
+                dr1["bbgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdqty"]; 
+                dr1["bbgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdamt"];
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
                 dr1["reqrat"] = 0;

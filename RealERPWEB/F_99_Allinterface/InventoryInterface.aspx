@@ -613,8 +613,10 @@
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender_txttodate" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-
                             </div>
+                        </div>
+                        <div class="col-md-1">
+                            <asp:TextBox ID="txtmtrrf" runat="server" CssClass="form-control" placeholder="MTR Ref..."></asp:TextBox>
 
                         </div>
 
