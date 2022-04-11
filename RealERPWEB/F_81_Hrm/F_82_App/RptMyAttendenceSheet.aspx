@@ -276,6 +276,7 @@
                                         Width="20px" />
                                     <asp:LinkButton ID="lnkRequstApply" Visible="false" ToolTip="For Approval Request" runat="server" OnClick="lnkRequstApply_Click" CssClass="btn btn-sm btn-primary">Apply Request</asp:LinkButton>
                                     <asp:LinkButton ID="lnkApproved" Visible="false" ToolTip="Approved Request" runat="server" CssClass="btn btn-sm btn-warning">Approved</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRequested" Visible="false" ToolTip="Requested" runat="server" CssClass="btn btn-sm btn-danger">Process</asp:LinkButton>
                                 </td>
                             </tr>
 
