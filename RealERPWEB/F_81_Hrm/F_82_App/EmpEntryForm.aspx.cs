@@ -236,6 +236,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
                 dv.RowFilter = "idcardno <>''";
             }
+            else if (filtertype == "03")
+            {
+                dv.RowFilter = "genbtn='False' and idcardno <>''"; 
+            }
+            else if (filtertype == "04")
+            {
+                dv.RowFilter = "genbtn='True'";
+            }
+
             dt = dv.ToTable();
             this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpList.DataSource = dt;
