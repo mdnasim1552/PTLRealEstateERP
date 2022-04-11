@@ -959,13 +959,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (this.chkEdit.Checked)
                 return;
             else if (this.chknewEmp.Checked)
                 return;
-
-
             ViewState.Remove("tblemp");
             string comcod = this.GetCompCode();
             string ProjectCode = (this.txtSrcEmp.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
@@ -977,9 +974,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlPEmpName.DataBind();
             ViewState["tblemp"] = ds5.Tables[0];
             this.GetComASecSelected();
-
-
-
 
         }
 

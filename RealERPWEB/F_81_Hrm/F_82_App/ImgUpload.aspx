@@ -115,7 +115,7 @@
                                         <figure class="figure">
                                             <!-- .figure-img -->
                                             <div class="figure-img figure-attachment">
-                                                <asp:Image ID="EmpImg" runat="server" Width="100" Height="100" alt="Images" />
+                                                <asp:Image ID="EmpImg" runat="server"  Width="100" Height="100" alt="Images" />
 
                                                 <a href="#" class="img-link" data-size="1000x1000">
                                                     <span class="tile tile-circle bg-danger">
@@ -150,7 +150,7 @@
                                         <figure class="figure">
                                             <!-- .figure-img -->
                                             <div class="figure-img figure-attachment">
-                                                <asp:Image ID="EmpSig" runat="server" ImageUrl="~/Image/human_avatar.png" alt="Images" />
+                                                <asp:Image ID="EmpSig" runat="server" alt="Images" />
 
                                                 <a href="#" class="img-link" data-size="1000x1000">
                                                     <span class="tile tile-circle bg-danger">
@@ -179,7 +179,7 @@
                         
                 <div class="col-md-4 pading5px col-md-offset-2 text-center">
                     
-                    <asp:Button ID="btnGenerate" OnClick = "GenerateThumbnail" runat="server" Text="Generate Thumbnail" />
+                    <%--<asp:Button ID="btnGenerate" OnClick = "GenerateThumbnail" runat="server" Text="Generate Thumbnail" />--%>
 
                     <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger" OnClick="lbtnDelete_Click">Delete</asp:LinkButton>
                     <asp:LinkButton ID="lbtnUpdateImg" runat="server" CssClass="btn btn-success" OnClick="lbtnUpdateImg_Click">Update</asp:LinkButton>
