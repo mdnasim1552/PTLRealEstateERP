@@ -224,31 +224,9 @@ namespace RealERPWEB.F_28_MPro
                 this.dNarr.Visible = false;              
                 this.lbtnOk.Text = "Ok";              
 
-                if (Request.QueryString["InputType"].ToString() == "Approval" || Request.QueryString["InputType"].ToString() == "ReqEdit")
-                {
-
-                    this.chkdupMRF.Visible = false;
-                    this.chkneBudget.Visible = false;                   
-                    //this.lblmrfno.Visible = false;
-                    //this.txtMRFNo.Visible = false;
-                    this.lblCurNo.Visible = false;
-                    this.lblCurReqNo1.Visible = false;
-                    this.txtCurReqNo2.Visible = false;                   
-                    //this.lbtnSurVey.Visible = true;               
-
-                }
-
                 return;
             }
 
-            if (Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "ReqEdit")
-            {               
-                //this.lblmrfno.Visible = true;
-                //this.txtMRFNo.Visible = true;               
-                this.lblCurNo.Visible = true;
-                this.lblCurReqNo1.Visible = true;
-                this.txtCurReqNo2.Visible = true;
-            }
 
             this.ImgbtnFindReq.Visible = false;
             this.ddlPrevReqList.Visible = false;

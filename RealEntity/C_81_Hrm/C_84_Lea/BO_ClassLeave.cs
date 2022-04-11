@@ -92,6 +92,10 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public double bonamt { get; set; }
             public double bankamt { get; set; }
             public double bankamt2 { get; set; }
+            public double bank1 { get; set; }
+            public double bank2 { get; set; }
+            public double bank3 { get; set; }
+            public double bank4 { get; set; }
             public double cashamt { get; set; }
             public string bankamta { get; set; }
             public string cashamta { get; set; }
