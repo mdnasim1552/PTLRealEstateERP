@@ -543,7 +543,7 @@ namespace RealEntity.C_12_Inv
 
         public string chalanno { get; set; }
         public string mrrno1 { get; set; }
-        public string mrrdat { get; set; }
+        public DateTime mrrdat { get; set; }
         public string pactcode { get; set; }
         public string ssircode { get; set; }
         public string rsircode { get; set; }
