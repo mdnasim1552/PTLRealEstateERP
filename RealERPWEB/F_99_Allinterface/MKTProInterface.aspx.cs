@@ -145,7 +145,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description text-faded'>Received</div></div></div>";
 
 
-            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading lime counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["reqcom"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content lime'><div class='circle-tile-description text-faded'>Completed</div></div></div>";
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue-violet counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["reqcom"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content blue-violet'><div class='circle-tile-description text-faded'>Completed</div></div></div>";
 
 
 
