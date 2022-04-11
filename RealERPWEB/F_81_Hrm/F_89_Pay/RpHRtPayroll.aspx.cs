@@ -1271,6 +1271,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     {
                         this.gvBonus.Columns[9].HeaderText = "Duration(Year)";
                     }
+                    else if (comcod == "3354")//Edison
+                    {
+                        this.gvBonus.Columns[9].HeaderText = "Duration(Month)";
+                    }
                     this.gvBonus.DataSource = dt;
                     this.gvBonus.DataBind();
                     ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
