@@ -339,8 +339,6 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("body", body));
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Term", Term));
-            Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
-            Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
             Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
             Rpt1.SetParameters(new ReportParameter("prjname", prjname));
 
