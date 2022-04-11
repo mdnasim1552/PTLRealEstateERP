@@ -32,7 +32,8 @@ namespace RealERPRDLC
                
               
                 #region RD_84_leav
-                case "R_81_Hrm.R_84_Lea.RptLeaveApp": Rpt1a = SetRptLeaveApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;                
+                case "R_81_Hrm.R_84_Lea.RptLeaveApp": Rpt1a = SetRptLeaveApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_84_Lea.rptEmpLeaveCard": Rpt1a = SetrptEmpLeaveCard(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
                 case "R_81_Hrm.R_83_Att.RptNewEmpStatus": Rpt1a = SetRptEmpStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                // case "R_81_Hrm.R_83_Att.RptMonAttendance": Rpt1a = SetRptMonAttendance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -302,6 +303,15 @@ namespace RealERPRDLC
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
             return rpt1a;
         }
+        private static LocalReport SetrptEmpLeaveCard(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
 
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>)rptDataSet));
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>)rptDataSet2));
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.prevtLeaveInfo>)userDataset));
+            return rpt1a;
+        }
+
+        
     }
 }
