@@ -23,22 +23,18 @@
            <%-- var gvLeaveRule = $('#<%=this.gvLeaveRule.ClientID %>');
             gvLeaveRule.Scrollable()--%>;
 
-                var gridViewScroll = new GridViewScroll({
-                    elementID: "gvLeaveRule",
-                    width: 1450,
-                    height: 550,
-                    freezeColumn: false,
-                    freezeFooter: true,
-                   // freezeColumnCssClass: "GridViewScrollItemFreeze",
-                    freezeFooterCssClass: "GridViewScrollFooterFreeze",
-                   // freezeHeaderRowCount: 2,
-                   // freezeColumnCount: 12,
-
-                });
-                gridViewScroll.enhance();
-
-
-
+                //var gridViewScroll = new GridViewScroll({
+                //    elementID: "gvLeaveRule",
+                //    width: 1450,
+                //    height: 550,
+                //    freezeColumn: false,
+                //    freezeFooter: true,
+                //   // freezeColumnCssClass: "GridViewScrollItemFreeze",
+                //    freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                //   // freezeHeaderRowCount: 2,
+                //   // freezeColumnCount: 12,
+                //});
+                //gridViewScroll.enhance();
             }
 
             catch (e) {
@@ -49,7 +45,12 @@
         }
 
     </script>
-
+    <style>
+        .FixedHeader {
+            position: absolute !important;
+            font-weight: bold;
+        }    
+    </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -280,9 +281,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="table-responsive">
-                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False" ClientIDMode="Static"
-                                        OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                <div class="table table-responsivex" style="width: 100%; height: 400px; overflow: auto">
+                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False"  HeaderStyle-CssClass="FixedHeader"
+                                        OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea "
                                         PageSize="15">
                                         <PagerSettings Position="Top" />
                                         <RowStyle />

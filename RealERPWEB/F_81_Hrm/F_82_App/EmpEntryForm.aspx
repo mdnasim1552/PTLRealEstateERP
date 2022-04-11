@@ -151,8 +151,10 @@
                                 </div>
                                 <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlfilterby_SelectedIndexChanged" AutoPostBack="True">
                                     <asp:ListItem Value="00">All</asp:ListItem>
-                                    <asp:ListItem Value="01">New</asp:ListItem>
+                                    <asp:ListItem Value="01">New Employee</asp:ListItem>
                                     <asp:ListItem Value="02">Exiting</asp:ListItem>
+                                    <asp:ListItem Value="03">Created Users</asp:ListItem>
+                                    <asp:ListItem Value="04">Not Created Users</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -240,19 +242,10 @@
                                             <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="User Create">
-                                            <ItemTemplate>
-                                                            <asp:LinkButton ID="lnkUserGenarate" ToolTip="User Create" OnClick="lnkUserGenarate_Click" 
-                                                                runat="server" Visible='<%#Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "genbtn"))%>' 
-                                                                CssClass="btn btn-sm btn-primary "> User Generate</asp:LinkButton>
-                                                
-                                            </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                        </asp:TemplateField>
+                                      
 
 
-                                        <asp:TemplateField HeaderText="">
+                                        <asp:TemplateField HeaderText="Operation">
                                             <ItemTemplate>
                                                 <div class="dropdown">
                                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -325,7 +318,16 @@
                                         </asp:TemplateField>
 
 
-
+                                          <asp:TemplateField HeaderText="User Create">
+                                            <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkUserGenarate" ToolTip="User Create" OnClick="lnkUserGenarate_Click" 
+                                                                runat="server" Visible='<%#Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "genbtn"))%>' 
+                                                                CssClass="btn btn-sm btn-primary "> User Generate</asp:LinkButton>
+                                                
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
