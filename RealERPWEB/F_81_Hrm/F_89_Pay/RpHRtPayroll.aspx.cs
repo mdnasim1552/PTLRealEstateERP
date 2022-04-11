@@ -3276,11 +3276,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetPEB();
                         break;
 
+                    case "3101":
                     case "3365"://BTI
                         this.PrintBonusBTI();
                         break;
-
-                    case "3101":
+                    
                     case "3354"://Edison
                         this.PrintBonusEdison();
                         break;
@@ -3921,7 +3921,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int rowindex;
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tblpay"];
-
+            int i;
             switch (comcod)
             {
 
@@ -3929,7 +3929,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             // case "4101":
 
 
-                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    for (i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
                         double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
@@ -3977,7 +3977,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     //case "3101":
 
-                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    for ( i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
                         double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
@@ -4000,7 +4000,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3333":
-                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    for ( i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
                         double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
@@ -4044,7 +4044,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     //case "3101":
 
-                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    for ( i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
                         double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
@@ -4069,7 +4069,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3339":
                 case "3101":
 
-                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    for ( i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
                         double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
@@ -4085,9 +4085,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
 
+                case "3354": //Edison Real Estate
+                     i = 0;
+                    foreach (GridViewRow gv1 in this.gvBonus.Rows)
+                    {
+
+                       
+                        double bonamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBonusAmt")).Text.Trim());                       
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                       
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                        i++;
+                    }
+
+                    break;
+
+
                 default:
 
-                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    for ( i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
                         double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());

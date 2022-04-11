@@ -2219,6 +2219,116 @@
                         <!-- /.card -->
                     </div>
                 </div>
+
+                 <div class="row" id="divPostDateChecSchdule" runat="server" visible="false">
+                     <div class="card-deck-xl">
+                        <!-- .card -->
+                        <div class="card card-fluid" id="divd8">
+                            <div class="card-header">
+                               Today's Cheque Payment
+                            </div>
+                            <!-- .lits-group -->
+                            <div class="card-body" style="min-height: 230px;">
+                                
+                                <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False"
+                               CssClass="table-striped table-hover table-bordered">
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvSlNo" runat="server"  
+                                                Style="text-align: center"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")) %>' Width="20px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Cheque Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvchdat" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequedat")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    
+                                    
+                                    
+                                    <asp:TemplateField HeaderText="Acc. Description">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgactdesc" runat="server"
+                                                Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "resdesc").ToString().Trim().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")).Trim().Length>0 ? "<br>" : "") + 
+                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim(): "")  %>'
+                                                Width="200px"></asp:Label>
+                                        </ItemTemplate>
+                                        
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                        <FooterStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Bank Name">
+                                        
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvbankname" runat="server" 
+                                                Text='<%# (DataBinder.Eval(Container.DataItem, "cactdesc").ToString().Trim().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")).Trim().Length>0 ? "<br>" : "") + 
+                                                                         
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")).Trim(): "")  %>'
+                                                Width="180px"></asp:Label>
+                                           
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Cheque No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvchnono" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequeno")) %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvcramt" runat="server" Style="text-align: right"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cramt")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFCrAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                ForeColor="#000" Style="text-align: right" Width="70px"></asp:Label>
+                                        </FooterTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle HorizontalAlign="right" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Dr. Amt" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvdramt" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dramt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+                                    
+                                    
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+                            </asp:GridView>
+                                <br />
+                            </div>
+
+                        </div>
+                       
+                    </div>
+
+                      
+                    </div>
             </div>
 
 
