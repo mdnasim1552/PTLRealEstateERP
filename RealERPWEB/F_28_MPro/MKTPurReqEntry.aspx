@@ -63,7 +63,7 @@
                                     <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control chzn-select form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-3 ml-1">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblReqDate" runat="server" class="control-label  lblmargin-top9px" Text="Req. Date"></asp:Label>
                                     <asp:TextBox ID="txtCurReqDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -71,25 +71,6 @@
                                         Format="dd-MMM-yyyy" TargetControlID="txtCurReqDate"></cc1:CalendarExtender>
                                 </div>
                             </div>
-
-                            
-
-                            <div class="col-1 ml-3">
-                                <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
-                              
-                            </div>
-
-                            <div class="col-md-2 offset-md-2">
-                               
-                                    <%--<asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Click for Prev." OnClick="ImgbtnFindReq_Click"><i class="fas fa-search"></i></asp:LinkButton>--%>
-                                    <asp:LinkButton ID="ImgbtnFindReq" runat="server" Text="Prev. Req.List" Font-Underline="false" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>
-                                    <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
-                                
-                            </div>
-
-                        </div>
-
-                        <div class="row">
                             <div class="col-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblCurNo" runat="server" class="control-label  lblmargin-top9px" Text="Requisition No."></asp:Label>
@@ -97,6 +78,18 @@
                                     <asp:TextBox ID="txtCurReqNo2" runat="server" CssClass="form-control form-control-sm" ReadOnly="true">00000</asp:TextBox>
                                 </div>
                             </div>
+                            <div class="col-1">
+                                <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
+                            </div>
+
+                            <div class="col-2">
+                                <asp:LinkButton ID="ImgbtnFindReq" runat="server" Text="Prev. Req.List" Font-Underline="false" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>
+                                <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
                             <%--<div class="col-3 ml-1 display-none">
                                 <div class="form-group">
                                     <asp:Label ID="lblmrfno" runat="server" class="control-label  lblmargin-top9px" for="ReqNoCur">M.R.F. No.</asp:Label>
@@ -121,25 +114,19 @@
                                     <asp:DropDownList ID="ddlPRType" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPRType_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-3 ml-1">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblActType" runat="server" class="control-label  lblmargin-top9px" Text="Activity Type"></asp:Label>
                                     <asp:DropDownList ID="ddlActType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-
-                          
-
-                            
                             <div class="col-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblMatType" runat="server" class="control-label  lblmargin-top9px" Text="Marketing Type"></asp:Label>
                                     <asp:DropDownList ID="ddlMarkType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-
-
-                              <div class="col-1 ml-2">
+                            <div class="col-1">
                                 <div class="form-group">
                                     <asp:LinkButton ID="lbtnSelectRes" runat="server" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary btn-sm  lblmargin-top20px" Style="margin-top: 20px;">Select</asp:LinkButton>
                                 </div>
@@ -205,7 +192,7 @@
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Budgeted Qty">
+                                <asp:TemplateField HeaderText="Budgeted Qty">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvBgdqty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
                                     </ItemTemplate>
@@ -214,7 +201,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Budgeted Amt">
+                                <asp:TemplateField HeaderText="Budgeted Amt">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvBgdamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdamt")).ToString("#,##0.000;-#,##0.000; ") %>' Width="75px"></asp:Label>
                                     </ItemTemplate>
@@ -267,7 +254,7 @@
 
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
-                                   
+
                                 </asp:TemplateField>
 
 
@@ -275,7 +262,7 @@
                                 <asp:TemplateField HeaderText="Apprx. Unit</br> Price">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvAppUnitPrice" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.00;(#,##0.00); ") %>' Width="84px"></asp:TextBox>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.00;(#,##0.00); ") %>' Width="85px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClick="lbtnUpdateResReq_Click" CssClass="btn btn-success btn-sm form-control">Final Update</asp:LinkButton>
