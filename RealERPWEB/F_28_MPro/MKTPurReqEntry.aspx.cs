@@ -219,7 +219,7 @@ namespace RealERPWEB.F_28_MPro
                 this.txtReqNarr.Text = "";
                 this.gvReqInfo.DataSource = null;
                 this.gvReqInfo.DataBind();
-                this.ddlProject.Enabled = true;
+                //this.ddlProject.Enabled = true;
                 this.pnlSpeDet.Visible = false;
                 this.dNarr.Visible = false;              
                 this.lbtnOk.Text = "Ok";              
@@ -247,12 +247,12 @@ namespace RealERPWEB.F_28_MPro
                 //this.txtMRFNo.Visible = true;               
                 this.lblCurNo.Visible = true;
                 this.lblCurReqNo1.Visible = true;
-                this.txtCurReqNo2.Visible = true;      
+                this.txtCurReqNo2.Visible = true;
             }
 
             this.ImgbtnFindReq.Visible = false;
             this.ddlPrevReqList.Visible = false;
-            this.ddlProject.Enabled = false;                     
+            //this.ddlProject.Enabled = false;                     
             this.txtCurReqNo2.ReadOnly = true;
             this.pnlSpeDet.Visible = true;
             this.dNarr.Visible = true;         
@@ -347,7 +347,7 @@ namespace RealERPWEB.F_28_MPro
             this.txtCurReqNo2.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(6, 5);
             this.txtCurReqDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["reqdat"]).ToString("dd.MM.yyyy");
             this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();           
-            this.ddlProject.Enabled=false;                  
+            //this.ddlProject.Enabled=false;                  
             this.txtReqNarr.Text = ds1.Tables[1].Rows[0]["reqnar"].ToString();
             this.gvResInfo_DataBind();
         }
