@@ -1,5 +1,7 @@
 ﻿using EASendMail;
+using Microsoft.Reporting.WinForms;
 using RealERPLIB;
+using RealERPRDLC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,6 +59,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
         }
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
         private void GetSupvisorCheck()
         {
             try
@@ -1162,5 +1172,80 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         //        e.Cell.Font.Name = "Courier New Baltic";
         //    }
         //}
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+         
+            switch (comcod)
+            {
+       
+                case "3365":
+                    this.EmployeeLeaveCard();
+                    break;
+
+            }
+
+        }
+
+        private void EmployeeLeaveCard()
+        {
+ 
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string curr_year = System.DateTime.Now.ToString("yyyy");
+            string curr_date = "26-Dec-" + curr_year;
+
+
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + this.GetComeCode() + ".jpg")).AbsoluteUri;
+
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            var ds = HRData.GetTransInfo("", "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid,curr_date);
+            if (ds == null)
+            {
+                return;
+            }
+           
+            DataTable dt1 = ds.Tables[1];
+            DataTable dt2 = ds.Tables[2];
+            DataTable dt3 = ds.Tables[3];
+
+    
+            string empname = ds.Tables[0].Rows[0]["empname"].ToString()??"";
+            string doj = ds.Tables[0].Rows[0]["doj"].ToString() ?? "";
+            string dept = ds.Tables[0].Rows[0]["dept"].ToString() ?? "";
+            string desig = ds.Tables[0].Rows[0]["desig"].ToString() ?? "";
+
+
+            var list1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>();
+            var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
+            var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.prevtLeaveInfo>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptEmpLeaveCard", list1, list2, list3);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee's Leave Card"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Rpt1.SetParameters(new ReportParameter("empid", empid));
+            Rpt1.SetParameters(new ReportParameter("empname", empname));
+            Rpt1.SetParameters(new ReportParameter("doj", doj));
+            Rpt1.SetParameters(new ReportParameter("dept", dept));
+            Rpt1.SetParameters(new ReportParameter("desig", desig));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+
+
+
     }
 }
