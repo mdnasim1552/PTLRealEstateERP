@@ -115,9 +115,15 @@
 
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="col-md-2 pading5px">
                                         <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" CssClass="btn btn-danger">Save</asp:LinkButton>
                        </div>
+=======
+                        <div class="col-md-2 ">
+                                        <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" CssClass="btn btn-danger primaryBtn">Save</asp:LinkButton>
+                                    </div>
+>>>>>>> dc33c2d5de44d03db3435846ac04e5a12c5f62ea
                     </div>
                     <div class="table-responsive d-none">
                         <asp:GridView ID="gvPrjCode" runat="server" AutoGenerateColumns="False" ClientIDMode="Static"
