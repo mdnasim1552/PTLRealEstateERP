@@ -1709,14 +1709,8 @@
                 <div id="absmodal" class="modal animated zoomIn" role="dialog">
                     <div class="modal-dialog   modal-lg">
                         <div class="modal-content  ">
-                            <div class="modal-header">
-
-
-
-
-
-
-                                <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                            <div class="modal-header"> 
+                                <button type="button" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
                                 <h4 class="modal-title">
                                     <span class="glyphicon glyphicon-hand-right"></span>
                                     <asp:Label ID="lblabsheading" runat="server"></asp:Label>
@@ -1724,8 +1718,7 @@
                             </div>
                             <div class="modal-body">
 
-                                <div class="row-fluid form-horizontal forgotform" id="">
-                                </div>
+                                 
                                 <div class="">
                                     <asp:GridView ID="mgvmonabsent" runat="server"
                                         AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -1753,7 +1746,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="mlblgvCompanyabs02" runat="server" Font-Bold="true" Font-Size="11px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                                        Width="100px"></asp:Label>
+                                                        Width="120px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
@@ -1761,20 +1754,9 @@
 
 
                                                 <HeaderTemplate>
-                                                    <table style="width: 30%;">
-                                                        <tr>
-                                                            <td class="style58">
-                                                                <asp:Label ID="mLabel4" Font-Size="Smaller" runat="server" Font-Bold="True"
-                                                                    Text="Name" Width="70px"></asp:Label>
-                                                            </td>
-                                                            <td class="style60">&nbsp;</td>
-                                                            <td>
-                                                                <asp:HyperLink ID="mhlbtntbCdataExelabs02" runat="server" BackColor="#000066"
-                                                                    BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
+                                                   Name
+                                                     <asp:HyperLink ID="mhlbtntbCdataExelabs02" runat="server"
                                                                     ForeColor="White" Style="text-align: center" Width="50px"><span class="fa fa-file-excel-o"></span></asp:HyperLink>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
                                                 </HeaderTemplate>
 
 
@@ -1803,7 +1785,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="mlblgvdesigabs02" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                        Width="100px"></asp:Label>
+                                                        Width="150px"></asp:Label>
                                                 </ItemTemplate>
                                                 <%-- <FooterTemplate>
                                                 <asp:LinkButton ID="mbtnUpdateDayAdj" runat="server" OnClick="btnUpdateDayAdj_Click"

@@ -3276,11 +3276,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetPEB();
                         break;
 
+                    case "3101":
                     case "3365"://BTI
                         this.PrintBonusBTI();
                         break;
-
-                    case "3101":
+                    
                     case "3354"://Edison
                         this.PrintBonusEdison();
                         break;

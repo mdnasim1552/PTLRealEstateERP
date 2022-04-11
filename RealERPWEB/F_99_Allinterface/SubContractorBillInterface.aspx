@@ -533,7 +533,7 @@
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
-                    //case 3101:   //p2p
+                        //case 3101:   //p2p
                         //case 3355:   //greenwood
 
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
@@ -708,37 +708,24 @@
                 <div class="card-body">
 
                     <div class="row">
-
-                        <%--  <fieldset class="scheduler-border fieldset_A ">--%>
-                        <%--  <div class="form-group">--%>
-
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div class="form-group">
+                                <label class="control-label  lblmargin-top9px" for="txtdate">Date</label>
 
-                                <%--  <asp:Label ID="lblfrmdate" runat="server" CssClass=" smLbl_to">Date</asp:Label>--%>
-                                <label class="control-label  lblmargin-top9px" for="lblfrmdate">Date</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 pading5px">
-
-                            <div class="form-group">
-
-
-                                <asp:TextBox ID="txtdate" runat="server" CssClass="form-control " AutoPostBack="true" OnTextChanged="txtdate_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtdate" runat="server" CssClass="inputDateBox" AutoPostBack="true" OnTextChanged="txtdate_TextChanged"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
-
                             </div>
                         </div>
-
                         <div class="col-md-1">
                             <div class="form-group">
-
-                                <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
+                                <asp:TextBox ID="txtrefno" runat="server" CssClass="form-control" placeholder="Ref No..."></asp:TextBox>
                             </div>
-
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            </div>
                         </div>
 
                         <div class="col-md-2">
@@ -749,7 +736,7 @@
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
                                         <asp:HyperLink ID="HyperLink16" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=Res" CssClass="dropdown-item" Style="padding: 0 15px">Resouce Code</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink11" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurSupplierinfo" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Information</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink11" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurSupplierinfo?Type=Entry" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Information</asp:HyperLink>
                                         <asp:HyperLink ID="hlnksubconpayslip" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/RptSubConPaySlip" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Payment Slip</asp:HyperLink>
                                         <asp:HyperLink ID="hlnksubconbundle" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurBillBundle?Type=ContEntry" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bundle Entry </asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink12" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/RptSubConOverall02" CssClass="dropdown-item" Style="padding: 0 15px">Sub Contractor Budget </asp:HyperLink>
@@ -2884,7 +2871,7 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                              <asp:TemplateField HeaderText="Bill Requistion 2" Visible="false" >
+                                            <asp:TemplateField HeaderText="Bill Requistion 2" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvlreq2" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreqno")) %>'
@@ -2990,7 +2977,7 @@
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lnkbtnPrintWorkOrder" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
-                                                    
+
                                                     <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
                                                     <asp:LinkButton ID="btnDelReadyBill" OnClick="btnDelReadyBill_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>

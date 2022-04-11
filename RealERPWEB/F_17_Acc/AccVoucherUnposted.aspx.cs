@@ -399,12 +399,12 @@ namespace RealERPWEB.F_17_Acc
             string errMsg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + errMsg + "');", true);
 
+            this.lbtnOk_Click(null, null);
 
-            
-            Session.Remove("tblunposted");
-            DataView dv = dt.DefaultView;
-            Session["tblunposted"] = dv.ToTable();
-            this.Data_Bind();
+            //Session.Remove("tblunposted");
+            //DataView dv = dt.DefaultView;
+            //Session["tblunposted"] = dv.ToTable();
+            //this.Data_Bind();
 
 
         }
