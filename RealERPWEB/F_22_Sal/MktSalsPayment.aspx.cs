@@ -350,8 +350,8 @@ namespace RealERPWEB.F_22_Sal
             string paddress = ds1.Tables[1].Rows[0]["paddress"].ToString();
             string salesteam = this.ddlSalesTeam.SelectedItem.Text.ToString();
             string bkdate = Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
-            string agdate = Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
-            string hodate = Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+            string agdate = Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy");
+            string hodate = Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy");
 
             /*
                     this.txtBookDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
