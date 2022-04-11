@@ -79,7 +79,7 @@ namespace RealERPWEB.F_09_PImp
 
                 if (Request.QueryString.AllKeys.Contains("orderno"))
                 {
-                    this.printWorkOrderP2P();
+                    this.printWorkOrderFInt();
                 }
 
 
@@ -214,13 +214,6 @@ namespace RealERPWEB.F_09_PImp
             }
         }
 
-
-
-        private void PrintBridgeHolding()
-        {
-
-
-        }
         private string GetCompOrderCopy()
         {
 
@@ -289,7 +282,7 @@ namespace RealERPWEB.F_09_PImp
 
             if (comcod == "1205" || comcod == "3351" || comcod == "3352")
             {
-                refNo = Request.QueryString["genno"].ToString();
+                refNo = this.txtOrderRef.Text.ToString();
                 string txtSign1 = ds1.Tables[2].Rows[0]["usrname"].ToString() + " ," + ds1.Tables[2].Rows[0]["usrdesig"].ToString() + " \n" + Convert.ToDateTime(ds1.Tables[2].Rows[0]["POSTEDDAT"]).ToString("dd-MMM-yyyy");
                 string txtSign2 = "";
                 string txtSign3 = "";
@@ -353,7 +346,7 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
-        private void printWorkOrderP2P()
+        private void printWorkOrderFInt()  
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -390,6 +383,15 @@ namespace RealERPWEB.F_09_PImp
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder1>();
 
+            string Address = lst[0].conadd.ToString();
+            string Attn = lst[0].atten.ToString();
+            string body = lst1[0].leterdes.ToString();
+            string subject = lst1[0].subject.ToString();
+            string Term = lst1[0].term.ToString();
+            string Suppl = lst1[0].csirdesc.ToString();
+            string GDesc = lst[0].grpdesc;
+            string prjname = lst1[0].pactdesc.ToString();
+
             if (comcod == "1205" || comcod == "3351" || comcod == "3352")
             {
                 refNo = Request.QueryString["genno"].ToString();
@@ -406,23 +408,17 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
                 Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
                 Rpt1.SetParameters(new ReportParameter("lang", lang));
+                Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
+                Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
 
             }
             else
             {
                 refNo = this.txtOrderRef.Text.ToString();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder", lst, null, null);
                 Rpt1.EnableExternalImages = true;
-
+                Rpt1.SetParameters(new ReportParameter("Suppl", Suppl));
             }
-            string Address = lst[0].conadd.ToString();
-            string Attn = lst[0].atten.ToString();
-            string body = lst1[0].leterdes.ToString();
-            string subject = lst1[0].subject.ToString();
-            string Term = lst1[0].term.ToString();
-            string Suppl = lst1[0].csirdesc.ToString();
-            string GDesc = lst[0].grpdesc;
-            string prjname = lst1[0].pactdesc.ToString();
 
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -433,8 +429,6 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("body", body));
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Term", Term));
-            Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
-            Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
             Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
             Rpt1.SetParameters(new ReportParameter("prjname", prjname));
 
@@ -527,7 +521,7 @@ namespace RealERPWEB.F_09_PImp
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "1205":
                 case "3351":
                 case "3352":
