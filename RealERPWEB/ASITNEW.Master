@@ -464,6 +464,7 @@
                                     <asp:HyperLink class="dropdown-item" ID="hypOnlineAttendance" Visible="false" runat="server" Text="Online Attendance"></asp:HyperLink>
 
                                     <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyReqCommon" Visible="false" runat="server" Text="Request Apply (MGT)"></asp:HyperLink>
 
 
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>

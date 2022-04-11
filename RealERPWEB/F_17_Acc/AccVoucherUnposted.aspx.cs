@@ -310,29 +310,102 @@ namespace RealERPWEB.F_17_Acc
 
 
             string comcod = this.GetCompCode();
-           // this.lblabsheading.Text = "Individual Monthly Absent Approval Details Information. Date :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
-            //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            // this.lblabsheading.Text = "Individual Monthly Absent Approval Details Information. Date :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
+            DataTable dt = (DataTable)Session["tblunposted"];
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string vounum = dt.Rows[index]["vounum"].ToString();
 
-            //int index = row.RowIndex;
+            //string vounum = ((Label)this.gvabsapp02.Rows[index].FindControl("lgvEmpIdabs02")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETUNVOUDETAILS", vounum, "", "", "", "", "", "", "", "");
+ 
+            if (ds1 == null)
+            {
+                this.gvdetails.DataSource = null;
+                this.gvdetails.DataBind();
+                return;
+            }
 
-            //string frmdate = this.txtfrmDate.Text.Trim();
-            //string todate = this.txttoDate.Text.Trim();
-            //string Empcode = ((Label)this.gvabsapp02.Rows[index].FindControl("lgvEmpIdabs02")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
-
-            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPMONABSENT", frmdate, todate, Empcode);
-            //if (ds2 == null)
-            //{
-            //    this.mgvmonabsent.DataSource = null;
-            //    this.mgvmonabsent.DataBind();
-            //    return;
-            //}
-            //this.mgvmonabsent.DataSource = ds2.Tables[0];
-            //this.mgvmonabsent.DataBind();
+            this.lblvalvounum.Text = vounum;
+            Session["tblunpostvoudetails"] = ds1.Tables[0];
+            this.gvdetails.DataSource = ds1.Tables[0];
+            this.gvdetails.DataBind();
+            this.FooterCalCulationDetails();
             //Session["Report1"] = mgvbreakdown;
             //if (ds2.Tables[0].Rows.Count > 0)
             //    ((HyperLink)this.mgvmonabsent.HeaderRow.FindControl("mhlbtntbCdataExelabs02")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+
+        }
+
+
+        private void FooterCalCulationDetails()
+        {
+            DataTable dt = (DataTable)Session["tblunpostvoudetails"];
+            if (dt.Rows.Count == 0)
+                return;
+
+            ((Label)this.gvdetails.FooterRow.FindControl("lblgvFvouamtd")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ?
+            0 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0);");
+
+        }
+
+        protected void btnVouApproval_Click(object sender, EventArgs e)
+        {
+
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+             DataTable dt = (DataTable)Session["tblunposted"];
+            //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            //int index = row.RowIndex;
+            //dt.Rows[index]["chkmv"] = "True";
+
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string vounum = this.lblvalvounum.Text.Trim();
+
+            string ApprovedByid = hst["usrid"].ToString();
+            string Approvedtrmid = hst["compname"].ToString();
+            string ApprovedSession = hst["session"].ToString();
+            string Approvedddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+            // Existing Voucher
+
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETEXISTPOSTEDVOUCHER", vounum, "", "", "", "", "", "", "", "");
+
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Voucher Already Posted";
+                return;
+
+            }
+
+
+            bool resultb = AccData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPUNPOSTEDVOUCHER", vounum, ApprovedByid, Approvedtrmid, ApprovedSession, Approvedddat,
+                               "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!resultb)
+            {
+                string errMfsg=  AccData.ErrorObject["Msg"].ToString();
+               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMfsg + "');", true);
+
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
+            string errMsg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + errMsg + "');", true);
+
+
+            
+            Session.Remove("tblunposted");
+            DataView dv = dt.DefaultView;
+            Session["tblunposted"] = dv.ToTable();
+            this.Data_Bind();
+
 
         }
     }

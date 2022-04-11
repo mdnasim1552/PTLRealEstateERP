@@ -213,37 +213,46 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string postDat = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             string qtype = this.Request.QueryString["Type"] ?? "";
             if (usetime == "00:00:00")
-                return;
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeOUT, reqtimeIN, txtReson, usetime, usrid, postDat, "");
-            //reqtimeOUT actual INTIME, reqtimeIN actual OUTTIME its change only for time of leave case simarlar other type  insert data, any issue discuse with emdad,nahid, ibrahim
-
-
-            if (!result)
             {
-
-                string errMsg = "Update Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                string Messaged = "Submit Fail, Use time 00:00";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
-
             else
             {
-                htmtableboyd = "Details: Apply Date: " + reqdate + ", <br>  Out time :" + reqtimeOUT + ",  In time :" + reqtimeIN + ",<br>  Use Time:" + usetime + " Hour, <br>  Previous Use Time :" + remTime + ",<br> Reason/Remarks " + txtReson;
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeOUT, reqtimeIN, txtReson, usetime, usrid, postDat, "");
+                //reqtimeOUT actual INTIME, reqtimeIN actual OUTTIME its change only for time of leave case simarlar other type  insert data, any issue discuse with emdad,nahid, ibrahim
 
 
-                string trnid = this.GetattAppId(empid);
-                string Messaged = "Successfully applied for " + reqfor + ", please wait for approval";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
-                if (qtype != "MGT")
+                if (!result)
                 {
-                    this.SendNotificaion(reqdate, reqdate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
 
+                    string errMsg = "Update Fail";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                    return;
                 }
 
-                string eventdesc2 = htmtableboyd;
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Request for " + reqfor, htmtableboyd, Messaged);
-                GetRemaningTime();
+                else
+                {
+                    htmtableboyd = "Details: Apply Date: " + reqdate + ", <br>  Out time :" + reqtimeOUT + ",  In time :" + reqtimeIN + ",<br>  Use Time:" + usetime + " Hour, <br>  Previous Use Time :" + remTime + ",<br> Reason/Remarks " + txtReson;
+
+
+                    string trnid = this.GetattAppId(empid);
+                    string Messaged = "Successfully applied for " + reqfor + ", please wait for approval";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
+                    if (qtype != "MGT")
+                    {
+                        this.SendNotificaion(reqdate, reqdate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
+
+                    }
+
+                    string eventdesc2 = htmtableboyd;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Request for " + reqfor, htmtableboyd, Messaged);
+                    GetRemaningTime();
+                }
             }
+                
+            
         }
         private string GetattAppId(string empid)
         {
