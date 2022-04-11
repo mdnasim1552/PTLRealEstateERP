@@ -160,16 +160,16 @@
                   <Width>0.34223in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.62177in</Width>
+                  <Width>0.52411in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.12135in</Width>
+                  <Width>1.21238in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.0483in</Width>
+                  <Width>1.22538in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.85051in</Width>
+                  <Width>0.73445in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.51705in</Width>
@@ -187,7 +187,7 @@
                   <Width>0.66936in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.96735in</Width>
+                  <Width>0.91297in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -218,7 +218,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>grpdesc</rd:DefaultName>
-                              <Top>0.00625in</Top>
+                              <Top>0.03125in</Top>
                               <Left>6.33317in</Left>
                               <Height>0.22917in</Height>
                               <Width>1.65625in</Width>
@@ -242,7 +242,7 @@
                                       <Value>Purchase Order Form</Value>
                                       <Style>
                                         <FontFamily>cambria</FontFamily>
-                                        <FontSize>12pt</FontSize>
+                                        <FontSize>13pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1098,6 +1098,7 @@
                                                     <Value>=First(Fields!proadd.Value)</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1190,7 +1191,6 @@
                                   <Value>Subject : </Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1198,7 +1198,6 @@
                                   <Value>=Parameters!subject.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <TextDecoration>Underline</TextDecoration>
                                   </Style>
@@ -1248,7 +1247,6 @@
                                   <Value>Dear Sir, </Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1376,9 +1374,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>MRF No.</Value>
+                                  <Value>MRF No</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1725,7 +1724,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.19943in</Height>
+                  <Height>0.20674in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1751,7 +1750,9 @@
                           <rd:DefaultName>rowid</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -1786,7 +1787,9 @@
                           <rd:DefaultName>mrfno</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -1821,7 +1824,9 @@
                           <rd:DefaultName>rsirdesc</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -1856,7 +1861,9 @@
                           <rd:DefaultName>spcfdesc</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -1891,7 +1898,9 @@
                           <rd:DefaultName>reqno</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -1928,7 +1937,9 @@
                           <rd:DefaultName>rsirunit</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -1965,7 +1976,9 @@
                           <rd:DefaultName>ordrqty</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -2002,7 +2015,9 @@
                           <rd:DefaultName>aprovrate</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -2039,7 +2054,9 @@
                           <rd:DefaultName>dispercnt</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -2050,7 +2067,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2077,7 +2093,9 @@
                           <rd:DefaultName>aprovsrate</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -2102,7 +2120,7 @@
                                   <Value>=iif(Fields!grp.Value="B","",format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2114,7 +2132,9 @@
                           <rd:DefaultName>ordramt</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>None</Style>
+                              <Width>0.75pt</Width>
                             </Border>
                             <BottomBorder>
                               <Style>Dotted</Style>
@@ -2127,60 +2147,6 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.03821in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox63">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox63</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BottomBorder>
-                              <Style>Solid</Style>
-                            </BottomBorder>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>11</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -2198,7 +2164,7 @@
                                   <Value>Sub Total</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2280,7 +2246,7 @@
                                   <Value>=format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2326,7 +2292,7 @@
                                   <Value>=Parameters!costa.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2404,7 +2370,7 @@
                                   <Value>=Parameters!cost1.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2445,7 +2411,7 @@
                                   <Value>=Parameters!costb.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2523,7 +2489,7 @@
                                   <Value>=Parameters!cost2.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2564,7 +2530,7 @@
                                   <Value>=Parameters!costc.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2642,7 +2608,7 @@
                                   <Value>=Parameters!cost3.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2683,7 +2649,7 @@
                                   <Value>=Parameters!costd.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2761,7 +2727,7 @@
                                   <Value>=Parameters!cost4.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2802,7 +2768,7 @@
                                   <Value>=Parameters!coste.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2880,7 +2846,7 @@
                                   <Value>=Parameters!cost5.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2921,7 +2887,7 @@
                                   <Value>=Parameters!discountdesc.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2999,7 +2965,7 @@
                                   <Value>=Parameters!disamt.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3043,7 +3009,7 @@
                                   <Value>Total Amount</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3125,7 +3091,7 @@
                                   <Value>=Parameters!nettotal.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3214,7 +3180,7 @@
                                   <Value>Advanced Amount</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3294,7 +3260,7 @@
                                   <Value>=Parameters!advamt.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3325,12 +3291,12 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.23958in</Height>
+                  <Height>0.22916in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
                         <Subreport Name="Subreport3">
-                          <ReportName>RptPaymentSchedule</ReportName>
+                          <ReportName>RptPaymentScheduleAssure</ReportName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -3414,7 +3380,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!pordnar.Value+" "+Fields!reqnar.Value</Value>
+                                  <Value>=Fields!reqnar.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4059,9 +4025,6 @@
                       </TablixMembers>
                     </TablixMember>
                     <TablixMember>
-                      <KeepWithGroup>Before</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
                       <Visibility>
                         <Hidden>=iif(Fields!grp.Value="B",True, False)</Hidden>
                       </Visibility>
@@ -4111,11 +4074,14 @@
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=iif(Fields!grp.Value="B",True,False)</Hidden>
+                        <Hidden>=iif(Fields!grp.Value="B",True, False)</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!grp.Value="B",True, False)</Hidden>
+                      </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
@@ -4166,9 +4132,8 @@
             </TablixRowHierarchy>
             <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.18208in</Top>
-            <Height>6.58052in</Height>
-            <Width>8.04456in</Width>
+            <Height>6.5392in</Height>
+            <Width>8.04458in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4176,13 +4141,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.81314in</Height>
+        <Height>6.74443in</Height>
         <Style />
       </Body>
       <Width>8.04458in</Width>
       <Page>
         <PageHeader>
-          <Height>0.68128in</Height>
+          <Height>0.57711in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4207,44 +4172,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>compname</rd:DefaultName>
-              <Left>1.12375in</Left>
-              <Height>0.26237in</Height>
-              <Width>6.06724in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="comadd">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!subcompname.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.26111in</Top>
-              <Left>1.12593in</Left>
-              <Height>0.16875in</Height>
-              <Width>6.06506in</Width>
-              <ZIndex>1</ZIndex>
+              <Top>0.0125in</Top>
+              <Left>1.11204in</Left>
+              <Height>0.28112in</Height>
+              <Width>6.34432in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -4262,7 +4193,7 @@
               <Left>0.0125in</Left>
               <Height>0.51389in</Height>
               <Width>1.07176in</Width>
-              <ZIndex>2</ZIndex>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -4289,11 +4220,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.43542in</Top>
-              <Left>1.12375in</Left>
-              <Height>0.18793in</Height>
-              <Width>6.06724in</Width>
-              <ZIndex>3</ZIndex>
+              <Top>0.29792in</Top>
+              <Left>1.11204in</Left>
+              <Height>0.20975in</Height>
+              <Width>6.34432in</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

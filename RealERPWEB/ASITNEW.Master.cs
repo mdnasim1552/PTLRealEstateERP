@@ -144,6 +144,7 @@ namespace RealERPWEB
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true); 
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true); 
                     this.hypGroupChat.Visible = false;
                     this.HypOldModules.Visible = false;                 
                     this.lnkFormLink.Visible = true;
@@ -163,6 +164,16 @@ namespace RealERPWEB
                 case "3347":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
+
+                case "3343":
+                    this.HypLinkApplyLvCommon.Visible =false;
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = false;
+                    this.hypTimeOfleave.Visible = false;
+                    this.hypOnlineAttendance.Visible = false;
+                    break;
+                    
                 default:
                     this.lnkFormLink.Text = "Forum";
                     this.lnkFormLink.Visible = true;
@@ -173,10 +184,12 @@ namespace RealERPWEB
             }
             hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
+            
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
             this.hypTimeOfleave.NavigateUrl = "~/F_81_Hrm/F_84_Lea/TimeOfLeave?Type=Ind";
 
-
+            // Attendance Request MGT /F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=&frmdate=26-Feb-2022&todate=25-Mar-2022
+            this.HypLinkApplyReqCommon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet?Type=MGT&empid=&frmdate=&todate=";
         }
 
         private void GetComNameAAdd()

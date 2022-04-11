@@ -50,7 +50,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void data_Bind()
         {
             DataTable dt1 = (DataTable)ViewState["tblattreq"];
-            string reqtype = this.Request.QueryString["Reqtype"].ToString();
+            string reqtype = this.Request.QueryString["Reqtype"]??"";
             string empid = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empid"].ToString();
             string empUsrID = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empuserid"].ToString();
             string empEmail = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empEmail"].ToString();
@@ -134,7 +134,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 DataTable dt = (DataTable)ViewState["tblattreq"];
                 string supapp = "Your Request approved has been approved by the Supervisor, please waiting for Department/Section Head approval.";
                 string dptapp = "Your Request has been approved by the Department/Section Head.";
-
+                string empid = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empid"].ToString();
                 string empUsrID = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empuserid"].ToString();
                 string empEmail = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empEmail"].ToString();
                 string idcard = dt.Rows.Count == 0 ? "" : dt.Rows[0]["idcard"].ToString();
@@ -142,12 +142,45 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string empdesig = dt.Rows.Count == 0 ? "" : dt.Rows[0]["desig"].ToString();
                 string empname = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empname"].ToString();
                 string reqdesc = dt.Rows.Count == 0 ? "" : dt.Rows[0]["attstatus"].ToString();
+                string reqtype = this.Request.QueryString["Reqtype"] ?? "";
+                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                string absapp = "0";
+                string lateapp = "0";
+                
+                // this part for the Attedance update process 
+                if (roletype == "DPT")
+                {
+                    if (reqtype == "AB")
+                    {
+                        absapp = "1";
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "", "", "", "", "", "", "", "", "", "");
+                    }
 
+                    else if (reqtype == "LP")
+                    {
+                        lateapp = "1";
+                        string remarks = "Late Present Approval";
+                        frmdate = Convert.ToDateTime(frmdate).ToString("yyyyMMdd");
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate,  empid, idcard, lateapp, remarks, usrid, "", "", "", "", "", "", "", "");
+                    }
+                    else if (reqtype == "LA")
+                    {
+                        lateapp = "1";
+                        string remarks = "Late Approval";
+                        frmdate = Convert.ToDateTime(frmdate).ToString("yyyyMMdd");
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, lateapp, remarks, usrid, "", "", "", "", "", "", "");
+                    }
 
-
+                    else if (reqtype == "TC")
+                    {
+                        absapp = "0";
+                        string remarks = "Time Correction";
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, "0", remarks, usrid, reqtype, "", "", "", "", "", "");
+                    }
+                }               
                 ///GET SMTP AND SMS API INFORMATION
                 #region
-                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+               
                 DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
 
                 //SMTP
@@ -157,22 +190,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
                 #endregion
 
-
-
-
                 string roletypeCHk = (roletype == "SUP") ? "DPT" : "MGT";
-                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETAPPRVPMAIL", deptcode, roletypeCHk, "", "", "", "", "", "", "");
 
+                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETAPPRVPMAIL", deptcode, roletypeCHk, "", "", "", "", "", "", "");
                 // var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "HRAPPROVAL_DPT_HEAD_USERID", deptcode, roletypeCHk, "", "", "", "", "", "", "");
                 if (ds == null)
                     return;
 
                 #region
-
                 string subj = "New Request for "+ reqdesc;
-
-
-
                 #endregion
 
                 #region
@@ -245,12 +271,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 }
                 #endregion
-
-
             }
             catch (Exception ex)
             {
-                string Messagesd = "Request Approved, Notification did not send " + ex.Message;
+                string Messagesd = "Request Approved, Notification did not send" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
@@ -291,7 +315,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 /// this.SaveLeave();
                 string reqtype = this.ddlReqType.SelectedValue.ToString();
                 string remarks = this.txtremarks.Text.ToString();
-
 
                 string roletype = this.Request.QueryString["RoleType"].ToString();
                 string approvdat = System.DateTime.Now.ToString("dd-MMM-yyyy");

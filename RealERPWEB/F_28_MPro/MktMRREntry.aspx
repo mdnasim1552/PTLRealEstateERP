@@ -6,7 +6,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+     <style>
+     .chzn-container-single .chzn-single {
+             height: 28px !important;
+            line-height: 28px !important;
+        }
+    </style>
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -201,7 +206,7 @@
                 </div>
                 <div class="card-body" style="min-height: 350px;">
                     <asp:GridView ID="gvMRRInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                        ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnSelectedIndexChanged="gvMRRInfo_SelectedIndexChanged">
+                        ShowFooter="True" CssClass="table-striped table-bordered grvContentarea" OnSelectedIndexChanged="gvMRRInfo_SelectedIndexChanged">
                         <PagerSettings Visible="False" />
                         <RowStyle />
                         <Columns>
@@ -273,7 +278,7 @@
                             <asp:TemplateField HeaderText="This MRR">
                                 <FooterTemplate>
                                     <asp:LinkButton ID="lbtnResFooterTotal" runat="server"
-                                        OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary primarygrdBtn btn-sm">Total :</asp:LinkButton>
+                                        OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary btn-sm form-control">Total :</asp:LinkButton>
                                 </FooterTemplate>
 
                                 <ItemTemplate>
@@ -286,7 +291,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Rate">
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lbtnUpdateMRR" runat="server" OnClientClick="return Confirmation()" OnClick="lbtnUpdateMRR_Click" CssClass="btn btn-danger primarygrdBtn btn-sm">Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnUpdateMRR" runat="server" OnClientClick="return Confirmation()" OnClick="lbtnUpdateMRR_Click" CssClass="btn btn-success btn-sm form-control">Update</asp:LinkButton>
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvMRRRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
@@ -305,7 +310,7 @@
                                 </ItemTemplate>
                                 <FooterTemplate>
                                     <asp:Label ID="lblgvFooterTMRRAmt" runat="server" Width="80px" Font-Bold="True"
-                                        Font-Size="12px" ForeColor="Black"></asp:Label>
+                                        Font-Size="12px"></asp:Label>
                                 </FooterTemplate>
                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
@@ -327,11 +332,11 @@
                             </asp:TemplateField>
                         </Columns>
 
-                        <FooterStyle CssClass="grvFooter" />
+                        <FooterStyle CssClass="grvFooterNew" />
                         <EditRowStyle />
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                     </asp:GridView>
 
                     <asp:Panel ID="PnlNarration" runat="server" Visible="false">

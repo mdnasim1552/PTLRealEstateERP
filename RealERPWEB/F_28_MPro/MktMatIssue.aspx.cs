@@ -117,135 +117,7 @@ namespace RealERPWEB.F_28_MPro
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
-
-            string comcod = this.GetCompCode();
-
-            switch (comcod)
-            {
-                case "3330":
-                case "3101":
-                    this.PrintBridgeHolding();
-                    break;
-                default:
-                    this.PrintGeneral();
-                    break;
-
-            }
-
-
-        }
-
-
-
-        private void PrintBridgeHolding()
-        {
-
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string session = hst["session"].ToString();
-            //string hostname = hst["hostname"].ToString();
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            //string ProjectName = this.ddlprjlist.SelectedItem.Text.Substring(14);
-            //string Issueno = this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim();
-            //string date = this.txtCurISSDate.Text.Trim();
-            //string narrationname = this.txtISSNarr.Text.Trim();
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-            DataTable dt = (DataTable)ViewState["tblmatissue"];
-            DataTable dt1 = (DataTable)ViewState["UserLog"];
-
-            var list = dt.DataTableToList<RealEntity.C_12_Inv.RptMatIssue>();
-            LocalReport Rpt1 = new LocalReport();
-
-
-
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueBridge", list, null, null);
-            Rpt1.EnableExternalImages = true;
-
-            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            Rpt1.SetParameters(new ReportParameter("txtPrjName", "Project Name : " + this.ddlprjlist.SelectedItem.Text.Substring(14)));
-
-            Rpt1.SetParameters(new ReportParameter("rpttxtref", "SMCR NO: " + this.txtMIsuRef.Text));
-            Rpt1.SetParameters(new ReportParameter("rpttxtdate", "Date : " + this.txtCurISSDate.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtsmcrno", "REF.DMIRF NO: " + this.txtsmcr.Text));
-            Rpt1.SetParameters(new ReportParameter("rpttxtissueno", "Issue No : " + this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("txtdeg", dt1.Rows[0]["usrnam"].ToString() + "," + dt1.Rows[0]["deg"].ToString() + "\n" + Convert.ToDateTime(dt1.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("narrationname", this.txtISSNarr.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "STORE MATERIAL CONSUMPTION(SMCR)"));
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-
-
-
-
-            //DataTable dt = (DataTable)ViewState["tblmatissue"];
-            //DataTable dt1 = (DataTable) ViewState["UserLog"];
-
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string comadd1 = hst["comadd1"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //ReportDocument rptstk = new RealERPRPT.R_12_Inv.RptMatIssueBridge();
-
-
-
-            //TextObject txtCompany = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompany.Text = comnam;
-
-            //TextObject txtrptcomadd = rptstk.ReportDefinition.ReportObjects["txtrptcomadd"] as TextObject;
-            //txtrptcomadd.Text = comadd1;
-            //TextObject rptProjectName = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            //rptProjectName.Text = "PROJECT NAME: " + this.ddlprjlist.SelectedItem.Text.Substring(14);
-
-            //TextObject rpttxtMatissueNo = rptstk.ReportDefinition.ReportObjects["Issueno"] as TextObject;
-            //rpttxtMatissueNo.Text = this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim();
-
-            //TextObject rpttxtissueno = rptstk.ReportDefinition.ReportObjects["txtsmcrno"] as TextObject;
-            //rpttxtissueno.Text = this.txtsmcr.Text;
-
-            //TextObject rpttxtdate = rptstk.ReportDefinition.ReportObjects["rpttxtdate"] as TextObject;
-            //rpttxtdate.Text = this.txtCurISSDate.Text.Trim();
-
-
-            //TextObject rpttxtref = rptstk.ReportDefinition.ReportObjects["rpttxtref"] as TextObject;
-            //rpttxtref.Text = this.txtMIsuRef.Text.Trim();
-            //TextObject txtdeg = rptstk.ReportDefinition.ReportObjects["txtdeg"] as TextObject;
-            //txtdeg.Text = dt1.Rows[0]["usrnam"].ToString() +  "," + dt1.Rows[0]["deg"].ToString() + "\n" +Convert.ToDateTime( dt1.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy");
-
-            //TextObject narrationname = rptstk.ReportDefinition.ReportObjects["narrationname"] as TextObject;
-            //narrationname.Text = this.txtISSNarr.Text.Trim();
-            //TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-
-            //if (ConstantInfo.LogStatus == true)
-            //{
-            //    string eventtype = "Materials Issue Information";
-            //    string eventdesc = "Print Report";
-            //    string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "Materails Name " + this.ddlMaterials.SelectedItem.ToString() + "- " + "Issue No: " + this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim(); ;
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
-            //rptstk.SetDataSource(dt);
-            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            //rptstk.SetParameterValue("ComLogo", ComLogo);
-            //Session["Report1"] = rptstk;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
+            this.PrintGeneral();
         }
 
         private void PrintGeneral()
@@ -257,35 +129,23 @@ namespace RealERPWEB.F_28_MPro
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string session = hst["session"].ToString();
-            //string hostname = hst["hostname"].ToString();
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            //string ProjectName = this.ddlprjlist.SelectedItem.Text.Substring(14);
-            //string Issueno = this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim();
-            //string date = this.txtCurISSDate.Text.Trim();
-            //string narrationname = this.txtISSNarr.Text.Trim();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             DataTable dt = (DataTable)ViewState["tblmatissue"];
-
-
-
-            var list = dt.DataTableToList<RealEntity.C_12_Inv.RptMatIssue>();
-
+            var list = dt.DataTableToList<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktMatIssue>();
             LocalReport Rpt1 = new LocalReport();
-
-
-
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssue", list, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_28_MPro.RptMktMatIssue", list, null, null);
             Rpt1.EnableExternalImages = true;
-
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("txtPrjName", "Project Name : " + this.ddlprjlist.SelectedItem.Text.Substring(14)));
             Rpt1.SetParameters(new ReportParameter("rpttxtissueno", "Issue No : " + this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("rpttxtdate", "Date : " + this.txtCurISSDate.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("narrationname", this.txtISSNarr.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Matrial Issue"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Marketing Matrial Issue"));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -487,8 +347,8 @@ namespace RealERPWEB.F_28_MPro
                 dr1["prtypedesc"] = this.ddlPrType.SelectedItem.Text.Trim();
                 dr1["acttype"] = this.ddlActType.SelectedValue.ToString();
                 dr1["acttypedesc"] = this.ddlActType.SelectedItem.Text.Trim();
-                dr1["balqty"] = ((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'")).Length == 0) ? "0.00" : 
-                                Convert.ToDouble((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
+                dr1["balqty"] = ((dt1.Select("prtype='" + prtype + "' and acttype='" + acttype + "'")).Length == 0) ? "0.00" : 
+                                Convert.ToDouble((dt1.Select("prtype='" + prtype + "' and acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
                 dr1["isuqty"] = 0.00;
                 dr1["remarks"] = "";
                 dt.Rows.Add(dr1);
@@ -503,33 +363,28 @@ namespace RealERPWEB.F_28_MPro
         {
 
             DataTable dt = (DataTable)ViewState["tblmatissue"];
+            DataTable dt1 = (DataTable)Session["itemlist"];
             DataTable dt2 = ((DataTable)Session["acttypelist"]).Copy();
-
-
-            string prtype = this.ddlPrType.SelectedValue.ToString();
-            string acttype = this.ddlActType.SelectedValue.ToString();
 
             for (int j = 0; j < dt2.Rows.Count; j++)
             {
-                DataRow[] dr2 = dt.Select("prtype = '" + prtype + "' and  acttype='" + acttype + "'");
+                string acttype = dt2.Rows[j]["acttype"].ToString();
+                DataRow[] dr2 = dt.Select("acttype = '" + acttype + "'");
                 if (dr2.Length == 0)
                 {
                     DataRow dr1 = dt.NewRow();
-                    dr1["prtype"] = prtype;
-                    dr1["prtypedesc"] = this.ddlPrType.SelectedItem.Text;
+                    dr1["prtype"] = dt1.Select("acttype='"+acttype+"'")[0]["prtype"].ToString();
+                    dr1["prtypedesc"] = dt1.Select("acttype='"+acttype+"'")[0]["prtypedesc"].ToString();
                     dr1["acttype"] = acttype;
-                    dr1["acttypedesc"] = this.ddlActType.SelectedItem.Text;
-                    dr1["balqty"] = ((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'")).Length == 0) ? "0.00" :
-                                    Convert.ToDouble((((DataTable)Session["itemlist"]).Select("prtype='" + prtype + "' and acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
+                    dr1["acttypedesc"] = dt2.Rows[j]["acttypedesc"].ToString();
+                    dr1["balqty"] = ((dt1.Select("acttype='" + acttype + "'")).Length == 0) ? "0.00" :
+                                    Convert.ToDouble((dt1.Select("acttype='" + acttype + "'"))[0]["bbgdqty"]).ToString();
                     dr1["isuqty"] = 0.00;                  
                     dr1["remarks"] = "";
 
                     dt.Rows.Add(dr1);
 
                 }
-
-
-
             }
 
             ViewState["tblmatissue"] = dt;
@@ -860,8 +715,8 @@ namespace RealERPWEB.F_28_MPro
             int gvRowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowIndex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + gvRowIndex; 
             string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
-            string MatCode = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblPRType")).Text.Trim();
-            string spcfcode = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblgvActType")).Text.Trim();
+            string prtype = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblPRType")).Text.Trim();
+            string acttype = ((Label)this.grvissue.Rows[rowIndex].FindControl("lblgvActType")).Text.Trim();
 
             if (dt.Rows.Count > 0)
             {
@@ -869,7 +724,7 @@ namespace RealERPWEB.F_28_MPro
                 ds1.Tables.Add(dt);
             }
 
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUE", mISUNO, MatCode, spcfcode, "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "DELETE_ISSUED_MAT", mISUNO, prtype, acttype, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {                
@@ -880,7 +735,7 @@ namespace RealERPWEB.F_28_MPro
             ViewState.Remove("tblmatissue");
             ViewState["tblmatissue"] = dv.ToTable();
             this.grvissue_DataBind();
-
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Deleted Successfully" + "');", true);
 
         }
     }

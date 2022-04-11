@@ -187,12 +187,23 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
 
-                        default:
+                        case "3365"://Sanmer
                             this.lblemp.Visible = true;
                             this.txtEmpSrcInfo.Visible = true;
                             this.ibtnEmpListAllinfo.Visible = true;
                             this.ddlEmpNameAllInfo.Visible = true;
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-2).ToString("dd-MMM-yyyy");
+                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            break;
+
+
+                        default:
+                            this.lblemp.Visible = true;
+                            this.txtEmpSrcInfo.Visible = true;
+                            this.ibtnEmpListAllinfo.Visible = true;
+                            this.ddlEmpNameAllInfo.Visible = true;
+                            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                             this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
@@ -473,6 +484,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3101":
                 case "3339"://Tropical
                     this.rbtlBonSheet.SelectedIndex = 10;
+                    this.txtafterdays.Text = "90";
                     break;
 
 
@@ -488,8 +500,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtnPayType.Visible = true;
                     this.rbtnMantype.Visible = true;
                     break;
+                
+                case "3365"://BTI
+                    this.rbtlBonSheet.SelectedIndex=13;
+                    this.txtafterdays.Text="90";
+                    break;
 
-
+                case "3354"://Edison
+                    this.rbtlBonSheet.SelectedIndex=14;
+                    break;
 
                 default://Bridge  , Terranova        
                     this.rbtlBonSheet.SelectedIndex = 8;
@@ -539,12 +558,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         }
 
-
-
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetBranch();
-
         }
 
 
@@ -627,7 +643,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void GetEmpName()
         {
             string comcod = this.GetCompCode();
-            string ProjectCode = (this.txtEmpSrcInfo.Text.Trim().Length > 0) ? "%" : this.ddlCompany.SelectedValue.ToString() + "%";
+            string ProjectCode = (this.txtEmpSrcInfo.Text.Trim().Length > 0) ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
             string txtSProject = "%" + this.txtEmpSrcInfo.Text + "%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPAYSLIPEMPNAMEALL", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpNameAllInfo.DataTextField = "empname";
@@ -750,7 +766,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string mantype = "";
             switch (comcod)
             {
-
                 case "3338":
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                     break;
@@ -758,12 +773,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3355":
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : (this.rbtnlistsaltype.SelectedIndex == 2) ? "86003%" : "86%";
                     break;
-
                 default:
                     mantype = "86%";
                     break;
             }
-
             string paytype = "";
 
             switch (comcod)
@@ -776,15 +789,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 default:
                     paytype = "";
                     break;
-
-
             }
-
-
             //string exclumgt = "";
             //switch (comcod)
             //{
-
             //    case "3355":
             //        exclumgt = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" && chkExcluMgt.Checked) ? "exclumgt" : "";
             //        break;
@@ -806,9 +814,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else
             {
-
                 ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, saltype, branch);
-
 
             }
             if (ds3 == null)
@@ -816,20 +822,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 this.gvpayroll.DataSource = null;
                 this.gvpayroll.DataBind();
                 return;
-
             }
-
             DataTable dt = HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
-
-
-
             this.LoadGrid();
 
         }
         public int Datediffday1(DateTime dtto, DateTime dtfrm)
         {
-
             int year, mon, day;
             year = dtto.Year - dtfrm.Year;
             mon = dtto.Month - dtfrm.Month;
@@ -845,44 +845,33 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     year = year - 1;
                 }
             }
-
             if (mon < 0)
             {
 
                 mon = mon + 12;
                 year = year - 1;
             }
-
             //today = year * 365 + mon * 30 + day;
             return mon;
         }
-
         private string Companygross()
         {
             string ComGross = "";
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-
                 case "4305":
                 case "4101"://Rupayan
                     ComGross = "Rupayan";
                     break;
-
                 default:
                     ComGross = ""; ;
                     break;
-
-
-
             }
-
             return ComGross;
         }
-
         private string companyBonusPayType()
         {
-
             string bonpaytype = "";
             string comcod = this.GetCompCode();
             switch (comcod)
@@ -895,160 +884,94 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 default:
                     bonpaytype = "";
                     break;
-
             }
             return bonpaytype;
-
         }
-
-
-
         private void ShowSpecialBonus()
         {
             Session.Remove("tblpay");
             string comcod = this.GetCompCode();
             string date = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
             // string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
             string section = this.ddlSection.SelectedValue.ToString();
             string monthid = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyyMM").ToString();
             DataSet ds3;
-
             //DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BONLOCK", monthid, CompanyName, "", "", "", "", "", "", "");
             //this.lblComBonLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
-
             //string Calltype = (this.rbtlBonSheet.SelectedIndex == 0) ? "EMPBONUS" : (this.rbtlBonSheet.SelectedIndex == 1) ? "EMPBONUS1" : (this.rbtlBonSheet.SelectedIndex == 5) ? "EMPBONUS2" : (this.rbtlBonSheet.SelectedIndex == 2) ? "EMPBONUSSAN" : (this.rbtlBonSheet.SelectedIndex == 6) ? "EMPBONUSBRIDGE" : (this.rbtlBonSheet.SelectedIndex == 7) ? "EMPBONUSALLIANCE"
             //    : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : "EMPBONUSGEN";
             string afterdays = Convert.ToDouble("0" + this.txtafterdays.Text.Trim()).ToString();
             string comgross = this.Companygross();
             //string bonpaytype = this.companyBonusPayType();
-
             string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
             string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             //string mantype = "";
             ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPSPECIALBONUS", date, projectcode, section, afterdays, CompanyName, comgross, DesigFrom, DesigTo, "");
-
             if (ds3 == null)
             {
                 this.gvsbonus.DataSource = null;
                 this.gvsbonus.DataBind();
                 return;
-
             }
-
             DataTable dt = this.HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
-
             this.LoadGrid();
-
-
         }
-
-
         private void ShowBonus()
         {
-            //Session.Remove("tblpay");
-            //string comcod = this.GetCompCode();
-            //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            //string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
-            //string projectcode = this.ddlProjectName.SelectedValue.ToString();
-            //string section = this.ddlSection.SelectedValue.ToString();
-
-            //string dt1 = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            //string curdate = Convert.ToDateTime(DateTime.Now).ToString("dd-MMM-yyyy");
-            //mon = this.Datediffday1(Convert.ToDateTime(curdate), Convert.ToDateTime(dt1));
-            //DataSet ds3;
-
-
-
-            //string CallType = (this.rbtSalSheet.SelectedIndex == 7) ? "PAYROLL_DETAIL06" : (this.rbtSalSheet.SelectedIndex == 8) ? "PAYROLL_DETAIL07" : (this.rbtSalSheet.SelectedIndex == 6) ? "PAYROLL_DETAIL4" : (this.rbtSalSheet.SelectedIndex == 5) ? "PAYROLL_DETAIL3"
-            //    : (this.rbtSalSheet.SelectedIndex == 4) ? "PAYROLL_DETAIL2" : (this.rbtSalSheet.SelectedIndex == 2) ? "PAYROLL_DETAIL1" : (this.rbtSalSheet.SelectedIndex == 9) ? "PAYROLL_DETAIL08" : (this.rbtSalSheet.SelectedIndex == 10) ? "PAYROLL_DETAIL09" : (this.rbtSalSheet.SelectedIndex == 11) ? "PAYROLL_DETAIL10" : "PAYROLL_DETAIL";
-
-            //string ProName = ((this.rbtSalSheet.SelectedIndex == 8) || (this.rbtSalSheet.SelectedIndex == 9) || (this.rbtSalSheet.SelectedIndex == 7) || (this.rbtSalSheet.SelectedIndex == 6) || (this.rbtSalSheet.SelectedIndex == 10)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : (this.rbtSalSheet.SelectedIndex == 5) ? "dbo_hrm.SP_REPORT_PAYROLL01" : (this.rbtSalSheet.SelectedIndex == 11) ? "dbo_hrm.SP_REPORT_PAYROLL03" : "dbo_hrm.SP_REPORT_PAYROLL";
-
-            //DataTable dt = HiddenSameData(ds3.Tables[0]);
-            //Session["tblpay"] = dt;
-
-
-
-
             Session.Remove("tblpay");
             string comcod = this.GetCompCode();
             string date = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            // string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
+            string compBranch = this.ddlBranch.SelectedValue.ToString();
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
             string section = this.ddlSection.SelectedValue.ToString();
             string monthid = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyyMM").ToString();
             DataSet ds3;
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BONLOCK", monthid, CompanyName, "", "", "", "", "", "", "");
             this.lblComBonLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
-
             string Calltype = (this.rbtlBonSheet.SelectedIndex == 0) ? "EMPBONUS" : (this.rbtlBonSheet.SelectedIndex == 1) ? "EMPBONUS1" : (this.rbtlBonSheet.SelectedIndex == 5) ? "EMPBONUS2" : (this.rbtlBonSheet.SelectedIndex == 2) ? "EMPBONUSSAN" : (this.rbtlBonSheet.SelectedIndex == 6) ? "EMPBONUSBRIDGE" : (this.rbtlBonSheet.SelectedIndex == 7) ? "EMPBONUSALLIANCE"
-                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : "EMPBONUSGEN";
+                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : (this.rbtlBonSheet.SelectedIndex == 13) ? "EMPBONUSBTI" : (this.rbtlBonSheet.SelectedIndex == 14) ? "EMPBONUSEDISON" : "EMPBONUSGEN";
             string afterdays = Convert.ToDouble("0" + this.txtafterdays.Text.Trim()).ToString();
             string comgross = this.Companygross();
             string bonpaytype = this.companyBonusPayType();
             string mantype = "";
-
             switch (comcod)
             {
-
                 case "3355":
                     mantype = (this.rbtnMantype.SelectedIndex == 0) ? "86001%" : (this.rbtnMantype.SelectedIndex == 1) ? "86002%" : (this.rbtnMantype.SelectedIndex == 2) ? "86003%" : "86%";
                     break;
-
                 default:
                     mantype = "";
                     break;
-
-
             }
             if (mon > 3 || (this.lblComBonLock.Text == "True"))
             {
                 string projectcodelk = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
                 string sectionlk = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
-
                 string CompanyNamelk = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
                 ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "BONSALARY", monthid, projectcodelk, sectionlk, CompanyNamelk, "", "", "", "", "");
-
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, "", "", "");
             }
             else
             {
-
-                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, "");
+                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, compBranch);
             }
-
-
-
-
             if (ds3 == null)
             {
                 this.gvBonus.DataSource = null;
                 this.gvBonus.DataBind();
                 return;
-
             }
-
             DataTable dt = this.HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
-
             this.LoadGrid();
-
-
         }
-
         private void ShowPaySlip()
         {
             Session.Remove("tblpay");
@@ -1061,22 +984,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             // string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-
             string empid = ddlEmpNameAllInfo.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlEmpNameAllInfo.SelectedValue.ToString() + "%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
-
             //if (ds3 == null)
             //{
             //    this.gvBonus.DataSource = null;
             //    this.gvBonus.DataBind();
             //    return;
-
             //}
-
             DataTable dt = ds3.Tables[0];
             Session["tblpay"] = dt;
             this.TakaInWord();
-
         }
 
         private void ShowSignature()
@@ -1092,8 +1010,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 return;
             Session["tblpay"] = ds3.Tables[0];
             ds3.Dispose();
-
-
         }
 
         private void EmpCashPay()
@@ -1102,45 +1018,34 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
             string section = this.ddlSection.SelectedValue.ToString();
-
             string CallType = this.CashCallType();
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", CallType, frmdate, todate, projectcode, section, CompanyName, "", "", "", "");
-
             if (ds3 == null)
             {
                 this.gvpayroll.DataSource = null;
                 this.gvpayroll.DataBind();
                 return;
-
             }
-
             //DataView dv = ds3.Tables[0].DefaultView;
             //dv.RowFilter = "othded>0";
             // DataTable dt = HiddenSameData(dv.ToTable());
             DataTable dt = HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
             this.LoadGrid();
-
-
         }
-
         private void ShowEmpOvertimeSalary()
         {
             Session.Remove("tblpay");
             string comcod = this.GetCompCode();
-
             string CompanyName = ((this.ddlCompany.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string projectcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 8)) + "%";
             string section = ((this.ddlSection.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-
             DataSet ds3 = HRData.GetTransInfo(comcod, "SP_REPORT_OVRTIMESALARY", "RPTOVRTIMESALARY", frmdate, todate, CompanyName, projectcode, section, "", "", "", "");
-
             if (ds3 == null)
             {
                 this.gvOvertime.DataSource = null;
@@ -1148,17 +1053,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 return;
 
             }
-
             DataTable dt = ds3.Tables[0];
             Session["tblpay"] = dt;
-
             this.LoadGrid();
-
-
-
         }
-
-
         private string CashCallType()
         {
             string compcod = this.GetCompCode();
@@ -1166,21 +1064,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (compcod)
             {
                 case "4101":
-
                     break;
-
                 case "4301":
                     CallType = "RPTCASHSALARY";
                     break;
             }
-
-
-
             return CallType;
-
-
         }
-
         private void TakaInWord()
         {
             try
@@ -1190,27 +1080,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 {
                     double netpay = Convert.ToDouble(dt.Rows[i]["netpay"]);
                     dt.Rows[i]["aminword"] = ASTUtility.Trans(netpay, 2);
-
                 }
                 Session["tblpay"] = dt;
             }
-
             catch (Exception ex)
             {
 
             }
-
-
         }
-
-
-
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
                 return dt1;
-
-
             string comcod = this.GetCompCode();
             string type = this.Request.QueryString["Type"].ToString().Trim();
             switch (type)
@@ -1221,26 +1102,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Payslip":
                 case "Signature":
                 case "CashPay":
-
                     string refno = dt1.Rows[0]["refno"].ToString();
                     string section = dt1.Rows[0]["section"].ToString();
                     switch (comcod)
                     {
-
                         case "3339":
-
                             for (int j = 1; j < dt1.Rows.Count; j++)
                             {
                                 if (dt1.Rows[j]["refno"].ToString() == refno)
                                 {
                                     dt1.Rows[j]["refdesc"] = "";
                                 }
-
                                 refno = dt1.Rows[j]["refno"].ToString();
                             }
-
                             break;
-
                         default:
                             for (int j = 1; j < dt1.Rows.Count; j++)
                             {
@@ -1251,7 +1126,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                     dt1.Rows[j]["refdesc"] = "";
                                     dt1.Rows[j]["sectionname"] = "";
                                 }
-
                                 else
                                 {
 
@@ -1270,13 +1144,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 }
                             }
                             break;
-
                     }
-
-
                     break;
-
-
                 case "OvertimeSalary":
                     string company = dt1.Rows[0]["company"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
@@ -1286,28 +1155,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         company = dt1.Rows[j]["company"].ToString();
                     }
                     break;
-
-
-
             }
-
-
             return dt1;
 
         }
-
-
-
         private void LoadGrid()
         {
 
+            string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tblpay"];
             string type = this.Request.QueryString["Type"].ToString().Trim();
             switch (type)
             {
                 case "Salary":
                 case "SalResign":
-                    string comcod = this.GetCompCode();
                     if (comcod == "3365")
                     {
                         this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
@@ -1405,8 +1266,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "Bonus":
 
-                    // this.gvBonus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvBonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Duration(Month)";
+                    this.gvBonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Joining Date";
+                    if (comcod == "3365")//BTI
+                    {
+                        this.gvBonus.Columns[9].HeaderText = "Duration(Year)";
+                    }
                     this.gvBonus.DataSource = dt;
                     this.gvBonus.DataBind();
                     ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
@@ -1811,8 +1675,75 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
+        private void PrintBonusBTI()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = this.ddlCompany.SelectedItem.Text;
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
 
+            DataTable dt3 = (DataTable)Session["tblpay"];
+            var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
+            double tAmt = list.Select(p => p.bonamt).Sum();
 
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTI", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", bonusType +" BONUS/ "+ frmdate));
+            Rpt1.SetParameters(new ReportParameter("bonusType", "BONUS " +(this.chkBonustype.Checked ? "AZHA" : "FITR")+ "("+frmdate+")"));
+            Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
+            Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+        private void PrintBonusEdison()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = this.ddlCompany.SelectedItem.Text;
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
+
+            DataTable dt3 = (DataTable)Session["tblpay"];
+            var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
+            double tAmt = list.Select(p => p.bonamt).Sum();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetEdison", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Festival Bonus for " + bonusType +" - "+ frmdate));
+            Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
+            Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
         private void PrintBonusSheet()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -3332,15 +3263,22 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetTerranova();
                         break;
 
-
                     case "3355": //Greenwood
-
                         this.PrintBonusSheetGreenWood();
                         break;
-                    case "3101":
-                    case "3347": //PEBSteel
 
+                    
+                    case "3347": //PEBSteel
                         this.PrintBonusSheetPEB();
+                        break;
+
+                    case "3365"://BTI
+                        this.PrintBonusBTI();
+                        break;
+
+                    case "3101":
+                    case "3354"://Edison
+                        this.PrintBonusEdison();
                         break;
 
                     default:
@@ -3713,7 +3651,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
             string month = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM-yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
@@ -3819,15 +3757,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             else if (comcod == "3365" )
             {
-                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
+                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM-yyyy");
                 string txtsign1 = "Md. Saiful Islam\nSenior Executive";
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
                 Rpt1.EnableExternalImages = true;
-
+                
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("compName", comnam));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtHeader2", "(Month of " + todate1 + ")"));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", todate1+ " (Month of salary disbursement)"));
                 Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
@@ -4122,6 +4061,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     }
                     break;
+
+                case "3339":
+                case "3101":
+
+                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    {
+
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        double gssal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvGsalb")).Text.Trim());
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
+
+                        double bonamt = (perbonus==0 ?0 :  gssal / perbonus);
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                    }
+
+                    break;
+
 
                 default:
 
@@ -4483,7 +4441,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 case "3333":
-                case "3101":
+               // case "3101":
 
 
                     foreach (DataRow dr1 in dt.Rows)
@@ -4507,6 +4465,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     }
                     break;
+
+
+                    
 
 
                 default:

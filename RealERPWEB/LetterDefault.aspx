@@ -46,14 +46,19 @@
             // $('.chzn-select').chosen({ search_contains: true });
 
         }
+
+        
     </script>
     <style>
         .clname{
             font-size:35px;
         }
-
+        ol.ollist{
+     margin: 0 !important;
+}
         ol 
         {
+            margin:0 !important;
           counter-reset: item;
         }
 
@@ -94,7 +99,13 @@
                 position: fixed;
                 bottom: 0;
             }
-
+             ol 
+        {
+          margin: 0 !important;
+        }
+ol.ollist{
+     margin: 0 !important;
+}
             .content-block, p {
                 page-break-inside: avoid;
                 margin: 0 !important;
@@ -200,7 +211,7 @@
 
                             </div>
 
-                            <div class="col-sm-3 col-md-3 col-lg-3 pading5px">
+                            <div class="col-sm-3 col-md-3 col-lg-3 d-none">
                                 <div class="input-group input-group-alt">
                                     <div class="input-group-prepend ">
                                     </div>

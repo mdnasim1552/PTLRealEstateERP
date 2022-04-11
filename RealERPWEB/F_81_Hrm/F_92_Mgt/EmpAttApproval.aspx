@@ -66,7 +66,7 @@
 
                                 </div>
                             </div>
-                            <div class="card card-fluid">
+                            <div class="card card-fluid" hidden="hidden">
                                   <header class="card-header text-center">APPROVE INFORMATION</header>
                                 <div class="card-body">
                                     <div class="text-center">

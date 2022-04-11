@@ -42,7 +42,7 @@ namespace RealERPWEB.F_17_Acc
                 this.Master.Page.Title = "Account Code";
                 this.Load_CodeBooList();
                 this.GetTeamCode();
-                CommonButton();
+               // CommonButton();
 
             }
 
@@ -59,6 +59,16 @@ namespace RealERPWEB.F_17_Acc
         public void CommonButton()
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
+          
+
+        }
+
+
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
@@ -77,13 +87,6 @@ namespace RealERPWEB.F_17_Acc
             ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
 
-        }
-
-
-
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
             ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 

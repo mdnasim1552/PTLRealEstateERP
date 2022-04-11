@@ -52,18 +52,26 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //    }
                 //}
 
-                Upload = System.IO.Path.GetFileName(imgFileUpload.PostedFile.FileName);
-                string savelocation = Server.MapPath("~") + "\\Image1" + "\\" + Upload;
-                string filepath = savelocation;
-                imgFileUpload.PostedFile.SaveAs(savelocation);
-                EmpImg.ImageUrl = "~/Image1/" + Upload;
-                // Session["x"] = "~/Image1/" + Upload;
-                image_file = imgFileUpload.PostedFile.InputStream;
-                size = imgFileUpload.PostedFile.ContentLength;
-                Session["i"] = image_file;
-                Session["s"] = size;
-                //.imgFileUpload.tL
-                // image_file.Close();
+                try
+                {
+                    Upload = System.IO.Path.GetFileName(imgFileUpload.PostedFile.FileName);
+                    string savelocation = Server.MapPath("~") + "\\Image1" + "\\" + Upload;
+                    string filepath = savelocation;
+                    imgFileUpload.PostedFile.SaveAs(savelocation);
+                    EmpImg.ImageUrl = "~/Image1/" + Upload;
+                    // Session["x"] = "~/Image1/" + Upload;
+                    image_file = imgFileUpload.PostedFile.InputStream;
+                    size = imgFileUpload.PostedFile.ContentLength;
+                    Session["i"] = image_file;
+                    Session["s"] = size;
+                    //.imgFileUpload.tL
+                    // image_file.Close();
+                }
+                catch ( Exception ex)
+                {
+
+                }
+              
 
             }
 
@@ -119,29 +127,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             string txtCompany = "%%"; //(this.Request.QueryString["Type"].ToString().Trim() == "Aggrement") ? this.txtSrcCompanyAgg.Text.Trim() + "%" : this.txtSrcCompany.Text.Trim() + "%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
-
-            //if (this.Request.QueryString["Type"].ToString().Trim() == "Aggrement")
-            //{
             this.ddlCompanyAgg.DataTextField = "actdesc";
             this.ddlCompanyAgg.DataValueField = "actcode";
             this.ddlCompanyAgg.DataSource = ds5.Tables[0];
             this.ddlCompanyAgg.DataBind();
             this.GetDepartment();
-            //this.ddlCompanyAgg_SelectedIndexChanged(null, null);
-            //    return;
-            //}
-            //else if (this.Request.QueryString["Type"].ToString().Trim() == "Officetime")
-
-            //    this.ddlCompany.DataTextField = "actdesc";
-            //this.ddlCompany.DataValueField = "actcode";
-            //this.ddlCompany.DataSource = ds5.Tables[0];
-            //this.ddlCompany.DataBind();
-            //this.ddlCompany_SelectedIndexChanged(null, null);
-            //ds1.Dispose();
-
-            //this.ddlCompany.SelectedValue = (this.Request.QueryString["empid"] == "") ? "" : this.Request.QueryString["empid"].ToString();
-
-
         }
 
         private void GetDepartment()
@@ -159,140 +149,29 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddldepartmentagg.DataBind();
 
             this.GetProjectName();
-            //this.ddlProjectName_SelectedIndexChanged(null, null);
-
-
-
+            this.ddlProjectName_SelectedIndexChanged(null, null);
         }
-
-
 
         private void GetProjectName()
         {
-
             string comcod = this.GetCompCode();
             //string type = this.Request.QueryString["Type"].ToString().Trim();
             //string Company = this.ddlCompanyAgg.SelectedValue.ToString().Trim();
-            string deptcode = this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2) + "%";
-
-
-            //string Company = (this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000")? "" : (this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)+ "%");
+            //string deptcode = this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2) + "%";
+            string deptcode = (this.ddldepartmentagg.SelectedValue.ToString() == "000000000000")? "94%" : (this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2)+ "%");
             // : this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string txtSProject = "%%";// ;// (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
                                       //string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "EmpAllInfo") ? "GETPROJECTNAME" : "GETPROJECTNAMEFOT";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", deptcode, txtSProject, "", "", "", "", "", "", "");
 
-
-
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds4.Tables[0];
             this.ddlProjectName.DataBind();
-            this.GetEmployeeName();
-            // this.ddlProjectName_SelectedIndexChanged(null, null);
+           // this.GetEmployeeName();
+             this.ddlProjectName_SelectedIndexChanged(null, null);
             //this.GetEmpName();
-
-
-
-
-
         }
-
-        //protected void btnCv_Click(object sender, EventArgs e)
-        //{
-        //    this.PrintEmpAllInfo();
-        //}
-        private void PrintEmpAllInfo()
-        {
-            string comcod = this.GetCompCode();
-            string empid = this.ddlEmpName.SelectedValue.ToString();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTEMPINFORMATION", empid, "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comnam = hst["comnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //string date = Convert.ToDateTime(this.txtDate.Text).ToString("MMMM dd, yyyy");
-
-            ReportDocument rptempservices = new RealERPRPT.R_81_Hrm.R_82_App.RptEmpAllInformation();
-            TextObject txtempname = rptempservices.ReportDefinition.ReportObjects["txtempname"] as TextObject;
-            txtempname.Text = this.ddlEmpName.SelectedItem.Text.Trim();
-            TextObject txtCompName = rptempservices.ReportDefinition.ReportObjects["txtCompName"] as TextObject;
-            txtCompName.Text = (ds1.Tables[2].Rows.Count == 0) ? comnam : ds1.Tables[2].Rows[0]["empcomdesc"].ToString();
-
-            TextObject rpttxtempdept = rptempservices.ReportDefinition.ReportObjects["txtempdept"] as TextObject;
-            rpttxtempdept.Text = (ds1.Tables[2].Rows.Count == 0) ? "Department Name: " : "DEPARTMENT NAME: " + ds1.Tables[2].Rows[0]["empdeptdesc"].ToString();
-            TextObject txtcomaddress = rptempservices.ReportDefinition.ReportObjects["txtcomaddress"] as TextObject;
-            txtcomaddress.Text = comadd;
-            TextObject txtnetsalary = rptempservices.ReportDefinition.ReportObjects["txtnetsalary"] as TextObject;
-            txtnetsalary.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["netsal"]).ToString("#,##0; (#,##0); ");
-            TextObject txtNetpayable = rptempservices.ReportDefinition.ReportObjects["txtNetpayable"] as TextObject;
-            txtNetpayable.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["netpay"]).ToString("#,##0; (#,##0); ");
-            rptempservices.SetDataSource(ds1.Tables[0]);
-            //string comcod = hst["comcod"].ToString();
-            string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            rptempservices.SetParameterValue("ComLogo", ComLogo);
-            Session["Report1"] = rptempservices;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-            //this.ShowName();
-        }
-        private void StartUpLoad()
-        {
-
-            //get the file name of the posted image
-
-            string imgName = imgFileUpload.FileName;
-
-            //sets the image path
-
-            string imgPath = "ImageStorage/" + imgName;
-
-            //get the size in bytes that
-
-
-
-            int imgSize = imgFileUpload.PostedFile.ContentLength;
-
-
-
-            //validates the posted file before saving
-
-            if (imgFileUpload.PostedFile != null && imgFileUpload.PostedFile.FileName != "")
-            {
-
-                // 10240 KB means 10MB, You can change the value based on your requirement
-
-                if (imgFileUpload.PostedFile.ContentLength > 10240)
-                {
-
-                    Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('File is too big.')", true);
-
-                }
-
-                else
-                {
-
-                    //then save it to the Folder
-
-                    imgFileUpload.SaveAs(Server.MapPath(imgPath));
-
-                    this.EmpImg.ImageUrl = "~/" + imgPath;
-
-                    Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('Image saved!')", true);
-
-                }
-
-
-            }
-        }
-
 
         private string GetCompCode()
         {
@@ -302,37 +181,23 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         private void GetEmployeeName()
         {
-
-
-            //string comcod = this.GetCompCode();
-            //string txtSProject = (this.Request.QueryString["empid"] != "") ? this.Request.QueryString["empid"].ToString(): "%" + this.txtEmpSrc.Text + "%";
-            //ProcessAccess HRData = new ProcessAccess();
-            //DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPNAMEIMG", txtSProject, "", "", "", "", "", "", "", "");
-            //this.ddlEmpName.DataTextField = "empname";
-            //this.ddlEmpName.DataValueField = "empid";
-            //this.ddlEmpName.DataSource = ds3.Tables[0];
-            //this.ddlEmpName.DataBind();
-            //ViewState["tblemp"] = ds3.Tables[0];
-            //this.GetComASecSelected();
+            string empcode = this.txtSrcEmployee.Text.Trim();
 
             string comcod = this.GetCompCode();
-            string ProjectCode = this.ddlProjectName.SelectedValue.ToString() + "%";
-            string txtSProject = "%%";
-
-
-            //string ProjectCode = (this.txtEmpSrc.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            //string txtSProject = "%" + this.txtEmpSrc.Text + "%";
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", ProjectCode, txtSProject, "", "", "", "", "", "", "");
+            
+            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "94%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            pactcode = (empcode.Length == 0) ? pactcode : "94%";
+            empcode = empcode + "%"; // for alwayes search empcode wise 
+             
+            
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", pactcode, empcode, "", "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds5.Tables[0];
             this.ddlEmpName.DataBind();
             ViewState["tblemp"] = ds5.Tables[0];
             this.ShowImage();
-            this.GetComASecSelected();
-
-
-
+            this.GetComASecSelected(); 
         }
 
         private void GetComASecSelected()
@@ -492,46 +357,28 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             }
 
-
-
         }
 
         private void ShowImage()
         {
-
-
+            Session.Remove("tblEmpimg");
+            this.EmpImg.ImageUrl = "";
+            this.EmpSig.ImageUrl = "";
             string comcod = this.GetCompCode();
             ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
             string empid = this.ddlEmpName.SelectedValue.ToString();
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "SHOWIMG", empid, "", "", "", "", "", "", "", "");
-
-
             if (ds1 == null)
             {
                 return;
 
             }
-
             Session["tblEmpimg"] = ds1.Tables[0];
             this.EmpImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgEmp";
             this.EmpSig.ImageUrl = "~/GetImage.aspx?ImgID=HREmpSign";
 
-
         }
-        protected void ibtnFindCompanyAgg_Click(object sender, EventArgs e)
-        {
-            this.GetCompanyName();
-        }
-        protected void lbtndeptagg_Click(object sender, EventArgs e)
-        {
-
-        }
-        protected void ibtnFindProject_Click(object sender, EventArgs e)
-        {
-            this.ddlProjectName_SelectedIndexChanged(null, null);
-
-            this.GetProjectName();
-        }
+        
         protected void ddldepartmentagg_SelectedIndexChanged(object sender, EventArgs e)
         {
             //this.GetDepartment();
@@ -550,6 +397,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             this.GetComASecSelected();
             this.ShowImage();
+        }
+        protected void imgbtnEmpSeach_Click(object sender, EventArgs e)
+        {
+            //this.ShowValue();
         }
     }
 }

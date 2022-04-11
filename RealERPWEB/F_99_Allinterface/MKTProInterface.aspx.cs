@@ -125,26 +125,29 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
 
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["reqst"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["reqst"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Status</div></div></div>";
 
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["reqchk"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "HOD Approval." + "</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["reqchk"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "HOD Approval." + "</div></div></div>";
 
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["reqapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>DIV App.</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["reqapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>DIV App.</div></div></div>";
 
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["cscreate"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>CS Preparation</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["cscreate"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>CS Preparation</div></div></div>";
 
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["csapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>CS Approved</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["csapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>CS Approved</div></div></div>";
 
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description text-faded'>Purchase Order</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["ordr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description text-faded'>Purchase Order</div></div></div>";
 
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading lime counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordfapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content lime'><div class='circle-tile-description text-faded'>Ord. 1st App</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading lime counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["ordfapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content lime'><div class='circle-tile-description text-faded'>Ord. 1st App</div></div></div>";
 
 
-            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading chocolate counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordfinapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content chocolate'><div class='circle-tile-description text-faded'>Ord. final App</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading chocolate counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["ordfinapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content chocolate'><div class='circle-tile-description text-faded'>Ord. final App</div></div></div>";
 
-            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["mrr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description text-faded'>Received</div></div></div>";
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description text-faded'>Received</div></div></div>";
 
-       
+
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading lime counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["reqcom"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content lime'><div class='circle-tile-description text-faded'>Completed</div></div></div>";
+
+
 
             ds1.Dispose();
 
@@ -203,6 +206,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -210,7 +214,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "2":
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
-                    dv.RowFilter = ("cstatus = 'Requisition Approval' ");
+                    dv.RowFilter = ("cstatus = 'DIV Approval' ");
                     dt1 = dv.ToTable();
                     this.Data_Bind("gvReqApp", dt1);
 
@@ -223,6 +227,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -244,6 +249,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -265,6 +271,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -282,6 +289,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     if (dt.Rows.Count > 0)
                     {
@@ -296,7 +304,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     dt = (DataTable)ds1.Tables[4];
                     dv = dt.DefaultView;
-                    dv.RowFilter = ("cstatus='Purchase Order (1st Approval)'  ");
+                    dv.RowFilter = ("cstatus='Order (1st Approval)'  ");
                     this.Data_Bind("gvordfapp", dv.ToTable());  
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;
@@ -307,6 +315,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = true;
                     this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     
                     break;
@@ -316,7 +325,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "7":
                     dt = (DataTable)ds1.Tables[4];
                     dv = dt.DefaultView;
-                    dv.RowFilter = ("cstatus='Purchase Order (2nd Approval)'  ");
+                    dv.RowFilter = ("cstatus='Order (Final Approval)'  ");
                     this.Data_Bind("gvordsapp", dv.ToTable());
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;
@@ -327,6 +336,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = true;
                     this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
                     
                     break;
@@ -345,11 +355,31 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = true;
                     this.pnlMatRec.Visible = true;
+                    this.pnlComplete.Visible = false;
                     this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
                     if (dt.Rows.Count > 0)
                     {
                         ((TextBox)this.grvMRec.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
                     }
+                    break;
+
+
+                //MRR
+                case "9":
+                    dt = (DataTable)ds1.Tables[6];
+                    this.Data_Bind("gvPurcom", dt);
+
+                    this.pnlReqStatus.Visible = false;
+                    this.pnlReqChq.Visible = false;
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
+                    this.pnlWorkOrder.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = true;
+                    this.pnlMatRec.Visible = false;
+                    this.pnlComplete.Visible = true;
+                    this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
                     break;
 
             }
@@ -456,7 +486,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
-                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MKtReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_28_MPro/MktMarketSurvey?Type=Entry&genno=" + reqno;
 
 
@@ -468,9 +498,10 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsap");               
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrintcsap");               
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsap");
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktCSPrint&reqno=" + reqno;
                 hlink2.NavigateUrl = "~/F_28_MPro/MktMarketSurvey?Type=Approval&genno=" + reqno;
 
 
@@ -546,10 +577,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
-
                 string reqNo = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=PurApproval&approvno=" + aprovno + "&approvdat=" + approvdat;
-
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktCSPrint&reqno=" + reqNo;
                 hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=OrderEntry&genno=" + reqNo;
 
             }
@@ -980,6 +1009,14 @@ namespace RealERPWEB.F_99_Allinterface
                         this.grvMRec.DataBind();
                         break;
 
+                    case "gvPurcom":
+                        this.gvPurcom.DataSource = HiddenSameData(dt);
+                        this.gvPurcom.DataBind();
+                        break;
+
+
+
+                        
                 }
 
                 this.FooterCalculation(gv, dt);
@@ -2549,6 +2586,16 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
 
-       
+        protected void gvPurcom_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("hlnkmrrPrint");                
+                string mrrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrrno")).ToString();
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktMRRPrint&mrno=" + mrrno;
+               
+
+            }
+        }
     }
 }

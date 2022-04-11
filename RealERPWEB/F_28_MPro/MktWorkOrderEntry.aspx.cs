@@ -221,7 +221,6 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
-
             if (this.lbtnOk.Text == "New")
             {
                 this.MultiView1.ActiveViewIndex = -1;
@@ -239,11 +238,7 @@ namespace RealERPWEB.F_28_MPro
                 //For Charging
                 ViewState.Remove("tblproject");
                 this.ddlProjectName.Items.Clear();
-
-
-
-                this.txtPreparedBy.Text = "";
-                
+                this.txtPreparedBy.Text = "";                
                 this.txtOrderNarr.Text = "";
                 this.lblissueno.Text = "";
                 this.gvOrderInfo.DataSource = null;
@@ -256,12 +251,9 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlSuplierList.Items.Clear();
                 return;
             }
-
-
             this.lbtnPrevOrderList.Visible = false;
             this.ddlPrevOrderList.Visible = false;
             this.txtCurOrderNo2.ReadOnly = true;
-            // this.lblissueno.Enabled = true;
             this.lbtnOk.Text = "New";
 
             if (this.ddlPrevOrderList.Items.Count <= 0)
@@ -270,13 +262,12 @@ namespace RealERPWEB.F_28_MPro
                 this.pnlSupplier.Visible= true;
                 this.ResourceForOrder();
                 return;
-
             }
+
+            
             this.MultiView1.ActiveViewIndex = 1;
             this.Get_Pur_Order_Info();
-            //this.lbtnPrevOrderList_Click(null, null);
             this.ShowProjectFiles();
-            this.hideTermsConditions();
         }
 
         private void GetProConPerson(string pactcode)
@@ -488,19 +479,28 @@ namespace RealERPWEB.F_28_MPro
                 return dt1;
 
             string pactcode = dt1.Rows[0]["pactcode"].ToString();
+            string ssircode = dt1.Rows[0]["ssircode"].ToString();
 
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode && dt1.Rows[j]["ssircode"].ToString()==ssircode)
                 {
+                    dt1.Rows[j]["projdesc1"] = "";
+                    dt1.Rows[j]["ssirdesc1"] = "";
 
+                }
+
+                else if (dt1.Rows[j]["pactcode"].ToString() == pactcode )
+                {
                     dt1.Rows[j]["projdesc1"] = "";
                 }
-
-                else
+                else if (dt1.Rows[j]["ssircode"].ToString()==ssircode)
                 {
-                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                    dt1.Rows[j]["ssirdesc1"] = "";
                 }
+
+                pactcode = dt1.Rows[j]["pactcode"].ToString();
+                ssircode = dt1.Rows[j]["ssircode"].ToString();
 
             }
 
@@ -1184,13 +1184,9 @@ namespace RealERPWEB.F_28_MPro
                 }
 
                 this.lblreqnaration.Text = "Req Naration : " + Narration.Substring(0, (Narration.Length) - 2);
-
                 this.MultiView1.ActiveViewIndex = 1;
-                this.hideTermsConditions();
-
                 ViewState["tblOrder"] = this.HiddenSameData(dt1);
                 this.gvOrderInfo_DataBind();
-
                 this.ShowProjectFiles();
             }
             catch (Exception ex)
@@ -1201,73 +1197,19 @@ namespace RealERPWEB.F_28_MPro
 
         }
 
-        private void hideTermsConditions()
-        {
-            string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-                case "1205":
-                case "3351":
-                case "3352":
-                    this.divtermsp2p.Visible = true;
-                    this.divterms.Visible = false;
-                    //this.ImagePanel.Visible = false;
-                    break;
-
-                case "3101":
-                case "3357":
-                case "3366":
-                    this.divtermsp2p.Visible = true;
-                    this.divterms.Visible = false;
-                    this.txtOrderNarrP.Text = this.bindDataText();
-                    break;
-
-                default:
-                    this.divtermsp2p.Visible = false;
-                    this.divterms.Visible = true;
-                    //this.ImagePanel.Visible = true;
-                    break;
-            }
-        }
-
         private string bindDataText()
         {
-            string comcod = this.GetCompCode();
-            string msg = "";
-            switch (comcod)
-            {
-                case "3101":
-                case "3357":
-                    msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
-                        "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
-                        "\n3. Product delivery time must be on time." +
-                        "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
-                        "\n5. Delivery place: at project site " +
-                        "\n6. Delivery date: ……………………" +
-                        "\n7. Cube Holdings Ltd. has the right to cancel the work order in any time." +
-                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
-                        "\n9. Please send all bill in duplicate.";
-                    break;
-
-                case "3366":
-                    msg = "1. Delivery Place : " +
-                        "\n2. Delivery Date : " +
-                        "\n3. Contact Person : " +
-                        "\n4. Cell Number : " +
-                        "\n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
-                        "\n6. Copy of delivery challan must be signed by proprietor of supplying designation with seal containing name of his organization. " +
-                        "\n7. Supply must be completed within 24 hours of any purchase order otherwise the purchase order will be cancelled unless otherwise instructed." +
-                        "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque." +
-                        "\n9. Payment shall have to be received from this office through money receipt of the company." +
-                        "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
-                    break;
-
-                default:
-                    msg = "";
-                    break;
-            }
-
+          string  msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
+                      "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
+                      "\n3. Product delivery time must be on time." +
+                      "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
+                      "\n5. Delivery place: at project site " +
+                      "\n6. Delivery date: ……………………" +
+                      "\n7. Edison Real Estate Ltd. has the right to cancel the work order in any time." +
+                      "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
+                      "\n9. Please send all bill in duplicate.";
             return msg;
+            
         }
 
         protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)

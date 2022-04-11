@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <style>
-
     </style>
     <script type="text/javascript" language="javascript">
 
@@ -233,10 +232,16 @@
                                     <div class="input-group input-group-alt ">
                                         <div class="input-group-prepend">
 
-                                            <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-secondary" OnClick="imgbtnSearchEmployee_Click">
+                                            <asp:LinkButton ID="imgbtnSearchEmployees" runat="server" CssClass="btn btn-secondary">
                                                   Card #</asp:LinkButton>
                                         </div>
                                         <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <div class="input-group-prepend">
+
+                                            <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-md btn-primary" OnClick="imgbtnSearchEmployee_Click"><i class="fas fa-search "></i></asp:LinkButton>
+
+
+                                        </div>
                                     </div>
 
 
@@ -268,7 +273,7 @@
                                     <div class="row">
                                         <asp:GridView ID="grvAdjDay" runat="server"
                                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                            ShowFooter="True"   OnSelectedIndexChanged="grvAdjDay_SelectedIndexChanged">
+                                            ShowFooter="True" OnSelectedIndexChanged="grvAdjDay_SelectedIndexChanged">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -328,14 +333,14 @@
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
                                                             Width="250px"></asp:LinkButton>
 
-                                                        
+
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Card #">
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lbtnTotalDay" runat="server" OnClick="lbtnTotalDay_Click"
-                                                            CssClass="btn  btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                                            CssClass="btn btn-sm  btn-primary primarygrdBtn">Total</asp:LinkButton>
                                                     </FooterTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvCardnoearn" runat="server" Height="16px"
@@ -348,7 +353,7 @@
 
                                                 <asp:TemplateField HeaderText="Designation">
                                                     <ItemTemplate>
-                                                        
+
                                                         <asp:Label ID="emdname" runat="server" Height="16px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                                             Width="120px"></asp:Label>
@@ -610,7 +615,7 @@
                                 </asp:View>
                                 <asp:View ID="ViewMonaBSApproval" runat="server">
                                     <asp:GridView ID="gvmapsapp" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False" ShowFooter="True"  >
+                                        AutoGenerateColumns="False" ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -627,10 +632,10 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                         Width="180px"></asp:Label>
 
-                                                      <asp:Label ID="emdname" runat="server" Height="16px"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                            Width="120px"></asp:Label>
-                                                       
+                                                    <asp:Label ID="emdname" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                                        Width="120px"></asp:Label>
+
 
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -646,16 +651,16 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Section">
                                                 <ItemTemplate>
-                                                
 
-                                                         <asp:LinkButton OnClick="lnkbtnAbsAppGVmapsapp_Click" ID="lnkbtnAbsAppGVmapsapp" runat="server"
-                                                            Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) + "</B>"+
+
+                                                    <asp:LinkButton OnClick="lnkbtnAbsAppGVmapsapp_Click" ID="lnkbtnAbsAppGVmapsapp" runat="server"
+                                                        Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "empname").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "section")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
                                                                           Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).Trim()+". "+
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
-                                                            Width="250px"></asp:LinkButton>
+                                                        Width="250px"></asp:LinkButton>
 
 
 
@@ -735,7 +740,7 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="Balance">
+                                            <asp:TemplateField HeaderText="Balance">
                                                 <ItemTemplate>
 
 
@@ -774,7 +779,7 @@
                                     <div class="row">
                                         <asp:GridView ID="gvEarlyleave" runat="server"
                                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                            ShowFooter="True"  OnSelectedIndexChanged="gvEarlyleave_SelectedIndexChanged">
+                                            ShowFooter="True" OnSelectedIndexChanged="gvEarlyleave_SelectedIndexChanged">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -921,7 +926,7 @@
 
 
                                     <asp:GridView ID="gvabsapp02" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False" ShowFooter="True" >
+                                        AutoGenerateColumns="False" ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -1013,7 +1018,6 @@
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
@@ -1032,7 +1036,7 @@
                                     <div class="row">
                                         <asp:GridView ID="gvLPAproval" runat="server"
                                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                            ShowFooter="True"   OnSelectedIndexChanged="grvAdjDay_SelectedIndexChanged">
+                                            ShowFooter="True" OnSelectedIndexChanged="grvAdjDay_SelectedIndexChanged">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -1114,7 +1118,7 @@
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="btnUpdateDayAdjlp" runat="server" OnClick="btnUpdateDayAdjlp_Click"
-                                                            CssClass="btn   btn-danger primarygrdBtn">Update</asp:LinkButton>
+                                                            CssClass="btn  btn-sm btn-danger primarygrdBtn">Update</asp:LinkButton>
                                                     </FooterTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
@@ -1296,11 +1300,11 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                
+
                             </div>
                             <div class="modal-body">
-                                <p id="EmpDeatials"  class="m-0"  runat="server">Name</p>
-                                <p id="DeatialsDate"   runat="server">Date</p>
+                                <p id="EmpDeatials" class="m-0" runat="server">Name</p>
+                                <p id="DeatialsDate" runat="server">Date</p>
                                 <asp:GridView ID="mgvbreakdown" runat="server"
                                     AutoGenerateColumns="False" CssClass="mt-2 table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="false">
@@ -1476,7 +1480,7 @@
                             </div>
                             <div class="modal-footer">
                                 <asp:LinkButton ID="ModalUpdateBtn" OnClientClick="CloseModal();" OnClick="ModalUpdateBtn_Click"
-                                    runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
 
                                 <asp:LinkButton ID="ModallnkBtnLateAFTER10AM" OnClientClick="CloseModal();" OnClick="ModallnkBtnLateAFTER10AM_Click" Visible="false"
                                     runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
@@ -1489,7 +1493,7 @@
                 </div>
 
 
-                 
+
 
 
                 <div id="earleavemodal" class="modal animated zoomIn" role="dialog">
@@ -1688,8 +1692,8 @@
                             </div>
                             <div class="modal-footer">
                                 <asp:LinkButton ID="lnkearapp" OnClientClick="CloseEar();" OnClick="lnkearapp_OnClick"
-                                    runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
+                                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
 
 
 
@@ -1838,14 +1842,14 @@
                                                 <HeaderTemplate>
                                                     Inform?
                                                    
-                                                          <asp:CheckBox ID="checkAll" runat="server"  onclick="checkAll(this);" />
+                                                          <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
 
 
 
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:CheckBox ID="lblchkaabs02" runat="server"
-                                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? true : false %>'
+                                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? true : false %>'
                                                         Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? false : true%>'
                                                         Width="20px" />
                                                 </ItemTemplate>
@@ -1869,8 +1873,8 @@
                             </div>
                             <div class="modal-footer">
                                 <asp:LinkButton ID="lbntnAbsentApproval" OnClientClick="CloseModalAbs();" OnClick="lbntnAbsentApproval_Click"
-                                    runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
+                                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
 
 
 

@@ -302,24 +302,7 @@
 
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Qty">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvtrnqty" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="70px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Right" />
-                                            <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Rate">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvtrnrate" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrate")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Right" />
-                                            <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>                
 
                                         <asp:TemplateField HeaderText="Dr. Amount">
                                             <ItemTemplate>
@@ -464,7 +447,7 @@
                                 </div>
                             </fieldset>
 
-                         
+
 
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvSpledger" runat="server" AutoGenerateColumns="False"
@@ -647,9 +630,9 @@
                             </div>
                         </asp:View>
 
-                         <asp:View ID="SpecialLedger02" runat="server">
+                        <asp:View ID="SpecialLedger02" runat="server">
 
-                              <fieldset class="scheduler-border fieldset_A">
+                            <fieldset class="scheduler-border fieldset_A">
 
                                 <div class="form-horizontal">
 
@@ -668,7 +651,7 @@
                                             <cc1:CalendarExtender ID="CalendarExtender4" runat="server"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtDatetoSp" Enabled="true"></cc1:CalendarExtender>
 
-                                           
+
 
                                         </div>
 
@@ -684,7 +667,7 @@
 
 
                                             <div class="colMdbtn">
-                                                <asp:LinkButton ID="lnkbtnRessp02" runat="server" CssClass="btn btn-primary srearchBtn"  OnClick="lnkbtnRessp02_Click" ><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                <asp:LinkButton ID="lnkbtnRessp02" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lnkbtnRessp02_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                             </div>
 
@@ -699,7 +682,7 @@
                                         <div class="col-md-1">
 
                                             <div class="colMdbtn">
-                                                <asp:LinkButton ID="lnkShowsp02" runat="server" CssClass="btn btn-primary okBtn"  OnClick="lnkShowsp02_Click" >Ok</asp:LinkButton>
+                                                <asp:LinkButton ID="lnkShowsp02" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkShowsp02_Click">Ok</asp:LinkButton>
 
                                             </div>
 
@@ -711,7 +694,7 @@
                                 </div>
                             </fieldset>
 
-                         
+
 
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvspleder02" runat="server" AutoGenerateColumns="False"
@@ -729,7 +712,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Vou.Date">
+                                        <asp:TemplateField HeaderText="Vou.Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="Labelsp02" runat="server" CssClass="GridLebelL"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat1")) %>' Width="65px"></asp:Label>
@@ -782,7 +765,7 @@
                                         </asp:TemplateField>
 
 
-                                        
+
                                         <asp:TemplateField HeaderText="Description">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvcatdesc" runat="server" CssClass="GridLebelL"
@@ -793,9 +776,9 @@
 
 
 
-                                       
 
-                                          <asp:TemplateField HeaderText="Cheque No">
+
+                                        <asp:TemplateField HeaderText="Cheque No">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblChqNo" runat="server" CssClass="GridLebelL"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refnum")) %>'
@@ -805,12 +788,38 @@
                                             <HeaderStyle VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                     
+                                          <asp:TemplateField HeaderText="Qty">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvtrnqty" runat="server" CssClass="GridLebel"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFgvtrnqty" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    Style="text-align: right" Width="60px"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvrate" runat="server" CssClass="GridLebel"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFgvrate" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    Style="text-align: right" Width="70px"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText=" Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvCrAmountsp02" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cram")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cram")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFCrAmtsp02" runat="server" Font-Bold="True" Font-Size="12px"
@@ -820,11 +829,12 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle VerticalAlign="Top" />
                                         </asp:TemplateField>
+                                      
 
                                         <asp:TemplateField HeaderText=" Paid Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvDrAmountsp02" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFDrAmtsp02" runat="server" Font-Bold="True" Font-Size="12px"
@@ -834,12 +844,12 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        
+
 
                                         <asp:TemplateField HeaderText="Due Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvClAmountsp02" runat="server" CssClass="GridLebel"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "clsam")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "clsam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFClsAmtsp02" runat="server" Font-Bold="True" Font-Size="12px"
@@ -849,7 +859,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                      
+
 
                                     </Columns>
                                     <FooterStyle BackColor="#F5F5F5" />
@@ -860,7 +870,7 @@
                                 </asp:GridView>
                             </div>
 
-                             </asp:View>
+                        </asp:View>
                     </asp:MultiView>
                 </div>
             </div>

@@ -40,14 +40,14 @@ namespace RealERPWEB.F_28_MPro
                 this.chkdupMRF.Enabled = false;
                 this.chkdupMRF.Checked = true;
                 this.chkneBudget.Enabled = false;
-                this.chkneBudget.Checked = true;
-                //this.DupMRR();
+                this.chkneBudget.Checked = true;                
                 this.Load_Project_Combo();
                 this.GetPRType();
+               
                 this.GetMarkType();
 
                 this.VisibleGrid();
-                this.lblmrfno.Text = ReadCookie();
+                //this.lblmrfno.Text = ReadCookie();
                 this.lbtnOk.Text = "New";
                 this.lbtnOk_Click(null, null);
 
@@ -100,9 +100,9 @@ namespace RealERPWEB.F_28_MPro
                 case "ReqApproval":                
                 case "ReqEdit":
                
-                    this.gvReqInfo.Columns[7].Visible = true;
-                    this.gvReqInfo.Columns[9].Visible = false;
-                    this.gvReqInfo.Columns[10].Visible = true;
+                    this.gvReqInfo.Columns[11].Visible = true;
+                    this.gvReqInfo.Columns[13].Visible = false;
+                    this.gvReqInfo.Columns[14].Visible = true;
                     
                     break;
 
@@ -150,6 +150,31 @@ namespace RealERPWEB.F_28_MPro
            
 
         }
+        private void GetMaterial()
+        {
+            try
+            {
+
+
+                string comcod = this.GetCompCode();
+                string ReFindProject = (this.Request.QueryString["prjcode"].ToString().Length == 0 ?this.ddlProject.SelectedValue.ToString() : this.Request.QueryString["prjcode"].ToString());
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GETMATLIST", ReFindProject, "", "", "", "", "", "", "", "");
+                if (ds2 == null)
+                    return;
+
+                ViewState["tblmaterial"] = ds2.Tables[0];
+
+            }
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +ex.Message+ "');", true);
+                return;
+
+            }
+
+
+        }
         protected void GetPRType()
         {
             
@@ -168,7 +193,7 @@ namespace RealERPWEB.F_28_MPro
             this.ddlPRType.DataBind();
 
             ViewState["tblddllist"] = ds2.Tables[0];
-            this.ddlPRType_SelectedIndexChanged(null, null);
+          
 
         }
         protected void GetMarkType()
@@ -194,11 +219,11 @@ namespace RealERPWEB.F_28_MPro
                 this.ImgbtnFindReq.Visible = true;
                 this.ddlPrevReqList.Visible = true;
                 this.ddlPrevReqList.Items.Clear();
-                this.ddlProject.Visible = true;               
+              //  this.ddlProject.Visible = true;               
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.lblCurReqNo1.Text = "MRQ" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurReqDate.Enabled = true;
-                this.txtMRFNo.Text = "";    
+               // this.txtMRFNo.Text = "";    
                 this.txtReqNarr.Text = "";
                 this.gvReqInfo.DataSource = null;
                 this.gvReqInfo.DataBind();
@@ -213,8 +238,8 @@ namespace RealERPWEB.F_28_MPro
                     this.chkdupMRF.Visible = false;
                     this.chkneBudget.Visible = false;
                    
-                    this.lblmrfno.Visible = false;
-                    this.txtMRFNo.Visible = false;
+                    //this.lblmrfno.Visible = false;
+                    //this.txtMRFNo.Visible = false;
                     this.lblCurNo.Visible = false;
                     this.lblCurReqNo1.Visible = false;
                     this.txtCurReqNo2.Visible = false;                   
@@ -228,8 +253,8 @@ namespace RealERPWEB.F_28_MPro
 
             if (Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "ReqEdit")
             {               
-                this.lblmrfno.Visible = true;
-                this.txtMRFNo.Visible = true;               
+                //this.lblmrfno.Visible = true;
+                //this.txtMRFNo.Visible = true;               
                 this.lblCurNo.Visible = true;
                 this.lblCurReqNo1.Visible = true;
                 this.txtCurReqNo2.Visible = true;      
@@ -243,7 +268,11 @@ namespace RealERPWEB.F_28_MPro
             this.dNarr.Visible = true;         
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
-            this.LinkMarketSurvey();           
+            
+            //emdad
+            this.GetMaterial();
+            this.ddlPRType_SelectedIndexChanged(null, null);
+            //mar
            
 
         }
@@ -327,7 +356,7 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }
 
-            this.txtMRFNo.Text = ds1.Tables[1].Rows[0]["mrfno"].ToString();
+           // this.txtMRFNo.Text = ds1.Tables[1].Rows[0]["mrfno"].ToString();
             this.lblCurReqNo1.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(0, 6);
             this.txtCurReqNo2.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(6, 5);
             this.txtCurReqDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["reqdat"]).ToString("dd.MM.yyyy");
@@ -337,17 +366,7 @@ namespace RealERPWEB.F_28_MPro
             this.gvResInfo_DataBind();
         }
 
-        private void LinkMarketSurvey()
-        {
-
-            string reqno = this.ddlPrevReqList.SelectedValue.ToString();
-            if (reqno == "")
-                return;
-            string QryStr = "reqno=" + reqno;
-            string TString = "javascript:window.showModalDialog('../F_12_Inv/LinkMktSurvey.aspx?" + QryStr + "', 'Unit Description', 'dialogHeight:800px;dialogWidth:900px;status:no')";
-            this.lbtnSurVey.Attributes.Add("OnClick", TString);
-
-        }
+      
    
         private void GetApprQty()
         {
@@ -372,8 +391,9 @@ namespace RealERPWEB.F_28_MPro
         {
             this.Session_tblReq_Update();
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string ddldesc = hst["ddldesc"].ToString();
+           
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
+            
            string acttype= this.ddlActType.SelectedValue.ToString();           
             DataRow[] dr2 = tbl1.Select("acttype = '" + acttype + "'");
             if (dr2.Length == 0)
@@ -385,7 +405,11 @@ namespace RealERPWEB.F_28_MPro
                 dr1["mkttype"] = this.ddlMarkType.SelectedValue.ToString();
                 dr1["prdesc"] = this.ddlPRType.SelectedItem.Text.Trim();
                 dr1["actdesc"] = this.ddlActType.SelectedItem.Text.Trim();
-                dr1["mktdesc"] = this.ddlMarkType.SelectedItem.Text.Trim(); 
+                dr1["mktdesc"] = this.ddlMarkType.SelectedItem.Text.Trim();
+                dr1["bgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdqty"];
+                dr1["bgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdamt"];
+                dr1["bbgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdqty"]; 
+                dr1["bbgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdamt"];
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
                 dr1["reqrat"] = 0;
@@ -450,7 +474,8 @@ namespace RealERPWEB.F_28_MPro
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             this.lbtnResFooterTotal_Click(null, null);
-            string mMRFNO = this.txtMRFNo.Text.Trim();
+            //string mMRFNO = this.txtMRFNo.Text.Trim();
+            string mMRFNO = "";
             if (this.ddlPrevReqList.Items.Count == 0)
                 this.GetReqNo();
             string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
@@ -460,56 +485,56 @@ namespace RealERPWEB.F_28_MPro
             DataTable dt2 = (DataTable)Session["tblUserReq"];
 
 
-            if (this.chkdupMRF.Checked)
-            {
-                if (mMRFNO.Length == 0)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "M.R.F No. Should Not Be Empty" + "');", true);
-                    return;
-                }
+            //if (this.chkdupMRF.Checked)
+            //{
+            //    if (mMRFNO.Length == 0)
+            //    {
+            //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "M.R.F No. Should Not Be Empty" + "');", true);
+            //        return;
+            //    }
 
-                DataSet ds2 = new DataSet();
+            //    DataSet ds2 = new DataSet();
 
-                switch (comcod)
-                {
+            //    switch (comcod)
+            //    {
 
-                    case "3332":
-
-
-                        string pactcode = this.ddlProject.SelectedValue.ToString();
-                        ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, pactcode, "", "", "", "", "", "", "");
-                        //if (bbgdamt < 0 || dgvBgdQty < dgvReqQty)
+            //        case "3332":
 
 
-                        break;
+            //            string pactcode = this.ddlProject.SelectedValue.ToString();
+            //            ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, pactcode, "", "", "", "", "", "", "");
+            //            //if (bbgdamt < 0 || dgvBgdQty < dgvReqQty)
 
 
-                    default:
-                        ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, "", "", "", "", "", "", "", "");
-
-                        break;
-
-                }
-
-                if (ds2.Tables[0].Rows.Count == 0)
-                    ;
+            //            break;
 
 
-                else
-                {
+            //        default:
+            //            ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, "", "", "", "", "", "", "", "");
 
-                    DataView dv1 = ds2.Tables[0].DefaultView;
-                    dv1.RowFilter = ("reqno <>'" + mREQNO + "'");
-                    DataTable dt = dv1.ToTable();
-                    if (dt.Rows.Count == 0)
-                        ;
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate M.R.F No" + "');", true);
-                        return;
-                    }
-                }
-            }
+            //            break;
+
+            //    }
+
+            //    if (ds2.Tables[0].Rows.Count == 0)
+            //        ;
+
+
+            //    else
+            //    {
+
+            //        DataView dv1 = ds2.Tables[0].DefaultView;
+            //        dv1.RowFilter = ("reqno <>'" + mREQNO + "'");
+            //        DataTable dt = dv1.ToTable();
+            //        if (dt.Rows.Count == 0)
+            //            ;
+            //        else
+            //        {
+            //            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate M.R.F No" + "');", true);
+            //            return;
+            //        }
+            //    }
+            //}
 
             // Emty Quantity
             DataRow[] dr2 = tbl1.Select("areqty>0");
@@ -609,7 +634,23 @@ namespace RealERPWEB.F_28_MPro
             }
 
             this.txtCurReqDate.Enabled = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Requisition Updated successfully" + "');", true);
+            string Type = this.Request.QueryString["InputType"].ToString();
+            string msg = "";
+            switch (Type)
+            {
+                case "ReqCheck":
+                msg = "HOD Approval Updated successfully";
+                    break;
+
+                case "ReqApproval":
+                    msg = "DIV Approval Updated successfully";
+                    break;
+
+                default:
+                    msg = "Requisition Updated successfully";
+                    break;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
 
@@ -633,7 +674,8 @@ namespace RealERPWEB.F_28_MPro
                             string SMSHead = "Ready for Check, ";
 
 
-                            string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRF No: " + txtMRFNo.Text;
+                            string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12); 
+                                ;
                             bool resultsms = sms.SendSmms(SMSText, userid, frmname);
 
                         }
@@ -712,7 +754,7 @@ namespace RealERPWEB.F_28_MPro
                         string frmname = "PurReqApproval.aspx?Type=RateInput";
 
                         string SMSHead = "Ready To Rate Proposal, ";
-                        string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRR No: " + txtMRFNo.Text + "\n" + "Thanks";
+                        string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "Thanks";
                         bool resultsms = sms.SendSmms(SMSText, checkusrid, frmname);
                         break;
                 }
@@ -1075,14 +1117,15 @@ namespace RealERPWEB.F_28_MPro
         protected void ddlPRType_SelectedIndexChanged(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblddllist"];
+            DataTable dt = (DataTable)ViewState["tblmaterial"];
             string code = this.ddlPRType.SelectedValue;
             DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = "code like ('" + code + "')";
-            this.ddlActType.DataTextField = "gdesc";
-            this.ddlActType.DataValueField = "gcod";
+            dv1.RowFilter = "mapcode like ('" + code + "')";
+            this.ddlActType.DataTextField = "rsirdesc";
+            this.ddlActType.DataValueField = "rsircode";
             this.ddlActType.DataSource = dv1.ToTable();
             this.ddlActType.DataBind();
+            
         }
 
         protected void lbtngvReqDelete_Click(object sender, EventArgs e)

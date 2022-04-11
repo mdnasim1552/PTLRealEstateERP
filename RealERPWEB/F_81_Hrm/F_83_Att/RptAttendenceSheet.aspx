@@ -57,8 +57,8 @@
             });
    
 
-           var gvMonthlyattSummary = $('#<%=this.gvMonthlyattSummary.ClientID %>');
-            gvMonthlyattSummary.Scrollable();
+          <%-- var gvMonthlyattSummary = $('#<%=this.gvMonthlyattSummary.ClientID %>');
+            gvMonthlyattSummary.Scrollable();--%>
 
             var gvemplateatt = $('#<%=this.gvemplateatt.ClientID %>');
             gvemplateatt.Scrollable();
@@ -186,6 +186,19 @@
 
                             <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+
+                        </div>
+
+                        <div class="col-2">
+                                          <asp:RadioButtonList ID="rbtnAttStatus" runat="server" AutoPostBack="True"
+                 CssClass="custom-control custom-control-inline custom-checkbox"
+                                Font-Bold="True" Font-Size="12px" ForeColor="Black"
+                               
+                                RepeatDirection="Horizontal">
+                                <asp:ListItem>Time wise</asp:ListItem>
+                                <asp:ListItem>Att Status</asp:ListItem>
+
+                            </asp:RadioButtonList>
 
                         </div>
 
@@ -672,6 +685,7 @@
                                 </asp:GridView>
                             </div>
 
+                            
                             <div class="table-responsive" id="SummaryAttinfo" runat="server">
                                 <div class="col-3">
                                   <div class="input-group input-group-alt">
@@ -693,18 +707,18 @@
                                                 <asp:Label ID="lgvNameSumm" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empnam")) %>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
 
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Id Card">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgidcardsumm" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                                    Width="120px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
 
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
 

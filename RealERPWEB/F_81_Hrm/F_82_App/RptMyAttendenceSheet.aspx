@@ -44,13 +44,18 @@
         }
 
         function pageLoaded() {
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
 
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
 
         }
 
 
-
-
+      
 
     </script>
 
@@ -74,10 +79,53 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
+           <div class="card card-fluid container-data mb-1 mt-5">
+                <div class="card-header" id="mgtCard" runat="server">
+                    <div class="row">
+                            <div class="col-md-2 pl-0">
+                            <!-- .form-group -->
+                            <div class="form-group">
+                                <label for="sel1" id="frmdate" runat="server">From Date <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtgvenjoydt1" runat="server"  AutoPostBack="true" class="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtgvenjoydt1_CalendarExtender" runat="server" Enabled="True"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtgvenjoydt1"></cc1:CalendarExtender>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+
+                        <div class="col-md-2 pr-3" id="divBTWDay" runat="server">
+                            <div class="form-group">
+                                <label for="sel1" id="todate" runat="server">To Date <span class="text-danger">*</span></label>
+
+                                <asp:TextBox ID="txtgvenjoydt2" runat="server"  AutoPostBack="true" class="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtgvenjoydt2_CalendarExtender" runat="server" Enabled="True"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtgvenjoydt2"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group" id="empMgt" runat="server">
+                                <label for="Employee">
+                                    Employee <span class="text-danger">*</span>
+                                </label>
+
+                                <asp:DropDownList ID="ddlEmpName" runat="server"
+                                    CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged">
+                                </asp:DropDownList>
+
+                            </div>
+                        </div>
 
 
-            <div class="card card-fluid container-data mb-1 mt-5">
+                    
+
+
+                    </div>
+                </div>
+
                 <div class="card-body">
+
+
 
                     <div class="row">
                         <div class="col-md-4">
@@ -100,7 +148,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
+                            <div class="form-row" hidden="hidden">
                                 <label for="input04" class="col-md-3  mb-0">Department:</label>
                                 <div class="col-md-9 ">
                                     <asp:Label ID="lbldpt" runat="server" CssClass="control-label"> Card</asp:Label>
@@ -163,7 +211,7 @@
 
 
 
-
+                            <asp:HiddenField ID="empdeptid" runat="server" />
 
                         </div>
                     </div>
@@ -198,7 +246,7 @@
                                     <asp:Label ID="lblIntime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblOuttime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblacintime" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy") %>'></asp:Label>
-                  
+
                                 </td>
                                 <td>
                                     <%--  <asp:Label ID="lblactualin" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt") %>'></asp:Label>--%>
@@ -218,23 +266,18 @@
                                 </td>
                                 <td>
                                     <asp:Label ID="Label3" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dedtimePenal1")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
-
                                 </td>
                                 <td>
                                     <asp:Label ID="lbldtimehour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actTimehour")).ToString() %>'></asp:Label>
-
                                 </td>
-
                                 <td>
                                     <asp:CheckBox ID="chkvmrno" runat="server" Enabled="False" Visible="false"
                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="True"||Convert.ToString(DataBinder.Eval(Container.DataItem, "earleaveapp"))=="True" %>'
                                         Width="20px" />
                                     <asp:LinkButton ID="lnkRequstApply" Visible="false" ToolTip="For Approval Request" runat="server" OnClick="lnkRequstApply_Click" CssClass="btn btn-sm btn-primary">Apply Request</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkApproved" Visible="false" ToolTip="Approved Request" runat="server" CssClass="btn btn-sm btn-warning">Approved</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRequested" Visible="false" ToolTip="Requested" runat="server" CssClass="btn btn-sm btn-danger">Process</asp:LinkButton>
                                 </td>
-
-
-
-
                             </tr>
 
                         </ItemTemplate>
@@ -268,12 +311,12 @@
                     <div class="modal-content  ">
                         <div class="modal-header">
                             <button type="button" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                            
+
                         </div>
                         <div class="modal-body">
-                             <div class="card-body m-0 p-0 text-center">
+                            <div class="card-body m-0 p-0 text-center">
                                 <h4 class="card-title badge badge-lg badge-info" id="lblhead" runat="server">Request Form</h4>
-                                 </div>
+                            </div>
                             <div class="card-body">
                                 <!-- form .needs-validation -->
 
@@ -286,12 +329,12 @@
                            
                                             <abbr title="Required">*</abbr>
                                         </label>
-                                        <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">                                            
+                                        <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">
                                             <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>
                                             <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
                                             <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
                                             <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
-                                            
+
                                         </asp:DropDownList>
 
                                     </div>
