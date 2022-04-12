@@ -213,6 +213,15 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.TextBox txtShortName;
 
         /// <summary>
+        /// lnkbtnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnSave;
+
+        /// <summary>
         /// gvPrjCode control.
         /// </summary>
         /// <remarks>
@@ -409,15 +418,6 @@ namespace RealERPWEB.F_34_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox xtxtShortName;
-
-        /// <summary>
-        /// lnkbtnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnSave;
 
         /// <summary>
         /// lblprjname control.
