@@ -179,7 +179,8 @@ namespace RealERPWEB
                     this.lnkFormLink.Visible = true;
                     this.HypLinkApplyLvCommon.Visible = false;
                     this.hypTimeOfleave.Visible = false;
-                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd";
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd"; 
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
             }
             hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;
