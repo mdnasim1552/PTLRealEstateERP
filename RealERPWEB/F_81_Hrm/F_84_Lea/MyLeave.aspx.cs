@@ -1219,6 +1219,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string doj = ds.Tables[0].Rows[0]["doj"].ToString() ?? "";
             string dept = ds.Tables[0].Rows[0]["dept"].ToString() ?? "";
             string desig = ds.Tables[0].Rows[0]["desig"].ToString() ?? "";
+            string idcardno = ds.Tables[0].Rows[0]["empid"].ToString() ?? "";
 
 
             var list1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>();
@@ -1232,11 +1233,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee's Leave Card"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
 
-            Rpt1.SetParameters(new ReportParameter("empid", empid));
+            Rpt1.SetParameters(new ReportParameter("idcardno", idcardno));
             Rpt1.SetParameters(new ReportParameter("empname", empname));
             Rpt1.SetParameters(new ReportParameter("doj", doj));
             Rpt1.SetParameters(new ReportParameter("dept", dept));
             Rpt1.SetParameters(new ReportParameter("desig", desig));
+            Rpt1.SetParameters(new ReportParameter("curyear", curr_year));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
