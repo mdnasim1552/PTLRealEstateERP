@@ -47,14 +47,14 @@ namespace RealERPWEB.F_99_Allinterface
                 txtdate_TextChanged(null, null);
                 //  this.RadioButtonList1_SelectedIndexChanged(null, null);
                 // this.Countqty();
-                this.Visible();
+                this.PannelVisible();
                 this.CheckHyperLink();
 
             }
 
         }
 
-        private void Visible()
+        private void PannelVisible()  
         {
             string comcod = this.GetCompCode();
 
@@ -196,7 +196,8 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string comcod = this.GetCompCode();
             string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "SUBCONTRACTORINTERFACE", Date, "", "", "", "", "", "", "", "");
+            string mtrrf = "%" + this.txtrefno.Text.Trim().ToString() + "%";
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "SUBCONTRACTORINTERFACE", Date, "%%", "", "", "", "", "", "", "");
             string billfinal = this.GettxtBillFinal();
             string billapprove = this.GettxtBillApproved();
 
