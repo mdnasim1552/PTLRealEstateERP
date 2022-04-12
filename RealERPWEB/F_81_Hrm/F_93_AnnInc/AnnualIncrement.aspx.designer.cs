@@ -33,40 +33,13 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// Label4 control.
+        /// pnlIncDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// txtSrcCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcCompany;
-
-        /// <summary>
-        /// imgbtnCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnCompany;
-
-        /// <summary>
-        /// ddlCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
+        protected global::System.Web.UI.WebControls.Panel pnlIncDetails;
 
         /// <summary>
         /// lblCompany control.
@@ -78,40 +51,22 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected global::System.Web.UI.WebControls.Label lblCompany;
 
         /// <summary>
-        /// lnkbtnShow control.
+        /// ddlCompany control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
 
         /// <summary>
-        /// Label1 control.
+        /// lblDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// txtSrcDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcDept;
-
-        /// <summary>
-        /// imgbtnDeptSrch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnDeptSrch;
+        protected global::System.Web.UI.WebControls.Label lblDepartment;
 
         /// <summary>
         /// ddlDept control.
@@ -123,40 +78,13 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected global::System.Web.UI.WebControls.DropDownList ddlDept;
 
         /// <summary>
-        /// lblDept control.
+        /// lblSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDept;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// txtSrcSection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcSection;
-
-        /// <summary>
-        /// imgbtnSectionSrch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnSectionSrch;
+        protected global::System.Web.UI.WebControls.Label lblSection;
 
         /// <summary>
         /// ddlSection control.
@@ -168,13 +96,22 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected global::System.Web.UI.WebControls.DropDownList ddlSection;
 
         /// <summary>
-        /// lblSection control.
+        /// lblEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSection;
+        protected global::System.Web.UI.WebControls.Label lblEmployee;
+
+        /// <summary>
+        /// ddlEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmployee;
 
         /// <summary>
         /// lblfrmdate control.
@@ -231,15 +168,6 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected global::System.Web.UI.WebControls.TextBox txtCurIncrNo;
 
         /// <summary>
-        /// lblPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage;
-
-        /// <summary>
         /// ddlpagesize control.
         /// </summary>
         /// <remarks>
@@ -249,31 +177,13 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// chkbdate control.
+        /// lnkbtnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkbdate;
-
-        /// <summary>
-        /// lblPreVious control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPreVious;
-
-        /// <summary>
-        /// txtSrchPreviousList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchPreviousList;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
 
         /// <summary>
         /// imgbtnPreList control.
@@ -292,15 +202,6 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevIncList;
-
-        /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
         /// gvAnnIncre control.
