@@ -245,7 +245,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.ShowSalaryDetails();
                     this.addOcupation.Visible = false;
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-
+                    break;
+                case "37":
+                    this.MultiView1.ActiveViewIndex = 9;
+                 
+                    this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
                     break;
 
 
@@ -803,6 +808,25 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
 
         private void ShowJobRespon()
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPJOBRESPONSIBILITES", empid, "", "", "", "", "", "", "", "");
+            if (ds4 == null)
+            {
+                this.grvJobRespo.DataSource = null;
+                this.grvJobRespo.DataBind();
+
+                return;
+
+            }
+            this.grvJobRespo.DataSource = ds4.Tables[0];
+            this.grvJobRespo.DataBind();
+
+        }
+
+
+        private void ShowNomineeInfo()
         {
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1524,10 +1548,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 cell05.HorizontalAlign = HorizontalAlign.Center;
                 cell05.ColumnSpan = 2;
                 cell05.Attributes["style"] = "font-weight:bold;";
-
-
-
-
 
                 gvrow.Cells.Add(cell01);
                 gvrow.Cells.Add(cell02);
