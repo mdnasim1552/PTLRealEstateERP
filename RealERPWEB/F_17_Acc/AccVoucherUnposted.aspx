@@ -251,7 +251,7 @@
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvsirdesc" runat="server" BackColor="Transparent"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "payto")) %>'
                                                 Width="150px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

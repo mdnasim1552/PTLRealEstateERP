@@ -27,13 +27,16 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 this.txtdate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.GetCompany();
                 this.GetIncreNo();
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE INCREMENT INFORMATION";
+                
             }
 
         }
@@ -58,14 +61,14 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
             Session.Remove("tblcompany");
             string comcod = this.GetComeCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETCOMPANYNAME", txtCompany, "", "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
             this.ddlCompany.DataBind();
             Session["tblcompany"] = ds1.Tables[0];
-            this.ddlCompany_SelectedIndexChanged(null, null);
+            this.GetDeptName();
             ds1.Dispose();
         }
         private void GetDeptName()
@@ -73,17 +76,15 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             if (this.lnkbtnShow.Text == "New")
                 return;
             string comcod = this.GetComeCode();
-            // string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string txtCompany = "%" + this.txtSrcDept.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETPROJECTNAME", Company, txtCompany, "", "", "", "", "", "", "");
             this.ddlDept.DataTextField = "actdesc";
             this.ddlDept.DataValueField = "actcode";
             this.ddlDept.DataSource = ds1.Tables[0];
             this.ddlDept.DataBind();
-            this.ddlDept_SelectedIndexChanged(null, null);
+            this.GetSection();
             ds1.Dispose();
         }
         private void GetSection()
@@ -92,19 +93,51 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             if (this.lnkbtnShow.Text == "New")
                 return;
             string comcod = this.GetComeCode();
-            // string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
             string DeptName = ((this.ddlDept.SelectedValue.ToString() == "000000000000") ? "" : this.ddlDept.SelectedValue.ToString().Substring(0, 9)) + "%";
-            string SrchSection = "%" + this.txtSrcSection.Text.Trim() + "%";
+            string SrchSection = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETSECTION", Company, DeptName, SrchSection, "", "", "", "", "", "");
             this.ddlSection.DataTextField = "section";
             this.ddlSection.DataValueField = "seccode";
             this.ddlSection.DataSource = ds1.Tables[0];
             this.ddlSection.DataBind();
+            this.ddlSection_SelectedIndexChanged(null, null);
             ds1.Dispose();
+
+
+        }
+
+        private void GetEmployeeName()
+        {
+            try
+            {
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetComeCode();
+                int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+                string compcode = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+                string deptcode = (this.ddlDept.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlDept.SelectedValue.ToString().Substring(0, 9) + "%";
+                string Section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+
+                string txtSProject = "%";
+                DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETEMPTNAME", compcode, deptcode, Section, txtSProject, "", "", "", "", "");
+                Session["tblempdsg"] = ds3.Tables[0];
+                this.ddlEmployee.DataTextField = "empname";
+                this.ddlEmployee.DataValueField = "empid";
+                this.ddlEmployee.DataSource = ds3.Tables[0];
+                this.ddlEmployee.DataBind();
+                this.ddlEmployee_SelectedIndexChanged(null, null);
+            }
+
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+
+            }
 
 
         }
@@ -112,8 +145,36 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         {
             this.GetDeptName();
         }
+        protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetSection();
+        }
+        protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetEmployeeName();
+        }
 
+        protected void ddlEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string empid = this.ddlEmployee.SelectedValue.ToString().Trim();
+                DataTable dt = (DataTable)Session["tblempdsg"];
+                DataRow[] dr = dt.Select("empid = '" + empid + "'");
+                if (dr.Length > 0)
+                {
+                    string errMsg = ((DataTable)Session["tblempdsg"]).Select("empid='" + empid + "'")[0]["desig"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + errMsg + "');", true);
 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+            }
+        }
         private void GetPreviousList()
         {
 
@@ -197,9 +258,6 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         {
             if (this.lnkbtnShow.Text == "New")
             {
-
-                this.lblPreVious.Visible = true;
-                this.txtSrchPreviousList.Visible = true;
                 this.imgbtnPreList.Visible = true;
                 this.ddlPrevIncList.Visible = true;
                 this.ddlPrevIncList.Items.Clear();
@@ -207,31 +265,20 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 this.lnkbtnShow.Text = "Ok";
                 this.gvAnnIncre.DataSource = null;
                 this.gvAnnIncre.DataBind();
-                this.lblCompany.Visible = false;
-                this.lblDept.Visible = false;
-                this.lblSection.Visible = false;
-                this.ddlCompany.Visible = true;
-                this.ddlDept.Visible = true;
-                this.ddlSection.Visible = true;
+                this.ddlCompany.Enabled = true;
+                this.ddlDept.Enabled = true;
+                this.ddlSection.Enabled = true;
                 this.txtdate.Enabled = true;
                 return;
             }
 
 
-            this.lblPreVious.Visible = false;
-            this.txtSrchPreviousList.Visible = false;
+            this.lnkbtnShow.Text = "New";
             this.imgbtnPreList.Visible = false;
             this.ddlPrevIncList.Visible = false;
-            this.lnkbtnShow.Text = "New";
-            this.lblCompany.Text = this.ddlCompany.SelectedItem.Text.Trim();
-            this.lblDept.Text = this.ddlDept.SelectedItem.Text.Trim();
-            this.lblSection.Text = this.ddlSection.SelectedItem.Text.Trim();
-            this.lblCompany.Visible = true;
-            this.lblDept.Visible = true;
-            this.lblSection.Visible = true;
-            this.ddlCompany.Visible = false;
-            this.ddlDept.Visible = false;
-            this.ddlSection.Visible = false;
+            this.ddlCompany.Enabled = false;
+            this.ddlDept.Enabled = false;
+            this.ddlSection.Enabled = false;
             this.ShowInc();
         }
 
@@ -263,6 +310,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string DeptCode = ((this.ddlDept.SelectedValue.ToString() == "000000000000") ? "" : this.ddlDept.SelectedValue.ToString().Substring(0, 9)) + "%";
             string SecCode = ((this.ddlSection.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
+            string empID = ((this.ddlEmployee.SelectedValue.ToString() == "000000000000") ? "" : this.ddlEmployee.SelectedValue.ToString()) + "%";
 
             string txtDate = this.GetStdDate(this.txtdate.Text);
             DataSet ds2;
@@ -271,7 +319,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 this.GetIncreNo();
                 string calltype = this.CompanyCalltype();
 
-                ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", calltype, Company, DeptCode, SecCode, txtDate, "", "", "", "", "");
+                ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", calltype, Company, DeptCode, SecCode, txtDate, empID, "", "", "", "");
             }
             else
             {
@@ -616,18 +664,12 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         //    this.LoadGrid();      
         //}
 
-        protected void imgbtnSectionSrch_Click(object sender, EventArgs e)
-        {
-            this.GetSection();
-        }
+      
         protected void imgbtnPreList_Click(object sender, EventArgs e)
         {
             this.GetPreviousList();
         }
-        protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetSection();
-        }
+       
         protected void lbtnPutSameValue_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblAnnInc"];
@@ -697,5 +739,6 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             Session["tblAnnInc"] = dv.ToTable();
             this.LoadGrid();
         }
+
     }
 }
