@@ -57,30 +57,33 @@ namespace RealERPWEB.F_99_Allinterface
         private void PannelVisible()  
         {
             string comcod = this.GetCompCode();
-
-            if (comcod == "3336" || comcod == "3337")
+            switch (comcod)
             {
-                this.pnlAll.Visible = true;
-                this.Panelsuvastu.Visible = true;
+                case "3336":
+                case "3337":
+                    this.pnlAll.Visible = true;
+                    this.Panelsuvastu.Visible = true;
+                    break;
+                case "1103":
+                    this.pnltan.Visible = true;
+                    this.Panelrpt.Visible = true;
+                    break;
 
-            }
-            else if (comcod == "1103")
-            {
-                this.pnltan.Visible = true;
-                this.Panelrpt.Visible = true;
+                case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                    this.pnlAll.Visible = true;
+                    this.Panelrpt.Visible = true;
+                    //this.txtrefno.ReadOnly = false;
+                    break;
 
-
-            }
-
-            else
-
-            {
-                this.pnlAll.Visible = true;
-                this.Panelrpt.Visible = true;
-
-
-            }
-
+                default:
+                    this.pnlAll.Visible = true;
+                    this.Panelrpt.Visible = true;
+                    //this.txtrefno.ReadOnly = true;
+                    break;
+            }     
 
         }
 
@@ -197,7 +200,7 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
             string mtrrf = "%" + this.txtrefno.Text.Trim().ToString() + "%";
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "SUBCONTRACTORINTERFACE", Date, "%%", "", "", "", "", "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "SUBCONTRACTORINTERFACE", Date, mtrrf, "", "", "", "", "", "", "");
             string billfinal = this.GettxtBillFinal();
             string billapprove = this.GettxtBillApproved();
 

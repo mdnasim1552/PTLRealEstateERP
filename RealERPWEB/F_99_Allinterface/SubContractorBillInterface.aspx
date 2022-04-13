@@ -484,52 +484,31 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
-
             try {
-
-
-
                 $("input, select").bind("keydown", function (event) {
                     var k1 = new KeyPress();
                     k1.textBoxHandler(event);
                 });
-
                 $('#<%=this.gvConUpdat.ClientID%>').tblScrollable();
                 $('#<%=this.gvexecution.ClientID%>').tblScrollable();
                 $('#<%=this.gvsubbill.ClientID%>').tblScrollable();
                 $('#<%=this.gvfinal.ClientID%>').tblScrollable();
                 $('#<%=this.gvfinalapp.ClientID%>').tblScrollable();
                 $('#<%=this.gvAllReq.ClientID%>').tblScrollable();
-
-
                 $('#<%=this.grvImple.ClientID%>').tblScrollable();
-
                 funComRadiButtonHidden();
-
             }
-
             catch (e) {
                 alert(e);
             }
-
-
-
-
-
-
         };
 
-
         function funComRadiButtonHidden() {
-
             try {
-
-
                 comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
 
-
-                    case 3101:   //ASIT                      
+                    //case 3101:   //ASIT
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
@@ -540,21 +519,15 @@
                         $(".tbMenuWrp table tr td:nth-child(10)").hide();
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
-                    //case 3101:   
                     case 1103:   //tanvir
 
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
-
                         break;
-
-
-
-
-
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
@@ -565,67 +538,39 @@
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
 
-
-
-                        //    $("table[id*=RadioButtonList1] input:first").next().next().hide();
-
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
-
-
-
                 }
-
-
-
             }
             catch (e) {
-
-
                 alert(e);
-
             }
-
         }
-
-
         function Search_Gridview(strKey, cellNr, gvname) {
             try {
-
                 var strData = strKey.value.toLowerCase().split(" ");
                 var tbldata;
-
                 switch (gvname) {
 
                     case 'gvAllReq':
                         tblData = document.getElementById("<%=this.gvAllReq.ClientID %>");
                         break;
-
                     case 'gvsubbill':
                         tblData = document.getElementById("<%=this.gvsubbill.ClientID %>");
                         break;
-
                     case 'gvfinal':
                         tblData = document.getElementById("<%=this.gvfinal.ClientID %>");
                         break;
-
-
                     case 'gvfinalapp':
                         tblData = document.getElementById("<%=this.gvfinalapp.ClientID %>");
                         break;
                     case 'gvConUpdat':
                         tblData = document.getElementById("<%=this.gvConUpdat.ClientID %>");
                         break;
-
-
                     default:
                         tblData = document.getElementById("<%=gvsubbill.ClientID %>");
                         break;
-
-
-
                 }
-
-
                 var rowData;
                 for (var i = 0; i < tblData.rows.length; i++) {
                     rowData = tblData.rows[i].cells[cellNr].innerHTML;
@@ -641,19 +586,10 @@
                     tblData.rows[i].style.display = styleDisplay;
                 }
             }
-
             catch (e) {
                 alert(e.message);
-
             }
-
         }
-
-
-
-
-
-
     </script>
 
     <%-- <asp:ObjectDataSource ID="source_session_online" runat="server" SelectMethod="session_online" TypeName="t_session" />--%>
