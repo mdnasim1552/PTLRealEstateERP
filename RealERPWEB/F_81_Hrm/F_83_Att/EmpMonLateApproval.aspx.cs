@@ -616,12 +616,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-           
+
             string frmdesig = "0399999";
             string todesig = "0300001";
             switch (comcod)
             {
-               
+
                 case "3102":
                     //pnlDesig.Visible = true;
 
@@ -877,9 +877,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                 rowindex = (this.gvmapsapp.PageSize) * (this.gvmapsapp.PageIndex) + i;
                                 dt.Rows[rowindex]["aprday"] = aprday;
                                 dt.Rows[rowindex]["leaveadj"] = lvadj;
-                                dt.Rows[rowindex]["dedday"] = (absday - (aprday+ lvadj));
+                                dt.Rows[rowindex]["dedday"] = (absday - (aprday + lvadj));
                                 dt.Rows[rowindex]["reason"] = reason;
-                                dt.Rows[rowindex]["balance"] = (absday - (aprday + lvadj+ dedday)); ;
+                                dt.Rows[rowindex]["balance"] = (absday - (aprday + lvadj + dedday)); ;
 
                             }
                             break;
@@ -1377,7 +1377,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
                         double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
                         double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
-                        double dedday =   Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
+                        double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
 
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
                         double redelay = delayday - Aprvday;
@@ -1723,27 +1723,27 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string dedday = Convert.ToDouble(dr1["dedday"]).ToString();
                 string reason = (dr1["reason"]).ToString();
                 double leaveadj = Convert.ToDouble("0" + dr1["leaveadj"]);
-                
+
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPABSENTADJ", monthid, empid, absday, aprday, dedday, leaveadj.ToString(), reason, "", "", "", "", "", "", "", "");
                 if (!result)
                     return;
 
                 if (comcod == "3365")
                 {
-                      reason = "LP Adjustment";
+                    reason = "LP Adjustment";
                     // for leave creatrion bti
                     string frmdate = this.txtfrmDate.Text.Trim();
                     string todate = this.txttoDate.Text.Trim();
-                    DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPLATEATTENDETAILSINDIVIDUAL_AFTER_10AM", frmdate, todate, empid);                    
-                 
+                    DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPLATEATTENDETAILSINDIVIDUAL_AFTER_10AM", frmdate, todate, empid);
+
                     DataTable dts;
                     DataTable dtcl;
-                    
+
                     DataView dv = ds2.Tables[0].DefaultView;
                     dv.RowFilter = "(lateapp = 'False')";
                     dts = dv.ToTable();
                     dtcl = dts;
-                   
+
 
                     // CL Adjust  table dbo_hrm.HREMPLVEAPP
                     if (leaveadj.ToString() != "0")
@@ -1756,14 +1756,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             bool ishalfday = (leaveadj <= 0.5 ? true : false);
                             frmdate = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
                             result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51002", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), usrid, "");
-                    
+
                             leaveadj = leaveadj - 1;
                             if (leaveadj <= 0)
                                 break;
                         }
                     }
 
-                     
+
                 }
 
 
@@ -2068,7 +2068,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = ((Label)this.gvabsapp02.Rows[index].FindControl("lgvEmpIdabs02")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            
+
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPMONABSENT", frmdate, todate, Empcode);
             if (ds2 == null)
             {
@@ -2097,29 +2097,44 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string sessionid = hst["session"].ToString();
             string trmid = hst["compname"].ToString();
 
+
+
+
+
+
             foreach (GridViewRow gv1 in mgvmonabsent.Rows)
             {
 
+                if (((CheckBox)gv1.FindControl("isApproved")).Checked == false)
+                { 
 
-                if (((CheckBox)gv1.FindControl("lblchkaabs02")).Checked == true)
-                {
-
-
-                    string empid = Convert.ToString(((Label)gv1.FindControl("mlgvEmpIdabs02")).Text.Trim());
-                    string remarks = Convert.ToString(((TextBox)gv1.FindControl("lblgvremarks")).Text.Trim());
-
-                    string dayid = Convert.ToDateTime(((Label)gv1.FindControl("lgvabsday")).Text).ToString("yyyyMMdd");
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENT", dayid, empid, remarks, "", "", "", "", "", "");
-
-
-                    if (!result)
+                    if (((CheckBox)gv1.FindControl("lblchkaabs02")).Checked == true)
                     {
-
-                        errMsg = "Update Fail";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
-                        return;
+                        string empid = Convert.ToString(((Label)gv1.FindControl("mlgvEmpIdabs02")).Text.Trim());
+                        string remarks = Convert.ToString(((TextBox)gv1.FindControl("lblgvremarks")).Text.Trim());
+                        string dayid = Convert.ToDateTime(((Label)gv1.FindControl("lgvabsday")).Text).ToString("yyyyMMdd");
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENT", dayid, empid, remarks, "", "", "", "", "", "");
+                        if (!result)
+                        {
+                            errMsg = "Update Fail";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        string empid = Convert.ToString(((Label)gv1.FindControl("mlgvEmpIdabs02")).Text.Trim());
+                        string dayid = Convert.ToDateTime(((Label)gv1.FindControl("lgvabsday")).Text).ToString("yyyyMMdd");
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERT_OR_UPDATEOFFTIME_ANDDELABSENT_RESET", dayid, empid, "", "", "", "", "", "", "");
+                        if (!result)
+                        {
+                            errMsg = "Update Fail";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                            return;
+                        }
                     }
                 }
+
             }
             errMsg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + errMsg + "');", true);
@@ -2587,6 +2602,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     }
 
                 }
+                else
+                {
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL_RESET", txtfrmDate, txttoDate, empid, absapp, idcardno, "", "", "", "", "", "", "", "", "", "");
+
+                    if (!result)
+                    {
+                        string Msgs = "Updated Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
+
+                        return;
+                    }
+                }
 
 
             }
@@ -2609,7 +2636,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         protected void lnkbtnAbsAppGVmapsapp_Click(object sender, EventArgs e)
         {
-             
+
             //Get Data after 1:00 Hour late Employee 
             this.ModalUpdateBtn.Visible = false;
             this.ModallnkBtnLateAFTER10AM.Visible = false;
@@ -2619,14 +2646,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             int index = row.RowIndex;
 
             string Empcode = ((Label)this.gvmapsapp.Rows[index].FindControl("lgvEmpIdabs")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
-             
+
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string emdname = ((Label)this.gvmapsapp.Rows[index].FindControl("emdname")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
             string empdesig = ((Label)this.gvmapsapp.Rows[index].FindControl("lblgvEmpNameearnabs")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
             EmpDeatials.InnerText = "Name : " + emdname + " , Designation: " + empdesig;
             DeatialsDate.InnerText = "From Date :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
-            
+
 
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPLATEATTENDETAILSINDIVIDUAL_AFTER_10AM", frmdate, todate, Empcode);
             if (ds2 == null)
