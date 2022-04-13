@@ -250,8 +250,7 @@
                                     <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn " OnClick="lnkbtnShow_Click" Text="Ok"></asp:LinkButton>
 
                                 </div>
-                                 <div class="col-md-6">
-                                    
+                                <div class="col-md-6">
                                 </div>
 
                             </div>
@@ -968,7 +967,7 @@
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
                                                         Width="250px"></asp:LinkButton>
                                                 </ItemTemplate>
-                                               <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Card #">
 
@@ -986,7 +985,7 @@
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
 
-                                               <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Total  Days">
                                                 <ItemTemplate>
@@ -1714,7 +1713,7 @@
                 <div id="absmodal" class="modal animated zoomIn" role="dialog">
                     <div class="modal-dialog   modal-lg">
                         <div class="modal-content  ">
-                            <div class="modal-header"> 
+                            <div class="modal-header">
                                 <button type="button" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
                                 <h4 class="modal-title">
                                     <span class="glyphicon glyphicon-hand-right"></span>
@@ -1723,7 +1722,7 @@
                             </div>
                             <div class="modal-body">
 
-                                 
+
                                 <div class="">
                                     <asp:GridView ID="mgvmonabsent" runat="server"
                                         AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -1753,7 +1752,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
-                                                 
+
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
                                             </asp:TemplateField>
@@ -1761,9 +1760,9 @@
 
 
                                                 <HeaderTemplate>
-                                                   Name
+                                                    Name
                                                      <asp:HyperLink ID="mhlbtntbCdataExelabs02" runat="server"
-                                                                    ForeColor="White" Style="text-align: center" Width="50px"><span class="fa fa-file-excel-o"></span></asp:HyperLink>
+                                                         ForeColor="White" Style="text-align: center" Width="50px"><span class="fa fa-file-excel-o"></span></asp:HyperLink>
                                                 </HeaderTemplate>
 
 
@@ -1841,12 +1840,11 @@
                                                 <ItemTemplate>
                                                     <asp:CheckBox ID="lblchkaabs02" runat="server"
                                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? true : false %>'
-                                                         Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isApproved"))=="True" ? false : true %>'
+                                                        Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isApproved"))=="True" ? false : true %>'
                                                         Width="20px" />
-                                                    
-                                                     <asp:CheckBox ID="isApproved" runat="server" Visible="false"
+
+                                                    <asp:CheckBox ID="isApproved" runat="server" Visible="false"
                                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isApproved"))=="True" ? true : false %>'
-                                                        
                                                         Width="20px" />
 
                                                 </ItemTemplate>
