@@ -1214,22 +1214,25 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Field">
                                                 <ItemTemplate>
+                                                    <asp:Label ID="lblCode" Visible="false" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")) %>'
+                                                        Width="100px"></asp:Label>
                                                     <asp:Label ID="lblgvField" runat="server" Height="16px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
-                                                        Width="49px"></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
+                                                        Width="100px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Information">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgcvInfo" runat="server" BackColor="Transparent"
+                                                    <asp:TextBox ID="txtgvNomi" runat="server" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px" Height="20px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobresp")) %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nominfo")) %>'
                                                         Width="350px"></asp:TextBox>
                                                 </ItemTemplate>
 
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lUpdateInfoNomi" runat="server" CssClass="btn btn-danger primaryBtn" >Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lUpdateInfoNomi" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdateInfoNomi_Click" >Update</asp:LinkButton>
                                                 </FooterTemplate>
 
                                                 <HeaderStyle HorizontalAlign="Center" />
