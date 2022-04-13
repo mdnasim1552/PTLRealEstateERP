@@ -786,10 +786,10 @@
     <EmbeddedResource Include="R_24_CC\RptRegisrationStatusAllPro.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptSalesPermissionCost.rdlc" />
     <EmbeddedResource Include="R_28_MPro\RptMktMatIssue.rdlc" />
-    <EmbeddedResource Include="R_28_MPro\RptMktRequisition.rdlc" />
     <EmbeddedResource Include="R_28_MPro\RptMktPurchaseTracking.rdlc" />
     <EmbeddedResource Include="R_28_MPro\RptMktPurMRR.rdlc" />
     <EmbeddedResource Include="R_28_MPro\RptMktPurMarketSurvey.rdlc" />
+    <EmbeddedResource Include="R_28_MPro\RptMktRequisition.rdlc" />
     <EmbeddedResource Include="R_29_Fxt\RptDepricationCharge.rdlc" />
     <EmbeddedResource Include="R_29_Fxt\RptDeptITStock.rdlc" />
     <EmbeddedResource Include="R_29_Fxt\RptEquipStEmpWise.rdlc" />
