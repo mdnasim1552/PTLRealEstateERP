@@ -4,6 +4,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <style>
+        .ml5{margin-left:5px;}
+        .modal-lg {
+            width: 80% !important;
+        }
+
+        div#ContentPlaceHolder1_ddlMainCode_chzn {
+            width: 100% !important;
+        }
+
+        div#ContentPlaceHolder1_ddlSub1_chzn {
+            width: 100% !important;
+        }
+
+        div#ContentPlaceHolder1_ddlSub2_chzn {
+            width: 100% !important;
+        }
+
+        .chzn-drop {
+            width: 100% !important;
+            top: 34px !important;
+        }
+
+        .chzn-search input[type="text"] {
+            width: 100% !important;
+        }
+
+        input#ContentPlaceHolder1_txtProjectName {
+            width: 100% !important;
+        }
+                .isNewprj label {
+            margin-bottom: 0;
+        }
+    </style>
+
     <script type="text/javascript">
         function openModal() {
             $('#modalEmpInfo').modal('toggle');
@@ -11,6 +47,20 @@
         function CloseMOdal() {
             $('#modalEmpInfo').modal('hide');
         }
+
+        function newCodebookOpen() {
+            $('#newCodeBook').modal('toggle');
+        }
+        function newCodebookClose() {
+            $('#newCodeBook').modal('hide');
+        }
+
+        function openDeleteModal() {
+            $('#openDeleteModal').modal('toggle');
+        }
+
+
+
 
 
         $(document).ready(function () {
@@ -25,17 +75,21 @@
 
     </script>
 
-    <style>
-        .isNewprj label {
-            margin-bottom: 0;
-        }
-    </style>
+
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="card card-fluid container-data mt-5" style="min-height: 1000px;">
+                <div class="card-header">
+                    <p class="text-right">
+
+                    <asp:LinkButton ID="lnknewcodebook" OnClick="lnknewcodebook_Click" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Code Book</asp:LinkButton>
+
+                    </p>
+
+                </div>
                 <div class="card-body">
-                    <div class="row">
+                    <%--           <div class="row">
                         <div class="col-md-2" id="div2" runat="server">
                             <div class="form-group">
                                 <label for="ddlLvType">
@@ -76,9 +130,7 @@
                                     <asp:LinkButton ID="mgbtnPreDetails" runat="server" OnClick="mgbtnPreDetails_Click">
                                                 Previous Project</asp:LinkButton>
                                     
-                                    <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-danger isNewprj" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
-                                    <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="float-right badge badge-info isNewprj" OnClick="lnkBtnShow_Click">Set Project Permission</asp:LinkButton>
-
+                                   
                                 </label>
                                 <asp:DropDownList ID="ddlProjectList" OnSelectedIndexChanged="ddlProjectList_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
                                 </asp:DropDownList>
@@ -118,8 +170,8 @@
                         <div class="col-md-2 pading5px">
                                         <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" CssClass="btn btn-danger">Save</asp:LinkButton>
                        </div>
-                    </div>
-                    <div class="table-responsive d-none">
+                    </div>--%>
+                    <div class="table-responsive ">
                         <asp:GridView ID="gvPrjCode" runat="server" AutoGenerateColumns="False" ClientIDMode="Static"
                             OnPageIndexChanging="gvPrjCode_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             PageSize="15">
@@ -149,6 +201,12 @@
 
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
+                                        <asp:LinkButton ID="deleteModal" runat="server" CssClass="float-right badge badge-danger isNewprj ml5" OnClick="deleteModal_Click" > <i class="fa fa-trash"></i>  </asp:LinkButton>
+                                        <asp:LinkButton ID="lnkedit" runat="server" CssClass="float-right badge badge-success isNewprj ml5" OnClick="lnkedit_Click">  <i class="fa fa-edit"></i> </asp:LinkButton>
+                                        <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-primary text-white isNewprj ml5" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
+                                        <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="float-right badge badge-info isNewprj" OnClick="lnkBtnShow_Click">Set Project Permission</asp:LinkButton>
+
+
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="right" />
                                     <HeaderStyle HorizontalAlign="Center" />
@@ -242,7 +300,7 @@
 
 
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </fieldset>
@@ -254,11 +312,11 @@
                 </div>
             </div>
             <div id="modalEmpInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
-                <div class="modal-dialog ">
+                <div class="modal-dialog modal-lg ">
                     <div class="modal-content col-md-12 col-sm-12 ">
-                        <div class="modal-header hedcon">                            
-                    <h4>Project Information </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-header hedcon">
+                            <h4>Project Information </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <asp:Label ID="lblprjname" runat="server" Text="Project Name" ForeColor="DodgerBlue" CssClass="d-block" Font-Size="Large"></asp:Label>
@@ -335,6 +393,163 @@
                     </div>
                 </div>
             </div>
+
+            <div id="newCodeBook" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content col-md-12 col-sm-12 ">
+                        <div class="modal-header hedcon">
+                            <h5 class="modal-title">Create New Codebook</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div id="div2" runat="server">
+                                        <div class="form-group">
+                                            <label for="ddlLvType">
+                                                Main
+                                            </label>
+                                            <asp:DropDownList ID="ddlMainCode" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlMainCode_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div id="div1" runat="server">
+                                        <div class="form-group">
+                                            <label for="ddlLvType">
+                                                Project Name
+                                            </label>
+                                            <asp:TextBox ID="txtProjectName" runat="server" Placeholder="English Name" CssClass="form-control"></asp:TextBox>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div id="div3" runat="server">
+                                        <div class="form-group">
+                                            <label for="ddlLvType">
+                                                Sub-1
+                                            </label>
+                                            <asp:DropDownList ID="ddlSub1" OnSelectedIndexChanged="ddlSub1_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div id="div5" runat="server">
+                                        <div class="form-group">
+                                            <label for="ddlLvType">
+                                                Short Name
+                                            </label>
+                                            <asp:TextBox ID="txtShortName" runat="server" CssClass="form-control"></asp:TextBox>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div id="div4" runat="server">
+                                        <div class="form-group">
+                                            <label class="d-block" for="ddlLvType">
+                                                Sub-2 
+                                
+                                    <asp:CheckBox ID="chkNewProject" runat="server" CssClass="float-right badge badge-success isNewprj" Text=" New Project" OnCheckedChanged="chkNewProject_CheckedChanged"
+                                        AutoPostBack="True" Visible="false" />
+                                            </label>
+                                            <asp:DropDownList ID="ddlSub2" OnSelectedIndexChanged="ddlSub2_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div id="div6" runat="server">
+                                        <div class="form-group">
+                                            <label for="ddlLvType">
+                                                Project Name Bangla(if need)
+                                            </label>
+                                            <asp:TextBox ID="txtProjectNameBN" runat="server" Placeholder="Bangla Name" CssClass="form-control"></asp:TextBox>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div id="prvProjt" runat="server" >
+                                        <div class="form-group">
+                                            <label for="ddlLvType" class="d-block">
+                                                Previous Project
+                                    
+                                    <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-danger isNewprj" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
+                                                <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="float-right badge badge-info isNewprj" OnClick="lnkBtnShow_Click">Set Project Permission</asp:LinkButton>
+
+                                            </label>
+                                            <asp:DropDownList ID="ddlProjectList" OnSelectedIndexChanged="ddlProjectList_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" CssClass="btn btn-success float-right mb-2">Save</asp:LinkButton>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="openDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="text-center">Are you sure want to delete?</h5>
+                            <p class="text-center">
+                                <asp:LinkButton ID="lnkdelete" runat="server" CssClass="btn btn-danger" OnClick="lnkdelete_Click">Yes, Delete</asp:LinkButton>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 

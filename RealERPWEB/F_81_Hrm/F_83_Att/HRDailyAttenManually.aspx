@@ -1,10 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="HRDailyAttenManually.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HRDailyAttenManually" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="HRDailyAttenManually.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HRDailyAttenManually" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+    <style>
+                .mt20{
+            margin-top:20px;
+        }
+        .w100{
+            width:100%!important;
+        }
+    </style>
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
@@ -49,8 +56,43 @@
             <div class="container moduleItemWrpper">
                 <div class="contentPart">
                     <div class="row">
+                       <%-- <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                         <div class="form-group">
+                                           <asp:Label ID="Label10" runat="server" >Date</asp:Label>
+                                           <asp:TextBox ID="txtdate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
+                                            <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
+                                        </div>
 
-                        <fieldset class="scheduler-border fieldset_A">
+                                        <div class="form-group">
+                                         <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Company</asp:Label>
+                                          <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control inputTxt  chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                        </asp:DropDownList>
+                                        </div>
+
+                                       <div class="form-group">
+
+                                        </div>
+
+
+
+                                     </div>
+
+                                     <div class="col-lg-6">
+
+                                    </div>
+                
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+
+                            </div>
+                        </div>--%>
+
+                   <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
 
                                 <div class="form-group">
