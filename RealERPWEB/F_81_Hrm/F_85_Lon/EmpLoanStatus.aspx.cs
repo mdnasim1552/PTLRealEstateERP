@@ -142,10 +142,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             switch (comcod)
             {
-                case "3365":
-                case "3101":
+                case "3365":                
                     calltype = "EMPLOANSTATUSBTI";
-                    procedure = "[dbo_hrm].[SP_REPORT_HR_INTERFACE]";
+                    procedure = "dbo_hrm.SP_REPORT_HR_INTERFACE";
                     break;
                  default:
                     calltype = "EMPLOANSTATUS";
@@ -171,22 +170,18 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             view.Table = dt;
             if (empst == "1")
             {
-                view.RowFilter = "empst='1'";
-               
+                view.RowFilter = "empst='1'";            
                 dt = view.ToTable();
             }
             else if (empst == "0")
             {
-                view.RowFilter = "empst='0'";
-                
+                view.RowFilter = "empst='0'";              
                 dt = view.ToTable();
             }
             else
             {
                 dt = view.ToTable();
             }
-
-
             this.gvEmpLoanStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpLoanStatus.DataSource = dt;
             this.gvEmpLoanStatus.DataBind();
