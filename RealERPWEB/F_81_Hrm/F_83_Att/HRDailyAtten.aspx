@@ -6,6 +6,9 @@
         .mt20{
             margin-top:20px;
         }
+        .w100{
+            width:100%!important;
+        }
     </style>
     <script type="text/javascript">
 
@@ -64,15 +67,15 @@
                             <div class="form-group">
 
                                 <asp:Label ID="Label10" runat="server">Date</asp:Label>
-                                <asp:TextBox ID="txtdate" runat="server" CssClass=" inputDateBox form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtdate" runat="server" CssClass=" inputDateBox form-control w100"></asp:TextBox>
                                 <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                             </div>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName">Page Size</asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="w100 form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -85,14 +88,17 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-3">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger mt20" OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
+                        <div class="col-lg-2">
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger mt20 w100" OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
                             <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
    
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
+                            <p class="text-left">
+                             <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary mt20 w100"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
+
+                            </p>
                 
-                             <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary mt20"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
                             <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn pull-right" Visible="false"></asp:Label>
                         </div>
 
