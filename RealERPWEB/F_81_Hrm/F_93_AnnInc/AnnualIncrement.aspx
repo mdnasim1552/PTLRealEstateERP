@@ -27,8 +27,8 @@
            <%-- var gvAnnIncre = $('#<%=this.gvAnnIncre.ClientID %>');
             gvAnnIncre.Scrollable();--%>
 
-            var gridview = $('#<%=this.gvAnnIncre.ClientID %>');
-            $.keynavigation(gridview);
+            <%--var gridview = $('#<%=this.gvAnnIncre.ClientID %>');
+            $.keynavigation(gridview);--%>
 
             $('.chzn-select').chosen({ search_contains: true });
 
@@ -135,15 +135,15 @@
                 <div class="card-body" style="min-height: 350px;">
                     <div class="table-responsive">
                         <asp:GridView ID="gvAnnIncre" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                            OnPageIndexChanging="gvAnnIncre_PageIndexChanging" ShowFooter="True" Width="831px" CssClass="table-striped table-bordered grvContentarea">
+                            OnPageIndexChanging="gvAnnIncre_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    </ItemTemplate>                                    
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
 
@@ -180,7 +180,7 @@
 
                                     </FooterTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Section">
@@ -202,7 +202,7 @@
                                             Font-Size="12px" OnClick="lbtnPutSameValue_Click" CssClass="btn btn-primary btn-sm">Put Same Value</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemStyle HorizontalAlign="left" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
                                 </asp:TemplateField>
 
@@ -228,14 +228,14 @@
 
                                 <asp:TemplateField HeaderText="Name &amp; Designation">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkFiUpdate" runat="server" OnClick="lnkFiUpdate_Click" CssClass="btn  btn-success btn-sm" Width="120px">Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkFiUpdate" runat="server" OnClick="lnkFiUpdate_Click" CssClass="btn  btn-success btn-sm">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgvndesig" runat="server" Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>"+"<br>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
                                             Width="160px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Card #">
@@ -245,7 +245,7 @@
                                     </ItemTemplate>
 
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
 
@@ -255,17 +255,17 @@
                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "joindate")).ToString("dd-MMM-yyyy") %>'
                                             Width="80px" Font-Size="11PX"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Confirmation Date">
+                                <asp:TemplateField HeaderText="Confirmation <br/>Date">
                                     <ItemTemplate>
                                         <asp:Label ID="lblconfirmdat" runat="server" Style="text-align: left"
                                             Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "confirmdate")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "confirmdate")).ToString("dd-MMM-yyyy")) %>'
                                             Width="80px" Font-Size="11PX"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
 
@@ -275,7 +275,7 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "years")).ToString("#,##0;(#,##0); ") %>'
                                             Width="40px" Font-Size="11PX"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
 
@@ -285,7 +285,7 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "months")).ToString("#,##0;(#,##0); ") %>'
                                             Width="40px" Font-Size="11PX"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
 
@@ -299,7 +299,7 @@
                                             Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Increment %">
@@ -311,7 +311,7 @@
                                     </ItemTemplate>
 
                                     <FooterStyle HorizontalAlign="Right" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Increment Amount">
                                     <ItemTemplate>
@@ -325,7 +325,7 @@
                                             Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Final Amount">
                                     <ItemTemplate>
@@ -342,7 +342,7 @@
 
 
                                     <FooterStyle HorizontalAlign="Right" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Revise Salary">
@@ -360,7 +360,7 @@
 
 
                                     <FooterStyle HorizontalAlign="Right" />
-                                    <HeaderStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                             </Columns>
