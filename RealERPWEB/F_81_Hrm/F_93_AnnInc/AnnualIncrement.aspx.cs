@@ -310,7 +310,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string DeptCode = ((this.ddlDept.SelectedValue.ToString() == "000000000000") ? "" : this.ddlDept.SelectedValue.ToString().Substring(0, 9)) + "%";
             string SecCode = ((this.ddlSection.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
-            string empID = ((this.ddlEmployee.SelectedValue.ToString() == "000000000000") ? "" : this.ddlEmployee.SelectedValue.ToString()) + "%";
+            string empID = ((this.ddlEmployee.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmployee.SelectedValue.ToString()) + "%";
 
             string txtDate = this.GetStdDate(this.txtdate.Text);
             DataSet ds2;
