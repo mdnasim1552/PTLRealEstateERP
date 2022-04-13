@@ -49,46 +49,47 @@
             </div>
 
 
-            <div class="card card-fluid container-data mt-5">
-                <div class="card-header">
-                    <div class="row">
-                       
-                    </div>
-                </div>
+            <div class="container-data mt-5">
 
 
 
-                <div class="card-body vh-100">
+            
 
 
                     <div class="row">
-                        <div class="col-md-4 col-lg-4 col-sm-4">
-                            <div class="from-group mb-2">
-                                 <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-md"> Select Title</asp:Label>
-                                </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-header">Add description</div>
+                                <div class="card-body">
+                                <div class="from-group">
+                                    <asp:Label ID="Label1" runat="server"> Select Title</asp:Label>
                                 <asp:DropDownList ID="ddlEmpAcarecord" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlEmpAcarecord_SelectedIndexChanged" AutoPostBack="True" TabIndex="3"></asp:DropDownList>
-                                 
-                            </div>
-                            </div>
-                            <div class="from-group">
-                                 <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="Label2" runat="server" CssClass="btn btn-secondary btn-md">New Title</asp:Label>
-                                </div>
-                                     <asp:TextBox ID="txtBoxTitle" runat="server" CssClass="form-control"></asp:TextBox>
-                                
-                                <div class="input-group-prepend ">
-                                    <asp:HiddenField ID="editbyId" runat="server" />
-                                    <asp:LinkButton ID="lnkAdd" runat="server" Text="Add" OnClick="lnkAdd_Click" CssClass="btn btn-success" TabIndex="4"></asp:LinkButton>
-                                </div>
-                            </div>
                             </div>
 
+
+                            <div class="from-group">
+                                    <asp:Label ID="Label2" runat="server">New Title</asp:Label>
+                                     <asp:TextBox ID="txtBoxTitle" runat="server" CssClass="form-control"></asp:TextBox>
+                              </div>
+
+
+
+                          
+                                    <asp:HiddenField ID="editbyId" runat="server" />
+                                    <p class="text-right"> <asp:LinkButton ID="lnkAdd" runat="server" Text="Submit" OnClick="lnkAdd_Click" CssClass="btn btn-success btn-sm mt-3"></asp:LinkButton></p>
+                                   
+                          
+                   
+                     
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8 col-lg-8 col-sm-8">
-                            <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
+
+                        <div class="col-md-9 col-lg-9 col-sm-9">
+                            <div class="card">
+                                <div class="card-header">Description</div>
+                                <div class="card-body">
+                                    <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                                 AutoGenerateColumns="False" BorderColor="SteelBlue" BorderStyle="Solid"
                                 CssClass="table-striped table-hover table-bordered grvContentarea"                                 
                                   ShowFooter="True" Width="600px"
@@ -101,7 +102,7 @@
                                             <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="14px" />
                                         <ItemStyle Font-Size="12px" />
                                     </asp:TemplateField>
                                     
@@ -126,7 +127,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "subcode3")) %>'
                                                 Width="50px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="14px" />
                                         <ItemStyle Font-Size="12px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Description of Code">
@@ -149,7 +150,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")) %>'
                                                 Width="250px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="14px" HorizontalAlign="Left" />
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Hidden Column" Visible="False">
@@ -183,12 +184,16 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+                                </div>
+                            </div>
+
+                            
                         </div>
                     </div>
 
                 </div>
 
-            </div>
+
 
 
 

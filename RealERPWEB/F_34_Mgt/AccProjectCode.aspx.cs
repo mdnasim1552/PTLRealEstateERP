@@ -185,10 +185,12 @@ namespace RealERPWEB.F_34_Mgt
             string ShortName = this.txtShortName.Text.Trim();
             bool result = true;
 
-            if (this.ddlProjectList.Items.Count > 0)
+            string pcode = "";
+            if (ViewState["pcode"] != null && !ViewState["pcode"].Equals("-1"))
             {
-                string projectcode = this.ddlProjectList.SelectedValue.ToString();
-                result = mgtData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "UPDATEPROJECT", projectcode, ProjectName, ShortName, userid, ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
+                pcode = ViewState["pcode"].ToString() ?? "";
+
+                result = mgtData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "UPDATEPROJECT", pcode, ProjectName, ShortName, userid, ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
             }
             else
             {
@@ -200,6 +202,7 @@ namespace RealERPWEB.F_34_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                 //this.txtProjectName.Text = "";
                 //this.txtShortName.Text = "";
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
@@ -218,7 +221,7 @@ namespace RealERPWEB.F_34_Mgt
         protected void ddlProjectList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.ddlProjectList.Items.Count == 0)
-                return;
+              return;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
@@ -375,20 +378,26 @@ namespace RealERPWEB.F_34_Mgt
 
         protected void lnknewcodebook_Click(object sender, EventArgs e)
         {
+            ViewState.Remove("pcode");
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "newCodebookOpen();", true);
         }
 
         protected void lnkedit_Click(object sender, EventArgs e)
         {
+            ViewState.Remove("pcode");
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
+            string comcod = this.GetComeCode();
             string procode = ((Label)this.gvPrjCode.Rows[index].FindControl("Label5")).Text.ToString();
- 
-
-            //DataSet ds=(DataTable)ViewState["tblprolist"];
-           
+            DataSet ds = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROJECTBYID", procode, "", "", "", "", "", "", "", "");
+            DataTable dt = ds.Tables[0];
+            ViewState["pcode"] = dt.Rows[0]["actcode"].ToString(); ;
+            this.txtProjectName.Text = dt.Rows[0]["actdesc"].ToString();
+            this.txtProjectNameBN.Text = dt.Rows[0]["actdescbn"].ToString();
+            this.txtShortName.Text = dt.Rows[0]["acttdesc"].ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "newCodebookOpen();", true);
         }
+
 
         protected void lnkdelete_Click(object sender, EventArgs e)
         {

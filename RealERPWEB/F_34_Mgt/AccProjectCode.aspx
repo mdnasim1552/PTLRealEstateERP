@@ -6,6 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
+        .ml5{margin-left:5px;}
         .modal-lg {
             width: 80% !important;
         }
@@ -33,6 +34,9 @@
 
         input#ContentPlaceHolder1_txtProjectName {
             width: 100% !important;
+        }
+                .isNewprj label {
+            margin-bottom: 0;
         }
     </style>
 
@@ -71,17 +75,17 @@
 
     </script>
 
-    <style>
-        .isNewprj label {
-            margin-bottom: 0;
-        }
-    </style>
+
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="card card-fluid container-data mt-5" style="min-height: 1000px;">
                 <div class="card-header">
-                    <asp:LinkButton ID="lnknewcodebook" OnClick="lnknewcodebook_Click" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create</asp:LinkButton>
+                    <p class="text-right">
+
+                    <asp:LinkButton ID="lnknewcodebook" OnClick="lnknewcodebook_Click" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Code Book</asp:LinkButton>
+
+                    </p>
 
                 </div>
                 <div class="card-body">
@@ -197,9 +201,9 @@
 
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="deleteModal" runat="server" CssClass="float-right badge badge-danger isNewprj" OnClick="deleteModal_Click">Delete</asp:LinkButton>
-                                        <asp:LinkButton ID="lnkedit" runat="server" CssClass="float-right badge badge-primary isNewprj" OnClick="lnkedit_Click">Edit</asp:LinkButton>
-                                        <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-danger isNewprj" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
+                                        <asp:LinkButton ID="deleteModal" runat="server" CssClass="float-right badge badge-danger isNewprj ml5" OnClick="deleteModal_Click" > <i class="fa fa-trash"></i>  </asp:LinkButton>
+                                        <asp:LinkButton ID="lnkedit" runat="server" CssClass="float-right badge badge-success isNewprj ml5" OnClick="lnkedit_Click">  <i class="fa fa-edit"></i> </asp:LinkButton>
+                                        <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-primary text-white isNewprj ml5" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
                                         <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="float-right badge badge-info isNewprj" OnClick="lnkBtnShow_Click">Set Project Permission</asp:LinkButton>
 
 
@@ -491,7 +495,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div id="prvProjt" runat="server" visible="false">
+                                    <div id="prvProjt" runat="server" >
                                         <div class="form-group">
                                             <label for="ddlLvType" class="d-block">
                                                 Previous Project
