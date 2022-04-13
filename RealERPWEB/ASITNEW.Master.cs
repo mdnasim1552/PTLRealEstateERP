@@ -161,8 +161,8 @@ namespace RealERPWEB
                 case "3364":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
-                case "3347":
-                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                case "3347": // Assure 
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? true : true); /// for Common User thatswhy all are ture
                     break;
 
                 case "3343":
@@ -179,10 +179,12 @@ namespace RealERPWEB
                     this.lnkFormLink.Visible = true;
                     this.HypLinkApplyLvCommon.Visible = false;
                     this.hypTimeOfleave.Visible = false;
-                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd";
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd"; 
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
             }
             hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;
+
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
             
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";

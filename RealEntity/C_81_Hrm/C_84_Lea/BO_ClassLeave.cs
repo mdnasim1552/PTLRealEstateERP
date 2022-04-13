@@ -92,6 +92,10 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public double bonamt { get; set; }
             public double bankamt { get; set; }
             public double bankamt2 { get; set; }
+            public double bank1 { get; set; }
+            public double bank2 { get; set; }
+            public double bank3 { get; set; }
+            public double bank4 { get; set; }
             public double cashamt { get; set; }
             public string bankamta { get; set; }
             public string cashamta { get; set; }
@@ -429,6 +433,52 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
         }
 
 
+        [Serializable]
+        public class LeaveRule
+        {
+          public  string empid { get; set; }
+          public string lvname { get; set; }
+          public double leave { get; set; }
+          public string yearid { get; set; }
+          public LeaveRule() { }
+        }
+
+
+        [Serializable]
+        public class currentLeaveInfo
+        {
+            //comcod,empid,gcod,strtdat,enddat,aplydat,aprdat,leaveday ,lvname,lvblnc
+            public string comcod { get; set; }
+            public string gcod { get; set; }
+            public string empid { get; set; }
+            public string lvname { get; set; }
+            public double leaveday { get; set; }
+            public double lvblnc { get; set; }
+            public DateTime strtdat { get; set; }
+            public DateTime enddat { get; set; }
+            public DateTime aprdat { get; set; }
+            public DateTime aplydat { get; set; }
+
+            public currentLeaveInfo() { }
+        }
+
+
+        [Serializable]
+        public class prevtLeaveInfo
+        {
+            //comcod,empid,gcod,strtdat,enddat,aplydat,aprdat,leaveday ,lvname,lvblnc
+            public string comcod { get; set; }
+            public string gcod { get; set; }
+            public string empid { get; set; }
+            public string prevlvname { get; set; }
+            public double prevleaveday { get; set; }
+            public double prevlvblnc { get; set; }
+            public DateTime prevstrtdat { get; set; }
+            public DateTime prevenddat { get; set; }
+            public DateTime prevaprdat { get; set; }
+            public DateTime prevaplydat{ get; set; }
+            public prevtLeaveInfo() { }
+        }
 
 
     }

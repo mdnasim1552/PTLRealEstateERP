@@ -157,46 +157,46 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.14415in</Width>
+                  <Width>1.06082in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.59113in</Width>
+                  <Width>0.53905in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60228in</Width>
+                  <Width>0.62311in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.64531in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.61416in</Width>
+                  <Width>0.67368in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.5928in</Width>
+                  <Width>0.63054in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.57912in</Width>
+                  <Width>0.51693in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.55808in</Width>
+                  <Width>0.63771in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.58144in</Width>
+                  <Width>0.53615in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.64226in</Width>
+                  <Width>0.58187in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.63173in</Width>
+                  <Width>0.6686in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.62091in</Width>
+                  <Width>0.68297in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.00412in</Width>
+                  <Width>0.92864in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.44634in</Width>
+                  <Width>0.43879in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.54756in</Width>
@@ -222,7 +222,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25208in</Height>
+                  <Height>0.23364in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -236,7 +236,7 @@
                                   <Value>Project</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -272,7 +272,7 @@
                                   <Value>MPR</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -308,7 +308,7 @@
                                   <Value>MPR Date</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -344,7 +344,7 @@
                                   <Value>Req No</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -380,7 +380,7 @@
                                   <Value>Order No</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -416,7 +416,7 @@
                                   <Value>Ord Date</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -452,7 +452,7 @@
                                   <Value>Ord Ref</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -488,7 +488,7 @@
                                   <Value>MRR No</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -524,7 +524,7 @@
                                   <Value>MRR Ref</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -560,7 +560,7 @@
                                   <Value>Chalan No</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -596,7 +596,7 @@
                                   <Value>MRR Date</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -632,7 +632,7 @@
                                   <Value>Bill No</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -668,7 +668,7 @@
                                   <Value>Materials Name</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -704,7 +704,7 @@
                                   <Value>Unit</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -740,7 +740,7 @@
                                   <Value>Spcf</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -776,7 +776,7 @@
                                   <Value>Req Qty</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -812,7 +812,7 @@
                                   <Value>Recv Qty</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -848,7 +848,7 @@
                                   <Value>Rate</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -884,7 +884,7 @@
                                   <Value>Amount</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -920,7 +920,7 @@
                                   <Value>Supplier</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -956,7 +956,7 @@
                                   <Value>User</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1039,7 +1039,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1298,7 +1298,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1335,7 +1335,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1483,7 +1483,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1520,7 +1520,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1549,7 +1549,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!areqty.Value</Value>
+                                  <Value>=Format(Fields!areqty.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -1742,7 +1742,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -2463,7 +2463,7 @@
                                   <Value>=Format(Sum(Fields!amt.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3266,7 +3266,7 @@
                                   <Value>=Format(Sum(Fields!amt.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3428,8 +3428,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.06944in</Top>
             <Left>0.01333in</Left>
-            <Height>0.86874in</Height>
-            <Width>13.69428in</Width>
+            <Height>0.8503in</Height>
+            <Width>13.60461in</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -3437,10 +3437,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.98324in</Height>
+        <Height>1.03036in</Height>
         <Style />
       </Body>
-      <Width>13.70761in</Width>
+      <Width>13.61794in</Width>
       <Page>
         <PageHeader>
           <Height>0.77258in</Height>
@@ -3617,7 +3617,7 @@
               <Top>0.05083in</Top>
               <Left>11.41542in</Left>
               <Height>0.16667in</Height>
-              <Width>2.29219in</Width>
+              <Width>2.19844in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>

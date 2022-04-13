@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccVoucherUnposted.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccVoucherUnposted" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
         $(document).ready(function () {
@@ -92,6 +93,10 @@
         .grvContentarea tr td:last-child a span {
             margin: 0 5px !important;
         }
+
+        .modal-lg {
+    max-width: 70%;
+}
     </style>
 
 
@@ -246,7 +251,7 @@
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvsirdesc" runat="server" BackColor="Transparent"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "payto")) %>'
                                                 Width="150px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -329,19 +334,25 @@
                         </div>
                     </div>
 
-                    <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    
+
+                </div>
+            </div>
+           
+
+            <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle">
-                                    <asp:Label ID="lbmodalheading" runat="server"></asp:Label></h5>
+                                    <asp:Label ID="lbmodalheading" runat="server"> Voucher Details Information :</asp:Label></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
 
                             </div>
                             <div class="modal-body">
-                                <p id="EmpDeatials" class="m-0" runat="server" text="Voucher Details :" > 
+                                <p id="EmpDeatials" class="m-0" runat="server" > 
                                 </p>
 
                                 <asp:Label ID="lblvalvounum" runat="server" CssClass="lblTxt lblName" Visible="false"></asp:Label>
@@ -408,7 +419,7 @@
 
                                     <asp:TemplateField HeaderText="Project Name">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchprojd" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Project Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                            <asp:TextBox ID="txtSearchprojd" BackColor="Transparent" BorderStyle="None" runat="server" Width="200px" placeholder="Project Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvpactdesc" runat="server" BackColor="Transparent"
@@ -444,13 +455,16 @@
 
                                     <asp:TemplateField HeaderText="Accounts Name">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtcactdescd" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Accounts Name" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
+                                            <asp:TextBox ID="txtcactdescd" BackColor="Transparent" BorderStyle="None" runat="server" Width="220px" placeholder="Accounts Name" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvcactdescd" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'
-                                                Width="120px"></asp:Label>
+                                                Width="220px"></asp:Label>
                                         </ItemTemplate>
+                                         <FooterTemplate>
+                                            <asp:Label ID="lblgvFcactdescd" runat="server" Style="text-align: right" Width="90px" Font-Bold="true" Font-Size="12px">Totat :</asp:Label>
+                                        </FooterTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
@@ -463,7 +477,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:Label ID="lblgvFvouamtd" runat="server" Style="text-align: right" Width="90px"></asp:Label>
+                                            <asp:Label ID="lblgvFvouamtd" runat="server" Style="text-align: right" Width="90px" Font-Bold="true" Font-Size="12px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
@@ -503,7 +517,7 @@
                              <%--   <asp:LinkButton ID="ModallnkBtnLateAFTER10AM" OnClientClick="CloseModal();" OnClick="ModallnkBtnLateAFTER10AM_Click" Visible="false"
                                     runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>--%>
 
-                                   <asp:LinkButton ID="btnVouApproval" OnClientClick="CloseModalAbs();" OnClick="btnVouApproval_Click"
+                                   <asp:LinkButton ID="btnVouApproval" OnClientClick="CloseMOdal();" OnClick="btnVouApproval_Click"
                                     runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Approval</asp:LinkButton>
                                 <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
                             </div>
@@ -511,9 +525,6 @@
                         </div>
                     </div>
                 </div>
-
-                </div>
-            </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>

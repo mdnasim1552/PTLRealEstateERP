@@ -245,7 +245,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.ShowSalaryDetails();
                     this.addOcupation.Visible = false;
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-
+                    break;
+                case "37":
+                    this.MultiView1.ActiveViewIndex = 9;
+                    this.ShowNomineeInfo();
+                    this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
                     break;
 
 
@@ -707,9 +712,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             this.gvEmpRec.DataSource = ds3.Tables[0];
             this.gvEmpRec.DataBind();
-
-
-
         }
         private void ShowEmpPosition()
         {
@@ -819,6 +821,25 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.grvJobRespo.DataBind();
 
         }
+
+
+        private void ShowNomineeInfo()
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPNOMINEEINFORMATION", empid, "", "", "", "", "", "", "", "");
+            if (ds4 == null)
+            {
+                this.GvNominee.DataSource = null;
+                this.GvNominee.DataBind();
+
+                return;
+
+            }
+            this.GvNominee.DataSource = ds4.Tables[0];
+            this.GvNominee.DataBind();
+
+        }
         protected void lUpdatPerInfo_Click(object sender, EventArgs e)
         {
             string infoid = this.ddlInformation.SelectedValue.ToString();
@@ -830,8 +851,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 case "10":
                     lUpdateDegree_Click(null, null);
                     break;
-
-
             }
         }
         protected void lUpdatPerInfo_Click1(object sender, EventArgs e)
@@ -1525,10 +1544,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 cell05.ColumnSpan = 2;
                 cell05.Attributes["style"] = "font-weight:bold;";
 
-
-
-
-
                 gvrow.Cells.Add(cell01);
                 gvrow.Cells.Add(cell02);
                 gvrow.Cells.Add(cell03);
@@ -1740,7 +1755,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
-
         }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
@@ -1757,12 +1771,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         case ".PDF":
                         case ".pdf":
                             break;
-
                         default:
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
                             return;
                             break;
-
                     }
                     string comcod = this.GetCompCode();
                     string empcode = ddlEmpName.SelectedValue.ToString();
@@ -1770,33 +1782,26 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "File Update fail !!!" + "');", true);
-
                         return;
                     }
                     else
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "File Update Succesfull !!!" + "');", true);
-
-
                     }
                     FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
 
                     //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
                 }
-
                 catch (Exception ex)
                 {
 
                     //write error handling code
 
                 }
-
             }
         }
-
         protected void gvPersonalInfo2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
         }
         protected void lnkCreate_Click(object sender, EventArgs e)
         {
@@ -1805,7 +1810,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void lnkbtnSave_Click(object sender, EventArgs e)
         {
-
             string comcod = this.GetComeCode();
             string empdept = "9301";//this.ddlDept.SelectedValue.ToString().Trim().Substring(0, 9);
             string empname = this.txtEmpName.Text;
@@ -1820,7 +1824,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             if (empcode.Length > 0)
             {
-
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "UPDATEEMPNAME", empcode, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
             }
             else
@@ -1832,22 +1835,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
                 Message = "Successfully Added Employee : " + empname;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
-
                 this.txtEmpName.Text = "";
                 this.lblEmplastId.Text = "";
-
             }
             else
             {
                 Message = "Sorry, Data Updated Fail : " + empname;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-
             }
-
-
-
             this.GetEmployeeName();
-
         }
 
         protected void ddlDegreeList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1868,9 +1864,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlAcadegreeList.DataSource = dv1.ToTable();
             this.ddlAcadegreeList.DataBind();
             ddlAcadegreeList_SelectedIndexChanged(null, null);
-
-
-
         }
 
         protected void ddlAcadegreeList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1900,8 +1893,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void ddlResultList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
+        }
+        protected void lUpdateInfoNomi_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            for (int i = 0; i < this.GvNominee.Rows.Count; i++)
+            {
+                string Gcode = ((Label)this.GvNominee.Rows[i].FindControl("lblCode")).Text.Trim();
+                // string gtype = ((Label)this.grvJobRespo.Rows[i].FindControl("lgvgval1")).Text.Trim();
+                string description = ((TextBox)this.GvNominee.Rows[i].FindControl("txtgvNomi")).Text.Trim();        
+                HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPJOBRESPONINSUPDATE", empid, Gcode, description, "", "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
         }
     }
 }

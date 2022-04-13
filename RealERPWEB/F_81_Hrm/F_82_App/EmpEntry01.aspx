@@ -1198,6 +1198,61 @@
                                     </asp:GridView>
                                 </div>
                             </asp:View>
+                            <asp:View ID="View4" runat="server">
+                                <div>
+                                    <asp:GridView ID="GvNominee" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                        ShowFooter="True" Width="700px">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sl.No.">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvSlNo42" runat="server" Font-Bold="True" Height="16px"
+                                                        Style="text-align: right"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Field">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCode" Visible="false" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")) %>'
+                                                        Width="100px"></asp:Label>
+                                                    <asp:Label ID="lblgvField" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Information">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvNomi" runat="server" BackColor="Transparent"
+                                                        BorderColor="#660033" BorderStyle="None" BorderWidth="1px" Height="20px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nominfo")) %>'
+                                                        Width="350px"></asp:TextBox>
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    <asp:LinkButton ID="lUpdateInfoNomi" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdateInfoNomi_Click" >Update</asp:LinkButton>
+                                                </FooterTemplate>
+
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                           
+
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                </div>
+                            </asp:View>
+
+
                         </asp:MultiView>
                     </div>
                 </div>

@@ -79,6 +79,17 @@ namespace RealERPWEB
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["usrrmrk"].ToString();
+
+            //below code user wise some data
+            DataSet ds = (DataSet)Session["tblusrlog"];
+            DataView dv = ds.Tables[1].DefaultView;
+            dv.RowFilter = ("frmid = '1702066' or frmid = '1702064'");
+            DataTable dt = dv.ToTable();
+            if (hst == null)
+            {
+                return;
+            }
+
             if (userrole == "admin")
             {
                 this.div_admin.Visible = true;
@@ -88,6 +99,43 @@ namespace RealERPWEB
             {
                 this.div_admin.Visible = false;
                 this.divuser.Visible = true;
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                this.divPostDateChecSchdule.Visible = true;
+                ShowDataPOSTDATEDCHEQUE();
+            }
+
+        }
+
+        private void ShowDataPOSTDATEDCHEQUE()
+        {
+
+
+            try
+            {
+               
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string frmdate = System.DateTime.Today.ToString("dd-MMM-yyyy");  
+                DataSet ds1 = ulogin.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "REPORTCHEQUEUPDATE", frmdate, todate, "%", "0", "200", "%", "%", "", "");
+                if (ds1 == null)
+                {
+                    this.dgv1.DataSource = null;
+                    this.dgv1.DataBind();
+                    return;
+                }
+                this.divPostDateChecSchdule.Visible = ds1.Tables[0].Rows.Count == 0 ? false : true;
+
+                this.dgv1.DataSource = ds1.Tables[0];
+                this.dgv1.DataBind(); 
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error :" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
 
         }

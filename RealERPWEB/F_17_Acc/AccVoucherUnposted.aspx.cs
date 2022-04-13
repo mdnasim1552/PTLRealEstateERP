@@ -269,6 +269,8 @@ namespace RealERPWEB.F_17_Acc
             DataView dv = dt.DefaultView;
             Session["tblunposted"] = dv.ToTable();
             this.Data_Bind();
+            this.lbtnOk_Click(null, null);
+
         }
 
         protected void lbtnDeleteVoucher_Click(object sender, EventArgs e)
@@ -399,12 +401,12 @@ namespace RealERPWEB.F_17_Acc
             string errMsg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + errMsg + "');", true);
 
+            this.lbtnOk_Click(null, null);
 
-            
-            Session.Remove("tblunposted");
-            DataView dv = dt.DefaultView;
-            Session["tblunposted"] = dv.ToTable();
-            this.Data_Bind();
+            //Session.Remove("tblunposted");
+            //DataView dv = dt.DefaultView;
+            //Session["tblunposted"] = dv.ToTable();
+            //this.Data_Bind();
 
 
         }

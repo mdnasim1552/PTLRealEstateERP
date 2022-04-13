@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="InterfaceAttApp.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.InterfaceAttApp" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <style type="text/css">
         .modal-dialog {
             margin: 44px auto;
@@ -162,16 +163,14 @@
         }
     </style>
 
- 
+
 
     <script type="text/javascript">
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
-        function pageLoaded()
-        {
+        function pageLoaded() {
 
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
@@ -179,51 +178,51 @@
             });
         }
 
-            var gvAttReq = $('#<%=this.gvAttReq.ClientID %>');
-                gvAttReq.Scrollable();
+        var gvAttReq = $('#<%=this.gvAttReq.ClientID %>');
+        gvAttReq.Scrollable();
 
-            var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
-            gvInprocess.Scrollable();
+        var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
+        gvInprocess.Scrollable();
 
-            var gvApproved = $('#<%=this.gvApproved.ClientID %>');
-            gvApproved.Scrollable();
+        var gvApproved = $('#<%=this.gvApproved.ClientID %>');
+        gvApproved.Scrollable();
 
-            var gvConfirm = $('#<%=this.gvConfirm.ClientID %>');
-            gvConfirm.Scrollable();
-         
-  
+        var gvConfirm = $('#<%=this.gvConfirm.ClientID %>');
+        gvConfirm.Scrollable();
+
+
 
 
 
         function Search_Gridview2(strKey) {
             try {
- 
+
                 var strData = strKey.value.toLowerCase().split(" ");
                 /*alert()*/
-                   var tblData = document.getElementById("<%=this.gvAttReq.ClientID %>");
+                var tblData = document.getElementById("<%=this.gvAttReq.ClientID %>");
 
-                   var rowData;
-                   for (var i = 1; i < tblData.rows.length; i++) {
-                       rowData = tblData.rows[i].innerHTML;
-                       var styleDisplay = 'none';
-                       for (var j = 0; j < strData.length; j++) {
-                           if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                               styleDisplay = '';
-                           else {
-                               styleDisplay = 'none';
-                               break;
-                           }
-                       }
-                       tblData.rows[i].style.display = styleDisplay;
-                   }
-               }
+                var rowData;
+                for (var i = 1; i < tblData.rows.length; i++) {
+                    rowData = tblData.rows[i].innerHTML;
+                    var styleDisplay = 'none';
+                    for (var j = 0; j < strData.length; j++) {
+                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                            styleDisplay = '';
+                        else {
+                            styleDisplay = 'none';
+                            break;
+                        }
+                    }
+                    tblData.rows[i].style.display = styleDisplay;
+                }
+            }
 
-               catch (e) {
-                   alert(e.message);
+            catch (e) {
+                alert(e.message);
 
-               }
+            }
 
-           }
+        }
 
     </script>
 
@@ -259,10 +258,10 @@
             </asp:Timer>
 
             <triggers>
- 
-                   <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
- 
-               </triggers>
+
+                <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+
+            </triggers>
             <%-- </ContentTemplate>
 
     </asp:UpdatePanel>--%>
@@ -369,7 +368,7 @@
                                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
                                                         <asp:ListItem Value="0"></asp:ListItem>
                                                         <asp:ListItem Value="1"></asp:ListItem>
-                                                        <asp:ListItem Value="2"></asp:ListItem>                                                      
+                                                        <asp:ListItem Value="2"></asp:ListItem>
                                                         <asp:ListItem Value="3"></asp:ListItem>
                                                         <asp:ListItem Value="4"></asp:ListItem>
                                                     </asp:RadioButtonList>
@@ -452,23 +451,7 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Request Type">
-                                                                <ItemTemplate>
-                                                                     <asp:Label ID="lblAttReq" runat="server" Visible="false"
-                                                                          
-                                             
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                    <asp:Label ID="lglvtype" runat="server" 
-                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
-                                                                        Width="80px"></asp:Label>
-
-                                                                </ItemTemplate>
-                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Apply Date">
+                                                              <asp:TemplateField HeaderText="Apply Date">
 
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvaplydat" runat="server" BackColor="Transparent"
@@ -477,6 +460,31 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Request Type">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblAttReq" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Request Date">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvRequest" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "strtdat")).ToString("dd-MMM-yyyy") %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                          
 
                                                             <asp:TemplateField HeaderText="In Time">
 
@@ -484,6 +492,10 @@
                                                                     <asp:Label ID="lblgvstrtdat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                  
+                                                                    <asp:Label ID="lbloutstats" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavo")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -493,6 +505,9 @@
                                                                     <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                    <asp:Label ID="lblinstat" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavin")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -520,7 +535,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>                                                                    
+                                                                <ItemTemplate>
                                                                     <asp:HyperLink ID="lnkbtnEditUser" Visible="false" CssClass="btn btn-xs btn-default" Target="_blank" runat="server">
                                                                         <span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
@@ -608,23 +623,7 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Request Type">
-                                                                <ItemTemplate>
-                                                                      <asp:Label ID="lblAttReq" runat="server" Visible="false"
-                                                                           CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                    
-                                                                    <asp:Label ID="lglvtype" runat="server"
-                                                                         CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
-                                                                        Width="80px"></asp:Label>
-
-                                                                </ItemTemplate>
-                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Apply Date">
+                                                             <asp:TemplateField HeaderText="Apply Date">
 
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvaplydat" runat="server" BackColor="Transparent"
@@ -634,12 +633,41 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
+                                                            <asp:TemplateField HeaderText="Request Type">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblAttReq" runat="server" Visible="false"
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                             <asp:TemplateField HeaderText="Request Date">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvRequest" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "strtdat")).ToString("dd-MMM-yyyy") %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                           
                                                             <asp:TemplateField HeaderText="In Time">
 
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvstrtdat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                    <asp:Label ID="lblInoutstats" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavo")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -649,6 +677,9 @@
                                                                     <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                     <asp:Label ID="lblinstatIn" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavin")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -664,12 +695,12 @@
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                                  <asp:TemplateField HeaderText="Current Status">
+                                                            <asp:TemplateField HeaderText="Current Status">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus")) %>'
                                                                         Width="80px"></asp:Label>
-                                                                     <asp:Label ID="Label2" runat="server" BackColor="Transparent"
+                                                                    <asp:Label ID="Label2" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus1")) %>'
                                                                         Width="80px"></asp:Label>
                                                                 </ItemTemplate>
@@ -695,7 +726,7 @@
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:HyperLink ID="lnkbtnDptApp" runat="server" Visible="false" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
+                                                                    <asp:HyperLink ID="lnkbtnDptApp" runat="server" Visible="false" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
 
                                                                     <asp:LinkButton ID="lnkRemove" runat="server" Visible="false" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemove_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
@@ -780,23 +811,7 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Request Type">
-                                                                <ItemTemplate>
-                                                                     <asp:Label ID="lblAttReq" runat="server" Visible="false"
-                                                                          
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
-                                                                        Width="80px"></asp:Label>
-
-                                                                    <asp:Label ID="lglvtype" runat="server"
-                                                                         CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
-                                                                        Width="80px"></asp:Label>
-
-                                                                </ItemTemplate>
-                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Apply Date">
+                                                             <asp:TemplateField HeaderText="Apply Date">
 
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvaplydat" runat="server" BackColor="Transparent"
@@ -805,6 +820,32 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Request Type">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblAttReq" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                             <asp:TemplateField HeaderText="Request Date">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvRequest" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "strtdat")).ToString("dd-MMM-yyyy") %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                           
 
                                                             <asp:TemplateField HeaderText="In Time">
 
@@ -812,6 +853,9 @@
                                                                     <asp:Label ID="lblgvstrtdat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                        <asp:Label ID="lblApoutstats" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavo")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -821,6 +865,9 @@
                                                                     <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                     <asp:Label ID="lblApinstat" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavin")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -885,7 +932,7 @@
                                                                     <asp:Label ID="lblgvempidfi" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                                         Width="49px"></asp:Label>
-                                                                     <asp:Label ID="lblLeavIdfi" runat="server" Visible="false"
+                                                                    <asp:Label ID="lblLeavIdfi" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
                                                                         Width="49px"></asp:Label>
                                                                 </ItemTemplate>
@@ -929,21 +976,7 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Request Type">
-                                                                <ItemTemplate>
-                                                                     <asp:Label ID="lblAttReqfi" runat="server" Visible="false"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                    <asp:Label ID="lglvtypefi" runat="server" 
-                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
-                                                                        Width="80px"></asp:Label>
-
-                                                                </ItemTemplate>
-                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Apply Date">
+                                                             <asp:TemplateField HeaderText="Apply Date">
 
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvaplydatfi" runat="server" BackColor="Transparent"
@@ -952,6 +985,31 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Request Type">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblAttReqfi" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                    <asp:Label ID="lglvtypefi" runat="server"
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                             
+                                                             <asp:TemplateField HeaderText="Request Date">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvRequestfi" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "strtdat")).ToString("dd-MMM-yyyy") %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                          
 
                                                             <asp:TemplateField HeaderText="In Time">
 
@@ -959,6 +1017,9 @@
                                                                     <asp:Label ID="lblgvstrtdatfi" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                        <asp:Label ID="lblInoutstatsfi" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavo")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -968,6 +1029,9 @@
                                                                     <asp:Label ID="lblgvenddatfi" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                     <asp:Label ID="lblinstatfi" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavin")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -990,9 +1054,9 @@
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnEditINfi" runat="server" Target="_blank" Visible="false" CssClass="btn btn-xs btn-default"><span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnAppfi" runat="server" Target="_blank"  Visible="false" CssClass="btn btn-xs btn btn-success"><span  class=" fa fa-check "></span>
+                                                                    <asp:HyperLink ID="lnkbtnAppfi" runat="server" Target="_blank" Visible="false" CssClass="btn btn-xs btn btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:LinkButton ID="lnkRemoveFAp"  runat="server"  ForeColor="red" OnClientClick="return confirm('Are you sure to forward this item?');" OnClick="lnkRemoveFAp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
+                                                                    <asp:LinkButton ID="lnkRemoveFAp" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to forward this item?');" OnClick="lnkRemoveFAp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
                                                                     </asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="150px" HorizontalAlign="Center" />
@@ -1032,7 +1096,7 @@
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dptusid")) %>'
                                                                         Width="49px"></asp:Label>
 
-                                                                     <asp:Label ID="lblLeavId" runat="server" Visible="false"
+                                                                    <asp:Label ID="lblLeavId" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
                                                                         Width="49px"></asp:Label>
                                                                     <asp:Label ID="lblgvempid" runat="server"
@@ -1079,18 +1143,8 @@
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Request Type">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lglvtype" runat="server"
-                                                                         CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
-                                                                        Width="80px"></asp:Label>
 
-                                                                </ItemTemplate>
-                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Apply Date">
+                                                               <asp:TemplateField HeaderText="Apply Date">
 
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvaplydat" runat="server" BackColor="Transparent"
@@ -1099,6 +1153,27 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Request Type">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lglvtype" runat="server"
+                                                                        CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype"))=="TLV"?"bg-green d-block fsize": ""%>'
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+                                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                             <asp:TemplateField HeaderText="Request Date">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvRequest" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "strtdat")).ToString("dd-MMM-yyyy") %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                         
 
                                                             <asp:TemplateField HeaderText="In Time">
 
@@ -1106,6 +1181,9 @@
                                                                     <asp:Label ID="lblgvstrtdat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                        <asp:Label ID="lblInoutstatsff" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavo")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -1115,6 +1193,9 @@
                                                                     <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToLongTimeString() %>'
                                                                         Width="80px"></asp:Label>
+                                                                     <asp:Label ID="lblinstatff" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "toleavin")) %>'
+                                                                        ></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -1143,7 +1224,7 @@
                                                                     <asp:HyperLink ID="HyOrderPrint" runat="server" Visible="false" Target="_blank" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Request?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
+                                                                    <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Request?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
                                                                     </asp:LinkButton>
 
                                                                 </ItemTemplate>

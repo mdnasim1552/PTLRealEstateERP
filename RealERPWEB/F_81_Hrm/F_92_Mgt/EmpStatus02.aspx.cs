@@ -126,19 +126,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
 
                 case "JoinigdWise":
-                    if (comcod == "3101" || comcod == "3315")
+                    if (comcod == "3354" || comcod == "3315")
                     {
 
-                        this.pnlDesig.Visible = true;
+                        this.desFrom.Visible = true;
+                        this.desTo.Visible = true;
 
                     }
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "EmpList":
-                    if(comcod=="3101" || comcod=="3315")
+                    if(comcod=="3354" || comcod=="3315")
                     {
 
-                        this.pnlDesig.Visible = true;
+                        this.desFrom.Visible = true;
+                        this.desTo.Visible = true;
 
                     }
                     this.lblfrmdate.Visible = false;
@@ -195,7 +197,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     if (comcod == "3101" || comcod == "3315")
                     {
 
-                        this.pnlDesig.Visible = true;
+                        this.desFrom.Visible = true;
+                        this.desTo.Visible = true;
 
                     }
                     this.lblfrmdate.Visible = false;
@@ -427,9 +430,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
             }
 
-
-
-
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
 
@@ -542,8 +542,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3101":
 
 
-                    pnlDesig.Visible = true;
-
+                    desFrom.Visible = true;
+                    desTo.Visible = true;
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
@@ -813,7 +813,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (dt1.Rows.Count == 0)
                 return dt1;
-
+            
             string type = this.Request.QueryString["Type"].ToString().Trim();
             string company, secid;
             switch (type)
@@ -829,6 +829,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                             compcod = dt1.Rows[j]["compcod"].ToString();
                             dt1.Rows[j]["compname"] = "";
                         }
+
 
                         else
                         {
@@ -851,28 +852,38 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "InActiveEmpList":
                     company = dt1.Rows[0]["company"].ToString();
                     secid = dt1.Rows[0]["secid"].ToString();
+                    string depcod = dt1.Rows[0]["depcod"].ToString();
 
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
-                        if (dt1.Rows[j]["company"].ToString() == company && dt1.Rows[j]["secid"].ToString() == secid)
+                        if (dt1.Rows[j]["company"].ToString() == company )
                         {
 
                             dt1.Rows[j]["companyname"] = "";
+                            
+                        }
+                        if (dt1.Rows[j]["secid"].ToString() == secid)
+                        {
                             dt1.Rows[j]["section"] = "";
                         }
-
+                        if (dt1.Rows[j]["depcod"].ToString() == depcod)
+                        {
+                            dt1.Rows[j]["deptname"] = "";
+                        }
+                        //&& dt1.Rows[j]["secid"].ToString() == secid
                         else
                         {
-                            if (dt1.Rows[j]["company"].ToString() == company)
-                                dt1.Rows[j]["companyname"] = "";
+                            //if (dt1.Rows[j]["company"].ToString() == company)
+                            //    dt1.Rows[j]["companyname"] = "";
 
-                            if (dt1.Rows[j]["secid"].ToString() == secid)
-                                dt1.Rows[j]["secton"] = "";
+                            //if (dt1.Rows[j]["secid"].ToString() == secid)
+                            //    dt1.Rows[j]["section"] = "";
                         }
 
 
                         company = dt1.Rows[j]["company"].ToString();
                         secid = dt1.Rows[j]["secid"].ToString();
+                        depcod = dt1.Rows[j]["depcod"].ToString();
                     }
 
                     break;
