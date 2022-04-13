@@ -126,7 +126,9 @@ namespace RealERPWEB
                     this.dgv1.DataSource = null;
                     this.dgv1.DataBind();
                     return;
-                } 
+                }
+                this.divPostDateChecSchdule.Visible = ds1.Tables[0].Rows.Count == 0 ? false : true;
+
                 this.dgv1.DataSource = ds1.Tables[0];
                 this.dgv1.DataBind(); 
             }

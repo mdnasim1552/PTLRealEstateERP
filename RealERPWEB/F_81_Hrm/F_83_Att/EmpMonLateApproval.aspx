@@ -250,6 +250,9 @@
                                     <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn " OnClick="lnkbtnShow_Click" Text="Ok"></asp:LinkButton>
 
                                 </div>
+                                 <div class="col-md-6">
+                                    
+                                </div>
 
                             </div>
                             <div class="form-group" id="Pnldesig" runat="server" visible="false">
@@ -1731,7 +1734,7 @@
                                                         Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                                 <ItemTemplate>
@@ -1740,7 +1743,7 @@
                                                         Width="180px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Department">
                                                 <ItemTemplate>
@@ -1748,7 +1751,9 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
+                                                 
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Section">
 
@@ -1764,9 +1769,9 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvempnameabs02" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))  %>'
-                                                        Width="120px"></asp:Label>
+                                                        Width="150px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Card #">
@@ -1779,7 +1784,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                         Width="50px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Designation">
                                                 <ItemTemplate>
@@ -1791,7 +1796,7 @@
                                                 <asp:LinkButton ID="mbtnUpdateDayAdj" runat="server" OnClick="btnUpdateDayAdj_Click"
                                                      CssClass="btn   btn-danger primarygrdBtn">Update</asp:LinkButton>
                                             </FooterTemplate>--%>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Absent Date">
 
@@ -1807,6 +1812,7 @@
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle HorizontalAlign="Right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Remarks">
@@ -1818,6 +1824,7 @@
                                                         Width="80px"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField>
@@ -1832,10 +1839,16 @@
                                                 <ItemTemplate>
                                                     <asp:CheckBox ID="lblchkaabs02" runat="server"
                                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? true : false %>'
-                                                        Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? false : true%>'
+                                                         Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isApproved"))=="True" ? false : true %>'
                                                         Width="20px" />
+                                                    
+                                                     <asp:CheckBox ID="isApproved" runat="server" Visible="false"
+                                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isApproved"))=="True" ? true : false %>'
+                                                        
+                                                        Width="20px" />
+
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <ItemStyle HorizontalAlign="Center" />
                                                 <FooterStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
