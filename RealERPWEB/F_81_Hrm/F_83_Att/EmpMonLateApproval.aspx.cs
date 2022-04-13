@@ -291,10 +291,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.ddlCompanyName.Enabled = false;
                 this.ddlDepartment.Enabled = false;
                 this.DropCheck1.Enabled = false;
-
-
-
-                this.ddlpagesize.Visible = true;
+                 
+                
                 this.lnkbtnShow.Text = "New";
 
 
@@ -307,10 +305,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlCompanyName.Enabled = true;
             this.ddlDepartment.Enabled = true;
             this.DropCheck1.Enabled = true;
-
-
-
-            this.ddlpagesize.Visible = false;
+             
             this.grvAdjDay.DataSource = null;
             this.grvAdjDay.DataBind();
             this.gvOPunch.DataSource = null;
@@ -2595,10 +2590,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     if (!result)
                     {
-                        string Msgs = "Updated Fail";
+                        string Msgs = "Updated Fail, ID Card: "+ idcardno;
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
 
-                        return;
+                       // return;
                     }
 
                 }
@@ -2608,10 +2603,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     if (!result)
                     {
-                        string Msgs = "Updated Fail";
+                        string Msgs = "Updated Fail, ID Card: " + idcardno;
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
 
-                        return;
+                       // return;
                     }
                 }
 
