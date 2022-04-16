@@ -350,6 +350,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.GetGrossType();
                 this.EmpSerRule();
                 this.TSandAllow();
+                this.GetEmpBasicData(empid);
                 this.lblvaljoindate.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["joindate"]).ToString("dd-MMM-yyyy");
                 //this.txtPf.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["pfdate"]).ToString("dd-MMM-yyyy");
             }
@@ -416,6 +417,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.txtAcNo2.Text = "";
                 this.lblvaljoindate.Text = "";
             }
+        }
+        private void GetEmpBasicData(string empid)
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPBASICDATA", empid, "", "", "", "", "", "", "", "");
+            ViewState["tblemp"] = ds5.Tables[0];
         }
         private void GenInfo()
         {
@@ -2242,6 +2249,65 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void chkcash0bank1_CheckedChanged(object sender, EventArgs e)
         {
             this.chkcash0bank1.Text = this.chkcash0bank1.Checked ? "Bank" : "Cash";
+        }
+
+        protected void lnkHolidayGenerate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkLeaveGenerate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkUserGenerate_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string Message;
+            string msg;
+            string comcod = this.GetCompCode();
+            string usrid = "";
+            string empid =this.ddlPEmpName.SelectedValue.ToString();
+            string usrfname = this.ddlNPEmpName.SelectedItem.Text.Substring(7);
+            string usrsname = "";
+            string usrdesig = this.ddlDesignation.SelectedItem.Text.ToString();
+            string usrpass = "123";
+            string usrrmrk = "";
+            string active = "1";
+            usrsname = (comcod == "3365" ? "bti" + usrsname : usrsname);
+            string usermail = "";
+            string webmailpwd = "";
+            string userRole = "1";
+            usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
+            bool result = HRData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
+                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
+            if (!result)
+            {
+                msg = HRData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "New User Created Failed!" + "');", true);
+                return;
+
+            }
+
+            //user page permission auto 
+            result = HRData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTPAGEPERMISSION_AUTO", usrid, "",
+                   "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            msg = "New User Created Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+            
+            string eventtype = "User Login From";
+            string eventdesc = "Update ID";
+            string eventdesc2 = "Your profile Updated,";
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
     }
 }

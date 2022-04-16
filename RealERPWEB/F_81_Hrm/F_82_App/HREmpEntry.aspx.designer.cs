@@ -1068,6 +1068,33 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnFinalSWUpdate;
 
         /// <summary>
+        /// lnkHolidayGenerate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkHolidayGenerate;
+
+        /// <summary>
+        /// lnkLeaveGenerate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkLeaveGenerate;
+
+        /// <summary>
+        /// lnkUserGenerate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkUserGenerate;
+
+        /// <summary>
         /// EmpOfftimeSetup control.
         /// </summary>
         /// <remarks>
