@@ -837,12 +837,24 @@
                                 </asp:GridView>
                             </div>
                         </div>
-                        <div class="for-group">
+                        <div class="form-group">
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                <asp:LinkButton ID="lnkbtnFinalSWUpdate" runat="server" CssClass="btn btn-danger primaryBtn"
+                                <asp:LinkButton ID="lnkbtnFinalSWUpdate" runat="server" CssClass="btn btn-success"
                                     OnClick="lnkbtnFinalSWUpdate_Click" 
                                     Visible="False" TabIndex="39">Final Update</asp:LinkButton>
+
+                                <asp:LinkButton ID="lnkHolidayGenerate" runat="server" CssClass="btn btn-primary"
+                                    OnClick="lnkHolidayGenerate_Click" 
+                                      TabIndex="39">Holidays Generate</asp:LinkButton>
+
+                                <asp:LinkButton ID="lnkLeaveGenerate" runat="server" CssClass="btn btn-info"
+                                    OnClick="lnkLeaveGenerate_Click" 
+                                     TabIndex="39">Leave Generate</asp:LinkButton>
+
+                                <asp:LinkButton ID="lnkUserGenerate" runat="server" CssClass="btn btn-warning"
+                                    OnClick="lnkUserGenerate_Click" 
+                                    TabIndex="39">User Generate</asp:LinkButton>
                             </div>
                         </div>
                     </div>
