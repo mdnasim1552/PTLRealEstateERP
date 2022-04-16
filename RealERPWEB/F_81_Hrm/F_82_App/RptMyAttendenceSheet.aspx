@@ -365,8 +365,12 @@
                                         </label>
 
                                         <asp:TextBox ID="txtAreaReson" class="form-control" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="ValidationError" ErrorMessage="*Field Is Required" Display="Dynamic" ControlToValidate="txtAreaReson" ForeColor="Red" ValidationGroup="ResonSubmit"></asp:RequiredFieldValidator>
+
                                     </div>
                                     <!-- /form grid -->
+                                    <br />
+                                     <span style="font-size:14px; color:red" id="InfoApply" runat="server" visible="false"><i class="fa fa-info-circle"></i> If you think this day enjoyed leave please don't apply from here, Go to <a href="../../F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User">Apply Leave</a>  </span>
                                 </div>
 
 
@@ -374,7 +378,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:LinkButton ID="lbntnAbsentApproval" OnClientClick="CloseModalAbs();" OnClick="lbntnAbsentApproval_Click"
+                            <asp:LinkButton ID="lbntnAbsentApproval"  OnClick="lbntnAbsentApproval_Click" OnClientClick="CloseModalAbs();"
                                 runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Submit Request</asp:LinkButton>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 

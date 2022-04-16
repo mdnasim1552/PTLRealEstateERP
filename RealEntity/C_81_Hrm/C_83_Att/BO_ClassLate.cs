@@ -72,5 +72,17 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public DateTime wouttime { get; set; }
             public EmpSatausLate() { }
         }
+
+        [Serializable]
+        public class Holiday
+        {
+            public string holidayType { get; set; }
+            public DateTime HolidayDate { get; set; }
+            public string Occasion { get; set; }
+
+        }
+
+
+
     }
 }
