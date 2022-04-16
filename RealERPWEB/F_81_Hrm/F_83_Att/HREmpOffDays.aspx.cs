@@ -33,6 +33,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE OFF DAY'S INFORMATION";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 getVisible();
+
+                this.GetCompany();
+
+                this.GetDepartment();
+                this.GetProjectName();
+                this.GetEmployee();
+
+
+
             }
         }
 
@@ -63,7 +72,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = hst["comcod"].ToString();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            //string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
+
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -81,7 +92,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string comcod = hst["comcod"].ToString();
             string txtCompanyname = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
+            //string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
+
+            string txtSearchDept =  "%%";
+
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "actdesc";
             this.ddlDepartment.DataValueField = "actcode";
@@ -95,7 +109,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //string company = this.ddlCompany.SelectedValue.Substring(0, 2);
 
             string Department = this.ddlDepartment.SelectedValue.ToString();
-            string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            //string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+
+            string txtSProject = "%%";
+
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETPROJECTNAME", Department, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "deptname";
             this.ddlProjectName.DataValueField = "deptid";
@@ -249,7 +266,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void chkoffDays_CheckedChanged(object sender, EventArgs e)
         {
-            this.PnloffDays.Visible = this.chkoffDays.Checked;
+            //this.PnloffDays.Visible = this.chkoffDays.Checked;
+            this.chkdatediv.Visible = this.chkoffDays.Checked;
+
             //((Label)this.Master.FindControl("lblmsg")).Text = "";
             if (this.chkoffDays.Checked)
             {
@@ -318,9 +337,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string employee = (this.ddlEmpName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmpName.SelectedValue.ToString()) + "%";
             string reason = this.txtReason.Text.Trim();
 
-            string dStatus = this.ddlType.SelectedValue.ToString()==""?"W" : this.ddlType.SelectedValue.ToString();
-            
-            
+            string dStatus = this.ddlType.SelectedValue.ToString() == "" ? "W" : this.ddlType.SelectedValue.ToString();
+
+
             for (int i = 0; i < this.chkDate.Items.Count; i++)
             {
                 if (this.chkDate.Items[i].Selected)
@@ -328,11 +347,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     string offdate = Convert.ToDateTime(this.chkDate.Items[i].Value).ToString("dd-MMM-yyyy");
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, employee, offdate, reason, dStatus, "", "", "", "", "", "", "", "");
+                  
+                    
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail " + "');", true);
 
-                     
+
                         return;
 
                     }
@@ -341,7 +362,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
-            
+
             this.chkoffDays.Checked = false;
             this.chkoffDays_CheckedChanged(null, null);
 
@@ -469,8 +490,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.ddlCompany.Enabled = false;
                 this.ddlProjectName.Enabled = false;
                 //this.lblProjectdesc.Visible = true;
-                this.PnlEmp.Visible = true;
+                //this.PnlEmp.Visible = true;
                 this.chkoffDays.Visible = true;
+                this.divemp.Visible = true;
+
+
+
                 this.GetMonth();
                 this.GetEmployee();
             }
@@ -478,14 +503,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
 
                 this.lnkbtnOffDay.Text = "Ok";
-                this.chkoffDays.Checked = false;
+                //this.chkoffDays.Checked = false;
                 //this.ddlProjectName.Visible = true;
                 //this.lblProjectdesc.Visible = false;
                 this.ddlCompany.Enabled = true;
                 this.ddlProjectName.Enabled = true;
-                this.PnlEmp.Visible = false;
-                this.PnloffDays.Visible = false;
-                this.chkoffDays.Visible = false;
+                //this.PnlEmp.Visible = false;
+                //this.PnloffDays.Visible = false;
+                //this.chkoffDays.Visible = false;
+                this.divemp.Visible = false;
+                this.chkdatediv.Visible = false;
+
                 this.lblPage.Visible = false;
                 this.ddlpagesize.Visible = false;
                 this.gvoffday.DataSource = null;
@@ -527,9 +555,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             // this.GetSection();
             this.GetProjectName();
         }
-
-       
-       
+        protected void lnkAddHoliday_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/F_81_Hrm/F_83_Att/HRHolidays");
+        }
     }
 }
 
