@@ -28,8 +28,11 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
                 //this.txtfrmDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
@@ -38,7 +41,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 GetDate();
                 this.GetCompany();
                 this.GetIncreNo();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE INCREMENT INFORMATION";
+
             }
 
         }
@@ -79,7 +82,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             if (this.lnkbtnShow.Text == "New")
                 return;
             string comcod = this.GetComeCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%" + this.ddlCompany.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETCOMPANYNAME", txtCompany, "", "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -94,7 +97,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 return;
             string comcod = this.GetComeCode();
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtCompany = "%" + this.txtSrcDept.Text.Trim() + "%";
+            string txtCompany = "%" + this.ddlDept.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETPROJECTNAME", Company, txtCompany, "", "", "", "", "", "", "");
             this.ddlDept.DataTextField = "actdesc";
             this.ddlDept.DataValueField = "actcode";
@@ -111,7 +114,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             string comcod = this.GetComeCode();
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string DeptName = ((this.ddlDept.SelectedValue.ToString() == "000000000000") ? "" : this.ddlDept.SelectedValue.ToString().Substring(0, 8)) + "%";
-            string SrchSection = "%" + this.txtSrcSection.Text.Trim() + "%";
+            string SrchSection = "%" + this.ddlSection.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETSECTION", Company, DeptName, SrchSection, "", "", "", "", "", "");
             this.ddlSection.DataTextField = "section";
             this.ddlSection.DataValueField = "seccode";
@@ -164,37 +167,37 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
         protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
-            if (this.lnkbtnShow.Text == "New")
-            {
+            //if (this.lnkbtnShow.Text == "New")
+            //{
 
 
 
-                this.lblCompany.Visible = false;
-                this.lblDept.Visible = false;
-                this.lblSection.Visible = false;
-                this.ddlCompany.Visible = true;
-                this.ddlDept.Visible = true;
-                this.ddlSection.Visible = true;
-                this.lnkbtnShow.Text = "Ok";
+            //    this.lblCompany.Visible = false;
+            //    this.lblDept.Visible = false;
+            //    this.lblSection.Visible = false;
+            //    this.ddlCompany.Visible = true;
+            //    this.ddlDept.Visible = true;
+            //    this.ddlSection.Visible = true;
+            //    this.lnkbtnShow.Text = "Ok";
 
-                return;
-            }
+            //    return;
+            //}
 
 
             //this.lblPreVious.Visible = false;
             //this.txtSrchPreviousList.Visible = false;
             //this.imgbtnPreList.Visible = false;
             //this.ddlPrevIncList.Visible = false;
-            this.lnkbtnShow.Text = "New";
-            this.lblCompany.Text = this.ddlCompany.SelectedItem.Text.Trim();
-            this.lblDept.Text = this.ddlDept.SelectedItem.Text.Trim();
-            this.lblSection.Text = this.ddlSection.SelectedItem.Text.Trim();
-            this.lblCompany.Visible = true;
-            this.lblDept.Visible = true;
-            this.lblSection.Visible = true;
-            this.ddlCompany.Visible = false;
-            this.ddlDept.Visible = false;
-            this.ddlSection.Visible = false;
+            //this.lnkbtnShow.Text = "New";
+            //this.lblCompany.Text = this.ddlCompany.SelectedItem.Text.Trim();
+            //this.lblDept.Text = this.ddlDept.SelectedItem.Text.Trim();
+            //this.lblSection.Text = this.ddlSection.SelectedItem.Text.Trim();
+            //this.lblCompany.Visible = true;
+            //this.lblDept.Visible = true;
+            //this.lblSection.Visible = true;
+            //this.ddlCompany.Visible = false;
+            //this.ddlDept.Visible = false;
+            //this.ddlSection.Visible = false;
             this.ShowInc();
         }
 
@@ -383,6 +386,11 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected void lnkFiUpdate_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetSection();
         }
     }
 }
