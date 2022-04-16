@@ -5,6 +5,18 @@
 </asp:Content>
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
+        div#ContentPlaceHolder1_ddlCompany_chzn {
+            width: 100% !important;
+}
+        div#ContentPlaceHolder1_ddlProjectName_chzn {
+                        width: 100% !important;
+}
+        
+
+div#ContentPlaceHolder1_ddlSection_chzn {
+                     width: 100% !important;
+}
+
         .mt20 {
             margin-top: 20px;
         }
@@ -12,6 +24,9 @@
         .w100 {
             width: 100% !important;
         }
+        .chzn-drop {
+            width:100%!important;
+}
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -54,10 +69,10 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
 
-                    <div class="card">
+               
+
+                    <div class="card card-fluid mt-5">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-3">
@@ -282,10 +297,8 @@
                         </div>
                     </div>
 
-
-
-                </div>
-            </div>
+                   
+           
 
         </ContentTemplate>
     </asp:UpdatePanel>
