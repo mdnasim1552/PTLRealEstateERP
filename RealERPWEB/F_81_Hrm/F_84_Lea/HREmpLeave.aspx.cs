@@ -36,6 +36,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 this.lbtnOk_Click(null,null);
 
+                this.ShowInformation();
+
+
             }
 
         }
@@ -1674,7 +1677,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void lnkRule_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/F_81_Hrm/F_84_Lea/CreateLeavRule?Type=");
+            //Response.Redirect("~/F_81_Hrm/F_84_Lea/CreateLeavRule?Type=");
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadCreateRuleModal();", true);
+            return;
+
         }
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
@@ -1683,6 +1690,96 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-      
+        protected void ddlyear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowInformation();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
+        }
+
+        private void ShowInformation()
+        {
+            string comcod = this.GetComeCode();
+            string tempddl1 = "51"; //Leave code 
+            string tempddl2 = "5"; // Details 
+            string year = this.ddlyear.SelectedValue.ToString();
+            DataSet ds1 = this.HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "GETLEAVEINFORMATION", tempddl1,
+                            tempddl2, year, "", "", "", "", "", "");
+
+            //Session["storedata"] = ds1.Tables[0];
+
+            DataView view = new DataView();
+            view.Table = ds1.Tables[0];
+            view.RowFilter = "hrgcod <> '51000'";
+
+            Session["tblleavinfo"] = view.ToTable();
+
+            this.LeaveRule_Data_Bind();
+        }
+
+        private void LeaveRule_Data_Bind()
+        {
+            DataTable tbl1 = (DataTable)Session["tblleavinfo"];
+
+
+            this.grvacc.DataSource = tbl1;
+            this.grvacc.DataBind();
+        }
+
+        protected void lnkUpdateLeaveRule_Click(object sender, EventArgs e)
+        {
+            this.GetLeaveData();
+            string comcod = this.GetComeCode();
+            string year = this.ddlyear.SelectedValue.ToString();
+            DataTable dt = (DataTable)ViewState["tblleavinfo"];
+            if (dt == null)
+            {
+                return;
+            }
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                string code = dr["gcod"].ToString();
+                string leav = dr["leave"].ToString();
+
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTCOMPLEAVEINFO", year, code, leav);
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                    return;
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                }
+            }
+        }
+
+        private void GetLeaveData()
+        {
+
+            DataTable dt = (DataTable)ViewState["tblleavinfo"];
+
+            //var descdata = Server.HtmlEncode();
+            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+            {
+
+                Label code = this.grvacc.Rows[i].FindControl("lbgrcod1") as Label;
+                TextBox TxtLeav = this.grvacc.Rows[i].FindControl("TxtLeav") as TextBox;
+
+                string lblspcode = code.Text;
+                string leave = TxtLeav.Text;
+
+                DataRow dr1 = dt.NewRow();
+
+                dr1["gcod"] = lblspcode;
+                dr1["leave"] = leave;
+                dt.Rows.Add(dr1);
+            }
+
+
+            ViewState["tblleavinfo"] = dt;
+        }
+
+
     }
 }
