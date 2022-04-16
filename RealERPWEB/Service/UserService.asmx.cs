@@ -11,7 +11,8 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using RealERPLIB;
 using System.Data;
-
+using Newtonsoft.Json;
+using System.Configuration;
 
 namespace RealERPWEB.Service
 {
@@ -380,8 +381,37 @@ namespace RealERPWEB.Service
             return lst;
         }
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string SaveHolidayData(string holidaydata)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
 
-    }
+            var serializeData = JsonConvert.DeserializeObject<List<RealEntity.C_81_Hrm.C_83_Att.BO_ClassLate.Holiday>>(holidaydata);
+
+
+            bool result = false;
+            foreach (var data in serializeData)
+            {
+
+
+                result = accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTHOLIDAY", data.HolidayDate.ToString(), data.Occasion, data.holidayType, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            }
+
+            return null;
+        }
+
+
+
+        
+
+
+
+
+
+}
 
 
 }
