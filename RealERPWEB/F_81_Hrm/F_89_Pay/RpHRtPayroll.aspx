@@ -1102,6 +1102,24 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+
+
+                                         <asp:TemplateField HeaderText="Id Card">
+
+                                          
+
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvidcardno" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
+                                                    Width="50px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Employee Name">
                                             <HeaderTemplate>
                                                 <table style="width: 200px;">
@@ -1131,6 +1149,9 @@
 
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Designation">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdesig" runat="server"
