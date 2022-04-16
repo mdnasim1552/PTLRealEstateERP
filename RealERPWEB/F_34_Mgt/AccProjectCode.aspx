@@ -161,19 +161,10 @@
 
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            <<<<<<< HEAD
-                                        <asp:LinkButton ID="deleteModal" runat="server" CssClass="btn btn-danger btn-sm text-weight" Visible="false" OnClick="deleteModal_Click"> <i class="fa fa-trash"></i>  </asp:LinkButton>
-                                            <asp:LinkButton ID="lnkedit" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkedit_Click">  <i class="fa fa-edit"></i> </asp:LinkButton>
-                                            <asp:HyperLink ID="lnkBtnPrjDetails" runat="server"
-                                                Target="_blank" CssClass="btn btn-info btn-sm"><i class="fa fa-solid fa-tarp"></i> Details</asp:HyperLink>
-                                            <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="btn btn-danger btn-sm text-weight" OnClick="lnkBtnShow_Click"><i class="fa fa-solid fa-key"></i> User Permission</asp:LinkButton>
-                                            =======
                                         <asp:LinkButton ID="deleteModal" runat="server" CssClass="float-right badge badge-danger isNewprj ml5" OnClick="deleteModal_Click"> <i class="fa fa-trash"></i>  </asp:LinkButton>
                                             <asp:LinkButton ID="lnkedit" runat="server" CssClass="float-right badge badge-success isNewprj ml5" OnClick="lnkedit_Click">  <i class="fa fa-edit"></i> </asp:LinkButton>
                                             <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-primary text-white isNewprj ml5" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
                                             <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="float-right badge badge-info isNewprj" OnClick="lnkBtnShow_Click">Set Project Permission</asp:LinkButton>
-                                            >>>>>>> bc43e188a303fa953ef4537c5f19a60165c231e2
-
 
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />

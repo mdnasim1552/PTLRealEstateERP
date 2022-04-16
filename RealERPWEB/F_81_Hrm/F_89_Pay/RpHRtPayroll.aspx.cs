@@ -1380,6 +1380,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFgssalb")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gssal)", "")) ? 0.00 : dt.Compute("sum(gssal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFBonusAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmtbon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt)", "")) ? 0.00 : dt.Compute("sum(bankamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmt2bon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt2)", "")) ? 0.00 : dt.Compute("sum(bankamt2)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFcashAmtbon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ? 0.00 : dt.Compute("sum(cashamt)", ""))).ToString("#,##0;(#,##0); ");
+
+
+
+
+
                     Session["Report1"] = gvBonus;
                     ((HyperLink)this.gvBonus.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
@@ -4103,7 +4112,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         double bonamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBonusAmt")).Text.Trim());                       
                         rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
                        
+                        
+                        double bankamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmtbon")).Text.Trim());
+                        double bankamt2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmt2bon")).Text.Trim()); ;
+                        double cashamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()); ;
+
                         dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["bankamt"] = bonamt>0?bankamt:0.00;
+                        dt.Rows[rowindex]["bankamt2"] = bonamt>0?bankamt2:0.00;
+                        dt.Rows[rowindex]["cashamt"] = bonamt > 0 ?cashamt:0.00;
                         i++;
                     }
 
