@@ -47,7 +47,7 @@ namespace RealERPWEB.F_15_DPayReg
                 {
                     // print cheque from bill register interface
                     this.getChequeIssue();
-                }              
+                }
                 else
                 {
                     this.GetProjectName();
@@ -406,7 +406,7 @@ namespace RealERPWEB.F_15_DPayReg
 
                 else
                 {
-                    if(comcod=="3333" || comcod == "3101")
+                    if (comcod == "3333" || comcod == "3101")
                     {
                         this.txtNarration.Text = ds1.Tables[2].Rows[0]["billnar"].ToString();
                     }
@@ -470,24 +470,24 @@ namespace RealERPWEB.F_15_DPayReg
         private void SaveValue()
         {
             DataTable dt = (DataTable)Session["tbChqSign"];
-            double chequeamt = 0.00;            
+            double chequeamt = 0.00;
             double tax = 0.00;
             string chequedate;
             double netamt = 0.00;
             string Chequeno;
             int i = 0;
-            
+
             foreach (GridViewRow gv1 in dgv1.Rows)
             {
-                
 
 
-                 chequeamt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)gv1.FindControl("txtgvAmount")).Text.Trim()));
-                 tax = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)gv1.FindControl("txtgvtax")).Text.Trim()));             
+
+                chequeamt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)gv1.FindControl("txtgvAmount")).Text.Trim()));
+                tax = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)gv1.FindControl("txtgvtax")).Text.Trim()));
                 chequedate = Convert.ToDateTime(((TextBox)gv1.FindControl("txtgvChqdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                 Chequeno = ((TextBox)gv1.FindControl("txtgvChqNo")).Text.Trim();
                 netamt = chequeamt - tax;
-               
+
                 dt.Rows[i]["amount"] = chequeamt;
                 dt.Rows[i]["tax"] = tax;
                 dt.Rows[i]["netamt"] = netamt;
@@ -1668,7 +1668,7 @@ namespace RealERPWEB.F_15_DPayReg
             this.dgv1.EditIndex = -1;
             this.Data_Bind();
         }
-       
+
         private void Session_tbChqSign_Update()
         {
             DataTable tbl1 = (DataTable)Session["tbChqSign"];
@@ -1690,7 +1690,7 @@ namespace RealERPWEB.F_15_DPayReg
             }
 
 
-            
+
             Session["tbChqSign"] = tbl1;
         }
 
@@ -1940,10 +1940,7 @@ namespace RealERPWEB.F_15_DPayReg
 
 
                 DataRow[] drt = dt.Select("tax>0");
-                bool isjv = drt.Length == 0 ? false : true; ;
-
-
-
+                bool isjv = drt.Length == 0 ? false : true;
 
 
 
@@ -1960,9 +1957,6 @@ namespace RealERPWEB.F_15_DPayReg
 
 
 
-
-
-
                 /////////////////////////////////////////////////
 
                 foreach (DataRow dr2 in dt1.Rows)
@@ -1975,7 +1969,7 @@ namespace RealERPWEB.F_15_DPayReg
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                         return;
                     }
-                   
+
                     if (Convert.ToDouble(dr2["apamt1"]) < Convert.ToDouble(dr2["amount"]))
                     {
 
@@ -1999,19 +1993,15 @@ namespace RealERPWEB.F_15_DPayReg
                 }
 
                 //Voucher Number
-                if (chkCrVou.Checked ||isjv)
+                if (chkCrVou.Checked || isjv)
                 {
                     try
                     {
-
-
                         DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETOPENINGDATE", "", "", "", "", "", "", "", "", "");
                         if (ds2.Tables[0].Rows.Count == 0)
                         {
                             return;
-
                         }
-
                         DateTime txtopndate = Convert.ToDateTime(ds2.Tables[0].Rows[0]["voudat"]);
 
                         if (txtopndate >= Convert.ToDateTime(this.txtdate.Text.Trim().Substring(0, 11)))
@@ -2020,25 +2010,14 @@ namespace RealERPWEB.F_15_DPayReg
                             ((Label)this.Master.FindControl("lblmsg")).Text = "Voucher Date Must  Be Greater then Opening Date";
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
-
-
-
                         }
-
-
-
-                        
 
                         string ConAccHead = this.ddlBankName.SelectedValue.ToString();
                         string vactcode = dt1.Rows[0]["actcode"].ToString();
                         string VNo1 = isjv ? "J" : ((vactcode.Substring(0, 2) == "19" || vactcode.Substring(0, 2) == "29") ? "C" : ConAccHead.Substring(0, 4) == "1901" ? "C" : "B");
-                        string VNo2 = isjv ? "V":((vactcode.Substring(0, 2) == "19" || vactcode.Substring(0, 2) == "29") ? "T" : "D");
+                        string VNo2 = isjv ? "V" : ((vactcode.Substring(0, 2) == "19" || vactcode.Substring(0, 2) == "29") ? "T" : "D");
                         string VNo3 = Convert.ToString(VNo1 + VNo2);
                         vtcode = (VNo3 == "CT") ? "92" : "99";
-
-
-
-
 
                         string entrydate = this.txtdate.Text.Substring(0, 11).Trim();
                         DataSet ds4 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETNEWVOUCHER", entrydate, VNo3, "", "", "", "", "", "", "");
@@ -2083,7 +2062,7 @@ namespace RealERPWEB.F_15_DPayReg
 
                 /////////////////////////////////////////////////////////
                 string vounarration1 = "";
-                string vounarration2 = "";           
+                string vounarration2 = "";
 
 
                 vounarration1 = this.txtNarration.Text;
@@ -2117,14 +2096,11 @@ namespace RealERPWEB.F_15_DPayReg
 
                 //string voutype = "Online Payment Voucher";
                 string voutype = "";
-              
+
                 if (chkCrVou.Checked || isjv)
                 {
                     try
                     {
-
-
-
                         string recvou = this.GetRecciptVoucher();
                         voutype = (ASTUtility.Left(acvounum, 2) == "JV" ? "Journal Voucher" :
                                  (ASTUtility.Left(acvounum, 2) == "CT" ? "Contra Voucher" :
@@ -2137,39 +2113,38 @@ namespace RealERPWEB.F_15_DPayReg
 
 
                         string Payto = this.txtPayto.Text;
-
                         string vouno = acvounum.Substring(0, 2);
-
-
 
 
                         if ((this.Request.QueryString["Type"] == "Acc"))
                         {
-
-
                             if ((vouno == "BD" || vouno == "CT" || vouno == "JV") && cactcode.Substring(0, 4) != "1901")
                             {
-
-                                if (chequeno == "")
-
-
-                                    ;
-                                else
+                                switch (comcod)
                                 {
+                                    case "3101":
+                                    case "3354":
+                                        if (chequeno == "")
+                                        {
+                                            ((Label)this.Master.FindControl("lblmsg")).Text = "Cheque no Required ...";
+                                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                            return;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                if (chequeno != "")
+                                {
+
                                     DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "CHEQUENOCHECK", chequeno, "", "", "", "", "", "", "", "");
                                     if (ds1.Tables[0].Rows.Count > 0)
                                     {
                                         ((Label)this.Master.FindControl("lblmsg")).Text = "This Cheque no is already exist.";
                                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                                         return;
-
                                     }
-
                                 }
-
-
-
-
                             }
                         }
 
@@ -2188,8 +2163,6 @@ namespace RealERPWEB.F_15_DPayReg
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
                         }
-                      
-
 
                         for (int i = 0; i < dt1.Rows.Count; i++)
                         {
@@ -2203,7 +2176,7 @@ namespace RealERPWEB.F_15_DPayReg
                             string recndt = "01-Jan-1900";
                             string rpcode = "";
                             string billno = dt1.Rows[i]["billno"].ToString();
-                            double taxamt= Convert.ToDouble(dt1.Rows[i]["tax"]);
+                            double taxamt = Convert.ToDouble(dt1.Rows[i]["tax"]);
 
 
 
@@ -2221,13 +2194,12 @@ namespace RealERPWEB.F_15_DPayReg
                             if (taxamt > 0)
                             {
 
-                              //  && actcode.Substring(0, 4) <= "2602"
-                                string tvsactcode = ((actcode.Substring(0, 2)=="26")? ("23" + actcode.Substring(2)): "239800010001");
+                                //  && actcode.Substring(0, 4) <= "2602"
+                                string tvsactcode = ((actcode.Substring(0, 2) == "26") ? ("23" + actcode.Substring(2)) : "239800010001");
                                 string tvsrescode = "970100101001";
                                 taxamt = taxamt * -1;
                                 resulta = accData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE02", acvounum, tvsactcode, tvsrescode, cactcode,
                                 voudat, trnqty, trnremarks, vtcode, taxamt.ToString(), spclcode, recndt, rpcode, billno, userid, userdate, Terminal, "", "", "", "", "", "", "", "", "", "");
-
 
                             }
                             if (!resulta)
@@ -2236,17 +2208,9 @@ namespace RealERPWEB.F_15_DPayReg
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                                 return;
                             }
-
-
-
-
                             resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATEPROAPP", slnum, actcode, rescode, acvounum, billno, chequedat, "", "", "", "", "", "", "", "", "");
 
                         }
-
-
-
-
 
                         // Another Part of Journal
                         if (isjv)
@@ -2273,7 +2237,7 @@ namespace RealERPWEB.F_15_DPayReg
                         }
 
 
-                        if ((ASTUtility.Left(acvounum, 2) == "BD")   || (ASTUtility.Left(acvounum, 2) == "JV")  || (ASTUtility.Left(acvounum, 2) == "CT"))
+                        if ((ASTUtility.Left(acvounum, 2) == "BD") || (ASTUtility.Left(acvounum, 2) == "JV") || (ASTUtility.Left(acvounum, 2) == "CT"))
                         {
                             bool resultd = accData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "UPDATECHQLIST", cactcode, chequeno, acvounum, "", "",
                                            "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2295,25 +2259,24 @@ namespace RealERPWEB.F_15_DPayReg
                 {
                     try
                     {
-
-
-
-
-
                         string vouno = acvounum.Substring(0, 2);
-
-
-
-
                         if ((this.Request.QueryString["Type"] == "Acc"))
                         {
-
-
-
-
-                            if (chequeno == "")
-                                ;
-                            else
+                            switch (comcod)
+                            {
+                                case "3101":
+                                case "3354":
+                                    if (chequeno == "")
+                                    {
+                                        ((Label)this.Master.FindControl("lblmsg")).Text = "Cheque no Required ...";
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                        return;
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                            if (chequeno != "")
                             {
                                 DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "CHEQUENOCHECK", chequeno, "", "", "", "", "", "", "", "");
                                 if (ds1.Tables[0].Rows.Count > 0)
@@ -2321,16 +2284,9 @@ namespace RealERPWEB.F_15_DPayReg
                                     ((Label)this.Master.FindControl("lblmsg")).Text = "This Cheque no is already exist.";
                                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                                     return;
-
                                 }
-
                             }
-
-
-
-
                         }
-
 
 
                         voutype = "Payment Voucher";
@@ -2361,8 +2317,8 @@ namespace RealERPWEB.F_15_DPayReg
                             string billno = dt1.Rows[i]["billno"].ToString();
 
 
-                             resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "INOFUPOLACPMNTA", acvounum, actcode, rescode, chequeno, cactcode,
-                                           voudat, Dramt, chequedate, trnremarks, "99", payto, slnum, "00000000000000", billno, "");
+                            resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "INOFUPOLACPMNTA", acvounum, actcode, rescode, chequeno, cactcode,
+                                          voudat, Dramt, chequedate, trnremarks, "99", payto, slnum, "00000000000000", billno, "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
@@ -2372,13 +2328,7 @@ namespace RealERPWEB.F_15_DPayReg
 
                             bool resultpa = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATEPROAPP", slnum, actcode, rescode, acvounum, billno, chequedat, "", "", "", "", "", "", "", "", "");
 
-
-
-
                         }
-
-
-
 
                         bool resultd = accData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "UPDATECHQLIST", cactcode, chequeno, acvounum, "", "",
                                         "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2475,7 +2425,7 @@ namespace RealERPWEB.F_15_DPayReg
                 if (ds1.Tables[0].Rows.Count == 0)
                     return;
 
-                Session["dscheqeinfo"]= ds1;
+                Session["dscheqeinfo"] = ds1;
                 this.printChequeIssue();
 
             }
@@ -2502,16 +2452,16 @@ namespace RealERPWEB.F_15_DPayReg
             DataTable dt2 = ds1.Tables[1];
             DataTable dt3 = ds1.Tables[2];
 
-            string paytype = "Pay Type : " +dt3.Rows[0]["paytype"].ToString();
+            string paytype = "Pay Type : " + dt3.Rows[0]["paytype"].ToString();
             string payto = "Pay To : " + dt3.Rows[0]["payto"].ToString();
             string reqnar = "Narration : " + dt3.Rows[0]["reqnar"].ToString();
             string date1 = "Req Date : " + Convert.ToDateTime(dt3.Rows[0]["reqdat"]).ToString("dd-MM-yyyy");
 
-            string billno =Request.QueryString["billno"].ToString() == "" ? "" : Request.QueryString["billno"].ToString();
+            string billno = Request.QueryString["billno"].ToString() == "" ? "" : Request.QueryString["billno"].ToString();
             string payid = Request.QueryString["slnum"].ToString() == "" ? "" : Request.QueryString["slnum"].ToString();
 
 
-            string sign1 = dt2.Rows[0]["entryuser"].ToString() + "\n" + dt2.Rows[0]["entrydesig"].ToString() +"\n" +  Convert.ToDateTime(dt2.Rows[0]["entryDate"]).ToString("dd-MM-yyyy");
+            string sign1 = dt2.Rows[0]["entryuser"].ToString() + "\n" + dt2.Rows[0]["entrydesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["entryDate"]).ToString("dd-MM-yyyy");
             string sign2 = dt2.Rows[0]["chkuser"].ToString() + "\n" + dt2.Rows[0]["chkuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["chkdate"]).ToString("dd-MM-yyyy");
             string sign3 = dt2.Rows[0]["fruser"].ToString() + "\n" + dt2.Rows[0]["fruserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["frdate"]).ToString("dd-MM-yyyy");
             string sign4 = dt2.Rows[0]["aprvuser"].ToString() + "\n" + dt2.Rows[0]["aprvuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprvdate"]).ToString("dd-MM-yyyy");
@@ -2544,7 +2494,7 @@ namespace RealERPWEB.F_15_DPayReg
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
 
-      
+
     }
 }
 

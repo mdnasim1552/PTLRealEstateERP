@@ -497,9 +497,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptPrintVocherSuvastu": Rpt1a = SetrptPrintVocherSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu02": Rpt1a = SetrptPrintVocherSuvastu02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu03": Rpt1a = SetrptPrintVocherSuvastu03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.rptPrintVocherAlliCredence": Rpt1a = SetrptPrintVocherAlliCredence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.rptPrintVocherAlli02Credence": Rpt1a = SetrptPrintVocherAlli02Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.rptPrintVocherAlli03Credence": Rpt1a = SetrptPrintVocherAlli03Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherCredence01": Rpt1a = SetrptPrintVocherCredence01(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherCredence02": Rpt1a = SetrptPrintVocherCredence02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherCredence03": Rpt1a = SetrptPrintVocherCredence03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherDefault": Rpt1a = SetrptPrintVoucherDefault(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherManama": Rpt1a = SetrptPrintVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherCube": Rpt1a = SetrptPrintVoucherCube(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1497,17 +1497,17 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
         }
-        private static LocalReport SetrptPrintVocherAlliCredence(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetrptPrintVocherCredence01(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
         }
-        private static LocalReport SetrptPrintVocherAlli02Credence(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetrptPrintVocherCredence02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
         }
-        private static LocalReport SetrptPrintVocherAlli03Credence(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetrptPrintVocherCredence03(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;

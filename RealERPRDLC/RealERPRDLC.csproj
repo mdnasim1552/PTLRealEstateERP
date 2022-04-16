@@ -574,10 +574,10 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherEntrust01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02Credence.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherCredence02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli03.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli03Credence.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlliCredence.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherCredence03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherCredence01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherSuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherSuvastu02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherSuvastu03.rdlc" />
