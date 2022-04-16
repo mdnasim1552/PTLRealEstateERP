@@ -352,6 +352,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ddlReqType.Items.Remove("TC");
                 ddlReqType.Items.Remove("LP");
                 ddlReqType.Items.Remove("LA");
+                this.InfoApply.Visible = true;
             }
             else
             {
@@ -370,7 +371,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
                 ListItem removeItem = ddlReqType.Items.FindByValue("AB");
-               // ddlReqType.Items.Remove(removeItem);
+                // ddlReqType.Items.Remove(removeItem);
+                this.InfoApply.Visible = false;
             }
             
 
@@ -409,6 +411,31 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string reqtimeIN = this.lbldadteIntime.Text.Trim();
             string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
             string txtReson = txtAreaReson.Text.Trim();
+            if(txtReson=="")
+            {
+                string errMsg = "Please Fill the Remarks";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+                return;
+            }
+            if (reqtype == "AB")
+            {
+                string[] tbcodeValue = txtReson.ToUpper().Split(' ');
+                string[] validCodes = new string[] { "LEAVE", "SICK", "STAR", "CASUAL", "SICK", "ALTERNATE","ADJUSTMENT", "SICKLEAVE", "SL","CL" };
+
+                foreach (string aitem in validCodes)
+                {
+                    if (tbcodeValue.Contains(aitem))
+                    {
+                        string errMsg = "For Leave Related Request please apply from Leave";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                        this.txtAreaReson.Text = "";
+                     
+                        return;
+                    }
+
+                }
+            }     
             string usetime = "0:00";
             string postDat = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             string qtype = this.Request.QueryString["Type"] ?? "";
@@ -416,7 +443,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             if (!result)
             {
-
                 string errMsg = "Update Fail";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
                 return;
@@ -433,7 +459,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                      Messaged = "Successfully applied for " + reqfor + ", please wait for approval";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
                     this.SendNotificaion(reqdate, reqdate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
-
+                    this.getMyAttData();
                 }
                 else
                 {
@@ -509,6 +535,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string eventdesc2 = "Details: " + htmtableboyd;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Request for "+ reqfor, htmtableboyd, Messaged);
             }
+
+            
         }
 
         private string GetattAppId(string empid)
