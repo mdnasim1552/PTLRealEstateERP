@@ -162,7 +162,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintManama";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3325":
                 case "2325":
                     vouprint = "VocherPrintLeisure";
@@ -193,7 +193,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintJBS";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
@@ -720,7 +720,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintTanvir";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3349":
                 case "3348":
                     vouprint = "VocherPrintCredence";
@@ -733,7 +733,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //manama, p2p 
                 // Entrust Collection
-                case "3101":
+                //case "3101":
                 case "3358":
                 case "3359":
                 case "3360":
@@ -772,12 +772,9 @@ namespace RealERPWEB.F_17_Acc
                     ntype = "ShowNarration";
                     break;
 
-
                 default:
                     ntype = "";
                     break;
-
-
             }
             return ntype;
         }
@@ -1126,7 +1123,6 @@ namespace RealERPWEB.F_17_Acc
                         {
 
                             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-
                             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherSuvastu02", list, null, null);
                             Rpt1.EnableExternalImages = true;
                             Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
@@ -1173,8 +1169,7 @@ namespace RealERPWEB.F_17_Acc
                     {
 
                         var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherAlliCredence", list, null, null);
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherCredence01", list, null, null);
                         Rpt1.EnableExternalImages = true;
                         Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
                         Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
@@ -1182,8 +1177,7 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
                         Rpt1.SetParameters(new ReportParameter("voutype", voutype));
                         Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
-
-
+                    
                     }
                     else
                     {
@@ -1196,13 +1190,10 @@ namespace RealERPWEB.F_17_Acc
                         // prjdesc = ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? "Project" : "Head Office";
 
 
-
                         if (vouno == "BC" || vouno == "CC")
                         {
-
                             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherAlli02Credence", list, null, null);
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherCredence02", list, null, null);
                             Rpt1.EnableExternalImages = true;
                             Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
                             Rpt1.SetParameters(new ReportParameter("voudat", voudat));
@@ -1217,15 +1208,12 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
 
-
-
                         }
                         else
                         {
 
                             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherAlli03Credence", list, null, null);
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherCredence03", list, null, null);
                             Rpt1.EnableExternalImages = true;
                             Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
                             Rpt1.SetParameters(new ReportParameter("voudat", voudat));

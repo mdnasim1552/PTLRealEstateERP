@@ -131,9 +131,6 @@
                                     <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
 
                                     <asp:CheckBox ID="ChboxPayee" runat="server" Style="margin-left: 10px;" Text="A/C Payee" />
-
-
-
                                     <asp:Label ID="lblisunum" runat="server" CssClass=" smLbl" Visible="False"></asp:Label>
                                     <asp:Label ID="lblVoun" runat="server" CssClass=" smLbl" Visible="False"></asp:Label>
 
@@ -218,7 +215,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Approved Amount" Visible="false">
                                     <FooterTemplate>
-                                      <%--  <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" Font-Size="14px"
+                                        <%--  <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" Font-Size="14px"
                                             OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary primaryBtn">Total :</asp:LinkButton>--%>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -283,7 +280,7 @@
                                 </asp:TemplateField>
 
 
-                                 <asp:TemplateField HeaderText="Net Amount">
+                                <asp:TemplateField HeaderText="Net Amount">
 
 
                                     <FooterTemplate>
@@ -399,28 +396,24 @@
                         <asp:Panel ID="PnlNarration" Visible="false" runat="server">
                             <fieldset class="scheduler-border fieldset_Nar">
                                 <div class="form-horizontal">
-
-                                    <div class="form-group">
-                                        <div class="col-md-2 pading5px asitCol2 ">
-                                            <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Cheque No"></asp:Label>
-                                            <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox" Width="90px"></asp:TextBox>
-
+                                    <div class="from-group row">                                        
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Cheque No"></asp:Label>
+                                                <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"  Width="120"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="from-group">
+                                                <asp:Label ID="lblchelist" runat="server" CssClass="lblTxt lblName" Text="Cheque List"></asp:Label>
+                                                <asp:DropDownList ID="ddlcheque" runat="server" CssClass="ddlPage chzn-select" Style="width: 120px; margin-left: 4px;" AutoPostBack="True" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged">
+                                                </asp:DropDownList>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-
-                                        <div class="col-md-2 pading5px asitCol2 ">
-
-                                            <asp:Label ID="lblchelist" runat="server" CssClass="lblTxt lblName" Text="Cheque List"></asp:Label>
-
-                                            <asp:DropDownList ID="ddlcheque" runat="server" CssClass=" ddlPage chzn-select" Style="width: 90px; margin-left: 4px;" AutoPostBack="True" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged">
-                                            </asp:DropDownList>
-                                        </div>
-
-
                                         <div class="col-md-6 pading5px">
-
                                             <asp:Label ID="lblPayto" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
                                             <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="260"></asp:TextBox>
                                             <cc1:AutoCompleteExtender ID="txtPayto_AutoCompleteExtender"
@@ -431,12 +424,8 @@
                                                 MinimumPrefixLength="0" ServiceMethod="GetRecandPayDetails"
                                                 ServicePath="~/AutoCompleted.asmx" TargetControlID="txtPayto">
                                             </cc1:AutoCompleteExtender>
-
-
                                         </div>
-
                                     </div>
-
                                     <div class="form-group">
                                         <div class="col-md-6 pading5px">
                                             <div class="input-group">
@@ -444,20 +433,13 @@
                                                     <asp:Label ID="lblNaration" runat="server" CssClass="lblTxt lblName" Text="Narration:"></asp:Label>
                                                 </span>
                                                 <asp:TextBox ID="txtNarration" runat="server" class="form-control" Rows="2" TextMode="MultiLine"></asp:TextBox>
-
-
                                             </div>
-
                                         </div>
                                         <div class="col-md-2 pading5px">
-
                                             <asp:LinkButton ID="btnUpdate" runat="server" CssClass="btn btn-sm btn-danger"
                                                 OnClick="btnUpdate_Click">Update</asp:LinkButton>
-
                                             <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-sm btn-primary"
                                                 OnClick="lnkOk_Click">Confirm</asp:LinkButton>
-
-
                                         </div>
 
                                     </div>
