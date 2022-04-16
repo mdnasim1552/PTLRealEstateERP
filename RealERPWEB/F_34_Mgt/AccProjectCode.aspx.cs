@@ -31,9 +31,9 @@ namespace RealERPWEB.F_34_Mgt
                 this.GeProjectMainCode();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Project Code Information";
                 //  this.ddlProjectList_SelectedIndexChanged(null, null);
-                chkNewProject.Checked = true;
-                this.chkNewProject_CheckedChanged(null, null);
-                //previois
+                //chkNewProject.Checked = true;
+                //this.chkNewProject_CheckedChanged(null, null);
+                ////previois
                 GetProjectDetailsCode();
             }
         }
@@ -59,7 +59,7 @@ namespace RealERPWEB.F_34_Mgt
 
 
             string comcod = this.GetComeCode();
-            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            string filter = "%%";
             DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROMAINCODE", filter, "", "", "", "", "", "", "", "");
             this.ddlMainCode.DataSource = ds1.Tables[0];
             this.ddlMainCode.DataTextField = "actdesc";
@@ -74,7 +74,7 @@ namespace RealERPWEB.F_34_Mgt
         {
             string comcod = this.GetComeCode();
             string ProMainCode = this.ddlMainCode.SelectedValue.ToString().Substring(0, 2);
-            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            string filter = "%%";
             DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROSUBCODE1", ProMainCode, filter, "", "", "", "", "", "", "");
             this.ddlSub1.DataSource = ds1.Tables[0];
             this.ddlSub1.DataTextField = "actdesc";
@@ -89,7 +89,7 @@ namespace RealERPWEB.F_34_Mgt
         {
             string comcod = this.GetComeCode();
             string ProSubCode1 = this.ddlSub1.SelectedValue.ToString().Substring(0, 4);
-            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            string filter = "%%";
             DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROSUBCODE2", ProSubCode1, filter, "", "", "", "", "", "", "");
             this.ddlSub2.DataSource = ds1.Tables[0];
             this.ddlSub2.DataTextField = "actdesc";
@@ -105,38 +105,39 @@ namespace RealERPWEB.F_34_Mgt
             ViewState.Remove("tblprolist");
             string comcod = this.GetComeCode();
             string ProSubCode2 = this.ddlSub2.SelectedValue.ToString().Substring(0, 8);
-            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            string filter = "%%";
             DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPRODETAILSCODE", ProSubCode2, filter, "", "", "", "", "", "", "");
-            this.ddlProjectList.DataSource = ds1.Tables[0];
-            this.ddlProjectList.DataTextField = "actdesc";
-            this.ddlProjectList.DataValueField = "actcode";
-            this.ddlProjectList.DataBind();
-            ViewState["tblprolist"] = ds1.Tables[0];
-           
-            this.ddlProjectList_SelectedIndexChanged(null, null);
 
-            this.gvPrjCode.DataSource = ds1.Tables[0];
-            this.gvPrjCode.DataBind();
+            ViewState["tblprolist"] = ds1.Tables[0];
             ds1.Dispose();
+            this.Data_Bind();
         }
+        private void Data_Bind()
+        {
+            DataTable dt = (DataTable)ViewState["tblprolist"];
+            this.gvPrjCode.DataSource = dt;
+            this.gvPrjCode.DataBind();
+        }
+
+
 
         protected void chkNewProject_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.chkNewProject.Checked==true)
-            {
-                this.ddlProjectList.Items.Clear(); 
-                this.txtShortName.Text = "";
-                this.txtProjectName.Text = "";
-                this.txtProjectNameBN.Text = "";
-                
-                prvProjt.Visible = false;
-            }
-            else 
-            {
-                prvProjt.Visible = true;
+            //if (this.chkNewProject.Checked==true)
+            //{
+            //    this.ddlProjectList.Items.Clear(); 
+            //    this.txtShortName.Text = "";
+            //    this.txtProjectName.Text = "";
+            //    this.txtProjectNameBN.Text = "";
 
-                GetProjectDetailsCode();
-            }
+            //    prvProjt.Visible = false;
+            //}
+            //else 
+            //{
+            //    prvProjt.Visible = true;
+
+            //    GetProjectDetailsCode();
+            //}
 
         }
         protected void imgbtnMainCode_Click(object sender, EventArgs e)
@@ -155,8 +156,8 @@ namespace RealERPWEB.F_34_Mgt
         }
         protected void mgbtnPreDetails_Click(object sender, EventArgs e)
         {
-            if (!(this.chkNewProject.Checked))
-                this.GetProjectDetailsCode();
+            //if (!(this.chkNewProject.Checked))
+            //    this.GetProjectDetailsCode();
 
         }
         protected void ddlMainCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -185,12 +186,12 @@ namespace RealERPWEB.F_34_Mgt
             string ShortName = this.txtShortName.Text.Trim();
             bool result = true;
 
-
-
-            if (this.ddlProjectList.Items.Count > 0)
+            string pcode = "";
+            if (ViewState["pcode"] != null && !ViewState["pcode"].Equals("-1"))
             {
-                string projectcode = this.ddlProjectList.SelectedValue.ToString();
-                result = mgtData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "UPDATEPROJECT", projectcode, ProjectName, ShortName, userid, ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
+                pcode = ViewState["pcode"].ToString() ?? "";
+
+                result = mgtData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "UPDATEPROJECT", pcode, ProjectName, ShortName, userid, ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
             }
             else
             {
@@ -202,6 +203,7 @@ namespace RealERPWEB.F_34_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                 //this.txtProjectName.Text = "";
                 //this.txtShortName.Text = "";
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
@@ -215,156 +217,6 @@ namespace RealERPWEB.F_34_Mgt
 
 
         }
-
-
-        protected void ddlProjectList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.ddlProjectList.Items.Count == 0)
-                return;
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string userid = hst["usrid"].ToString();
-            string comcod = this.GetComeCode();
-            Session.Remove("EmployeeList");
-            string procode = this.ddlProjectList.SelectedValue.ToString();
-            this.txtProjectName.Text = this.ddlProjectList.SelectedItem.Text.Trim().ToString().Substring(13);
-            this.txtShortName.Text = (((DataTable)ViewState["tblprolist"]).Select("actcode='" + procode + "'"))[0]["acttdesc"].ToString();
-            string name = txtShortName.Text.ToString();
-            this.lblprjname.Text = txtShortName.Text.ToString();
-
-
-            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPRODETAILSCODEIND", procode, "", "", "", "", "", "", "", "");
-
-
-
-
-
-
-            this.txtProjectNameBN.Text = ds1.Tables[0].Rows[0]["actdescbn"].ToString();
-            isLoadDataEmployeeGv(procode);
-
-            this.lnkBtnPrjDetails.NavigateUrl = "~/F_04_Bgd/PrjInformation?Type=Report&prjcode=";
-        }
-
-        private void isLoadDataEmployeeGv(string pCode)
-        {
-
-            this.gvEmployeeInfo.DataSource = null;
-            this.gvEmployeeInfo.DataBind();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetComeCode();
-            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETUSERINFLIST", pCode);
-            if (ds1.Tables[0].Rows.Count != 0)
-
-                Session["EmployeeList"] = ds1.Tables[0];
-            this.Data_bind();
-            //ds1.Dispose();
-        }
-
-
-
-        private void Data_bind()
-        {
-            DataTable dt = (DataTable)Session["EmployeeList"];
-
-            this.gvEmployeeInfo.DataSource = dt;
-            this.gvEmployeeInfo.DataBind();
-
-        }
-
-        protected void btnSaveEmp_Click(object sender, EventArgs e)
-        {
-            DataTable dt1 = (DataTable)Session["EmployeeList"];
-
-            for (int i = 0; i < this.gvEmployeeInfo.Rows.Count; i++)
-            {
-                string userid = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvUserId")).Text.ToString();
-                string name = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvName")).Text.ToString(); ;
-                string desig = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvDesig")).Text.ToString();
-                string usrprm = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvPerm")).Text.ToString();
-                CheckBox chk = ((CheckBox)gvEmployeeInfo.Rows[i].FindControl("chkPermission"));
-                string checkstatus = (chk.Checked == true) ? "True" : "False";
-                //string checkstatu1s = (((CheckBox)gvEmployeeInfo.Rows[i].FindControl("CheckPermission")).Checked) ? "True" : "False";
-
-                dt1.Rows[i]["usrid"] = userid;
-                dt1.Rows[i]["usrname"] = name;
-                dt1.Rows[i]["usrdesig"] = desig;
-                dt1.Rows[i]["permission"] = checkstatus;
-
-
-            }
-            Session["EmployeeList"] = dt1;
-
-
-            if (updateProjectPermission())
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Project Permission Updated Successfully!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
-            }
-
-        }
-
-
-
-        protected void lnkBtnShow_Click(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
-        }
-
-        protected void chkall_CheckedChanged(object sender, EventArgs e)
-        {
-            int i;
-            if (((CheckBox)this.gvEmployeeInfo.HeaderRow.FindControl("chkall")).Checked)
-            {
-                for (i = 0; i < this.gvEmployeeInfo.Rows.Count; i++)
-                {
-                    ((CheckBox)this.gvEmployeeInfo.Rows[i].FindControl("chkPermission")).Checked = true;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
-
-                }
-            }
-            else
-            {
-                for (i = 0; i < this.gvEmployeeInfo.Rows.Count; i++)
-                {
-                    //((CheckBox)this.gvEmployeeInfo.Rows[i].FindControl("chkPermission")).Enabled == true
-                    if (((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvPerm")).Text.ToString() == "True")
-                    {
-                        ((CheckBox)this.gvEmployeeInfo.Rows[i].FindControl("chkPermission")).Checked = false;
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
-
-                        //this.lblgvdeptandemployeeemp_Click(null, null);
-                    }
-                }
-            }
-        }
-
-
-        private bool updateProjectPermission()
-        {
-            DataTable dt1 = (DataTable)Session["EmployeeList"];
-            DataView dv = dt1.DefaultView;
-            dv.RowFilter = "permission=True";
-            DataSet ds1 = new DataSet("ds1");
-            ds1.Tables.Add(dv.ToTable());
-            ds1.Tables[0].TableName = "tbl1";
-            string procode1 = this.ddlProjectList.SelectedValue.ToString();
-            string procode = "16" + ASTUtility.Right(procode1, 10);
-
-            string comcod = this.GetComeCode();
-            string ss = ds1.GetXml();
-            bool result = mgtData.UpdateXmlTransInfo(comcod, "[SP_ENTRY_MGT]", "UPDATEUSERINF", ds1, null, null, procode, "");
-            if (!result)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = mgtData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
-            }
-
-            return true;
-        }
-
-        protected void gvPrjCode_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-        }
     }
+         
 }

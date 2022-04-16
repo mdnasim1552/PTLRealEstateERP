@@ -128,9 +128,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             string type = "";//(this.Request.QueryString["Type"]) == "Ind" || (this.Request.QueryString["Type"] == "DeptHead") ? "" : "Management";
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
+            string reqtyp = this.ddlfilterby.SelectedValue.ToString();
 
-
-            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead, "", "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead,"", reqtyp, "", "", "");
             if (ds1 == null)
                 return;
 
@@ -187,8 +187,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             this.lblprintstkl.Text = "";
             string value = this.RadioButtonList1.SelectedValue.ToString();
-
-
             switch (value)
             {
                 case "0":

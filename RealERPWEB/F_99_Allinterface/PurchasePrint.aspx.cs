@@ -4811,9 +4811,8 @@ namespace RealERPWEB.F_99_Allinterface
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+                return;
             }
         }
 
