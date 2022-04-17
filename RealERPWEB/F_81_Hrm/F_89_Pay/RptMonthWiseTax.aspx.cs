@@ -28,8 +28,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfromdate.Text = "01" + date.Substring(2);
                 //this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -76,7 +79,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyAgg.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             //string Company = ((this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)) + "%";
-            string txtSProject = this.txtsrchdeptagg.Text.Trim() + "%";
+            string txtSProject = this.ddldepartmentagg.Text.Trim() + "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAME", Company, txtSProject, "", "", "", "", "", "", "");
             this.ddldepartmentagg.DataTextField = "deptdesc";
             this.ddldepartmentagg.DataValueField = "deptcode";
@@ -89,7 +92,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             string comcod = this.GetComeCode();
             string deptcode = ((this.ddldepartmentagg.SelectedValue == "000000000000") ? "94" : this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 9)) + "%";
-            string txtSProject = this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = this.ddlProjectName.Text.Trim() + "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", deptcode, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -107,8 +110,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void GetEmpName()
         {
             string comcod = this.GetComeCode();
-            string ProjectCode = (this.txtSrcEmployee.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string txtSProject = "%" + this.txtSrcEmployee.Text + "%";
+            string ProjectCode = (this.ddlEmployee.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            string txtSProject = "%" + this.ddlEmployee.Text + "%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "GETEMPLOYEE", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmployee.DataTextField = "empname";
             this.ddlEmployee.DataValueField = "empid";
@@ -188,7 +191,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int mon = ASTUtility.Datediff(Convert.ToDateTime(this.txttodate.Text.Trim()), Convert.ToDateTime(this.txtfromdate.Text.Trim()));
             if (mon > 12)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Month Less Than Equal Twelve";
+
+                string msg = "Month Less Than Equal Twelve";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+    
                 return;
             }
 
@@ -335,6 +341,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
         protected void imgbtnEmployee_Click(object sender, EventArgs e)
+        {
+            this.GetEmpName();
+        }
+
+        protected void ddlEmployee_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetEmpName();
         }
