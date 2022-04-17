@@ -1273,7 +1273,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         }
                         else if (comcod == "3354")//Edison
                         {
-                            this.gvBonus.Columns[10].HeaderText = "Duration(Month)";
+                            this.gvBonus.Columns[10].HeaderText = "Duration(Day)";
                         }
                         this.gvBonus.DataSource = dt;
                         this.gvBonus.DataBind();
@@ -1745,7 +1745,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
-            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM, yyyy").ToUpper();
 
             DataTable dt3 = (DataTable)Session["tblpay"];
             var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
@@ -1756,7 +1756,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Festival Bonus for " + bonusType +" - "+ frmdate));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "FESTIVAL BONUS OF " + bonusType));
+            Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
             Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
             Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
