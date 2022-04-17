@@ -8,6 +8,7 @@
     <script language="javascript" type="text/javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
     <script language="javascript" type="text/javascript" src="../Scripts/ScrollableGridPlugin.js"></script>
 
+   
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -15,7 +16,19 @@
         function pageLoaded() {
             var gv1 = $('#<%=this.gvcustdues.ClientID %>');
             gv1.Scrollable();
+
+
+            //$('.chzn-select').chosen({
+            //    search_contains: true,
+            //    enable_escape_special_char: false
+            //});
+
+
         }
+
+
+
+        
     </script>
 
 
@@ -58,8 +71,8 @@
                                         <asp:LinkButton ID="imgbtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                  
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" CssClass=" ddlPage"
-                                            Width="200px"
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" CssClass="ddlPage"
+                                            Width="180px"
                                             TabIndex="2">
                                         </asp:DropDownList>
 
