@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="HREmpLeave.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_84_Lea.HREmpLeave" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+<%--<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>--%>
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="../../Scripts/gridviewScrollHaVertworow.min.js"></script>
 
@@ -44,12 +44,29 @@
             }
         }
 
+        function loadCreateRuleModal() {
+            $('#createRuleModal').modal('toggle');
+        }
+        function CloseModal() {
+            $('#createRuleModal').modal('hide');
+        }
+
+        function CloseModal_AlrtMsg() {
+
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            $('.modal').modal('hide');
+
+            loadCreateRuleModal();
+        };
+
+
     </script>
     <style>
         .FixedHeader {
             position: absolute !important;
             font-weight: bold;
-        }    
+        }
     </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -71,14 +88,20 @@
                 </asp:UpdateProgress>
             </div>
 
-             
+
             <div class="row justify-content-md-center mt-4 mb-1">
                 <div class="col-9"></div>
 
                 <div class="col-2">
                     <asp:HyperLink ID="LinkButton1" runat="server" CssClass="btn btn-denger d-none btn-sm pull-right" NavigateUrl="~/F_81_Hrm/F_84_Lea/UploadLeavExcel.aspx" Target="_blank"><i class="fas fa-plus"></i> Upload Excel </asp:HyperLink>
 
-                    <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-info btn-sm pull-right" OnClick="lnkRule_Click"><i class="fas fa-plus"></i> Create Rule </asp:LinkButton>
+                    <%--  <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-info btn-sm pull-right" OnClick="lnkRule_Click"><i class="fas fa-plus"></i> Create Rule </asp:LinkButton>  --%>
+
+
+                    <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-info btn-sm pull-right" data-toogle="modal" data-target="#createRuleModal" OnClick="lnkRule_Click"><i class="fas fa-plus"></i> Create Rule </asp:LinkButton>
+
+
+
                 </div>
 
             </div>
@@ -87,7 +110,7 @@
                 <div class="card-header">
                     <div class="row">
 
-                        <div class="col-md-1" id="divLeaveApp" runat="server">
+                        <div class="col-sm-12 col-md-1" id="divLeaveApp" runat="server">
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     Yearly Leave   
@@ -96,7 +119,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2" id="div1" runat="server">
+                        <div class="col-sm-12 col-md-2" id="div1" runat="server">
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     <asp:LinkButton ID="imgbtnCompany" runat="server" OnClick="imgbtnCompany_Click">
@@ -107,7 +130,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3" id="div2" runat="server">
+                        <div class="col-sm-12 col-md-3" id="div2" runat="server">
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     <asp:LinkButton ID="imgbtnProSrch" runat="server" OnClick="imgbtnProSrch_Click">
@@ -117,7 +140,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-2" id="lblEmpIdSearch" runat="server">
+                        <div class="col-sm-12 col-md-2" id="lblEmpIdSearch" runat="server">
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     Emp. Code
@@ -127,7 +150,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-1" id="divPage" runat="server">
+                        <div class="col-sm-12 col-md-1" id="divPage" runat="server">
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     Page Size
@@ -145,7 +168,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-1" id="div5" runat="server">
+                        <div class="col-sm-12 col-md-1" id="div5" runat="server">
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     Search Type
@@ -158,7 +181,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-1" id="div6" runat="server">
+                        <div class="col-sm-12 col-md-1" id="div6" runat="server">
                             <div class="form-group">
 
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-md mt-4" OnClick="lbtnOk_Click" Text="Ok"></asp:LinkButton>
@@ -282,7 +305,7 @@
                             </div>
                             <div class="row">
                                 <div class="table table-responsivex" style="width: 100%; height: 400px; overflow: auto">
-                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False"  HeaderStyle-CssClass="FixedHeader"
+                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False" HeaderStyle-CssClass="FixedHeader"
                                         OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea "
                                         PageSize="15">
                                         <PagerSettings Position="Top" />
@@ -1154,6 +1177,148 @@
                     </asp:MultiView>
                 </div>
             </div>
+
+            <div id="createRuleModal" class="modal " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content col-md-12 col-sm-12 ">
+                        <div class="modal-header hedcon">
+
+                            <h5>Create Leave Rule</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-lg-8">
+                                        <div class="input-group input-group-alt">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-secondary" type="button">Year</button>
+                                            </div>
+                                            <asp:DropDownList ID="ddlyear" ClientIDMode="Static" data-placeholder="Choose year" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlyear_SelectedIndexChanged">
+                                                <asp:ListItem Value="2020">2020</asp:ListItem>
+                                                <asp:ListItem Value="2021">2021</asp:ListItem>
+                                                <asp:ListItem Value="2022" Selected="True">2022</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
+                                    AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                    ShowFooter="True">
+                                    <PagerSettings NextPageText="Next" PreviousPageText="Previous"
+                                        Visible="False" />
+
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Sl.No.">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText=" ">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgrcode" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod2"))+"-" %>'
+                                                    Width="20px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Font-Size="12px" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Code">
+                                            <EditItemTemplate>
+                                                <asp:TextBox ID="txtgrcode" runat="server" Font-Size="12px" Height="16px"
+                                                    MaxLength="3"
+                                                    Style="border-style: none; border-color: midnightblue; font-size: 12px; text-align: left;"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>'
+                                                    Width="50px"></asp:TextBox>
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>'
+                                                    Width="50px" Style="text-align: left"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Hidden Column" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbgrcod1" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")) %>'
+                                                    Visible="False"></asp:Label>
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Description">
+                                            <EditItemTemplate>
+                                                <asp:TextBox ID="txtgvDesc" runat="server" Font-Size="12px" MaxLength="100"
+                                                    Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
+                                                    Width="200px"></asp:TextBox>
+                                            </EditItemTemplate>
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbldesc" runat="server" Font-Size="12px"
+                                                    Style="font-size: 12px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
+                                                    Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                             <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Leave">
+
+
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="TxtLeav" runat="server" Font-Size="12px" AutoCompleteType="None" onkeypress="return isNumberKey(this,event);"
+                                                    Style="font-size: 12px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdescval")) %>'
+                                                    Width="100px"></asp:TextBox>
+                                            </ItemTemplate>
+                                              <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                    </Columns>
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <FooterStyle CssClass="grvFooter" />
+                                    <AlternatingRowStyle BackColor="" />
+                                </asp:GridView>
+
+                                <br />
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <asp:LinkButton ID="lnkUpdateLeaveRule" runat="server" CssClass="btn btn-info btn-sm" OnClientClick="CloseModal();" OnClick="lnkUpdateLeaveRule_Click" Text="Save"></asp:LinkButton>
+                            <button type="button" class="btn btn-danger btn-sm " data-dismiss="modal">Close</button>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        
+        
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

@@ -191,9 +191,6 @@
         gvConfirm.Scrollable();
 
 
-
-
-
         function Search_Gridview2(strKey) {
             try {
 
@@ -306,6 +303,21 @@
 
                         </div>
 
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Filter</asp:Label>
+                                </div>
+                                <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control form-control-sm" AutoPostBack="True">
+                                    <asp:ListItem Value="%%">All</asp:ListItem>
+                                    <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>
+                                    <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
+                                    <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
+                                    <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
+                                    <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
 
                         <div class="col-md-1">
                             <div class="form-group">
