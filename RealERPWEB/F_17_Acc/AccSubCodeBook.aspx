@@ -406,7 +406,7 @@
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtgvsirunit" runat="server" MaxLength="100" Visible="false"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
-                                            Width="40px"></asp:TextBox>
+                                            Width="80px"></asp:TextBox>
 
                                         <asp:DropDownList ID="ddlUnit" CssClass="chzn-select form-control" Visible="false" runat="server">
                                         </asp:DropDownList>
@@ -414,10 +414,10 @@
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblunit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
-                                            Width="40px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
-                                    <ItemStyle HorizontalAlign="Center" Width="10px" />
+                                    <ItemStyle HorizontalAlign="Center"  />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Std.Rate">
