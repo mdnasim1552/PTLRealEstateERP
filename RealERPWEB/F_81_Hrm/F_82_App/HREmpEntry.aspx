@@ -101,6 +101,8 @@
         <div class="contentPart">
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="Services" runat="server">
+                    <asp:HiddenField ID="hiddnempname1" runat="server" />
+                    <asp:HiddenField ID="hiddnCardId" runat="server" />
 
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
@@ -843,16 +845,8 @@
                                 <asp:LinkButton ID="lnkbtnFinalSWUpdate" runat="server" CssClass="btn btn-success"
                                     OnClick="lnkbtnFinalSWUpdate_Click" 
                                     Visible="False" TabIndex="39">Final Update</asp:LinkButton>
-
-                                <asp:LinkButton ID="lnkHolidayGenerate" runat="server" CssClass="btn btn-primary"
-                                    OnClick="lnkHolidayGenerate_Click" 
-                                      TabIndex="39">Holidays Generate</asp:LinkButton>
-
-                                <asp:LinkButton ID="lnkLeaveGenerate" runat="server" CssClass="btn btn-info"
-                                    OnClick="lnkLeaveGenerate_Click" 
-                                     TabIndex="39">Leave Generate</asp:LinkButton>
-
-                                <asp:LinkButton ID="lnkUserGenerate" runat="server" CssClass="btn btn-warning"
+                                 
+                                <asp:LinkButton ID="lnkUserGenerate" runat="server" Visible="false" CssClass="btn btn-warning"
                                     OnClick="lnkUserGenerate_Click" 
                                     TabIndex="39">User Generate</asp:LinkButton>
                             </div>
