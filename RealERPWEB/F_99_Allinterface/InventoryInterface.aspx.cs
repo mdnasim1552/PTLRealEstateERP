@@ -282,7 +282,6 @@ namespace RealERPWEB.F_99_Allinterface
         }
         protected void gvapproval_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
@@ -307,11 +306,6 @@ namespace RealERPWEB.F_99_Allinterface
 
                 hlnkchk.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + getpasno;
                 hlnkapedit.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=GpaEdit&genno=" + mtreqno + "&getpasno=" + getpasno + "&gpref=" + getpref;
-
-
-
-
-
             }
         }
         protected void gvaudit_RowDataBound(object sender, GridViewRowEventArgs e)

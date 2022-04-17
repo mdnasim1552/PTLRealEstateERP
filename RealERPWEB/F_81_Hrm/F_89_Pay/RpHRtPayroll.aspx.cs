@@ -3288,12 +3288,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetGreenWood();
                         break;
 
-                    
+                    case "3101":
                     case "3347": //PEBSteel
                         this.PrintBonusSheetPEB();
                         break;
 
-                    case "3101":
+                    //case "3101":
                     case "3365"://BTI
                         this.PrintBonusBTI();
                         break;
