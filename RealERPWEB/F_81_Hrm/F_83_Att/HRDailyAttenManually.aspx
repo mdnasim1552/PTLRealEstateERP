@@ -75,28 +75,28 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                     <div class="card card-fluid mt-5">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-1 col-md-1 col-sm-4">
                                     <div class="form-group">
                                         <asp:Label ID="Label10" runat="server">Date</asp:Label>
                                         <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control "></asp:TextBox>
                                         <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-3 col-sm-4">
                                     <div class="form-group">
                                         <asp:Label ID="Label1" runat="server">Company</asp:Label>
                                         <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-3 col-sm-4">
                                     <div class="form-group">
                                         <asp:Label ID="Label2" runat="server">Department</asp:Label>
                                         <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control  chzn-select" TabIndex="7" AutoPostBack="True" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-3  col-md-3 col-sm-4">
                                     <div class="form-group">
                                         <asp:Label ID="lblSection" runat="server">Section</asp:Label>
                                         <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-control chzn-select" TabIndex="7">
@@ -105,19 +105,17 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-2  col-md-2 col-sm-4">
                                                      <asp:Label ID="Label3" runat="server">Code</asp:Label>
                                     <div class="input-group mb-3">
                                           <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control"></asp:TextBox>
                                         <div class="input-group-append">
-                                            <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-primary btn" OnClick="imgbtnSearchEmployee_Click"><span class="fa fa-search"> </span></asp:LinkButton>
+                                            <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-secondary btn" OnClick="imgbtnSearchEmployee_Click"><span class="fa fa-search"> </span></asp:LinkButton>
                                         </div>
                                     </div>
                       
                                 </div>
-                                <div class="col-lg-1">
-                                    <a class="btn btn-info mt20 w100" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HRDailyAttenUpload.aspx")%>">Auto</a>
-                                </div>
+                               
                                  
                                 <div class="col-lg-1">
                                     <div class="form-group ">
@@ -136,9 +134,10 @@ div#ContentPlaceHolder1_ddlSection_chzn {
 
                                     </div>
                                 </div>
-
-                                <div class="col-lg-1">
-                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20 w100" OnClick="lbtnOk_Click">ok</asp:LinkButton>
+                                 <div class="col-lg-1 col-md-2 col-sm-4">
+                                    <a class="btn btn-info mt20" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HRDailyAttenUpload.aspx")%>">Auto</a>
+                               
+                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20 " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                                 </div>
                             </div>
@@ -172,7 +171,7 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Emp. ID">
+                                        <asp:TemplateField HeaderText="Emp. ID" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvEmpId" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                     Width="130px"></asp:Label>
@@ -183,18 +182,18 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                                         <asp:TemplateField HeaderText="Card #">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvEmpIDCard" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                                    Width="40px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Employee Name ">
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lFinalUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lFinalUpdate_Click">Final Update</asp:LinkButton>
+                                                <asp:LinkButton ID="lFinalUpdate" runat="server" CssClass="btn btn-success btn-sm" OnClick="lFinalUpdate_Click">Final Update</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvEmpName" runat="server" Height="16px" Text='<%# "<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>" %>'
-                                                    Width="120px"></asp:Label>
+                                                    Width="250px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -202,7 +201,7 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                                         <asp:TemplateField HeaderText=" Designation">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvDesig" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                    Width="130px"></asp:Label>
+                                                    Width="200px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -210,7 +209,7 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                                         <asp:TemplateField HeaderText="Off. Intime">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvoffIntime" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offintime")).ToString("hh:mm tt") %>'
-                                                    Width="55px"></asp:Label>
+                                                    Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
