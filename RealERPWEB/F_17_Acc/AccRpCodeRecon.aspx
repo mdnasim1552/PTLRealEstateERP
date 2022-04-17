@@ -17,6 +17,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
+            $('.chzn-select').chosen({ search_contains: true });
+
 
         };
     </script>
@@ -128,7 +130,7 @@
 
                                     <div class="col-md-4 asitCol4 pading5px">
                                         <asp:DropDownList ID="ddlRpName" runat="server"
-                                            Width="300px" AutoPostBack="True" CssClass="ddlistPull">
+                                            Width="300px" AutoPostBack="True" CssClass="ddlistPull chzn-select">
                                         </asp:DropDownList>
 
                                     </div>
@@ -235,7 +237,7 @@
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="ddlRpName" runat="server" Width="200px">
+                                                <asp:DropDownList ID="ddlRpName" CssClass="chzn-select" runat="server" Width="200px">
                                                 </asp:DropDownList>
                                                 <cc1:ListSearchExtender ID="ddlRpName_ListSearchExtender" runat="server"
                                                     Enabled="True" QueryPattern="Contains" TargetControlID="ddlRpName">

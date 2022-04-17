@@ -524,7 +524,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
+                string Msg = "Upload Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+
+              
                 // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
                 this.ShowData();
 
@@ -533,7 +536,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ex.Message + "');", true);
+                 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+               
                 return;
 
             }
@@ -596,9 +602,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, "", "", "", "", "", "", "", "", "", "", "", "");
 
                 }
+                string msg = "Upload Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
-                // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+ 
                 this.ShowData();
 
 
@@ -606,8 +613,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ex.Message + "');", true);
-                    return;
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+                return;
 
                 }
 
@@ -685,7 +694,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ex.Message + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
 
             }
         }
