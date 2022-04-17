@@ -149,6 +149,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     empName.Font.Bold = true;
                     curAmt.Font.Bold = true;
                     prevAmt.Font.Bold = true;
+                    empName.Attributes["style"]= "background-color:blue !important; color:white !important;";
                 }
 
             }

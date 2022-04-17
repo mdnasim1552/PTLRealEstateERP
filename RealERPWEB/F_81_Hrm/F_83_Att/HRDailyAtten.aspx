@@ -55,8 +55,8 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+
+   
                   
     
                
@@ -89,15 +89,13 @@
                             </div>
                         </div>
                         <div class="col-lg-2">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger btn-sm mt20 w100" OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger btn-sm mt20 " OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
+                                                 <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
                             <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
    
                         </div>
                         <div class="col-lg-1">
-                            <p class="text-left">
-                             <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20 w100"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
 
-                            </p>
                 
                             <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger btn-sm pull-right" Visible="false"></asp:Label>
                         </div>
@@ -272,8 +270,8 @@
                     </div>
                         </div>
                     </div>
-                </div>
-            </div>
+   
+
 
         </ContentTemplate>
     </asp:UpdatePanel>

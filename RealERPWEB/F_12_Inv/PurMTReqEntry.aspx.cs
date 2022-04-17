@@ -444,14 +444,17 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3101":
                 case "3340":
+
                 case "3315":
                 case "3316":
                 case "1108":
                 case "1109":
+
                 case "1205":
                 case "3351":
                 case "3352":
 
+                case "3348":
 
                     DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPMATREQREF", mtrref, "", "", "", "", "", "", "", "");
 
