@@ -75,7 +75,7 @@
 
             <div class="card card-fluid ">
                 <div class="card-header mt-3 mb-0 pb-0">
-                    <div class="row mb-0 pb-0">
+                    <div class="row mb-0 pb-1">
                         <asp:Label ID="lbldate" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Date</asp:Label>
                         <asp:TextBox ID="txtDate" runat="server" CssClass="form-control form-control-sm col-1 "></asp:TextBox>
                         <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
@@ -89,8 +89,7 @@
                         <asp:DropDownList ID="ddlLoantype" data-placeholder="Choose loan.." runat="server"
                             CssClass="chzn-select form-control col-2" AutoPostBack="true">
                         </asp:DropDownList>
-                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-success btn-sm ml-1 col-1">Ok</asp:LinkButton>
-
+                       
 
                         <asp:Label ID="lblPage" runat="server"  CssClass="btn btn-sm btn-secsondary mr-2 col-1">Page Size</asp:Label>
                         <asp:DropDownList ID="ddlpagesize" runat="server"  AutoPostBack="True" CssClass="chzn-select form-control col-1" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
@@ -105,6 +104,10 @@
                             <asp:ListItem Selected="True">300</asp:ListItem>
                         </asp:DropDownList>
 
+                        <div class="col-md-1">
+                             <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-success btn-md">Ok</asp:LinkButton>
+
+                        </div>
                  
                     </div>
                 </div>

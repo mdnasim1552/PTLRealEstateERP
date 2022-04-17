@@ -684,6 +684,7 @@ namespace RealERPWEB.F_12_Inv
                 case "1205":
                 case "3351":
                 case "3352":
+                case "3348":
 
                     if (getpref.Length == 0)
                     {

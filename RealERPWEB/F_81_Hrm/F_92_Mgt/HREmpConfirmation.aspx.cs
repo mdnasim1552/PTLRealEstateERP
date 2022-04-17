@@ -26,9 +26,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-                 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 DataSet datSetup = compUtility.GetCompUtility();
                 if (datSetup == null)
                 {
@@ -46,7 +49,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 this.GetCompany();
                 this.GetDepartName();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE CONFIRM INFORMATION";
+        
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 //string confrm = this.Request.QueryString["chk"].ToString();
                 //if (confrm == "confirm")
@@ -76,7 +79,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void GetCompany()
         {
             string comcod = this.GetComeCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%" + this.ddlCompany.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETCOMPANYNAME", txtCompany, "", "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -91,7 +94,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             string comcod = this.GetComeCode();
             string company = this.ddlCompany.SelectedValue.Substring(0, 2).ToString();
-            string txtDeptname = this.txtSrcPro.Text.Trim() + "%";
+            string txtDeptname = this.ddlProjectName.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETPROJECTNAME", company, txtDeptname, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -204,9 +207,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string id = dr[0]["empid"].ToString();
             string Remarks = dr[0]["remarks"].ToString();
             string Chk = dr[0]["chkmv"].ToString();
+            string msg= "";
             if (Chk == "False")
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Check CheckBox";
+
+                msg = "Please Check CheckBox";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+ 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
@@ -223,14 +231,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
+                msg = "Update Successfully.";
 
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully.";
+
+              
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                msg = "Update Failed.";
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }

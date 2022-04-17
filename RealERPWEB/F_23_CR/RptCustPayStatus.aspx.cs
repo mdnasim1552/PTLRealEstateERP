@@ -2837,7 +2837,7 @@ namespace RealERPWEB.F_23_CR
                     this.PrintCleintLedgerLeisure();
                     break;
 
-                //case "3101":
+                case "3101":
                 case "2305":
                 case "3305":
                 case "3306":
@@ -2853,7 +2853,7 @@ namespace RealERPWEB.F_23_CR
                     this.PrintCleintLedgerManama();
                     break;
 
-                case"3101":
+               // case"3101":
                 case"3357":
                     this.PrintCleintLedgerCube();
                     break;
