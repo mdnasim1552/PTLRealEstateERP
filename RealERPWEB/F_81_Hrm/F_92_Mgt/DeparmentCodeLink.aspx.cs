@@ -34,11 +34,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.ShowInformation();
                 this.GetACGCode();
                 this.GetGropCode();
+                this.GetAttGrpCode();
                 // this.GetCode();
             }
 
         }
 
+      
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -72,6 +74,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dsone.Dispose();
 
         }
+        private void GetAttGrpCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string srchoption = "%%";
+            DataSet dsone = this.accData.GetTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "GETATTGROUPCODE", srchoption, "", "", "", "", "", "", "", "");
+            ViewState["tblattgroupcode"] = dsone.Tables[0];
+            dsone.Dispose();
+        }
 
 
 
@@ -93,8 +104,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //string actcode = ((Label)grvacc.Rows[e.NewEditIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
             string agccode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
             string gropcode = ((DataTable)Session["storedata"]).Rows[rowindex]["gropcode"].ToString();
+            string attgropcode = ((DataTable)Session["storedata"]).Rows[rowindex]["attgropcode"].ToString();
             DropDownList ddlteam = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam");
             DropDownList ddlgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup");
+            DropDownList ddlattgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlattgroup");
 
             ddlteam.DataTextField = "acgdesc";
             ddlteam.DataValueField = "acgcode";
@@ -109,7 +122,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ddlgroup.DataBind();
             ddlgroup.SelectedValue = gropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
 
+            // for Attadance Part 
 
+
+            ddlattgroup.DataTextField = "attgropdesc";
+            ddlattgroup.DataValueField = "attgropcode";
+            ddlattgroup.DataSource = (DataTable)ViewState["tblattgroupcode"];
+            ddlattgroup.DataBind();
+            ddlattgroup.SelectedValue = attgropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+             
         }
 
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -127,8 +148,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string actcode = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
             string acgcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedValue.ToString();
             string gropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedValue.ToString();
+            string attgropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedValue.ToString();
             string acgdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedItem.ToString();
             string gropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedItem.ToString();
+            string attgropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
             DataTable tbl1 = (DataTable)Session["storedata"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -136,9 +159,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             tbl1.Rows[Index]["acgcode"] = acgcode;
             tbl1.Rows[Index]["acgdesc"] = acgdesc;
             tbl1.Rows[Index]["gropdesc"] = gropdesc;
+            tbl1.Rows[Index]["attgropdesc"] = attgropdesc;
             Session["storedata"] = tbl1;
             this.grvacc.EditIndex = -1;
-            bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, gropcode, "", "", "", "", "", "", "",
+            bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, gropcode, attgropcode, "", "", "", "", "", "",
                 "", "", "", "", "");
 
 
