@@ -330,6 +330,42 @@ namespace RealERPWEB.F_24_CC
         protected global::System.Web.UI.WebControls.Label lmsg;
 
         /// <summary>
+        /// lblInsmnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInsmnt;
+
+        /// <summary>
+        /// txtsrchInsmnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsrchInsmnt;
+
+        /// <summary>
+        /// ibtnFindInsmnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ibtnFindInsmnt;
+
+        /// <summary>
+        /// ddlInstallment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlInstallment;
+
+        /// <summary>
         /// gvAddWork control.
         /// </summary>
         /// <remarks>
