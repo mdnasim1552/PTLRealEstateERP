@@ -21,7 +21,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
     {
         ProcessAccess HRData = new ProcessAccess();
         string Upload = "";
-        int size = 0;
+        int size =1024*1024;
         System.IO.Stream image_file = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -247,7 +247,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     image_file = (Stream)Session["i"];
                     size = Convert.ToInt32(Session["s"]);
                     BinaryReader br = new BinaryReader(image_file);
-                    photo = br.ReadBytes(size);
+                   photo = br.ReadBytes(size);
+                   
                 }
 
                 //Signature

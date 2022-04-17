@@ -190,7 +190,37 @@
                                     <HeaderStyle Width="150px" />
                                 </asp:TemplateField>
 
+                                
+                                    <asp:TemplateField HeaderText="Attandance Description">
+                                    <EditItemTemplate>
+                                        <%--<asp:Panel ID="pnlGroup" runat="server" BorderColor="Yellow" BorderStyle="Solid"
+                                            BorderWidth="1px">--%>
 
+
+                                           <%-- <table style="width: 100%;">
+                                                <tr>
+                                                    <td>
+                                                        <asp:TextBox ID="txtgSearchteam" runat="server" Visible="false" CssClass=" inputtextbox" TabIndex="4" Width="50px"></asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <asp:LinkButton ID="ibtngSrchteam" Visible="false" runat="server" OnClick="ibtnSrchteam_Click" CssClass="btn btn-success srearchBtn"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+
+                                                    </td>
+                                                    <td>--%>
+                                                        <asp:DropDownList ID="ddlattgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                                        </asp:DropDownList>
+                                                    <%--</td>
+                                                </tr>
+                                            </table>
+                                        </asp:Panel>--%>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvgcatdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
+                                            Width="320px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Width="150px" />
+                                </asp:TemplateField>
 
                             </Columns>
 

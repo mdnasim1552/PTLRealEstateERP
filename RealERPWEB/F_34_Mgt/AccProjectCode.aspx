@@ -205,11 +205,12 @@
                 <div class="modal-dialog modal-lg ">
                     <div class="modal-content col-md-12 col-sm-12 ">
                         <div class="modal-header hedcon">
-                            <h4>Project Information </h4>
+                            <asp:Label ID="lblprjname" CssClass="titel" Font-Bold="true" Font-Size="Large" runat="server">User Permission Project Wise</asp:Label>
+                              
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <asp:Label ID="lblprjname" runat="server" Text="Project Name" ForeColor="DodgerBlue" CssClass="d-block" Font-Size="Large"></asp:Label>
+                            
                             <asp:GridView ID="gvEmployeeInfo" runat="server" AutoGenerateColumns="False"
                                 CssClass="table-condensed tblborder grvContentarea ml-3">
                                 <RowStyle />
@@ -232,12 +233,6 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Designation">
                                         <ItemTemplate>
-<<<<<<< HEAD
-                                        <asp:LinkButton ID="deleteModal" runat="server" CssClass="float-right badge badge-danger isNewprj ml5" OnClick="deleteModal_Click"> <i class="fa fa-trash"></i>  </asp:LinkButton>
-                                            <asp:LinkButton ID="lnkedit" runat="server" CssClass="float-right badge badge-success isNewprj ml5" OnClick="lnkedit_Click">  <i class="fa fa-edit"></i> </asp:LinkButton>
-                                            <asp:HyperLink ID="lnkBtnPrjDetails" runat="server" Target="_blank" CssClass="float-right badge badge-primary text-white isNewprj ml5" OnClick="lnkBtnShow_Click">Click Project Details</asp:HyperLink>
-                                            <asp:LinkButton ID="lnkBtnShow" runat="server" CssClass="float-right badge badge-info isNewprj" OnClick="lnkBtnShow_Click">Set Project Permission</asp:LinkButton>
-=======
                                             <asp:Label ID="lblgvDesig" runat="server" Width="170px" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrdesig")) %>'>                                  
                                             </asp:Label>
@@ -267,7 +262,7 @@
                                             </table>
                                         </HeaderTemplate>
                                         <ItemTemplate>
->>>>>>> 2993aec79a4e5ab92cfa3c1398c6a89c99518188
+ 
 
                                             <asp:CheckBox ID="chkPermission" runat="server" Width="20px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "permission"))=="True" %>' />
                                             <%--  <asp:CheckBox ID="CheckPermission" runat="server" Checked="false" />--%>
@@ -284,7 +279,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <asp:LinkButton ID="btnSaveEmp" runat="server" OnClick="btnSaveEmp_Click" OnClientClick="CloseMOdal();" CssClass="btn btn-primary">Save</asp:LinkButton>
+                            <asp:LinkButton ID="btnSaveEmp" runat="server" OnClick="btnSaveEmp_Click" OnClientClick="CloseMOdal();" CssClass="btn btn-danger">Save</asp:LinkButton>
                             <button class="btn btn-primary" data-dismiss="modal">Close</button>
                         </div>
                     </div>

@@ -6,9 +6,7 @@
         .mt20{
             margin-top:20px;
         }
-        .w100{
-            width:100%!important;
-        }
+      
     </style>
     <script type="text/javascript">
 
@@ -63,7 +61,7 @@
                     <div class="card mt-5">
                         <div class="card-header">
                               <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-1 col-md-3 col-sm-3">
                             <div class="form-group">
 
                                 <asp:Label ID="Label10" runat="server">Date</asp:Label>
@@ -72,7 +70,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-md-3 col-sm-3">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName">Page Size</asp:Label>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="w100 form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
@@ -94,64 +92,7 @@
                             <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
    
                         </div>
-                        <div class="col-lg-1">
-
-                
-                            <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger btn-sm pull-right" Visible="false"></asp:Label>
-                        </div>
-
-
-
-
-
-
-
-
-
-                        <%--<fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label10" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
-                                        <asp:TextBox ID="txtdate" runat="server" CssClass=" inputDateBox"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate">
-                                        </cc1:CalendarExtender>
-
-                                    </div>
-                                    <div class="col-md-3 pading5px asitColc">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
-                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                            <asp:ListItem>10</asp:ListItem>
-                                            <asp:ListItem>15</asp:ListItem>
-                                            <asp:ListItem>20</asp:ListItem>
-                                            <asp:ListItem>30</asp:ListItem>
-                                            <asp:ListItem>50</asp:ListItem>
-                                            <asp:ListItem>100</asp:ListItem>
-                                            <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
-                                            <asp:ListItem>300</asp:ListItem>
-                                        </asp:DropDownList>
-
-                                    </div>
-                                    <div class="col-md-1 Pading5px">
-                                         <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary primaryBtn"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
-
-                                    </div>
-                                    <div class="col-md-2 pading5px">
-                                    <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
-
-                                  </div>
-                                    
-                                    <div class="col-md-4">
-                                        <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn pull-right" Visible="false"></asp:Label>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </fieldset>--%>
+                         
                     </div>
                         </div>
                         <div class="card-body">
