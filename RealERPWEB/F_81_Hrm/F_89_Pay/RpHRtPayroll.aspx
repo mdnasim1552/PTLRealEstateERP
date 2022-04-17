@@ -1102,6 +1102,24 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+
+
+                                         <asp:TemplateField HeaderText="Id Card">
+
+                                          
+
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvidcardno" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
+                                                    Width="50px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Employee Name">
                                             <HeaderTemplate>
                                                 <table style="width: 200px;">
@@ -1131,6 +1149,9 @@
 
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Designation">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdesig" runat="server"
@@ -1217,6 +1238,56 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+
+
+
+                                          <asp:TemplateField HeaderText="Bank Amt.">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvBankAmtbon" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bankamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="65px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFbankAmtbon" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
+                                         <asp:TemplateField HeaderText="Bank Amt(2).">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvBankAmt2bon" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bankamt2")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="65px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFbankAmt2bon" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
+                                          <asp:TemplateField HeaderText="Cash Amt">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvcashAmtbon" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="65px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFcashAmtbon" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="Remarks">
                                             <ItemTemplate>

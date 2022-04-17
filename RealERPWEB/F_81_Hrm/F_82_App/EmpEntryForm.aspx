@@ -57,9 +57,7 @@
 
             catch (e) {
                 alert(e.message);
-
             }
-
         }
         function GetEmployeeform() {
             $('#EmployeeEntry').modal('toggle');

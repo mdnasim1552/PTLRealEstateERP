@@ -1160,159 +1160,168 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void LoadGrid()
         {
-
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)Session["tblpay"];
-            string type = this.Request.QueryString["Type"].ToString().Trim();
-            switch (type)
+            try
             {
-                case "Salary":
-                case "SalResign":
-                    if (comcod == "3365")
-                    {
-                        this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
-                    }
+                string comcod = this.GetCompCode();
+                DataTable dt = (DataTable)Session["tblpay"];
+                string type = this.Request.QueryString["Type"].ToString().Trim();
+                switch (type)
+                {
+                    case "Salary":
+                    case "SalResign":
+                        if (comcod == "3365")
+                        {
+                            this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
+                        }
 
-                    this.gvpayroll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvpayroll.DataSource = dt;
-                    this.gvpayroll.DataBind();
-                    this.gvpayroll.Columns[1].Visible = (this.ddlProjectName.SelectedValue == "000000000000") ? true : false;
-                    ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = (this.lblComSalLock.Text == "True") ? true : false;
-                    //this.gvpayroll.Columns[6].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    //this.gvpayroll.Columns[7].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    //this.gvpayroll.Columns[8].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    //this.gvpayroll.Columns[9].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    //this.gvpayroll.Columns[10].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    //this.gvpayroll.Columns[11].Visible = !(this.rbtSalSheet.SelectedIndex == 0);
-                    //this.gvpayroll.Columns[13].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    // this.gvpayroll.Columns[18].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    // this.gvpayroll.Columns[20].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                    //this.gvpayroll.Columns[21].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-
-
-                    switch (comcod)
-                    {
-                        case "3365":
-                            this.gvpayroll.Columns[10].Visible = false;
-                            this.gvpayroll.Columns[11].Visible = false;
-                            this.gvpayroll.Columns[12].Visible = false;
-                            this.gvpayroll.Columns[13].Visible = false;
-                            this.gvpayroll.Columns[14].Visible = false;
-                            this.gvpayroll.Columns[15].Visible = false;
-                            this.gvpayroll.Columns[16].Visible = false;
-                            this.gvpayroll.Columns[18].Visible = false;
-                            this.gvpayroll.Columns[29].Visible = false;
-                            this.gvpayroll.Columns[40].Visible = false;
-
-                            break;
-                        case "3101":
-                        case "3347":
-                            this.gvpayroll.Columns[12].Visible = false;
-                            this.gvpayroll.Columns[13].Visible = false;
-                            this.gvpayroll.Columns[15].Visible = false;
-                            this.gvpayroll.Columns[16].Visible = true;
-                            this.gvpayroll.Columns[18].Visible = false;
-                            this.gvpayroll.Columns[22].Visible = false;
-                            this.gvpayroll.Columns[23].Visible = false;
-                            this.gvpayroll.Columns[25].Visible = false;
-                            this.gvpayroll.Columns[28].Visible = false;
-                            this.gvpayroll.Columns[30].Visible = false;
-                            this.gvpayroll.Columns[31].Visible = false;
-                            this.gvpayroll.Columns[32].Visible = false;
-
-                            this.gvpayroll.Columns[34].Visible = false;
-                            this.gvpayroll.Columns[37].Visible = false;
-                            this.gvpayroll.Columns[40].Visible = true;
-                            break;
-                        default:
-                            this.gvpayroll.Columns[12].Visible = false;
-                            this.gvpayroll.Columns[13].Visible = false;
-                            this.gvpayroll.Columns[16].Visible = true;
-                            this.gvpayroll.Columns[18].Visible = false;
-                            this.gvpayroll.Columns[22].Visible = false;
-                            this.gvpayroll.Columns[23].Visible = false;
-                            this.gvpayroll.Columns[25].Visible = false;
-                            this.gvpayroll.Columns[28].Visible = false;
-                            this.gvpayroll.Columns[30].Visible = false;
-                            this.gvpayroll.Columns[31].Visible = false;
-                            this.gvpayroll.Columns[32].Visible = false;
-
-                            this.gvpayroll.Columns[34].Visible = false;
-                            this.gvpayroll.Columns[37].Visible = false;
-                            this.gvpayroll.Columns[40].Visible = true;
-                            break;
-                    }
+                        this.gvpayroll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvpayroll.DataSource = dt;
+                        this.gvpayroll.DataBind();
+                        this.gvpayroll.Columns[1].Visible = (this.ddlProjectName.SelectedValue == "000000000000") ? true : false;
+                        ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = (this.lblComSalLock.Text == "True") ? true : false;
+                        //this.gvpayroll.Columns[6].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        //this.gvpayroll.Columns[7].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        //this.gvpayroll.Columns[8].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        //this.gvpayroll.Columns[9].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        //this.gvpayroll.Columns[10].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        //this.gvpayroll.Columns[11].Visible = !(this.rbtSalSheet.SelectedIndex == 0);
+                        //this.gvpayroll.Columns[13].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        // this.gvpayroll.Columns[18].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        // this.gvpayroll.Columns[20].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                        //this.gvpayroll.Columns[21].Visible = (this.rbtSalSheet.SelectedIndex == 0);
 
 
+                        switch (comcod)
+                        {
+                            case "3365":
+                                this.gvpayroll.Columns[10].Visible = false;
+                                this.gvpayroll.Columns[11].Visible = false;
+                                this.gvpayroll.Columns[12].Visible = false;
+                                this.gvpayroll.Columns[13].Visible = false;
+                                this.gvpayroll.Columns[14].Visible = false;
+                                this.gvpayroll.Columns[15].Visible = false;
+                                this.gvpayroll.Columns[16].Visible = false;
+                                this.gvpayroll.Columns[18].Visible = false;
+                                this.gvpayroll.Columns[29].Visible = false;
+                                this.gvpayroll.Columns[40].Visible = false;
+
+                                break;
+                            case "3101":
+                            case "3347":
+                                this.gvpayroll.Columns[12].Visible = false;
+                                this.gvpayroll.Columns[13].Visible = false;
+                                this.gvpayroll.Columns[15].Visible = false;
+                                this.gvpayroll.Columns[16].Visible = true;
+                                this.gvpayroll.Columns[18].Visible = false;
+                                this.gvpayroll.Columns[22].Visible = false;
+                                this.gvpayroll.Columns[23].Visible = false;
+                                this.gvpayroll.Columns[25].Visible = false;
+                                this.gvpayroll.Columns[28].Visible = false;
+                                this.gvpayroll.Columns[30].Visible = false;
+                                this.gvpayroll.Columns[31].Visible = false;
+                                this.gvpayroll.Columns[32].Visible = false;
+
+                                this.gvpayroll.Columns[34].Visible = false;
+                                this.gvpayroll.Columns[37].Visible = false;
+                                this.gvpayroll.Columns[40].Visible = true;
+                                break;
+                            default:
+                                this.gvpayroll.Columns[12].Visible = false;
+                                this.gvpayroll.Columns[13].Visible = false;
+                                this.gvpayroll.Columns[16].Visible = true;
+                                this.gvpayroll.Columns[18].Visible = false;
+                                this.gvpayroll.Columns[22].Visible = false;
+                                this.gvpayroll.Columns[23].Visible = false;
+                                this.gvpayroll.Columns[25].Visible = false;
+                                this.gvpayroll.Columns[28].Visible = false;
+                                this.gvpayroll.Columns[30].Visible = false;
+                                this.gvpayroll.Columns[31].Visible = false;
+                                this.gvpayroll.Columns[32].Visible = false;
+
+                                this.gvpayroll.Columns[34].Visible = false;
+                                this.gvpayroll.Columns[37].Visible = false;
+                                this.gvpayroll.Columns[40].Visible = true;
+                                break;
+                        }
 
 
-                    if (Request.QueryString["Entry"].ToString() == "Payroll")
-                    {
-                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? false : true;
-                        ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Enabled = false;
-                    }
 
 
-                    this.FooterCalculation();
-
-                    //if (mon > 1)
-                    //{
-                    //    this.gvpayroll.FooterRow.FindControl("lnkFiUpdate").Visible = false;
-                    //}
-                    //else
-                    //    this.gvpayroll.FooterRow.FindControl("lnkFiUpdate").Visible = true;
-                    break;
-
-                case "Bonus":
-
-                    this.gvBonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Joining Date";
-                    if (comcod == "3365")//BTI
-                    {
-                        this.gvBonus.Columns[9].HeaderText = "Duration(Year)";
-                    }
-                    else if (comcod == "3354")//Edison
-                    {
-                        this.gvBonus.Columns[9].HeaderText = "Duration(Month)";
-                    }
-                    this.gvBonus.DataSource = dt;
-                    this.gvBonus.DataBind();
-                    ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
+                        if (Request.QueryString["Entry"].ToString() == "Payroll")
+                        {
+                            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? false : true;
+                            ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Enabled = false;
+                        }
 
 
-                    if (Request.QueryString["Entry"].ToString() == "Payroll")
-                    {
-                        ((LinkButton)this.gvBonus.FooterRow.FindControl("lnkUpBonus")).Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
-                        ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Enabled = false;
-                        this.gvBonus.Columns[1].Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
+                        this.FooterCalculation();
 
-                    }
+                        //if (mon > 1)
+                        //{
+                        //    this.gvpayroll.FooterRow.FindControl("lnkFiUpdate").Visible = false;
+                        //}
+                        //else
+                        //    this.gvpayroll.FooterRow.FindControl("lnkFiUpdate").Visible = true;
+                        break;
 
-                    this.FooterCalculation();
-                    break;
+                    case "Bonus":
 
-                case "CashPay":
-                    this.gvcashpay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvcashpay.DataSource = dt;
-                    this.gvcashpay.DataBind();
-                    this.FooterCalculation();
-                    break;
-
-                case "OvertimeSalary":
-                    this.gvOvertime.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvOvertime.DataSource = dt;
-                    this.gvOvertime.DataBind();
-                    this.FooterCalculation();
-                    break;
-
-                case "SpecialBonus":
-                    //this.gvsbonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Duration(Month)";
-                    this.gvsbonus.DataSource = dt;
-                    this.gvsbonus.DataBind();
-                    Session["Report1"] = gvsbonus;
-                    ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        this.gvBonus.Columns[9].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Joining Date";
+                        if (comcod == "3365")//BTI
+                        {
+                            this.gvBonus.Columns[10].HeaderText = "Duration(Year)";
+                        }
+                        else if (comcod == "3354")//Edison
+                        {
+                            this.gvBonus.Columns[10].HeaderText = "Duration(Month)";
+                        }
+                        this.gvBonus.DataSource = dt;
+                        this.gvBonus.DataBind();
+                        ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
 
 
-                    break;
+                        if (Request.QueryString["Entry"].ToString() == "Payroll")
+                        {
+                            ((LinkButton)this.gvBonus.FooterRow.FindControl("lnkUpBonus")).Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
+                            ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Enabled = false;
+                            this.gvBonus.Columns[1].Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
+
+                        }
+
+                        this.FooterCalculation();
+                        break;
+
+                    case "CashPay":
+                        this.gvcashpay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvcashpay.DataSource = dt;
+                        this.gvcashpay.DataBind();
+                        this.FooterCalculation();
+                        break;
+
+                    case "OvertimeSalary":
+                        this.gvOvertime.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvOvertime.DataSource = dt;
+                        this.gvOvertime.DataBind();
+                        this.FooterCalculation();
+                        break;
+
+                    case "SpecialBonus":
+                        //this.gvsbonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Duration(Month)";
+                        this.gvsbonus.DataSource = dt;
+                        this.gvsbonus.DataBind();
+                        Session["Report1"] = gvsbonus;
+                        ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
+                        break;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message+ "');", true);
+                return;
+
 
             }
         }
@@ -1370,6 +1379,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFbSalb")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bsal)", "")) ? 0.00 : dt.Compute("sum(bsal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFgssalb")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gssal)", "")) ? 0.00 : dt.Compute("sum(gssal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFBonusAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmtbon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt)", "")) ? 0.00 : dt.Compute("sum(bankamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmt2bon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt2)", "")) ? 0.00 : dt.Compute("sum(bankamt2)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFcashAmtbon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ? 0.00 : dt.Compute("sum(cashamt)", ""))).ToString("#,##0;(#,##0); ");
+
+
+
+
 
                     Session["Report1"] = gvBonus;
                     ((HyperLink)this.gvBonus.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
@@ -4085,7 +4103,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 case "3354": //Edison Real Estate
-                     i = 0;
+                case "3365": //Edison Real Estate
+                    i = 0;
                     foreach (GridViewRow gv1 in this.gvBonus.Rows)
                     {
 
@@ -4093,7 +4112,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         double bonamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBonusAmt")).Text.Trim());                       
                         rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
                        
+                        
+                        double bankamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmtbon")).Text.Trim());
+                        double bankamt2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmt2bon")).Text.Trim()); ;
+                        double cashamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()); ;
+
                         dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["bankamt"] = bonamt>0?bankamt:0.00;
+                        dt.Rows[rowindex]["bankamt2"] = bonamt>0?bankamt2:0.00;
+                        dt.Rows[rowindex]["cashamt"] = bonamt > 0 ?cashamt:0.00;
                         i++;
                     }
 

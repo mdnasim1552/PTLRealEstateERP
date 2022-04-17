@@ -41,7 +41,7 @@
                           
                               <div class="card">
                                 <div class="card-body">
-                                    <div class="col-6">
+                                    <div class="col-3">
                                         <div class="form-group">
                                             <!-- .input-group -->
                                             <div class="input-group input-group-alt">
