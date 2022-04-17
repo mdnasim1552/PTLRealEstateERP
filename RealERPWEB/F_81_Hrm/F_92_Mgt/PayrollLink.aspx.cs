@@ -57,7 +57,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 return;
 
             string comcod = this.GetCompCode();
-            string mSrchTxt = this.txtUserSearch1.Text.Trim() + "%";
+            string mSrchTxt = this.ddlUserList.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETUSERNAME", mSrchTxt, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -73,7 +73,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
 
             string comcod = this.GetCompCode();
-            string FindProject = this.txtCompSearch.Text.Trim() + "%";
+            string FindProject = this.ddlCompany.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "PERGETCOMPANYNAME", FindProject, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -96,7 +96,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.ddlUserList.Enabled = true;
                 this.ddlCompany.Enabled = true;
 
-                this.txtCompSearch.Text = "";
+                this.ddlCompany.Text = "";
                 this.ddlCompany.Items.Clear();
                 this.gvPayrollLinkInfo.DataSource = null;
                 this.gvPayrollLinkInfo.DataBind();
@@ -189,6 +189,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
             string comcod = this.GetCompCode();
+            string msg = "";
             this.Session_tbltbPreLink_Update();
             DataTable tbl1 = (DataTable)ViewState["tblPayPer"];
             for (int i = 0; i < tbl1.Rows.Count; i++)
@@ -201,13 +202,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "Data Update Failed!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
-            }
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            } 
+
+            msg = "Data Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
 
             if (ConstantInfo.LogStatus == true)
             {
