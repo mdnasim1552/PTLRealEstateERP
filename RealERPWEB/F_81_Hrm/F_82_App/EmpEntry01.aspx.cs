@@ -359,12 +359,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         dv1.RowFilter = ("gcod like '85%'");
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        string gdesc1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                       
+                        string provcode = (comcod == "3365" || comcod == "3101")  ? "85006" : comcod == "3354"? "85099" : "85001";
+
                         ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
                         ddlgval.DataTextField = "gdesc";
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ddlgval.SelectedValue = gdesc1 == "" ? provcode : gdesc1;
+                        ddlval_SelectedIndexChanged(null,null);
                         break;
 
                     case "01009": //Blood Group
@@ -432,17 +437,40 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ddlgval.SelectedValue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
 
+
                     case "01003": // Datetime
-                    case "01007":
-                    case "01008":
-
-
+                        gdesc1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((LinkButton)this.gvPersonalInfo.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
+                        string Joindate = (gdesc1 == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = Joindate;
+                        break;
 
+
+                    case "01008":
+
+                         gdesc1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((LinkButton)this.gvPersonalInfo.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;                       
+                          Joindate = (gdesc1 == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = Joindate; 
+                        break;
+
+                    case "01007":
+                        gdesc1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((LinkButton)this.gvPersonalInfo.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
+                        Joindate = (gdesc1 == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = Joindate; 
                         break;
 
 
@@ -1174,6 +1202,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void ddlval_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string comcod = this.GetComeCode();
 
             string Joindate = "";
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
@@ -1196,9 +1225,21 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         string value = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedItem.Text.Trim();
                         if (value == "None")
                             continue;
+
                         int monyear = (value.Contains("Month")) ? Convert.ToInt32(ASTUtility.Left(value, 2)) : (12 * Convert.ToInt32(ASTUtility.Left(value, 2)));
                         string ConDate = Convert.ToDateTime(ASTUtility.DateFormat(Joindate)).AddMonths(monyear).ToString("dd-MMM-yyyy");
+                        
+                        if(value== "0 Days")
+                        {
+                            ConDate = Joindate;
+
+                        }
+                         
                         ((TextBox)this.gvPersonalInfo.Rows[i + 1].FindControl("txtgvdVal")).Text = ConDate;
+                        
+                        
+ 
+
                         break;
                 }
 

@@ -30,6 +30,7 @@
     font-size: 12px !important;
     height: 30px !important;
     font-weight: initial;
+    vertical-align:middle;
     text-align: center;
 }
 .grvHeaderNew {

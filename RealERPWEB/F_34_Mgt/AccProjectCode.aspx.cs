@@ -112,12 +112,12 @@ namespace RealERPWEB.F_34_Mgt
             //this.ddlProjectList.DataValueField = "actcode";
             //this.ddlProjectList.DataBind();
             ViewState["tblprolist"] = ds1.Tables[0];
+            Data_bind();
+            ////  this.ddlProjectList_SelectedIndexChanged(null, null);
 
-            //  this.ddlProjectList_SelectedIndexChanged(null, null);
-
-            this.gvPrjCode.DataSource = ds1.Tables[0];
-            this.gvPrjCode.DataBind();
-            ds1.Dispose();
+            //this.gvPrjCode.DataSource = ds1.Tables[0];
+            //this.gvPrjCode.DataBind();
+            //ds1.Dispose();
         }
 
         protected void chkNewProject_CheckedChanged(object sender, EventArgs e)
@@ -230,7 +230,7 @@ namespace RealERPWEB.F_34_Mgt
             this.txtProjectName.Text = this.ddlProjectList.SelectedItem.Text.Trim().ToString().Substring(13);
             this.txtShortName.Text = (((DataTable)ViewState["tblprolist"]).Select("actcode='" + procode + "'"))[0]["acttdesc"].ToString();
             string name = txtShortName.Text.ToString();
-            this.lblprjname.Text = txtShortName.Text.ToString();
+            this.lblprjname.Text ="User Permission Project Wise: "+ txtShortName.Text.ToString();
 
 
             DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPRODETAILSCODEIND", procode, "", "", "", "", "", "", "", "");
@@ -265,10 +265,16 @@ namespace RealERPWEB.F_34_Mgt
 
         private void Data_bind()
         {
-            DataTable dt = (DataTable)Session["EmployeeList"];
+             
+
+            DataTable dtp = (DataTable)ViewState["tblprolist"];           
             this.gvPrjCode.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvPrjCode.DataSource = dt;
+            this.gvPrjCode.DataSource = dtp;
             this.gvPrjCode.DataBind();
+
+            DataTable dt = (DataTable)Session["EmployeeList"];          
+            this.gvEmployeeInfo.DataSource = dt;
+            this.gvEmployeeInfo.DataBind();
 
         }
 

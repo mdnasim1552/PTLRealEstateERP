@@ -101,7 +101,7 @@
                                                         Style="text-align: right"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "RowID"))+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Code">
                                                 <ItemTemplate>
@@ -109,7 +109,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
                                                         Width="49px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Description">
                                                 <ItemTemplate>
@@ -123,7 +123,7 @@
 
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="">
 
@@ -132,7 +132,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
                                                         Width="2px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <ItemStyle Font-Bold="True" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Type" Visible="False">
@@ -185,7 +185,7 @@
                                                         Width="150px"></asp:TextBox>
 
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
@@ -208,7 +208,7 @@
                                                         Style="text-align: right"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "RowID"))+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Code">
                                                 <ItemTemplate>
@@ -216,7 +216,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
                                                         Width="49px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Description">
                                                 <ItemTemplate>
@@ -232,7 +232,7 @@
 
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
@@ -240,7 +240,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
                                                         Width="2px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <ItemStyle Font-Bold="True" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Type" Visible="False">
@@ -277,7 +277,7 @@
                                                     </asp:Panel>
                                                 </ItemTemplate>
                                                 <ItemStyle Width="230px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Bangla">
@@ -288,7 +288,7 @@
                                                         Width="140px"></asp:TextBox>
 
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
