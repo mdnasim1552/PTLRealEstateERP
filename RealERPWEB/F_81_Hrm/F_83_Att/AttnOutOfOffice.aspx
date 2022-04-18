@@ -152,6 +152,7 @@
                     <div class="form-group">
                         <label for="txtNote">Reason</label>
                         <asp:DropDownList ID="ddlReson" CssClass="form-control" runat="server">
+                            <asp:ListItem Value="P.A">Project Attendance (P.A)</asp:ListItem>
                             <asp:ListItem Value="F.V">Factory Visit (F.V)</asp:ListItem>
                             <asp:ListItem Value="P.V">Project Visit (P.V)</asp:ListItem>
                             <asp:ListItem Value="C.M">Client Metting (C.M)</asp:ListItem>
