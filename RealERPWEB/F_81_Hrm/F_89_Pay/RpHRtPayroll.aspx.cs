@@ -953,7 +953,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string projectcodelk = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
                 string sectionlk = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
                 string CompanyNamelk = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "BONSALARY", monthid, projectcodelk, sectionlk, CompanyNamelk, "", "", "", "", "");
+
+                string Calltype1 = (comcod == "3347") ? "BONSALARYPEB" : "BONSALARY";
+
+                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcodelk, sectionlk, CompanyNamelk, "", "", "", "", "");
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, "", "", "");
             }

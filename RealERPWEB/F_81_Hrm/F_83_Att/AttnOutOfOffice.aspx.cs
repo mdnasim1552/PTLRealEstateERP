@@ -88,10 +88,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 {
                     this.btnSaveAttn.Text = "punch In";
                 }
-
             }
-
-
         }
 
         private void GetCompany()
@@ -134,7 +131,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void SectionName()
         {
-
             string comcod = this.GetCompCode();
             string projectcode = this.ddlDpt.SelectedValue.ToString();
             string txtSSec = "%%";
@@ -144,7 +140,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlSection.DataSource = ds2.Tables[0];
             this.ddlSection.DataBind();
             this.GetEmpName();
-
         }
 
         private void GetEmpName()
@@ -181,9 +176,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompCode();
-
-
-
         }
         protected void btnSaveAttn_Click(object sender, EventArgs e)
         {
