@@ -1313,7 +1313,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
                 else
                 {
-                    this.LeaveUpdate();
+                    if (roletype=="DPT")
+                    {
+                        this.LeaveUpdate();
+
+                    }
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "UPDATELVAPP", Orderno, ApprovByid, Approvtrmid, ApprovSession, approvdat, Centrid, roletype, isForward, "", "", "", "", "", "", "");
                     if (result == false)
                     {
