@@ -114,18 +114,19 @@
                                     <asp:DropDownList ID="ddlItemName" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-3 col-lg-3">
-                                <div class="form-group">
-                                    <asp:Label ID="lblInsmnt" runat="server" class="control-label  lblmargin-top9px" Text="Installment"></asp:Label>
-                                    <asp:DropDownList ID="ddlInstallment" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
-                                </div>
-                            </div>
                             <div class="col-md-1 col-sm-1 col-lg-1">
                                 <div class="form-group">
                                     <asp:LinkButton ID="lbtnAddWork" runat="server" OnClick="lbtnAddWork_Click" CssClass="btn btn-primary btn-sm  lblmargin-top20px" Style="margin-top: 20px;">Add</asp:LinkButton>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label ID="lblInsmnt" runat="server" class="control-label  lblmargin-top9px" Text="Installment" Visible="false"></asp:Label>
+                                    <asp:DropDownList ID="ddlInstallment" runat="server" CssClass="form-control form-control-sm chzn-select" Visible="false"></asp:DropDownList>
+                                </div>
+                            </div>
                         </div>
                     </asp:Panel>
                 </div>
@@ -349,7 +350,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblInstallment" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="11px" ForeColor="Black"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "schdesc")) %>'
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "delschdesc")) %>'
                                             Width="120px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
