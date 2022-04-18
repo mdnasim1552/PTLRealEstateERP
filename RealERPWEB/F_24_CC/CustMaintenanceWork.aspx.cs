@@ -23,25 +23,24 @@ namespace RealERPWEB.F_24_CC
     {
         ProcessAccess MktData = new ProcessAccess();
         public static bool result;
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
                     Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.GetProjectName();
                 this.GetUnitName();
                 this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
                 this.GetType();
                 this.ibtnType_Click(null, null);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "CLIENT'S MODIFICATION INFORMATION";
-                ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
+           
                 string type = this.Request.QueryString["Type"];
                 if (type == "Check" || type == "Audit" || type == "Approv")
                 {
@@ -70,7 +69,7 @@ namespace RealERPWEB.F_24_CC
         {
 
             string comcod = this.GetCompCode();
-            string txtSProject = this.txtSrcPro.Text + "%";
+            string txtSProject = "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPNAMEMAINTENANCE", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -84,7 +83,7 @@ namespace RealERPWEB.F_24_CC
             Session.Remove("tblunit");
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSUnit = this.txtsrchUnitName.Text + "%";
+            string txtSUnit = "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETUNITNAME", pactcode, txtSUnit, "", "", "", "", "", "", "");
             this.ddlUnitName.DataTextField = "udesc1";
             this.ddlUnitName.DataValueField = "usircode";
@@ -101,7 +100,7 @@ namespace RealERPWEB.F_24_CC
         private void GetInsType()
         {
             string comcod = this.GetCompCode();
-            string txtSProject = this.txtSearchType.Text + "%";
+            string txtSProject = "%";
             string type = this.Request.QueryString["Type"];
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETINSTYPE", txtSProject, type, "", "", "", "", "", "", "");
             this.ddlType.DataTextField = "gdesc";
@@ -123,13 +122,29 @@ namespace RealERPWEB.F_24_CC
             ViewState.Remove("tblwrk");
             string comcod = this.GetCompCode();
             string code = this.ddlType.SelectedValue.ToString().Substring(0, 2);
-            string txtsrchitem = this.txtsrchItem.Text + "%";
+            string txtsrchitem = "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETITEMNAME", code, txtsrchitem, "", "", "", "", "", "", "");
             this.ddlItemName.DataTextField = "gdesc";
             this.ddlItemName.DataValueField = "gcod";
             this.ddlItemName.DataSource = ds1.Tables[0];
             this.ddlItemName.DataBind();
             ViewState["tblwrk"] = ds1.Tables[0];
+            ds1.Dispose();
+        }
+
+        private void GetInstallment ()
+        {
+            string comcod = this.GetCompCode();
+            string projectCode = this.ddlProjectName.SelectedValue.ToString();
+            string custCode = this.ddlUnitName.SelectedValue.ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETINSMNTPRJCUSTWISE", projectCode, custCode, "", "", "", "", "", "", "");
+            if (ds1==null)
+                return;
+
+            this.ddlInstallment.DataTextField = "schdesc";
+            this.ddlInstallment.DataValueField = "schcode";
+            this.ddlInstallment.DataSource = ds1.Tables[0];
+            this.ddlInstallment.DataBind();
             ds1.Dispose();
         }
         private void PreviousAddNumber()
@@ -156,24 +171,26 @@ namespace RealERPWEB.F_24_CC
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
             if (this.lbtnOk.Text == "Ok")
             {
                 this.lbtnOk.Text = "New";
                 this.ddlUnitName_SelectedIndexChanged(null, null);
-                this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
-                this.lblUnitName.Text = this.ddlUnitName.SelectedItem.Text;
-                this.ddlProjectName.Visible = false;
-                this.lblProjectdesc.Visible = true;
-                this.ddlUnitName.Visible = false;
+                this.ddlProjectName.Enabled = false;
+                this.ddlUnitName.Enabled = false;
                 this.lblUnitName.Visible = true;
-                this.lblPrevious.Visible = false;
-                this.txtPreAdNo.Visible = false;
                 this.ibtnPreAdNo.Visible = false;
                 this.ddlPrevADNumber.Visible = false;
                 this.PanelItem.Visible = true;
                 this.ddlType.Enabled = false;
                 this.PnlNarration.Visible = true;
+                if(comcod=="3354" || comcod=="3101")
+                {
+                    this.lblInsmnt.Visible = true;
+                    this.ddlInstallment.Visible = true;
+                }
                 this.GetItemName();
+                this.GetInstallment();
                 this.ShowAdWork();
                 this.ColumnVisible();
                 return;
@@ -182,22 +199,17 @@ namespace RealERPWEB.F_24_CC
 
             this.lbtnOk.Text = "Ok";
             this.ddlProjectName.Visible = true;
-            this.lblProjectdesc.Text = "";
-            this.lblProjectdesc.Visible = false;
             this.ddlUnitName.Visible = true;
-            this.lblUnitName.Text = "";
-            this.lblUnitName.Visible = false;
             this.ddlPrevADNumber.Items.Clear();
-            this.lblPrevious.Visible = true;
-            this.txtPreAdNo.Visible = true;
             this.ibtnPreAdNo.Visible = true;
             this.ddlPrevADNumber.Visible = true;
             this.PanelItem.Visible = false;
             this.gvAddWork.DataSource = null;
             this.gvAddWork.DataBind();
             this.ddlItemName.Items.Clear();
-
             this.ddlType.Enabled = true;
+            this.ddlProjectName.Enabled = true;
+            this.ddlUnitName.Enabled = true;
             this.PnlNarration.Visible = false;
             this.lblSchCode.Text = "";
 
@@ -333,8 +345,8 @@ namespace RealERPWEB.F_24_CC
             this.ddlProjectName.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
             this.ddlProjectName_SelectedIndexChanged(null, null);
             this.ddlUnitName.SelectedValue = ds1.Tables[1].Rows[0]["usircode"].ToString();
-            this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
-            this.lblUnitName.Text = this.ddlUnitName.SelectedItem.Text;
+            this.ddlProjectName.Enabled = false;
+            this.ddlUnitName.Enabled = false;
             this.lblSchCode.Text = ds1.Tables[0].Rows[0]["shcod"].ToString();
             this.ddlType.SelectedValue = ds1.Tables[0].Rows[0]["gcod"].ToString().Substring(0, 2) + "0000000";
             this.Data_DataBind();
@@ -344,9 +356,13 @@ namespace RealERPWEB.F_24_CC
         }
         private void Data_DataBind()
         {
-
+            string comcod = this.GetCompCode();
             this.gvAddWork.DataSource = (DataTable)Session["tbladwork"];
             this.gvAddWork.DataBind();
+            if(comcod=="3354" || comcod=="3101")//Edison Real Estate
+            {
+                this.gvAddWork.Columns[18].Visible = true;
+            }    
             this.FooterCalculation((DataTable)Session["tbladwork"]);
 
         }
@@ -604,6 +620,8 @@ namespace RealERPWEB.F_24_CC
             dr1["ndemand"] = 0.00;
             dr1["location"] = "";
             //   dr1["seq"] = "0";
+            dr1["schcode"] = this.ddlInstallment.SelectedValue.ToString();
+            dr1["schdesc"] = this.ddlInstallment.SelectedItem.Text.Trim();
 
 
             dt.Rows.Add(dr1);
@@ -642,29 +660,6 @@ namespace RealERPWEB.F_24_CC
                 clamt = qty * (clrate + cllrate);
                 amt = amt != 0 ? amt : ((this.ddlType.SelectedValue.ToString().Substring(0, 2) == "12" || this.ddlType.SelectedValue.ToString().Substring(0, 2) == "15" || this.ddlType.SelectedValue.ToString().Substring(0, 2) == "17") ? (comamt - clamt) * -1 : clamt - comamt);
 
-
-                //amt = (this.ddlType.SelectedValue.ToString().Substring(0, 2) == "12" || this.ddlType.SelectedValue.ToString().Substring(0, 2) == "15" || this.ddlType.SelectedValue.ToString().Substring(0, 2) == "17") ? amt * -1 : amt;
-
-                //if (rate != 0)
-                //    amt = qty * rate;
-                //else if (amt > 0)
-                //{
-                //    rate = qty > 0 ? Convert.ToDouble(amt / qty) : 0;
-
-                //}
-
-
-                //if (rate != 0)
-                //    amt = qty * rate;
-                //else if (amt > 0)
-                //{
-                //    rate = qty > 0 ? Convert.ToDouble(amt / qty) : 0;
-
-                //}
-
-
-
-                //}
 
                 dt1.Rows[TblRowIndex]["wrkdesc"] = wrkdesc;
                 dt1.Rows[TblRowIndex]["qty"] = qty;
@@ -743,15 +738,6 @@ namespace RealERPWEB.F_24_CC
             else
             {
 
-                //  //if net amount is negative then  refundable
-                //DataTable dt = (DataTable)Session["tbladwork"];
-                //double amt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 :
-                //  dt.Compute("sum(amt)", "")));
-                //double disamt=Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 :
-                //  dt.Compute("sum(amt)", "")));
-                //double netamt = amt - disamt;
-
-                //SchCode = (SchCode == "819880" && netamt < 0) ? "819890" : SchCode;
                 string comcod = this.GetCompCode();
                 string PactCode = this.ddlProjectName.SelectedValue.ToString();
                 string Usircode = this.ddlUnitName.Text.Trim();
@@ -1112,9 +1098,8 @@ namespace RealERPWEB.F_24_CC
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             string Gcode = "";
@@ -1181,14 +1166,14 @@ namespace RealERPWEB.F_24_CC
 
                 if (!ressult2)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed in Payment Information ";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "Updated Failed in Payment Information ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = "Sales Increase Info Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             }
 
             string approval = FinalApproval();
@@ -1211,8 +1196,8 @@ namespace RealERPWEB.F_24_CC
                         result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INORUPSALGINF1CUMOD", PactCode, Usircode, gcode, SchCode1, "", "", "", "", "", "", "", "", "", "", "");
                         if (!result)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed in Revenue Information ";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            msg = "Updated Failed in Revenue Information ";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                             return;
                         }
                     }
@@ -1221,56 +1206,18 @@ namespace RealERPWEB.F_24_CC
 
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed in Payment Information ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        msg = "Updated Failed in Payment Information ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                         return;
                     }
 
-
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
+                    msg = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
                 }
 
-
-
-
             }
-
-            //if (Gcode != "")
-            //{
-            //    SchCode1 = Gcode.Substring(0, 2);
-            //    string gcode = (SchCode1 == "11") ? "02090" : (SchCode1 == "12") ? "02091" : (SchCode1 == "13") ? "02092" : (SchCode1 == "14") ? "02003" : (SchCode1 == "15") ? "02094" : (SchCode1 == "16") ? "02095"
-            //        : (SchCode1 == "17") ? "02096"
-            //        : (SchCode1 == "32") ? "02098"
-            //        : (SchCode1 == "33") ? "02085" : "02097";
-            //    //if net amount is negative then  refundable 
-            //    //  gcode = (gcode == "02090" && schamt < 0) ? "02091" : gcode;
-            //    result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INORUPSALGINF1CUMOD", PactCode, Usircode, gcode, SchCode1, "", "", "", "", "", "", "", "", "", "", "");
-            //    if (!result)
-            //    {
-            //        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed in Revenue Information ";
-            //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //        return;
-            //    }
-            //}
-
-
-
-
-            //result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, paysch, curdate, schamt.ToString(), "", "", "", "", "", "", "", "", "", "");
-
-            //if (!result)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed in Payment Information ";
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
-
-
-            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+          
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -1292,11 +1239,6 @@ namespace RealERPWEB.F_24_CC
             int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tbladwork"];
-            //string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
-            //string addno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
-            //string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            //string Usircode = this.ddlUnitName.Text.Trim();
-            //string gcod = ((Label)this.gvAddWork.Rows[rownum].FindControl("lblgvGcodAdd")).Text.Trim();
             string id = ((Label)this.gvAddWork.Rows[rownum].FindControl("lblgbID")).Text.Trim();
 
 
