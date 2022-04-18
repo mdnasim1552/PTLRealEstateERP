@@ -1770,6 +1770,11 @@ namespace RealERPWEB.F_17_Acc
             //string EditByid = (this.Request.QueryString["Mod"] == "Accounts") ? "" : (tblEditByid == "") ? userid : tblEditByid;
 
 
+
+            //string date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+            //string cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+
+
             string voudat = ASTUtility.DateFormat(this.txtEntryDate.Text);
             DateTime Bdate;
             bool dcon;
@@ -1866,6 +1871,14 @@ namespace RealERPWEB.F_17_Acc
                 {
                     string cvounum = this.ddlPrivousVou.SelectedValue.ToString();
 
+                    //string tt = this.txtEntryDate.Text.ToString();
+                    int voudat1 = Convert.ToInt32(Convert.ToDateTime(this.txtEntryDate.Text.Trim()).ToString("yyyyMMdd"));
+                    int frmdate1 = Convert.ToInt32(cvounum.Substring(2, 4) + cvounum.Substring(6, 2)+"01");
+                    int mon1 = Convert.ToInt32(cvounum.Substring(6, 2));
+                    int lstdate1 = Convert.ToInt32(cvounum.Substring(2, 4) + cvounum.Substring(6, 2) + ASTUtility.MonthLastDay(mon1));
+
+
+                    /*
                     DateTime frmdate, todate, tvoudat;
                     //frmdate = Convert.ToDateTime(cvounum.Substring(6, 2) + "/01/" + cvounum.Substring(2, 4));
 
@@ -1877,10 +1890,13 @@ namespace RealERPWEB.F_17_Acc
                     tvoudat = Convert.ToDateTime(voudat);
 
 
-
                     //tvoudat = Convert.ToDateTime(voudat);
 
                     if (tvoudat >= frmdate && tvoudat <= todate)
+                        ;
+                    */
+
+                    if (voudat1 >= frmdate1 && voudat1 <= lstdate1)
                         ;
                     else
                     {

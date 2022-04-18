@@ -330,10 +330,10 @@
                                             <abbr title="Required">*</abbr>
                                         </label>
                                         <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">
-                                            <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
+                                            <asp:ListItem Value="LP">Late Present Approval Request (10:00 to 5:30)</asp:ListItem>
+                                            <asp:ListItem Value="TC">Time Correction Approval Request (Project Visit, Customer visit, etc )</asp:ListItem>
+                                            <asp:ListItem Value="AB">Absent Approval Request (IF Finger missed but present)</asp:ListItem>
+                                            <asp:ListItem Value="LA">Late Approval Request (9:04:59 to 9:59:59)</asp:ListItem>
 
                                         </asp:DropDownList>
 

@@ -933,9 +933,7 @@
                         </div>
 
                           <div class="col-md-1">
-                            <div class="form-group">
-
-      
+                            <div class="form-group">     
 
                                 <asp:HyperLink ID="hlnkMktInterface" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/MKTProInterface?Type=Report" Visible="false" CssClass=" btn btn-warning">Mar. Interface</asp:HyperLink>
                             </div>
