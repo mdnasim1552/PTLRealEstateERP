@@ -44,13 +44,13 @@ namespace RealERPLIB
             //SourceString = SourceString.Replace(")", "");
             //SourceString = SourceString.Replace("_", "");
             return SourceString;
-            
+
         }
 
         public static string Left(string host, int index)
         {
             return host.Substring(0, index);
-            
+
         }
 
         public static string Right(string host, int index)
@@ -60,11 +60,11 @@ namespace RealERPLIB
 
         public static string Replicate(string number, int repnumber)
         {
-            for (int i = 2; i <=repnumber; i++)
+            for (int i = 2; i <= repnumber; i++)
             {
                 number += number;
-            
-            
+
+
             }
 
 
@@ -83,11 +83,11 @@ namespace RealERPLIB
             return mExpr1;
         }
 
-        public static double StrNagative (string  Stname)
+        public static double StrNagative(string Stname)
         {
             double rval = Convert.ToDouble(Stname.ToString().Replace("-", "").Trim());
             double valsign = (Stname.Trim().Substring(0, 1) == "-" ? -1.00 : 1.00);
-            return (rval*valsign);
+            return (rval * valsign);
         }
 
 
@@ -100,10 +100,10 @@ namespace RealERPLIB
             double valsign = (Stname.Trim().Substring(0, 1) == "-" ? -1.00 : 1.00);
             return (rval * valsign);
         }
-        
-        
 
-        
+
+
+
         public static string Trans(double XX1, int Index)
         {
             Index = (Index == 0 ? 1 : Index);
@@ -151,7 +151,7 @@ namespace RealERPLIB
             Y1[5] = "Trillion ";
             Z1[1] = "Minnus ";
             Z1[2] = "Zero ";
-            long  N_1 = System.Convert.ToInt64(Math.Floor(XX1));
+            long N_1 = System.Convert.ToInt64(Math.Floor(XX1));
             string N_2 = XX1.ToString();
             while (!(N_2.Length == 0))
             {
@@ -223,7 +223,7 @@ namespace RealERPLIB
                     M[6] = ((Convert.ToInt32(N_2) > 0) ? "Point " : "");
                     P = M[6] + M[1] + M[2] + M[3] + M[4] + M[5];
                     //Q_ = O + P;
-                    Q_= "( Taka " + O + P + "Only )";
+                    Q_ = "( Taka " + O + P + "Only )";
                     break;
                 case 2:
                     M[1] = ((Convert.ToInt32(N_2) >= 1) ? X1[Int32.Parse(N_2)] : "");
@@ -276,26 +276,26 @@ namespace RealERPLIB
         }
 
         //-------------------------------------------------------------------------------------------------------       
-       
-        public static string Concat(string compname, string username, string printdate, string Session="" )
+
+        public static string Concat(string compname, string username, string printdate, string Session = "")
         {
             string concat = "";
             concat = concat + "Print Source:" + compname + ", " + username + ", " + Session + ", " + printdate;
             return concat;
-       }
+        }
 
-        public static string Concat1 ( string postrmid, string postuser, string postseson, string posteddat, string compname, string username, string printdate, string Session = "" )
+        public static string Concat1(string postrmid, string postuser, string postseson, string posteddat, string compname, string username, string printdate, string Session = "")
         {
             string concat = "";
             concat = concat + "Input Source:" + postrmid + ", " + postuser + ", " + postseson + ", " + posteddat + "/" + "Print Source:" + compname + ", " + username + ", " + Session + ", " + printdate;
             return concat;
         }
 
-        public static string Cominformation() 
+        public static string Cominformation()
         {
 
             return "Developed By: Pinovation Tech Ltd. , Phone:09611677682, 09611677683";
-        
+
         }
 
         public static string ComInfoWithoutNumber()
@@ -309,8 +309,8 @@ namespace RealERPLIB
         {
             if (ds.Tables.Count == 7)
             {
-                frmname = frmname.Substring(frmname.LastIndexOf('/') + 1).Replace(".aspx", "") ;
-               
+                frmname = frmname.Substring(frmname.LastIndexOf('/') + 1).Replace(".aspx", "");
+
                 DataTable dt = ds.Tables[1];
                 DataRow[] dr1 = dt.Select("(frmname+qrytype1)='" + frmname + "'");
                 return (dr1.Length > 0);
@@ -322,7 +322,7 @@ namespace RealERPLIB
                 DataRow[] dr1 = dt.Select("(frmname+qrytype)='" + frmname + "'");
                 return (dr1.Length > 0);
             }
-           
+
         }
         public static DataRow[] PagePermission1(string frmname, DataSet ds)
         {
@@ -340,10 +340,10 @@ namespace RealERPLIB
                 DataRow[] dr1 = dt.Select("(frmname+qrytype)='" + frmname + "'");
                 return dr1;
             }
-           
+
         }
 
-             
+
 
 
         public static string ToRoman(int N)
@@ -401,42 +401,42 @@ namespace RealERPLIB
                 I = I + 2;
             }
             return Temp1 + Temp;
-      
-        
+
+
         }
 
-       
-            //Code Data export from  Gridview to exel
-            //Response.Clear();
-            //Response.Buffer = true;
-            //Response.AddHeader("content-disposition","attachment;filename=DataTable.xls");
-            //Response.Charset = "";
-            //Response.ContentType = "application/vnd.ms-excel";
 
-            //StringWriter sw = new StringWriter();
-            //HtmlTextWriter hw = new HtmlTextWriter(sw);
-            
-            //for (int i = 0; i < GridView1.Rows.Count; i++)
-            //{
-            //    //Apply text style to each Row
-            //    GridView1.Rows[i].Attributes.Add("class", "textmode");
-               
-            //}
-            //GridView1.RenderControl(hw);
-            
-            ////style to format numbers to string
+        //Code Data export from  Gridview to exel
+        //Response.Clear();
+        //Response.Buffer = true;
+        //Response.AddHeader("content-disposition","attachment;filename=DataTable.xls");
+        //Response.Charset = "";
+        //Response.ContentType = "application/vnd.ms-excel";
 
-            //string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-            //Response.Write(style);
-           
-            //Response.Output.Write(sw.ToString());
-            //Response.Flush();            
-            //Response.End();          
-      
+        //StringWriter sw = new StringWriter();
+        //HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+        //for (int i = 0; i < GridView1.Rows.Count; i++)
+        //{
+        //    //Apply text style to each Row
+        //    GridView1.Rows[i].Attributes.Add("class", "textmode");
+
+        //}
+        //GridView1.RenderControl(hw);
+
+        ////style to format numbers to string
+
+        //string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+        //Response.Write(style);
+
+        //Response.Output.Write(sw.ToString());
+        //Response.Flush();            
+        //Response.End();          
+
 
         public static string EncodePassword(string originalPassword)
         {
-            
+
             Byte[] originalBytes;
             Byte[] encodedBytes;
             MD5 md5;
@@ -467,50 +467,50 @@ namespace RealERPLIB
 
 
         public static int DatediffTotalDays(DateTime dtto, DateTime dtfrm)
-        {          
+        {
             int tcount;
             tcount = (int)(((dtto - dtfrm).TotalDays) + 1);
 
             return tcount;
         }
 
-        public static int Datediff(DateTime dtto, DateTime dtfrm) 
+        public static int Datediff(DateTime dtto, DateTime dtfrm)
         {
-            
+
             int year, mon, day;
             year = dtto.Year - dtfrm.Year;
             mon = dtto.Month - dtfrm.Month;
             day = dtto.Day - dtfrm.Day;
-             if (day < 0) 
-             {
-	
-		         day =day+30; 
-		         mon = mon-1 ;
-                 if (mon < 0)
-                 {
-                     mon = mon + 12;
-                     year = year - 1;
-                 }
+            if (day < 0)
+            {
+
+                day = day + 30;
+                mon = mon - 1;
+                if (mon < 0)
+                {
+                    mon = mon + 12;
+                    year = year - 1;
+                }
             }
-	 
+
             if (mon < 0)
-            { 
-	 
-		        mon =mon+12;
-                year = year- 1;
+            {
+
+                mon = mon + 12;
+                year = year - 1;
             }
 
             mon = year * 12 + mon;
-           
-                return mon;
+
+            return mon;
 
 
 
-               
 
 
 
-                       
+
+
         }
 
         public static int Datediffday(DateTime dtto, DateTime dtfrm)
@@ -546,23 +546,23 @@ namespace RealERPLIB
         public static string DateInVal(string date)
         {
             //string dateval = "";
-          
+
             if (date.Length == 6)
                 return (date.Substring(0, 2) + "." + date.Substring(2, 2) + "." + "20" + Right(date, 2));
             else if (date.Contains("."))
-                 return (date);
+                return (date);
             else if (date.Length == 0)
                 return "";
-            else   
-             return (date.Substring(0, 2) + "." + date.Substring(2, 2) + "." +Right(date, 4));
-            
-            
-           
+            else
+                return (date.Substring(0, 2) + "." + date.Substring(2, 2) + "." + Right(date, 4));
+
+
+
         }
-        public static string DateFormat(string date) 
-        
+        public static string DateFormat(string date)
+
         {
-            
+
             int index1 = date.IndexOf(".");
             return ((!date.Contains(".")) ? date : (date.Substring(index1 + 1, 2).Replace(".", "") + "." + date.Substring(0, index1) + "." + Right(date, 4)));
         }
@@ -573,18 +573,22 @@ namespace RealERPLIB
             digit = digit - 1;
             string[] Mon = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
-           
+
             return Mon[digit];
         }
 
-        public static int RandNumber(int min, int max) 
+        public static int RandNumber(int min, int max)
         {
             Random rnumber = new Random();
             return (rnumber.Next(min, max));
-        
         }
 
-
+        public static string MonthLastDay(int mon)
+        {
+            mon = mon - 1;
+            string[] days = { "31", "28", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31" };
+            return days[mon];
+        }
     }
 
-    }
+}
