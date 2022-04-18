@@ -214,9 +214,13 @@
 
                                     <asp:TemplateField HeaderText="Cheque Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvchequedat" runat="server"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "chequedat")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "chequedat")).ToString("dd-MMM-yyyy")%>'
+                                            <asp:Label ID="lblgvchequedat" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequedat")) %>'
                                                 Width="80px"></asp:Label>
+
+<%--                                            <asp:Label ID="lblgvchequedat" runat="server"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "chequedat")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "chequedat")).ToString("dd-MMM-yyyy")%>'
+                                                Width="80px"></asp:Label>--%>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
