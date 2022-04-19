@@ -234,6 +234,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string applyReq = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "applyReq")).ToString().Trim();
                 string ahleave = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "leav")).ToString().Trim();
                 string lateapp = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "lateapp")).ToString().Trim();
+                string iscancel = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "iscancel")).ToString().Trim();
 
                 DateTime offimein = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "stdtimein"));
                 DateTime offouttim = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "stdtimeout"));
@@ -247,17 +248,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     case "3365":
                     case "3101":
-                        if (ahleave == "A")
+                        if (ahleave == "A" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
-                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
+                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;color:red";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq==""? true:false;
-                            ((LinkButton)e.Item.FindControl("lnkRequested")).Visible = applyReq==""? false : true;
-                             
+                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+
+
 
                         }
-                        else if (ahleave == "H" || ahleave == "Lv")
+                        else if (ahleave == "H" || ahleave == "Lv" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
@@ -265,34 +267,31 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                         }
 
-                        else if ((offimein < actualin) && lateapp == "False")
+                        else if ((offimein < actualin) && lateapp == "False" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
-                            ((LinkButton)e.Item.FindControl("lnkRequested")).Visible = applyReq == "" ? false : true;
+                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+
+                            
+
+
+                        }
+                        else if (iscancel == "True")
+                        {
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Text = "Re Apply Request";
+
 
                         }
                         else
                         {
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
-                            ((LinkButton)e.Item.FindControl("lnkRequested")).Visible = false;
-
                             
-
                         }
-
-
-
-                        if (lateapp == "True")
-                        {
-                            ((LinkButton)e.Item.FindControl("lnkApproved")).Visible = true;                   
-                            ((LinkButton)e.Item.FindControl("lnkApproved")).Enabled=false;
-                        }
-
-
-
+                         
                         break;
                     default:
                         if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
@@ -343,7 +342,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label issuedate = (Label)Rptitem.FindControl("lblacintime");
             Label actualin = (Label)Rptitem.FindControl("lblactualin");
             Label lblstatus = (Label)Rptitem.FindControl("lblstatus");
-
+            Label lblisremarks = (Label)Rptitem.FindControl("lblisremarks");
+            Label lblRequid = (Label)Rptitem.FindControl("lblRequid");
+            
             string attstatus = lblstatus.Text.Trim();
             ddlReqType.SelectedValue = (attstatus == "A" ? "AB" : "LP");
             ddlReqType.Enabled = (attstatus == "A" ? false : true);
@@ -382,7 +383,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lbldadte.Text = issuedate.Text;
             this.lbldadteTime.Text = actualin.Text;
             this.lbldadteOuttime.Text = lblIntime.Text;
-            
+            this.txtAreaReson.Text = lblisremarks.Text;
+            this.ReqID.Value = lblRequid.Text;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
         }
 
@@ -411,17 +413,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string reqtimeIN = this.lbldadteIntime.Text.Trim();
             string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
             string txtReson = txtAreaReson.Text.Trim();
+            string reqid = this.ReqID.Value;
             if(txtReson=="")
             {
+                this.txtAreaReson.Focus();
+                this.txtAreaReson.CssClass = "form-control is-invalid";
                 string errMsg = "Please Fill the Remarks";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
                 return;
             }
-            if (reqtype == "AB")
-            {
+           // if (reqtype == "AB")
+          ///  {
                 string[] tbcodeValue = txtReson.ToUpper().Split(' ');
-                string[] validCodes = new string[] { "LEAVE", "SICK", "STAR", "CASUAL", "SICK", "ALTERNATE","ADJUSTMENT", "SICKLEAVE", "SL","CL" };
+                string[] validCodes = new string[] { "SICKNESS","LEAVE", "SICK", "STAR", "CASUAL", "SICK", "ALTERNATE","ADJUSTMENT", "SICKLEAVE", "SL","CL" };
 
                 foreach (string aitem in validCodes)
                 {
@@ -435,11 +440,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     }
 
                 }
-            }     
+            //}     
             string usetime = "0:00";
             string postDat = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             string qtype = this.Request.QueryString["Type"] ?? "";
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeIN, reqtimeOUT, txtReson, usetime, usrid, postDat, "");
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeIN, reqtimeOUT, txtReson, usetime, usrid, postDat, reqid);
 
             if (!result)
             {
@@ -646,5 +651,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             getMyAttData();
         }
+
+        
     }
 }

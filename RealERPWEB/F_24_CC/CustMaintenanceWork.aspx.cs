@@ -141,8 +141,8 @@ namespace RealERPWEB.F_24_CC
             if (ds1==null)
                 return;
 
-            this.ddlInstallment.DataTextField = "schdesc";
-            this.ddlInstallment.DataValueField = "schcode";
+            this.ddlInstallment.DataTextField = "delschdesc";
+            this.ddlInstallment.DataValueField = "delschcode";
             this.ddlInstallment.DataSource = ds1.Tables[0];
             this.ddlInstallment.DataBind();
             ds1.Dispose();
@@ -349,6 +349,7 @@ namespace RealERPWEB.F_24_CC
             this.ddlUnitName.Enabled = false;
             this.lblSchCode.Text = ds1.Tables[0].Rows[0]["shcod"].ToString();
             this.ddlType.SelectedValue = ds1.Tables[0].Rows[0]["gcod"].ToString().Substring(0, 2) + "0000000";
+            this.ddlInstallment.SelectedValue = ds1.Tables[0].Rows[0]["delschcode"].ToString();
             this.Data_DataBind();
 
 
@@ -620,8 +621,8 @@ namespace RealERPWEB.F_24_CC
             dr1["ndemand"] = 0.00;
             dr1["location"] = "";
             //   dr1["seq"] = "0";
-            dr1["schcode"] = this.ddlInstallment.SelectedValue.ToString();
-            dr1["schdesc"] = this.ddlInstallment.SelectedItem.Text.Trim();
+            dr1["delschcode"] = this.ddlInstallment.Items.Count==0 ? "" : this.ddlInstallment.SelectedValue.ToString();
+            dr1["delschdesc"] = this.ddlInstallment.Items.Count==0 ? "" : this.ddlInstallment.SelectedItem.Text.Trim();
 
 
             dt.Rows.Add(dr1);
@@ -1108,6 +1109,9 @@ namespace RealERPWEB.F_24_CC
             string Usircode = this.ddlUnitName.Text.Trim();
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
 
+           
+
+
             string paysch = "";
             if (comcod == "3315" || comcod == "3316" || comcod == "3317" || comcod == "3364")
             {
@@ -1124,6 +1128,7 @@ namespace RealERPWEB.F_24_CC
             this.SaveValue();
             DataTable dt = (DataTable)Session["tbladwork"];
             double schamt = 0;
+            string PaydelSchCode = dt.Rows[0]["delschcode"].ToString();
             //bool result;
             string SchCode1 = "";
             if (this.ddlPrevADNumber.Items.Count == 0)
@@ -1160,9 +1165,10 @@ namespace RealERPWEB.F_24_CC
                 string comlrate = Convert.ToDouble(dt.Rows[i]["comlrate"].ToString()).ToString();
                 string clrate = Convert.ToDouble(dt.Rows[i]["clrate"].ToString()).ToString();
                 string cllrate = Convert.ToDouble(dt.Rows[i]["cllrate"].ToString()).ToString();
+                string delSchCode = dt.Rows[i]["delschcode"].ToString();
 
                 //if (amt > 0)
-                bool ressult2 = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEADWORK", addno, PactCode, Usircode, Gcode, curdate, qty, amt.ToString(), paysch, comamt, wrkdesc, narration, disamt.ToString(), comqty, clamt, location, crate, comlrate, clrate, cllrate, Approval, seq);
+                bool ressult2 = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEADWORK", addno, PactCode, Usircode, Gcode, curdate, qty, amt.ToString(), paysch, comamt, wrkdesc, narration, disamt.ToString(), comqty, clamt, location, crate, comlrate, clrate, cllrate, Approval, seq, delSchCode);
 
                 if (!ressult2)
                 {
@@ -1202,7 +1208,7 @@ namespace RealERPWEB.F_24_CC
                         }
                     }
 
-                    result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, paysch, curdate, schamt.ToString(), "", "", "", "", "", "", "", "", "", "");
+                    result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, paysch, curdate, schamt.ToString(), "", "", "", "", "", PaydelSchCode, "", "", "");
 
                     if (!result)
                     {

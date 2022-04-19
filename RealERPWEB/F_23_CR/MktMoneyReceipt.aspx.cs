@@ -1008,10 +1008,7 @@ namespace RealERPWEB.F_23_CR
                     SchCode = this.GetSchCode(instype);
                     string RecType = dt1.Rows[i]["recType"].ToString();
 
-
                     // Utility Charge  (Problem)
-
-
                     switch (comcod)
                     {
                         case "3305": // Housing
@@ -1197,7 +1194,6 @@ namespace RealERPWEB.F_23_CR
                 //        //bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smscontent.Replace("YYYYY", mrno), mailstatus,
                 //        //        mailcontent, mailattch, Phone, "");
                 //    }
-
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
                // string usercode = ViewState["usricode"].ToString();
