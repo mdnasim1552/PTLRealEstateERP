@@ -2166,7 +2166,7 @@
 
                     </div>
                     <div class="row table-responsive">
-                        <asp:GridView ID="gvRecPayCustomized" runat="server" AutoGenerateColumns="False" ShowFooter="True"
+                        <asp:GridView ID="gvRecPayCustomized" runat="server" AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvRecPayCustomized_RowDataBound"
                             Width="973px" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
