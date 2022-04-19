@@ -1207,6 +1207,53 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.gvpayroll.Columns[18].Visible = false;
                                 this.gvpayroll.Columns[29].Visible = false;
                                 this.gvpayroll.Columns[40].Visible = false;
+                                string deptname = this.ddlBranch.SelectedItem.Text.ToString();
+                                if (deptname == "Head Office")
+                                {
+                                    this.gvpayroll.Columns[41].Visible = true;
+                                    this.gvpayroll.Columns[42].Visible = false;
+                                    this.gvpayroll.Columns[43].Visible = true;
+                                    this.gvpayroll.Columns[44].Visible = false;
+                                    this.gvpayroll.Columns[45].Visible = false;
+                                    this.gvpayroll.Columns[46].Visible = false;
+                                }
+                                else if (deptname == "Dhaka Project")
+                                {
+                                    this.gvpayroll.Columns[41].Visible = true;
+                                    this.gvpayroll.Columns[42].Visible = true;
+                                    this.gvpayroll.Columns[43].Visible = true;
+                                    this.gvpayroll.Columns[44].Visible = false;
+                                    this.gvpayroll.Columns[45].Visible = false;
+                                    this.gvpayroll.Columns[46].Visible = false;
+                                }
+                                else if (deptname == "Ctg Office")
+                                {
+                                    this.gvpayroll.Columns[41].Visible = true;
+                                    this.gvpayroll.Columns[42].Visible = false;
+                                    this.gvpayroll.Columns[43].Visible = true;
+                                    this.gvpayroll.Columns[44].Visible = false;
+                                    this.gvpayroll.Columns[45].Visible = false;
+                                    this.gvpayroll.Columns[46].Visible = false;
+                                }
+                                else if (deptname == "SICOL")
+                                {
+                                    this.gvpayroll.Columns[41].Visible = false;
+                                    this.gvpayroll.Columns[42].Visible = true;
+                                    this.gvpayroll.Columns[43].Visible = false;
+                                    this.gvpayroll.Columns[44].Visible = false;
+                                    this.gvpayroll.Columns[45].Visible = false;
+                                    this.gvpayroll.Columns[46].Visible = false;
+                                }
+                                else if (deptname == "CP")
+                                {
+                                    this.gvpayroll.Columns[41].Visible = false;
+                                    this.gvpayroll.Columns[42].Visible = false;
+                                    this.gvpayroll.Columns[43].Visible = false;
+                                    this.gvpayroll.Columns[44].Visible = false;
+                                    this.gvpayroll.Columns[45].Visible = false;
+                                    this.gvpayroll.Columns[46].Visible = true;
+                                }
+                     
 
                                 break;
                             case "3101":
@@ -1244,6 +1291,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.gvpayroll.Columns[34].Visible = false;
                                 this.gvpayroll.Columns[37].Visible = false;
                                 this.gvpayroll.Columns[40].Visible = true;
+
+                                this.gvpayroll.Columns[41].Visible = false;
+                                this.gvpayroll.Columns[42].Visible = false;
+                                this.gvpayroll.Columns[43].Visible = false;
+                                this.gvpayroll.Columns[44].Visible = false;
+                                this.gvpayroll.Columns[45].Visible = false;
+                                this.gvpayroll.Columns[46].Visible = false;
                                 break;
                         }
 
@@ -3040,9 +3094,34 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string companyname = this.ddlCompany.SelectedItem.Text.Trim();
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
             string deptname = this.ddlBranch.SelectedItem.Text.ToString();
-            LocalReport Rpt1 = new LocalReport();
+
+
+                    LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
+            if(deptname=="Head Office")
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryHOBTI", list, null, null);
+            }
+            else if(deptname=="Dhaka Project")
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryDPBTI", list, null, null);
+            }
+            else if(deptname=="Ctg Office")
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryCTGBTI", list, null, null);
+            }
+            else if(deptname == "SICOL") {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalarySicolBTI", list, null, null);
+            }
+            else if(deptname == "CP")
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryCPBTI", list, null, null);
+            }
+            else
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
+            }
+          
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", companyname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
