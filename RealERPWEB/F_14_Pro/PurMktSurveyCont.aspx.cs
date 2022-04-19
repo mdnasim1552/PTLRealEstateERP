@@ -562,7 +562,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
                 case "1205":
-                case "3101":
+                //case "3101":
                     this.printP2P_cs_approval();
                     break;
                 default:

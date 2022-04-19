@@ -92,10 +92,12 @@ namespace RealEntity.C_17_Acc
             public string recpcode { get; set; }
             public string recpdesc { get; set; }
             public double recpam { get; set; }
+            public double trecpam { get; set; }
             public string paycode { get; set; }
             public string paydesc { get; set; }
             public string pleb2 { get; set; }
             public double payam { get; set; }
+            public double tpayam { get; set; }
             public ReceptPayment() { }
         }
 
