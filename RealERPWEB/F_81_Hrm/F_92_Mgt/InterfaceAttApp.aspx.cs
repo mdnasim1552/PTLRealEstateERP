@@ -321,7 +321,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT" + "&Reqtype="+ reqtyp;
 
                 }
-                //hlnDel.Visible = (userid == empusrid) ? true : false;
+                hlnDel.Visible = (userid == empusrid) ? true : false;
                 //hlnEdit.Visible = (userid == empusrid) ? true : false;
 
                 //hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="; ;
@@ -450,12 +450,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lnkRemove_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["delete"]))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-                return;
-            }
+            
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -466,11 +461,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string leavid = ((Label)this.gvInprocess.Rows[index].FindControl("lblLeavId")).Text.ToString();
 
             DataTable dt = (DataTable)ViewState["tbltotalleav"];
-            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETE_REQUEST_INFORMATION", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
                 //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
-                string Messaged = "Leave deleted successfully";
+                string Messaged = "deleted successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentl('" + Messaged + "');", true);
 
                 int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
@@ -482,8 +477,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (ConstantInfo.LogStatus == true)
                 {
-                    string eventtype = "Leave Requset Delete";
-                    string eventdesc = "Leave Requset Delete";
+                    string eventtype = "Requset Delete";
+                    string eventdesc = "Requset Delete";
                     string eventdesc2 = leavid;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
