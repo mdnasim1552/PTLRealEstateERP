@@ -24,8 +24,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
                 this.txtCurDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetPromotionNo();
                 this.GetCompany();
@@ -95,7 +96,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void GetCompany()
         {
             string comcod = this.GetComeCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%" + this.ddlCompany.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETCOMPANYNAME", txtCompany, "", "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -108,7 +109,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             string comcod = this.GetComeCode();
             string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
-            string txtDeptname = this.txtsrchDeptName.Text.Trim() + "%";
+            string txtDeptname = this.ddlDepartment.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAMEFL", txtDeptname, company, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "deptname";
             this.ddlDepartment.DataValueField = "deptid";
@@ -123,7 +124,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = this.GetComeCode();
             string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
             string deptid = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString() + "%";
-            string txtEmpname = this.txtsrchEmp.Text.Trim() + "%";
+            string txtEmpname = this.ddlEmpList.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLIST", deptid, txtEmpname, company, "", "", "", "", "", "");
             this.ddlEmpList.DataTextField = "empname";
             this.ddlEmpList.DataValueField = "empid";
@@ -164,7 +165,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void GetDesignation()
         {
             string comcod = this.GetComeCode();
-            string txtsrchdesg = this.txtsrchDesg.Text.Trim() + "%";
+            string txtsrchdesg = this.ddlDesig.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPDESIG", txtsrchdesg, "", "", "", "", "", "", "", "");
             this.ddlDesig.DataTextField = "desig";
             this.ddlDesig.DataValueField = "desigid";
@@ -344,6 +345,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lnkupdate_Click(object sender, EventArgs e)
         {
+            string msg = "";
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             try
             {
@@ -372,12 +374,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     if (!result)
                         return;
                 }
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                msg = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
             }
 

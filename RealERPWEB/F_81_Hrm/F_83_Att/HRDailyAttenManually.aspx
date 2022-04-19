@@ -134,7 +134,7 @@ div#ContentPlaceHolder1_ddlSection_chzn {
 
                                     </div>
                                 </div>
-                                 <div class="col-lg-1 col-md-2 col-sm-4">
+                                 <div class="col-lg-2 col-md-2 col-sm-4">
                                     <a class="btn btn-info mt20" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HRDailyAttenUpload.aspx")%>">Auto</a>
                                
                                     <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20 " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
