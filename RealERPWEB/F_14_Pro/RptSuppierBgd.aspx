@@ -203,7 +203,7 @@
                                         <asp:TemplateField HeaderText="Bill Amt">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvbillamt" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billamt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
@@ -221,7 +221,7 @@
                                         <asp:TemplateField HeaderText="Accounts </br>pending Bill">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvbillpendamt" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pendingamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pendingamt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
@@ -237,7 +237,7 @@
                                           <asp:TemplateField HeaderText="Total Bill">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvtotalbill" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalbill")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalbill")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
@@ -253,7 +253,7 @@
                                             <asp:TemplateField HeaderText="Payment">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblpayment" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payment")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payment")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
@@ -274,7 +274,7 @@
                                         <asp:TemplateField HeaderText="Project Balance">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvbillamt2" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpayable")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpayable")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
@@ -290,7 +290,7 @@
                                            <asp:TemplateField HeaderText="Net Balance">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvnetbal" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ncpayable")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ncpayable")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>

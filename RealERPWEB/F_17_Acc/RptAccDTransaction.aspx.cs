@@ -31,31 +31,19 @@ namespace RealERPWEB.F_17_Acc
         {
             if (!IsPostBack)
             {
-                string TrMod = Request.QueryString["TrMod"].Trim();
-                string title = (TrMod == "DTran" ? "Cash & Bank Transaction" : (TrMod == "RecPay" ? " Receipts & Payment(Honoured)"
-                  : (TrMod == "RecPay02" ? "Receipts & Payment(Honoured)- Details"
-                  : (TrMod == "DelTran" ? "DELETED TRANSACTION" : (TrMod == "IssuedVsCollect" ? "Receipts & Payment(Actual)"
-                  : (TrMod == "ProTrans" ? "Daily Transaction -Project" : (TrMod == "RecPayprj" ? "Project Wise Receipts & Payment(Honoured) " 
-                  : (TrMod == "DCABankSumm" ? "Cash & Bank Summary" : (TrMod == "RecPayprj02" ? "Project Wise Receipts & Payment(Honoured) Details "
-                  : (TrMod == "DelPostTran" ? "Cancellation Post Dated transaction" : "FUND FLOW"))))))))));
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
-                this.Master.Page.Title = title;
-                Hashtable hst = (Hashtable)Session["tblLogin"];
                 string url = HttpContext.Current.Request.Url.AbsoluteUri.ToString();
                 int index1 = (url.Contains("&")) ? url.IndexOf('&') : url.Length;
                 int index2 = (url.Contains("&")) ? url.Substring(index1 + 1).IndexOf('&') : 0;
 
                 int indexofamp = index1 + (index2 > 0 ? index2 + 1 : index2);
 
-                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
-                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
                     Response.Redirect("../AcceessError.aspx");
 
-
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
                 this.RbtnVisibility();
                 this.GetAccCode();
@@ -63,20 +51,16 @@ namespace RealERPWEB.F_17_Acc
                 string date1 = this.Request.QueryString["Date1"];
                 string date2 = this.Request.QueryString["Date2"];
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                //this.txtfromdate.Text = (comcod == "3336" || comcod == "3337") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : "01" + date.Substring(2);
-                //this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = date1.Length > 0 ? date1 : "01" + date.Substring(2);
                 this.txttodate.Text = date2.Length > 0 ? date2 : System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                //this.txtfrmdat.Text = (comcod == "3336" || comcod == "3337") ? System.DateTime.Today.ToString ("dd-MMM-yyyy") : "01" + date.Substring (2);
-                //this.txttodat.Text = System.DateTime.Today.ToString ("dd-MMM-yyyy");
                 this.txtfrmdat.Text = date1.Length > 0 ? date1 : "01" + date.Substring(2);
                 this.txttodat.Text = date2.Length > 0 ? date2 : System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.chkwitransfer.Checked = true;
                 if (comcod == "1103")
                 {
                     this.chkwitransfer.Checked = false;
-                } 
+                }
             }
 
 
@@ -159,6 +143,10 @@ namespace RealERPWEB.F_17_Acc
                     this.LoadProj02();
                     break;
 
+                case "RecPay03"://Receipt & Payment (Customized) Rupayan
+                    this.rbtnList1.SelectedIndex = 12;
+                    this.rbtnList1.Visible = false;
+                    break;
             }
 
             this.rbtnList1_SelectedIndexChanged(null, null);
@@ -223,15 +211,18 @@ namespace RealERPWEB.F_17_Acc
                 case 7:
                     this.ShowpProTransaction();
                     break;
+
                 case 9:
                     this.ReceiptAndPaymentproj();
                     break;
-                case 10:
 
+                case 10:
                     this.ReceiptAndPaymentDet();
                     break;
 
-
+                case 12:
+                    this.ReceiptAndPaymentDetCustomized();
+                    break;
 
             }
             if (ConstantInfo.LogStatus == true)
@@ -948,186 +939,170 @@ namespace RealERPWEB.F_17_Acc
                 return dt1;
             string Date1, vounum;
             int j;
-            if (this.rbtnList1.SelectedIndex == 0)
+
+            string grp1 = dt1.Rows[0]["grp1"].ToString();
+            switch (this.rbtnList1.SelectedIndex)
             {
 
-                Date1 = dt1.Rows[0]["voudat1"].ToString();
-                vounum = dt1.Rows[0]["vounum1"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["vounum1"].ToString() == vounum)
+                case 0:
+                    Date1 = dt1.Rows[0]["voudat1"].ToString();
+                    vounum = dt1.Rows[0]["vounum1"].ToString();
+                    for (j = 1; j < dt1.Rows.Count; j++)
                     {
-                        vounum = dt1.Rows[j]["vounum1"].ToString();
-                        dt1.Rows[j]["vounum1"] = "";
-                        dt1.Rows[j]["voudat1"] = "";
-                        dt1.Rows[j]["vounar"] = "";
-
-
-                    }
-
-                    else
-                    {
-                        vounum = dt1.Rows[j]["vounum1"].ToString();
-                    }
-
-                }
-
-
-            }
-
-
-            else if (this.rbtnList1.SelectedIndex == 7)
-            {
-
-                Date1 = dt1.Rows[0]["voudat"].ToString();
-                vounum = dt1.Rows[0]["vounum"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["voudat"].ToString() == Date1 && dt1.Rows[j]["vounum"].ToString() == vounum)
-                    {
-                        dt1.Rows[j]["vounum1"] = "";
-                        dt1.Rows[j]["voudat1"] = "";
-                    }
-
-                    else
-                    {
-                        if (dt1.Rows[j]["vounum"].ToString() == vounum)
+                        if (dt1.Rows[j]["vounum1"].ToString() == vounum)
+                        {
+                            vounum = dt1.Rows[j]["vounum1"].ToString();
                             dt1.Rows[j]["vounum1"] = "";
-
-                        if (dt1.Rows[j]["voudat"].ToString() == Date1)
                             dt1.Rows[j]["voudat1"] = "";
+                            dt1.Rows[j]["vounar"] = "";
+
+
+                        }
+
+                        else
+                        {
+                            vounum = dt1.Rows[j]["vounum1"].ToString();
+                        }
+
                     }
+                    break;
 
-                    Date1 = dt1.Rows[j]["voudat"].ToString();
-                    vounum = dt1.Rows[j]["vounum"].ToString();
+                case 7:              
+
+                        Date1 = dt1.Rows[0]["voudat"].ToString();
+                        vounum = dt1.Rows[0]["vounum"].ToString();
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["voudat"].ToString() == Date1 && dt1.Rows[j]["vounum"].ToString() == vounum)
+                            {
+                                dt1.Rows[j]["vounum1"] = "";
+                                dt1.Rows[j]["voudat1"] = "";
+                            }
+
+                            else
+                            {
+                                if (dt1.Rows[j]["vounum"].ToString() == vounum)
+                                    dt1.Rows[j]["vounum1"] = "";
+
+                                if (dt1.Rows[j]["voudat"].ToString() == Date1)
+                                    dt1.Rows[j]["voudat1"] = "";
+                            }
+
+                            Date1 = dt1.Rows[j]["voudat"].ToString();
+                            vounum = dt1.Rows[j]["vounum"].ToString();
+
+                        }
+                    break;
 
 
-                }
+                case 4:
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["grp1"].ToString() == grp1)
+                            {
+                                dt1.Rows[j]["grprpdesc"] = "";
+                                dt1.Rows[j]["grppaydesc"] = "";
+                            }
 
 
+                            grp1 = dt1.Rows[j]["grp1"].ToString();
 
 
+                        }
+                    break;
+
+                case 8:                        
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["grp1"].ToString() == grp1)
+                            {
+                                dt1.Rows[j]["grprpdesc"] = "";
+                                dt1.Rows[j]["grppaydesc"] = "";
+                            }
+
+
+                            grp1 = dt1.Rows[j]["grp1"].ToString();
+
+
+                        }
+                    break;
+
+                case 9:
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["grp1"].ToString() == grp1)
+                            {
+                                dt1.Rows[j]["grprpdesc"] = "";
+                                dt1.Rows[j]["grppaydesc"] = "";
+                            }
+
+
+                            grp1 = dt1.Rows[j]["grp1"].ToString();
+
+
+                        }
+                    break;
+
+                case 10:
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["grp1"].ToString() == grp1)
+                            {
+                                dt1.Rows[j]["grprpdesc"] = "";
+                                dt1.Rows[j]["grppaydesc"] = "";
+                            }
+                            grp1 = dt1.Rows[j]["grp1"].ToString();
+                        }
+                    break;
+
+                case 11:
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["grp1"].ToString() == grp1)
+                            {
+                                dt1.Rows[j]["grprpdesc"] = "";
+                                dt1.Rows[j]["grppaydesc"] = "";
+                            }
+                            grp1 = dt1.Rows[j]["grp1"].ToString();
+                        }
+                    break;
+
+                case 12:
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["grp1"].ToString() == grp1)
+                            {
+                                dt1.Rows[j]["grprpdesc"] = "";
+                                dt1.Rows[j]["grppaydesc"] = "";
+                            }
+                            grp1 = dt1.Rows[j]["grp1"].ToString();
+                        }
+                    break;
+
+                default:
+                    Date1 = dt1.Rows[0]["voudat1"].ToString();
+                        vounum = dt1.Rows[0]["vounum1"].ToString();
+                        for (j = 1; j < dt1.Rows.Count; j++)
+                        {
+                            if (dt1.Rows[j]["vounum1"].ToString() == vounum)
+                            {
+                                vounum = dt1.Rows[j]["vounum1"].ToString();
+                                dt1.Rows[j]["vounum1"] = "";
+                                dt1.Rows[j]["voudat1"] = "";
+
+
+                            }
+
+                            else
+                            {
+                                vounum = dt1.Rows[j]["vounum1"].ToString();
+                            }
+
+                        }
+
+                    break;
+                   
             }
-
-
-            else if (this.rbtnList1.SelectedIndex == 4)
-            {
-                string grp1 = dt1.Rows[0]["grp1"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["grp1"].ToString() == grp1)
-                    {
-                        dt1.Rows[j]["grprpdesc"] = "";
-                        dt1.Rows[j]["grppaydesc"] = "";
-                    }
-
-
-                    grp1 = dt1.Rows[j]["grp1"].ToString();
-
-
-                }
-
-
-
-
-            }
-
-
-            else if (this.rbtnList1.SelectedIndex == 8)
-            {
-                string grp1 = dt1.Rows[0]["grp1"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["grp1"].ToString() == grp1)
-                    {
-                        dt1.Rows[j]["grprpdesc"] = "";
-                        dt1.Rows[j]["grppaydesc"] = "";
-                    }
-
-
-                    grp1 = dt1.Rows[j]["grp1"].ToString();
-
-
-                }
-
-
-
-
-            }
-
-            else if (this.rbtnList1.SelectedIndex == 9)
-            {
-                string grp1 = dt1.Rows[0]["grp1"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["grp1"].ToString() == grp1)
-                    {
-                        dt1.Rows[j]["grprpdesc"] = "";
-                        dt1.Rows[j]["grppaydesc"] = "";
-                    }
-
-
-                    grp1 = dt1.Rows[j]["grp1"].ToString();
-
-
-                }
-
-
-
-
-            }
-
-            else if (this.rbtnList1.SelectedIndex == 10)
-            {
-                string grp1 = dt1.Rows[0]["grp1"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["grp1"].ToString() == grp1)
-                    {
-                        dt1.Rows[j]["grprpdesc"] = "";
-                        dt1.Rows[j]["grppaydesc"] = "";
-                    }
-                    grp1 = dt1.Rows[j]["grp1"].ToString();
-                }
-            }
-
-            else if (this.rbtnList1.SelectedIndex == 11)
-            {
-                string grp1 = dt1.Rows[0]["grp1"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["grp1"].ToString() == grp1)
-                    {
-                        dt1.Rows[j]["grprpdesc"] = "";
-                        dt1.Rows[j]["grppaydesc"] = "";
-                    }
-                    grp1 = dt1.Rows[j]["grp1"].ToString();
-                }
-            }
-
-            else
-            {
-                Date1 = dt1.Rows[0]["voudat1"].ToString();
-                vounum = dt1.Rows[0]["vounum1"].ToString();
-                for (j = 1; j < dt1.Rows.Count; j++)
-                {
-                    if (dt1.Rows[j]["vounum1"].ToString() == vounum)
-                    {
-                        vounum = dt1.Rows[j]["vounum1"].ToString();
-                        dt1.Rows[j]["vounum1"] = "";
-                        dt1.Rows[j]["voudat1"] = "";
-
-
-                    }
-
-                    else
-                    {
-                        vounum = dt1.Rows[j]["vounum1"].ToString();
-                    }
-
-                }
-            }
-
             return dt1;
 
         }
@@ -1193,6 +1168,9 @@ namespace RealERPWEB.F_17_Acc
                     }
                     break;
 
+                case 12://Rupayan
+                    this.PrintRecAndPayCustomized();
+                    break;
 
 
                     //this.PrintReceiveAndPayment01 ();
@@ -1464,8 +1442,35 @@ namespace RealERPWEB.F_17_Acc
             Session["Report1"] = Rpt2;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        } 
-        private void PrintReceiveAndPaymentCube() 
+        }
+        private void PrintRecAndPayCustomized()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string comcod = GetCompCode();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string Ftdate = "(From " + this.txtfromdate.Text + " To " + this.txttodate.Text + ")";
+
+            DataTable dt = (DataTable)Session["recandpay"];
+
+            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RDLCAccountSetup.GetLocalReport("R_17_Acc.RptRecAndPayCustomized", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtDate", Ftdate));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "RECEIPTS & PAYMENT(CUSTOMIZED) - DETAILS"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Print Source :" + username + " , " + session + " , " + printdate));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+        private void PrintReceiveAndPaymentCube()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
@@ -1498,7 +1503,7 @@ namespace RealERPWEB.F_17_Acc
             Rpt2.SetParameters(new ReportParameter("Ftdate", Ftdate));
             Rpt2.SetParameters(new ReportParameter("TotoRes", TotoRes.ToString("#,##0;(#,##0); ")));
             Rpt2.SetParameters(new ReportParameter("TotoPay", TotoPay.ToString("#,##0;(#,##0); ")));
-            Rpt2.SetParameters(new ReportParameter("NetAmt", NetAmt.ToString("#,##0;(#,##0); "))); 
+            Rpt2.SetParameters(new ReportParameter("NetAmt", NetAmt.ToString("#,##0;(#,##0); ")));
             Rpt2.SetParameters(new ReportParameter("ComLogo", ComLogo));
             //  Rpt2.SetParameters(new ReportParameter("VouType", "Voucher Type: " + txtVouType));
 
@@ -1893,6 +1898,9 @@ namespace RealERPWEB.F_17_Acc
                 case 11:
                     this.MultiView1.ActiveViewIndex = 10;
                     break;
+                case 12:
+                    this.MultiView1.ActiveViewIndex = 11;
+                    break;
             }
         }
 
@@ -2008,6 +2016,55 @@ namespace RealERPWEB.F_17_Acc
 
                 ((HyperLink)this.gvrecandpay02.HeaderRow.FindControl("hlbtnRcvPayCdataExelrp02")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
+
+            }
+        }
+
+        private void ReceiptAndPaymentDetCustomized()
+        {
+            Session.Remove("recandpay");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string comcod = GetCompCode();
+            string rp = "RP";
+            string CBorBoth = (this.rbtnListCustomized.SelectedIndex == 0) ? "C" : (this.rbtnListCustomized.SelectedIndex == 1) ? "B" : "";
+
+            string CallType = (this.rbtnListCustomized.SelectedIndex == 0 || this.rbtnListCustomized.SelectedIndex == 1) ? "RPTRECEIPTPAYMENTCASHORBANK" : "RPTRECPAYCUSTOMIZED";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
+            Session["recandpayFo"] = ds1.Tables[1];
+            ViewState["recandpayNote"] = ds1.Tables[2];
+
+            this.gvRecPayCustomized.DataSource = ds1.Tables[0];
+            this.gvRecPayCustomized.DataBind();        
+
+            for (int i = 0; i < gvRecPayCustomized.Rows.Count; i++)
+            {
+                string recpcode = ((Label)gvRecPayCustomized.Rows[i].FindControl("lblgvrecpcoderp03")).Text.Trim();
+                string paycode = ((Label)gvRecPayCustomized.Rows[i].FindControl("lblgvpaycoderp03")).Text.Trim();
+                LinkButton lbtn1 = (LinkButton)gvRecPayCustomized.Rows[i].FindControl("btnRecDescrp03");
+                LinkButton lbtn2 = (LinkButton)gvRecPayCustomized.Rows[i].FindControl("btnPayDescrp03");
+                if (lbtn1 != null)
+                {
+                    if (lbtn1.Text.Trim().Length > 0)
+                        lbtn1.CommandArgument = recpcode;
+                }
+                if (lbtn2 != null)
+                {
+                    if (lbtn2.Text.Trim().Length > 0)
+                        lbtn2.CommandArgument = paycode;
+                }
+            }
+
+            Session["Report1"] = gvRecPayCustomized;
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+
+                ((HyperLink)this.gvRecPayCustomized.HeaderRow.FindControl("hlbtnRcvPayCdataExelrp03")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
             }
         }
@@ -2373,6 +2430,50 @@ namespace RealERPWEB.F_17_Acc
             }
         }
 
+        protected void gvRecPayCustomized_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                LinkButton HyRecDesc = (LinkButton)e.Row.FindControl("btnRecDescrp03");
+                Label lgvRecAmt = (Label)e.Row.FindControl("lblgvrecpamrp03");
+
+                LinkButton HyPayDesc = (LinkButton)e.Row.FindControl("btnPayDescrp03");
+
+                Label lgvPayAmt = (Label)e.Row.FindControl("lgvpayamrp03");
+
+
+                string code1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recpcode")).ToString();
+                string code2 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paycode")).ToString();
+
+                if (code1 == "" && code2 == "")
+                {
+                    return;
+                }
+
+                if (ASTUtility.Right(code1, 8) == "00000000" || ASTUtility.Right(code1, 8) == "AAAAAAAA")
+                {
+
+                    HyRecDesc.Font.Bold = true;
+                    lgvRecAmt.Font.Bold = true;
+                }
+                if (ASTUtility.Right(code2, 8) == "00000000" || ASTUtility.Right(code1, 8) == "AAAAAAAA")
+                {
+                    HyPayDesc.Font.Bold = true;
+                    lgvPayAmt.Font.Bold = true;
+                }
+
+                if (ASTUtility.Left(code1, 2) == "OP" || ASTUtility.Left(code1, 2) == "RP" || ASTUtility.Left(code1, 2) == "CL")
+                {
+                    HyRecDesc.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                    lgvRecAmt.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                    HyPayDesc.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                    lgvPayAmt.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                }
+
+            }
+        }
+
         protected void gvrecandpay02_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -2424,7 +2525,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void btnRecDescrp02_Click(object sender, EventArgs e)
         {
-           
+
             int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string mACTDESC = ((DataTable)Session["recandpay"]).Rows[index]["recpdesc"].ToString();
             string mRESCODE = ((DataTable)Session["recandpay"]).Rows[index]["recpcode"].ToString();
@@ -2447,7 +2548,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccMultiReport.aspx?rpttype=spledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE + "&rescode=" + mRESCODE + "&actdesc=" + mACTDESC + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&opnoption=" + opnoption + "', target='_blank');</script>";
             }
 
-            
+
 
         }
         protected void btnPayDescrp02_Click(object sender, EventArgs e)
