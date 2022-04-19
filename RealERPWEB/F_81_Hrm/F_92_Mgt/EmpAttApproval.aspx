@@ -86,7 +86,7 @@
                     
                         <div class="col-9">
                             <!-- form grid -->
-                            <div class="card card-fluid">
+                            <div class="card card-fluid pb-2">
                                  <header class="card-header">REQUEST APPROVAL
                                       <p class="text-muted  mb-0 fa-pull-right" id="Reqst" runat="server"> </p>
                                  </header>
@@ -100,11 +100,12 @@
                             <abbr title="Required">*</abbr>
                                         </label>
                                         <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">
-                                            <asp:ListItem Value="LP">Late Present Approval Request(LP)</asp:ListItem>
-                                            <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>
+                                             <asp:ListItem Value="LA">Late Approval Request (if Finger 9:04:59 to 9:59:59)</asp:ListItem>
+                                            <asp:ListItem Value="LP">Late Present Approval Request (if Finger 10:00 to 5:30)</asp:ListItem>
+                                            <asp:ListItem Value="TC">Time Correction Approval Request (Project Visit, Customer visit, etc )</asp:ListItem>
+                                            <asp:ListItem Value="AB">Absent Approval Request (IF Finger missed but present)</asp:ListItem> 
+                                            <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>                                                                      
+                                            
                                         </asp:DropDownList>
 
                                     </div>
@@ -138,14 +139,14 @@
                                  <abbr title="Required">*</abbr>
                                         </label>
 
-                                        <asp:TextBox ID="txtAreaReson" class="form-control" ReadOnly="true" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                                        <asp:TextBox ID="txtAreaReson" class="form-control" ReadOnly="true" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
                                     </div>
                                     <!-- /form grid -->
 
                                    
                                     <div class="col-md-12 mb-3">
                                         <label for="ApprovedBy">Remaks</label>
-                                        <asp:TextBox ID="txtremarks" runat="server" class="form-control" Rows="1" TextMode="MultiLine"></asp:TextBox>
+                                        <asp:TextBox ID="txtremarks" runat="server" class="form-control" Rows="2" TextMode="MultiLine"></asp:TextBox>
                                     </div>
 
                                     <div class="col-12 mb-2 ">
