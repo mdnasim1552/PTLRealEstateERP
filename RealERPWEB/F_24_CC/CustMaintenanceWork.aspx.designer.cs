@@ -213,6 +213,15 @@ namespace RealERPWEB.F_24_CC
         protected global::System.Web.UI.WebControls.DropDownList ddlItemName;
 
         /// <summary>
+        /// lbtnAddWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAddWork;
+
+        /// <summary>
         /// lblInsmnt control.
         /// </summary>
         /// <remarks>
@@ -229,15 +238,6 @@ namespace RealERPWEB.F_24_CC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlInstallment;
-
-        /// <summary>
-        /// lbtnAddWork control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnAddWork;
 
         /// <summary>
         /// gvAddWork control.
