@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="TaskCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_94_Task.TaskCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="TaskCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_94_Task.TaskCodeBook" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -6,99 +6,38 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
-        .ddmlist .btn-group button {
-            width: 630px;
+        .mt20 {
+            margin-top: 20px;
         }
 
-        .ddmlist .multiselect-container {
-            width: 100%;
-            overflow-y: scroll !important;
-            max-height: 300px !important;
+div#ContentPlaceHolder1_ddldeptcode_chzn{
+            width: 100% !important;
         }
-
-        .chzn-container-multi .chzn-choices .search-field .default {
-            color: #999;
-            height: 30px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+div#ContentPlaceHolder1_ddlTdeptcode_chzn{
+ width: 100% !important;
+}
+        .chzn-drop {
+            width: 100% !important;
         }
-
-        .btnadd {
-            margin-left: 200px;
-        }
-
-        .displayhide {
-            display: none;
-        }
-
-        .displayshow {
-            display: block;
-        }
-
-        .btncolortrash {
-            background-color: darkred;
-        }
-
-            .btncolortrash:hover {
-                background-color: red;
-            }
-
-        /*input[type=text], select {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            height: 25px;
-        }*/
     </style>
 
-
-
-    <script type="text/javascript">
+    <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+
         });
-        function openModal() {
-            //    $('#myModal').modal('show');
-            $('#SearchModal').modal('toggle');
-        }
-
-        function CloseModal() {
-
-            $('#SearchModal').modal('hide');
-        }
-
-
-
-
-
-
-
         function pageLoaded() {
 
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-            //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
-
-            $(".chosen-select").chosen({
-                search_contains: true,
-                no_results_text: "Sorry, no match!",
-                allow_single_deselect: true
-            });
-            $('.chosen-continer').css('width', '600px');
-
 
             $('.chzn-select').chosen({ search_contains: true });
-
         }
-    </script>
 
+    </script>
 
 
 
@@ -122,60 +61,57 @@
         </asp:UpdateProgress>
     </div>
 
-
-    <div class="card card-fluid">
-        <div class="card-body" style="min-height: 600px;">
+    <div class="card mt-5">
+        <div class="card-header">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-lg-2 col-md-2 col-sm-6">
                     <div class="form-group">
-
-                        <label class="control-label">Department:</label>
-                        <asp:DropDownList ID="ddldeptcode" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                        <asp:Label ID="lbl1" runat="server">Department</asp:Label>
+                        <asp:DropDownList ID="ddldeptcode" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
                         </asp:DropDownList>
-
-
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary mt-4" OnClick="btnOk_Click" TabIndex="11">Select</asp:LinkButton>
+                        <div class="col-lg-1 col-md-2 col-sm-6">
+                    <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="btnOk_Click" TabIndex="11">Select</asp:LinkButton>
 
                 </div>
-                <div class="col-md-1">
-                    <asp:CheckBox runat="server" ID="chkcopy" Text="Copy" OnCheckedChanged="chkcopy_CheckedChanged" AutoPostBack="true" />
+                <div class="col-lg-2 col-md-2 col-sm-6 mt20">
+                    <asp:CheckBox runat="server" ID="chkcopy"  Text="Copy" OnCheckedChanged="chkcopy_CheckedChanged" AutoPostBack="true" />
+
                 </div>
+        
             </div>
-            <asp:Panel runat="server" ID="pnl" Visible="false">
+
+                  <asp:Panel runat="server" ID="pnl" Visible="false">
                 <div class="row">
 
-                    <div class="col-md-2">
+                    <div class="col-lg-3">
 
-                        <label class="control-label">From </label>
-                        <asp:DropDownList ID="ddlFdeptcode" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                      <asp:Label ID="Label1" runat="server">From</asp:Label>
+                        <asp:DropDownList ID="ddlFdeptcode" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
                         </asp:DropDownList>
 
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-lg-3">
 
-                        <label class="control-label">To </label>
-                        <asp:DropDownList ID="ddlTdeptcode" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                       <asp:Label ID="Label2" runat="server">To</asp:Label>
+                        <asp:DropDownList ID="ddlTdeptcode" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
                         </asp:DropDownList>
 
 
                     </div>
-                    <div class="col-md-1">
-                        <asp:LinkButton ID="lnkCopy" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkCopy_Click" TabIndex="11">Copy</asp:LinkButton>
+                    <div class="col-lg-1">
+                        <asp:LinkButton ID="lnkCopy" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkCopy_Click" TabIndex="11">Copy</asp:LinkButton>
 
                     </div>
                 </div>
             </asp:Panel>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
+        </div>
+        <div class="card-body">
                         <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" ShowFooter="True" Width="600px"
+                            OnRowUpdating="grvacc_RowUpdating" ShowFooter="True"
                             PageSize="15">
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous"
                                 Visible="False" />
@@ -259,15 +195,59 @@
                             <AlternatingRowStyle BackColor="" />
                         </asp:GridView>
 
+        </div>
+    </div>
+
+
+
+        <%--    <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+
+                        <label class="control-label">Department:</label>
+                        <asp:DropDownList ID="ddldeptcode" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                        </asp:DropDownList>
+
 
                     </div>
                 </div>
+                <div class="col-md-1">
+                    <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary mt-4" OnClick="btnOk_Click" TabIndex="11">Select</asp:LinkButton>
 
-
+                </div>
+                <div class="col-md-1">
+                    <asp:CheckBox runat="server" ID="chkcopy" Text="Copy" OnCheckedChanged="chkcopy_CheckedChanged" AutoPostBack="true" />
+                </div>
             </div>
+            <asp:Panel runat="server" ID="pnl" Visible="false">
+                <div class="row">
+
+                    <div class="col-md-2">
+
+                        <label class="control-label">From </label>
+                        <asp:DropDownList ID="ddlFdeptcode" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                        </asp:DropDownList>
+
+                    </div>
+                    <div class="col-md-2">
+
+                        <label class="control-label">To </label>
+                        <asp:DropDownList ID="ddlTdeptcode" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                        </asp:DropDownList>
+
+
+                    </div>
+                    <div class="col-md-1">
+                        <asp:LinkButton ID="lnkCopy" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkCopy_Click" TabIndex="11">Copy</asp:LinkButton>
+
+                    </div>
+                </div>
+            </asp:Panel>--%>
+
+
 
             <div class="row text-center">
-                <div class="col-md-12">
+                <div class="col-lg-12">
                     <div class="form-group">
 
                         <asp:LinkButton ID="lUpdatPerInfo" Visible="false" runat="server" CssClass="btn btn-danger  btn-xs" OnClientClick="return confirm('Do You want to Update?');">Update</asp:LinkButton>
@@ -281,8 +261,7 @@
 
 
 
-        </div>
-    </div>
+
 
 
 

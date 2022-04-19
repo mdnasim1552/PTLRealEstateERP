@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-1 col-md-2 col-sm-6">
                             <asp:Label ID="lblfrmdate" runat="server">From</asp:Label>
                             <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control"></asp:TextBox>
                             <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
@@ -120,7 +120,7 @@
 
                         </div>
 
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-1 col-md-2 col-sm-6">
                             <asp:Label ID="lbltodate" runat="server">To</asp:Label>
                             <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control "></asp:TextBox>
                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>

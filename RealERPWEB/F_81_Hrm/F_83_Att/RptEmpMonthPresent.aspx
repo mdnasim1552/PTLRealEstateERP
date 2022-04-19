@@ -53,14 +53,14 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="Label2" runat="server">Company</asp:Label>
                                 <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1 col-md-2 col-sm-6">
                              <div class="form-group">
                                         <asp:Label ID="lblfrmdate" runat="server" >From</asp:Label>
                                         <asp:TextBox ID="txtFdate" runat="server" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
@@ -69,7 +69,7 @@
                               </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-1 col-md-2 col-sm-6">
                              <div class="form-group">
                                  <asp:Label ID="Label1" runat="server">To</asp:Label>
                                         <asp:TextBox ID="txtTdate" runat="server" CssClass="form-control "></asp:TextBox>
@@ -78,7 +78,7 @@
                                       
                               </div>
                           </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                               <asp:LinkButton ID="lnkbtnShow" OnClick="lnkbtnShow_OnClick" runat="server" CssClass="btn btn-primary mt20">Ok</asp:LinkButton>
                         </div>
                     </div>

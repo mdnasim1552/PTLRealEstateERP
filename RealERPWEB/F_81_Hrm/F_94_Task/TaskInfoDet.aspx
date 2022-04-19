@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="TaskInfoDet.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_94_Task.TaskInfoDet" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="TaskInfoDet.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_94_Task.TaskInfoDet" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -6,62 +6,46 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
-        .ddmlist .btn-group button {
-            width: 630px;
+        .mt20 {
+            margin-top: 20px;
         }
 
-        .ddmlist .multiselect-container {
-            width: 100%;
-            overflow-y: scroll !important;
-            max-height: 300px !important;
+        div#ContentPlaceHolder1_ddldeptcode_chzn {
+            width: 100% !important;
         }
 
-        .chzn-container-multi .chzn-choices .search-field .default {
-            color: #999;
-            height: 30px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        div#ContentPlaceHolder1_ddlTdeptcode_chzn {
+            width: 100% !important;
+        }
+        div#ContentPlaceHolder1_ddltask_chzn{
+                 width: 100% !important;
+        }
+        div#ContentPlaceHolder1_ddldept1_chzn{
+                 width: 100% !important;
+
         }
 
-        .btnadd {
-            margin-left: 200px;
+        div#ContentPlaceHolder1_ddltloc_chzn{
+              width: 100% !important;
+        }
+        div#ContentPlaceHolder1_ddlfloc_chzn{
+             width: 100% !important;
         }
 
-        .displayhide {
-            display: none;
+        div#ContentPlaceHolder1_ddlEmp_chzn{
+ width: 100% !important;
         }
-
-        .displayshow {
-            display: block;
+        .chzn-drop {
+            width: 100% !important;
         }
-
-        .btncolortrash {
-            background-color: darkred;
-        }
-
-            .btncolortrash:hover {
-                background-color: red;
-            }
-
-        /*input[type=text], select {
-            width: 100%;
-            padding: 10px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            height: 25px;
-        }*/
     </style>
 
 
-
     <script type="text/javascript">
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        //$(document).ready(function () {
+        //    Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-        });
+        //});
         function openModal() {
             //    $('#myModal').modal('show');
             $('#SearchModal').modal('toggle');
@@ -78,24 +62,19 @@
 
 
 
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
         function pageLoaded() {
 
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-            //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
-
-            $(".chosen-select").chosen({
-                search_contains: true,
-                no_results_text: "Sorry, no match!",
-                allow_single_deselect: true
-            });
-            $('.chosen-continer').css('width', '600px');
-
 
             $('.chzn-select').chosen({ search_contains: true });
-
         }
     </script>
 
@@ -123,22 +102,23 @@
     </div>
 
 
-    <div class="card card-fluid">
+
+    <div class="card mt-5">
         <div class="card-body" style="min-height: 600px;">
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="View1" runat="server">
 
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="control-label">Employee:</label>
-                                <asp:DropDownList ID="ddlEmp" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                                <asp:DropDownList ID="ddlEmp" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
 
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="control-label">From:</label>
                                 <asp:TextBox ID="txtfmdt1" runat="server" CssClass="form-control"></asp:TextBox>
@@ -146,7 +126,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2">
                             <div class="form-group">
 
                                 <label class="control-label">To:</label>
@@ -156,7 +136,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-lg-1">
                             <label class="control-label">Page:</label>
                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt"
                                 OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
@@ -172,17 +152,17 @@
                                 <asp:ListItem>900</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-lg-1">
                             <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkSelect_Click" TabIndex="11">Refresh</asp:LinkButton>
 
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-2">
                             <asp:LinkButton ID="lnkNewTask" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkNewTask_Click" TabIndex="11">Add Today's Activities</asp:LinkButton>
 
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <asp:GridView ID="gvShowData" runat="server" AllowPaging="True" OnRowDataBound="gvShowData_RowDataBound"
                                     AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -358,42 +338,44 @@
 
                 <asp:View ID="View2" runat="server">
                     <hr />
+
+
                     <div class="row mt-2">
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2">
                             <label class="control-label">Date:</label>
                         </div>
-                        <div class="col-md-3">
-                            <asp:TextBox ID="txtdateentry" runat="server" CssClass="form-control"></asp:TextBox>
+
+                        <div class="col-lg-3">
+                       <asp:TextBox ID="txtdateentry" runat="server" CssClass="form-control"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdateentry"></cc1:CalendarExtender>
 
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label class="control-label">Department :</label>
 
 
-                            </div>
+                        <div class="col-lg-2">
+                            <label class="control-label">Department:</label>
                         </div>
-                        <div class="col-md-3">
-                            <asp:DropDownList ID="ddldept1" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2" OnSelectedIndexChanged="ddldeptcode_SelectedIndexChanged">
+
+                        <div class="col-lg-3">
+       <asp:DropDownList ID="ddldept1" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2" OnSelectedIndexChanged="ddldeptcode_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
 
                     </div>
                     <div class="row mt-3">
 
-                        <div class="col-md-2">
+                        <div class="col-lg-2">
                             <label class="control-label">Task:</label>
                         </div>
-                        <div class="col-md-3">
-                            <asp:DropDownList ID="ddltask" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                        <div class="col-lg-3">
+                            <asp:DropDownList ID="ddltask" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-lg-2">
                             <label class="control-label">Description:</label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <asp:TextBox ID="txttaskdesc" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <asp:Label runat="server" ID="lblrowid" Visible="false">0</asp:Label>
@@ -402,31 +384,31 @@
                     </div>
 
                     <div class="row mt-2">
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2 ">
                             <label class="control-label">Location From:</label>
                         </div>
-                        <div class="col-md-3">
-                            <asp:DropDownList ID="ddlfloc" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                        <div class="col-lg-3">
+                            <asp:DropDownList ID="ddlfloc" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2 ">
                             <label class="control-label">Location To:</label>
                         </div>
-                        <div class="col-md-3">
-                            <asp:DropDownList ID="ddltloc" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2">
+                        <div class="col-lg-3">
+                            <asp:DropDownList ID="ddltloc" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-lg-1">
                             <asp:LinkButton ID="lnkLocCodeBook" runat="server" CssClass="btn btn-primary" TabIndex="11" OnClick="lnkLocCodeBook_Click" ToolTip="Add Location"><i class="fas fa-plus"></i></asp:LinkButton>
                         </div>
 
                     </div>
 
                     <div class="row mt-2">
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2 ">
                             <label class="control-label">From:</label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <%--<asp:DropDownList ID="ddlhour" runat="server" CssClass="inputTxt ddlPage" Style="width: 50px; line-height: 22px;">
                                 <asp:ListItem Value="1">01</asp:ListItem>
                                 <asp:ListItem Value="2">02</asp:ListItem>
@@ -462,13 +444,13 @@
                                 <asp:ListItem Value="PM">PM</asp:ListItem>
                             </asp:DropDownList>--%>
 
-                            <asp:TextBox runat="server" ID="fdate" TextMode="DateTimeLocal"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="fdate" CssClass="form-control" TextMode="DateTimeLocal"></asp:TextBox>
 
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2 ">
                             <label class="control-label">To:</label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <%-- <asp:DropDownList ID="ddlhourT" runat="server" CssClass="inputTxt ddlPage" Style="width: 50px; line-height: 22px;">
                                 <asp:ListItem Value="1">01</asp:ListItem>
                                 <asp:ListItem Value="2">02</asp:ListItem>
@@ -505,29 +487,33 @@
 
 
                             </asp:DropDownList>--%>
-                            <asp:TextBox runat="server" ID="tdate" TextMode="DateTimeLocal"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="tdate" CssClass="form-control" TextMode="DateTimeLocal"></asp:TextBox>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-lg-1">
                             <%--<asp:Label runat="server" ID="lblhr" class="control-label">3 hours</asp:Label>--%>
                         </div>
 
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2 ">
                             <label class="control-label">Remarks:</label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <asp:TextBox ID="txtrem" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
 
                         </div>
 
 
-                        <div class="col-md-2">
-                            <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary mt-4" OnClick="btnOk_Click" TabIndex="11">Add</asp:LinkButton>
+                        <div class="col-lg-2">
+                          
+                        </div>
+
+                        <div class="col-lg-2">
+                              <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary mt-4" OnClick="btnOk_Click" TabIndex="11">Add</asp:LinkButton>
 
                             <asp:LinkButton ID="lnkBack" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkBack_Click" TabIndex="11">Back</asp:LinkButton>
 
-                        </div>
+                            </div>
                     </div>
 
 

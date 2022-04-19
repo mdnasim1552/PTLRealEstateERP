@@ -61,26 +61,26 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="Label4" runat="server">Company</asp:Label>
                                 <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="Label2" runat="server">lblSection</asp:Label>
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control  chzn-select" TabIndex="7" AutoPostBack="True" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:Label ID="lblfrmdate" runat="server">Yearly Leave</asp:Label>
                             <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
                             <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-3 col-sm-6">
                              <asp:Label ID="lblCode" runat="server">Emp. Code</asp:Label>
                      
                                          <div class="input-group mb-3">
@@ -94,8 +94,8 @@
                         </div>
        
 
-                        <div class="col-lg-1">
-                                                                    <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                        <div class="col-lg-1 col-md-2 col-sm-6">
+                                   <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
                                         <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>

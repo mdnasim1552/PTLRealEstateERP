@@ -85,17 +85,16 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                              <div class="col-lg-2">
+                              <div class="col-lg-2 col-md-2 col-sm-6">
                                 <div class="form-group mt20">
                                     <asp:Label ID="lblsetNo" runat="server">Emp Sett. No :</asp:Label>
                                     <asp:Label ID="lblCurNo1" runat="server"></asp:Label>
                                     <asp:Label ID="lblCurNo2" runat="server"></asp:Label>
+                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary float-right" OnClick="lbtnOk_OnClick">Ok</asp:LinkButton>
+
                                 </div>
                             </div>
-                            <div class="col-lg-1">
-                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lbtnOk_OnClick">Ok</asp:LinkButton>
-
-                            </div>
+                      
           
                             <%--                    <fieldset class="scheduler-border fieldset_A">
 
@@ -151,7 +150,10 @@
               
                     </asp:Panel>
 
-                    <asp:Panel ID="PanelEmpinfo" runat="server" Visible="False">
+
+                </div>
+                <div class="card-body">
+                    <asp:Panel ID="PanelEmpinfo" runat="server" CssClass="mb-2 mt-2" Visible="False">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12">
                                 <asp:Label ID="lblempname"  runat="server" Text="Name Of Employee:"></asp:Label>
@@ -229,9 +231,7 @@
                        
                     </asp:Panel>
 
-                </div>
-                <div class="card-body">
-                    <asp:GridView ID="gvRtrSalSett" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                    <asp:GridView ID="gvRtrSalSett" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered mb-2"
                         AutoGenerateColumns="False"
                         ShowFooter="True">
                         <RowStyle />
@@ -246,8 +246,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Description">
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn  btn-success primarygrdBtn" OnClick="lnkTotal_OnClick">Total</asp:LinkButton>&nbsp;&nbsp;&nbsp;
-                                                 <asp:LinkButton ID="lnkUpdate" runat="server" OnClick="lnkUpdate_OnClick" CssClass="btn  btn-primary primarygrdBtn">Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn  btn-success btn-sm" OnClick="lnkTotal_OnClick">Total</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                                                 <asp:LinkButton ID="lnkUpdate" runat="server" OnClick="lnkUpdate_OnClick" CssClass="btn  btn-primary btn-sm">Update</asp:LinkButton>
                                     <asp:Label ID="lgvfTotal" runat="server" Font-Bold="True" Font-Size="12px"
                                         ForeColor="#000" Style="text-align: right" Text="Net Payable Amount"></asp:Label>
                                 </FooterTemplate>

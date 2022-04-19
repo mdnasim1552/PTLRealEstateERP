@@ -6,6 +6,10 @@
         .mt20{
             margin-top:20px;
         }
+                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
       
     </style>
     <script type="text/javascript">
@@ -86,7 +90,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4">
                                         <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger btn-sm mt20 " OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
                                                  <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
                             <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />

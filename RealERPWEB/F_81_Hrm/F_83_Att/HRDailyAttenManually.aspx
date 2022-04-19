@@ -27,6 +27,10 @@ div#ContentPlaceHolder1_ddlSection_chzn {
         .chzn-drop {
             width:100%!important;
 }
+                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -78,7 +82,7 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                                 <div class="col-lg-1 col-md-1 col-sm-4">
                                     <div class="form-group">
                                         <asp:Label ID="Label10" runat="server">Date</asp:Label>
-                                        <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control "></asp:TextBox>
+                                        <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control form-control-sm "></asp:TextBox>
                                         <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                     </div>
                                 </div>
@@ -107,20 +111,20 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                             <div class="row">
                                 <div class="col-lg-2  col-md-2 col-sm-4">
                                                      <asp:Label ID="Label3" runat="server">Code</asp:Label>
-                                    <div class="input-group mb-3">
-                                          <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <div class="input-group input-group-sm mb-3">
+                                          <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <div class="input-group-append">
-                                            <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-secondary btn" OnClick="imgbtnSearchEmployee_Click"><span class="fa fa-search"> </span></asp:LinkButton>
+                                            <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-secondary btn-sm" OnClick="imgbtnSearchEmployee_Click"><span class="fa fa-search"> </span></asp:LinkButton>
                                         </div>
                                     </div>
                       
                                 </div>
                                
                                  
-                                <div class="col-lg-1">
+                                <div class="col-lg-1 col-md-1 col-sm-6">
                                     <div class="form-group ">
                                         <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName ">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -135,9 +139,9 @@ div#ContentPlaceHolder1_ddlSection_chzn {
                                     </div>
                                 </div>
                                  <div class="col-lg-2 col-md-2 col-sm-4">
-                                    <a class="btn btn-info mt20" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HRDailyAttenUpload.aspx")%>">Auto</a>
+                                    <a class="btn btn-info btn-sm mt20" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HRDailyAttenUpload.aspx")%>">Auto</a>
                                
-                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20 " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20 " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                                 </div>
                             </div>

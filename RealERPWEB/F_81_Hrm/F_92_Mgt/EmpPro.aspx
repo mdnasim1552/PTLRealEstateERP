@@ -65,10 +65,10 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card">
+            <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-2 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label runat="server">
                                     <asp:LinkButton ID="lbtnPrevProList" runat="server" OnClick="lbtnPrevProList_Click" CssClass="lblTxt lblName">Prev. Pro List:</asp:LinkButton></asp:Label>
@@ -76,7 +76,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-1 col-md-2 col-sm-6">
+                        <div class="col-lg-1 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblfrmdate" runat="server">Date</asp:Label>
                                 <asp:TextBox ID="txtCurDate" runat="server" CssClass="form-control"></asp:TextBox>
@@ -84,17 +84,17 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-2 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group mt20">
                                 <asp:Label ID="Label1" runat="server">Promotion No</asp:Label>
-                             <asp:Label ID="lblCurNo1" runat="server" CssClass="form-control"
-                                    Width="97px"></asp:Label>
+                                <asp:Label ID="lblCurNo1" runat="server" CssClass="form-control"
+                                    Width="95px"></asp:Label>
 
                                 <asp:Label ID="lblCurNo2" runat="server" CssClass="form-control"
-                                    Width="97px" TabIndex="2"></asp:Label>
+                                    Width="95px" TabIndex="2"></asp:Label>
                             </div>
 
-                         
+
 
 
                         </div>
@@ -106,53 +106,60 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+
                           <asp:Panel ID="pnlprj" runat="server" Visible="False">
                         <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-4">
+                        <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
-                                <asp:LinkButton ID="imgbtnCompany" runat="server"  OnClick="imgbtnCompany_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+                      
                                 <asp:Label ID="Label2" runat="server">Company </asp:Label>
                                 <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-4">
+                        <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
-                                <asp:Label ID="lblDept" runat="server">Department  <asp:LinkButton ID="ibtnDepartment" runat="server" OnClick="ibtnDepartment_Click"><i class="fa fa-search"> </i></asp:LinkButton></asp:Label>
+                                <asp:Label ID="lblDept" runat="server">Department </asp:Label>
                                 <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control  chzn-select" TabIndex="7" AutoPostBack="True" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
 
-                        <div class="col-lg-3  col-md-3 col-sm-4">
+              
+                        <div class="col-lg-2 col-sm-6">
+                            <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Revised Desig.                                 <asp:LinkButton ID="ibtnDesg" runat="server" OnClick="ibtnDesg_Click"><i class="fa fa-search"></i></asp:LinkButton></asp:Label>
+                            <asp:DropDownList ID="ddlDesig" runat="server" CssClass="form-control chzn-select">
+                            </asp:DropDownList>
+                        </div>
+
+                       <div class="col-lg-3  col-sm-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblResList" runat="server">Employee List      <asp:LinkButton ID="ibtnEmpList" runat="server"  OnClick="ibtnEmpList_Click"><i class="fa fa-search"> </i></asp:LinkButton></asp:Label>
                                 <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control chzn-select">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:LinkButton ID="lnkselect" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkselect_Click">Select</asp:LinkButton>
                         </div>
-                        <div class="col-lg-2">
+    
+         
+
+                        </div>
+
+                        <div class="row">
+                             <div class="col-lg-2 col-md-3 col-sm-6">
                             <asp:Label ID="Label3" runat="server" CssClass=" lblTxt lblName">Present Desig.</asp:Label>
                             <asp:Label ID="lblDesig" runat="server" CssClass=" inputlblVal" Style="width: 335px;"></asp:Label>
                         </div>
-                        <div class="col-lg-3">
-                            <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Revised Desig.                                 <asp:LinkButton ID="ibtnDesg" runat="server" OnClick="ibtnDesg_Click"><i class="fa fa-search"></i></asp:LinkButton></asp:Label>
-                            <asp:DropDownList ID="ddlDesig" runat="server" CssClass="form-control chzn-select">
-                            </asp:DropDownList>
-                        </div>
+                              </div>
 
-
-                        </div>
-
+    
                     </asp:Panel>
-                    </div>
+          
                   
-                      <div class="row">
+                      <div class="row mt-5">
                  <asp:GridView ID="gvremppro" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                     ShowFooter="True" Style="margin-right: 0px" Width="818px">
                     <RowStyle />

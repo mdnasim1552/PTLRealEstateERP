@@ -65,13 +65,13 @@ div#ContentPlaceHolder1_ddlSection_chzn{
                         <div class="card-header">
 
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-3 col-sm-6">
                                     <asp:Label ID="Label2" runat="server">Company</asp:Label>
                                     <asp:DropDownList ID="ddlCompanyName" runat="server" Width="233" CssClass="form-control " OnSelectedIndexChanged="ddlCompanyName_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                     </asp:DropDownList>
                                     
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-3 col-sm-6">
                                     <div class="form-group">
                                         <asp:Label ID="Label1" runat="server">Department</asp:Label>
                                         <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control  chzn-select" TabIndex="7" AutoPostBack="True" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged">
@@ -79,7 +79,7 @@ div#ContentPlaceHolder1_ddlSection_chzn{
                                         
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-3 col-sm-6">
                                     <div class="form-group">
                                         <asp:Label ID="lblSection" runat="server">Section</asp:Label>
                                         <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-control chzn-select" TabIndex="7">
@@ -87,13 +87,13 @@ div#ContentPlaceHolder1_ddlSection_chzn{
                                         
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-2 col-md-1 col-sm-6">
                                     <asp:Label ID="Label4" runat="server">Month</asp:Label>
 
                                     <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control inputTxt" TabIndex="2">
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-lg-1">
+                                <div class="col-lg-1 col-md-1 col-sm-6">
                                     <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary mt20">Ok</asp:LinkButton>
 
                                 </div>
@@ -102,27 +102,27 @@ div#ContentPlaceHolder1_ddlSection_chzn{
 
                             <asp:Panel ID="PnlSub" runat="server" Visible="False">
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
                                             <asp:LinkButton ID="imgbtnEmployee" runat="server"  OnClick="imgbtnEmployee_Click"><i class="fa fa-search"> </i></asp:LinkButton>
                                             <asp:Label ID="lblEmployee" runat="server">Employee </asp:Label>
                                             <asp:DropDownList ID="ddlEmployee" runat="server" Width="233" CssClass="form-control inputTxt pull-left"  AutoPostBack="true" TabIndex="2">
                                             </asp:DropDownList>
                                     </div>
 
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-6">
                                          <asp:Label ID="lblfrmDate" runat="server">Date</asp:Label>
                                             <asp:TextBox ID="txtfrmDate" runat="server" CssClass="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtfrmDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmDate"></cc1:CalendarExtender>
 
                                           
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-6">
                                           <asp:Label ID="lbltoDate" runat="server">To</asp:Label>
                                             <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txttoDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
 
                                     </div>
-                                   <div class="col-lg-1">
+                                   <div class="col-lg-1 col-md-3 col-sm-6">
                                         <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary mt20">Add</asp:LinkButton>
                                    </div>
 

@@ -62,34 +62,34 @@
                 <div class="card-header">
                     <div class="row">
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
-                                <asp:Label ID="Label1" runat="server">Company</asp:Label>
+                                <asp:Label ID="Label1" runat="server">User</asp:Label>
                                 <asp:DropDownList ID="ddlUserList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-md-3 col-sm-6">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                             <asp:Panel ID="Panel2" runat="server" Visible="False">
-                <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <asp:Label ID="lblConTrolCode" runat="server">Company Code</asp:Label>
-                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
-                                </asp:DropDownList>
+                    <asp:Panel ID="Panel2" runat="server" Visible="False">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <asp:Label ID="lblConTrolCode" runat="server">Company Code</asp:Label>
+                                    <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
+                                    </asp:DropDownList>
+                                </div>
                             </div>
-                        </div>
 
 
-          
 
 
-                    <%--                  <fieldset class="scheduler-border fieldset_A">
+
+                            <%-- <fieldset class="scheduler-border fieldset_A">
                         <div class="form-horizontal">
 
                             <div class="form-group">
@@ -112,78 +112,78 @@
                             </div>
                         </div>
                     </fieldset>--%>
-                </div>
-                <asp:GridView ID="gvPayrollLinkInfo" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                    AutoGenerateColumns="False" ShowFooter="True" Width="16px"
-                    OnRowDeleting="gvPayrollLinkInfo_RowDeleting">
-                    <PagerSettings Visible="False" />
-                    <RowStyle />
-                    <Columns>
-                        <asp:TemplateField HeaderText="Sl.No.">
-                            <ItemTemplate>
-                                <asp:Label ID="lblgvSlNo0" runat="server" Height="16px"
-                                    Style="text-align: right"
-                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                        </div>
+                        <asp:GridView ID="gvPayrollLinkInfo" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            AutoGenerateColumns="False" ShowFooter="True" Width="16px"
+                            OnRowDeleting="gvPayrollLinkInfo_RowDeleting">
+                            <PagerSettings Visible="False" />
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvSlNo0" runat="server" Height="16px"
+                                            Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                        <asp:CommandField ShowDeleteButton="True" />
+                                <asp:CommandField ShowDeleteButton="True" />
 
-                        <asp:TemplateField HeaderText="Company Code" Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblgvCompCod" runat="server" Height="16px"
-                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'
-                                    Width="80px"></asp:Label>
-                            </ItemTemplate>
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Company Name">
-                            <ItemTemplate>
-                                <asp:Label ID="lblgvCompDesc" runat="server"
-                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
-                                    Width="350px"></asp:Label>
-                            </ItemTemplate>
-                            <FooterStyle HorizontalAlign="Left" />
-                            <HeaderStyle HorizontalAlign="Left" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Remarks">
-                            <FooterTemplate>
-                                <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger primaryBtn" >Final Update</asp:LinkButton>
-                            </FooterTemplate>
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtgvRemarks" runat="server" BorderColor="#99CCFF"
-                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
-                                    Style="text-align: left; background-color: Transparent"
-                                    Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
-                                    Width="150px"></asp:TextBox>
-                            </ItemTemplate>
-                            <FooterStyle HorizontalAlign="left" />
-                            <HeaderStyle HorizontalAlign="Left" />
-                        </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Company Code" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvCompCod" runat="server" Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Company Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvCompDesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                            Width="350px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterStyle HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Remarks">
+                                    <FooterTemplate>
+                                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
+                                    </FooterTemplate>
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvRemarks" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: left; background-color: Transparent"
+                                            Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
+                                            Width="150px"></asp:TextBox>
+                                    </ItemTemplate>
+                                    <FooterStyle HorizontalAlign="left" />
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="User Code" Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblgvCompusrid" runat="server" Height="16px"
-                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userid")) %>'
-                                    Width="80px"></asp:Label>
-                            </ItemTemplate>
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
+                                <asp:TemplateField HeaderText="User Code" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvCompusrid" runat="server" Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userid")) %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
 
-                    </Columns>
-                    <FooterStyle CssClass="grvFooter" />
-                    <EditRowStyle />
-                    <AlternatingRowStyle />
-                    <PagerStyle CssClass="gvPagination" />
-                    <HeaderStyle CssClass="grvHeader" />
+                            </Columns>
+                            <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
 
-                </asp:GridView>
-
-
+                        </asp:GridView>
 
 
 
-            </asp:Panel>
+
+
+                    </asp:Panel>
 
                 </div>
             </div>
@@ -213,11 +213,6 @@
 
                                 </div>
                             </div>--%>
-
-   
-
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
