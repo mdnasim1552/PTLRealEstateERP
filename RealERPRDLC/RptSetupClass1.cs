@@ -814,6 +814,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetTerranova": Rpt1a = SetRptBonusSheetTera(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetGreenWood": Rpt1a = SetRptBonusSheetGreenWood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebCash": Rpt1a = SetRptBonusSheetPebCash(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptBonusSheetPebProj": Rpt1a = SetRptBonusSheetPebProj(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebBank": Rpt1a = SetRptBonusSheetPebBank(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebFactory": Rpt1a = SetRptBonusSheetPebFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetPebFactoryCash": Rpt1a = SetRptBonusSheetPebFactoryCash(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4919,7 +4920,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheetPEB>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptBonusSheetPebProj(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheetPEB>)RptDataSet));
+            return Rpt1a;
+        } 
         private static LocalReport SetRptBonusSheetPebBank(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheetPEB>)RptDataSet));
