@@ -1168,8 +1168,8 @@ namespace RealERPWEB.F_17_Acc
                     }
                     break;
 
-                case 12:
-                    this.PrintReceiveAndPayment01();
+                case 12://Rupayan
+                    this.PrintRecAndPayCustomized();
                     break;
 
 
@@ -1440,6 +1440,33 @@ namespace RealERPWEB.F_17_Acc
             Rpt2.SetParameters(new ReportParameter("RptTitle", "RECEIPTS & PAYMENT"));
             Rpt2.SetParameters(new ReportParameter("txtuserinfo", "Print Source :" + username + " , " + session + " , " + printdate));
             Session["Report1"] = Rpt2;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+        private void PrintRecAndPayCustomized()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string comcod = GetCompCode();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string Ftdate = "(From " + this.txtfromdate.Text + " To " + this.txttodate.Text + ")";
+
+            DataTable dt = (DataTable)Session["recandpay"];
+
+            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.ReceptPayment>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RDLCAccountSetup.GetLocalReport("R_17_Acc.RptRecAndPayCustomized", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtDate", Ftdate));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "RECEIPTS & PAYMENT(CUSTOMIZED) - DETAILS"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Print Source :" + username + " , " + session + " , " + printdate));
+
+            Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
@@ -2013,15 +2040,14 @@ namespace RealERPWEB.F_17_Acc
             ViewState["recandpayNote"] = ds1.Tables[2];
 
             this.gvRecPayCustomized.DataSource = ds1.Tables[0];
-            this.gvRecPayCustomized.DataBind();
-            // this.RPNote();
+            this.gvRecPayCustomized.DataBind();        
 
             for (int i = 0; i < gvRecPayCustomized.Rows.Count; i++)
             {
-                string recpcode = ((Label)gvRecPayCustomized.Rows[i].FindControl("lblgvrecpcoderp02")).Text.Trim();
-                string paycode = ((Label)gvRecPayCustomized.Rows[i].FindControl("lblgvpaycoderp02")).Text.Trim();
-                LinkButton lbtn1 = (LinkButton)gvRecPayCustomized.Rows[i].FindControl("btnRecDescrp02");
-                LinkButton lbtn2 = (LinkButton)gvRecPayCustomized.Rows[i].FindControl("btnPayDescrp02");
+                string recpcode = ((Label)gvRecPayCustomized.Rows[i].FindControl("lblgvrecpcoderp03")).Text.Trim();
+                string paycode = ((Label)gvRecPayCustomized.Rows[i].FindControl("lblgvpaycoderp03")).Text.Trim();
+                LinkButton lbtn1 = (LinkButton)gvRecPayCustomized.Rows[i].FindControl("btnRecDescrp03");
+                LinkButton lbtn2 = (LinkButton)gvRecPayCustomized.Rows[i].FindControl("btnPayDescrp03");
                 if (lbtn1 != null)
                 {
                     if (lbtn1.Text.Trim().Length > 0)
@@ -2372,6 +2398,50 @@ namespace RealERPWEB.F_17_Acc
                 Label lgvRecAmt = (Label)e.Row.FindControl("lblgvrp2recpam");
                 LinkButton HyPayDesc = (LinkButton)e.Row.FindControl("btngvrp2paydesc");
                 Label lgvPayAmt = (Label)e.Row.FindControl("lblgvrp2payam");
+
+                string code1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recpcode")).ToString();
+                string code2 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paycode")).ToString();
+
+                if (code1 == "" && code2 == "")
+                {
+                    return;
+                }
+
+                if (ASTUtility.Right(code1, 8) == "00000000" || ASTUtility.Right(code1, 8) == "AAAAAAAA")
+                {
+
+                    HyRecDesc.Font.Bold = true;
+                    lgvRecAmt.Font.Bold = true;
+                }
+                if (ASTUtility.Right(code2, 8) == "00000000" || ASTUtility.Right(code1, 8) == "AAAAAAAA")
+                {
+                    HyPayDesc.Font.Bold = true;
+                    lgvPayAmt.Font.Bold = true;
+                }
+
+                if (ASTUtility.Left(code1, 2) == "OP" || ASTUtility.Left(code1, 2) == "RP" || ASTUtility.Left(code1, 2) == "CL")
+                {
+                    HyRecDesc.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                    lgvRecAmt.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                    HyPayDesc.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                    lgvPayAmt.Attributes["style"] = "font-weight:bold;color:green;background:yellow";
+                }
+
+            }
+        }
+
+        protected void gvRecPayCustomized_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                LinkButton HyRecDesc = (LinkButton)e.Row.FindControl("btnRecDescrp03");
+                Label lgvRecAmt = (Label)e.Row.FindControl("lblgvrecpamrp03");
+
+                LinkButton HyPayDesc = (LinkButton)e.Row.FindControl("btnPayDescrp03");
+
+                Label lgvPayAmt = (Label)e.Row.FindControl("lgvpayamrp03");
+
 
                 string code1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recpcode")).ToString();
                 string code2 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paycode")).ToString();
