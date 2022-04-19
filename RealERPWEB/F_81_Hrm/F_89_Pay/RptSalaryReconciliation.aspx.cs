@@ -126,9 +126,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt = (DataTable)ViewState["tblSalaryRecon"];
             this.gvSalaryRecon.DataSource=dt;
             this.gvSalaryRecon.DataBind();
+            if (dt.Rows.Count > 0)
+            {
+
+                Session["Report1"] = gvSalaryRecon;
+                ((HyperLink)this.gvSalaryRecon.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+
         }
 
-      
+
 
         protected void gvSalaryRecon_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -149,7 +156,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     empName.Font.Bold = true;
                     curAmt.Font.Bold = true;
                     prevAmt.Font.Bold = true;
-                    empName.Attributes["style"]= "background-color:blue !important; color:white !important;";
+                    empName.Attributes["style"]= " font-size:14px; color:blue !important;";
                 }
 
             }

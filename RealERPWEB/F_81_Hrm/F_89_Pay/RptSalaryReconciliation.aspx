@@ -29,6 +29,12 @@
     </script>
 
     <style>
+          body {
+            font-family: "Century Gothic" !important;
+        }
+
+        .grvContentarea {}
+
     </style>
 
 
@@ -130,17 +136,10 @@
                     <div class="row">
                         <asp:GridView ID="gvSalaryRecon" runat="server" PageSize="50"
                             AutoGenerateColumns="False" OnRowDataBound="gvSalaryRecon_RowDataBound" OnPageIndexChanging="gvSalaryRecon_PageIndexChanging"
-                            CssClass="table-striped table-bordered grvContentarea">
+                            CssClass="table-striped table-bordered grvContentarea" Width="1184px">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
-                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Right" />
-                                    <HeaderStyle HorizontalAlign="Center" />
-                                </asp:TemplateField>
+                                
 
                                 <asp:TemplateField HeaderText="Description" Visible="false">
                                     <ItemTemplate>
@@ -151,10 +150,30 @@
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
+
+                                  <asp:TemplateField HeaderText="Card #" >
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvidcardno" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
+                                            Width="50px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Employee Name">
+                                    <HeaderTemplate>
+
+                                          <asp:Label ID="lblempname" runat="server" Font-Bold="True"
+                                                                        Text="Employee Name" Width="180px"></asp:Label>
+
+
+                                                        <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                                                        CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+
+                                    </HeaderTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvEmpName" runat="server" Font-Size="12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                            Width="220px"></asp:Label>
+                                            Width="250px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" />
@@ -163,7 +182,7 @@
                                 <asp:TemplateField HeaderText="Designation">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvEmpDesig" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                            Width="180px"></asp:Label>
+                                            Width="200px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" />
@@ -206,12 +225,12 @@
 
                             </Columns>
 
-                            <FooterStyle CssClass="grvFooterNew" />
+                            <FooterStyle  />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeaderNew" />
-                            <RowStyle CssClass="grvRows" />
+                            <HeaderStyle  />
+                            <RowStyle />
 
                             <%-- <FooterStyle BackColor="#04b7db" ForeColor="#ffffff" />
                                 <EditRowStyle />
