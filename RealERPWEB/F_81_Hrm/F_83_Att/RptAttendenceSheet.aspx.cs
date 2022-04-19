@@ -254,7 +254,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string calltype = "";
             switch (comcod)
             {
-                case "3101":
+              
                 case "3347":
 
                     calltype = "SECTIONNAMEDP01";
@@ -376,7 +376,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
 
-            protected void lnkbtnShow_Click(object sender, EventArgs e)
+        protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
             this.PanelVisivility();
             int index = this.rbtnAtten.SelectedIndex;
@@ -900,10 +900,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             {
                                 section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
                             }
-
                         }
                 }
-
             }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPT_EMP_DAILY_ATTENDANCE_CHL", frmdate, deptCode, Company, section, "", "", "", "", "");
