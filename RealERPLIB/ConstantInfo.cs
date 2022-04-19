@@ -803,7 +803,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703239", "F_17_Acc", "RptAccMonthlyBgdDWise", "", "Monthly Budget (Department Wise)", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703240", "F_17_Acc", "RptAccTranSearch", "", "Transaction Search", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1703000", "1703241", "F_17_Acc", "TransectionPrint?", "Type=AccPostDatChq", "Post Dated Cheque Print", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703241", "F_17_Acc", "TransectionPrint?", "Type=AccPostDatChq", "Post Dated Cheque Print", "Accounts", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1703000", "1703243", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPay03", "Receipts & Payment(Customized)- Details", "Accounts", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "1703000", "1703250", "F_17_Acc", "RptAllAccDTransaction", "", "Transaction with Post Dated Cheque", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703260", "F_23_CR", "DishonourCheque", "", "List Of Return Cheque", "Accounts", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "1703000", "1703270", "RptAccFinProReceiviable?", "Type=AccRec", "Accounts Receiviable -Finished Project", "Accounts", "False", "False", "False", "False" });;
@@ -6175,16 +6177,17 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "08. Receipts & Payment(Actual)", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=IssuedVsCollect&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "09. Receipts & Payment(Honoured)", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPay&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000010", "03. Receipts & Payment(Honoured)- Details ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPay02&comcod=&Date1=&Date2=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000011", "10. Project Wise Receipts & Payment(Honoured) ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj&comcod=&Date1=&Date2=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000012", "11. Project Wise Receipts & Payment(Honoured) Deatils ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj02&comcod=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000011", "03. Receipts & Payment(Customized)- Details ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPay03&comcod=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000012", "10. Project Wise Receipts & Payment(Honoured) ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj&comcod=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000013", "11. Project Wise Receipts & Payment(Honoured) Deatils ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj02&comcod=&Date1=&Date2=", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000012", "", "", "", true, "" });//"11. Statement of Cash Flow", "F_17_Acc/RptBankCheque?Type=CashFlow", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000013", "", "", "", true, "" });//"11. Statement of Fund Flow", "F_17_Acc/RptBankCheque?Type=FundFlow", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000014", "12. Balance Confirmation", "F_17_Acc/AccTrialBalance?Type=BalConfirmation&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000015", "13. Cheque Clearance Report", "F_17_Acc/RptNetTransCashBank", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000016", "14. Operational Payment  Details", "F_17_Acc/RptPostNetTrnsCashBank", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000017", "15. Operational Payment - Summary", "F_17_Acc/RptOPPayment?Type=HonourBasis", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000018", "16. Operational Payment - Summary(Post Dated)", "F_17_Acc/RptOPPayment?Type=PostDated", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000019", "17.Sub Contractor Payment Bill", "F_17_Acc/AccSubconBillPay?aspx?tcode=99&tname=Payment Voucher&Mod=Accounts", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000014", "", "", "", true, "" });//"11. Statement of Fund Flow", "F_17_Acc/RptBankCheque?Type=FundFlow", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000015", "12. Balance Confirmation", "F_17_Acc/AccTrialBalance?Type=BalConfirmation&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000016", "13. Cheque Clearance Report", "F_17_Acc/RptNetTransCashBank", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000017", "14. Operational Payment  Details", "F_17_Acc/RptPostNetTrnsCashBank", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000018", "15. Operational Payment - Summary", "F_17_Acc/RptOPPayment?Type=HonourBasis", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000019", "16. Operational Payment - Summary(Post Dated)", "F_17_Acc/RptOPPayment?Type=PostDated", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000020", "17.Sub Contractor Payment Bill", "F_17_Acc/AccSubconBillPay?aspx?tcode=99&tname=Payment Voucher&Mod=Accounts", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "General Report", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "01. Ledger-01", "F_17_Acc/AccLedger?Type=Ledger&RType=GLedger&prjcode=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "02. Special Ledger", "F_17_Acc/RptAccSpLedger?Type=DetailLedger&comcod=", "", true, "" });
