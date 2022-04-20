@@ -51,6 +51,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
+            //if()
+
             this.PrintMonAttendanceBTI();
         }
 
@@ -224,7 +226,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void MonthlyAttendance()
         {
 
-            string section22 = this.ddlgroup.SelectedValue.ToString() == "00000000"?"%%": this.ddlgroup.SelectedValue.ToString();
+            string section22 = this.ddlgroup.SelectedValue.ToString() == "00000000" ? "%%" : this.ddlgroup.SelectedValue.ToString();
             if (this.ddlProjectName.SelectedValue.ToString() == "000000000000")
             {
                 string Msg = "Please Select Department";
@@ -290,101 +292,91 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
 
             DataTable dt = (DataTable)Session["tblallData"];
+            //if (this.rbtnAttStatus.SelectedIndex == 1)
+            //{
+            int i;
+            DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+            DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
 
-          
-                    if (this.rbtnAttStatus.SelectedIndex == 1)
-                    {
-                        int i;
-                        DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
-                        DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+            int tcount;
+            tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
+            for (i = 2; i < tcount; i++)
+                this.gvMonthlyattSummary.Columns[i].Visible = false;
+            int j = 2;
+            for (i = 0; i < tcount; i++)
+            {
+                //if (datefrm > dateto)
+                //    break;
 
-                        int tcount;
-                        tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
-                        for (i = 2; i < tcount; i++)
-                            this.gvMonthlyattSummary.Columns[i].Visible = false;
-                        int j = 2;
-                        for (i = 0; i < tcount; i++)
-                        {
-                            //if (datefrm > dateto)
-                            //    break;
+                this.gvMonthlyattSummary.Columns[j].Visible = true;
+                this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dd") + "<br/>" + datefrm.ToString("dddd").Substring(0, 1);
+                //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
+                datefrm = datefrm.AddDays(1);
+                j++;
 
-                            this.gvMonthlyattSummary.Columns[j].Visible = true;
-                            this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dd") + "<br/>" + datefrm.ToString("dddd").Substring(0, 1);
-                            //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
-                            datefrm = datefrm.AddDays(1);
-                            j++;
-
-                            this.StatusReport.Visible = true;
-                        }
-                        this.DelaisAttinfo.Visible = false;
-
-                        this.SummaryAttinfo.Visible = true;
-
-
-                        this.gvMonthlyattSummary.DataSource = dt;
-                        this.gvMonthlyattSummary.DataBind();
-
-                    }
-                    else
-                    {
-
-
-                        //if (comcod == "3365")
-                        //{
-
-                            int i;
-                            DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
-                            DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
-
-                            int tcount;
-                            tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
-                            for (i = 2; i < tcount; i++)
-                                this.gvMonthlyAtt.Columns[i].Visible = false;
-                            int j = 2;
-                            for (i = 0; i < tcount; i++)
-                            {
-                                //if (datefrm > dateto)
-                                //    break;
-
-                                this.gvMonthlyAtt.Columns[j].Visible = true;
-                                this.gvMonthlyAtt.Columns[j].HeaderText = datefrm.ToString("dd") + "<br/>" + datefrm.ToString("dddd").Substring(0, 1);
-                                //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
-                                datefrm = datefrm.AddDays(1);
-                                j++;
-
-                                this.StatusReport.Visible = true;
-                            }
-
-
-                            this.DelaisAttinfo.Visible = true;
-
-                            this.SummaryAttinfo.Visible = false;
-
-                            this.gvMonthlyAtt.DataSource = dt;
-                            this.gvMonthlyAtt.DataBind();
-                        //}
-                        //else
-                        //{
-
-                        //    this.DelaisAttinfo.Visible = true;
-
-                        //    this.SummaryAttinfo.Visible = false;
-
-                        //    this.gvMonthlyAtt.DataSource = dt;
-                        //    this.gvMonthlyAtt.DataBind();
-
-                        //}
-
-
-
-
-
-
-
-                    }
-                  
-
+                this.StatusReport.Visible = true;
             }
+            this.DelaisAttinfo.Visible = false;
+
+            this.SummaryAttinfo.Visible = true;
+
+
+            this.gvMonthlyattSummary.DataSource = dt;
+            this.gvMonthlyattSummary.DataBind();
+
+            //}
+            //else
+            //{
+
+
+            //    //if (comcod == "3365")
+            //    //{
+
+            //int i;
+            //    DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+            //    DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+            //    int tcount;
+            //    tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
+            //    for (i = 2; i < tcount; i++)
+            //        this.gvMonthlyAtt.Columns[i].Visible = false;
+            //    int j = 2;
+            //    for (i = 0; i < tcount; i++)
+            //    {
+            //        //if (datefrm > dateto)
+            //        //    break;
+
+            //        this.gvMonthlyAtt.Columns[j].Visible = true;
+            //        this.gvMonthlyAtt.Columns[j].HeaderText = datefrm.ToString("dd") + "<br/>" + datefrm.ToString("dddd").Substring(0, 1);
+            //        //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
+            //        datefrm = datefrm.AddDays(1);
+            //        j++;
+
+            //        this.StatusReport.Visible = true;
+            //    }
+
+
+            //    this.DelaisAttinfo.Visible = false;
+
+            //    this.SummaryAttinfo.Visible = true;
+
+            //    this.gvMonthlyAtt.DataSource = dt;
+            //    this.gvMonthlyAtt.DataBind();
+                //}
+                //else
+                //{
+
+                //    this.DelaisAttinfo.Visible = true;
+
+                //    this.SummaryAttinfo.Visible = false;
+
+                //    this.gvMonthlyAtt.DataSource = dt;
+                //    this.gvMonthlyAtt.DataBind();
+
+                //}
+
+            //}
+        }
         private void PrintMonAttendanceBTI()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -403,7 +395,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI", list, null, null);
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI02", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
@@ -421,6 +413,51 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Daily Attendance Statistic"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void PrintMonAttendance01()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comcod = this.GetComCode();
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+            string todesig = this.ddlToDesig.SelectedValue.ToString();
+            string acclate = this.GetComLateAccTime();
+            var rptMonth = comcod == "3330" ? "For The Month of " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMMM, yyyy") : "For The Month of " + Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("MMMM, yyyy");
+            string section = "";
+
+            DataTable dt1 = (DataTable)Session["tblallData"];
+            var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendance", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtMonth", rptMonth));
+            DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+            DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+            for (int i = 1; i <= 31; i++)
+            {
+                if (datefrm > dateto)
+                    break;
+
+                Rpt1.SetParameters(new ReportParameter("txtDate" + i.ToString(), datefrm.ToString("dd")));
+                datefrm = datefrm.AddDays(1);
+
+            }
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Monthly Attendance Sheet"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
 
             Session["Report1"] = Rpt1;
