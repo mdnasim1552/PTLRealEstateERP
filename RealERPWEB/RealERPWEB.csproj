@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2208,6 +2208,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
     <Content Include="F_28_MPro\MktMatIssue.aspx" />
     <Content Include="F_28_MPro\MktMRREntry.aspx" />
@@ -3835,6 +3836,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\MktGenCodeBookLand.aspx.cs">
+      <DependentUpon>MktGenCodeBookLand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\MktGenCodeBookLand.aspx.designer.cs">
+      <DependentUpon>MktGenCodeBookLand.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\MktMarketSurvey.aspx.cs">
       <DependentUpon>MktMarketSurvey.aspx</DependentUpon>

@@ -3324,8 +3324,9 @@
                                                             <asp:TemplateField HeaderText="Total Amount">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvWoamtosapp" runat="server" Style="text-align: right"
-                                                                        Text='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3101" || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3355" ? true : false %>'
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "woamt")).ToString("#,##0;(#,##0); ") %>'
                                                                         Width="50px"></asp:Label>
+                                                                    <%--Text='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3101" || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3355" ? true : false %>'--%>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblgvFWoamtosapp" runat="server" Style="text-align: right"></asp:Label>

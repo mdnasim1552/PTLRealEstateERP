@@ -126,7 +126,7 @@
                                             <asp:LinkButton ID="lbtOk" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtOk_Click">Ok</asp:LinkButton>
 
                                         </div>
-                                        
+
 
 
                                         <div class="col-md-1 pading5px">
@@ -180,6 +180,12 @@
                                             <asp:ListItem Value="150">150</asp:ListItem>
                                             <asp:ListItem Value="200">200</asp:ListItem>
                                             <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="600">600</asp:ListItem>
+                                            <asp:ListItem Value="900">900</asp:ListItem>
+                                            <asp:ListItem Value="1200">1200</asp:ListItem>
+                                            <asp:ListItem Value="1500">1500</asp:ListItem>
+                                            <asp:ListItem Value="2000">2000</asp:ListItem>
+                                            <asp:ListItem Value="3000">3000</asp:ListItem>
                                         </asp:DropDownList>
 
                                     </div>
@@ -457,6 +463,12 @@
                                             <asp:ListItem Value="150">150</asp:ListItem>
                                             <asp:ListItem Value="200">200</asp:ListItem>
                                             <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="600">600</asp:ListItem>
+                                            <asp:ListItem Value="900">900</asp:ListItem>
+                                            <asp:ListItem Value="1200">1200</asp:ListItem>
+                                            <asp:ListItem Value="1500">1500</asp:ListItem>
+                                            <asp:ListItem Value="2000">2000</asp:ListItem>
+                                            <asp:ListItem Value="3000">3000</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -576,6 +588,12 @@
                                             <asp:ListItem Value="150">150</asp:ListItem>
                                             <asp:ListItem Value="200">200</asp:ListItem>
                                             <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="600">600</asp:ListItem>
+                                            <asp:ListItem Value="900">900</asp:ListItem>
+                                            <asp:ListItem Value="1200">1200</asp:ListItem>
+                                            <asp:ListItem Value="1500">1500</asp:ListItem>
+                                            <asp:ListItem Value="2000">2000</asp:ListItem>
+                                            <asp:ListItem Value="3000">3000</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -681,6 +699,12 @@
                                             <asp:ListItem Value="150">150</asp:ListItem>
                                             <asp:ListItem Value="200">200</asp:ListItem>
                                             <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="600">600</asp:ListItem>
+                                            <asp:ListItem Value="900">900</asp:ListItem>
+                                            <asp:ListItem Value="1200">1200</asp:ListItem>
+                                            <asp:ListItem Value="1500">1500</asp:ListItem>
+                                            <asp:ListItem Value="2000">2000</asp:ListItem>
+                                            <asp:ListItem Value="3000">3000</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -799,6 +823,12 @@
                                             <asp:ListItem Value="150">150</asp:ListItem>
                                             <asp:ListItem Value="200">200</asp:ListItem>
                                             <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="600">600</asp:ListItem>
+                                            <asp:ListItem Value="900">900</asp:ListItem>
+                                            <asp:ListItem Value="1200">1200</asp:ListItem>
+                                            <asp:ListItem Value="1500">1500</asp:ListItem>
+                                            <asp:ListItem Value="2000">2000</asp:ListItem>
+                                            <asp:ListItem Value="3000">3000</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class=" clearfix"></div>

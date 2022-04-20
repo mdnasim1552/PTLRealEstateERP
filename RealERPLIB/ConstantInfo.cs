@@ -1015,6 +1015,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102040", "F_21_MKT", "MktTeamCodeBook?Type=MktTeam", "", "Sales Team", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2101000", "2101041", "F_21_MKT", "MktTeamCodeBook?Type=MktLetter", "", "Letter Creation CRM", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2101000", "2101050", "F_21_MKT", "MktGenCodeBook", "", "CRM Code Entry ", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2101000", "2101051", "F_21_MKT", "MktGenCodeBookLand", "", "Land Code Entry ", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103060", "F_21_MKT", "RptMktAppointment?", "Type=Todaysdis&UType=Client", "Todays Discussion", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103061", "F_21_MKT", "RptMktAppointment?", "Type=Todaysdis&UType=Mgt", "Todays Discussion (Management)", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103062", "F_21_MKT", "RptMktAppointment?", "Type=DiscussHis&UType=Client", "Client History", "CRM", "False", "False", "False", "False" }); ;
@@ -1963,7 +1964,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102034", "F_81_Hrm/F_84_Lea", "HREmpLeave?", "Type=LeaveRule", "Company Leave Rule", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102035", "F_81_Hrm/F_84_Lea", "HRLeaveOpening", "", "Earn Leave Opening", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102036", "F_81_Hrm/F_84_Lea", "MyLeave?", "Type=User", "Online Leave Application (Ind)", "Leave", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102037", "F_81_Hrm/F_84_Lea", "MyLeave?", "Type=Mgt", "Online Leave Application (Mgt)", "Leave", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102037", "F_81_Hrm/F_84_Lea", "MyLeave?", "Type=MGT", "Apply Leave (MGT)", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102038", "F_81_Hrm/F_85_Lon", "EmpLoanInfo?", "Type=Entry", "Loan Installment", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102039", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=loan", "Loan Deduction", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102040", "F_81_Hrm/F_85_Lon", "EmpLoanStatus?", "Type=Report", "Employee Loan Status", "Loan", "False", "False", "False", "False" }); ;
@@ -2079,6 +2080,7 @@ namespace RealERPLIB
             // tblObj.Rows.Add(new Object[] { "8103000", "8103006", "RptMyInterface?", "Type=empid", "My Interface", "Recruitment", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8003000", "8103007", "F_81_Hrm/F_81_Rec", "RptApplicantInfo", "", "Applicant Information", "Recruitment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103008", "F_81_Hrm/F_83_Att", "RptAttendenceSheet", "", "Attandence Information", "Attendance", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103009", "F_81_Hrm/F_83_Att", "RptAttendenceSheet02", "", "Attendance Information Group Wise", "Attendance", "False", "False", "False", "False" }); ;
             // tblObj.Rows.Add(new Object[] { "8103000", "8103009", "RptDeptEmpDailyAttendance?", "Type=DailyAtten", "Employee Daily Attendance- Department", "Attendance", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8103000", "8103010", "F_81_Hrm/F_83_Att", "RptEmpDailyAttendance?", "Type=DailyAtten", "Employee Daily Attendance(Report)", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103011", "F_81_Hrm/F_83_Att", "RptEmpDailyAttendance?", "Type=DailyOverTime", "Employee Daily Overtime(Report)", "Attendance", "False", "False", "False", "False" }); ;
@@ -14762,7 +14764,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0304000001", "01. Leave Application Form (Manual)", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=FLeaveApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000002", "02. Manual Leave Approval", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000003", "03. Online Leave Application (Ind)", "F_81_Hrm/F_84_Lea/MyLeave?Type=User", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0304000004", "04. Online Leave Application (Mgt)", "F_81_Hrm/F_84_Lea/MyLeave?Type=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000004", "04. Apply Leave (MGT)", "F_81_Hrm/F_84_Lea/MyLeave?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000005", "05. HR Leave Interface(Mgt)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000006", "06. HR Leave Interface(Department Head)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=DeptHead", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000007", "07. HR Leave Interface(Individual)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind", "", true, "" });
@@ -14852,6 +14854,7 @@ namespace RealERPLIB
             //c. Attendance System
             mnuTbl1.Rows.Add(new Object[] { "0403000000", "Attendance System", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0403000001", "01. Attendance Information", "F_81_Hrm/F_83_Att/RptAttendenceSheet", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000002", "01. Attendance Information Group Wise", "F_81_Hrm/F_83_Att/RptAttendenceSheet02", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0403000002", "02. Employee Daily Attendance", "F_81_Hrm/F_99_MgtAct/RptgroupAttendance", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0403000003", "02. Employee Daily Attendance", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=DailyAtten", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0403000004", "02. Employee Daily Attendance - Department", "F_81_Hrm/F_83_Att/RptDeptEmpDailyAttendance?Type=DailyAtten", "", true, "" });

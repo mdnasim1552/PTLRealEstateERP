@@ -508,7 +508,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string lvdptuid = ((Label)this.gvConfirm.Rows[index].FindControl("lbldptusid")).Text.ToString();
 
             DataTable dt = (DataTable)ViewState["tbltotalleav"];
-            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "ATTREQUESTAPPFROWARD", leavid, empid, lvdptuid, usrid, "", "", "", "", "", "", "", "", "", "");
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "ATTREQUESTAPPFROWARD", leavid, empid, lvdptuid, "", "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
                 //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);

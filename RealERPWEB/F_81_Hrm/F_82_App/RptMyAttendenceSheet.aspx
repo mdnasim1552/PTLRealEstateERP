@@ -310,9 +310,11 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td>
                                     <asp:Label ID="lblTotalHour" runat="server" Style="font-weight: bold;">40:00</asp:Label>
                                 </td>
+                                
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -353,12 +355,8 @@
                            
                                             <abbr title="Required">*</abbr>
                                         </label>
-                                        <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">
-                                            <asp:ListItem Value="LA">Late Approval Request (if Finger 9:04:59 to 9:59:59)</asp:ListItem>
-                                            <asp:ListItem Value="LP">Late Present Approval Request (if Finger 10:00 to 5:30)</asp:ListItem>
-                                            <asp:ListItem Value="TC">Time Correction Approval Request (Project Visit, Customer visit, etc )</asp:ListItem>
-                                            <asp:ListItem Value="AB">Absent Approval Request (IF Finger missed but present)</asp:ListItem>
-
+                                        <asp:DropDownList runat="server" ID="ddlReqType" class="form-control" required="">
+                                            
                                         </asp:DropDownList>
 
                                     </div>
