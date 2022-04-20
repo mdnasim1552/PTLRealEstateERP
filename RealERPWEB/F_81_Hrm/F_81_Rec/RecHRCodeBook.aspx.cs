@@ -28,11 +28,16 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-            if (this.ddlOthersBook.Items.Count == 0)
-                this.Load_CodeBooList();
+            {
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
 
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
+                if (this.ddlOthersBook.Items.Count == 0)
+                    this.Load_CodeBooList();
+            }
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -88,6 +93,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             string comcod = this.GetCompCode();
             string gcode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
             string gcode2 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim();
+            string msg = "";
             if (gcode2.Length != 3)
                 return;
 
@@ -104,14 +110,16 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
             if (result == true)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                string Msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
             }
 
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Msg = "Update Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
             }
             this.grvacc.EditIndex = -1;
             this.ShowInformation();
@@ -195,6 +203,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
         protected void lnkok_Click(object sender, EventArgs e)
         {
+            string msg = "";
             try
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -202,12 +211,14 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 Session.Remove("storedata");
                 this.lnkok.Visible = false;
                 this.lnkcancel.Visible = true;
-                this.ddlOthersBook.Visible = false;
-                this.ddlOthersBookSegment.Visible = false;
-                this.LblBookName1.Visible = false;
-                this.lbalterofddl.Visible = true;
-                this.lbalterofddl.Text = "HR Code Book: " + this.ddlOthersBook.SelectedItem.ToString().Trim()
-                             + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+                
+                this.ddlOthersBook.Enabled = false;
+                this.ddlOthersBookSegment.Enabled = false;
+          
+     
+                //this.lbalterofddl.Visible = true;
+                //this.lbalterofddl.Text = "HR Code Book: " + this.ddlOthersBook.SelectedItem.ToString().Trim()
+                //             + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
 
                 this.ShowInformation();
                 this.grvacc_DataBind();
@@ -215,8 +226,10 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Information not found!!!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Information not found!!!!";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Msg = "Information not found!!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
             }
         }
         private void ShowInformation()
@@ -234,10 +247,10 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         {
             this.lnkok.Visible = true;
             this.lnkcancel.Visible = false;
-            this.LblBookName1.Visible = true;
-            this.lbalterofddl.Visible = false;
-            this.ddlOthersBook.Visible = true;
-            this.ddlOthersBookSegment.Visible = true;
+
+            this.ddlOthersBook.Enabled = true;
+            this.ddlOthersBookSegment.Enabled = true;
+
             this.grvacc.DataSource = null;
             this.grvacc.DataBind();
 

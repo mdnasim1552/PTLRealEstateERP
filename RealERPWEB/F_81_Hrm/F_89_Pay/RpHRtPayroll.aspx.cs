@@ -1207,52 +1207,52 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.gvpayroll.Columns[18].Visible = false;
                                 this.gvpayroll.Columns[29].Visible = false;
                                 this.gvpayroll.Columns[40].Visible = false;
-                                string deptname = this.ddlBranch.SelectedItem.Text.ToString();
-                                if (deptname == "Head Office")
-                                {
-                                    this.gvpayroll.Columns[41].Visible = true;
-                                    this.gvpayroll.Columns[42].Visible = false;
-                                    this.gvpayroll.Columns[43].Visible = true;
-                                    this.gvpayroll.Columns[44].Visible = false;
-                                    this.gvpayroll.Columns[45].Visible = false;
-                                    this.gvpayroll.Columns[46].Visible = false;
-                                }
-                                else if (deptname == "Dhaka Project")
-                                {
-                                    this.gvpayroll.Columns[41].Visible = true;
-                                    this.gvpayroll.Columns[42].Visible = true;
-                                    this.gvpayroll.Columns[43].Visible = true;
-                                    this.gvpayroll.Columns[44].Visible = false;
-                                    this.gvpayroll.Columns[45].Visible = false;
-                                    this.gvpayroll.Columns[46].Visible = false;
-                                }
-                                else if (deptname == "Ctg Office")
-                                {
-                                    this.gvpayroll.Columns[41].Visible = true;
-                                    this.gvpayroll.Columns[42].Visible = false;
-                                    this.gvpayroll.Columns[43].Visible = true;
-                                    this.gvpayroll.Columns[44].Visible = false;
-                                    this.gvpayroll.Columns[45].Visible = false;
-                                    this.gvpayroll.Columns[46].Visible = false;
-                                }
-                                else if (deptname == "SICOL")
-                                {
-                                    this.gvpayroll.Columns[41].Visible = false;
-                                    this.gvpayroll.Columns[42].Visible = true;
-                                    this.gvpayroll.Columns[43].Visible = false;
-                                    this.gvpayroll.Columns[44].Visible = false;
-                                    this.gvpayroll.Columns[45].Visible = false;
-                                    this.gvpayroll.Columns[46].Visible = false;
-                                }
-                                else if (deptname == "CP")
-                                {
-                                    this.gvpayroll.Columns[41].Visible = false;
-                                    this.gvpayroll.Columns[42].Visible = false;
-                                    this.gvpayroll.Columns[43].Visible = false;
-                                    this.gvpayroll.Columns[44].Visible = false;
-                                    this.gvpayroll.Columns[45].Visible = false;
-                                    this.gvpayroll.Columns[46].Visible = true;
-                                }
+                                //string deptname = this.ddlBranch.SelectedItem.Text.ToString();
+                                //if (deptname == "Head Office")
+                                //{
+                                //    this.gvpayroll.Columns[41].Visible = true;
+                                //    this.gvpayroll.Columns[42].Visible = false;
+                                //    this.gvpayroll.Columns[43].Visible = true;
+                                //    this.gvpayroll.Columns[44].Visible = false;
+                                //    this.gvpayroll.Columns[45].Visible = false;
+                                //    this.gvpayroll.Columns[46].Visible = false;
+                                //}
+                                //else if (deptname == "Dhaka Project")
+                                //{
+                                //    this.gvpayroll.Columns[41].Visible = true;
+                                //    this.gvpayroll.Columns[42].Visible = true;
+                                //    this.gvpayroll.Columns[43].Visible = true;
+                                //    this.gvpayroll.Columns[44].Visible = false;
+                                //    this.gvpayroll.Columns[45].Visible = false;
+                                //    this.gvpayroll.Columns[46].Visible = false;
+                                //}
+                                //else if (deptname == "Ctg Office")
+                                //{
+                                //    this.gvpayroll.Columns[41].Visible = true;
+                                //    this.gvpayroll.Columns[42].Visible = false;
+                                //    this.gvpayroll.Columns[43].Visible = true;
+                                //    this.gvpayroll.Columns[44].Visible = false;
+                                //    this.gvpayroll.Columns[45].Visible = false;
+                                //    this.gvpayroll.Columns[46].Visible = false;
+                                //}
+                                //else if (deptname == "SICOL")
+                                //{
+                                //    this.gvpayroll.Columns[41].Visible = false;
+                                //    this.gvpayroll.Columns[42].Visible = true;
+                                //    this.gvpayroll.Columns[43].Visible = false;
+                                //    this.gvpayroll.Columns[44].Visible = false;
+                                //    this.gvpayroll.Columns[45].Visible = false;
+                                //    this.gvpayroll.Columns[46].Visible = false;
+                                //}
+                                //else if (deptname == "CP")
+                                //{
+                                //    this.gvpayroll.Columns[41].Visible = false;
+                                //    this.gvpayroll.Columns[42].Visible = false;
+                                //    this.gvpayroll.Columns[43].Visible = false;
+                                //    this.gvpayroll.Columns[44].Visible = false;
+                                //    this.gvpayroll.Columns[45].Visible = false;
+                                //    this.gvpayroll.Columns[46].Visible = true;
+                                //}
                      
 
                                 break;
@@ -1292,12 +1292,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.gvpayroll.Columns[37].Visible = false;
                                 this.gvpayroll.Columns[40].Visible = true;
 
-                                this.gvpayroll.Columns[41].Visible = false;
-                                this.gvpayroll.Columns[42].Visible = false;
-                                this.gvpayroll.Columns[43].Visible = false;
-                                this.gvpayroll.Columns[44].Visible = false;
-                                this.gvpayroll.Columns[45].Visible = false;
-                                this.gvpayroll.Columns[46].Visible = false;
+                                //this.gvpayroll.Columns[41].Visible = false;
+                                //this.gvpayroll.Columns[42].Visible = false;
+                                //this.gvpayroll.Columns[43].Visible = false;
+                                //this.gvpayroll.Columns[44].Visible = false;
+                                //this.gvpayroll.Columns[45].Visible = false;
+                                //this.gvpayroll.Columns[46].Visible = false;
                                 break;
                         }
 

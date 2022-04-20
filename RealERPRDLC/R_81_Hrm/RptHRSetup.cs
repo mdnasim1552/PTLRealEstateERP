@@ -67,6 +67,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_83_Att.rptMonthyEarlyLeaveEmp": Rpt1a = SetRptMonthyEarlyLeaveEmp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptAttendenceSheetEarly": Rpt1a = SetRptAttendenceSheetEarly(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptMonAttendanceBTI": Rpt1a = SetRptMonAttendanceBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_83_Att.RptMonAttendanceBTI02": Rpt1a = SetRptMonAttendanceBTI02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 //LeaveApp by Parbaz
                 case "R_81_Hrm.R_84_Lea.EmpLeavApp": Rpt1a = SetEmpLeavApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -297,6 +298,11 @@ namespace RealERPRDLC
             //Rpt1a.DataSources.Add(new ReportDataSource("DSLeaveApp", (List<RealERPRDLC.RD_81_Hrm.RD_89_Pay.RpHRtPayroll.LeaveApp>)RptDataSet));
             return Rpt1a;
 
+        }
+        private static LocalReport SetRptMonAttendanceBTI02(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
+            return rpt1a;
         }
         private static LocalReport SetRptMonAttendanceBTI(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
