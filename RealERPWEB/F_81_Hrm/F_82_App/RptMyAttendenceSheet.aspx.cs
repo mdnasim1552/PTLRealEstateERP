@@ -34,6 +34,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 SelectDate();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "  Employee Status";
                 string qtype = this.Request.QueryString["Type"].ToString();
+                GetLeaveType();
                 if (qtype == "MGT")
                 {
                     this.mgtCard.Visible = true;
@@ -54,6 +55,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
         }
 
+        private void GetLeaveType()
+        {
+            ddlReqType.Items.Add(new ListItem("Late Approval Request(if Finger 9:04:59 to 9:59:59)", "LA"));
+            ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
+            ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
+            ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
+          
+
+        }
         private void SelectDate()
         {
             string comcod = this.GetComeCode();
@@ -333,8 +343,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lnkRequstApply_Click(object sender, EventArgs e)
         {
+            this.ddlReqType.Items.Clear();
+            GetLeaveType();
+
+
             string comcod = this.GetComeCode();
             //  this.lblabsheading.Text = "Apply for RequestDate :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
 
             LinkButton lnkBtn1 = sender as LinkButton;
             RepeaterItem Rptitem = (RepeaterItem)lnkBtn1.NamingContainer;
@@ -346,35 +362,45 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label lblRequid = (Label)Rptitem.FindControl("lblRequid");
             
             string attstatus = lblstatus.Text.Trim();
-            ddlReqType.SelectedValue = (attstatus == "A" ? "AB" : "LP");
+            ddlReqType.SelectedValue = (attstatus == "A" ? "AB" : "LA");
             ddlReqType.Enabled = (attstatus == "A" ? false : true);
+           
             if (attstatus == "A")
             {
-                ddlReqType.Items.Remove("TC");
-                ddlReqType.Items.Remove("LP");
-                ddlReqType.Items.Remove("LA");
+                              
                 this.InfoApply.Visible = true;
             }
+
             else
             {
-
                 DateTime acint = DateTime.Parse(actualin.Text);
                 TimeSpan acintime = TimeSpan.Parse(acint.ToString("HH:mm"));
                 TimeSpan maxTime = TimeSpan.Parse("10:00");
-                if (acintime >= maxTime)
+                if (userrole == "3")
                 {
-                    ddlReqType.SelectedValue = "LP";
+                     
+                    //ddlReqType.Items.Remove("Late Present Approval Request (if Finger 10:00 to 5:30)");
+                    this.ddlReqType.Items.RemoveAt(1);
 
                 }
                 else
                 {
-                    ddlReqType.SelectedValue = "LA";
+                    if (acintime >= maxTime)
+                    {
+                        ddlReqType.SelectedValue = "LP";
+                    }
+                    else
+                    {
+                        ddlReqType.SelectedValue = "LA";
+                    }
+
+
                 }
 
-                ListItem removeItem = ddlReqType.Items.FindByValue("AB");
-                // ddlReqType.Items.Remove(removeItem);
                 this.InfoApply.Visible = false;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
             }
+
             
 
             //lblIntime
@@ -385,7 +411,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lbldadteOuttime.Text = lblIntime.Text;
             this.txtAreaReson.Text = lblisremarks.Text;
             this.ReqID.Value = lblRequid.Text;
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+            
         }
 
         protected void lbntnAbsentApproval_Click(object sender, EventArgs e)
