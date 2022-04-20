@@ -3868,7 +3868,6 @@ namespace RealERPWEB.F_99_Allinterface
                 /// signature       // appnam - PURAPROVB and ordnam - purorder     
                 switch (comcod)
                 {
-                    //case "3101"://ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -3879,7 +3878,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         break;
-                    //case "3101": // Asit
+
                     case "3335": // Edison Properties            
 
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
@@ -3900,7 +3899,6 @@ namespace RealERPWEB.F_99_Allinterface
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         break;
 
-                    //case "3101":
                     case "3332": // InnStar
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
@@ -3911,16 +3909,14 @@ namespace RealERPWEB.F_99_Allinterface
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         sign6 = "Approved By";
                         break;
-                    //case "3101": // Asit
                     case "3353": //Manama
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = " ";
                         sign4 = " ";
                         sign5 = " ";
-
                         break;
-                    //case "3101": // Asit
+
                     case "3355": //greenwood
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -3960,7 +3956,6 @@ namespace RealERPWEB.F_99_Allinterface
                         sign7 = _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
                         break;
 
-                    //case "3101": //
                     case "3366": //Lanco
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4005,8 +4000,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 switch (comcod)
-                {
-                    //case "3101": // ASIT      
+                {  
                     case "3330": // Bridge Holdings
                         //terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         //terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4050,7 +4044,6 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    //case "3101":
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
 
@@ -4067,7 +4060,6 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    //case "3101": // ASIT
                     case "3366": // Lanco
                     case "1205"://P2P
                     case "3351"://P2P
@@ -4075,7 +4067,6 @@ namespace RealERPWEB.F_99_Allinterface
                         terms1 = terms.ToString();
                         break;
 
-                    case "3101": // ptl 
                     case "3357": // Cube 
                         terms1 = terms.ToString();
                         pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", " + _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
@@ -4110,7 +4101,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                     // manama
-                    //case "3101": // ASIT
                     case "3353":
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4133,7 +4123,6 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    //case "3101": // ASIT
                     case "3364": //JBS
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4157,8 +4146,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-
-                    //case "3101":                 
+                 
                     case "1108":
                     case "1109":
                     case "3315":
@@ -4196,7 +4184,6 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderAcme.rdlc";
                         break;
 
-                    //case "3101": //Assure
                     case "1108": //Assure
                     case "1109": //Assure
                     case "3315": //Assure
@@ -4210,17 +4197,14 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderTropical.rdlc";
                         break;
 
-                    //case "3101": 
                     case "3366": //Lanco
                         Reportpath = "~/Report/RptPurchaseOrderLanco.rdlc";
                         break;
 
-                    //case "3101"://Asit
                     case "3335": // Edison Properties
                         Reportpath = "~/Report/RptPurchaseOrderEdison.rdlc";
                         break;
 
-                    //case "3101": //Pintech
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P
@@ -4241,7 +4225,6 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderInnstar.rdlc";
                         break;
 
-                    //case "3101": // Suvastu
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
                         Reportpath = "~/Report/RptPurchaseOrderSuvastu.rdlc";
@@ -4266,17 +4249,14 @@ namespace RealERPWEB.F_99_Allinterface
                         }
                         break;
 
-                    //case "3101"://Asit
                     case "3355": //Greenwood
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-                    //case "3101"://Asit
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
-                    case "3101"://Asit
                     case "3357": //Cube
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
