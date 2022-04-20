@@ -2079,6 +2079,7 @@ namespace RealERPLIB
             // tblObj.Rows.Add(new Object[] { "8103000", "8103006", "RptMyInterface?", "Type=empid", "My Interface", "Recruitment", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8003000", "8103007", "F_81_Hrm/F_81_Rec", "RptApplicantInfo", "", "Applicant Information", "Recruitment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103008", "F_81_Hrm/F_83_Att", "RptAttendenceSheet", "", "Attandence Information", "Attendance", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103009", "F_81_Hrm/F_83_Att", "RptAttendenceSheet02", "", "Attendance Information Group Wise", "Attendance", "False", "False", "False", "False" }); ;
             // tblObj.Rows.Add(new Object[] { "8103000", "8103009", "RptDeptEmpDailyAttendance?", "Type=DailyAtten", "Employee Daily Attendance- Department", "Attendance", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8103000", "8103010", "F_81_Hrm/F_83_Att", "RptEmpDailyAttendance?", "Type=DailyAtten", "Employee Daily Attendance(Report)", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103011", "F_81_Hrm/F_83_Att", "RptEmpDailyAttendance?", "Type=DailyOverTime", "Employee Daily Overtime(Report)", "Attendance", "False", "False", "False", "False" }); ;
@@ -14852,6 +14853,7 @@ namespace RealERPLIB
             //c. Attendance System
             mnuTbl1.Rows.Add(new Object[] { "0403000000", "Attendance System", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0403000001", "01. Attendance Information", "F_81_Hrm/F_83_Att/RptAttendenceSheet", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000002", "01. Attendance Information Group Wise", "F_81_Hrm/F_83_Att/RptAttendenceSheet02", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0403000002", "02. Employee Daily Attendance", "F_81_Hrm/F_99_MgtAct/RptgroupAttendance", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0403000003", "02. Employee Daily Attendance", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=DailyAtten", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0403000004", "02. Employee Daily Attendance - Department", "F_81_Hrm/F_83_Att/RptDeptEmpDailyAttendance?Type=DailyAtten", "", true, "" });

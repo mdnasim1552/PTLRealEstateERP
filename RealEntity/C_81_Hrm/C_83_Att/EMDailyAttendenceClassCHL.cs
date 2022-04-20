@@ -250,6 +250,8 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public double tpayable { get; set; }
             public double onduty { get; set; }
             public double abslate { get; set; }
+            public string grpcod { get; set; }
+            public string grpdesc { get; set; }
             public EmpMnthAttn() { }
         }
 
