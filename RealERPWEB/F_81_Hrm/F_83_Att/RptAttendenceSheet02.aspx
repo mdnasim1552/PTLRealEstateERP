@@ -122,7 +122,7 @@
 
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-2" hidden="hidden">
                             <asp:RadioButtonList ID="rbtnAttStatus" runat="server" AutoPostBack="True"
                                 CssClass="custom-control custom-control-inline custom-checkbox"
                                 Font-Bold="True" Font-Size="12px" ForeColor="Black"
