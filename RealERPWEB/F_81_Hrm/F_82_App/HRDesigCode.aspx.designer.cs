@@ -51,6 +51,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.WebControls.Label lbalterofddl;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// ddlOthersBookSegment control.
         /// </summary>
         /// <remarks>
@@ -69,22 +78,22 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.WebControls.Label lbalterofddlSegment;
 
         /// <summary>
-        /// lnkok control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkok;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// lblmsg control.
+        /// ibtnSrch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.LinkButton ibtnSrch;
 
         /// <summary>
         /// txtDesignationSrc control.
@@ -96,13 +105,22 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.WebControls.TextBox txtDesignationSrc;
 
         /// <summary>
-        /// ibtnSrch control.
+        /// lnkok control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ibtnSrch;
+        protected global::System.Web.UI.WebControls.LinkButton lnkok;
+
+        /// <summary>
+        /// ConfirmMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ConfirmMessage;
 
         /// <summary>
         /// grvacc control.

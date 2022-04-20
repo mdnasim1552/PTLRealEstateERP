@@ -19,6 +19,17 @@
         .chzn-drop{
              width:100%!important;
         }
+                        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+                .pd4{
+                    padding:4px!important;
+                }
+      
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -80,8 +91,8 @@
                         </div>
 
                         <div class="col-lg-1">
-                                        <asp:Label ID="lblfrmdate" runat="server" >Date</asp:Label>
-                                        <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:Label ID="lblfrmdate" runat="server" >From</asp:Label>
+                                        <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate">
                                         </cc1:CalendarExtender>
                         </div>
@@ -89,7 +100,7 @@
                         
                         <div class="col-lg-1">
                             <asp:Label ID="lbltodate" runat="server">To</asp:Label>
-                                        <asp:TextBox ID="txttodate" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate">
                                         </cc1:CalendarExtender>
                         </div>
@@ -100,7 +111,7 @@
 
                         </div>
                           <div class="col-lg-1">
-                               <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkbtnShow_Click">ok</asp:LinkButton>
+                               <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
                           </div>
 
                     </div>
