@@ -24,8 +24,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
-                ////if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                ////    Response.Redirect("../../AcceessError.aspx");
+               
 
                 string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtgvenjoydt1.Text = nextday;
@@ -37,14 +36,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 if (qtype == "MGT")
                 {
+                    if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                        Response.Redirect("../../AcceessError.aspx");
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (MGT)";
+
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
                     // GetSupvisorCheck();
                     this.ddlEmpName_SelectedIndexChanged(null, null);
-                    GetLeavType();
+                   
                 }
                 else
                 {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE";
+
                     CreateTable();
                     GetLeavType();
                     GetSupvisorCheck();
@@ -120,13 +125,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             CreateTable();
             this.EmpLeaveInfo();
             this.ShowEmppLeave();
+            GetLeavType();
             GetCalCulateDay();
         }
 
         private void getVisibilty()
         {
             string comcod = this.GetComeCode();
-            if (comcod == "3365")
+            if (comcod == "3365" || comcod == "3354")
             {
                 this.sspnlv.Visible = true;
                 this.chkBoxSkippWH.Checked = true;
@@ -352,7 +358,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (chkBoxSkippWH.Checked == true)
                 {
                     bool isvalidate = true;
-                    if (comcod == "3365")
+                    if (comcod == "3365" || comcod == "3354")
                     {
                         getLevExitingHoliday(fdate.ToString(), fdate.ToString());
                         DataTable extHoliday = (DataTable)ViewState["tblextHoliday"];

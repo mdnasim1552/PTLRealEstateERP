@@ -24,10 +24,13 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.txtdate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE INCREMENT INFORMATION";
+
             }
 
         }
@@ -136,6 +139,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
             string cutdate = this.GetStdDate(this.txtdate.Text);
+            string msg = "";
 
             string ddllistno = this.ddlIncList.SelectedValue.ToString();
 
@@ -157,8 +161,9 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
                         if (grosssalchk <= 30000 && dt.Rows[j]["chksal"].ToString() == "True")
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Please Check CheckBox Gross Salary less then 30000 taka !!!";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                          
+                            msg = "Please Check CheckBox Gross Salary less then 30000 taka !!!";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
                             return;
 
@@ -191,13 +196,13 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
 
 
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Update Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
         }
         protected void lnkbtnShow_Click(object sender, EventArgs e)

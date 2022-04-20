@@ -216,7 +216,7 @@
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvgcatdesc" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attgropdesc")) %>'
                                             Width="320px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Width="150px" />

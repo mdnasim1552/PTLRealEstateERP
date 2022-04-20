@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_81_Hrm.F_82_App
+namespace RealERPWEB.F_21_MKT
 {
 
 
-    public partial class HRDesigCode
+    public partial class MktGenCodeBookLand
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// LblBookName control.
+        /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblBookName;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
         /// ddlOthersBook control.
@@ -42,22 +42,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.WebControls.DropDownList ddlOthersBook;
 
         /// <summary>
-        /// lbalterofddl control.
+        /// ddlCatcode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbalterofddl;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCatcode;
 
         /// <summary>
         /// ddlOthersBookSegment control.
@@ -67,42 +58,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlOthersBookSegment;
-
-        /// <summary>
-        /// lbalterofddlSegment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbalterofddlSegment;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// ibtnSrch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ibtnSrch;
-
-        /// <summary>
-        /// txtDesignationSrc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesignationSrc;
 
         /// <summary>
         /// lnkok control.
@@ -121,6 +76,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ConfirmMessage;
+
+        /// <summary>
+        /// ddlpagesize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
         /// grvacc control.
