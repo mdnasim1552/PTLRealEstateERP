@@ -2028,16 +2028,14 @@ namespace RealERPWEB.F_17_Acc
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string comcod = GetCompCode();
             string rp = "RP";
-            string CBorBoth = (this.rbtnListCustomized.SelectedIndex == 0) ? "C" : (this.rbtnListCustomized.SelectedIndex == 1) ? "B" : "";
-
-            string CallType = (this.rbtnListCustomized.SelectedIndex == 0 || this.rbtnListCustomized.SelectedIndex == 1) ? "RPTRECEIPTPAYMENTCASHORBANK" : "RPTRECPAYCUSTOMIZED";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, "", "", "", "", "");
+            string CBorBoth = "";            
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", "RPTRECPAYCUSTOMIZED", fromdate, todate, rp, CBorBoth, "", "", "", "", "");
             if (ds1 == null)
                 return;
 
             Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
-            Session["recandpayFo"] = ds1.Tables[1];
-            ViewState["recandpayNote"] = ds1.Tables[2];
+            //Session["recandpayFo"] = ds1.Tables[1];
+            //ViewState["recandpayNote"] = ds1.Tables[2];
 
             this.gvRecPayCustomized.DataSource = ds1.Tables[0];
             this.gvRecPayCustomized.DataBind();        
