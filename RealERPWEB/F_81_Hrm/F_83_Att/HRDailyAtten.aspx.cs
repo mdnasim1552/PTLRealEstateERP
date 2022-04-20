@@ -38,6 +38,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 Session.Remove("DayAtten");
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.ComVisibility();

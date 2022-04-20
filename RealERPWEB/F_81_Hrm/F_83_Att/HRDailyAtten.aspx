@@ -3,14 +3,22 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <style>
-        .mt20{
-            margin-top:20px;
+        .mt20 {
+            margin-top: 20px;
         }
-                .chzn-container-single .chzn-single {
+
+        .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
         }
-      
+
+        .card-body {
+            min-height: 400px !important;
+        }
+
+        .pd4 {
+            padding: 4px !important;
+        }
     </style>
     <script type="text/javascript">
 
@@ -58,18 +66,18 @@
                 </asp:UpdateProgress>
             </div>
 
-   
-                  
-    
-               
-                    <div class="card mt-5">
-                        <div class="card-header">
-                              <div class="row">
+
+
+
+
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row">
                         <div class="col-lg-1 col-md-3 col-sm-3">
                             <div class="form-group">
 
                                 <asp:Label ID="Label10" runat="server">Date</asp:Label>
-                                <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control form-control-sm w100"></asp:TextBox>
+                                <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control form-control-sm pd4 w100"></asp:TextBox>
                                 <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                             </div>
                         </div>
@@ -91,16 +99,16 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-4">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger btn-sm mt20 " OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
-                                                 <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger btn-sm mt20 " OnClick="lbtnOk_Click"><i class="fa fa-plus"></i></asp:LinkButton>
+                            <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnShow_Click">Show</asp:LinkButton>
                             <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
-   
+
                         </div>
-                         
+
                     </div>
-                        </div>
-                        <div class="card-body">
-                                            <div class="row">
+                </div>
+                <div class="card-body">
+                    <div class="row">
                         <asp:GridView ID="gvDailyAttn" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             AllowPaging="True" OnPageIndexChanging="gvDailyAttn_PageIndexChanging">
                             <RowStyle />
@@ -213,9 +221,9 @@
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
                     </div>
-                        </div>
-                    </div>
-   
+                </div>
+            </div>
+
 
 
         </ContentTemplate>

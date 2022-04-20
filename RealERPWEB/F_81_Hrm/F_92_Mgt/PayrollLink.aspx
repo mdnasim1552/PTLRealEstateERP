@@ -17,6 +17,13 @@
         .mt20 {
             margin-top: 20px;
         }
+                                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -70,7 +77,7 @@
                             </div>
                         </div>
                         <div class="col-lg-1 col-md-3 col-sm-6">
-                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -148,7 +155,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Remarks">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger btn-sm">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvRemarks" runat="server" BorderColor="#99CCFF"

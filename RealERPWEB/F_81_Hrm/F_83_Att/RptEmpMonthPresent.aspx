@@ -5,9 +5,23 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-        .mt20{
-            margin-top:20px!important;
+    .mt20{
+            margin-top:20px;
         }
+        .chzn-drop{
+            width:100%!important;
+        }
+                  .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+                div#ContentPlaceHolder1_ddlCompany_chzn{
+                       width:100%!important;
+        }
+                }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -56,14 +70,14 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="Label2" runat="server">Company</asp:Label>
-                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control">
+                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select">
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-1 col-md-2 col-sm-6">
                              <div class="form-group">
                                         <asp:Label ID="lblfrmdate" runat="server" >From</asp:Label>
-                                        <asp:TextBox ID="txtFdate" runat="server" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtFdate" runat="server" CssClass="form-control form-control-sm" AutoPostBack="true"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server"
                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
                               </div>
@@ -72,14 +86,14 @@
                         <div class="col-lg-1 col-md-2 col-sm-6">
                              <div class="form-group">
                                  <asp:Label ID="Label1" runat="server">To</asp:Label>
-                                        <asp:TextBox ID="txtTdate" runat="server" CssClass="form-control "></asp:TextBox>
+                                        <asp:TextBox ID="txtTdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
                                       
                               </div>
                           </div>
                         <div class="col-lg-1 col-md-1 col-sm-6">
-                              <asp:LinkButton ID="lnkbtnShow" OnClick="lnkbtnShow_OnClick" runat="server" CssClass="btn btn-primary mt20">Ok</asp:LinkButton>
+                              <asp:LinkButton ID="lnkbtnShow" OnClick="lnkbtnShow_OnClick" runat="server" CssClass="btn btn-primary btn-sm mt20">Ok</asp:LinkButton>
                         </div>
                     </div>
                 </div>

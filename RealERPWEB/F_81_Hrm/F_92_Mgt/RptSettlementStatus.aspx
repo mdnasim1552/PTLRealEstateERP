@@ -23,6 +23,16 @@
         .chzn-drop {
             width: 100% !important;
         }
+                        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+                      .pd4 {
+            padding: 4px !important;
+        }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -97,7 +107,7 @@
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="Label1" runat="server">Date</asp:Label>
-                                        <asp:TextBox ID="txtDatefrom" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtDatefrom" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                         <cc1:CalendarExtender ID="datefrom" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtDatefrom"></cc1:CalendarExtender>
 
                             </div>
@@ -106,12 +116,12 @@
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblLcName" runat="server">To</asp:Label>
-                                        <asp:TextBox ID="txtdateto" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtdateto" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                         <cc1:CalendarExtender ID="dateto" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdateto"></cc1:CalendarExtender>
                             </div>
                         </div>
                         <div class="col-lg-1">
-                     <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lnkbtnSerOk_Click" CssClass="btn btn-primary mt20" TabIndex="4"></asp:LinkButton>
+                     <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lnkbtnSerOk_Click" CssClass="btn btn-primary btn-sm mt20" TabIndex="4"></asp:LinkButton>
 
                         </div>
                     </div>

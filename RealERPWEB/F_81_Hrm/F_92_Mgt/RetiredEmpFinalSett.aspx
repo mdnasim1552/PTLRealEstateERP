@@ -5,15 +5,30 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-        .mt20{
-            margin-top:20px;
+        .mt20 {
+            margin-top: 20px;
         }
-        div#ContentPlaceHolder1_ddlEmpName_chzn{
-            width:100%!important;
+
+        div#ContentPlaceHolder1_ddlEmpName_chzn {
+            width: 100% !important;
         }
-                .chzn-drop {
-            width:100%!important;
-}
+
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+
+        .pd4 {
+            padding: 4px !important;
+        }
     </style>
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
@@ -58,22 +73,13 @@
                     <asp:Panel ID="panelHead" runat="server">
 
                         <div class="row">
-                          
+
                             <div class="col-lg-1">
                                 <div class="form-group">
                                     <asp:Label ID="lblCurdate" runat="server">Date</asp:Label>
-                                    <asp:TextBox ID="txtCurdate" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtCurdate" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                     <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtCurdate"></cc1:CalendarExtender>
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <asp:Label ID="Label2" runat="server">
-                                        <asp:LinkButton ID="lbtnPrevsetNo" runat="server" OnClick="lbtnPrevsetNo_OnClick">Prev. Sett. No:</asp:LinkButton></asp:Label>
-
-                                    <asp:DropDownList ID="ddlPrevsetNo" runat="server" CssClass="form-control">
-                                    </asp:DropDownList>
                                 </div>
                             </div>
 
@@ -85,17 +91,27 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                              <div class="col-lg-2 col-md-2 col-sm-6">
+                            <div class="col-lg-2 col-md-2 col-sm-6">
                                 <div class="form-group mt20">
                                     <asp:Label ID="lblsetNo" runat="server">Emp Sett. No :</asp:Label>
                                     <asp:Label ID="lblCurNo1" runat="server"></asp:Label>
                                     <asp:Label ID="lblCurNo2" runat="server"></asp:Label>
-                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary float-right" OnClick="lbtnOk_OnClick">Ok</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm float-right" OnClick="lbtnOk_OnClick">Ok</asp:LinkButton>
 
                                 </div>
                             </div>
-                      
-          
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label ID="Label2" runat="server">
+                                        <asp:LinkButton ID="lbtnPrevsetNo" runat="server" OnClick="lbtnPrevsetNo_OnClick">Prev. Sett. No:</asp:LinkButton></asp:Label>
+
+                                    <asp:DropDownList ID="ddlPrevsetNo" runat="server" CssClass="form-control form-control-sm">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+
+
+
                             <%--                    <fieldset class="scheduler-border fieldset_A">
 
                         <div class="form-horizontal">
@@ -147,7 +163,7 @@
                         </div>
                     </fieldset>--%>
                         </div>
-              
+
                     </asp:Panel>
 
 
@@ -156,41 +172,42 @@
                     <asp:Panel ID="PanelEmpinfo" runat="server" CssClass="mb-2 mt-2" Visible="False">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12">
-                                <asp:Label ID="lblempname"  runat="server" Text="Name Of Employee:"></asp:Label>
-                                <asp:Label ID="lblname"  runat="server"></asp:Label>
+                                <asp:Label ID="lblempname" runat="server" Text="Name Of Employee:"></asp:Label>
+                                <asp:Label ID="lblname" runat="server"></asp:Label>
                             </div>
 
-                          <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
                                 <asp:Label ID="lblempdesig" runat="server" Text="Designation:"></asp:Label>
                                 <asp:Label ID="lbldesig" runat="server"></asp:Label>
                             </div>
 
-                          <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
                                 <asp:Label ID="lblwrk" runat="server" Text="Work Station:"></asp:Label>
-                                <asp:Label ID="lblwrkst"  runat="server"></asp:Label>
-                            </div>
-               
-
-                            </div>
-                       <div class="row">
-                       
-                                          <div class="col-lg-4 col-md-4 col-sm-12">
-                                 <asp:Label ID="lbljoind" runat="server" Text="Joining Date:"></asp:Label>
-                                            <asp:Label ID="lbljdate" runat="server"></asp:Label>
+                                <asp:Label ID="lblwrkst" runat="server"></asp:Label>
                             </div>
 
-                                           <div class="col-lg-3 col-md-4 col-sm-12">
-                      
-                                            <asp:Label ID="lblrd" runat="server" Text="Date Of Release:"></asp:Label>
-                                            <asp:Label ID="lblrsd"  runat="server"></asp:Label>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <asp:Label ID="lbljoind" runat="server" Text="Joining Date:"></asp:Label>
+                                <asp:Label ID="lbljdate" runat="server"></asp:Label>
                             </div>
-                              <div class="col-lg-4 col-md-4 col-sm-12">
-                                  
-                                         <asp:Label ID="lblsl"  runat="server"  Text="Service Length:"></asp:Label>                                         <asp:Label ID="lblslen"  runat="server"></asp:Label>
-                                  </div>
+
+                            <div class="col-lg-3 col-md-4 col-sm-12">
+
+                                <asp:Label ID="lblrd" runat="server" Text="Date Of Release:"></asp:Label>
+                                <asp:Label ID="lblrsd" runat="server"></asp:Label>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+
+                                <asp:Label ID="lblsl" runat="server" Text="Service Length:"></asp:Label>
+                                <asp:Label ID="lblslen" runat="server"></asp:Label>
+                            </div>
                         </div>
 
-                            <%-- <fieldset class="scheduler-border fieldset_A">
+                        <%-- <fieldset class="scheduler-border fieldset_A">
                                 <div class="form-horizontal">
                                     <div class="form-group">
                                         <div class=" col-md-4  pading5px">
@@ -228,7 +245,6 @@
                                     </div>
                                 </div>
                             </fieldset>--%>
-                       
                     </asp:Panel>
 
                     <asp:GridView ID="gvRtrSalSett" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered mb-2"

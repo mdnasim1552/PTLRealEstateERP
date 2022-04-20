@@ -17,6 +17,14 @@
         .chzn-drop {
             width: 100% !important;
         }
+                        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+      
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -62,28 +70,18 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="form-group">
-                                        
-                                <asp:Label ID="lblIncrementlist" runat="server">Increment List   
-                                    <asp:LinkButton ID="imgbtnIncrementList" runat="server" OnClick="imgbtnIncrementList_Click"><i class="fa fa-search"> </i></asp:LinkButton>
-                                </asp:Label>
-                                <asp:DropDownList ID="ddlIncList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
-                                </asp:DropDownList>
-                                <asp:Label ID="lblddlIncrementNo" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
-                            </div>
-                        </div>
+ 
 
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:Label ID="lbldate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
-                                        <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Format="dd.MM.yyyy" TargetControlID="txtdate">
                                         </cc1:CalendarExtender>
                         </div>
 
                         <div class="col-lg-1 col-md-1 col-sm-6">
                                                <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"  CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"  CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -97,7 +95,20 @@
                         </div>
 
                         <div class="col-lg-1 col-md-1 col-sm-6">
-                                    <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
+                        </div>
+                        <div class="col-lg-6"></div>
+
+                                               <div class="col-lg-3 col-md-3 col-sm-6 ">
+                            <div class="form-group">
+                                        
+                                <asp:Label ID="lblIncrementlist" runat="server">Increment List   
+                                    <asp:LinkButton ID="imgbtnIncrementList" runat="server" OnClick="imgbtnIncrementList_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+                                </asp:Label>
+                                <asp:DropDownList ID="ddlIncList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
+                                </asp:DropDownList>
+                                <asp:Label ID="lblddlIncrementNo" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,7 +150,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Name &amp; Designation">
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lnkFiUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkFiUpdate_Click">Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkFiUpdate" runat="server" CssClass="btn btn-danger btn-sm" OnClick="lnkFiUpdate_Click">Update</asp:LinkButton>
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lgvndesig" runat="server"

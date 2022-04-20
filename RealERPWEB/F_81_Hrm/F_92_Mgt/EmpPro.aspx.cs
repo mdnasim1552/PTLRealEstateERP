@@ -27,12 +27,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.txtCurDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetPromotionNo();
                 this.GetCompany();
                 this.GetDepartName();
                 this.GetDesignation();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE PROMOTION INFORMATION";
+
             }
 
         }
@@ -96,7 +98,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void GetCompany()
         {
             string comcod = this.GetComeCode();
-            string txtCompany = "%" + this.ddlCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETCOMPANYNAME", txtCompany, "", "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -109,7 +111,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             string comcod = this.GetComeCode();
             string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
-            string txtDeptname = this.ddlDepartment.Text.Trim() + "%";
+            string txtDeptname = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAMEFL", txtDeptname, company, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "deptname";
             this.ddlDepartment.DataValueField = "deptid";

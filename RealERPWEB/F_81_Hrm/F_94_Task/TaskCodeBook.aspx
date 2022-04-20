@@ -19,6 +19,14 @@ div#ContentPlaceHolder1_ddlTdeptcode_chzn{
         .chzn-drop {
             width: 100% !important;
         }
+                        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+      
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -72,7 +80,7 @@ div#ContentPlaceHolder1_ddlTdeptcode_chzn{
                     </div>
                 </div>
                         <div class="col-lg-1 col-md-2 col-sm-6">
-                    <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="btnOk_Click" TabIndex="11">Select</asp:LinkButton>
+                    <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="btnOk_Click" TabIndex="11">Select</asp:LinkButton>
 
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 mt20">
@@ -101,7 +109,7 @@ div#ContentPlaceHolder1_ddlTdeptcode_chzn{
 
                     </div>
                     <div class="col-lg-1">
-                        <asp:LinkButton ID="lnkCopy" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkCopy_Click" TabIndex="11">Copy</asp:LinkButton>
+                        <asp:LinkButton ID="lnkCopy" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkCopy_Click" TabIndex="11">Copy</asp:LinkButton>
 
                     </div>
                 </div>

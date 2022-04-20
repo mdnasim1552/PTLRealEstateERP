@@ -38,6 +38,16 @@
         .chzn-drop {
             width: 100% !important;
         }
+                                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+                                  .pd4{
+                    padding:4px!important;
+                }
     </style>
 
 
@@ -109,7 +119,7 @@
                 <asp:View ID="View1" runat="server">
 
                     <div class="row">
-                        <div class="col-lg-2">
+                         <div class="col-lg-2 col-md-2 col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Employee:</label>
                                 <asp:DropDownList ID="ddlEmp" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" TabIndex="2">
@@ -118,27 +128,27 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">From:</label>
-                                <asp:TextBox ID="txtfmdt1" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtfmdt1" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfmdt1"></cc1:CalendarExtender>
 
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
 
                                 <label class="control-label">To:</label>
-                                <asp:TextBox ID="txttodt1" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txttodt1" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodt1"></cc1:CalendarExtender>
 
 
                             </div>
                         </div>
-                        <div class="col-lg-1">
+                                <div class="col-lg-1 col-md-1 col-sm-6">
                             <label class="control-label">Page:</label>
-                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt"
+                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                 OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                 <asp:ListItem>15</asp:ListItem>
                                 <asp:ListItem>20</asp:ListItem>
@@ -152,12 +162,12 @@
                                 <asp:ListItem>900</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                        <div class="col-lg-1">
-                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkSelect_Click" TabIndex="11">Refresh</asp:LinkButton>
+                                 <div class="col-lg-1 col-md-1 col-sm-6">
+                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkSelect_Click" TabIndex="11">Refresh</asp:LinkButton>
 
                         </div>
-                        <div class="col-lg-2">
-                            <asp:LinkButton ID="lnkNewTask" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkNewTask_Click" TabIndex="11">Add Today's Activities</asp:LinkButton>
+                                 <div class="col-lg-2 col-md-2 col-sm-6">
+                            <asp:LinkButton ID="lnkNewTask" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkNewTask_Click" TabIndex="11">Add Today's Activities</asp:LinkButton>
 
                         </div>
                     </div>
@@ -346,7 +356,7 @@
                         </div>
 
                         <div class="col-lg-3">
-                       <asp:TextBox ID="txtdateentry" runat="server" CssClass="form-control"></asp:TextBox>
+                       <asp:TextBox ID="txtdateentry" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdateentry"></cc1:CalendarExtender>
 
                         </div>
@@ -376,7 +386,7 @@
                             <label class="control-label">Description:</label>
                         </div>
                         <div class="col-lg-3">
-                            <asp:TextBox ID="txttaskdesc" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txttaskdesc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                         </div>
                         <asp:Label runat="server" ID="lblrowid" Visible="false">0</asp:Label>
                         <asp:Label runat="server" ID="lblempid" Visible="false"></asp:Label>
@@ -444,7 +454,7 @@
                                 <asp:ListItem Value="PM">PM</asp:ListItem>
                             </asp:DropDownList>--%>
 
-                            <asp:TextBox runat="server" ID="fdate" CssClass="form-control" TextMode="DateTimeLocal"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="fdate" CssClass="form-control form-control-sm" TextMode="DateTimeLocal"></asp:TextBox>
 
                         </div>
                         <div class="col-lg-2 ">
@@ -487,7 +497,7 @@
 
 
                             </asp:DropDownList>--%>
-                            <asp:TextBox runat="server" ID="tdate" CssClass="form-control" TextMode="DateTimeLocal"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="tdate" CssClass="form-control form-control-sm" TextMode="DateTimeLocal"></asp:TextBox>
                         </div>
                         <div class="col-lg-1">
                             <%--<asp:Label runat="server" ID="lblhr" class="control-label">3 hours</asp:Label>--%>
@@ -499,7 +509,7 @@
                             <label class="control-label">Remarks:</label>
                         </div>
                         <div class="col-lg-3">
-                            <asp:TextBox ID="txtrem" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtrem" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine"></asp:TextBox>
 
                         </div>
 
@@ -509,9 +519,9 @@
                         </div>
 
                         <div class="col-lg-2">
-                              <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary mt-4" OnClick="btnOk_Click" TabIndex="11">Add</asp:LinkButton>
+                              <asp:LinkButton ID="btnOk" runat="server" CssClass="btn btn-primary btn-sm" OnClick="btnOk_Click" TabIndex="11">Add</asp:LinkButton>
 
-                            <asp:LinkButton ID="lnkBack" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkBack_Click" TabIndex="11">Back</asp:LinkButton>
+                            <asp:LinkButton ID="lnkBack" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkBack_Click" TabIndex="11">Back</asp:LinkButton>
 
                             </div>
                     </div>

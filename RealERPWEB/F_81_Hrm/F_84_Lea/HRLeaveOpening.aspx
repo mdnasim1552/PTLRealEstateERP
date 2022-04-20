@@ -22,6 +22,14 @@
                 .mt20{
                     margin-top:20px;
                 }
+                                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+      
             </style>
 
             <script type="text/javascript" language="javascript">
@@ -70,20 +78,20 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
-                                <asp:Label ID="Label2" runat="server">lblSection</asp:Label>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control  chzn-select" TabIndex="7" AutoPostBack="True" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
+                                <asp:Label ID="lblSection" runat="server">Section</asp:Label>
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control  chzn-select" TabIndex="7" AutoPostBack="True" >
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:Label ID="lblfrmdate" runat="server">Yearly Leave</asp:Label>
-                            <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-6">
                              <asp:Label ID="lblCode" runat="server">Emp. Code</asp:Label>
                      
-                                         <div class="input-group mb-3">
+                                         <div class="input-group input-group-sm mb-3">
                                           <asp:TextBox ID="txtSrcEmpCode" runat="server" CssClass="form-control"></asp:TextBox>
                                         <div class="input-group-append">
                                             <asp:LinkButton ID="imgbtnEmpSrch" runat="server" CssClass="btn btn-primary btn" OnClick="imgbtnEmpSrch_Click"><span class="fa fa-search"> </span></asp:LinkButton>
@@ -96,7 +104,7 @@
 
                         <div class="col-lg-1 col-md-2 col-sm-6">
                                    <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -109,7 +117,7 @@
                                         </asp:DropDownList>
                         </div>
                                          <div class="col-lg-1">
-                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -137,7 +145,7 @@
                                 <asp:TemplateField HeaderText="Emp. ID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvempid" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
-                                            Width="75px"></asp:Label>
+                                           ></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="left" />
