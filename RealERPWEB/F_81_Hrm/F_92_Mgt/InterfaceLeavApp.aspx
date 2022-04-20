@@ -517,11 +517,11 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblduration" runat="server" Style="text-align: right"
+                                                                    <asp:Label ID="lblduration" runat="server" Style="text-align: center"
                                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
+                                                                    <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: center"></asp:Label>
                                                                 </FooterTemplate>
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
@@ -547,7 +547,7 @@
                                                                         <span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="50px" HorizontalAlign="left" />
+                                                                <ItemStyle Width="80px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -666,14 +666,14 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblduration" runat="server" Style="text-align: right"
+                                                                    <asp:Label ID="lblduration" runat="server" Style="text-align: Center"
                                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
+                                                                    <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: Center"></asp:Label>
                                                                 </FooterTemplate>
-                                                                <ItemStyle HorizontalAlign="Right" />
-                                                                <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
+                                                                <ItemStyle HorizontalAlign="Center" />
+                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
                                                             </asp:TemplateField>
                                                                   <asp:TemplateField HeaderText="Current Status">
                                                                 <ItemTemplate>
