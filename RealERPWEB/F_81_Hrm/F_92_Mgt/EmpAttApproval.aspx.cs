@@ -153,7 +153,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     if (reqtype == "AB")
                     {
                         absapp = "1";
-                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "", "", "", "", "", "", "", "", "", "");
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "req", "", "", "", "", "", "", "", "", "");
                     }
 
                     else if (reqtype == "LP")
