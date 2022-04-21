@@ -28,11 +28,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
 
             if (!IsPostBack)
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-            if (this.ddlOthersBook.Items.Count == 0)
-                this.Load_CodeBooList();
+            {
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
+                if (this.ddlOthersBook.Items.Count == 0)
+                    this.Load_CodeBooList();
+            }
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -63,8 +67,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+             
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
 
         }
@@ -110,6 +116,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string gdesc = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
             string gtype = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvttpe")).Text.Trim();
             string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string msg = "";
 
             string Rankcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlRank")).Text.Trim();
             bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTUPHRINF", tgcod,
@@ -117,14 +124,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             if (result == true)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                string Msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
             }
 
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Msg = "Update Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
             this.grvacc.EditIndex = -1;
             this.ShowInformation();

@@ -1015,6 +1015,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102040", "F_21_MKT", "MktTeamCodeBook?Type=MktTeam", "", "Sales Team", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2101000", "2101041", "F_21_MKT", "MktTeamCodeBook?Type=MktLetter", "", "Letter Creation CRM", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2101000", "2101050", "F_21_MKT", "MktGenCodeBook", "", "CRM Code Entry ", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2101000", "2101051", "F_21_MKT", "MktGenCodeBookLand", "", "Land Code Entry ", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103060", "F_21_MKT", "RptMktAppointment?", "Type=Todaysdis&UType=Client", "Todays Discussion", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103061", "F_21_MKT", "RptMktAppointment?", "Type=Todaysdis&UType=Mgt", "Todays Discussion (Management)", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103062", "F_21_MKT", "RptMktAppointment?", "Type=DiscussHis&UType=Client", "Client History", "CRM", "False", "False", "False", "False" }); ;

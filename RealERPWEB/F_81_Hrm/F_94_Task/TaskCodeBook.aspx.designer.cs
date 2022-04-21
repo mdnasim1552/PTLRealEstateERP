@@ -24,6 +24,15 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
+        /// lbl1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl1;
+
+        /// <summary>
         /// ddldeptcode control.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
         protected global::System.Web.UI.WebControls.Panel pnl;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// ddlFdeptcode control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFdeptcode;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
         /// ddlTdeptcode control.

@@ -2145,26 +2145,7 @@
                 </asp:View>
 
                   <asp:View ID="ViewRecAndPayCustomized" runat="server">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_B">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-5 pading5px">
-                                        <asp:Label ID="lblGroup03" runat="server" CssClass=" lblTxt lblName" Text="Group"></asp:Label>
-
-                                        <asp:RadioButtonList ID="rbtnListCustomized" runat="server" CssClass="smDropDown inputTxt" TabIndex="6" RepeatColumns="6" RepeatDirection="Horizontal">
-                                            <asp:ListItem>Cash</asp:ListItem>
-                                            <asp:ListItem>Bank</asp:ListItem>
-                                            <asp:ListItem Selected="True">Both</asp:ListItem>
-                                        </asp:RadioButtonList>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                    </div>
+                   
                     <div class="row table-responsive">
                         <asp:GridView ID="gvRecPayCustomized" runat="server" AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvRecPayCustomized_RowDataBound"
                             Width="973px" CssClass="table-striped table-hover table-bordered grvContentarea">

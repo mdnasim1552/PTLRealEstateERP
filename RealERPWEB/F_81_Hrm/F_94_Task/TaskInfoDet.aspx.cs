@@ -39,11 +39,10 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Daily Work Information";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
 
                 this.MultiView1.ActiveViewIndex = 0;
@@ -227,14 +226,18 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             string ttime = tdate;
             string rmk = txtrem.Text;
             string rowid = lblrowid.Text;
+            string msg = "";
 
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMP_INTERFACE", "INSERTUPDATETKDATA", rowid, taskcode, tdesc, floctn, tloctn, ftime, ttime, rmk, empcode, "", "", "", "", "", "");
             if (result == false)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Update Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
             else
             {
@@ -383,6 +386,7 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             string gtype = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvttpe")).Text.Trim();
 
             string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string msg = "";
 
 
 
@@ -391,14 +395,17 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
 
             if (result == true)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                msg = "Updated Successfully ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             }
 
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Update Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             this.ShowInformation();
@@ -481,6 +488,7 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             GridViewRow row = (GridViewRow)(((LinkButton)sender).Parent.Parent);
             int index = row.RowIndex;
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string msg = "";
             string comcod = hst["comcod"].ToString();
             string lblrowid = ((Label)gvShowData.Rows[index].FindControl("lblrowidA")).Text;
             bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMP_INTERFACE", "DELETETKDATA", lblrowid,
@@ -489,14 +497,18 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
 
             if (result == true)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Deleted ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Deleted ";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                msg = " Successfully Deleted ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             }
 
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Delete Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             AllDaata();
