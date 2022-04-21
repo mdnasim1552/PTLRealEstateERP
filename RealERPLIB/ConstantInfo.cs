@@ -24,7 +24,6 @@ namespace RealERPLIB
         /// Strt Menu
         /// <returns></returns>
 
-
         #region General Menu
         public static DataTable WebObjTable()
         {
@@ -2184,7 +2183,7 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103140", "F_81_Hrm/F_92_Mgt", "InterfaceHR", "", "General Letter", "Accounts", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8102000", "8102085", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Ind", "HR Leave Interface(Individual)", "HR Management", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102085", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Ind", "HR Leave Interface", "HR Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102220", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Mgt", "HR Leave Interface(Mgt)", "HR Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102221", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=DeptHead", "HR Leave Interface(Department Head)", "HR Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102225", "F_81_Hrm/F_92_Mgt", "EntrySectionWisePermission", "", "Section Wise Permission ", "HR Management", "False", "False", "False" });
@@ -2302,8 +2301,6 @@ namespace RealERPLIB
 
         #endregion  grpMis
 
-
-
         #region  conmgt
         public static DataTable WebObjTablConComAcc()
         {
@@ -2359,8 +2356,6 @@ namespace RealERPLIB
         }
 
         #endregion  conmgt
-
-
 
         #region  grpmgtinterface
         public static DataTable WebObjTableGrpMgtInterface()
@@ -2541,10 +2536,6 @@ namespace RealERPLIB
 
             //// tblObj.Rows.Add(new Object[] { "99999", "UserLoginfrm", "", "User Permission", "Admin", "False", "False", "False", "False" });;
             return tblObj;
-
-
-
-
 
         }
 
@@ -3048,10 +3039,6 @@ namespace RealERPLIB
 
         #endregion
         //  Group Account
-
-
-
-
 
 
         #region  mgtactiviteis
