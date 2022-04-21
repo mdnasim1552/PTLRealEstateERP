@@ -914,7 +914,7 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="SCB Bank">
+                                          <%--  <asp:TemplateField HeaderText="SCB Bank">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblbank1" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bank1")).ToString("#,##0;(#,##0); ") %>'
@@ -1000,7 +1000,7 @@
                                                 </FooterTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />

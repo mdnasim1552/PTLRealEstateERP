@@ -59,8 +59,9 @@ namespace RealERPWEB
 
                 if (size < 125000)
                 {
+                    string oldImg = this.userimg.ImageUrl;
                     string dburl = "~/Upload/UserImages/" + UserId + extension;
-                    var filePath = Server.MapPath("~/Upload/UserImages/" + UserId + extension);
+                    var filePath = Server.MapPath(oldImg);
                     if (File.Exists(filePath))
                     {
                         File.Delete(filePath);
@@ -72,6 +73,12 @@ namespace RealERPWEB
                     updatPhoto = UserData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUSERIMAGES", UserId, dburl, "", "", "", "", "", "", "", "");
                     if (updatPhoto)
                     {
+                        this.userimg.ImageUrl = dburl;
+                        ((Image)this.Master.FindControl("userimg")).ImageUrl = dburl;
+
+                        hst["userimg"] = dburl;
+                        Session["tblLogin"] = hst;
+
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Your Porofile Picture Updated Successfully');", true);
 
                     }

@@ -1,54 +1,83 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RecHRCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.RecHRCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RecHRCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.RecHRCodeBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
+        div#ContentPlaceHolder1_ddlOthersBook_chzn{
+               width: 100% !important;
+        }
+        .mt20 {
+            margin-top: 20px;
+        }
 
-    
-    
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+
+        .pd4 {
+            padding: 4px !important;
+        }
+    </style>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+    </script>
+
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-5">
+                <div class="card-header">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                          
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <div class="col-md-2 pading5px">
-                                        <asp:Label ID="LblBookName1" runat="server" CssClass="lblTxt lblName160" Text="Select Code Book:"></asp:Label>
-                                            </div>
-                                        <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control inputTxt">
-                                            </asp:DropDownList>
-                                            <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
-                                        </div>
-                                        <div class="col-md-2 pading5px">
-                                            <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control inputTxt" runat="server">
-                                                <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
-                                                <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
-                                            </asp:DropDownList>
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <asp:Label ID="LblBookName1" runat="server" Text="Select Code Book:"></asp:Label>
+                                <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control chzn-select">
+                                </asp:DropDownList>
+                       
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <asp:Label ID="lbldelcode" runat="server" Text="Details Code"></asp:Label>
+                            <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control form-control-sm" runat="server">
+                                <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-primary btn-sm mt20"></asp:LinkButton>
 
-                                        </div>
-                                        <div class="col-md-1 pading5px">
-                                            <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-primary primaryBtn"></asp:LinkButton>
+                            <asp:LinkButton ID="lnkcancel" runat="server" Text="Change" Visible="False" OnClick="lnkcancel_Click" CssClass="btn btn-primary btn-sm mt20"></asp:LinkButton>
 
-                                            <asp:LinkButton ID="lnkcancel" runat="server" Text="Change" Visible="False" OnClick="lnkcancel_Click" CssClass="btn btn-primary primaryBtn"></asp:LinkButton>
+                        </div>
+             
 
-                                        </div>
-                                        <div class="col-md-2 pading5px">
-                                            <div class="msgHandSt">
-                                                <asp:Label ID="ConfirmMessage" CssClass="btn-danger btn primaryBtn" runat="server" Visible="false"></asp:Label>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-
-
-                                </div>
-                        </fieldset>
-
-
+                    </div>
+                </div>
+                <div class="card-body">
                         <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
@@ -196,9 +225,50 @@
                             <FooterStyle CssClass="grvFooter" />
                             <AlternatingRowStyle BackColor="" />
                         </asp:GridView>
-                    </div>
+
                 </div>
             </div>
+
+            <%--       <fieldset class="scheduler-border fieldset_A">
+
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-2 pading5px">
+                                        <asp:Label ID="LblBookName1" runat="server" CssClass="lblTxt lblName160" Text="Select Code Book:"></asp:Label>
+                                    </div>
+                                    <div class="col-md-4 pading5px">
+                                        <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control inputTxt">
+                                        </asp:DropDownList>
+                                        <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2 pading5px">
+                                        <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control inputTxt" runat="server">
+                                            <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
+                                            <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
+                                        </asp:DropDownList>
+
+                                    </div>
+                                    <div class="col-md-1 pading5px">
+                                        <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-primary primaryBtn"></asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkcancel" runat="server" Text="Change" Visible="False" OnClick="lnkcancel_Click" CssClass="btn btn-primary primaryBtn"></asp:LinkButton>
+
+                                    </div>
+                                    <div class="col-md-2 pading5px">
+                                        <div class="msgHandSt">
+                                            <asp:Label ID="ConfirmMessage" CssClass="btn-danger btn primaryBtn" runat="server" Visible="false"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+
+                            </div>
+                        </fieldset>--%>
+
+
+   
+   
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

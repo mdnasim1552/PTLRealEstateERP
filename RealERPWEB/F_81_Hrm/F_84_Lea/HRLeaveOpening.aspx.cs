@@ -47,7 +47,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
-            string txtCompany = "%" + this.ddlCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             string UserID = "%" + this.ddlCompany.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
@@ -265,9 +265,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-        protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetProjectName();
-        }
+
     }
 }
