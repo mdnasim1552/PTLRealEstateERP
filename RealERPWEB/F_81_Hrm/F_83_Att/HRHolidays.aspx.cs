@@ -29,6 +29,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 this.rblmonth_SelectedIndexChanged(null, null);
                 //this.ShowHoliday();
+                this.GetCompany();
+
+                this.GetDepartment();
+                this.GetProjectName();
             }
         }
 
@@ -205,5 +209,107 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
         }
+    
+    
+    
+     private void GetCompany()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = hst["comcod"].ToString();
+            //string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
+            this.ddlCompany.DataTextField = "actdesc";
+            this.ddlCompany.DataValueField = "actcode";
+            this.ddlCompany.DataSource = ds1.Tables[0];
+            this.ddlCompany.DataBind();
+            this.ddlCompany_SelectedIndexChanged(null, null);
+
+
+
+        }
+
+        private void GetDepartment()
+        {
+            if (this.ddlCompany.Items.Count == 0)
+                return;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            string comcod = hst["comcod"].ToString();
+            string txtCompanyname = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            //string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
+
+            string txtSearchDept =  "%%";
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
+            this.ddlDepartment.DataTextField = "actdesc";
+            this.ddlDepartment.DataValueField = "actcode";
+            this.ddlDepartment.DataSource = ds1.Tables[0];
+            this.ddlDepartment.DataBind();
+            this.ddlDepartment_SelectedIndexChanged(null, null);
+        }
+        private void GetProjectName()
+        {
+            string comcod = this.GetComCode();
+            //string company = this.ddlCompany.SelectedValue.Substring(0, 2);
+
+            string Department = this.ddlDepartment.SelectedValue.ToString();
+            //string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+
+            string txtSProject = "%%";
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETPROJECTNAME", Department, txtSProject, "", "", "", "", "", "", "");
+            this.ddlProjectName.DataTextField = "deptname";
+            this.ddlProjectName.DataValueField = "deptid";
+            this.ddlProjectName.DataSource = ds1.Tables[0];
+            this.ddlProjectName.DataBind();
+        }
+
+        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // this.GetSection();
+            this.GetProjectName();
+        }
+
+        protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            this.GetDepartment();
+            //this.GetProjectName();
+        }
+
+        protected void lnkApply_Click(object sender, EventArgs e)
+        {
+            string Company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "94%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
+            string Department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "9402%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
+            string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlCompany.SelectedValue.ToString()) + "%";
+            string comcod = this.GetComCode();
+            string msg = "";
+
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "ACTIVEEMPLEAVE", Company, Department, Section, "", "", "", "", "", "");
+            if (ds == null)
+                return;
+
+            DataTable dt = ds.Tables[0];
+            string empid = "";
+            string rowCount = dt.Rows.Count.ToString();
+            string year =Convert.ToDateTime( System.DateTime.Now).ToString("yyyy");
+            for(int i = 0; i <dt.Rows.Count; i++)
+            {
+                empid = dt.Rows[i]["empid"].ToString();
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTOFFDAY", empid, year, "", "", "", "", "", "", "");
+   
+    
+            }
+
+            msg = rowCount + " Rows affected!";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+
+        }
     }
+
 }
