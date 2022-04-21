@@ -1041,24 +1041,6 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.View ViewRecAndPayCustomized;
 
         /// <summary>
-        /// lblGroup03 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGroup03;
-
-        /// <summary>
-        /// rbtnListCustomized control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtnListCustomized;
-
-        /// <summary>
         /// gvRecPayCustomized control.
         /// </summary>
         /// <remarks>
