@@ -3376,11 +3376,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetTerranova();
                         break;
 
+                    case "3101":
                     case "3355": //Greenwood
                         this.PrintBonusSheetGreenWood();
                         break;
 
-                    case "3101":
                     case "3347": //PEBSteel
                         this.PrintBonusSheetPEB();
                         break;
