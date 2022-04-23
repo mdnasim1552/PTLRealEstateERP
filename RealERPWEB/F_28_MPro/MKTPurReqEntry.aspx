@@ -57,13 +57,13 @@
                 <div class="card-body">
                     <asp:Panel ID="pnlReqDet" CssClass="mt-2" runat="server">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblPrjName" runat="server" class="control-label  lblmargin-top9px" Text="Cost Center"></asp:Label>
                                     <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control chzn-select form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblReqDate" runat="server" class="control-label  lblmargin-top9px" Text="Req. Date"></asp:Label>
                                     <asp:TextBox ID="txtCurReqDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -71,18 +71,18 @@
                                         Format="dd-MMM-yyyy" TargetControlID="txtCurReqDate"></cc1:CalendarExtender>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblCurNo" runat="server" class="control-label  lblmargin-top9px" Text="Requisition No."></asp:Label>
                                     <asp:Label ID="lblCurReqNo1" runat="server" class="control-label  lblmargin-top9px" for="ReqNoCur">Requisition No.</asp:Label>
                                     <asp:TextBox ID="txtCurReqNo2" runat="server" CssClass="form-control form-control-sm" ReadOnly="true">00000</asp:TextBox>
                                 </div>
                             </div>
-                            <div class="col-1">
+                            <div class="col-sm-1 col-md-1 col-lg-1">
                                 <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
                             </div>
 
-                            <div class="col-2">
+                            <div class="col-sm-2 col-md-2 col-lg-2">
                                 <asp:LinkButton ID="ImgbtnFindReq" runat="server" Text="Prev. Req.List" Font-Underline="false" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>
                                 <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
                             </div>
@@ -96,7 +96,7 @@
                                     <asp:TextBox ID="txtMRFNo" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                             </div>--%>
-                            <div class="col-2">
+                            <div class="col-sm-2 col-md-2 col-lg-2">
                                 <asp:CheckBox ID="chkdupMRF" runat="server" Text="Dup.M.R.F" CssClass="btn btn-primary checkBox" Visible="false" />
                                 <asp:CheckBox ID="chkneBudget" runat="server" Text="Not Exceed Budget" CssClass="btn btn-primary checkBox" Visible="false" />
                             </div>
@@ -108,25 +108,25 @@
                 <div class="card-header">
                     <asp:Panel ID="pnlSpeDet" runat="server">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblPRType" runat="server" class="control-label  lblmargin-top9px" Text="Pur. Req. Type"></asp:Label>
                                     <asp:DropDownList ID="ddlPRType" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPRType_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblActType" runat="server" class="control-label  lblmargin-top9px" Text="Activity Type"></asp:Label>
                                     <asp:DropDownList ID="ddlActType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <asp:Label ID="lblMatType" runat="server" class="control-label  lblmargin-top9px" Text="Marketing Type"></asp:Label>
                                     <asp:DropDownList ID="ddlMarkType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-1">
+                            <div class="col-sm-1 col-md-1 col-lg-1">
                                 <div class="form-group">
                                     <asp:LinkButton ID="lbtnSelectRes" runat="server" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary btn-sm  lblmargin-top20px" Style="margin-top: 20px;">Select</asp:LinkButton>
                                 </div>
