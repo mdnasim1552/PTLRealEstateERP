@@ -1209,6 +1209,8 @@ namespace RealERPWEB.F_17_Acc
                 tblt02.Rows.Clear();
                 tblt03.Rows.Clear();
                 int cindex = -1;
+
+                string firstrrmrks = dgv1.Rows.Count==0?"":((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
                 for (int i = 0; i < this.dgv1.Rows.Count; i++)
                 {
                     string dgAccCode = ((Label)this.dgv1.Rows[i].FindControl("lblAccCod")).Text.Trim();
@@ -1293,7 +1295,12 @@ namespace RealERPWEB.F_17_Acc
                         tblt01.Rows.Add(dr1);
                     }
                 }
-
+                // For Duplicate 
+                string voutype = this.ddlvoucher.SelectedValue.ToString();
+               // string type = this.Request.QueryString["Mod"];
+               // string rmrks = ((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
+                string trnrmrk = this.Request.QueryString["Mod"] == "Management" ? firstrrmrks :"";
+                TrnRemarks = voutype == "JV" ? trnrmrk : TrnRemarks;
                 // New Row Add 
 
                 string aresbandspclcodetrnrmrks = sectcode + AccCode + ResCode + Billno + SpclCode + TrnRemarks;

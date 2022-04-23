@@ -943,7 +943,7 @@ namespace RealERPWEB.F_04_Bgd
             }
             Session["tblFlrCod"] = dt;
 
-            DataView dv1 = dt.DefaultView;
+            DataView dv1 = dt.Copy().DefaultView;
             if (this.chkFlrShowSelected.Checked)
                 dv1.RowFilter = "mark1=1";
             else
