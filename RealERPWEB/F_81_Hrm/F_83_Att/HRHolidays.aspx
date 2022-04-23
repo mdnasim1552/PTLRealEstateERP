@@ -444,6 +444,7 @@
                                                 <asp:Label ID="Label1" runat="server" CssClass="form-label">Section Name</asp:Label>
                                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" TabIndex="3">
                                                 </asp:DropDownList>
+                                                 <%-- <asp:ListBox ID="ddlProjectName" runat="server" CssClass="form-control select2" SelectionMode="Multiple"></asp:ListBox>--%>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-md-1">
