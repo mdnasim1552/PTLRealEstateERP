@@ -2854,6 +2854,7 @@ namespace RealERPWEB.F_17_Acc
                 TextBox txtgvQty = (TextBox)e.Row.FindControl("txtgvQty");
                 TextBox txtgvRate = (TextBox)e.Row.FindControl("txtgvRate");
                 TextBox txtgvCrAmt = (TextBox)e.Row.FindControl("txtgvCrAmt");
+                TextBox lblgvBillno = (TextBox)e.Row.FindControl("lblgvBillno");
 
 
 
@@ -2895,7 +2896,7 @@ namespace RealERPWEB.F_17_Acc
                     case "2305":
                     case "3310":
                     case "3311":
-                        // case "3101":
+                     case "3101":
                         if (this.ddlPrivousVou.Items.Count > 0)
                         {
                             if (((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0))
@@ -2912,11 +2913,15 @@ namespace RealERPWEB.F_17_Acc
                                 txtgvRate.Enabled = false;
                                 txtgvCrAmt.Enabled = false;
                                 tnrRemarks.ReadOnly = true;
+                                lblgvBillno.ReadOnly = true;
+                                
+
                             }
 
                             else
                             {
                                 tnrRemarks.ReadOnly = true;
+                                lblgvBillno.ReadOnly = false;
 
 
                             }
@@ -2924,6 +2929,7 @@ namespace RealERPWEB.F_17_Acc
                         break;
                     default:
                         tnrRemarks.ReadOnly = false;
+                        
                         break;
                 }
 
