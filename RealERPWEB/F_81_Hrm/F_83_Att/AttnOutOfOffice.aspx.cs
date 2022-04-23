@@ -231,7 +231,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPEMPOFFTIMEAUTO", dayid, empid, machid, idcardno, intime, outtime, offintime, offoutime, lnintime, lnoutime, "", "", "", "", "");
                 if (result == true)
                 {
-
                     string eventtype = "999";
                     string eventdesc = this.txtNote.Text.Trim();
                     string eventdesc2 = empid;

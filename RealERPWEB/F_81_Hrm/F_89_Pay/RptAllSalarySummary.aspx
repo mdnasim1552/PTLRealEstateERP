@@ -524,7 +524,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Department">
+                                    <asp:TemplateField HeaderText="Department" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lbldepartment" runat="server"
                                                 CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
