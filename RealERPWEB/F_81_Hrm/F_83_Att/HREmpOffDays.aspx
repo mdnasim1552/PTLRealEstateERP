@@ -25,7 +25,7 @@
                          width:100%!important;
         }
 
-                        .mt20 {
+        .mt20 {
             margin-top: 20px;
         }
 
@@ -118,22 +118,25 @@
                         <div class="col-sm-12 col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="Label2" runat="server" CssClass="form-label">Month</asp:Label>
-                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control" TabIndex="4">
+                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-sm" TabIndex="4">
                                 </asp:DropDownList>
                                 <%-- <asp:Label ID="lmsg" runat="server" CssClass=" btn btn-danger primaryBtn"></asp:Label>--%>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-2">
                             <div class="form-group">
-                                <asp:Label ID="Label3" runat="server" CssClass="form-label">Employee</asp:Label>
-                                <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control" TabIndex="5">
+                                <asp:Label ID="Label3" runat="server" CssClass="form-label">Employee
+
+                                <asp:LinkButton ID="imgbtnEmpSeach" runat="server" OnClick="imgbtnEmpSeach_Click"><i class="fas fa-search "></i></asp:LinkButton>
+                                </asp:Label>
+                                <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control chzn-select" TabIndex="5">
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-1">
                             <asp:Label ID="lblPage" runat="server" CssClass="form-label">Page Size</asp:Label>
 
-                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control"
+                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                 OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Width="80">
                                 <asp:ListItem Value="10">10</asp:ListItem>
                                 <asp:ListItem Value="15">15</asp:ListItem>
@@ -157,7 +160,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-2 mt-3">
-                            <asp:CheckBox ID="chkoffDays" runat="server" AutoPostBack="True" CssClass="btn btn-primary checkBox"
+                            <asp:CheckBox ID="chkoffDays" runat="server" AutoPostBack="True" CssClass="btn btn-primary btn-sm checkBox"
                                 OnCheckedChanged="chkoffDays_CheckedChanged" Text="Off Days" Visible="False"
                                 Width="97px" />
                         </div>
