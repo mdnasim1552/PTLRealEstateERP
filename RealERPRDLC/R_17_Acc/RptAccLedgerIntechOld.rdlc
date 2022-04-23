@@ -589,6 +589,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>voudat1</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>= trim(Fields!cactcode.Value)="Narration:"</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Color>Silver</Color>
@@ -624,6 +627,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>vounum2</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Color>Silver</Color>
@@ -657,6 +663,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>refnum</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Color>Silver</Color>
@@ -679,7 +688,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!cactdesc.Value</Value>
+                                  <Value>=IIf(trim(Fields!cactcode.Value) = "Narration:","Narration: " + Fields!venar1.Value+ space(2) + Fields!venar2.Value, Fields!cactdesc.Value+space(2)+Fields!resdesc.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1134,7 +1143,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>2.26958in</Top>
+            <Top>2.01958in</Top>
             <Left>0.02084in</Left>
             <Height>0.8125in</Height>
             <Width>7.99463in</Width>
@@ -1170,7 +1179,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>2.81542in</Top>
+            <Top>2.56542in</Top>
             <Left>0.05209in</Left>
             <Height>0.25in</Height>
             <Width>1.72917in</Width>
@@ -1209,7 +1218,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>2.81542in</Top>
+            <Top>2.56542in</Top>
             <Left>3.03184in</Left>
             <Height>0.25in</Height>
             <Width>2.02316in</Width>
@@ -1248,7 +1257,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>2.81542in</Top>
+            <Top>2.56542in</Top>
             <Left>5.96571in</Left>
             <Height>0.25in</Height>
             <Width>2.02316in</Width>
@@ -1267,7 +1276,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.10291in</Height>
+        <Height>2.89458in</Height>
         <Style />
       </Body>
       <Width>8.05248in</Width>

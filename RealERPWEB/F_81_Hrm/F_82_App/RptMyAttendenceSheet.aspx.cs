@@ -398,10 +398,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
                 this.InfoApply.Visible = false;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
             }
 
-            
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
 
             //lblIntime
 
