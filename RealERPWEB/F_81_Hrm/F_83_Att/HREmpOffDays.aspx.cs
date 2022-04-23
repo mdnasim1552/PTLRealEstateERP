@@ -173,7 +173,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void GetEmployee()
         {
             string comcod = this.GetComCode();
-            string secname = this.ddlProjectName.SelectedValue.ToString();
+            string secname = this.ddlProjectName.SelectedValue.ToString()??"%%";
             string txtempsrch = "%%";
             string company = this.ddlCompany.SelectedValue.Substring(0, 2).ToString();
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPLOYEENAME", secname, txtempsrch, company, "", "", "", "", "", "");
@@ -558,6 +558,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void lnkAddHoliday_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/F_81_Hrm/F_83_Att/HRHolidays");
+        }
+
+        protected void imgbtnEmpSeach_Click(object sender, EventArgs e)
+        {
+            this.GetEmployee();
         }
     }
 }

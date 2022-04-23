@@ -1909,7 +1909,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     string dayid = Convert.ToDateTime(((Label)this.mgvbreakdown.Rows[j].FindControl("mlblgvlateday")).Text).ToString("yyyyMMdd");
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEADJUSTB", dayid, empid, postDat, userid, remarks, lateappsta, "", "", "", "", "");
 
-
                     if (!result)
                     {
 
@@ -1923,10 +1922,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
 
-
+              
             }
 
             this.lblmsg.Text = "Updated Successfully";
+            //Response.Redirect(Request.RawUrl);
             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
 
 
