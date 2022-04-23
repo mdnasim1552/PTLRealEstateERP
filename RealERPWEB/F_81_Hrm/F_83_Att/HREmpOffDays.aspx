@@ -6,6 +6,49 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <style>
+        
+        .chzn-drop {
+            width: 100% !important;
+        }
+                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                div#ContentPlaceHolder1_ddlCompany_chzn{
+                    width:100%!important;
+                }
+        div#ContentPlaceHolder1_ddlDepartment_chzn {
+             width:100%!important;
+        }
+        div#ContentPlaceHolder1_ddlProjectName_chzn{
+                         width:100%!important;
+        }
+
+                        .mt20 {
+            margin-top: 20px;
+        }
+
+    </style>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+    </script>
+
+
 
 
 
@@ -35,39 +78,38 @@
 
             </div>--%>
 
-            <div class="card card-fluid container-data" style="min-height: 1000px;">
+            <div class="card mt-5" style="min-height: 1000px;">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group">
                                 <asp:Label ID="Label10" runat="server" CssClass="form-label">Company</asp:Label>
-                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="1">
+                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="1">
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group">
                                 <asp:Label ID="lblDept" runat="server" CssClass="form-label">Department</asp:Label>
-                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group">
                                 <asp:Label ID="Label1" runat="server" CssClass="form-label">Section Name</asp:Label>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control" TabIndex="3">
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" TabIndex="3">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-1 mt-4">
+                        <div class="col-sm-12 col-md-1 ">
                             <div class="form-group">
                                 <asp:Label ID="Label5" runat="server" CssClass="form-label"></asp:Label>
-                                <asp:LinkButton ID="lnkbtnOffDay" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
-
+                                <asp:LinkButton ID="lnkbtnOffDay" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-2 mt-4">
-                            <asp:LinkButton ID="lnkAddHoliday" runat="server" CssClass="btn btn-info btn-sm pull-right" OnClick="lnkAddHoliday_Click"><i class="fas fa-plus"></i> Add Holiday</asp:LinkButton>
+                        <div class="col-sm-12 col-md-2">
+                            <asp:LinkButton ID="lnkAddHoliday" runat="server" CssClass="btn btn-info btn-sm pull-right mt20" OnClick="lnkAddHoliday_Click" ><i class="fas fa-plus"></i> Add Holiday</asp:LinkButton>
                         </div>
 
 

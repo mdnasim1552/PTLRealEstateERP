@@ -10,40 +10,67 @@
         .modal-lg {
             width: 80%;
         }
-        .custTable tr{
-             background:#f0f6fa;
-        }
-        .custTable tr td{
-            padding:5px 5px;
-        }
-        .custTable tr td input{
-            display:none;
-        }
-        .custTable tr td label{
-            margin:0 5px;
-            display:block;
-            padding:0 12px;
-           
-        }
-         .custTable tr:hover{
-             background:#5b9bd1;
-            cursor:pointer;
-        }
-          .custTable tr td:hover, .custTable tr td label:hover{
-          cursor:pointer;
-          color:#fff;
-           
-        }
-         
 
+        .custTable tr {
+            background: #f0f6fa;
+        }
 
-          
+            .custTable tr td {
+                padding: 5px 5px;
+            }
+
+                .custTable tr td input {
+                    display: none;
+                }
+
+                .custTable tr td label {
+                    margin: 0 5px;
+                    display: block;
+                    padding: 0 12px;
+                }
+
+            .custTable tr:hover {
+                background: #5b9bd1;
+                cursor: pointer;
+            }
+
+            .custTable tr td:hover, .custTable tr td label:hover {
+                cursor: pointer;
+                color: #fff;
+            }
+
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        div#ContentPlaceHolder1_ddlCompany_chzn {
+            width: 100% !important;
+        }
+
+        div#ContentPlaceHolder1_ddlDepartment_chzn {
+            width: 100% !important;
+        }
+
+        div#ContentPlaceHolder1_ddlProjectName_chzn {
+            width: 100% !important;
+        }
+                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                        .mt20 {
+            margin-top: 20px;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
             $(document).on("click", ".classAdd", function () {
 
-               
+
                 var rowCount = $('.data-holiday').length + 1;
                 var holidaydiv = '<tr class="data-holiday">' +
                     '<td> <select name="htype' + rowCount + '" id="htype" class="form-control htype01"> ' +
@@ -154,7 +181,16 @@
             });
 
         }
+        function applyHdayModal() {
+            $('#applyHdayModal').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
 
+            });
+        }
+        function applyModalClose() {
+            $('#addHolidayModal').modal('hide');
+        }
 
 
 
@@ -162,6 +198,24 @@
             $('#addHolidayModal').modal('hide');
         }
 
+
+    </script>
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
 
     </script>
 
@@ -192,12 +246,12 @@
                             <%--<a class="btn btn-success" href="javascript:;">Mark All Friday Holiday
                                 <i class="fa fa-check"></i></a>--%>
 
-                            <asp:LinkButton ID="markallfriday" runat="server" class="btn btn-success" OnClick="markallfriday_Click">  <i class="fa fa-check"></i>Generate All Friday Holiday(Year)</asp:LinkButton>
+                            <asp:LinkButton ID="markallfriday" runat="server" class="btn btn-success btn-sm mt-2" OnClick="markallfriday_Click">  <i class="fa fa-check"></i>Generate All Friday Holiday(Year)</asp:LinkButton>
 
 
                         </div>
                         <div class="col-md-2 offset-md-4">
-                            <button type="button" id="addHoliday" runat="server" class="btn btn-primary" data-toggle="modal" data-target="#addHolidayModal" onclientclick="loadModal();"><i class="fa fa-plus"></i> Add Holiday </button>
+                            <button type="button" id="addHoliday" runat="server" class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#addHolidayModal" onclientclick="loadModal();"><i class="fa fa-plus"></i>Add Holiday </button>
                         </div>
 
 
@@ -206,7 +260,7 @@
                 <div class="card=body">
                     <div class="row">
                         <div class="col-md-2">
-                            <asp:RadioButtonList ID="rblmonth" runat="server" AutoPostBack="true" 
+                            <asp:RadioButtonList ID="rblmonth" runat="server" AutoPostBack="true"
                                 CssClass="table custTable"
                                 OnSelectedIndexChanged="rblmonth_SelectedIndexChanged">
                                 <asp:ListItem Value="01" Selected="True"><span class="fa fa-sm fa-calendar" aria-hidden="true" ></span>&nbsp; January</asp:ListItem>
@@ -233,7 +287,7 @@
 
                             <asp:GridView ID="gvholiday" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True"
-                                 OnRowDataBound="gvholiday_RowDataBound">
+                                OnRowDataBound="gvholiday_RowDataBound">
                                 <PagerSettings Position="Top" />
                                 <RowStyle />
                                 <Columns>
@@ -293,11 +347,10 @@
                                                 <span class="fa fa-sm fa-trash" aria-hidden="true" ></span>&nbsp;
                                             </asp:LinkButton>
                                         </ItemTemplate>
-                                       
+
                                     </asp:TemplateField>
 
                                     <%--<asp:CommandField ShowDeleteButton="True" ButtonType="Button" CancelText="" />--%>
-
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
@@ -305,7 +358,6 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
-
 
 
 
@@ -366,15 +418,52 @@
 
 
 
+                            <div class="card mt-2">
+                                <div class="card-header">
+                                    Apply off day for employee
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-3">
+                                            <div class="form-group">
+                                                <asp:Label ID="Label10" runat="server" CssClass="form-label">Company</asp:Label>
+                                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="1">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <div class="form-group">
+                                                <asp:Label ID="lblDept" runat="server" CssClass="form-label">Department</asp:Label>
+                                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <div class="form-group">
+                                                <asp:Label ID="Label1" runat="server" CssClass="form-label">Section Name</asp:Label>
+                                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" TabIndex="3">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-1">
+                                            <div class="form-group">
+                                                <asp:Label ID="Label5" runat="server" CssClass="form-label"></asp:Label>
+                                                <asp:LinkButton ID="lnkApply" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkApply_Click">Apply all</asp:LinkButton>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
 
 
 
                         </div>
-
-
-
-
-
                     </div>
 
 

@@ -1095,13 +1095,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void chkBoxSkippWH_CheckedChanged(object sender, EventArgs e)
         {
+            ViewState.Remove("tblSlevDay");
             if (chkBoxSkippWH.Checked == false)
             {
                 divDurStatus.Visible = true;
                 divBTWDay.Visible = true;
                 diSkippDay.Visible = false;
                 diSkippDayDetails.Visible = false;
-                ViewState.Remove("tblSlevDay");
+                 
             }
             else
             {
@@ -1109,7 +1110,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 diSkippDay.Visible = true;
                 diSkippDayDetails.Visible = true;
                 divDurStatus.Visible = false;
-                ViewState.Remove("tblSlevDay");
+                
             }
             this.Duration.Value = "0";
             CreateTable();
@@ -1156,6 +1157,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 frmdate.InnerText = "Leave Day";
                 todate.InnerText = "For Duty/Off Day";
                 this.divDurStatus.Visible = false;
+            }
+            else
+            {
+                //chkBoxSkippWH.Checked = true;
+                chkBoxSkippWH_CheckedChanged(null, null);
+                frmdate.InnerText = "From Date";
+                todate.InnerText = "To Date";
+                //this.divDurStatus.Visible = true;
+
             }
 
             txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
