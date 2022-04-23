@@ -60,10 +60,11 @@
                                     </div>
 
 
-                                    <div class="col-md-4 asitCol4 pading5px">
+                                    <div class="col-md-5  asitCol5 pading5px">
                                         <asp:RadioButtonList ID="rbtnGroup" runat="server" CssClass="rbtnList1"
                                             RepeatColumns="6" RepeatDirection="Horizontal"
                                             TabIndex="2">
+                                            <%--<asp:ListItem>Journal(C. Head)</asp:ListItem>--%>
                                             <asp:ListItem>Deposit</asp:ListItem>
                                             <asp:ListItem Selected="True">Payment</asp:ListItem>
                                             <asp:ListItem>Both</asp:ListItem>

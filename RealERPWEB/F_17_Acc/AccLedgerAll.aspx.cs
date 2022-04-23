@@ -1071,6 +1071,12 @@ namespace RealERPWEB.F_17_Acc
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)Session["StoreTable"];
+            DataTable dt1 = dt.Copy();
+            DataTable dt2 = HiddenSameDataRpt(dt1);
+            DataTable dt3 = DeleteSomeData(dt2);
+
+
+
             ReportDocument rptstk = new ReportDocument();
 
             string Headertitle = (this.ddlConAccHead.SelectedValue.ToString().Substring(0, 2) == "19") ? "Cash/Bank Book"
@@ -1089,7 +1095,11 @@ namespace RealERPWEB.F_17_Acc
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string userinfo = ASTUtility.Concat(compname, username, printdate);
             string comledger = this.ComLedger();
+
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>();
+            var lst2 = dt3.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>();
+
+
             LocalReport Rpt1 = new LocalReport();
 
             if (comledger == "LedgerSuvTropical")
@@ -1144,7 +1154,7 @@ namespace RealERPWEB.F_17_Acc
 
             else if (comledger == "LedgerIntech")
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerIntech", lst, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerIntech", lst2, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtcheckedby", "Recommended By"));
 
@@ -1170,10 +1180,53 @@ namespace RealERPWEB.F_17_Acc
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
+        }
 
+        private DataTable HiddenSameDataRpt(DataTable dt1) 
+        {
 
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string cactdesc = "", venar1 = "", venar2 = "" , resdesc = ""; 
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+
+                if (dt1.Rows[j]["cactcode"].ToString() == "Narration:  ")
+                {
+                    cactdesc = dt1.Rows[j-1]["cactdesc"].ToString();
+                    resdesc = dt1.Rows[j-1]["resdesc"].ToString();
+                    venar1 = dt1.Rows[j]["venar1"].ToString();
+                    venar2 = dt1.Rows[j]["venar2"].ToString();
+                    dt1.Rows[j-1]["cactdesc"] = cactdesc +" , " + resdesc + "\n" + venar1 + " ," + venar2;
+                }
+                //else
+                //{
+                //    DataRow dr = dt1.Rows[j];
+                //    if (dt1.Rows[j]["cactcode"].ToString() == "Narration:  ")
+                //    {
+                //        dt1.Rows.Remove(dr);
+                //    }
+                //}
+            }
+            return dt1;
 
         }
+
+        private DataTable DeleteSomeData(DataTable dt1)
+        {
+            for (int i = dt1.Rows.Count - 1; i >= 0; i--)
+            {
+                DataRow dr = dt1.Rows[i];
+                if (dt1.Rows[i]["cactcode"].ToString() == "Narration:  ")
+                {
+                    dt1.Rows.Remove(dr);
+                }
+            }
+            return dt1;
+        }
+
+
         protected void ddlConAccHead_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ibtnFindRes_Click(null, null);
