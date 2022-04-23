@@ -32,9 +32,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect(this.ResolveUrl("~/AcceessError.aspx"));
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect(this.ResolveUrl("~/AcceessError.aspx"));
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
@@ -526,12 +526,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lnkRemoveForward_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["delete"]))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-                return;
-            }
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["delete"]))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+            //    return;
+            //}
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -571,12 +571,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lnkRemoveApp_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["delete"]))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-                return;
-            }
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["delete"]))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+            //    return;
+            //}
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -613,12 +613,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lnkRemoveFAp_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["delete"]))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-                return;
-            }
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["delete"]))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+            //    return;
+            //}
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
