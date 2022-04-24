@@ -36,9 +36,6 @@
                 }
     </style>
 
-    <%--    <script language="javascript" type="text/javascript" src="../../Scripts/jquery-1.4.1.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../../Scripts/ScrollableGridPlugin.js"></script>
-    <script type="text/javascript" language="javascript" src="../../Scripts/KeyPress.js"></script>--%>
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);

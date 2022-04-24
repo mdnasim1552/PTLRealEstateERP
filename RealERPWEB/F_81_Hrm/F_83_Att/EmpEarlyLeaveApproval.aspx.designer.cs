@@ -42,24 +42,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.Label Label13;
 
         /// <summary>
-        /// txtSrcEmpCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcEmpCode;
-
-        /// <summary>
-        /// imgbtnEmployee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnEmployee;
-
-        /// <summary>
         /// ddlEmpName control.
         /// </summary>
         /// <remarks>
@@ -67,15 +49,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpName;
-
-        /// <summary>
-        /// lmsg11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lmsg11;
 
         /// <summary>
         /// Label12 control.
