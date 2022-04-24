@@ -2492,7 +2492,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!othded.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3330,7 +3330,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!othded.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4190,7 +4190,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!othded.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -5050,7 +5050,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!othded.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -5076,6 +5076,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -5554,7 +5555,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.00486in</Top>
             <Height>1.41501in</Height>
-            <Width>14.65249in</Width>
+            <Width>14.6524in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5932,7 +5933,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.25in</Height>
               <Width>11.66792in</Width>
               <Style>
@@ -5965,7 +5965,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0in</Top>
               <Left>11.80209in</Left>
               <Height>0.25in</Height>
               <Width>2.92708in</Width>
