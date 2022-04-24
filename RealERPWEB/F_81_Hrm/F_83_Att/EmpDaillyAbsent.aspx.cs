@@ -39,7 +39,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = hst["comcod"].ToString();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "GETCOMPANYNAMEIALL", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompanyName.DataTextField = "actdesc";
             this.ddlCompanyName.DataValueField = "actcode";
