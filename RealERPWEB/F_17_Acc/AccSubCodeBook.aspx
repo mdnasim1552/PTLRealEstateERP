@@ -139,6 +139,11 @@
 
 
     <style>
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
         .switch {
             position: relative;
             display: inline-block;
@@ -223,10 +228,10 @@
 
 
 
-            <div class="card mt-5">
+            <div class="card card-fluid mt-4">
                 <div class="card-header">
                     <div class="row">
-                        <button class="btn btn-sm btn-secsondary col-1" type="button">Select Code Book</button>
+                        <button class="btn btn-sm btn-secsondary col-1" type="button">Code Book</button>
                         <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="chzn-select col-2" OnSelectedIndexChanged="ddlOthersBook_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
                         <button class="btn btn-sm btn-secsondary mr-1 col-1" type="button">Level</button>
@@ -291,276 +296,275 @@
                     </div>
                 </div>
 
-
-            </div>
-
-            <div class="card-body">
-                <div class="row">
-                    <div class="table-responsive">
-                        <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
-                            AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" PageSize="900" OnPageIndexChanging="grvacc_PageIndexChanging"
-                            OnRowDataBound="grvacc_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            Width="700px" OnDataBound="grvacc_DataBound" ShowFooter="True">
+                <div class="card-body" style="min-height: 350px;">
+                    <div class="row mb-2">
+                        <div class="table-responsive">
+                            <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
+                                AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
+                                OnRowUpdating="grvacc_RowUpdating" PageSize="900" OnPageIndexChanging="grvacc_PageIndexChanging"
+                                OnRowDataBound="grvacc_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                Width="700px" OnDataBound="grvacc_DataBound" ShowFooter="True">
 
 
-                            <FooterStyle BackColor="#5F9467" />
+                                <FooterStyle BackColor="#5F9467" />
 
-                            <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblserialnoid" runat="server"
-                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                    <ItemStyle />
-                                </asp:TemplateField>
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl.No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblserialnoid" runat="server"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <ItemStyle />
+                                    </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="+">
+                                    <asp:TemplateField HeaderText="+">
 
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent" Visible="false" OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent" Visible="false" OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
 
-                                        <%--data-toggle="modal" data-target="#detialsinfo"--%>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
+                                            <%--data-toggle="modal" data-target="#detialsinfo"--%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
 
-                                    <ItemStyle HorizontalAlign="Left" />
-                                </asp:TemplateField>
+                                        <ItemStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
 
-                                <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
-                                    SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                    <ItemStyle ForeColor="#0000C0" />
-                                </asp:CommandField>
-                                <asp:TemplateField HeaderText=" ">
-                                    <EditItemTemplate>
-                                        <asp:Label ID="lbgrcode" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode2"))+"-" %>'
-                                            Width="20px"></asp:Label>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgrcode" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode2"))+"-" %>'
-                                            Width="20px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                    <ItemStyle Font-Size="12px" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Code">
+                                    <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
+                                        SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <ItemStyle ForeColor="#0000C0" />
+                                    </asp:CommandField>
+                                    <asp:TemplateField HeaderText=" ">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="lbgrcode" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode2"))+"-" %>'
+                                                Width="20px"></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgrcode" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode2"))+"-" %>'
+                                                Width="20px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <ItemStyle Font-Size="12px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Code">
 
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbllgrcode" runat="server" Font-Size="12px"
-                                            MaxLength="13" BackColor="Transparent"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode4")) %>'
-                                            Width="100px"></asp:Label>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllgrcode" runat="server" Font-Size="12px"
+                                                MaxLength="13" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode4")) %>'
+                                                Width="100px"></asp:Label>
 
 
 
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
-                                    <ItemStyle Font-Size="12px" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Description of Code" HeaderStyle-Width="400px">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvDesc" runat="server" Font-Size="12px" MaxLength="250"
-                                            Style="border-style: none;"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
-                                            Width="350px"></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <HeaderTemplate>
-                                        <asp:Label ID="Label8" runat="server" Text="Description of Code" Width="350px"></asp:Label>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
+                                        <ItemStyle Font-Size="12px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Description of Code" HeaderStyle-Width="400px">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtgvDesc" runat="server" Font-Size="12px" MaxLength="250"
+                                                Style="border-style: none;"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
+                                                Width="350px"></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <HeaderTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text="Description of Code" Width="350px"></asp:Label>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
 
-                                        <asp:HyperLink ID="hlnkgvdesc" runat="server" BorderColor="#99CCFF" BorderStyle="none"
-                                            Font-Size="11px" Style="text-align: left; background-color: Transparent; color: Black;"
-                                            Font-Underline="false" Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc"))  %>'
-                                            Width="350px">                                             
+                                            <asp:HyperLink ID="hlnkgvdesc" runat="server" BorderColor="#99CCFF" BorderStyle="none"
+                                                Font-Size="11px" Style="text-align: left; background-color: Transparent; color: Black;"
+                                                Font-Underline="false" Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc"))  %>'
+                                                Width="350px">                                             
                                             
-                                        </asp:HyperLink>
+                                            </asp:HyperLink>
 
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                    <ItemStyle />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Description of Code BN" HeaderStyle-Width="400px">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvDescbn" runat="server" Font-Size="12px" MaxLength="250"
-                                            Style="border-style: none;"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn")) %>'
-                                            Width="300px"></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <HeaderTemplate>
-                                        <asp:Label ID="Label8" runat="server" Text="Description of Code BN" Width="300px"></asp:Label>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label8" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn"))  %>' Width="300px"></asp:Label>
-
-
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                    <ItemStyle />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Unit">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvsirunit" runat="server" MaxLength="100" Visible="false"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
-                                            Width="80px"></asp:TextBox>
-
-                                        <asp:DropDownList ID="ddlUnit" CssClass="chzn-select form-control" Visible="false" runat="server">
-                                        </asp:DropDownList>
-
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblunit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
-                                            Width="80px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
-                                    <ItemStyle HorizontalAlign="Center"  />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Std.Rate">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvsirval" runat="server" Font-Size="12px" MaxLength="100"
-                                            Style="border-style: none;"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "sirval")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="60px"></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblsirval" runat="server" Font-Size="12px"
-                                            Style="font-size: 12px"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "sirval")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="60px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
-                                    <ItemStyle HorizontalAlign="left" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Type" Visible="false">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgridsirtype" runat="server" Font-Size="12px" MaxLength="10"
-                                            Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtype")) %>'
-                                            Width="60px"></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbltype" runat="server" Font-Size="12px"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtype")) %>'
-                                            Width="60px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                    <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Brand" HeaderStyle-Width="200">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvsirtdesc" runat="server" Font-Size="12px"
-                                            Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtdes")) %>'
-                                            Width="200px"></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbltypedesc" runat="server" Font-Size="12px"
-                                            Style="font-size: 12px"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtdes")) %>'
-                                            Width="200px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
-                                    <ItemStyle HorizontalAlign="Left" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Department" Visible="false">
-                                    <EditItemTemplate>
-                                        <asp:Panel ID="Panel2" runat="server">
-                                            <table style="width: 100%;">
-                                                <tr>
-
-                                                    <td>
-                                                        <asp:LinkButton ID="ibtnSrchProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnSrchProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                                    </td>
-                                                    <td>
-                                                        <asp:DropDownList ID="ddlProName" runat="server" CssClass=" ddlPage" Style="width: 200px;" TabIndex="6">
-                                                        </asp:DropDownList>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </asp:Panel>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgvProNames" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
-                                            Width="200px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Details">
-
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnDetails" runat="server" CssClass="btn btn-sm  btn-primary" Visible="false" OnClick="lbtnDetails_Click">Details</asp:LinkButton>
-
-                                        <%--data-toggle="modal" data-target="#detialsinfo"--%>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
-                                    <ItemStyle HorizontalAlign="Left" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Hidden Column" Visible="False">
-                                    <EditItemTemplate>
-                                        <asp:Label ID="lbgrcod1" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode3")) %>'
-                                            Visible="False"></asp:Label>
-                                    </EditItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Entry User Name" Visible="false">
-                                    <EditItemTemplate>
-                                        <asp:Label ID="tlblgvUsr" runat="server" Font-Size="12px" MaxLength="100"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userdesc")) %>'
-                                            Width="90px"></asp:Label>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label5" runat="server" Style="font-size: 12px"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userdesc")) %>'
-                                            Width="90px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Sir Code" Visible="false">
-
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbllgrcodefull" runat="server" Font-Size="12px"
-                                            MaxLength="13" BackColor="Transparent"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")) %>'
-                                            Width="100px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
-                                    <ItemStyle Font-Size="12px" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Seq" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="txtgvseq" runat="server"
-                                            Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "seq")) %>'
-                                            Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <ItemStyle />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Description of Code BN" HeaderStyle-Width="400px">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtgvDescbn" runat="server" Font-Size="12px" MaxLength="250"
+                                                Style="border-style: none;"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn")) %>'
+                                                Width="300px"></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <HeaderTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text="Description of Code BN" Width="300px"></asp:Label>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn"))  %>' Width="300px"></asp:Label>
 
 
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
-                                    </FooterTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
-                                </asp:TemplateField>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <ItemStyle />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Unit">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtgvsirunit" runat="server" MaxLength="100" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
+                                                Width="80px"></asp:TextBox>
 
-                            </Columns>
+                                            <asp:DropDownList ID="ddlUnit" CssClass="chzn-select form-control" Visible="false" runat="server">
+                                            </asp:DropDownList>
+
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblunit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Std.Rate">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtgvsirval" runat="server" Font-Size="12px" MaxLength="100"
+                                                Style="border-style: none;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "sirval")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblsirval" runat="server" Font-Size="12px"
+                                                Style="font-size: 12px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "sirval")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="60px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="left" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Type" Visible="false">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtgridsirtype" runat="server" Font-Size="12px" MaxLength="10"
+                                                Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtype")) %>'
+                                                Width="60px"></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbltype" runat="server" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtype")) %>'
+                                                Width="60px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Brand" HeaderStyle-Width="200">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtgvsirtdesc" runat="server" Font-Size="12px"
+                                                Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtdes")) %>'
+                                                Width="200px"></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbltypedesc" runat="server" Font-Size="12px"
+                                                Style="font-size: 12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtdes")) %>'
+                                                Width="200px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                        <ItemStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Department" Visible="false">
+                                        <EditItemTemplate>
+                                            <asp:Panel ID="Panel2" runat="server">
+                                                <table style="width: 100%;">
+                                                    <tr>
+
+                                                        <td>
+                                                            <asp:LinkButton ID="ibtnSrchProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnSrchProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
+                                                        </td>
+                                                        <td>
+                                                            <asp:DropDownList ID="ddlProName" runat="server" CssClass=" ddlPage" Style="width: 200px;" TabIndex="6">
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </asp:Panel>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvProNames" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                                Width="200px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Details">
+
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbtnDetails" runat="server" CssClass="btn btn-sm  btn-primary" Visible="false" OnClick="lbtnDetails_Click">Details</asp:LinkButton>
+
+                                            <%--data-toggle="modal" data-target="#detialsinfo"--%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                        <ItemStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Hidden Column" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="lbgrcod1" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode3")) %>'
+                                                Visible="False"></asp:Label>
+                                        </EditItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Entry User Name" Visible="false">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="tlblgvUsr" runat="server" Font-Size="12px" MaxLength="100"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userdesc")) %>'
+                                                Width="90px"></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Style="font-size: 12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userdesc")) %>'
+                                                Width="90px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Sir Code" Visible="false">
+
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllgrcodefull" runat="server" Font-Size="12px"
+                                                MaxLength="13" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")) %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
+                                        <ItemStyle Font-Size="12px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Seq" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvseq" runat="server"
+                                                Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "seq")) %>'
+                                                Width="60px"></asp:TextBox>
 
 
-                            <FooterStyle CssClass="grvFooter" />
-                            <EditRowStyle />
-                            <AlternatingRowStyle />
-                            <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
+                                        </FooterTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                    </asp:TemplateField>
 
-                        </asp:GridView>
+                                </Columns>
 
 
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+
+                            </asp:GridView>
+
+
+
+                        </div>
 
                     </div>
 
@@ -568,18 +572,19 @@
 
             </div>
 
+
             <div class="modal fade " id="detialsinfo" role="dialog">
                 <div class="modal-dialog  modal-lg ">
                     <div class="modal-content ">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title text-center">Details Information</h4>
+                            <h4 class="modal-title text-center">Details Information</h4>                            
+                            <button type="button" data-dismiss="modal" class="btn btn-xs btn-danger" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label class="control-label">Details:</label>
                                 <asp:TextBox ID="txtrsircode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
-                                <asp:TextBox ID="txtDetails" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtDetails" runat="server" TextMode="MultiLine" Rows="4" CssClass="form-control"></asp:TextBox>
 
                             </div>
 
@@ -643,7 +648,7 @@
                             <div class="row mb-1" runat="server" id="divMobile">
                                 <label class="col-md-4">Phone Number</label>
                                 <div class="col-md-8">
-                                    <asp:TextBox ID="txtSupPhone"  TextMode="Number" MaxLength="12" min="0" placeholder="Supplier Phone" runat="server" CssClass="form-control" onchange="checkMobileValidation()"  />
+                                    <asp:TextBox ID="txtSupPhone" TextMode="Number" MaxLength="12" min="0" placeholder="Supplier Phone" runat="server" CssClass="form-control" onchange="checkMobileValidation()" />
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidatorNum" runat="server" Display="Dynamic" ErrorMessage="Accepts only numbers with digit 8 to 12" ValidationGroup="RegisterCheck" ForeColor="Red" ControlToValidate="txtSupPhone" ValidationExpression="[0-9]{12}">
                                     </asp:RegularExpressionValidator>
                                 </div>

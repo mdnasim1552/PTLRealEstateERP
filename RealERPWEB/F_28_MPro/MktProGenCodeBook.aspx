@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MktProGenCodeBook.aspx.cs" Inherits="RealERPWEB.F_28_MPro.MktProGenCodeBook" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+    </style>
     <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -39,19 +45,16 @@
             </div>
 
             <div class="card card-fluid">
-                <div class="card-body" style="min-height: 850px;">
-
+                <div class="card-header">
                     <div class="row">
-
-                        <div class="col-md-3">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
                             <div class="form-group">
                                 <label class="control-label">SELECT CODE</label>
                                 <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlOthersBook_SelectedIndexChanged">
                                 </asp:DropDownList>
-
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
                             <div class="form-group">
                                 <label class="control-label">Catagory</label>
                                 <asp:DropDownList ID="ddlCatcode" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCatcode_SelectedIndexChanged">
@@ -59,7 +62,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             <div class="form-group">
                                 <label class="control-label">Segment</label>
                                 <asp:DropDownList ID="ddlOthersBookSegment" runat="server" CssClass="custom-select chzn-select">
@@ -68,22 +71,16 @@
                                     <asp:ListItem Selected="True" Value="7">Details Code</asp:ListItem>
                                 </asp:DropDownList>
 
-
-
-
-
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-sm-1 col-md-1 col-lg-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lnkok" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lnkok_Click">Ok</asp:LinkButton>
-
+                                <asp:LinkButton ID="lnkok" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkok_Click" Style="margin-top: 27px;">Ok</asp:LinkButton>
                                 <asp:Label ID="ConfirmMessage" runat="server" CssClass="btn-danger btn-sm btn" Visible="false"></asp:Label>
 
-
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-sm-1 col-md-1 col-lg-1">
                             <div class="form-group">
                                 <label class="control-label">Page Size</label>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="custom-select chzn-select"
@@ -99,30 +96,19 @@
                                     <asp:ListItem>600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
                                 </asp:DropDownList>
-
-
-
-
-
                             </div>
                         </div>
-
-
                     </div>
+                </div>
+                <div class="card-body" style="min-height: 350px;">
 
-
-
-
-
-                    <asp:GridView ID="grvacc" runat="server" CssClass=" table-condensed table-hover table-bordered grvContentarea"
+                    <asp:GridView ID="grvacc" runat="server" CssClass=" table-condensed table-bordered grvContentarea"
                         AutoGenerateColumns="False" AllowPaging="True"
                         OnPageIndexChanging="grvacc_PageIndexChanging"
                         CellPadding="4" Font-Bold="False" Font-Size="12px"
                         OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                         OnRowUpdating="grvacc_RowUpdating" Width="16px" ShowFooter="True" OnRowDataBound="grvacc_RowDataBound">
-                        <%-- <PagerSettings NextPageText="Next" PreviousPageText="Previous"
-                            Visible="True" />
-                        <FooterStyle />--%>
+
                         <Columns>
                             <asp:TemplateField HeaderText="Sl">
                                 <ItemTemplate>
@@ -237,8 +223,8 @@
 
                         </Columns>
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
-                        <FooterStyle CssClass="grvFooter" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
+                        <FooterStyle CssClass="grvFooterNew" />
                         <RowStyle CssClass="grvRows" />
                     </asp:GridView>
 
@@ -247,9 +233,10 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
-<asp:Content ID="Content3" runat="server" contentplaceholderid="head">
+<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="head">
     <style type="text/css">
-        .grvContentarea {}
+        .grvContentarea {
+        }
     </style>
 </asp:Content>
 

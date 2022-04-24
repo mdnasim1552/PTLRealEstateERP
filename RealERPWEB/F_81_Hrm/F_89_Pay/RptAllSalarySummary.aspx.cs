@@ -100,7 +100,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
-                    this.PnlGrossRecon.Visible = true;
+                    this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = true;
                     break;
                 default:

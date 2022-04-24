@@ -404,11 +404,6 @@
                                 runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Submit Request</asp:LinkButton>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 
-
-
-
-
-
                         </div>
                     </div>
                 </div>

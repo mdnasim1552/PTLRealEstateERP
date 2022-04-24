@@ -282,31 +282,48 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         protected void lnkApply_Click(object sender, EventArgs e)
         {
-            string Company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "94%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
-            string Department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "9402%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
-            string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlCompany.SelectedValue.ToString()) + "%";
-            string comcod = this.GetComCode();
             string msg = "";
-
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "ACTIVEEMPLEAVE", Company, Department, Section, "", "", "", "", "", "");
-            if (ds == null)
-                return;
-
-            DataTable dt = ds.Tables[0];
-            string empid = "";
-            string rowCount = dt.Rows.Count.ToString();
-            string year =Convert.ToDateTime( System.DateTime.Now).ToString("yyyy");
-            for(int i = 0; i <dt.Rows.Count; i++)
+            try
             {
-                empid = dt.Rows[i]["empid"].ToString();
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTOFFDAY", empid, year, "", "", "", "", "", "", "");
-   
-    
+                string company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "94%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
+                string department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "9402%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
+                string section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlCompany.SelectedValue.ToString()) + "%";
+                string comcod = this.GetComCode();
+            
+
+
+
+                DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "ACTIVEEMPLEAVE", company, department, section, "", "", "", "", "", "");
+                if (ds == null)
+                    return;
+
+                DataTable dt = ds.Tables[0];
+                string empid = "";
+
+                string rowCount = dt.Rows.Count.ToString();
+                string year = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    empid = dt.Rows[i]["empid"].ToString();
+
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTOFFDAY", empid, year, "", "", "", "", "", "");
+
+
+                }
+
+                msg = rowCount + " Rows affected!";
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+            }
+            catch
+            {
+                msg = "Update Failed";
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
 
-            msg = rowCount + " Rows affected!";
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+           
 
 
         }

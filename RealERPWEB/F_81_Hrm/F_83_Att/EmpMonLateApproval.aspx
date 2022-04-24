@@ -1483,10 +1483,10 @@
                                 </asp:GridView>
                             </div>
                             <div class="modal-footer">
-                                <asp:LinkButton ID="ModalUpdateBtn" OnClientClick="CloseModal();" OnClick="ModalUpdateBtn_Click"
+                                <asp:LinkButton ID="ModalUpdateBtn" OnClientClick="CloseModal();" data-dismiss="modal" OnClick="ModalUpdateBtn_Click"
                                     runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
 
-                                <asp:LinkButton ID="ModallnkBtnLateAFTER10AM" OnClientClick="CloseModal();" OnClick="ModallnkBtnLateAFTER10AM_Click" Visible="false"
+                                <asp:LinkButton ID="ModallnkBtnLateAFTER10AM"  data-dismiss="modal" OnClientClick="CloseModal();" OnClick="ModallnkBtnLateAFTER10AM_Click" Visible="false"
                                     runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
 
                                 <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
