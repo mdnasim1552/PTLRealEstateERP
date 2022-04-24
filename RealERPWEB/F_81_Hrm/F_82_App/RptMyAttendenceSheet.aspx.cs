@@ -264,7 +264,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
                             ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;color:red";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq==""? true:false;
-                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+                            ((LinkButton)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
 
 
@@ -283,7 +283,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
-                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+                            ((LinkButton)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
                             
 
@@ -481,7 +481,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             else
             {
-                string trnid = this.GetattAppId(empid);
+                string trnid = this.GetattAppId(empid, reqdate);
 
 
                 string Messaged = "";
@@ -533,7 +533,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                                 absapp = "1";
                                 string frmdate = this.lbldadte.Text.ToString();
                                 string todate = this.lbldadte.Text.ToString();
-                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "", "", "", "", "", "", "", "", "", "");
+                                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "REQ", "", "", "", "", "", "", "", "", "");
                             }
 
                             else if (reqtype == "LP")
@@ -570,11 +570,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             
         }
 
-        private string GetattAppId(string empid)
+        private string GetattAppId(string empid, string reqdate)
         {
 
             string comcod = this.GetComeCode();
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.[SP_REPORT_HR_MGT_INTERFACE]", "GETATTAPPID", empid, "", "", "", "", "", "", "", "");
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.[SP_REPORT_HR_MGT_INTERFACE]", "GETATTAPPID", empid, reqdate, "", "", "", "", "", "", "");
             string lstid = ds5.Tables[0].Rows[0]["ltrnid"].ToString().Trim();
             return lstid;
         }
@@ -678,6 +678,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             getMyAttData();
         }
 
-        
+        protected void hyplnkApplyLv_Click(object sender, EventArgs e)
+        {
+            string qtype = this.Request.QueryString["Type"] ?? "";
+            if (qtype == "MGT")
+            {
+                Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT");
+            }
+            else
+            {
+                Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User");
+            }
+        }
     }
 }
