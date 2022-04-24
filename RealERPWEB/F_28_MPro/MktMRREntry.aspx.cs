@@ -16,17 +16,19 @@ namespace RealERPWEB.F_28_MPro
         {
             if (!IsPostBack)
             {
-               
+
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
 
 
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtChaDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Marketing Material Receive"
-                    : "Delete Materials Receive Information Input/Edit Screen";
 
                 string qgenno = this.Request.QueryString["genno"] ?? "";
                 if (qgenno.Length > 0)
@@ -429,7 +431,11 @@ namespace RealERPWEB.F_28_MPro
             string actType = this.ddlActType.SelectedValue.ToString();
 
             DataTable tbl2 = (DataTable)ViewState["tblMat"];
-            DataRow[] dr = tbl1.Select("orderno='" + orderno + "' and  prtype = '" + prType + "' and acttype = '" + actType + "'");
+            DataView dv = tbl2.DefaultView;
+            dv.RowFilter = ("orderno='" + orderno + "' and acttype = '" + actType + "'");
+            tbl2 = dv.ToTable();
+
+            DataRow[] dr = tbl1.Select("orderno='" + orderno + "' and acttype = '" + actType + "'");
             if (dr.Length == 0)
             {
                 for (int i = 0; i < tbl2.Rows.Count; i++)
@@ -442,6 +448,7 @@ namespace RealERPWEB.F_28_MPro
                     dr1["prtype"] = tbl2.Rows[i]["prtype"].ToString();
                     dr1["acttype"] = tbl2.Rows[i]["acttype"].ToString();
                     dr1["mkttype"] = tbl2.Rows[i]["mkttype"].ToString();
+                    dr1["rsirdetdesc"] = tbl2.Rows[i]["rsirdetdesc"].ToString();
                     dr1["prtypedesc"] = this.ddlPRType.SelectedItem.Text.Trim();
                     dr1["acttypedesc"] = this.ddlActType.SelectedItem.Text.Trim();
                     dr1["orderdat"] = tbl2.Rows[i]["orderdat"].ToString();
@@ -476,7 +483,7 @@ namespace RealERPWEB.F_28_MPro
 
             DataTable tbl1 = (DataTable)ViewState["tblMRR"];
             DataTable tbl2 = (DataTable)ViewState["tblMat"];
-            DataRow[] dr = tbl1.Select("orderno='" + orderno + "' and  prtype = '" + prType + "' and acttype = '" + actType + "'");
+            DataRow[] dr = tbl1.Select("orderno='" + orderno + "' and acttype = '" + actType + "'");
             if (dr.Length == 0)
             {
                 for (int i = 0; i < tbl2.Rows.Count; i++)
@@ -488,6 +495,9 @@ namespace RealERPWEB.F_28_MPro
                     dr1["reqno1"] = tbl2.Rows[i]["reqno1"].ToString();
                     dr1["prtype"] = tbl2.Rows[i]["prtype"].ToString();
                     dr1["acttype"] = tbl2.Rows[i]["acttype"].ToString();
+                    dr1["rsirdetdesc"] = tbl2.Rows[i]["rsirdetdesc"].ToString();
+                    dr1["prtypedesc"] = tbl2.Rows[i]["prtypedesc"].ToString();
+                    dr1["acttypedesc"] = tbl2.Rows[i]["acttypedesc"].ToString();
                     dr1["orderdat"] = tbl2.Rows[i]["orderdat"].ToString();
                     dr1["orderqty"] = tbl2.Rows[i]["orderqty"].ToString();
                     dr1["recup"] = Convert.ToDouble(tbl2.Rows[i]["recup"]).ToString();
