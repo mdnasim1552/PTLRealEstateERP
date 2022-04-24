@@ -264,7 +264,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
                             ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;color:red";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq==""? true:false;
-                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+                            ((LinkButton)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
 
 
@@ -283,7 +283,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
-                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+                            ((LinkButton)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
                             
 
@@ -678,6 +678,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             getMyAttData();
         }
 
-        
+        protected void hyplnkApplyLv_Click(object sender, EventArgs e)
+        {
+            string qtype = this.Request.QueryString["Type"] ?? "";
+            if (qtype == "MGT")
+            {
+                Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT");
+            }
+            else
+            {
+                Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User");
+            }
+        }
     }
 }
