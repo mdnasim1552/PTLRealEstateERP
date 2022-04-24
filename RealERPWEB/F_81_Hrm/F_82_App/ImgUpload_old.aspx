@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ImgUpload.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.ImgUpload" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ImgUpload_old.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.ImgUpload" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -115,7 +115,6 @@
                                         <figure class="figure">
                                             <!-- .figure-img -->
                                             <div class="figure-img figure-attachment">
-                                                <asp:HiddenField ID="Hiddnrl" runat="server" />
                                                 <asp:Image ID="EmpImg" runat="server"  Width="100" Height="100" alt="Images" />
 
                                                 <a href="#" class="img-link" data-size="1000x1000">
@@ -183,7 +182,6 @@
                     <%--<asp:Button ID="btnGenerate" OnClick = "GenerateThumbnail" runat="server" Text="Generate Thumbnail" />--%>
 
                     <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger" OnClick="lbtnDelete_Click">Delete</asp:LinkButton>
-                    <asp:LinkButton ID="lnkbtnUpdateEMPImage" runat="server" CssClass="btn btn-success" OnClick="lnkbtnUpdateEMPImage_Click">Update</asp:LinkButton>
                     <asp:LinkButton ID="lbtnUpdateImg" runat="server" CssClass="btn btn-success" OnClick="lbtnUpdateImg_Click">Update</asp:LinkButton>
 
                     </div>

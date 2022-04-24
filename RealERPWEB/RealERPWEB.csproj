@@ -3185,6 +3185,7 @@
     <Content Include="Images\ship2.jpg" />
     <Content Include="Images\userImg.png" />
     <Content Include="Images\word.png" />
+    <Content Include="ImageUpload.aspx" />
     <Content Include="Image\006.png" />
     <Content Include="Image\1.jpg" />
     <Content Include="Image\1.png" />
@@ -4619,6 +4620,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\MKTProInterface.aspx.designer.cs">
       <DependentUpon>MKTProInterface.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImageUpload.aspx.cs">
+      <DependentUpon>ImageUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImageUpload.aspx.designer.cs">
+      <DependentUpon>ImageUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="LetterDefault.aspx.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
@@ -11798,6 +11806,7 @@
     <Folder Include="Log Files\" />
     <Folder Include="SupWorkOreder\" />
     <Folder Include="tinymce\" />
+    <Folder Include="Upload\HRM\EmpImg\" />
     <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
