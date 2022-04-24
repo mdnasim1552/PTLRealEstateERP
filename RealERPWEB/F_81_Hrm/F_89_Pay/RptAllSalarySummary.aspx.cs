@@ -401,7 +401,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     this.GvTotalSumm.DataSource = dt;
                     this.GvTotalSumm.DataBind();
-
                     Session["Report1"] = GvTotalSumm;
                     ((HyperLink)this.GvTotalSumm.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
@@ -412,11 +411,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected void Page_PreInit(object sender, EventArgs e)
         {
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
-    
+            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
         }
-
-
         private void lnkPrint_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -441,15 +437,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int submonth=Convert.ToInt32(getdate.Substring(4));
     
             DateTimeFormatInfo dateTimeInfo = new DateTimeFormatInfo();
-           string mon =dateTimeInfo.GetAbbreviatedMonthName(submonth);
+            string mon =dateTimeInfo.GetAbbreviatedMonthName(submonth);
 
             string month = mon + "-" + subyear;
-
-
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>();
-     
-          
-
             LocalReport Rpt1 = new LocalReport();
 
             int index = this.rbtnAtten.SelectedIndex;
@@ -515,11 +506,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
         }
-
-
-
 }
 
 }
