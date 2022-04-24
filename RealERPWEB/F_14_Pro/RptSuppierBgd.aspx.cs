@@ -254,20 +254,20 @@ namespace RealERPWEB.F_14_Pro
 
             dt2 = dv.ToTable();
             ((Label)this.gvSubBill.FooterRow.FindControl("lgvFBillAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(billamt)", "")) ? 0.00 :
-                 dt2.Compute("sum(billamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                 dt2.Compute("sum(billamt)", ""))).ToString("#,##0;(#,##0); ");
 
             ((Label)this.gvSubBill.FooterRow.FindControl("lgvFBillpendAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(pendingamt)", "")) ? 0.00 :
-                 dt2.Compute("sum(pendingamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                 dt2.Compute("sum(pendingamt)", ""))).ToString("#,##0;(#,##0); ");
 
             ((Label)this.gvSubBill.FooterRow.FindControl("lgvFtotalbill")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(totalbill)", "")) ? 0.00 :
-                 dt2.Compute("sum(totalbill)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                 dt2.Compute("sum(totalbill)", ""))).ToString("#,##0;(#,##0); ");
 
             ((Label)this.gvSubBill.FooterRow.FindControl("lgvFPayment")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(payment)", "")) ? 0.00 :
-                dt2.Compute("sum(payment)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                dt2.Compute("sum(payment)", ""))).ToString("#,##0;(#,##0); ");
             ((Label)this.gvSubBill.FooterRow.FindControl("lgvFNetpayableAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(netpayable)", "")) ? 0.00 :
-                dt2.Compute("sum(netpayable)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                dt2.Compute("sum(netpayable)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.gvSubBill.FooterRow.FindControl("lgvFNetBal")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(ncpayable)", "")) ? 0.00 : dt2.Compute("sum(ncpayable)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            ((Label)this.gvSubBill.FooterRow.FindControl("lgvFNetBal")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(ncpayable)", "")) ? 0.00 : dt2.Compute("sum(ncpayable)", ""))).ToString("#,##0;(#,##0); ");
 
 
             Session["Report1"] = gvSubBill;

@@ -113,6 +113,7 @@
                                     <asp:ListItem>Receipt Payment</asp:ListItem>
                                     <asp:ListItem>Receipt Payment2</asp:ListItem>
                                     <asp:ListItem>Receipt Payment3</asp:ListItem>
+                                    <asp:ListItem>Receipt Payment(Customized)</asp:ListItem>
                                 </asp:RadioButtonList>
 
                             </div>
@@ -2141,6 +2142,118 @@
 
                     </div>
 
+                </asp:View>
+
+                  <asp:View ID="ViewRecAndPayCustomized" runat="server">
+                   
+                    <div class="row table-responsive">
+                        <asp:GridView ID="gvRecPayCustomized" runat="server" AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvRecPayCustomized_RowDataBound"
+                            Width="973px" CssClass="table-striped table-hover table-bordered grvContentarea">
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvSlNo5rp03" runat="server" Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="RecCode" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvrecpcoderp03" runat="server" Font-Bold="True" Style="text-align: right"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "recpcode")) %>' Width="50px"></asp:Label>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Head Accounts Head">
+
+                                    <HeaderTemplate>
+                                        <table style="width: 47%;">
+                                            <tr>
+                                                <td class="style58">
+                                                    <asp:Label ID="Label4rp03" runat="server" Font-Bold="True"
+                                                        Text="Head Accounts Head" Width="180px"></asp:Label>
+                                                </td>
+                                                <td class="style60">&nbsp;</td>
+                                                <td>
+                                                    <asp:HyperLink ID="hlbtnRcvPayCdataExelrp03" runat="server" BackColor="#000066"
+                                                        BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
+                                                        ForeColor="White" Style="text-align: center" Width="90px">Export Excel</asp:HyperLink>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </HeaderTemplate>
+
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnRecDescrp03" runat="server"
+                                            Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grprpdesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "recpdesc").ToString().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "grprpdesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
+                                                                         
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "recpdesc")): "") 
+                                                                         
+                                                                    %>'
+                                            Width="395px" Font-Underline="False" Style="color: Black"></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" Height="35px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Receipt Amt.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvrecpamrp03" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "recpam")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="100px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" Height="35px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="PayCode" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvpaycoderp03" runat="server" Font-Bold="True" Style="text-align: right"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paycode")) %>' Width="50px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Head of Accounts">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnPayDescrp03" runat="server"
+                                            Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grppaydesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "paydesc").ToString().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "grppaydesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
+                                                                      
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "paydesc")): "") 
+                                                                         
+                                                                    %>'
+                                            Width="300px" Font-Underline="False"
+                                            Style="color: Black"></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="Label18" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Text="" Width="100px"></asp:Label>
+
+                                    </FooterTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Payment Amt.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvpayamrp03" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="100px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+                            </Columns>
+                            <FooterStyle BackColor="#F5F5F5" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                        </asp:GridView>
+                    </div>
                 </asp:View>
 
 

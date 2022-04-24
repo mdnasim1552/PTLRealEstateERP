@@ -683,7 +683,7 @@ namespace RealERPWEB.F_17_Acc
                 if (Code == "")
                     return;
 
-                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "41")
+                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code,2) =="63")
                 {
                     LinkButton lbtnDetails = (LinkButton)e.Row.FindControl("lbtnDetails");
 

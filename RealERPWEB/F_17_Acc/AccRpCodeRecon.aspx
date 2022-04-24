@@ -17,6 +17,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
+            $('.chzn-select').chosen({ search_contains: true });
+
 
         };
     </script>
@@ -58,10 +60,11 @@
                                     </div>
 
 
-                                    <div class="col-md-4 asitCol4 pading5px">
+                                    <div class="col-md-5  asitCol5 pading5px">
                                         <asp:RadioButtonList ID="rbtnGroup" runat="server" CssClass="rbtnList1"
                                             RepeatColumns="6" RepeatDirection="Horizontal"
                                             TabIndex="2">
+                                            <%--<asp:ListItem>Journal(C. Head)</asp:ListItem>--%>
                                             <asp:ListItem>Deposit</asp:ListItem>
                                             <asp:ListItem Selected="True">Payment</asp:ListItem>
                                             <asp:ListItem>Both</asp:ListItem>
@@ -128,7 +131,7 @@
 
                                     <div class="col-md-4 asitCol4 pading5px">
                                         <asp:DropDownList ID="ddlRpName" runat="server"
-                                            Width="300px" AutoPostBack="True" CssClass="ddlistPull">
+                                            Width="300px" AutoPostBack="True" CssClass="ddlistPull chzn-select">
                                         </asp:DropDownList>
 
                                     </div>
@@ -235,7 +238,7 @@
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="ddlRpName" runat="server" Width="200px">
+                                                <asp:DropDownList ID="ddlRpName" CssClass="chzn-select" runat="server" Width="200px">
                                                 </asp:DropDownList>
                                                 <cc1:ListSearchExtender ID="ddlRpName_ListSearchExtender" runat="server"
                                                     Enabled="True" QueryPattern="Contains" TargetControlID="ddlRpName">

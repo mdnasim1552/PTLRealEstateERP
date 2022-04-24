@@ -911,7 +911,7 @@ namespace RealERPWEB.F_17_Acc
                     if (ds4.Tables[0].Rows.Count > 0)
                         this.txtNarration.Text = this.getLastNarration(ds4);
                     else
-                        this.txtNarration.Text = ""; 
+                        this.txtNarration.Text = "";
                     //---------------------
 
                     this.GetVouCherNumber();
@@ -1019,7 +1019,7 @@ namespace RealERPWEB.F_17_Acc
             GetBalanceInfo();
         }
 
-        private string getLastNarration (DataSet ds1)
+        private string getLastNarration(DataSet ds1)
         {
             string narration = "";
             string comcod = this.GetCompCode();
@@ -1209,6 +1209,8 @@ namespace RealERPWEB.F_17_Acc
                 tblt02.Rows.Clear();
                 tblt03.Rows.Clear();
                 int cindex = -1;
+
+                string firstrrmrks = dgv1.Rows.Count==0?"":((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
                 for (int i = 0; i < this.dgv1.Rows.Count; i++)
                 {
                     string dgAccCode = ((Label)this.dgv1.Rows[i].FindControl("lblAccCod")).Text.Trim();
@@ -1293,7 +1295,12 @@ namespace RealERPWEB.F_17_Acc
                         tblt01.Rows.Add(dr1);
                     }
                 }
-
+                // For Duplicate 
+                string voutype = this.ddlvoucher.SelectedValue.ToString();
+               // string type = this.Request.QueryString["Mod"];
+               // string rmrks = ((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
+                string trnrmrk = this.Request.QueryString["Mod"] == "Management" ? firstrrmrks :"";
+                TrnRemarks = voutype == "JV" ? trnrmrk : TrnRemarks;
                 // New Row Add 
 
                 string aresbandspclcodetrnrmrks = sectcode + AccCode + ResCode + Billno + SpclCode + TrnRemarks;
@@ -1770,6 +1777,11 @@ namespace RealERPWEB.F_17_Acc
             //string EditByid = (this.Request.QueryString["Mod"] == "Accounts") ? "" : (tblEditByid == "") ? userid : tblEditByid;
 
 
+
+            //string date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+            //string cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+
+
             string voudat = ASTUtility.DateFormat(this.txtEntryDate.Text);
             DateTime Bdate;
             bool dcon;
@@ -1865,41 +1877,43 @@ namespace RealERPWEB.F_17_Acc
                 if (this.ddlPrivousVou.Items.Count > 0)
                 {
                     string cvounum = this.ddlPrivousVou.SelectedValue.ToString();
-
-                    DateTime frmdate, todate, tvoudat;
-                    //frmdate = Convert.ToDateTime(cvounum.Substring(6, 2) + "/01/" + cvounum.Substring(2, 4));
-
-                    frmdate = Convert.ToDateTime(ASTUtility.DateFormat("01" + "." + cvounum.Substring(6, 2) + "." + cvounum.Substring(2, 4)));
-                    todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");
-
-                    //string todate1 = frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                    //todate = Convert.ToDateTime(todate1 + " 12:00:00 AM");
-                    tvoudat = Convert.ToDateTime(voudat);
-
-
-
-                    //tvoudat = Convert.ToDateTime(voudat);
-
-                    if (tvoudat >= frmdate && tvoudat <= todate)
-                        ;
-                    else
+                    switch (comcod)
                     {
-                        //((Label)this.Master.FindControl("lblmsg")).Text =  "from date : "+ frmdate + " To date "  + todate + " current date  : " + tvoudat;
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        case "3101":
+                        case "3343": // dominion
+                            int voudat1 = Convert.ToInt32(Convert.ToDateTime(this.txtEntryDate.Text.Trim()).ToString("yyyyMMdd"));
+                            int frmdate1 = Convert.ToInt32(cvounum.Substring(2, 4) + cvounum.Substring(6, 2) + "01");
+                            int mon1 = Convert.ToInt32(cvounum.Substring(6, 2));
+                            int lstdate1 = Convert.ToInt32(cvounum.Substring(2, 4) + cvounum.Substring(6, 2) + ASTUtility.MonthLastDay(mon1));
+                            if (voudat1 >= frmdate1 && voudat1 <= lstdate1)
+                                ;
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Voucher can be eidited during the date range of that particular month');", true);
+                                return;
+                            }
+                            break;
 
+                        default:
+                            DateTime frmdate, todate, tvoudat;
+                            //frmdate = Convert.ToDateTime(cvounum.Substring(6, 2) + "/01/" + cvounum.Substring(2, 4));
 
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Voucher can be eidited during the date range of that particular month');", true);
-                        return;
+                            frmdate = Convert.ToDateTime(ASTUtility.DateFormat("01" + "." + cvounum.Substring(6, 2) + "." + cvounum.Substring(2, 4)));
+                            todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");
+                            tvoudat = Convert.ToDateTime(voudat);
 
+                            if (tvoudat >= frmdate && tvoudat <= todate)
+                                ;
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Voucher can be eidited during the date range of that particular month');", true);
+                                return;
+                            }
+                            break;
                     }
 
-
                 }
-
-
             };
-
-
 
             string vounum = this.txtcurrentvou.Text.Trim().Substring(0, 2) + voudat.Substring(7, 4) +
                             this.txtcurrentvou.Text.Trim().Substring(2, 2) + this.txtCurrntlast6.Text.Trim();
@@ -2840,7 +2854,8 @@ namespace RealERPWEB.F_17_Acc
                 TextBox txtgvQty = (TextBox)e.Row.FindControl("txtgvQty");
                 TextBox txtgvRate = (TextBox)e.Row.FindControl("txtgvRate");
                 TextBox txtgvCrAmt = (TextBox)e.Row.FindControl("txtgvCrAmt");
-             
+                TextBox lblgvBillno = (TextBox)e.Row.FindControl("lblgvBillno");
+
 
 
                 string txtRemarks = tnrRemarks.Text.Trim();
@@ -2880,8 +2895,8 @@ namespace RealERPWEB.F_17_Acc
                     case "3306":
                     case "2305":
                     case "3310":
-                    case "3311":                   
-                   // case "3101":
+                    case "3311":
+                     case "3101":
                         if (this.ddlPrivousVou.Items.Count > 0)
                         {
                             if (((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0))
@@ -2898,18 +2913,23 @@ namespace RealERPWEB.F_17_Acc
                                 txtgvRate.Enabled = false;
                                 txtgvCrAmt.Enabled = false;
                                 tnrRemarks.ReadOnly = true;
+                                lblgvBillno.ReadOnly = true;
+                                
+
                             }
 
                             else
                             {
                                 tnrRemarks.ReadOnly = true;
-                               
+                                lblgvBillno.ReadOnly = false;
+
 
                             }
-                        }                        
+                        }
                         break;
                     default:
                         tnrRemarks.ReadOnly = false;
+                        
                         break;
                 }
 

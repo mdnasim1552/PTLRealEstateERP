@@ -24,17 +24,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
-                if (prevPage.Length == 0)
-                {
-                    prevPage = Request.UrlReferrer.ToString();
-                }
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
-                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Employee Settlement Top Sheet";
+                //if (prevPage.Length == 0)
+                //{
+                //    prevPage = Request.UrlReferrer.ToString();
+                //}
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
                 this.CommonButton();
                 this.txtDatefrom.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -66,7 +63,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void CommonButton()
         {
 
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = true;
 
             ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
@@ -218,7 +215,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 }
                 else
                 {
-                    lnkEdit.Text = "<span class='glyphicon glyphicon-lock'></span>";
+                    lnkEdit.Text = "<i class='fa fa-lock'></i>";
                     lnkEdit.CssClass = "btn btn-xs btn-danger";
                     lnkEdit.ToolTip = "Approved";
                 }

@@ -2529,6 +2529,9 @@ namespace RealERPWEB.F_21_MKT
 
         protected void lnkUpdate_Click(object sender, EventArgs e)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string comcod = this.GetComeCode();
 
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataTable dt1 = new DataTable();
@@ -2551,6 +2554,7 @@ namespace RealERPWEB.F_21_MKT
             string maddress = "";
             string faclass = "fa-exclamation-circle";
             string gval = "";
+            string sourcecode = "";
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
                 DataRow dr = dt1.NewRow();
@@ -2704,12 +2708,21 @@ namespace RealERPWEB.F_21_MKT
                     empid = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 }
 
+                if (Gcode == "0302001")  //Source
+                {
+                    sourcecode = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                }
+
+                
+
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
                 dr["gvalue"] = (((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() :
                     ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dt1.Rows.Add(dr);
             }
+
+            
             //Project Info
             for (int i = 0; i < this.gvpinfo.Rows.Count; i++)
             {
@@ -2719,6 +2732,48 @@ namespace RealERPWEB.F_21_MKT
 
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
+
+                //Mandatory
+                if (Gcode == "0303006") //Interest Project
+                {
+
+                    switch (comcod)
+                    {
+
+                        case "3354"://Edison
+                      //  case "3101":
+                            if (sourcecode == "3101002")
+                            {
+
+                                string ipactcode = ((DropDownList)this.gvpinfo.Rows[i].FindControl("ddlvalpros")).SelectedValue.ToString();
+
+                                if (ipactcode.Length == 0)
+                                {
+
+                                    string Message = "Please select Project";
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                                    return;
+                                
+                                
+                                }
+
+                            }
+
+                                break;
+
+                        default:
+                            break;
+                    
+                    
+                    
+                    }
+                    
+                   
+                
+                
+                
+                }
+
 
                 //Company
                 if (Gcode == "0303002")
@@ -2942,9 +2997,7 @@ namespace RealERPWEB.F_21_MKT
 
             ds.Tables.Add(dv.ToTable());           
             ds.Tables[0].TableName = "tbl";
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string usrid = hst["usrid"].ToString();
-            string comcod = this.GetComeCode();
+            
             string clientid = (string)ViewState["newclientcode"];
             bool active = this.GetComPanyProsActivein();
 

@@ -55,7 +55,7 @@
         }
 
 
-      
+        
 
     </script>
 
@@ -227,21 +227,28 @@
                     <asp:Repeater ID="RptMyAttenView" runat="server" OnItemDataBound="RptMyAttenView_ItemDataBound">
 
                         <HeaderTemplate>
-                            <table class="table-striped table-hover table-bordered" style="width: 40%;">
+                            <table class="table-striped table-hover table-bordered" >
                                 <tr>
-                                    <th>Date</th>
-                                    <th>In Time</th>
-                                    <th>Out Time</th>
-                                    <th>Status</th>
-                                    <th>Penalty</th>
-                                    <th>Official Hour</th>
-                                    <th>Approval Status</th>
+                                    <th style="text-align:center">SL#</th>
+                                    <th style="text-align:center">Date</th>
+                                    <th style="text-align:center">In Time</th>
+                                    <th style="text-align:center">Out Time</th>
+                                    <th style="text-align:center">Status</th>
+                                    <th style="text-align:center">Penalty</th>
+                                    <th style="text-align:center">Official Hour</th>
+                                    <th style="text-align:center">Request Status</th>
+                                    <th style="text-align:center">Remarks</th>
+                                    <th></th>
+                                    <th></th>
 
                                 </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <tr>
+                                <td>
+                                    <asp:Label ID="Laberowid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).ToString() %>'></asp:Label>
 
+                                </td>
                                 <td>
                                     <asp:Label ID="lblIntime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblOuttime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
@@ -260,7 +267,7 @@
                                    (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualout")).ToString("hh:mm tt")==	"12:00 AM" ? "" : 
                                    Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualout")).ToString("hh:mm tt")) %>'></asp:Label>
                                 </td>
-                                <td>
+                                <td style="text-align:center">
                                     <asp:Label ID="lblstatus" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leav")).ToString() %>'></asp:Label>
 
                                 </td>
@@ -270,14 +277,28 @@
                                 <td>
                                     <asp:Label ID="lbldtimehour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actTimehour")).ToString() %>'></asp:Label>
                                 </td>
+                                 <td style="width:320px">
+                                    <asp:Label ID="lblRequid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rqid")).ToString() %>'></asp:Label>
+                                    <asp:Label ID="lblisremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isremarks")).ToString() %>'></asp:Label>
+
+                                </td>
+                                <td style="text-align:center">
+                                    
+                                    <asp:Label ID="Label1" runat="server" CssClass="control-label badge bg-green text-white" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")).ToString() %>'></asp:Label>
+
+                                </td>
                                 <td>
                                     <asp:CheckBox ID="chkvmrno" runat="server" Enabled="False" Visible="false"
                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="True"||Convert.ToString(DataBinder.Eval(Container.DataItem, "earleaveapp"))=="True" %>'
                                         Width="20px" />
                                     <asp:LinkButton ID="lnkRequstApply" Visible="false" ToolTip="For Approval Request" runat="server" OnClick="lnkRequstApply_Click" CssClass="btn btn-sm btn-primary">Apply Request</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkApproved" Visible="false" ToolTip="Approved Request" runat="server" CssClass="btn btn-sm btn-warning">Approved</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkRequested" Visible="false" ToolTip="Requested" runat="server" CssClass="btn btn-sm btn-danger">Process</asp:LinkButton>
+                                    
                                 </td>
+                                <td>
+                                   <asp:HyperLink ID="hyplnkApplyLv" Target="_blank" Visible="false" runat="server" CssClass="btn btn-sm btn-success" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave?Type=User">Apply Leave</asp:HyperLink>
+
+                                </td>
+                                
                             </tr>
 
                         </ItemTemplate>
@@ -289,9 +310,14 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td>
                                     <asp:Label ID="lblTotalHour" runat="server" Style="font-weight: bold;">40:00</asp:Label>
                                 </td>
+                                
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
 
                             </tr>
@@ -319,7 +345,7 @@
                             </div>
                             <div class="card-body">
                                 <!-- form .needs-validation -->
-
+                                <asp:HiddenField ID="ReqID" runat="server" />
                                 <!-- .form-row -->
                                 <div class="form-row">
                                     <!-- form grid -->
@@ -329,12 +355,8 @@
                            
                                             <abbr title="Required">*</abbr>
                                         </label>
-                                        <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">
-                                            <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
-                                            <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
-
+                                        <asp:DropDownList runat="server" ID="ddlReqType" class="form-control" required="">
+                                            
                                         </asp:DropDownList>
 
                                     </div>
@@ -364,7 +386,7 @@
                                             <abbr title="Required">*</abbr>
                                         </label>
 
-                                        <asp:TextBox ID="txtAreaReson" class="form-control" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                        <asp:TextBox ID="txtAreaReson" class="form-control" runat="server" ClientIDMode="Static"  onkeypress="RestrictSpaceSpecial();" TextMode="MultiLine" Rows="5"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="ValidationError" ErrorMessage="*Field Is Required" Display="Dynamic" ControlToValidate="txtAreaReson" ForeColor="Red" ValidationGroup="ResonSubmit"></asp:RequiredFieldValidator>
 
                                     </div>
@@ -381,11 +403,6 @@
                             <asp:LinkButton ID="lbntnAbsentApproval"  OnClick="lbntnAbsentApproval_Click" OnClientClick="CloseModalAbs();"
                                 runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Submit Request</asp:LinkButton>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-
-
-
-
-
 
                         </div>
                     </div>

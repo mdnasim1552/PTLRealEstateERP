@@ -196,24 +196,9 @@
                           <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </BottomBorder>
-                            <LeftBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Style>None</Style>
-                            </RightBorder>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -248,24 +233,9 @@
                           <rd:DefaultName>Textbox8</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </BottomBorder>
-                            <LeftBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Style>None</Style>
-                            </RightBorder>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -314,24 +284,9 @@
                           <rd:DefaultName>Textbox14</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </BottomBorder>
-                            <LeftBorder>
-                              <Color>Black</Color>
-                              <Width>1pt</Width>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Style>None</Style>
-                            </RightBorder>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -366,6 +321,7 @@
                           <rd:DefaultName>Textbox10</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
@@ -421,6 +377,7 @@
                                         <rd:DefaultName>Textbox1</rd:DefaultName>
                                         <Style>
                                           <Border>
+                                            <Color>Gray</Color>
                                             <Style>None</Style>
                                           </Border>
                                           <TopBorder>
@@ -473,6 +430,7 @@
                                         <rd:DefaultName>Textbox2</rd:DefaultName>
                                         <Style>
                                           <Border>
+                                            <Color>Gray</Color>
                                             <Style>Solid</Style>
                                           </Border>
                                           <TopBorder>
@@ -514,6 +472,7 @@
                                         <rd:DefaultName>Textbox7</rd:DefaultName>
                                         <Style>
                                           <Border>
+                                            <Color>Gray</Color>
                                             <Style>Solid</Style>
                                           </Border>
                                           <TopBorder>
@@ -555,6 +514,7 @@
                                         <rd:DefaultName>Textbox11</rd:DefaultName>
                                         <Style>
                                           <Border>
+                                            <Color>Gray</Color>
                                             <Style>Solid</Style>
                                           </Border>
                                           <TopBorder>
@@ -629,11 +589,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>voudat1</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>= trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -666,11 +624,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>vounum2</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -701,11 +657,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>refnum</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -725,7 +679,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf(trim(Fields!cactcode.Value) = "Narration:","Narration: " + Fields!venar1.Value+ space(2) + Fields!venar2.Value, Fields!cactdesc.Value+space(2)+Fields!resdesc.Value)</Value>
+                                  <Value>=Fields!cactdesc.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -742,6 +696,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>Textbox15</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -780,6 +735,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>dram</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -818,6 +774,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>cram</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -855,6 +812,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                           <rd:DefaultName>balamt</rd:DefaultName>
                           <Style>
                             <Border>
+                              <Color>Silver</Color>
                               <Style>Solid</Style>
                             </Border>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1176,7 +1134,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>2.01958in</Top>
+            <Top>2.26958in</Top>
             <Left>0.02084in</Left>
             <Height>0.8125in</Height>
             <Width>7.99463in</Width>
@@ -1212,7 +1170,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>2.56542in</Top>
+            <Top>2.81542in</Top>
             <Left>0.05209in</Left>
             <Height>0.25in</Height>
             <Width>1.72917in</Width>
@@ -1251,7 +1209,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>2.56542in</Top>
+            <Top>2.81542in</Top>
             <Left>3.03184in</Left>
             <Height>0.25in</Height>
             <Width>2.02316in</Width>
@@ -1290,7 +1248,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>2.56542in</Top>
+            <Top>2.81542in</Top>
             <Left>5.96571in</Left>
             <Height>0.25in</Height>
             <Width>2.02316in</Width>
@@ -1309,7 +1267,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.89458in</Height>
+        <Height>3.10291in</Height>
         <Style />
       </Body>
       <Width>8.05248in</Width>

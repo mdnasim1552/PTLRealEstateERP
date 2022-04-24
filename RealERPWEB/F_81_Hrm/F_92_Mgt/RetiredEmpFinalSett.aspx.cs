@@ -24,9 +24,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Employee Final Settlement";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
                 this.txtCurdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
@@ -58,7 +60,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = this.GetComeCode();
             //string txtSProject = this.txtSrcProject.Text.Trim();
 
-            string txtSEmp = "%" + this.txtSrcEmp.Text + "%";
+            string txtSEmp = "%" + this.ddlEmpName.Text + "%";
 
             DataSet ds1 = purData.GetTransInfo(comcod, "[dbo_hrm].[SP_ENTRY_EMPLOYEE]", "EMPSETMENT", txtSEmp, "", "", "", "", "", "", "", "");
             //if (ds1 == null)

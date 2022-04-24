@@ -40,7 +40,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
             string id = this.Request.QueryString["ltrnid"] ?? "";
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead, id, "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead, id, "%%", "", "");
                if (ds1 == null)
                 return;
             ViewState["tblattreq"] = ds1.Tables[0];
@@ -153,7 +153,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     if (reqtype == "AB")
                     {
                         absapp = "1";
-                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "", "", "", "", "", "", "", "", "", "");
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", frmdate, todate, empid, absapp, idcard, "req", "", "", "", "", "", "", "", "", "");
                     }
 
                     else if (reqtype == "LP")
@@ -384,6 +384,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (remarks.Length == 0)
                 {
+                    this.txtremarks.Focus();
+                    this.txtremarks.CssClass = "form-control is-invalid";
                     string Messagesd = "Please Fill remarks";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     return;
@@ -458,6 +460,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     bool result2 = UserNotify.SendNotification(toEmpsub, toMSgBody, empUsrID);
                 }
+                
+                this.lnkCancel.Visible = false;
+                this.lnkApproved.Visible = false;
 
                 string Messagessd = reqtype+ " Canceled Success";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagessd + "');", true);

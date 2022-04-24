@@ -23,8 +23,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.ShowView();
@@ -44,8 +47,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
-            string UserID = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
+            string UserID = "%" + this.ddlCompany.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -215,15 +218,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string ernid = dt.Rows[i]["ernid"].ToString();  //gcod
                 string leaopen = dt.Rows[i]["opening"].ToString();
                 string entitlement = dt.Rows[i]["ernleave"].ToString(); // entitlement
+                string msg = "";
 
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTLEAVEOPEN", empid, ernid, yearid, leaopen, entitlement, "", "", "", "", "", "", "", "", "", "");
                 if (result == false)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+
+                     msg = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                    msg = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
                 }
             }
             
@@ -255,6 +264,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Session["LeavOpen"] = dt;
 
         }
+
 
     }
 }

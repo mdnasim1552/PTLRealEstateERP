@@ -332,6 +332,9 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string bankacno { get; set; }
             public string rmrks { get; set; }
             public string rowid { get; set; }
+            public double boncomi { get; set; }
+            public double bonwcomi { get; set; }
+            public string nagadno { get; set; } 
 
 
             public BonusSheetPEB() { }

@@ -1008,10 +1008,7 @@ namespace RealERPWEB.F_23_CR
                     SchCode = this.GetSchCode(instype);
                     string RecType = dt1.Rows[i]["recType"].ToString();
 
-
                     // Utility Charge  (Problem)
-
-
                     switch (comcod)
                     {
                         case "3305": // Housing
@@ -1197,19 +1194,15 @@ namespace RealERPWEB.F_23_CR
                 //        //bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smscontent.Replace("YYYYY", mrno), mailstatus,
                 //        //        mailcontent, mailattch, Phone, "");
                 //    }
-
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
                // string usercode = ViewState["usricode"].ToString();
                 switch (comcod)
                 {
-
                     //case "3101": // Pintech                   
                     case "3356": //Intech                    
                       this.SMSSendMoneyRecipt(comcod, PactCode, Usircode,  mrno,  mrdate);
                         break;
-
-
                     default:
                         break;
                 }              
@@ -1289,7 +1282,6 @@ namespace RealERPWEB.F_23_CR
                 case "26": // Upgration
                     SchCode = "81986";
                     break;
-
                 case "30":
                     SchCode = "81998";
                     break;
@@ -1298,17 +1290,12 @@ namespace RealERPWEB.F_23_CR
                 return "";
 
             return SchCode;
-
-
         }
         protected void lbtRefreshMrr_Click(object sender, EventArgs e)
         {
             this.Clearmrscreen();
             this.GetCurMrNo();
-
-
         }
-
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {

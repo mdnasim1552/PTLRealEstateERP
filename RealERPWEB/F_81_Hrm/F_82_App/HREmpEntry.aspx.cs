@@ -64,7 +64,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             switch (Type)
             {
                 case "Aggrement":
-                    this.MultiView1.ActiveViewIndex = 0;               
+                    this.MultiView1.ActiveViewIndex = 0;
                     this.ValueChange();
                     this.GenInfo();
                     break;
@@ -151,7 +151,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 return;
             }
             else if (this.Request.QueryString["Type"].ToString().Trim() == "Officetime")
-            this.ddlCompany.DataTextField = "actdesc";
+                this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds5.Tables[0];
             this.ddlCompany.DataBind();
@@ -312,9 +312,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     empid = this.ddlNPEmpName.SelectedValue.ToString();
                     this.lblPEmpName.Text = this.ddlNPEmpName.SelectedItem.Text.Substring(7);
                     this.chknewEmp.Checked = false;
-                }            
+                }
                 else
-                {                  
+                {
                     this.lblPEmpName.Text = this.ddlPEmpName.SelectedItem.Text.Substring(7);
                     empid = this.ddlPEmpName.SelectedValue.ToString();
                 }
@@ -421,8 +421,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         private void GetEmpBasicData(string empid)
         {
             string comcod = this.GetCompCode();
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPBASICDATA", empid, "", "", "", "", "", "", "", "");
-            ViewState["tblemp"] = ds5.Tables[0];
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPBASICDATA", empid, "", "", "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
+            this.hiddnCardId.Value = ds3.Tables[0].Rows[0]["idcard"].ToString();
+            this.hiddnempname1.Value = ds3.Tables[0].Rows[0]["empname1"].ToString();
+            string idcard = ds3.Tables[0].Rows[0]["isUserId"].ToString().Trim();
+            this.lnkUserGenerate.Visible = idcard.Length == 0 ? true : false;
         }
         private void GenInfo()
         {
@@ -616,7 +621,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.rbtnOverTime.SelectedIndex = (dr1[0]["gdatat1"].ToString().Trim() == "0") ? 0 : (dr1[0]["gdatat1"].ToString().Trim() == "1") ? 1
                                                 : (dr1[0]["gdatat1"].ToString().Trim() == "2") ? 2 : 3;
                     if (this.rbtnOverTime.SelectedIndex == 2)
-                    {                     
+                    {
                         switch (comcod)
                         {
                             case "3336":
@@ -1129,7 +1134,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
 
-            if(projectcode=="000000000000")
+            if (projectcode == "000000000000")
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Section !!!!";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
@@ -1250,7 +1255,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
 
             // Bank COde
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc,"", cash0Bank1, "");
+            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "");
             if (result == false)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1406,7 +1411,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string usrpass = "123456";
             string usrrmrk = "";
             string active = "1";
-            
+
             string usermail = "";
             string webmailpwd = "";
             string userRole = "3";
@@ -1534,7 +1539,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
 
-            }           
+            }
 
             else if (this.rbtGross.SelectedIndex == 2)
             {
@@ -1672,7 +1677,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             }
-            
+
             // basic salary acme
             else if (this.rbtGross.SelectedIndex == 3)
             {
@@ -1684,10 +1689,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     dtsaladd.Rows[i]["gval"] = Math.Round((percent * basic * 0.01), 0);
                     dtsaladd.Rows[i]["percnt"] = percent;
                 }
-                if(comcod=="3338")
+                if (comcod == "3338")
                 {
                     dtsaladd.Rows[0]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
-                }               
+                }
 
                 for (int i = 0; i < this.gvSalSub.Rows.Count; i++)
                 {
@@ -1885,6 +1890,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
+
+
            ((Label)this.Master.FindControl("lblmsg")).Text = "Unlink Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             this.ddlProjectName_SelectedIndexChanged(null, null);
@@ -2201,7 +2208,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
 
             this.lnkNextbtn.PostBackUrl = "ImgUpload.aspx?Type=Entry&empid=" + empid;
-            
+
 
 
         }
@@ -2251,27 +2258,38 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.chkcash0bank1.Text = this.chkcash0bank1.Checked ? "Bank" : "Cash";
         }
 
-        protected void lnkHolidayGenerate_Click(object sender, EventArgs e)
+      
+        private string GetLastUSerID()
         {
+            string comcod = this.GetCompCode();
 
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETLASTUSERID", "", "", "", "", "", "", "", "", "");
+            string userid = ds1.Tables[0].Rows[0]["userid"].ToString();
+            return (userid);
         }
 
-        protected void lnkLeaveGenerate_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void lnkUserGenerate_Click(object sender, EventArgs e)
         {
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
+            string empid = "";
+            if (this.ddlNPEmpName.Items.Count > 0)
+            {
+                empid = this.ddlNPEmpName.SelectedValue.ToString();               
+            }
+            else
+            {                
+                empid = this.ddlPEmpName.SelectedValue.ToString();
+            }
+ 
+            if (empid == "")
+                return;
             string Message;
             string msg;
             string comcod = this.GetCompCode();
-            string usrid = "";
-            string empid =this.ddlPEmpName.SelectedValue.ToString();
-            string usrfname = this.ddlNPEmpName.SelectedItem.Text.Substring(7);
-            string usrsname = "";
+            string usrid = this.GetLastUSerID();
+           
+            string usrfname = this.hiddnempname1.Value;
+            string usrsname = this.hiddnCardId.Value;
             string usrdesig = this.ddlDesignation.SelectedItem.Text.ToString();
             string usrpass = "123";
             string usrrmrk = "";
@@ -2298,8 +2316,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             msg = "New User Created Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+            this.GetEmpBasicData(empid);
 
-            
             string eventtype = "User Login From";
             string eventdesc = "Update ID";
             string eventdesc2 = "Your profile Updated,";

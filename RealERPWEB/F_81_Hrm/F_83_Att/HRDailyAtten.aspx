@@ -3,11 +3,21 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <style>
-        .mt20{
-            margin-top:20px;
+        .mt20 {
+            margin-top: 20px;
         }
-        .w100{
-            width:100%!important;
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+
+        .pd4 {
+            padding: 4px !important;
         }
     </style>
     <script type="text/javascript">
@@ -56,23 +66,23 @@
                 </asp:UpdateProgress>
             </div>
 
-   
-                  
-    
-               
-                    <div class="card mt-5">
-                        <div class="card-header">
-                              <div class="row">
-                        <div class="col-lg-2">
+
+
+
+
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-3 col-sm-3">
                             <div class="form-group">
 
                                 <asp:Label ID="Label10" runat="server">Date</asp:Label>
-                                <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control form-control-sm w100"></asp:TextBox>
+                                <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control form-control-sm pd4 w100"></asp:TextBox>
                                 <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                             </div>
                         </div>
 
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-md-3 col-sm-3">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName">Page Size</asp:Label>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="w100 form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
@@ -88,74 +98,17 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger btn-sm mt20 " OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
-                                                 <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
+                        <div class="col-lg-2 col-md-2 col-sm-4">
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger btn-sm mt20 " OnClick="lbtnOk_Click"><i class="fa fa-plus"></i></asp:LinkButton>
+                            <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnShow_Click">Show</asp:LinkButton>
                             <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
-   
-                        </div>
-                        <div class="col-lg-1">
 
-                
-                            <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger btn-sm pull-right" Visible="false"></asp:Label>
                         </div>
 
-
-
-
-
-
-
-
-
-                        <%--<fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label10" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
-                                        <asp:TextBox ID="txtdate" runat="server" CssClass=" inputDateBox"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate">
-                                        </cc1:CalendarExtender>
-
-                                    </div>
-                                    <div class="col-md-3 pading5px asitColc">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnOk_Click">Upload Data</asp:LinkButton>
-                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                            <asp:ListItem>10</asp:ListItem>
-                                            <asp:ListItem>15</asp:ListItem>
-                                            <asp:ListItem>20</asp:ListItem>
-                                            <asp:ListItem>30</asp:ListItem>
-                                            <asp:ListItem>50</asp:ListItem>
-                                            <asp:ListItem>100</asp:ListItem>
-                                            <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
-                                            <asp:ListItem>300</asp:ListItem>
-                                        </asp:DropDownList>
-
-                                    </div>
-                                    <div class="col-md-1 Pading5px">
-                                         <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary primaryBtn"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
-
-                                    </div>
-                                    <div class="col-md-2 pading5px">
-                                    <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
-
-                                  </div>
-                                    
-                                    <div class="col-md-4">
-                                        <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn pull-right" Visible="false"></asp:Label>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </fieldset>--%>
                     </div>
-                        </div>
-                        <div class="card-body">
-                                            <div class="row">
+                </div>
+                <div class="card-body">
+                    <div class="row">
                         <asp:GridView ID="gvDailyAttn" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             AllowPaging="True" OnPageIndexChanging="gvDailyAttn_PageIndexChanging">
                             <RowStyle />
@@ -165,7 +118,7 @@
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Company & Section Name">
                                     <ItemTemplate>
@@ -177,7 +130,7 @@
                                             Width="200px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Emp. ID">
                                     <ItemTemplate>
@@ -185,7 +138,7 @@
                                             Width="65px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Card #">
                                     <ItemTemplate>
@@ -193,7 +146,7 @@
                                             Width="40px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Employee Name & Designation ">
                                     <FooterTemplate>
@@ -209,7 +162,7 @@
                                             Width="180px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Off. Intime">
@@ -217,14 +170,14 @@
                                         <asp:Label ID="lblgvoffIntime" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offintime")).ToString("hh:mm tt") %>'
                                             Width="60px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Off. Outtime">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvoffouttime" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offouttime")).ToString("hh:mm tt") %>'
                                             Width="60px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ac. Intime">
                                     <ItemTemplate>
@@ -233,7 +186,7 @@
                                             Width="60px" Font-Size="11px"></asp:TextBox>
 
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ac. Outtime">
                                     <ItemTemplate>
@@ -242,21 +195,21 @@
                                             Visible='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intime")).ToString("hh:mm tt") == Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToString("hh:mm tt") ?false : true) %>'
                                             Width="60px" Font-Size="11px"></asp:TextBox>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ln Intime" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvlnintime" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnchintime")).ToString("hh:mm tt") %>'
                                             Width="60px" Font-Size="11px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ln Outtime" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvlnouttime" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnchouttime")).ToString("hh:mm tt") %>'
                                             Width="60px" Font-Size="11px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
 
@@ -268,9 +221,9 @@
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
                     </div>
-                        </div>
-                    </div>
-   
+                </div>
+            </div>
+
 
 
         </ContentTemplate>

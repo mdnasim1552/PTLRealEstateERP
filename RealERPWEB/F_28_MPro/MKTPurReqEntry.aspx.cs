@@ -28,15 +28,13 @@ namespace RealERPWEB.F_28_MPro
         {
             if (!IsPostBack)
             {
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
-                //this.txtReqText.Enabled = false;
-                // this.ImgbtnReqse.Enabled = false;
-                Hashtable hst = (Hashtable)Session["tblLogin"];
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
+                    Response.Redirect("../AcceessError.aspx");
 
-                //this.CompBudgetexceed();
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 this.chkdupMRF.Enabled = false;
                 this.chkdupMRF.Checked = true;
                 this.chkneBudget.Enabled = false;
@@ -47,7 +45,6 @@ namespace RealERPWEB.F_28_MPro
                 this.GetMarkType();
 
                 this.VisibleGrid();
-                //this.lblmrfno.Text = ReadCookie();
                 this.lbtnOk.Text = "New";
                 this.lbtnOk_Click(null, null);
 
@@ -58,16 +55,8 @@ namespace RealERPWEB.F_28_MPro
 
                 }
 
-                string title = (Request.QueryString["InputType"].ToString() == "Entry") ? "Marketing Requisition"
-                       : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Marketing Requisition Edit"
-                       : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? "Marketing Requisition (1st Approval)"
-                       : (Request.QueryString["InputType"].ToString() == "ReqApproval") ? "Marketing Requisition (Final Approval)"
-                       : (Request.QueryString["InputType"].ToString() == "CSCheck") ? "Marketing Requisition (CS Checked)"
-                       : (Request.QueryString["InputType"].ToString() == "CSApproved") ? "Marketing Requisition (CS Approved)" : "Marketing Requisition";
-
                 this.CalendarExtender_txtCurReqDate.EndDate = System.DateTime.Today;
                 this.txtCurReqDate.ReadOnly = true;
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
 
             }
         }

@@ -1,11 +1,30 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="PayrollLink.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.PayrollLink" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="PayrollLink.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.PayrollLink" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <style>
+        div#ContentPlaceHolder1_ddlUserList_chzn {
+            width: 100% !important;
+        }
 
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+                                .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+                .card-body{
+                    min-height:400px!important;
+                }
+    </style>
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
@@ -20,11 +39,10 @@
                 k1.textBoxHandler(event);
             });
 
-
+            $('.chzn-select').chosen({ search_contains: true });
         }
 
     </script>
-
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -46,60 +64,61 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+
+            <div class="card mt-5">
+                <div class="card-header">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
 
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblUser1" runat="server" CssClass="lblTxt lblName">User Name</asp:Label>
-                                        <asp:TextBox ID="txtUserSearch1" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="ImgbtnFindUser1" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindUser1_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlUserList" runat="server" Width="233" CssClass="form-control inputTxt pull-left" AutoPostBack="true" TabIndex="2">
-                                        </asp:DropDownList>
-
-                                        <div class="pull-left">
-                                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:Label ID="lblmsg1" CssClass="btn btn-danger primaryBtn" runat="server"></asp:Label>
-                                    </div>
-
-                                </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server">User</asp:Label>
+                                <asp:DropDownList ID="ddlUserList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
+                                </asp:DropDownList>
                             </div>
+                        </div>
+                        <div class="col-lg-1 col-md-3 col-sm-6">
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                        </div>
                     </div>
+                </div>
+                <div class="card-body">
                     <asp:Panel ID="Panel2" runat="server" Visible="False">
                         <div class="row">
-                            <fieldset class="scheduler-border fieldset_A">
-                                <div class="form-horizontal">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <asp:Label ID="lblConTrolCode" runat="server">Company Code</asp:Label>
+                                    <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lblConTrolCode" runat="server" CssClass="lblTxt lblName">Company Code:</asp:Label>
-                                            <asp:TextBox ID="txtCompSearch" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                            <asp:LinkButton ID="ImgbtnFindComp" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindComp_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                        </div>
-                                        <div class="col-md-4 pading5px asitCol4">
-                                            <asp:DropDownList ID="ddlCompany" runat="server" Width="233" CssClass="form-control inputTxt pull-left" AutoPostBack="true" TabIndex="2">
-                                            </asp:DropDownList>
 
-                                            <div class="pull-left">
-                                                <asp:LinkButton ID="lbtnSelectSupl1" runat="server" CssClass="btn btn-primary primaryBtn pull-left" OnClick="lbtnSelectSupl1_Click">Select</asp:LinkButton>
 
-                                            </div>
 
-                                        </div>
+
+                            <%-- <fieldset class="scheduler-border fieldset_A">
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <div class="col-md-3 pading5px asitCol3">
+                                    <asp:Label ID="lblConTrolCode" runat="server" CssClass="lblTxt lblName">Company Code:</asp:Label>
+                                    <asp:TextBox ID="txtCompSearch" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+                                    <asp:LinkButton ID="ImgbtnFindComp" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindComp_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                </div>
+                                <div class="col-md-4 pading5px asitCol4">
+                                    <asp:DropDownList ID="ddlCompany" runat="server" Width="233" CssClass="form-control inputTxt pull-left" AutoPostBack="true" TabIndex="2">
+                                    </asp:DropDownList>
+
+                                    <div class="pull-left">
+                                        <asp:LinkButton ID="lbtnSelectSupl1" runat="server" CssClass="btn btn-primary primaryBtn pull-left" OnClick="lbtnSelectSupl1_Click">Select</asp:LinkButton>
 
                                     </div>
+
                                 </div>
-                            </fieldset>
+
+                            </div>
+                        </div>
+                    </fieldset>--%>
                         </div>
                         <asp:GridView ID="gvPayrollLinkInfo" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                             AutoGenerateColumns="False" ShowFooter="True" Width="16px"
@@ -136,7 +155,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Remarks">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger primaryBtn" Width="90px">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger btn-sm">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvRemarks" runat="server" BorderColor="#99CCFF"
@@ -149,7 +168,7 @@
                                     <HeaderStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="User Code" Visible="false">
+                                <asp:TemplateField HeaderText="User Code" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvCompusrid" runat="server" Height="16px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userid")) %>'
@@ -157,7 +176,7 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-                              
+
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
@@ -172,11 +191,35 @@
 
 
                     </asp:Panel>
+
                 </div>
             </div>
 
+            <%--            <fieldset class="scheduler-border fieldset_A">
+                            <div class="form-horizontal">
 
+                                <div class="form-group">
+                                    <div class="col-md-3 pading5px asitCol3">
+                                        <asp:Label ID="lblUser1" runat="server" CssClass="lblTxt lblName">User Name</asp:Label>
+                                        <asp:TextBox ID="txtUserSearch1" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+                                        <asp:LinkButton ID="ImgbtnFindUser1" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindUser1_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                    </div>
+                                    <div class="col-md-4 pading5px asitCol4">
+                                        <asp:DropDownList ID="ddlUserList" runat="server" Width="233" CssClass="form-control inputTxt pull-left" AutoPostBack="true" TabIndex="2">
+                                        </asp:DropDownList>
 
+                                        <div class="pull-left">
+                                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="lblmsg1" CssClass="btn btn-danger primaryBtn" runat="server"></asp:Label>
+                                    </div>
+
+                                </div>
+                            </div>--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

@@ -39,11 +39,11 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Daily Work CodeBook";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
 
                 getDeptCode();
@@ -125,19 +125,25 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             string gdesc = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
             string active = (((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkActive")).Checked) ? "1" : "0";
             string deptcode = this.ddldeptcode.SelectedValue.ToString();
+            string msg = "";
 
             bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMP_INTERFACE", "INSERTUPDATETKCODEBOOK", tgcod,
                            deptcode, gdesc, active, "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+                msg = "Updated Successfully ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
             }
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Update Failed ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
             this.grvacc.EditIndex = -1;
             this.ShowInformation();
@@ -213,6 +219,7 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             string comcod = this.GetCompCode();
             string deptcode = (this.ddlFdeptcode.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlFdeptcode.SelectedValue.ToString());
             string Tdeptcode = this.ddlTdeptcode.SelectedValue.ToString();
+            string msg = "";
             DataSet ds1 = da.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMP_INTERFACE", "GETTASKCODEBOOKDATA", deptcode, "", "", "", "", "", "", "", "", "");
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
@@ -228,13 +235,17 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
 
                 if (result == true)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    msg = "Updated Successfully ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "Updated Successfully ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 }
             }
 
