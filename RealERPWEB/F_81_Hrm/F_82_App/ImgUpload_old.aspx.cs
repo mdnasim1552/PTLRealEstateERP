@@ -59,8 +59,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     string filepath = savelocation;
                     imgFileUpload.PostedFile.SaveAs(savelocation);
                     EmpImg.ImageUrl = "~/Image1/" + Upload;
-                   
-                    
                     // Session["x"] = "~/Image1/" + Upload;
                     image_file = imgFileUpload.PostedFile.InputStream;
                     size = imgFileUpload.PostedFile.ContentLength;
@@ -376,7 +374,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 return;
 
             }
-            this.Hiddnrl.Value = "";
             Session["tblEmpimg"] = ds1.Tables[0];
             this.EmpImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgEmp";
             this.EmpSig.ImageUrl = "~/GetImage.aspx?ImgID=HREmpSign";
@@ -405,13 +402,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void imgbtnEmpSeach_Click(object sender, EventArgs e)
         {
             //this.ShowValue();
-        }
-
-        protected void lnkbtnUpdateEMPImage_Click(object sender, EventArgs e)
-        {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            string comcod = this.GetCompCode();
-            string savelocation = Server.MapPath("~") + "\\Image1";
         }
     }
 }
