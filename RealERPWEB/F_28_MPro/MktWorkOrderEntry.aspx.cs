@@ -32,15 +32,17 @@ namespace RealERPWEB.F_28_MPro
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {              
+            {
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
-               
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
+                    Response.Redirect("../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string comnam = hst["comnam"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Marketing Purchase Order";
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtLETDES.Text = comnam + this.CompanySubject();
@@ -1177,6 +1179,7 @@ namespace RealERPWEB.F_28_MPro
                         dr1["ordrqty"] = dtResP.Rows[i]["aprvqty"];
                         dr1["aprovdat"] = dtResP.Rows[i]["aprovdat"];
                         dr1["ordramt"] = dtResP.Rows[i]["orderamt"];
+                        dr1["rsirdetdesc"] = dtResP.Rows[i]["rsirdetdesc"];
                         dt1.Rows.Add(dr1);
                         Narration = Narration + dtResP.Rows[i]["reqnar"] + ", ";
 
