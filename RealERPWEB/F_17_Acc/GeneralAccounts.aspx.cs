@@ -1880,6 +1880,7 @@ namespace RealERPWEB.F_17_Acc
                     switch (comcod)
                     {
                         case "3101":
+                        case "1103": //TCL
                         case "3343": // dominion
                             int voudat1 = Convert.ToInt32(Convert.ToDateTime(this.txtEntryDate.Text.Trim()).ToString("yyyyMMdd"));
                             int frmdate1 = Convert.ToInt32(cvounum.Substring(2, 4) + cvounum.Substring(6, 2) + "01");
