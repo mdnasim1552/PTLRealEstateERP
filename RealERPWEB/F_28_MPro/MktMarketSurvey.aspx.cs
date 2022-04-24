@@ -27,15 +27,13 @@ namespace RealERPWEB.F_28_MPro
         {
             if (!IsPostBack)
             {
-
-
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length==0)
+                    Response.Redirect("../AcceessError.aspx");
 
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Market Survey Information Input/Edit Screen";
                 this.CommonButton();
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
 
@@ -452,65 +450,7 @@ namespace RealERPWEB.F_28_MPro
                                0 : tbl2.Compute("sum(bdtamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
 
-        }
-
-
-
-        private void BS_SaveValue()
-        {
-
-            DataTable dt = (DataTable)Session["tblBestSelect"];
-            for (int i = 0; i < this.gvBestSelect.Rows.Count; i++)
-            {
-                dt.Rows[i]["areqty"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvareqty")).Text.Trim()));
-                dt.Rows[i]["rate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvBestSelect.Rows[i].FindControl("lblgvRateBSel")).Text.Trim()));
-
-                dt.Rows[i]["paytype"] = ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvpaytype")).Text.Trim();
-                dt.Rows[i]["advamt"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvadvamt")).Text.Trim()));
-
-                //dt.Rows[i]["conrate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtconrate")).Text.Trim()));
-
-
-            }
-            Session["tblBestSelect"] = dt;
-
-        }
-
-
-        private void SaveValue()
-        {
-            int index;
-            DataTable dt = (DataTable)Session["tblsup"];
-            for (int i = 0; i < this.gvResInfo.Rows.Count; i++)
-            {
-                index = (this.gvResInfo.PageSize) * (this.gvResInfo.PageIndex) + i;
-
-                string approved = (((CheckBox)gvResInfo.Rows[i].FindControl("chkboxgv")).Checked) ? "True" : "False"; //dt.Rows[index]["approved"].ToString();
-
-                double Reqqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvResInfo.Rows[i].FindControl("lblgvpropqty_01")).Text.Trim()));
-                double Rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvRate")).Text.Trim()));
-                double csreqqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvcsreqqty")).Text.Trim()));
-                double advamt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvadvamtC")).Text.Trim()));
-                string paytype = ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvpaytypeC")).Text.Trim();
-                string remakrs = ((TextBox)this.gvResInfo.Rows[i].FindControl("TextRemarks")).Text.Trim();
-                dt.Rows[i]["approved"] = (((CheckBox)gvResInfo.Rows[i].FindControl("chkboxgv")).Checked) ? "True" : "False";
-
-                dt.Rows[i]["advamt"] = advamt;
-                dt.Rows[i]["paytype"] = paytype;
-                dt.Rows[i]["msrrmrk"] = remakrs;
-                dt.Rows[i]["rate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvRate")).Text.Trim()));
-                dt.Rows[i]["csreqqty"] = (approved == "False") ? 0.00 : (csreqqty == 0) ? Reqqty : Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvcsreqqty")).Text.Trim()));
-                ((TextBox)this.gvResInfo.Rows[j].FindControl("txtgvcsreqqty")).Text = (approved == "False") ? "" : (csreqqty == 0) ? Reqqty.ToString() : csreqqty.ToString();
-
-
-                dt.Rows[i]["amount"] = (approved == "False") ? 0.00 : (Rate * ((csreqqty == 0) ? Reqqty : csreqqty));
-                dt.Rows[i]["bdtamt"] = (approved == "False") ? 0.00 : (Rate  * ((csreqqty == 0) ? Reqqty : csreqqty));
-               
-
-            }
-            Session["tblsup"] = dt;
-
-        }
+        }     
 
         protected void lnkbtnRecalculate_Click(object sender, EventArgs e)
         {
@@ -570,6 +510,7 @@ namespace RealERPWEB.F_28_MPro
 
             this.lnkbtnRecalculate_Click(null, null);
             //this.SaveValue();
+            this.BS_SaveValue();
             DataTable tbl1 = (DataTable)Session["tblsup"];
 
             if (this.ddlPrevMSRList.Items.Count == 0)
@@ -688,6 +629,7 @@ namespace RealERPWEB.F_28_MPro
                 string paytype = tbl1.Rows[i]["paytype"].ToString();
                 string advamt = tbl1.Rows[i]["advamt"].ToString();
 
+              
 
                 result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "UPDATEPURMSRINFO", "PURMSRA",
                          mMSRNO, acttype, mSPCFCOD, mSSIRCODE, mRESRATE, mMSRRMRK, mMSRRQty, mMSRRBrand, mMSRRDelivery, mMSRRPay, mMaxrate, mPaylimit, "", "", mAppr, paytype, advamt);
@@ -697,11 +639,29 @@ namespace RealERPWEB.F_28_MPro
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
+                
 
                 this.pnlQutatt.Visible = true;
 
             }
 
+
+            //Update Requisition Details Description form Market Survey
+            DataTable tbl2 = (DataTable)Session["tblBestSelect"];
+
+            for (int i = 0; i < tbl2.Rows.Count; i++)
+            {
+                string acttype = tbl2.Rows[i]["acttype"].ToString();
+                string rSirDetDesc = tbl2.Rows[i]["rsirdetdesc"].ToString();
+
+                result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "UPDATEREQDETDESC", reqno, acttype, rSirDetDesc, "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
+            }
 
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
@@ -762,6 +722,61 @@ namespace RealERPWEB.F_28_MPro
 
 
 
+
+        }
+
+        private void BS_SaveValue()
+        {
+
+            DataTable dt = (DataTable)Session["tblBestSelect"];
+            for (int i = 0; i < this.gvBestSelect.Rows.Count; i++)
+            {
+                //dt.Rows[i]["areqty"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvareqty")).Text.Trim()));
+                //dt.Rows[i]["rate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvBestSelect.Rows[i].FindControl("lblgvRateBSel")).Text.Trim()));
+                //dt.Rows[i]["paytype"] = ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvpaytype")).Text.Trim();
+                //dt.Rows[i]["advamt"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvadvamt")).Text.Trim()));
+                //dt.Rows[i]["conrate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtconrate")).Text.Trim()));
+
+                dt.Rows[i]["rsirdetdesc"] = ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvRSirDetDesc")).Text.Trim();
+
+            }
+            Session["tblBestSelect"] = dt;
+
+        }
+
+
+        private void SaveValue()
+        {
+            int index;
+            DataTable dt = (DataTable)Session["tblsup"];
+            for (int i = 0; i < this.gvResInfo.Rows.Count; i++)
+            {
+                index = (this.gvResInfo.PageSize) * (this.gvResInfo.PageIndex) + i;
+
+                string approved = (((CheckBox)gvResInfo.Rows[i].FindControl("chkboxgv")).Checked) ? "True" : "False"; //dt.Rows[index]["approved"].ToString();
+
+                double Reqqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvResInfo.Rows[i].FindControl("lblgvpropqty_01")).Text.Trim()));
+                double Rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvRate")).Text.Trim()));
+                double csreqqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvcsreqqty")).Text.Trim()));
+                double advamt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvadvamtC")).Text.Trim()));
+                string paytype = ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvpaytypeC")).Text.Trim();
+                string remakrs = ((TextBox)this.gvResInfo.Rows[i].FindControl("TextRemarks")).Text.Trim();
+                dt.Rows[i]["approved"] = (((CheckBox)gvResInfo.Rows[i].FindControl("chkboxgv")).Checked) ? "True" : "False";
+
+                dt.Rows[i]["advamt"] = advamt;
+                dt.Rows[i]["paytype"] = paytype;
+                dt.Rows[i]["msrrmrk"] = remakrs;
+                dt.Rows[i]["rate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvRate")).Text.Trim()));
+                dt.Rows[i]["csreqqty"] = (approved == "False") ? 0.00 : (csreqqty == 0) ? Reqqty : Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[i].FindControl("txtgvcsreqqty")).Text.Trim()));
+                ((TextBox)this.gvResInfo.Rows[j].FindControl("txtgvcsreqqty")).Text = (approved == "False") ? "" : (csreqqty == 0) ? Reqqty.ToString() : csreqqty.ToString();
+
+
+                dt.Rows[i]["amount"] = (approved == "False") ? 0.00 : (Rate * ((csreqqty == 0) ? Reqqty : csreqqty));
+                dt.Rows[i]["bdtamt"] = (approved == "False") ? 0.00 : (Rate  * ((csreqqty == 0) ? Reqqty : csreqqty));
+
+
+            }
+            Session["tblsup"] = dt;
 
         }
         protected void gvResInfo_RowDataBound(object sender, GridViewRowEventArgs e)
