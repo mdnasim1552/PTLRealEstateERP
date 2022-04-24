@@ -295,7 +295,7 @@
                                     
                                 </td>
                                 <td>
-                                   <asp:HyperLink ID="hyplnkApplyLv" Target="_blank" Visible="false" runat="server" CssClass="btn btn-sm btn-success" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave?Type=User">Apply Leave</asp:HyperLink>
+                                   <asp:linkButton ID="hyplnkApplyLv"  Visible="false" runat="server" OnClick="hyplnkApplyLv_Click" CssClass="btn btn-sm btn-success">Apply Leave</asp:linkButton>
 
                                 </td>
                                 
