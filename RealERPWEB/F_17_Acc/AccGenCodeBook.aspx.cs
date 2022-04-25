@@ -27,16 +27,12 @@ namespace RealERPWEB.F_17_Acc
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+            {
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Display Code";
-            this.Master.Page.Title = "Display Code";
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            if (this.ddlGenCodeBook.Items.Count == 0)
-                this.Load_CodeBooList();
-            ((Label)this.Master.FindControl("lblmsg")).Text = "";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+            }
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -72,7 +68,8 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+        
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + ex.Message + "');", true);
             }
         }
 
@@ -100,12 +97,17 @@ namespace RealERPWEB.F_17_Acc
         }
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 return;
             }
+  
 
             try
             {
@@ -121,7 +123,9 @@ namespace RealERPWEB.F_17_Acc
 
                 if (gencode.Length != 8)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Code Length Must Be 8 Digit";
+              
+                    msg = "Code Length Must Be 8 Digit";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                     return;
                 }
                 bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSORUPACCGENINFO", gencode, Desc, txtsirtdesc, "", "", "",
@@ -129,11 +133,16 @@ namespace RealERPWEB.F_17_Acc
                 this.ShowInformation();
                 if (result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                
+                    msg = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Parent Code Not Found!!!";
+     
+                    msg = "Parent Code Not Found!!!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                 }
                 this.grvacc.EditIndex = -1;
                 this.grvacc_DataBind();
@@ -149,7 +158,9 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
 
@@ -225,6 +236,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void lnkok_Click(object sender, EventArgs e)
         {
+            string msg = "";
             try
             {
                 if (this.lnkok.Text == "Ok")
@@ -263,7 +275,9 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Information not found!!!!";
+
+                msg = "Information not found!!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
         }
 

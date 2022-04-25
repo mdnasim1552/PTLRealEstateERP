@@ -513,9 +513,8 @@
                                                 CssClass="btn btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o"></i></asp:HyperLink>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblName" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
+                                            <asp:Label ID="lblName" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "grp"))=="A"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "grp"))=="1"?"bg-yellow d-block fsize":""%>'
                                                 runat="server" Style="font-size: 12px;"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                                 BackColor="Transparent" BorderStyle="None"></asp:Label>
