@@ -148,6 +148,20 @@
                                 </div>
                             </div>
 
+                                           <div class="form-row">
+                                <label for="input04" class="col-md-3  mb-0">Confirm Date:</label>
+                                <div class="col-md-9 ">
+                                    <asp:Label ID="lblconfirmdate" runat="server" CssClass="control-label"> Card</asp:Label>
+                                </div>
+                            </div>
+
+                                 <div class="form-row">
+                                <label for="input04" class="col-md-3  mb-0">Join Date:</label>
+                                <div class="col-md-9 ">
+                                    <asp:Label ID="lbljoindate" runat="server" CssClass="control-label"> Card</asp:Label>
+                                </div>
+                            </div>
+
                             <div class="form-row" hidden="hidden">
                                 <label for="input04" class="col-md-3  mb-0">Department:</label>
                                 <div class="col-md-9 ">
@@ -158,6 +172,21 @@
                         </div>
 
                         <div class="col-md-3">
+                                             <div class="form-row" runat="server" id="sysid">
+                                <label for="input04" class="col-md-3  mb-0">System ID:</label>
+                                <div class="col-md-9 ">
+                                    <asp:Label ID="lblsysid" runat="server" CssClass="control-label"> </asp:Label>
+                                </div>
+                            </div>
+
+                                 <div class="form-row">
+                                <label for="input04" class="col-md-3  mb-0">Att. Type</label>
+                                <div class="col-md-9 ">
+                                    <asp:Label ID="lblattype" runat="server" CssClass="control-label"> </asp:Label>
+                                </div>
+                            </div>
+                            
+                
                             <div class="form-row">
                                 <label for="input04" class="col-md-3  mb-0">In Time</label>
                                 <div class="col-md-9 ">
