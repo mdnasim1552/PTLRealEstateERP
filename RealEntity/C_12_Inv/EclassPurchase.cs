@@ -155,6 +155,7 @@ namespace RealEntity.C_12_Inv
             public string proadd { get; set; }
             public string reqnar { get; set; }
             public double dispercnt { get; set; }
+            public string rsirdetdesc { get; set; }
 
             public MktPurchaseOrderInfo() { }
         }
