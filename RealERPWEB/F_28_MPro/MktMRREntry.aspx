@@ -286,7 +286,7 @@
                                 <asp:TemplateField HeaderText="This MRR">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnResFooterTotal" runat="server"
-                                            OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary btn-sm form-control">Total :</asp:LinkButton>
+                                            OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-warning btn-sm form-control">Total</asp:LinkButton>
                                     </FooterTemplate>
 
                                     <ItemTemplate>
