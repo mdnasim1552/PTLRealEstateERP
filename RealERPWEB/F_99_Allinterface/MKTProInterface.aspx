@@ -545,13 +545,28 @@
                     case 'gvReqApp':
                         tblData = document.getElementById("<%=this.gvReqApp.ClientID %>");
                         break;
-
+                    case 'gvcsprepared':
+                        tblData = document.getElementById("<%=this.gvcsprepared.ClientID %>");
+                        break;
+                    case 'gvcsapproved':
+                        tblData = document.getElementById("<%=this.gvcsapproved.ClientID %>");
+                        break;
                     case 'gvWrkOrd':
                         tblData = document.getElementById("<%=this.gvWrkOrd.ClientID %>");
+                        break;
+                    case 'gvordfapp':
+                        tblData = document.getElementById("<%=this.gvordfapp.ClientID %>");
+                        break;
+                    case 'gvordsapp':
+                        tblData = document.getElementById("<%=this.gvordsapp.ClientID %>");
                         break;
                     case 'grvMRec':
                         tblData = document.getElementById("<%=this.grvMRec.ClientID %>");
                         break;
+                    case 'gvPurcom':
+                        tblData = document.getElementById("<%=this.gvPurcom.ClientID %>");
+                        break;
+
                     default:
                         tblData = document.getElementById("<%=gvReqInfo.ClientID %>");
 
@@ -560,7 +575,6 @@
 
 
                 }
-
 
                 var rowData;
                 for (var i = 0; i < tblData.rows.length; i++) {
@@ -1257,7 +1271,7 @@
 
                                                             <asp:TemplateField HeaderText="MRF No.">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnumcsp" SortExpression="mrfno" BorderStyle="None" runat="server" Width="70px" placeholder="MRF No." ToolTip="Search" onkeyup="Search_Gridview(this,4,'gvRateApp')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnumcsp" SortExpression="mrfno" BorderStyle="None" runat="server" Width="70px" placeholder="MRF No." ToolTip="Search" onkeyup="Search_Gridview(this,4,'gvcsprepared')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 
@@ -1291,7 +1305,7 @@
 
                                                             <asp:TemplateField HeaderText="Catagory">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchCatagorycsp" SortExpression="catagory"  BorderStyle="None" runat="server" Width="120px" placeholder="Catagory" onkeyup="Search_Gridview(this,5,'gvRateApp')"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtSearchCatagorycsp" SortExpression="catagory"  BorderStyle="None" runat="server" Width="120px" placeholder="Catagory" onkeyup="Search_Gridview(this,5,'gvcsprepared')"></asp:TextBox>
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvcatagorycsp" runat="server" Font-Bold="True"
@@ -1416,7 +1430,7 @@
 
                                                             <asp:TemplateField HeaderText="MRF No.">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnumcsap" SortExpression="mrfno"  BorderStyle="None" runat="server" Width="70px" placeholder="MRF No." ToolTip="Search" onkeyup="Search_Gridview(this,4,'gvRateApp')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnumcsap" SortExpression="mrfno"  BorderStyle="None" runat="server" Width="70px" placeholder="MRF No." ToolTip="Search" onkeyup="Search_Gridview(this,4,'gvcsapproved')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 
@@ -1450,7 +1464,7 @@
 
                                                             <asp:TemplateField HeaderText="Catagory">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchCatagorycsap" SortExpression="catagory"  BorderStyle="None" runat="server" Width="120px" placeholder="Catagory" onkeyup="Search_Gridview(this,5,'gvRateApp')"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtSearchCatagorycsap" SortExpression="catagory"  BorderStyle="None" runat="server" Width="120px" placeholder="Catagory" onkeyup="Search_Gridview(this,5,'gvcsapproved')"></asp:TextBox>
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvcatagorycsap" runat="server" Font-Bold="True"
@@ -2255,7 +2269,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Project Name">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchProNameBill" runat="server"  BorderStyle="None" SortExpression="project name" Width="180px" placeholder="Project Name" onkeyup="Search_Gridview(this,1,'gvPurBill')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchProNameBill" runat="server"  BorderStyle="None" SortExpression="project name" Width="180px" placeholder="Project Name" onkeyup="Search_Gridview(this,1,'gvPurcom')"></asp:TextBox><br />
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvpatcdesccom" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
@@ -2266,7 +2280,7 @@
 
                                                             <asp:TemplateField HeaderText="Supplier">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchSupplierBill" runat="server"  BorderStyle="None" SortExpression="supplier" Width="150px" placeholder="Supplier" onkeyup="Search_Gridview(this,2,'gvPurBill')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchSupplierBill" runat="server"  BorderStyle="None" SortExpression="supplier" Width="150px" placeholder="Supplier" onkeyup="Search_Gridview(this,2,'gvPurcom')"></asp:TextBox><br />
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvsupplierbillcom" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
@@ -2331,7 +2345,7 @@
 
                                                             <asp:TemplateField HeaderText="Mrf No.">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnumbill" SortExpression="mrfno"  BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,8,'gvPurBill')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnumbill" SortExpression="mrfno"  BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,8,'gvPurcom')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 

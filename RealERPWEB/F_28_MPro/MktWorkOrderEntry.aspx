@@ -489,7 +489,7 @@
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-primary btn-sm form-control" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-warning btn-sm form-control" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                             </FooterTemplate>
                                         </asp:TemplateField>
 

@@ -516,14 +516,14 @@ namespace RealERPWEB.F_28_MPro
             int TblRowIndex2;
             for (int j = 0; j < this.gvOrderInfo.Rows.Count; j++)
             {
-                string prtypeCode = ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvPrTypeCode")).Text.Trim();
+                string acttypeCode = ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvActTypeCode")).Text.Trim();
 
                 double dgvorderQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderQty")).Text.Trim()));
                 double dgvOrderRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvOrderRate")).Text.Trim()));
                 double dgvAppAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderAmt")).Text.Trim()));
                 TblRowIndex2 = (this.gvOrderInfo.PageIndex) * this.gvOrderInfo.PageSize + j;
                
-                if(prtypeCode.Substring(0, 7) == "0199999")
+                if(acttypeCode.Substring(0, 7) == "0199999")
                 {
                     tbl1.Rows[TblRowIndex2]["ordrqty"] = dgvorderQty;
                     tbl1.Rows[TblRowIndex2]["ordramt"] = dgvAppAmt;
@@ -1023,7 +1023,7 @@ namespace RealERPWEB.F_28_MPro
                 {
                     string mPactcode = tbl1.Rows[i]["pactcode"].ToString();
                     string mOrderAmt = Convert.ToDouble(tbl1.Rows[i]["ordramt"]).ToString();
-                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_PUR_ORDER_INFO", "MKTORDERE", mORDERNO, mPactcode, prtype, "000000000000", mOrderAmt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_PUR_ORDER_INFO", "MKTORDERE", mORDERNO, mPactcode, acttype, "000000000000", mOrderAmt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                 }
 
                 if (!result)
@@ -1111,7 +1111,7 @@ namespace RealERPWEB.F_28_MPro
                 this.Get_Pur_Order_Info();
 
                 this.txtSubject.Text = "Purchase Order For Materials";
-                this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
+                this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms & conditions";
 
                 DataTable dt1 = (DataTable)ViewState["tblOrder"];
                 DataTable dtResP = (DataTable)ViewState["tblResP"];
@@ -1462,8 +1462,8 @@ namespace RealERPWEB.F_28_MPro
                 DataRow dr1 = tbl1.NewRow();
                 
                 dr1["reqno"] = "";
-                dr1["prtype"] = chargeCode;
-                dr1["acttype"] = "";
+                dr1["prtype"] = "";
+                dr1["acttype"] = chargeCode;
                 dr1["mkttype"] = "";
                 dr1["ssircode"] = "";           
                 dr1["reqno1"] = "";

@@ -415,7 +415,7 @@
                                                 <asp:Label ID="lblFAmountbs" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                     Font-Bold="True" Font-Size="10px"
-                                                    Width="70px" ForeColor="#000"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvamounteBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
