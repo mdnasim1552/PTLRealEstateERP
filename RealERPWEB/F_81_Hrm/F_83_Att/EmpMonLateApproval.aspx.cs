@@ -490,7 +490,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", calltype, compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
-            if (ds2 == null)
+            if (ds2 == null || ds2.Tables[0].Rows.Count==0)
             {
                 this.grvAdjDay.DataSource = null;
                 this.grvAdjDay.DataBind();
@@ -1375,10 +1375,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
 
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
-                        double redelay = delayday - Aprvday;
+                        double redelay = Aprvday;//delayday - Aprvday;
                         double adjLev = 0.00;
                         double adjElLev = 0.00;
                         double ttllv = 0.00;
+                        
+                        dedday = delayday - redelay; // after infrom dues late day
 
                         if (redelay <= 6)
                         {
@@ -1395,17 +1397,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                         if (balernlv < adjElLev)
                         {
-                            dedday = adjElLev - balernlv;
+                           // dedday = adjElLev - balernlv;
                             adjElLev = balernlv;
 
                         }
                         if (balclv < adjLev)
                         {
-                            dedday = adjLev - balclv;
+                           // dedday = adjLev - balclv;
                             adjLev = balclv;
 
                         }
-                        double ttdelv = adjLev + adjElLev + dedday;
+                        double ttdelv = adjLev + adjElLev;
 
 
                         dt.Rows[rowindex]["delday"] = delayday;
@@ -2267,8 +2269,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 double tdelv = Convert.ToDouble("0" + (txtleaveadjel.Text.Trim()));
 
 
-
-                double redelay = delayday - Aprvday;
+                dedday = delayday - Aprvday;
+                double redelay = Aprvday;
                 double adjLev = 0.00;
                 double adjElLev = 0.00;
                 double ttllv = 0.00;
@@ -2288,17 +2290,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 if (balernlv < adjElLev)
                 {
-                    dedday = adjElLev - balernlv;
+                    //dedday = adjElLev - balernlv;
                     adjElLev = balernlv;
 
                 }
                 if (balclv < adjLev)
                 {
-                    dedday = adjLev - balclv;
+                    //dedday = adjLev - balclv;
                     adjLev = balclv;
 
                 }
-                double ttdelv = adjLev + adjElLev + dedday;
+                double ttdelv = adjLev + adjElLev;
 
 
                 dt.Rows[rowindex]["delday"] = delayday;

@@ -541,8 +541,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string empid = ((Label)this.gvConfirm.Rows[index].FindControl("lblgvempid")).Text.ToString();
             string leavid = ((Label)this.gvConfirm.Rows[index].FindControl("lblLeavId")).Text.ToString();
             string lvdptuid = ((Label)this.gvConfirm.Rows[index].FindControl("lbldptusid")).Text.ToString();
+
+            //string lvdptuid = ((Label)this.gvConfirm.Rows[index].FindControl("lblgvstrtdat")).Text.ToString();
+            //string lvdptuid = ((Label)this.gvConfirm.Rows[index].FindControl("lblgvenddat")).Text.ToString();
             
             DataTable dt = (DataTable)ViewState["tbltotalleav"];
+
+
             bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "LEVAAPPFROWARD", leavid, empid, lvdptuid, usrid, "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
