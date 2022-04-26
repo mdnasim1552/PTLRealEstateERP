@@ -80,7 +80,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
 
             string comcod = this.GetComeCode();
-            string txtEmpname = this.txtsrchEmp.Text.Trim() + "%";
+            string txtEmpname = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", txtEmpname, "", "", "", "", "", "", "", "");
             this.ddlEmpList.DataTextField = "empname";
             this.ddlEmpList.DataValueField = "empid";

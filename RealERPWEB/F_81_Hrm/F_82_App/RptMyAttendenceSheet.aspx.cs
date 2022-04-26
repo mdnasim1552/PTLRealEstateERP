@@ -156,6 +156,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //this.lblDateOn.Text = " From " + this.Request.QueryString["frmdate"].ToString() + " To " + this.Request.QueryString["todate"].ToString();
             // this.lblcompname.Text = ds1.Tables[2].Rows[0]["companyname"].ToString();
             this.lblname.Text = ds1.Tables[0].Rows[0]["empnam"].ToString();
+            this.lblattype.Text = ds1.Tables[0].Rows[0]["attype"].ToString();
+            this.lbljoindate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["joindate"]).ToString("dd/MMM/yyyy");
+
+            this.lblconfirmdate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["confirmdate"]).ToString("dd/MMM/yyyy");
+            this.sysid.Visible =(type == "MGT" ? true : false);
+            this.lblsysid.Text = ds1.Tables[0].Rows[0]["empid"].ToString();
             this.lbldpt.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
             this.lbldesg.Text = ds1.Tables[0].Rows[0]["empdsg"].ToString();
             this.lblcard.Text = ds1.Tables[0].Rows[0]["idcardno"].ToString();
@@ -241,6 +247,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
 
                 string comcod = this.GetComeCode();
+                string qtype = this.Request.QueryString["Type"] ?? "";
+                
+                string empid = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "empid")).ToString().Trim();
                 string applyReq = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "applyReq")).ToString().Trim();
                 string ahleave = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "leav")).ToString().Trim();
                 string lateapp = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "lateapp")).ToString().Trim();
@@ -253,7 +262,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 DateTime actualin = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "actualin"));
                 DateTime actualout = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "actualout"));
 
-
+                HyperLink hyplinkapp =((HyperLink)e.Item.FindControl("hyplnkApplyLv"));
                 switch (comcod)
                 {
                     case "3365":
@@ -264,7 +273,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
                             ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;color:red";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq==""? true:false;
-                            ((LinkButton)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
 
 
@@ -283,7 +292,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
-                            ((LinkButton)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
                             
 
@@ -301,7 +310,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
                             
                         }
-                         
+
+                        if (qtype == "MGT")
+                        {
+                            hyplinkapp.NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT&Empid="+ empid+"&LevDay="+ offimein + "&LvType=";
+                            //Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT");
+                        }
+                        else
+                        {
+                            hyplinkapp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=User";
+                            //Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User");
+                        }
+
                         break;
                     default:
                         if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
@@ -680,15 +700,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void hyplnkApplyLv_Click(object sender, EventArgs e)
         {
-            string qtype = this.Request.QueryString["Type"] ?? "";
-            if (qtype == "MGT")
-            {
-                Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT");
-            }
-            else
-            {
-                Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User");
-            }
+            
         }
     }
 }

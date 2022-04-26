@@ -26,18 +26,34 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                
 
-                string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtgvenjoydt1.Text = nextday;
-                this.txtgvenjoydt2.Text = nextday;
+                
 
                 //txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
-                this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string reqdate= this.Request.QueryString["LevDay"] ?? "";
+                if (reqdate.Length > 0)
+                {
+                    this.txtaplydate.Text = Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
+                    string nextday = Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
+                    this.txtgvenjoydt1.Text = nextday;
+                    this.txtgvenjoydt2.Text = nextday;
+                }
+                else
+                {
+                    string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtgvenjoydt1.Text = nextday;
+                    this.txtgvenjoydt2.Text = nextday;
+                    this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+                }
                 string qtype = this.Request.QueryString["Type"] ?? "";
 
                 if (qtype == "MGT")
                 {
-                    if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                        Response.Redirect("../../AcceessError.aspx");
+                    int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                            (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("~/AcceessError.aspx");
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (MGT)";
 
                     this.empMgt.Visible = true;
@@ -110,6 +126,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
 
             string comcod = this.GetComeCode();
+            string empid = this.Request.QueryString["Empid"] ??"";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -117,6 +134,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds1.Tables[0];
             this.ddlEmpName.DataBind();
+            this.ddlEmpName.SelectedValue = empid;
         }
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -268,16 +286,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
                         double dfdays = Convert.ToDouble(diffdays);
                         this.Duration.Value = diffdays;
-                        if (dfdays > ballv)
+
+                        if (comcod != "3330")
                         {
-                            string Messaged = "Oops!! Insufficient Leave Balance, please conctact with your Managment";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                            this.btnSave.Enabled = false;
+                            if (dfdays > ballv)
+                            {
+                                string Messaged = "Oops!! Insufficient Leave Balance, please conctact with your Managment";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                                this.btnSave.Enabled = false;
+                            }
+                            else
+                            {
+                                this.btnSave.Enabled = true;
+                            }
                         }
-                        else
-                        {
-                            this.btnSave.Enabled = true;
-                        }
+                        
 
                     }
                     else
@@ -1167,9 +1190,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 //this.divDurStatus.Visible = true;
 
             }
-
-            txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string reqdate = this.Request.QueryString["LevDay"] ?? "";
+            if (reqdate.Length > 0)
+            {
+                //this.txtaplydate.Text = Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
+                string nextday = Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
+                this.txtgvenjoydt1.Text = nextday;
+                this.txtgvenjoydt2.Text = nextday;
+            }
+            else
+            {
+                txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            }
         }
 
 
