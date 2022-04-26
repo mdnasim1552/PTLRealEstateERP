@@ -2177,9 +2177,7 @@
                                                 </td>
                                                 <td class="style60">&nbsp;</td>
                                                 <td>
-                                                    <asp:HyperLink ID="hlbtnRcvPayCdataExelrp03" runat="server" BackColor="#000066"
-                                                        BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
-                                                        ForeColor="White" Style="text-align: center" Width="90px">Export Excel</asp:HyperLink>
+                                                    <asp:HyperLink ID="hlbtnRcvPayCdataExelrp03" runat="server"    ToolTip="Export Excel" CssClass="btn  btn-success btn-sm"><i class="fa fa-file-excel-o"  aria-hidden="true" ></i></asp:HyperLink>
                                                 </td>
                                             </tr>
                                         </table>
@@ -2208,6 +2206,21 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" Height="35px" VerticalAlign="Top" />
                                 </asp:TemplateField>
+
+
+                                  <asp:TemplateField HeaderText="Total Receipt">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvtorecpamrp03" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trecpam")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="100px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" Height="35px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+
+
                                 <asp:TemplateField HeaderText="PayCode" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvpaycoderp03" runat="server" Font-Bold="True" Style="text-align: right"
@@ -2246,6 +2259,18 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
+
+                                 <asp:TemplateField HeaderText="Total Payment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtopayamrp03" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tpayam")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="100px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
                             </Columns>
                             <FooterStyle BackColor="#F5F5F5" />
                             <EditRowStyle />
