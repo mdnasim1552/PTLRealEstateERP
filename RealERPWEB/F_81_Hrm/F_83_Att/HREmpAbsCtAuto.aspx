@@ -245,7 +245,7 @@ div#ContentPlaceHolder1_ddlCompanyName_chzn {
 
                                     <asp:TemplateField HeaderText="Card #">
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lbtnTotalAbsCount" runat="server" CssClass="btn btn-primary primaryBtn"  OnClick="lbtnTotalAbsCount_Click"
+                                            <asp:LinkButton ID="lbtnTotalAbsCount" runat="server" CssClass="btn btn-primary btn-sm"  OnClick="lbtnTotalAbsCount_Click"
                                                 >Total</asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
@@ -260,7 +260,7 @@ div#ContentPlaceHolder1_ddlCompanyName_chzn {
                                                 Width="200px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lbntUpdateAbs" runat="server" OnClick="lbntUpdateAbs_Click" CssClass="btn btn-danger primaryBtn" >Update</asp:LinkButton>
+                                            <asp:LinkButton ID="lbntUpdateAbs" runat="server" OnClick="lbntUpdateAbs_Click" CssClass="btn btn-danger btn-sm" >Update</asp:LinkButton>
                                         </FooterTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>

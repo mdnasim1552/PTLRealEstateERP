@@ -265,8 +265,9 @@
                                     <th style="text-align:center">Status</th>
                                     <th style="text-align:center">Penalty</th>
                                     <th style="text-align:center">Official Hour</th>
-                                    <th style="text-align:center">Request Status</th>
                                     <th style="text-align:center">Remarks</th>
+                                    <th style="text-align:center">Request Status</th>
+                                  <th style="text-align:center">Notes</th>
                                     <th></th>
                                     <th></th>
 
@@ -306,15 +307,20 @@
                                 <td>
                                     <asp:Label ID="lbldtimehour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actTimehour")).ToString() %>'></asp:Label>
                                 </td>
-                                 <td style="width:320px">
-                                    <asp:Label ID="lblRequid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rqid")).ToString() %>'></asp:Label>
-                                    <asp:Label ID="lblisremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isremarks")).ToString() %>'></asp:Label>
-
-                                </td>
+               
                                 <td style="text-align:center">
                                     
                                     <asp:Label ID="Label1" runat="server" CssClass="control-label badge bg-green text-white" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")).ToString() %>'></asp:Label>
 
+                                </td>
+
+                                                  <td style="width:320px">
+                                    <asp:Label ID="lblRequid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rqid")).ToString() %>'></asp:Label>
+                                    <asp:Label ID="lblisremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isremarks")).ToString() %>'></asp:Label>
+
+                                </td>
+                                <td>
+                                     <asp:Label ID="lblapremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apremarks")).ToString() %>'></asp:Label>
                                 </td>
                                 <td>
                                     <asp:CheckBox ID="chkvmrno" runat="server" Enabled="False" Visible="false"

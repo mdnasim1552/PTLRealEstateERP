@@ -6,6 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
+        select#ContentPlaceHolder1_ddlEmployee{
+              width: 100% !important;
+        }
+
         div#ContentPlaceHolder1_ddlDepartment_chzn {
             width: 100% !important;
         }
@@ -37,13 +41,18 @@
         div#ContentPlaceHolder1_ddlCompanyName_chzn{
             width: 100% !important;
         }
+        .pd4{
+            padding:4px!important;
+        }
     </style>
 
 
-    <script language="javascript" type="text/javascript">
+
+    <script type="text/javascript" language="javascript">
         $(document).ready(function () {
-            //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
         });
         function pageLoaded() {
 
@@ -52,7 +61,9 @@
                 k1.textBoxHandler(event);
             });
 
-        };
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
     </script>
 
 
@@ -130,21 +141,21 @@
                                 </asp:DropDownList>
                             </div>
 
-                            <div class="col-lg-2 col-md-2 col-sm-6">
+                            <div class="col-lg-1 col-md-1 col-sm-6">
                                 <asp:Label ID="lblfrmDate" runat="server">Date</asp:Label>
-                                <asp:TextBox ID="txtfrmDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:TextBox ID="txtfrmDate" runat="server" CssClass="form-control form-control-sm pd4"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfrmDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmDate"></cc1:CalendarExtender>
 
 
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6">
+                            <div class="col-lg-1 col-md-1 col-sm-6">
                                 <asp:Label ID="lbltoDate" runat="server">To</asp:Label>
-                                <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control  form-control-sm"></asp:TextBox>
+                                <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control  form-control-sm pd4"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttoDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
 
                             </div>
                             <div class="col-lg-1 col-md-3 col-sm-6">
-                                <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary mt20">Add</asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-success btn-sm mt20"><i class="fa fa-plus"></i> Add</asp:LinkButton>
                             </div>
 
                         </div>
@@ -181,7 +192,7 @@
                                 Width="140px"></asp:Label>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Final Update</asp:LinkButton>
+                            <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger btn-sm primaryBtn" OnClick="lnkupdate_Click">Final Update</asp:LinkButton>
                         </FooterTemplate>
 
                     </asp:TemplateField>

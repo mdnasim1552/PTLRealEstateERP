@@ -366,7 +366,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label lblstatus = (Label)Rptitem.FindControl("lblstatus");
             Label lblisremarks = (Label)Rptitem.FindControl("lblisremarks");
             Label lblRequid = (Label)Rptitem.FindControl("lblRequid");
-            
+            Label lblapremarks = (Label)Rptitem.FindControl("lblapremarks");
+
             string attstatus = lblstatus.Text.Trim();
             ddlReqType.SelectedValue = (attstatus == "A" ? "AB" : "LA");
             ddlReqType.Enabled = (attstatus == "A" ? false : true);
