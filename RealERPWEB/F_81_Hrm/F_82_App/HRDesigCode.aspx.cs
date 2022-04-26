@@ -148,16 +148,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
+                this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();
-                ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = false;
-                double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
-                ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Clear();
-                for (int i = 1; i <= TotalPage; i++)
-                    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-                if (TotalPage > 1)
-                    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = true;
-                ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
+                //((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = false;
+                //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
+                //((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Clear();
+                //for (int i = 1; i <= TotalPage; i++)
+                //    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+                //if (TotalPage > 1)
+                //    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = true;
+                //((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
 
 
 
@@ -271,6 +272,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void ibtnSrch_Click(object sender, EventArgs e)
         {
             this.ShowInformation();
+        }
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.grvacc_DataBind();
         }
     }
 }
