@@ -280,6 +280,7 @@
 
                                 </td>
                                 <td>
+                                    <asp:Label ID="lblEmpid" Visible="false"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).ToString() %>'></asp:Label>
                                     <asp:Label ID="lblIntime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblOuttime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblacintime" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy") %>'></asp:Label>
@@ -330,7 +331,7 @@
                                     
                                 </td>
                                 <td>
-                                   <asp:linkButton ID="hyplnkApplyLv"  Visible="false" runat="server" OnClick="hyplnkApplyLv_Click" CssClass="btn btn-sm btn-success">Apply Leave</asp:linkButton>
+                                   <asp:HyperLink ID="hyplnkApplyLv" Target="_blank"   Visible="false" runat="server"  CssClass="btn btn-sm btn-success">Apply Leave</asp:HyperLink>
 
                                 </td>
                                 
