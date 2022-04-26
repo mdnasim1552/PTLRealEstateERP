@@ -1,10 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptAllSalarySummary.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_89_Pay.RptAllSalarySummary" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <style>
+     <style>
         .fsize {
             font-size: 15px !important;
             font-weight: bold !important;

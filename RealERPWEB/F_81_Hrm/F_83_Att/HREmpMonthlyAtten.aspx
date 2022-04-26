@@ -5,6 +5,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+      <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        function pageLoaded() {
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
+        };
+
+
+      </script>
     <style>
         div#ContentPlaceHolder1_ddlEmpName_chzn {
             width: 100% !important;
