@@ -82,6 +82,24 @@
                             <asp:TextBox ID="txtDesignationSrc" runat="server" Text="" CssClass="form-control form-control-sm"></asp:TextBox>
 
                         </div>
+                        <div class="col-lg-1">
+                                              <div class="form-group">
+                                <asp:Label ID="Label3" runat="server">Page Size</asp:Label>
+
+
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem Selected="True">300</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-primary btn-sm mt20"></asp:LinkButton>
 
@@ -155,7 +173,7 @@
                                         Font-Bold="True" Font-Size="14px"
                                         OnSelectedIndexChanged="ddlPageNo_SelectedIndexChanged"
                                         Style="border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
-                                        Width="150px">
+                                        Width="150px" Visible="false">
                                     </asp:DropDownList>
                                 </FooterTemplate>
                                 <ItemTemplate>
@@ -230,7 +248,7 @@
                             </asp:TemplateField>
 
                         </Columns>
-                        <PagerStyle CssClass="gvPagination" />
+         
                         <HeaderStyle CssClass="grvHeader" />
                         <FooterStyle CssClass="grvFooter" />
                         <AlternatingRowStyle BackColor="" />

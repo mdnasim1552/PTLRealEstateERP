@@ -136,7 +136,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "EmpList":
-                    if(comcod=="3354" || comcod=="3315")
+                    if(comcod=="3354" || comcod=="3315" || comcod=="3101")
                     {
 
                         this.desFrom.Visible = true;
@@ -579,8 +579,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3102":
                 case "3315":
                 case "3101":
+    
 
-                   // pnlDesig.Visible = true;
+                    // pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
