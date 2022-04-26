@@ -263,7 +263,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
             msg = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             this.LoadGrid();
         }
     }
