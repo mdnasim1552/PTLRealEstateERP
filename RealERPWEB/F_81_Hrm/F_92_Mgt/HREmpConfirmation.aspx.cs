@@ -94,7 +94,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             string comcod = this.GetComeCode();
             string company = this.ddlCompany.SelectedValue.Substring(0, 2).ToString();
-            string txtDeptname = this.ddlProjectName.Text.Trim() + "%";
+            string txtDeptname = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETPROJECTNAME", company, txtDeptname, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -111,24 +111,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             try
             {
-                Session.Remove("tblMrr");
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
-                string DeptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
-                string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-                string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
-                string cnfrm = this.chkconfrmdt.Checked ? "confirm" : "";
-
-                DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPCONFIRM", company, DeptCode, frmdate, todate, cnfrm, "", "", "", "");
-                if (ds1 == null)
-                {
-                    this.dgvEmpCon.DataSource = null;
-                    this.dgvEmpCon.DataBind();
-                    return;
-                }
-                Session["tblMrr"] = ds1.Tables[0];
-                this.Data_Bind();
+                this.showValue();
             }
             catch (Exception ex)
             {
@@ -136,6 +119,31 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
 
+        }
+
+
+        private void showValue()
+        {
+
+            Session.Remove("tblMrr");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string empcode = (this.txtEmpSearch.Text.Trim()== "")?"%%" : (this.txtEmpSearch.Text.Trim()+"%");
+            string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "94%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
+            string DeptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "94%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+            string cnfrm = this.chkconfrmdt.Checked ? "confirm" : "";
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPCONFIRM", company, DeptCode, frmdate, todate, cnfrm, empcode, "", "", "");
+            if (ds1 == null)
+            {
+                this.dgvEmpCon.DataSource = null;
+                this.dgvEmpCon.DataBind();
+                return;
+            }
+            Session["tblMrr"] = ds1.Tables[0];
+            this.Data_Bind();
         }
         private void Data_Bind()
         {
@@ -248,6 +256,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
+        }
+
+        protected void imgbtnEmpSeach_Click(object sender, EventArgs e)
+        {
+            this.showValue();
         }
     }
 }
