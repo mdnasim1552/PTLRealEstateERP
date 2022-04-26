@@ -152,7 +152,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lblResList" runat="server">Employee List     
                                         <asp:LinkButton ID="ibtnEmpList" runat="server" OnClick="ibtnEmpList_Click"><i class="fa fa-search"> </i></asp:LinkButton></asp:Label>
-                                    <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control chzn-select">
+                                    <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlEmpList_SelectedIndexChanged" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>
                             </div>
