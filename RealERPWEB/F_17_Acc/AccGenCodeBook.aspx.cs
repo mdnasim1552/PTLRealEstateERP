@@ -32,6 +32,10 @@ namespace RealERPWEB.F_17_Acc
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
+
+                if (this.ddlGenCodeBook.Items.Count == 0)
+                    this.Load_CodeBooList();
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -168,19 +172,19 @@ namespace RealERPWEB.F_17_Acc
         {
             try
             {
-                this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                DataTable tbl1 = (DataTable)Session["storedata"];
 
+                DataTable tbl1 = (DataTable)Session["storedata"];
+                this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();
-                ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = false;
-                double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
-                ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Clear();
-                for (int i = 1; i <= TotalPage; i++)
-                    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-                if (TotalPage > 1)
-                    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = true;
-                ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
+                //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = false;
+                //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
+                //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Clear();
+                //for (int i = 1; i <= TotalPage; i++)
+                //    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+                //if (TotalPage > 1)
+                //    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = true;
+                //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
             }
             catch (Exception ex)
             {
@@ -243,15 +247,15 @@ namespace RealERPWEB.F_17_Acc
                 {
 
                     this.lnkok.Text = "New";
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "";
+                 
                     this.LblBookName1.Text = "Code Book:";
-                    this.ddlGenCodeBook.Visible = false;
-                    this.ddlOthersBookSegment.Visible = false;
-                    this.lblGenCode.Visible = true;
-                    this.lblGenCode0.Visible = true;
-                    this.ibtnSrch.Visible = true;
-                    this.lblGenCode.Text = this.ddlGenCodeBook.SelectedItem.ToString().Trim();
-                    this.lblGenCode0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+                    this.ddlGenCodeBook.Enabled = false;
+                    this.ddlOthersBookSegment.Enabled = false;
+                    //this.lblGenCode.Visible = true;
+                    //this.lblGenCode0.Visible = true;
+                    //this.ibtnSrch.Visible = true;
+                    //this.lblGenCode.Text = this.ddlGenCodeBook.SelectedItem.ToString().Trim();
+                    //this.lblGenCode0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
 
                     this.ShowInformation();
                 }
@@ -265,8 +269,8 @@ namespace RealERPWEB.F_17_Acc
                     this.ibtnSrch.Visible = false;
                     this.lblGenCode.Visible = false;
                     this.lblGenCode0.Visible = false;
-                    this.ddlGenCodeBook.Visible = true;
-                    this.ddlOthersBookSegment.Visible = true;
+                    this.ddlGenCodeBook.Enabled = true;
+                    this.ddlOthersBookSegment.Enabled = true;
                     this.grvacc.DataSource = null;
                     this.grvacc.DataBind();
 
