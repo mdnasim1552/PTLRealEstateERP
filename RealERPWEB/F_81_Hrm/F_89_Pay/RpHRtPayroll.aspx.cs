@@ -1411,7 +1411,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFadv")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(adv)", "")) ? 0.00 : dt.Compute("sum(adv)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFGratloan")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(genloan)", "")) ? 0.00 : dt.Compute("sum(genloan)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFCarlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(carloan)", "")) ? 0.00 : dt.Compute("sum(carloan)", ""))).ToString("#,##0;(#,##0); ");
+
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFothded")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(othded)", "")) ? 0.00 : dt.Compute("sum(othded)", ""))).ToString("#,##0;(#,##0); ");
+
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFTransp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(transded)", "")) ? 0.00 : dt.Compute("sum(transded)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFFoods")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(foodal)", "")) ? 0.00 : dt.Compute("sum(foodal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFAreasOth")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(othearn)", "")) ? 0.00 : dt.Compute("sum(othearn)", ""))).ToString("#,##0;(#,##0); ");

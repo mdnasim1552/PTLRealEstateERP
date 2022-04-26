@@ -27,15 +27,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             if (!IsPostBack)
             {
-
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.GetCompanyName();
                 this.GetMonth();
                 this.ddlMonth_SelectedIndexChanged(null, null);
                 //this.GetEmployeeName();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE ABSENT INFORMATION";
-                this.lmsg11.Visible = false;
+
+
             }
         }
 
@@ -66,7 +67,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
-            string IdCard = "%" + this.txtSrcEmpCode.Text.Trim() + "%";
+            string IdCard = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", IdCard, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -160,7 +161,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void lnkbtnUpdate_Click(object sender, EventArgs e)
         {
-            this.lmsg11.Visible = true;
+         
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -172,12 +173,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string month1 = ASTUtility.Right(month.Trim(), 2); // month.PadLeft(2, '0');
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
             string monyr = month1 + year;
+            string msg = "";
 
 
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "DELETEABSCT", empid, monyr, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (result == false)
             {
-                this.lmsg11.Text = "Data was Noted Updated";
+
+
+
+                msg = "Update Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
 
             }
@@ -193,7 +199,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }
             }
 
-            this.lmsg11.Text = "Updated Successfully";
+
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
         }
 
@@ -227,7 +235,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //   string type = this.Request.QueryString["Type"].ToString().Trim();
             string Company = ((this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)) + "%";
 
-            string txtSProject = this.txtsrchdeptagg.Text.Trim() + "%";
+            string txtSProject = "%%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAMENEW", Company, txtSProject, "", "", "", "", "", "", "");
 
             this.ddldepartmentagg.DataTextField = "deptdesc";
@@ -241,7 +249,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             string comcod = this.GetComeCode();
             string deptcode = this.ddldepartmentagg.SelectedValue.ToString() + "%";
-            string txtSProject = this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = "%%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAMENEW", deptcode, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -253,8 +261,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void GetEmpName()
         {
             string comcod = this.GetComeCode();
-            string ProjectCode = (this.txtSrcEmpCode.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string txtSProject = "%" + this.txtSrcEmpCode.Text + "%";
+            string ProjectCode = this.ddlProjectName.SelectedValue.ToString() + "%";
+            string txtSProject = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
