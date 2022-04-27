@@ -144,7 +144,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 empid = this.Request.QueryString["empid"].ToString();         
             }
 
-           string Actime = this.GetComLateAccTime();
+            string Actime = this.GetComLateAccTime();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTNIDWISE", frmdate, todate, empid, Actime, "", "", "", "", "");
 
