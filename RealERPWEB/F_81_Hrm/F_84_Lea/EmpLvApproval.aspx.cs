@@ -692,6 +692,40 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             }
         }
+
+        private void LeaveReset()
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string comcod = this.GetCompCode();
+            string trnid = this.lstOrderNo.SelectedValue.ToString();
+            string empid = ((Label)this.gvLvReq.Rows[0].FindControl("lblgvempid")).Text.Trim();
+            bool result = false;
+            string applydat = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+            for (int i = 0; i < gvLvReq.Rows.Count; i++)
+            {
+                double lapplied = Convert.ToDouble("0" + ((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlapplied")).Text.Trim());
+                if (lapplied > 0)
+                {
+                   
+                    string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    
+
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT_RESET", empid, frmdate, todate, "", "", "", "","", "", "", "", "", "");
+
+                    if (!result)
+                    {
+                        Messagesd = "Updated Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    }
+                }
+
+            }
+        }
+
+
+
+
         //protected void ApprovedBtn_Click(object sender, EventArgs e)
         //{
 
@@ -1143,6 +1177,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     return;
                 }
 
+
+
+
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP_ALL", trnid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
@@ -1151,6 +1188,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     return;
 
                 }
+
+                // reset if delete abs table data
+
+                this.LeaveReset();
 
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' Not Apporved');", true);

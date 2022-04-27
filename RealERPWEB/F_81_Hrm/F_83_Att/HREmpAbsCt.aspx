@@ -5,6 +5,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+      <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        function pageLoaded() {
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
+        };
+
+
+      </script>
 
     <style>
         div#ContentPlaceHolder1_ddlCompanyAgg_chzn {
@@ -49,6 +63,14 @@
         }
         .chzn-search{
                         width: 100%!important;
+        }
+        .TxtIcardSearch {
+            height: 25px;
+    width: 100px;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin-top:-5px
+   
         }
     </style>
 
@@ -105,6 +127,7 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="lblpreAdv" runat="server">Employee
+                                    <asp:TextBox ID="TxtIDCard" runat="server" CssClass="ml-2 mr-2 TxtIcardSearch d-none"></asp:TextBox>
                                         <asp:LinkButton ID="imgbtnEmployee" runat="server" OnClick="imgbtnEmployee_Click1"><i class="fa fa-search"> </i></asp:LinkButton>
 
                                 </asp:Label>
