@@ -276,6 +276,33 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.GridView gvempservices;
 
         /// <summary>
+        /// PaySlipPart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PaySlipPart;
+
+        /// <summary>
+        /// divPayslip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPayslip;
+
+        /// <summary>
+        /// gvPaySlip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPaySlip;
+
+        /// <summary>
         /// HyperLink1 control.
         /// </summary>
         /// <remarks>

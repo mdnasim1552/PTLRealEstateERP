@@ -1411,7 +1411,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFadv")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(adv)", "")) ? 0.00 : dt.Compute("sum(adv)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFGratloan")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(genloan)", "")) ? 0.00 : dt.Compute("sum(genloan)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFCarlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(carloan)", "")) ? 0.00 : dt.Compute("sum(carloan)", ""))).ToString("#,##0;(#,##0); ");
+
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFothded")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(othded)", "")) ? 0.00 : dt.Compute("sum(othded)", ""))).ToString("#,##0;(#,##0); ");
+
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFTransp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(transded)", "")) ? 0.00 : dt.Compute("sum(transded)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFFoods")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(foodal)", "")) ? 0.00 : dt.Compute("sum(foodal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFAreasOth")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(othearn)", "")) ? 0.00 : dt.Compute("sum(othearn)", ""))).ToString("#,##0;(#,##0); ");
@@ -4176,7 +4178,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3339":
-                case "3101":
+               // case "3101":
 
                     for (i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
@@ -4186,6 +4188,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
 
                         double bonamt = (perbonus == 0 ? 0 : gssal / perbonus);
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                    }
+
+                    break;
+
+
+                case "3355":
+      
+
+                    for (i = 0; i < this.gvBonus.Rows.Count; i++)
+                    {
+
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        double gssal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvGsalb")).Text.Trim());
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
+                        double bonamt = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("txtgvBonusAmt")).Text.Trim());
+                        bonamt = gssal * 0.01 * perbonus;
                         rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
                         dt.Rows[rowindex]["perbon"] = perbonus;
                         dt.Rows[rowindex]["bonamt"] = bonamt;

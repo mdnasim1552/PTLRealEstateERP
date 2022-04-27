@@ -25,14 +25,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             if (!IsPostBack)
             {
-
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.GetMonth();
                 this.GetEmployeeName();
-                // ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = " EMPLOYEE ABSENT INFORMATION VIEW/EDIT";
-
 
 
             }
@@ -86,7 +84,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
-            string IdCard = "%" + this.txtSrcEmpCode.Text.Trim() + "%";
+            string IdCard = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", IdCard, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -194,7 +192,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void ShowData()
         {
 
-            this.lmsg11.Text = "";
+
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
 
@@ -264,7 +262,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void lFinalUpdate_Click(object sender, EventArgs e)
         {
             this.SaveValue();
-            this.lmsg11.Visible = true;
+            string msg = "";
             DataTable dt = (DataTable)Session["tblEmpDesc"];
             string comcod = this.GetCompCode();
 
@@ -318,7 +316,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
 
-            this.lmsg11.Text = "Updated Successfully";
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             this.LoadGrid();
         }
     }

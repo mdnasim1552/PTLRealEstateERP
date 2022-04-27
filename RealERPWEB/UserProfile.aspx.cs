@@ -118,7 +118,7 @@ namespace RealERPWEB
                     this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
                     this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
-
+                    this.PaySlipPart.Visible = true;
                     break;
                 default:
                 
@@ -128,7 +128,7 @@ namespace RealERPWEB
                     this.pnlServHis.Visible = false;
                     this.winsList.Visible = false;
                     this.hrpolicy.Visible = false;
-                    
+                    this.PaySlipPart.Visible = false;
                     break;
 
 
@@ -237,7 +237,7 @@ namespace RealERPWEB
             Session["tblEmpimg"] = ds1.Tables[3];
             ViewState["tblJobRespon"] = ds1.Tables[4];
             ViewState["tblAttHistGraph"] = ds1.Tables[5];
-
+            ViewState["tblPaySlip"] = ds1.Tables[6];
 
 
             if (ViewState["tblgrph"] == null)
@@ -405,6 +405,9 @@ namespace RealERPWEB
 
 
 
+                DataTable dt6 = (DataTable)ViewState["tblPaySlip"];
+                this.gvPaySlip.DataSource = dt6;
+                this.gvPaySlip.DataBind();
 
 
                 string comcod = this.GetCompCode();
@@ -821,6 +824,19 @@ namespace RealERPWEB
             Session["Report1"] = Rpt1;
             string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
+        }
+
+        protected void gvPaySlip_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkPrintPaySlip = (HyperLink)e.Row.FindControl("hlnkPrintPaySlip");
+                string monthid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "monthid")).ToString();
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+
+                hlnkPrintPaySlip.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
+
+            }
         }
     }
 }

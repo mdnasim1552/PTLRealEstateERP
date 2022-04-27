@@ -1,10 +1,41 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="EmpDaillyAbsent.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.EmpDaillyAbsent" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EmpDaillyAbsent.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.EmpDaillyAbsent" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+       <style>
+
+
+        div#ContentPlaceHolder1_ddlCompany_chzn {
+            width: 100%;
+        }
+
+        div#ContentPlaceHolder1_ddlDepartment_chzn {
+            width: 100% !important;
+        }
+                .mt20 {
+            margin-top: 20px;
+        }
+
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+                  .pd4{
+                    padding:4px!important;
+                }
+    </style>
 
 
 
@@ -29,7 +60,7 @@
 
             });
 
-
+            $('.chzn-select').chosen({ search_contains: true });
 
         }
 
@@ -39,8 +70,8 @@
 
 
 
-    
-    
+
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -60,10 +91,135 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+
+            <div class="card mt20">
+                <div class="card-header">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="Label10" runat="server">Date</asp:Label>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
+                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server">Company</asp:Label>
+                                <asp:DropDownList ID="ddlCompanyName" runat="server" Width="233" CssClass="form-control form-control-sm" TabIndex="3">
+                                </asp:DropDownList>
+
+                                <asp:Label ID="lblCompanyName" CssClass="dataLblview" runat="server" Visible="False"></asp:Label>
+                            </div>
+                        </div>
+
+                       
+
+                        <div class="col-lg-2">
+   
+                                     <asp:Label ID="lblCode" runat="server" CssClass=" smLbl">Code</asp:Label>
+                            <div class="input-group input-group-sm">
+                                <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                <div class="input-group-append">
+                                    <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-outline-secondary" OnClick="imgbtnSearchEmployee_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnShow_Click" Text="Ok"></asp:LinkButton>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="card-body">
+            <asp:GridView ID="gvempabsent" runat="server" AllowPaging="True"
+                AutoGenerateColumns="False" OnPageIndexChanging="gvempabsent_PageIndexChanging" CssClass="table-striped table-hover table-bordered grvContentarea"
+                ShowFooter="True" >
+                <RowStyle />
+                <Columns>
+                    <asp:TemplateField HeaderText="Sl">
+                        <ItemTemplate>
+                            <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
+                                Style="text-align: right"
+                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                        </ItemTemplate>
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Department">
+                        <ItemTemplate>
+                            <asp:Label ID="lgDeptName" runat="server" Font-Bold="true"
+                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                Width="150px"></asp:Label>
+                        </ItemTemplate>
+                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Section">
+                        <ItemTemplate>
+                            <asp:Label ID="lgvSection" runat="server"
+                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
+                                Width="150px"></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="left" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ID CARD">
+                        <ItemTemplate>
+                            <asp:Label ID="lgIdCard" runat="server"
+                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
+                                ></asp:Label>
+                        </ItemTemplate>
+                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Name &amp; Designation">
+                        <FooterTemplate>
+                            <asp:LinkButton ID="lbtnFiUpdate" runat="server" CssClass="btn btn-danger primaryBtn"
+                                OnClick="lbtnFiUpdate_Click">Update</asp:LinkButton>
+                        </FooterTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="lgvndesig" runat="server"
+                                Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>"+"<br>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
+                                Width="160px"></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="left" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    </asp:TemplateField>
+
+                </Columns>
+                <FooterStyle CssClass="grvFooter" />
+                <EditRowStyle />
+                <AlternatingRowStyle />
+                <PagerStyle CssClass="gvPagination" />
+                <HeaderStyle CssClass="grvHeader" />
+            </asp:GridView>
+
+                </div>
+            </div>
+
+            <%--                        <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
 
                                 <div class="form-group">
@@ -120,73 +276,9 @@
 
                                 </div>
                             </div>
-                        </fieldset>
-                    </div>
-                    <div class="row">
-                        <asp:GridView ID="gvempabsent" runat="server" AllowPaging="True"
-                            AutoGenerateColumns="False" OnPageIndexChanging="gvempabsent_PageIndexChanging" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            ShowFooter="True" Width="584px">
-                            <RowStyle />
-                            <Columns>
-                                <asp:TemplateField HeaderText="Sl">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
-                                            Style="text-align: right"
-                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Department">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lgDeptName" runat="server" Font-Bold="true"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
-                                            Width="150px"></asp:Label>
-                                    </ItemTemplate>
-                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Section">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lgvSection" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                            Width="150px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ID CARD">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lgIdCard" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
-                                            Width="40px"></asp:Label>
-                                    </ItemTemplate>
-                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Name &amp; Designation">
-                                    <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnFiUpdate" runat="server" CssClass="btn btn-danger primaryBtn" 
-                                            OnClick="lbtnFiUpdate_Click">Update</asp:LinkButton>
-                                    </FooterTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lgvndesig" runat="server"
-                                            Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>"+"<br>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                            Width="160px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
+                        </fieldset>--%>
 
-                            </Columns>
-                            <FooterStyle CssClass="grvFooter" />
-                            <EditRowStyle />
-                            <AlternatingRowStyle />
-                            <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
-                        </asp:GridView>
-                    </div>
-                </div>
-            </div>
+
 
 
             <%--<table style="width: 100%;">

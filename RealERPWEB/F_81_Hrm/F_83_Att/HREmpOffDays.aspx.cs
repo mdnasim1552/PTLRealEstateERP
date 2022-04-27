@@ -173,10 +173,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void GetEmployee()
         {
             string comcod = this.GetComCode();
-            string secname = this.ddlProjectName.SelectedValue.ToString()??"%%";
+            
             string txtempsrch = "%%";
-            string company = this.ddlCompany.SelectedValue.Substring(0, 2).ToString();
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPLOYEENAME", secname, txtempsrch, company, "", "", "", "", "", "");
+            
+            string company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "94%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
+            string Department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "94%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
+
+            string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString()) + "%";
+
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPLOYEENAME", Section, txtempsrch, company, "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds3.Tables[0];

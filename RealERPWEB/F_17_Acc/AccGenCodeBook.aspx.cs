@@ -27,16 +27,16 @@ namespace RealERPWEB.F_17_Acc
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+            {
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Display Code";
-            this.Master.Page.Title = "Display Code";
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            if (this.ddlGenCodeBook.Items.Count == 0)
-                this.Load_CodeBooList();
-            ((Label)this.Master.FindControl("lblmsg")).Text = "";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
+
+                if (this.ddlGenCodeBook.Items.Count == 0)
+                    this.Load_CodeBooList();
+            }
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -72,7 +72,8 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+        
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + ex.Message + "');", true);
             }
         }
 
@@ -100,12 +101,17 @@ namespace RealERPWEB.F_17_Acc
         }
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 return;
             }
+  
 
             try
             {
@@ -121,7 +127,9 @@ namespace RealERPWEB.F_17_Acc
 
                 if (gencode.Length != 8)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Code Length Must Be 8 Digit";
+              
+                    msg = "Code Length Must Be 8 Digit";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                     return;
                 }
                 bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSORUPACCGENINFO", gencode, Desc, txtsirtdesc, "", "", "",
@@ -129,11 +137,16 @@ namespace RealERPWEB.F_17_Acc
                 this.ShowInformation();
                 if (result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                
+                    msg = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Parent Code Not Found!!!";
+     
+                    msg = "Parent Code Not Found!!!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                 }
                 this.grvacc.EditIndex = -1;
                 this.grvacc_DataBind();
@@ -149,7 +162,9 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
 
@@ -157,19 +172,19 @@ namespace RealERPWEB.F_17_Acc
         {
             try
             {
-                this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                DataTable tbl1 = (DataTable)Session["storedata"];
 
+                DataTable tbl1 = (DataTable)Session["storedata"];
+                this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();
-                ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = false;
-                double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
-                ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Clear();
-                for (int i = 1; i <= TotalPage; i++)
-                    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-                if (TotalPage > 1)
-                    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = true;
-                ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
+                //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = false;
+                //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
+                //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Clear();
+                //for (int i = 1; i <= TotalPage; i++)
+                //    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+                //if (TotalPage > 1)
+                //    ((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = true;
+                //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
             }
             catch (Exception ex)
             {
@@ -225,21 +240,22 @@ namespace RealERPWEB.F_17_Acc
 
         protected void lnkok_Click(object sender, EventArgs e)
         {
+            string msg = "";
             try
             {
                 if (this.lnkok.Text == "Ok")
                 {
 
                     this.lnkok.Text = "New";
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "";
+                 
                     this.LblBookName1.Text = "Code Book:";
-                    this.ddlGenCodeBook.Visible = false;
-                    this.ddlOthersBookSegment.Visible = false;
-                    this.lblGenCode.Visible = true;
-                    this.lblGenCode0.Visible = true;
-                    this.ibtnSrch.Visible = true;
-                    this.lblGenCode.Text = this.ddlGenCodeBook.SelectedItem.ToString().Trim();
-                    this.lblGenCode0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+                    this.ddlGenCodeBook.Enabled = false;
+                    this.ddlOthersBookSegment.Enabled = false;
+                    //this.lblGenCode.Visible = true;
+                    //this.lblGenCode0.Visible = true;
+                    //this.ibtnSrch.Visible = true;
+                    //this.lblGenCode.Text = this.ddlGenCodeBook.SelectedItem.ToString().Trim();
+                    //this.lblGenCode0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
 
                     this.ShowInformation();
                 }
@@ -253,8 +269,8 @@ namespace RealERPWEB.F_17_Acc
                     this.ibtnSrch.Visible = false;
                     this.lblGenCode.Visible = false;
                     this.lblGenCode0.Visible = false;
-                    this.ddlGenCodeBook.Visible = true;
-                    this.ddlOthersBookSegment.Visible = true;
+                    this.ddlGenCodeBook.Enabled = true;
+                    this.ddlOthersBookSegment.Enabled = true;
                     this.grvacc.DataSource = null;
                     this.grvacc.DataBind();
 
@@ -263,7 +279,9 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Information not found!!!!";
+
+                msg = "Information not found!!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
         }
 

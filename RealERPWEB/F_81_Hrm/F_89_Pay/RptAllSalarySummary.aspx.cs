@@ -21,7 +21,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             if (!IsPostBack)
             {
                 this.GetMonth();
-                lnkOk_Click(null,null);
+                lnkOk_Click(null, null);
             }
         }
         private string GetComCode()
@@ -59,7 +59,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = false;
-                    
+
                     break;
                 case 1:
                     this.PnlBankSumary.Visible = false;
@@ -144,7 +144,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
                 default:
                     break;
-            }          
+            }
         }
 
         private void GetTotalSalSum()
@@ -192,7 +192,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
 
             Session["tblSalSummary"] = ds1.Tables[0];
-         
+
             this.Data_bind();
         }
 
@@ -288,7 +288,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
 
             Session["tblSalSummary"] = ds1.Tables[0];
-            Session["tblbankdesc"] =ds1.Tables[1];
+            Session["tblbankdesc"] = ds1.Tables[1];
             this.Data_bind();
             //this.exportexcel();
         }
@@ -303,7 +303,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comcod = this.GetComCode();
 
             DataTable dt = (DataTable)Session["tblSalSummary"];
-            
+
             int index = this.rbtnAtten.SelectedIndex;
             switch (index)
             {
@@ -324,18 +324,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
                     //    this.GvModPayment.Columns[i].Visible = false;
                     j = 2;
-                  
+
                     for (i = 0; i < dtp.Rows.Count; i++)
-                    {                   
+                    {
                         this.GvModPayment.Columns[j].HeaderText = dtp.Rows[i]["bankname"].ToString();
-                        j++;                     
+                        j++;
                     }
                     this.GvModPayment.DataSource = dt;
                     this.GvModPayment.DataBind();
                     Session["Report1"] = GvModPayment;
                     ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
-                case 2:               
+                case 2:
                     //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
                     //    this.GvModPayment.Columns[i].Visible = false;
                     j = 1;
@@ -377,7 +377,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
 
-                case 4:               
+                case 4:
                     this.GvGrossRecon.DataSource = dt;
                     this.GvGrossRecon.DataBind();
 
@@ -401,7 +401,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     this.GvTotalSumm.DataSource = dt;
                     this.GvTotalSumm.DataBind();
-
                     Session["Report1"] = GvTotalSumm;
                     ((HyperLink)this.GvTotalSumm.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
@@ -412,11 +411,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected void Page_PreInit(object sender, EventArgs e)
         {
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
-    
+            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
         }
-
-
         private void lnkPrint_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -438,30 +434,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string getdate = this.ddlmon.SelectedValue.ToString();
             string subyear = getdate.Substring(0, 4);
-            int submonth=Convert.ToInt32(getdate.Substring(4));
-    
+            int submonth = Convert.ToInt32(getdate.Substring(4));
+
             DateTimeFormatInfo dateTimeInfo = new DateTimeFormatInfo();
-           string mon =dateTimeInfo.GetAbbreviatedMonthName(submonth);
+            string mon = dateTimeInfo.GetAbbreviatedMonthName(submonth);
 
             string month = mon + "-" + subyear;
-
-
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>();
-     
-          
-
             LocalReport Rpt1 = new LocalReport();
 
             int index = this.rbtnAtten.SelectedIndex;
             if (index == 0)
             {
-                 rptitle= "All bank summary "+month;
-                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
-                 Rpt1.EnableExternalImages = true;
+                rptitle = "All bank summary " + month;
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
+                Rpt1.EnableExternalImages = true;
             }
             else if (index == 1)
             {
-                rptitle = "Mode of payment "+month;
+                rptitle = "Mode of payment " + month;
                 var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
                 Rpt1.EnableExternalImages = true;
@@ -485,7 +476,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else if (index == 3)
             {
-                rptitle = "Gross salary comparison for " +month;
+                rptitle = "Gross salary comparison for " + month;
                 var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossComparison", list, list2, null);
                 Rpt1.EnableExternalImages = true;
@@ -493,33 +484,29 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
-                  string monname = dt2.Rows[i]["monname"].ToString();
-                    Rpt1.SetParameters(new ReportParameter("monname"+i.ToString(), monname));
+                    string monname = dt2.Rows[i]["monname"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
                 }
             }
-            else 
+            else
             {
-                rptitle = "Reconciliation of gross salary"+ month;
+                rptitle = "Reconciliation of gross salary" + month;
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossRecon", list, null, null);
                 Rpt1.EnableExternalImages = true;
             }
-      
-   
+
+
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("RptTitle", rptitle));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-         
+
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
         }
-
-
-
-}
-
+    }
+    
 }

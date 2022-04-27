@@ -1463,7 +1463,7 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("txtDate", Ftdate));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "RECEIPTS & PAYMENT(CUSTOMIZED) - DETAILS"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Receipts & Payment Report"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Print Source :" + username + " , " + session + " , " + printdate));
 
             Session["Report1"] = Rpt1;
@@ -2435,10 +2435,12 @@ namespace RealERPWEB.F_17_Acc
 
                 LinkButton HyRecDesc = (LinkButton)e.Row.FindControl("btnRecDescrp03");
                 Label lgvRecAmt = (Label)e.Row.FindControl("lblgvrecpamrp03");
-
+                Label lblgvtorecam = (Label)e.Row.FindControl("lblgvtorecpamrp03");
                 LinkButton HyPayDesc = (LinkButton)e.Row.FindControl("btnPayDescrp03");
 
                 Label lgvPayAmt = (Label)e.Row.FindControl("lgvpayamrp03");
+                Label lgvtopayam = (Label)e.Row.FindControl("lgvtopayamrp03");
+                
 
 
                 string code1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recpcode")).ToString();
@@ -2449,16 +2451,18 @@ namespace RealERPWEB.F_17_Acc
                     return;
                 }
 
-                if (ASTUtility.Right(code1, 8) == "00000000" || ASTUtility.Right(code1, 8) == "AAAAAAAA")
+                if (ASTUtility.Right(code1, 3) == "000" || ASTUtility.Right(code1, 3) == "AAA")
                 {
 
                     HyRecDesc.Font.Bold = true;
                     lgvRecAmt.Font.Bold = true;
+                    lblgvtorecam.Font.Bold = true;
                 }
-                if (ASTUtility.Right(code2, 8) == "00000000" || ASTUtility.Right(code1, 8) == "AAAAAAAA")
+                if (ASTUtility.Right(code2, 3) == "000" || ASTUtility.Right(code1, 3) == "AAA")
                 {
                     HyPayDesc.Font.Bold = true;
                     lgvPayAmt.Font.Bold = true;
+                    lgvtopayam.Font.Bold = true;
                 }
 
                 if (ASTUtility.Left(code1, 2) == "OP" || ASTUtility.Left(code1, 2) == "RP" || ASTUtility.Left(code1, 2) == "CL")

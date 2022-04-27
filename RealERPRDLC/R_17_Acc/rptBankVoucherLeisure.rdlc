@@ -1722,7 +1722,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Accounts Manager</Value>
+                      <Value>COO</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>cambria</FontFamily>
@@ -1739,9 +1739,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox29</rd:DefaultName>
               <Top>1.63151in</Top>
-              <Left>3.80437in</Left>
+              <Left>3.96687in</Left>
               <Height>0.1875in</Height>
-              <Width>1.34944in</Width>
+              <Width>1.16194in</Width>
               <ZIndex>8</ZIndex>
               <Style>
                 <Border>
@@ -1764,7 +1764,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Checked By </Value>
+                      <Value>Accounts Manager </Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>cambria</FontFamily>
@@ -1798,9 +1798,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox28</rd:DefaultName>
               <Top>1.63151in</Top>
-              <Left>2.51965in</Left>
+              <Left>2.48215in</Left>
               <Height>0.1875in</Height>
-              <Width>1.07639in</Width>
+              <Width>1.36389in</Width>
               <ZIndex>9</ZIndex>
               <Style>
                 <Border>

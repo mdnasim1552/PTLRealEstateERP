@@ -2297,7 +2297,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             usrsname = (comcod == "3365" ? "bti" + usrsname : usrsname);
             string usermail = "";
             string webmailpwd = "";
-            string userRole = "1";
+            string userRole = "3";
             usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
             bool result = HRData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
                       usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");

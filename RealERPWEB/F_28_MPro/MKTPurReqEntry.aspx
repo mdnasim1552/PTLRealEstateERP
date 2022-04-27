@@ -188,7 +188,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click"
-                                            CssClass="btn btn-primary btn-sm form-control">Total</asp:LinkButton>
+                                            CssClass="btn btn-warning btn-sm form-control">Total</asp:LinkButton>
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
