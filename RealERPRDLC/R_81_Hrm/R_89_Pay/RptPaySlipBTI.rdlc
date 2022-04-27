@@ -796,7 +796,7 @@
                                   <Style />
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!joindate.Value</Value>
+                                  <Value>=cDate(Fields!joindate.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1221,6 +1221,13 @@
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
+                                <TextRun>
+                                  <Value>: </Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
                                 <TextRun>
                                   <Value>=Format(Fields!wd.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
@@ -1845,7 +1852,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
