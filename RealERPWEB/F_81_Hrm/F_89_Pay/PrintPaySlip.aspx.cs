@@ -51,17 +51,37 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string frmdate,  todate;
             string empid = this.Request.QueryString["empid"].ToString();
             string monthid = this.Request.QueryString["monthid"].ToString();
-           
+          
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
 
-            frmdate = Convert.ToDateTime(ASTUtility.Right(monthid, 2) + "/01/" + ASTUtility.Left(monthid, 4)).ToString("dd-MMM-yyyy");
+                default:
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                    break;
+            }
+
+            //frmdate =    Convert.ToDateTime(ASTUtility.Right(monthid, 2)+ "/"+ ASTUtility.Left(monthid, 4)).ToString("dd-MMM-yyyy");
             todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            string month = Convert.ToDateTime(frmdate).ToString("MMM-yyyy");
+            string month = Convert.ToDateTime(todate).ToString("MMM-yyyy");
             string projectcode = "%";
             string section = "%";
             string CompanyName = "94";           
             DataSet ds3 = accData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
-            DataTable dt = ds3.Tables[0];
 
+            DataTable dt4 = ds3.Tables[0];
+            
+            // this part added for Taka in word as per payslip print from menu payslip
+            Session["tblpay"] = dt4;
+            this.TakaInWord();
+            DataTable dt =(DataTable) Session["tblpay"];
             LocalReport Rpt1 = new LocalReport();
 
             if (comcod == "4301")
@@ -109,7 +129,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
                 Rpt1.EnableExternalImages = true;
-
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("compName", comnam));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("txtHeader2", "(Month of " + month + ")"));
@@ -190,6 +210,24 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
 
 
+        }
+
+        private void TakaInWord()
+        {
+            try
+            {
+                DataTable dt = (DataTable)Session["tblpay"];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    double netpay = Convert.ToDouble(dt.Rows[i]["netpay"]);
+                    dt.Rows[i]["aminword"] = ASTUtility.Trans(netpay, 2);
+                }
+                Session["tblpay"] = dt;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
     }
