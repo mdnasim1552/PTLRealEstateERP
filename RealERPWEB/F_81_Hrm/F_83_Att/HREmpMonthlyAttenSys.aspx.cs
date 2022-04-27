@@ -198,9 +198,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string Empid = this.ddlEmpName.SelectedValue.ToString();
             string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
+          
 
 
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "MONTHLYTENDENCE", Empid, MonthId, "", "", "", "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTATTENDANCESYSTEM", Empid, MonthId, "", "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvMonthlyAttn.DataSource = null;
