@@ -209,6 +209,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0402000", "0402181", "F_04_Bgd", "RptBgdPrjojectNew?", "Type=Report", "Budgeted Reports", "Budget", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "0402000", "0402182", "F_04_Bgd", "TokenService", "", "Token Services", "Budget", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "0402000", "0402184", "F_22_Sal", "SalesCodeBook?", "Type=Budget", "Code Book (Unit & R/A)", "Budget", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "0451000", "0451001", "F_99_Allinterface", "BudgetInterface", "", "Budget", "Budget-Interface", "False", "False", "False", "False" }); ;
 
@@ -282,6 +283,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0703000", "0701141", "F_07_Ten", "CivilConBOQ?", "Type=Entry", "Civil Construction BOQ", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701142", "F_07_Ten", "UnitConversion", "", "Unit Conversion", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701143", "F_22_Sal", "SalesCodeBook?", "Type=Sales&Code=", "Unit Code Book ", "Tender", "False", "False", "False", "False" }); ;
+        
 
             #endregion
 
@@ -3900,6 +3902,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Design & Consultancy", "F_17_Acc/AccSubCodeBook?InputType=Overhead", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Work List", "F_17_Acc/AccSubCodeBook?InputType=Wrkschedule", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000004", "10. Standard Analysis", "F_04_Bgd/BgdStdAna", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000005", "11. Code Book (Unit & R/A)", "F_22_Sal/SalesCodeBook?Type=Budget", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Entry", "", "", false, "mb" });
