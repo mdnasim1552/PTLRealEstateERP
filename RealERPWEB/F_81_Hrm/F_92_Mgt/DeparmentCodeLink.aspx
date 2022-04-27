@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="DeparmentCodeLink.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.DeparmentCodeLink" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -26,12 +27,12 @@
     </script>
 
     <style>
-        .moduleItemWrpper{
-            overflow:visible;
+        .moduleItemWrpper {
+            overflow: visible;
         }
     </style>
 
-    
+
 
 
 
@@ -39,7 +40,7 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-              <div class="card card-fluid" style="min-height:600px;">
+            <div class="card card-fluid" style="min-height: 600px;">
                 <div class="card-body">
 
                     <div class="row">
@@ -47,15 +48,15 @@
 
                         <div class="col-md-1">
                             <div class="form-group">
-                                <label class="control-label lblmargin-top9px" >Page Size</label>
+                                <label class="control-label lblmargin-top9px">Page Size</label>
                             </div>
                         </div>
 
                         <div class="col-md-1">
                             <div class="form-group">
-                               
+
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="custom-select"
-                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" 
+                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
                                     Width="85px">
                                     <asp:ListItem Value="10">10</asp:ListItem>
                                     <asp:ListItem Value="20">20</asp:ListItem>
@@ -68,20 +69,20 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        </div>
+                    </div>
 
 
                     <div class="row">
 
-                        
 
-                        
-                        <asp:GridView ID="grvacc" runat="server"  CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
+
+
+                        <asp:GridView ID="grvacc" runat="server" CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15"
                             OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True" BorderStyle="None" Width="724px">
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                 Mode="NumericFirstLast" />
-                            
+
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No." HeaderStyle-Width="30px">
                                     <ItemTemplate>
@@ -128,26 +129,12 @@
 
                                 <asp:TemplateField HeaderText=" Description">
                                     <EditItemTemplate>
-                                       <%-- <asp:Panel ID="pnlTeam" runat="server" BorderColor="Yellow" BorderStyle="Solid"
-                                            BorderWidth="1px">
-
-
-                                            <table style="width: 100%;">
-                                                <tr>
-                                                    <td>
-                                                        <asp:TextBox ID="txtSearchteam" runat="server" Visible="false" CssClass=" inputtextbox" TabIndex="4" Width="50px"></asp:TextBox>
-                                                    </td>
-                                                    <td>
-                                                        <asp:LinkButton ID="ibtnSrchteam" Visible="false" runat="server" OnClick="ibtnSrchteam_Click" CssClass="btn btn-success srearchBtn"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
-
-                                                    </td>
-                                                    <td>--%>
-                                                        <asp:DropDownList ID="ddlteam" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
-                                                      </asp:DropDownList>
-                                                 <%--   </td>
-                                                </tr>
-                                            </table>
-                                        </asp:Panel>--%>
+                                         <asp:TextBox ID="txtdescdept" runat="server" MaxLength="150" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")) %>'
+                                                Width="80px"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlteam" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                        </asp:DropDownList>
+                                       
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvcatdesc" runat="server"
@@ -159,60 +146,32 @@
 
 
 
-                                    <asp:TemplateField HeaderText="Group Description">
+                                <asp:TemplateField HeaderText="Group Description">
                                     <EditItemTemplate>
-                                        <%--<asp:Panel ID="pnlGroup" runat="server" BorderColor="Yellow" BorderStyle="Solid"
-                                            BorderWidth="1px">--%>
-
-
-                                           <%-- <table style="width: 100%;">
-                                                <tr>
-                                                    <td>
-                                                        <asp:TextBox ID="txtgSearchteam" runat="server" Visible="false" CssClass=" inputtextbox" TabIndex="4" Width="50px"></asp:TextBox>
-                                                    </td>
-                                                    <td>
-                                                        <asp:LinkButton ID="ibtngSrchteam" Visible="false" runat="server" OnClick="ibtnSrchteam_Click" CssClass="btn btn-success srearchBtn"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
-
-                                                    </td>
-                                                    <td>--%>
-                                                        <asp:DropDownList ID="ddlgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
-                                                        </asp:DropDownList>
-                                                    <%--</td>
-                                                </tr>
-                                            </table>
-                                        </asp:Panel>--%>
+                                           <asp:TextBox ID="txtgdesc" runat="server" MaxLength="150" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
+                                                Width="80px"></asp:TextBox>
+                                       
+                                        <asp:DropDownList ID="ddlgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                        </asp:DropDownList>
+                                        
                                     </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvgcatdesc" runat="server"
+                                        <asp:Label ID="lblgvgpcatdesc" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
                                             Width="320px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Width="150px" />
                                 </asp:TemplateField>
 
-                                
-                                    <asp:TemplateField HeaderText="Attandance Description">
+
+                                <asp:TemplateField HeaderText="Attandance Description">
                                     <EditItemTemplate>
-                                        <%--<asp:Panel ID="pnlGroup" runat="server" BorderColor="Yellow" BorderStyle="Solid"
-                                            BorderWidth="1px">--%>
-
-
-                                           <%-- <table style="width: 100%;">
-                                                <tr>
-                                                    <td>
-                                                        <asp:TextBox ID="txtgSearchteam" runat="server" Visible="false" CssClass=" inputtextbox" TabIndex="4" Width="50px"></asp:TextBox>
-                                                    </td>
-                                                    <td>
-                                                        <asp:LinkButton ID="ibtngSrchteam" Visible="false" runat="server" OnClick="ibtnSrchteam_Click" CssClass="btn btn-success srearchBtn"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
-
-                                                    </td>
-                                                    <td>--%>
-                                                        <asp:DropDownList ID="ddlattgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
-                                                        </asp:DropDownList>
-                                                    <%--</td>
-                                                </tr>
-                                            </table>
-                                        </asp:Panel>--%>
+                                        <asp:TextBox ID="txtattgdesc" runat="server" MaxLength="150" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attgropdesc")) %>'
+                                                Width="80px"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlattgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                        </asp:DropDownList>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvgcatdesc" runat="server"
@@ -224,10 +183,10 @@
 
                             </Columns>
 
-                             <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
-                                    <FooterStyle CssClass="grvFooter" />
-                                    <RowStyle CssClass="grvRows" />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <FooterStyle CssClass="grvFooter" />
+                            <RowStyle CssClass="grvRows" />
                         </asp:GridView>
 
 

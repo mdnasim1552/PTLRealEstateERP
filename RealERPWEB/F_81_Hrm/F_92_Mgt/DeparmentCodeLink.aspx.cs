@@ -95,10 +95,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void grvacc_RowEditing(object sender, GridViewEditEventArgs e)
         {
 
-
             this.grvacc.EditIndex = e.NewEditIndex;
             this.grvacc_DataBind();
             ViewState["gindex"] = e.NewEditIndex;
+
             int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
             string acgcode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
             //string actcode = ((Label)grvacc.Rows[e.NewEditIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
@@ -109,28 +109,36 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DropDownList ddlgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup");
             DropDownList ddlattgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlattgroup");
 
+            //string deptname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam")).SelectedItem.ToString();
+            //string grpname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup")).SelectedItem.ToString();
+            //string attgrpname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
+            TextBox deptname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtdescdept");
+            TextBox grpname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgdesc");
+            TextBox attgrpname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtattgdesc");
+            ///-for department wise group (salary statement)
             ddlteam.DataTextField = "acgdesc";
             ddlteam.DataValueField = "acgcode";
             ddlteam.DataSource = (DataTable)ViewState["tblgencode"];
             ddlteam.DataBind();
-            ddlteam.SelectedValue = agccode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+            //ddlteam.SelectedValue = agccode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+            ddlteam.SelectedItem.Text = deptname.Text;
 
-
+            // for Group Description (Salary Sheet)
             ddlgroup.DataTextField = "gropdesc";
             ddlgroup.DataValueField = "gropcode";
             ddlgroup.DataSource = (DataTable)ViewState["tblgroupcode"];
             ddlgroup.DataBind();
-            ddlgroup.SelectedValue = gropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+            ddlgroup.SelectedItem.Text = grpname.Text;
+            //ddlgroup.SelectedValue = gropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
 
             // for Attadance Part 
-
-
             ddlattgroup.DataTextField = "attgropdesc";
             ddlattgroup.DataValueField = "attgropcode";
             ddlattgroup.DataSource = (DataTable)ViewState["tblattgroupcode"];
             ddlattgroup.DataBind();
-            ddlattgroup.SelectedValue = attgropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
-             
+            ddlattgroup.SelectedItem.Text = attgrpname.Text;
+            //ddlattgroup.SelectedValue = attgropcode;
+           
         }
 
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)

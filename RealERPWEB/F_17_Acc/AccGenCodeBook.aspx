@@ -37,6 +37,25 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
         }
     </style>
 
+    
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+    </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 

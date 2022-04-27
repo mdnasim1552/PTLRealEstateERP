@@ -60,7 +60,7 @@
 
             });
 
-
+            $('.chzn-select').chosen({ search_contains: true });
 
         }
 
@@ -189,7 +189,7 @@
                         <ItemTemplate>
                             <asp:Label ID="lgIdCard" runat="server"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
-                                Width="40px"></asp:Label>
+                                ></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

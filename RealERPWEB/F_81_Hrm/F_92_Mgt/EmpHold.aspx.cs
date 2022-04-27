@@ -124,8 +124,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string compcode = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
             string deptcode = (this.ddlDepartment.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 7) + "%";
             string Section = (this.ddlSection.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlSection.SelectedValue.ToString() + "%"; //"%"; 
-            string txtSProject = "%" + this.ddlEmployee.Text + "%";
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETEMPNAME", compcode, deptcode, Section, txtSProject, "", "", "", "", "");
+            //string txtSProject = "%" + this.ddlEmployee.Text + "%";
+                        string txtSProject = "%%";
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETEMPNAME", compcode, deptcode, Section, txtSProject,"", "", "", "", "");
             Session["tblempdsg"] = ds3.Tables[0];
             this.ddlEmployee.DataTextField = "empname";
             this.ddlEmployee.DataValueField = "empid";

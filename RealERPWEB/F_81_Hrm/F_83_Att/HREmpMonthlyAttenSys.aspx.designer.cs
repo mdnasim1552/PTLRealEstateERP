@@ -11,7 +11,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 {
 
 
-    public partial class HREmpAbsCt
+    public partial class HREmpMonthlyAttenSys
     {
 
         /// <summary>
@@ -33,76 +33,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// Label6 control.
+        /// Label13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-
-        /// <summary>
-        /// ddlCompanyAgg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCompanyAgg;
-
-        /// <summary>
-        /// lbldeptnameagg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldeptnameagg;
-
-        /// <summary>
-        /// ddldepartmentagg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldepartmentagg;
-
-        /// <summary>
-        /// lblsection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsection;
-
-        /// <summary>
-        /// ddlProjectName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
-
-        /// <summary>
-        /// lblpreAdv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpreAdv;
-
-        /// <summary>
-        /// TxtIDCard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtIDCard;
+        protected global::System.Web.UI.WebControls.Label Label13;
 
         /// <summary>
         /// imgbtnEmployee control.
@@ -123,13 +60,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpName;
 
         /// <summary>
-        /// Label4 control.
+        /// Label16 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label Label16;
 
         /// <summary>
         /// ddlMonth control.
@@ -141,21 +78,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
 
         /// <summary>
-        /// lnkbtnUpdate control.
+        /// lnkbtnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnUpdate;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
 
         /// <summary>
-        /// chkDate control.
+        /// gvMonthlyAttn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkDate;
+        protected global::System.Web.UI.WebControls.GridView gvMonthlyAttn;
     }
 }
