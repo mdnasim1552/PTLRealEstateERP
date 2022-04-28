@@ -490,6 +490,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else if(index==4)
             {
+                
                 rptitle = "Reconciliation of gross salary" + month;
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossRecon", list, null, null);
                 Rpt1.EnableExternalImages = true;
