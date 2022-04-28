@@ -156,10 +156,12 @@
                 </div>
                 <div class="card-body">
                     <div class="col-md-12">
+                         
                         <asp:CheckBoxList ID="chkDate" runat="server" Font-Bold="True" CssClass="chkBoxControl"
                             ForeColor="#000" RepeatDirection="Horizontal" Width="900px"
                             RepeatColumns="7">
                         </asp:CheckBoxList>
+                        
                     </div>
                 </div>
             </div>
