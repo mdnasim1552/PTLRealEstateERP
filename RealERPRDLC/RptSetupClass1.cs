@@ -982,6 +982,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.rptModePayment": Rpt1a = SetModePayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptNetComparison": Rpt1a = SetNetComparison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptGrossComparison": Rpt1a = SetGrossComparison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.rptTotalSal": Rpt1a = SetTotalSal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
 
@@ -1044,6 +1045,13 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>)RptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>)RptDataSet2));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetTotalSal(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>)RptDataSet2));
             return Rpt1a;
         }
 
