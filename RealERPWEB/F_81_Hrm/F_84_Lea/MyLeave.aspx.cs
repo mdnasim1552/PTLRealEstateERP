@@ -300,6 +300,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                                 this.btnSave.Enabled = true;
                             }
                         }
+                        else
+                        {
+                            this.btnSave.Enabled = true;
+                        }
                         
 
                     }
