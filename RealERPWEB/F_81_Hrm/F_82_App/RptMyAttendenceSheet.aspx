@@ -25,6 +25,13 @@
         .lblName2 {
             width: 105px;
         }
+
+        table{
+            width:100%;
+        }
+        .card-body{
+            padding:10px!important;
+        }
     </style>
 
 
@@ -266,8 +273,10 @@
                                     <th style="text-align:center">Penalty</th>
                                     <th style="text-align:center">Official Hour</th>
                                     <th style="text-align:center">Remarks</th>
+                                        <th style="text-align:center">Notes</th>
                                     <th style="text-align:center">Request Status</th>
-                                  <th style="text-align:center">Notes</th>
+                                     <th style="text-align:center">Request Type</th>
+                                
                                     <th></th>
                                     <th></th>
 
@@ -308,29 +317,35 @@
                                 <td>
                                     <asp:Label ID="lbldtimehour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actTimehour")).ToString() %>'></asp:Label>
                                 </td>
-               
+                               <td>
+                                     <asp:Label ID="lblisremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isremarks")).ToString() %>'></asp:Label>
+                                </td>
+                                            <td>
+                                     <asp:Label ID="lblapremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apremarks")).ToString() %>'></asp:Label>
+                                </td
+                                     
                                 <td style="text-align:center">
                                     
                                     <asp:Label ID="Label1" runat="server" CssClass="control-label badge bg-green text-white" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")).ToString() %>'></asp:Label>
 
                                 </td>
 
-                                                  <td style="width:320px">
-                                    <asp:Label ID="lblRequid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rqid")).ToString() %>'></asp:Label>
-                                    <asp:Label ID="lblisremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isremarks")).ToString() %>'></asp:Label>
+                                             <td>
+                                     <asp:Label ID="lblreqtype"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqtype")).ToString() %>'></asp:Label>
+                                </td>
+                                 
 
-                                </td>
-                                <td>
-                                     <asp:Label ID="lblapremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apremarks")).ToString() %>'></asp:Label>
-                                </td>
-                                <td>
+          
+
+                        
+                               <td style="text-align:center">
                                     <asp:CheckBox ID="chkvmrno" runat="server" Enabled="False" Visible="false"
                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="True"||Convert.ToString(DataBinder.Eval(Container.DataItem, "earleaveapp"))=="True" %>'
                                         Width="20px" />
                                     <asp:LinkButton ID="lnkRequstApply" Visible="false" ToolTip="For Approval Request" runat="server" OnClick="lnkRequstApply_Click" CssClass="btn btn-sm btn-primary">Apply Request</asp:LinkButton>
                                     
                                 </td>
-                                <td>
+                              <td style="text-align:center">
                                    <asp:HyperLink ID="hyplnkApplyLv" Target="_blank"   Visible="false" runat="server"  CssClass="btn btn-sm btn-success">Apply Leave</asp:HyperLink>
 
                                 </td>

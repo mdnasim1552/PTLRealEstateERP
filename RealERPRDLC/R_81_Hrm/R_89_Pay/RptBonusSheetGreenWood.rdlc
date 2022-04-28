@@ -1426,9 +1426,7 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <KeepWithGroup>Before</KeepWithGroup>
                   <RepeatOnNewPage>true</RepeatOnNewPage>
-                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="refno">
