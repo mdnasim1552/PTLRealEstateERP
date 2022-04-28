@@ -31,8 +31,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-                this.GetCompanyName();
                 this.GetMonth();
+                this.GetCompanyName();
+               
                 this.ddlMonth_SelectedIndexChanged(null, null);
                 //this.GetEmployeeName();
 
@@ -221,19 +222,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string txtCompany = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
+            Session["tblcompany"] = ds5.Tables[0];
 
             this.ddlCompanyAgg.DataTextField = "actdesc";
             this.ddlCompanyAgg.DataValueField = "actcode";
             this.ddlCompanyAgg.DataSource = ds5.Tables[0];
             this.ddlCompanyAgg.DataBind();
             this.GetDepartment();
-            this.ddlCompanyAgg_SelectedIndexChanged(null, null);
+            //this.ddlCompanyAgg_SelectedIndexChanged(null, null);
         }
         private void GetDepartment()
         {
             string comcod = this.GetComeCode();
             //   string type = this.Request.QueryString["Type"].ToString().Trim();
-            string Company = ((this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)) + "%";
+          //  string Company = ((this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)) + "%";
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyAgg.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+
+
 
             string txtSProject = "%%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAMENEW", Company, txtSProject, "", "", "", "", "", "", "");
@@ -248,7 +254,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void GetProjectName()
         {
             string comcod = this.GetComeCode();
-            string deptcode = this.ddldepartmentagg.SelectedValue.ToString() + "%";
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyAgg.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+            string deptcode = this.ddldepartmentagg.SelectedValue.ToString()== "000000000000" ? Company : this.ddldepartmentagg.SelectedValue.ToString() + "%";
+
+ 
+
             string txtSProject = "%%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAMENEW", deptcode, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
@@ -261,7 +273,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void GetEmpName()
         {
             string comcod = this.GetComeCode();
-            string ProjectCode = this.ddlProjectName.SelectedValue.ToString() + "%";
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyAgg.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+            string dptcode = this.ddldepartmentagg.SelectedValue.ToString() == "000000000000" ? Company : ASTUtility.Left(this.ddldepartmentagg.SelectedValue.ToString(),9) + "%";
+            string ProjectCode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? dptcode : this.ddlProjectName.SelectedValue.ToString() + "%";
+
+
+
+            
             string txtSProject = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
