@@ -34,7 +34,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.GetCompany();
                 this.GetDepartName();
                 this.GetDesignation();
-
+                ibtnEmpList_Click(null,null);
             }
 
         }
@@ -124,8 +124,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             Session.Remove("tblempdsg");
             string comcod = this.GetComeCode();
-            string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
-            string deptid = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString() + "%";
+            string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "94%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
+            string deptid = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "94%" : this.ddlDepartment.SelectedValue.ToString() + "%";
             string txtEmpname = this.ddlEmpList.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLIST", deptid, txtEmpname, company, "", "", "", "", "", "");
             this.ddlEmpList.DataTextField = "empname";
@@ -183,7 +183,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetEmplist();
+            ibtnEmpList_Click(null, null);
+
         }
         protected void ibtnEmpList_Click(object sender, EventArgs e)
         {
