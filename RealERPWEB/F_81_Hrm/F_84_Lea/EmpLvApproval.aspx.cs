@@ -415,11 +415,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DropDownList ddlgval;
             for (int i = 0; i < this.gvLvReq.Rows.Count; i++)
             {
+                TextBox gcod = (TextBox)this.gvLvReq.Rows[i].FindControl("lblgvhrdesc");
                 ddlgval = ((DropDownList)this.gvLvReq.Rows[i].FindControl("ddlLvtype"));
                 ddlgval.DataTextField = "hrgdesc";
                 ddlgval.DataValueField = "hrgcod";
                 ddlgval.DataSource = dt;
                 ddlgval.DataBind();
+                //ddlgval.SelectedItem.Text = gcod.Text;
                 ddlgval.SelectedValue = ((Label)this.gvLvReq.Rows[i].FindControl("lblgvgcod")).Text.Trim();
             }
         }
@@ -707,11 +709,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (lapplied > 0)
                 {
                    
-                    string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
-                    string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("yyyyMMdd");
+                    string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("yyyyMMdd");
                     
-
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT_RESET", empid, frmdate, todate, "", "", "", "","", "", "", "", "", "");
+                    
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT_RESET", empid, frmdate, todate, "1", "", "", "","", "", "", "", "", "");
 
                     if (!result)
                     {
