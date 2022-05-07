@@ -1379,6 +1379,10 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2802000", "2802050", "F_28_MPro", "MktMRREntry?", "Type=Entry", "Marketing Material Receive", "Marketing Procurement", "False", "False", "False", "False" });
 
+
+            tblObj.Rows.Add(new Object[] { "2802000", "2802060", "F_28_MPro", "AccMktMonthlyBgd?", "Type=All", "Monthly Budget (Marketing)", "Marketing Procurement", "False", "False", "False", "False" });
+
+
             //Report
             tblObj.Rows.Add(new Object[] { "2803000", "2803001", "F_28_MPro", "RptMktProjectStock?", "Type=RptMktStock", "Marketing Material Stock", "Marketing Procurement", "False", "False", "False", "False" });
 
@@ -8256,7 +8260,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000018","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000019", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000020","", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000021","", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000021", "07. Monthly Budget (Marketing)", "F_28_MPro/AccMktMonthlyBgd?Type=All&actcode=&year=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000022","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000023","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000024", "", "", "", true, "" });
