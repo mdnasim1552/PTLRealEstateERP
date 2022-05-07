@@ -488,11 +488,24 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
                 }
             }
-            else
+            else if(index==4)
             {
+                
                 rptitle = "Reconciliation of gross salary" + month;
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossRecon", list, null, null);
                 Rpt1.EnableExternalImages = true;
+            }
+            else
+            {
+                rptitle = "Total " + month;
+                var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptTotalSal", list, list2, null);
+                Rpt1.EnableExternalImages = true;
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    string monname = dt2.Rows[i]["monname"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+                }
             }
 
 
