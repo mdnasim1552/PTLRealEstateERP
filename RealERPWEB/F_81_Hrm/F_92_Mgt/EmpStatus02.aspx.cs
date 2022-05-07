@@ -122,26 +122,27 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (type)
             {
                 case "joiningRpt":
+                    if (comcod == "3365")
+                    {
+                        this.desFrom.Visible = false;
+                        this.desTo.Visible = false;
+                    }
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
 
                 case "JoinigdWise":
-                    if (comcod == "3354" || comcod == "3315")
+                    if (comcod == "3365")
                     {
-
-                        this.desFrom.Visible = true;
-                        this.desTo.Visible = true;
-
+                        this.desFrom.Visible = false;
+                        this.desTo.Visible = false;
                     }
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "EmpList":
-                    if(comcod=="3354" || comcod=="3315" || comcod=="3101")
+                    if (comcod == "3365")
                     {
-
-                        this.desFrom.Visible = true;
-                        this.desTo.Visible = true;
-
+                        this.desFrom.Visible = false;
+                        this.desTo.Visible = false;
                     }
                     this.lblfrmdate.Visible = false;
                     this.txtFdate.Visible = false;
@@ -193,13 +194,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.MultiView1.ActiveViewIndex = 10;
                     break;
                 case "TotalEmplist":
-
-                    if (comcod == "3101" || comcod == "3315")
+                    if (comcod == "3365")
                     {
-
-                        this.desFrom.Visible = true;
-                        this.desTo.Visible = true;
-
+                        this.desFrom.Visible = false;
+                        this.desTo.Visible = false;
                     }
                     this.lblfrmdate.Visible = false;
                     this.txtFdate.Visible = false;
@@ -388,10 +386,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "94%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+
             string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
-            string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();           
+            switch (comcod)
+            {
+                case "3365":                    
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+
+
+                    string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETJOINSUMMARY", Fdate, Tdate, Company, Deptid, DesigFrom, DesigTo, "", "", "");
             if (ds4 == null)
@@ -415,15 +426,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             // string Company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                    //pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -453,17 +462,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            
+
             //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                    //pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -533,19 +540,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                case "3315":
-                case "3101":
-
-
-                    desFrom.Visible = true;
-                    desTo.Visible = true;
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -572,25 +573,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                case "3315":
-                case "3101":
-    
-
-                    // pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
+
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETEMPTRANSFERLIST", Fdate, Tdate, Company, Deptid, DesigFrom, DesigTo, "", "", "");
@@ -615,15 +611,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                    //pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -655,15 +649,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                    //pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -711,17 +703,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            
+
             //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                    //pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -756,15 +746,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
             switch (comcod)
             {
-                case "3102":
-                    //pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                case "3365":
+                    DesigFrom = "0399999";
+                    DesigTo = "0300001";
                     break;
                 default:
                     //pnlDesig.Visible = false;

@@ -22,9 +22,10 @@
             grvJoinStat.Scrollable();
           <%--  var gvJoinEmp = $('#<%=this.gvJoinEmp.ClientID %>');
             gvJoinEmp.Scrollable();--%>
-            $('.chzn-select').chosen({ search_contains: true });
             var gvEmpCon = $('#<%=this.gvEmpCon.ClientID %>');
             gvEmpCon.Scrollable();
+            $('.chzn-select').chosen({ search_contains: true });
+
         };
         function Search_Gridview(strKey) {
 
@@ -77,7 +78,7 @@
                                 <label for="ddlLvType">
                                     Company
                                 </label>
-                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true">
+                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -86,7 +87,7 @@
                                 <label for="ddlLvType">
                                     Department
                                 </label>
-                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="True">
                                 </asp:DropDownList>
                                 <asp:Label ID="lblDeptDesc" CssClass="dataLblview" runat="server" Visible="False"></asp:Label>
                             </div>
@@ -97,7 +98,7 @@
                                 <asp:Label ID="lblDept" CssClass="mb-2 d-block" runat="server">Section</asp:Label>
 
 
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm">
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -107,7 +108,7 @@
                                 <asp:Label ID="Label1" CssClass="mb-2 d-block" runat="server">Page Size</asp:Label>
 
 
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -123,12 +124,13 @@
 
 
 
-                        <div class="col-md-2">
-
-
-                            <asp:CheckBox ID="chkbdate" runat="server" AutoPostBack="True" Font-Bold="True" CssClass="" />
-                            <asp:Label ID="withBirth" runat="server">With Birth Date</asp:Label>
-                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-info btn-sm ml-1 mb-2 d-block" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                        <div class="col-md-2 ">
+                            <div class="form-group mt-4 mb-0">
+                                 
+                                <asp:CheckBox ID="chkbdate" runat="server" AutoPostBack="True" Font-Bold="True" CssClass="" />
+                                <asp:Label ID="withBirth" runat="server">With Birth Date</asp:Label>
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-info btn-md mb-2" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            </div>
                         </div>
 
 
@@ -137,7 +139,7 @@
                     <div class="row">
 
                         <%-- <div id="pnlDesig" runat="server">--%>
-                        <div class="col-md-2" id="desFrom" runat="server" visible="false">
+                        <div class="col-md-2" id="desFrom" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblfrmd" CssClass="mb-2 d-block" runat="server">Form</asp:Label>
 
@@ -146,7 +148,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2" id="desTo" runat="server" visible="false">
+                        <div class="col-md-2" id="desTo" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lbltdeg" CssClass="mb-2 d-block" runat="server">To</asp:Label>
 
@@ -201,7 +203,7 @@
                             <asp:MultiView ID="MultiView1" runat="server">
                                 <asp:View ID="JoiningRpt" runat="server">
 
-                                    <asp:GridView ID="grvJoinStat" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table table-hover grvContentarea"
+                                    <asp:GridView ID="grvJoinStat" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AllowPaging="True" OnPageIndexChanging="grvJoinStat_PageIndexChanging" PageSize="300">
                                         <RowStyle />
                                         <Columns>

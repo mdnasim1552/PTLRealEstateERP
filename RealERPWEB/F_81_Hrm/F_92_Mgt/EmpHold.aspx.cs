@@ -19,6 +19,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
     public partial class EmpHold : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -31,8 +32,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.GetCompName();
                 this.GetMonth();
-                this.txtfrmDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.SelectDate();                
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE HOLD LIST";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             }
@@ -46,7 +46,29 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
+        private void SelectDate()
+        {
+            string comcod = this.GetCompCode();
+            DataSet datSetup = compUtility.GetCompUtility();
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            if (datSetup == null)
+                return;
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    this.txtfrmDate.Text= System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
 
+                default:
+                    this.txtfrmDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+            }
+        }
         protected void createtable()
         {
 
