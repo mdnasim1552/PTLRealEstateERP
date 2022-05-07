@@ -1995,7 +1995,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-
+                case "3101":
                 case "3337":
                 case "3336":
                     this.PrintchKSuvastu();
@@ -2029,7 +2029,7 @@ namespace RealERPWEB.F_17_Acc
 
                     PrinChequeAssure();
                     break;
-                case "3101":
+                //case "3101":
                 case "3355":
 
                     PrinChequeGreenWood();
