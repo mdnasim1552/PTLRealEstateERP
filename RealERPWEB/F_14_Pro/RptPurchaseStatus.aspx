@@ -2224,7 +2224,7 @@
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Ref. No">
+                                        <asp:TemplateField HeaderText="Mrf. No">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvgrefno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refno")) %>'
                                                     Width="70px"></asp:Label>
@@ -2232,6 +2232,25 @@
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Chalan. No">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvgchalanno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chalanno")) %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Mrr. ref">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvgmrref" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrref")) %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        
                                         <asp:TemplateField HeaderText="Material Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvMaterials3" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
@@ -2239,19 +2258,21 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Unit ">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lgvUnit2" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
-                                                    Width="25px"></asp:Label>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>
+                                        
 
                                         <asp:TemplateField HeaderText="Specification ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvSpec" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
                                                     Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Unit ">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvUnit2" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
+                                                    Width="25px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -2289,7 +2310,7 @@
                                         <asp:TemplateField HeaderText="Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvamount" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
