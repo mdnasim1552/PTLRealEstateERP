@@ -562,7 +562,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblGross" runat="server"
                                                 CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "empid"))=="AAAAAAAAAAAA"?"fsize":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curamt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                         </ItemTemplate>
@@ -574,9 +574,9 @@
                                     <asp:TemplateField HeaderText="Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgsprev" runat="server"
-                                                CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
+                                                CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "grp"))=="A"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "empid"))=="AAAAAAAAAAAA"?" fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "empid"))=="000000000000"?"fsize":""%>'
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preamt")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />

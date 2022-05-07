@@ -25,6 +25,14 @@
         .lblName2 {
             width: 105px;
         }
+
+        table {
+            width: 100%;
+        }
+
+        .card-body {
+            padding: 10px !important;
+        }
     </style>
 
 
@@ -55,7 +63,7 @@
         }
 
 
-        
+
 
     </script>
 
@@ -81,7 +89,9 @@
             </div>
            <div class="card card-fluid container-data mb-1 mt-5">
                 <div class="card-header" id="mgtCard" runat="server">
+                                
                     <div class="row">
+          
                             <div class="col-md-2 pl-0">
                             <!-- .form-group -->
                             <div class="form-group">
@@ -126,7 +136,7 @@
                 <div class="card-body">
 
 
-
+                     <p><strong>Basic Information</strong></p>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-row">
@@ -258,41 +268,46 @@
                         <HeaderTemplate>
                             <table class="table-striped table-hover table-bordered" >
                                 <tr>
-                                    <th style="text-align:center">SL#</th>
-                                    <th style="text-align:center">Date</th>
-                                    <th style="text-align:center">In Time</th>
-                                    <th style="text-align:center">Out Time</th>
-                                    <th style="text-align:center">Status</th>
-                                    <th style="text-align:center">Penalty</th>
-                                    <th style="text-align:center">Official Hour</th>
-                                    <th style="text-align:center">Remarks</th>
-                                    <th style="text-align:center">Request Status</th>
-                                  <th style="text-align:center">Notes</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th style="text-align:center;width:20px;" >SL#</th>
+                                    <th style="text-align:center;width:94px;">Date</th>
+                                    <th style="text-align:center;width:72px;">In Time</th>
+                                    <th style="text-align:center;width:72px;">Out Time</th>
+                                    <th style="text-align:center;width:100px;">Status</th>
+                                    <th style="text-align:center;width:72px;">Penalty</th>
+                                    <th style="text-align:center;width:72px;">Official Hour</th>
+                                 <th style="text-align:center;width:100px;">Remarks</th>
+                                        <th style="text-align:center;width:100px;">Notes</th>
+                                      <th style="text-align:center;width:100px;">Request Status</th>
+                                       <th style="text-align:center;width:50px;">Request Type</th>
+                                
+                                   <th style="text-align:center;width:100px;">
+                                    </th>
+                                   <th style="text-align:center;width:100px;">
+
+                                    </th>
 
                                 </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <tr>
-                                <td>
+                                <td style="text-align:center">
                                     <asp:Label ID="Laberowid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).ToString() %>'></asp:Label>
 
                                 </td>
-                                <td>
+                                <td style="text-align:center">
                                     <asp:Label ID="lblEmpid" Visible="false"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).ToString() %>'></asp:Label>
                                     <asp:Label ID="lblIntime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblOuttime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblacintime" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy") %>'></asp:Label>
 
                                 </td>
-                                <td>
+                                <td style="text-align:center">
                                     <%--  <asp:Label ID="lblactualin" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt") %>'></asp:Label>--%>
                                     <asp:Label ID="lblactualin" runat="server" Text='<%# 
                                    (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt")==	"12:00 AM" ? "" : 
                                    Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt")) %>'></asp:Label>
                                 </td>
-                                <td>
+                                <td style="text-align:center">
                                     <%--<asp:Label ID="lblactualout" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualout")).ToString("hh:mm tt") %>'></asp:Label>--%>
                                     <asp:Label ID="lblactualout" runat="server" Text='<%# 
                                    (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualout")).ToString("hh:mm tt")==	"12:00 AM" ? "" : 
@@ -302,35 +317,42 @@
                                     <asp:Label ID="lblstatus" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leav")).ToString() %>'></asp:Label>
 
                                 </td>
-                                <td>
+                                <td style="text-align:center">
                                     <asp:Label ID="Label3" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dedtimePenal1")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                 </td>
-                                <td>
+                                <td style="text-align:center">
                                     <asp:Label ID="lbldtimehour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actTimehour")).ToString() %>'></asp:Label>
                                 </td>
-               
-                                <td style="text-align:center">
-                                    
-                                    <asp:Label ID="Label1" runat="server" CssClass="control-label badge bg-green text-white" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")).ToString() %>'></asp:Label>
-
+                               <td >
+                                     <asp:Label ID="lblisremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isremarks")).ToString() %>'></asp:Label>
                                 </td>
-
-                                                  <td style="width:320px">
-                                    <asp:Label ID="lblRequid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rqid")).ToString() %>'></asp:Label>
-                                    <asp:Label ID="lblisremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isremarks")).ToString() %>'></asp:Label>
-
-                                </td>
-                                <td>
+                                            <td style="text-align:center">
                                      <asp:Label ID="lblapremarks"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apremarks")).ToString() %>'></asp:Label>
                                 </td>
-                                <td>
+                                     
+                                
+                                <td style="text-align:center">
+                                    
+                                    <asp:Label ID="lblreqstatus" runat="server" CssClass="control-label badge bg-green text-white" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")).ToString() %>'></asp:Label>
+
+                                </td>
+
+                                  <td style="text-align:center">
+                                     <asp:Label ID="lblreqtype"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqtype")).ToString() %>'></asp:Label>
+                                </td>
+                                 
+
+          
+
+                        
+                               <td style="text-align:center">
                                     <asp:CheckBox ID="chkvmrno" runat="server" Enabled="False" Visible="false"
                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="True"||Convert.ToString(DataBinder.Eval(Container.DataItem, "earleaveapp"))=="True" %>'
                                         Width="20px" />
                                     <asp:LinkButton ID="lnkRequstApply" Visible="false" ToolTip="For Approval Request" runat="server" OnClick="lnkRequstApply_Click" CssClass="btn btn-sm btn-primary">Apply Request</asp:LinkButton>
                                     
                                 </td>
-                                <td>
+                              <td style="text-align:center">
                                    <asp:HyperLink ID="hyplnkApplyLv" Target="_blank"   Visible="false" runat="server"  CssClass="btn btn-sm btn-success">Apply Leave</asp:HyperLink>
 
                                 </td>
@@ -347,7 +369,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>
+                                <td style="text-align:center;">
                                     <asp:Label ID="lblTotalHour" runat="server" Style="font-weight: bold;">40:00</asp:Label>
                                 </td>
                                 
@@ -355,6 +377,8 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
                             </tr>
 
