@@ -188,7 +188,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             int hrcomln = (type == "Aggrement") ? Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyAgg.SelectedValue.ToString() + "'"))[0]["hrcomln"])
                     : Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
 
-            string Company = ((type == "Aggrement") ? this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, hrcomln) : this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)) + "%";
+            //string Company = ((type == "Aggrement") ? this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, hrcomln) : this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)) + "%";
+
+
+            string Company = ((type == "Aggrement") ? (this.ddldepartmentagg.SelectedValue.ToString()=="000000000000"?"": this.ddldepartmentagg.SelectedValue.ToString().Substring(0,9)):(this.ddlDepartment.SelectedValue.ToString()=="000000000000" ? "": this.ddlDepartment.SelectedValue.ToString().Substring(0,9))) + "%";
+
             string txtSProject = (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
             string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "Aggrement") ? "GETPROJECTNAME" : "GETPROJECTNAMEFOT";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", CallType, Company, txtSProject, "", "", "", "", "", "", "");
@@ -860,7 +864,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             DataTable dt1 = dt.Copy();
             string comcod = this.GetCompCode();
             DataView dv;
-            double toaddamt;
+            double toaddamt, topaddamt, todedamt;
             switch (GvName)
             {
                 case "gvSalAdd":
@@ -913,11 +917,23 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             break;
 
 
-                        case "3365":// PTI
+                        case "3365":// BTI
 
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
-                            this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            //this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
+
+                            // toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+
+
+                            dv = dt1.DefaultView;
+                            dv.RowFilter = ("percnt>0");
+                            dt1 = dv.ToTable();
+                            topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            this.txtgrossal.Text = topaddamt.ToString("#,##0;(#,##0); ");
+                         //   ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = topaddamt.ToString("#,##0;(#,##0); ");
+
+
                             break;
 
 
@@ -929,7 +945,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             dv = dt1.DefaultView;
                             dv.RowFilter = ("percnt>0");
                             dt1 = dv.ToTable();
-                            double topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             this.txtgrossal.Text = topaddamt.ToString("#,##0;(#,##0); ");
 
 
@@ -943,24 +959,43 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                 case "gvSalSub":
-                    ((Label)this.gvSalSub.FooterRow.FindControl("lgvFSalSub")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gval)", "")) ?
-                             0 : dt.Compute("sum(gval)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvSalSub.FooterRow.FindControl("lgvFSalSub")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gval)", "")) ? 0 : dt.Compute("sum(gval)", ""))).ToString("#,##0;(#,##0); ");
+
+                    //switch (comcod)
+                    //{
+                       
+
+                    //    case "3365":// BTI
+
+                           
+
+                    //        //toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                    //        //((Label)this.gvSalSub.FooterRow.FindControl("lgvFSalSub")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+
+                    //        dv = dt1.DefaultView;
+                    //        dv.RowFilter = ("percnt>0");
+                    //        dt1 = dv.ToTable();
+                    //        todedamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                    //        ((Label)this.gvSalSub.FooterRow.FindControl("lgvFSalSub")).Text = todedamt.ToString("#,##0;(#,##0); ");
+
+
+                    //        break;
+
+
+                    //    default:
+
+                    //        ((Label)this.gvSalSub.FooterRow.FindControl("lgvFSalSub")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gval)", "")) ? 0 : dt.Compute("sum(gval)", ""))).ToString("#,##0;(#,##0); ");
+                    //        break;
+                    //}
+            
+
+
+
 
                     break;
 
-                    //case "gvAllowAdd":                
-
-
-                    //    ((Label)this.gvAllowAdd.FooterRow.FindControl("lgvFAllowAdd")).Text =Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gval)", "")) ?
-                    //              0 : dt.Compute("sum(gval)", ""))).ToString("#,##0;(#,##0); ");;
-
-                    //    break;
-
-                    //case "gvAllowSub":
-
-                    //    ((Label)this.gvAllowSub.FooterRow.FindControl("lgvFAllowSub")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gval)", "")) ?
-                    //              0 : dt.Compute("sum(gval)", ""))).ToString("#,##0;(#,##0); ");
-                    //    break;         
+                        
             }
 
 
