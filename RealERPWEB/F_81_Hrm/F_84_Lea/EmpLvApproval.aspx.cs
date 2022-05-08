@@ -1180,7 +1180,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
 
 
+                // reset if delete abs table data
 
+                this.LeaveReset();
 
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP_ALL", trnid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                 if (!result)
@@ -1191,9 +1193,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 }
 
-                // reset if delete abs table data
-
-                this.LeaveReset();
+                
 
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' Not Apporved');", true);

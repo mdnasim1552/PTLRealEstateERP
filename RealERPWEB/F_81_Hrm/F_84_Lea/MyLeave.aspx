@@ -81,8 +81,9 @@
                                 <div class="form-group" id="empMgt" runat="server" visible="false">
                                     <label for="Employee">
                                         Employee <span class="text-danger">*</span>
-                                    </label>
-
+                                    </label> 
+                                    <span id="SpResign" class="text-danger" runat="server" visible="false" >
+                                    <asp:CheckBox runat="server" ID="chkresign" Text="Resign list" AutoPostBack="true" OnCheckedChanged="chkresign_CheckedChanged" /></span>
                                     <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
                                         CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
                                     </asp:DropDownList>
