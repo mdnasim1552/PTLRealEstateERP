@@ -123,26 +123,18 @@ namespace RealERPWEB.F_28_MPro
 
             for (int j = 0; j < this.dgv3.Rows.Count; j++)
             {
-                double dgvTrnRate;
-                double dgvTrnQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtQty")).Text.Trim()));
-                double dgvTrnDrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtDrAmt")).Text.Trim()));
-                double dgvTrnCrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtCrAmt")).Text.Trim()));
-                if (dgvTrnDrAmt == 0 && dgvTrnCrAmt == 0)
-                {
-                    dgvTrnRate = 0;
-                }
-                else
-                {
-                    dgvTrnRate = (dgvTrnQty == 0 ? 0.00 : (dgvTrnDrAmt + dgvTrnCrAmt) / dgvTrnQty);
-                }
-                ((Label)this.dgv3.Rows[j].FindControl("gvlblRate")).Text = dgvTrnRate.ToString("#,##0.00;(#,##0.00); ");
-                ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtDrAmt")).Text = dgvTrnDrAmt.ToString("#,##0.00;(#,##0.00); ");
-                ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtCrAmt")).Text = dgvTrnCrAmt.ToString("#,##0.00;(#,##0.00); ");
+                double dgvATLAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtATLAmt")).Text.Trim()));
+                double dgvBTLAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtBTLAmt")).Text.Trim()));
+                double dgvTTLAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtTTLAmt")).Text.Trim()));
+           
+                //((Label)this.dgv3.Rows[j].FindControl("gvlblRate")).Text = dgvTrnRate.ToString("#,##0.00;(#,##0.00); ");
+                //((TextBox)this.dgv3.Rows[j].FindControl("gvtxtDrAmt")).Text = dgvTrnDrAmt.ToString("#,##0.00;(#,##0.00); ");
+                //((TextBox)this.dgv3.Rows[j].FindControl("gvtxtCrAmt")).Text = dgvTrnCrAmt.ToString("#,##0.00;(#,##0.00); ");
+
                 TblRowIndex2 = (dgv3.PageIndex) * dgv3.PageSize + j;
-                tblt02.Rows[TblRowIndex2]["qty"] = dgvTrnQty;
-                tblt02.Rows[TblRowIndex2]["rate"] = dgvTrnRate;
-                tblt02.Rows[TblRowIndex2]["Dr"] = dgvTrnDrAmt;
-                tblt02.Rows[TblRowIndex2]["Cr"] = dgvTrnCrAmt;
+                tblt02.Rows[TblRowIndex2]["atl"] = dgvATLAmt;
+                tblt02.Rows[TblRowIndex2]["btl"] = dgvBTLAmt;
+                tblt02.Rows[TblRowIndex2]["ttl"] = dgvTTLAmt;
 
             }
             Session["AccTbl02"] = tblt02;
@@ -201,10 +193,10 @@ namespace RealERPWEB.F_28_MPro
             this.dgv3.DataBind();
             if (tblt03.Rows.Count == 0)
                 return;
-            ((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftDramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Dr)", "")) ?
-            0.00 : tblt03.Compute("Sum(Dr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
-            ((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftCramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Cr)", "")) ?
-            0.00 : tblt03.Compute("Sum(Cr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            //((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftDramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Dr)", "")) ?
+            //0.00 : tblt03.Compute("Sum(Dr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            //((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftCramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Cr)", "")) ?
+            //0.00 : tblt03.Compute("Sum(Cr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
 
         }
 
