@@ -950,6 +950,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOtherded.Columns[6].Visible = false;
                         this.gvEmpOtherded.Columns[7].Visible = false;
                         this.gvEmpOtherded.Columns[8].Visible = false;
+                        this.gvEmpOtherded.Columns[11].Visible = false;
                         this.gvEmpOtherded.Columns[12].Visible = true;
                         this.gvEmpOtherded.Columns[13].Visible = true;
                         this.gvEmpOtherded.Columns[14].Visible = false;
@@ -1004,7 +1005,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.HeaderRow.Cells[8].Text = "Project Visit";
                             this.gvothearn.HeaderRow.Cells[9].Text = "Car Allowance";
                             this.gvothearn.HeaderRow.Cells[12].Text = "Refund";
-                            this.gvothearn.HeaderRow.Cells[14].Text = "Dress Bill";
+                            this.gvothearn.Columns[10].Visible = false;
+                            this.gvothearn.Columns[14].Visible = false;
+                            // this.gvothearn.HeaderRow.Cells[14].Text = "Dress Bill";
 
                             //this.gvothearn.Columns[6].Visible = true;
                             //this.gvothearn.Columns[7].Visible = true;
