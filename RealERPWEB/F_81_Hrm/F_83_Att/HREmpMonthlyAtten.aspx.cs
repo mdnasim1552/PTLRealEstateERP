@@ -84,8 +84,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
+            string atttype = this.radioAttType.SelectedValue.ToString();
+             
+
             string IdCard = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", IdCard, "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME_MANUAL", IdCard, atttype, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlEmpName.DataTextField = "empname";
@@ -319,6 +322,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             this.LoadGrid();
+        }
+
+        protected void radioAttType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetEmployeeName();
         }
     }
 }
