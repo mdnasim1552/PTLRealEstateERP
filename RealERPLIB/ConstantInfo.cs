@@ -1949,7 +1949,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102018", "F_81_Hrm/F_82_App", "HREmpOffDays", "", "Employee Off Days", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102019", "F_81_Hrm/F_83_Att", "HREmpAbsCt", "", "Absent Count", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102020", "F_81_Hrm/F_83_Att", "HRDailyAttenManually", "", "Daily Attendance - Manually", "Attendance", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102021", "F_81_Hrm/F_83_Att", "HRDailyAtten", "", "Employee Attendance", "Attendance", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102021", "F_81_Hrm/F_83_Att", "HRDailyAtten", "", "Daily Attendance - System", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102022", "F_81_Hrm/F_83_Att", "EmpDaillyAbsent", "", "Daily Absent", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102023", "F_81_Hrm/F_83_Att", "HREmpLWP", "", "LWP Count", "Attendance", "False", "False", "False", "False" }); ;
 
