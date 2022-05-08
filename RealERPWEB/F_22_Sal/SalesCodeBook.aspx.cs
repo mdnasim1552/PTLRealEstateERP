@@ -65,7 +65,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 case "RABill":
                     txtTitle = "Sub-Contractor R/A Code Book";
-                    break;                
+                    break;
                 case "Budget":
                     txtTitle = "Code Book (Unit & R/A)";
                     break;
@@ -318,7 +318,34 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        protected void lnkbtnUpdate_Click(object sender, EventArgs e)
+        {
+            DataTable dt1 = (DataTable)Session["storedata"];
+            string comcod = this.GetCompCode();
 
+            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+            {
+                string slno = ((TextBox)grvacc.Rows[i].FindControl("lblslno")).Text.ToString();
+                string gcod = ((Label)grvacc.Rows[i].FindControl("lbgrcod1")).Text.ToString();
+                CheckBox chk = ((CheckBox)grvacc.Rows[i].FindControl("chkStatus"));
+                string checkstatus = (chk.Checked == true) ? "True" : "False";
+                //dt1.Rows[i]["slno"] = slno;
+                //dt1.Rows[i]["status"] = checkstatus;
 
+                bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTUPSALINFSTATUS", gcod,
+                           slno, checkstatus, "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = da.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+            }
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+        }
+        
     }
 }

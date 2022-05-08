@@ -55,9 +55,9 @@
                     </div>
 
                     <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                        AutoGenerateColumns="False"  Font-Size="12px"
+                        AutoGenerateColumns="False" Font-Size="12px"
                         OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                        OnRowUpdating="grvacc_RowUpdating" PageSize="200"  Width="284px"
+                        OnRowUpdating="grvacc_RowUpdating" PageSize="200" Width="284px"
                         ShowFooter="True">
                         <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
                         <FooterStyle Font-Bold="True" />
@@ -119,8 +119,8 @@
                             </asp:TemplateField>
 
 
-                                   
-                               <asp:TemplateField HeaderText="Description of Code BN">
+
+                            <asp:TemplateField HeaderText="Description of Code BN">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtgvDescbn" runat="server" Font-Size="12px" MaxLength="100"
                                         Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
@@ -178,26 +178,36 @@
                             </asp:TemplateField>
 
 
-                               <asp:TemplateField HeaderText="SL">
-                                
-                                      <EditItemTemplate>
+                            <asp:TemplateField HeaderText="SL">
+                                <EditItemTemplate>
                                     <asp:TextBox ID="txtslno" runat="server" BackColor="White" BorderStyle="None"
-                                       Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "slno")).ToString("#,##0;(#,##0); ") %>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "slno")).ToString("#,##0;(#,##0); ") %>'
                                         Width="50px" Style="text-align: right"></asp:TextBox>
                                 </EditItemTemplate>
-
-
                                 <ItemTemplate>
-                                    <asp:Label ID="lblslno" runat="server"
+                                    <asp:TextBox ID="lblslno" runat="server" BackColor="White" BorderStyle="None"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "slno")).ToString("#,##0;(#,##0); ") %>'
-                                        Width="50px" Style="text-align: right"></asp:Label>
+                                        Width="50px" Style="text-align: right"></asp:TextBox>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Status">
+                                <%--                                <EditItemTemplate>
+                                    <asp:CheckBox ID="chkStatus" runat="server" Width="40px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "status"))=="True" %>' />
+                                </EditItemTemplate>--%>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkStatus" runat="server" Width="60px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "status"))=="True" %>' />
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:LinkButton ID="lnkbtnUpdate" runat="server" Font-Bold="True" Width="60px" CssClass="btn btn-success"
+                                        Font-Size="12px" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
+                                </FooterTemplate>
 
-
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
 
                         </Columns>
 
