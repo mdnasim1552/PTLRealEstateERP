@@ -164,7 +164,7 @@
                 </div>
                 <div class="card-body">
                     <asp:GridView ID="gvemphold" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                ShowFooter="True" Width="464px" OnRowDeleting="gvemphold_RowDeleting">
+                ShowFooter="True"   OnRowDeleting="gvemphold_RowDeleting">
                 <RowStyle />
                 <Columns>
                     <asp:TemplateField HeaderText="Sl.No.">
@@ -189,7 +189,7 @@
                             <asp:Label ID="lblgvempname" runat="server" Font-Size="11PX"
                                 Style="text-align: left"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                Width="140px"></asp:Label>
+                                 ></asp:Label>
                         </ItemTemplate>
                         <FooterTemplate>
                             <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger btn-sm primaryBtn" OnClick="lnkupdate_Click">Final Update</asp:LinkButton>
@@ -201,7 +201,7 @@
                             <asp:Label ID="lblgvpredesig" runat="server" Font-Size="11PX"
                                 Style="text-align: left"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                Width="140px"></asp:Label>
+                                 ></asp:Label>
                         </ItemTemplate>
 
                     </asp:TemplateField>
