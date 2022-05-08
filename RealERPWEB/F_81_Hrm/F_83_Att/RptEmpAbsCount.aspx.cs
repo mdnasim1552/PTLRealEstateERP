@@ -153,10 +153,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //string compname = (this.ddlcomp.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlcomp.SelectedValue.Substring(0, hrcomln).ToString() + "%";
             string deptname = (this.ddldept.SelectedValue.ToString() == "000000000000") ? "%" : this.ddldept.SelectedValue.ToString() + "%";
             string section = (this.ddlsec.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlsec.SelectedValue.ToString() + "%";
-            string Empcode = (this.ddlEmp.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmp.SelectedValue.ToString() + "%";
+            string Empcode = (this.ddlEmp.SelectedValue.ToString() == "000000000000") ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%";
             string year="2020";
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPABSCOUNTINFO", year, deptname, section, Empcode, fromdate, tdate);
+            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPABSCOUNTINFO", year, deptname, section, Empcode, fromdate, tdate);
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPABSCOUNTINFO", Empcode, fromdate, tdate, deptname, section );
+
             if (ds2 == null)
             {
                 this.gvabscount.DataSource = null;
