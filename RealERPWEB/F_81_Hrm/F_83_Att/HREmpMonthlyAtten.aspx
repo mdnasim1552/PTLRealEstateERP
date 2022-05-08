@@ -44,6 +44,13 @@
         .pd4 {
             padding: 4px !important;
         }
+        .radioTable{
+            display:inline-table;
+            margin-left:20px;
+        }
+        .radioTable label{
+            margin:0;
+        }
     </style>
 
 
@@ -73,10 +80,14 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <asp:Label ID="Label13" runat="server" CssClass="lblTxt lblName" Text="Emp.  Name">
+                                <asp:Label ID="Label13" runat="server" CssClass="lblTxt lblName" Text="Emp.  Name "> 
                                     <asp:LinkButton ID="imgbtnEmployee" runat="server" OnClick="imgbtnEmployee_Click" TabIndex="2"><i class="fa fa-search"> </i></asp:LinkButton>
+                                    <asp:RadioButtonList ID="radioAttType" RepeatColumns="2" RepeatDirection="Horizontal" AutoPostBack="true" runat="server" CssClass="radioTable" OnSelectedIndexChanged="radioAttType_SelectedIndexChanged">
+                                        <asp:ListItem Value="29001" Selected="True">Manual Attendance</asp:ListItem>
+                                        <asp:ListItem Value="28001">Machine Attendance</asp:ListItem>
+                                    </asp:RadioButtonList>
                                 </asp:Label>
-                                <asp:DropDownList ID="ddlEmpName" AutoPostBack="True" runat="server" CssClass="form-control chzn-select" TabIndex="3">
+                                <asp:DropDownList ID="ddlEmpName" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged" CssClass="form-control chzn-select" TabIndex="3">
                                 </asp:DropDownList>
                             </div>
                         </div>

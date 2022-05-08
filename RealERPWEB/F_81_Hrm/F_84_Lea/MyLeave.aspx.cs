@@ -149,19 +149,31 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void getVisibilty()
         {
+            string qtype = this.Request.QueryString["Type"] ?? "";
             string comcod = this.GetComeCode();
             if (comcod == "3365" || comcod == "3354")
             {
                 this.sspnlv.Visible = true;
+                
                 this.chkBoxSkippWH.Checked = true;
                 chkBoxSkippWH_CheckedChanged(null, null);
+                // this part for BTI Resign Employee show
+                if (comcod == "3365"&& qtype == "MGT")
+                {
+                    this.SpResign.Visible = true;
+                }
+                else
+                {
+                    this.SpResign.Visible = false;
+
+                }
             }
             else
             {
                 this.sspnlv.Visible = false;
+                this.SpResign.Visible = false;
                 this.chkBoxSkippWH.Checked = false;
             }
-
         }
         private void CreateTable()
         {
@@ -1242,8 +1254,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void EmployeeLeaveCard()
         {
- 
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
@@ -1300,8 +1310,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-
-
-
+        protected void chkresign_CheckedChanged(object sender, EventArgs e)
+        {
+            this.GetEmpLoyee();
+        }
     }
 }
