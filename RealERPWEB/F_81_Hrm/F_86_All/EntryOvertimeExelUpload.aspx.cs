@@ -30,8 +30,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 Session.Remove("XcelData");
                 //this.txtMrrDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Overtime Upload";
@@ -254,6 +257,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
+            string msg = "";
 
             string ymon = this.ddlyearmon.SelectedValue.ToString();
 
@@ -293,8 +297,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
 
 
         }
