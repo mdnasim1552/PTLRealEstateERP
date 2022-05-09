@@ -1,10 +1,37 @@
 ﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="EntryOvertimeExelUpload.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_86_All.EntryOvertimeExelUpload" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EntryOvertimeExelUpload.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_86_All.EntryOvertimeExelUpload" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
 
+
+
+                .mt20 {
+            margin-top: 20px;
+        }
+
+            .chzn-container{
+             width: 100% !important;
+        }
+
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 35px !important;
+            line-height: 35px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+                  .pd4{
+                    padding:4px!important;
+                }
+    </style>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -20,12 +47,7 @@
             });
         $('#<%=this.gvovertime.ClientID %>').tblScrollable();
 
-
-            //gbattn.Scrollable();
-           // $('.chzn-select').chosen({ search_contains: true });
-
-
-
+            $('.chzn-select').chosen({ search_contains: true });
         }
 
     </script>
@@ -47,73 +69,46 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
+
 
             <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>--%>
 
+
+    <div class="card mt-5">
+        <div class="card-header">
             <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
-                    
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <asp:Label ID="lblPrevious" runat="server" CssClass=" smLbl_to" Text="Month:"></asp:Label>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                                    <asp:Label ID="lblPrevious" runat="server" Text="Month:"></asp:Label>
 
                                 <asp:DropDownList ID="ddlyearmon" runat="server" AutoPostBack="True"
-                                    TabIndex="11" CssClass=" ddlPage">
+                                    TabIndex="11" CssClass="form-control form-control-sm">
                                 </asp:DropDownList>
-
-
-                                   <div class=" form-group">
-                                    <div class="col-sm-3">
-                                        <asp:Panel ID="pnlxcel" runat="server">
-                                            <asp:Label ID="lblExel" runat="server" CssClass="lblTxt lblName txtAlgRight" Text="Exele :"></asp:Label>
+                    </div>
+                </div>
+                   <div class="col-lg-2">
+                          <asp:Panel ID="pnlxcel" runat="server">
+                              <div class="form-group">
+                                     <asp:Label ID="lblExel" runat="server" Text="Exele :"></asp:Label>
                                             <div class="uploadFile">
-                                                <asp:FileUpload ID="fileuploadExcel" runat="server" onchange="submitform();" />
+                                                <asp:FileUpload ID="fileuploadExcel" runat="server" CssClass="form-control form-control-sm" onchange="submitform();" />
                                             </div>
+                              </div>
+                                         
 
                                         </asp:Panel>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <asp:LinkButton ID="btnexcuplosd" runat="server" OnClick="btnexcuplosd_Click" BorderColor="White"
-                                            CssClass="btn btn-primary okBtn" Text="Show"></asp:LinkButton>
-                                    </div>
-
-                                    <div class="clearfix"></div>
-                                </div>
-                                
-                                
-                            </div>
-
-
-
-                           
-                        </div>
-
-                        
-
-                        
+                   </div>
+                   <div class="col-lg-2">
+                   
+                       <asp:LinkButton ID="btnexcuplosd" runat="server" OnClick="btnexcuplosd_Click"
+                           CssClass="btn btn-primary btn-sm mt20" Text="Show"></asp:LinkButton>
             
-                        </div>
-                    
-                </fieldset>
+                   </div>
             </div>
-
-         
-
-
-            
-
-
-            
-
-            <%-- </ContentTemplate>
-            </asp:UpdatePanel>--%>
-
-
-            <asp:GridView ID="gvovertime" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+        </div>
+        <div class="card-body">
+             <asp:GridView ID="gvovertime" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                 AllowPaging="false">
                 <RowStyle />
                 <Columns>
@@ -187,6 +182,71 @@
             </asp:GridView>
         </div>
     </div>
+
+
+
+          <%--  <div class="row">
+                <fieldset class="scheduler-border fieldset_A">
+                    
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <asp:Label ID="lblPrevious" runat="server" CssClass=" smLbl_to" Text="Month:"></asp:Label>
+
+                                <asp:DropDownList ID="ddlyearmon" runat="server" AutoPostBack="True"
+                                    TabIndex="11" CssClass=" ddlPage">
+                                </asp:DropDownList>
+
+
+                                   <div class=" form-group">
+                                    <div class="col-sm-3">
+                                        <asp:Panel ID="pnlxcel" runat="server">
+                                            <asp:Label ID="lblExel" runat="server" CssClass="lblTxt lblName txtAlgRight" Text="Exele :"></asp:Label>
+                                            <div class="uploadFile">
+                                                <asp:FileUpload ID="fileuploadExcel" runat="server" onchange="submitform();" />
+                                            </div>
+
+                                        </asp:Panel>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <asp:LinkButton ID="btnexcuplosd" runat="server" OnClick="btnexcuplosd_Click" BorderColor="White"
+                                            CssClass="btn btn-primary okBtn" Text="Show"></asp:LinkButton>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                
+                                
+                            </div>
+
+
+
+                           
+                        </div>
+
+                        
+
+                        
+            
+                        </div>
+                    
+                </fieldset>
+            </div>--%>
+
+         
+
+
+            
+
+
+            
+
+            <%-- </ContentTemplate>
+            </asp:UpdatePanel>--%>
+
+
+           
+
 </asp:Content>
 
 

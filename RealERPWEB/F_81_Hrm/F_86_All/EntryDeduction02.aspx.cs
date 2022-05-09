@@ -182,7 +182,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
-            string txtCompany = this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompanyName.DataTextField = "actdesc";
             this.ddlCompanyName.DataValueField = "actcode";
@@ -213,7 +213,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string txtCompanyname = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
 
             // string txtCompanyname =(this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) =="00")?"%":this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
+            string txtSearchDept = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "actdesc";
             this.ddlDepartment.DataValueField = "actcode";
@@ -237,7 +237,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             string comcod = this.GetComeCode();
             string projectcode = this.ddlDepartment.SelectedValue.ToString();
-            string txtSSec = "%" + this.txtSrcSec.Text.Trim() + "%";
+            string txtSSec = "%%";
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
