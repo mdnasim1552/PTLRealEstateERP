@@ -294,7 +294,7 @@
                 <div class="contentPart">--%>
 
             <div class="card card-fluid">
-                <div class="card-body">
+                <div class="card-body mt-3">
                     <div class="row">
                         <div class="col-md-1">
                             <div class="form-group">
@@ -331,27 +331,23 @@
 
 
                         </div>
-
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
+                         
+                        <div class="col-md-3">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
-                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary">ID Card</asp:Label>
                                 </div>
-                                <asp:TextBox ID="txtSearch" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
-
+                                <asp:TextBox ID="txtSearch"   runat="server" CssClass="form-control" placeholder="Type ID CARD..." ></asp:TextBox>
+                                <div class="input-group-prepend ">
+                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn  btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
+                                </div>
                             </div>
                         </div>
 
-
-                        <div class="col-md-2">
-                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Leave Apply</asp:HyperLink>
+                        <div class="col-md-1">
+</div>
+                        <div class="col-md-2 text-right">
+                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Apply Leave</asp:HyperLink>
 
                         </div>
 

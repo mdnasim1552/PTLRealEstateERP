@@ -85,7 +85,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
             string IdCard = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", IdCard, "", "", "", "", "", "", "", "");
+            string monthid = this.ddlMonth.SelectedValue.ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME_PENDINGATTANDACE", IdCard, monthid, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlEmpName.DataTextField = "empname";
@@ -201,7 +202,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
           
 
 
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTATTENDANCESYSTEM", Empid, MonthId, "", "", "", "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERATTENDANCEMSYSTEM", Empid, MonthId, "", "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvMonthlyAttn.DataSource = null;
