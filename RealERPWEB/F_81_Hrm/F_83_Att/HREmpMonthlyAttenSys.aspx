@@ -76,6 +76,17 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
+                          <div class="col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="Label16" runat="server" Text="Month"></asp:Label>
+
+                                <asp:DropDownList ID="ddlMonth" runat="server" AutoPostBack="True"
+                                    CssClass="form-control form-control-sm" TabIndex="3"
+                                    >
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="Label13" runat="server" CssClass="lblTxt lblName" Text="Emp.  Name">
@@ -88,16 +99,7 @@
 
 
 
-                        <div class="col-lg-1">
-                            <div class="form-group">
-                                <asp:Label ID="Label16" runat="server" Text="Month"></asp:Label>
-
-                                <asp:DropDownList ID="ddlMonth" runat="server" AutoPostBack="True"
-                                    CssClass="form-control form-control-sm" TabIndex="3"
-                                    OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged">
-                                </asp:DropDownList>
-                            </div>
-                        </div>
+                      
                         <div class="col-lg-1">
                             <div class="form-group">
                                 <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnShow_Click">Show</asp:LinkButton>

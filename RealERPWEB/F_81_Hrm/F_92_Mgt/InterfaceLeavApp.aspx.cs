@@ -129,9 +129,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             string type = "";//(this.Request.QueryString["Type"]) == "Ind" || (this.Request.QueryString["Type"] == "DeptHead") ? "" : "Management";
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
+            string searchkey = "%"+this.txtSearch.Text.Trim()+"%";
 
-
-            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", fDate, tDate, usrid, type, DeptHead, "", "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", fDate, tDate, usrid, type, DeptHead, searchkey, "", "", "");
             if (ds1 == null)
                 return;
 
