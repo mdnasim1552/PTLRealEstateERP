@@ -112,6 +112,7 @@ namespace RealERPWEB.F_28_MPro
                 return;
 
             Session["AccTbl02"] = ds2.Tables[0];
+            Session["tblMktType"] = ds2.Tables[1];
             this.dgv3_DataBind();
         }
 
@@ -123,22 +124,18 @@ namespace RealERPWEB.F_28_MPro
 
             for (int j = 0; j < this.dgv3.Rows.Count; j++)
             {
-                double dgvATLAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtATLAmt")).Text.Trim()));
-                double dgvBTLAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtBTLAmt")).Text.Trim()));
-                double dgvTTLAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtTTLAmt")).Text.Trim()));
-           
-                //((Label)this.dgv3.Rows[j].FindControl("gvlblRate")).Text = dgvTrnRate.ToString("#,##0.00;(#,##0.00); ");
-                //((TextBox)this.dgv3.Rows[j].FindControl("gvtxtDrAmt")).Text = dgvTrnDrAmt.ToString("#,##0.00;(#,##0.00); ");
-                //((TextBox)this.dgv3.Rows[j].FindControl("gvtxtCrAmt")).Text = dgvTrnCrAmt.ToString("#,##0.00;(#,##0.00); ");
+                double dgvTxtAmt1 = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvTxtAmt1")).Text.Trim()));
+                double dgvTxtAmt2 = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvTxtAmt2")).Text.Trim()));
+                double dgvTxtAmt3 = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvTxtAmt3")).Text.Trim()));
 
                 TblRowIndex2 = (dgv3.PageIndex) * dgv3.PageSize + j;
-                tblt02.Rows[TblRowIndex2]["atl"] = dgvATLAmt;
-                tblt02.Rows[TblRowIndex2]["btl"] = dgvBTLAmt;
-                tblt02.Rows[TblRowIndex2]["ttl"] = dgvTTLAmt;
+                tblt02.Rows[TblRowIndex2]["amt1"] = dgvTxtAmt1;
+                tblt02.Rows[TblRowIndex2]["amt2"] = dgvTxtAmt2;
+                tblt02.Rows[TblRowIndex2]["amt3"] = dgvTxtAmt3;
 
             }
-            Session["AccTbl02"] = tblt02;
 
+            Session["AccTbl02"] = tblt02;
             this.dgv3_DataBind();
         }
        
@@ -153,23 +150,29 @@ namespace RealERPWEB.F_28_MPro
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             this.SessionUpdate2();
             string comcod = this.GetCompCode();
-            string voudat = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string mktco = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string yearmon = this.ddlyearmon.SelectedValue.ToString();
             DataTable tblt03 = (DataTable)Session["AccTbl02"];
+            DataTable tblMkt = (DataTable)Session["tblMktType"];
 
-            for (int i = 0; i < tblt03.Rows.Count; i++)
+            int k;
+            for (int i = 0; i < this.dgv3.Rows.Count; i++)
             {
-                string actcode = tblt03.Rows[i]["actcode"].ToString();
-                string bgdqty = tblt03.Rows[i]["qty"].ToString();
-                string Dramt = Convert.ToDouble(tblt03.Rows[i]["Dr"]).ToString();
-                string Cramt = Convert.ToDouble(tblt03.Rows[i]["Cr"]).ToString();
+                k=1;
+                string pactcode = ((Label)this.dgv3.Rows[i].FindControl("gvlblActCode")).Text.Trim();
+                for (int j = 0; j <tblMkt.Rows.Count; j++)
+                {                 
+                    string mktCode = tblMkt.Rows[j]["mktcode"].ToString();
+                    double amt1 = Convert.ToDouble("0"+((TextBox)this.dgv3.Rows[i].FindControl("gvTxtAmt"+k.ToString())).Text.Trim());
+                    k++;
+                    bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MON_BUDGET_INFO", pactcode, mktCode, yearmon, amt1.ToString(), "", "", "", "", "", "", "");
+                    if (!resulta)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
+                        return;
+                    }
+                }               
 
-                bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "INSERTORUPBGDINF", "00000000000000", actcode, voudat, bgdqty, Cramt.ToString(), Dramt.ToString(), yearmon, "", "", "", "", "", "", "");
-                if (!resulta)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
-                    return;
-                }
             }
 
             this.txtCurDate.Enabled = false;
@@ -193,6 +196,7 @@ namespace RealERPWEB.F_28_MPro
             this.dgv3.DataBind();
             if (tblt03.Rows.Count == 0)
                 return;
+
             //((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftDramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Dr)", "")) ?
             //0.00 : tblt03.Compute("Sum(Dr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
             //((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftCramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Cr)", "")) ?
