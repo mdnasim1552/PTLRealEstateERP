@@ -23,11 +23,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-                //this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
-                //this.txtpatplacedate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Employee Fooding Rate ";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 //this.Get_Trnsno();
                 //this.tableintosession();
 
@@ -53,7 +53,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -153,7 +153,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = "%%";
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -166,7 +166,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
             string comcod = this.GetCompCode();
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSSec = "%" + this.txtSrcSec.Text.Trim() + "%";
+            string txtSSec = "%%";
             DataSet ds2 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
@@ -221,6 +221,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected void lbntFoodrateUpdate_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string msg = "";
             try
             {
                 this.SaveValue();
@@ -246,8 +247,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
                 }
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                  msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
 
 
 
@@ -255,9 +260,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
+                msg= "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
 
         }

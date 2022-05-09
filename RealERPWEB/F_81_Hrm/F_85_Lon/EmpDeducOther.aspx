@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
         
-div#ContentPlaceHolder1_ddlEmpName_chzn{
+select#ContentPlaceHolder1_ddlPrevLoanList{
             width: 100% !important;
         }
 
@@ -15,13 +15,17 @@ div#ContentPlaceHolder1_ddlEmpName_chzn{
             margin-top: 20px;
         }
 
+            .chzn-container{
+             width: 100% !important;
+        }
+
         .chzn-drop {
             width: 100% !important;
         }
-
         .chzn-container-single .chzn-single {
-            height: 28px !important;
-            line-height: 28px !important;
+            height: 28px!important;
+            line-height:28px!important;
+
         }
 
         .card-body {
@@ -76,7 +80,7 @@ div#ContentPlaceHolder1_ddlEmpName_chzn{
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3 col-xs-12">
                             <div class="form-group">
                                 <asp:Label runat="server">
                                     <asp:LinkButton ID="lbtnPrevLoanList" runat="server" OnClick="lbtnPrevLoanList_Click">Prev. Loan List:</asp:LinkButton>
@@ -85,7 +89,7 @@ div#ContentPlaceHolder1_ddlEmpName_chzn{
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-1 col-md-1 col-xs-12">
                             <div class="form-group">
                                 <asp:Label ID="lblfrmdate" runat="server">Loan Date</asp:Label>
                                 <asp:TextBox ID="txtCurDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -94,7 +98,7 @@ div#ContentPlaceHolder1_ddlEmpName_chzn{
 
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3 col-xs-12">
                             <div class="form-group">
 
                                 <asp:Label ID="lblResList" runat="server" OnDataBinding="lblResList_DataBinding">Employee List</asp:Label>
@@ -105,14 +109,17 @@ div#ContentPlaceHolder1_ddlEmpName_chzn{
                                 <asp:Label ID="lblEmpName" runat="server" Visible="false" CssClass="form-control form-control-sm "></asp:Label>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group">
+                        <div class="col-lg-2 col-md-2 col-xs-12">
+                            <div class="form-group mt20">
                                 
-                                 <asp:Label ID="lbltodate" runat="server" CssClass="lblTxt lblName">Loan No</asp:Label>
+                                 <asp:Label ID="lbltodate" runat="server" CssClass="">Loan No</asp:Label>
                                 <asp:Label ID="lblCurNo1" runat="server" CssClass="smLbl_to"></asp:Label>
                                 <asp:Label ID="lblCurNo2" runat="server" CssClass="smLbl_to"></asp:Label>
-                                                           <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm mt20">Ok</asp:LinkButton>
                             </div>
+                        </div>
+                        <div class="col-lg-1">
+                          <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm mt20">Ok</asp:LinkButton>
+
                         </div>
                     </div>
                     <div class="row">

@@ -151,7 +151,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             // DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
