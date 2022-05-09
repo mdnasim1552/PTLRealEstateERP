@@ -721,7 +721,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     }
                 }
-
             }
         }
 
