@@ -23,23 +23,23 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
 
                 // this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 //this.lblfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Food Allowance";
+
 
 
                 this.GetCompName();
                 this.GetYearMonth();
 
-                ((Label)this.Master.FindControl("lblmsg")).Visible = false;
 
             }
 
@@ -98,7 +98,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
-            string txtCompany = this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%";
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
 
@@ -117,7 +117,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 return;
             string comcod = this.GetComeCode();
             string txtCompanyname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
+            string txtSearchDept = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "actdesc";
             this.ddlDepartment.DataValueField = "actcode";
@@ -132,32 +132,32 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (this.lnkbtnShow.Text == "Ok")
             {
                 this.ddlyearmon.Enabled = false;
-                this.ddlCompanyName.Visible = false;
-                this.ddlDepartment.Visible = false;
-                this.lblCompanyName.Visible = true;
-                this.lblDeptDesc.Visible = true;
+                this.ddlCompanyName.Enabled = false;
+                this.ddlDepartment.Enabled = false;
+                //this.lblCompanyName.Visible = true;
+                //this.lblDeptDesc.Visible = true;
 
                 //this.lblPage.Visible = true;
                 //this.ddlpagesize.Visible = true;
                 this.lnkbtnShow.Text = "New";
-                this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
-                this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
+                //this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
+                //this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
                 this.EmpFoodAllowance();
 
                 return;
             }
 
             this.ddlyearmon.Enabled = true;
-            this.ddlCompanyName.Visible = true;
-            this.ddlDepartment.Visible = true;
-            this.lblCompanyName.Visible = false;
-            this.lblDeptDesc.Visible = false;
+            this.ddlCompanyName.Enabled = true;
+            this.ddlDepartment.Enabled = true;
+            //this.lblCompanyName.Visible = false;
+            //this.lblDeptDesc.Visible = false;
             //this.lblPage.Visible = false;
             //this.ddlpagesize.Visible = false;
 
 
             this.lnkbtnShow.Text = "Ok";
-            this.lblCompanyName.Text = "";
+            //this.lblCompanyName.Text = "";
 
 
         }
@@ -344,11 +344,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         }
         protected void lbntUpdateFbill_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblfallow"];
             string comcod = this.GetComeCode();
             string Monthid = this.ddlyearmon.Text.Trim();
+            string msg = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string empid = dt.Rows[i]["empid"].ToString();
@@ -360,11 +361,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
 
+
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEFOODBILL", empid, Monthid, fbillamt.ToString(), othbill.ToString(), remarks, "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data update Fail !";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = "Data update Fail !";
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "Data update Failed !";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                     return;
                 }
 
@@ -372,8 +377,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
             }
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //   ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
 
 
         }
