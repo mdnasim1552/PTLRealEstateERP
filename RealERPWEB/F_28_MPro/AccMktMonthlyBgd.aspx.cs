@@ -224,7 +224,7 @@ namespace RealERPWEB.F_28_MPro
             string tomonth = this.ddltomonth.SelectedValue.ToString();
             string frmonth = this.ddlyearmon.SelectedValue.ToString();
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "COPY_MONTHLY_BUDGET", mBGDDAT, tomonth, frmonth, "", "", "", "", "", "", "", "", "");
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "COPY_MONTHLY_BUDGET", mBGDDAT, tomonth, frmonth, "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
