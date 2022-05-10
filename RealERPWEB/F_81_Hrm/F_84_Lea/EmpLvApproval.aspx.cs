@@ -724,9 +724,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
         }
 
-
-
-
         //protected void ApprovedBtn_Click(object sender, EventArgs e)
         //{
 
@@ -1137,16 +1134,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         //    //}
         //}
 
-
-
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
-
-
             this.SaveLeave();
-
-
-
         }
         protected void lbtnDelete_Click(object sender, EventArgs e)
         {
