@@ -1325,7 +1325,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("desig", desig));
             Rpt1.SetParameters(new ReportParameter("curyear", curr_year));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
+            //Rpt1.PrintToPrinter();
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
