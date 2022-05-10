@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccProFund.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_90_PF.AccProFund" %>
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccProFund.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_90_PF.AccProFund" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -36,6 +36,10 @@
         .pd4 {
             padding: 4px !important;
         }
+        .table td, .table th {
+    padding: 0.2rem!important;
+  
+}
     </style>
 
 
@@ -164,15 +168,15 @@
                 <div class="card-body">
                     <div class="table table-responsive">
                         <asp:GridView ID="gvPfAcc" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                            ShowFooter="True" Width="718px"
+                            ShowFooter="True" 
                             OnRowDeleting="gvPfAcc_RowDeleting">
                             <PagerSettings Position="Top" />
 
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                        <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"  Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' ></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
 
@@ -188,7 +192,7 @@
                                         <table style="width: 47%;">
                                             <tr>
                                                 <td class="style58">
-                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Height="16px"
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True"
                                                         Text="Description " Width="180px"></asp:Label>
                                                 </td>
                                                 <td class="style60">&nbsp;</td>
@@ -227,7 +231,8 @@
                                 <asp:TemplateField HeaderText="Card">
 
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-danger btn-sm" OnClick="lbtnFinalUpdate_Click"
+                                        <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-success6
+                                            btn-sm" OnClick="lbtnFinalUpdate_Click"
                                             Style="text-align: center">Update</asp:LinkButton>
                                     </FooterTemplate>
 
@@ -295,7 +300,7 @@
                     </div>
                          <asp:Panel ID="pnlNaration" runat="server" Visible="false">
                 <div class="row mt-2">
-                    <div class="col-lg-8 offset-lg-2">
+                    <div class="col-lg-6 mr-auto">
                         <div class="form-group row">
 
                         <asp:Label ID="lblRefNum" runat="server" CssClass="col-4" Text="Ref./Cheq No/Slip No."></asp:Label>

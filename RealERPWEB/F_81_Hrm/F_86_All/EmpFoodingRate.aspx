@@ -174,7 +174,7 @@
                                 Width="130px"></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Section Name">
@@ -186,10 +186,10 @@
 
                         <FooterTemplate>
                             <asp:LinkButton ID="lbtnPutSameValue" runat="server" Font-Bold="True" Font-Underline="false"
-                                Font-Size="12px" ForeColor="#000" OnClick="lbtnPutSameValue_Click" CssClass="btn btn-primary btn-sm">Put Same Value</asp:LinkButton>
+                                Font-Size="12px"  OnClick="lbtnPutSameValue_Click" CssClass="btn btn-info btn-sm">Put Same Value</asp:LinkButton>
                         </FooterTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Card #">
@@ -199,7 +199,7 @@
                                 Width="80px"></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Employee Name">
@@ -210,10 +210,10 @@
                         </ItemTemplate>
 
                         <FooterTemplate>
-                            <asp:LinkButton ID="lbntFoodrateUpdate" runat="server" OnClick="lbntFoodrateUpdate_Click" CssClass="btn btn-danger btn-sm">Update</asp:LinkButton>
+                            <asp:LinkButton ID="lbntFoodrateUpdate" runat="server" OnClick="lbntFoodrateUpdate_Click" CssClass="btn btn-success btn-sm">Update</asp:LinkButton>
                         </FooterTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
 
@@ -224,7 +224,7 @@
                                 Width="150px"></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
 
@@ -237,7 +237,7 @@
                                 Width="60px" BorderColor="blue" BorderWidth="1px" BackColor="White" BorderStyle="Solid" Style="text-align: center" Font-Bold="true"></asp:TextBox>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
 

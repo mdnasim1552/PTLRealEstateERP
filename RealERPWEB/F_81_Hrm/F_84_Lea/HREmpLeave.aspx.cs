@@ -799,7 +799,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetComeCode();
             string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string IdCardNo = "%" + this.txtlFEmpSearch.Text.Trim() + "%";
+            string IdCardNo = "%%";
             //string date = Convert.ToDateTime(this.txtformdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", company, pactcode, IdCardNo, "", "", "", "", "", "");
             if (ds1 == null)
