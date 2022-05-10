@@ -241,11 +241,14 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="gcode" Visible="False">
+                                                <asp:TemplateField HeaderText="gcode" Visible="false" >
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvgcod" runat="server"
+                                                        <asp:Label ID="lblgvgcod" runat="server" Visible="False"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
                                                             Width="49px"></asp:Label>
+                                                         <asp:TextBox ID="lblgvhrdesc" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
+                                                            Width="49px"></asp:TextBox>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>

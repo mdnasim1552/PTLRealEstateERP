@@ -765,7 +765,7 @@
                             </div>
 
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 d-none">
                                 <div class="input-group input-group-search dropdown ui-widget">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" title="Search"><span class="fa fa-search"></span></span>

@@ -88,7 +88,7 @@
                                             <asp:LinkButton ID="ibtnEmpListAllinfo" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ibtnEmpListAllinfo_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control inputTxt" TabIndex="2" Width="385px" OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control inputTxt" TabIndex="2" Width="385px" OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" AutoPostBack="true">
                                             </asp:DropDownList>
                                         </div>
 

@@ -834,6 +834,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
         public class MonthDesc
         {
             public string mon1 { get; set; }
+            public DateTime mondat { get; set; }
             public string monname { get; set; }
         }
 

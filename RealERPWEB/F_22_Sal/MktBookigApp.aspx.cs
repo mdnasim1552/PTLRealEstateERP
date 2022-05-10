@@ -68,9 +68,23 @@ namespace RealERPWEB.F_22_Sal
                 //imgFileUpload.PostedFile.SaveAs (savelocation);
 
                 Session["imgUrl"] = Url;
+            }
+            if (imgFileUploadN.HasFile)
+            {
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string gcode = this.lblgcode.Text.ToString();
+                string usircode = this.ddlCustName.SelectedValue.ToString();
+                string extension = Path.GetExtension(imgFileUploadN.PostedFile.FileName);
+                string random = ASTUtility.RandNumber(1, 99999).ToString();
+                imgFileUploadN.SaveAs(Server.MapPath("~/Upload/CUSTOMER/") + pactcode + usircode + gcode + random + extension);
 
+                Url = "~/Upload/CUSTOMER/" + pactcode + usircode + gcode + random + extension;
+                Session["imgUrl2"] = Url;
+
+                this.SaveValueImage(gcode, Url);
 
             }
+
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -185,8 +199,8 @@ namespace RealERPWEB.F_22_Sal
         private void ShowData()
         {
 
-            ViewState.Remove("tblprjinfo");
-            ViewState.Remove("tblperinfo");
+            Session.Remove("tblprjinfo");
+            Session.Remove("tblperinfo");
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string custid = this.ddlCustName.SelectedValue.ToString();
@@ -204,9 +218,9 @@ namespace RealERPWEB.F_22_Sal
 
 
             // DataTable dt = gvInterest_DataBind(ds2);
-            ViewState["tblprjinfo"] = ds2.Tables[0];
-            ViewState["tblperinfo"] = ds2.Tables[1];
-            ViewState["tblcustinfo"] = ds2.Tables[2];
+            Session["tblprjinfo"] = ds2.Tables[0];
+            Session["tblperinfo"] = ds2.Tables[1];
+            Session["tblcustinfo"] = ds2.Tables[2];
             DataTable dt = ds2.Tables[2];
             this.EmpImg.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["custimg"].ToString();
             //  appdate, bookamt, bankname, bbranch, paydate, intavail, paymode
@@ -231,7 +245,7 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_BindPrj()
         {
-            DataTable dt = (DataTable)ViewState["tblprjinfo"];
+            DataTable dt = (DataTable)Session["tblprjinfo"];
             this.gvProjectInfo.DataSource = dt;
             this.gvProjectInfo.DataBind();
             this.GridTextDDLVisible();
@@ -241,7 +255,7 @@ namespace RealERPWEB.F_22_Sal
         private void Data_BindPer()
         {
 
-            DataTable dt = (DataTable)ViewState["tblperinfo"];
+            DataTable dt = (DataTable)Session["tblperinfo"];
             this.gvperinfo.DataSource = dt;
             this.gvperinfo.DataBind();
             this.GridTextDDLVisiblePer();
@@ -249,7 +263,7 @@ namespace RealERPWEB.F_22_Sal
         private void GridTextDDLVisible()
         {
             string comcod = this.GetCompCode();
-            DataTable dt = ((DataTable)ViewState["tblprjinfo"]).Copy();
+            DataTable dt = ((DataTable)Session["tblprjinfo"]).Copy();
 
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -328,7 +342,7 @@ namespace RealERPWEB.F_22_Sal
         {
 
             string comcod = this.GetCompCode();
-            DataTable dt = ((DataTable)ViewState["tblperinfo"]).Copy();
+            DataTable dt = ((DataTable)Session["tblperinfo"]).Copy();
 
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -343,14 +357,14 @@ namespace RealERPWEB.F_22_Sal
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = true;
                         ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
-
-
+                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
                         break;
 
                     case "01010": //Marriage Date                  
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = true;
                         ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
+                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
 
                         //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
 
@@ -364,14 +378,11 @@ namespace RealERPWEB.F_22_Sal
 
                         break;
 
-
-
-
-
                     case "01027": //Type                  
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = false;
                         ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = true;
+                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
 
                         CheckBoxList cbl = ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper"));
                         cbl.SelectedValue = (val == "") ? "Open" : val;
@@ -387,12 +398,21 @@ namespace RealERPWEB.F_22_Sal
 
                         break;
 
+                    //lnkbtnImg Nominee Image
 
-
+                    case "01290":
+                    case "01291":
+                    case "01292":
+                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
+                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = false;
+                        ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
+                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = true;
+                        break;
 
                     default:
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = false;
                         ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
+                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
                         break;
 
                 }
@@ -402,8 +422,8 @@ namespace RealERPWEB.F_22_Sal
         private void SaveValue()
         {
 
-            DataTable dt = (DataTable)ViewState["tblprjinfo"];
-            DataTable dtp = (DataTable)ViewState["tblperinfo"];
+            DataTable dt = (DataTable)Session["tblprjinfo"];
+            DataTable dtp = (DataTable)Session["tblperinfo"];
 
             for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
             {
@@ -429,10 +449,7 @@ namespace RealERPWEB.F_22_Sal
                 dt.Rows[i]["gdesc1"] = Gvalue;
             }
 
-            ViewState["tblprjinfo"] = dt;
-
-
-
+            Session["tblprjinfo"] = dt;
 
             for (int i = 0; i < this.gvperinfo.Rows.Count; i++)
             {
@@ -457,14 +474,33 @@ namespace RealERPWEB.F_22_Sal
                     Gvalue = (((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim();
                 }
 
-
-
-
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
                 dtp.Rows[i]["gdesc1"] = Gvalue;
             }
 
-            ViewState["tblperinfo"] = dtp;
+            Session["tblperinfo"] = dtp;
+
+
+        }
+
+        private void SaveValueImage(string _gcode, string _url)
+        {
+
+            DataTable dtp = (DataTable)Session["tblperinfo"];
+
+            for (int i = 0; i < this.gvperinfo.Rows.Count; i++)
+            {
+                string Gcode = ((Label)this.gvperinfo.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
+                string gtype = ((Label)this.gvperinfo.Rows[i].FindControl("lgvgvalper")).Text.Trim();
+                string Gvalue = ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Text.Trim();
+                if (Gcode == _gcode)
+                {
+                    Gvalue = _url;
+                }
+                dtp.Rows[i]["gdesc1"] = Gvalue;
+            }
+            Session["tblperinfo"] = dtp;
+            this.Data_BindPer();
 
 
         }
@@ -502,7 +538,7 @@ namespace RealERPWEB.F_22_Sal
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
 
-            DataTable dt2 = (DataTable)ViewState["tblcustinfo"];
+            DataTable dt2 = (DataTable)Session["tblcustinfo"];
             string custimg = new Uri(Server.MapPath(dt2.Rows[0]["custimg"].ToString())).AbsoluteUri;
 
             double inword = Convert.ToDouble(dt2.Rows[0]["bookamt"]);
@@ -600,21 +636,13 @@ namespace RealERPWEB.F_22_Sal
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-
-
-
-
-
-
-
         protected void lUpdatInfo_Click(object sender, EventArgs e)
         {
 
-
             this.SaveValue();
             string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblprjinfo"];
-            DataTable dtp = (DataTable)ViewState["tblperinfo"];
+            DataTable dt = (DataTable)Session["tblprjinfo"];
+            DataTable dtp = (DataTable)Session["tblperinfo"];
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = this.ddlCustName.SelectedValue.ToString();
             string appdate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
@@ -730,6 +758,30 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+
+        protected void lnkbtnImg_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+                int index = this.gvperinfo.PageSize * this.gvperinfo.PageIndex + RowIndex;
+
+                string gcod = ((DataTable)Session["tblperinfo"]).Rows[index]["gcod"].ToString();
+                this.lblgcode.Text = gcod.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
+            }
+
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+            }
+        }
+
+
         //private void LoadImg()
         //{
         //    string comcod = this.GetCompCode ();
@@ -737,9 +789,6 @@ namespace RealERPWEB.F_22_Sal
         //    string usircode = this.ddlCustName.SelectedValue.ToString ();
 
         //    DataSet dt = SalData.GetTransInfo (comcod, "SP_ENTRY_DUMMYSALSMGT", "GETCUSIMG", pactcode, usircode);
-
-
-
         //}
     }
 }

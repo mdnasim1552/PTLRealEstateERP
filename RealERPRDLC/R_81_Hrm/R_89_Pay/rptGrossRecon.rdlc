@@ -165,16 +165,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.45572in</Width>
+                  <Width>2.10364in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.69532in</Width>
+                  <Width>2.14532in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.19531in</Width>
+                  <Width>1.20781in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.20572in</Width>
+                  <Width>1.06197in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.0125in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -325,6 +328,42 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Amount</Value>
+                                  <Style>
+                                    <FontFamily>calibri</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -343,6 +382,7 @@
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=Switch(Fields!empid.Value = "000000000000", "Bold",Fields!empid.Value = "AAAAAAAAAAAA", "Bold")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -355,13 +395,14 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "Yellow", Fields!refno.Value = "BBBBBBBBBBBB", "Tomato", Fields!refno.Value = "00000000000","Silver")</BackgroundColor>
+                            <BackgroundColor>=Switch(Fields!grp.Value = "1", "Tomato", Fields!grp.Value = "A", "Yellow")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -377,6 +418,7 @@
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=Switch(Fields!empid.Value = "000000000000", "Bold",Fields!empid.Value = "AAAAAAAAAAAA", "Bold")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -389,7 +431,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "Yellow", Fields!refno.Value = "BBBBBBBBBBBB", "Tomato", Fields!refno.Value = "00000000000","Silver")</BackgroundColor>
+                            <BackgroundColor>=Switch(Fields!grp.Value = "1", "Tomato", Fields!grp.Value = "A", "Yellow")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -411,6 +453,7 @@
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=Switch(Fields!empid.Value = "000000000000", "Bold",Fields!empid.Value = "AAAAAAAAAAAA", "Bold")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -423,7 +466,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "Yellow", Fields!refno.Value = "BBBBBBBBBBBB", "Tomato", Fields!refno.Value = "00000000000","Silver")</BackgroundColor>
+                            <BackgroundColor>=Switch(Fields!grp.Value = "1", "Tomato", Fields!grp.Value = "A", "Yellow")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -445,6 +488,7 @@
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=Switch(Fields!empid.Value = "000000000000", "Bold",Fields!empid.Value = "AAAAAAAAAAAA", "Bold")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -459,7 +503,44 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "Yellow", Fields!refno.Value = "BBBBBBBBBBBB", "Tomato", Fields!refno.Value = "00000000000","Silver")</BackgroundColor>
+                            <BackgroundColor>=Switch(Fields!grp.Value = "1", "Tomato", Fields!grp.Value = "A", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="curamt2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=FORMAT(Fields!preamt.Value, "#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>=Switch(Fields!empid.Value = "000000000000", "Bold",Fields!empid.Value = "AAAAAAAAAAAA", "Bold")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>curamt</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=Switch(Fields!grp.Value = "1", "Tomato", Fields!grp.Value = "A", "Yellow")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -474,6 +555,7 @@
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -493,7 +575,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.19667in</Top>
             <Height>0.41666in</Height>
-            <Width>7.55208in</Width>
+            <Width>7.53124in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -501,10 +583,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.72916in</Height>
+        <Height>0.70833in</Height>
         <Style />
       </Body>
-      <Width>7.59375in</Width>
+      <Width>7.7175in</Width>
       <Page>
         <PageHeader>
           <Height>0.63417in</Height>
@@ -521,7 +603,7 @@
                       <Value>=Parameters!comnam.Value</Value>
                       <Style>
                         <FontFamily>calibri</FontFamily>
-                        <FontSize>12pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -534,7 +616,7 @@
               <rd:DefaultName>Textbox19</rd:DefaultName>
               <Top>0.01042in</Top>
               <Left>1.54666in</Left>
-              <Height>0.17708in</Height>
+              <Height>0.22014in</Height>
               <Width>4.50803in</Width>
               <Style>
                 <Border>
@@ -569,6 +651,7 @@
                       <Value>=Parameters!RptTitle.Value</Value>
                       <Style>
                         <FontFamily>calibri</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -579,10 +662,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox19</rd:DefaultName>
-              <Top>0.24208in</Top>
-              <Left>1.54666in</Left>
-              <Height>0.14931in</Height>
-              <Width>4.50803in</Width>
+              <Top>0.24444in</Top>
+              <Left>1.52083in</Left>
+              <Height>0.20139in</Height>
+              <Width>4.53386in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -602,7 +685,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.21875in</Height>
+          <Height>0.1875in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -625,8 +708,43 @@
               </Paragraphs>
               <rd:DefaultName>Textbox22</rd:DefaultName>
               <Top>0.03194in</Top>
-              <Height>0.15625in</Height>
-              <Width>5.40625in</Width>
+              <Height>0.15556in</Height>
+              <Width>5.45677in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox4">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=IIF(Globals!TotalPages="1","",Globals!PageNumber &amp; " of " &amp; Globals!TotalPages)</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <Top>0.03194in</Top>
+              <Left>6.64458in</Left>
+              <Height>0.13542in</Height>
+              <Width>1.07292in</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

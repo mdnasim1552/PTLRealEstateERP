@@ -101,7 +101,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>7.66021in</Top>
-            <Left>3.89583in</Left>
+            <Left>3.88333in</Left>
             <Height>2.125in</Height>
             <Width>0.41458in</Width>
             <ZIndex>2</ZIndex>
@@ -614,13 +614,20 @@
                 </Style>
               </Textbox>
               <Textbox Name="Textbox39">
-                <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
                         <Value>=Parameters!naration.Value</Value>
+                        <Style>
+                          <FontFamily>Cambria</FontFamily>
+                          <FontSize>7pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value xml:space="preserve"> </Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>7pt</FontSize>
@@ -635,9 +642,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
                 <Top>1.52232in</Top>
-                <Left>0.51725in</Left>
-                <Height>0.20441in</Height>
-                <Width>2.66867in</Width>
+                <Left>0.50682in</Left>
+                <Height>0.38149in</Height>
+                <Width>2.6791in</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>

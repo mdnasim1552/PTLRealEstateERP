@@ -124,7 +124,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         }
         private void GetEmpLoyee()
         {
-
+            //ddlEmpName.ClearSelection();
+            //this.ddlEmpName.SelectedValue = string.Empty;
+            //ddlEmpName.SelectedIndex = -1;
+            //ddlEmpName.Items.Insert(0, new ListItem("", ""));
             string comcod = this.GetComeCode();
             string empid = this.Request.QueryString["Empid"] ??"";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "", "", "", "", "", "");
@@ -134,7 +137,26 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds1.Tables[0];
             this.ddlEmpName.DataBind();
-            this.ddlEmpName.SelectedValue = empid;
+            if (empid != "")
+            {
+                this.ddlEmpName.SelectedValue = empid;
+
+            }
+        }
+
+        private void GetEmpLoyeeResign()
+        {
+
+            string comcod = this.GetComeCode();
+            string empid = this.Request.QueryString["Empid"] ?? "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "resign", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlEmpName.DataTextField = "empname";
+            this.ddlEmpName.DataValueField = "empid";
+            this.ddlEmpName.DataSource = ds1.Tables[0];
+            this.ddlEmpName.DataBind();
+           
         }
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -149,19 +171,31 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void getVisibilty()
         {
+            string qtype = this.Request.QueryString["Type"] ?? "";
             string comcod = this.GetComeCode();
             if (comcod == "3365" || comcod == "3354")
             {
                 this.sspnlv.Visible = true;
+                
                 this.chkBoxSkippWH.Checked = true;
                 chkBoxSkippWH_CheckedChanged(null, null);
+                // this part for BTI Resign Employee show
+                if (comcod == "3365"&& qtype == "MGT")
+                {
+                    this.SpResign.Visible = true;
+                }
+                else
+                {
+                    this.SpResign.Visible = false;
+
+                }
             }
             else
             {
                 this.sspnlv.Visible = false;
+                this.SpResign.Visible = false;
                 this.chkBoxSkippWH.Checked = false;
             }
-
         }
         private void CreateTable()
         {
@@ -299,6 +333,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             {
                                 this.btnSave.Enabled = true;
                             }
+                        }
+                        else
+                        {
+                            this.btnSave.Enabled = true;
                         }
                         
 
@@ -1238,8 +1276,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void EmployeeLeaveCard()
         {
- 
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
@@ -1296,8 +1332,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
+        protected void chkresign_CheckedChanged(object sender, EventArgs e)
+        {
 
+            string getmethod= (this.chkresign.Checked ? "True" : "False");
+            if (getmethod == "True")
+            {
+                this.GetEmpLoyeeResign();
+            }
+            else
+            {
+                this.GetEmpLoyee();
+            }
+            this.ddlEmpName_SelectedIndexChanged(null, null);
 
-
+        }
     }
 }

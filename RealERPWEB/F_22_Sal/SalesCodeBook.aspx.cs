@@ -37,8 +37,9 @@ namespace RealERPWEB.F_22_Sal
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Sales") ? "SALES CODE BOOK"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "RABill") ? "Sub-Contractor R/A Code Book" : " Supplier/Sub-Contractor INFORMATION FIELD";
+                ((Label)this.Master.FindControl("lblTitle")).Text = SetTextTitle();
+                //        (this.Request.QueryString["Type"].ToString().Trim() == "Sales") ? "SALES CODE BOOK"
+                //: (this.Request.QueryString["Type"].ToString().Trim() == "RABill") ? "Sub-Contractor R/A Code Book" : " Supplier/Sub-Contractor INFORMATION FIELD";
 
 
             }
@@ -52,6 +53,30 @@ namespace RealERPWEB.F_22_Sal
             return (hst["comcod"].ToString());
 
         }
+
+        private string SetTextTitle()
+        {
+            string txtTitle = "";
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (type)
+            {
+                case "Sales":
+                    txtTitle = "SALES CODE BOOK";
+                    break;
+                case "RABill":
+                    txtTitle = "Sub-Contractor R/A Code Book";
+                    break;
+                case "Budget":
+                    txtTitle = "Code Book (Unit & R/A)";
+                    break;
+
+                default:
+                    txtTitle = "Supplier/Sub-Contractor INFORMATION FIELD";
+                    break;
+            }
+            return txtTitle;
+
+        }
         protected void Load_CodeBooList()
         {
 
@@ -61,7 +86,7 @@ namespace RealERPWEB.F_22_Sal
                 //string comcod = hst["comcod"].ToString();
                 string comcod = this.GetCompCode();
                 string Type = this.Request.QueryString["Type"].ToString().Trim();
-               
+
                 string code = this.Request.QueryString["Code"] == "22" ? "22%" : "%%";
 
                 DataSet dsone = this.da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTSALECODE", Type,
@@ -293,7 +318,34 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        protected void lnkbtnUpdate_Click(object sender, EventArgs e)
+        {
+            DataTable dt1 = (DataTable)Session["storedata"];
+            string comcod = this.GetCompCode();
 
+            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+            {
+                string slno = ((TextBox)grvacc.Rows[i].FindControl("lblslno")).Text.ToString();
+                string gcod = ((Label)grvacc.Rows[i].FindControl("lbgrcod1")).Text.ToString();
+                CheckBox chk = ((CheckBox)grvacc.Rows[i].FindControl("chkStatus"));
+                string checkstatus = (chk.Checked == true) ? "True" : "False";
+                //dt1.Rows[i]["slno"] = slno;
+                //dt1.Rows[i]["status"] = checkstatus;
 
+                bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTUPSALINFSTATUS", gcod,
+                           slno, checkstatus, "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = da.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+            }
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+        }
+        
     }
 }

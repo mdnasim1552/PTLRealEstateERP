@@ -4337,7 +4337,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                 }
-                if (comcod == "3101" || comcod == "3357")
+                if (comcod == "3357")
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }

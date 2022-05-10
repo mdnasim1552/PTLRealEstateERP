@@ -887,8 +887,7 @@
                                             <asp:CheckBoxList ID="chkfield" runat="server"  BackColor="#0B88C5" ForeColor="White" CssClass="btn rbtnList1 margin5px  primaryBtn " 
                                             RepeatColumns="7" RepeatDirection="Horizontal">
                                              <asp:ListItem Value="000">All</asp:ListItem>  
-                                            <asp:ListItem Value="001">Mobile Bill</asp:ListItem>
-                                            <asp:ListItem Value="003">Transport</asp:ListItem>
+                                            <asp:ListItem Value="001">Mobile Bill</asp:ListItem>                                          
                                             <asp:ListItem Value="005">Others</asp:ListItem>
                                            
                                            
@@ -1525,10 +1524,10 @@
                                             <asp:ListItem Value="003">Arear Salary</asp:ListItem>
                                             <asp:ListItem Value="005">Project Visit</asp:ListItem>
                                             <asp:ListItem Value="007">Car Allowance</asp:ListItem>
-                                            <asp:ListItem Value="008">Fooding</asp:ListItem>
+                                            <%--<asp:ListItem Value="008">Fooding</asp:ListItem>--%>
                                             <asp:ListItem Value="009">Refund</asp:ListItem>
                                             <asp:ListItem Value="012">Others</asp:ListItem>
-                                            <asp:ListItem Value="015">Dress Bill</asp:ListItem>
+                                            <%--<asp:ListItem Value="015">Dress Bill</asp:ListItem>--%>
                                            
                                            
                                         </asp:CheckBoxList>
@@ -1692,7 +1691,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="Fooding">
                                         <HeaderTemplate>
                                             <asp:Label ID="lblCol6" runat="server" Text="Fooding" />
                                             <asp:CheckBox ID="chkCol6" runat="server" Checked="true" Class="hidden" />
@@ -1768,7 +1767,7 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="HardShip Allowance">
                                         <HeaderTemplate>
                                             <asp:Label ID="lblCol10" runat="server" Text="HardShip Allowance" />
                                             <asp:CheckBox ID="chkCol10" runat="server" Checked="true" Class="hidden" />

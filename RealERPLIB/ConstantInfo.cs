@@ -209,6 +209,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0402000", "0402181", "F_04_Bgd", "RptBgdPrjojectNew?", "Type=Report", "Budgeted Reports", "Budget", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "0402000", "0402182", "F_04_Bgd", "TokenService", "", "Token Services", "Budget", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "0402000", "0402184", "F_22_Sal", "SalesCodeBook?", "Type=Budget", "Code Book (Unit & R/A)", "Budget", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "0451000", "0451001", "F_99_Allinterface", "BudgetInterface", "", "Budget", "Budget-Interface", "False", "False", "False", "False" }); ;
 
@@ -282,6 +283,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0703000", "0701141", "F_07_Ten", "CivilConBOQ?", "Type=Entry", "Civil Construction BOQ", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701142", "F_07_Ten", "UnitConversion", "", "Unit Conversion", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701143", "F_22_Sal", "SalesCodeBook?", "Type=Sales&Code=", "Unit Code Book ", "Tender", "False", "False", "False", "False" }); ;
+        
 
             #endregion
 
@@ -1377,6 +1379,10 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2802000", "2802050", "F_28_MPro", "MktMRREntry?", "Type=Entry", "Marketing Material Receive", "Marketing Procurement", "False", "False", "False", "False" });
 
+
+            tblObj.Rows.Add(new Object[] { "2802000", "2802060", "F_28_MPro", "AccMktMonthlyBgd?", "Type=All", "Monthly Budget (Marketing)", "Marketing Procurement", "False", "False", "False", "False" });
+
+
             //Report
             tblObj.Rows.Add(new Object[] { "2803000", "2803001", "F_28_MPro", "RptMktProjectStock?", "Type=RptMktStock", "Marketing Material Stock", "Marketing Procurement", "False", "False", "False", "False" });
 
@@ -1943,7 +1949,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102018", "F_81_Hrm/F_82_App", "HREmpOffDays", "", "Employee Off Days", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102019", "F_81_Hrm/F_83_Att", "HREmpAbsCt", "", "Absent Count", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102020", "F_81_Hrm/F_83_Att", "HRDailyAttenManually", "", "Daily Attendance - Manually", "Attendance", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102021", "F_81_Hrm/F_83_Att", "HRDailyAtten", "", "Employee Attendance", "Attendance", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102021", "F_81_Hrm/F_83_Att", "HRDailyAtten", "", "Daily Attendance - System", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102022", "F_81_Hrm/F_83_Att", "EmpDaillyAbsent", "", "Daily Absent", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102023", "F_81_Hrm/F_83_Att", "HREmpLWP", "", "LWP Count", "Attendance", "False", "False", "False", "False" }); ;
 
@@ -2067,7 +2073,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102171", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=LPAproval", "Monthly (L.P) Late Approval", "Attendance", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8102000", "8102165", "F_81_Hrm/F_83_Att", "HREmpMonthlyAttenSys", "", "Monthly  Attendance - System", "Attendance", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102165", "F_81_Hrm/F_83_Att", "HREmpMonthlyAttenSys", "", "New Joining Employee Attendance - System", "Attendance", "False", "False", "False", "False" }); ;
 
 
 
@@ -3901,6 +3907,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Design & Consultancy", "F_17_Acc/AccSubCodeBook?InputType=Overhead", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Work List", "F_17_Acc/AccSubCodeBook?InputType=Wrkschedule", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000004", "10. Standard Analysis", "F_04_Bgd/BgdStdAna", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000005", "11. Code Book (Unit & R/A)", "F_22_Sal/SalesCodeBook?Type=Budget", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Entry", "", "", false, "mb" });
@@ -8253,7 +8260,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000018","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000019", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000020","", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000021","", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000021", "07. Monthly Budget (Marketing)", "F_28_MPro/AccMktMonthlyBgd?Type=All&actcode=&year=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000022","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000023","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000024", "", "", "", true, "" });
@@ -14745,7 +14752,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000017", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000018", "14. Employee Monthly Early Leave Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MEarlyleave", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000019", "15. Early Leave Approval", "F_81_Hrm/F_83_Att/EmpEarlyLeaveApproval", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000020", "06. Monthly Attendance - System", "F_81_Hrm/F_83_Att/HREmpMonthlyAttenSys", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000020", "06. New Joining Employee Attendance - System", "F_81_Hrm/F_83_Att/HREmpMonthlyAttenSys", "", true, "" });
 
 
             // D. Leave Monitoring

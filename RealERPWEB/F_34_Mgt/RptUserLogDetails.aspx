@@ -108,6 +108,11 @@
                                     <asp:ListItem Value="150">150</asp:ListItem>
                                     <asp:ListItem Value="200">200</asp:ListItem>
                                     <asp:ListItem Value="300">300</asp:ListItem>
+                                    <asp:ListItem Value="900">900</asp:ListItem>
+                                    <asp:ListItem Value="1200">1200</asp:ListItem>
+                                    <asp:ListItem Value="1500">1500</asp:ListItem>
+                                    <asp:ListItem Value="3000">3000</asp:ListItem>
+                                    <asp:ListItem Value="6000">6000</asp:ListItem>                                    
                                 </asp:DropDownList>
                             </div>
                         </div>
