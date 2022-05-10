@@ -161,7 +161,7 @@ namespace RealERPWEB
                 case "3364":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
-                case "3347": // Assure 
+                case "3347": // Pebsteel 
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? true : true); /// for Common User thatswhy all are ture
                     break;
 

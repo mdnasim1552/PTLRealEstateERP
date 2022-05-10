@@ -52,6 +52,7 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
 
+
     </script>
 
 
@@ -78,6 +79,7 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
+                         <button onclick="printPage()">prin`enter code here`t</button>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="Label1" runat="server">Company</asp:Label>
@@ -189,6 +191,7 @@
 
                             </asp:TemplateField>
 
+                        
 
                             <asp:TemplateField HeaderText="Gross Salary">
 
@@ -226,6 +229,17 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Effective Date">
+                                <ItemTemplate>
+                                    
+                                    <asp:TextBox ID="txtEffecDate" runat="server" CssClass="form-control form-control-sm pd4"  
+                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "effectdate")).ToString("dd-MMM-yyyy") %>'></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtEffecDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtEffecDate"></cc1:CalendarExtender>
+                                     
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />

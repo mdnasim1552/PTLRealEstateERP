@@ -14760,7 +14760,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0304000001", "01. Leave Application Form (Manual)", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=FLeaveApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000002", "02. Manual Leave Approval", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000003", "03. Online Leave Application (Ind)", "F_81_Hrm/F_84_Lea/MyLeave?Type=User", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0304000004", "04. Apply Leave (MGT)", "F_81_Hrm/F_84_Lea/MyLeave?Type=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000004", "04. Apply Leave (MGT)", "F_81_Hrm/F_84_Lea/MyLeave?Type=MGT", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000005", "05. HR Leave Interface(Mgt)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000006", "06. HR Leave Interface(Department Head)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=DeptHead", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000007", "07. HR Leave Interface(Individual)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind", "", true, "" });
