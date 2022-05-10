@@ -183,7 +183,7 @@
                                 <div class="col-6">
 
                                     <asp:GridView ID="gvPersonalInfo2" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                        ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" 
                                         OnRowDataBound="gvPersonalInfo2_RowDataBound">
                                         <RowStyle />
                                         <Columns>

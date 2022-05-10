@@ -6,7 +6,33 @@
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .chzn-container {
+            width: 100% !important;
+        }
+
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 35px !important;
+            line-height: 35px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+
+        .pd4 {
+            padding: 4px !important;
+        }
     </style>
+
 
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
@@ -73,7 +99,7 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     Company
@@ -93,16 +119,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <asp:Label ID="lblDept" CssClass="mb-2 d-block" runat="server">Section</asp:Label>
-
-
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select">
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-
+               
                         <div class="col-md-1">
                             <div class="form-group">
                                 <asp:Label ID="Label1" CssClass="mb-2 d-block" runat="server">Page Size</asp:Label>
@@ -133,12 +150,41 @@
                             </div>
                         </div>
 
+                       <div class="col-md-3">
+                            <div class="form-group">
+                                <asp:Label ID="lblDept" CssClass="mb-2 d-block" runat="server">Section</asp:Label>
+
+
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
 
                     </div>
+             
 
                     <div class="row">
 
                         <%-- <div id="pnlDesig" runat="server">--%>
+
+                       <div class="col-md-2">
+                            <div class="form-group">
+                                <asp:Label ID="lblfrmdate" CssClass="mb-2 d-block" runat="server">From</asp:Label>
+
+                                <asp:TextBox ID="txtFdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <asp:Label ID="lbltodate" CssClass="mb-2 d-block" runat="server">To</asp:Label>
+
+                                <asp:TextBox ID="txtTdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
                         <div class="col-md-2" id="desFrom" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblfrmd" CssClass="mb-2 d-block" runat="server">Form</asp:Label>
@@ -158,26 +204,10 @@
                         </div>
                         <%--   </div>--%>
 
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <asp:Label ID="lblfrmdate" CssClass="mb-2 d-block" runat="server">From</asp:Label>
 
-                                <asp:TextBox ID="txtFdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <asp:Label ID="lbltodate" CssClass="mb-2 d-block" runat="server">To</asp:Label>
-
-                                <asp:TextBox ID="txtTdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
-                            </div>
-                        </div>
                     </div>
 
-                </div>
+       
                 <div class="row">
 
 
@@ -196,6 +226,8 @@
                             <asp:DropDownList ID="ddlComName" class="ComName form-control ClCompAndMod" runat="server" TabIndex="2" Width="224">
                             </asp:DropDownList>
                         </div>
+                    </div>
+                    </div>
                     </div>
 
                     <div class="card-body">
