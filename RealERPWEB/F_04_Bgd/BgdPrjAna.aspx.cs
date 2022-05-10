@@ -1130,10 +1130,6 @@ namespace RealERPWEB.F_04_Bgd
         protected void gvAnalysis_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-
-
-
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
@@ -1141,7 +1137,14 @@ namespace RealERPWEB.F_04_Bgd
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-            string comcod = this.GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            //postedbyid,posteddat,postrmid,postseson,
+
             string PrjCod = this.ddlProject.SelectedValue.ToString().Trim();
             string ItmCode = ((Label)this.gvAnalysis.Rows[e.RowIndex].FindControl("lblgvItmCod")).Text.Trim();
             int RowIndex = this.gvAnalysis.PageIndex * this.gvAnalysis.PageSize + e.RowIndex;
@@ -1159,7 +1162,7 @@ namespace RealERPWEB.F_04_Bgd
                     string Itmqtyf = "0" + ((TextBox)gv1.Rows[i].FindControl("txtgvgvQty")).Text.Trim().Replace(",", "");
 
                     bool result1 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "UPDATEPRJFLOORQTY",
-                                PrjCod, ItmCode, FlrCode, Itmqtyf, ItmRef, approval, "", "", "", "", "", "", "", "", "");
+                                PrjCod, ItmCode, FlrCode, Itmqtyf, ItmRef, approval, userid, Date, Terminal, Sessionid, "", "", "", "", "");
 
 
 
