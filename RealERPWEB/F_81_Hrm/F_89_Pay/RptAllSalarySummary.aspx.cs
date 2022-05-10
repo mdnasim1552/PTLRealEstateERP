@@ -429,18 +429,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string rptitle = "";
             string monname = "";
-            //DataTable dt = (DataTable)Session["tblSalSummary"];
+           DataTable dt = (DataTable)Session["tblSalSummary"];
             DataTable dt2 = (DataTable)Session["tblmondesc"];
             DataTable dt3 = (DataTable)Session["tblbankdesc"];
 
-            DataTable dt = new DataTable();
-            DataView view = new DataView();
-
-            view.Table = (DataTable)Session["tblSalSummary"];
-
-            view.RowFilter = "empname <>''";
-
-             dt = view.ToTable();
+       
 
 
 

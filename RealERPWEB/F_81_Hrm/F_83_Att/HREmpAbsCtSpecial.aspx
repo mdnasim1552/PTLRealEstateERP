@@ -330,12 +330,16 @@ div#ContentPlaceHolder1_ddlCompanyName_chzn {
 
                         <div class="modal-header">
 
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          
                             <h5 class="modal-title" id="exampleModalCenterTitle">Absent Employee</h5>
-                            <asp:Label ID="lblSelectEmpName" runat="server"></asp:Label>
+              
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
                         </div>
                         <div class="modal-body">
-                            <asp:CheckBoxList ID="chkDate" runat="server" Font-Bold="True" CssClass="chkBoxControl"
+                                          <asp:Label ID="lblSelectEmpName" runat="server" CssClass="text-bold"></asp:Label>
+                            <asp:CheckBoxList ID="chkDate" runat="server" Font-Bold="True" CssClass="chkBoxControl mt-1"
                                 ForeColor="#000" RepeatDirection="Horizontal" Width="900px"
                                 RepeatColumns="7">
                             </asp:CheckBoxList>

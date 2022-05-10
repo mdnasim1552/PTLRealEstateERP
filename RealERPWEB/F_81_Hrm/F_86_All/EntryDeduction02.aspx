@@ -231,7 +231,7 @@
                                 Width="200px"></asp:Label>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:LinkButton ID="lbntUpdateDec" runat="server" OnClick="lbntUpdateDec_Click" CssClass="btn btn-danger btn-sm">Update</asp:LinkButton>
+                            <asp:LinkButton ID="lbntUpdateDec" runat="server" OnClick="lbntUpdateDec_Click" CssClass="btn btn-success btn-sm">Update</asp:LinkButton>
                         </FooterTemplate>
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
