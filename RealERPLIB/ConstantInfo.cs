@@ -2073,7 +2073,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102171", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=LPAproval", "Monthly (L.P) Late Approval", "Attendance", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8102000", "8102165", "F_81_Hrm/F_83_Att", "HREmpMonthlyAttenSys", "", "Monthly  Attendance - System", "Attendance", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102165", "F_81_Hrm/F_83_Att", "HREmpMonthlyAttenSys", "", "New Joining Employee Attendance - System", "Attendance", "False", "False", "False", "False" }); ;
 
 
 
@@ -14752,7 +14752,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000017", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000018", "14. Employee Monthly Early Leave Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MEarlyleave", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000019", "15. Early Leave Approval", "F_81_Hrm/F_83_Att/EmpEarlyLeaveApproval", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000020", "06. Monthly Attendance - System", "F_81_Hrm/F_83_Att/HREmpMonthlyAttenSys", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000020", "06. New Joining Employee Attendance - System", "F_81_Hrm/F_83_Att/HREmpMonthlyAttenSys", "", true, "" });
 
 
             // D. Leave Monitoring
