@@ -25,9 +25,10 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Individual Payment Schedule of Provident Fund";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
 
                 //   this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -63,7 +64,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             //   string type = this.Request.QueryString["Type"].ToString().Trim();
             string Company = ((this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)) + "%";
 
-            string txtSProject = this.txtsrchdeptagg.Text.Trim() + "%";
+            string txtSProject = "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAME", Company, txtSProject, "", "", "", "", "", "", "");
 
             this.ddldepartmentagg.DataTextField = "deptdesc";
@@ -77,7 +78,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         {
             string comcod = this.GetComeCode();
             string deptcode = this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 4) + "%";
-            string txtSProject = this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", deptcode, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -95,8 +96,8 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         private void GetEmpName()
         {
             string comcod = this.GetComeCode();
-            string ProjectCode = (this.txtEmpSrcInfo.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string txtSProject = "%" + this.txtEmpSrcInfo.Text + "%";
+            string ProjectCode =  this.ddlProjectName.SelectedValue.ToString() + "%";
+            string txtSProject = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpNameAllInfo.DataTextField = "empname";
             this.ddlEmpNameAllInfo.DataValueField = "empid";

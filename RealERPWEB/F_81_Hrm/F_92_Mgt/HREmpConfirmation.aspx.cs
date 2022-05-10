@@ -147,12 +147,19 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         private void Data_Bind()
         {
+            string comcod = this.GetComeCode();
             if (this.chkconfrmdt.Checked)
             {
                 this.dgvEmpCon.Columns[8].Visible = false;
                 this.dgvEmpCon.Columns[9].Visible = false;
 
             }
+            else
+            {
+                this.dgvEmpCon.Columns[8].Visible = true;
+                this.dgvEmpCon.Columns[9].Visible = true;
+            }
+            this.dgvEmpCon.Columns[10].Visible = comcod=="3365"?true:false;
 
 
             this.dgvEmpCon.DataSource = (DataTable)Session["tblMrr"];
@@ -176,12 +183,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             for (int i = 0; i < this.dgvEmpCon.Rows.Count; i++)
             {
                 string chkmr = (((CheckBox)this.dgvEmpCon.Rows[i].FindControl("chkvmrno")).Checked) ? "True" : "False";
+                string effectDate = ((TextBox)dgvEmpCon.Rows[i].FindControl("txtEffecDate")).Text.Trim();
                 dt.Rows[i]["chkmv"] = chkmr;
+                dt.Rows[i]["effectdate"] = effectDate==""?"01-Jan-1900": effectDate;
                 ((CheckBox)this.dgvEmpCon.Rows[i].FindControl("chkvmrno")).Enabled = (((CheckBox)this.dgvEmpCon.Rows[i].FindControl("chkvmrno")).Checked) ? false : true;
                 ((LinkButton)this.dgvEmpCon.Rows[i].FindControl("lbok")).Enabled = (((CheckBox)this.dgvEmpCon.Rows[i].FindControl("chkvmrno")).Checked) ? false : true;
             }
             Session["tblMrr"] = dt;
-
         }
         protected void imgbtnCompany_Click(object sender, EventArgs e)
         {
@@ -215,15 +223,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string id = dr[0]["empid"].ToString();
             string Remarks = dr[0]["remarks"].ToString();
             string Chk = dr[0]["chkmv"].ToString();
+            string effectdate = dr[0]["effectdate"].ToString();
+            string condat = dr[0]["condat"].ToString();
             string msg= "";
             if (Chk == "False")
             {
-
                 msg = "Please Check CheckBox";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
- 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
 
@@ -231,30 +237,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
 
                 bool resultpa = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPCONFIRM", id, Remarks, userid, postDat, trmid, sessionid,
-                                "", "", "", "", "", "", "", "", "");
-
+                               condat, effectdate,   "", "", "", "", "", "", "");
                 if (!resultpa)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
+                    msg = HRData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
+                    return;                   
                 }
-                msg = "Update Successfully.";
-
-
-              
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
+                msg = "Update Successfully."; 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);                 
             }
             catch (Exception ex)
             {
-                msg = "Update Failed.";
-
-
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = ex.ToString()+ "Update Failed."; 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);                
             }
         }
 

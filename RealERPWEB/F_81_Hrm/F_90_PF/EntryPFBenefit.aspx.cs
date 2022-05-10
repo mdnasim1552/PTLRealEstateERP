@@ -24,13 +24,14 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Entry PF Benefit";
+           
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfrmdate.Text = "01-Jan-" + date.Substring(7);
                 //this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(12).ToString("dd-MMM-yyyy");
@@ -87,7 +88,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PFACCOUNTS", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -105,7 +106,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             if (this.ddlCompany.Items.Count == 0)
                 return;
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = "%%";
             DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PFACCOUNTS", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -119,7 +120,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
             string comcod = this.GetCompCode();
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSSec = "%" + this.txtSrcSec.Text.Trim() + "%";
+            string txtSSec = "%%";
             DataSet ds2 = accData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PFACCOUNTS", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
@@ -248,6 +249,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             string year = this.ddlyear.SelectedValue.ToString();
 
             string insamt = this.txtInterest.Text;
+            string msg = "";
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -262,14 +264,20 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
                 if (!resultb)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Update Fail !!!";
+
+                    msg = "Update Failed";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                 }
 
 
 
             }
 
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated Successfully";
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+
 
 
 
