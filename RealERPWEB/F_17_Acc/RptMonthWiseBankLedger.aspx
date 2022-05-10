@@ -178,7 +178,7 @@
                                     <asp:Label ID="lgvFopnamt" runat="server" Font-Bold="True" Width="80px"></asp:Label>
                                 </FooterTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lgvopnamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opnam")).ToString("#,##0;-#,##0; ") %>'
+                                    <asp:Label ID="lgvopnamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opnam")).ToString("#,##0.00;-#,##0.00; ") %>'
                                         Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
@@ -203,7 +203,7 @@
                                     <asp:Label ID="lgvFcreditamt" runat="server" Font-Bold="True" Width="80px"></asp:Label>
                                 </FooterTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lgvcreditamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trncr")).ToString("#,##0;(#,##0); ") %>'
+                                    <asp:Label ID="lgvcreditamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trncr")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
@@ -216,7 +216,7 @@
                                     <asp:Label ID="lgvFclsamt" runat="server" Font-Bold="True" Width="80px"></asp:Label>
                                 </FooterTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lgvclsamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "clsamt")).ToString("#,##0;-#,##0; ") %>'
+                                    <asp:Label ID="lgvclsamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "clsamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                         Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
