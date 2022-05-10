@@ -257,6 +257,7 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlOthersBookSegment.Enabled = false;
                     string Code = (this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2);
                     this.grvacc.Columns[7].Visible = (Code == "88") ? true : false;
+                    this.grvacc.Columns[10].Visible = (Code == "01") ? true : false;
                     this.ShowInformation();
                     this.grvacc.EditIndex = -1;
                     this.grvacc_DataBind();
@@ -346,6 +347,7 @@ namespace RealERPWEB.F_22_Sal
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
         }
-        
+
+      
     }
 }
