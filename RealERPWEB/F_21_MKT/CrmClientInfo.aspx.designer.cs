@@ -663,6 +663,24 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDatablank;
 
         /// <summary>
+        /// lnkBtnPotentialPros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtnPotentialPros;
+
+        /// <summary>
+        /// lblPotential control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPotential;
+
+        /// <summary>
         /// hdnlblattribute control.
         /// </summary>
         /// <remarks>
