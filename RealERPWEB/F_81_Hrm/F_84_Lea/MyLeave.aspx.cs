@@ -1297,7 +1297,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
            
             DataTable dt1 = ds.Tables[1];
             DataTable dt2 = ds.Tables[2];
-            DataTable dt3 = ds.Tables[3];
+   
 
     
             string empname = ds.Tables[0].Rows[0]["empname"].ToString()??"";
@@ -1309,11 +1309,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             var list1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>();
             var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
-            var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.prevtLeaveInfo>();
+            var list3 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
+
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptEmpLeaveCard", list1, list2, list3);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
+
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee's Leave Card"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));

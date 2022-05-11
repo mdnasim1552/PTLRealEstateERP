@@ -452,19 +452,29 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
         {
             //comcod,empid,gcod,strtdat,enddat,aplydat,aprdat,leaveday ,lvname,lvblnc
             public string comcod { get; set; }
-            public string gcod { get; set; }
+
             public string empid { get; set; }
-            public string lvname { get; set; }
-            public double leaveday { get; set; }
-            public double lvblnc { get; set; }
+            public string gcod { get; set; }
+            public double eleave { get; set; }
+            public double cleave { get; set; }
+            public double sleave { get; set; }
+            public double bleave { get; set; }
+            public double baleleave { get; set; }
+            public double balcleave { get; set; }
+            public double balsleave { get; set; }
+      
+            public DateTime aplydat { get; set; }
             public DateTime strtdat { get; set; }
             public DateTime enddat { get; set; }
             public DateTime aprdat { get; set; }
-            public DateTime aplydat { get; set; }
+            public string lreason { get; set; }
+            public string supname { get; set; }
+            public string dptuser { get; set; }
+            public string lvname { get; set; }
+
 
             public currentLeaveInfo() { }
         }
-
 
         [Serializable]
         public class prevtLeaveInfo
@@ -479,7 +489,7 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public DateTime prevstrtdat { get; set; }
             public DateTime prevenddat { get; set; }
             public DateTime prevaprdat { get; set; }
-            public DateTime prevaplydat{ get; set; }
+            public DateTime prevaplydat { get; set; }
             public prevtLeaveInfo() { }
         }
 

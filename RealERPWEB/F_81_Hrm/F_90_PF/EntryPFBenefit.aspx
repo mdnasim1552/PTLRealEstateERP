@@ -20,8 +20,8 @@
         }
 
         .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -49,6 +49,25 @@
             });
 
             $('.chzn-select').chosen({ search_contains: true });
+        }
+
+        function filter2(phrase, _id) {
+            var words = phrase.value.toLowerCase().split(" ");
+            var table = document.getElementById(_id);
+            var ele;
+            for (var r = 1; r < table.rows.length; r++) {
+                ele = table.rows[r].innerHTML.replace(/<[^>]+>/g, "");
+                var displayStyle = 'none';
+                for (var i = 0; i < words.length; i++) {
+                    if (ele.toLowerCase().indexOf(words[i]) >= 0)
+                        displayStyle = '';
+                    else {
+                        displayStyle = 'none';
+                        break;
+                    }
+                }
+                table.rows[r].style.display = displayStyle;
+            }
         }
 
     </script>
@@ -103,31 +122,41 @@
                                 </asp:DropDownList>
                     </div>
                 </div>
+                               <div class="col-lg-1">
+                    <div class="form-group">
+                                <asp:Label ID="lbllstVouno0" runat="server" Text="Interest "></asp:Label>
+                                <asp:TextBox ID="txtInterest" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                    </div>
+                </div>
+
+                                <div class="col-lg-1">
+                    <div class="form-group">
+                           <asp:Label ID="Label1" runat="server"  >Year</asp:Label>
+                                <asp:DropDownList ID="ddlyear" runat="server"  CssClass="form-control form-control-sm"></asp:DropDownList>
+                    </div>
+                </div>
 
                 <div class="col-lg-1">
-                                    <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkOk_Click">Ok</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkOk_Click">Ok</asp:LinkButton>
 
                 </div>
             </div>
              <div class="row">
-                <div class="col-lg-2">
-                    <div class="form-group">
-                                <asp:Label ID="lbllstVouno0" runat="server" Text="Interest "></asp:Label>
-                                <asp:TextBox ID="txtInterest" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                </div>
+ 
 
-                <div class="col-lg-2">
-                    <div class="form-group">
-                           <asp:Label ID="Label1" runat="server"  >Year</asp:Label>
-                                <asp:DropDownList ID="ddlyear" runat="server"  CssClass="form-control"></asp:DropDownList>
-                    </div>
-                </div>
+
+
+                                  <div class="col-lg-2">
+                     <div class="form-group">
+                                     <asp:Label ID="Label5" runat="server" >ID Card</asp:Label>
+                         <input name="txtTerm" onkeyup="filter2(this, '<%=gvProFund.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
+                 </div>
+                           </div>
 
                 <div class="col-lg-1">
                     <div class="form-group">
                          <asp:Label ID="lblPage" runat="server" >Page Size</asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control"  OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"  OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -140,12 +169,13 @@
                                 </asp:DropDownList>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <asp:GridView ID="gvProFund" runat="server" AutoGenerateColumns="False"
-                    ShowFooter="True" AllowPaging="true" CssClass="table-striped table-hover table-bordered grvContentarea" OnPageIndexChanging="gvProFund_PageIndexChanging">
+                    ShowFooter="True" AllowPaging="true" CssClass="table-striped table-hover table-bordered grvContentarea" OnPageIndexChanging="gvProFund_PageIndexChanging" EmptyDataText="No records Found">
                     <RowStyle />
                     <Columns>
 
@@ -153,20 +183,20 @@
                         <asp:TemplateField HeaderText="Sl.No.">
                             <ItemTemplate>
                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
-                                    Style="text-align: right"
+                                    Style="text-align: center"
                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                             </ItemTemplate>
-                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Section">
                             <ItemTemplate>
                                 <asp:Label ID="lgsection" runat="server"
                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sectionname")) %>'
-                                    Width="120px"></asp:Label>
+                                    Width="150px"></asp:Label>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Left" />
-                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Card #">
@@ -182,7 +212,7 @@
                             </FooterTemplate>
 
                             <ItemStyle HorizontalAlign="Left" />
-                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="">
@@ -213,7 +243,7 @@
                                     ForeColor="#000" OnClick="lbtnCal_Click" Style="text-align: center">Calculation</asp:LinkButton>
                             </FooterTemplate>
                             <ItemStyle HorizontalAlign="Left" />
-                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Principle">
@@ -229,7 +259,7 @@
 
                             <ItemStyle HorizontalAlign="Right" />
                             <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
-                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Benefit">
@@ -245,7 +275,7 @@
 
                             <ItemStyle HorizontalAlign="Right" />
                             <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
-                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
 
 
