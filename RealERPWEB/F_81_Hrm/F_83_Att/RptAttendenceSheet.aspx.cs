@@ -62,11 +62,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void hideOptions()
         {
+            string comcod = this.GetComCode();
             this.rbtnAtten.SelectedIndex = 3;
-            this.lnkbtnEmp.Visible = false;
-            this.ddlEmpName.Visible = false;
-            this.empListPnl.Visible = false;
-            
+            this.lnkbtnEmp.Visible = comcod=="3347"?false:true;
+            this.ddlEmpName.Visible = comcod == "3347" ? false : true;
+            this.empListPnl.Visible = comcod == "3347" ? false : true;
+
         }
 
 
@@ -148,7 +149,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
 
-                    this.lblSection.Visible = false;
+                    
                     this.PnlSection.Visible = false;
 
                      
@@ -160,7 +161,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;                    
-                    this.lblSection.Visible = true;
+                   
                     this.PnlSection.Visible = true;
                     break;
                 case 2:
@@ -171,7 +172,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
 
-                    this.lblSection.Visible = false;
+                 
                     this.PnlSection.Visible = false;
 
                     break;
@@ -185,7 +186,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.rbtnAttStatus.Visible = true;
                     
 
-                    this.lblSection.Visible = true;
+                    
                     this.PnlSection.Visible = true;
                     break;
                 case 4:
@@ -196,7 +197,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
 
-                    this.lblSection.Visible = true;
+                    
                     this.PnlSection.Visible = true;
                     break;
                 case 5:
@@ -207,7 +208,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlAttnLog.Visible = false;
 
-                    this.lblSection.Visible = false;
+                   
                     this.PnlSection.Visible = false;
                     break;
                 case 6:
@@ -218,7 +219,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
 
-                    this.lblSection.Visible = false;
+                    
                     this.PnlSection.Visible = false;
                     break;
                 case 7:
@@ -229,7 +230,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
 
-                    this.lblSection.Visible = true;
+                     
                     this.PnlSection.Visible = true;
                     break;
                 case 8:
@@ -240,7 +241,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
 
-                    this.lblSection.Visible = true;
+                    
                     this.PnlSection.Visible = true;
                     break;
                 default:
@@ -361,7 +362,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.lnkbtnEmp.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
             //this.txtSrcEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
            // this.imgbtnEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
-            this.empListPnl.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
+            this.empListPnl.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 3) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
             this.ddlEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
             this.lblfrmdate.Text = ((this.rbtnAtten.SelectedIndex == 1 || this.rbtnAtten.SelectedIndex == 7) ? "Date:" : "From:");
             this.txtfromdate.Text = (this.rbtnAtten.SelectedIndex == 1 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtfromdate.Text.Trim());
@@ -577,25 +578,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void MonthlyAttendance()
         {
+            string empid = (this.ddlEmpName.SelectedValue.ToString() == "") ? "%" : this.ddlEmpName.SelectedValue.ToString();
 
-            string section22 = this.DropCheck1.SelectedValue.Trim();
-            if(this.ddlProjectName.SelectedValue.ToString() == "000000000000")
-            {
-                string Msg = "Please Select Department";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
-                return;
-
-            }
             
+            string section22 = this.DropCheck1.SelectedValue.Trim();
 
 
-            if (section22 == "")
-            {
-                string Msg = "Please Select Section";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
-                return;
-            }
 
+            string section = "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
@@ -613,29 +603,45 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
             string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
             string todesig = this.ddlToDesig.SelectedValue.ToString();
-
             string acclate = this.GetComLateAccTime();
+             
 
-           string  section = "";
-            if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+            if (empid == "%")
             {
-                string gp = this.DropCheck1.SelectedValue.Trim();
-                if (gp.Length > 0)
+                if (this.ddlProjectName.SelectedValue.ToString() == "000000000000")
                 {
-                    if (gp.Substring(0, 3).Trim() == "000" || gp.Trim() == "")
-                        section = "";
-                    else
-                        foreach (ListItem s1 in DropCheck1.Items)
-                        {
-                            if (s1.Selected)
+                    string Msg = "Please Select Department";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                    return;
+                }
+                if (section22 == "")
+                {
+                    string Msg = "Please Select Section";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                    return;
+                }
+
+
+                if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+                {
+                    string gp = this.DropCheck1.SelectedValue.Trim();
+                    if (gp.Length > 0)
+                    {
+                        if (gp.Substring(0, 3).Trim() == "000" || gp.Trim() == "")
+                            section = "";
+                        else
+                            foreach (ListItem s1 in DropCheck1.Items)
                             {
-                                section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
+                                if (s1.Selected)
+                                {
+                                    section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
+                                }
                             }
-                        }
+                    }
                 }
             }
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, empid);
             if (ds1 == null)
                 return;
             Session["tblallData"] = ds1.Tables[0];
