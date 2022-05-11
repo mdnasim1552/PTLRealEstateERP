@@ -37,13 +37,12 @@
     </style>
 
 
-     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
 
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
@@ -55,7 +54,7 @@
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
-   
+
 
           <%-- var gvMonthlyattSummary = $('#<%=this.gvMonthlyattSummary.ClientID %>');
             gvMonthlyattSummary.Scrollable();--%>
@@ -67,8 +66,7 @@
             gvEmpStatus.Scrollable();
 
 
-            $('.select2').each(function ()
-            {
+            $('.select2').each(function () {
                 var select = $(this);
                 select.select2({
                     placeholder: 'Select an option',
@@ -80,27 +78,27 @@
                         }
                     }
                 });
-            });         
+            });
         }
         function Search_Gridview(strKey) {
 
             var strData = strKey.value.toLowerCase().split(" ");
             var tblData = document.getElementById("<%=gvMonthlyattSummary.ClientID %>");
-             var rowData;
-             for (var i = 1; i < tblData.rows.length; i++) {
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
 
-                 rowData = tblData.rows[i].innerHTML;
-                 var styleDisplay = 'none';
-                 for (var j = 0; j < strData.length; j++) {
-                     if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                         styleDisplay = '';
-                     else {
-                         styleDisplay = 'none';
-                         break;
-                     }
-                 }
-                 tblData.rows[i].style.display = styleDisplay;
-             }
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
         }
 
 
@@ -147,53 +145,88 @@
                             </asp:RadioButtonList>
                         </div>
                     </div>
+
                     <div class="row">
-                        <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Company</asp:Label>
-                        <div class="col-3">
 
-                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true">
-                            </asp:DropDownList>
-                        </div>
-                        <asp:Label ID="Label1" runat="server" CssClass="col-1 col-form-label">Department</asp:Label>
-                        <div class="col-3">
-
-                            <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="true">
-                            </asp:DropDownList>
-                        </div>
-                        <asp:Label ID="lblSection" runat="server" CssClass="col-1 col-form-label text-right">Section</asp:Label>
-                        <div class="col-3" ID="PnlSection" runat="server">
-
-                            <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control select2" SelectionMode="Multiple" OnSelectedIndexChanged="DropCheck1_SelectedIndexChanged"></asp:ListBox>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Company  
+                                </label>
+                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true">
+                                </asp:DropDownList>
+                            </div>
                         </div>
 
-                        <asp:LinkButton ID="lnkbtnEmp" CssClass="col-1 col-form-label" runat="server" OnClick="lnkbtnEmp_Click">Emp.Name</asp:LinkButton>
-
-                        <div class="col-3" id="empListPnl" runat="server">
-
-                            <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control select2"  AutoPostBack="True">
-                            </asp:DropDownList>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Department  
+                                </label>
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="true">
+                                </asp:DropDownList>
+                            </div>
                         </div>
-                        <asp:Label ID="lblfrmdate" runat="server" CssClass="col-1 col-form-label">From</asp:Label>
+
+
+                        <div class="col-md-3" id="PnlSection" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Section  
+                                </label>
+                                <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control select2" SelectionMode="Multiple" OnSelectedIndexChanged="DropCheck1_SelectedIndexChanged"></asp:ListBox>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" id="empListPnl" runat="server">
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    
+                                    <asp:LinkButton ID="lnkbtnEmp" runat="server" OnClick="lnkbtnEmp_Click">Emp.Name   </asp:LinkButton>
+                                </label>
+
+                                <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control select2" AutoPostBack="True">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row">
+
+
+
+                        <div class="col-md-2" id="Div1" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="lblfrmdate" runat="server">Form</asp:Label>
+
+
+
+                                <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2" id="Div2" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="lbltodate" runat="server">To</asp:Label>
+                                <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+
+                            </div>
+                        </div>
+
+
 
                         <div class="col-2">
-                            <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                            <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
-                        </div>
-                        <asp:Label ID="lbltodate" runat="server" CssClass="col-1 col-form-label">To</asp:Label>
+                            <asp:Label ID="Label1" runat="server">Status Type</asp:Label>
 
-
-                        <div class="col-2">
-
-                            <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                            <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-
-                        </div>
-
-                        <div class="col-2">
-                                          <asp:RadioButtonList ID="rbtnAttStatus" runat="server" AutoPostBack="True"
-                 CssClass="custom-control custom-control-inline custom-checkbox"
+                            <asp:RadioButtonList ID="rbtnAttStatus" runat="server" AutoPostBack="True"
+                                CssClass="custom-control custom-checkbox d-block p-0 mt-2"
                                 Font-Bold="True" Font-Size="12px" ForeColor="Black"
-                               
                                 RepeatDirection="Horizontal">
                                 <asp:ListItem>Time wise</asp:ListItem>
                                 <asp:ListItem>Att Status</asp:ListItem>
@@ -201,33 +234,30 @@
                             </asp:RadioButtonList>
 
                         </div>
+                        <div id="pnlDesig" runat="server" visible="false" class="col-md-4">
+                            <div class="row">
+                            <div class="col-md-6" id="Div3" runat="server">
+                               
+                                    <asp:Label ID="lblfrmDesig" runat="server">Form</asp:Label>
+                                    <asp:DropDownList ID="ddlfrmDesig" runat="server" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control select2 form-control-sm" TabIndex="6">
+                                    </asp:DropDownList>
+                               
+                            </div>
 
+                            <div class="col-md-6" id="Div4" runat="server">
+                                <div class="form-group">
+                                    <asp:Label ID="lbltoDesig" runat="server">To</asp:Label>
+                                    <asp:DropDownList ID="ddlToDesig" runat="server" CssClass="form-control form-control-sm select2" TabIndex="6">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                                </div>
+                        </div>
                         <div class="col-1">
-                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnShow_Click">Show</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkbtnShow_Click">Show</asp:LinkButton>
                         </div>
                     </div>
-                    <div class="row">
-                        <div id="pnlDesig" runat="server" visible="false">
-                            <div class="col-md-3">
-                                <div class="input-group input-group-alt">
-                                    <div class="input-group-prepend ">
-                                        <asp:Label ID="lblfrmDesig" runat="server" CssClass="btn btn-secondary btn-sm">Form</asp:Label>
-                                    </div>
-                                    <asp:DropDownList ID="ddlfrmDesig" runat="server" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control form-control-sm" Width="100px" TabIndex="6">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="input-group input-group-alt">
-                                    <div class="input-group-prepend ">
-                                        <asp:Label ID="lbltoDesig" runat="server" CssClass="btn btn-secondary btn-sm">To</asp:Label>
-                                    </div>
-                                    <asp:DropDownList ID="ddlToDesig" runat="server" Width="120" CssClass="form-control form-control-sm" TabIndex="6">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="card-body">
                     <div class="row mb-2">
@@ -685,19 +715,19 @@
                                 </asp:GridView>
                             </div>
 
-                            
+
                             <div class="table-responsive" id="SummaryAttinfo" runat="server">
                                 <div class="col-3">
-                                  <div class="input-group input-group-alt">
-                                                <div class="input-group-prepend ">
-                                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
-                                                </div>
-                                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+                                    <div class="input-group input-group-alt">
+                                        <div class="input-group-prepend ">
+                                            <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                        </div>
+                                        <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
 
-                                            </div>
                                     </div>
+                                </div>
                                 <br />
-                                <asp:GridView ID="gvMonthlyattSummary" runat="server" AutoGenerateColumns="False" ShowFooter="True"  
+                                <asp:GridView ID="gvMonthlyattSummary" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                     CssClass="table-striped table-hover table-bordered grvContentarea">
                                     <RowStyle />
                                     <Columns>
@@ -726,8 +756,6 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgv01summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="L"?"bg-yellow d-block":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="LP"?"bg-danger d-block":""%>'
-                                                    
-                                                    
                                                     runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
@@ -823,7 +851,8 @@
                                         <asp:TemplateField HeaderText="09">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgv09summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))=="L"?"bg-yellow d-block":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))=="LP"?"bg-danger d-block":""%>' runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
@@ -849,7 +878,7 @@
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "col11s"))=="LP"?"bg-danger d-block":""%>'
                                                     runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col11s"))
                                            %>'
-                                                    Font-Size="11px" ></asp:Label>
+                                                    Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -1105,7 +1134,7 @@
                                                     Font-Size="11px"></asp:Label>
 
                                             </ItemTemplate>
-                                             <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Late">
@@ -1114,25 +1143,25 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                             <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        
+
                                         <asp:TemplateField HeaderText="LP">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbllateabs" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "abslate")).ToString("#,##0; ")
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                             <ItemStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField> 
-                                        
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Absent">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblabsent" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0; ")
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                             <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Holiday">
@@ -1141,7 +1170,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                             <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Leave">
@@ -1150,7 +1179,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                             <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Total">
@@ -1159,7 +1188,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                             <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle BackColor="#F5F5F5" />
