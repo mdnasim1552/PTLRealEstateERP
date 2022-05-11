@@ -277,7 +277,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         private void ShowPersonalInformation()
         {
-
+     
             string comcod = this.GetComeCode();
             string empid = this.GetEmpId();
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPPERSONALINFO", empid, "", "", "", "", "", "", "", "");
@@ -317,6 +317,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
 
                 string Gcode = dt.Rows[i]["gcod"].ToString();
+
+                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Enabled = false;
+                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Enabled = false;
+                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Enabled = false;
+
 
                 switch (Gcode)
                 {
@@ -419,6 +424,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                         //((LinkButton)this.gvPersonalInfo.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
 
+
                         break;
 
                 }
@@ -430,6 +436,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 string Gcode = dt2.Rows[i]["gcod"].ToString();
 
+
+                ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Enabled = false;
+                ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Enabled = false;
+                ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Enabled = false;
                 switch (Gcode)
                 {
 
@@ -503,6 +513,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Enabled = true;
                         break;
 
 
@@ -527,6 +538,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         //((LinkButton)this.gvPersonalInfo2.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
 
                         break;
+                    
+
+                      
+
+    
 
 
                     default:
@@ -535,6 +551,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Visible = false;
                         //((LinkButton)this.gvPersonalInfo2.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
+            
 
                         break;
 

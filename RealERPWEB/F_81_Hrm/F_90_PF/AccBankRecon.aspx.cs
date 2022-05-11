@@ -25,15 +25,18 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         {
 
             if (!IsPostBack)
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = "BANK RECONCILCIATION INFORMATION INPUT/VIEW SCREEN";
-
-            if (this.TxtDate1.Text.Trim().Length == 0)
             {
-                this.TxtDate1.Text = DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
-                this.TxtDate2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
+
+                if (this.TxtDate1.Text.Trim().Length == 0)
+                {
+                    this.TxtDate1.Text = DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
+                    this.TxtDate2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                }
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -104,7 +107,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string mCOMCOD = hst["comcod"].ToString();
-            string mFILTERSTR = this.txtBankSearch.Text.Trim();
+            string mFILTERSTR = "";
 
             DataSet ds1 = accData.GetTransInfo(mCOMCOD, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETCONACCHEAD",
                    "", "", "", "", "", "", "", "", "");
@@ -125,7 +128,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
         protected void gv1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            this.lblError.Text = "";
+
             //try
             {
                 string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
@@ -163,14 +166,18 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 }
 
                 string mUserID = "000000"; // hst["usrid"].ToString(); 
-
+                string msg = "";
                 bool result = accData.UpdateTransInfo(mCOMCOD, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEBANKRECON",
                           mRECNDT1, mVOUNUM, mACTCODE, mSUBCODE, mCACTCODE, "", "", "",
                           "", "", "", "", "", "", mUserID);
 
 
                 if (!result)
-                    this.lblError.Text = "Invalid date";
+                    //this.lblError.Text = "Invalid date";
+                  
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+
 
                 Session["tbl01r"] = tbl1;
             }
