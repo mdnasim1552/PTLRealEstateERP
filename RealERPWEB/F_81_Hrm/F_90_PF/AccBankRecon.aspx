@@ -81,7 +81,7 @@
                                 <asp:Label ID="Label2" runat="server" Text="Bank Name:"></asp:Label>
 
 
-                                <asp:DropDownList ID="DDListBank" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:DropDownList ID="DDListBank" runat="server" CssClass="form-control form-control-sm"></asp:DropDownList>
                             </div>
                         </div>
 
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <asp:Label ID="Label4" runat="server" Text="Date Range"></asp:Label>
 
-                                <asp:TextBox ID="TxtDate1" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="TxtDate1" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <asp:Label ID="Label5" runat="server" Text="To:"></asp:Label>
 
-                                <asp:TextBox ID="TxtDate2" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="TxtDate2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
                         </div>
    

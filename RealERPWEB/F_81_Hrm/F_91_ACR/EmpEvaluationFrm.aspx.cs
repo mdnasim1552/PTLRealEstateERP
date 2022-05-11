@@ -133,13 +133,14 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             {
                 this.lbtnOk.Text = "New";
                 //this.lblEmpname.Text = this.ddlEmpName.SelectedItem.Text.Trim().Substring(13);
-                this.ddlEmpName.Visible = false;
+                this.ddlEmpName.Enabled = false;
                 //this.lblEmpname.Visible = true;
                 this.ddlEmpName.Enabled = false;
-                this.lblprelist.Visible = false;
+                this.lblprelist.Enabled = false;
+                this.txtrefno.Enabled = false;
                 //this.txtPreViousList.Visible = false;
                 //this.ibtnPreList.Visible = false;
-                this.ddlPreList.Visible = false;
+                this.ddlPreList.Enabled = false;
                 this.ShowPerformance();
                 return;
             }

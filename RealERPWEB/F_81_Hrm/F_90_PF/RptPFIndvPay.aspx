@@ -19,8 +19,8 @@
         }
 
         .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -106,13 +106,13 @@
                                 <div class="form-group">
                                          <asp:Label ID="Label2" runat="server" >Employee List:</asp:Label>
 
-                            <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control chzn-select" TabIndex="2" Width="385px" OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" AutoPostBack="true">
+                            <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control chzn-select" TabIndex="2"  OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" AutoPostBack="true">
                             </asp:DropDownList>
                                 </div>
                             </div>
 
                             <div class="col-lg-1">
-                            <asp:LinkButton ID="lnkbtnSerOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkbtnSerOk_Click">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnSerOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnSerOk_Click">Ok</asp:LinkButton>
 
                             </div>
                         </div>

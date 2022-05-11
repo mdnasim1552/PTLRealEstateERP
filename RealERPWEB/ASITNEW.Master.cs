@@ -132,7 +132,7 @@ namespace RealERPWEB
             {
                 case "3101":
                     //sidebar nav off for bti general user                    
-                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+                    //this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.hypGroupChat.Visible = false;
                     this.HypOldModules.Visible = false;
@@ -185,8 +185,7 @@ namespace RealERPWEB
             }
             hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;
 
-            this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
-            
+            this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";       
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
             this.hypTimeOfleave.NavigateUrl = "~/F_81_Hrm/F_84_Lea/TimeOfLeave?Type=Ind";
 

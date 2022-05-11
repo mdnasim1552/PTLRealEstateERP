@@ -78,15 +78,6 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         protected global::System.Web.UI.WebControls.DropDownList ddlSection;
 
         /// <summary>
-        /// lnkOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkOk;
-
-        /// <summary>
         /// lbllstVouno0 control.
         /// </summary>
         /// <remarks>
@@ -121,6 +112,24 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlyear;
+
+        /// <summary>
+        /// lnkOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkOk;
+
+        /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
         /// lblPage control.

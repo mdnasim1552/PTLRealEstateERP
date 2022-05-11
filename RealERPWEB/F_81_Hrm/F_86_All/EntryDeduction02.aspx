@@ -18,8 +18,8 @@
         }
 
         .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -65,6 +65,25 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
 
+        function filter2(phrase, _id) {
+            var words = phrase.value.toLowerCase().split(" ");
+            var table = document.getElementById(_id);
+            var ele;
+            for (var r = 1; r < table.rows.length; r++) {
+                ele = table.rows[r].innerHTML.replace(/<[^>]+>/g, "");
+                var displayStyle = 'none';
+                for (var i = 0; i < words.length; i++) {
+                    if (ele.toLowerCase().indexOf(words[i]) >= 0)
+                        displayStyle = '';
+                    else {
+                        displayStyle = 'none';
+                        break;
+                    }
+                }
+                table.rows[r].style.display = displayStyle;
+            }
+        }
+
     </script>
 
 
@@ -98,7 +117,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lbldate" runat="server">Date</asp:Label>
 
-                                <asp:DropDownList ID="ddlyearmon" runat="server" CssClass="form-control">
+                                <asp:DropDownList ID="ddlyearmon" runat="server" CssClass="form-control form-control-sm">
                                     <asp:ListItem></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
@@ -139,14 +158,22 @@
                                         <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" OnClick="imgbtnSearchEmployee_Click"><i class="fa fa-search"> </i></asp:LinkButton>
 
                                            </asp:Label>
-                                        <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                            
                             </div>
                         </div>
+
+                        
+                                  <div class="col-lg-2">
+                     <div class="form-group">
+                                     <asp:Label ID="Label5" runat="server" >ID Card</asp:Label>
+                         <input name="txtTerm" onkeyup="filter2(this, '<%=gvdeduction2.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
+                 </div>
+                           </div>
                         <div class="col-lg-1">
                             <asp:Panel ID="pnlpage" runat="server">
                                 <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -160,7 +187,7 @@
                             </asp:Panel>
                         </div>
                         <div class="col-lg-1">
-                                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkbtnShow_Click" Text="Ok"></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnShow_Click" Text="Ok"></asp:LinkButton>
 
                         </div>
                     </div>

@@ -359,9 +359,7 @@ namespace RealERPWEB.F_28_MPro
                 dr1["prdesc"] = this.ddlPRType.SelectedItem.Text.Trim();
                 dr1["actdesc"] = this.ddlActType.SelectedItem.Text.Trim();
                 dr1["mktdesc"] = this.ddlMarkType.SelectedItem.Text.Trim();
-                dr1["bgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdqty"];
                 dr1["bgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdamt"];
-                dr1["bbgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdqty"]; 
                 dr1["bbgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdamt"];
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
@@ -391,9 +389,7 @@ namespace RealERPWEB.F_28_MPro
                 {
                     rsircode = dt1.Rows[j]["rsircode"].ToString();
                     dt1.Rows[j]["rsirdesc1"] = "";
-                    dt1.Rows[j]["bbgdqty"] = 0.00;
                     dt1.Rows[j]["bbgdamt"] = 0.00;
-                    dt1.Rows[j]["bgdqty"] = 0.00;
                     dt1.Rows[j]["treceived"] = 0.00;
 
                 }
