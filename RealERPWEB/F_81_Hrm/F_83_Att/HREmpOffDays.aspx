@@ -46,6 +46,28 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
 
+        function Search_Gridview(strKey) {
+
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("<%=gvoffday.ClientID %>");
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }
+
+
     </script>
 
 
@@ -138,8 +160,7 @@
 
                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                 OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Width="80">
-                                <asp:ListItem Value="10">10</asp:ListItem>
-                                <asp:ListItem Value="15">15</asp:ListItem>
+                                <asp:ListItem Value="10">10</asp:ListItem>                             
                                 <asp:ListItem Value="20">20</asp:ListItem>
                                 <asp:ListItem Value="30">30</asp:ListItem>
                                 <asp:ListItem Value="50">50</asp:ListItem>
@@ -147,6 +168,10 @@
                                 <asp:ListItem Value="150">150</asp:ListItem>
                                 <asp:ListItem Value="200">200</asp:ListItem>
                                 <asp:ListItem Value="300">300</asp:ListItem>
+                                <asp:ListItem Value="500" Selected="True">500</asp:ListItem>
+                                <asp:ListItem Value="1000">1000</asp:ListItem>
+                                <asp:ListItem Value="2000">2000</asp:ListItem>
+                                <asp:ListItem Value="3000">3000</asp:ListItem>
                             </asp:DropDownList>
 
                         </div>
@@ -194,18 +219,22 @@
                             </div>
 
                         </div>
-
-
-
-
-                    </div>
-
-
-
-
+                    </div
 
                 </div>
                 <div class="card-body">
+
+
+                     <div class="col-3">
+                                  <div class="input-group input-group-alt" id="SrchPanel" runat="server" visible="false">
+                                                <div class="input-group-prepend ">
+                                                    <asp:Label ID="Label6" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                                </div>
+                                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+
+                                            </div>
+                                    </div>
+                                <br />
                     <asp:GridView ID="gvoffday" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                         AutoGenerateColumns="False" ShowFooter="True" Width="695px"
                         OnPageIndexChanging="gvoffday_PageIndexChanging"

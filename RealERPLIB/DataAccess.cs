@@ -194,8 +194,7 @@ namespace RealERPLIB
         {
             this.m_Erroobj["Src"] = ex.Source;
             this.m_Erroobj["Msg"] = ex.Message;
-            this.m_Erroobj["Location"] = ex.StackTrace;
-            
+            this.m_Erroobj["Location"] = ex.StackTrace;           
         }
     }
 }
