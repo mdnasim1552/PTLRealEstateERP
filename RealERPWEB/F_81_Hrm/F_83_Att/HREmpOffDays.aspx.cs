@@ -194,6 +194,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             this.lblPage.Visible = true;
             this.ddlpagesize.Visible = true;
+            this.SrchPanel.Visible = true;
             Session.Remove("tbloffday");
             string comcod = this.GetComCode();
 

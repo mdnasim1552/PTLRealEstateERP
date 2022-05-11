@@ -38,7 +38,9 @@
                 cursor: pointer;
                 color: #fff;
             }
-
+            .frowcol{
+                background:#5b9bd1; color:white; display:block;
+            }
         .chzn-drop {
             width: 100% !important;
         }
@@ -65,6 +67,8 @@
                         .mt20 {
             margin-top: 20px;
         }
+
+
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -123,7 +127,7 @@
 
             //$("#btnSubmit").click(function () {
             var data = JSON.stringify(getAllHolidayData());
-            console.log(data);
+            //console.log(data);
             $.ajax({
 
                 url: '<%=ResolveClientUrl("~/Service/UserService.asmx/SaveHolidayData")%>',

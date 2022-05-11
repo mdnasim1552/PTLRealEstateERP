@@ -192,16 +192,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void ShowData()
         {
-
-
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
-
             string Empid = this.ddlEmpName.SelectedValue.ToString();
-            string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
-          
-
-
+            string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();       
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERATTENDANCEMSYSTEM", Empid, MonthId, "", "", "", "", "", "", "");
             if (ds4 == null)
             {
@@ -209,7 +203,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.gvMonthlyAttn.DataBind();
                 return;
             }
-
             Session["tblEmpDesc"] = ds4.Tables[0];
             this.LoadGrid();
 
@@ -263,64 +256,107 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void lFinalUpdate_Click(object sender, EventArgs e)
         {
-            this.SaveValue();
-            string msg = "";
+            //this.SaveValue();
+            //string msg = "";
+            //DataTable dt = (DataTable)Session["tblEmpDesc"];
+            //string comcod = this.GetCompCode();
+
+            //string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
+
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+
+            //    string absent = dt.Rows[i]["absnt"].ToString().Trim();
+            //    string leave = dt.Rows[i]["leav"].ToString().Trim();
+            //    string hday = dt.Rows[i]["hday"].ToString().Trim();
+            //    if ((absent != "A") && (leave != "L") && (hday != "H"))
+            //    {
+            //        string dayid = Convert.ToDateTime(dt.Rows[i]["cdate"].ToString()).ToString("yyyyMMdd");
+            //        string empid = dt.Rows[i]["empid"].ToString();
+            //        string machid = "01";
+            //        string idcardno = dt.Rows[i]["idcardno"].ToString();
+            //        string intime = dt.Rows[i]["intime"].ToString();
+            //        string outtime = dt.Rows[i]["outtime"].ToString();
+            //        string dedout = "0";
+            //        string addhour = "0";
+            //        string addoffhour = "0";
+            //        string offintime = dt.Rows[i]["offintime"].ToString();
+            //        string offoutime = dt.Rows[i]["offouttime"].ToString();
+            //        string lnintime = dt.Rows[i]["lnchintime"].ToString();
+            //        string lnoutime = dt.Rows[i]["lnchouttime"].ToString();
+            //        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPEMPOFFTIME", dayid, empid, machid, idcardno, intime, outtime, leave, absent, dedout, addhour, addoffhour, offintime, offoutime, lnintime, lnoutime);
+            //    }
+
+            //    if (absent == "A")
+            //    {
+            //        string empid = dt.Rows[i]["empid"].ToString();
+            //        string frmdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
+            //        string absfl = "1";
+            //        string month = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("ddMMyyyy").Substring(2, 2);
+            //        //tring month1 = month.PadLeft(2, '0');
+            //        string year = ASTUtility.Right(Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy"), 4);
+            //        string monyr = month + year;
+
+            //        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT", empid, frmdate, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
+
+            //    }
+
+            //    if (hday == "H")
+            //    {
+            //        string empid = dt.Rows[i]["empid"].ToString();
+            //        string hdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
+            //        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUPHOLIDAY", hdate, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            //    }
+            //}
+            //msg = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+            //this.LoadGrid();
+            // ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+            bool result;
+            //this.SaveValue();
             DataTable dt = (DataTable)Session["tblEmpDesc"];
             string comcod = this.GetCompCode();
+            //string date = this.txtdate.Text;
+            //string dayid = Convert.ToDateTime(this.txtdate.Text).ToString("yyyyMMdd");
 
-            string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
-
+            //result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEOFFTIME", dayid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                //string absent = dt.Rows[i]["absnt"].ToString().Trim();
+                //string leave = dt.Rows[i]["leave"].ToString().Trim();
+                //if ((absent != "A") && (leave != "L"))
+                //{
 
-                string absent = dt.Rows[i]["absnt"].ToString().Trim();
-                string leave = dt.Rows[i]["leav"].ToString().Trim();
-                string hday = dt.Rows[i]["hday"].ToString().Trim();
-                if ((absent != "A") && (leave != "L") && (hday != "H"))
-                {
-                    string dayid = Convert.ToDateTime(dt.Rows[i]["cdate"].ToString()).ToString("yyyyMMdd");
-                    string empid = dt.Rows[i]["empid"].ToString();
-                    string machid = "01";
-                    string idcardno = dt.Rows[i]["idcardno"].ToString();
-                    string intime = dt.Rows[i]["intime"].ToString();
-                    string outtime = dt.Rows[i]["outtime"].ToString();
-                    string dedout = "0";
-                    string addhour = "0";
-                    string addoffhour = "0";
-                    string offintime = dt.Rows[i]["offintime"].ToString();
-                    string offoutime = dt.Rows[i]["offouttime"].ToString();
-                    string lnintime = dt.Rows[i]["lnchintime"].ToString();
-                    string lnoutime = dt.Rows[i]["lnchouttime"].ToString();
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPEMPOFFTIME", dayid, empid, machid, idcardno, intime, outtime, leave, absent, dedout, addhour, addoffhour, offintime, offoutime, lnintime, lnoutime);
-                }
+                string empid = dt.Rows[i]["empid"].ToString();
+                string machid = "01";
+                string dayid =Convert.ToDateTime( dt.Rows[i]["cdate"]).ToString("yyyyMMdd");
+                string idcardno = dt.Rows[i]["idcardno"].ToString();
+                string intime = dt.Rows[i]["intime"].ToString();
+                string outtime = dt.Rows[i]["outtime"].ToString();
+                string offintime = dt.Rows[i]["offintime"].ToString();
+                string offoutime = dt.Rows[i]["offouttime"].ToString();
+                string lnintime = dt.Rows[i]["lnchintime"].ToString();
+                string lnoutime = dt.Rows[i]["lnchouttime"].ToString();
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPEMPOFFTIMEAUTO", dayid, empid, machid, idcardno, intime, outtime, offintime, offoutime, lnintime, lnoutime, "", "", "", "", "");
+                // }
+                //if (absent == "A")
+                //{
+                //    string empid = dt.Rows[i]["empid"].ToString();
+                //    string frmdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
+                //    string absfl = "1";
+                //    string month = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("ddMMyyyy").Substring(2, 2);
+                //    //tring month1 = month.PadLeft(2, '0');
+                //    string year = ASTUtility.Right(Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy"), 4);
+                //    string monyr = month + year;
 
-                if (absent == "A")
-                {
-                    string empid = dt.Rows[i]["empid"].ToString();
-                    string frmdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
-                    string absfl = "1";
-                    string month = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("ddMMyyyy").Substring(2, 2);
-                    //tring month1 = month.PadLeft(2, '0');
-                    string year = ASTUtility.Right(Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy"), 4);
-                    string monyr = month + year;
+                //    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INORUPDATEABSENTCT", empid, frmdate, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
 
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT", empid, frmdate, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
-
-                }
-
-                if (hday == "H")
-                {
-                    string empid = dt.Rows[i]["empid"].ToString();
-                    string hdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUPHOLIDAY", hdate, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-                }
+                //}
 
             }
-
-            msg = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-            this.LoadGrid();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
         }
     }
 }
