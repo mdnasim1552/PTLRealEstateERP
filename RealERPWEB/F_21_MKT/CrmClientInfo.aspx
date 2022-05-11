@@ -3630,7 +3630,6 @@
                                                     <span class="badge badge-pill badge-danger" id="lblpmi" runat="server">0</span>
                                                 </button>
                                             </div>
-
                                         </asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkBtnComments" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnComments_Click">
@@ -3643,7 +3642,6 @@
                                                     <span class="badge badge-pill badge-danger" id="lblComments" runat="server">0</span>
                                                 </button>
                                             </div>
-
                                         </asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkBtnFreezing" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnFreezing_Click">
@@ -3656,7 +3654,6 @@
                                                     <span class="badge badge-pill badge-danger" id="lblFreez" runat="server">0</span>
                                                 </button>
                                             </div>
-
                                         </asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkBtnDeadProspect" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDeadProspect_Click">
@@ -3669,7 +3666,6 @@
                                                     <span class="badge badge-pill badge-danger" id="lblDeadProspect" runat="server">0</span>
                                                 </button>
                                             </div>
-
                                         </asp:LinkButton>
 
                                         <asp:LinkButton ID="lbtnSigned" class="list-group-item list-group-item-action" runat="server" OnClick="lbtnSigned_Click">
@@ -3682,7 +3678,6 @@
                                                     <span class="badge badge-pill badge-danger" id="lblcsigned" runat="server">0</span>
                                                 </button>
                                             </div>
-
                                         </asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDatablank_Click">
@@ -3695,8 +3690,21 @@
                                                     <span class="badge badge-pill badge-danger" id="lblDatablank" runat="server">0</span>
                                                 </button>
                                             </div>
-
                                         </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkBtnPotentialPros" runat="server" class="list-group-item list-group-item-action" OnClick="lnkBtnPotentialPros_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-red">PTP</div>
+                                            </div>
+                                            <div class="list-group-item-body">Potential</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblPotential" runat="server">0</span>
+                                                </button>
+                                            </div>
+                                        </asp:LinkButton>
+
+
                                         <asp:HiddenField ID="hdnlblattribute" runat="server" />
 
 

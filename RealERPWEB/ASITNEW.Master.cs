@@ -132,7 +132,7 @@ namespace RealERPWEB
             {
                 case "3101":
                     //sidebar nav off for bti general user                    
-                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+                    //this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.hypGroupChat.Visible = false;
                     this.HypOldModules.Visible = false;
