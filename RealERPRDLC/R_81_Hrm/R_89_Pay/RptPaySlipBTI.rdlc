@@ -1391,22 +1391,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.7829in</Width>
+                  <Width>2.73082in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.14583in</Width>
+                  <Width>0.125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.57385in</Width>
+                  <Width>0.75095in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.75992in</Width>
+                  <Width>2.67659in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.14583in</Width>
+                  <Width>0.11458in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.69058in</Width>
+                  <Width>0.71141in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -4274,7 +4274,7 @@
             <Top>2.5175in</Top>
             <Left>0.02083in</Left>
             <Height>2.875in</Height>
-            <Width>7.09891in</Width>
+            <Width>7.10935in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -4504,41 +4504,42 @@
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="Textbox123">
+          <Textbox Name="Textbox21">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!txtsign1.Value</Value>
+                    <Value>NB: </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
+                  <TextRun>
+                    <Value>This payslip is software generated, Any Discrepancy must be notify to HR Department within 7 days, Else it will be deemed that the staff has found this salary statement correct</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox123</rd:DefaultName>
-            <Top>8.95847in</Top>
-            <Left>0.02083in</Left>
-            <Height>0.25in</Height>
-            <Width>1.36167in</Width>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>7.69666in</Top>
+            <Left>0.01876in</Left>
+            <Height>0.39583in</Height>
+            <Width>7.10933in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
-              </Border>
-              <TopBorder>
                 <Style>Solid</Style>
-              </TopBorder>
-              <BottomBorder>
-                <Style>None</Style>
-              </BottomBorder>
+              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -4546,7 +4547,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>9.25014in</Height>
+        <Height>8.15639in</Height>
         <Style>
           <Border>
             <Color>Yellow</Color>
@@ -4559,7 +4560,7 @@
           </BackgroundImage>
         </Style>
       </Body>
-      <Width>7.17253in</Width>
+      <Width>7.1517in</Width>
       <Page>
         <PageHeader>
           <Height>0.60417in</Height>
@@ -4657,61 +4658,6 @@
             </Border>
           </Style>
         </PageHeader>
-        <PageFooter>
-          <Height>0.21528in</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Textbox Name="Textbox35">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Print Date :</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>=Parameters!printdate.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox35</rd:DefaultName>
-              <Top>0.00694in</Top>
-              <Left>2.80373in</Left>
-              <Height>0.1875in</Height>
-              <Width>4.31602in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageFooter>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
         <LeftMargin>0.5in</LeftMargin>

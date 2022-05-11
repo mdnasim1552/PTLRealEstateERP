@@ -26,8 +26,8 @@
         }
 
         .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -87,7 +87,7 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                      <asp:Label ID="Label1" runat="server">Ref No.</asp:Label>
-                                        <asp:TextBox ID="txtrefno" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtrefno" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 
                                         <asp:Label ID="Label6" runat="server"> Date</asp:Label>
-                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtCurDate">
                                         </cc1:CalendarExtender>
@@ -109,8 +109,8 @@
                                 <div class="form-group  form-inline">
 
                                                  
-                                        <asp:Label ID="lblCurNo1" runat="server" CssClass="form-control" ></asp:Label>
-                                        <asp:Label ID="lblCurNo2" runat="server" CssClass="form-control" ></asp:Label>
+                                        <asp:Label ID="lblCurNo1" runat="server" CssClass="form-control form-control-sm" ></asp:Label>
+                                        <asp:Label ID="lblCurNo2" runat="server" CssClass="form-control form-control-sm" ></asp:Label>
 
                                    
 
@@ -130,12 +130,12 @@
                             <div class="form-group">
                                        <asp:Label ID="lblprelist" runat="server">Pre. Evaluation</asp:Label>
   
-                                        <asp:DropDownList ID="ddlPreList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
+                                        <asp:DropDownList ID="ddlPreList" runat="server" CssClass="form-control chzn-select form-control-sm" AutoPostBack="true">
                                         </asp:DropDownList>             
                             </div>
                         </div>
                         <div class="col-lg-1">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                         </div>
 
@@ -149,10 +149,10 @@
                     <asp:TemplateField HeaderText="Sl.No.">
                         <ItemTemplate>
                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
-                                Style="text-align: right"
+                                Style="text-align: center"
                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                         </ItemTemplate>
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Description ">
@@ -182,7 +182,7 @@
                                 CssClass="btn btn-success btn-sm" OnClick="lbtnUpPerAppraisal_Click">Update</asp:LinkButton>
                         </FooterTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>
 
 
@@ -210,7 +210,7 @@
                                 Width="100px" />
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
 
@@ -224,7 +224,7 @@
                                 Width="100px" />
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
 
@@ -237,7 +237,7 @@
                                 Width="100px" />
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="08">
@@ -248,7 +248,7 @@
                                 Width="100px" />
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="10">
@@ -259,7 +259,7 @@
                                 Width="70px" />
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
 

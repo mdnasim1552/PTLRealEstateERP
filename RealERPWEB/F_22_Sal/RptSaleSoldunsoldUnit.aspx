@@ -78,12 +78,12 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label class="control-label" for="ddlUserName">Project Name:</label>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select  chzn-select">
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select  chzn-select form-control">
                                 </asp:DropDownList>
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="salesteamdv" runat="server">
                             <div class="form-group">
                                 <label class="control-label" for="lblSalesTeam" id="lblSalesTeam" runat="server">Sales Team:</label>
                                 <asp:DropDownList ID="ddlSalesTeam" runat="server" CssClass="custom-select  chzn-select">
@@ -104,10 +104,25 @@
 
                             </div>
                         </div>
+
+
+                        <div class="col-md-2" id="SoldType" runat="server" visible="false">
+                            <label class="control-label" for="ddlUserName" id="Label1" runat="server">Type</label>
+
+                            <asp:RadioButtonList ID="rbtnSalType" RepeatDirection="Horizontal" CssClass=""  runat="server">
+                                <asp:ListItem>Sold</asp:ListItem>
+                                <asp:ListItem>UnSold</asp:ListItem>
+                               
+                                <asp:ListItem Selected="True">Both</asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
+
+
                         <div class="col-md-1">
                             <div class="form-group">
-                                <label id="lblPage" runat="server" visible="false" class="control-label" for="ddlUserName">Page Size</label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="custom-select"
+                                <label class="control-label d-block" for="ddlpagesize" id="lblPage" visible="false" runat="server">Page Size</label>
+                           
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="custom-select form-control"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False"
                                     Width="85px">
                                     <asp:ListItem Value="10">10</asp:ListItem>
@@ -293,7 +308,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                              <asp:TemplateField HeaderText="Parking">
+                                            <asp:TemplateField HeaderText="Parking">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvparking" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "parking")).ToString("#,##0;(#,##0); ") %>'
@@ -308,7 +323,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                              <asp:TemplateField HeaderText="Utility">
+                                            <asp:TemplateField HeaderText="Utility">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvutility" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "utility")).ToString("#,##0;(#,##0); ") %>'
@@ -323,7 +338,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="Others">
+                                            <asp:TemplateField HeaderText="Others">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvother" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cooperative")).ToString("#,##0;(#,##0); ") %>'
@@ -338,7 +353,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="Total">
+                                            <asp:TemplateField HeaderText="Total">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvtotal" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tacsalamt")).ToString("#,##0;(#,##0); ") %>'

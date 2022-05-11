@@ -4735,11 +4735,6 @@ namespace RealERPWEB.F_21_MKT
         }
 
 
-
-
-
-
-
         protected void lnkBtnDatablank_Click(object sender, EventArgs e)
         {
             string rtype = "databank";
@@ -4756,7 +4751,22 @@ namespace RealERPWEB.F_21_MKT
             }
         }
 
+        protected void lnkBtnPotentialPros_Click(object sender, EventArgs e)
+        {
+            string rtype = "potential";
+            this.ShowNotifications(rtype);
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Potential Information (sales CRM)";
+                string eventdesc = "Show Potential Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
         protected void lnkbtnReturn_Click(object sender, EventArgs e)
         {
             this.lbltodatekpi.Visible = false;
@@ -6736,6 +6746,7 @@ namespace RealERPWEB.F_21_MKT
             //}
 
         }
+
     }
 
 

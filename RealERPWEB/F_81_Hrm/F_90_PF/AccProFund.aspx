@@ -25,8 +25,8 @@
         }
 
         .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lblPFMonth" runat="server" Text="Month:"></asp:Label>
 
-                                    <asp:DropDownList ID="ddlyearmon" CssClass="form-control" runat="server">
+                                    <asp:DropDownList ID="ddlyearmon" CssClass="form-control form-control-sm" runat="server">
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                 <div class="form-group">
                                     <asp:Label ID="lblDate" runat="server" Text="Voucher Date:"></asp:Label>
 
-                                    <asp:TextBox ID="txtdate" runat="server" CssClass="form-control">00000</asp:TextBox>
+                                    <asp:TextBox ID="txtdate" runat="server" CssClass="form-control form-control-sm">00000</asp:TextBox>
                                     <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Enabled="True"
                                         Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                 </div>
@@ -121,9 +121,9 @@
                                 <div class="form-group  form-inline">
 
 
-                                    <asp:TextBox ID="txtcurrentvou" runat="server" CssClass="form-control " Width="80"></asp:TextBox>
+                                    <asp:TextBox ID="txtcurrentvou" runat="server" CssClass="form-control  form-control-sm" Width="80"></asp:TextBox>
 
-                                    <asp:TextBox ID="txtCurrntlast6" runat="server" CssClass="form-control" Width="80" ToolTip="You Can Change Voucher Number."></asp:TextBox>
+                                    <asp:TextBox ID="txtCurrntlast6" runat="server" CssClass="form-control  form-control-sm" Width="80" ToolTip="You Can Change Voucher Number."></asp:TextBox>
      
 
                                 </div>
@@ -131,7 +131,7 @@
 
         
                             <div class="col-lg-1">
-                                <asp:LinkButton ID="lbtnoK" runat="server" CssClass="btn btn-primary mt20" OnClick="lbtnOk">Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lbtnoK" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk">Ok</asp:LinkButton>
 
                             </div>
 
@@ -152,10 +152,10 @@
               
 
                                     <div class="input-group ">
-                                        <asp:TextBox ID="txtCompShare" runat="server" CssClass=" form-control" MaxLength="3"></asp:TextBox>
+                                        <asp:TextBox ID="txtCompShare" runat="server" CssClass=" form-control form-control-sm" MaxLength="3"></asp:TextBox>
 
                                         <div class="input-group-append">
-                                            <asp:LinkButton ID="lbtnGenerate" runat="server" CssClass="btn btn-primary  " OnClick="lbtnGenerate_Click">Generate</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnGenerate" runat="server" CssClass="btn btn-primary  btn-sm" OnClick="lbtnGenerate_Click">Generate</asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -231,7 +231,7 @@
                                 <asp:TemplateField HeaderText="Card">
 
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-success6
+                                        <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-success
                                             btn-sm" OnClick="lbtnFinalUpdate_Click"
                                             Style="text-align: center">Update</asp:LinkButton>
                                     </FooterTemplate>

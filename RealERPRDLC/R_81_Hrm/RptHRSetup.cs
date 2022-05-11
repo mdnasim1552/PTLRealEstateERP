@@ -314,7 +314,8 @@ namespace RealERPRDLC
 
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>)rptDataSet));
             rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>)rptDataSet2));
-            rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.prevtLeaveInfo>)userDataset));
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>)userDataset));
+
             return rpt1a;
         }
 

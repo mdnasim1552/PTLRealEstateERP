@@ -69,8 +69,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-lg-2 col-md-2 col-sm-2" id="CopyTo" runat="server" visible="false">
-                            <asp:Label ID="lblPrjName" runat="server" class="control-label" Text="To Month"></asp:Label>
-                            <asp:DropDownList ID="ddltomonth" runat="server" CssClass="form-control form-control-sm">
+                            <asp:Label ID="lblPrjName" runat="server" class="control-label" Text="From Month"></asp:Label>
+                            <asp:DropDownList ID="ddlfrmmonth" runat="server" CssClass="form-control form-control-sm">
                             </asp:DropDownList>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2" id="datediv" runat="server" visible="false">
