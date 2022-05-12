@@ -256,7 +256,7 @@
                     <asp:Panel runat="server" ID="PnlNetComparison" Visible="false">
                         <div class="table-responsive" runat="server">
                             <asp:GridView ID="GvNetComparison" runat="server" AutoGenerateColumns="False"
-                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%">
+                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%" ShowFooter="true"  >
                                 <RowStyle />
                                 <Columns>
                                     <%--  <asp:TemplateField HeaderText="Sl.No.">
@@ -277,7 +277,7 @@
 
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvParticular" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
+                                            <asp:Label ID="lblgvParticular"  CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
                                                 runat="server" Style="font-size: 12px;"
@@ -286,6 +286,7 @@
 
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                     <ItemStyle Width="250px" />
                                     </asp:TemplateField>
 
 
@@ -300,6 +301,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="">
@@ -312,6 +314,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Diff.">
@@ -324,6 +327,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
 
@@ -337,13 +341,17 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
 
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblremark" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:Label>
+                                            <asp:TextBox ID="lblremark"  Width="100%" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:TextBox>
                                         </ItemTemplate>
+                                       <FooterTemplate>
+                                           <asp:LinkButton ID="lnkUpdate" runat="server" CssClass="btn btn-xs btn-primary" OnClick="lnkUpdate_Click">Update</asp:LinkButton>
+                                       </FooterTemplate>
                                     </asp:TemplateField>
 
 
