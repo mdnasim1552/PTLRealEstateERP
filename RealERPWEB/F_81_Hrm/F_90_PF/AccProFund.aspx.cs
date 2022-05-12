@@ -327,10 +327,12 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             string edit = (this.txtCurrntlast6.Enabled ? "" : "EDIT");
             double TgvDrAmt = Convert.ToDouble("0" + ((Label)this.gvPfAcc.FooterRow.FindControl("lgvFDr")).Text.Trim());
             double TgvCrAmt = Convert.ToDouble("0" + ((Label)this.gvPfAcc.FooterRow.FindControl("lgvFCr")).Text.Trim());
+            string msg = "";
             if (vouno == "JV" && TgvDrAmt != TgvCrAmt)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Dr. Amount not equals to Cr. Amount.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Dr.Amount not equals to Cr.Amount.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
                 return;
             }
 
@@ -365,8 +367,8 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                         return;
                     }
                 }
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = "Updated Successfully!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
                 ((LinkButton)this.gvPfAcc.FooterRow.FindControl("lbtnFinalUpdate")).Enabled = false;
 
@@ -374,8 +376,9 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             }
 
 

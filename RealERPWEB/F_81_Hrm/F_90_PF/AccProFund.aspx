@@ -232,7 +232,7 @@
 
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-success
-                                            btn-sm" OnClick="lbtnFinalUpdate_Click"
+                                            btn-sm text-white" OnClick="lbtnFinalUpdate_Click"
                                             Style="text-align: center">Update</asp:LinkButton>
                                     </FooterTemplate>
 
@@ -300,7 +300,7 @@
                     </div>
                          <asp:Panel ID="pnlNaration" runat="server" Visible="false">
                 <div class="row mt-2">
-                    <div class="col-lg-6 mr-auto">
+                    <div class="col-lg-5 mr-auto">
                         <div class="form-group row">
 
                         <asp:Label ID="lblRefNum" runat="server" CssClass="col-4" Text="Ref./Cheq No/Slip No."></asp:Label>

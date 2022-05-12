@@ -47,6 +47,26 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
 
+        function filter2(phrase, _id) {
+            var words = phrase.value.toLowerCase().split(" ");
+            var table = document.getElementById(_id);
+            var ele;
+            for (var r = 0; r < table.rows.length; r++) {
+                ele = table.rows[r].innerHTML.replace(/<[^>]+>/g, "");
+                var displayStyle = 'none';
+                for (var i = 0; i < words.length; i++) {
+                    if (ele.toLowerCase().indexOf(words[i]) >= 0)
+                        displayStyle = '';
+                    else {
+                        displayStyle = 'none';
+                        break;
+                    }
+                }
+                table.rows[r].style.display = displayStyle;
+            }
+        }
+
+
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -97,7 +117,7 @@
                                
                                 </div>
                             </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                                      <asp:Label ID="Label3" runat="server">Code 
                                         <asp:LinkButton ID="imgbtnSearchEmployee" runat="server"  OnClick="imgbtnSearchEmployee_Click" ><i class="fa fa-search"> </i></asp:LinkButton>
 
@@ -105,6 +125,13 @@
                                         <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                         </div>
+
+                                                                                          <div class="col-lg-1">
+                     <div class="form-group">
+                                     <asp:Label ID="Label4" runat="server" >ID Card</asp:Label>
+                         <input name="txtTerm" onkeyup="filter2(this, '<%=gvEmpFAllow.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
+                 </div>
+                           </div>
 
                          <div class="col-lg-1">
 				<div class="form-group">

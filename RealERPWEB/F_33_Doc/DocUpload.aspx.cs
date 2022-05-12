@@ -20,6 +20,7 @@ namespace RealERPWEB.F_33_Doc
     public partial class DocUpload : System.Web.UI.Page
     {
         ProcessAccess ImgData = new ProcessAccess("ASITDOC");
+        ProcessAccess HRData = new ProcessAccess();
         string Upload = "";
         int size = 0;
         System.IO.Stream image_file = null;
@@ -33,6 +34,65 @@ namespace RealERPWEB.F_33_Doc
                 this.txtDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetIDNo();
                 this.GetCode();
+
+                string comcod = this.GetCompCode();
+                if (comcod == "3101")
+                {
+                   string gcode = this.ddlType.SelectedValue.ToString().Substring(0, 7);
+      
+                    switch (gcode)
+                    {
+                        case "8100001":
+                            this.lbltitle.Text = this.ddlType.SelectedValue.ToString();
+                            this.txtsName.Visible = true;
+
+                         break;
+                            DataSet ds1 = new DataSet();
+
+                        case "8100005":
+                            this.lbltitle.Text = "Department";
+                            this.ddlMonth.Visible = false;
+                            this.txtsName.Visible = false;
+
+
+                            //string txtCompanyname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+                            //int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+                            string txtCompanyname = "%";
+
+
+                            string txtSearchDept ="%";
+                             ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
+                            this.ddlDepartment.DataTextField = "actdesc";
+                            this.ddlDepartment.DataValueField = "actcode";
+                            this.ddlDepartment.DataSource = ds1.Tables[0];
+                            this.ddlDepartment.DataBind();
+
+                            break;
+
+                        case "8100008" :
+                            this.lbltitle.Text = "Month";
+                            this.txtsName.Visible = false;
+                            this.ddlMonth.Visible = true;
+                            this.ddlDepartment.Visible = false;
+
+                             ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "GETYEARMON", "", "", "", "", "", "", "", "", "");
+
+                            if (ds1 == null)
+                                return;
+                            this.ddlMonth.DataTextField = "yearmon";
+                            this.ddlMonth.DataValueField = "ymon";
+                            this.ddlMonth.DataSource = ds1.Tables[0];
+                            this.ddlMonth.DataBind();
+                            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
+                            ds1.Dispose();
+
+                            break;
+                    }
+                
+                 
+                }
+
+
             }
 
             if (imgFileUpload.HasFile)
@@ -63,8 +123,22 @@ namespace RealERPWEB.F_33_Doc
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string txtSProject = "%" + this.txtType.Text + "%";
-            DataSet ds1 = ImgData.GetTransInfo(comcod, "SP_ENTRY_DOC", "GETINFOCODEDET", txtSProject, "", "", "", "", "", "", "", "");
+            string txtSProject = "%%";
+
+            DataSet ds1 = new DataSet();
+            switch (comcod)
+            {
+                case "3301":
+                    txtSProject = "%81%";
+                     ds1 = ImgData.GetTransInfo(comcod, "SP_ENTRY_DOC", "GETINFOCODEDET", txtSProject, "", "", "", "", "", "", "", "");
+                    break;
+                default:
+                     ds1 = ImgData.GetTransInfo(comcod, "SP_ENTRY_DOC", "GETINFOCODEDET", txtSProject, "", "", "", "", "", "", "", "");
+                    break;
+            }
+
+
+
             this.ddlType.DataTextField = "gdesc";
             this.ddlType.DataValueField = "gcod";
             this.ddlType.DataSource = ds1.Tables[0];
@@ -181,9 +255,39 @@ namespace RealERPWEB.F_33_Doc
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //{
                 //updatPhoto = ImgData.InsertUserDoc(comcod, imgid, filename, photo);
-                updatPhoto = ImgData.UpdateTransInfoDoc(comcod, "SP_ENTRY_DOC", "UPDATEIMG", "docinfb", imgid, strname, details, imgdat, code, "", "", "", null, "", "", "", "", "");
-                updatPhoto = ImgData.UpdateXmlTransInfo(comCode: comcod, SQLprocName: "SP_ENTRY_DOC", CallType: "UPDATEIMG",
-                    parmbyte: photo, mDesc1: "docinfa", mDesc2: imgid, mDesc3: filename);
+                switch (comcod)
+                {
+                    case "3101":
+
+                        string gcode = this.ddlType.SelectedValue.ToString().Substring(0, 7);
+                        switch (gcode)
+                        {
+                            case "8100001":
+                                strname = this.txtsName.Text;
+
+                                break;
+
+                            case "8100005":
+                                strname = this.ddlDepartment.SelectedValue.ToString();
+                                break;
+                            case "8100008":
+                                strname = this.ddlMonth.SelectedValue.ToString();
+
+
+                                break;
+                        }
+                        updatPhoto = ImgData.UpdateTransInfoDoc(comcod, "SP_ENTRY_DOC", "UPDATEIMG", "docinfb", imgid, strname, details, imgdat, code, "", "", "", null, "", "", "", "", "");
+                        updatPhoto = ImgData.UpdateXmlTransInfo(comCode: comcod, SQLprocName: "SP_ENTRY_DOC", CallType: "UPDATEIMG",
+                            parmbyte: photo, mDesc1: "docinfa", mDesc2: imgid, mDesc3: filename);
+                        break;
+
+                    default:
+                        updatPhoto = ImgData.UpdateTransInfoDoc(comcod, "SP_ENTRY_DOC", "UPDATEIMG", "docinfb", imgid, strname, details, imgdat, code, "", "", "", null, "", "", "", "", "");
+                        updatPhoto = ImgData.UpdateXmlTransInfo(comCode: comcod, SQLprocName: "SP_ENTRY_DOC", CallType: "UPDATEIMG",
+                            parmbyte: photo, mDesc1: "docinfa", mDesc2: imgid, mDesc3: filename);
+                        break;
+                }
+
                 if (updatPhoto)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
@@ -196,7 +300,8 @@ namespace RealERPWEB.F_33_Doc
 
 
                 this.txtDetails1.Text = "";
-                this.txtsName.Text = "";
+  
+                
                 //this.lblmsg.Text = "";
 
 
