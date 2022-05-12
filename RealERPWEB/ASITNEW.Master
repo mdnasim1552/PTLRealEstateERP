@@ -458,19 +458,19 @@
                                     <asp:HyperLink class="dropdown-item" ID="HypNewDashboard" Visible="false" runat="server" NavigateUrl='<%=this.ResolveUrl("~/Index?pid=")%>' Text="New Dashboard"></asp:HyperLink>
                                     <asp:HyperLink class="dropdown-item" ID="HypOldModules" Visible="false" runat="server" NavigateUrl='<%=this.ResolveUrl("~/StepofOperationNew?moduleid=0")%>' Text="Old Modules"></asp:HyperLink>
                                     <asp:HyperLink class="dropdown-item" ID="hypGroupChat" Visible="false" runat="server" NavigateUrl='<%=this.ResolveUrl("~/F_33_Doc/GroupChat")%>' Text="Group Chat"></asp:HyperLink>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=")%>'>PABX List</a>
+                                    <a class="dropdown-item" target="_blank" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=")%>'>PABX List</a>
                                     <asp:HyperLink class="dropdown-item" ID="lnkFormLink" Target="_blank" Visible="false" runat="server" Text="bti Form"></asp:HyperLink>
 
-                                    <asp:HyperLink class="dropdown-item" ID="hypOnlineAttendance" Visible="false" runat="server" Text="Online Attendance"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="hypOnlineAttendance" target="_blank" Visible="false" runat="server" Text="Online Attendance"></asp:HyperLink>
 
-                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
-                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyReqCommon" Visible="false" runat="server" Text="Request Apply (MGT)"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" target="_blank" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyReqCommon" target="_blank" Visible="false" runat="server" Text="Request Apply (MGT)"></asp:HyperLink>
 
 
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>'>Request Interface</a>
-                                    <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" Text="Apply Time off"></asp:HyperLink>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>' target="_blank">Apply Leave</a>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>' target="_blank">Leave Interface</a>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind")%>' target="_blank">Request Interface</a>
+                                    <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" target="_blank" Text="Apply Time off"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
 
 

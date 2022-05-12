@@ -34,11 +34,11 @@ namespace RealERPWEB.F_12_Inv
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Material Receive";
-
+                string comcod = this.GetCompCode();
 
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtChaDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                this.txtChaDate.Text = (comcod=="3101"?"": DateTime.Today.ToString("dd.MM.yyyy"));
                 ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Materials Receive"
                     : "Delete Materials Receive Information Input/Edit Screen";
 
@@ -58,6 +58,12 @@ namespace RealERPWEB.F_12_Inv
                 this.ImgbtnFindProject_Click(null, null);
                 //this.ImgbtnFindSup_Click(null, null);
                 this.txtCurMRRDate_CalendarExtender.EndDate = System.DateTime.Today;
+
+                if(comcod == "3354")
+                {
+
+                this.CalendarExtender1.EndDate = System.DateTime.Today;
+                }
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -1131,8 +1137,13 @@ namespace RealERPWEB.F_12_Inv
             string mMRRNAR = this.txtMRRNarr.Text.Trim();
             string mMRRChlnNo = this.txtChalanNo.Text.Trim();
             string mrrno = this.txtMRRRef.Text.Trim();
+            string chldate = this.txtChaDate.Text.Trim();
             string mchlndate = this.GetStdDate(this.txtChaDate.Text.Trim()); ;
             string mQcno = this.txtQc.Text.Trim();
+
+            
+
+
 
             //Chalan No
             switch (comcod)
@@ -1188,6 +1199,19 @@ namespace RealERPWEB.F_12_Inv
 
 
 
+
+                    break;
+
+                     // case "3101":
+                case "3354":
+              //  case "3101":
+
+                    if (chldate.Length == 0)
+                    {
+                        this.txtChaDate.Focus();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Challan Daten Required');", true);
+                        return;
+                    }
 
                     break;
 
