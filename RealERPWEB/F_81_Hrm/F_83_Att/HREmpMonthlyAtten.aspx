@@ -20,6 +20,9 @@
 
       </script>
     <style>
+        select#ContentPlaceHolder1_ddlMonth{
+            padding:0!important;
+        }
         div#ContentPlaceHolder1_ddlEmpName_chzn {
             width: 100% !important;
         }
@@ -82,15 +85,13 @@
                             <div class="form-group">
                                 <asp:Label ID="Label13" runat="server" CssClass="lblTxt lblName" Text="Emp.  Name "> 
                                     <asp:LinkButton ID="imgbtnEmployee" runat="server" OnClick="imgbtnEmployee_Click" TabIndex="2"><i class="fa fa-search"> </i></asp:LinkButton>
-                                    <asp:RadioButtonList ID="radioAttType" RepeatColumns="2" RepeatDirection="Horizontal" AutoPostBack="true" runat="server" CssClass="radioTable" OnSelectedIndexChanged="radioAttType_SelectedIndexChanged">
-                                        <asp:ListItem Value="29001" Selected="True">Manual Attendance</asp:ListItem>
-                                        <asp:ListItem Value="28001">Machine Attendance</asp:ListItem>
-                                    </asp:RadioButtonList>
+                   
                                 </asp:Label>
                                 <asp:DropDownList ID="ddlEmpName" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged" CssClass="form-control chzn-select" TabIndex="3">
                                 </asp:DropDownList>
                             </div>
                         </div>
+       
 
                         <div class="col-lg-3">
                             <div class="form-group">
@@ -130,6 +131,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                                         <div class="col-lg-3">
+                            <div class="form-group">
+                                                 <asp:RadioButtonList ID="radioAttType" RepeatColumns="2" RepeatDirection="Horizontal" AutoPostBack="true" runat="server" CssClass="radioTable" OnSelectedIndexChanged="radioAttType_SelectedIndexChanged">
+                                        <asp:ListItem Value="29001" Selected="True">Manual Attendance</asp:ListItem>
+                                        <asp:ListItem Value="28001">Machine Attendance</asp:ListItem>
+                                    </asp:RadioButtonList>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
             <asp:GridView ID="gvMonthlyAttn" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -150,7 +161,7 @@
                                 Width="80px"></asp:Label>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:LinkButton ID="lFinalUpdate" runat="server" CssClass="btn btn-danger primarygrdBtn" OnClick="lFinalUpdate_Click">Final Update</asp:LinkButton>
+                            <asp:LinkButton ID="lFinalUpdate" runat="server" CssClass="btn btn-success btn-sm" OnClick="lFinalUpdate_Click">Final Update</asp:LinkButton>
                         </FooterTemplate>
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
@@ -161,7 +172,7 @@
                         </ItemTemplate>
                         <FooterTemplate>
                             <asp:LinkButton ID="lFinalTotal" runat="server" Font-Bold="True" Font-Size="12px"
-                                ForeColor="#000" OnClick="lFinalTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total</asp:LinkButton>
+                        OnClick="lFinalTotal_Click" CssClass="btn btn-primary btn-sm">Total</asp:LinkButton>
                         </FooterTemplate>
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>

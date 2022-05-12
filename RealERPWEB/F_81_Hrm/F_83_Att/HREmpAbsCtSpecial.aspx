@@ -118,6 +118,29 @@ div#ContentPlaceHolder1_ddlCompanyName_chzn {
 
 
             $('.chzn-select').chosen({ search_contains: true });
+
+
+
+    </script>
+    <script>
+            function filter2(phrase, _id) {
+                var words = phrase.value.toLowerCase().split(" ");
+                var table = document.getElementById(_id);
+                var ele;
+                for (var r = 0; r < table.rows.length; r++) {
+                    ele = table.rows[r].innerHTML.replace(/<[^>]+>/g, "");
+                    var displayStyle = 'none';
+                    for (var i = 0; i < words.length; i++) {
+                        if (ele.toLowerCase().indexOf(words[i]) >= 0)
+                            displayStyle = '';
+                        else {
+                            displayStyle = 'none';
+                            break;
+                        }
+                    }
+                    table.rows[r].style.display = displayStyle;
+                }
+            }
         }
 
     </script>
@@ -195,6 +218,12 @@ div#ContentPlaceHolder1_ddlCompanyName_chzn {
                                 </asp:Label>
                             <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
+                            </div>
+                        </div>
+                                                <div class="col-lg-2">
+                            <div class="form-group">
+                                <asp:Label ID="Label5" runat="server">ID Card</asp:Label>
+                                <input name="txtTerm" onkeyup="filter2(this, '<%=gvabsspecialcount.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
                             </div>
                         </div>
                                                 <div class="col-lg-1">

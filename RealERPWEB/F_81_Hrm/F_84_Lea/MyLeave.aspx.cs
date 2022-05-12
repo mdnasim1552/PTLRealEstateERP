@@ -1284,6 +1284,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string curr_year = System.DateTime.Now.ToString("yyyy");
             string curr_date = "26-Dec-" + curr_year;
+            string lvname = "";
 
 
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + this.GetComeCode() + ".jpg")).AbsoluteUri;
@@ -1298,7 +1299,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataTable dt1 = ds.Tables[1];
             DataTable dt2 = ds.Tables[2];
    
-
+            //this.ClientQueryString("MGT")
     
             string empname = ds.Tables[0].Rows[0]["empname"].ToString()??"";
             string doj = ds.Tables[0].Rows[0]["doj"].ToString() ?? "";
@@ -1314,6 +1315,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptEmpLeaveCard", list1, list2, list3);
             Rpt1.EnableExternalImages = true;
+
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                lvname = dt1.Rows[i]["leave"].ToString().Substring(0,4);
+                Rpt1.SetParameters(new ReportParameter("lvname" + i.ToString(), lvname));
+            }
+
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
 
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
