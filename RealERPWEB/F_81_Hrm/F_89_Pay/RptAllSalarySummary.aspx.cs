@@ -429,7 +429,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string rptitle = "";
             string monname = "";
-           DataTable dt = (DataTable)Session["tblSalSummary"];
+            DataTable dt = (DataTable)Session["tblSalSummary"];
             DataTable dt2 = (DataTable)Session["tblmondesc"];
             DataTable dt3 = (DataTable)Session["tblbankdesc"];
 
@@ -527,6 +527,71 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void GvNetComparison_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void lnkUpdate_Click(object sender, EventArgs e)
+        {
+            bool result;
+            this.SaveValue();
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            string comcod = this.GetComCode();
+            //string date = this.txtdate.Text;
+            string monid = this.ddlmon.SelectedValue.ToString();
+
+            //result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEOFFTIME", dayid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                //string absent = dt.Rows[i]["absnt"].ToString().Trim();
+                //string leave = dt.Rows[i]["leave"].ToString().Trim();
+                //if ((absent != "A") && (leave != "L"))
+                //{
+
+                string refno = dt.Rows[i]["refno"].ToString();
+                string remarks = dt.Rows[i]["remarks"].ToString();
+                string machid = "01";
+               
+                result = HRData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_ENTRY_CODEBOOK]", "INSERTUPDATESALDESCIPTION", monid, refno, remarks, "", "", "", "", "");
+                // }
+                //if (absent == "A")
+                //{
+                //    string empid = dt.Rows[i]["empid"].ToString();
+                //    string frmdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
+                //    string absfl = "1";
+                //    string month = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("ddMMyyyy").Substring(2, 2);
+                //    //tring month1 = month.PadLeft(2, '0');
+                //    string year = ASTUtility.Right(Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy"), 4);
+                //    string monyr = month + year;
+
+                //    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INORUPDATEABSENTCT", empid, frmdate, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
+
+                //}
+
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
+        }
+
+        private void SaveValue()
+        {
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            int TblRowIndex;
+            for (int i = 0; i < this.GvNetComparison.Rows.Count; i++)
+            {
+              
+                string descript = ((TextBox)this.GvNetComparison.Rows[i].FindControl("lblremark")).Text.Trim();
+           
+                TblRowIndex = (GvNetComparison.PageIndex) * GvNetComparison.PageSize + i;
+                dt.Rows[TblRowIndex]["remarks"] = descript;
+                //dt.Rows[TblRowIndex]["dedout"] = dedout;
+                //dt.Rows[TblRowIndex]["addhour"] = Addhour;
+
+            }
+            Session["tblSalSummary"] = dt;
+
         }
     }
     
