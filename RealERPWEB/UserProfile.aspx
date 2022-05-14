@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-
-
         $(document).ready(function () {
             ExcuteEmpStatus();
         });
@@ -47,17 +45,11 @@
             }
         }
 
-
-
-
     </script>
     <style>
         .topMenu li .nav-link {
             padding: 10px 10px;
         }
-        /* This is the containing element, 
-it needs a div within it that will 
-contain the p elements to be scrolled  */
 
         .marquee {
             margin: 0 auto;
@@ -261,7 +253,9 @@ contain the p elements to be scrolled  */
                             <asp:HyperLink ID="lnkOrintation" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Orintation Link</asp:HyperLink>
                         </li>
 
-                        <li class="nav-item" id="winsList" runat="server"><a href='Upload/bti/WinnersDec_2021.pdf' class="nav-link smooth-scroll" target="_blank">Wins List</a></li>
+                        <li class="nav-item" id="winsList" runat="server">
+                            <a href="#winsListData" class="nav-link smooth-scroll" data-toggle="tab">Wins List</a>
+                        </li>
                         <li class="nav-item">
                             <asp:HyperLink ID="HyperCodeofConduct" CssClass="nav-link smooth-scrol" Visible="true" data-toggle="tab" href="#CodeofConduct" runat="server">Code of Conduct</asp:HyperLink>
 
@@ -338,13 +332,7 @@ contain the p elements to be scrolled  */
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
-        <!-- /Following Modal -->
-        <!-- .page-navs -->
 
-        <!-- .page-inner -->
-
-        <!-- .page-section -->
 
         <div class="page-section">
             <div id="myTabContent" class="tab-content">
@@ -826,9 +814,9 @@ contain the p elements to be scrolled  */
 
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
-                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger d-none"  ToolTip="Print Pay Slip"><span class=" fa fa-print">Print</span>
+                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger d-none" ToolTip="Print Pay Slip"><span class=" fa fa-print">Print</span>
                                                         </asp:HyperLink>
-                                                         <asp:HyperLink ID="HyperLink2" runat="server"  CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
+                                                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
                                                         </asp:HyperLink>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1414,7 +1402,7 @@ d) 6 Days Late = 3 CL & half day leave
                     </section>
                 </div>
 
-                <div class="tab-pane fade" id="WinsList">
+                <div class="tab-pane fade" id="winsListData">
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
                             <div class="col-12">
@@ -1422,14 +1410,26 @@ d) 6 Days Late = 3 CL & half day leave
                                 <div class="card-body">
                                     <h1 class="text-center">Wins List</h1>
 
-                                    <p>No Data Found</p>
+                                    <div class="row">
+                                        <div class="col-4">
+
+                                            <ul class="list-group list-group-flush list-group-bordered" id="winUlList" runat="server">
+                                                
+                                            </ul>
+
+
+
+
+
+
+                                        </div>
+
+                                    </div>
+
+
 
                                 </div>
-
-
-
                             </div>
-                        </div>
                     </section>
                 </div>
 
@@ -1453,13 +1453,6 @@ d) 6 Days Late = 3 CL & half day leave
                 </div>
 
 
-
-
-
-
-
-
-
             </div>
         </div>
 
@@ -1474,7 +1467,7 @@ d) 6 Days Late = 3 CL & half day leave
                         </button>
                     </div>
                     <div class="modal-body">
-                       <p>Please Contact with HR/Payroll Department </p>
+                        <p>Please Contact with HR/Payroll Department </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
