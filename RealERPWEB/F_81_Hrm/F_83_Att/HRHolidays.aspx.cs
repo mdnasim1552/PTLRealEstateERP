@@ -234,10 +234,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             DataTable dt = ViewState["HolidayInfo"] as DataTable;
             DateTime date = Convert.ToDateTime(dt.Rows[index]["hdate"].ToString());
-
+            string date1 = Convert.ToDateTime(dt.Rows[index]["hdate"]).ToString("dd-MMM-yyyy");
+             
             bool result = false;
 
-            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "DELETEHOLIDAY", date.ToString(), "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "DELETEHOLIDAY", date1, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result)
             {
@@ -328,8 +329,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             try
             {
                 string company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "94%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
-                string department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "9402%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
-                string section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlCompany.SelectedValue.ToString()) + "%";
+                string department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? company : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
+                string section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString()) + "%";
                 string comcod = this.GetComCode();
             
                 DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "ACTIVEEMPLEAVE", company, department, section, "", "", "", "", "", "");

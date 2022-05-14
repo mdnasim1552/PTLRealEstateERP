@@ -20,6 +20,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             if (!IsPostBack)
             {
+                ((Label)this.Master.FindControl("lblTitle")).Text = "SALARY STATEMENT SUMMARY";
                 this.GetMonth();
                 lnkOk_Click(null, null);
             }
@@ -542,6 +543,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comcod = this.GetComCode();
             //string date = this.txtdate.Text;
             string monid = this.ddlmon.SelectedValue.ToString();
+            string sttype = this.rbtnAtten.SelectedIndex.ToString();
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "refno<>'00000000000' and refno<>'AAAAAAAAAAAA' and refno<>'BBBBBBBBBBBB' ";          
+            dt = dv1.ToTable();
+
+
 
             //result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEOFFTIME", dayid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -555,24 +562,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string remarks = dt.Rows[i]["remarks"].ToString();
                 string machid = "01";
                
-                result = HRData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_ENTRY_CODEBOOK]", "INSERTUPDATESALDESCIPTION", monid, refno, remarks, "", "", "", "", "");
-                // }
-                //if (absent == "A")
-                //{
-                //    string empid = dt.Rows[i]["empid"].ToString();
-                //    string frmdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
-                //    string absfl = "1";
-                //    string month = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("ddMMyyyy").Substring(2, 2);
-                //    //tring month1 = month.PadLeft(2, '0');
-                //    string year = ASTUtility.Right(Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy"), 4);
-                //    string monyr = month + year;
-
-                //    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INORUPDATEABSENTCT", empid, frmdate, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
-
-                //}
-
+                result = HRData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_ENTRY_CODEBOOK]", "INSERTUPDATESALDESCIPTION", monid, refno, sttype, remarks, "", "", "", "", "");              
             }
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
+            string Messaged = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);          
         }
 
         private void SaveValue()
@@ -586,12 +579,47 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
            
                 TblRowIndex = (GvNetComparison.PageIndex) * GvNetComparison.PageSize + i;
                 dt.Rows[TblRowIndex]["remarks"] = descript;
-                //dt.Rows[TblRowIndex]["dedout"] = dedout;
-                //dt.Rows[TblRowIndex]["addhour"] = Addhour;
-
             }
             Session["tblSalSummary"] = dt;
 
+        }
+        private void GrossSaveValue()
+        {
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            int TblRowIndex;
+            for (int i = 0; i < this.GvgrossSalSummary.Rows.Count; i++)
+            {
+
+                string descript = ((TextBox)this.GvgrossSalSummary.Rows[i].FindControl("lblremark")).Text.Trim();
+
+                TblRowIndex = (GvgrossSalSummary.PageIndex) * GvgrossSalSummary.PageSize + i;
+                dt.Rows[TblRowIndex]["remarks"] = descript;              
+            }
+            Session["tblSalSummary"] = dt;
+
+        }
+        protected void lnkGrossUpdate_Click(object sender, EventArgs e)
+        {
+            bool result;
+            this.GrossSaveValue();
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            string comcod = this.GetComCode();
+            //string date = this.txtdate.Text;
+            string monid = this.ddlmon.SelectedValue.ToString();
+            string sttype = this.rbtnAtten.SelectedIndex.ToString();
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "refno<>'00000000000' and refno<>'AAAAAAAAAAAA' and refno<>'BBBBBBBBBBBB' ";
+            dt = dv1.ToTable();        
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string refno = dt.Rows[i]["refno"].ToString();
+                string remarks = dt.Rows[i]["remarks"].ToString();
+                string machid = "01";
+
+                result = HRData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_ENTRY_CODEBOOK]", "INSERTUPDATESALDESCIPTION", monid, refno, sttype, remarks, "", "", "", "", "");                
+            }
+            string Messaged = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
         }
     }
     
