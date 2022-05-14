@@ -39,6 +39,7 @@ namespace RealERPWEB.F_01_LPA
         int size = 0;
         System.IO.Stream image_file = null;
         public static string landid;
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -1010,22 +1011,11 @@ namespace RealERPWEB.F_01_LPA
             if (ds2 == null)
                 return;
             DataTable dt = ds2.Tables[0];
-            DataTable dt1 = ((DataTable)ViewState["tblsubddl"]).Copy(); ;
-            DataTable dtemp = (DataTable)ViewState["tblempsup"];
-
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = this.GetComeCode();
-            //string landid = (string)ViewState["sircodegrid"];
-            //DataSet ds2 = GetAllData();
-            //if (ds2 == null)
-            //    return;
-            //DataTable dt = ds2.Tables[0];
-            //DataTable dt1 = (DataTable)ViewState["tblsubddl"];
+            DataTable dt1 = ((DataTable)ViewState["tblsubddl"]).Copy(); 
+          
             DataView dv1;
-
-            DataRow[] dr = ds2.Tables[0].Select("gcod='0301007'");
-            dr[0]["value"] = hst["userfname"].ToString();
+            //DataRow[] dr = ds2.Tables[0].Select("gcod='0301007'");
+            //dr[0]["value"] = empid;
 
 
             this.gvPersonalInfo.DataSource = ds2.Tables[0];
@@ -1056,27 +1046,7 @@ namespace RealERPWEB.F_01_LPA
 
                     case "0301003": //Dealing Person workdone
 
-                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
-                        //if (userrole == "1")
-                        //{
-                        //    dv1.RowFilter = ("gcod like '93%'");
-                        //}
-                        //else
-                        //{
-                        //    DataTable dts = dv1.ToTable();
-                        //    var query = (from dtl1 in dts.AsEnumerable()
-                        //                 join dtl2 in dtemp.AsEnumerable() on dtl1.Field<string>("gcod") equals dtl2.Field<string>("empid")
-                        //                 where dtl1.Field<string>("gcod").Substring(0, 2) == "93"
-
-                        //                 select new
-                        //                 {
-                        //                     gcod = dtl1.Field<string>("gcod"),
-                        //                     gdesc = dtl1.Field<string>("gdesc"),
-                        //                     code = dtl1.Field<string>("code")
-                        //                 }).ToList();
-                        //    dv1 = ASITUtility03.ListToDataTable(query).DefaultView;
-                        //}
-
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;             
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("gcod like '93%'");
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -1093,6 +1063,19 @@ namespace RealERPWEB.F_01_LPA
                     case "0301005": //Priority
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("gcod like '51%'");
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dv1.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        break;
+
+                    case "0301007": //Associate
+                        dv1 = dt1.DefaultView;
+                        dv1.RowFilter =  ("gcod like '93%'");
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
@@ -1646,9 +1629,8 @@ namespace RealERPWEB.F_01_LPA
             }
             catch (Exception ex)
             {
-                //((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
 
 
@@ -2075,7 +2057,8 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetCompCode();
             ProcessAccess ulogin = new ProcessAccess();
             string usrid = hst["usrid"].ToString();
-            string empid = hst["empid"].ToString();
+            //string empid = hst["empid"].ToString();
+            string empid = "";
 
 
             DataTable dt = new DataTable();
@@ -2141,9 +2124,8 @@ namespace RealERPWEB.F_01_LPA
 
                     if (Name.Trim().Length == 0)
                     {
-
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Please provide Land Owner Name .. ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        msg = "Please provide Land Owner Name .. ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                         return;
 
                     }
@@ -2155,14 +2137,14 @@ namespace RealERPWEB.F_01_LPA
                     if (Phone.Trim().Length == 0)
                     {
 
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Please provide Land Owner Phone ... ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        msg = "Please provide Land Owner Phone .. ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                         return;
                     }
                     if (Phone.Trim().Length > 11)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Phone Number Must 11 Digit... ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        msg = "Phone Number Must 11 Digit... ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                         return;
                     }
                     else
@@ -2192,7 +2174,13 @@ namespace RealERPWEB.F_01_LPA
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                 string gval = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgvalper")).Text.Trim();
 
-                string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                if (Gcode == "0301007")
+                {
+                    empid = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                }
+
+                string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ?
+                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
                 dr["gvalue"] = Gvalue;
@@ -2416,10 +2404,8 @@ namespace RealERPWEB.F_01_LPA
             string date = this.txtdate.Text.Trim();
             bool result = HRData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATE_LINFO", ds1, ds2, null, landid, landinfo, usrid, empid, date, "", "", "", "", "", "", "", "", "", "");
 
-            // ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successful";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-            // return;
+            msg = " Land Information Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
             string events = hst["events"].ToString();
@@ -2677,8 +2663,8 @@ namespace RealERPWEB.F_01_LPA
             {
                 this.GETLOINFOALLDATA();
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successful";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = " Land Owner Information Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
             string events = hst["events"].ToString();
@@ -5315,10 +5301,7 @@ namespace RealERPWEB.F_01_LPA
 
             if (!result)
             {
-
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
 
             }
@@ -5330,8 +5313,8 @@ namespace RealERPWEB.F_01_LPA
             ViewState["tblsummData"] = dv.ToTable();
             this.Data_Bind();
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Deleted";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Data Deleted Successfully!";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
 
@@ -5901,16 +5884,16 @@ namespace RealERPWEB.F_01_LPA
                 DataTable dtE = query.AsDataView().ToTable();
                 if (dtE.Rows.Count == 0)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "This prospect is not your under";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "This prospect is not your under";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
                 if (empid.Length == 0)
                 {
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Employee is not exixted";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "Employee is not exixted";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
 
                 }
@@ -6048,8 +6031,7 @@ namespace RealERPWEB.F_01_LPA
                         result = HRData.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", empid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue, remarks);
                         if (!result)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
                             return;
                         }
                         Gvalue = "";
@@ -6070,8 +6052,8 @@ namespace RealERPWEB.F_01_LPA
 
                 }
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = "Discussion Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
                 this.clearModalField(); // clear modal 
 
@@ -6095,8 +6077,8 @@ namespace RealERPWEB.F_01_LPA
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
             }
 
         }
@@ -6419,12 +6401,7 @@ namespace RealERPWEB.F_01_LPA
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = ex.ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
 
@@ -6946,7 +6923,8 @@ namespace RealERPWEB.F_01_LPA
 
             if (updateCommentView())
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Comment View Successfully!!";
+                msg = "Comment View Successfully!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "closeComModal();", true);
                 this.GetNotificationinfo();
             }
@@ -6967,8 +6945,8 @@ namespace RealERPWEB.F_01_LPA
             bool result = HRData.UpdateXmlTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "UPDATECOMMENTVIEW", ds1, null, null, "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "closeComModal();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
+                
             }
 
             return true;
@@ -7036,8 +7014,8 @@ namespace RealERPWEB.F_01_LPA
 
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
 
             }
 
@@ -7071,7 +7049,8 @@ namespace RealERPWEB.F_01_LPA
                 string phone = dsp.Tables[0].Rows[0]["phone"].ToString();
                 string Message = "Duplicate : ";
                 string totmsg = Message + phone + ", " + pid + ", Associate : " + sirdesc + ", Team :  " + supervisor;
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('" + totmsg + "')", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + totmsg + "');", true);
+               
             }
             return dsp;
         }
@@ -7459,16 +7438,15 @@ namespace RealERPWEB.F_01_LPA
                 DataTable dtE = query.AsDataView().ToTable();
                 if (dtE.Rows.Count == 0)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "This prospect is not your under";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "This prospect is not your under";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
                 if (empid.Length == 0)
                 {
-
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Employee is not exixted";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = "Employee is not exixted";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
 
                 }
@@ -7602,8 +7580,7 @@ namespace RealERPWEB.F_01_LPA
                         result = HRData.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", empid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue);
                         if (!result)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
                             return;
                         }
                         Gvalue = "";
@@ -7625,14 +7602,8 @@ namespace RealERPWEB.F_01_LPA
                 }
 
 
-
-
-
-
-
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = "Updated";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
                 this.clearModalField(); // clear modal 
 
@@ -7655,8 +7626,8 @@ namespace RealERPWEB.F_01_LPA
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
         }
 
