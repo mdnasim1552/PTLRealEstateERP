@@ -1924,7 +1924,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8101000", "8101014", "F_81_Hrm/F_92_Mgt", "RptSettlementStatus", "", "Employee Settlement Top Sheet", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101015", "F_81_Hrm/F_92_Mgt", "EmpSettlement?", "Type=Entry", "Employee Settlement Entry", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink", "", "Department Code Link", "Appointment", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "8101000", "8101017", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Employee Settlement", "False", "False", "False", "False" }); ;
 
 
 
@@ -2034,6 +2034,7 @@ namespace RealERPLIB
             //tblObj.Rows.Add(new Object[] { "8102000", "8102082", "InterfaceAtt", "", "Interface Attendance", "HR Management", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8102000", "8102083", "F_81_Hrm/F_93_AnnInc", "AnnualIncrement", "", "Annual Increment", "Increment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102084", "F_81_Hrm/F_93_AnnInc", "HrIncrementUpdate", "", "Annual Increment Updated", "Increment", "False", "False", "False", "False" }); ;
+
 
 
             tblObj.Rows.Add(new Object[] { "8002000", "8102087", "F_81_Hrm/F_82_App", "HREmpEntry?", "Type=shifttime", "Office Time Setup(Special Day)", "Appointment", "False", "False", "False", "False" }); ;
@@ -14694,6 +14695,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "Annual Increment", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0210000001", "01. Annual Increment", "F_81_Hrm/F_93_AnnInc/AnnualIncrement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0210000002", "02. Annual Increment Updated", "F_81_Hrm/F_93_AnnInc/HrIncrementUpdate", "", true, "" });
+  
 
 
             //K. Task CodeBook
@@ -14704,6 +14706,7 @@ namespace RealERPLIB
             //L. Employee Settlement
             mnuTbl1.Rows.Add(new Object[] { "0212000000", "Employee Settlement", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0212000001", "01. Employee Settlement Top Sheet", "F_81_Hrm/F_92_Mgt/RptSettlementStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000002", "03. Documentation Upload", "F_33_Doc/UploadDocumentation", "", true, "" });
 
 
 
