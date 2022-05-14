@@ -1285,11 +1285,27 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string curr_year = System.DateTime.Now.ToString("yyyy");
             string curr_date = "26-Dec-" + curr_year;
             string lvname = "";
+            string empid = "";
 
 
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + this.GetComeCode() + ".jpg")).AbsoluteUri;
 
-            string empid = this.ddlEmpName.SelectedValue.ToString();
+            string qtype = this.Request.QueryString["Type"] ??"";
+
+            if (qtype == "MGT")
+            {
+                 empid = this.ddlEmpName.SelectedValue.ToString();
+            }
+            else
+            {
+                 empid = hst["empid"].ToString();
+            }
+
+
+       
+
+            
+          
             var ds = HRData.GetTransInfo("", "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid,curr_date);
             if (ds == null)
             {
