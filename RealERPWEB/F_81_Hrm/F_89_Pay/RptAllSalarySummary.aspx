@@ -367,17 +367,11 @@
 
                     <asp:Panel runat="server" ID="PnlGrossSummary" Visible="false">
                         <div class="table-responsive" runat="server">
-                            <asp:GridView ID="GvgrossSalSummary" runat="server" AutoGenerateColumns="False"
+                            <asp:GridView ID="GvgrossSalSummary" runat="server" AutoGenerateColumns="False" ShowFooter="true"
                                 CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%">
                                 <RowStyle />
                                 <Columns>
-                                    <%--  <asp:TemplateField HeaderText="Sl.No.">
-                                        <ItemTemplate>
-                                            <asp:Label ID="serialnoid0" runat="server" Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                        </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" Font-Size="12px" ForeColor="#000" />
-                                    </asp:TemplateField>--%>
+                                   
                                     <asp:TemplateField HeaderText="Particualars">
                                         <HeaderTemplate>
                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"
@@ -396,6 +390,7 @@
 
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="250px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="">
@@ -408,6 +403,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
@@ -419,6 +415,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="%">
@@ -431,6 +428,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="%">
@@ -443,6 +441,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="%">
@@ -455,6 +454,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Diff.">
@@ -467,6 +467,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="%">
                                         <ItemTemplate>
@@ -478,11 +479,16 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                          <ItemStyle Width="100px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblremark" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:Label>
+                                            <asp:TextBox ID="lblremark" Width="100%" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:TextBox>
                                         </ItemTemplate>
+
+                                        <FooterTemplate>
+                                           <asp:LinkButton ID="lnkGrossUpdate" runat="server" CssClass="btn btn-xs btn-primary" OnClick="lnkGrossUpdate_Click">Update</asp:LinkButton>
+                                       </FooterTemplate>
                                     </asp:TemplateField>
                                 </Columns>
 
