@@ -3,8 +3,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
@@ -101,10 +99,10 @@
                                         <asp:Label ID="lbltitle" runat="server" Text="Title :"></asp:Label>
 
                                         <asp:Panel runat="server" ID="pnlTxt">
-                                        <asp:TextBox ID="txtsName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                            <asp:TextBox ID="txtsName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         </asp:Panel>
 
-                                    
+
                                         <asp:Panel ID="pnlMonth" runat="server" Visible="false">
                                             <asp:DropDownList ID="ddlMonth" runat="server" AutoPostBack="True" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged">
                                             </asp:DropDownList>
@@ -194,12 +192,12 @@
                 </div>
             </div>
 
-    
+
         </ContentTemplate>
 
-<Triggers>
-        <asp:PostBackTrigger ControlID="lnk_save" />
-</Triggers>   
+        <Triggers>
+            <asp:PostBackTrigger ControlID="lnk_save" />
+        </Triggers>
     </asp:UpdatePanel>
 
 </asp:Content>

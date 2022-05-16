@@ -176,7 +176,6 @@
                         <asp:GridView ID="grvissue" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-bordered grvContentarea"
                             OnPageIndexChanging="grvissue_PageIndexChanging">
-                            <PagerSettings Position="TopAndBottom" />
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
