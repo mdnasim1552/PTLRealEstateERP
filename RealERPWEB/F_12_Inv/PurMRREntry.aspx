@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
+
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -16,7 +16,7 @@
         });
 
         function pageLoaded() {
-            
+
 
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
@@ -28,16 +28,16 @@
             $.keynavigation(gridview);
             $('.chzn-select').chosen({ search_contains: true });
 
-            
-           
+
+
             $('[id*=listGroup]').multiselect({
                 includeSelectAllOption: true,
                 maxHeight: 200
             });
-       
 
 
-            }
+
+        }
 
         function Confirmation() {
             if (confirm('Are you sure you want to save?')) {
@@ -48,7 +48,7 @@
         }
 
     </script>
-    
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -87,7 +87,7 @@
                                         <asp:TextBox ID="txtCurMRRNo2" runat="server" CssClass=" smltxtBox60px disabled" ReadOnly="True">00000</asp:TextBox>
                                         <asp:Label ID="Label9" runat="server" CssClass="smLbl_to">MRR No.</asp:Label>
 
-                                        <asp:TextBox ID="txtMRRRef" runat="server" TabIndex="3" CssClass=" inputtextbox" Style="width:78px"></asp:TextBox>
+                                        <asp:TextBox ID="txtMRRRef" runat="server" TabIndex="3" CssClass=" inputtextbox" Style="width: 78px"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
 
@@ -97,10 +97,10 @@
 
                                     </div>
                                     <div class="col-md-2 pading5px asitCol2 pull-right">
-                                        <asp:LinkButton ID="ImgbtnPreMRR" runat="server" Style="margin-left:-118px;" CssClass="lblTxt lblName" OnClick="ImgbtnPreMRR_Click"
+                                        <asp:LinkButton ID="ImgbtnPreMRR" runat="server" Style="margin-left: -118px;" CssClass="lblTxt lblName" OnClick="ImgbtnPreMRR_Click"
                                             TabIndex="3">Previous MRR</asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlPrevMRRList" runat="server" style="width:200px;"  CssClass=" chzn-select inputTxt inpPixedWidth" TabIndex="6">
+                                        <asp:DropDownList ID="ddlPrevMRRList" runat="server" Style="width: 200px;" CssClass=" chzn-select inputTxt inpPixedWidth" TabIndex="6">
                                         </asp:DropDownList>
 
                                     </div>
@@ -145,22 +145,22 @@
 
 
                                     </div>
-                                   
+
                                     <div class="col-md-5">
                                         <div class="col-md-8">
-                                              <asp:Label ID="lblOrderList" runat="server" CssClass=" smLbl_to " Text="Order"></asp:Label>
-                                        <asp:DropDownList ID="ddlOrderList" runat="server"
-                                            TabIndex="9" CssClass="chzn-select ddlPage" Width="250px">
-                                        </asp:DropDownList>
+                                            <asp:Label ID="lblOrderList" runat="server" CssClass=" smLbl_to " Text="Order"></asp:Label>
+                                            <asp:DropDownList ID="ddlOrderList" runat="server"
+                                                TabIndex="9" CssClass="chzn-select ddlPage" Width="250px">
+                                            </asp:DropDownList>
                                         </div>
-                                      
+
                                         <div class="col-md-4">
 
                                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click" TabIndex="11">Ok</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                         </fieldset>
 
                         <asp:Panel ID="Panel1" runat="server" Visible="False">
@@ -173,22 +173,22 @@
                                             <asp:TextBox ID="txtChalanNo" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         </div>
 
-                                        <div class="col-md-5 pading5px ">
+                                        <div class="col-md-9 pading5px ">
                                             <asp:Label ID="lblqtycertificate" runat="server" CssClass="lblTxt lblName" Text="QC No"></asp:Label>
                                             <asp:TextBox ID="txtQc" runat="server" Width="120px" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
-                                            
-                                        <asp:Label ID="lblChaDate" runat="server" CssClass=" lblTxt lblName" Text="Challan Date"></asp:Label>
-                                        <asp:TextBox ID="txtChaDate" runat="server" AutoPostBack="True" CssClass=" inputtextbox" TabIndex="1" ToolTip="(dd.mm.yyyy)" Style="width:78px;"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                            Format="dd.MM.yyyy" TargetControlID="txtChaDate"></cc1:CalendarExtender>
+
+                                            <asp:Label ID="lblChaDate" runat="server" CssClass=" lblTxt lblName" Width="120px"></asp:Label>
+                                            <asp:TextBox ID="txtChaDate" runat="server" AutoPostBack="True" CssClass=" inputtextbox" TabIndex="1" ToolTip="(dd.mm.yyyy)" Style="width: 78px;"></asp:TextBox>
+                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                                Format="dd.MM.yyyy" TargetControlID="txtChaDate"></cc1:CalendarExtender>
                                         </div>
 
-                                      
-                                    
+
+
                                     </div>
-                                        
-                             
+
+
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lblResList" runat="server" CssClass="lblTxt lblName" Text="Resource List"></asp:Label>
@@ -196,37 +196,37 @@
                                             <div class="colMdbtn">
                                                 <asp:LinkButton ID="ImgbtnFindRes" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindRes_Click" TabIndex="5"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                             </div>
-                                            
+
                                         </div>
-                                          <%--   <div class="col-md-4 pading5px asitCol4">--%>
-                                            <%--<asp:DropDownList ID="ddlResList" runat="server" CssClass="form-control inputTxt" TabIndex="6"></asp:DropDownList>--%>
-                                      <%--  </div>--%>
-                                        
-                                            <%--<cc1:DropCheck ID="DropCheck1" runat="server" BackColor="Black" CssClass=""
+                                        <%--   <div class="col-md-4 pading5px asitCol4">--%>
+                                        <%--<asp:DropDownList ID="ddlResList" runat="server" CssClass="form-control inputTxt" TabIndex="6"></asp:DropDownList>--%>
+                                        <%--  </div>--%>
+
+                                        <%--<cc1:DropCheck ID="DropCheck1" runat="server" BackColor="Black" CssClass=""
                                                 MaxDropDownHeight="200" TabIndex="8" TransitionalMode="True" Width="350px">
                                             </cc1:DropCheck>--%>
-                                     <%-- <div class="col-md-3 pading5px asitCol3">
+                                        <%-- <div class="col-md-3 pading5px asitCol3">
                                           
                                       </div>--%>
-                                           <div class="col-md-4 pading5px">
-                                               <asp:ListBox ID="listGroup" runat="server" CssClass="form-control" style="min-width:360px !important;"  SelectionMode="Multiple"></asp:ListBox>
-                                             
-                                           </div>
-                                           <div class="col-md-3 pading5px asitCol3">
-                                               <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectRes_Click"  TabIndex="11"  style="margin-left:15px; float:left !important;">Select</asp:LinkButton>
+                                        <div class="col-md-4 pading5px">
+                                            <asp:ListBox ID="listGroup" runat="server" CssClass="form-control" Style="min-width: 360px !important;" SelectionMode="Multiple"></asp:ListBox>
+
+                                        </div>
+                                        <div class="col-md-3 pading5px asitCol3">
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectRes_Click" TabIndex="11" Style="margin-left: 15px; float: left !important;">Select</asp:LinkButton>
                                             <asp:LinkButton ID="lbtnSelectResAll" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectResAll_Click" TabIndex="11" Visible="false">Select All</asp:LinkButton>
-                                             <%--<asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectRes_Click"  TabIndex="11" style="margin:-20px 0 0 350px; float:left !important;">Select</asp:LinkButton>
+                                            <%--<asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectRes_Click"  TabIndex="11" style="margin:-20px 0 0 350px; float:left !important;">Select</asp:LinkButton>
                                             <asp:LinkButton ID="lbtnSelectResAll" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectResAll_Click" TabIndex="11" style="margin:-20px 0 0 20px; float:left !important;" Visible="false">Select All</asp:LinkButton>--%>
                                         </div>
-                                       
-                                                                          
-                                         <asp:Label ID="Label2" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
+
+
+                                        <asp:Label ID="Label2" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
 
                                     </div>
 
-                                    
+
                                 </div>
-                           </fieldset>
+                            </fieldset>
 
                         </asp:Panel>
 
@@ -243,13 +243,13 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                 <%--Item Serial RowID add for Manama--%>
-                                        <asp:TemplateField HeaderText="Item Sl" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvItemSl" runat="server" Height="16px" Style="text-align: right"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"rowid")) %>' Width="15px"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                <%--Item Serial RowID add for Manama--%>
+                                <asp:TemplateField HeaderText="Item Sl" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvItemSl" runat="server" Height="16px" Style="text-align: right"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"rowid")) %>' Width="15px"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Req No." Visible="false">
                                     <ItemTemplate>
@@ -334,18 +334,18 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="This MRR">
-                                     <FooterTemplate>
+                                    <FooterTemplate>
                                         <asp:LinkButton ID="lbtnResFooterTotal" runat="server"
                                             OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total :</asp:LinkButton>
                                     </FooterTemplate>
-                                   
+
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvMRRQty" runat="server" BackColor="White" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrrqty")).ToString("#,##0.000;(#,##0.000); ") %>'
                                             Width="70px"></asp:TextBox>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7"/>
+                                    <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Rate">
                                     <FooterTemplate>
@@ -402,12 +402,12 @@
                             <fieldset class="scheduler-border fieldset_Nar">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                    <div class="col-md-12">
-                                      <asp:Label ID="lblreqnaration" runat="server" class="lblTxt lblName" Width="900px" Text="Req Narration: "  Font-Bold="true"   style="text-align:left"> </asp:Label>
-                                       
-                                    </div>
+                                        <div class="col-md-12">
+                                            <asp:Label ID="lblreqnaration" runat="server" class="lblTxt lblName" Width="900px" Text="Req Narration: " Font-Bold="true" Style="text-align: left"> </asp:Label>
 
-                                </div>
+                                        </div>
+
+                                    </div>
 
                                     <div class="form-group">
                                         <div class="col-md-8 pading5px inputtxtNarration">
