@@ -586,14 +586,28 @@ namespace RealERPWEB.F_12_Inv
             this.Panel1.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
-
+            this.lblChaDate.Text = getChalanDateMsg();
             this.Get_Receive_Info();
             this.ImgbtnFindRes_Click(null, null);
 
 
 
         }
-
+        private string getChalanDateMsg() 
+        {
+            string msg = "";
+            string comcode = this.GetCompCode();
+            switch (comcode)
+            {
+                case "3354":
+                    msg = "Actual Receive Date";
+                    break;
+                default:
+                    msg = "Challan Date";
+                    break;
+            }
+            return msg;
+        }
 
 
         protected void Session_tblMRR_Update()
