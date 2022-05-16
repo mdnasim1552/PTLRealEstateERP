@@ -608,7 +608,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             if (empid == "%")
             {
-                if (this.ddlProjectName.SelectedValue.ToString() == "000000000000")
+                if (this.ddlProjectName.SelectedValue.ToString() == "000000000000" && comcod != "3315")
                 {
                     string Msg = "Please Select Department";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
