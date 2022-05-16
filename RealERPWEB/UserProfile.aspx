@@ -1085,205 +1085,16 @@
                         </div>
                         <div class="card-body mt-0 pt-0">
                             <div class="row">
-                                <div class="col-4">
-
-                                    <ul class="list-group list-group-flush list-group-bordered">
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    ACC
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Accounts.pdf")%>">Accounts </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    AUD
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Audit.pdf")%>">Audit </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    BD
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/BD.pdf")%>">BD </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    BRK
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Brokerage.pdf")%>">Brokerage </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    BP
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Building Products.pdf")%>">Building Products </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    CC
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Call Center.pdf")%>">Call Center </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    COMM
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Communication.pdf")%>">Communication </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    CON
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Construction.pdf")%>">Construction </a>
-                                        </li>
-
+                                <div class="col-lg-4">
+                                    <ul runat="server" id="orgrm1" class="list-group list-group-flush list-group-bordered">
                                     </ul>
                                 </div>
-                                <div class="col-4">
-                                    <ul class="list-group list-group-flush list-group-bordered">
-
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    CSD
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/CSD, Legal.pdf")%>">CSD, Legal </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    DES
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Design.pdf")%>">Design</a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    DM
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Digital Marketing.pdf")%>">Digital Marketing </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    ACC
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Electro Mechanical.pdf")%>">Building Products </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    EM
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Electro Mechanical.pdf")%>">Electro Mechanical</a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    FIN
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Finance.pdf")%>">Finance </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    HR
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/HR, Admin and Security.pdf")%>">HR, Admin and Security </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    MKT
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Marketing.pdf")%>">Marketing </a>
-                                        </li>
+                                <div class="col-lg-4">
+                                    <ul runat="server" id="orgrm2" class="list-group list-group-flush list-group-bordered">
                                     </ul>
                                 </div>
-                                <div class="col-4">
-                                    <ul class="list-group list-group-flush list-group-bordered">
-
-
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    MGT
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Mgt Associate.pdf")%>">Mgt Associate </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    PAY
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Payroll.pdf")%>">Payroll </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    PRO
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Procurement.pdf")%>">Procurement </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    PRO
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Property Mgt_.pdf")%>">Property Mgt</a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    SALE
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Sales.pdf")%>">Sales </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    SFS
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/SFS (Construction).pdf")%>">SFS (Construction) </a>
-                                        </li>
-                                        <li class="list-group-item pt-1 pb-1">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile bg-success">
-                                                    SFS
-                                                </div>
-                                            </div>
-                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/SFS (Sales).pdf")%>">SFS (Sales) </a>
-                                        </li>
+                                <div class="col-lg-4">
+                                    <ul runat="server" id="orgrm3" class="list-group list-group-flush list-group-bordered">
                                     </ul>
                                 </div>
                             </div>
@@ -1414,7 +1225,6 @@ d) 6 Days Late = 3 CL & half day leave
                                         <div class="col-4">
 
                                             <ul class="list-group list-group-flush list-group-bordered" id="winUlList" runat="server">
-                                                
                                             </ul>
 
 
@@ -1430,6 +1240,7 @@ d) 6 Days Late = 3 CL & half day leave
 
                                 </div>
                             </div>
+                            </div>
                     </section>
                 </div>
 
@@ -1441,7 +1252,10 @@ d) 6 Days Late = 3 CL & half day leave
                                 <div class="card-body">
                                     <h1 class="text-center">Code of Conduct</h1>
 
-                                    <iframe src="Upload/bti/Code of Conduct Bangla.pdf#toolbar=0" width="100%" height="700px"></iframe>
+          
+                                    <div style="width:100%;" runat="server" id="conductid">
+
+                                    </div>
 
                                 </div>
 

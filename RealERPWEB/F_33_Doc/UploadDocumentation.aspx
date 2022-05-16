@@ -106,12 +106,12 @@
 
                                     
                                         <asp:Panel ID="pnlMonth" runat="server" Visible="false">
-                                            <asp:DropDownList ID="ddlMonth" runat="server" AutoPostBack="True" CssClass="form-control chzn-select">
+                                            <asp:DropDownList ID="ddlMonth" runat="server" AutoPostBack="True" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </asp:Panel>
 
                                         <asp:Panel ID="pnlDept" runat="server" Visible="false">
-                                            <asp:DropDownList ID="ddlDept" runat="server" AutoPostBack="True" CssClass="form-control chzn-select">
+                                            <asp:DropDownList ID="ddlDept" runat="server" AutoPostBack="True" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </asp:Panel>
 
@@ -135,13 +135,12 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-12">
-                                    <asp:Image ID="EmpImg" runat="server" Height="60px" Width="60px" />
-                                </div>
+                
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
+                                        <p class="text-right">  <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton></p>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -149,30 +148,47 @@
                         </div>
 
                         <div class="col-lg-8">
-                             <asp:GridView CsClass="table table-hover" ID="gridService" runat="server" CssClass="EU_DataTable" AutoGenerateColumns="false" ShowFooter="true">  
+                                  <div class="table table-sm table-responsive">
+                             <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvdoc" runat="server"  AutoGenerateColumns="false" >  
                     <Columns>  
-                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="SR.NO">  
+                        <asp:TemplateField  HeaderText="Title">  
                             <ItemTemplate>  
-                                <asp:Label ID="lblID" runat="server"  
+                                 <asp:Label ID="lbltitle" runat="server" Text='<%#Eval("title")%>'  Width="200px"></asp:Label>  
+                            </ItemTemplate>  
+                        </asp:TemplateField>  
+
+                        <asp:TemplateField  HeaderText="Remarks">  
+                            <ItemTemplate>  
+                                <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks")%>'  Width="150px"></asp:Label>  
+                            </ItemTemplate>  
+                        </asp:TemplateField>  
+                        
+
+   
+
+                             <asp:TemplateField HeaderText="File">  
+                            <ItemTemplate>  
+                         <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>'  Visible="false"></asp:Label>  
+                            <asp:Label ID="lblid" runat="server" Text='<%#Eval("id")%>'  Visible="false"></asp:Label> 
+                                
+                 
+                              <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank">View</asp:HyperLink>
 
                             </ItemTemplate>  
                         </asp:TemplateField>  
-                        <asp:TemplateField ItemStyle-Width="600px" HeaderText="Service">  
-                            <ItemTemplate>  
-<%--                                <asp:Label ID="lblService" runat="server" Text='<%#Eval("service_name")%>'></asp:Label>  --%>
-                            </ItemTemplate>  
-      
-                        </asp:TemplateField>  
-                        <asp:TemplateField ItemStyle-Width="100px" HeaderText="Service Photo">  
-                            <ItemTemplate>  
 
+                            <asp:TemplateField HeaderText="Action">  
+                            <ItemTemplate>  
+                       <asp:LinkButton  ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click" > 
+                           <i class="fa fa-trash"></i> 
+                       </asp:LinkButton>
                             </ItemTemplate>  
-      
                         </asp:TemplateField>  
 
               
                     </Columns>  
                 </asp:GridView>  
+                                      </div>
                         </div>
                     </div>
                 </div>

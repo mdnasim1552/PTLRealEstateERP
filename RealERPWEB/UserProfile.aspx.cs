@@ -121,7 +121,9 @@ namespace RealERPWEB
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
 
-                    GetWinList();
+                    this.GetWinList();
+                    //this.OrganoGram();
+                    //this.getConduct();
                     break;
                 default:
 
@@ -155,12 +157,78 @@ namespace RealERPWEB
             string winlist = "";
             for (int j = 1; j < dt.Rows.Count; j++)
             {
-                winlist += "<li class='list-group-item pt-1 pb-1'><a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString()+"</a></li>";
-                 
+                winlist += "<li class='list-group-item pt-1 pb-1'><a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a></li>";
+
             }
             this.winUlList.InnerHtml = winlist;
 
         }
+        private void getConduct()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            DataTable dt = ds1.Tables[2];
+            this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width ='100%' height = '700px' ></ iframe >";
+        }
+
+        private void OrganoGram()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            DataTable dt = ds1.Tables[1];
+
+            int count1 = dt.Rows.Count / 3;
+            int count2 = count1 + count1;
+            int count3 = count2 + count1;
+            string ormlist1 = "";
+            string ormlist2 = "";
+            string ormlist3 = "";
+            for (int j = 0; j < dt.Rows.Count; j++)
+            {
+                if (j <= count1)
+                {
+                    ormlist1 += "<li class='list-group-item pt-1 pb-1'>" +
+                                              "<div class='list-group-item-figure'>" +
+                                                  "<div class='tile bg-success'>" +
+                                             "</div> </div>" +
+                                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                         " </li>";
+                }
+                else if (j >= count2 && j <= count2)
+                {
+                    ormlist2 += "<li class='list-group-item pt-1 pb-1'>" +
+                                              "<div class='list-group-item-figure'>" +
+                                                  "<div class='tile bg-success'>" +
+                                             "</div></div>" +
+                                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                         " </li>";
+                }
+                else
+                {
+                    ormlist3 += "<li class='list-group-item pt-1 pb-1'>" +
+                                              "<div class='list-group-item-figure'>" +
+                                                  "<div class='tile bg-success'>" +
+                                             "</div> </div>" +
+                                            "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                         " </li>";
+                }
+
+            }
+            //+dt.Rows[j]["title"].ToString() +
+
+            this.orgrm1.InnerHtml = ormlist1;
+            this.orgrm2.InnerHtml = ormlist2;
+            this.orgrm3.InnerHtml = ormlist3;
+        }
+
+
         public void GetProfile()
         {
             this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
