@@ -827,7 +827,7 @@
 
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvbankLim" runat="server" CssClass="GridLebel"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bankamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="65px"></asp:Label>
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bankamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                     <ItemStyle HorizontalAlign="Right" />
@@ -838,7 +838,7 @@
 
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvbankBal" runat="server" CssClass="GridLebel"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bankbal")).ToString("#,##0.00;(#,##0.00); ") %>' Width="65px"></asp:Label>
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bankbal")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                     <ItemStyle HorizontalAlign="Right" />
