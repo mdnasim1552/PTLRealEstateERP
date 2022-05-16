@@ -401,7 +401,8 @@ namespace RealERPLIB
             #region Inventory
             tblObj.Rows.Add(new Object[] { "1202000", "1202010", "F_12_Inv", "PurReqEntry?", "InputType=Entry", "Material Requisition", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202012", "F_12_Inv", "PurReqEntry?", "InputType=FxtAstEntry", "Store Requisition", "Inventory", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1202000", "1202020", "F_12_Inv", "PurMRREntry?", "Type=Entry", "Materials Receive", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1202000", "1202020", "F_12_Inv", "PurMRREntry?", "Type=Entry", "Materials Receive", "Inventory", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1202000", "1202025", "F_12_Inv", "PurMRREntry?", "Type=FinalApp", "Materials Receive(Approved)", "Inventory", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1202000", "1202030", "F_12_Inv", "MaterialsTransfer?", "Type=Entry", "Material Transfer", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202031", "F_12_Inv", "MaterialsTransfer?", "Type=Audit", "Material Audit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1202000", "1202035", "F_12_Inv", "PurInterComMatTransfer", "", "Inter Company Material Transfer", "Inventory", "False", "False", "False", "False" });

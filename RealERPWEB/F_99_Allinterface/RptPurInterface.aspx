@@ -596,7 +596,8 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         //  case 3101:   //ASIT
                         break;
 
@@ -608,6 +609,7 @@
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         break;
 
                     case 3355:   // Green Wood  
@@ -620,7 +622,8 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(12)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 
 
@@ -635,7 +638,8 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(12)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 
 
@@ -654,7 +658,8 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 
 
@@ -668,7 +673,8 @@
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 
 
@@ -682,10 +688,12 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
 
                         break;
 
 
+                    //case 3101://Credence
                     case 3348://Credence
                         // $(".tbMenuWrp table tr td:nth-child(15)").show();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
@@ -693,8 +701,8 @@
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();                       
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
 
                         break;
 
@@ -712,7 +720,8 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
 
                         break;
 
@@ -727,7 +736,8 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         //Added 
                         // $(".tbMenuWrp table tr td:nth-child(16)").hide();
 
@@ -970,6 +980,7 @@
                                                         <asp:ListItem Value="12"></asp:ListItem>
                                                         <asp:ListItem Value="13"></asp:ListItem>
                                                         <asp:ListItem Value="14"></asp:ListItem>
+                                                      <asp:ListItem Value="15"></asp:ListItem>  <%--Material Received(Approved)--%>
                                                         <asp:ListItem Value="15"></asp:ListItem>
                                                         <asp:ListItem Value="16"></asp:ListItem>
                                                         <asp:ListItem Value="17"></asp:ListItem>
