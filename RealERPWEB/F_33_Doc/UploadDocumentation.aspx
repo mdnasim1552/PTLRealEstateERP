@@ -3,8 +3,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
@@ -101,10 +99,10 @@
                                         <asp:Label ID="lbltitle" runat="server" Text="Title :"></asp:Label>
 
                                         <asp:Panel runat="server" ID="pnlTxt">
-                                        <asp:TextBox ID="txtsName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                            <asp:TextBox ID="txtsName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         </asp:Panel>
 
-                                    
+
                                         <asp:Panel ID="pnlMonth" runat="server" Visible="false">
                                             <asp:DropDownList ID="ddlMonth" runat="server" AutoPostBack="True" CssClass="form-control chzn-select">
                                             </asp:DropDownList>
@@ -149,41 +147,40 @@
                         </div>
 
                         <div class="col-lg-8">
-                             <asp:GridView CsClass="table table-hover" ID="gridService" runat="server" CssClass="EU_DataTable" AutoGenerateColumns="false" ShowFooter="true">  
-                    <Columns>  
-                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="SR.NO">  
-                            <ItemTemplate>  
-                                <asp:Label ID="lblID" runat="server"  
+                            <asp:GridView CsClass="table table-hover" ID="gridService" runat="server" CssClass="EU_DataTable" AutoGenerateColumns="false" ShowFooter="true">
+                                <Columns>
+                                    <asp:TemplateField ItemStyle-Width="30px" HeaderText="SR.NO">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblID" runat="server"> </asp:Label>
 
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        <asp:TemplateField ItemStyle-Width="600px" HeaderText="Service">  
-                            <ItemTemplate>  
-<%--                                <asp:Label ID="lblService" runat="server" Text='<%#Eval("service_name")%>'></asp:Label>  --%>
-                            </ItemTemplate>  
-      
-                        </asp:TemplateField>  
-                        <asp:TemplateField ItemStyle-Width="100px" HeaderText="Service Photo">  
-                            <ItemTemplate>  
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ItemStyle-Width="600px" HeaderText="Service">
+                                        <ItemTemplate>
+                                            <%--  <asp:Label ID="lblService" runat="server" Text='<%#Eval("service_name")%>'></asp:Label>  --%>
+                                        </ItemTemplate>
 
-                            </ItemTemplate>  
-      
-                        </asp:TemplateField>  
+                                    </asp:TemplateField>
+                                    <asp:TemplateField ItemStyle-Width="100px" HeaderText="Service Photo">
+                                        <ItemTemplate>
+                                        </ItemTemplate>
 
-              
-                    </Columns>  
-                </asp:GridView>  
+                                    </asp:TemplateField>
+
+
+                                </Columns>
+                            </asp:GridView>
                         </div>
                     </div>
                 </div>
             </div>
 
-    
+
         </ContentTemplate>
 
-<Triggers>
-        <asp:PostBackTrigger ControlID="lnk_save" />
-</Triggers>   
+        <Triggers>
+            <asp:PostBackTrigger ControlID="lnk_save" />
+        </Triggers>
     </asp:UpdatePanel>
 
 </asp:Content>
