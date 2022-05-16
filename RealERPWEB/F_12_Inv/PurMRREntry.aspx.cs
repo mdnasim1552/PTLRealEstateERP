@@ -1065,6 +1065,107 @@ namespace RealERPWEB.F_12_Inv
             this.gvMRRInfo.PageIndex = ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
             this.gvMRRInfo_DataBind();
         }
+
+
+        private void CreateDataTable()
+        {
+
+            ViewState.Remove("tblapproval");
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("finapppid", Type.GetType("System.String"));
+            tblt01.Columns.Add("finappdat", Type.GetType("System.String"));
+            tblt01.Columns.Add("finapptrmid", Type.GetType("System.String"));
+            tblt01.Columns.Add("finappseson", Type.GetType("System.String"));
+          
+            ViewState["tblapproval"] = tblt01;
+        }
+
+        private string GetReqApproval(string approval)
+        {
+
+
+            string type = this.Request.QueryString["InputType"];
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            DataSet ds1 = new DataSet("ds1");
+            System.IO.StringReader xmlSR;
+
+            switch (type)
+            {
+                case "Entry":
+                    switch (comcod)
+                    {
+
+                        case "3348": // Credence
+                        case "3101": // Credence
+                            break;
+
+                        default:
+                            if (approval == "")
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+                                dr1["finappid"] = usrid;
+                                dr1["finappdat"] = Date;
+                                dr1["finapptrmid"] = trmnid;
+                                dr1["finappseson"] = session;
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+
+                            }
+
+
+                            else
+                            {
+
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["finappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["finappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["finappseson"] = session;
+                                approval = ds1.GetXml();
+
+                            }
+
+
+
+                            break;
+
+                    }
+                    break;
+                case "FinalApp":
+                    xmlSR = new System.IO.StringReader(approval);
+                    ds1.ReadXml(xmlSR);
+                    ds1.Tables[0].TableName = "tbl1";
+                    ds1.Tables[0].Rows[0]["finappid"] = usrid;
+                    ds1.Tables[0].Rows[0]["finappdat"] = Date;
+                    ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
+                    ds1.Tables[0].Rows[0]["finappseson"] = session;
+                    approval = ds1.GetXml();
+
+                    break;
+
+
+
+
+
+            }
+
+
+            return approval;
+
+        }
+
         protected void lbtnUpdateMRR_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1345,10 +1446,11 @@ namespace RealERPWEB.F_12_Inv
 
 
 
-
+            string appxml = tbl1.Rows[0]["approval"].ToString();
+            string Approval = this.GetReqApproval(appxml);
 
             bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
-                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, "");
+                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
