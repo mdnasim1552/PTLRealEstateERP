@@ -564,6 +564,24 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView grvMRec;
 
         /// <summary>
+        /// pnlmrrapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlmrrapp;
+
+        /// <summary>
+        /// gvmrrapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvmrrapp;
+
+        /// <summary>
         /// PanelBill control.
         /// </summary>
         /// <remarks>
