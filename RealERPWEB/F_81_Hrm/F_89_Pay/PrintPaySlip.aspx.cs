@@ -78,7 +78,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             DataTable dt4 = ds3.Tables[0];
             
-            // this part added for Taka in word as per payslip print from menu payslip
+            // this part added for Taka in word as per payslip print from menu(HR) payslip
             Session["tblpay"] = dt4;
             this.TakaInWord();
             DataTable dt =(DataTable) Session["tblpay"];
