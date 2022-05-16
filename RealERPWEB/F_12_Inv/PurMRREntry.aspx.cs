@@ -1072,7 +1072,7 @@ namespace RealERPWEB.F_12_Inv
 
             ViewState.Remove("tblapproval");
             DataTable tblt01 = new DataTable();
-            tblt01.Columns.Add("finapppid", Type.GetType("System.String"));
+            tblt01.Columns.Add("finappid", Type.GetType("System.String"));
             tblt01.Columns.Add("finappdat", Type.GetType("System.String"));
             tblt01.Columns.Add("finapptrmid", Type.GetType("System.String"));
             tblt01.Columns.Add("finappseson", Type.GetType("System.String"));
@@ -1083,82 +1083,113 @@ namespace RealERPWEB.F_12_Inv
         private string GetReqApproval(string approval)
         {
 
-
-            string type = this.Request.QueryString["InputType"];
-            string comcod = this.GetCompCode();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string usrid = hst["usrid"].ToString();
-            string trmnid = hst["compname"].ToString();
-            string session = hst["session"].ToString();
-            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-
-            DataSet ds1 = new DataSet("ds1");
-            System.IO.StringReader xmlSR;
-
-            switch (type)
+            try
             {
-                case "Entry":
-                    switch (comcod)
-                    {
 
-                        case "3348": // Credence
-                        case "3101": // Credence
-                            break;
+                string type = this.Request.QueryString["Type"];
+                string comcod = this.GetCompCode();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string usrid = hst["usrid"].ToString();
+                string trmnid = hst["compname"].ToString();
+                string session = hst["session"].ToString();
+                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
-                        default:
-                            if (approval == "")
-                            {
-                                this.CreateDataTable();
-                                DataTable dt = (DataTable)ViewState["tblapproval"];
-                                DataRow dr1 = dt.NewRow();
-                                dr1["finappid"] = usrid;
-                                dr1["finappdat"] = Date;
-                                dr1["finapptrmid"] = trmnid;
-                                dr1["finappseson"] = session;
-                                dt.Rows.Add(dr1);
-                                ds1.Merge(dt);
-                                ds1.Tables[0].TableName = "tbl1";
-                                approval = ds1.GetXml();
+                DataSet ds1 = new DataSet("ds1");
+                System.IO.StringReader xmlSR;
 
-                            }
+                switch (type)
+                {
+                    case "Entry":
+                        switch (comcod)
+                        {
+
+                            case "3348": // Credence
+                            //case "3101": // Credence
+                                break;
+
+                            default:
+                                if (approval == "")
+                                {
+                                    this.CreateDataTable();
+                                    DataTable dt = (DataTable)ViewState["tblapproval"];
+                                    DataRow dr1 = dt.NewRow();
+                                    dr1["finappid"] = usrid;
+                                    dr1["finappdat"] = Date;
+                                    dr1["finapptrmid"] = trmnid;
+                                    dr1["finappseson"] = session;
+                                    dt.Rows.Add(dr1);
+                                    ds1.Merge(dt);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    approval = ds1.GetXml();
+
+                                   
+
+                                }
 
 
-                            else
-                            {
+                                else
+                                {
 
-                                xmlSR = new System.IO.StringReader(approval);
-                                ds1.ReadXml(xmlSR);
-                                ds1.Tables[0].TableName = "tbl1";
-                                ds1.Tables[0].Rows[0]["finappid"] = usrid;
-                                ds1.Tables[0].Rows[0]["finappdat"] = Date;
-                                ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
-                                ds1.Tables[0].Rows[0]["finappseson"] = session;
-                                approval = ds1.GetXml();
+                                    xmlSR = new System.IO.StringReader(approval);
+                                    ds1.ReadXml(xmlSR);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    ds1.Tables[0].Rows[0]["finappid"] = usrid;
+                                    ds1.Tables[0].Rows[0]["finappdat"] = Date;
+                                    ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
+                                    ds1.Tables[0].Rows[0]["finappseson"] = session;
+                                    approval = ds1.GetXml();
 
-                            }
-
-
-
-                            break;
-
-                    }
-                    break;
-                case "FinalApp":
-                    xmlSR = new System.IO.StringReader(approval);
-                    ds1.ReadXml(xmlSR);
-                    ds1.Tables[0].TableName = "tbl1";
-                    ds1.Tables[0].Rows[0]["finappid"] = usrid;
-                    ds1.Tables[0].Rows[0]["finappdat"] = Date;
-                    ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
-                    ds1.Tables[0].Rows[0]["finappseson"] = session;
-                    approval = ds1.GetXml();
-
-                    break;
+                                }
 
 
 
+                                break;
+
+                        }
+                        break;
+                    case "FinalApp":
+                        if (approval == "")
+                        {
+                            this.CreateDataTable();
+                            DataTable dt = (DataTable)ViewState["tblapproval"];
+                            DataRow dr1 = dt.NewRow();
+                            dr1["finappid"] = usrid;
+                            dr1["finappdat"] = Date;
+                            dr1["finapptrmid"] = trmnid;
+                            dr1["finappseson"] = session;
+                            dt.Rows.Add(dr1);
+                            ds1.Merge(dt);
+                            ds1.Tables[0].TableName = "tbl1";
+                            approval = ds1.GetXml();
+
+                        }
+                        else 
+                        {
+                            xmlSR = new System.IO.StringReader(approval);
+                            ds1.ReadXml(xmlSR);
+                            ds1.Tables[0].TableName = "tbl1";
+                            ds1.Tables[0].Rows[0]["finappid"] = usrid;
+                            ds1.Tables[0].Rows[0]["finappdat"] = Date;
+                            ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
+                            ds1.Tables[0].Rows[0]["finappseson"] = session;
+                            approval = ds1.GetXml();
+
+                        }
+
+                       
+
+                        break;
 
 
+
+
+
+                }
+            }
+            catch (Exception ex)
+            { 
+            
+            
             }
 
 
