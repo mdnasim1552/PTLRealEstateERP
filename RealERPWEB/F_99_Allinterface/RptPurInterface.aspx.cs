@@ -649,7 +649,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Received</div></div></div>";
 
-            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Received(App)</div></div></div>";
+            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Received(App)</div></div></div>";
 
             this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["billqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Bill Confirm.</div></div></div>";
             //this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["compqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Acc. Update</div></div></div>";
@@ -806,6 +806,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
+                    
                     this.PanelComp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
@@ -839,6 +841,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
@@ -870,6 +873,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
@@ -931,6 +935,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -963,6 +968,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -995,6 +1001,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1033,6 +1040,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1067,6 +1075,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1097,6 +1106,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1132,6 +1142,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1166,6 +1177,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     // this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1201,6 +1213,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1237,6 +1250,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = true;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1268,6 +1282,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlCRM.Visible = false;
                     this.pnlordersapp.Visible = true;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1303,6 +1318,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = true;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1320,43 +1336,13 @@ namespace RealERPWEB.F_99_Allinterface
                 case "15"://MRR(Approved)
                     //MRR
                     //MRR
-                    dt = (DataTable)ds1.Tables[5];
-                    this.Data_Bind("grvMRec", dt);
-                    this.pnlReqInfo.Visible = false;
-                    this.PnlReqChq.Visible = false;
-                    this.Pnlfirstapp.Visible = false;
-                    this.Pnlsecapp.Visible = false;
-                    this.pnlRatePro.Visible = false;
-                    this.PaneWorder.Visible = false;
-                    this.pnlfRec.Visible = false;
-                    this.pnlCRM.Visible = false;
-                    this.pnlSecRec.Visible = false;
-                    this.pnlThRec.Visible = false;
-                    this.pnlRateApp.Visible = false;
-                    this.PanelOrProc.Visible = false;
-                    this.pnlorderfapp.Visible = false;
-                    this.pnlordersapp.Visible = false;
-                    this.PanelRecv.Visible = true;
-                    this.PanelComp.Visible = false;
-                    //this.PanelQC.Visible = false;
-                    this.PanelBill.Visible = false;
-                    this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[15].Attributes["class"] = "lblactive blink_me";
-                    //this.RadioButtonList1.Items[10].Attributes.Add("class", "lblactive");
-                    // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
-                    if (dt.Rows.Count > 0)
-                    {
-                        ((TextBox)this.grvMRec.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
-                    }
-                    break;
+                    //dt = (DataTable)ds1.Tables[6];
+                    //this.Data_Bind("gvmrrapp", dt);
 
-
-
-                case "16":
-                    //Bill
-                    //Bill
-                    dt = (DataTable)ds1.Tables[6];
-                    this.Data_Bind("gvPurBill", dt);
+                    dt = ((DataTable)ds1.Tables[6]).Copy();
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("mrrapp = 0");
+                    this.Data_Bind("gvmrrapp", dv.ToTable());
 
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
@@ -1373,6 +1359,49 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = true;
+                    this.PanelComp.Visible = false;
+                    //this.PanelQC.Visible = false;
+                    this.PanelBill.Visible = false;
+                    this.PanelBillAudit.Visible = false;
+                    this.RadioButtonList1.Items[15].Attributes["class"] = "lblactive blink_me";
+                    //this.RadioButtonList1.Items[10].Attributes.Add("class", "lblactive");
+                    // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
+                    //if (dt.Rows.Count > 0)
+                    //{
+                    //    ((TextBox)this.grvMRec.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
+                    //}
+                    break;
+
+
+
+                case "16":
+                    //Bill
+                    //Bill
+                    //dt = (DataTable)ds1.Tables[6];
+                    //this.Data_Bind("gvPurBill", dt);
+
+                    dt = ((DataTable)ds1.Tables[6]).Copy();
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("mrrapp = 1");
+                    this.Data_Bind("gvPurBill", dv.ToTable());
+
+                    this.pnlReqInfo.Visible = false;
+                    this.PnlReqChq.Visible = false;
+                    this.Pnlfirstapp.Visible = false;
+                    this.Pnlsecapp.Visible = false;
+                    this.pnlRatePro.Visible = false;
+                    this.PaneWorder.Visible = false;
+                    this.pnlfRec.Visible = false;
+                    this.pnlCRM.Visible = false;
+                    this.pnlSecRec.Visible = false;
+                    this.pnlThRec.Visible = false;
+                    this.pnlRateApp.Visible = false;
+                    this.PanelOrProc.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
+                    this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = true;
@@ -1408,6 +1437,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelComp.Visible = false;
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
@@ -1431,6 +1461,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
                     this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelComp.Visible = true;
                     this.PanelBillAudit.Visible = false;
@@ -2083,7 +2114,27 @@ namespace RealERPWEB.F_99_Allinterface
 
                     break;
 
+                case "gvmrrapp":
 
+                    this.gvmrrapp.DataSource = HiddenSameData(dt);
+                    this.gvmrrapp.DataBind();
+
+                    //if (dt.Rows.Count == 0)
+                    //    return;
+
+
+                    //((Label)this.gvDispatch.FooterRow.FindControl("lblDispAmtTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(itmamt)", "")) ?
+                    //0 : dt.Compute("sum(itmamt)", ""))).ToString("#,##0.00;(#,##0.00);");
+                    //((Label)this.gvDispatch.FooterRow.FindControl("lblDispPTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(paidamt)", "")) ?
+                    //0 : dt.Compute("sum(paidamt)", ""))).ToString("#,##0.00;(#,##0.00);");
+                    //((Label)this.gvDispatch.FooterRow.FindControl("lblDispQTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(itmqty)", "")) ?
+                    //0 : dt.Compute("sum(itmqty)", ""))).ToString("#,##0;(#,##0);");
+
+
+                    break;
+
+
+                    
 
 
                 case "gvPurBill":
@@ -5232,6 +5283,42 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.PurchaseInfoRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
+        }
+
+        protected void gvmrrapp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrintmapp");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntrymapp");
+                LinkButton btnDelBill = (LinkButton)e.Row.FindControl("btnDelBillmapp");
+
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];               
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string mrrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrrno")).ToString();
+                string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string prjname = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactdesc")).ToString();
+                string suppliername = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssirdesc")).ToString();
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MRReceipt&mrno=" + mrrno + "&sircode=" + sircode + "&supname=" + suppliername + "&prjname=" + prjname;
+
+               
+
+                if (orderno.Substring(0, 3) == "POR")
+                    hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=FinalApp&prjcode=" + pactcode + "&genno=" + mrrno + "&sircode=" + sircode;
+               
+
+
+            }
+
+        }
+
+        protected void btnDelBillmapp_Click(object sender, EventArgs e)
+        {
+           
+
         }
     }
 }

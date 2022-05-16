@@ -1069,5 +1069,8 @@
     <EmbeddedResource Include="R_99_AllInterface\RptUpdateMatTrans.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptUpdatePur.rdlc" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
