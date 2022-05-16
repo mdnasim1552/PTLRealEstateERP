@@ -191,30 +191,16 @@
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Budgeted Qty" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgvBgdqty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Right" />
-                                </asp:TemplateField>
-
                                 <asp:TemplateField HeaderText="Budgeted Amt">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvBgdamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdamt")).ToString("#,##0.000;-#,##0.000; ") %>' Width="75px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Right" />
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Balance Qty" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgvBgdBal" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bbgdqty")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
+                                        <asp:Label ID="lblgvBgdamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="75px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Balance Amt">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvbalamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bbgdamt")).ToString("#,##0.000;-#,##0.000; ") %>' Width="75px"></asp:Label>
+                                        <asp:Label ID="lblgvbalamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bbgdamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="75px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
@@ -222,7 +208,7 @@
                                 <asp:TemplateField HeaderText="Quantity">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvReqQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnCheecked" runat="server" OnClientClick="return FunCheckConfirm();" OnClick="lbtnCheecked_Click" CssClass="btn  btn-success btn-sm form-control">Approved</asp:LinkButton>
@@ -231,11 +217,11 @@
                                     <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
                                 </asp:TemplateField>
 
-
+                                <%--9--%>
                                 <asp:TemplateField HeaderText="Approved Qty" Visible="false">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvReqappQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
@@ -253,7 +239,7 @@
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
-
+                              <%--11--%>
                                 <asp:TemplateField HeaderText="Amount">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvpreqamt" runat="server" Font-Size="11px" Style="text-align: right; background-color: Transparent"
@@ -266,7 +252,7 @@
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
-
+                                <%--12--%>
                                 <asp:TemplateField HeaderText="Amount" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvareqamt" runat="server" Font-Size="11px" Style="text-align: right; background-color: Transparent"
