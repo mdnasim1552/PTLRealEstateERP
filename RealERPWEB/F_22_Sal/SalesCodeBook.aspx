@@ -194,9 +194,6 @@
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Status">
-                                <%--                                <EditItemTemplate>
-                                    <asp:CheckBox ID="chkStatus" runat="server" Width="40px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "status"))=="True" %>' />
-                                </EditItemTemplate>--%>
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkStatus" runat="server" Width="60px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "status"))=="True" %>' />
                                 </ItemTemplate>

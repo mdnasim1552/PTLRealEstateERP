@@ -1284,11 +1284,28 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string curr_year = System.DateTime.Now.ToString("yyyy");
             string curr_date = "26-Dec-" + curr_year;
+            string lvname = "";
+            string empid = "";
 
 
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + this.GetComeCode() + ".jpg")).AbsoluteUri;
 
-            string empid = this.ddlEmpName.SelectedValue.ToString();
+            string qtype = this.Request.QueryString["Type"] ??"";
+
+            if (qtype == "MGT")
+            {
+                 empid = this.ddlEmpName.SelectedValue.ToString();
+            }
+            else
+            {
+                 empid = hst["empid"].ToString();
+            }
+
+
+       
+
+            
+          
             var ds = HRData.GetTransInfo("", "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid,curr_date);
             if (ds == null)
             {
@@ -1297,8 +1314,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
            
             DataTable dt1 = ds.Tables[1];
             DataTable dt2 = ds.Tables[2];
-            DataTable dt3 = ds.Tables[3];
-
+   
+            //this.ClientQueryString("MGT")
     
             string empname = ds.Tables[0].Rows[0]["empname"].ToString()??"";
             string doj = ds.Tables[0].Rows[0]["doj"].ToString() ?? "";
@@ -1309,11 +1326,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             var list1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>();
             var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
-            var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.prevtLeaveInfo>();
+            var list3 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
+
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptEmpLeaveCard", list1, list2, list3);
             Rpt1.EnableExternalImages = true;
+
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                lvname = dt1.Rows[i]["leave"].ToString().Substring(0,4);
+                Rpt1.SetParameters(new ReportParameter("lvname" + i.ToString(), lvname));
+            }
+
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
+
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee's Leave Card"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
@@ -1325,7 +1351,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("desig", desig));
             Rpt1.SetParameters(new ReportParameter("curyear", curr_year));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
+            //Rpt1.PrintToPrinter();
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

@@ -141,13 +141,13 @@ namespace RealERPWEB.F_28_MPro
         protected global::System.Web.UI.WebControls.Label lblPrjName;
 
         /// <summary>
-        /// ddltomonth control.
+        /// ddlfrmmonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddltomonth;
+        protected global::System.Web.UI.WebControls.DropDownList ddlfrmmonth;
 
         /// <summary>
         /// datediv control.

@@ -68,12 +68,12 @@ namespace RealERPWEB.F_28_MPro
             string month = System.DateTime.Today.ToString("MM");
             this.ddlyearmon.SelectedValue = yr + month;
 
-            this.ddltomonth.DataTextField = "yearmon";
-            this.ddltomonth.DataValueField = "ymon";
-            this.ddltomonth.DataSource = ds1.Tables[0];
-            this.ddltomonth.DataBind();
+            this.ddlfrmmonth.DataTextField = "yearmon";
+            this.ddlfrmmonth.DataValueField = "ymon";
+            this.ddlfrmmonth.DataSource = ds1.Tables[0];
+            this.ddlfrmmonth.DataBind();
             string month1 = System.DateTime.Today.AddMonths(1).ToString("MM");
-            this.ddltomonth.SelectedValue = yr + month1;
+            this.ddlfrmmonth.SelectedValue = yr + month1;
             ds1.Dispose();
 
         }
@@ -220,25 +220,16 @@ namespace RealERPWEB.F_28_MPro
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string mBGDDAT = Convert.ToDateTime(this.txtbgddate.Text).ToString("dd-MMM-yyyy");
-            string tomonth = this.ddltomonth.SelectedValue.ToString();
-            string frmonth = this.ddlyearmon.SelectedValue.ToString();
+            string YearMon = this.ddlfrmmonth.SelectedValue.ToString();
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "COPY_MONTHLY_BUDGET", mBGDDAT, tomonth, frmonth, "", "", "", "", "", "", "", "", "");
+            DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_MON_BUDGET_INFO", YearMon, "", "", "", "");
+            if (ds2==null)
+                return;
 
-            if (result == true)
-            {
-                this.ddlyearmon.SelectedValue = tomonth;
-                msg = "Budget Copy Success";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-                this.GetBudgetInfo();
-            }
-            else
-            {
-                msg = "Budget Copy Failed!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            Session["AccTbl02"] = ds2.Tables[0];
+            Session["tblMktType"] = ds2.Tables[1];
+            this.dgv3_DataBind();
 
-            }
         }
 
 

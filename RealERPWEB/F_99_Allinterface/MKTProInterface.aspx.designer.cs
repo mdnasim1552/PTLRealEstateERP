@@ -114,13 +114,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.HyperLink hyplnkMktReqEdit;
 
         /// <summary>
-        /// HyperLink3 control.
+        /// hyplnkMktMatIssue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.WebControls.HyperLink hyplnkMktMatIssue;
 
         /// <summary>
         /// hlnkmktsurvey control.
@@ -130,6 +130,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlnkmktsurvey;
+
+        /// <summary>
+        /// hyplnkMktMonBudget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyplnkMktMonBudget;
 
         /// <summary>
         /// hlnkgencode control.

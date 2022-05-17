@@ -27,11 +27,12 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
 
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE EVALUATION FOR CONFIRMATION";
+
                 this.txtCurDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetLastPerNumber();
                 this.GetEmployeeName();
@@ -51,7 +52,7 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         private void GetEmployeeName()
         {
             string comcod = this.GetComeCode();
-            string txtSProject = "%" + this.txtEmpSrc.Text + "%";
+            string txtSProject = "%%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GETEMPNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
@@ -131,14 +132,15 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             if (this.lbtnOk.Text == "Ok")
             {
                 this.lbtnOk.Text = "New";
-                this.lblEmpname.Text = this.ddlEmpName.SelectedItem.Text.Trim().Substring(13);
-                this.ddlEmpName.Visible = false;
-                this.lblEmpname.Visible = true;
+                //this.lblEmpname.Text = this.ddlEmpName.SelectedItem.Text.Trim().Substring(13);
                 this.ddlEmpName.Enabled = false;
-                this.lblprelist.Visible = false;
-                this.txtPreViousList.Visible = false;
-                this.ibtnPreList.Visible = false;
-                this.ddlPreList.Visible = false;
+                //this.lblEmpname.Visible = true;
+                this.ddlEmpName.Enabled = false;
+                this.lblprelist.Enabled = false;
+                this.txtrefno.Enabled = false;
+                //this.txtPreViousList.Visible = false;
+                //this.ibtnPreList.Visible = false;
+                this.ddlPreList.Enabled = false;
                 this.ShowPerformance();
                 return;
             }
@@ -148,11 +150,11 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             this.gvPerAppraisal.DataSource = null;
             this.gvPerAppraisal.DataBind();
             this.ddlEmpName.Visible = true;
-            this.lblEmpname.Visible = false;
+            //this.lblEmpname.Visible = false;
             this.ddlEmpName.Enabled = true;
             this.lblprelist.Visible = true;
-            this.txtPreViousList.Visible = true;
-            this.ibtnPreList.Visible = true;
+            //this.txtPreViousList.Visible = true;
+            //this.ibtnPreList.Visible = true;
             this.ddlPreList.Visible = true;
             this.txtCurDate.Enabled = true;
         }
@@ -193,7 +195,7 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
                 this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["evadate"]).ToString("dd-MMM-yyyy");
                 this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
                 this.ddlEmpName.SelectedValue = ds1.Tables[1].Rows[0]["empid"].ToString();
-                this.lblEmpname.Text = this.ddlEmpName.SelectedItem.Text.Trim();
+                //this.lblEmpname.Text = this.ddlEmpName.SelectedItem.Text.Trim();
 
             }
 

@@ -3933,8 +3933,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("compName", comnam));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtHeader2", todate1 + " (Month of salary disbursement)"));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2","Pay Slip"+ todate1 + " (Month of salary disbursement)"));
                 Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

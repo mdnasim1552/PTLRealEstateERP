@@ -20,6 +20,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             if (!IsPostBack)
             {
+                ((Label)this.Master.FindControl("lblTitle")).Text = "SALARY STATEMENT SUMMARY";
                 this.GetMonth();
                 lnkOk_Click(null, null);
             }
@@ -59,6 +60,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = false;
+                    this.deptwise.Visible = false;
 
                     break;
                 case 1:
@@ -68,6 +70,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = false;
+                    this.deptwise.Visible = false;
                     break;
                 case 2:
                     this.PnlBankSumary.Visible = false;
@@ -76,6 +79,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = false;
+                    this.deptwise.Visible = false;
                     break;
 
                 case 3:
@@ -85,6 +89,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = true;
                     this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = false;
+                    this.deptwise.Visible = false;
                     break;
                 case 4:
                     this.PnlBankSumary.Visible = false;
@@ -93,6 +98,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = true;
                     this.PnlTotal.Visible = false;
+                    this.deptwise.Visible = false;
                     break;
 
                 case 5:
@@ -102,6 +108,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = true;
+                    this.deptwise.Visible = false;
+                    break;
+                case 6:
+                    this.PnlBankSumary.Visible = false;
+                    this.PnlModPayment.Visible = false;
+                    this.PnlNetComparison.Visible = false;
+                    this.PnlGrossSummary.Visible = false;
+                    this.PnlGrossRecon.Visible = false;
+                    this.PnlTotal.Visible = false;
+                    this.deptwise.Visible = true;
                     break;
                 default:
                     this.PnlBankSumary.Visible = false;
@@ -110,6 +126,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
                     this.PnlTotal.Visible = false;
+                    this.deptwise.Visible = false;
 
                     break;
             }
@@ -142,9 +159,45 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case 5:
                     this.GetTotalSalSum();
                     break;
+                case 6:
+                    this.GetDeptwiseNet();
+                    break;
                 default:
                     break;
             }
+        }
+
+        private void GetDeptwiseNet()
+        {
+            string comcod = this.GetComCode();
+            string prevmon = "";
+            string monthid = this.ddlmon.SelectedValue.ToString();
+            string cudate = "";
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    prevmon = Convert.ToDateTime(date).AddMonths(-1).ToString("yyyyMM");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                default:
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    prevmon = Convert.ToDateTime(date).ToString("yyyyMM");
+                    break;
+            }
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON", "RPTNETCOMPARISONDEPTWISE", monthid, prevmon, "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            Session["tblSalSummary"] = ds1.Tables[0];
+            Session["tblmondesc"] = ds1.Tables[1];
+            this.Data_bind();
         }
 
         private void GetTotalSalSum()
@@ -179,7 +232,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["tblmondesc"] = ds1.Tables[1];
             this.Data_bind();
         }
-
         private void GetGrossPayRecon()
         {
             string comcod = this.GetComCode();
@@ -191,9 +243,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 return;
             }
-
             Session["tblSalSummary"] = ds1.Tables[0];
-
             this.Data_bind();
         }
 
@@ -405,6 +455,27 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = GvTotalSumm;
                     ((HyperLink)this.GvTotalSumm.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
+
+
+                case 6:
+                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                    //    this.GvModPayment.Columns[i].Visible = false;
+                    j = 1;
+                    DataTable dtdept = (DataTable)Session["tblmondesc"];
+                    if (dtdept == null)
+                    {
+                        return;
+                    }
+                    for (i = 0; i < dtdept.Rows.Count; i++)
+                    {
+                        this.gvdeptwise.Columns[j].HeaderText = dtdept.Rows[i]["monname"].ToString();
+                        j++;
+                    }
+                    this.gvdeptwise.DataSource = dt;
+                    this.gvdeptwise.DataBind();
+                    Session["Report1"] = gvdeptwise;
+                    ((HyperLink)this.gvdeptwise.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    break;
                 default:
                     break;
             }
@@ -429,18 +500,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string rptitle = "";
             string monname = "";
-            //DataTable dt = (DataTable)Session["tblSalSummary"];
+            DataTable dt = (DataTable)Session["tblSalSummary"];
             DataTable dt2 = (DataTable)Session["tblmondesc"];
             DataTable dt3 = (DataTable)Session["tblbankdesc"];
 
-            DataTable dt = new DataTable();
-            DataView view = new DataView();
-
-            view.Table = (DataTable)Session["tblSalSummary"];
-
-            view.RowFilter = "empname <>''";
-
-             dt = view.ToTable();
+       
 
 
 
@@ -534,6 +598,98 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void GvNetComparison_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void lnkUpdate_Click(object sender, EventArgs e)
+        {
+            bool result;
+            this.SaveValue();
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            string comcod = this.GetComCode();
+            //string date = this.txtdate.Text;
+            string monid = this.ddlmon.SelectedValue.ToString();
+            string sttype = this.rbtnAtten.SelectedIndex.ToString();
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "refno<>'00000000000' and refno<>'AAAAAAAAAAAA' and refno<>'BBBBBBBBBBBB' ";          
+            dt = dv1.ToTable();
+
+
+
+            //result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEOFFTIME", dayid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                //string absent = dt.Rows[i]["absnt"].ToString().Trim();
+                //string leave = dt.Rows[i]["leave"].ToString().Trim();
+                //if ((absent != "A") && (leave != "L"))
+                //{
+
+                string refno = dt.Rows[i]["refno"].ToString();
+                string remarks = dt.Rows[i]["remarks"].ToString();
+                string machid = "01";
+               
+                result = HRData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_ENTRY_CODEBOOK]", "INSERTUPDATESALDESCIPTION", monid, refno, sttype, remarks, "", "", "", "", "");              
+            }
+            string Messaged = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);          
+        }
+
+        private void SaveValue()
+        {
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            int TblRowIndex;
+            for (int i = 0; i < this.GvNetComparison.Rows.Count; i++)
+            {
+              
+                string descript = ((TextBox)this.GvNetComparison.Rows[i].FindControl("lblremark")).Text.Trim();
+           
+                TblRowIndex = (GvNetComparison.PageIndex) * GvNetComparison.PageSize + i;
+                dt.Rows[TblRowIndex]["remarks"] = descript;
+            }
+            Session["tblSalSummary"] = dt;
+
+        }
+        private void GrossSaveValue()
+        {
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            int TblRowIndex;
+            for (int i = 0; i < this.GvgrossSalSummary.Rows.Count; i++)
+            {
+
+                string descript = ((TextBox)this.GvgrossSalSummary.Rows[i].FindControl("lblremark")).Text.Trim();
+
+                TblRowIndex = (GvgrossSalSummary.PageIndex) * GvgrossSalSummary.PageSize + i;
+                dt.Rows[TblRowIndex]["remarks"] = descript;              
+            }
+            Session["tblSalSummary"] = dt;
+
+        }
+        protected void lnkGrossUpdate_Click(object sender, EventArgs e)
+        {
+            bool result;
+            this.GrossSaveValue();
+            DataTable dt = (DataTable)Session["tblSalSummary"];
+            string comcod = this.GetComCode();
+            //string date = this.txtdate.Text;
+            string monid = this.ddlmon.SelectedValue.ToString();
+            string sttype = this.rbtnAtten.SelectedIndex.ToString();
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "refno<>'00000000000' and refno<>'AAAAAAAAAAAA' and refno<>'BBBBBBBBBBBB' ";
+            dt = dv1.ToTable();        
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string refno = dt.Rows[i]["refno"].ToString();
+                string remarks = dt.Rows[i]["remarks"].ToString();
+                string machid = "01";
+
+                result = HRData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_ENTRY_CODEBOOK]", "INSERTUPDATESALDESCIPTION", monid, refno, sttype, remarks, "", "", "", "", "");                
+            }
+            string Messaged = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
         }
     }
     

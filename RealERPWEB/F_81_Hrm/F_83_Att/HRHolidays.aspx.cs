@@ -26,7 +26,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE HOLIDAY INFORMATION";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
+                int mon = System.DateTime.Now.Month;
+                rblmonth.SelectedIndex = mon-1;
                 this.rblmonth_SelectedIndexChanged(null, null);
                 //this.ShowHoliday();
                 this.GetCompany();
@@ -52,10 +53,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             ViewState["HolidayInfo"] = ds3.Tables[0];
 
         }
-
-
-
-
 
 
         private string GetComCode()
@@ -106,12 +103,57 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         protected void rblmonth_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+
             int startyear = System.DateTime.Now.Year;
             this.lblmonth.Text =   this.rblmonth.SelectedItem.Text.ToString() + " - "  + startyear.ToString();
-
-
-
             this.ShowHoliday();
+            string value = this.rblmonth.SelectedIndex.ToString();
+            switch (value)
+            {
+                case "0":
+                    this.rblmonth.Items[0].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+                    break;
+                case "1":
+                    this.rblmonth.Items[1].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+                    break;
+                case "2":
+                    this.rblmonth.Items[2].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+                    break;
+                case "3":
+                    this.rblmonth.Items[3].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+                    break;
+                case "4":
+                    this.rblmonth.Items[4].Attributes["style"] = "background:#5b9bd1; color:white;  display:block";
+                    break;
+                case "5":
+                    this.rblmonth.Items[5].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+                    break;
+                case "6":
+                    this.rblmonth.Items[6].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+                    break;
+                case "7":
+                    this.rblmonth.Items[7].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+
+                    break;
+                case "8":
+                    this.rblmonth.Items[8].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+
+                    break;
+                case "9":
+                    this.rblmonth.Items[9].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+
+                    break;
+                case "10":
+                    this.rblmonth.Items[10].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+
+                    break;
+                case "11":
+                    this.rblmonth.Items[11].Attributes["style"] = "background:#5b9bd1; color:white; display:block";
+
+                    break;
+            }
+
         }
 
         public List<DateTime> getHolidayDayDates()
@@ -192,10 +234,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             DataTable dt = ViewState["HolidayInfo"] as DataTable;
             DateTime date = Convert.ToDateTime(dt.Rows[index]["hdate"].ToString());
-
+            string date1 = Convert.ToDateTime(dt.Rows[index]["hdate"]).ToString("dd-MMM-yyyy");
+             
             bool result = false;
 
-            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "DELETEHOLIDAY", date.ToString(), "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "DELETEHOLIDAY", date1, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result)
             {
@@ -286,13 +329,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             try
             {
                 string company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "94%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
-                string department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "9402%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
-                string section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlCompany.SelectedValue.ToString()) + "%";
+                string department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? company : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
+                string section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString()) + "%";
                 string comcod = this.GetComCode();
             
-
-
-
                 DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "ACTIVEEMPLEAVE", company, department, section, "", "", "", "", "", "");
                 if (ds == null)
                     return;
@@ -305,14 +345,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     empid = dt.Rows[i]["empid"].ToString();
-
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTOFFDAY", empid, year, "", "", "", "", "", "");
-
-
                 }
 
                 msg = rowCount + " Rows affected!";
-
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             }
             catch
@@ -323,7 +359,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
 
 
-           
+            int mon = System.DateTime.Now.Month;
+            rblmonth.SelectedIndex = mon - 1;
 
 
         }

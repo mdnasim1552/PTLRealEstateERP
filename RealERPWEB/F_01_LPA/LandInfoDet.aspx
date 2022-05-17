@@ -3334,7 +3334,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
 
-                                <asp:LinkButton ID="lUpdatPerInfo" Visible="false" runat="server" CssClass="btn btn-danger  btn-xs" OnClientClick="return confirm('Do You want to Update?');" OnClick="lUpdatPerInfo_Click">Update</asp:LinkButton>
+                                <asp:LinkButton ID="lUpdatPerInfo" Visible="false" runat="server" CssClass="btn btn-success  btn-sm" OnClientClick="return confirm('Do You want to Update?');" OnClick="lUpdatPerInfo_Click">Update</asp:LinkButton>
                             </div>
                         </div>
                     </div>

@@ -121,7 +121,7 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
-        <%--                    <asp:TemplateField HeaderText="Date">
+                            <asp:TemplateField HeaderText="Date">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvDate" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "cdate")).ToString("dd-MMM-yyyy") %>'
                                         Width="80px"></asp:Label>
@@ -130,16 +130,16 @@
                                     <asp:LinkButton ID="lFinalUpdate" runat="server" CssClass="btn btn-danger primarygrdBtn" OnClick="lFinalUpdate_Click">Final Update</asp:LinkButton>
                                 </FooterTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>--%>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Off. Intime">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvoffIntime" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offintime")).ToString("hh:mm tt") %>'
                                         Width="60px"></asp:Label>
                                 </ItemTemplate>
-                                <FooterTemplate>
+                             <%--   <FooterTemplate>
                                     <asp:LinkButton ID="lFinalTotal" runat="server" Font-Bold="True" Font-Size="12px"
                                         ForeColor="#000" OnClick="lFinalTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total</asp:LinkButton>
-                                </FooterTemplate>
+                                </FooterTemplate>--%>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Off. Outtime">

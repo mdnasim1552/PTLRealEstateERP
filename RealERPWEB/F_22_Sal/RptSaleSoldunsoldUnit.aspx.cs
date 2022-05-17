@@ -86,12 +86,18 @@ namespace RealERPWEB.F_22_Sal
             switch (type)
             {
                 case "soldunsold":
+
+                    
+                    this.SoldType.Visible = true;
+                    this.salesteamdv.Visible = false;
                     this.lblSalesTeam.Visible = false;
                     this.ddlSalesTeam.Visible = false;
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
 
                 case "parking":
+                    this.SoldType.Visible = false;
+
                     this.Label15.Visible = false;
                     this.txtDate.Visible = false;
                     this.lblSalesTeam.Visible = false;
@@ -102,6 +108,7 @@ namespace RealERPWEB.F_22_Sal
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "RptDayWSale":
+                    this.SoldType.Visible = false;
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
                     this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -116,6 +123,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "uwiseCosting":
+                    this.SoldType.Visible = false;
                     this.Label15.Visible = false;
                     this.txtDate.Visible = false;
                     this.lblSalesTeam.Visible = false;
@@ -229,7 +237,8 @@ namespace RealERPWEB.F_22_Sal
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string mRptGroup = Convert.ToString(this.ddlRptGroup.SelectedIndex);
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTSALSUMMERY", PactCode, date, mRptGroup, "", "", "", "", "", "");
+            string saltype  = (this.rbtnSalType.SelectedIndex == 0) ? "Sold" : (this.rbtnSalType.SelectedIndex == 1) ? "Unsold": "";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTSALSUMMERY", PactCode, date, mRptGroup, saltype, "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvSpayment.DataSource = null;

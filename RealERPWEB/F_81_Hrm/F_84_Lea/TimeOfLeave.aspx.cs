@@ -23,12 +23,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
+                ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY TIME OFF";
                 string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtaplydate.Text = nextday;
                 GetRemaningTime();
                 this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
                 this.txtToTime.Text = System.DateTime.Now.ToString("HH:mm");
-                 
+
 
             }
         }
@@ -58,7 +59,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, frmdate, tdate, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-            DateTime useTime = ds1.Tables[2].Rows.Count == 0 ? DateTime.Parse("00:00") : DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
+            DateTime useTime = ds1.Tables[2].Rows.Count == 0 ? DateTime.Parse("06:00") : DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
             if (ds1.Tables[0].Rows.Count != 0)
             {
@@ -69,7 +70,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.gvLvReq.DataBind();
 
                 ((Label)this.gvLvReq.FooterRow.FindControl("lblAmtTotalremtime")).Text = ds1.Tables[1].Rows[0]["footSum"].ToString().Length == 0 ? "0" : ds1.Tables[1].Rows[0]["footSum"].ToString();
- 
+
                 if (useTime > maxTime)
                 {
                     string errMsg = "Already Use Time " + useTime.ToString();
@@ -120,7 +121,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string cdate = Convert.ToDateTime(txtaplydate.Text).ToString("dd-MMM-yyyy");
             TimeSpan timeDiff;
             DateTime luntime_st = Convert.ToDateTime(cdate + " 01:00 PM");
-            DateTime luntime_end = Convert.ToDateTime(cdate + " 02:00 PM");
+            DateTime luntime_end = Convert.ToDateTime(cdate + " 01:59 PM");
             DateTime Offic_end = Convert.ToDateTime(cdate + " 05:30 PM");
 
 
@@ -156,18 +157,34 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
             }
 
- 
+
             TimeSpan remTimeConvt = TimeSpan.Parse(remTime.ToString("HH:mm"));
             TimeSpan time3 = timeDiff;
-            TimeSpan maxTime = TimeSpan.Parse("06:00");
-             maxTime = maxTime- remTimeConvt;
+            TimeSpan maxTime1 = TimeSpan.Parse("06:00");
+            TimeSpan enjtime = TimeSpan.Parse("0:00");
 
+            TimeSpan usetime = maxTime1 - remTimeConvt;
 
-            if (time3 > maxTime)
+            enjtime = time3;
+            TimeSpan mintime = TimeSpan.Parse("0:00");
+
+            if (usetime > maxTime1)
+            {
+                string Messaged = "Your time is exceed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+            }
+            else if ((enjtime > maxTime1))
             {
                 string Messaged = "Your office Time exceed";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                this.btnSave.Enabled = false;                
+                this.btnSave.Enabled = false;
+                this.txtUseTime.Text = "0";
+            }
+            else if ((enjtime > remTimeConvt))
+            {
+                string Messaged = "Your remaning Time exceed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                this.btnSave.Enabled = false;
                 this.txtUseTime.Text = "0";
             }
             else
@@ -176,8 +193,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.btnSave.Enabled = true;
 
             }
-
-
 
         }
 
@@ -251,8 +266,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     GetRemaningTime();
                 }
             }
-                
-            
+
+
         }
         private string GetattAppId(string empid)
         {
@@ -343,7 +358,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string empdesig = (string)ds1.Tables[1].Rows[0]["desig"];
                 string deptname = (string)ds1.Tables[1].Rows[0]["deptname"];
                 string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_92_Mgt/";
-                string currentptah = "EmpAttApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=SUP"+ "&Reqtype=TLV";
+                string currentptah = "EmpAttApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=SUP" + "&Reqtype=TLV";
                 string totalpath = uhostname + currentptah;
 
 
@@ -403,14 +418,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void gvLvReq_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            
-            
+
+
         }
 
         protected void lkDelete_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
-            
+
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
             string trnid = ((Label)this.gvLvReq.Rows[RowIndex].FindControl("lbllevid")).Text.Trim();
@@ -427,10 +442,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             string Messagesd = "Deleted Success";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
-             
+
             GetRemaningTime();
 
-            string eventdesc2 = "Leave Request deleted, Request ID by:  "+ trnid;
+            string eventdesc2 = "Leave Request deleted, Request ID by:  " + trnid;
             bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "Delete Time Of Leave Request", eventdesc2, "");
         }
     }

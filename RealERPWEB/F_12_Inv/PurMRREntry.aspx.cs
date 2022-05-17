@@ -34,11 +34,11 @@ namespace RealERPWEB.F_12_Inv
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Material Receive";
-
+                string comcod = this.GetCompCode();
 
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtChaDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                this.txtChaDate.Text = (comcod=="3101"?"": DateTime.Today.ToString("dd.MM.yyyy"));
                 ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Materials Receive"
                     : "Delete Materials Receive Information Input/Edit Screen";
 
@@ -58,6 +58,12 @@ namespace RealERPWEB.F_12_Inv
                 this.ImgbtnFindProject_Click(null, null);
                 //this.ImgbtnFindSup_Click(null, null);
                 this.txtCurMRRDate_CalendarExtender.EndDate = System.DateTime.Today;
+
+                if(comcod == "3354")
+                {
+
+                this.CalendarExtender1.EndDate = System.DateTime.Today;
+                }
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -580,14 +586,28 @@ namespace RealERPWEB.F_12_Inv
             this.Panel1.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
-
+            this.lblChaDate.Text = getChalanDateMsg();
             this.Get_Receive_Info();
             this.ImgbtnFindRes_Click(null, null);
 
 
 
         }
-
+        private string getChalanDateMsg() 
+        {
+            string msg = "";
+            string comcode = this.GetCompCode();
+            switch (comcode)
+            {
+                case "3354":
+                    msg = "Actual Receive Date";
+                    break;
+                default:
+                    msg = "Challan Date";
+                    break;
+            }
+            return msg;
+        }
 
 
         protected void Session_tblMRR_Update()
@@ -1059,6 +1079,138 @@ namespace RealERPWEB.F_12_Inv
             this.gvMRRInfo.PageIndex = ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
             this.gvMRRInfo_DataBind();
         }
+
+
+        private void CreateDataTable()
+        {
+
+            ViewState.Remove("tblapproval");
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("finappid", Type.GetType("System.String"));
+            tblt01.Columns.Add("finappdat", Type.GetType("System.String"));
+            tblt01.Columns.Add("finapptrmid", Type.GetType("System.String"));
+            tblt01.Columns.Add("finappseson", Type.GetType("System.String"));
+          
+            ViewState["tblapproval"] = tblt01;
+        }
+
+        private string GetReqApproval(string approval)
+        {
+
+            try
+            {
+
+                string type = this.Request.QueryString["Type"];
+                string comcod = this.GetCompCode();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string usrid = hst["usrid"].ToString();
+                string trmnid = hst["compname"].ToString();
+                string session = hst["session"].ToString();
+                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+                DataSet ds1 = new DataSet("ds1");
+                System.IO.StringReader xmlSR;
+
+                switch (type)
+                {
+                    case "Entry":
+                        switch (comcod)
+                        {
+
+                            case "3348": // Credence
+                            //case "3101": // Credence
+                                break;
+
+                            default:
+                                if (approval == "")
+                                {
+                                    this.CreateDataTable();
+                                    DataTable dt = (DataTable)ViewState["tblapproval"];
+                                    DataRow dr1 = dt.NewRow();
+                                    dr1["finappid"] = usrid;
+                                    dr1["finappdat"] = Date;
+                                    dr1["finapptrmid"] = trmnid;
+                                    dr1["finappseson"] = session;
+                                    dt.Rows.Add(dr1);
+                                    ds1.Merge(dt);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    approval = ds1.GetXml();
+
+                                   
+
+                                }
+
+
+                                else
+                                {
+
+                                    xmlSR = new System.IO.StringReader(approval);
+                                    ds1.ReadXml(xmlSR);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    ds1.Tables[0].Rows[0]["finappid"] = usrid;
+                                    ds1.Tables[0].Rows[0]["finappdat"] = Date;
+                                    ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
+                                    ds1.Tables[0].Rows[0]["finappseson"] = session;
+                                    approval = ds1.GetXml();
+
+                                }
+
+
+
+                                break;
+
+                        }
+                        break;
+                    case "FinalApp":
+                        if (approval == "")
+                        {
+                            this.CreateDataTable();
+                            DataTable dt = (DataTable)ViewState["tblapproval"];
+                            DataRow dr1 = dt.NewRow();
+                            dr1["finappid"] = usrid;
+                            dr1["finappdat"] = Date;
+                            dr1["finapptrmid"] = trmnid;
+                            dr1["finappseson"] = session;
+                            dt.Rows.Add(dr1);
+                            ds1.Merge(dt);
+                            ds1.Tables[0].TableName = "tbl1";
+                            approval = ds1.GetXml();
+
+                        }
+                        else 
+                        {
+                            xmlSR = new System.IO.StringReader(approval);
+                            ds1.ReadXml(xmlSR);
+                            ds1.Tables[0].TableName = "tbl1";
+                            ds1.Tables[0].Rows[0]["finappid"] = usrid;
+                            ds1.Tables[0].Rows[0]["finappdat"] = Date;
+                            ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
+                            ds1.Tables[0].Rows[0]["finappseson"] = session;
+                            approval = ds1.GetXml();
+
+                        }
+
+                       
+
+                        break;
+
+
+
+
+
+                }
+            }
+            catch (Exception ex)
+            { 
+            
+            
+            }
+
+
+            return approval;
+
+        }
+
         protected void lbtnUpdateMRR_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1131,8 +1283,13 @@ namespace RealERPWEB.F_12_Inv
             string mMRRNAR = this.txtMRRNarr.Text.Trim();
             string mMRRChlnNo = this.txtChalanNo.Text.Trim();
             string mrrno = this.txtMRRRef.Text.Trim();
+            string chldate = this.txtChaDate.Text.Trim();
             string mchlndate = this.GetStdDate(this.txtChaDate.Text.Trim()); ;
             string mQcno = this.txtQc.Text.Trim();
+
+            
+
+
 
             //Chalan No
             switch (comcod)
@@ -1188,6 +1345,19 @@ namespace RealERPWEB.F_12_Inv
 
 
 
+
+                    break;
+
+                     // case "3101":
+                case "3354":
+              //  case "3101":
+
+                    if (chldate.Length == 0)
+                    {
+                        this.txtChaDate.Focus();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Challan Daten Required');", true);
+                        return;
+                    }
 
                     break;
 
@@ -1321,10 +1491,11 @@ namespace RealERPWEB.F_12_Inv
 
 
 
-
+            string appxml = tbl1.Rows[0]["approval"].ToString();
+            string Approval = this.GetReqApproval(appxml);
 
             bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
-                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, "");
+                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

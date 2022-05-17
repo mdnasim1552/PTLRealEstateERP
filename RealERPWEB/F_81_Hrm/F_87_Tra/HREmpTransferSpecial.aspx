@@ -19,8 +19,8 @@
         }
 
         .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -50,7 +50,24 @@
             $('.chzn-select').chosen({ search_contains: true });
 
         };
-
+        function filter2(phrase, _id) {
+            var words = phrase.value.toLowerCase().split(" ");
+            var table = document.getElementById(_id);
+            var ele;
+            for (var r = 0; r <= table.rows.length; r++) {
+                ele = table.rows[r].innerHTML.replace(/<[^>]+>/g, "");
+                var displayStyle = 'none';
+                for (var i = 0; i < words.length; i++) {
+                    if (ele.toLowerCase().indexOf(words[i]) >= 0)
+                        displayStyle = '';
+                    else {
+                        displayStyle = 'none';
+                        break;
+                    }
+                }
+                table.rows[r].style.display = displayStyle;
+            }
+        }
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -80,7 +97,7 @@
                         <div class="col-lg-1">
                             <div class="form-group">
                                 <asp:Label ID="lblfrmdate" runat="server">Transfer Date</asp:Label>
-                                <asp:TextBox ID="txtCurTransDate" runat="server" CssClass=" form-control "></asp:TextBox>
+                                <asp:TextBox ID="txtCurTransDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtCurTransDate_CalendarExtender" runat="server" Format="dd.MM.yyyy" TargetControlID="txtCurTransDate"></cc1:CalendarExtender>
 
                             </div>
@@ -89,7 +106,7 @@
                             <div class="form-group">
 
                                 <asp:Label ID="lblCurTransNo1" runat="server" CssClass=" smLbl_to">Transfer No</asp:Label>
-                                <asp:TextBox ID="txtCurTransNo2" runat="server" ReadOnly="true" CssClass="form-control "></asp:TextBox>
+                                <asp:TextBox ID="txtCurTransNo2" runat="server" ReadOnly="true" CssClass="form-control form-control form-control-sm"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -106,7 +123,7 @@
                             </asp:DropDownList>
                         </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                                    <div class="form-group">
                                                         <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName">Section</asp:Label>
                      
@@ -114,10 +131,15 @@
                                             </asp:DropDownList>
                         </div>
                         </div>
-                 
+                                          <div class="col-lg-1">
+                     <div class="form-group">
+                                     <asp:Label ID="Label2" runat="server" >ID Card</asp:Label>
+                         <input name="txtTerm" onkeyup="filter2(this, '<%=gvEmpListTrans.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
+                 </div>
+                           </div>
 
                         <div class="col-lg-1">
-                                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                         </div>
                     </div>

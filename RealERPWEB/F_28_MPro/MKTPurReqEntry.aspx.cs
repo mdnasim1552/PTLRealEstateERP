@@ -81,9 +81,9 @@ namespace RealERPWEB.F_28_MPro
                 case "ReqApproval":                
                 case "ReqEdit":
                
-                    this.gvReqInfo.Columns[11].Visible = true;
-                    this.gvReqInfo.Columns[13].Visible = false;
-                    this.gvReqInfo.Columns[14].Visible = true;
+                    this.gvReqInfo.Columns[9].Visible = true;
+                    this.gvReqInfo.Columns[11].Visible = false;
+                    this.gvReqInfo.Columns[12].Visible = true;
                     
                     break;
 
@@ -144,6 +144,7 @@ namespace RealERPWEB.F_28_MPro
                     return;
 
                 ViewState["tblmaterial"] = ds2.Tables[0];
+                ViewState["tblmatdetails"] = ds2.Tables[1];
 
             }
             catch (Exception ex)
@@ -345,9 +346,9 @@ namespace RealERPWEB.F_28_MPro
             this.Session_tblReq_Update();
             Hashtable hst = (Hashtable)Session["tblLogin"];
            
-            DataTable tbl1 = (DataTable)ViewState["tblReq"];
-            
+            DataTable tbl1 = (DataTable)ViewState["tblReq"];            
            string acttype= this.ddlActType.SelectedValue.ToString();           
+           string prtype= this.ddlPRType.SelectedValue.ToString();
             DataRow[] dr2 = tbl1.Select("acttype = '" + acttype + "'");
             if (dr2.Length == 0)
             {
@@ -359,10 +360,8 @@ namespace RealERPWEB.F_28_MPro
                 dr1["prdesc"] = this.ddlPRType.SelectedItem.Text.Trim();
                 dr1["actdesc"] = this.ddlActType.SelectedItem.Text.Trim();
                 dr1["mktdesc"] = this.ddlMarkType.SelectedItem.Text.Trim();
-                dr1["bgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdqty"];
-                dr1["bgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ acttype + "'")[0]["bgdamt"];
-                dr1["bbgdqty"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdqty"]; 
-                dr1["bbgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + acttype + "'")[0]["bbgdamt"];
+                dr1["bgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='"+ prtype + "'")[0]["bgdamt"];
+                dr1["bbgdamt"] = ((DataTable)ViewState["tblmaterial"]).Select("rsircode='" + prtype + "'")[0]["bbgdamt"];
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
                 dr1["reqrat"] = 0;
@@ -391,9 +390,7 @@ namespace RealERPWEB.F_28_MPro
                 {
                     rsircode = dt1.Rows[j]["rsircode"].ToString();
                     dt1.Rows[j]["rsirdesc1"] = "";
-                    dt1.Rows[j]["bbgdqty"] = 0.00;
                     dt1.Rows[j]["bbgdamt"] = 0.00;
-                    dt1.Rows[j]["bgdqty"] = 0.00;
                     dt1.Rows[j]["treceived"] = 0.00;
 
                 }
@@ -424,219 +421,143 @@ namespace RealERPWEB.F_28_MPro
 
         protected void lbtnUpdateResReq_Click(object sender, EventArgs e)
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
-            this.lbtnResFooterTotal_Click(null, null);
-            //string mMRFNO = this.txtMRFNo.Text.Trim();
-            string mMRFNO = "";
-            if (this.ddlPrevReqList.Items.Count == 0)
-                this.GetReqNo();
-            string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
-            string mREQNO = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
-
-            DataTable tbl1 = (DataTable)ViewState["tblReq"];
-            DataTable dt2 = (DataTable)Session["tblUserReq"];
-
-
-            //if (this.chkdupMRF.Checked)
-            //{
-            //    if (mMRFNO.Length == 0)
-            //    {
-            //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "M.R.F No. Should Not Be Empty" + "');", true);
-            //        return;
-            //    }
-
-            //    DataSet ds2 = new DataSet();
-
-            //    switch (comcod)
-            //    {
-
-            //        case "3332":
-
-
-            //            string pactcode = this.ddlProject.SelectedValue.ToString();
-            //            ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, pactcode, "", "", "", "", "", "", "");
-            //            //if (bbgdamt < 0 || dgvBgdQty < dgvReqQty)
-
-
-            //            break;
-
-
-            //        default:
-            //            ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, "", "", "", "", "", "", "", "");
-
-            //            break;
-
-            //    }
-
-            //    if (ds2.Tables[0].Rows.Count == 0)
-            //        ;
-
-
-            //    else
-            //    {
-
-            //        DataView dv1 = ds2.Tables[0].DefaultView;
-            //        dv1.RowFilter = ("reqno <>'" + mREQNO + "'");
-            //        DataTable dt = dv1.ToTable();
-            //        if (dt.Rows.Count == 0)
-            //            ;
-            //        else
-            //        {
-            //            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate M.R.F No" + "');", true);
-            //            return;
-            //        }
-            //    }
-            //}
-
-            // Emty Quantity
-            DataRow[] dr2 = tbl1.Select("areqty>0");
-            //if(dr2.Length>0)
-            //Log Entry
-
-            DataTable dtuser = (DataTable)Session["tblUserReq"];
-            string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
-            string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
-            string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
-            string tblPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");           
-
-            string tblaprvByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
-            string tblaprvtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvtrmid"].ToString();
-            string tblaprvSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvseson"].ToString();
-            string tblaprvDat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["aprvdat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
-
-
-
-
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-
-
-            string PostedByid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblPostedByid == "") ? userid : tblPostedByid);
-            string Posttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid);
-            string PostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblPostedSession == "") ? Sessionid : tblPostedSession);
-            string PostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblPostedDat == "") ? Date : tblPostedDat);
-
-
-            string EditByid = (this.Request.QueryString["InputType"] == "ReqEdit") ? userid : "";
-            string Edittrmid = (this.Request.QueryString["InputType"] == "ReqEdit") ? Terminal : "";
-            string EditSession = (this.Request.QueryString["InputType"] == "ReqEdit") ? Sessionid : "";
-            string EditDat = (this.Request.QueryString["InputType"] == "ReqEdit") ? Date : "01-Jan-1900";
-
-
-            string AprvByid = (this.Request.QueryString["InputType"] == "ReqApproval") ? userid : ((tblaprvByid == "") ? "" : tblaprvByid);
-            string Aprvtrmid = (this.Request.QueryString["InputType"] == "ReqApproval") ? Terminal : ((tblaprvtrmid == "") ? "" : tblaprvtrmid);
-            string AprvSession = (this.Request.QueryString["InputType"] == "ReqApproval") ? Sessionid : ((tblaprvSession == "") ? "" : tblaprvSession);
-            string AprvDat = (this.Request.QueryString["InputType"] == "ReqApproval") ? Date : ((Convert.ToDateTime(tblaprvDat).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "01-Jan-1900" : tblaprvDat);
-
-
-
-
-            string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();       
-            string mREQNAR = this.txtReqNarr.Text.Trim();
-
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQB", mREQNO, mREQDAT, mPACTCODE, mMRFNO, PostedByid, Posttrmid, PostSession, PostedDat,
-               EditByid, Edittrmid, EditSession, EditDat, mREQNAR, AprvByid, Aprvtrmid, AprvSession, AprvDat);
-            if (!result)
+            try
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-                return;
-            }
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                this.lbtnResFooterTotal_Click(null, null);
+                //string mMRFNO = this.txtMRFNo.Text.Trim();
+                string mMRFNO = "";
+                if (this.ddlPrevReqList.Items.Count == 0)
+                    this.GetReqNo();
+                string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
+                string mREQNO = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
+
+                DataTable tbl1 = (DataTable)ViewState["tblReq"];
+                DataTable dt2 = (DataTable)Session["tblUserReq"];
+
+                // Emty Quantity
+                DataRow[] dr2 = tbl1.Select("areqty>0");
+
+                //Log Entry
+                DataTable dtuser = (DataTable)Session["tblUserReq"];
+                string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
+                string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
+                string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
+                string tblPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+                string tblaprvByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
+                string tblaprvtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvtrmid"].ToString();
+                string tblaprvSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvseson"].ToString();
+                string tblaprvDat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["aprvdat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
 
 
-            foreach (DataRow dr1 in tbl1.Rows)
-            {
-                
-                double mPREQTY = Convert.ToDouble(dr1["preqty"]);
-                double mAREQTY = Convert.ToDouble(dr1["areqty"]);
-                double mREQRAT = Convert.ToDouble( dr1["reqrat"]);
-                string prType = dr1["prtype"].ToString();
-                string actType = dr1["acttype"].ToString(); 
-                string mrkType = dr1["mkttype"].ToString();
-                string expectDate =dr1["expusedt"].ToString();
-                string reqNote = dr1["reqnote"].ToString();
-                string filePath = dr1["filepath"].ToString();
-                string justific = dr1["justific"].ToString();
-                //if(mREQRAT<=0)
-                //{
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Insert Apprx. Unit Price " + "');", true);
-                //    return;
-                //}
-                if (mPREQTY >= mAREQTY)
+
+
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+                string PostedByid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblPostedByid == "") ? userid : tblPostedByid);
+                string Posttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid);
+                string PostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblPostedSession == "") ? Sessionid : tblPostedSession);
+                string PostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblPostedDat == "") ? Date : tblPostedDat);
+
+
+                string EditByid = (this.Request.QueryString["InputType"] == "ReqEdit") ? userid : "";
+                string Edittrmid = (this.Request.QueryString["InputType"] == "ReqEdit") ? Terminal : "";
+                string EditSession = (this.Request.QueryString["InputType"] == "ReqEdit") ? Sessionid : "";
+                string EditDat = (this.Request.QueryString["InputType"] == "ReqEdit") ? Date : "01-Jan-1900";
+
+
+                string AprvByid = (this.Request.QueryString["InputType"] == "ReqApproval") ? userid : ((tblaprvByid == "") ? "" : tblaprvByid);
+                string Aprvtrmid = (this.Request.QueryString["InputType"] == "ReqApproval") ? Terminal : ((tblaprvtrmid == "") ? "" : tblaprvtrmid);
+                string AprvSession = (this.Request.QueryString["InputType"] == "ReqApproval") ? Sessionid : ((tblaprvSession == "") ? "" : tblaprvSession);
+                string AprvDat = (this.Request.QueryString["InputType"] == "ReqApproval") ? Date : ((Convert.ToDateTime(tblaprvDat).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "01-Jan-1900" : tblaprvDat);
+
+
+
+
+                string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();
+                string mREQNAR = this.txtReqNarr.Text.Trim();
+
+                bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQB", mREQNO, mREQDAT, mPACTCODE, mMRFNO, PostedByid, Posttrmid, PostSession, PostedDat,
+                   EditByid, Edittrmid, EditSession, EditDat, mREQNAR, AprvByid, Aprvtrmid, AprvSession, AprvDat);
+                if (!result)
                 {
-                    result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
-                                mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT.ToString(), prType, actType, mrkType,
-                                expectDate, filePath, reqNote, justific, "", "", "", "");
-
-
-                    if (!result)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-                        return;
-                    }
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Aprove Qty Must be Less Or Equal  Req. Qty" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
+                }
+
+
+                foreach (DataRow dr1 in tbl1.Rows)
+                {
+
+                    double mPREQTY = Convert.ToDouble(dr1["preqty"]);
+                    double mAREQTY = Convert.ToDouble(dr1["areqty"]);
+                    double mREQRAT = Convert.ToDouble(dr1["reqrat"]);
+                    string prType = dr1["prtype"].ToString();
+                    string actType = dr1["acttype"].ToString();
+                    string mrkType = dr1["mkttype"].ToString();
+                    string expectDate = dr1["expusedt"].ToString();
+                    string reqNote = dr1["reqnote"].ToString();
+                    string filePath = dr1["filepath"].ToString();
+                    string justific = dr1["justific"].ToString();
+                    //if(mREQRAT<=0)
+                    //{
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Insert Apprx. Unit Price " + "');", true);
+                    //    return;
+                    //}
+                    if (mPREQTY >= mAREQTY)
+                    {
+                        result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
+                                    mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT.ToString(), prType, actType, mrkType,
+                                    expectDate, filePath, reqNote, justific, "", "", "", "");
+
+
+                        if (!result)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Aprove Qty Must be Less Or Equal  Req. Qty" + "');", true);
+                        return;
+
+                    }
 
                 }
 
-            }
-
-            this.txtCurReqDate.Enabled = false;
-            string Type = this.Request.QueryString["InputType"].ToString();
-            string msg = "";
-            switch (Type)
-            {
-                case "ReqCheck":
-                msg = "HOD Approval Updated successfully";
-                    break;
-
-                case "ReqApproval":
-                    msg = "DIV Approval Updated successfully";
-                    break;
-
-                default:
-                    msg = "Requisition Updated successfully";
-                    break;
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
-
-
-            if (hst["compsms"].ToString() == "True")
-            {
-                switch (comcod)
+                this.txtCurReqDate.Enabled = false;
+                string Type = this.Request.QueryString["InputType"].ToString();
+                string msg = "";
+                switch (Type)
                 {
-                    case "3333":
+                    case "ReqCheck":
+                        msg = "HOD Approval Updated successfully";
+                        break;
+
+                    case "ReqApproval":
+                        msg = "DIV Approval Updated successfully";
                         break;
 
                     default:
-                        if (this.Request.QueryString["InputType"] == "Entry" || this.Request.QueryString["InputType"] == "FxtAstEntry")
-                        {
-
-                            SendSmsProcess sms = new SendSmsProcess();
-                            string comnam = hst["comnam"].ToString();
-                            string compname = hst["compname"].ToString();
-                            string ddldesc = hst["ddldesc"].ToString();
-                            string frmname = "PurReqEntry.aspx?InputType=ReqCheck";
-
-                            string SMSHead = "Ready for Check, ";
-
-
-                            string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12); 
-                                ;
-                            bool resultsms = sms.SendSmms(SMSText, userid, frmname);
-
-                        }
+                        msg = "Requisition Updated successfully";
                         break;
-
                 }
 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
             }
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+            }           
 
         }
 
@@ -1069,8 +990,7 @@ namespace RealERPWEB.F_28_MPro
 
         protected void ddlPRType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblmaterial"];
+            DataTable dt = (DataTable)ViewState["tblmatdetails"];
             string code = this.ddlPRType.SelectedValue;
             DataView dv1 = dt.DefaultView;
             dv1.RowFilter = "mapcode like ('" + code + "')";

@@ -23,11 +23,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetCompany();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE DAILY ABSENT INFORMATION ";
+
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 lnkbtnShow_Click(null,null);
@@ -75,8 +77,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             if (this.lnkbtnShow.Text == "Ok")
             {
                 this.txtDate.Enabled = false;
-                this.ddlCompanyName.Visible = false;
-                this.lblCompanyName.Visible = true;
+                this.ddlCompanyName.Enabled = false;
+                this.lblCompanyName.Enabled = true;
                 this.lblPage.Visible = true;
                 this.ddlpagesize.Visible = true;
                 this.lnkbtnShow.Text = "New";

@@ -112,16 +112,21 @@ namespace RealERPWEB
                 case "3101":
 
                     string userrole = hst["userrole"].ToString();
-                  
+
+                    this.winsList.Visible = true;
 
                     this.lnkOrintation.Visible = true;
                     this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
                     this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
+
+                    this.GetWinList();
+                    //this.OrganoGram();
+                    //this.getConduct();
                     break;
                 default:
-                
+
                     this.lnkOrintation.Visible = false;
                     this.HyperCodeofConduct.Visible = false;
                     this.HypOrganogram.Visible = false;
@@ -136,6 +141,94 @@ namespace RealERPWEB
 
         }
 
+        private void GetWinList()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            DataTable dt = ds1.Tables[0];
+
+            string winlist = "";
+            for (int j = 1; j < dt.Rows.Count; j++)
+            {
+                winlist += "<li class='list-group-item pt-1 pb-1'><a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a></li>";
+
+            }
+            this.winUlList.InnerHtml = winlist;
+
+        }
+        private void getConduct()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            DataTable dt = ds1.Tables[2];
+            this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width ='100%' height = '700px' ></ iframe >";
+        }
+
+        private void OrganoGram()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            DataTable dt = ds1.Tables[1];
+
+            int count1 = dt.Rows.Count / 3;
+            int count2 = count1 + count1;
+            int count3 = count2 + count1;
+            string ormlist1 = "";
+            string ormlist2 = "";
+            string ormlist3 = "";
+            for (int j = 0; j < dt.Rows.Count; j++)
+            {
+                if (j <= count1)
+                {
+                    ormlist1 += "<li class='list-group-item pt-1 pb-1'>" +
+                                              "<div class='list-group-item-figure'>" +
+                                                  "<div class='tile bg-success'>" +
+                                             "</div> </div>" +
+                                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                         " </li>";
+                }
+                else if (j >= count2 && j <= count2)
+                {
+                    ormlist2 += "<li class='list-group-item pt-1 pb-1'>" +
+                                              "<div class='list-group-item-figure'>" +
+                                                  "<div class='tile bg-success'>" +
+                                             "</div></div>" +
+                                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                         " </li>";
+                }
+                else
+                {
+                    ormlist3 += "<li class='list-group-item pt-1 pb-1'>" +
+                                              "<div class='list-group-item-figure'>" +
+                                                  "<div class='tile bg-success'>" +
+                                             "</div> </div>" +
+                                            "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                         " </li>";
+                }
+
+            }
+            //+dt.Rows[j]["title"].ToString() +
+
+            this.orgrm1.InnerHtml = ormlist1;
+            this.orgrm2.InnerHtml = ormlist2;
+            this.orgrm3.InnerHtml = ormlist3;
+        }
+
+
         public void GetProfile()
         {
             this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -148,7 +241,7 @@ namespace RealERPWEB
             this.UDptment.InnerHtml = hst["dptdesc"].ToString();
             this.UDesignation.InnerHtml = hst["usrdesig"].ToString();
 
-            UserName.InnerHtml =  hst["userfname"].ToString();
+            UserName.InnerHtml = hst["userfname"].ToString();
             UserName1.InnerHtml = "<b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
             userimg.ImageUrl = hst["userimg"].ToString();
             if (hst["events"].ToString() == "True")
@@ -201,7 +294,7 @@ namespace RealERPWEB
             ViewState.Remove("tblgrph");
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString(); 
+            string empid = hst["empid"].ToString();
             string comcod = this.GetCompCode();
 
             string qempid = this.Request.QueryString["empid"] ?? "";
@@ -210,7 +303,7 @@ namespace RealERPWEB
             //string Date = this.txtDate.Text.Trim();
             switch (comcod)
             {
-               // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+                // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
                 case "3365":
                     calltype = "RPTMYSERVICESBTI";
                     break;
@@ -221,8 +314,8 @@ namespace RealERPWEB
             }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", calltype, empid, Date, "", "", "", "", "", "", "");
-           
-           // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTMYSERVICES", empid, Date, "", "", "", "", "", "", "");
+
+            // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTMYSERVICES", empid, Date, "", "", "", "", "", "", "");
             //this.lbldesg.Visible = true;
 
             if (ds1 == null)
@@ -415,7 +508,7 @@ namespace RealERPWEB
                 string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-               
+
                 //this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
@@ -732,7 +825,7 @@ namespace RealERPWEB
             //string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
 
             string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            Response.Redirect("~/F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate);        
+            Response.Redirect("~/F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate);
         }
 
 
@@ -748,7 +841,7 @@ namespace RealERPWEB
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dddd");
-          //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") ?? "";
             //string todate = this.txttodate.Text.ToString() ?? "";
             //string type = this.ddlholidayType.SelectedValue.ToString();
@@ -763,7 +856,7 @@ namespace RealERPWEB
             {
                 return;
             }
- 
+
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.yearlyholiday>();
             LocalReport Rpt1 = new LocalReport();
@@ -779,7 +872,7 @@ namespace RealERPWEB
 
             Session["Report1"] = Rpt1;
 
-            string printype =  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
 
 
@@ -794,7 +887,7 @@ namespace RealERPWEB
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dddd");
-         //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") ?? "";
             //string todate = this.txttodate.Text.ToString() ?? "";
             //string type = this.ddlholidayType.SelectedValue.ToString();
@@ -819,7 +912,7 @@ namespace RealERPWEB
 
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-            Rpt1.SetParameters(new ReportParameter("txtUserInfo","test"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", "test"));
 
             Session["Report1"] = Rpt1;
             string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();

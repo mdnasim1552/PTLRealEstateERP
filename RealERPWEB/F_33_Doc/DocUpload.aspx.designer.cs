@@ -42,24 +42,6 @@ namespace RealERPWEB.F_33_Doc
         protected global::System.Web.UI.WebControls.Label Label20;
 
         /// <summary>
-        /// txtType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtType;
-
-        /// <summary>
-        /// imgbtnFindType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgbtnFindType;
-
-        /// <summary>
         /// ddlType control.
         /// </summary>
         /// <remarks>
@@ -114,22 +96,13 @@ namespace RealERPWEB.F_33_Doc
         protected global::AjaxControlToolkit.CalendarExtender txtDate_CalendarExtender;
 
         /// <summary>
-        /// lblmsg control.
+        /// lbltitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
-
-        /// <summary>
-        /// Label14 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.Label lbltitle;
 
         /// <summary>
         /// txtsName control.
@@ -139,6 +112,24 @@ namespace RealERPWEB.F_33_Doc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtsName;
+
+        /// <summary>
+        /// ddlMonth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
+
+        /// <summary>
+        /// ddlDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
 
         /// <summary>
         /// Label19 control.
@@ -168,15 +159,6 @@ namespace RealERPWEB.F_33_Doc
         protected global::System.Web.UI.WebControls.Label Label11;
 
         /// <summary>
-        /// EmpImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image EmpImg;
-
-        /// <summary>
         /// imgFileUpload control.
         /// </summary>
         /// <remarks>
@@ -184,6 +166,15 @@ namespace RealERPWEB.F_33_Doc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload imgFileUpload;
+
+        /// <summary>
+        /// EmpImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image EmpImg;
 
         /// <summary>
         /// lbtnUpdateImg control.

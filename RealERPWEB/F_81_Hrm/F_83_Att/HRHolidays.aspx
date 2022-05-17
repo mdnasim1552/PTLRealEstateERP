@@ -38,7 +38,9 @@
                 cursor: pointer;
                 color: #fff;
             }
-
+            .frowcol{
+                background:#5b9bd1; color:white; display:block;
+            }
         .chzn-drop {
             width: 100% !important;
         }
@@ -65,6 +67,8 @@
                         .mt20 {
             margin-top: 20px;
         }
+
+
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -123,7 +127,7 @@
 
             //$("#btnSubmit").click(function () {
             var data = JSON.stringify(getAllHolidayData());
-            console.log(data);
+            //console.log(data);
             $.ajax({
 
                 url: '<%=ResolveClientUrl("~/Service/UserService.asmx/SaveHolidayData")%>',
@@ -251,7 +255,7 @@
 
                         </div>
                         <div class="col-md-2 offset-md-4">
-                            <button type="button" id="addHoliday" runat="server" class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#addHolidayModal" onclientclick="loadModal();"><i class="fa fa-plus"></i>Add Holiday </button>
+                            <button type="button" id="addHoliday" runat="server" class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#addHolidayModal" onclientclick="loadModal();"><i class="fa fa-plus"></i> Add Day's  </button>
                         </div>
 
 
@@ -285,10 +289,10 @@
 
                             <asp:Label ID="lblmonth" runat="server" Font-Bold="true" Font-Size="X-Large"></asp:Label>
 
-                            <asp:GridView ID="gvholiday" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True"
+                            <asp:GridView ID="gvholiday" runat="server" AllowPaging="false" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                AutoGenerateColumns="False" ShowFooter="True" 
                                 OnRowDataBound="gvholiday_RowDataBound">
-                                <PagerSettings Position="Top" />
+                                
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
@@ -406,7 +410,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <button type="button" id="btnSubmit" class="btn btn-primary btn-md pull-right btn-sm">Submit</button>
+                                            <button type="button" id="btnSubmit"  data-dismiss="modal"  class="btn btn-primary btn-md pull-right btn-sm">Submit</button>
                                         </div>
 
 

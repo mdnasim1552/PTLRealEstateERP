@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2713,6 +2713,7 @@
     <Content Include="F_32_Mis\SalesTarget.aspx" />
     <Content Include="F_33_Doc\CodeBook.aspx" />
     <Content Include="F_33_Doc\Docs\ip.png" />
+    <Content Include="F_33_Doc\UploadDocumentation.aspx" />
     <Content Include="F_33_Doc\DocUpload.aspx" />
     <Content Include="F_33_Doc\FileManagement.aspx" />
     <Content Include="F_33_Doc\GroupChat.aspx" />
@@ -4090,6 +4091,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_33_Doc\UploadDocumentation.aspx.cs">
+      <DependentUpon>UploadDocumentation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_33_Doc\UploadDocumentation.aspx.designer.cs">
+      <DependentUpon>UploadDocumentation.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ContentSetupEntry.aspx.cs">
       <DependentUpon>ContentSetupEntry.aspx</DependentUpon>

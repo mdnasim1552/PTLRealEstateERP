@@ -401,7 +401,8 @@ namespace RealERPLIB
             #region Inventory
             tblObj.Rows.Add(new Object[] { "1202000", "1202010", "F_12_Inv", "PurReqEntry?", "InputType=Entry", "Material Requisition", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202012", "F_12_Inv", "PurReqEntry?", "InputType=FxtAstEntry", "Store Requisition", "Inventory", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1202000", "1202020", "F_12_Inv", "PurMRREntry?", "Type=Entry", "Materials Receive", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1202000", "1202020", "F_12_Inv", "PurMRREntry?", "Type=Entry", "Materials Receive", "Inventory", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1202000", "1202025", "F_12_Inv", "PurMRREntry?", "Type=FinalApp", "Materials Receive(Approved)", "Inventory", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1202000", "1202030", "F_12_Inv", "MaterialsTransfer?", "Type=Entry", "Material Transfer", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202031", "F_12_Inv", "MaterialsTransfer?", "Type=Audit", "Material Audit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1202000", "1202035", "F_12_Inv", "PurInterComMatTransfer", "", "Inter Company Material Transfer", "Inventory", "False", "False", "False", "False" });
@@ -1923,7 +1924,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8101000", "8101014", "F_81_Hrm/F_92_Mgt", "RptSettlementStatus", "", "Employee Settlement Top Sheet", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101015", "F_81_Hrm/F_92_Mgt", "EmpSettlement?", "Type=Entry", "Employee Settlement Entry", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink", "", "Department Code Link", "Appointment", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "8101000", "8101017", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Employee Settlement", "False", "False", "False", "False" }); ;
 
 
 
@@ -2033,6 +2034,7 @@ namespace RealERPLIB
             //tblObj.Rows.Add(new Object[] { "8102000", "8102082", "InterfaceAtt", "", "Interface Attendance", "HR Management", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8102000", "8102083", "F_81_Hrm/F_93_AnnInc", "AnnualIncrement", "", "Annual Increment", "Increment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102084", "F_81_Hrm/F_93_AnnInc", "HrIncrementUpdate", "", "Annual Increment Updated", "Increment", "False", "False", "False", "False" }); ;
+
 
 
             tblObj.Rows.Add(new Object[] { "8002000", "8102087", "F_81_Hrm/F_82_App", "HREmpEntry?", "Type=shifttime", "Office Time Setup(Special Day)", "Appointment", "False", "False", "False", "False" }); ;
@@ -14693,6 +14695,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "Annual Increment", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0210000001", "01. Annual Increment", "F_81_Hrm/F_93_AnnInc/AnnualIncrement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0210000002", "02. Annual Increment Updated", "F_81_Hrm/F_93_AnnInc/HrIncrementUpdate", "", true, "" });
+  
 
 
             //K. Task CodeBook
@@ -14703,6 +14706,7 @@ namespace RealERPLIB
             //L. Employee Settlement
             mnuTbl1.Rows.Add(new Object[] { "0212000000", "Employee Settlement", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0212000001", "01. Employee Settlement Top Sheet", "F_81_Hrm/F_92_Mgt/RptSettlementStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000002", "03. Documentation Upload", "F_33_Doc/UploadDocumentation", "", true, "" });
 
 
 
@@ -14760,7 +14764,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0304000001", "01. Leave Application Form (Manual)", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=FLeaveApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000002", "02. Manual Leave Approval", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000003", "03. Online Leave Application (Ind)", "F_81_Hrm/F_84_Lea/MyLeave?Type=User", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0304000004", "04. Apply Leave (MGT)", "F_81_Hrm/F_84_Lea/MyLeave?Type=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000004", "04. Apply Leave (MGT)", "F_81_Hrm/F_84_Lea/MyLeave?Type=MGT", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000005", "05. HR Leave Interface(Mgt)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000006", "06. HR Leave Interface(Department Head)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=DeptHead", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000007", "07. HR Leave Interface(Individual)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind", "", true, "" });
