@@ -38,7 +38,7 @@ namespace RealERPWEB.F_12_Inv
 
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtChaDate.Text = (comcod=="3101"?"": DateTime.Today.ToString("dd.MM.yyyy"));
+                this.txtChaDate.Text = (comcod== "3354" ? "": DateTime.Today.ToString("dd.MM.yyyy"));
                 ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Materials Receive"
                     : "Delete Materials Receive Information Input/Edit Screen";
 

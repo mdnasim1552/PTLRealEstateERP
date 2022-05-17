@@ -343,7 +343,7 @@ function displayTable(data) {
             $("#gvCollSt").append(" <tbody><tr>" +
                         "<td style=text-align:center;" + ">" + "&nbsp" + tbindex[2]++ + ".</td>" +
                         "<td style=text-align:left;" + ">" + "&nbsp" + data.d[i].compname + "</td>" +
-                         "<td style=text-align:right;" + "> <a href='" + tcollamt_url + "' target='_blank'><div style=width:100%;height:100%>" + data.d[i].tcisu.toLocaleString('en-US', { minimumFractionDigits: 0 })  + "&nbsp" + "</div></a></td>"
+                "<td style=text-align:right;" + "> <a href='" + tcollamt_url + "' target='_blank'><div style=width:100%;height:100%>" + data.d[i].tcollamt.toLocaleString('en-US', { minimumFractionDigits: 0 })  + "&nbsp" + "</div></a></td>"
                         + "<td style=text-align:right;" + ">" + data.d[i].tastcollamt.toLocaleString('en-US', { minimumFractionDigits: 0 }) + "&nbsp" + "</td>" +
                         "<td style=text-align:right;" + "> <a href='" + achamt_url + "' target='_blank'><div style=width:100%;height:100%>" + data.d[i].accollam.toLocaleString('en-US', { minimumFractionDigits: 0 })  + "&nbsp" + "</div></a></td>"
                         +"<td style=text-align:right;" + ">" + data.d[i].tdaycollamt.toLocaleString('en-US', { minimumFractionDigits: 0 })  + "&nbsp" + "</td>" +
