@@ -178,7 +178,7 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-sm-2 col-md-2 col-lg-2" style="margin-top:20px;">
+                        <div class="col-sm-2 col-md-2 col-lg-2" style="margin-top: 20px;">
                             <div class="form-group">
                                 <div class="input-group input-group-alt input-group-sm">
                                     <div class="input-group-prepend ">
@@ -201,7 +201,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-2 col-md-2 col-lg-2" style="margin-top:20px;">
+                        <div class="col-sm-2 col-md-2 col-lg-2" style="margin-top: 20px;">
                             <div class="form-group">
                                 <div class="input-group input-group-alt input-group-sm">
                                     <div class="input-group-prepend ">
@@ -1258,10 +1258,10 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
                                 </div>
-                            </asp:View>
-                        </div>
-                    </asp:MultiView>
+                    </asp:View>
                 </div>
+                </asp:MultiView>
+            </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
