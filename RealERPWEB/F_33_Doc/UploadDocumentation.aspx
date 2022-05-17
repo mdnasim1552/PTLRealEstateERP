@@ -6,31 +6,32 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-        .mt20 {
-            margin-top: 20px;
-        }
+    .mt20 {
+        margin-top: 20px;
+    }
 
-        .chzn-container {
-            width: 100% !important;
-        }
+    .chzn-container {
+        width: 100% !important;
+    }
 
-        .chzn-drop {
-            width: 100% !important;
-        }
+    .chzn-drop {
+        width: 100% !important;
+    }
 
-        .chzn-container-single .chzn-single {
-            height: 28px !important;
-            line-height: 28px !important;
-        }
+    .chzn-container-single .chzn-single {
+        height: 28px !important;
+        line-height: 28px !important;
+    }
 
-        .card-body {
-            min-height: 400px !important;
-        }
+    .card-body {
+        min-height: 400px !important;
+    }
 
-        .pd4 {
-            padding: 4px !important;
-        }
-    </style>
+    .pd4 {
+        padding: 4px !important;
+    }
+
+  </style>
 
     <script type="text/javascript">
 

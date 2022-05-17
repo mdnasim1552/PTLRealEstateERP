@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2649,6 +2649,7 @@
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
     <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
+    <Content Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx" />
     <Content Include="F_28_MPro\RptMktProjectStock.aspx" />
     <Content Include="F_28_MPro\RptMktPurchaseTracking.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
@@ -4070,6 +4071,13 @@
     </Compile>
     <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
       <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx.cs">
+      <DependentUpon>RptAccMktQuarterlyBgd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx.designer.cs">
+      <DependentUpon>RptAccMktQuarterlyBgd.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\RptMktProjectStock.aspx.cs">
       <DependentUpon>RptMktProjectStock.aspx</DependentUpon>
