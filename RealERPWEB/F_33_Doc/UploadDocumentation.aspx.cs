@@ -19,7 +19,7 @@ namespace RealERPWEB.F_33_Doc
 {
     public partial class UploadDocumentation : System.Web.UI.Page
     {
-     
+
         ProcessAccess HRData = new ProcessAccess();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace RealERPWEB.F_33_Doc
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5)??"";
+            string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5) ?? "";
             switch (gcod)
             {
                 case "99901":
@@ -87,7 +87,7 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
                     this.pnlTxt.Visible = true;
-                break;
+                    break;
 
                 case "99902":
                     this.lbltitle.Text = "Department";
@@ -141,10 +141,10 @@ namespace RealERPWEB.F_33_Doc
         protected void lnk_save_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
-            string title = this.txtsName.Text.ToString()??"";
+            string title = this.txtsName.Text.ToString() ?? "";
             string remarks = this.txtDetails1.Text;
- 
-            string refno =this.ddlDept.SelectedValue.ToString();
+
+            string refno = this.ddlDept.SelectedValue.ToString();
             string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5) ?? "";
             string imgPath = "";
             string msg = "";
@@ -153,18 +153,18 @@ namespace RealERPWEB.F_33_Doc
             if (imgFileUpload.PostedFile != null && imgFileUpload.PostedFile.FileName != "")
 
             {
-                string imgName = Guid.NewGuid()+imgFileUpload.PostedFile.FileName;
+                string imgName = Guid.NewGuid() + imgFileUpload.PostedFile.FileName;
                 //sets the image path           
                 imgPath = "~/Upload/HRM/Doc/" + imgName;
                 //then save it to the Folder  
                 imgFileUpload.SaveAs(Server.MapPath(imgPath));
 
 
-             
+
             }
 
-            DataSet ds  = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFB", gcod, title, remarks, "", "", "", "", "");
-            if(ds == null || ds.Tables[0].Rows.Count==0)
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFB", gcod, title, remarks, "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
             {
                 return;
             }
@@ -174,7 +174,7 @@ namespace RealERPWEB.F_33_Doc
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFA", docid, refno, imgPath, "", "", "");
                 msg = "Data Saved Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-              
+
             }
             this.getAllData();
 
@@ -203,7 +203,7 @@ namespace RealERPWEB.F_33_Doc
                 Response.TransmitFile(file.FullName);
                 Response.End();
             }
-       
+
         }
 
         protected void btn_remove_Click(object sender, EventArgs e)

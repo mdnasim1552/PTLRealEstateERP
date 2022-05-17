@@ -133,12 +133,13 @@
                                     </div>
 
                                 </div>
-                
+
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <p class="text-right">  <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton></p>
-                                      
+                                        <p class="text-right">
+                                            <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton></p>
+
                                     </div>
                                 </div>
                             </div>
@@ -146,47 +147,47 @@
                         </div>
 
                         <div class="col-lg-8">
-                                  <div class="table table-sm table-responsive">
-                             <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvdoc" runat="server"  AutoGenerateColumns="false" >  
-                    <Columns>  
-                        <asp:TemplateField  HeaderText="Title">  
-                            <ItemTemplate>  
-                                 <asp:Label ID="lbltitle" runat="server" Text='<%#Eval("title")%>'  Width="200px"></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
+                            <div class="table table-sm table-responsive">
+                                <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvdoc" runat="server" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Title">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbltitle" runat="server" Text='<%#Eval("title")%>' Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                        <asp:TemplateField  HeaderText="Remarks">  
-                            <ItemTemplate>  
-                                <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks")%>'  Width="150px"></asp:Label>  
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
-                        
+                                        <asp:TemplateField HeaderText="Remarks">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks")%>' Width="150px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-   
 
-                             <asp:TemplateField HeaderText="File">  
-                            <ItemTemplate>  
-                         <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>'  Visible="false"></asp:Label>  
-                            <asp:Label ID="lblid" runat="server" Text='<%#Eval("id")%>'  Visible="false"></asp:Label> 
-                                
-                 
-                              <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank">View</asp:HyperLink>
 
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
 
-                            <asp:TemplateField HeaderText="Action">  
-                            <ItemTemplate>  
-                       <asp:LinkButton  ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click" > 
+                                        <asp:TemplateField HeaderText="File">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblid" runat="server" Text='<%#Eval("id")%>' Visible="false"></asp:Label>
+
+
+                                                <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank">View</asp:HyperLink>
+
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> 
                            <i class="fa fa-trash"></i> 
-                       </asp:LinkButton>
-                            </ItemTemplate>  
-                        </asp:TemplateField>  
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-              
-                    </Columns>  
-                </asp:GridView>  
-                                      </div>
+
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
                         </div>
                     </div>
                 </div>
