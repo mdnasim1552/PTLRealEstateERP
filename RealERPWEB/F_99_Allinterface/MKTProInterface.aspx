@@ -741,6 +741,7 @@
 
                                         <div class="dropdown-divider"></div>
                                         <asp:HyperLink ID="hyplnkRptMktStock" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/RptMktProjectStock?Type=RptMktStock&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Material Stock</asp:HyperLink>
+                                        <asp:HyperLink ID="hyplnkRptMktQuartBgd" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/RptAccMktQuarterlyBgd?Type=QuartBgd" CssClass="dropdown-item" Style="padding: 0 10px">Budget Quarterly</asp:HyperLink>
                                     </div>
                                 </div>
                             </div>
