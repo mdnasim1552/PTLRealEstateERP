@@ -295,6 +295,7 @@
 
                                 </td>
                                 <td style="text-align:center">
+                                    <asp:Label ID="lblRequid" Visible="false"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rqid")).ToString() %>'></asp:Label>
                                     <asp:Label ID="lblEmpid" Visible="false"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).ToString() %>'></asp:Label>
                                     <asp:Label ID="lblIntime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblOuttime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
