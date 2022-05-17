@@ -36,24 +36,24 @@ namespace RealERPWEB.F_33_Doc
                 this.getType();
                 this.getDept();
                 this.GetYearMonth();
-
+                this.getAllData();
 
             }
         }
 
 
-        //private void getAllData()
-        //{
-        //    string comcod = this.GetCompCode();
-        //    DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETALLDATA", "", "", "", "", "", "", "", "", "");
-        //    if (ds == null || ds.Tables[0].Rows.Count == 0)
-        //    {
-        //        return;
-        //    }
+        private void getAllData()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETALLDATA", "", "", "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+            {
+                return;
+            }
 
-        //    this.gvdoc.DataSource = (DataTable)ViewState["tblpro"];
-        //    this.gvdoc.DataBind();
-        //}
+            this.gvdoc.DataSource = ds.Tables[0];
+            this.gvdoc.DataBind();
+        }
 
         private void getType()
         {
@@ -91,10 +91,10 @@ namespace RealERPWEB.F_33_Doc
 
                 case "99902":
                     this.lbltitle.Text = "Department";
-                    this.txtsName.Text=  this.ddlDept.SelectedItem.Text.ToString();
+                    this.txtsName.Text = this.ddlDept.SelectedItem.Text.ToString();
                     this.pnlDept.Visible = true;
                     this.pnlMonth.Visible = false;
-                    this.pnlTxt.Visible = false;
+                    //this.pnlTxt.Visible = false;
                     break;
 
                 case "99903":
@@ -102,7 +102,7 @@ namespace RealERPWEB.F_33_Doc
                     this.txtsName.Text = this.ddlMonth.SelectedItem.Text.ToString();
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = true;
-                    this.pnlTxt.Visible = false;
+                    //this.pnlTxt.Visible = false;
                     break;
             }
 
@@ -147,6 +147,7 @@ namespace RealERPWEB.F_33_Doc
             string refno =this.ddlDept.SelectedValue.ToString();
             string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5) ?? "";
             string imgPath = "";
+            string msg = "";
 
             //validates the posted file before saving  
             if (imgFileUpload.PostedFile != null && imgFileUpload.PostedFile.FileName != "")
@@ -158,7 +159,7 @@ namespace RealERPWEB.F_33_Doc
                 //then save it to the Folder  
                 imgFileUpload.SaveAs(Server.MapPath(imgPath));
 
-                    Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('Image saved!')", true);
+
              
             }
 
@@ -171,11 +172,105 @@ namespace RealERPWEB.F_33_Doc
             {
                 string docid = ds.Tables[0].Rows[0]["docid"].ToString();
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFA", docid, refno, imgPath, "", "", "");
-
+                msg = "Data Saved Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+              
             }
+            this.getAllData();
 
-         
         }
 
+        protected void download_click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string filePath = ((Label)this.gvdoc.Rows[index].FindControl("lblimgpath")).Text.ToString();
+
+            FileInfo file = new FileInfo(filePath);
+            if (file.Exists)
+            {
+                // Clear Rsponse reference  
+                Response.Clear();
+                // Add header by specifying file name  
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
+                // Add header for content length  
+                Response.AddHeader("Content-Length", file.Length.ToString());
+                // Specify content type  
+                Response.ContentType = "text/plain";
+                // Clearing flush  
+                Response.Flush();
+                // Transimiting file  
+                Response.TransmitFile(file.FullName);
+                Response.End();
+            }
+       
+        }
+
+        protected void btn_remove_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string msg = "";
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.gvdoc.Rows[index].FindControl("lblid")).Text.ToString();
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "REMOVEDOc", id, "", "", "", "", "", "");
+            if (result)
+            {
+
+
+                msg = "Deleted Successfully";
+                this.getAllData();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+            }
+            else
+            {
+
+                msg = "Delete Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            }
+
+        }
+
+        protected void download_Click1(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string filePath = ((Label)this.gvdoc.Rows[index].FindControl("lblimgpath")).Text.ToString();
+            string msg = "";
+
+            FileInfo file = new FileInfo(Server.MapPath(filePath));
+            if (file.Exists)
+            {
+                // Clear Rsponse reference  
+                Response.Clear();
+                // Add header by specifying file name  
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
+                // Add header for content length  
+                Response.AddHeader("Content-Length", file.Length.ToString());
+                // Specify content type  
+                Response.ContentType = "text/plain";
+                // Clearing flush  
+                Response.Flush();
+                // Transimiting file  
+                Response.TransmitFile(file.FullName);
+                Response.End();
+            }
+            else
+            {
+                msg = "Download Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            }
+        }
+
+        protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtsName.Text = this.ddlDept.SelectedItem.Text.ToString();
+        }
+
+        protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtsName.Text = this.ddlMonth.SelectedItem.Text.ToString();
+        }
     }
 }

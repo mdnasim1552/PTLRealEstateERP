@@ -366,6 +366,33 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.GridView gvSpHolidyas;
 
         /// <summary>
+        /// orgrm1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl orgrm1;
+
+        /// <summary>
+        /// orgrm2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl orgrm2;
+
+        /// <summary>
+        /// orgrm3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl orgrm3;
+
+        /// <summary>
         /// winUlList control.
         /// </summary>
         /// <remarks>
@@ -373,5 +400,14 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl winUlList;
+
+        /// <summary>
+        /// conductid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl conductid;
     }
 }
