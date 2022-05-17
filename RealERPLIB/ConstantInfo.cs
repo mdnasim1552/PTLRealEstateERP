@@ -1386,6 +1386,7 @@ namespace RealERPLIB
 
             //Report
             tblObj.Rows.Add(new Object[] { "2803000", "2803001", "F_28_MPro", "RptMktProjectStock?", "Type=RptMktStock", "Marketing Material Stock", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2803000", "2803002", "F_28_MPro", "RptAccMktQuarterlyBgd?", "Type=QuartBgd", "Marketing Budget Quarterly", "Marketing Procurement", "False", "False", "False", "False" });
 
 
             //Interface
@@ -8306,7 +8307,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0401000000", " ", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0401000000", "01. Marketing Material Stock", "F_28_MPro/RptMktProjectStock?Type=RptMktStock&prjcode=&genno=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0402000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000000", "02. Marketing Budget Quarterly", "F_28_MPro/RptAccMktQuarterlyBgd?Type=QuartBgd", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0405000000", "", "", "", true, "" });
