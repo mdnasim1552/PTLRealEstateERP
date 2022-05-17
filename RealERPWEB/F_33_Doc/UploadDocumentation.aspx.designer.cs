@@ -150,15 +150,6 @@ namespace RealERPWEB.F_33_Doc
         protected global::System.Web.UI.WebControls.FileUpload imgFileUpload;
 
         /// <summary>
-        /// EmpImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image EmpImg;
-
-        /// <summary>
         /// lnk_save control.
         /// </summary>
         /// <remarks>
@@ -168,12 +159,12 @@ namespace RealERPWEB.F_33_Doc
         protected global::System.Web.UI.WebControls.LinkButton lnk_save;
 
         /// <summary>
-        /// gvdoc control.
+        /// gridService control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvdoc;
+        protected global::System.Web.UI.WebControls.GridView gridService;
     }
 }
