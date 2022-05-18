@@ -636,6 +636,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                                 // dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
                                 break;
 
+                            //case "3368":
+
+                            //    double gssal = Convert.ToDouble("0" + this.txtgrossal.Text.Trim());
+
+                            //    this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(gssal / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()), 0).ToString();
+                            //    // dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
+                            //    break;
+
+
                             case "3347":// Peb Steel
                                 double bsal = Convert.ToDouble((ds6.Tables[2].Select("gcod='04001'"))[0]["gval"]);
                                 double dailallow = Convert.ToDouble((ds6.Tables[2].Select("gcod='04012'"))[0]["gval"]);
@@ -864,7 +873,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             DataTable dt1 = dt.Copy();
             string comcod = this.GetCompCode();
             DataView dv;
-            double toaddamt, topaddamt, todedamt;
+            double toaddamt, topaddamt, todedamt, basic;
             switch (GvName)
             {
                 case "gvSalAdd":
@@ -935,7 +944,24 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                             break;
+                      
+                        case "3368":// Finlay
 
+                         toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+
+                             basic= Convert.ToDouble(dt1.Select("gcod='04001'")[0]["gval"]);
+
+                            ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            this.txtgrossal.Text = (basic*2).ToString("#,##0;(#,##0); ");
+
+                            // toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            //dv = dt1.DefaultView;
+                            //dv.RowFilter = ("percnt>0");
+                            //dt1 = dv.ToTable();
+                            //topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                           // this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
+                               //((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            break;
 
                         default:
 
