@@ -946,7 +946,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             break;
                       
                         case "3368":// Finlay
-
                          toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
 
                              //basic= Convert.ToDouble(dt1.Select("gcod='04001'")[0]["gval"]);
