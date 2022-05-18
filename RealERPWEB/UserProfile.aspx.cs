@@ -122,8 +122,8 @@ namespace RealERPWEB
                     this.PaySlipPart.Visible = true;
 
                     this.GetWinList();
-                    //this.OrganoGram();
-                    //this.getConduct();
+                    this.OrganoGram();
+                    this.getConduct();
                     break;
                 default:
 
@@ -168,7 +168,7 @@ namespace RealERPWEB
             string comcod = this.GetCompCode();
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
             DataTable dt = ds1.Tables[2];
-            this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width ='100%' height = '700px' ></ iframe >";
+            this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
         }
 
         private void OrganoGram()
@@ -192,33 +192,33 @@ namespace RealERPWEB
             string ormlist3 = "";
             for (int j = 0; j < dt.Rows.Count; j++)
             {
-                if (j <= count1)
-                {
+               // if (j <= count1)
+               // {
                     ormlist1 += "<li class='list-group-item pt-1 pb-1'>" +
                                               "<div class='list-group-item-figure'>" +
-                                                  "<div class='tile bg-success'>" +
+                                                  "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0, 2) +
                                              "</div> </div>" +
                                              "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
                                          " </li>";
-                }
-                else if (j >= count2 && j <= count2)
-                {
-                    ormlist2 += "<li class='list-group-item pt-1 pb-1'>" +
-                                              "<div class='list-group-item-figure'>" +
-                                                  "<div class='tile bg-success'>" +
-                                             "</div></div>" +
-                                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
-                                         " </li>";
-                }
-                else
-                {
-                    ormlist3 += "<li class='list-group-item pt-1 pb-1'>" +
-                                              "<div class='list-group-item-figure'>" +
-                                                  "<div class='tile bg-success'>" +
-                                             "</div> </div>" +
-                                            "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
-                                         " </li>";
-                }
+              //  }
+                //else if (j >= count2 && j <= count2)
+                //{
+                //    ormlist2 += "<li class='list-group-item pt-1 pb-1'>" +
+                //                              "<div class='list-group-item-figure'>" +
+                //                                  "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0,2)+
+                //                             "</div></div>" +
+                //                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                //                         " </li>";
+                //}
+                //else
+                //{
+                //    ormlist3 += "<li class='list-group-item pt-1 pb-1'>" +
+                //                              "<div class='list-group-item-figure'>" +
+                //                                  "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0, 2) +
+                //                             "</div> </div>" +
+                //                            "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                //                         " </li>";
+                //}
 
             }
             //+dt.Rows[j]["title"].ToString() +

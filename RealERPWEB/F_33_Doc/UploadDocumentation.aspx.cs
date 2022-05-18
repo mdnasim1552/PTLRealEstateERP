@@ -91,10 +91,12 @@ namespace RealERPWEB.F_33_Doc
 
                 case "99902":
                     this.lbltitle.Text = "Department";
-                    this.txtsName.Text = this.ddlDept.SelectedItem.Text.ToString();
-                    this.pnlDept.Visible = true;
+                    this.txtsName.Text = "";
+                    this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
-                    //this.pnlTxt.Visible = false;
+                    this.txtsName.Enabled = true;
+
+                    // this.pnlTxt.Visible = false;
                     break;
 
                 case "99903":
@@ -102,7 +104,7 @@ namespace RealERPWEB.F_33_Doc
                     this.txtsName.Text = this.ddlMonth.SelectedItem.Text.ToString();
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = true;
-                    //this.pnlTxt.Visible = false;
+                    this.pnlTxt.Visible = false;
                     break;
             }
 
@@ -157,10 +159,14 @@ namespace RealERPWEB.F_33_Doc
                 //sets the image path           
                 imgPath = "~/Upload/HRM/Doc/" + imgName;
                 //then save it to the Folder  
-                imgFileUpload.SaveAs(Server.MapPath(imgPath));
+                imgFileUpload.SaveAs(Server.MapPath(imgPath)); 
+            }
 
-
-
+            if(title.Length==0)
+            {
+                string msgfail = "Please add Title";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgfail + "');", true);
+                return;
             }
 
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFB", gcod, title, remarks, "", "", "", "", "");
@@ -170,12 +176,18 @@ namespace RealERPWEB.F_33_Doc
             }
             else
             {
+               
+
                 string docid = ds.Tables[0].Rows[0]["docid"].ToString();
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFA", docid, refno, imgPath, "", "", "");
                 msg = "Data Saved Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             }
+            this.txtsName.Text = "";
+            this.txtDetails1.Text = "";
+              imgPath = "";
+
             this.getAllData();
 
         }
