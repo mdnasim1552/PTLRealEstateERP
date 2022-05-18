@@ -2,35 +2,33 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+ 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-    .mt20 {
-        margin-top: 20px;
-    }
+        .mt20 {
+            margin-top: 20px;
+        }
 
-    .chzn-container {
-        width: 100% !important;
-    }
+        .chzn-container {
+            width: 100% !important;
+        }
 
-    .chzn-drop {
-        width: 100% !important;
-    }
+        .chzn-drop {
+            width: 100% !important;
+        }
 
-    .chzn-container-single .chzn-single {
-        height: 28px !important;
-        line-height: 28px !important;
-    }
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
 
-    .card-body {
-        min-height: 400px !important;
-    }
+        .card-body {
+            min-height: 400px !important;
+        }
 
-    .pd4 {
-        padding: 4px !important;
-    }
-
+        .pd4 {
+            padding: 4px !important;
+        }
     </style>
 
     <script type="text/javascript">
@@ -59,7 +57,7 @@
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <contenttemplate>
+        <ContentTemplate>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -100,7 +98,7 @@
                                         <asp:Label ID="lbltitle" runat="server" Text="Title :"></asp:Label>
 
                                         <asp:Panel runat="server" ID="pnlTxt">
-                                            <asp:TextBox ID="txtsName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                            <asp:TextBox ID="txtsName" runat="server"  CssClass="form-control form-control-sm"></asp:TextBox>
                                         </asp:Panel>
 
 
@@ -139,12 +137,9 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <p class="text-right">
-<<<<<<< HEAD
                                             <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                         </p>
-=======
-                                            <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton></p>
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
+
 
                                     </div>
                                 </div>
@@ -167,13 +162,6 @@
                                                 <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks")%>' Width="150px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
                                         <asp:TemplateField HeaderText="File">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>' Visible="false"></asp:Label>
@@ -187,20 +175,11 @@
 
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-<<<<<<< HEAD
                                                 <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
-=======
-                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> 
-                           <i class="fa fa-trash"></i> 
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
+
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -210,11 +189,11 @@
             </div>
 
 
-        </contenttemplate>
+        </ContentTemplate>
 
-        <triggers>
+        <Triggers>
             <asp:PostBackTrigger ControlID="lnk_save" />
-        </triggers>
+        </Triggers>
     </asp:UpdatePanel>
 
 </asp:Content>
