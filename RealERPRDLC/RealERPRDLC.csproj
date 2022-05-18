@@ -175,6 +175,7 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccLedgerWqty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntechOld.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
