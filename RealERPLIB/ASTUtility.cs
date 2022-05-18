@@ -291,6 +291,13 @@ namespace RealERPLIB
             return concat;
         }
 
+        public static string Concat2(string postrmid, string postuser, string postseson, string posteddat)
+        {
+            string concat = "";
+            concat = concat + "Input Source:" + postrmid + ", " + postuser + ", " + postseson + ", " + posteddat;
+            return concat;
+        }
+
         public static string Cominformation()
         {
 

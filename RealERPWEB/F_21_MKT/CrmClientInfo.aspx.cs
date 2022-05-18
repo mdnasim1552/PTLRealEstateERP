@@ -5928,6 +5928,28 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        private string GetMonkpiCallType()
+        {
+            string calltype = "";
+            string comcod = this.GetComeCode();
+            switch (comcod)
+            {
+                case "3354"://Edison
+                case "3101":
+                     calltype = "RPTMONTHLYKPIEDISON";
+                    break;
+                default:
+                    calltype = "RPTMONTHLYKPI";
+                    break;
+
+
+            
+            
+            }
+            return calltype;
+        
+        }
+
         private void EmpMonthlyKPI()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -5941,7 +5963,8 @@ namespace RealERPWEB.F_21_MKT
             {
                 empid = "%";
             }
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTMONTHLYKPI", "8301%", frmdate, todate, empid);
+            string calltype = this.GetMonkpiCallType();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", calltype, "8301%", frmdate, todate, empid);
 
             Session["tbltempdt"] = ds1.Tables[0];
             this.gvSummary.DataSource = null;

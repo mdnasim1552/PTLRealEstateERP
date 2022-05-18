@@ -711,7 +711,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VoucherPrintManama";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3357":
                     vouprint = "VoucherPrintCube";
                     break;
@@ -746,7 +746,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintJBS";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
@@ -852,6 +852,7 @@ namespace RealERPWEB.F_17_Acc
                 string venar = dt1.Rows[0]["venar"].ToString();
                 string Isunum = (dt1.Rows[0]["isunum"]).ToString() == "" ? "" : ASTUtility.Right((dt1.Rows[0]["isunum"]).ToString(), 6);
                 string Posteddat = Convert.ToDateTime(dt1.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy");
+                string Posteddat2 = Convert.ToDateTime(dt1.Rows[0]["posteddat"]).ToString("dd.MM.yyyy hh:mm:ss tt");
                 string postuser = dt1.Rows[0]["postuser"].ToString();
                 string postseson = dt1.Rows[0]["postseson"].ToString();
                 string postrmid = dt1.Rows[0]["postrmid"].ToString();
@@ -1475,6 +1476,8 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
                         Rpt1.SetParameters(new ReportParameter("username", "Prepared By : " + postuser));
                         Rpt1.SetParameters(new ReportParameter("txtissuno", "Approved By : " + aprvuser));
+                        Rpt1.SetParameters(new ReportParameter("txtuserinfo2", ASTUtility.Concat2(postrmid, postuser, postseson, Posteddat2)));
+
                     }
                     else
                     {
@@ -1505,6 +1508,8 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("username", "Prepared By : " + postuser));
                             Rpt1.SetParameters(new ReportParameter("txtissuno", "Approved By : " + aprvuser));
+                            Rpt1.SetParameters(new ReportParameter("txtuserinfo2", ASTUtility.Concat2(postrmid, postuser, postseson, Posteddat2)));
+
 
                         }
                         else
@@ -1531,6 +1536,8 @@ namespace RealERPWEB.F_17_Acc
                                 Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
                                 Rpt1.SetParameters(new ReportParameter("username", "Prepared By : " + postuser));
                                 Rpt1.SetParameters(new ReportParameter("txtissuno", "Approved By : " + aprvuser));
+                                Rpt1.SetParameters(new ReportParameter("txtuserinfo2", ASTUtility.Concat2(postrmid, postuser, postseson, Posteddat2)));
+
 
                             }
 
