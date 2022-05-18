@@ -31,7 +31,7 @@
         padding: 4px !important;
     }
 
-  </style>
+    </style>
 
     <script type="text/javascript">
 
@@ -59,7 +59,7 @@
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+        <contenttemplate>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -195,11 +195,11 @@
             </div>
 
 
-        </ContentTemplate>
+        </contenttemplate>
 
-        <Triggers>
+        <triggers>
             <asp:PostBackTrigger ControlID="lnk_save" />
-        </Triggers>
+        </triggers>
     </asp:UpdatePanel>
 
 </asp:Content>
