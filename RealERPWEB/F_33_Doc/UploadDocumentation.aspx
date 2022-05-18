@@ -139,12 +139,8 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <p class="text-right">
-<<<<<<< HEAD
                                             <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                         </p>
-=======
-                                            <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton></p>
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
 
                                     </div>
                                 </div>
@@ -167,13 +163,6 @@
                                                 <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks")%>' Width="150px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
                                         <asp:TemplateField HeaderText="File">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>' Visible="false"></asp:Label>
@@ -187,20 +176,11 @@
 
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-<<<<<<< HEAD
                                                 <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
-=======
-                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> 
-                           <i class="fa fa-trash"></i> 
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
+
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> caf5a82a788be885e49b49025776305fde265cca
                                     </Columns>
                                 </asp:GridView>
                             </div>
