@@ -193,7 +193,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintJBS";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
@@ -621,7 +621,8 @@ namespace RealERPWEB.F_17_Acc
                 case "3357"://  Cube Holding
                 case "3364"://  JBS 
 
-
+                //case "3101"://  Pintech 
+                case "1102"://  Islam Brothers 
 
                     break;
 
@@ -727,9 +728,10 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
-                //case "1102": // islam brothers 
-                //    vouprint = "VocherPrintIBCEL";
-                //    break;
+                case "3101": 
+                case "1102": // islam brothers 
+                   vouprint = "VocherPrintISBL";
+                    break;
 
                 //manama, p2p 
                 // Entrust Collection
@@ -746,7 +748,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintJBS";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
@@ -1077,6 +1079,27 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("voutype", voutype));
                     Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
                     Rpt1.SetParameters(new ReportParameter("username", postuser));
+
+                }
+
+                else if (Type == "VocherPrintISBL")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherISBL", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                    Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));
+                    Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
+                    Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("username", postuser));
+                    Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                    Rpt1.SetParameters(new ReportParameter("txtcheckby", (comcod == "3344") ? aprvby2 : Checkby));
+                    Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
+                    Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
 
                 }
 

@@ -352,6 +352,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptLedgerTanvir": Rpt1a = SetRptLedgerTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_17_Acc.RptAccLedger": Rpt1a = SetRptAccLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAccLedgerWqty": Rpt1a = SetRptAccLedgerWqty(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerBridge": Rpt1a = SetRptAccLedgerBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerTerra": Rpt1a = SetRptAccLedgerTerra(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerRup": Rpt1a = SetRptRptAccLedgerRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -494,6 +495,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptPrintVoucher7": Rpt1a = SetrptPrintVoucher7(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherTanvir": Rpt1a = SetrptPrintVoucherTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherBridge": Rpt1a = SetrptPrintVoucherBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVoucherISBL": Rpt1a = SetrptPrintVoucherISBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu": Rpt1a = SetrptPrintVocherSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu02": Rpt1a = SetrptPrintVocherSuvastu02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu03": Rpt1a = SetrptPrintVocherSuvastu03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1502,6 +1504,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetrptPrintVoucherBridge(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetrptPrintVoucherISBL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
@@ -4561,6 +4568,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
             return Rpt1a;
+        }
+        private static LocalReport SetRptAccLedgerWqty(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
+            return Rpt1a; 
         }
 
         private static LocalReport SetRptAccLedgerBridge(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
