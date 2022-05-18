@@ -2,35 +2,33 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+ 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-    .mt20 {
-        margin-top: 20px;
-    }
+        .mt20 {
+            margin-top: 20px;
+        }
 
-    .chzn-container {
-        width: 100% !important;
-    }
+        .chzn-container {
+            width: 100% !important;
+        }
 
-    .chzn-drop {
-        width: 100% !important;
-    }
+        .chzn-drop {
+            width: 100% !important;
+        }
 
-    .chzn-container-single .chzn-single {
-        height: 28px !important;
-        line-height: 28px !important;
-    }
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
 
-    .card-body {
-        min-height: 400px !important;
-    }
+        .card-body {
+            min-height: 400px !important;
+        }
 
-    .pd4 {
-        padding: 4px !important;
-    }
-
+        .pd4 {
+            padding: 4px !important;
+        }
     </style>
 
     <script type="text/javascript">
@@ -59,7 +57,7 @@
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <contenttemplate>
+        <ContentTemplate>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -100,7 +98,7 @@
                                         <asp:Label ID="lbltitle" runat="server" Text="Title :"></asp:Label>
 
                                         <asp:Panel runat="server" ID="pnlTxt">
-                                            <asp:TextBox ID="txtsName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                            <asp:TextBox ID="txtsName" runat="server"  CssClass="form-control form-control-sm"></asp:TextBox>
                                         </asp:Panel>
 
 
@@ -141,6 +139,10 @@
                                         <p class="text-right">
                                             <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                         </p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 383b50b2e35d31a2d0cd936c1a6ef9f7a705ee05
 
                                     </div>
                                 </div>
@@ -190,11 +192,11 @@
             </div>
 
 
-        </contenttemplate>
+        </ContentTemplate>
 
-        <triggers>
+        <Triggers>
             <asp:PostBackTrigger ControlID="lnk_save" />
-        </triggers>
+        </Triggers>
     </asp:UpdatePanel>
 
 </asp:Content>

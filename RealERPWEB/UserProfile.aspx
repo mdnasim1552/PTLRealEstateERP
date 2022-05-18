@@ -1240,21 +1240,17 @@ d) 6 Days Late = 3 CL & half day leave
 
                                 </div>
                             </div>
-                            </div>
+                        </div>
                     </section>
                 </div>
 
                 <div class="tab-pane fade" id="CodeofConduct">
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
-                            <div class="col-12">
-
+                            <div class="col-12"> 
                                 <div class="card-body">
-                                    <h1 class="text-center">Code of Conduct</h1>
-
-          
-                                    <div style="width:100%;" runat="server" id="conductid">
-
+                                    <h1 class="text-center">Code of Conduct</h1> 
+                                    <div runat="server" class="text-center" id="conductid">
                                     </div>
 
                                 </div>
