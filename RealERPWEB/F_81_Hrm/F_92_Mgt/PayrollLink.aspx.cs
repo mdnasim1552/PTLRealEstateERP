@@ -33,6 +33,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 this.Getuser();
+                this.GetCompany();
             }
 
         }
@@ -98,8 +99,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 this.ddlUserList.Enabled = true;
                 this.ddlCompany.Enabled = true;
-
-                this.ddlCompany.Text = "";
                 this.ddlCompany.Items.Clear();
                 this.gvPayrollLinkInfo.DataSource = null;
                 this.gvPayrollLinkInfo.DataBind();
