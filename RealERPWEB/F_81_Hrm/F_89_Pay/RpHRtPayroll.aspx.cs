@@ -817,14 +817,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             if (this.lblComSalLock.Text == "True")
             {
                 ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcode, section, CompanyName, mantype, paytype, saltype, branch, "");
-
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, "", "", "", "");
             }
             else
             {
                 ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, saltype, branch);
-
             }
             if (ds3 == null)
             {
@@ -965,7 +963,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string CompanyNamelk = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
                 string Calltype1 = (comcod == "3347") ? "BONSALARYPEB" : "BONSALARY";
-
                 ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcodelk, sectionlk, CompanyNamelk, "", "", "", "", "");
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, "", "", "");
@@ -2275,6 +2272,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd \\'MMM");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd \\'MMM");
             string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM/ yyyy");
+
+
+            double wkday = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(wd)", "")) ? 0.00 : dt.Compute("sum(wd)", "")));
+            double wekday = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(wkday)", "")) ? 0.00 : dt.Compute("sum(wkday)", "")));
+            double govday = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(govday)", "")) ? 0.00 : dt.Compute("sum(govday)", "")));
+            double availday = wkday - (wekday + govday);
+
             double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
 
@@ -2286,6 +2290,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee Salary Sheet : " + "Month of " + todate1 )); //+"(" + frmdate + "- " + todate + ")"
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
+            Rpt1.SetParameters(new ReportParameter("availday", availday.ToString()));
+            Rpt1.SetParameters(new ReportParameter("wekday", wekday.ToString()));
+            Rpt1.SetParameters(new ReportParameter("govday", govday.ToString()));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 

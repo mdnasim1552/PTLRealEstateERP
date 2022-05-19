@@ -945,7 +945,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.gvEmpOtherded.DataSource = dt;
                     this.gvEmpOtherded.DataBind();
                     this.FooterCalculation();
-                    if (comcod == "3365" || comcod== "3101")//For BTI
+                    if (comcod == "3365")//For BTI
                     {
                         this.gvEmpOtherded.Columns[6].Visible = false;
                         this.gvEmpOtherded.Columns[7].Visible = false;
@@ -961,9 +961,26 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOtherded.Columns[9].HeaderText = "Food";
                         this.gvEmpOtherded.HeaderRow.Cells[13].Text = "Penalty";
                     }
+                    if (comcod == "3368" || comcod == "3101")//For Finlay
+                    {
+                        this.gvEmpOtherded.Columns[6].Visible = false;
+                        this.gvEmpOtherded.Columns[7].Visible = false;
+                        this.gvEmpOtherded.Columns[8].Visible = true;
+                        this.gvEmpOtherded.Columns[9].Visible = false;
+                        this.gvEmpOtherded.Columns[10].Visible = true;
+                        this.gvEmpOtherded.Columns[11].Visible = false;
+                        this.gvEmpOtherded.Columns[12].Visible = true;
+                        this.gvEmpOtherded.Columns[13].Visible = false;
+                        this.gvEmpOtherded.Columns[14].Visible = false;
+                        this.gvEmpOtherded.Columns[15].Visible = false;
+                        this.gvEmpOtherded.Columns[17].Visible = false;
+                        this.gvEmpOtherded.Columns[18].Visible = false;
 
+                    }
+
+                  
+                   
                     break;
-
 
 
                 case "loan":
