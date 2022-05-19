@@ -374,18 +374,10 @@ namespace RealERPWEB
 
                 // }
 
-
-
-
-
-
                 if (ds5.Tables[0].Rows.Count == 1)
                 {
                     FormsAuthentication.RedirectFromLoginPage(username, false);
                     //FormsAuthentication.SignOut();
-
-
-
                 }
                 else
                 {

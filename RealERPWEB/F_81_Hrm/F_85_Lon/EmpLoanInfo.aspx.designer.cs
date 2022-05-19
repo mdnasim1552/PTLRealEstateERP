@@ -339,6 +339,33 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.TextBox txtPaidAmt;
 
         /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// txtUptoDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUptoDate;
+
+        /// <summary>
+        /// txtUptoDate_CalendarExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtUptoDate_CalendarExtender1;
+
+        /// <summary>
         /// lbtnGenerate control.
         /// </summary>
         /// <remarks>
@@ -382,15 +409,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnAddInstallment;
-
-        /// <summary>
-        /// tloanamt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tloanamt;
 
         /// <summary>
         /// gvloan control.

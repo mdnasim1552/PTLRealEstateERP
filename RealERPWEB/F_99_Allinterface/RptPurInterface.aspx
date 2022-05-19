@@ -740,7 +740,7 @@
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        //$(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         //Added 
                         // $(".tbMenuWrp table tr td:nth-child(16)").hide();
