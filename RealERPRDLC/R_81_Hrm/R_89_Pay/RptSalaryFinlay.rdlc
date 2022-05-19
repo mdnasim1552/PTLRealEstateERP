@@ -1237,7 +1237,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Total O/</Value>
+                                                <Value>Total</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
                                                   <FontSize>7pt</FontSize>
@@ -1251,7 +1251,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>T Amt</Value>
+                                                <Value> O/T Amt</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
                                                   <FontSize>7pt</FontSize>
@@ -1438,7 +1438,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Absent</Value>
+                                                <Value>Absent Amount</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1473,7 +1473,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>PF </Value>
+                                                <Value>PF  Amt</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -2200,7 +2200,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!wld.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!absday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2234,7 +2234,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!absday.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!netwday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -5287,10 +5287,10 @@
         <Height>2.34376in</Height>
         <Style />
       </Body>
-      <Width>14.64281in</Width>
+      <Width>14.61781in</Width>
       <Page>
         <PageHeader>
-          <Height>1.71333in</Height>
+          <Height>1.26333in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -5414,30 +5414,29 @@
                 </Border>
               </Style>
             </Image>
-            <Rectangle Name="Rectangle1">
+            <Rectangle Name="Rectangle2">
               <ReportItems>
-                <Textbox Name="Textbox313">
+                <Textbox Name="Textbox11">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Days Avaiable: 24</Value>
+                          <Value>Days Available: 24</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
+                      <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <rd:DefaultName>Textbox313</rd:DefaultName>
+                  <rd:DefaultName>Textbox11</rd:DefaultName>
+                  <Left>0.5in</Left>
                   <Height>0.25in</Height>
-                  <Width>2.95049in</Width>
+                  <Width>2.13041in</Width>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -5448,7 +5447,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox314">
+                <Textbox Name="Textbox14">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -5462,15 +5461,13 @@
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
+                      <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <rd:DefaultName>Textbox313</rd:DefaultName>
-                  <Top>0.25in</Top>
+                  <rd:DefaultName>Textbox11</rd:DefaultName>
+                  <Left>3.16825in</Left>
                   <Height>0.25in</Height>
-                  <Width>2.95049in</Width>
+                  <Width>2.32391in</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border>
@@ -5482,7 +5479,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox315">
+                <Textbox Name="Textbox15">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -5496,15 +5493,13 @@
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
+                      <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <rd:DefaultName>Textbox313</rd:DefaultName>
-                  <Top>0.525in</Top>
+                  <rd:DefaultName>Textbox11</rd:DefaultName>
+                  <Left>5.66825in</Left>
                   <Height>0.25in</Height>
-                  <Width>2.95049in</Width>
+                  <Width>2.12466in</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
@@ -5518,14 +5513,14 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.84667in</Top>
-              <Left>5.99667in</Left>
-              <Height>0.8in</Height>
-              <Width>2.95049in</Width>
+              <Top>0.87167in</Top>
+              <Left>3.19667in</Left>
+              <Height>0.3in</Height>
+              <Width>8.73107in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
-                  <Style>Solid</Style>
+                  <Style>None</Style>
                 </Border>
               </Style>
             </Rectangle>
@@ -5779,11 +5774,29 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="availday">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="wekday">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="govday">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>3</NumberOfRows>
+      <NumberOfRows>5</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -5814,6 +5827,21 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>2</RowIndex>
           <ParameterName>TkInWord</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>availday</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>wekday</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>govday</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

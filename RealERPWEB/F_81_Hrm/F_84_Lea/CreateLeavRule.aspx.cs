@@ -29,16 +29,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         }
         public void Create_table()
         {
-            DataTable dt = new DataTable();
-        
+            DataTable dt = new DataTable();      
 
             //create colums here.
             dt.Columns.Add("comcod", Type.GetType("System.String"));
             dt.Columns.Add("gcod", Type.GetType("System.String"));
             dt.Columns.Add("year", Type.GetType("System.String"));
             dt.Columns.Add("leave", Type.GetType("System.String"));
-
-
             ViewState["tblleavinfo"] = dt;
           
         }
