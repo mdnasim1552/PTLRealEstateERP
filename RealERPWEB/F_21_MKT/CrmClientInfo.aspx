@@ -3694,7 +3694,7 @@
 
                                         <asp:LinkButton ID="lnkBtnPotentialPros" runat="server" class="list-group-item list-group-item-action" OnClick="lnkBtnPotentialPros_Click">
                                             <div class="list-group-item-figure">
-                                                <div class="tile tile-circle bg-red">PTP</div>
+                                                <div class="tile tile-circle bg-red">PP</div>
                                             </div>
                                             <div class="list-group-item-body">Potential</div>
                                             <div class="list-group-item-figure">
