@@ -31,12 +31,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.GetCompany();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "COMPANY LEAVE INFORMATION";
                 this.GetProjectName();
-               
+                Create_table();
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-                this.lbtnOk_Click(null,null);
-
                 this.ShowInformation();
+               //this.lbtnOk_Click(null,null);
+
+               
 
 
             }
@@ -1696,8 +1696,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
         }
 
+        public void Create_table()
+        {
+            DataTable dt = new DataTable();
+
+            //create colums here.
+            dt.Columns.Add("comcod", Type.GetType("System.String"));
+            dt.Columns.Add("gcod", Type.GetType("System.String"));
+            dt.Columns.Add("year", Type.GetType("System.String"));
+            dt.Columns.Add("leave", Type.GetType("System.String"));
+            ViewState["tblleavinfoCT"] = dt;
+
+        }
         private void ShowInformation()
         {
+            Session.Remove("tblleavinfo");
             string comcod = this.GetComeCode();
             string tempddl1 = "51"; //Leave code 
             string tempddl2 = "5"; // Details 
@@ -1730,7 +1743,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.GetLeaveData();
             string comcod = this.GetComeCode();
             string year = this.ddlyear.SelectedValue.ToString();
-            DataTable dt = (DataTable)ViewState["tblleavinfo"];
+            DataTable dt = (DataTable)ViewState["tblleavinfoCT"];
             if (dt == null)
             {
                 return;
@@ -1757,7 +1770,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void GetLeaveData()
         {
 
-            DataTable dt = (DataTable)ViewState["tblleavinfo"];
+            DataTable dt = (DataTable)ViewState["tblleavinfoCT"];
 
             //var descdata = Server.HtmlEncode();
             for (int i = 0; i < this.grvacc.Rows.Count; i++)
@@ -1777,7 +1790,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
 
 
-            ViewState["tblleavinfo"] = dt;
+            ViewState["tblleavinfoCT"] = dt;
         }
 
 

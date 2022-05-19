@@ -41,6 +41,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.GetEmplist();
                 this.GetLoanType();
                 this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtUptoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string lnno = this.Request.QueryString["lnno"] ?? "";
 
                 if (lnno.Length > 0)
@@ -135,16 +136,17 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.lbtnOk.Text = "New";
                 this.ddlEmpList.Enabled = false;
                // this.lblEmpName.Text = this.ddlEmpList.SelectedItem.Text.Trim();
-                this.lbtnPrevLoanList.Visible = false;
-                this.ddlPrevLoanList.Visible = false;
+                this.lbtnPrevLoanList.Enabled = false;
+                this.ddlPrevLoanList.Enabled = false;
                 //   this.ddlEmpList.Visible = false;
                 // this.lblEmpName.Visible = true;
                 this.ddlLoantype.Enabled = false;
-
+                this.pnlloan.Visible = true;
                 this.chkAddIns.Checked = false;
                 this.chkVisible.Checked = false;
                 this.chkVisible.Visible = true;
                 this.chkVisible.Text = "Gen. Installment";
+
                 this.ShowLoanInfo();
                 if (this.ddlPrevLoanList.Items.Count > 0)
                 {
@@ -154,12 +156,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
             this.lbtnOk.Text = "Ok";
             //this.lblEmpName.Text = "";
-            this.txtPaidAmt.Text = "";
+            this.txtPaidAmt.Text = "0";
             this.ddlEmpList.Enabled = true;
 
             this.ddlPrevLoanList.Items.Clear();
-            this.lbtnPrevLoanList.Visible = true;
-            this.ddlPrevLoanList.Visible = true;
+            this.lbtnPrevLoanList.Enabled = true;
+            this.ddlPrevLoanList.Enabled = true;
            // this.ddlEmpList.Visible = true;
             this.txtCurDate.Enabled = true;
            // this.lblEmpName.Visible = false;
@@ -178,7 +180,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             ViewState.Remove("tblln");
             string comcod = this.GetComeCode();
             string CurDate1 = this.txtCurDate.Text.Trim();
+            this.txtToamt.Text = "0";
+            this.txtUptoDate.Text = "0";
 
+            
             string lnno = this.Request.QueryString["lnno"] ?? "";
             string mLNNo = "NEWLN";
             if (this.ddlPrevLoanList.Items.Count > 0)
@@ -188,6 +193,18 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.chkVisible.Visible = false;
                 mLNNo = this.ddlPrevLoanList.SelectedValue.ToString();
                 this.ddlLoantype.Enabled = false;
+
+               
+                
+                this.txtToamt.Enabled = false;
+                this.txtEmployePayment.Enabled = false;
+                this.txtCompPaid.Enabled = false;
+                this.txtstrdate.Enabled = false;
+                this.ddlMonth.Enabled = false;
+               // this.txtPaidAmt.Enabled = false;
+                //this.txtUptoDate.Enabled = false;
+                this.lbtnGenerate.Enabled = false;
+                this.txtinsamt.Enabled = false;
             }
             if (lnno.Length > 0)
             {
@@ -198,6 +215,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 mLNNo = lnno.ToString();
                 this.ddlLoantype.Enabled = false;
                 this.ddlEmpList.Enabled = false;
+
+                
+              
+                this.txtToamt.Enabled = false;
+                this.txtEmployePayment.Enabled = false;
+                this.txtCompPaid.Enabled = false;
+                this.txtstrdate.Enabled = false;
+                this.ddlMonth.Enabled = false;
+                //this.txtPaidAmt.Enabled = false;
+                //this.txtUptoDate.Enabled = false;
+                this.lbtnGenerate.Enabled = false;
+                this.txtinsamt.Enabled = false;
+                
             }
 
 
@@ -224,6 +254,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lblCurNo2.Text = ds1.Tables[1].Rows[0]["lnno1"].ToString().Substring(6, 5);
             this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["lndate"]).ToString("dd-MMM-yyyy");
             this.txtPaidAmt.Text = Convert.ToDecimal(ds1.Tables[1].Rows[0]["uptopaid"]).ToString();
+            this.txtUptoDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["uptopaiddate"]).ToString("dd-MMM-yyyy");
+            this.txtToamt.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["lnamt"]).ToString();
 
             this.Data_DataBind();
         }
@@ -464,6 +496,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.GetLNNo();
 
                 string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
+                string txtUptopaid = Convert.ToDateTime(this.txtUptoDate.Text.Trim()).ToString("dd-MMM-yyyy");
                 if (lnnoqu.Length > 0)
                 {
                     lnno = lnnoqu;
@@ -507,7 +540,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETELNINFO", lnno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                     return;
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATELN", "LNINFB", lnno, curdate, toamt.ToString(), "", loantype, uptopaid, isformula, "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATELN", "LNINFB", lnno, curdate, toamt.ToString(), "", loantype, uptopaid, isformula, txtUptopaid, "", "", "", "", "", "");
 
                 if (!result)
                 {
@@ -545,8 +578,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         }
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
-            string ulndat = "26-Jan-22 12:00:00 AM";
+            
+
+
             string comcod = this.GetComeCode();
+            
+            string ulndat =  this.txtUptoDate.Text.Trim().ToString();
+
 
             DataTable dt = (DataTable)ViewState["tblln"];
             string lnno = "";
@@ -569,7 +607,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
                 //double comppay = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["comppay"]); // Get Loan Amount
 
-                this.tloanamt.Text = (loanamt).ToString();
+                
             }
             if (lnnoqu.Length > 0)
             {
@@ -715,12 +753,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             if (chkAddIns.Checked)
             {
                 this.lbtnAddInstallment.Visible = true;
-                this.tloanamt.Visible = true;
+               
                 
             }
             else
             {
-                this.tloanamt.Visible = false;
+               
 
                 this.lbtnAddInstallment.Visible = false;
             }
