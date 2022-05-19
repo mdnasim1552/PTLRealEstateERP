@@ -840,7 +840,7 @@
                 </div>
                 <div class="tab-pane fade" id="Notice">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <section class="card card-fluid" style="min-height: 550px">
                                 <div class="card-body">
                                     <!-- .card-header -->
@@ -909,7 +909,7 @@
                             </section>
                         </div>
 
-                        <div class="col-6 d-none">
+                        <div class="col-6">
                             <section class="card card-fluid" style="min-height: 345px">
                                 <div class="card-body row" id="EventBirthday" runat="server">
                                 </div>

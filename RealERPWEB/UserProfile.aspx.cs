@@ -146,7 +146,8 @@ namespace RealERPWEB
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
             string comcod = this.GetCompCode();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            string curYear = System.DateTime.Today.ToString("yyyy");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", curYear, "", "", "", "", "", "", "", "");
             if (ds1 == null)
             {
                 return;
@@ -186,42 +187,45 @@ namespace RealERPWEB
 
             int count1 = dt.Rows.Count / 3;
             int count2 = count1 + count1;
-            int count3 = count2 + count1;
+
+
             string ormlist1 = "";
             string ormlist2 = "";
             string ormlist3 = "";
+
             for (int j = 0; j < dt.Rows.Count; j++)
             {
-               // if (j <= count1)
-               // {
+                if (j + 1 <= count1)
+                {
                     ormlist1 += "<li class='list-group-item pt-1 pb-1'>" +
                                               "<div class='list-group-item-figure'>" +
                                                   "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0, 2) +
                                              "</div> </div>" +
                                              "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
                                          " </li>";
-              //  }
-                //else if (j >= count2 && j <= count2)
-                //{
-                //    ormlist2 += "<li class='list-group-item pt-1 pb-1'>" +
-                //                              "<div class='list-group-item-figure'>" +
-                //                                  "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0,2)+
-                //                             "</div></div>" +
-                //                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
-                //                         " </li>";
-                //}
-                //else
-                //{
-                //    ormlist3 += "<li class='list-group-item pt-1 pb-1'>" +
-                //                              "<div class='list-group-item-figure'>" +
-                //                                  "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0, 2) +
-                //                             "</div> </div>" +
-                //                            "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
-                //                         " </li>";
-                //}
+                }
+                else if (j + 1 <= count2)
+                {
+                    ormlist2 += "<li class='list-group-item pt-1 pb-1'>" +
+                                              "<div class='list-group-item-figure'>" +
+                                                  "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0, 2) +
+                                             "</div></div>" +
+                                             "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                         " </li>";
+                }
+                else
+                {
+                    ormlist3 += "<li class='list-group-item pt-1 pb-1'>" +
+                                                             "<div class='list-group-item-figure'>" +
+                                                                 "<div class='tile bg-success'>" + dt.Rows[j]["title"].ToString().Substring(0, 2) +
+                                                            "</div></div>" +
+                                                            "<a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a>" +
+                                                        " </li>";
+                }
+
 
             }
-            //+dt.Rows[j]["title"].ToString() +
+
 
             this.orgrm1.InnerHtml = ormlist1;
             this.orgrm2.InnerHtml = ormlist2;
@@ -660,10 +664,14 @@ namespace RealERPWEB
 
         private void Get_Events()
         {
+
             string comcod = this.GetCompCode();
             string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
+            
+            this.EventBirthday.Visible = (comcod=="3365" & usrid=="3")?false:true;
+            
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
@@ -679,7 +687,7 @@ namespace RealERPWEB
                 string type = dr["evtype"].ToString();
                 if (type == "Birthday")
                 {
-                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-2'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + dr["imgurl"] + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + dr["imgurl"] + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
                 }
                 i++;
             }

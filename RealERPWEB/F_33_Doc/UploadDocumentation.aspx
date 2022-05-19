@@ -2,7 +2,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
- 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
         .mt20 {
@@ -79,7 +79,9 @@
 
                 <div class="card-body">
                     <div class="row">
+       
                         <div class="col-lg-4">
+                                          <form>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -98,7 +100,9 @@
                                         <asp:Label ID="lbltitle" runat="server" Text="Title :"></asp:Label>
 
                                         <asp:Panel runat="server" ID="pnlTxt">
-                                            <asp:TextBox ID="txtsName" runat="server"  CssClass="form-control form-control-sm"></asp:TextBox>
+                                            <asp:TextBox ID="txtsName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                            <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="txtsName" ValidationGroup="group1" ErrorMessage="Please enter a title!" />
                                         </asp:Panel>
 
 
@@ -126,7 +130,8 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <asp:Label ID="Label11" runat="server" Text="Documents:"></asp:Label>
-                                        <asp:FileUpload ID="imgFileUpload" runat="server" AllowMultiple="true" />
+                                        <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" />
+                                        <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />
 
 
                                     </div>
@@ -136,14 +141,20 @@
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
+<<<<<<< HEAD
+                                        <p class="text-right">
+                                            <asp:LinkButton ID="lnk_save" ValidationGroup="group1" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
+                                        </p>
+=======
                                         <p class="text-right">                   
                                             <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                         </p>
 
+>>>>>>> 8f1ff188c47f29681a3a39a17646f8d1e84a5fc4
                                     </div>
                                 </div>
                             </div>
-
+                            </form>
                         </div>
 
                         <div class="col-lg-8">
@@ -174,11 +185,24 @@
 
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
+<<<<<<< HEAD
+
+
+                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click">
+                                                    <i class="fa fa-trash"></i>
+=======
                                                 <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
+>>>>>>> 8f1ff188c47f29681a3a39a17646f8d1e84a5fc4
 
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 8f1ff188c47f29681a3a39a17646f8d1e84a5fc4
                                     </Columns>
                                 </asp:GridView>
                             </div>

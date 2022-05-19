@@ -780,7 +780,7 @@
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Card #">
+                                            <asp:TemplateField HeaderText="ID Card ">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvcardnocon" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
@@ -1588,7 +1588,7 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Card #">
+                                                <asp:TemplateField HeaderText="ID Card">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvcardnoemp" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'

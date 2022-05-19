@@ -27,10 +27,10 @@ namespace RealERPWEB.F_33_Doc
             if (!IsPostBack)
             {
 
-                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                //if (dr1.Length == 0)
-                //    Response.Redirect("../AcceessError.aspx");
-                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
 
                 this.getType();
@@ -48,10 +48,13 @@ namespace RealERPWEB.F_33_Doc
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETALLDATA", "", "", "", "", "", "", "", "", "");
             if (ds == null || ds.Tables[0].Rows.Count == 0)
             {
+                this.gvdoc.DataSource = null;
+                this.gvdoc.DataBind();
                 return;
             }
 
             this.gvdoc.DataSource = ds.Tables[0];
+
             this.gvdoc.DataBind();
         }
 
@@ -92,11 +95,12 @@ namespace RealERPWEB.F_33_Doc
                 case "99902":
                     this.lbltitle.Text = "Department";
                     this.txtsName.Text = "";
+                    this.txtsName.Enabled = true;
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
-                    this.txtsName.Enabled = true;
 
-                    // this.pnlTxt.Visible = false;
+
+                    this.pnlTxt.Visible = true;
                     break;
 
                 case "99903":
@@ -151,6 +155,7 @@ namespace RealERPWEB.F_33_Doc
             string imgPath = "";
             string msg = "";
 
+
             //validates the posted file before saving  
             if (imgFileUpload.PostedFile != null && imgFileUpload.PostedFile.FileName != "")
 
@@ -159,10 +164,10 @@ namespace RealERPWEB.F_33_Doc
                 //sets the image path           
                 imgPath = "~/Upload/HRM/Doc/" + imgName;
                 //then save it to the Folder  
-                imgFileUpload.SaveAs(Server.MapPath(imgPath)); 
+                imgFileUpload.SaveAs(Server.MapPath(imgPath));
             }
 
-            if(title.Length==0)
+            if (title.Length == 0)
             {
                 string msgfail = "Please add Title";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgfail + "');", true);
@@ -176,72 +181,54 @@ namespace RealERPWEB.F_33_Doc
             }
             else
             {
-               
-
                 string docid = ds.Tables[0].Rows[0]["docid"].ToString();
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFA", docid, refno, imgPath, "", "", "");
-                msg = "Data Saved Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETDOCBYID", docid, refno, "", "", "", "", "");
+
+                if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+                {
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFA", docid, refno, imgPath, "", "", "");
+                    msg = "Data Saved Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                    this.refresh();
+                }
+                else
+                {
+                    DataTable dt2 = ds2.Tables[0];
+                    string filePath = dt2.Rows[0]["imgpath"].ToString();
+
+                    FileInfo file = new FileInfo(Server.MapPath(filePath));
+                    if (file.Exists)
+                    {
+                        file.Delete();
+                    }
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADFILE", "DOCINFA", docid, refno, imgPath, "", "", "");
+                    if (result)
+                    {
+                        msg = "Data Saved Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                        this.refresh();
+                    }
+
+
+
+                }
+
+
+
+
 
             }
-            this.txtsName.Text = "";
+
+
+        }
+
+        private void refresh()
+        {
+   
             this.txtDetails1.Text = "";
-              imgPath = "";
-
             this.getAllData();
-
-        }
-
-        protected void download_click(object sender, EventArgs e)
-        {
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
-            string filePath = ((Label)this.gvdoc.Rows[index].FindControl("lblimgpath")).Text.ToString();
-
-            FileInfo file = new FileInfo(filePath);
-            if (file.Exists)
-            {
-                // Clear Rsponse reference  
-                Response.Clear();
-                // Add header by specifying file name  
-                Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-                // Add header for content length  
-                Response.AddHeader("Content-Length", file.Length.ToString());
-                // Specify content type  
-                Response.ContentType = "text/plain";
-                // Clearing flush  
-                Response.Flush();
-                // Transimiting file  
-                Response.TransmitFile(file.FullName);
-                Response.End();
-            }
-
-        }
-
-        protected void btn_remove_Click(object sender, EventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            string msg = "";
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
-            string id = ((Label)this.gvdoc.Rows[index].FindControl("lblid")).Text.ToString();
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "REMOVEDOc", id, "", "", "", "", "", "");
-            if (result)
-            {
-
-
-                msg = "Deleted Successfully";
-                this.getAllData();
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
-            }
-            else
-            {
-
-                msg = "Delete Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-            }
-
         }
 
         protected void download_Click1(object sender, EventArgs e)
@@ -284,5 +271,45 @@ namespace RealERPWEB.F_33_Doc
         {
             this.txtsName.Text = this.ddlMonth.SelectedItem.Text.ToString();
         }
+
+
+        protected void btn_remove_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string msg = "";
+
+
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string filePath = ((Label)this.gvdoc.Rows[index].FindControl("lblimgpath")).Text.ToString();
+            FileInfo file = new FileInfo(Server.MapPath(filePath));
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+            string id = ((Label)this.gvdoc.Rows[index].FindControl("lblid")).Text.ToString();
+
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "REMOVEDOc", id, "", "", "", "", "", "");
+            if (result)
+            {
+
+
+                msg = "Deleted Successfully";
+                this.getAllData();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+
+            }
+            else
+            {
+
+                msg = "Delete Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            }
+
+        }
+
     }
 }
