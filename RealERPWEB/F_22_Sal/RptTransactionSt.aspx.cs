@@ -1215,6 +1215,8 @@ namespace RealERPWEB.F_22_Sal
                 case "RectypeWise02":
                     this.gvRectypeWise02.DataSource = (DataTable)Session["DailyTrns"];
                     this.gvRectypeWise02.DataBind();
+                    this.FooterCalculation();
+
                     break;
 
 
@@ -1573,6 +1575,12 @@ namespace RealERPWEB.F_22_Sal
 
                     break;
 
+                case "RectypeWise02":
+
+                    Session["Report1"] = gvRectypeWise02;
+                    ((HyperLink)this.gvRectypeWise02.HeaderRow.FindControl("hlbotherCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                   
+                    break;
 
 
             }
