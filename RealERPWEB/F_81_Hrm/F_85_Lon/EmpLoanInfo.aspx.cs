@@ -135,8 +135,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.lbtnOk.Text = "New";
                 this.ddlEmpList.Enabled = false;
                // this.lblEmpName.Text = this.ddlEmpList.SelectedItem.Text.Trim();
-                this.lbtnPrevLoanList.Visible = false;
-                this.ddlPrevLoanList.Visible = false;
+                this.lbtnPrevLoanList.Enabled = false;
+                this.ddlPrevLoanList.Enabled = false;
                 //   this.ddlEmpList.Visible = false;
                 // this.lblEmpName.Visible = true;
                 this.ddlLoantype.Enabled = false;
@@ -145,6 +145,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.chkVisible.Checked = false;
                 this.chkVisible.Visible = true;
                 this.chkVisible.Text = "Gen. Installment";
+
                 this.ShowLoanInfo();
                 if (this.ddlPrevLoanList.Items.Count > 0)
                 {
@@ -154,12 +155,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
             this.lbtnOk.Text = "Ok";
             //this.lblEmpName.Text = "";
-            this.txtPaidAmt.Text = "";
+            this.txtPaidAmt.Text = "0";
             this.ddlEmpList.Enabled = true;
 
             this.ddlPrevLoanList.Items.Clear();
-            this.lbtnPrevLoanList.Visible = true;
-            this.ddlPrevLoanList.Visible = true;
+            this.lbtnPrevLoanList.Enabled = true;
+            this.ddlPrevLoanList.Enabled = true;
            // this.ddlEmpList.Visible = true;
             this.txtCurDate.Enabled = true;
            // this.lblEmpName.Visible = false;
@@ -547,7 +548,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
             string ulndat = "26-Jan-22 12:00:00 AM";
             string comcod = this.GetComeCode();
-
+            
             DataTable dt = (DataTable)ViewState["tblln"];
             string lnno = "";
             string lnnoqu = this.Request.QueryString["lnno"] ?? "";
