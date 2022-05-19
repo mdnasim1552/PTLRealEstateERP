@@ -89,6 +89,12 @@ namespace RealERPWEB.F_17_Acc
                     mrprint = "MRPrintIntech";
                     break;
 
+                //Finlay
+                //case "3101":
+                case "3368":
+                    mrprint = "MRPrintFinlay";
+                        break;
+
                 default:
                     mrprint = "MRPrint";
                     break;
@@ -104,6 +110,7 @@ namespace RealERPWEB.F_17_Acc
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string curDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string usirCode = this.Request.QueryString["usircode"].ToString();
             string pactCode = this.Request.QueryString["pactcode"].ToString();
             string mrno = this.Request.QueryString["mrno"].ToString();
@@ -192,9 +199,11 @@ namespace RealERPWEB.F_17_Acc
             if (ds4 == null)
                 return;
             DataTable dtrpt = ds4.Tables[0];
+            string custname = dtrpt.Rows[0]["custname"].ToString();
             string custadd = dtrpt.Rows[0]["custadd"].ToString();
             string custmob = dtrpt.Rows[0]["custmob"].ToString();
             string udesc = dtrpt.Rows[0]["udesc"].ToString();
+            string project = dtrpt.Rows[0]["pactdesc"].ToString();
             string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
             string munit = dtrpt.Rows[0]["munit"].ToString();
             string paytype = dtrpt.Rows[0]["paytype"].ToString();
@@ -210,7 +219,7 @@ namespace RealERPWEB.F_17_Acc
             string rectcode = dtrpt.Rows[0]["rectcode"].ToString();
             string parking = dtrpt.Rows[0]["parking"].ToString();
 
-            
+
 
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
             string amt1t = ASTUtility.Trans(amt1, 2);
@@ -493,6 +502,36 @@ namespace RealERPWEB.F_17_Acc
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
             }
 
+            else if (Type == "MRPrintFinlay")
+            {
+                var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptFinlay", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
+                Rpt1.SetParameters(new ReportParameter("txtDate1", curDate));
+                Rpt1.SetParameters(new ReportParameter("mrno", "MR"+mrno));
+                Rpt1.SetParameters(new ReportParameter("mrno1", "MR"+mrno));
+                Rpt1.SetParameters(new ReportParameter("custname", custname));
+                Rpt1.SetParameters(new ReportParameter("custname1", custname));
+                Rpt1.SetParameters(new ReportParameter("CustAdd", custadd));
+                Rpt1.SetParameters(new ReportParameter("CustAdd1", custadd));
+                Rpt1.SetParameters(new ReportParameter("custmob", custmob));
+                Rpt1.SetParameters(new ReportParameter("custmob1", custmob));
+                Rpt1.SetParameters(new ReportParameter("project", project));
+                Rpt1.SetParameters(new ReportParameter("project1", project));
+                Rpt1.SetParameters(new ReportParameter("unit", udesc));
+                Rpt1.SetParameters(new ReportParameter("unit1", udesc));
+                Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
+                Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
+                Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "")));
+                Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "")));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            
             else
             {
 
