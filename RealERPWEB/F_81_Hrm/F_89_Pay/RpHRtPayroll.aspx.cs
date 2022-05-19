@@ -832,6 +832,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             DataTable dt = HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
+            ViewState["tweekedn"] = ds3.Tables[1];
             this.LoadGrid();
 
         }
@@ -2257,9 +2258,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
         private void PrintSalaryFinlay()
-        {
-
+        {          
             DataTable dt = (DataTable)Session["tblpay"];
+            DataTable dtweek = (DataTable)ViewState["tweekedn"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comname = hst["comnam"].ToString();
@@ -2273,14 +2274,51 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd \\'MMM");
             string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM/ yyyy");
 
-
-            double wkday = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(wd)", "")) ? 0.00 : dt.Compute("sum(wd)", "")));
-            double wekday = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(wkday)", "")) ? 0.00 : dt.Compute("sum(wkday)", "")));
-            double govday = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(govday)", "")) ? 0.00 : dt.Compute("sum(govday)", "")));
-            double availday = wkday - (wekday + govday);
-
+            // for Get Weekend Common for Company Policy not emp offday
+            double availday = Convert.ToDouble((Convert.IsDBNull(dtweek.Compute("sum(availday)", "")) ? 0.00 : dtweek.Compute("sum(availday)", "")));
+            double wekday = Convert.ToDouble((Convert.IsDBNull(dtweek.Compute("sum(weekend)", "")) ? 0.00 : dtweek.Compute("sum(weekend)", "")));
+            double govday = Convert.ToDouble((Convert.IsDBNull(dtweek.Compute("sum(holiday)", "")) ? 0.00 : dtweek.Compute("sum(holiday)", "")));
+           
             double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+
+
+            // for Footer Summary Details 
+
+            // Earning 
+            double grsssal = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gssal)", "")) ? 0.00 : dt.Compute("sum(gssal)", "")));
+            double basic = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bsal)", "")) ? 0.00 : dt.Compute("sum(bsal)", "")));
+            double hrent = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(hrent)", "")) ? 0.00 : dt.Compute("sum(hrent)", "")));
+            double mallow = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mallow)", "")) ? 0.00 : dt.Compute("sum(mallow)", "")));
+            double dallow = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cven)", "")) ? 0.00 : dt.Compute("sum(cven)", "")));
+            double transallow = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pickup)", "")) ? 0.00 : dt.Compute("sum(pickup)", "")));
+            double tiffin = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(foodal)", "")) ? 0.00 : dt.Compute("sum(foodal)", "")));
+            double otamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(oallow)", "")) ? 0.00 : dt.Compute("sum(oallow)", "")));
+            double arrear = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(arsal)", "")) ? 0.00 : dt.Compute("sum(arsal)", "")));
+            double entert = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(entaint)", "")) ? 0.00 : dt.Compute("sum(entaint)", "")));
+            double ttalerning = grsssal+ tiffin+ arrear+ otamt;
+
+            // Deduction 
+            double trnsded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(transded)", "")) ? 0.00 : dt.Compute("sum(transded)", "")));
+            double absded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(absded)", "")) ? 0.00 : dt.Compute("sum(absded)", "")));
+            
+            double advance = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(adv)", "")) ? 0.00 : dt.Compute("sum(adv)", "")));
+            double loan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(loanins)", "")) ? 0.00 : dt.Compute("sum(loanins)", "")));
+            double advloan = advance + loan;
+
+            double pfamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfund)", "")) ? 0.00 : dt.Compute("sum(pfund)", "")));
+            double stampcost = 0.00;// Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(hrent)", "")) ? 0.00 : dt.Compute("sum(hrent)", "")));
+            double othded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(othded)", "")) ? 0.00 : dt.Compute("sum(othded)", "")));
+            double taxamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(itax)", "")) ? 0.00 : dt.Compute("sum(itax)", "")));
+            double mbilded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mbillded)", "")) ? 0.00 : dt.Compute("sum(mbillded)", "")));
+            double tdeduc = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tdeduc)", "")) ? 0.00 : dt.Compute("sum(tdeduc)", "")));
+
+            // Bank/Cash Amt 
+
+            double bankamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt)", "")) ? 0.00 : dt.Compute("sum(bankamt)", "")));
+            double cashamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ? 0.00 : dt.Compute("sum(cashamt)", "")));
+
+
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
@@ -2289,11 +2327,44 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee Salary Sheet : " + "Month of " + todate1 )); //+"(" + frmdate + "- " + todate + ")"
-            Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
+            Rpt1.SetParameters(new ReportParameter("TkInWord", "In Words: " + ASTUtility.Trans(netpayatax, 2)));
             Rpt1.SetParameters(new ReportParameter("availday", availday.ToString()));
             Rpt1.SetParameters(new ReportParameter("wekday", wekday.ToString()));
             Rpt1.SetParameters(new ReportParameter("govday", govday.ToString()));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            // Earning 
+            Rpt1.SetParameters(new ReportParameter("basic", basic.ToString()));
+            Rpt1.SetParameters(new ReportParameter("hrent", hrent.ToString()));
+            Rpt1.SetParameters(new ReportParameter("mallow", mallow.ToString()));
+            Rpt1.SetParameters(new ReportParameter("dallow", dallow.ToString()));
+            Rpt1.SetParameters(new ReportParameter("transallow", transallow.ToString()));
+            Rpt1.SetParameters(new ReportParameter("tiffin", tiffin.ToString()));
+            Rpt1.SetParameters(new ReportParameter("otamt", otamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("arrear", arrear.ToString()));
+            Rpt1.SetParameters(new ReportParameter("entert", entert.ToString()));
+            Rpt1.SetParameters(new ReportParameter("ttalerning", ttalerning.ToString()));
+
+            // Deduction 
+            Rpt1.SetParameters(new ReportParameter("trnsded", trnsded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("absded", absded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("advloan", advloan.ToString()));
+            Rpt1.SetParameters(new ReportParameter("pfamt", pfamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("stampcost", stampcost.ToString()));
+            Rpt1.SetParameters(new ReportParameter("othersamt", othded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("taxamt", taxamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("mbilded", mbilded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("tdeduc", tdeduc.ToString()));
+
+
+            // Bank/Cash Amt 
+            Rpt1.SetParameters(new ReportParameter("bankamt", bankamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("cashamt", cashamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("netpay", netpay.ToString()));
+
+            Rpt1.SetParameters(new ReportParameter("Bankinword",  ASTUtility.Trans(bankamt, 2)));
+            Rpt1.SetParameters(new ReportParameter("Casinword",  ASTUtility.Trans(cashamt, 2)));
+
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 
             Session["Report1"] = Rpt1;
