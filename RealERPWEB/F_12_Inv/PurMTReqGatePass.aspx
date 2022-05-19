@@ -95,11 +95,17 @@
                                     </div>
 
                                 </div>
+                                
 
 
                             </div>
                         </fieldset>
                     </div>
+                    <div id="Panel0" runat="server">
+                        <div class="row">
+                        </div>
+                    </div>
+
                     <asp:Panel ID="Panel1" runat="server" Visible="False">
                         <div class="row">
                             <fieldset class="scheduler-border fieldset_A">
