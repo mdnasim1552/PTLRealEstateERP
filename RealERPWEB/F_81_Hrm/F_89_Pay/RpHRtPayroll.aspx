@@ -358,6 +358,7 @@
                                                         <asp:ListItem>BTI</asp:ListItem>
                                                         <asp:ListItem>JBS</asp:ListItem>
                                                         <asp:ListItem>Lanco</asp:ListItem>
+                                                        <asp:ListItem>Finlay</asp:ListItem>
 
 
                                                     </asp:RadioButtonList>

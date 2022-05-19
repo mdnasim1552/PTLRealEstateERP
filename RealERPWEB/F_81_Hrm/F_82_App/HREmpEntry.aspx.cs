@@ -946,21 +946,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             break;
                       
                         case "3368":// Finlay
-
                          toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
 
-                             basic= Convert.ToDouble(dt1.Select("gcod='04001'")[0]["gval"]);
+                             //basic= Convert.ToDouble(dt1.Select("gcod='04001'")[0]["gval"]);
 
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
-                            this.txtgrossal.Text = (basic*2).ToString("#,##0;(#,##0); ");
+                           // this.txtgrossal.Text = (basic*2).ToString("#,##0;(#,##0); ");
 
-                            // toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
-                            //dv = dt1.DefaultView;
-                            //dv.RowFilter = ("percnt>0");
-                            //dt1 = dv.ToTable();
-                            //topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
-                           // this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
-                               //((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+                           // toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            dv = dt1.DefaultView;
+                            dv.RowFilter = ("percnt>0");
+                            dt1 = dv.ToTable();
+                            topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                             this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            //((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
                             break;
 
                         default:

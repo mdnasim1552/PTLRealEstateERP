@@ -137,12 +137,19 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <p class="text-right">
+<<<<<<< HEAD
+                   
+                                            <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
+                                        </p>
+ 
+=======
                                             <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                         </p>
 <<<<<<< HEAD
 =======
 
 >>>>>>> 383b50b2e35d31a2d0cd936c1a6ef9f7a705ee05
+>>>>>>> 9687385f2baad4184d6d33cc64291b46fa954d39
 
                                     </div>
                                 </div>
@@ -178,11 +185,24 @@
 
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
+<<<<<<< HEAD
+
+                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click">
+                                                    <i class="fa fa-trash"></i>
+
+                                                    </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+
+
+=======
                                                 <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
 
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+>>>>>>> 9687385f2baad4184d6d33cc64291b46fa954d39
                                     </Columns>
                                 </asp:GridView>
                             </div>
