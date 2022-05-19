@@ -322,8 +322,8 @@ namespace RealERPWEB.F_04_Bgd
 
                     if (Gcode == "02041" || Gcode == "02045" || Gcode == "02050")
                     {
-                        Gvalue = ASTUtility.Right(ddlloc.SelectedValue.ToString(),3);
-                        //Gvalue = ddlloc.SelectedItem.Text.ToString();  comment by tarik 
+                      //  Gvalue = ASTUtility.Right(ddlloc.SelectedValue.ToString(),3);
+                        Gvalue =ddlloc.SelectedValue.ToString();  //comment by tarik 
 
                     }
                     else

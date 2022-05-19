@@ -188,7 +188,14 @@
 
                         <div class="col-md-2 col-lg-2 col-xs-12">
                             <asp:Label ID="Label8" runat="server">Upto Paid</asp:Label>
-                            <asp:TextBox ID="txtPaidAmt" runat="server" onkeypress="return isNumberKey(this, event);" CssClass="form-control" Style="text-align: right"></asp:TextBox>
+                            <asp:TextBox ID="txtPaidAmt" runat="server" ReadOnly="true" onkeypress="return isNumberKey(this, event);" CssClass="form-control" Style="text-align: right"></asp:TextBox>
+                        </div>
+
+                         <div class="col-md-1 col-lg-1 col-xs-12">
+                            <asp:Label ID="Label10" runat="server">Upto Date</asp:Label>
+                            <asp:TextBox ID="txtUptoDate" runat="server" CssClass="form-control"></asp:TextBox>
+                            <cc1:CalendarExtender ID="txtUptoDate_CalendarExtender1" runat="server"
+                                Format="dd-MMM-yyyy" TargetControlID="txtUptoDate"></cc1:CalendarExtender>
                         </div>
 
                         <div class="col-md-1 col-lg-1 col-xs-12">
@@ -214,7 +221,7 @@
                         <asp:LinkButton ID="lbtnAddInstallment" runat="server" OnClick="lbtnAddInstallment_Click"
                             Visible="False" CssClass="btn btn-info btn-sm ml-1 col-1">Add</asp:LinkButton>
 
-                        <asp:Label ID="tloanamt" Visible="false" CssClass="btn btn-success btn-sm ml-1 col-1" runat="server"></asp:Label>
+                        
                     </div>
                 </div>
 

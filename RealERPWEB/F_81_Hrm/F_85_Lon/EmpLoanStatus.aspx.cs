@@ -143,6 +143,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             switch (comcod)
             {
                 case "3365":                
+                     
                     calltype = "EMPLOANSTATUSBTI";
                     procedure = "dbo_hrm.SP_REPORT_HR_INTERFACE";
                     break;
