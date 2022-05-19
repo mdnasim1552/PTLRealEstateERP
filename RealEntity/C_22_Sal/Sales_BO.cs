@@ -1458,6 +1458,7 @@ namespace RealEntity.C_22_Sal
             public string munit { get; set; }
             public double usize { get; set; }
             public string paytype { get; set; }
+            public string rectype { get; set; }
             public DateTime paydate { get; set; }
             public DateTime paiddate { get; set; }
             public string pactdesc { get; set; }

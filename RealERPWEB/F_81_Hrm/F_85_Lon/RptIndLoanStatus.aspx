@@ -122,7 +122,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo5" runat="server" Font-Bold="True"
                                             Style="text-align: right"
-                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -132,11 +132,11 @@
                                         <asp:Label ID="lblgvinsdat" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="12px"
                                             Text='<%#(Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "insdat")).Year==1900 ? "": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "insdat")).ToString("dd-MMM-yyyy")) %>'
-                                            Width="80px"></asp:Label>
+                                            Width="90px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFinsdat" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right" Width="80px">Total :</asp:Label>
+                                            ForeColor="#000" Style="text-align: right" Width="90px">Total :</asp:Label>
                                     </FooterTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                     <FooterStyle HorizontalAlign="Right" />
@@ -145,7 +145,7 @@
 
                                  <asp:TemplateField HeaderText="Loan Type">
                                        <ItemTemplate>
-                                           <asp:Label ID="lblloantype" runat="server" Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "loanname"))%>'></asp:Label>
+                                           <asp:Label  ID="lblloantype" runat="server" Width="120px" Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "loanname"))%>'></asp:Label>
                                           </ItemTemplate>
                                 </asp:TemplateField>
 

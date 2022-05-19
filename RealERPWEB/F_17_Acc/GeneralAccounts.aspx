@@ -208,25 +208,19 @@
                                         <asp:TextBox ID="txtScrchConCode" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="ibtnFindConCode" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindConCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-6 pading5px ">
                                         <asp:DropDownList ID="ddlConAccHead" TabIndex="2" runat="server" CssClass="form-control inputTxt chzn-select">
                                         </asp:DropDownList>
-
                                     </div>
 
                                     <div class="col-md-2 pading5px">
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="lnkOk" TabIndex="3" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click">Ok</asp:LinkButton>
-
                                         </div>
-
                                         <asp:Label ID="lblbalamt" runat="server" ForeColor="Red" CssClass=" smLbl_to margin5px"></asp:Label>
-
                                     </div>
 
 
@@ -864,7 +858,14 @@
                                                         Width="80px" TabIndex="60"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
+                                            <%--<asp:TemplateField HeaderText="OutStanding Balance">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvtrnoutstbal" runat="server"
+                                                        Font-Size="12px"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnoutstbal")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                        Width="80px" TabIndex="60"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>--%>
 
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />

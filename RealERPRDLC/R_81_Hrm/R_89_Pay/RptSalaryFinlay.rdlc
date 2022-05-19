@@ -7567,14 +7567,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Days Available: </Value>
-                          <Style>
-                            <FontFamily>cambria</FontFamily>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Parameters!availday.Value</Value>
+                          <Value>Days Available: 24</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
@@ -7605,14 +7598,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Weekly Holiday: </Value>
-                          <Style>
-                            <FontFamily>cambria</FontFamily>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Parameters!wekday.Value</Value>
+                          <Value>Weekly Holiday: 5</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
@@ -7644,14 +7630,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Festival Holiday: </Value>
-                          <Style>
-                            <FontFamily>cambria</FontFamily>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Parameters!govday.Value</Value>
+                          <Value>Festival Holiday: 1</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>

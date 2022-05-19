@@ -31,6 +31,23 @@
 
         }
 
+        function isNumberKey(txt, evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 46) {
+                //Check if the text already contains the . character
+                if (txt.value.indexOf('.') === -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (charCode > 31 &&
+                    (charCode < 48 || charCode > 57))
+                    return false;
+            }
+            return true;
+        }
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -67,7 +84,7 @@
                             <asp:TextBox ID="txtCurDate" runat="server" CssClass="form-control"></asp:TextBox>
                             <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
                         </div>
-                        <div class="col-md-1 col-lg-1 col-xs-12">
+                        <div class="col-md-1 col-lg-1 col-xs-12 p-0">
                             <asp:Label ID="loanNo" CssClass="d-block" runat="server">Loan No</asp:Label>
                             <asp:Label ID="lblCurNo1" runat="server" CssClass="btn btn-sm btn-secsondary ">ELN</asp:Label>
                             <asp:Label ID="lblCurNo2" runat="server" CssClass="btn btn-sm btn-secsondary ">000</asp:Label>
@@ -107,17 +124,17 @@
                             <asp:Label ID="Label5" runat="server">Total Amount 
                                 
                             </asp:Label>
-                            <asp:TextBox ID="txtToamt" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtToamt" runat="server" onkeypress="return isNumberKey(this, event);" Style="text-align: right" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-md-2 col-lg-2 col-xs-12">
                             <asp:Label ID="Label1" runat="server">Ins. Amount
 
                                 <span class="float-right isFormulaChekcboxdv">
-                                <asp:CheckBox ID="isFormulaChekcbox" runat="server" AutoPostBack="True" Visible="false" OnCheckedChanged="isFormulaChekcbox_CheckedChanged" Text="Is Formula" CssClass="margin:0" />
+                                <asp:CheckBox ID="isFormulaChekcbox"  runat="server" AutoPostBack="True" Visible="false" OnCheckedChanged="isFormulaChekcbox_CheckedChanged" Text="Is Formula" CssClass="margin:0" />
 
                                     </span>
                             </asp:Label>
-                            <asp:TextBox ID="txtinsamt" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtinsamt" runat="server" CssClass="form-control" onkeypress="return isNumberKey(this, event);" Style="text-align: right"></asp:TextBox>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xs-12" id="isFormulaDiv" runat="server" visible="false">
                             <div class="row">
@@ -131,11 +148,11 @@
 
                                 <div class="col-md-3 col-lg-3 col-xs-12">
                                     <asp:Label ID="Label3" runat="server">Emp. Pay</asp:Label>
-                                    <asp:TextBox ID="txtEmployePayment" runat="server" CssClass="form-control"></asp:TextBox>                                     
+                                    <asp:TextBox ID="txtEmployePayment" runat="server" onkeypress="return isNumberKey(this, event);" CssClass="form-control"></asp:TextBox>                                     
                                 </div>
                                  <div class="col-md-3 col-lg-3 col-xs-12">
                                     <asp:Label ID="Label4" runat="server">Comp. Pay</asp:Label>
-                                    <asp:TextBox ID="txtCompPaid" runat="server" CssClass="form-control"></asp:TextBox>                                     
+                                    <asp:TextBox ID="txtCompPaid" runat="server" onkeypress="return isNumberKey(this, event);" CssClass="form-control"></asp:TextBox>                                     
                                 </div>
 
                             </div>
@@ -171,7 +188,14 @@
 
                         <div class="col-md-2 col-lg-2 col-xs-12">
                             <asp:Label ID="Label8" runat="server">Upto Paid</asp:Label>
-                            <asp:TextBox ID="txtPaidAmt" runat="server" CssClass="form-control" Style="text-align: right"></asp:TextBox>
+                            <asp:TextBox ID="txtPaidAmt" runat="server" ReadOnly="true" onkeypress="return isNumberKey(this, event);" CssClass="form-control" Style="text-align: right"></asp:TextBox>
+                        </div>
+
+                         <div class="col-md-1 col-lg-1 col-xs-12">
+                            <asp:Label ID="Label10" runat="server">Upto Date</asp:Label>
+                            <asp:TextBox ID="txtUptoDate" runat="server" CssClass="form-control"></asp:TextBox>
+                            <cc1:CalendarExtender ID="txtUptoDate_CalendarExtender1" runat="server"
+                                Format="dd-MMM-yyyy" TargetControlID="txtUptoDate"></cc1:CalendarExtender>
                         </div>
 
                         <div class="col-md-1 col-lg-1 col-xs-12">
@@ -197,7 +221,7 @@
                         <asp:LinkButton ID="lbtnAddInstallment" runat="server" OnClick="lbtnAddInstallment_Click"
                             Visible="False" CssClass="btn btn-info btn-sm ml-1 col-1">Add</asp:LinkButton>
 
-                        <asp:Label ID="tloanamt" Visible="false" CssClass="btn btn-success btn-sm ml-1 col-1" runat="server"></asp:Label>
+                        
                     </div>
                 </div>
 
@@ -261,7 +285,7 @@
                                             ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
-                                        <asp:TextBox ID="gvtxtamt" runat="server" Style="text-align: right"
+                                        <asp:TextBox ID="gvtxtamt" runat="server" Style="text-align: right" onkeypress="return isNumberKey(this, event);"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lnamt")).ToString("#,##0;(#,##0); ") %>'
                                             Width="90px" BackColor="Transparent" BorderStyle="None" Font-Size="11px"></asp:TextBox>
                                     </ItemTemplate>
@@ -276,7 +300,7 @@
                                             ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
-                                        <asp:TextBox ID="gvtxtamtttlinsamt" runat="server" Style="text-align: right" AutoPostBack="true" OnTextChanged="gvtxtamtttlinsamt_TextChanged"
+                                        <asp:TextBox ID="gvtxtamtttlinsamt" runat="server" Style="text-align: right" AutoPostBack="true" onkeypress="return isNumberKey(this, event);" OnTextChanged="gvtxtamtttlinsamt_TextChanged"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlinsamt")).ToString("#,##0;(#,##0); ") %>'
                                             Width="90px" BackColor="Transparent" BorderStyle="None" Font-Size="11px"></asp:TextBox>
                                     </ItemTemplate>
@@ -286,7 +310,7 @@
 
                                 <asp:TemplateField HeaderText="Status" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblStatus" runat="server" Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "paidamt")) %>'></asp:Label>
+                                        <asp:Label ID="lblStatus" runat="server"  Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "paidamt")) %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Is formula">
