@@ -346,6 +346,19 @@ namespace RealERPWEB.F_32_Mis
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string txtDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+            
+            string tosalval, salamt, tsaldue, collamt, tcoldue, tsalcoldue,cbgdamt, acbgdamt, bgdamt, bgdprofit;
+            tosalval = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsaltg")).Text.ToString();
+            salamt = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsal")).Text.ToString();
+            tsaldue = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsaldue")).Text.ToString();
+            collamt = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsalcol")).Text.ToString();
+            tcoldue = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtcoldue")).Text.ToString();
+            tsalcoldue = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsalcoldue")).Text.ToString();
+            cbgdamt = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFconbgd")).Text.ToString();
+            acbgdamt = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFbgdt")).Text.ToString();
+            bgdamt = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFactcost")).Text.ToString();
+            bgdprofit = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFbgdprft")).Text.ToString();
+
 
             DataTable dt = (DataTable)Session["tblprojanalysis"];
             var list = dt.DataTableToList<RealEntity.C_32_Mis.EClassAcc_03.RptProjectAnalysis>();
@@ -359,6 +372,17 @@ namespace RealERPWEB.F_32_Mis
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Analysis"));
             Rpt1.SetParameters(new ReportParameter("txtDate", "As On Date: "+txtDate));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("tosalval", tosalval));
+            Rpt1.SetParameters(new ReportParameter("salamt", salamt));
+            Rpt1.SetParameters(new ReportParameter("tsaldue", tsaldue));
+            Rpt1.SetParameters(new ReportParameter("collamt", collamt));
+            Rpt1.SetParameters(new ReportParameter("tcoldue", tcoldue));
+            Rpt1.SetParameters(new ReportParameter("tsalcoldue", tsalcoldue));
+            Rpt1.SetParameters(new ReportParameter("cbgdamt", cbgdamt));
+            Rpt1.SetParameters(new ReportParameter("acbgdamt", acbgdamt));
+            Rpt1.SetParameters(new ReportParameter("bgdamt", bgdamt));
+            Rpt1.SetParameters(new ReportParameter("bgdprofit", bgdprofit));
+
 
 
             Session["Report1"] = Rpt1;
