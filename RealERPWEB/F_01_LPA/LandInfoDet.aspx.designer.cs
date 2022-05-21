@@ -798,6 +798,15 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
 
         /// <summary>
+        /// hyplnkProspectTransfer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyplnkProspectTransfer;
+
+        /// <summary>
         /// Discoussion control.
         /// </summary>
         /// <remarks>

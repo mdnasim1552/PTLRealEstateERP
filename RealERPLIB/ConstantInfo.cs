@@ -100,7 +100,7 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "0151000", "0151001", "F_99_Allinterface", "BusinessDashboard?", "Type=Report", "Business Development", "Land Proposal", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0151000", "0151003", "F_01_LPA", "LandInfoDet?", "Type=Entry", "Business Development", "Land Proposal", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0151000", "0151003", "F_01_LPA", "LandInfoDet?", "Type=Entry", "Land CRM", "Land Proposal", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0191000", "0191085", "F_01_LPA", "RptDashBoardLandPro", "", "Land Procurement", "Land Proposal-Dashboard", "False", "False", "False", "False" }); ;
 
 
@@ -1060,6 +1060,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102135", "F_21_MKT", "RptProspectWorking", "", "Prospect Working Report", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102137", "F_21_MKT", "ProspectTransfer", "", "CRM Prospect Transfer", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2102000", "2102138", "F_21_MKT", "LandProspectTransfer", "", "Land Prospect Transfer", "CRM", "False", "False", "False", "False" });
 
             //kpi 
             // 05. My Marketing Interface(Sales)
@@ -2190,6 +2191,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103110", "F_81_Hrm/F_81_Rec", "RptEmpAssessment", "", "Employee Assessment Report", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103111", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetFactory", "Salary Top Sheet (Factory)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103112", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetPID", "Salary Top Sheet(Project)", "PayRoll", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103114", "F_81_Hrm/F_89_Pay", "RptMonthWiseTax02", "", "Month Wise Tax Report 02", "PayRoll", "False", "False", "False", "False" }); ;
 
 
 
@@ -6916,8 +6918,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Client Transfer List ", "F_21_MKT/ClientTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "05. Center Wise Client List ", "F_21_MKT/RptCenterWiseClient", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "06. CRM Prospect Transfer ", "F_21_MKT/ProspectTransfer", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000007", "07. Land Prospect Transfer ", "F_21_MKT/LandProspectTransfer", "", true, "" });
 
- 
+
             //mnuTbl1.Rows.Add(new Object[] { "0202000006", "", "", "", true, "" });//"03. Basic Information Field", "F_21_Mkt/MktGenCodeBook", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0202000007", "", "", "", true, "" });//"06. Discussion Field", "F_64_Mgt/GenCodeBook?Type=81", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0202000008", "", "", "", true, "" });//"01. Team Formation", "F_64_Mgt/TeamSeriCode", "", true, "" });           
@@ -14734,6 +14737,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Personal Information", "F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000002", "02. Employee Agreement", "F_81_Hrm/F_82_App/HREmpEntry?Type=Aggrement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000003", "03. Employee Image Upload", "F_81_Hrm/F_82_App/ImgUpload?Type=Entry&empid=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000004", "03. Employee Image Upload New", "F_81_Hrm/F_82_App/ImgUploadNew?Type=Entry&empid=", "", true, "" });
 
 
             //Attendance System
@@ -14941,6 +14945,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0408000029", "04. Joining Report Summary", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=joiningRpt&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000030", "05. Month Wise Salary Report", "F_81_Hrm/F_90_PF/RptAccProFund?Type=Salary", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000031", "06. Month Wise Tax Report", "F_81_Hrm/F_89_Pay/RptMonthWiseTax", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000031", "07. Month Wise Tax Report 02", "F_81_Hrm/F_89_Pay/RptMonthWiseTax02", "", true, "" });
+
+
+            
             mnuTbl1.Rows.Add(new Object[] { "0408000032", "07. Employee Monthly Presence", "F_81_Hrm/F_83_Att/RptEmpMonthPresent", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000033", "08. Individual Employee Income Statement", "F_81_Hrm/F_89_Pay/RptIncomeStatement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000034", "09. Overtime Salary", "F_81_Hrm/F_89_Pay/RptOvertimeSalary2", "", true, "" });
