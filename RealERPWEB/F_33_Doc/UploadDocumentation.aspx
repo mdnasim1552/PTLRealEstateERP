@@ -132,17 +132,17 @@
                                         <asp:Label ID="Label11" runat="server" Text="Documents:"></asp:Label>
                                         <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" />
                                         <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />
-
-
                                     </div>
-
                                 </div>
-
-
                                 <div class="col-lg-12">
                                     <div class="form-group">
+<<<<<<< HEAD
+                                        <p class="text-right">
+                                            <asp:LinkButton ID="lnk_save" ValidationGroup="group1" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
+=======
                                         <p class="text-right">                   
                                             <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
+>>>>>>> fc3126a54dd4b0929aabae8d15f9d986ca5afb9a
                                         </p>
                                     </div>
                                 </div>
@@ -177,7 +177,11 @@
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Action">
+<<<<<<< HEAD
+                                               <ItemTemplate>
+=======
                                             <ItemTemplate>
+>>>>>>> fc3126a54dd4b0929aabae8d15f9d986ca5afb9a
                                                 <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
                                                 </asp:LinkButton>
                                             </ItemTemplate>
@@ -189,7 +193,6 @@
                     </div>
                 </div>
             </div>
-
 
         </ContentTemplate>
 
