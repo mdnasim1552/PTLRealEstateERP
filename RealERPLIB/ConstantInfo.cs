@@ -2190,6 +2190,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103110", "F_81_Hrm/F_81_Rec", "RptEmpAssessment", "", "Employee Assessment Report", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103111", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetFactory", "Salary Top Sheet (Factory)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103112", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetPID", "Salary Top Sheet(Project)", "PayRoll", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103114", "F_81_Hrm/F_89_Pay", "RptMonthWiseTax02", "", "Month Wise Tax Report 02", "PayRoll", "False", "False", "False", "False" }); ;
 
 
 
@@ -14941,6 +14942,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0408000029", "04. Joining Report Summary", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=joiningRpt&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000030", "05. Month Wise Salary Report", "F_81_Hrm/F_90_PF/RptAccProFund?Type=Salary", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000031", "06. Month Wise Tax Report", "F_81_Hrm/F_89_Pay/RptMonthWiseTax", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000031", "07. Month Wise Tax Report 02", "F_81_Hrm/F_89_Pay/RptMonthWiseTax02", "", true, "" });
+
+
+            
             mnuTbl1.Rows.Add(new Object[] { "0408000032", "07. Employee Monthly Presence", "F_81_Hrm/F_83_Att/RptEmpMonthPresent", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000033", "08. Individual Employee Income Statement", "F_81_Hrm/F_89_Pay/RptIncomeStatement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000034", "09. Overtime Salary", "F_81_Hrm/F_89_Pay/RptOvertimeSalary2", "", true, "" });
