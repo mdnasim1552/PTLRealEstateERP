@@ -14736,6 +14736,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Personal Information", "F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000002", "02. Employee Agreement", "F_81_Hrm/F_82_App/HREmpEntry?Type=Aggrement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000003", "03. Employee Image Upload", "F_81_Hrm/F_82_App/ImgUpload?Type=Entry&empid=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000004", "03. Employee Image Upload New", "F_81_Hrm/F_82_App/ImgUploadNew?Type=Entry&empid=", "", true, "" });
 
 
             //Attendance System

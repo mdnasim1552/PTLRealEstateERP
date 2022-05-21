@@ -12,6 +12,7 @@ using RealEntity.C_34_Mgt;
 using System.Data;
 using RealERPLIB;
 
+
 namespace RealERPRDLC
 {
     public class RptSetupClass1

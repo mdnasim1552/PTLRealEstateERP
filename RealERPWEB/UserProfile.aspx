@@ -910,10 +910,15 @@
                         </div>
 
                         <div class="col-6">
-                            <section class="card card-fluid" style="min-height: 345px">
+                            <div class="card " style="min-height: 345px">
+                                <div class="card-header">
+                                 
+                                                 <asp:LinkButton ID="birthday" runat="server" onclick="birthday_print_click"
+                                                CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
+                                </div>
                                 <div class="card-body row" id="EventBirthday" runat="server">
                                 </div>
-                            </section>
+                            </div>
                         </div>
                     </div>
                 </div>
