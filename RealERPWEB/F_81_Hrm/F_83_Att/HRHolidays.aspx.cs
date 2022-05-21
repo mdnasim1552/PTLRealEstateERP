@@ -31,14 +31,27 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.rblmonth_SelectedIndexChanged(null, null);
                 //this.ShowHoliday();
                 this.GetCompany();
-
+                this.GetHolidayType();
                 this.GetDepartment();
                 this.GetProjectName();
             }
         }
 
 
+        private void GetHolidayType()
+        {
+            //string comcod = this.GetComCode();
+            //string monthid = this.rblmonth.SelectedValue.ToString();
+            //string year = System.DateTime.Now.ToString("yyyy");
 
+
+            //DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETHOLIDAYTYPE", monthid, year, "", "", "", "", "", "", "");
+
+            //this.gvholiday.DataSource = ds3.Tables[0];
+            //this.gvholiday.DataBind();
+            //ViewState["HolidayInfo"] = ds3.Tables[0];
+
+        }
         private void ShowHoliday()
         {
             string comcod = this.GetComCode();
