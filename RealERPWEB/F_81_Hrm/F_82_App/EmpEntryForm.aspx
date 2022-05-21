@@ -240,7 +240,7 @@
                                             <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                      
+
 
 
                                         <asp:TemplateField HeaderText="Operation">
@@ -252,7 +252,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" 
+                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
                                                         </li>
                                                         <li class="mt-2">
@@ -305,7 +305,7 @@
                                                                 NavigateUrl='<%# "~/F_81_Hrm/F_83_Att/HREmpOffDays"%>'
                                                                 CssClass="dropdown-item " runat="server">Employee Off Days</asp:HyperLink>
                                                         </li>
-                                                        
+
 
                                                     </ul>
                                                 </div>
@@ -316,12 +316,12 @@
                                         </asp:TemplateField>
 
 
-                                          <asp:TemplateField HeaderText="User Create">
+                                        <asp:TemplateField HeaderText="User Create">
                                             <ItemTemplate>
-                                                            <asp:LinkButton ID="lnkUserGenarate" ToolTip="User Create" OnClick="lnkUserGenarate_Click" 
-                                                                runat="server" Visible='<%#Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "genbtn"))%>' 
-                                                                CssClass="btn btn-sm btn-primary "> User Generate</asp:LinkButton>
-                                                
+                                                <asp:LinkButton ID="lnkUserGenarate" ToolTip="User Create" OnClick="lnkUserGenarate_Click"
+                                                    Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")).ToString()=="3365"? true:false %>'
+                                                    runat="server" CssClass="btn btn-sm btn-primary "> User Generate</asp:LinkButton>
+
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -348,13 +348,13 @@
         <div class="modal-dialog ">
             <div class="modal-content col-md-12 col-sm-12 ">
                 <div class="modal-header hedcon">
-                     
+
                     <h4>Employee Name Entry</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    
+
                 </div>
                 <div class="modal-body">
-                     
+
                     <div class="col-md-12 col-sm-12 col-lg-12">
 
                         <div class="form-group">
@@ -377,8 +377,8 @@
                         <div class="form-group">
                             <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" OnClientClick="CloseModal();" CssClass="btn btn-danger btn-sm">Add</asp:LinkButton>
                             <asp:Label ID="lblEmplastId" runat="server" Visible="false"></asp:Label>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
