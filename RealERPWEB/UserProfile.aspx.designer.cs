@@ -321,6 +321,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.GridView gvAllNotice;
 
         /// <summary>
+        /// birthday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton birthday;
+
+        /// <summary>
         /// EventBirthday control.
         /// </summary>
         /// <remarks>

@@ -181,51 +181,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
-        private string GetMonthName()
-        {
-            string monthname = "";
-            string monthid = this.txtDate.Text.Substring(4);
-            switch (monthid)
-            {
-                case "01":
-                    monthname = "January";
-                    break;
-                case "02":
-                    monthname = "February";
-                    break;
-                case "03":
-                    monthname = "March";
-                    break;
-                case "04":
-                    monthname = "April";
-                    break;
-                case "05":
-                    monthname = "May";
-                    break;
-                case "06":
-                    monthname = "June";
-                    break;
-                case "07":
-                    monthname = "July";
-                    break;
-                case "08":
-                    monthname = "August";
-                    break;
-                case "09":
-                    monthname = "September";
-                    break;
-                case "10":
-                    monthname = "October";
-                    break;
-                case "11":
-                    monthname = "November";
-                    break;
-                case "12":
-                    monthname = "December";
-                    break;
-            }
-            return monthname;
-        }
+        
         private void GetBankName()
         {
             string comcod = this.GetComeCode();
@@ -501,7 +457,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementAlli();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3330":
                     this.PrintBankStatementBridge();
                     break;
@@ -514,12 +470,53 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementEdison();
                     break;
 
+                case "3101":
+                case "3368":
+                    this.PrintBankStatementFinlay();
+                    break;
+
                 default:
                     this.PrintrptBankStatement();
                     break;
 
 
             }
+        }
+
+        private void PrintBankStatementFinlay()
+        {
+            DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string year = this.txtDate.Text.Substring(0, 4).ToString();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
+
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("saltrn='True'");
+            dt = dv.ToTable();
+
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBankStatementFinlay", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comname));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Bank Forwarding Report For " + bankname ));
+            Rpt1.SetParameters(new ReportParameter("txtMonth", month));
+            Rpt1.SetParameters(new ReportParameter("txtYear", year));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         private void PrintBankStatementEdison()
@@ -535,7 +532,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("saltrn='True'");
@@ -581,7 +578,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
             //
 
             ReportDocument rptstk = new ReportDocument();
@@ -616,7 +613,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
 
             ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBankStatementSan();
@@ -659,7 +656,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
             ReportDocument rptstk = new ReportDocument();
             LocalReport Rpt1 = new LocalReport();
@@ -690,7 +687,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("saltrn='True'");
@@ -725,8 +722,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void PrintBankStatementBridge()
         {
-
-
             DataTable dt = (DataTable)Session["tblover"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comname = hst["comnam"].ToString();
@@ -737,7 +732,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
             ReportDocument rptstk = new ReportDocument();
             LocalReport Rpt1 = new LocalReport();
@@ -805,7 +800,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
             string motheraccno = dt.Rows[0]["banksl"].ToString();
             string addr = dt.Rows[0]["bankaddr"].ToString();
@@ -871,7 +866,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
 
 
@@ -942,8 +937,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void PrintForwardingLettergen()
         {
-
-
             DataTable dt = (DataTable)Session["tblover"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetComeCode();
@@ -955,7 +948,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
 
 
@@ -1091,7 +1084,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
 
             if (dt == null || dt.Rows.Count == 0)
@@ -1250,7 +1243,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
-            string month = this.GetMonthName();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
 
 

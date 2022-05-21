@@ -361,11 +361,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
 
             string comcod = this.GetCompCode();
-            string centrid = this.ddldpt.SelectedValue.ToString();
+            //string centrid = this.ddldpt.SelectedValue.ToString();
             string typrole = this.ddlTypeRole.SelectedValue.ToString();
 
             DataTable dt = (DataTable)ViewState["UserInfoTable"];
             string userid = ((Label)this.gvProLinkInfo.Rows[e.RowIndex].FindControl("userid")).Text.Trim();
+            string centrid = ((Label)this.gvProLinkInfo.Rows[e.RowIndex].FindControl("lblcentrid")).Text.Trim();
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELLEAVEAPP", userid, centrid, typrole, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
@@ -375,13 +376,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ViewState["UserInfoTable"] = dt;
                 gvProLinkInfo_DataBind();
             }
+            BindGrid();
+
 
         }
         protected void lbtnDeleteAll_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["UserInfoTable"];
-            string centrid = this.ddldpt.SelectedValue.ToString();
+            string centrid = this.ddldpt.SelectedValue.ToString() == "000000000000" ? "94%" : this.ddldpt.SelectedValue.ToString();  
             string typrole = this.ddlTypeRole.SelectedValue.ToString();
 
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", centrid, typrole, "", "", "", "", "", "", "", "", "", "", "", "", "");

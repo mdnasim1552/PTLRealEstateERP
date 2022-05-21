@@ -41,7 +41,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.GetEmplist();
                 this.GetLoanType();
                 this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtUptoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                //this.txtUptoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string lnno = this.Request.QueryString["lnno"] ?? "";
 
                 if (lnno.Length > 0)
@@ -175,61 +175,65 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.gvloan.DataBind();
         }
 
+
+
+        private void ComponeEnable()
+        {
+            this.txtCurDate.Enabled = true;
+            this.chkAddIns.Visible = false;
+            this.chkVisible.Visible = true;
+            this.ddlLoantype.Enabled = true;
+            this.txtToamt.Enabled = true;
+            this.txtEmployePayment.Enabled = true;
+            this.txtCompPaid.Enabled = true;
+            this.txtstrdate.Enabled = true;
+            this.ddlMonth.Enabled = true;             
+            this.lbtnGenerate.Enabled = true;
+            this.txtinsamt.Enabled = true;
+        }
+        private void ComponeDisable()
+        {
+            this.txtCurDate.Enabled = false;
+            this.chkAddIns.Visible = true;
+            this.chkVisible.Visible = false;           
+            this.ddlLoantype.Enabled = false;
+            this.txtToamt.Enabled = false;
+            this.txtEmployePayment.Enabled = false;
+            this.txtCompPaid.Enabled = false;
+            this.txtstrdate.Enabled = false;
+            this.ddlMonth.Enabled = false;
+            this.lbtnGenerate.Enabled = false;
+            this.txtinsamt.Enabled = false;
+        }
         private void ShowLoanInfo()
         {
             ViewState.Remove("tblln");
             string comcod = this.GetComeCode();
             string CurDate1 = this.txtCurDate.Text.Trim();
             this.txtToamt.Text = "0";
-            this.txtUptoDate.Text = "0";
+            this.txtUptoDate.Text = "";
 
             
             string lnno = this.Request.QueryString["lnno"] ?? "";
             string mLNNo = "NEWLN";
             if (this.ddlPrevLoanList.Items.Count > 0)
             {
-                this.txtCurDate.Enabled = false;
-                this.chkAddIns.Visible = true;
-                this.chkVisible.Visible = false;
-                mLNNo = this.ddlPrevLoanList.SelectedValue.ToString();
-                this.ddlLoantype.Enabled = false;
-
-               
-                
-                this.txtToamt.Enabled = false;
-                this.txtEmployePayment.Enabled = false;
-                this.txtCompPaid.Enabled = false;
-                this.txtstrdate.Enabled = false;
-                this.ddlMonth.Enabled = false;
-               // this.txtPaidAmt.Enabled = false;
-                //this.txtUptoDate.Enabled = false;
-                this.lbtnGenerate.Enabled = false;
-                this.txtinsamt.Enabled = false;
+                ComponeDisable();
+                mLNNo = this.ddlPrevLoanList.SelectedValue.ToString();               
+            }
+            else
+            {
+                ComponeEnable();
             }
             if (lnno.Length > 0)
             {
-                this.txtCurDate.Enabled = false;
-                this.chkAddIns.Visible = true;
-                this.chkVisible.Visible = false;
-                this.ddlPrevLoanList.Visible = false;
-                mLNNo = lnno.ToString();
-                this.ddlLoantype.Enabled = false;
-                this.ddlEmpList.Enabled = false;
-
-                
-              
-                this.txtToamt.Enabled = false;
-                this.txtEmployePayment.Enabled = false;
-                this.txtCompPaid.Enabled = false;
-                this.txtstrdate.Enabled = false;
-                this.ddlMonth.Enabled = false;
-                //this.txtPaidAmt.Enabled = false;
-                //this.txtUptoDate.Enabled = false;
-                this.lbtnGenerate.Enabled = false;
-                this.txtinsamt.Enabled = false;
-                
+                ComponeDisable();                 
+                mLNNo = lnno.ToString();                
             }
-
+            else
+            {
+                ComponeEnable();
+            }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNINFO", mLNNo, CurDate1,
                           "", "", "", "", "", "", "");
@@ -254,7 +258,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lblCurNo2.Text = ds1.Tables[1].Rows[0]["lnno1"].ToString().Substring(6, 5);
             this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["lndate"]).ToString("dd-MMM-yyyy");
             this.txtPaidAmt.Text = Convert.ToDecimal(ds1.Tables[1].Rows[0]["uptopaid"]).ToString();
-            this.txtUptoDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["uptopaiddate"]).ToString("dd-MMM-yyyy");
+            this.txtUptoDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["uptopaiddate"]).ToString("dd-MMM-yyyy")=="01-Jan-1900"  ?"":Convert.ToDateTime(ds1.Tables[1].Rows[0]["uptopaiddate"]).ToString("dd-MMM-yyyy");
             this.txtToamt.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["lnamt"]).ToString();
 
             this.Data_DataBind();
@@ -496,7 +500,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.GetLNNo();
 
                 string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
-                string txtUptopaid = Convert.ToDateTime(this.txtUptoDate.Text.Trim()).ToString("dd-MMM-yyyy");
+                
+                string txtUptopaid = this.txtUptoDate.Text.Trim().ToString() == "" ? "01-Jan-1900" : Convert.ToDateTime(this.txtUptoDate.Text.Trim()).ToString("dd-MMM-yyyy");
+
                 if (lnnoqu.Length > 0)
                 {
                     lnno = lnnoqu;
@@ -583,7 +589,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             string comcod = this.GetComeCode();
             
-            string ulndat =  this.txtUptoDate.Text.Trim().ToString();
+            string ulndat =  this.txtUptoDate.Text.Trim().ToString()==""?"01-Jan-1900": this.txtUptoDate.Text.Trim().ToString();
 
 
             DataTable dt = (DataTable)ViewState["tblln"];
