@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="UploadDocumentation.aspx.cs" Inherits="RealERPWEB.F_33_Doc.UploadDocumentation" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="UploadDocumentation.aspx.cs" Inherits="RealERPWEB.F_33_Doc.UploadDocumentation" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -141,16 +141,9 @@
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-<<<<<<< HEAD
-                                        <p class="text-right">
-                                            <asp:LinkButton ID="lnk_save" ValidationGroup="group1" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
-                                        </p>
-=======
                                         <p class="text-right">                   
                                             <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                         </p>
-
->>>>>>> 8f1ff188c47f29681a3a39a17646f8d1e84a5fc4
                                     </div>
                                 </div>
                             </div>
@@ -185,24 +178,10 @@
 
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-<<<<<<< HEAD
-
-
-                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click">
-                                                    <i class="fa fa-trash"></i>
-=======
                                                 <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
->>>>>>> 8f1ff188c47f29681a3a39a17646f8d1e84a5fc4
-
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 8f1ff188c47f29681a3a39a17646f8d1e84a5fc4
                                     </Columns>
                                 </asp:GridView>
                             </div>
