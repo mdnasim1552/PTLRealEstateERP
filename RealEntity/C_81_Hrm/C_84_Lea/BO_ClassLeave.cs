@@ -495,6 +495,21 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public prevtLeaveInfo() { }
         }
 
+        [Serializable]
+        public class birthdayDate
+        {
+            public string comcod { get; set; }
+            public string empid { get; set; }
+            public string empname { get; set; }
+            public string bddate { get; set; }
+            public string mobile { get; set; }
+            public string idcard { get; set; }
+            public string email { get; set; }
+            public string desig { get; set; }
+            public string dept { get; set; }
+            public DateTime gdatad { get; set; }
 
+            public birthdayDate() { }
+        }
     }
 }

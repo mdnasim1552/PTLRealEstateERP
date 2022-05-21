@@ -836,7 +836,6 @@ namespace RealERPLIB
         }
 
 
-
         public bool UpdateClientPhoto(string comCode, string empid, byte[] image, byte[] sign)
         {
             try

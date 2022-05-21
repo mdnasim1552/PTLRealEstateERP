@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2939,6 +2939,7 @@
     <Content Include="F_81_Hrm\F_82_App\HRCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRDesigCode.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HREmpEntry.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\ImgUploadNew.aspx" />
     <Content Include="F_81_Hrm\F_82_App\ImgUpload.aspx" />
     <Content Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx" />
     <Content Include="F_81_Hrm\F_82_App\LinkMyHRLeave.aspx" />
@@ -4162,6 +4163,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx.designer.cs">
       <DependentUpon>EmpProfileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\ImgUploadNew.aspx.cs">
+      <DependentUpon>ImgUploadNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\ImgUploadNew.aspx.designer.cs">
+      <DependentUpon>ImgUploadNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
