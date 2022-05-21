@@ -2208,7 +2208,11 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+
+
+
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
+
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
@@ -3019,6 +3023,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptEmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
@@ -3843,12 +3848,16 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+
+  
+
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.designer.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
+
     </Compile>
     <Compile Include="F_21_MKT\MktGenCodeBookLand.aspx.cs">
       <DependentUpon>MktGenCodeBookLand.aspx</DependentUpon>
@@ -4584,6 +4593,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.designer.cs">
       <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx.cs">
+      <DependentUpon>RptMonthWiseTax02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx.designer.cs">
+      <DependentUpon>RptMonthWiseTax02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
