@@ -12,6 +12,7 @@ using System.Web.UI.WebControls;
 using RealERPLIB;
 using CrystalDecisions.CrystalReports.Engine;
 using Microsoft.Reporting.WinForms;
+
 using RealERPRDLC;
 
 namespace RealERPWEB
@@ -838,6 +839,48 @@ namespace RealERPWEB
 
 
 
+
+        protected void birthday_print_click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dddd");
+
+            string curdate = System.DateTime.Now.ToString("yyyy");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            var ds = HRData.GetTransInfo("3101", "SP_REPORT_NOTICE", "BIRTHDAYNOTICE");
+            if (ds == null)
+            {
+                return;
+            }
+
+            DataTable dt = ds.Tables[0];
+
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.birthdayDate>();
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptBirthday", list, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Upcomming Employee Birthday-"+ curdate));
+            Rpt1.SetParameters(new ReportParameter("comName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printDate", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+
+            string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
+
+
+        }
 
 
         protected void gvholidayprint_Click(object sender, EventArgs e)
