@@ -3613,7 +3613,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!foodal.Value)+(Fields!gssal.Value)+(Fields!arsal.Value)+(Fields!oallow.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum((Fields!foodal.Value)+(Fields!gssal.Value)+(Fields!arsal.Value)+(Fields!oallow.Value)), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3637,6 +3637,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4711,7 +4712,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!foodal.Value)+(Fields!gssal.Value)+(Fields!arsal.Value)+(Fields!oallow.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum((Fields!foodal.Value)+(Fields!gssal.Value)+(Fields!arsal.Value)+(Fields!oallow.Value)), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -6809,7 +6810,7 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <Top>0.01667in</Top>
-                <Height>2.76598in</Height>
+                <Height>2.76595in</Height>
                 <Width>5.80052in</Width>
                 <Style>
                   <Border>
@@ -7311,7 +7312,6 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <Top>1.375in</Top>
-                <Left>0in</Left>
                 <Height>0.98333in</Height>
                 <Width>4.40258in</Width>
                 <ZIndex>1</ZIndex>
@@ -7400,7 +7400,6 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox93</rd:DefaultName>
-                <Top>0in</Top>
                 <Height>0.25in</Height>
                 <Width>3.66449in</Width>
                 <ZIndex>1</ZIndex>
