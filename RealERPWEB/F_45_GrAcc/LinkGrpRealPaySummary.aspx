@@ -108,7 +108,7 @@
                                     CssClass="table table-striped table-hover table-bordered grvContentarea" Width="963px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -356,7 +356,7 @@
                                     CssClass="table table-striped table-hover table-bordered grvContentarea">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -690,7 +690,7 @@
                                     OnRowDataBound="gvPayDet_RowDataBound">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -756,7 +756,7 @@
                                     <RowStyle />
                                     <Columns>
 
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNomon" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -1245,7 +1245,7 @@
                                     Width="616px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlpsum" runat="server" Font-Bold="True"
                                                     Style="text-align: right"

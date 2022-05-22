@@ -231,7 +231,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="tf1">While on Leave, Duties will Performed by</label>
-                                    <asp:TextBox ID="txtdutiesnameandDesig" runat="server" placeholder="While on Leave, Duties will Performed by" TextMode="MultiLine" class="form-control"></asp:TextBox>
+                                     <asp:DropDownList ID="ddlDutyEmp" runat="server" 
+                                        CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
+                                    </asp:DropDownList>
+                                    <label for="tf1"> Duties Note </label>
+                                     
+                                    <asp:TextBox ID="txtdutiesnameandDesig" runat="server" placeholder="Duties Note" TextMode="MultiLine" class="form-control"></asp:TextBox>
 
                                 </div>
                                 <div class="form-group d-none">
@@ -263,7 +268,7 @@
                                             CssClass="table-striped table-hover table-bordered">
                                             <RowStyle />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                <asp:TemplateField HeaderText="Sl.">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'></asp:Label>
@@ -391,7 +396,7 @@
                                         ShowFooter="True" OnRowDataBound="gvleaveInfo_RowDataBound">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvSlNo3" runat="server" Font-Bold="True" Height="16px"
                                                         Style="text-align: right"

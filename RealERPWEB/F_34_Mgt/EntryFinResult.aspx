@@ -30,7 +30,7 @@
                 <RowStyle />
                 <Columns>
 
-                    <asp:TemplateField HeaderText="Sl. No.">
+                    <asp:TemplateField HeaderText="Sl.">
                         <FooterTemplate>
                             <asp:LinkButton ID="lbtnTotal" runat="server" Font-Bold="True" Font-Size="12px"
                                 ForeColor="Black" OnClick="lbtnTotal_Click">Total</asp:LinkButton>

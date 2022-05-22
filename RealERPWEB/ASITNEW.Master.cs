@@ -138,33 +138,8 @@ namespace RealERPWEB
                     this.HypOldModules.Visible = false;
                     this.lnkFormLink.Visible = true;
                     this.hypTimeOfleave.Visible = true;
-                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
-                    break;
-                case "3365":
-                    //sidebar nav off for bti general user                    
-                    this.mySidenav.Visible = (userrole == "3" ? false : true);
-                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true); 
-                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true); 
-                    this.hypGroupChat.Visible = false;
-                    this.HypOldModules.Visible = false;                 
-                    this.lnkFormLink.Visible = true;
-                    this.hypTimeOfleave.Visible = true;
-                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
-                    break;
-
-                case "3366":
-                    //sidebar nav off for bti general user                    
-                    this.mySidenav.Visible = (userrole == "3" ? false : true);
-                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
-                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
-                    this.hypGroupChat.Visible = false;
-                    this.HypOldModules.Visible = false;
-                    this.lnkFormLink.Visible = false;
-                    this.hypTimeOfleave.Visible = false;
-                    this.HypLinkReqInterFace.Visible = false;                    
-                    this.lnkFormLink.NavigateUrl = "https://web.facebook.com/lancodevelopments";
-                    break;
-
+                    this.HypLinkReqInterFace.Visible = true; 
+                    break; 
                 case "3338":
                 case "1108":
                 case "1109":
@@ -185,8 +160,45 @@ namespace RealERPWEB
                     this.lnkFormLink.Visible = false;
                     this.hypTimeOfleave.Visible = false;
                     this.hypOnlineAttendance.Visible = false;
+                    this.HypLinkReqInterFace.Visible = false;
+
                     break;
-                    
+                case "3365":
+                    //sidebar nav off for bti general user                    
+                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = true;
+                    this.hypTimeOfleave.Visible = true;
+                    this.HypLinkReqInterFace.Visible = true;
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
+                    break;
+
+                case "3366":
+                    //sidebar nav off for bti general user                    
+                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = false;
+                    this.hypTimeOfleave.Visible = false;
+                    this.HypLinkReqInterFace.Visible = false;
+                    this.lnkFormLink.NavigateUrl = "https://web.facebook.com/lancodevelopments";
+                    break;
+                case "3368": //finlay
+                case "3367": //epic
+                    this.HypLinkApplyLvCommon.Visible = true;
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = false;
+                    this.hypTimeOfleave.Visible = false;
+                    this.hypOnlineAttendance.Visible = false;
+                    this.HypLinkReqInterFace.Visible = false;
+                    break;
+
                 default:
                     this.lnkFormLink.Text = "Forum";
                     this.lnkFormLink.Visible = true;
@@ -194,6 +206,8 @@ namespace RealERPWEB
                     this.hypTimeOfleave.Visible = false;
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd"; 
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkReqInterFace.Visible = false;
+
                     break;
             }
             hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;

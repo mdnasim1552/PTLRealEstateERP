@@ -135,7 +135,7 @@
                                     Width="963px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -383,7 +383,7 @@
                                 Style="text-align: left">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl. No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                                 Style="text-align: right"
@@ -717,7 +717,7 @@
                                     Style="text-align: left" OnRowDataBound="gvPayDet_RowDataBound">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -818,7 +818,7 @@
                                     <RowStyle />
                                     <Columns>
 
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNomon" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -1307,7 +1307,7 @@
                                     Width="616px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlpsum" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -1532,7 +1532,7 @@
                                     Width="616px" OnRowCreated="gvSalPerWise_RowCreated" OnRowDataBound="gvSalPerWise_RowDataBound">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlpsum" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -2060,7 +2060,7 @@
                                     <RowStyle />
                                     <Columns>
 
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNomon" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -2306,7 +2306,7 @@
                                     <RowStyle />
                                     <Columns>
 
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNomonc" runat="server" Font-Bold="True"
                                                     Style="text-align: right"

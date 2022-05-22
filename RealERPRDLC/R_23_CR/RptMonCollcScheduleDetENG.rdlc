@@ -64,7 +64,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>SL. No.</Value>
+                              <Value>Sl.</Value>
                               <Style>
                                 <FontFamily>Cambria</FontFamily>
                                 <FontWeight>Bold</FontWeight>

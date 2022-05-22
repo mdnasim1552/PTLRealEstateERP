@@ -253,7 +253,7 @@
                                                 <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                                                 <Columns>
 
-                                                  <asp:TemplateField HeaderText="Sl. No.">
+                                                  <asp:TemplateField HeaderText="Sl.">
                                                       <FooterTemplate>
                                                           <asp:LinkButton ID="lbtnTotal" runat="server" Font-Bold="True" Font-Size="12px" 
                                                               ForeColor="White" onclick="lbtnTotal_Click">Total</asp:LinkButton>
