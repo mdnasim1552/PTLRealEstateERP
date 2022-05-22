@@ -21,7 +21,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
     {
         ProcessAccess HRData = new ProcessAccess();
         string Upload = "";
-        int size =1024*1024;
+        int size = 1024 * 1024;
         System.IO.Stream image_file = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -59,8 +59,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     string filepath = savelocation;
                     imgFileUpload.PostedFile.SaveAs(savelocation);
                     EmpImg.ImageUrl = "~/Image1/" + Upload;
-                   
-                    
+
+
                     // Session["x"] = "~/Image1/" + Upload;
                     image_file = imgFileUpload.PostedFile.InputStream;
                     size = imgFileUpload.PostedFile.ContentLength;
@@ -69,11 +69,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     //.imgFileUpload.tL
                     // image_file.Close();
                 }
-                catch ( Exception ex)
+                catch (Exception ex)
                 {
 
                 }
-              
+
 
             }
 
@@ -160,7 +160,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //string type = this.Request.QueryString["Type"].ToString().Trim();
             //string Company = this.ddlCompanyAgg.SelectedValue.ToString().Trim();
             //string deptcode = this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2) + "%";
-            string deptcode = (this.ddldepartmentagg.SelectedValue.ToString() == "000000000000")? "94%" : (this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2)+ "%");
+            string deptcode = (this.ddldepartmentagg.SelectedValue.ToString() == "000000000000") ? "94%" : (this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2) + "%");
             // : this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string txtSProject = "%%";// ;// (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
                                       //string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "EmpAllInfo") ? "GETPROJECTNAME" : "GETPROJECTNAMEFOT";
@@ -170,8 +170,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds4.Tables[0];
             this.ddlProjectName.DataBind();
-           // this.GetEmployeeName();
-             this.ddlProjectName_SelectedIndexChanged(null, null);
+            // this.GetEmployeeName();
+            this.ddlProjectName_SelectedIndexChanged(null, null);
             //this.GetEmpName();
         }
 
@@ -186,12 +186,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empcode = this.txtSrcEmployee.Text.Trim();
 
             string comcod = this.GetCompCode();
-            
+
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "94%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             pactcode = (empcode.Length == 0) ? pactcode : "94%";
             empcode = empcode + "%"; // for alwayes search empcode wise 
-             
-            
+
+
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", pactcode, empcode, "", "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
@@ -199,7 +199,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlEmpName.DataBind();
             ViewState["tblemp"] = ds5.Tables[0];
             this.ShowImage();
-            this.GetComASecSelected(); 
+            this.GetComASecSelected();
         }
 
         private void GetComASecSelected()
@@ -249,8 +249,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     image_file = (Stream)Session["i"];
                     size = Convert.ToInt32(Session["s"]);
                     BinaryReader br = new BinaryReader(image_file);
-                   photo = br.ReadBytes(size);
-                   
+                    photo = br.ReadBytes(size);
+
                 }
 
                 //Signature
@@ -382,7 +382,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.EmpSig.ImageUrl = "~/GetImage.aspx?ImgID=HREmpSign";
 
         }
-        
+
         protected void ddldepartmentagg_SelectedIndexChanged(object sender, EventArgs e)
         {
             //this.GetDepartment();

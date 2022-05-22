@@ -1742,9 +1742,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>8.4985in</Top>
-            <Left>1.98219in</Left>
-            <Height>0.17708in</Height>
+            <Top>8.7485in</Top>
+            <Left>2.08304in</Left>
+            <Height>0.14583in</Height>
             <Width>1.65054in</Width>
             <ZIndex>29</ZIndex>
             <Style>
@@ -1780,9 +1780,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>8.4985in</Top>
-            <Left>5.28948in</Left>
-            <Height>0.17708in</Height>
+            <Top>8.7485in</Top>
+            <Left>5.39033in</Left>
+            <Height>0.14583in</Height>
             <Width>1.65054in</Width>
             <ZIndex>30</ZIndex>
             <Style>
@@ -2774,8 +2774,43 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox61">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>THANK YOU FOR YOUR BUSINESS</Value>
+                    <Style>
+                      <FontFamily>times New Roman</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox3</rd:DefaultName>
+            <Top>8.96377in</Top>
+            <Left>3.22509in</Left>
+            <Height>0.17708in</Height>
+            <Width>2.76028in</Width>
+            <ZIndex>42</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>8.67558in</Height>
+        <Height>9.14085in</Height>
         <Style />
       </Body>
       <Width>7.72287in</Width>

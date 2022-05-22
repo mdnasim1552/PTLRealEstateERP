@@ -1824,6 +1824,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     case "3357": // Cube
                     case "3367": // Epic
+                    case "3368": // Finlay
 
                         hlink1.Visible = false;
                         break;

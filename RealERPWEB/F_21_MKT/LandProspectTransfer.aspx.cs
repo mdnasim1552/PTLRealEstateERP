@@ -32,7 +32,6 @@ namespace RealERPWEB.F_21_MKT
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 GetAllSubdata();
-
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();
                 this.ddlEmpid_SelectedIndexChanged(null, null);
@@ -57,14 +56,14 @@ namespace RealERPWEB.F_21_MKT
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
-            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "LANDREFINFODDL", "", "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
 
             ViewState["tblsubddl"] = ds2.Tables[0];
             ViewState["tblstatus"] = ds2.Tables[1];
-            ViewState["tblproject"] = ds2.Tables[2];
-            ViewState["tblcompany"] = ds2.Tables[3];
+            //ViewState["tblproject"] = ds2.Tables[2];
+            //ViewState["tblcompany"] = ds2.Tables[3];
             ds2.Dispose();
         }
         private void GETEMPLOYEEUNDERSUPERVISED()
@@ -72,7 +71,7 @@ namespace RealERPWEB.F_21_MKT
             string comcod = GetComeCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETGENEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["tblempsup"] = ds1.Tables[0];
@@ -141,7 +140,7 @@ namespace RealERPWEB.F_21_MKT
 
             string comcod = this.GetComeCode();
             string empId = this.ddlEmpid.SelectedValue.ToString();
-            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_LIST", null, null, null, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_LPROCUREMENT", "LAND_DETAILS_INFO", null, null, null, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["tblproswork"] = (ds1.Tables[0]);
@@ -222,7 +221,7 @@ namespace RealERPWEB.F_21_MKT
                     string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvProsName")).Text.Trim();
                     string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
 
-                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "TRANSFER_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
+                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "TRANSFER_LAND_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
                    "", "", "", "", "", "", "", "", "", "", "");
                     if (!result)
                     {
