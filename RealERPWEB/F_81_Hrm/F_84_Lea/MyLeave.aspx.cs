@@ -575,7 +575,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             frmdate = Convert.ToDateTime(dt1.Rows[j]["leavday"]).ToString("dd-MMM-yyyy");
                             isHalfday = dt1.Rows[j]["isHalfday"].ToString();
                             ttdays = (dt1.Rows[j]["isHalfday"].ToString() == "True") ? "0.5" : "1.00";
-                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_SKIPPHOLIDAY", trnid, empid, gcod, frmdate, frmdate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays, isHalfday, usrid, "");
+                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_SKIPPHOLIDAY", trnid, empid, gcod, frmdate, frmdate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays, isHalfday, usrid, qtype);
 
                             htmtableboyd += "<tr><td>" + frmdate + "</td><td>(" + ttdays + ") Day</td></tr>";
                         }
