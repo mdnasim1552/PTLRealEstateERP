@@ -378,6 +378,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.GetGrossType();
                 this.EmpSerRule();
                 this.TSandAllow();
+                this.OverTimeFORRate();
                 this.GetEmpBasicData(empid);
                 this.lblvaljoindate.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["joindate"]).ToString("dd-MMM-yyyy");
                 //this.txtPf.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["pfdate"]).ToString("dd-MMM-yyyy");
@@ -444,6 +445,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.txtAcNo1.Text = "";
                 this.txtAcNo2.Text = "";
                 this.lblvaljoindate.Text = "";
+                this.lblforrate.Text = "";
             }
         }
         private void GetEmpBasicData(string empid)
@@ -658,15 +660,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                                 this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(gssal / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()), 0).ToString();
                                 // dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
+
+                                this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ")+"</span>";
+
                                 break;
 
-                            //case "3368":
-
-                            //    double gssal = Convert.ToDouble("0" + this.txtgrossal.Text.Trim());
-
-                            //    this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(gssal / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()), 0).ToString();
-                            //    // dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
-                            //    break;
+                          
 
 
                             case "3347":// Peb Steel
@@ -678,16 +677,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                                 //     : Math.Ceiling(((bsal + dailallow) * 2) / hrate).ToString();
                                 this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0"
                                   : Convert.ToDouble(((bsal + dailallow) * 2) / hrate).ToString("#,##0;(#,##0); ");
+                                this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ") + "</span>";
                                 break;
 
                              case "3368"://Finlay
                              case "3101"://Model
                                 this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(((Convert.ToDouble((ds6.Tables[2].Select("gcod='04001'"))[0]["gval"])* 1.5) / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim())), 0).ToString();
+                                this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ") + "</span>";
                                 break;
 
 
                             default:
                                 this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(((Convert.ToDouble((ds6.Tables[2].Select("gcod='04001'"))[0]["gval"])) / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim())), 0).ToString();
+                                this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ") + "</span>";
                                 break;
                         }
                     }
@@ -895,9 +897,72 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
 
+
+            
         }
 
+        private void OverTimeFORRate()
+        {
+
+            string comcod = this.GetCompCode();
+            DataTable dtsaladd = (DataTable)Session["tblsaladd"];
+            double fhrate, bsal;
+            double devided=Convert.ToDouble("0"+this.txtdevided.Text.Trim());
+
+            if (this.rbtnOverTime.SelectedIndex == 2)
+                {
+                    switch (comcod)
+                    {
+                        case "3336":
+
+                            double gssal = Convert.ToDouble("0" + this.txtgrossal.Text.Trim());
+                            fhrate = Math.Round((gssal / devided), 0);  
+                            this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
+
+                            break;
+
+
+
+
+                        case "3347":// Peb Steel
+                             bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                            double dailallow = Convert.ToDouble((dtsaladd.Select("gcod='04012'"))[0]["gval"]);   
+                            fhrate = Math.Round((((bsal + dailallow) * 2) / devided), 0);
+
+                        this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
+                            break;
+
+                        case "3368"://Finlay
+                        case "3101"://Model
+                         bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                        fhrate = Math.Round(((bsal *1.5) / devided), 0);
+
+                        this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
+                            break;
+
+
+                        default:
+                            bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                            fhrate = Math.Round((bsal / devided), 0);
+                       
+                            this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
+                            break;
+                    }
+                }
+
+
+
+
+
+
+
+        }
+        
+        
+        
         private void FooterCalculation(DataTable dt, string GvName)
+        
+        
         {
             if (dt.Rows.Count == 0)
                 return;
@@ -1145,6 +1210,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Session["tblsaladd"] = dt;
             this.FooterCalculation(dt, "gvSalAdd");
             this.TSandAllow();
+            this.OverTimeFORRate();
         }
         protected void lbtnTSalSub_Click(object sender, EventArgs e)
         {
@@ -1428,6 +1494,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             }
+
+            this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + dhourlyrate.ToString("#,##0;(#,##0); ") + "</span>";
+       
 
             string hourlyrate = (this.rbtnOverTime.SelectedIndex == 2) ? (dhourlyrate).ToString("#,##0.00;(#,##0.00); ") : (this.rbtnOverTime.SelectedIndex == 1) ? Convert.ToDouble("0" + this.txthourlyRate.Text.Trim()).ToString() : "0";
 
@@ -1970,6 +2039,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.FooterCalculation(dtsaladd, "gvSalAdd");
             this.FooterCalculation(dtsalsub, "gvSalSub");
             this.TSandAllow();
+            this.OverTimeFORRate();
+          
 
         }
 
@@ -2047,6 +2118,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
 
+
+            // 
+            if (this.rbtnOverTime.SelectedIndex == 2)
+                this.OverTimeFORRate();
            
 
         }
