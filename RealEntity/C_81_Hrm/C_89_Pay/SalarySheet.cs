@@ -613,15 +613,6 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
         public class SalaryPaySlip
         {
 
-            /*
-            comcod, monthid, date,refno, empid, section, desigid, wd, absday, wld, acat, bsal, hrent, cven,	mallow, arsal,  pickup, fuel, entaint, mcell, incent,oth, pfund, itax, adv, mbill, EMPCONT,FALLDED, loanins, 
-            othded, dallow, teallow, oallow, ohour, thday, hallow, elallow,  lwpday, lwided,  gssal, salpday, gspay, 
-	        absded,  tdeduc, mcallow, mcadj, othallow, othearn, sdedamt,dedday, netpay,bankamt, cashamt,CHEQUEPAY, todecashsal,
-	        totadd,tdeduc,tgrsmon, todecmon,netpayable, redamt,mbillded,stamp,  netsalarypay,grossal1,grossalsub, totaldeduction, idcard, empname, desig, comnam, comadd, refdesc ,aminword, bankacno 
-             genloan, , , , , , ,
-             */
-
-
             public string comcod { get; set; }
             public string monthid { get; set; }
             public DateTime date { get; set; }
@@ -645,6 +636,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double mcell { get; set; }
             public double incent { get; set; }
             public double oth { get; set; }
+            public double ohour { get; set; }
             public double pfund { get; set; }
             public double itax { get; set; }
             public double adv { get; set; }
@@ -656,8 +648,6 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double dallow { get; set; }
             public double teallow { get; set; }
             public double oallow { get; set; }
-
-            public double ohour { get; set; }
             public double thday { get; set; }
             public double hallow { get; set; }
             public double elallow { get; set; }
@@ -712,7 +702,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double foodal { get; set; }
             public double transded { get; set; }
             public DateTime joindate { get; set; }
-
+            public string deptname { get; set; }
 
             public SalaryPaySlip()
             {
