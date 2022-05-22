@@ -832,7 +832,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             DataTable dt = HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
-            ViewState["tweekedn"] = ds3.Tables[1];
+            if (ds3.Tables.Count > 1)
+            {
+                ViewState["tweekedn"] = ds3.Tables[1];
+            }
+           
             this.LoadGrid();
 
         }
