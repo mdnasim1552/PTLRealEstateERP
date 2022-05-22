@@ -387,8 +387,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string lonproidleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnProba")).Text.Trim()).ToString();
                 string lonsepaleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnSepa")).Text.Trim()).ToString();
                 string LOnApprentice = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnApprentice")).Text.Trim()).ToString();
-                
+                string LOnHajj = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnHajjlv")).Text.Trim()).ToString();
 
+                
 
 
                 TblRowIndex = (gvLeaveRule.PageIndex) * gvLeaveRule.PageSize + i;
@@ -403,6 +404,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 dt.Rows[TblRowIndex]["lonproidleave"] = lonproidleave;
                 dt.Rows[TblRowIndex]["lonsepaleave"] = lonsepaleave;
                 dt.Rows[TblRowIndex]["lappreleave"] = LOnApprentice;
+                dt.Rows[TblRowIndex]["lapphajjleave"] = LOnHajj;
 
 
             }
@@ -454,12 +456,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string lappretiship = dt.Rows[i]["lappretiship"].ToString();
                 string lappreleave = dt.Rows[i]["lappreleave"].ToString();
 
+                string lapphajj = dt.Rows[i]["lapphajj"].ToString();
+                string lapphajjleave = dt.Rows[i]["lapphajjleave"].ToString();
+
                 
 
 
 
                 bool result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAV", yearid, empid, ernid, ernleave, csid, csleave, skid, 
-                    skleave, mtid, mtleave, wpid, wpleave, trpid, trpleave, ptid, ptleave, lonproid, lonproidleave, lonsepaid, lonsepaleave, lappretiship, lappreleave);
+                    skleave, mtid, mtleave, wpid, wpleave, trpid, trpleave, ptid, ptleave, lonproid, lonproidleave, lonsepaid, lonsepaleave, lappretiship, lappreleave, lapphajj, lapphajjleave);
                 if (result == false)
                 {
 

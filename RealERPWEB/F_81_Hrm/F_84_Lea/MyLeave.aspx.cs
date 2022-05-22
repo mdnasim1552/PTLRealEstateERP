@@ -76,7 +76,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     GetCalCulateDay();
                 }
 
-
+                GetEmpLoyeeAltDutys();
             }
         }
 
@@ -137,6 +137,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds1.Tables[0];
             this.ddlEmpName.DataBind();
+
+            this.ddlDutyEmp.DataTextField = "empname";
+            this.ddlDutyEmp.DataValueField = "empid";
+            this.ddlDutyEmp.DataSource = ds1.Tables[0];
+            this.ddlDutyEmp.DataBind();
+
+
+
             if (empid != "")
             {
                 this.ddlEmpName.SelectedValue = empid;
@@ -144,6 +152,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
         }
 
+        private void GetEmpLoyeeAltDutys()
+        {
+            
+            string comcod = this.GetComeCode();           
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;             
+            this.ddlDutyEmp.DataTextField = "empname";
+            this.ddlDutyEmp.DataValueField = "empid";
+            this.ddlDutyEmp.DataSource = ds1.Tables[0];
+            this.ddlDutyEmp.DataBind();
+
+             
+        }
+        
         private void GetEmpLoyeeResign()
         {
 
@@ -562,7 +585,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string reason = this.txtLeavLreasons.Text.Trim(); ;
                     string addentime = this.txtaddofenjoytime.Text.Trim();
                     string remarks = this.txtLeavRemarks.Text.Trim();
-                    string dnameadesig = this.txtdutiesnameandDesig.Text.Trim();
+                    string onDutiesEmp = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ?"": this.ddlDutyEmp.SelectedItem.ToString()+", ";
+                    string dnameadesig = onDutiesEmp + this.txtdutiesnameandDesig.Text.Trim();
                     string APRdate = (qtype == "MGT" ? applydat : "");
 
                     bool result = false;
@@ -1373,5 +1397,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlEmpName_SelectedIndexChanged(null, null);
 
         }
+
+         
     }
 }

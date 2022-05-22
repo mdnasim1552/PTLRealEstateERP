@@ -490,7 +490,7 @@
                         Width="399px" OnRowDataBound="gvBankPosition_RowDataBound" CssClass="table-striped  table-hover table-bordered grvContentarea">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl. No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlpsum2" runat="server" Font-Bold="True" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
@@ -622,7 +622,7 @@
                         ShowFooter="True" Width="399px" CssClass="table-striped  table-hover table-bordered grvContentarea">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl. No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlpsum" runat="server" Font-Bold="True" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
@@ -911,7 +911,7 @@
                         ShowFooter="True" Width="399px" CssClass="table-striped  table-hover table-bordered grvContentarea">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl. No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlpsum3" runat="server" Font-Bold="True" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
@@ -1602,7 +1602,7 @@
                         Width="37px" OnRowDataBound="gvHremp_RowDataBound" CssClass="table-striped  table-hover table-bordered grvContentarea">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl. No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlpsum1" runat="server" Font-Bold="True" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>

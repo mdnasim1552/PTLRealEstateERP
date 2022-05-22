@@ -102,7 +102,7 @@
                                 ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="SL. No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
                                                 Style="text-align: right"
@@ -315,7 +315,7 @@
                                 ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="SL. No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvdSlNo" runat="server" Height="16px"
                                                 Style="text-align: right"

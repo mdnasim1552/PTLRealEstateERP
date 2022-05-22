@@ -53,7 +53,7 @@
                     Width="16px" AllowPaging="True" PageSize="20"  CssClass="table table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" 
                                                     style="text-align: right" 
