@@ -881,7 +881,7 @@
                                             <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnDeptSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                         <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlDepartment" OnClick="ddlDepartment_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" TabIndex="2">
+                                            <asp:DropDownList ID="ddlDepartment"  runat="server" CssClass="form-control inputTxt" TabIndex="2">
                                             </asp:DropDownList>
                                             <asp:Label ID="lblDeptDesc" runat="server" CssClass="form-control dataLblview" Height="22" Style="line-height: 1.5" Visible="false"></asp:Label>
                                         </div>

@@ -1306,7 +1306,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             
           
-            var ds = HRData.GetTransInfo("", "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid,curr_date);
+            var ds = HRData.GetTransInfo("3365", "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid,curr_date);
             if (ds == null)
             {
                 return;
