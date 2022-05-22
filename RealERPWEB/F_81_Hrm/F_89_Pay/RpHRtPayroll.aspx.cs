@@ -3948,6 +3948,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
             string month = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM-yyyy");
+            string txtDate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM-yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             DataTable dt = (DataTable)Session["tblpay"];
@@ -4067,6 +4068,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+            else if (comcod == "3368" || comcod=="3101")
+            {
+
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
             }
 
             else
