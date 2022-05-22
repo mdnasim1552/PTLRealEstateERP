@@ -151,7 +151,20 @@ namespace RealERPWEB
                     this.hypTimeOfleave.Visible = true;
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
                     break;
-               
+
+                case "3366":
+                    //sidebar nav off for bti general user                    
+                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = false;
+                    this.hypTimeOfleave.Visible = false;
+                    this.HypLinkReqInterFace.Visible = false;                    
+                    this.lnkFormLink.NavigateUrl = "https://web.facebook.com/lancodevelopments";
+                    break;
+
                 case "3338":
                 case "1108":
                 case "1109":
@@ -188,7 +201,7 @@ namespace RealERPWEB
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";       
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
             this.hypTimeOfleave.NavigateUrl = "~/F_81_Hrm/F_84_Lea/TimeOfLeave?Type=Ind";
-
+            this.HypLinkReqInterFace.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind";            
             // Attendance Request MGT /F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=&frmdate=26-Feb-2022&todate=25-Mar-2022
             this.HypLinkApplyReqCommon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet?Type=MGT&empid=&frmdate=&todate=";
         }
