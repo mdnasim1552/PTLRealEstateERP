@@ -50,17 +50,12 @@
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
-
                                 <div class="form-group">
-
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lCurAppdate" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
                                         <asp:TextBox ID="txtCurAprovDate" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtCurAprovDate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd.MM.yyyy" TargetControlID="txtCurAprovDate"></cc1:CalendarExtender>
-
-
-
                                     </div>
                                     <div class="col-md-6 pading5px">
                                         <asp:Label ID="lcurGatePassNo" runat="server" CssClass="smLbl_to text-left" Text="Gate Pass No."></asp:Label>
@@ -68,16 +63,10 @@
                                         <asp:TextBox ID="txtGatePassNo2" runat="server" CssClass=" smltxtBox60px" Text="0000"></asp:TextBox>
                                         <asp:Label ID="lblgatepmanualno" runat="server" CssClass="smLbl_to text-left" Text="Gate Pass(Manual)"></asp:Label>
                                         <asp:TextBox ID="txtGatemPassNo" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-
-
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" TabIndex="2">Ok</asp:LinkButton>
                                         </div>
-
-
                                     </div>
-
-
                                     <div class="col-md-3 pading5px pull-right">
                                         <asp:Label ID="lblmsg1" runat="server" Visible="false" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>
@@ -95,8 +84,25 @@
                                     </div>
 
                                 </div>
-                                
+                                <panel id="pnlproj" runat="server" visible="false">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblProjectFromList" runat="server" CssClass="lblTxt lblName">From</asp:Label>
+                                            <asp:DropDownList ID="ddlprjlistfrom" runat="server" Style="width: 360px;" CssClass="chzn-select form-control inputTxt" AutoPostBack="true" OnSelectedIndexChanged="ddlprjlistfrom_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">To</asp:Label>
+                                            <asp:DropDownList ID="ddlprjlistto" runat="server" CssClass="chzn-select form-control inputTxt" Style="width: 360px;">
+                                            </asp:DropDownList>
+                                            <asp:LinkButton ID="lbtnPrject" runat="server" CssClass="btn btn-primary" OnClick="lbtnPrject_Click">Ok</asp:LinkButton>
 
+                                        </div>
+                                     
+                                    </div>
+                                </panel>
 
                             </div>
                         </fieldset>
@@ -132,26 +138,16 @@
 
 
                                         <div class="col-md-3 pading5px ">
-
                                             <asp:Label ID="lblSpecification" runat="server" CssClass="smLbl_to" Text="Specification"></asp:Label>
                                             <asp:DropDownList ID="ddlSpecification" runat="server" CssClass=" ddlPage chzn-select" Style="width: 200px;">
                                             </asp:DropDownList>
-
-
                                         </div>
                                         <div class="col-md-1 pading5px">
-
                                             <asp:LinkButton ID="lbtnSelectRes" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnSelectRes_Click" TabIndex="2">Select</asp:LinkButton>
                                             <asp:LinkButton ID="lbtnSelectAll" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnSelectAll_Click" TabIndex="3">Select All</asp:LinkButton>
 
                                         </div>
-
-
-
                                     </div>
-
-
-
                                 </div>
                             </fieldset>
                         </div>
