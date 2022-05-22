@@ -80,6 +80,10 @@
         }
 
     </script>
+    <style>
+
+
+    </style>
     <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -431,9 +435,11 @@
                                                 </div>
                                                 <div class="col-md-6 pading5px">
                                                     <asp:Panel ID="PnlMultiply" runat="server" Visible="false">
-                                                        <div class="col-md-3 pading5px asitCol3">
+                                                        <div class="col-md-4 pading5px asitCol4">
                                                             <asp:Label ID="lbldivided" runat="server" CssClass="lblTxt lblName">Divided</asp:Label>
                                                             <asp:TextBox ID="txtdevided" runat="server" CssClass="inputTxt inputName inpPixedWidth" Text="238"></asp:TextBox>
+
+                                                            <asp:Label ID="lblforrate" runat="server" CssClass="smLbl_to"></asp:Label>
                                                         </div>
                                                     </asp:Panel>
 
