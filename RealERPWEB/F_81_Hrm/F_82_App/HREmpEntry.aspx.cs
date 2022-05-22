@@ -111,6 +111,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             switch (comcod)
             {
                 case "3347": // Peb Steeel
+                case "3368": // Finlay
+                case "3101": // Pinovation
                     this.txtdevided.Text = "208";
                     break;
 
@@ -181,6 +183,28 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddldepartmentagg.DataBind();
             this.GetProjectName();
         }
+
+        private void GetProjectNameOT()
+        {
+            string comcod = this.GetCompCode();
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            int hrcomln = (type == "Aggrement") ? Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyAgg.SelectedValue.ToString() + "'"))[0]["hrcomln"])
+                    : Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";           
+
+            string txtSProject = this.txtSrcDepartment.Text.Trim() + "%";
+           
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAMEFOT", Company, txtSProject, "", "", "", "", "", "", "");
+
+          
+            this.ddlDepartment.DataTextField = "actdesc";
+            this.ddlDepartment.DataValueField = "actcode";
+            this.ddlDepartment.DataSource = ds4.Tables[0];
+            this.ddlDepartment.DataBind();
+
+        }
+       
         private void GetProjectName()
         {
             string comcod = this.GetCompCode();
@@ -655,6 +679,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                                 this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0"
                                   : Convert.ToDouble(((bsal + dailallow) * 2) / hrate).ToString("#,##0;(#,##0); ");
                                 break;
+
+                             case "3368"://Finlay
+                             case "3101"://Model
+                                this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(((Convert.ToDouble((ds6.Tables[2].Select("gcod='04001'"))[0]["gval"])* 1.5) / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim())), 0).ToString();
+                                break;
+
+
                             default:
                                 this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(((Convert.ToDouble((ds6.Tables[2].Select("gcod='04001'"))[0]["gval"])) / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim())), 0).ToString();
                                 break;
@@ -1378,6 +1409,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     break;
 
 
+                case "3368"://Finlay
+                case "3101"://Finlay
+                    bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                    dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? (bsal*1.5) / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
+                    break;
+
+
                 case "3336":
                     dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
                     break;
@@ -1969,10 +2007,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.txtfixedRate.Visible = (this.rbtnOverTime.SelectedIndex == 0);
             this.lblhourlyRate.Visible = (this.rbtnOverTime.SelectedIndex == 1);
             this.txthourlyRate.Visible = (this.rbtnOverTime.SelectedIndex == 1);
-            this.PnlMultiply.Visible = (this.rbtnOverTime.SelectedIndex == 2);
-
-            //this.txtMultiply.Visible = (this.rbtnOverTime.SelectedIndex == 2);
+            this.PnlMultiply.Visible = (this.rbtnOverTime.SelectedIndex == 2);          
             this.txtdevided.Visible = (this.rbtnOverTime.SelectedIndex == 2);
+
             this.lblCeilingRate1.Visible = (this.rbtnOverTime.SelectedIndex == 3);
             this.lblCeilingRate2.Visible = (this.rbtnOverTime.SelectedIndex == 3);
             this.lblCeilingRate3.Visible = (this.rbtnOverTime.SelectedIndex == 3);
@@ -2009,6 +2046,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             }
+
+           
 
         }
 
@@ -2218,17 +2257,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetProjectName();
+            this.GetProjectNameOT();
         }
         protected void imgbtnCompany_Click(object sender, EventArgs e)
         {
             this.GetCompany();
         }
 
-        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
         protected void rbtAgreementType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
