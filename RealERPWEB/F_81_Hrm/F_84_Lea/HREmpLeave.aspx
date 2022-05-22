@@ -340,7 +340,7 @@
                                         <PagerSettings Position="Top" />
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
@@ -470,6 +470,26 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Hajj Leave">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvLOnHajjlv" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lapphajjleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="70px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Paternity <br> Leave">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="70px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Without Pay <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvWPl" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -489,15 +509,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Paternity <br> Leave">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
-                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="70px"></asp:TextBox>
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="right" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
+                                        
                                             <asp:TemplateField HeaderText="Leave On <br> PROBITION">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnSepa" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -517,6 +529,9 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
+
+                                            
+
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />

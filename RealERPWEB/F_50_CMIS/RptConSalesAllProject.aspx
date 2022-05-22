@@ -65,7 +65,7 @@
                             OnRowDataBound="gvMonCollect_RowDataBound" ShowFooter="True" Width="616px" CssClass=" table-striped table-hover table-bordered grvContentarea">
 
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNomon" runat="server" Font-Bold="True"
                                             Style="text-align: right"

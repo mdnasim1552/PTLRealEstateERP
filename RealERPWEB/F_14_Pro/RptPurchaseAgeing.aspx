@@ -140,7 +140,7 @@
                                 OnRowCreated="gvsupstatus_RowCreated">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="SL. No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
                                                 Style="text-align: right"

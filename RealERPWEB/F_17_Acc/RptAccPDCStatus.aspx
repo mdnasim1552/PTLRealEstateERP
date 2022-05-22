@@ -289,7 +289,7 @@
                                     style="text-align: left" onrowdatabound="gvPDCDayWise_RowDataBound">
                                     <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" 
                                                     style="text-align: right" 
@@ -423,7 +423,7 @@
                                     style="text-align: left" onrowdatabound="gvPdcIsuDet_RowDataBound">
                                     <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" 
                                                     style="text-align: right" 
@@ -489,7 +489,7 @@
                                     style="text-align: left">
                                     <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl. No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" 
                                                     style="text-align: right" 

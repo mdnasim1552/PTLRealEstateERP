@@ -115,7 +115,7 @@
                             ShowFooter="True" Width="616px" OnRowDataBound="gvSalAndColl_RowDataBound">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-primary primaryBtn"  OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                     </FooterTemplate>
