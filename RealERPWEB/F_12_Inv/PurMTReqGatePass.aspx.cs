@@ -42,7 +42,11 @@ namespace RealERPWEB.F_12_Inv
                         this.lbtnSelectAll_Click(null, null);
                         this.getpannelHide();
                     }
-                }                
+                }
+                else
+                {
+
+                }               
 
                ((Label)this.Master.FindControl("lblTitle")).Text = "Get Pass";
 
@@ -76,6 +80,53 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
+        private void getProjectInfo()
+        {
+            string comcod = this.GetCompCode();
+            string todate = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "[dbo].[SP_ENTRY_PURCHASE_05]", "GETINVPROJLIST", todate, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+            Session["tblproject"] = ds1.Tables[0];
+            Session["tblreqinfo"] = ds1.Tables[1];
+            this.Load_Project_From_Combo();
+        }
+
+
+        protected void Load_Project_From_Combo()
+        {
+
+            DataTable dt = (DataTable)Session["tblproject"];
+            this.ddlprjlistfrom.DataTextField = "tfdesc";
+            this.ddlprjlistfrom.DataValueField = "tfpactcode";
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "tfpactcode <> '000000000000'";
+            DataTable dt1 = dv1.ToTable();
+
+            this.ddlprjlistfrom.DataSource = dt1;
+            this.ddlprjlistfrom.DataBind();
+            this.ddlprjlistfrom_SelectedIndexChanged(null, null);
+
+        }
+        protected void Load_Project_To_Combo()
+        {
+            string comcod = this.GetCompCode(); 
+
+            DataTable dt = (DataTable)Session["tblproject"];
+
+            string actcode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "ttpactcode not in ('" + actcode + "') and ttpactcode<>'000000000000'";
+            DataTable dt1 = dv1.ToTable();
+
+            this.ddlprjlistto.DataTextField = "ttdesc";
+            this.ddlprjlistto.DataValueField = "ttpactcode";
+            this.ddlprjlistto.DataSource = dt1;
+            this.ddlprjlistto.DataBind();
+        }
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
@@ -250,6 +301,7 @@ namespace RealERPWEB.F_12_Inv
             this.Panel1.Visible = true;
             this.lbtnOk.Text = "New";
             this.Get_Pass_Info();
+            //this.getProjectInfo();
         }
 
 
@@ -1036,5 +1088,14 @@ namespace RealERPWEB.F_12_Inv
             this.PreviousList();
         }
 
+        protected void ddlprjlistfrom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Load_Project_To_Combo();
+        }
+
+        protected void lbtnPrject_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
