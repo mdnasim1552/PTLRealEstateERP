@@ -34,7 +34,7 @@ namespace RealERPWEB.F_12_Inv
 
                 if ((this.Request.QueryString["genno"].ToString().Length > 0))
                 {
-                    this.ImgbtnFindRes_Click(null, null);
+                    this.ImgbtnFindRes_Click();
                     this.lbtnOk_Click(null, null);
 
                     if (this.Request.QueryString["Type"].ToString() == "GpaEdit")
@@ -42,6 +42,8 @@ namespace RealERPWEB.F_12_Inv
                         this.lbtnSelectAll_Click(null, null);
                         this.getpannelHide();
                     }
+                    this.pnlproj.Visible = false;
+                    this.Panel1.Visible = true;
                 }
                 else
                 {
@@ -275,9 +277,12 @@ namespace RealERPWEB.F_12_Inv
                 //this.lbtnPrevAprovList.Visible = true;
                 this.ddlPrevList.Visible = true;
                 this.lblGatePassNo1.Text = "GPN" + DateTime.Today.ToString("MM") + "-";
+                this.txtGatePassNo2.Text = "0000";
+                this.txtGatemPassNo.Text = "";
+
                 this.txtCurAprovDate.Enabled = true;
 
-                this.txtResSearch.Text = "";
+                //this.txtResSearch.Text = "";
                 this.ddlPrevList.Items.Clear();
                 this.ddlResList.Items.Clear();
                 this.ddlResourcelist.Items.Clear();
@@ -287,7 +292,10 @@ namespace RealERPWEB.F_12_Inv
                 this.gvAprovInfo.DataSource = null;
                 this.gvAprovInfo.DataBind();
                 this.Panel1.Visible = false;
+
                 this.lbtnOk.Text = "Ok";
+                this.pnlproj.Visible = false;
+                this.lbtnPrject.Visible = true;
 
                 return;
             }
@@ -297,17 +305,26 @@ namespace RealERPWEB.F_12_Inv
             this.txtGatePassNo.Visible = false;
             this.ImgbtnFinGatePass.Visible = false;
             this.ddlPrevList.Visible = false;
-            this.txtGatePassNo2.ReadOnly = true;
-            this.Panel1.Visible = true;
+            this.txtGatePassNo2.ReadOnly = true;            
             this.lbtnOk.Text = "New";
             this.Get_Pass_Info();
-            //this.getProjectInfo();
+            this.VisibleEntry();
         }
 
 
         private void VisibleEntry()
         {
+            if (this.ddlPrevList.Items.Count > 0)
+            {
+                this.pnlproj.Visible = false;
+                this.Panel1.Visible = true;
 
+            }
+            else
+            {
+                this.pnlproj.Visible = true;
+                this.getProjectInfo();
+            }
             //this.lCurAppdate.Visible = true;
             //this.lcurApprNo.Visible = true ;
             //this.txtCurAprovDate.Visible = true;
@@ -454,12 +471,12 @@ namespace RealERPWEB.F_12_Inv
         }
 
 
-        protected void ImgbtnFindRes_Click(object sender, EventArgs e)
+        protected void ImgbtnFindRes_Click()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
 
-            string SerchText = (this.Request.QueryString["genno"].ToString().Length == 0) ? this.txtResSearch.Text.Trim() + "%" : this.Request.QueryString["genno"].ToString() + "%";
+            string SerchText = (this.Request.QueryString["genno"].ToString().Length == 0) ? "%" : this.Request.QueryString["genno"].ToString() + "%";
             string CurDate1 = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETMTREQLIST", CurDate1,
                           SerchText, "", "", "", "", "", "", "");
@@ -533,8 +550,6 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lbtnSelectRes_Click(object sender, EventArgs e)
         {
-
-
             this.Session_tblAprov_Update();
             DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
             string mReqNo = this.ddlSpecification.SelectedValue.ToString().Substring(0, 14);
@@ -1092,9 +1107,36 @@ namespace RealERPWEB.F_12_Inv
         {
             this.Load_Project_To_Combo();
         }
-
         protected void lbtnPrject_Click(object sender, EventArgs e)
         {
+            this.Get_Pass_Info();
+            this.GetRequisitionInfo();
+            this.Panel1.Visible = true;
+            this.lbtnPrject.Visible = false;
+
+        }
+        protected void GetRequisitionInfo()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string CurDate1 = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
+            string toproj = this.ddlprjlistto.SelectedValue.ToString();
+            string frmproj = this.ddlprjlistfrom.SelectedValue.ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETMTRREQUISITION", CurDate1,frmproj, toproj, "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            if (ds1.Tables[0].Rows.Count == 0)
+                return;
+
+            ViewState["tblsp"] = ds1.Tables[0];
+            ViewState["tblRes"] = ds1.Tables[1];
+            this.ddlResList.DataTextField = "textfield";
+            this.ddlResList.DataValueField = "valuefiled";
+            this.ddlResList.DataSource = ds1.Tables[2];
+            this.ddlResList.DataBind();
+            this.ddlResList_SelectedIndexChanged(null, null);
 
         }
     }
