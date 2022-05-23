@@ -855,7 +855,7 @@ namespace RealERPWEB
             string curdate = System.DateTime.Now.ToString("yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-            var ds = HRData.GetTransInfo("3101", "SP_REPORT_NOTICE", "BIRTHDAYNOTICE");
+            var ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "BIRTHDAYNOTICE");
             if (ds == null)
             {
                 return;

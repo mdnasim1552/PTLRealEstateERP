@@ -136,8 +136,8 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <p class="text-right">                   
-                                            <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
+                                        <p class="text-right">
+                                            <asp:LinkButton ID="lnk_save" ValidationGroup="group1" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                         </p>
                                     </div>
                                 </div>

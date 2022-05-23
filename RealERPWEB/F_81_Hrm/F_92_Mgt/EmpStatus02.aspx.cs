@@ -972,13 +972,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvJoinEmp.DataSource = dt;
                     this.gvJoinEmp.DataBind();
                     Session["Report1"] = gvJoinEmp;
-
-
                     if (dt.Rows.Count > 0)
                     {
 
                         ((Label)this.gvJoinEmp.FooterRow.FindControl("lblgvFsalary")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(gssal)", "")) ? 0.00 : dt.Compute("Sum(gssal)", ""))).ToString("#,##0.00;(#,##0.00); ");
-
                         ((HyperLink)this.gvJoinEmp.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     }
 
@@ -1022,6 +1019,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.grvEmpSep.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.grvEmpSep.DataSource = dt;
                     this.grvEmpSep.DataBind();
+
+                    Session["Report1"] = grvEmpSep;
+                    if (dt.Rows.Count > 0)
+                    {
+
+                        
+                        ((HyperLink)this.grvEmpSep.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    }
+
                     break;
                 case "EmpHold":
                     this.gvEmpHold.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
