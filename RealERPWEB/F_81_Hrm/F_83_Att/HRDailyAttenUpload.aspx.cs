@@ -67,79 +67,79 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.Visibility();
             this.CreateTable();
 
-            if (fileuploadExcel.HasFile)
-            {
-                try
-                {
-                    Session.Remove("XcelData");
-                    //  ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                    string connString = "";
-                    string StrFileName = string.Empty;
-                    if (fileuploadExcel.PostedFile != null && fileuploadExcel.PostedFile.FileName != "")
-                    {
-                        StrFileName =
-                            fileuploadExcel.PostedFile.FileName.Substring(
-                                fileuploadExcel.PostedFile.FileName.LastIndexOf("\\") + 1);
-                        string StrFileType = fileuploadExcel.PostedFile.ContentType;
-                        int IntFileSize = fileuploadExcel.PostedFile.ContentLength;
-                        if (IntFileSize <= 0)
-                        {
-                            //  ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Fail";
-                            // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' file Uploading failed');", true);
-                            return;
-                        }
-                        else
-                        {
-                            string savelocation = Server.MapPath("~") + "\\ExcelFile\\";
-                            string[] filePaths = Directory.GetFiles(savelocation);
-                            foreach (string filePath in filePaths)
-                                File.Delete(filePath);
-                            fileuploadExcel.PostedFile.SaveAs(Server.MapPath("~") + "\\ExcelFile\\" + StrFileName);
-                            //   ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Successfully";
-                        }
-                    }
+            //if (fileuploadExcel.HasFile)
+            //{
+            //    try
+            //    {
+            //        Session.Remove("XcelData");
+            //        //  ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //        string connString = "";
+            //        string StrFileName = string.Empty;
+            //        if (fileuploadExcel.PostedFile != null && fileuploadExcel.PostedFile.FileName != "")
+            //        {
+            //            StrFileName =
+            //                fileuploadExcel.PostedFile.FileName.Substring(
+            //                    fileuploadExcel.PostedFile.FileName.LastIndexOf("\\") + 1);
+            //            string StrFileType = fileuploadExcel.PostedFile.ContentType;
+            //            int IntFileSize = fileuploadExcel.PostedFile.ContentLength;
+            //            if (IntFileSize <= 0)
+            //            {
+            //                //  ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Fail";
+            //                // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' file Uploading failed');", true);
+            //                return;
+            //            }
+            //            else
+            //            {
+            //                string savelocation = Server.MapPath("~") + "\\ExcelFile\\";
+            //                string[] filePaths = Directory.GetFiles(savelocation);
+            //                foreach (string filePath in filePaths)
+            //                    File.Delete(filePath);
+            //                fileuploadExcel.PostedFile.SaveAs(Server.MapPath("~") + "\\ExcelFile\\" + StrFileName);
+            //                //   ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Successfully";
+            //            }
+            //        }
 
-                    string strFileType = Path.GetExtension(fileuploadExcel.FileName).ToLower();
-                    string apppath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath.ToString();
-                    //string path = apppath + "ExcelFile\\" + StrFileName;
-                    string path = Server.MapPath("~") + ("\\ExcelFile\\" + StrFileName);
+            //        string strFileType = Path.GetExtension(fileuploadExcel.FileName).ToLower();
+            //        string apppath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath.ToString();
+            //        //string path = apppath + "ExcelFile\\" + StrFileName;
+            //        string path = Server.MapPath("~") + ("\\ExcelFile\\" + StrFileName);
 
-                    //Connection String to Excel Workbook
-                    if (strFileType.Trim() == ".xls")
-                    {
-                        connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path +
-                                     ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
-                    }
-                    else if (strFileType.Trim() == ".xlsx")
-                    {
-                        connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path +
-                                     ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
-                    }
+            //        //Connection String to Excel Workbook
+            //        if (strFileType.Trim() == ".xls")
+            //        {
+            //            connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path +
+            //                         ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+            //        }
+            //        else if (strFileType.Trim() == ".xlsx")
+            //        {
+            //            connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path +
+            //                         ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+            //        }
 
-                    // string query = "SELECT [No] FROM [Sheet1$]";
-                    string query =
-                       "SELECT * FROM [Sheet1$]";
-                    OleDbConnection conn = new OleDbConnection(connString);
-                    if (conn.State == ConnectionState.Closed)
-                        conn.Open();
-                    OleDbCommand cmd = new OleDbCommand(query, conn);
-                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
+            //        // string query = "SELECT [No] FROM [Sheet1$]";
+            //        string query =
+            //           "SELECT * FROM [Sheet1$]";
+            //        OleDbConnection conn = new OleDbConnection(connString);
+            //        if (conn.State == ConnectionState.Closed)
+            //            conn.Open();
+            //        OleDbCommand cmd = new OleDbCommand(query, conn);
+            //        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            //        DataSet ds = new DataSet();
+            //        da.Fill(ds);
 
-                    Session["XcelData"] = ds.Tables[0];
-                    // this.DataInsert();
-                    da.Dispose();
-                    conn.Close();
-                    conn.Dispose();
-                    //this.GetExelData();
-                }
-                catch (Exception)
-                {
+            //        Session["XcelData"] = ds.Tables[0];
+            //        // this.DataInsert();
+            //        da.Dispose();
+            //        conn.Close();
+            //        conn.Dispose();
+            //        //this.GetExelData();
+            //    }
+            //    catch (Exception)
+            //    {
 
-                    throw;
-                }
-            }
+            //        throw;
+            //    }
+            //}
 
 
 
@@ -149,16 +149,29 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void Visibility()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "3101" || comcod == "3347")
+
+            switch (comcod)
             {
-                this.panelexcel.Visible = true;
-                this.Label2.Visible = false;
-                this.CmdUpload.Visible = false;
-                this.File1.Visible = false;
+
+               
+                case "3347":// Peb steel
+                    this.panelexcel.Visible = true;
+                    this.Label2.Visible = false;
+                    this.CmdUpload.Visible = false;
+                    this.File1.Visible = false;
+                    break;
 
 
+                default:
+                    this.panelexcel.Visible = false;
+                    this.Label2.Visible = true;
+                    this.CmdUpload.Visible = true;
+                    this.File1.Visible = true;
+                    break;
 
-            }
+
+            }    
+           
 
 
         }
@@ -205,7 +218,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             switch (comcod)
             {
 
-                case "4101":
+                case "3101":
+                case "3368":
                     this.UploadData();
                     break;
 
@@ -547,6 +561,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             try
             {
                 string StrFileName = string.Empty;
+
+                //string testfilename = File1.PostedFile.FileName;
+                //string strFileName = Path.GetFileName(testfilename);
 
                 if (File1.PostedFile != null)
                 {

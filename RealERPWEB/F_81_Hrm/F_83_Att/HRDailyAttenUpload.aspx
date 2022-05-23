@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="HRDailyAttenUpload.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HRDailyAttenUpload" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="HRDailyAttenUpload.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HRDailyAttenUpload" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
@@ -43,7 +43,7 @@
         });
         function pageLoaded() {
 
-            $("input, select").bind("keydown", function (event) {
+          <%--  $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
@@ -51,7 +51,7 @@
 
 
             gbattn.Scrollable();
-            $('.chzn-select').chosen({ search_contains: true });
+            $('.chzn-select').chosen({ search_contains: true });--%>
 
 
 
@@ -59,7 +59,7 @@
 
     </script>
 
-    <div class="RealProgressbar">
+ <%--   <div class="RealProgressbar">
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
             <ProgressTemplate>
                 <div id="loader">
@@ -75,8 +75,10 @@
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-    </div>
+    </div>--%>
 
+    <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>--%>
     <div class="card mt-5">
         <div class="card-header">
             <div class="row">
@@ -88,27 +90,21 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-lg-3">
-                    <asp:Panel ID="panelexcel" runat="server" Visible="false">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <asp:Panel ID="pnlxcel" runat="server">
-                                    <asp:Label ID="lblExel" runat="server" Text="Excel"></asp:Label>
-                                    <div class="uploadFile">
-                                        <asp:FileUpload ID="fileuploadExcel" runat="server" onchange="submitform();" />
-                                    </div>
-
-                                </asp:Panel>
-                            </div>
-                            <div class="col-lg-5">
-                                <asp:LinkButton ID="btnexcuplosd" runat="server" OnClick="btnexcuplosd_Click"
-                                    CssClass=" btn btn-danger btn-sm mt20" Text="Upload Excel"></asp:LinkButton>
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <asp:Label ID="Label2" runat="server" Text="Upload File "></asp:Label>
+                            <input id="File1" runat="server"  name="File1" type="file" class="form-control" />
                         </div>
-                    </asp:Panel>
+                        <div class="col-lg-2">
+                            <asp:LinkButton ID="CmdUpload" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="UploadFile" TabIndex="4">UpLoad</asp:LinkButton>
+                        </div>
+
+                    </div>
                 </div>
+
+
+               
                 <div class="col-lg-1">
                     <div class="form-group">
                         <asp:Label ID="lblPage" runat="server" Text="Page Size"></asp:Label>
@@ -129,9 +125,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2">
-                    <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="New Machine" CssClass="btn btn-outline-default btn-sm mt20" />
-                </div>
+               
                 <div class="col-lg-1">
                     <div class="form-group">
                         <asp:LinkButton ID="lbtnShowData" runat="server" CssClass=" margin5px btn btn-primary btn-sm mt20" OnClick="lbtnShowData_Click" TabIndex="5">Show</asp:LinkButton>
@@ -139,15 +133,30 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        <asp:Label ID="Label2" runat="server" Text="Upload File "></asp:Label>
-                        <input id="File1" runat="server" name="File1" type="file" class="form-control form-control-sm" />
+                 <div class="col-lg-3">
+                    <asp:Panel ID="panelexcel" runat="server" Visible="false">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <asp:Panel ID="pnlxcel" runat="server">
+                                    <asp:Label ID="lblExel" runat="server" Text="Excel"></asp:Label>
+                                    <div class="uploadFile">
+                                        <asp:FileUpload ID="fileuploadExcel" runat="server" onchange="submitform();" />
+                                    </div>
 
-                        <asp:LinkButton ID="CmdUpload" runat="server" CssClass="btn btn-primary btn-sm" OnClick="UploadFile" TabIndex="4">UpLoad</asp:LinkButton>
-
-                    </div>
+                                </asp:Panel>
+                            </div>
+                            <div class="col-lg-5">
+                                <asp:LinkButton ID="btnexcuplosd" runat="server" OnClick="btnexcuplosd_Click"
+                                    CssClass=" btn btn-danger btn-sm mt20" Text="Upload Excel"></asp:LinkButton>
+                            </div>
+                        </div>
+                    </asp:Panel>
                 </div>
+
+                 <div class="col-lg-2">
+                    <asp:CheckBox ID="chktype" runat="server" Visible="false" TabIndex="6" Text="New Machine" CssClass="btn btn-outline-default btn-sm mt20" />
+                </div>
+
             </div>
         </div>
         <div class="card-body">
@@ -356,6 +365,8 @@
 
         </div>
     </div>
+           <%-- </ContentTemplate>
+          </asp:UpdatePanel>--%>
 
     <%--                <fieldset class="scheduler-border fieldset_A">
 
