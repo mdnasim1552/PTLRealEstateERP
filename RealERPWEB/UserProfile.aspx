@@ -910,8 +910,9 @@
                         </div>
 
                         <div class="col-6">
-                            <div class="card " style="min-height: 345px">
+                            <div class="card " style="max-height: 550px; overflow-y: scroll">
                                 <div class="card-header">
+                                            <span class="mr-auto">Upcoming BirthDay </span>
                                  
                                                  <asp:LinkButton ID="birthday" runat="server" onclick="birthday_print_click"
                                                 CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
