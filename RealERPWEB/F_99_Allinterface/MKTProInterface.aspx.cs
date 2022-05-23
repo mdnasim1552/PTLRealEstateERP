@@ -43,7 +43,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = Convert.ToDateTime(date).AddYears(-2).ToString("dd-MMM-yyyy");
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtmrfno.Attributes.Add("placeholder", ReadCookie());
 

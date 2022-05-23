@@ -140,7 +140,7 @@ namespace RealERPWEB.F_21_MKT
 
             string comcod = this.GetComeCode();
             string empId = this.ddlEmpid.SelectedValue.ToString();
-            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_LPROCUREMENT", "LAND_DETAILS_INFO", null, null, null, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_LPROCUREMENT", "LAND_DETAILS_INFO", empId, "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["tblproswork"] = (ds1.Tables[0]);
@@ -218,7 +218,7 @@ namespace RealERPWEB.F_21_MKT
                 {
                     string fteamcode = ((Label)gvProspectWorking.Rows[i].FindControl("lblteamcode")).Text.Trim();
                     string proscod = ((Label)gvProspectWorking.Rows[i].FindControl("lblproscod")).Text.Trim();
-                    string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvProsName")).Text.Trim();
+                    string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvLandDesc")).Text.Trim();
                     string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
 
                     result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "TRANSFER_LAND_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
