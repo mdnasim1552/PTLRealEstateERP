@@ -240,7 +240,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                         string url = "";
 
-                        if (dr["empimage"] != null && dr["empimage"].ToString() != "")
+     
+                        if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
+                        {
+                            url = "../../"+dr["imgurl"].ToString().Remove(0,2);
+                        }
+                        else if(dr["empimage"] != null && dr["empimage"].ToString() != "")
                         {
 
                             byte[] biempimg = (byte[])dr["empimage"];
@@ -250,7 +255,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         {
                             url = "Content/Theme/images/avatars/human_avatar.png";
                         }
-
 
 
                         if (j != 0)

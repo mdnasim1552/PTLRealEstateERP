@@ -311,6 +311,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string deptName = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["deptanme"].ToString();
                 string empdesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["desig"].ToString();
                 string empname = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empname"].ToString();
+                string denameadesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["denameadesig"].ToString();
                 this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
@@ -329,6 +330,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 this.spEmpInfo.InnerText = "Employee ID: " + idcard + "," + "Employee Name : " + empname + "," + "Designation: " + empdesig + "," +
                     "Department Name : " + deptName;
+                this.lblDutesInfo.Text = denameadesig;
                 //end head data
 
                 this.ShowEmppLeave(ds.Tables[0].Rows[0]["empid"].ToString());

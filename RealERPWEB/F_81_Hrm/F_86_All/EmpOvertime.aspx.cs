@@ -3208,6 +3208,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         protected void lbtnDedorOtherEernExcelAdjust_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetComeCode();
+
             bool isAllValid = true;
             DataTable dt = (DataTable)Session["ExcelData"];
             int rowCount = 0;
@@ -3221,14 +3223,21 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             switch (Type)
             {
                 case "OtherDeduction":
+
+                    //DataView dv = dt.DefaultView;
+                    //dv.RowFilter = ("Card <> ''");
+                    //dt = dv.ToTable();
+
+
+
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string Card = dt.Rows[i]["Card"].ToString();
                         // string Adv_Deduction = dt.Rows[i]["Adv_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Adv_Deduction"].ToString();
                         string Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
                         string Other_Deduction = dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString();
-                        string Transport = dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Transport"].ToString();
-                        string Penalty = dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Penalty"].ToString();
+                        string Transport ="0.00";//dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Transport"].ToString();
+                        string Penalty = dt.Rows[i]["Penalty"].ToString().Length == 0 ? "0" : dt.Rows[i]["Penalty"].ToString();
 
                         if (Card.Length == 0)
                         {
@@ -3269,13 +3278,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             {
 
                                 double Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
-                                double transded = Convert.ToDouble("0" + (rows[0]["Transport"]));
+                              //  double transded = 0.00;// Convert.ToDouble("0" + (rows[0]["Transport"]));
                                 double otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
                                 double Penalty = Convert.ToDouble("0" + (rows[0]["Penalty"]));
-                                double ttlamt = Mobile_Bill + transded + otherded+ Penalty;
+                                double ttlamt = Mobile_Bill + otherded+ Penalty;
 
                                 dt1.Rows[i]["mbillded"] = Mobile_Bill;
-                                dt1.Rows[i]["transded"] = transded;
+                               // dt1.Rows[i]["transded"] = transded;
                                 dt1.Rows[i]["otherded"] = otherded;
                                 dt1.Rows[i]["fine"] = Penalty;
                                 dt1.Rows[i]["toamt"] = ttlamt;
@@ -3295,16 +3304,49 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        string Card = dt.Rows[i]["Card"].ToString();
-                        string Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
-                        string Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
-                        string Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0" : dt.Rows[i]["Project_Visit"].ToString();
 
-                        string Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();
-                        string Fooding = dt.Rows[i]["Fooding"].ToString().Length == 0 ? "0" : dt.Rows[i]["Fooding"].ToString();
-                        string Refund = dt.Rows[i]["Fooding"].ToString().Length == 0 ? "0" : dt.Rows[i]["Refund"].ToString();
-                        string Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();
-                        string Dress_Bill = dt.Rows[i]["Dress_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Dress_Bill"].ToString();
+                        string Earned_Leave = "0.00";
+                        string Arear_Salary = "0.00";
+                        string Project_Visit = "0.00";
+                        string Car_Allow = "0.00";
+                        string Fooding = "0.00";
+                        string Refund = "0.00";
+                        string Others = "0.00";
+                        string Dress_Bill = "0.00";
+
+                        switch (comcod)
+                        {
+                            case "3365":
+
+                                 Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
+                                 Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
+                                 Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0" : dt.Rows[i]["Project_Visit"].ToString();
+                                 Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();                                 
+                                 Refund = dt.Rows[i]["Refund"].ToString().Length == 0 ? "0" : dt.Rows[i]["Refund"].ToString();
+                                 Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();                               
+
+                                break;
+
+                            default:
+                                 Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
+                                 Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
+                                 Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0" : dt.Rows[i]["Project_Visit"].ToString();
+                                 Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();
+                                 Fooding = dt.Rows[i]["Fooding"].ToString().Length == 0 ? "0" : dt.Rows[i]["Fooding"].ToString();
+                                 Refund = dt.Rows[i]["Refund"].ToString().Length == 0 ? "0" : dt.Rows[i]["Refund"].ToString();
+                                 Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();
+                                 Dress_Bill = dt.Rows[i]["Dress_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Dress_Bill"].ToString();
+                                break;
+                        }
+
+
+
+
+                        string Card = dt.Rows[i]["Card"].ToString();
+                      
+
+
+
                         if (Card.Length == 0)
                         {
                             dt.Rows.RemoveAt(i);
@@ -3360,15 +3402,43 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                             if (rows.Length > 0)
                             {
-                                double Earned_Leave = Convert.ToDouble("0" + rows[0]["Earned_Leave"]);
-                                double Arear_Salary = Convert.ToDouble("0" + rows[0]["Arear_Salary"]);
-                                double Project_Visit = Convert.ToDouble("0" + rows[0]["Project_Visit"]);
-                              
-                                double Car_Allow = Convert.ToDouble("0" + rows[0]["Car_Allow"]);
-                                double Fooding = Convert.ToDouble("0" + rows[0]["Fooding"]);
-                                double Others = Convert.ToDouble("0" + rows[0]["Others"]);
-                                double Refund = Convert.ToDouble("0" + rows[0]["Refund"]);
-                                double Dress_Bill = Convert.ToDouble("0" + rows[0]["Dress_Bill"]);
+                                double Earned_Leave = 0.00;
+                                double Arear_Salary = 0.00;
+                                double Project_Visit = 0.00;
+                                double Car_Allow = 0.00;
+                                double Fooding = 0.00;
+                                double Others = 0.00;
+                                double Refund = 0.00;
+                                double Dress_Bill = 0.00;
+
+
+                                switch (comcod)
+                                {
+                                    case "3365":
+
+                                         Earned_Leave = Convert.ToDouble("0" + rows[0]["Earned_Leave"]);
+                                         Arear_Salary = Convert.ToDouble("0" + rows[0]["Arear_Salary"]);
+                                         Project_Visit = Convert.ToDouble("0" + rows[0]["Project_Visit"]);
+
+                                         Car_Allow = Convert.ToDouble("0" + rows[0]["Car_Allow"]);                                       
+                                         Others = Convert.ToDouble("0" + rows[0]["Others"]);
+                                         Refund = Convert.ToDouble("0" + rows[0]["Refund"]);                                      
+
+                                        break;
+
+                                    default:
+                                         Earned_Leave = Convert.ToDouble("0" + rows[0]["Earned_Leave"]);
+                                         Arear_Salary = Convert.ToDouble("0" + rows[0]["Arear_Salary"]);
+                                         Project_Visit = Convert.ToDouble("0" + rows[0]["Project_Visit"]);
+                                         Car_Allow = Convert.ToDouble("0" + rows[0]["Car_Allow"]);
+                                         Fooding = Convert.ToDouble("0" + rows[0]["Fooding"]);
+                                         Others = Convert.ToDouble("0" + rows[0]["Others"]);
+                                         Refund = Convert.ToDouble("0" + rows[0]["Refund"]);
+                                         Dress_Bill = Convert.ToDouble("0" + rows[0]["Dress_Bill"]);
+                                        break;
+                                }
+
+
 
 
                                 dt1.Rows[i]["tptallow"] = Earned_Leave;

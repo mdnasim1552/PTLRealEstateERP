@@ -114,7 +114,7 @@
                                 <div class="alert-icon">
                                     <span class="fa fa-bullhorn"></span>
                                 </div>
-                                The Department: <b><span id="dptNameset" runat="server"></span> </b> Approval user  did not set.
+                                The Department: <b><span id="dptNameset" runat="server"></span></b>Approval user  did not set.
                                 <br />
                                 Please Contact you HR Department 
                             </div>
@@ -196,7 +196,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-9">
-                                        <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" 
+                                        <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False"
                                             CssClass="table-striped table-hover table-bordered" OnRowDataBound="gvLvReq_RowDataBound"
                                             ShowFooter="True">
                                             <RowStyle />
@@ -241,12 +241,12 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="gcode" Visible="false" >
+                                                <asp:TemplateField HeaderText="gcode" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvgcod" runat="server" Visible="False"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
                                                             Width="49px"></asp:Label>
-                                                         <asp:TextBox ID="lblgvhrdesc" runat="server"
+                                                        <asp:TextBox ID="lblgvhrdesc" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
                                                             Width="49px"></asp:TextBox>
                                                     </ItemTemplate>
@@ -317,7 +317,7 @@
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-                                            <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
 
                                                     </FooterTemplate>
 
@@ -345,7 +345,7 @@
                                                             Format="dd-MMM-yyyy" TargetControlID="txtgvlstdate"></cc1:CalendarExtender>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved</asp:LinkButton>
+                                                        <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved</asp:LinkButton>
 
 
                                                     </FooterTemplate>
@@ -363,7 +363,6 @@
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-
                                                     </FooterTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
@@ -385,11 +384,13 @@
 
 
                                             </Columns>
-                                            
+
                                             <EditRowStyle />
-                                            <AlternatingRowStyle />                                           
+                                            <AlternatingRowStyle />
                                         </asp:GridView>
                                     </div>
+
+
                                     <div class="col-3">
                                         <p class="m-0 badge text-white bg-primary">Current Leave Status</p>
                                         <table class="table-striped table-hover table-bordered text-center">
@@ -423,10 +424,17 @@
 
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="card-body">
+                                             
+                                            <asp:Label ID="lblDutesInfo" CssClass="d-block text-info" Font-Bold="true" runat="server"></asp:Label>
+
+                                    </div>
+                                </div>
                             </div>
                             <header class="card-header">Leave Status</header>
                             <div class="card-body">
-                                <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" 
+                                <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false"
                                     CssClass="table-striped table-hover table-bordered text-center">
                                     <RowStyle />
                                     <Columns>
@@ -537,10 +545,10 @@
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    
+
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-                                    
+
                                 </asp:GridView>
                             </div>
 
