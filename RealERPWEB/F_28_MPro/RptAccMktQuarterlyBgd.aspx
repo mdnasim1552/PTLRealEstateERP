@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptAccMktQuarterlyBgd.aspx.cs" Inherits="RealERPWEB.F_28_MPro.RptAccMktQuarterlyBgd" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="../../Scripts/gridviewScrollHaVertworow.min.js"></script>
     <script type="text/javascript" language="javascript">
@@ -24,7 +23,7 @@
                     freezeColumnCssClass: "GridViewScrollItemFreeze",
                     freezeFooterCssClass: "GridViewScrollFooterFreeze",
                     freezeHeaderRowCount: 2,
-                    freezeColumnCount: 12,
+                    freezeColumnCount: 10,
 
                 });
                 gridViewScroll.enhance();
@@ -128,11 +127,11 @@
                 </div>
                 <div class="card-body" style="min-height: 350px;">
                     <div class="table-responsive">
-                        <asp:GridView ID="gvQuartBgd" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnPageIndexChanging="dgv3_PageIndexChanging" ShowFooter="True"
-                            CssClass="table-striped table-bordered grvContentarea" OnRowCreated="gvQuartBgd_RowCreated" OnRowDataBound="gvQuartBgd_RowDataBound">
+                        <asp:GridView ID="gvQuartBgd" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                            OnRowCreated="gvQuartBgd_RowCreated" OnRowDataBound="gvQuartBgd_RowDataBound" ShowFooter="True">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="SL.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblserialnoid0" runat="server" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -140,54 +139,61 @@
                                     <ItemStyle Font-Size="12px" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Project Code" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvlblActCode" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
-                                            Width="120px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle Width="80px" />
-                                </asp:TemplateField>
-
                                 <asp:TemplateField FooterStyle-HorizontalAlign="Right"
                                     HeaderText="Project">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblActDesc" runat="server" Font-Size="12px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>' Width="250px"></asp:Label>
+                                        <asp:Label ID="gvlblActCode" runat="server" Visible="false"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
+                                            Width="120px"></asp:Label>
                                     </ItemTemplate>
-                                    <FooterStyle HorizontalAlign="Center" />
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFTxt" runat="server" Font-Bold="true" Text="Total :"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="ATL" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblATLQ1" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq1")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq1")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFATLQ1" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="BTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblBTLQ1" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq1")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq1")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFBTLQ1" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="TTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTTLQ1" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq1")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq1")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFTTLQ1" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Total Q1" ItemStyle-HorizontalAlign="Right">
+                                <asp:TemplateField HeaderText="Q1" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTotQ1" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq1")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq1")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -195,32 +201,43 @@
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblATLQ2" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq2")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq2")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFATLQ2" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="BTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblBTLQ2" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq2")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq2")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFBTLQ2" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="TTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTTLQ2" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq2")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq2")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFTTLQ2" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Total Q2" ItemStyle-HorizontalAlign="Right">
+                                <asp:TemplateField HeaderText="Q2" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTotQ2" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq2")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq2")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -228,32 +245,43 @@
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblATLQ3" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq3")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq3")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFATLQ3" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="BTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblBTLQ3" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq3")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq3")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFBTLQ3" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="TTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTTLQ3" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq3")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq3")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFTTLQ3" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Total Q3" ItemStyle-HorizontalAlign="Right">
+                                <asp:TemplateField HeaderText="Q3" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTotQ3" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq3")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq3")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -261,32 +289,43 @@
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblATLQ4" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq4")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "atlq4")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFATLQ4" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="BTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblBTLQ4" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq4")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "btlq4")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFBTLQ4" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="TTL" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTTLQ4" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq4")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlq4")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="gvlblFTTLQ4" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                            Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Total Q4" ItemStyle-HorizontalAlign="Right">
+                                <asp:TemplateField HeaderText="Q4" ItemStyle-HorizontalAlign="Right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvlblTotQ4" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq4")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totq4")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
