@@ -507,7 +507,7 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string email { get; set; }
             public string desig { get; set; }
             public string dept { get; set; }
-            public DateTime gdatad { get; set; }
+            public string gdatad { get; set; }
 
             public birthdayDate() { }
         }

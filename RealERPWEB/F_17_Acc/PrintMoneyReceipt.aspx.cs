@@ -70,7 +70,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3339":
-                //case "3101":
+                case "3101":
                     mrprint = "MRPrint5";
                     break;
 
@@ -90,7 +90,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 //Finlay
-                case "3101":
+                //case "3101":
                 case "3368":
                     mrprint = "MRPrintFinlay";
                         break;

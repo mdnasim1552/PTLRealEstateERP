@@ -99,6 +99,39 @@ namespace RealERPWEB.F_28_MPro
             this.gvQuartBgd.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvQuartBgd.DataSource = tblt03;
             this.gvQuartBgd.DataBind();
+            this.FooterCalculation();
+        }
+
+        private void FooterCalculation()
+        {
+            DataTable dt = (DataTable)Session["AccTbl02"];
+            if(dt.Rows.Count>0)
+            {
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFATLQ1")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(atlq1)","")) ?
+                    0.00 : dt.Compute("Sum(atlq1)","")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFBTLQ1")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(btlq1)", "")) ?
+                    0.00 : dt.Compute("Sum(btlq1)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ1")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq1)", "")) ?
+                    0.00 : dt.Compute("Sum(ttlq1)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFATLQ2")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(atlq2)", "")) ?
+                    0.00 : dt.Compute("Sum(atlq2)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFBTLQ2")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(btlq2)", "")) ?
+                    0.00 : dt.Compute("Sum(btlq2)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ2")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq2)", "")) ?
+                    0.00 : dt.Compute("Sum(ttlq2)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFATLQ3")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(atlq3)", "")) ?
+                    0.00 : dt.Compute("Sum(atlq3)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFBTLQ3")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(btlq3)", "")) ?
+                    0.00 : dt.Compute("Sum(btlq3)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ3")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq3)", "")) ?
+                    0.00 : dt.Compute("Sum(ttlq3)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFATLQ4")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(atlq4)", "")) ?
+                    0.00 : dt.Compute("Sum(atlq4)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFBTLQ4")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(btlq4)", "")) ?
+                    0.00 : dt.Compute("Sum(btlq4)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ4")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq4)", "")) ?
+                    0.00 : dt.Compute("Sum(ttlq4)", "")).ToString("#,##0;(#,##0); ");
+            }
         }
 
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,22 +151,22 @@ namespace RealERPWEB.F_28_MPro
             {
                 GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
 
-                TableCell cell01 = new TableCell();
-                cell01.Text = "Sl.No.";
-                cell01.HorizontalAlign = HorizontalAlign.Center;
-                cell01.RowSpan = 2;
-                gvrow.Cells.Add(cell01);
+                //TableCell cell01 = new TableCell();
+                //cell01.Text = "SL.";
+                //cell01.HorizontalAlign = HorizontalAlign.Center;
+                //cell01.RowSpan = 2;
+                //gvrow.Cells.Add(cell01);
 
-                TableCell cell012 = new TableCell();
-                cell012.Text = "Project";
-                cell012.HorizontalAlign = HorizontalAlign.Center;
-                cell012.RowSpan = 2;
-                gvrow.Cells.Add(cell012);
+                //TableCell cell012 = new TableCell();
+                //cell012.Text = "Project";
+                //cell012.HorizontalAlign = HorizontalAlign.Center;
+                //cell012.RowSpan = 2;
+                //gvrow.Cells.Add(cell012);
 
                 TableCell cell02 = new TableCell();
                 cell02.Text = "Q1";
                 cell02.HorizontalAlign = HorizontalAlign.Center;
-                cell02.ColumnSpan = 4;
+                cell02.ColumnSpan = 6;
                 gvrow.Cells.Add(cell02);
 
                 TableCell cell03 = new TableCell();
@@ -160,13 +193,12 @@ namespace RealERPWEB.F_28_MPro
 
         protected void gvQuartBgd_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                e.Row.Cells[0].Visible = false;
-                e.Row.Cells[1].Visible = false;
-                e.Row.Cells[2].Visible = false;
+            //if (e.Row.RowType == DataControlRowType.Header)
+            //{
+            //    e.Row.Cells[0].Visible = false;
+            //    e.Row.Cells[1].Visible = false;
 
-            }
+            //}
         }
     }
 }

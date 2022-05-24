@@ -38,16 +38,22 @@ namespace RealERPWEB.F_28_MPro
                 this.GetYearMonth();
                 this.txtCurDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtbgddate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.CommonButton();
             }
         }
 
-     
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+        }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkUpdate_Click);
         }
-    
+
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -99,6 +105,8 @@ namespace RealERPWEB.F_28_MPro
             this.txtCurDate.Enabled = true;
             this.MultiView1.ActiveViewIndex = -1;
             this.ddlyearmon.Enabled = true;
+            this.CpyCHeck.Checked = false;
+            this.pnlCopy.Visible = false;
 
         }
         private void GetBudgetInfo()
@@ -144,15 +152,21 @@ namespace RealERPWEB.F_28_MPro
             this.SessionUpdate2();
             this.dgv3_DataBind();
         }
-       
-        private void UpdateTable02()
+        private void lnkUpdate_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                msg = "You have no permission to Update!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
             this.SessionUpdate2();
             string comcod = this.GetCompCode();
-            string mktco = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string yearmon = this.ddlyearmon.SelectedValue.ToString();
-            DataTable tblt03 = (DataTable)Session["AccTbl02"];
             DataTable tblMkt = (DataTable)Session["tblMktType"];
 
             int k;
@@ -161,7 +175,7 @@ namespace RealERPWEB.F_28_MPro
                 k=1;
                 string pactcode = ((Label)this.dgv3.Rows[i].FindControl("gvlblActCode")).Text.Trim();
                 for (int j = 0; j <tblMkt.Rows.Count; j++)
-                {                 
+                {
                     string mktCode = tblMkt.Rows[j]["mktcode"].ToString();
                     double amt1 = Convert.ToDouble("0"+((TextBox)this.dgv3.Rows[i].FindControl("gvTxtAmt"+k.ToString())).Text.Trim());
                     k++;
@@ -171,7 +185,7 @@ namespace RealERPWEB.F_28_MPro
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
                         return;
                     }
-                }               
+                }
 
             }
 
@@ -194,16 +208,25 @@ namespace RealERPWEB.F_28_MPro
             this.dgv3.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.dgv3.DataSource = tblt03;
             this.dgv3.DataBind();
-            if (tblt03.Rows.Count == 0)
-                return;
-
-            //((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftDramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Dr)", "")) ?
-            //0.00 : tblt03.Compute("Sum(Dr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
-            //((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftCramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Cr)", "")) ?
-            //0.00 : tblt03.Compute("Sum(Cr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
-
+            this.FooterCalCulation();
         }
 
+        private void FooterCalCulation()
+        {
+            DataTable dt = (DataTable)Session["AccTbl02"];
+            if (dt.Rows.Count > 0)
+            {
+                ((Label)this.dgv3.FooterRow.FindControl("lblgvFATL")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt1)", "")) ?
+                    0.00 : dt.Compute("Sum(amt1)", ""))).ToString("#,##0;(#,##0); ");
+
+                ((Label)this.dgv3.FooterRow.FindControl("lblgvFBTL")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt2)", "")) ?
+                   0.00 : dt.Compute("Sum(amt2)", ""))).ToString("#,##0;(#,##0); ");
+
+                ((Label)this.dgv3.FooterRow.FindControl("lblgvFTTL")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt3)", "")) ?
+                    0.00 : dt.Compute("Sum(amt3)", ""))).ToString("#,##0;(#,##0); ");
+            }
+
+        }
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SessionUpdate2();
@@ -238,35 +261,13 @@ namespace RealERPWEB.F_28_MPro
         {
             if (this.CpyCHeck.Checked)
             {
-                this.CopyTo.Visible = true;
-                this.Copybtn.Visible = true;
-                this.datediv.Visible = true;
+                this.pnlCopy.Visible = true;
             }
             else
             {
-                this.CopyTo.Visible = false;
-                this.Copybtn.Visible = false;
-                this.datediv.Visible = false;
+                this.pnlCopy.Visible = false;
             }
         }
-
-        protected void lnkbtnUpdateRes_Click(object sender, EventArgs e)
-        {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
-            if (!Convert.ToBoolean(dr1[0]["entry"]))
-            {
-                msg = "You have no permission to Update!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                return;
-            }
-
-            this.UpdateTable02();
-
-        }
-
 
     }
 }
