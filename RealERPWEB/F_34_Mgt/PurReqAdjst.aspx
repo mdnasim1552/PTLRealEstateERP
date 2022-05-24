@@ -30,6 +30,8 @@
           
            
             $('.chzn-select').chosen({ search_contains: true });
+            var gv1 = $('#<%=this.gvReqStatus.ClientID %>');
+            gv1.Scrollable();
         };
 
       
@@ -131,10 +133,8 @@
 
                             <div class="row">
                                 <div class="table table-responsive">
-                                    <asp:GridView ID="gvReqStatus" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False" OnPageIndexChanging="gvReqStatus_PageIndexChanging"
-                                        Width="901px" Style="margin-right: 0px" ShowFooter="True">
-                                        <PagerSettings Position="Top" />
+                                    <asp:GridView ID="gvReqStatus" runat="server"  CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                        AutoGenerateColumns="False" Width="901px" Style="margin-right: 0px" ShowFooter="True">                                       
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -166,11 +166,17 @@
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Description of Materials">
+                                            <asp:TemplateField HeaderText="">
+                                                <HeaderTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Description of Materials" Width="150px"></asp:Label>
+                                                    <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i>
+                                                    </asp:HyperLink>
+                                                </HeaderTemplate>
+
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvResDesc" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
-                                                        Width="140px"></asp:Label>
+                                                        Width="180px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnFinalUpdate_Click">Update</asp:LinkButton>
