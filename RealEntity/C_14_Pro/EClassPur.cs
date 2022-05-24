@@ -1352,5 +1352,31 @@ namespace RealEntity.C_14_Pro
 
         }
 
+        [Serializable]
+        public class DeliveryEffciency {
+
+            //comcod, pactcode, pactdesc, mrfno, reqdat, rsircode, rsirdesc, unit, qty, recdat, daddat, leadtime, actdat, daystak, dayvar, remrks
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; } 
+            public string mrfno { get; set; }
+            public DateTime reqdat { get; set; }
+            public string rsircode { get; set; }
+            public string rsirdesc { get; set; }
+            public string unit { get; set; }
+            public decimal qty { get; set; }
+            public DateTime recdat { get; set; }
+            public DateTime daddat { get; set; }
+            public decimal leadtime { get; set; }
+            public string actdat { get; set; }
+            public int daystak { get; set; }
+            public decimal dayvar { get; set; }
+            public string remrks { get; set; }
+
+            public DeliveryEffciency() { 
+            }
+        }
+
+
     }
 }

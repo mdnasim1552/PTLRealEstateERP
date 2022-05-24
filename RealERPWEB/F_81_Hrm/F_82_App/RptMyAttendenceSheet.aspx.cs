@@ -163,7 +163,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTNIDWISE", frmdate, todate, empid, Actime, "", "", "", "", "");
 
-            if (ds1 == null)
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
             {
                 return;
             }
@@ -718,6 +718,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void hyplnkApplyLv_Click(object sender, EventArgs e)
         {
             
+        }
+
+        protected void lnkbtnRefresh_Click(object sender, EventArgs e)
+        {
+            getMyAttData();
         }
     }
 }

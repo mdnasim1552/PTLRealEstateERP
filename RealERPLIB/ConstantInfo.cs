@@ -2079,7 +2079,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102171", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=LPAproval", "Monthly (L.P) Late Approval", "Attendance", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8102000", "8102165", "F_81_Hrm/F_83_Att", "HREmpMonthlyAttenSys", "", "New Joining Employee Attendance - System", "Attendance", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102165", "F_81_Hrm/F_83_Att", "HREmpMonthlyAttenSys", "", "New Joining Employee Attendance - System", "Attendance", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "8102000", "8102166", "F_81_Hrm/F_92_Mgt", "HRSupervisorTransfer", "", "Supervisor Transfer", "Management", "False", "False", "False", "False" });
 
 
 
@@ -2193,6 +2194,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103111", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetFactory", "Salary Top Sheet (Factory)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103112", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetPID", "Salary Top Sheet(Project)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103114", "F_81_Hrm/F_89_Pay", "RptMonthWiseTax02", "", "Month Wise Tax Report 02", "PayRoll", "False", "False", "False", "False" }); ;
+        
 
 
 
@@ -14683,6 +14685,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000020", "05. New Joiners List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=JoinigdWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000021", "05. General Letter", "F_81_Hrm/F_92_Mgt/InterfaceHR", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000022", "06. Others Department Setup", "F_81_Hrm/F_89_Pay/ModeofPaymentDept", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000023", "07. Supervisor Transfer", "F_81_Hrm/F_92_Mgt/HRSupervisorTransfer", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "Need Base Report", "", "", false, "mb" });
