@@ -147,7 +147,17 @@ namespace RealERPWEB
                 case "3316":
                 case "3348":
                 case "3364":
+                case "3366": //lanco
+                case "3368": //finlay
+                case "3367": //epic
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                    this.lnkFormLink.Visible = false;
+                    this.hypTimeOfleave.Visible = false;
+                    this.hypOnlineAttendance.Visible = false;
+                    this.HypLinkReqInterFace.Visible = false;
                     break;
                 case "3347": // Pebsteel 
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? true : true); /// for Common User thatswhy all are ture
@@ -174,31 +184,7 @@ namespace RealERPWEB
                     this.hypTimeOfleave.Visible = true;
                     this.HypLinkReqInterFace.Visible = true;
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
-                    break;
-
-                case "3366":
-                    //sidebar nav off for bti general user                    
-                    this.mySidenav.Visible = (userrole == "3" ? false : true);
-                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
-                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
-                    this.hypGroupChat.Visible = false;
-                    this.HypOldModules.Visible = false;
-                    this.lnkFormLink.Visible = false;
-                    this.hypTimeOfleave.Visible = false;
-                    this.HypLinkReqInterFace.Visible = false;
-                    this.lnkFormLink.NavigateUrl = "https://web.facebook.com/lancodevelopments";
-                    break;
-                case "3368": //finlay
-                case "3367": //epic
-                    this.HypLinkApplyLvCommon.Visible = true;
-                    this.hypGroupChat.Visible = false;
-                    this.HypOldModules.Visible = false;
-                    this.lnkFormLink.Visible = false;
-                    this.hypTimeOfleave.Visible = false;
-                    this.hypOnlineAttendance.Visible = false;
-                    this.HypLinkReqInterFace.Visible = false;
-                    break;
-
+                    break; 
                 default:
                     this.lnkFormLink.Text = "Forum";
                     this.lnkFormLink.Visible = true;
