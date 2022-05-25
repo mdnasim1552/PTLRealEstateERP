@@ -795,14 +795,7 @@
                                 CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%" ShowFooter="true">
                                 <RowStyle />
                                 <Columns>
-                                    <%--  <asp:TemplateField HeaderText="Sl.No.">
-
-                                        <ItemTemplate>
-                                            <asp:Label ID="serialnoid0" runat="server" Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                        </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" Font-Size="12px" ForeColor="#000" />
-                                    </asp:TemplateField>--%>
+                                    
                                     <asp:TemplateField HeaderText="Particualars">
                                         <HeaderTemplate>
 
