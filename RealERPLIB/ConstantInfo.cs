@@ -1928,6 +1928,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8101000", "8101015", "F_81_Hrm/F_92_Mgt", "EmpSettlement?", "Type=Entry", "Employee Settlement Entry", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink", "", "Department Code Link", "Appointment", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101017", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Employee Settlement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8101000", "8101018", "F_33_Doc", "SimCardMange", "", "SIM Card Issue", "Employee Settlement", "False", "False", "False", "False" }); ;
 
 
 
