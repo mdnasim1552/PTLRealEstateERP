@@ -11,6 +11,8 @@ namespace RealERPWEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ((Label)this.Master.FindControl("lblTitle")).Text = "HR Interface";
+
 
         }
     }
