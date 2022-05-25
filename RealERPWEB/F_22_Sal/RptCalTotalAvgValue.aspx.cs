@@ -226,6 +226,10 @@ namespace RealERPWEB.F_22_Sal
                 Label utility = (Label)e.Row.FindControl("lgvutility");
                 Label cooparative = (Label)e.Row.FindControl("lgvcooparative");
                 Label otham = (Label)e.Row.FindControl("lgvotham");
+                Label lgvpersft = (Label)e.Row.FindControl("lgvpersft");
+
+
+                
 
 
 
@@ -249,6 +253,8 @@ namespace RealERPWEB.F_22_Sal
                     cooparative.Font.Bold = true;
                     otham.Font.Bold = true;
                     tval.Font.Bold = true;
+                    lgvpersft.Font.Bold = true;
+
                     custname.Style.Add("text-align", "right");
 
 
