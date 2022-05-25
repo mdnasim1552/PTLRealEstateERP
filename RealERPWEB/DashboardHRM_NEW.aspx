@@ -8,12 +8,13 @@
 
         <style>
             .card {
-                min-height: 50px;
+                min-height: 65px;
                 margin-right: 5px;
                 margin-bottom: 0;
                 text-decoration: none !important;
                 color: darkblue;
                 background: white;
+                font-size:15px;
             }
 
                 .card:hover {
@@ -44,7 +45,7 @@
             }
 
             .list-group {
-                height: 456px;
+                height:600px;
                 overflow-y: auto;
             }
 
@@ -54,7 +55,7 @@
 
             .left-most {
                 margin-right: 20px;
-                margin-bottom: 20px;
+                margin-bottom: 24px;
                 color: white;
             }
 
@@ -102,7 +103,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="#" class="card left-most bg-success">
+                            <a href="#" class="card left-most bg-blue">
                                 <div class="card-body">
                                
                           Leave
@@ -122,7 +123,7 @@
                     </div>
                      <div class="row">
                         <div class="col-md-12">
-                            <a href="#" class="card left-most bg-success">
+                            <a href="#" class="card left-most bg-purple">
                                 <div class="card-body">
                                   Payroll
                                 </div>
@@ -144,7 +145,7 @@
             </div>
             <div class="col-md-7">
  
-                <div class="row no-gutters">
+                <div class="row no-gutters mb-4">
                     <div class="col-md-3">
                         <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_82_App/EmpEntryForm")%>" class="card card-first text-dark">
                             <div class="card-body">
@@ -175,8 +176,8 @@
                     </div>
           
                 </div>
-                <hr />
-                <div class="row no-gutters mb-2">
+              
+                <div class="row no-gutters mb-4">
                     <div class="col-md-3">
                           <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_82_App/HREmpEntry?Type=Aggrement")%>"  class="card card-first text-dark">
                             <div class="card-body">
@@ -207,7 +208,7 @@
                     </div>
           
                 </div>
-               <div class="row no-gutters mb-2">
+               <div class="row no-gutters mb-4">
                     <div class="col-md-3">
                          <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HRDailyAtten")%>" class="card card-first text-dark">
                             <div class="card-body">
@@ -238,7 +239,7 @@
                     </div>
           
                 </div>
-               <div class="row no-gutters mb-2">
+               <div class="row no-gutters mb-4">
                     <div class="col-md-3">
                        <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT")%>" class="card card-first text-dark">
                             <div class="card-body">
@@ -269,8 +270,8 @@
                     </div>
           
                 </div>
-                <hr />
-               <div class="row no-gutters mb-3">
+                 
+               <div class="row no-gutters mb-4">
                     <div class="col-md-3">
                        <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry")%>" class="card card-first text-dark">
                             <div class="card-body">
@@ -301,7 +302,7 @@
                     </div>
           
                 </div>
-                  <div class="row no-gutters mb-2">
+                  <div class="row no-gutters mb-4">
                     <div class="col-md-3">
                        <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_87_Tra/HREmpTransfer")%>" class="card card-first text-dark">
                             <div class="card-body">
@@ -332,7 +333,7 @@
                     </div>
           
                 </div>
-                <div class="row no-gutters mb-2">
+                <div class="row no-gutters mb-4">
                     <div class="col-md-3">
                           <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm")%>" class="card card-first text-dark">
                             <div class="card-body">
@@ -368,7 +369,7 @@
         
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="list-group">
+                        <div class="list-group bg-white">
                            
                             <a href="#" class=" btn  btn-info btn-sm btn-block text-white">Reports
                             </a>
