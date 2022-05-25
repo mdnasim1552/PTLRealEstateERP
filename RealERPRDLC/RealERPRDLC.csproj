@@ -115,6 +115,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ComparativeStatementCreate.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+DeliveryEffciency.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
@@ -177,6 +178,7 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerWqty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntechOld.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntech.rdlc" />
@@ -189,6 +191,7 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCube.rdlc" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptCashPay02.datasource" />
