@@ -142,6 +142,7 @@
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseMrr.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseRequisition.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseTrack.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_33_Doc.ActiveSimUser.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
@@ -855,6 +856,7 @@
     <EmbeddedResource Include="R_32_Mis\RptSourceAndUtilities.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptTrailsBal3.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptTrialBalance2.rdlc" />
+    <EmbeddedResource Include="R_34_Mgt\rptActiveSimUser.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrint.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintSuvasto.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusISBL.rdlc" />

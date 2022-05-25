@@ -801,7 +801,11 @@ namespace RealERPRDLC
                 case "R_34_Mgt.RptOtherReqStatus": Rpt1a = SetRptOtherReqStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqStatusISBL": Rpt1a = SetRptOtherReqStatusISBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.UserLogDetails": Rpt1a = SetRptUserLogDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                #endregion
+                case "R_34_Mgt.rptActiveSimUser": Rpt1a = SetrptActiveSimUser(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                    
+
+                    #endregion
 
                 #region F_41_GAcc
                 case "R_41_GAcc.RptProProgBillStatus": Rpt1a = SetRptProProgBillStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1792,6 +1796,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_34_Mgt.EClassUserLogSummary>)RptDataSet2));
             return Rpt1a;
         }
+        private static LocalReport SetrptActiveSimUser(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_33_Doc.ActiveSimUser>)RptDataSet));
+            return Rpt1a;
+        }
+        
 
         private static LocalReport SetRptBillInvoiceP2P(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

@@ -199,7 +199,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     fileExtention = imgFileUpload.PostedFile.ContentType;
                     fileLenght = imgFileUpload.PostedFile.ContentLength;
                     fn = System.IO.Path.GetFileName(imgFileUpload.PostedFile.FileName).ToString() ?? "";
-                    filePath = "~/Upload/HRM/EmpImg/" + empid + fn;
+                    filePath = "~/Upload/HRM/EmpImg/" + empid +"."+ fileExtention.ToString().Remove(0, 6);
                     if (fileExtention == "image/png" || fileExtention == "image/jpeg" || fileExtention == "image/x-png")
                     {
                         if (fileLenght <= 5048576)
@@ -248,11 +248,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //check signature
                 if ((imgSigFileUpload.PostedFile != null) && (imgSigFileUpload.PostedFile.ContentLength > 0) && (fn2 != null || fn2 != ""))
                 {
-
-                    Guid uid = Guid.NewGuid();
-                    filePath2 = "~/Upload/HRM/signature/" + empid + fn2;
-
                     fileExtention = imgSigFileUpload.PostedFile.ContentType;
+                    Guid uid = Guid.NewGuid();
+                    filePath2 = "~/Upload/HRM/signature/" + empid + "." + fileExtention.ToString().Remove(0, 6);
+
+
                     fileLenght = imgSigFileUpload.PostedFile.ContentLength;
                     if (fileExtention == "image/png" || fileExtention == "image/jpeg" || fileExtention == "image/x-png")
                     {
