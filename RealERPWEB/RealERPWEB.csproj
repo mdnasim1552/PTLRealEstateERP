@@ -2715,6 +2715,7 @@
     <Content Include="F_32_Mis\SalesTarget.aspx" />
     <Content Include="F_33_Doc\CodeBook.aspx" />
     <Content Include="F_33_Doc\Docs\ip.png" />
+    <Content Include="F_33_Doc\SimCardMange.aspx" />
     <Content Include="F_33_Doc\UploadDocumentation.aspx" />
     <Content Include="F_33_Doc\DocUpload.aspx" />
     <Content Include="F_33_Doc\FileManagement.aspx" />
@@ -3058,6 +3059,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HREmpConfirmation.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\HRSupervisorTransfer.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
@@ -4109,6 +4111,13 @@
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_33_Doc\SimCardMange.aspx.cs">
+      <DependentUpon>SimCardMange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_33_Doc\SimCardMange.aspx.designer.cs">
+      <DependentUpon>SimCardMange.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4626,6 +4635,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx.designer.cs">
       <DependentUpon>EntrySectionWisePermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\HRSupervisorTransfer.aspx.cs">
+      <DependentUpon>HRSupervisorTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\HRSupervisorTransfer.aspx.designer.cs">
+      <DependentUpon>HRSupervisorTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx.cs">
       <DependentUpon>InterfaceAttApp.aspx</DependentUpon>

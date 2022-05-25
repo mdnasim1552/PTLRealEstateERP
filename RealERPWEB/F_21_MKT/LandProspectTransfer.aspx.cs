@@ -208,8 +208,8 @@ namespace RealERPWEB.F_21_MKT
             bool result = false;
             string comcod = this.GetComeCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
             string userid = hst["usrid"].ToString();
+            string curDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
             for (int i = 0; i < this.gvProspectWorking.Rows.Count; i++)
             {
@@ -221,7 +221,7 @@ namespace RealERPWEB.F_21_MKT
                     string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvLandDesc")).Text.Trim();
                     string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
 
-                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "TRANSFER_LAND_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
+                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "TRANSFER_LAND_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, curDate, "", "", "",
                    "", "", "", "", "", "", "", "", "", "", "");
                     if (!result)
                     {
@@ -231,7 +231,7 @@ namespace RealERPWEB.F_21_MKT
                     }
                     else
                     {
-                        msg = "Prosfect Transfered ";
+                        msg = "Prosfect Transfered Successfully";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                     }
                 }
