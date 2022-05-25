@@ -20,6 +20,7 @@ using System.Web.Services;
 using RealERPLIB;
 using System.Data.OleDb;
 using System.Web.UI.WebControls.WebParts;
+using System.Text.RegularExpressions;
 
 //using System;
 //using System.Collections.Generic;
@@ -218,10 +219,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             switch (comcod)
             {
 
-                case "3101":
-                case "3368":
-                    this.UploadData();
-                    break;
+               
 
 
                 //case "3101":
@@ -238,9 +236,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.UploadDataGreenLand();
                     break;
 
+
+                case "3101":
+                case "3368":
+                    this.UploadDataFinlay();
+                    break;
+
+
                 default:
                     this.UploadDataGreenLand();
                     break;
+
+
+
+
 
 
 
@@ -632,11 +641,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string seldate = Convert.ToDateTime(this.txtMrrDate.Text).ToString("dd-MMM-yyyy");//Problem
                 DateTime ADAT;
                 DateTime ATIME;
-
-
-
                 string retFilePath = Label4.Text.Trim();
-
                 StreamReader objReader = new StreamReader(retFilePath);
                 ///////
                 string[] X1 = new string[30000];
@@ -795,6 +800,151 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //{
             // ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
             //}
+
+
+        }
+
+        private void UploadDataFinlay()
+        {
+
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            try
+            {
+                string StrFileName = string.Empty;
+                if (File1.PostedFile != null)
+                {
+                    StrFileName = File1.PostedFile.FileName.Substring(File1.PostedFile.FileName.LastIndexOf("\\") + 1);
+                    string StrFileType = File1.PostedFile.ContentType;
+                    int IntFileSize = File1.PostedFile.ContentLength;
+                    if (IntFileSize <= 0)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading of file failed";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    }
+
+                    else
+                    {
+                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\" + StrFileName));
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Data Uploading Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    }
+                }
+                if (StrFileName == "")
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please fill a file";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+                if (txtMrrDate.Text.Trim() == "")
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = " Date can not be a blank";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+
+                string filename1 = Server.MapPath("~") + ("\\Upload\\" + StrFileName); //IIS Path
+
+                //string filename1 = Server.MapPath("~") + ("../Upload/" + StrFileName); //IIS Path
+                //string filename1 = Server.MapPath("~") + ("Upload/" + StrFileName); Local Path
+
+                //string savelocation = Server.MapPath("~") + "\\Image1";
+
+                System.IO.FileStream fs = new System.IO.FileStream(filename1, System.IO.FileMode.Open);
+                System.IO.StreamReader r = new System.IO.StreamReader(fs);
+                Label3.Text = r.ReadToEnd();
+                Label4.Text = filename1;
+                //UpdatePanel1.Controls.Add(Label1);
+                r.Close();
+
+
+                // Update  Data
+
+                string comcod = this.GetCompCode();
+                DataTable t4 = new DataTable();
+                t4.Columns.Add("adate", typeof(String));
+                t4.Columns.Add("atime", typeof(String));
+                t4.Columns.Add("IDCARDNO", typeof(String));
+                t4.Columns.Add("machid", typeof(String));
+
+
+                string ROWID = string.Empty;
+                string MACHID = string.Empty;
+                string IDCARDNO = string.Empty;
+                string LastNo = string.Empty;
+                string seldate = Convert.ToDateTime(this.txtMrrDate.Text).ToString("dd-MMM-yyyy");//Problem
+                DateTime ADAT;
+                DateTime ATIME;
+                string retFilePath = Label4.Text.Trim();
+                StreamReader objReader = new StreamReader(retFilePath);
+                ///////
+                string[] X1 = new string[30000];
+                string sLine = "";
+                int i = 0;
+                DataTable t1 = new DataTable();
+                t1.Columns.Add("empattn", typeof(String));
+                while (sLine != null)
+                {
+                    DataRow dr = t1.NewRow();
+                    sLine = objReader.ReadLine();
+                    X1[i] = sLine;
+                    dr["empattn"] = X1[i];
+                    t1.Rows.Add(dr);
+                    i = i + 1;
+                }
+                objReader.Close();               
+                string IDCARDNO1;
+                string adt;
+                string[] arr;
+                foreach (DataRow dr1 in t1.Rows)
+                {
+                    arr = dr1["empattn"].ToString().Split(',');
+                    if (dr1["empattn"].ToString().Trim().Length ==0)
+                    {
+
+                        break;
+                    }
+
+                   
+                    IDCARDNO1 = arr[2].Substring(1, arr[2].Length - 2);
+                    adt =arr[4].Substring(1,arr[4].Length-2);
+                    ATIME = Convert.ToDateTime(adt + " "+arr[5].Substring(1,arr[5].Length-2));
+                    MACHID = arr[7].Substring(1, arr[7].Length - 2);                  
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ATTN_UPDATE", "ATTN_UPDATE_TEMP", "", IDCARDNO1, adt,
+                            Convert.ToDateTime(ATIME).ToString(), MACHID, "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    }
+                    
+
+                }
+
+             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //Delete File
+                string savelocation = Server.MapPath("~") + "\\Upload";
+                string[] filePaths = Directory.GetFiles(savelocation);
+                foreach (string filePath in filePaths)
+                    File.Delete(filePath);
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+
+
 
 
         }

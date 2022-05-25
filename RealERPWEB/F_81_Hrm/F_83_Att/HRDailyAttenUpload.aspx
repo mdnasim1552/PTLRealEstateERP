@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="HRDailyAttenUpload.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HRDailyAttenUpload" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="HRDailyAttenUpload.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HRDailyAttenUpload" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
@@ -59,7 +59,11 @@
 
     </script>
 
- <%--   <div class="RealProgressbar">
+  
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+             <div class="RealProgressbar">
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
             <ProgressTemplate>
                 <div id="loader">
@@ -75,10 +79,7 @@
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-    </div>--%>
-
-    <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
+    </div>
     <div class="card mt-5">
         <div class="card-header">
             <div class="row">
@@ -365,8 +366,14 @@
 
         </div>
     </div>
-           <%-- </ContentTemplate>
-          </asp:UpdatePanel>--%>
+
+
+
+            </ContentTemplate>
+            <Triggers>
+            <asp:PostBackTrigger ControlID="CmdUpload" />
+        </Triggers>
+          </asp:UpdatePanel>
 
     <%--                <fieldset class="scheduler-border fieldset_A">
 
