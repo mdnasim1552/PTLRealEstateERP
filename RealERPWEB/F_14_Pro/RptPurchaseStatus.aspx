@@ -142,6 +142,11 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem>600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
+                                            <asp:ListItem>1200</asp:ListItem>
+                                            <asp:ListItem>1500</asp:ListItem>
+                                            <asp:ListItem>3000</asp:ListItem>
                                         </asp:DropDownList>
 
 

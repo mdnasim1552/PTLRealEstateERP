@@ -1787,6 +1787,7 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void gvPurSum_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            this.gvPurSum.PageIndex = e.NewPageIndex;
             this.LoadGrid();
         }
 
