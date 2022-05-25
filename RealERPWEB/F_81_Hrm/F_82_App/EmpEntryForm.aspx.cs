@@ -50,8 +50,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             return (hst["comcod"].ToString());
 
         }
-
-
         private string GetLastUSerID()
         {
             string comcod = this.GetComeCode();
@@ -60,8 +58,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string userid = ds1.Tables[0].Rows[0]["userid"].ToString();
             return (userid);
         }
-
-
         private void GetCompany()
         {
             string comcod = this.GetComeCode();
@@ -72,29 +68,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlCompName.DataSource = ds1.Tables[0];
             this.ddlCompName.DataBind();
             ds1.Dispose();
-
-
         }
-
-
-
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
         }
 
         // img btn click 
         protected void imgbtnComp_Click(object sender, EventArgs e)
         {
             this.GetCompany();
-
         }
-
-
-
-
-
-
         protected void lnkbtnSave_Click(object sender, EventArgs e)
         {
 
@@ -135,9 +118,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
 
             }
-
-
-
             GetEmpList();
 
         }
@@ -148,18 +128,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string compny = ASTUtility.Left(ddlCompName.SelectedValue, 2);
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "LASTEMPID", compny, "", "", "", "", "", "", "", "");
             this.lblEmplastId.Text = ds1.Tables[0].Rows[0]["lastempid"].ToString();
-
-
         }
 
         protected void chkNewEmp_CheckedChanged(object sender, EventArgs e)
         {
             if (this.chkNewEmp.Checked)
             {
-
                 this.txtEmpName.Text = "";
             }
-
         }
 
 
@@ -173,7 +149,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
 
             string comcod = this.GetComeCode();
-
             string txtCompanyname = "94%";
             string txtSearchDept = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");

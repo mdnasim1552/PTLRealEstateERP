@@ -115,7 +115,6 @@
                                     <asp:TextBox ID="lblProjectDesc2" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
                                 </div>--%>
                                 <div class="form-group">
-
                                     <div class="col-md-6 pading5px">
                                         <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name:"></asp:Label>
 
@@ -132,12 +131,12 @@
                                     </div>
 
                                     <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk1_Click" TabIndex="4" Style="margin-left: -86px;">Ok</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk1_Click" TabIndex="2" Style="margin-left: -86px;">Ok</asp:LinkButton>
                                         <asp:CheckBox ID="chkShorting" runat="server" AutoPostBack="true" OnCheckedChanged="chkShorting_CheckedChanged" Text="Alphabet" />
 
 
                                     </div>
-                                    <div class="col-sm-1 pading5px" style="margin-left: -20px;">
+                                    <div class="col-sm-1 pading5px" style="margin-left: -40px;">
                                         <asp:CheckBox ID="ChkCopyProject" runat="server" AutoPostBack="True"
                                             OnCheckedChanged="ChkCopyProject_CheckedChanged" Text="Copy Budget" CssClass="btn btn-primary primaryBtn chkBoxControl"
                                             Visible="False" />
