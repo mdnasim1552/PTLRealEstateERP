@@ -119,18 +119,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
 
 
-        protected void gvSupEmpDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            this.gvSupEmpDetails.PageIndex = e.NewPageIndex;
-            this.Data_Bind();
-        }
-
-        protected void ddlpage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.gvSupEmpDetails.PageSize = Convert.ToInt32(this.ddlpage.SelectedValue.ToString());
-            this.Data_Bind();
-        }
-
         protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["tblsupvisedempdet"];
