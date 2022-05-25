@@ -1944,8 +1944,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Empcode = ((Label)this.grvAdjDay.Rows[index].FindControl("lgvEmpIdAdj")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
 
 
-
-
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string emdname = ((Label)this.grvAdjDay.Rows[index].FindControl("emdname")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
