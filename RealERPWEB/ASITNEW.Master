@@ -58,11 +58,12 @@
     <link href="Content/progressbar.css" rel="stylesheet" />--%>
 
     <script>
+        function submitform() { document.getElementById("form1").submit(); }
         var skin = localStorage.getItem('skin') || 'default';
         var unusedLink = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
         unusedLink.setAttribute('rel', '');
         unusedLink.setAttribute('disabled', true);
-        function submitform() { document.getElementById("form1").submit(); }
+     
         // setTimeout(function () { manipulate(); }, 3000);
         //  manipulate();
         function manipulate() {
@@ -286,8 +287,8 @@
 
 </head>
 <body>
-
-    <form id="form1" runat="server" enctype="multipart/form-data">
+    <%--enctype="multipart/form-data"--%>
+    <form id="form1" runat="server" enctype="multipart/form-data" >
         <asp:TextBox ID="ParentDir" runat="server" CssClass="hidden"></asp:TextBox>
         <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" SupportsPartialRendering="true" runat="server" AsyncPostBackTimeout="0" EnablePageMethods="true">
 
