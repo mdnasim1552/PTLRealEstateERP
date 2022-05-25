@@ -17,10 +17,10 @@
             width: 100% !important;
         }
 
-        .chzn-container-single .chzn-single {
+/*        .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
-        }
+        }*/
 
         .card-body {
             min-height: 400px !important;
@@ -29,6 +29,13 @@
         .pd4 {
             padding: 4px !important;
         }
+        chckpd{
+            margin-right:10px;
+            margin-left:10px;
+        }
+        input#ContentPlaceHolder1_chckguest {
+    margin-right: 5px;
+}
     </style>
 
     <script type="text/javascript">
@@ -85,7 +92,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <asp:Label ID="Label1" runat="server" Text="Mobile Number:">
+                                            <asp:Label ID="Label1" runat="server" Text="Mobile Number :">
                                             </asp:Label>
                                             <asp:DropDownList ID="ddlMobile" runat="server" AutoPostBack="True" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlMobile_SelectedIndexChanged">
                                             </asp:DropDownList>
@@ -93,22 +100,26 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <asp:Label ID="Label20" runat="server" Text="Employee:">
-                                                <asp:CheckBox ID="chckguest" runat="server" Text="Is guest?" OnCheckedChanged="chckguest_CheckedChanged"/>
+                                            <asp:Label ID="Label20" runat="server">
+                                                <p style="display:inline-block">Name :</p>
+                                                <div class="float-right">
+                                                ( <asp:CheckBox ID="chckguest" CssClass=""  runat="server" Text="Guest?" OnCheckedChanged="chckguest_CheckedChanged" AutoPostBack="true"/> )
+
+                                                </div>
                                             </asp:Label>
                                             <asp:Panel ID="pnlemp" runat="server">
                                                 <asp:DropDownList ID="ddlEmp" runat="server" AutoPostBack="True" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlEmp_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </asp:Panel>
                                             <asp:Panel ID="pnlguest" runat="server" Visible="false">
-                                                <asp:TextBox ID="txtguest" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                <asp:TextBox ID="txtguest" runat="server" CssClass="form-control" placeholder="Enter name"></asp:TextBox>
                                             </asp:Panel>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <p class="text-right">
-                                                <asp:LinkButton ID="lnk_save" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
+                                                <asp:LinkButton ID="lnk_save" CssClass="btn btn-success mt20" runat="server" OnClick="lnk_save_Click">Save</asp:LinkButton>
                                             </p>
                                         </div>
                                     </div>
@@ -135,7 +146,7 @@
                                     <div class="table table-sm table-responsive">
                                         <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvdoc" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvdoc_RowDataBound">
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Title">
+                                                <asp:TemplateField HeaderText="Name">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblempid" runat="server" Text='<%#Eval("empid")%>' Visible="false"></asp:Label>
 
@@ -143,7 +154,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Remarks">
+                                                <asp:TemplateField HeaderText="Mobile">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("mobileno")%>' Width="150px"></asp:Label>
                                                     </ItemTemplate>
@@ -164,7 +175,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Action">
+                                                <asp:TemplateField HeaderText="Action" Visible="false">
                                                     <ItemTemplate>
 
                                                         <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
