@@ -130,7 +130,7 @@ namespace RealERPWEB.F_17_Acc
                    : (Querytype == "Wrkschedule") ? "sircode like '4[1-5]%'" : (Querytype == "UnitCode") ? "sircode like '5[1-9]%'" : (Querytype == "customer") ? "sircode like '6[1-9]%'"
                    : (Querytype == "Marketing") ? "sircode like '63%'"
                    : (Querytype == "Subcontractor") ? "sircode like '98%'"  : (Querytype == "ResCodePrint") ? "sircode like '99%'" : (Querytype == "Supplier") ? "sircode like '99%'" : (Querytype == "Mat") ? "sircode like '01'"
-                   : (Querytype == "TaxVatAndSd") ? "sircode like '97%'" : (Querytype == "GenAdv") ? "sircode like '9[56]%'" : (Querytype == "Labour") ? "sircode like '04%'" : (Querytype == "Materials") ? "sircode like '01%'"
+                   : (Querytype == "TaxVatAndSd") ? "sircode like '97%'" : (Querytype == "GenAdv") ? "sircode like '9[56]%'" : (Querytype == "Labour") ? "sircode like '04%'" : (Querytype == "Materials") ? "sircode like '01%'" : (Querytype == "MatLab") ? "sircode like '0[1-4]%'"
                    : (Querytype == "Employee") ? "sircode like '93%'" : (Querytype == "DeptCode") ? "sircode like '94%'" : "sircode like '%'";
 
 

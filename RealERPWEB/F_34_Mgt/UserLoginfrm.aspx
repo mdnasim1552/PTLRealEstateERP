@@ -222,7 +222,7 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
-                            <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up"  />
+                            <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up" Visible="false"  />
                             <asp:TemplateField HeaderText="User Id">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbtnUserId" runat="server"

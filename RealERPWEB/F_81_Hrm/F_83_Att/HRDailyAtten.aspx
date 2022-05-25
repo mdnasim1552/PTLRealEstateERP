@@ -95,6 +95,9 @@
                                     <asp:ListItem>150</asp:ListItem>
                                     <asp:ListItem>200</asp:ListItem>
                                     <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem>500</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
+                                    <asp:ListItem>1500</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
