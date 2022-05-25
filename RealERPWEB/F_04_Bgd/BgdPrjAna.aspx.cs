@@ -752,13 +752,16 @@ namespace RealERPWEB.F_04_Bgd
                 case 0:
                     this.crDate.Visible = true;
                     this.ChkCopyProject.Visible = true;
-                    this.ChkCopyTender.Visible = true;
+                    //this.ChkCopyTender.Visible = true;
+                    this.ChkCopyTenderVisiable();
                     this.chkFlrShowSelected_CheckedChanged(null, null);
                     break;
                 case 1:
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
-                    this.ChkCopyTender.Visible = true;
+                    //this.ChkCopyTender.Visible = true;
+                    this.ChkCopyTenderVisiable();
+
                     //this.gvAnalysis.PageIndex = 0;
                     //this.gvAnalysis.EditIndex = -1;
                     this.GetMetarilsList();
@@ -769,7 +772,9 @@ namespace RealERPWEB.F_04_Bgd
                 case 2:
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
-                    this.ChkCopyTender.Visible = true;
+                    //this.ChkCopyTender.Visible = true;
+                    this.ChkCopyTenderVisiable();
+
                     //this.gvAnalysis2.PageIndex = 0;
                     //this.gvAnalysis2.EditIndex = -1;
                     this.ShowFloorScheduledItemList();
@@ -778,19 +783,24 @@ namespace RealERPWEB.F_04_Bgd
                 case 3:
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
-                    this.ChkCopyTender.Visible = true;
+                    //this.ChkCopyTender.Visible = true;
+                    this.ChkCopyTenderVisiable();
 
                     break;
                 case 4:
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
-                    this.ChkCopyTender.Visible = true;
+                    //this.ChkCopyTender.Visible = true;
+                    this.ChkCopyTenderVisiable();
+
                     this.ShowReportOptions();
                     break;
                 case 5:
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
-                    this.ChkCopyTender.Visible = true;
+                    //this.ChkCopyTender.Visible = true;
+                    this.ChkCopyTenderVisiable();
+
                     //this.lbtnShowReport.Visible = false;
                     this.gvSpRpt.DataSource = null;
                     this.gvSpRpt.DataBind();
@@ -803,8 +813,8 @@ namespace RealERPWEB.F_04_Bgd
                     this.details.Visible = true;
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
-                    this.ChkCopyTender.Visible = true;
-
+                    //this.ChkCopyTender.Visible = true;
+                    this.ChkCopyTenderVisiable();
                     break;
             }
             this.MultiView1.ActiveViewIndex = rbtnList1.SelectedIndex;
@@ -816,6 +826,22 @@ namespace RealERPWEB.F_04_Bgd
                 string eventdesc = "Select Selection";
                 string eventdesc2 = this.rbtnList1.SelectedItem.ToString();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+        }
+
+        private void ChkCopyTenderVisiable()
+        {
+            string comcod = ASTUtility.Left(this.GetComeCode(),2);
+            switch (comcod)
+            {
+                case "11":
+                    this.ChkCopyTender.Visible = true;
+
+                    break;
+                default:
+                    this.ChkCopyTender.Visible = false;
+                    break;
             }
 
         }
