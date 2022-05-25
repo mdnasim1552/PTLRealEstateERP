@@ -42,6 +42,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.Label lblEmplist;
 
         /// <summary>
+        /// lnkSearcEMP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSearcEMP;
+
+        /// <summary>
         /// ddlEmpList control.
         /// </summary>
         /// <remarks>
@@ -177,6 +186,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
+        /// isFormulaChekcbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox isFormulaChekcbox;
+
+        /// <summary>
         /// txtToamt control.
         /// </summary>
         /// <remarks>
@@ -193,15 +211,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// isFormulaChekcbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox isFormulaChekcbox;
 
         /// <summary>
         /// txtinsamt control.
