@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_14_Pro
 {
     public partial class RptDeliveryEfficiency : System.Web.UI.Page
@@ -47,40 +49,15 @@ namespace RealERPWEB.F_14_Pro
             comcod = this.Request.QueryString["comcod"].Length > 0 ? this.Request.QueryString["comcod"].ToString() : comcod;
             return comcod;
         }
-        protected void lbtnPrint_Click(object sender, EventArgs e)
+
+        protected void Page_PreInit(object sender, EventArgs e)
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = Getcomcod();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            DataTable dt = (DataTable)Session["tbDeEffi"];
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
-            ReportDocument rptstate = new RealERPRPT.R_14_Pro.rptDeliveryEfficiency();
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
-            TextObject rptftdate = rptstate.ReportDefinition.ReportObjects["date"] as TextObject;
-            rptftdate.Text = "Date: " + this.txtfromdate.Text + " To " + this.txttodate.Text;
-            TextObject txtuserinfo = rptstate.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            txtuserinfo.Text = "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate;
-            rptstate.SetDataSource(dt);
-
-
-            if (ConstantInfo.LogStatus == true)
-            {
-                string eventtype = "Transaction Statement";
-                string eventdesc = "Print Report";
-                string eventdesc2 = "";
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            }
-            string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            rptstate.SetParameterValue("ComLogo", ComLogo);
-            Session["Report1"] = rptstate;
-            //lbljavascript.Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                    this.DDPrintOpt.SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        }
+        }     
 
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,6 +128,72 @@ namespace RealERPWEB.F_14_Pro
         {
             gvRptDelEff.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string txtDate = "From " + fromdate + " To " + todate;
+
+
+            DataTable dt = (DataTable)Session["tbDeEffi"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.DeliveryEffciency>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.rptDeliveryEfficiency", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Material Delivery Efficiency Report"));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = Getcomcod();
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            //DataTable dt = (DataTable)Session["tbDeEffi"];
+
+            //ReportDocument rptstate = new RealERPRPT.R_14_Pro.rptDeliveryEfficiency();
+
+            //TextObject rptftdate = rptstate.ReportDefinition.ReportObjects["date"] as TextObject;
+            //rptftdate.Text = "Date: " + this.txtfromdate.Text + " To " + this.txttodate.Text;
+            //TextObject txtuserinfo = rptstate.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+            //txtuserinfo.Text = "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate;
+            //rptstate.SetDataSource(dt);
+
+
+            //if (ConstantInfo.LogStatus == true)
+            //{
+            //    string eventtype = "Transaction Statement";
+            //    string eventdesc = "Print Report";
+            //    string eventdesc2 = "";
+            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            //}
+            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+            //rptstate.SetParameterValue("ComLogo", ComLogo);
+            //Session["Report1"] = rptstate;
+            ////lbljavascript.Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            ////                    this.DDPrintOpt.SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
     }
 }

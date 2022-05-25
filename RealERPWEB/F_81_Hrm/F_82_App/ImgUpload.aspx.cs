@@ -202,7 +202,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     filePath = "~/Upload/HRM/EmpImg/" + empid + fn;
                     if (fileExtention == "image/png" || fileExtention == "image/jpeg" || fileExtention == "image/x-png")
                     {
-                        if (fileLenght <= 1048576)
+                        if (fileLenght <= 5048576)
                         {
                             DataSet ds2 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "GETEMPBYID", empid, "", "", "", "", "", "", "", "");
 

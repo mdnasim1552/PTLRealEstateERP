@@ -255,9 +255,13 @@ namespace RealERPWEB.F_34_Mgt
             switch (Type)
             {
                 case "ReqAdjust":
-                    this.gvReqStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    //this.gvReqStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvReqStatus.DataSource = dt;
                     this.gvReqStatus.DataBind();
+
+                    Session["Report1"] = gvReqStatus;
+                    ((HyperLink)this.gvReqStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
                     break;
 
                 case "ProMargin":
@@ -537,9 +541,6 @@ namespace RealERPWEB.F_34_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Adjusted quantity must be equal or less balance quantity');", true);
                 return;
             }
-
-
-
         }
     }
 }
