@@ -53,13 +53,14 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -114,6 +115,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ComparativeStatementCreate.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+DeliveryEffciency.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
@@ -145,6 +147,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+birthdayDate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheetPEB.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+currentLeaveInfo.datasource" />
@@ -175,6 +178,8 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccLedgerWqty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntechOld.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
@@ -186,7 +191,10 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCube.rdlc" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptCashPay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -682,6 +690,7 @@
     <EmbeddedResource Include="R_22_Sal\RptDummyPaywithoutDiscount02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDWiseRealCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptIntech.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt360.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt.rdlc" />
@@ -890,6 +899,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\EmpLeavApp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatusBR.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\rptBirthday.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\rptEmpLeaveCard.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmpLeavStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmployeeLeaveRecord.rdlc" />
@@ -917,6 +927,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptAllBankSummary.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankFordLetter.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementBridge.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Finlay.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatement.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementAlli.rdlc" />
@@ -958,6 +970,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterGreenwood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsLanco.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptTotalSal.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptModePayment.rdlc" />

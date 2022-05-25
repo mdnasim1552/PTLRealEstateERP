@@ -1822,7 +1822,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text =
-                @"<script>window.open('../../RDLCViewer?PrintOpt=" +
+                @"<script>window.open('../RDLCViewer?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() +
                 "', target='_blank');</script>";
 
@@ -1933,7 +1933,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text =
-                @"<script>window.open('../../RDLCViewer?PrintOpt=" +
+                @"<script>window.open('../RDLCViewer?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() +
                 "', target='_blank');</script>";
         }
@@ -1969,7 +1969,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text =
-                @"<script>window.open('../../RDLCViewer?PrintOpt=" +
+                @"<script>window.open('../RDLCViewer?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() +
                 "', target='_blank');</script>";
         }
@@ -2005,7 +2005,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text =
-                @"<script>window.open('../../RDLCViewer?PrintOpt=" +
+                @"<script>window.open('../RDLCViewer?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() +
                 "', target='_blank');</script>";
         }

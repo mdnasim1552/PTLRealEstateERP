@@ -40,7 +40,7 @@
                 k1.textBoxHandler(event);
 
 
-                $.keynavigation(gvOvertime);
+               // $.keynavigation(gvOvertime);
                 $.keynavigation(gvBankPay);
                 $.keynavigation(gvEmpHoliday);
                 $.keynavigation(gvEmpMbill);
@@ -200,7 +200,7 @@
                         <asp:GridView ID="gvEmpOverTime" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnPageIndexChanging="gvEmpOverTime_PageIndexChanging" ShowFooter="True"
-                            Width="831px" OnRowDeleting="gvEmpOverTime_RowDeleting">
+                             OnRowDeleting="gvEmpOverTime_RowDeleting">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -280,7 +280,7 @@
                                     <ItemStyle HorizontalAlign="right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Ceiling(7PM-10PM)">
+                                <asp:TemplateField HeaderText="Ceiling<br/>(7PM-10PM)">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvc1" runat="server" BackColor="Transparent"
                                             BorderStyle="None"
@@ -293,7 +293,7 @@
                                     <ItemStyle HorizontalAlign="right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Ceiling(10:1PM-2AM)">
+                                <asp:TemplateField HeaderText="Ceiling<br/>(10:1PM-2AM)">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvc2" runat="server" BackColor="Transparent"
                                             BorderStyle="None"
@@ -307,7 +307,7 @@
                                     <ItemStyle HorizontalAlign="right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Ceiling(2AM-6PM)">
+                                <asp:TemplateField HeaderText="Ceiling<br/>(2AM-6PM)">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvc3" runat="server" BackColor="Transparent"
                                             BorderStyle="None"
@@ -400,7 +400,7 @@
                                             BorderStyle="None"
                                             Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tohour")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvFhour" runat="server" Font-Bold="True" Font-Size="12px"

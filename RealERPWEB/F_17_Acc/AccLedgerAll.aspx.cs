@@ -1042,7 +1042,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3356":
-                case "3101":
+                //case "3101":
                     comledger = "LedgerIntech";
                     break;
 
@@ -1161,11 +1161,21 @@ namespace RealERPWEB.F_17_Acc
             }
             else
             {
-
-                string checkby = (comcod == "3340") ? "Checked By" : "Recommended By";
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedger", lst, null, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("txtcheckedby", checkby));
+                if (this.chkqty.Checked)
+                {
+                    string checkby = (comcod == "3340") ? "Checked By" : "Recommended By";
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerWqty", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtcheckedby", checkby));
+                }
+                else
+                {
+                    string checkby = (comcod == "3340") ? "Checked By" : "Recommended By";
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedger", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtcheckedby", checkby));
+                }
+                
 
             }
             Rpt1.SetParameters(new ReportParameter("txtCompanyName", comnam.ToUpper()));

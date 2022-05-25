@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2208,6 +2208,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
@@ -2649,6 +2650,7 @@
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
     <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
+    <Content Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx" />
     <Content Include="F_28_MPro\RptMktProjectStock.aspx" />
     <Content Include="F_28_MPro\RptMktPurchaseTracking.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
@@ -2713,6 +2715,7 @@
     <Content Include="F_32_Mis\SalesTarget.aspx" />
     <Content Include="F_33_Doc\CodeBook.aspx" />
     <Content Include="F_33_Doc\Docs\ip.png" />
+    <Content Include="F_33_Doc\SimCardMange.aspx" />
     <Content Include="F_33_Doc\UploadDocumentation.aspx" />
     <Content Include="F_33_Doc\DocUpload.aspx" />
     <Content Include="F_33_Doc\FileManagement.aspx" />
@@ -3016,6 +3019,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptEmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
@@ -3055,6 +3059,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HREmpConfirmation.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\HRSupervisorTransfer.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
@@ -3840,6 +3845,13 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
+      <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\LandProspectTransfer.aspx.designer.cs">
+      <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_21_MKT\MktGenCodeBookLand.aspx.cs">
       <DependentUpon>MktGenCodeBookLand.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4071,6 +4083,13 @@
     <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
       <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx.cs">
+      <DependentUpon>RptAccMktQuarterlyBgd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx.designer.cs">
+      <DependentUpon>RptAccMktQuarterlyBgd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_28_MPro\RptMktProjectStock.aspx.cs">
       <DependentUpon>RptMktProjectStock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4091,6 +4110,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_33_Doc\SimCardMange.aspx.cs">
+      <DependentUpon>SimCardMange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_33_Doc\SimCardMange.aspx.designer.cs">
+      <DependentUpon>SimCardMange.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
@@ -4154,6 +4180,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx.designer.cs">
       <DependentUpon>EmpProfileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\ImgUpload.aspx.cs">
+      <DependentUpon>ImgUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\ImgUpload.aspx.designer.cs">
+      <DependentUpon>ImgUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
@@ -4561,6 +4594,13 @@
     <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.designer.cs">
       <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx.cs">
+      <DependentUpon>RptMonthWiseTax02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx.designer.cs">
+      <DependentUpon>RptMonthWiseTax02.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4595,6 +4635,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx.designer.cs">
       <DependentUpon>EntrySectionWisePermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\HRSupervisorTransfer.aspx.cs">
+      <DependentUpon>HRSupervisorTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\HRSupervisorTransfer.aspx.designer.cs">
+      <DependentUpon>HRSupervisorTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx.cs">
       <DependentUpon>InterfaceAttApp.aspx</DependentUpon>
@@ -10940,13 +10987,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\HREmpEntry.aspx.designer.cs">
       <DependentUpon>HREmpEntry.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\ImgUpload.aspx.cs">
-      <DependentUpon>ImgUpload.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\ImgUpload.aspx.designer.cs">
-      <DependentUpon>ImgUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LinkMyHRLeave.aspx.cs">
       <DependentUpon>LinkMyHRLeave.aspx</DependentUpon>

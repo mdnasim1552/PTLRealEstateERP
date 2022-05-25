@@ -12,6 +12,7 @@ using System.Data;
 using Microsoft.Reporting.WinForms;
 using RealEntity;
 
+
 namespace RealERPRDLC
 {
     public class RptHRSetup
@@ -34,6 +35,8 @@ namespace RealERPRDLC
                 #region RD_84_leav
                 case "R_81_Hrm.R_84_Lea.RptLeaveApp": Rpt1a = SetRptLeaveApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_84_Lea.rptEmpLeaveCard": Rpt1a = SetrptEmpLeaveCard(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                case "R_81_Hrm.R_84_Lea.rptBirthday": Rpt1a = setRptBirthday(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
                 case "R_81_Hrm.R_83_Att.RptNewEmpStatus": Rpt1a = SetRptEmpStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                // case "R_81_Hrm.R_83_Att.RptMonAttendance": Rpt1a = SetRptMonAttendance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -319,6 +322,14 @@ namespace RealERPRDLC
             return rpt1a;
         }
 
-        
+
+        private static LocalReport setRptBirthday(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.birthdayDate>)rptDataSet));
+
+            return rpt1a;
+        }
+
     }
 }

@@ -123,13 +123,13 @@ namespace RealERPWEB.F_28_MPro
         protected global::AjaxControlToolkit.CalendarExtender txtCurDate_CalendarExtender;
 
         /// <summary>
-        /// CopyTo control.
+        /// pnlCopy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CopyTo;
+        protected global::System.Web.UI.WebControls.Panel pnlCopy;
 
         /// <summary>
         /// lblPrjName control.
@@ -148,15 +148,6 @@ namespace RealERPWEB.F_28_MPro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlfrmmonth;
-
-        /// <summary>
-        /// datediv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl datediv;
 
         /// <summary>
         /// Label3 control.
@@ -184,15 +175,6 @@ namespace RealERPWEB.F_28_MPro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
-
-        /// <summary>
-        /// Copybtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Copybtn;
 
         /// <summary>
         /// LbtnCopy control.

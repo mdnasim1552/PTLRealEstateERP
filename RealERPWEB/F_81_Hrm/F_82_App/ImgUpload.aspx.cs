@@ -10,101 +10,49 @@ using System.Collections;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using System.IO;
 using RealERPLIB;
 using RealERPRPT;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+
 namespace RealERPWEB.F_81_Hrm.F_82_App
 {
     public partial class ImgUpload : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
-        string Upload = "";
-        int size =1024*1024;
-        System.IO.Stream image_file = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
 
                 //   this.GetEmployeeName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE IMAGE UPLOAD ";
                 this.GetCompanyName();
+                this.getAllData();
             }
 
-            if (imgFileUpload.HasFile)
+
+        }
+
+        private void getAllData()
+        {
+            ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
+            string comcod = this.GetCompCode();
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "GETEMPBYID", empid, "", "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
             {
-                //if (imgFileUpload.PostedFile != null && imgFileUpload.PostedFile.FileName != "")
-                //{
-
-                //    // 10240 KB means 10MB, You can change the value based on your requirement 1024*50(51200)
-                //    int imgsize = imgFileUpload.PostedFile.ContentLength;
-                //    if (imgFileUpload.PostedFile.ContentLength > 51200)
-                //    {
-
-                //        Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('File Size Less or Equal 50KB')", true);
-                //        return;
-
-                //    }
-                //}
-
-                try
-                {
-                    Upload = System.IO.Path.GetFileName(imgFileUpload.PostedFile.FileName);
-                    string savelocation = Server.MapPath("~") + "\\Image1" + "\\" + Upload;
-                    string filepath = savelocation;
-                    imgFileUpload.PostedFile.SaveAs(savelocation);
-                    EmpImg.ImageUrl = "~/Image1/" + Upload;
-                   
-                    
-                    // Session["x"] = "~/Image1/" + Upload;
-                    image_file = imgFileUpload.PostedFile.InputStream;
-                    size = imgFileUpload.PostedFile.ContentLength;
-                    Session["i"] = image_file;
-                    Session["s"] = size;
-                    //.imgFileUpload.tL
-                    // image_file.Close();
-                }
-                catch ( Exception ex)
-                {
-
-                }
-              
-
+                this.gvimg.DataSource = null;
+                this.gvimg.DataBind();
+                return;
             }
 
-            if (imgSigFileUpload.HasFile)
-            {
-                //if (imgSigFileUpload.PostedFile != null && imgSigFileUpload.PostedFile.FileName != "")
-                //{
-
-                //    // 10240 KB means 10MB, You can change the value based on your requirement
-
-                //    if (imgSigFileUpload.PostedFile.ContentLength > 51200)
-                //    {
-                //        Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('File Size Less or Equal 50KB')", true);
-                //        return;
-
-                //    }
-                //}
-
-                Upload = System.IO.Path.GetFileName(imgSigFileUpload.PostedFile.FileName);
-                string savelocation = Server.MapPath("~") + "\\Image1" + "\\" + Upload;
-                string filepath = savelocation;
-                imgSigFileUpload.PostedFile.SaveAs(savelocation);
-                EmpSig.ImageUrl = "~/Image1/" + Upload;
-                // Session["x1"] = "~/Image1/" + Upload;
-                image_file = imgSigFileUpload.PostedFile.InputStream;
-                size = imgSigFileUpload.PostedFile.ContentLength;
-                Session["i1"] = image_file;
-                Session["s1"] = size;
-                // image_file.Close();
-            }
-
+            this.gvimg.DataSource = ds.Tables[0];
+            this.gvimg.DataBind();
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -160,7 +108,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //string type = this.Request.QueryString["Type"].ToString().Trim();
             //string Company = this.ddlCompanyAgg.SelectedValue.ToString().Trim();
             //string deptcode = this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2) + "%";
-            string deptcode = (this.ddldepartmentagg.SelectedValue.ToString() == "000000000000")? "94%" : (this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2)+ "%");
+            string deptcode = (this.ddldepartmentagg.SelectedValue.ToString() == "000000000000") ? "94%" : (this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 2) + "%");
             // : this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string txtSProject = "%%";// ;// (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
                                       //string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "EmpAllInfo") ? "GETPROJECTNAME" : "GETPROJECTNAMEFOT";
@@ -170,8 +118,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds4.Tables[0];
             this.ddlProjectName.DataBind();
-           // this.GetEmployeeName();
-             this.ddlProjectName_SelectedIndexChanged(null, null);
+            // this.GetEmployeeName();
+            this.ddlProjectName_SelectedIndexChanged(null, null);
             //this.GetEmpName();
         }
 
@@ -186,39 +134,39 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empcode = this.txtSrcEmployee.Text.Trim();
 
             string comcod = this.GetCompCode();
-            
+
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "94%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             pactcode = (empcode.Length == 0) ? pactcode : "94%";
             empcode = empcode + "%"; // for alwayes search empcode wise 
-             
-            
+
+
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", pactcode, empcode, "", "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds5.Tables[0];
             this.ddlEmpName.DataBind();
             ViewState["tblemp"] = ds5.Tables[0];
-            this.ShowImage();
-            this.GetComASecSelected(); 
+
+            //this.GetComASecSelected();
         }
 
-        private void GetComASecSelected()
-        {
+        //private void GetComASecSelected()
+        //{
 
-            string empid = this.ddlEmpName.SelectedValue.ToString();
-            DataTable dt = (DataTable)ViewState["tblemp"];
-            DataRow[] dr = dt.Select("empid = '" + empid + "'");
-            if (dr.Length > 0)
-            {
-                this.ddlCompanyAgg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
-                this.ddldepartmentagg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["deptcode"].ToString();
-                this.ddlProjectName.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
-
-
-            }
+        //    string empid = this.ddlEmpName.SelectedValue.ToString();
+        //    DataTable dt = (DataTable)ViewState["tblemp"];
+        //    DataRow[] dr = dt.Select("empid = '" + empid + "'");
+        //    if (dr.Length > 0)
+        //    {
+        //        this.ddlCompanyAgg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
+        //        this.ddldepartmentagg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["deptcode"].ToString();
+        //        this.ddlProjectName.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
 
 
-        }
+        //    }
+
+
+        //}
         protected void ibtnEmpList_Click(object sender, EventArgs e)
         {
             this.GetEmployeeName();
@@ -226,163 +174,227 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-        protected void lbtnUpdateImg_Click(object sender, EventArgs e)
+        protected void lnkbtnUpdateEMPImage_Click(object sender, EventArgs e)
         {
-            try
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                string comcod = this.GetCompCode();
-                string savelocation = Server.MapPath("~") + "\\Image1";
-                string[] filePaths = Directory.GetFiles(savelocation);
-                foreach (string filePath in filePaths)
-                    File.Delete(filePath);
-                string empid = this.ddlEmpName.SelectedValue.ToString();
-                //long[] photo = new long[0];
-                //long[] signature = new long[0];
-
-                byte[] photo = new byte[0];
-                byte[] signature = new byte[0];
-
-                // Image
-                if (Session["i"] != null)
-                {
-                    image_file = (Stream)Session["i"];
-                    size = Convert.ToInt32(Session["s"]);
-                    BinaryReader br = new BinaryReader(image_file);
-                   photo = br.ReadBytes(size);
-                   
-                }
-
-                //Signature
-                if (Session["i1"] != null)
-                {
-                    image_file = (Stream)Session["i1"];
-                    size = Convert.ToInt32(Session["s1"]);
-                    BinaryReader br1 = new BinaryReader(image_file);
-                    signature = br1.ReadBytes(size);
-                }
-
-                ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
-                DataSet ds3 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "EMPID", empid, "", "", "", "", "", "", "", "");
-                bool updatPhoto;
-                if (ds3.Tables[0].Rows.Count == 0)
-                {
-
-                    updatPhoto = HRData.InsertClientPhoto(comcod, empid, photo, signature);
-                    if (!updatPhoto)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated failed";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
-                    }
-
-
-
-
-
-
-
-                     ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
-
-
-                }
-
-                else
-                {
-                    if (photo.Length > 0 && signature.Length > 0)
-                    {
-                        updatPhoto = HRData.UpdateClientPhoto(comcod, empid, photo, signature);
-                        if (!updatPhoto)
-                        {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated failed";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        }
-
-                    }
-
-                    else if (photo.Length > 0)
-                    {
-                        updatPhoto = HRData.UpdateClientPhotoonly(comcod, empid, photo);
-                        if (!updatPhoto)
-                        {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated failed";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        }
-
-
-                    }
-
-                    else if (signature.Length > 0)
-                    {
-                        updatPhoto = HRData.UpdateClientSignOnly(comcod, empid, signature);
-                        if (!updatPhoto)
-                        {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated failed";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        }
-
-                    }
-
-                     ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-                }
-
-
-                this.ShowImage();
-
-
-            }
-
-            catch (Exception ex)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            }
-
-        }
-
-        protected void lbtnDelete_Click(object sender, EventArgs e)
-        {
-            string comcod = this.GetCompCode();
             ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
+
+            string comcod = this.GetCompCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
-            bool result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "DELETEUSEIMG", empid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (!result)
+            string filePath = "";
+            string filePath2 = "";
+            string msg = "";
+            string fileExtention = "";
+            int fileLenght = 0;
+
+
+            //check image selected or not
+            if ((imgFileUpload.PostedFile != null) && (imgFileUpload.PostedFile.ContentLength > 0) || (imgSigFileUpload.PostedFile != null) && (imgSigFileUpload.PostedFile.ContentLength > 0))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Deleted Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string fn = System.IO.Path.GetFileName(imgFileUpload.PostedFile.FileName).ToString() ?? "";
+                string fn2 = System.IO.Path.GetFileName(imgSigFileUpload.PostedFile.FileName).ToString() ?? "";
+                //check image
+                if ((imgFileUpload.PostedFile != null) && (imgFileUpload.PostedFile.ContentLength > 0) && (fn != null || fn != ""))
+                {
+                    Guid uid = Guid.NewGuid();
+                    fileExtention = imgFileUpload.PostedFile.ContentType;
+                    fileLenght = imgFileUpload.PostedFile.ContentLength;
+                    fn = System.IO.Path.GetFileName(imgFileUpload.PostedFile.FileName).ToString() ?? "";
+                    filePath = "~/Upload/HRM/EmpImg/" + empid + fn;
+                    if (fileExtention == "image/png" || fileExtention == "image/jpeg" || fileExtention == "image/x-png")
+                    {
+                        if (fileLenght <= 5048576)
+                        {
+                            DataSet ds2 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "GETEMPBYID", empid, "", "", "", "", "", "", "", "");
+
+                            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+                            {
+                                System.Drawing.Bitmap bmpPostedImage = new System.Drawing.Bitmap(imgFileUpload.PostedFile.InputStream);
+                                System.Drawing.Image objImage = ScaleImage(bmpPostedImage);
+
+                                objImage.Save(Server.MapPath(filePath), ImageFormat.Jpeg);
+
+
+
+                            }
+                            else
+                            {
+                                DataTable dt2 = ds2.Tables[0];
+                                string file1 = dt2.Rows[0]["imgurl"].ToString();
+                                if (fn2 == null || fn2 == "")
+                                {
+                                    filePath2 = dt2.Rows[0]["signurl"].ToString();
+                                }
+
+                                FileInfo getFile = new FileInfo(Server.MapPath(file1));
+
+                                if (getFile.Exists)
+                                {
+                                    getFile.Delete();
+                                }
+
+                                System.Drawing.Bitmap bmpPostedImage = new System.Drawing.Bitmap(imgFileUpload.PostedFile.InputStream);
+                                System.Drawing.Image objImage = ScaleImage(bmpPostedImage);
+                                // Saving image in jpeg format
+                                objImage.Save(Server.MapPath(filePath), ImageFormat.Jpeg);
+
+                            }
+
+
+                        }
+                    }
+
+                }
+
+                //check signature
+                if ((imgSigFileUpload.PostedFile != null) && (imgSigFileUpload.PostedFile.ContentLength > 0) && (fn2 != null || fn2 != ""))
+                {
+
+                    Guid uid = Guid.NewGuid();
+                    filePath2 = "~/Upload/HRM/signature/" + empid + fn2;
+
+                    fileExtention = imgSigFileUpload.PostedFile.ContentType;
+                    fileLenght = imgSigFileUpload.PostedFile.ContentLength;
+                    if (fileExtention == "image/png" || fileExtention == "image/jpeg" || fileExtention == "image/x-png")
+                    {
+                        if (fileLenght <= 1048576)
+                        {
+                            DataSet ds2 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "GETEMPBYID", empid, "", "", "", "", "", "", "", "");
+
+                            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+                            {
+                                System.Drawing.Bitmap bmpPostedImage = new System.Drawing.Bitmap(imgSigFileUpload.PostedFile.InputStream);
+                                System.Drawing.Image objImage1 = ScaleImage2(bmpPostedImage);
+                                // Saving image in jpeg format
+                                objImage1.Save(Server.MapPath(filePath2), ImageFormat.Jpeg);
+
+
+                            }
+                            else
+                            {
+                                DataTable dt2 = ds2.Tables[0];
+                                string file1 = dt2.Rows[0]["signurl"].ToString();
+                                if (fn == null || fn == "")
+                                {
+                                    filePath = dt2.Rows[0]["imgurl"].ToString();
+                                }
+
+                                FileInfo getFile = new FileInfo(Server.MapPath(file1));
+                                if (getFile.Exists)
+                                {
+                                    getFile.Delete();
+                                }
+
+                                System.Drawing.Bitmap bmpPostedImage = new System.Drawing.Bitmap(imgSigFileUpload.PostedFile.InputStream);
+                                System.Drawing.Image objImage1 = ScaleImage2(bmpPostedImage);
+                                // Saving image in jpeg format
+                                objImage1.Save(Server.MapPath(filePath2), ImageFormat.Jpeg);
+
+                            }
+
+
+                        }
+                    }
+
+                }
+
+                bool result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "INSERTUPDATEIMAGENEW", empid, "", "", filePath, filePath2, "", "", "", "", "");
+                if (result)
+                {
+                    msg = "Image Uploaded Successfull";
+                    this.getAllData();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                }
+
+
             }
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Deleted";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = "Upload Failed!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Error: " + msg + "');", true);
             }
+
+
+
 
         }
 
-        private void ShowImage()
+        public static System.Drawing.Image ScaleImage(System.Drawing.Image image)
         {
-            Session.Remove("tblEmpimg");
-            this.EmpImg.ImageUrl = "";
-            this.EmpSig.ImageUrl = "";
-            string comcod = this.GetCompCode();
-            ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
-            string empid = this.ddlEmpName.SelectedValue.ToString();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "SHOWIMG", empid, "", "", "", "", "", "", "", "");
-            if (ds1 == null)
+            //var ratio = (double)maxHeight / image.Height;
+            var newWidth = 300;
+            var newHeight = 300;
+            var newImage = new Bitmap(newWidth, newHeight);
+            using (var g = Graphics.FromImage(newImage))
             {
-                return;
+                g.DrawImage(image, 0, 0, newWidth, newHeight);
+            }
+            return newImage;
+        }
+
+
+        public static System.Drawing.Image ScaleImage2(System.Drawing.Image image)
+        {
+
+            var newWidth = 300;
+            var newHeight = 80;
+            var newImage = new Bitmap(newWidth, newHeight);
+            using (var g = Graphics.FromImage(newImage))
+            {
+                g.DrawImage(image, 0, 0, newWidth, newHeight);
+            }
+            return newImage;
+        }
+        protected void btn_remove_Click1(object sender, EventArgs e)
+        {
+            ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
+            string comcod = this.GetCompCode();
+            string msg = "";
+            string filepath = "";
+            string filepath2 = "";
+
+
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            filepath = ((Label)this.gvimg.Rows[index].FindControl("lblimg")).Text.ToString();
+            filepath2 = ((Label)this.gvimg.Rows[index].FindControl("lblsign")).Text.ToString();
+            FileInfo file = new FileInfo(Server.MapPath(filepath));
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+
+            FileInfo file2 = new FileInfo(Server.MapPath(filepath2));
+            if (file2.Exists)
+            {
+                file2.Delete();
+            }
+
+            string empid = ((Label)this.gvimg.Rows[index].FindControl("lblid")).Text.ToString();
+
+            bool result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_EMPLOYEEIMG", "REMOVEDATA", empid, "", "", "", "", "");
+            if (result)
+            {
+
+
+                msg = "Deleted Successfully";
+                this.getAllData();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
 
             }
-            this.Hiddnrl.Value = "";
-            Session["tblEmpimg"] = ds1.Tables[0];
-            this.EmpImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgEmp";
-            this.EmpSig.ImageUrl = "~/GetImage.aspx?ImgID=HREmpSign";
+            else
+            {
+
+                msg = "Delete Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            }
 
         }
-        
+
+
         protected void ddldepartmentagg_SelectedIndexChanged(object sender, EventArgs e)
         {
             //this.GetDepartment();
@@ -399,19 +411,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetComASecSelected();
-            this.ShowImage();
-        }
-        protected void imgbtnEmpSeach_Click(object sender, EventArgs e)
-        {
-            //this.ShowValue();
+            //this.GetComASecSelected();
+            this.getAllData();
+
         }
 
-        protected void lnkbtnUpdateEMPImage_Click(object sender, EventArgs e)
+        protected void empSrc_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             string comcod = this.GetCompCode();
-            string savelocation = Server.MapPath("~") + "\\Image1";
+
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", "94%", "%", "", "", "", "", "", "", "");
+            this.ddlEmpName.DataTextField = "empname";
+            this.ddlEmpName.DataValueField = "empid";
+            this.ddlEmpName.DataSource = ds5.Tables[0];
+            this.ddlEmpName.DataBind();
         }
     }
 }

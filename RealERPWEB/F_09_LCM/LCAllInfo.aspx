@@ -100,7 +100,7 @@
                                     ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowCommand="gvTransaction_RowCommand">
                                     <RowStyle />
                                     <Columns>
-                                            <asp:TemplateField HeaderText="Sl. No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNomonpay" runat="server" Font-Bold="True" Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>

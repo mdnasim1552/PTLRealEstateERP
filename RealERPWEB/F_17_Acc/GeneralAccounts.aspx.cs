@@ -372,6 +372,8 @@ namespace RealERPWEB.F_17_Acc
             tblt01.Columns.Add("unit", Type.GetType("System.String"));
             tblt01.Columns.Add("sectcode", Type.GetType("System.String"));
 
+            //tblt01.Columns.Add("trnoutstbal", Type.GetType("System.Double"));
+
 
 
 
@@ -394,6 +396,7 @@ namespace RealERPWEB.F_17_Acc
             tblt02.Columns.Add("billno", Type.GetType("System.String"));
             tblt02.Columns.Add("unit", Type.GetType("System.String"));
             tblt02.Columns.Add("sectcode", Type.GetType("System.String"));
+           // tblt02.Columns.Add("trnoutstbal", Type.GetType("System.Double"));
 
 
 
@@ -805,7 +808,7 @@ namespace RealERPWEB.F_17_Acc
 
 
             DataTable dt = ds1.Tables[2];
-            this.lblBalance.Text = Convert.ToDouble(dt.Rows[0]["balam"]).ToString("#,##0;(#,##0); ");
+            this.lblBalance.Text = Convert.ToDouble(dt.Rows[0]["balam"]).ToString("#,##0.00;-#,##0.00; ");
         }
         protected void ddlSpclinf_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1187,12 +1190,12 @@ namespace RealERPWEB.F_17_Acc
 
                 }
                 string billno = this.ddlBillList.SelectedValue.ToString();
-
-
                 string sectcode = this.ddlCostCenter.SelectedValue.ToString(); //cost center add 
 
 
                 string SpclCode = this.ddlSpclinf.SelectedValue.ToString();
+            //    string lbltrnoutstbal = this.lblBalance.Text.ToString();
+
                 SpclCode = (SpclCode.Length < 12 ? "000000000000" : SpclCode);
                 string AccDesc = ((List<RealEntity.C_17_Acc.EClassAccVoucher.EClassAccHead>)Session["HeadAcc1"]).FindAll(p => p.actcode == AccCode)[0].actdesc.ToString();
                 string ResDesc = (ResCode == "000000000000" ? "" : this.ddlresuorcecode.SelectedItem.Text.Trim());
@@ -1201,6 +1204,9 @@ namespace RealERPWEB.F_17_Acc
                 double Trnrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
                 double TrnDrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtDrAmt.Text.Trim()));
                 double TrnCrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtCrAmt.Text.Trim()));
+
+               // double trnoutstbal = Convert.ToDouble(ASTUtility.ExprToValue("0" + lbltrnoutstbal.ToString()));
+
                 string TrnRemarks = this.txtremarks.Text.Trim();
                 DataTable tblt01 = (DataTable)Session["tblt01"];
                 DataTable tblt02 = (DataTable)Session["tblt02"];
@@ -1210,7 +1216,7 @@ namespace RealERPWEB.F_17_Acc
                 tblt03.Rows.Clear();
                 int cindex = -1;
 
-                string firstrrmrks = dgv1.Rows.Count==0?"":((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
+                string firstrrmrks = dgv1.Rows.Count == 0 ? "" : ((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
                 for (int i = 0; i < this.dgv1.Rows.Count; i++)
                 {
                     string dgAccCode = ((Label)this.dgv1.Rows[i].FindControl("lblAccCod")).Text.Trim();
@@ -1267,6 +1273,8 @@ namespace RealERPWEB.F_17_Acc
                         dr1["unit"] = gvunit;
                         dr1["sectcode"] = dgsectcode;
 
+                      //  dr1["trnoutstbal"] = trnoutstbal;
+
                         tblt01.Rows.Add(dr1);
                         cindex = i;
 
@@ -1292,14 +1300,16 @@ namespace RealERPWEB.F_17_Acc
                         dr1["unit"] = gvunit;
                         dr1["sectcode"] = dgsectcode;
 
+//                        dr1["trnoutstbal"] = trnoutstbal;
+
                         tblt01.Rows.Add(dr1);
                     }
                 }
                 // For Duplicate 
                 string voutype = this.ddlvoucher.SelectedValue.ToString();
-               // string type = this.Request.QueryString["Mod"];
-               // string rmrks = ((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
-                string trnrmrk = this.Request.QueryString["Mod"] == "Management" ? firstrrmrks :"";
+                // string type = this.Request.QueryString["Mod"];
+                // string rmrks = ((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
+                string trnrmrk = this.Request.QueryString["Mod"] == "Management" ? firstrrmrks : "";
                 TrnRemarks = voutype == "JV" ? trnrmrk : TrnRemarks;
                 // New Row Add 
 
@@ -1324,6 +1334,8 @@ namespace RealERPWEB.F_17_Acc
                     dr2["billno"] = billno;
                     dr2["unit"] = resunit;
                     dr2["sectcode"] = sectcode;
+                  //  dr2["trnoutstbal"] = trnoutstbal;
+
                     tblt01.Rows.Add(dr2);
 
 
@@ -1372,6 +1384,9 @@ namespace RealERPWEB.F_17_Acc
                     dr3["billno"] = tblt03.Rows[j]["billno"].ToString();
                     dr3["unit"] = tblt03.Rows[j]["unit"].ToString();
                     dr3["sectcode"] = tblt03.Rows[j]["sectcode"].ToString();
+
+                 //   dr3["trnoutstbal"] = tblt03.Rows[j]["trnoutstbal"].ToString();
+
 
                     tblt02.Rows.Add(dr3);
 
@@ -1481,7 +1496,14 @@ namespace RealERPWEB.F_17_Acc
                 double dg1TrnQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[i].FindControl("txtgvQty")).Text.Trim()));
                 double dg1TrnRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[i].FindControl("txtgvRate")).Text.Trim()));
                 double dg1TrnDrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[i].FindControl("txtgvDrAmt")).Text.Trim()));
+
                 double dg1TrnCrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[i].FindControl("txtgvCrAmt")).Text.Trim()));
+
+                //double trnoutstbal = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.dgv1.Rows[i].FindControl("lblgvtrnoutstbal")).Text.Trim()));
+
+
+
+
 
                 TQty = dg1TrnQty;
                 dg1TrnCrAmt = dg1TrnDrAmt > 0 ? 0.00 : dg1TrnCrAmt;
@@ -1495,6 +1517,11 @@ namespace RealERPWEB.F_17_Acc
                 dg1TrnCrAmt = (vounum == "BC" || vounum == "CC") ? (dg1TrnCrAmt > 0 ? dg1TrnCrAmt : dg1TrnQty * TRate)
                     : ((actcode == "2" || actcode == "3" || actcode == "8") ? (dg1TrnQty > 0 ? dg1TrnQty * TRate : dg1TrnCrAmt) : dg1TrnCrAmt);
 
+
+
+
+
+                //footer total
                 TDrAmt += dg1TrnDrAmt;
                 TCrAmt += dg1TrnCrAmt;
 
@@ -1769,15 +1796,7 @@ namespace RealERPWEB.F_17_Acc
             string Payto = this.txtPayto.Text.Trim();
             string isunum = this.lblisunum.Text.Trim();
 
-
-
-
-
-
-            //string EditByid = (this.Request.QueryString["Mod"] == "Accounts") ? "" : (tblEditByid == "") ? userid : tblEditByid;
-
-
-
+            //string EditByid = (this.Request.QueryString["Mod"] == "Accounts") ? "" : (tblEditByid == "") ? userid : tblEditByid; 
             //string date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
             //string cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
 
@@ -1860,14 +1879,7 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-            //string voudat = this.txtEntryDate.Text.Substring(0, 11);
-
-
-
-
-
-
-
+            //string voudat = this.txtEntryDate.Text.Substring(0, 11); 
 
             //Voucher Date Change
 
@@ -1932,13 +1944,6 @@ namespace RealERPWEB.F_17_Acc
                              (vouno == "BD" ? "Bank Payment Voucher" :
                              (vouno == "CC" ? ("Cash " + recvou) :
                              (vouno == "BC" ? ("Bank " + recvou) : "Unknown Voucher")))));
-
-
-
-
-
-
-
 
             string cactcode = (vouno == "JV" ? "000000000000" : this.ddlConAccHead.SelectedValue.ToString());
 
@@ -2015,9 +2020,6 @@ namespace RealERPWEB.F_17_Acc
 
                 if ((this.Request.QueryString["Mod"] == "Accounts"))
                 {
-
-
-
                     if ((vouno == "BD" || vouno == "CT") && cactcode.Substring(0, 4) != "1901")
                     {
 
@@ -2038,15 +2040,7 @@ namespace RealERPWEB.F_17_Acc
 
                                 }
                             }
-
-
-
-
                         }
-
-
-
-
                     }
 
                     //For Dupllicate MR
@@ -2074,19 +2068,7 @@ namespace RealERPWEB.F_17_Acc
                         default:
                             break;
                     }
-
-
-
-
-
-
-
                 }
-
-
-
-
-
 
                 //string pounaction = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["pounaction"].ToString();
                 //string aprovbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
@@ -2110,9 +2092,7 @@ namespace RealERPWEB.F_17_Acc
                 if (!resultb)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
                     // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Update Failed !!!');", true);
 
                     return;
@@ -2140,7 +2120,20 @@ namespace RealERPWEB.F_17_Acc
                     string rpcode = ((Label)this.dgv1.Rows[i].FindControl("lblgvrpcode")).Text.Trim();
                     string billno = ((TextBox)this.dgv1.Rows[i].FindControl("lblgvBillno")).Text.Trim();
                     string sectcode = ((Label)this.dgv1.Rows[i].FindControl("lblgvcostcenter")).Text.Trim();
+                    //double trnoutstbal = ASTUtility.StrPosOrNagative(((Label)this.dgv1.Rows[i].FindControl("lblgvtrnoutstbal")).Text.Trim());
 
+                    //trnoutstbal = trnoutstbal * -1;
+
+                    //if (actcode.Substring(0, 2) == "26" && (rescode.Substring(0, 2) == "99" || rescode.Substring(0, 2) == "98") && (comcod == "3101" || comcod== "3356") && vouno!="JV")
+                    //{
+                    //    if(trnoutstbal  < Dramt)
+                    //    {
+                    //        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Enabled = true;
+                    //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Amount Exceed, please check balance!!!.');", true);
+                    //        return;
+                    //    }
+
+                    //}
 
 
                     bool resulta = accData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, vounum, actcode, rescode, cactcode,
@@ -2897,7 +2890,7 @@ namespace RealERPWEB.F_17_Acc
                     case "2305":
                     case "3310":
                     case "3311":
-                     case "3101":
+                    case "3101":
                         if (this.ddlPrivousVou.Items.Count > 0)
                         {
                             if (((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0))
@@ -2915,7 +2908,7 @@ namespace RealERPWEB.F_17_Acc
                                 txtgvCrAmt.Enabled = false;
                                 tnrRemarks.ReadOnly = true;
                                 lblgvBillno.ReadOnly = true;
-                                
+
 
                             }
 
@@ -2930,7 +2923,7 @@ namespace RealERPWEB.F_17_Acc
                         break;
                     default:
                         tnrRemarks.ReadOnly = false;
-                        
+
                         break;
                 }
 

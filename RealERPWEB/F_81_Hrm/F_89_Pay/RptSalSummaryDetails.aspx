@@ -40,26 +40,11 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <asp:Label runat="server" ID="Label10">Company</asp:Label>
-
-                                        <div class="input-group input-group-sm mb-3">
-                                            <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                            <div class="input-group-append ">
-                                                <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="btn btn-primary " OnClick="imgbtnCompany_Click"><span class="fa fa-search"> </span></asp:LinkButton>
-                                            </div>
-                                        </div>
-
+                                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control  form-control-sm"></asp:DropDownList>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-
-
-                                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control mt20 form-control-sm"></asp:DropDownList>
-                                    
-                              
-                                    </div>
-                                </div>
+              
 
                                 <div class="col-lg-2">
                                     <div class="form-group">
@@ -67,7 +52,7 @@
                                         <asp:Label ID="lblfrmdate" runat="server">From</asp:Label>
                                         <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
-                                            Enabled="True" Format="yyyyMM" TargetControlID="txtfromdate"
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"
                                             PopupButtonID="Image2"></cc1:CalendarExtender>
 
                                     </div>
@@ -77,7 +62,7 @@
                                         <asp:Label ID="Label1" runat="server">To</asp:Label>
                                         <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
-                                            Enabled="True" Format="yyyyMM" TargetControlID="txttodate"
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"
                                             PopupButtonID="Image2"></cc1:CalendarExtender>
 
                                     </div>

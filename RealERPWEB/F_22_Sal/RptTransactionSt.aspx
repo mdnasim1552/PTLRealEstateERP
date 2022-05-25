@@ -34,8 +34,7 @@
 
 
 
-
-         
+       
               $('#<%=this.grvTrnDatWise.ClientID%>').gridviewScroll({
                   width: 1160,
                   height: 420,
@@ -69,7 +68,7 @@
               });
 
               
-              
+      
 
 
               $('.chzn-select').chosen({ search_contains: true });

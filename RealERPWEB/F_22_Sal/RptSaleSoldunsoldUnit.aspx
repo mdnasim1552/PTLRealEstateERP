@@ -164,12 +164,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="">
-                                                <HeaderTemplate>
-                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Project Name" Width="80px"></asp:Label>
-                                                    <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i>
-                                                    </asp:HyperLink>
-                                                </HeaderTemplate>
+                                            <asp:TemplateField HeaderText="Project Name">                                              
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvPactdesc" runat="server"
@@ -179,7 +174,12 @@
 
                                                 <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Customer Name">
+                                            <asp:TemplateField HeaderText="">
+                                                <HeaderTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Customer Name" Width="120px"></asp:Label>
+                                                    <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i>
+                                                    </asp:HyperLink>
+                                                </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvCuName" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cusname")) %>'

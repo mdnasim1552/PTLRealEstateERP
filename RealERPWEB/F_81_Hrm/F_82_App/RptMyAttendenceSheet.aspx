@@ -126,7 +126,19 @@
                             </div>
                         </div>
 
+                          <div class="col-md-3">
+                            <div class="form-group" id="Div1" runat="server">
+                                <label for="Employee">
+                                    
+                                </label>
 
+                                <asp:LinkButton ID="lnkbtnRefresh" runat="server" CssClass="btn btn-info btn-md" style="margin-top:30px;" OnClick="lnkbtnRefresh_Click">
+                                    Refresh 
+</asp:LinkButton>
+                                
+
+                            </div>
+                        </div>
                     
 
 
@@ -295,6 +307,7 @@
 
                                 </td>
                                 <td style="text-align:center">
+                                    <asp:Label ID="lblRequid" Visible="false"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rqid")).ToString() %>'></asp:Label>
                                     <asp:Label ID="lblEmpid" Visible="false"   runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).ToString() %>'></asp:Label>
                                     <asp:Label ID="lblIntime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblOuttime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>

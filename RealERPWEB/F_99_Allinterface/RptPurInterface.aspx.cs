@@ -1821,7 +1821,10 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1109": // assure
                     case "3315": // assure
                     case "3316": // assure
-                    case "3357": // assure
+
+                    case "3357": // Cube
+                    case "3367": // Epic
+                    case "3368": // Finlay
 
                         hlink1.Visible = false;
                         break;

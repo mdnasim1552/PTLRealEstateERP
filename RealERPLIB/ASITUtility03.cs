@@ -278,6 +278,50 @@ namespace RealERPLIB
                 Replace("Dec", "12");
 
         }
+        public static string GetFullMonthName(string monthid)
+        {
+            string monthname = "";
+            switch (monthid)
+            {
+                case "01":
+                    monthname = "January";
+                    break;
+                case "02":
+                    monthname = "February";
+                    break;
+                case "03":
+                    monthname = "March";
+                    break;
+                case "04":
+                    monthname = "April";
+                    break;
+                case "05":
+                    monthname = "May";
+                    break;
+                case "06":
+                    monthname = "June";
+                    break;
+                case "07":
+                    monthname = "July";
+                    break;
+                case "08":
+                    monthname = "August";
+                    break;
+                case "09":
+                    monthname = "September";
+                    break;
+                case "10":
+                    monthname = "October";
+                    break;
+                case "11":
+                    monthname = "November";
+                    break;
+                case "12":
+                    monthname = "December";
+                    break;
+            }
+            return monthname;
+        }
         public static string GetBanglaNumber(int number)
         {
             return string.Concat(number.ToString().Select(c => (char)('\u09E6' + c - '0')));

@@ -175,18 +175,22 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void stepForward()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "3365")
+            switch (comcod)
             {
-                this.chkbod.Visible = false;
-                this.lblforward.Visible = false;
-
+                case "3366":
+                case "3367":
+                case "3368":
+                case "3365":
+                    this.chkbod.Visible = false;
+                    this.lblforward.Visible = false;
+                    break;
+                case "3101":
+                case "3348":
+                    this.chkbod.Visible = true;
+                    this.lblforward.Visible = true;
+                    break; 
             }
-            else
-            {
-                this.chkbod.Visible = true;
-                this.lblforward.Visible = true;
-
-            }
+             
         }
 
         protected void ImgbtnFindProjectName_Click(object sender, EventArgs e)
@@ -234,7 +238,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetCompCode();
             string Date = (Type == "Ind") ? this.Request.QueryString["Date"].ToString() : Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
 
-            string srchproject = (Type == "Ind") ? this.Request.QueryString["ltrnid"].ToString() : "%%"; //+ this.txtserchmrf.Text.Trim() 
+            string srchproject = (Type == "Ind") ? this.Request.QueryString["ltrnid"].ToString().Trim() : "%%"; //+ this.txtserchmrf.Text.Trim() 
             string pactcode = this.ddlCenter.SelectedValue.ToString();
             string Usrid = hst["usrid"].ToString();
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "GETLVAPPAUT", Date, srchproject, pactcode, Usrid, "", "", "", "", "");
@@ -307,10 +311,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string deptName = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["deptanme"].ToString();
                 string empdesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["desig"].ToString();
                 string empname = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empname"].ToString();
+                string denameadesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["denameadesig"].ToString();
                 this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0"+dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
 
@@ -325,6 +330,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 this.spEmpInfo.InnerText = "Employee ID: " + idcard + "," + "Employee Name : " + empname + "," + "Designation: " + empdesig + "," +
                     "Department Name : " + deptName;
+                this.lblDutesInfo.Text = denameadesig;
                 //end head data
 
                 this.ShowEmppLeave(ds.Tables[0].Rows[0]["empid"].ToString());
@@ -391,7 +397,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ((Label)this.Master.FindControl("lblANMgsBox")).Text = "Please select your item for Delete";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "HideLabel();", true);
             }
-            
+
             bool result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_SALES_ORDER_APPROVAL", "ORDERAPPDELETE", pactcode, Orderno, "", "", "");
 
             if (result == true)
@@ -407,7 +413,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void Data_Bind()
         {
 
-            var lst = (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>)ViewState["tblt01"];             
+            var lst = (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>)ViewState["tblt01"];
             this.gvLvReq.DataSource = lst;
             this.gvLvReq.DataBind();
 
@@ -678,7 +684,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string ishalfday = (((CheckBox)gvLvReq.Rows[i].FindControl("ishalfday")).Checked) ? "1" : "0";
                     string lbllevid = ((Label)this.gvLvReq.Rows[i].FindControl("lbllevid")).Text.Trim();
                     string gcod = ((DropDownList)this.gvLvReq.Rows[i].FindControl("ddlLvtype")).SelectedValue.Trim();
-                   
+
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
@@ -708,12 +714,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 double lapplied = Convert.ToDouble("0" + ((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlapplied")).Text.Trim());
                 if (lapplied > 0)
                 {
-                   
+
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("yyyyMMdd");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("yyyyMMdd");
-                    
-                    
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT_RESET", empid, frmdate, todate, "1", "", "", "","", "", "", "", "", "");
+
+
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT_RESET", empid, frmdate, todate, "1", "", "", "", "", "", "", "", "", "");
 
                     if (!result)
                     {
@@ -1182,7 +1188,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 }
 
-                
+
 
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' Not Apporved');", true);
@@ -1345,7 +1351,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
                 else
                 {
-                    if (roletype=="DPT")
+                    if (roletype == "DPT")
                     {
                         this.LeaveUpdate();
 

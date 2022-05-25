@@ -49,7 +49,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>SL. NO.</Value>
+                              <Value>Sl.</Value>
                               <Style>
                                 <FontFamily>cambria</FontFamily>
                                 <FontSize>9pt</FontSize>

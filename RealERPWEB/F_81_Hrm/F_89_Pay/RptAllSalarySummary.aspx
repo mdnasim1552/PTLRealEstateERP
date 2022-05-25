@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptAllSalarySummary.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_89_Pay.RptAllSalarySummary" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <style>
+    <style>
         .fsize {
             font-size: 15px !important;
             font-weight: bold !important;
@@ -257,7 +258,7 @@
                     <asp:Panel runat="server" ID="PnlNetComparison" Visible="false">
                         <div class="table-responsive" runat="server">
                             <asp:GridView ID="GvNetComparison" runat="server" AutoGenerateColumns="False"
-                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%" ShowFooter="true"  >
+                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%" ShowFooter="true">
                                 <RowStyle />
                                 <Columns>
                                     <%--  <asp:TemplateField HeaderText="Sl.No.">
@@ -278,7 +279,7 @@
 
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvParticular"  CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
+                                            <asp:Label ID="lblgvParticular" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
                                                 runat="server" Style="font-size: 12px;"
@@ -287,7 +288,7 @@
 
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                     <ItemStyle Width="250px" />
+                                        <ItemStyle Width="250px" />
                                     </asp:TemplateField>
 
 
@@ -315,7 +316,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Diff.">
@@ -328,7 +329,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
 
@@ -342,17 +343,17 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
 
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="lblremark"  Width="100%" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:TextBox>
+                                            <asp:TextBox ID="lblremark" Width="100%" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:TextBox>
                                         </ItemTemplate>
-                                       <FooterTemplate>
-                                           <asp:LinkButton ID="lnkUpdate" runat="server" CssClass="btn btn-xs btn-primary" OnClick="lnkUpdate_Click">Update</asp:LinkButton>
-                                       </FooterTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkUpdate" runat="server" CssClass="btn btn-xs btn-primary" OnClick="lnkUpdate_Click">Update</asp:LinkButton>
+                                        </FooterTemplate>
                                     </asp:TemplateField>
 
 
@@ -372,7 +373,7 @@
                                 CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%">
                                 <RowStyle />
                                 <Columns>
-                                   
+
                                     <asp:TemplateField HeaderText="Particualars">
                                         <HeaderTemplate>
                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"
@@ -391,7 +392,7 @@
 
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="250px" />
+                                        <ItemStyle Width="250px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="">
@@ -404,7 +405,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
@@ -416,7 +417,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="%">
@@ -429,7 +430,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="%">
@@ -442,7 +443,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="%">
@@ -455,7 +456,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Diff.">
@@ -468,7 +469,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="%">
                                         <ItemTemplate>
@@ -480,7 +481,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
@@ -488,8 +489,8 @@
                                         </ItemTemplate>
 
                                         <FooterTemplate>
-                                           <asp:LinkButton ID="lnkGrossUpdate" runat="server" CssClass="btn btn-xs btn-primary" OnClick="lnkGrossUpdate_Click">Update</asp:LinkButton>
-                                       </FooterTemplate>
+                                            <asp:LinkButton ID="lnkGrossUpdate" runat="server" CssClass="btn btn-xs btn-primary" OnClick="lnkGrossUpdate_Click">Update</asp:LinkButton>
+                                        </FooterTemplate>
                                     </asp:TemplateField>
                                 </Columns>
 
@@ -719,7 +720,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
                                             <asp:Label ID="lblp8Amount" runat="server"
                                                 CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
@@ -732,7 +733,7 @@
                                     </asp:TemplateField>
 
 
-                                     <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
                                             <asp:Label ID="lblp9Amount" runat="server"
                                                 CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
@@ -768,7 +769,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
                                             <asp:Label ID="lblp12Amount" runat="server"
                                                 CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
@@ -791,7 +792,7 @@
                     <asp:Panel runat="server" ID="deptwise" Visible="false">
                         <div class="table-responsive" runat="server">
                             <asp:GridView ID="gvdeptwise" runat="server" AutoGenerateColumns="False"
-                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%" ShowFooter="true"  >
+                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%" ShowFooter="true">
                                 <RowStyle />
                                 <Columns>
                                     <%--  <asp:TemplateField HeaderText="Sl.No.">
@@ -812,27 +813,35 @@
 
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvdeptParticular"  CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
-                                                runat="server" Style="font-size: 12px;"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refdesc")) %>'
+                                            <asp:Label ID="lblgvdeptParticular"
+                                                runat="server" Style="font-size: 12px;" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcodedesc")) %>'
                                                 BackColor="Transparent" BorderStyle="None"></asp:Label>
 
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                     <ItemStyle Width="250px" />
+                                        <ItemStyle Width="250px" />
                                     </asp:TemplateField>
-
-
+                                    
+                                  <%-- Dhaka Last Two(2) Months//  ffff--%> 
 
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblPretoAmountdept" runat="server"
-                                                CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpayprev")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                            <asp:Label ID="lblPretoAmountdept" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblperdept" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perncur")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
@@ -841,46 +850,188 @@
 
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblCurtoAmountdept" runat="server"
-                                                CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                            <asp:Label ID="lblAmountdeptNpay" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpayprev")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblperdeptnpay" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pernprev")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Diff.">
                                         <ItemTemplate>
-                                            <asp:Label ID="lbldeffdept" runat="server"
-                                                CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
+                                            <asp:Label ID="lbldeffdept" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>' 
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "diffrent")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
-
 
                                     <asp:TemplateField HeaderText="%">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblperdept" runat="server"
-                                                CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="BBBBBBBBBBBB"?"bg-danger d-block fsize":""%>'
+                                            <asp:Label ID="lblperdeptdhk" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
-                                          <ItemStyle Width="100px" />
+                                        <ItemStyle Width="100px" />
                                     </asp:TemplateField>
 
+                                  <%-- Chittagaon Last Two(2) Months//  ffff--%> 
+                                    
 
-                                  
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCurtoAmountdeptcht" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "net2pay")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblperdeptcht" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per2ncur")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAmountdeptNpaycht" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpayprev2")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblperdeptchtcurmon" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pern2prev")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Diff.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbldeffdept" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "diffrent2")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCurtoAmountdeptcht" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per2")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
+                                             <%--   Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per2")).ToString("#,##0;(#,##0); ") %>'></asp:Label>--%>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+                                    
+
+                                       <%-- Dhaka &  Chittagaon Last Two(2) Months//  ffff--%> 
+
+                                       <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCurtoAmountdeptchtdhk" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "net2paycurr")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblperdeptchtdhk" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per2cumon")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAmountdeptNpaychtdhk" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "net2payprev")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblperdeptchtcurmondhk" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per2monprev")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Diff.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbldeffdeptchtdhk" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "diff2mon")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCurtoAmountdeptchtdhk" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="00000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode"))=="99999999"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per2mon")).ToString("#,##0.00;(#,##0.00);") +"%" %>'></asp:Label>
+                                             <%--   Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "per2mon")).ToString("#,##0;(#,##0); ") %>'></asp:Label>--%>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+                                    
 
                                 </Columns>
 

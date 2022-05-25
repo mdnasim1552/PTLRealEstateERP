@@ -400,12 +400,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     break;
 
-                case "3101"://
+                
                 case "3366"://JBS
                     this.rbtSalSheet.SelectedIndex = 23;
 
                     break;
+                case "3101"://
+                case "3368"://Finlay
+                    this.rbtSalSheet.SelectedIndex = 24;
 
+                    break;
                 default:
                     this.rbtSalSheet.SelectedIndex = 14;
                     break;
@@ -765,9 +769,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //13 Suvastu, 
             string CallType = (this.rbtSalSheet.SelectedIndex == 7) ? "PAYROLL_DETAIL06" : (this.rbtSalSheet.SelectedIndex == 8) ? "PAYROLL_DETAIL07" : (this.rbtSalSheet.SelectedIndex == 6) ? "PAYROLL_DETAIL4" : (this.rbtSalSheet.SelectedIndex == 5) ? "PAYROLL_DETAIL3"
                 : (this.rbtSalSheet.SelectedIndex == 4) ? "PAYROLL_DETAIL2" : (this.rbtSalSheet.SelectedIndex == 2) ? "PAYROLL_DETAIL1" : (this.rbtSalSheet.SelectedIndex == 9) ? "PAYROLL_DETAIL08" : (this.rbtSalSheet.SelectedIndex == 10) ? "PAYROLL_DETAIL09" : (this.rbtSalSheet.SelectedIndex == 11) ? "PAYROLL_DETAIL10" : (this.rbtSalSheet.SelectedIndex == 12) ? "PAYROLL_DETAIL12" : (this.rbtSalSheet.SelectedIndex == 13) ? "PAYROLL_DETAIL14" :
-                    (this.rbtSalSheet.SelectedIndex == 14) ? "PAYROLL_DETAIL16" : (this.rbtSalSheet.SelectedIndex == 15) ? "PAYROLL_DETAIL18" : (this.rbtSalSheet.SelectedIndex == 16) ? "PAYROLL_DETAIL19" : (this.rbtSalSheet.SelectedIndex == 17) ? "PAYROLL_DETAIL20" : (this.rbtSalSheet.SelectedIndex == 18) ? "PAYROLL_DETAIL21" : (this.rbtSalSheet.SelectedIndex == 19) ? "PAYROLL_DETAIL22" : (this.rbtSalSheet.SelectedIndex == 20) ? "PAYROLL_DETAIL23" : (this.rbtSalSheet.SelectedIndex == 21) ? "PAYROLL_DETAIL24" : (this.rbtSalSheet.SelectedIndex == 22) ? "PAYROLL_DETAIL25" : (this.rbtSalSheet.SelectedIndex == 23) ? "PAYROLL_DETAIL26":"PAYROLL_DETAIL";
+                    (this.rbtSalSheet.SelectedIndex == 14) ? "PAYROLL_DETAIL16" : (this.rbtSalSheet.SelectedIndex == 15) ? "PAYROLL_DETAIL18" : (this.rbtSalSheet.SelectedIndex == 16) ? "PAYROLL_DETAIL19" : (this.rbtSalSheet.SelectedIndex == 17) ? "PAYROLL_DETAIL20" : (this.rbtSalSheet.SelectedIndex == 18) ? "PAYROLL_DETAIL21" : (this.rbtSalSheet.SelectedIndex == 19) ? "PAYROLL_DETAIL22" : (this.rbtSalSheet.SelectedIndex == 20) ? "PAYROLL_DETAIL23" : (this.rbtSalSheet.SelectedIndex == 21) ? "PAYROLL_DETAIL24" : (this.rbtSalSheet.SelectedIndex == 22) ? "PAYROLL_DETAIL25" : (this.rbtSalSheet.SelectedIndex == 23)  ? "PAYROLL_DETAIL26" : (this.rbtSalSheet.SelectedIndex == 24)? "PAYROLL_DETAIL27" : "PAYROLL_DETAIL";
             string ProName = ((this.rbtSalSheet.SelectedIndex == 8) || (this.rbtSalSheet.SelectedIndex == 9) || (this.rbtSalSheet.SelectedIndex == 7) || (this.rbtSalSheet.SelectedIndex == 6) || (this.rbtSalSheet.SelectedIndex == 10) || (this.rbtSalSheet.SelectedIndex == 12) || (this.rbtSalSheet.SelectedIndex == 13) || (this.rbtSalSheet.SelectedIndex == 14) ||
-                (this.rbtSalSheet.SelectedIndex == 15) || (this.rbtSalSheet.SelectedIndex == 16) || (this.rbtSalSheet.SelectedIndex == 17) || (this.rbtSalSheet.SelectedIndex == 18) || (this.rbtSalSheet.SelectedIndex == 19) || (this.rbtSalSheet.SelectedIndex == 20) || (this.rbtSalSheet.SelectedIndex == 21) || (this.rbtSalSheet.SelectedIndex == 22)|| (this.rbtSalSheet.SelectedIndex == 23)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : (this.rbtSalSheet.SelectedIndex == 5) ? "dbo_hrm.SP_REPORT_PAYROLL01" : ((this.rbtSalSheet.SelectedIndex == 11) || (this.rbtSalSheet.SelectedIndex == 7)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : "dbo_hrm.SP_REPORT_PAYROLL";
+                (this.rbtSalSheet.SelectedIndex == 15) || (this.rbtSalSheet.SelectedIndex == 16) || (this.rbtSalSheet.SelectedIndex == 17) || (this.rbtSalSheet.SelectedIndex == 18) || (this.rbtSalSheet.SelectedIndex == 19) || (this.rbtSalSheet.SelectedIndex == 20) || (this.rbtSalSheet.SelectedIndex == 21) || (this.rbtSalSheet.SelectedIndex == 22)|| (this.rbtSalSheet.SelectedIndex == 23)|| (this.rbtSalSheet.SelectedIndex == 24)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : (this.rbtSalSheet.SelectedIndex == 5) ? "dbo_hrm.SP_REPORT_PAYROLL01" : ((this.rbtSalSheet.SelectedIndex == 11) || (this.rbtSalSheet.SelectedIndex == 7)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : "dbo_hrm.SP_REPORT_PAYROLL";
             string mantype = "";
             switch (comcod)
             {
@@ -813,14 +817,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             if (this.lblComSalLock.Text == "True")
             {
                 ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcode, section, CompanyName, mantype, paytype, saltype, branch, "");
-
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, "", "", "", "");
             }
             else
             {
                 ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, saltype, branch);
-
             }
             if (ds3 == null)
             {
@@ -830,6 +832,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             DataTable dt = HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
+            if (ds3.Tables.Count > 1)
+            {
+                ViewState["tweekedn"] = ds3.Tables[1];
+            }
+           
             this.LoadGrid();
 
         }
@@ -961,7 +968,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string CompanyNamelk = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
                 string Calltype1 = (comcod == "3347") ? "BONSALARYPEB" : "BONSALARY";
-
                 ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcodelk, sectionlk, CompanyNamelk, "", "", "", "", "");
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, "", "", "");
@@ -2245,11 +2251,133 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             }
 
+            else if (this.rbtSalSheet.SelectedIndex == 24)
+            {
+              this.PrintSalaryFinlay();
 
+            }
 
             else
                 this.PrintSalaryBridge();
         }
+
+        private void PrintSalaryFinlay()
+        {          
+            DataTable dt = (DataTable)Session["tblpay"];
+            DataTable dtweek = (DataTable)ViewState["tweekedn"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comname = hst["comnam"].ToString();
+            string session = hst["session"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd \\'MMM");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd \\'MMM");
+            string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM/ yyyy");
+
+            // for Get Weekend Common for Company Policy not emp offday
+            double availday = Convert.ToDouble((Convert.IsDBNull(dtweek.Compute("sum(availday)", "")) ? 0.00 : dtweek.Compute("sum(availday)", "")));
+            double wekday = Convert.ToDouble((Convert.IsDBNull(dtweek.Compute("sum(weekend)", "")) ? 0.00 : dtweek.Compute("sum(weekend)", "")));
+            double govday = Convert.ToDouble((Convert.IsDBNull(dtweek.Compute("sum(holiday)", "")) ? 0.00 : dtweek.Compute("sum(holiday)", "")));
+           
+            double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+            double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+
+
+            // for Footer Summary Details 
+
+            // Earning 
+            double grsssal = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gssal)", "")) ? 0.00 : dt.Compute("sum(gssal)", "")));
+            double basic = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bsal)", "")) ? 0.00 : dt.Compute("sum(bsal)", "")));
+            double hrent = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(hrent)", "")) ? 0.00 : dt.Compute("sum(hrent)", "")));
+            double mallow = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mallow)", "")) ? 0.00 : dt.Compute("sum(mallow)", "")));
+            double dallow = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cven)", "")) ? 0.00 : dt.Compute("sum(cven)", "")));
+            double transallow = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pickup)", "")) ? 0.00 : dt.Compute("sum(pickup)", "")));
+            double tiffin = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(foodal)", "")) ? 0.00 : dt.Compute("sum(foodal)", "")));
+            double otamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(oallow)", "")) ? 0.00 : dt.Compute("sum(oallow)", "")));
+            double arrear = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(arsal)", "")) ? 0.00 : dt.Compute("sum(arsal)", "")));
+            double entert = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(entaint)", "")) ? 0.00 : dt.Compute("sum(entaint)", "")));
+            double ttalerning = grsssal+ tiffin+ arrear+ otamt;
+
+            // Deduction 
+            double trnsded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(transded)", "")) ? 0.00 : dt.Compute("sum(transded)", "")));
+            double absded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(absded)", "")) ? 0.00 : dt.Compute("sum(absded)", "")));
+            
+            double advance = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(adv)", "")) ? 0.00 : dt.Compute("sum(adv)", "")));
+            double loan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(loanins)", "")) ? 0.00 : dt.Compute("sum(loanins)", "")));
+            double advloan = advance + loan;
+
+            double pfamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfund)", "")) ? 0.00 : dt.Compute("sum(pfund)", "")));
+            double stampcost = 0.00;// Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(hrent)", "")) ? 0.00 : dt.Compute("sum(hrent)", "")));
+            double othded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(othded)", "")) ? 0.00 : dt.Compute("sum(othded)", "")));
+            double taxamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(itax)", "")) ? 0.00 : dt.Compute("sum(itax)", "")));
+            double mbilded = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mbillded)", "")) ? 0.00 : dt.Compute("sum(mbillded)", "")));
+            double tdeduc = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tdeduc)", "")) ? 0.00 : dt.Compute("sum(tdeduc)", "")));
+
+            // Bank/Cash Amt 
+
+            double bankamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt)", "")) ? 0.00 : dt.Compute("sum(bankamt)", "")));
+            double cashamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ? 0.00 : dt.Compute("sum(cashamt)", "")));
+
+
+
+            LocalReport Rpt1 = new LocalReport();
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryFinlay", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee Salary Sheet : " + "Month of " + todate1 )); //+"(" + frmdate + "- " + todate + ")"
+            Rpt1.SetParameters(new ReportParameter("TkInWord", "In Words: " + ASTUtility.Trans(netpayatax, 2)));
+            Rpt1.SetParameters(new ReportParameter("availday", availday.ToString()));
+            Rpt1.SetParameters(new ReportParameter("wekday", wekday.ToString()));
+            Rpt1.SetParameters(new ReportParameter("govday", govday.ToString()));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            // Earning 
+            Rpt1.SetParameters(new ReportParameter("basic", basic.ToString()));
+            Rpt1.SetParameters(new ReportParameter("hrent", hrent.ToString()));
+            Rpt1.SetParameters(new ReportParameter("mallow", mallow.ToString()));
+            Rpt1.SetParameters(new ReportParameter("dallow", dallow.ToString()));
+            Rpt1.SetParameters(new ReportParameter("transallow", transallow.ToString()));
+            Rpt1.SetParameters(new ReportParameter("tiffin", tiffin.ToString()));
+            Rpt1.SetParameters(new ReportParameter("otamt", otamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("arrear", arrear.ToString()));
+            Rpt1.SetParameters(new ReportParameter("entert", entert.ToString()));
+            Rpt1.SetParameters(new ReportParameter("ttalerning", ttalerning.ToString()));
+
+            // Deduction 
+            Rpt1.SetParameters(new ReportParameter("trnsded", trnsded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("absded", absded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("advloan", advloan.ToString()));
+            Rpt1.SetParameters(new ReportParameter("pfamt", pfamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("stampcost", stampcost.ToString()));
+            Rpt1.SetParameters(new ReportParameter("othersamt", othded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("taxamt", taxamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("mbilded", mbilded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("tdeduc", tdeduc.ToString()));
+
+
+            // Bank/Cash Amt 
+            Rpt1.SetParameters(new ReportParameter("bankamt", bankamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("cashamt", cashamt.ToString()));
+            Rpt1.SetParameters(new ReportParameter("netpay", netpay.ToString()));
+
+            Rpt1.SetParameters(new ReportParameter("Bankinword",  ASTUtility.Trans(bankamt, 2)));
+            Rpt1.SetParameters(new ReportParameter("Casinword",  ASTUtility.Trans(cashamt, 2)));
+
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
         private void PrintSalaryInnStar()
         {
 
@@ -3820,6 +3948,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
             string month = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM-yyyy");
+            string txtDate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM-yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             DataTable dt = (DataTable)Session["tblpay"];
@@ -3939,6 +4068,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+            else if (comcod == "3368" || comcod=="3101")
+            {
+
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
             }
 
             else

@@ -688,7 +688,7 @@
                             OnRowDataBound="gvBankPosition_RowDataBound" ShowFooter="True" Width="399px">
                             <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlpsum2" runat="server" Font-Bold="True" 
                                             Style="text-align: right" 
@@ -900,7 +900,7 @@
                             OnRowDataBound="gvpdc_RowDataBound" ShowFooter="True" Width="399px">
                             <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlpsum" runat="server" Font-Bold="True" 
                                             Style="text-align: right" 
@@ -1326,7 +1326,7 @@
                             Width="399px">
                             <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlpsum4" runat="server" Font-Bold="True" 
                                             Style="text-align: right" 
@@ -2671,7 +2671,7 @@
                             Width="37px" OnRowDataBound="gvHremp_RowDataBound">
                             <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlpsum1" runat="server" Font-Bold="True" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>

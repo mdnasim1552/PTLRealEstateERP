@@ -887,7 +887,7 @@
                             Width="500px" AllowPaging="True" PageSize="30">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl. No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                             Style="text-align: right"

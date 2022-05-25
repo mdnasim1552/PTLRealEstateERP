@@ -40,7 +40,7 @@
                                 <asp:CheckBox ID="CpyCHeck" runat="server" AutoPostBack="true" OnCheckedChanged="CpyCHeck_CheckedChanged" />
                                 <span class="btn btn-xs slider round"></span>
                             </label>
-                            <asp:Label runat="server" Text="Budget Copy?" Font-Bold="true" CssClass="btn btn-xs"></asp:Label>                           
+                            <asp:Label runat="server" Text="Budget Copy?" Font-Bold="true" CssClass="btn btn-xs"></asp:Label>
                         </div>
                         <div class="col-sm-1 col-md-1 col-lg-1">
                             <div class="form-group">
@@ -67,23 +67,24 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-lg-2 col-md-2 col-sm-2" id="CopyTo" runat="server" visible="false">
-                            <asp:Label ID="lblPrjName" runat="server" class="control-label" Text="From Month"></asp:Label>
-                            <asp:DropDownList ID="ddlfrmmonth" runat="server" CssClass="form-control form-control-sm">
-                            </asp:DropDownList>
+                    <asp:Panel ID="pnlCopy" runat="server" Visible="false">
+                        <div class="row mt-2">
+                            <div class="col-lg-2 col-md-2 col-sm-2" runat="server">
+                                <asp:Label ID="lblPrjName" runat="server" class="control-label" Text="From Month"></asp:Label>
+                                <asp:DropDownList ID="ddlfrmmonth" runat="server" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2" runat="server">
+                                <asp:Label ID="Label3" runat="server" class="control-label" Text="Date"></asp:Label>
+                                <asp:TextBox ID="txtbgddate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtbgddate"></cc1:CalendarExtender>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-lg-1" runat="server">
+                                <asp:LinkButton ID="LbtnCopy" runat="server" Text="Ok" OnClick="LbtnCopy_Click" CssClass="btn btn-xs btn-success lblmargin-top20px" ToolTip="Copy"><i class="fas fa-copy"></i></asp:LinkButton>
+                            </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2" id="datediv" runat="server" visible="false">
-                            <asp:Label ID="Label3" runat="server" class="control-label" Text="Date"></asp:Label>
-                            <asp:TextBox ID="txtbgddate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtbgddate"></cc1:CalendarExtender>
-                        </div>
-
-                        <div class="col-sm-1 col-md-1 col-lg-1" id="Copybtn" runat="server" visible="false">
-                            <asp:LinkButton ID="LbtnCopy" runat="server" Text="Ok" OnClick="LbtnCopy_Click" CssClass="btn btn-xs btn-success lblmargin-top20px" OnClientClick="return confirm('Do you agree to copy?')" ToolTip="Copy"><i class="fas fa-copy"></i></asp:LinkButton>
-                        </div>
-                    </div>
+                    </asp:Panel>
                 </div>
                 <div class="card-body" style="min-height: 350px;">
                     <asp:MultiView ID="MultiView1" runat="server">
@@ -115,33 +116,36 @@
                                             HeaderText="Project">
                                             <ItemTemplate>
                                                 <asp:Label ID="gvlblActDesc" runat="server" Font-Size="12px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>' Width="350px"></asp:Label>
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>' Width="250px"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Center" />
+                                            <FooterTemplate>
+                                                <asp:LinkButton ID="gvlnkFTotal" runat="server" OnClick="gvlnkFTotal_Click" Text="Total" CssClass="btn btn-warning btn-sm"></asp:LinkButton>
+                                            </FooterTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="ATL" ItemStyle-HorizontalAlign="Center">
-                                             <FooterTemplate>
-                                                <asp:LinkButton ID="gvlnkFTotal" runat="server" OnClick="gvlnkFTotal_Click" Text="Total" CssClass="btn btn-warning btn-sm primarygrdBtn"></asp:LinkButton>
-                                            </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:TextBox ID="gvTxtAmt1" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt1")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:TextBox>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt1")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:TextBox>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblgvFATL" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                                    Width="80px"></asp:Label>
+                                            </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="BTL" ItemStyle-HorizontalAlign="Right">
-                                            <FooterTemplate>
-                                                <asp:LinkButton ID="lnkbtnUpdateRes" runat="server" OnClick="lnkbtnUpdateRes_Click" Text="Update" CssClass=" btn  btn-success btn-sm  primarygrdBtn"></asp:LinkButton>
-                                            </FooterTemplate>                                           
                                             <ItemTemplate>
                                                 <asp:TextBox ID="gvTxtAmt2" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt2")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:TextBox>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt2")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Right" Width="80px" />
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblgvFBTL" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                                    Width="80px"></asp:Label>
+                                            </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="80px" />
                                         </asp:TemplateField>
 
@@ -149,9 +153,12 @@
                                             <ItemTemplate>
                                                 <asp:TextBox ID="gvTxtAmt3" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" BorderStyle="None" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt3")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:TextBox>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt3")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Right" Width="80px" />
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblgvFTTL" runat="server" Font-Bold="true" Style="text-align: right; background-color: Transparent"
+                                                    Width="80px"></asp:Label>
+                                            </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="80px" />
                                         </asp:TemplateField>
 

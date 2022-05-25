@@ -103,7 +103,7 @@
                                 ShowFooter="True" Width="616px" OnRowDataBound="gvMonPayment_RowDataBound">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl. No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNomonpay" runat="server" Font-Bold="True"
                                                 Style="text-align: right"

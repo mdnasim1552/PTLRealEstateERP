@@ -80,6 +80,10 @@
         }
 
     </script>
+    <style>
+
+
+    </style>
     <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -431,9 +435,11 @@
                                                 </div>
                                                 <div class="col-md-6 pading5px">
                                                     <asp:Panel ID="PnlMultiply" runat="server" Visible="false">
-                                                        <div class="col-md-3 pading5px asitCol3">
+                                                        <div class="col-md-4 pading5px asitCol4">
                                                             <asp:Label ID="lbldivided" runat="server" CssClass="lblTxt lblName">Divided</asp:Label>
                                                             <asp:TextBox ID="txtdevided" runat="server" CssClass="inputTxt inputName inpPixedWidth" Text="238"></asp:TextBox>
+
+                                                            <asp:Label ID="lblforrate" runat="server" CssClass="smLbl_to"></asp:Label>
                                                         </div>
                                                     </asp:Panel>
 
@@ -881,7 +887,7 @@
                                             <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnDeptSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                         <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlDepartment" OnClick="ddlDepartment_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" TabIndex="2">
+                                            <asp:DropDownList ID="ddlDepartment"  runat="server" CssClass="form-control inputTxt" TabIndex="2">
                                             </asp:DropDownList>
                                             <asp:Label ID="lblDeptDesc" runat="server" CssClass="form-control dataLblview" Height="22" Style="line-height: 1.5" Visible="false"></asp:Label>
                                         </div>

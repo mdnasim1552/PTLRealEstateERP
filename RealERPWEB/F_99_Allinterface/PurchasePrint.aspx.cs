@@ -2607,6 +2607,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316": // assure
 
                 case "3357": // Cube
+                case "3367": // Epic
+                case "3368": // Finlay
 
 
                     this.OrderPrintRDLC();

@@ -210,7 +210,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3315":
                 case "3325":
                 case "3364":// Jbs
-                case "3353":        
+                case "3353":
                     this.lblmrfno.Text = "MPR No: ";
 
                     break;
@@ -796,7 +796,7 @@ namespace RealERPWEB.F_12_Inv
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
         }
-   
+
 
         protected void lbtnUpdateResReq_Click(object sender, EventArgs e)
         {
@@ -1020,7 +1020,7 @@ namespace RealERPWEB.F_12_Inv
                                     Rsircode = tbl1.Rows[index]["rsircode"].ToString();
 
                                     break;
-
+                                
 
                                 default:
 
@@ -1124,7 +1124,7 @@ namespace RealERPWEB.F_12_Inv
                     case "3316":
                     case "3315":
                     case "3317":
-                    //case "3101":
+                        //case "3101":
                         crmchekd = ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Checked == true ? "1" : "0";
                         if (crmchekd == "1")
                         {
@@ -1259,7 +1259,7 @@ namespace RealERPWEB.F_12_Inv
 
                     case "3336":
                     case "3337":
-                    //case "3101":
+                        //case "3101":
 
 
 
@@ -1905,7 +1905,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3316":
                 case "3315":
                 case "3317":
-                case "3101":
+                    //case "3101":
                     if (this.Request.QueryString["InputType"] == "Entry")
                     {
                         //    this.lblReqNarr.Visible = false;
@@ -1921,8 +1921,6 @@ namespace RealERPWEB.F_12_Inv
                         //this.txtReqNarr.Visible = false;                       
                         this.lblCCDNarr.Visible = true;
                         this.txtCCDNarr.Visible = true;
-
-
                     }
 
                     else if (this.Request.QueryString["InputType"] == "ReqCheck")
@@ -1933,15 +1931,20 @@ namespace RealERPWEB.F_12_Inv
                         this.lblCCDNarr.Visible = true;
                         this.txtCCDNarr.Visible = true;
                         this.lblCCDNarr.Text = "Est-Narr :";
-
                     }
 
                     else
                     {
                         ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = false;
-
                     }
+                    break;
 
+                case "3101":
+                case "3336":
+                case "3337":
+
+                    this.gvReqInfo.Columns[20].Visible = false;
+                    ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = false;
 
                     break;
 
@@ -1969,6 +1972,7 @@ namespace RealERPWEB.F_12_Inv
             }
             this.lbtnResFooterTotal_Click(null, null);
         }
+
 
         protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2370,11 +2374,11 @@ namespace RealERPWEB.F_12_Inv
 
             else
             {
-                
+
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
-                
+
 
             }
 

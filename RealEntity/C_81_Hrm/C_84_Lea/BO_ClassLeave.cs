@@ -458,11 +458,13 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public double eleave { get; set; }
             public double cleave { get; set; }
             public double sleave { get; set; }
+            public double stleave { get; set; }
             public double bleave { get; set; }
             public double baleleave { get; set; }
             public double balcleave { get; set; }
             public double balsleave { get; set; }
-      
+            public double balstleave { get; set; }
+
             public DateTime aplydat { get; set; }
             public DateTime strtdat { get; set; }
             public DateTime enddat { get; set; }
@@ -493,6 +495,21 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public prevtLeaveInfo() { }
         }
 
+        [Serializable]
+        public class birthdayDate
+        {
+            public string comcod { get; set; }
+            public string empid { get; set; }
+            public string empname { get; set; }
+            public string bddate { get; set; }
+            public string mobile { get; set; }
+            public string idcard { get; set; }
+            public string email { get; set; }
+            public string desig { get; set; }
+            public string dept { get; set; }
+            public string gdatad { get; set; }
 
+            public birthdayDate() { }
+        }
     }
 }
