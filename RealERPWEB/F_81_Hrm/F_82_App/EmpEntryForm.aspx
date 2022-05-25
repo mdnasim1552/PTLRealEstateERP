@@ -253,7 +253,7 @@
                                                     <ul class="dropdown-menu">
                                                         <li>
                                                             <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server"
-                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
+                                                                 CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
                                                         </li>
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkView" Target="_blank" ToolTip="Employee Information view"

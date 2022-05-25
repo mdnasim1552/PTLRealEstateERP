@@ -660,6 +660,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1701000", "1701343", "F_17_Acc", "AccSubCodeBook?", "InputType=Supplier", "Supplier Code", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1701000", "1701344", "F_17_Acc", "AccSubCodeBook?", "InputType=TaxVatAndSd", "Tax, Vat & Others Deduction", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1701000", "1701345", "F_17_Acc", "AccSubCodeBook?", "InputType=GenAdv", "General Advanced(Project)", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1701000", "1701346", "F_17_Acc", "AccSubCodeBook?", "InputType=MatLab", "Material & Labour Code", "Accounts", "False", "False", "False", "False" }); ;
 
 
 

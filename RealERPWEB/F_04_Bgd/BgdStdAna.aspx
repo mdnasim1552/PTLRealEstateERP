@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
-
 
     <style type="text/css">
         .style101 {
@@ -12,13 +10,25 @@
         }
     </style>
 
-
-
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
             <div class="container moduleItemWrpper">
                 <div class="contentPart">
                     <div class="row">
@@ -34,61 +44,38 @@
                                         <asp:LinkButton ID="ImgbtnFindItem" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindItem_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                     </div>
-
-
                                     <div class="col-md-3 pading5px">
                                         <asp:DropDownList ID="ddlItem" runat="server" CssClass="chzn-select form-control  inputTxt">
                                         </asp:DropDownList>
                                         <asp:Label ID="lblItemDesc" runat="server" Visible="false" CssClass="form-control inputTxt"></asp:Label>
-
                                     </div>
                                     <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary primaryBtn"
-                                            OnClick="lbtnOk1_Click" Text="Select Item"></asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk1_Click" Text="Select Item"></asp:LinkButton>
+                                        <asp:HyperLink ID="hlbtAddnew1" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=Wrkschedule" CssClass="btn btn-xs btn-success" ToolTip="Add New Work" BackColor="transparent" Style="margin-left: 10px"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
+
                                     </div>
-                                    <div class="col-md-3 pading5px asitCol3" style="width: 245px;">
+                                    <div class="col-md-2 pading5px asitCol3" style="width: 245px;">
                                         <asp:Label ID="lblItem3" runat="server" CssClass="smLbl_to" Text="Std Qty"></asp:Label>
 
                                         <asp:Label ID="lblStdQtyF" runat="server" Text=" " CssClass="inputTxt inpPixedWidth"></asp:Label>
                                         <asp:Label ID="lblItem8" runat="server" CssClass="smLbl_to" Text="Unit"></asp:Label>
-                                        <asp:Label ID="lblUnitFPS" runat="server" CssClass="inputTxt inpPixedWidth"
-                                            Text=" "></asp:Label>
+                                        <asp:Label ID="lblUnitFPS" runat="server" CssClass="inputTxt inpPixedWidth" Text=" "></asp:Label>
 
                                     </div>
                                     <div class="col-md-2 pading5px asitCol3" style="position: relative">
                                         <div style="position: absolute; top: 0; left: 0">
-                                            <asp:Label ID="lblFloor1" runat="server" CssClass=" smLbl_to"
-                                                Text="Catagory:"></asp:Label>
+                                            <asp:Label ID="lblFloor1" runat="server" CssClass=" smLbl_to" Text="Catagory:"></asp:Label>
                                             <asp:DropDownList ID="ddlFloor1" runat="server" Font-Bold="True" CssClass="ddlPage">
                                             </asp:DropDownList>
                                         </div>
-
                                     </div>
-                                    <div class="clearfix"></div>
-
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName"></asp:Label>
-
                                     <div class="col-md-1 pading5px">
                                         <asp:CheckBox ID="ChkCopy" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopy_CheckedChanged" Text="Copy"
                                             Visible="False" CssClass="btn btn-primary chkBoxControl primaryBtn" />
                                         <asp:Label ID="lblItemDes2" runat="server" CssClass="smLbl_to" Style="display: none;"></asp:Label>
                                     </div>
-
-                                    <div class="col-md-3">
-                                        <asp:UpdateProgress ID="UpdateProgress1" runat="server"
-                                            AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="50">
-                                            <ProgressTemplate>
-                                                <asp:Label ID="Label3" runat="server" CssClass="lblProgressBar" Text="Please wait . . . . . . ."
-                                                    Width="218px"></asp:Label>
-                                            </ProgressTemplate>
-                                        </asp:UpdateProgress>
-                                    </div>
-
-
+                                    <div class="clearfix"></div>
                                 </div>
-
                             </div>
                         </fieldset>
                     </div>
@@ -113,8 +100,9 @@
 
                                         </div>
                                         <div class="col-md-1 pading5px">
-                                            <asp:LinkButton ID="lbtnOk2" runat="server" CssClass="btn btn-primary primaryBtn"
-                                                OnClick="lbtnOk2_Click">Select Res</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnOk2" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk2_Click">Select Res</asp:LinkButton>
+                                            <asp:HyperLink ID="hlbtAddnew2" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=MatLab" CssClass="btn btn-xs btn-success" ToolTip="Add New Resource" BackColor="transparent" Style="margin-left: 10px"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
+
                                         </div>
                                         <div class="col-md-3 pading5px asitCol3" style="width: 245px;">
                                             <asp:Label ID="Label5" runat="server" CssClass="smLbl_to" Text="Current Column Group:"></asp:Label>
@@ -169,23 +157,18 @@
 
                                     <div class="form-group">
 
-                                        <div class="col-md-6">
-                                            <asp:CheckBox ID="ChkZeroQty" runat="server"
-                                                Text="Ignoe Zero" CssClass=" chkBoxControl" />
+                                        
+                                        <div class="col-md-1">
+                                            <asp:CheckBox ID="ChkZeroQty" runat="server" Text="Ignoe Zero" CssClass="btn btn-primary primaryBtn chkBoxControl" />
                                         </div>
-
-                                        <div class="col-md-4">
-                                            <asp:LinkButton ID="lbtnInputSame" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnInputSame_Click">Put same value for all floors</asp:LinkButton>
+                                        <div class="col-md-6">
+                                            <asp:LinkButton ID="lbtnInputSame" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnInputSame_Click" Style="padding-left:5px;padding-right:5px">Put same value for all floors</asp:LinkButton>
                                             <asp:LinkButton ID="lbtnUpdateAna" runat="server" class="btn btn-danger primaryBtn" OnClick="lbtnUpdateAna_Click" Style="margin-left: 5px;">Update Analysis</asp:LinkButton>
 
                                         </div>
+                                        
 
-                                        <div class="col-md-6">
-
-
-                                            <div class="clearfix"></div>
-
-                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -193,11 +176,11 @@
                                 Width="16px" OnRowDeleting="gvAnalysis_RowDeleting" HeaderStyle-CssClass="HeaderStyle">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lbtngvSlNo" runat="server" Font-Bold="True"
                                                 Font-Size="12px" OnClick="lbtngvSlNo_Click" Style="text-align: center"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:LinkButton>
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:CommandField ShowDeleteButton="True" />
@@ -282,7 +265,7 @@
                                     </asp:TemplateField>
 
 
-                                     <asp:TemplateField HeaderText="Base-6">
+                                    <asp:TemplateField HeaderText="Base-6">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty009" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty009")).ToString("#,##0.0000;(#,##0.0000); ") %>'
@@ -290,8 +273,8 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    
-                                     <asp:TemplateField HeaderText="Base-7">
+
+                                    <asp:TemplateField HeaderText="Base-7">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty010" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty010")).ToString("#,##0.0000;(#,##0.0000); ") %>'
@@ -604,7 +587,7 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
-                         
+
                         </asp:Panel>
                     </div>
                     <div class="row">
@@ -647,8 +630,6 @@
         });
 
         function pageLoaded() {
-
-
 
             var gvAnalysis = $('#<%=this.gvAnalysis.ClientID%>');
             gvAnalysis.Scrollable();

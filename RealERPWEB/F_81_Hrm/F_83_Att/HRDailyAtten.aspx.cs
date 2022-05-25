@@ -67,11 +67,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.chktype.Visible = false;
                     break;
 
-
-
-
-
-
             }
         }
 
@@ -112,7 +107,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string idcardno1 = dt.Rows[i]["din"].ToString();
                 string idcardno = ASTUtility.Right(("000000" + idcardno1.Trim()), 6);
                 string intime = Convert.ToDateTime(dt.Rows[i]["clock"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
-
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, "", "", "", "", "", "", "", "", "", "", "", "");
 
             }
@@ -161,9 +155,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             return dt1;
 
         }
-
-
-
         private void LoadGrid()
         {
 
@@ -247,9 +238,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void GetTBLAttnLogData()
         {
             Session.Remove("ShowAtten");
-
             string comcod = this.GetCompCode();
-
             string date = this.txtdate.Text;
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "SHOWEMPATTEN", "", "", date, "", "", "", "", "", "");
             if (ds4 == null)
@@ -258,18 +247,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.gvDailyAttn.DataBind();
                 return;
             }
-
             Session["ShowAtten"] = HiddenSameData(ds4.Tables[0]);
             this.LoadGrid();
         }
-
         private void ShowData()
         {
 
             Session.Remove("ShowAtten");
 
             string comcod = this.GetCompCode();
-
             string date = this.txtdate.Text;
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "SHOWEMPATTEN", "", "", date, "", "", "", "", "", "");
             if (ds4 == null)

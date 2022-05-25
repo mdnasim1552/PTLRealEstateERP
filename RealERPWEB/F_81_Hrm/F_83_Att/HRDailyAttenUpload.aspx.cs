@@ -20,6 +20,7 @@ using System.Web.Services;
 using RealERPLIB;
 using System.Data.OleDb;
 using System.Web.UI.WebControls.WebParts;
+using System.Text.RegularExpressions;
 
 //using System;
 //using System.Collections.Generic;
@@ -67,79 +68,79 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.Visibility();
             this.CreateTable();
 
-            if (fileuploadExcel.HasFile)
-            {
-                try
-                {
-                    Session.Remove("XcelData");
-                    //  ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                    string connString = "";
-                    string StrFileName = string.Empty;
-                    if (fileuploadExcel.PostedFile != null && fileuploadExcel.PostedFile.FileName != "")
-                    {
-                        StrFileName =
-                            fileuploadExcel.PostedFile.FileName.Substring(
-                                fileuploadExcel.PostedFile.FileName.LastIndexOf("\\") + 1);
-                        string StrFileType = fileuploadExcel.PostedFile.ContentType;
-                        int IntFileSize = fileuploadExcel.PostedFile.ContentLength;
-                        if (IntFileSize <= 0)
-                        {
-                            //  ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Fail";
-                            // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' file Uploading failed');", true);
-                            return;
-                        }
-                        else
-                        {
-                            string savelocation = Server.MapPath("~") + "\\ExcelFile\\";
-                            string[] filePaths = Directory.GetFiles(savelocation);
-                            foreach (string filePath in filePaths)
-                                File.Delete(filePath);
-                            fileuploadExcel.PostedFile.SaveAs(Server.MapPath("~") + "\\ExcelFile\\" + StrFileName);
-                            //   ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Successfully";
-                        }
-                    }
+            //if (fileuploadExcel.HasFile)
+            //{
+            //    try
+            //    {
+            //        Session.Remove("XcelData");
+            //        //  ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //        string connString = "";
+            //        string StrFileName = string.Empty;
+            //        if (fileuploadExcel.PostedFile != null && fileuploadExcel.PostedFile.FileName != "")
+            //        {
+            //            StrFileName =
+            //                fileuploadExcel.PostedFile.FileName.Substring(
+            //                    fileuploadExcel.PostedFile.FileName.LastIndexOf("\\") + 1);
+            //            string StrFileType = fileuploadExcel.PostedFile.ContentType;
+            //            int IntFileSize = fileuploadExcel.PostedFile.ContentLength;
+            //            if (IntFileSize <= 0)
+            //            {
+            //                //  ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Fail";
+            //                // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' file Uploading failed');", true);
+            //                return;
+            //            }
+            //            else
+            //            {
+            //                string savelocation = Server.MapPath("~") + "\\ExcelFile\\";
+            //                string[] filePaths = Directory.GetFiles(savelocation);
+            //                foreach (string filePath in filePaths)
+            //                    File.Delete(filePath);
+            //                fileuploadExcel.PostedFile.SaveAs(Server.MapPath("~") + "\\ExcelFile\\" + StrFileName);
+            //                //   ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading Successfully";
+            //            }
+            //        }
 
-                    string strFileType = Path.GetExtension(fileuploadExcel.FileName).ToLower();
-                    string apppath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath.ToString();
-                    //string path = apppath + "ExcelFile\\" + StrFileName;
-                    string path = Server.MapPath("~") + ("\\ExcelFile\\" + StrFileName);
+            //        string strFileType = Path.GetExtension(fileuploadExcel.FileName).ToLower();
+            //        string apppath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath.ToString();
+            //        //string path = apppath + "ExcelFile\\" + StrFileName;
+            //        string path = Server.MapPath("~") + ("\\ExcelFile\\" + StrFileName);
 
-                    //Connection String to Excel Workbook
-                    if (strFileType.Trim() == ".xls")
-                    {
-                        connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path +
-                                     ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
-                    }
-                    else if (strFileType.Trim() == ".xlsx")
-                    {
-                        connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path +
-                                     ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
-                    }
+            //        //Connection String to Excel Workbook
+            //        if (strFileType.Trim() == ".xls")
+            //        {
+            //            connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path +
+            //                         ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+            //        }
+            //        else if (strFileType.Trim() == ".xlsx")
+            //        {
+            //            connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path +
+            //                         ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+            //        }
 
-                    // string query = "SELECT [No] FROM [Sheet1$]";
-                    string query =
-                       "SELECT * FROM [Sheet1$]";
-                    OleDbConnection conn = new OleDbConnection(connString);
-                    if (conn.State == ConnectionState.Closed)
-                        conn.Open();
-                    OleDbCommand cmd = new OleDbCommand(query, conn);
-                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
+            //        // string query = "SELECT [No] FROM [Sheet1$]";
+            //        string query =
+            //           "SELECT * FROM [Sheet1$]";
+            //        OleDbConnection conn = new OleDbConnection(connString);
+            //        if (conn.State == ConnectionState.Closed)
+            //            conn.Open();
+            //        OleDbCommand cmd = new OleDbCommand(query, conn);
+            //        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            //        DataSet ds = new DataSet();
+            //        da.Fill(ds);
 
-                    Session["XcelData"] = ds.Tables[0];
-                    // this.DataInsert();
-                    da.Dispose();
-                    conn.Close();
-                    conn.Dispose();
-                    //this.GetExelData();
-                }
-                catch (Exception)
-                {
+            //        Session["XcelData"] = ds.Tables[0];
+            //        // this.DataInsert();
+            //        da.Dispose();
+            //        conn.Close();
+            //        conn.Dispose();
+            //        //this.GetExelData();
+            //    }
+            //    catch (Exception)
+            //    {
 
-                    throw;
-                }
-            }
+            //        throw;
+            //    }
+            //}
 
 
 
@@ -149,16 +150,29 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void Visibility()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "3101" || comcod == "3347")
+
+            switch (comcod)
             {
-                this.panelexcel.Visible = true;
-                this.Label2.Visible = false;
-                this.CmdUpload.Visible = false;
-                this.File1.Visible = false;
+
+               
+                case "3347":// Peb steel
+                    this.panelexcel.Visible = true;
+                    this.Label2.Visible = false;
+                    this.CmdUpload.Visible = false;
+                    this.File1.Visible = false;
+                    break;
 
 
+                default:
+                    this.panelexcel.Visible = false;
+                    this.Label2.Visible = true;
+                    this.CmdUpload.Visible = true;
+                    this.File1.Visible = true;
+                    break;
 
-            }
+
+            }    
+           
 
 
         }
@@ -205,9 +219,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             switch (comcod)
             {
 
-                case "4101":
-                    this.UploadData();
-                    break;
+               
 
 
                 //case "3101":
@@ -224,9 +236,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.UploadDataGreenLand();
                     break;
 
+
+                case "3101":
+                case "3368":
+                    this.UploadDataFinlay();
+                    break;
+
+
                 default:
                     this.UploadDataGreenLand();
                     break;
+
+
+
+
 
 
 
@@ -548,6 +571,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 string StrFileName = string.Empty;
 
+                //string testfilename = File1.PostedFile.FileName;
+                //string strFileName = Path.GetFileName(testfilename);
+
                 if (File1.PostedFile != null)
                 {
                     StrFileName = File1.PostedFile.FileName.Substring(File1.PostedFile.FileName.LastIndexOf("\\") + 1);
@@ -615,11 +641,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string seldate = Convert.ToDateTime(this.txtMrrDate.Text).ToString("dd-MMM-yyyy");//Problem
                 DateTime ADAT;
                 DateTime ATIME;
-
-
-
                 string retFilePath = Label4.Text.Trim();
-
                 StreamReader objReader = new StreamReader(retFilePath);
                 ///////
                 string[] X1 = new string[30000];
@@ -778,6 +800,151 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //{
             // ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
             //}
+
+
+        }
+
+        private void UploadDataFinlay()
+        {
+
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            try
+            {
+                string StrFileName = string.Empty;
+                if (File1.PostedFile != null)
+                {
+                    StrFileName = File1.PostedFile.FileName.Substring(File1.PostedFile.FileName.LastIndexOf("\\") + 1);
+                    string StrFileType = File1.PostedFile.ContentType;
+                    int IntFileSize = File1.PostedFile.ContentLength;
+                    if (IntFileSize <= 0)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading of file failed";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    }
+
+                    else
+                    {
+                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\" + StrFileName));
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Data Uploading Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    }
+                }
+                if (StrFileName == "")
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please fill a file";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+                if (txtMrrDate.Text.Trim() == "")
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = " Date can not be a blank";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+
+                string filename1 = Server.MapPath("~") + ("\\Upload\\" + StrFileName); //IIS Path
+
+                //string filename1 = Server.MapPath("~") + ("../Upload/" + StrFileName); //IIS Path
+                //string filename1 = Server.MapPath("~") + ("Upload/" + StrFileName); Local Path
+
+                //string savelocation = Server.MapPath("~") + "\\Image1";
+
+                System.IO.FileStream fs = new System.IO.FileStream(filename1, System.IO.FileMode.Open);
+                System.IO.StreamReader r = new System.IO.StreamReader(fs);
+                Label3.Text = r.ReadToEnd();
+                Label4.Text = filename1;
+                //UpdatePanel1.Controls.Add(Label1);
+                r.Close();
+
+
+                // Update  Data
+
+                string comcod = this.GetCompCode();
+                DataTable t4 = new DataTable();
+                t4.Columns.Add("adate", typeof(String));
+                t4.Columns.Add("atime", typeof(String));
+                t4.Columns.Add("IDCARDNO", typeof(String));
+                t4.Columns.Add("machid", typeof(String));
+
+
+                string ROWID = string.Empty;
+                string MACHID = string.Empty;
+                string IDCARDNO = string.Empty;
+                string LastNo = string.Empty;
+                string seldate = Convert.ToDateTime(this.txtMrrDate.Text).ToString("dd-MMM-yyyy");//Problem
+                DateTime ADAT;
+                DateTime ATIME;
+                string retFilePath = Label4.Text.Trim();
+                StreamReader objReader = new StreamReader(retFilePath);
+                ///////
+                string[] X1 = new string[30000];
+                string sLine = "";
+                int i = 0;
+                DataTable t1 = new DataTable();
+                t1.Columns.Add("empattn", typeof(String));
+                while (sLine != null)
+                {
+                    DataRow dr = t1.NewRow();
+                    sLine = objReader.ReadLine();
+                    X1[i] = sLine;
+                    dr["empattn"] = X1[i];
+                    t1.Rows.Add(dr);
+                    i = i + 1;
+                }
+                objReader.Close();               
+                string IDCARDNO1;
+                string adt;
+                string[] arr;
+                foreach (DataRow dr1 in t1.Rows)
+                {
+                    arr = dr1["empattn"].ToString().Split(',');
+                    if (dr1["empattn"].ToString().Trim().Length ==0)
+                    {
+
+                        break;
+                    }
+
+                   
+                    IDCARDNO1 = arr[2].Substring(1, arr[2].Length - 2);
+                    adt =arr[4].Substring(1,arr[4].Length-2);
+                    ATIME = Convert.ToDateTime(adt + " "+arr[5].Substring(1,arr[5].Length-2));
+                    MACHID = arr[7].Substring(1, arr[7].Length - 2);                  
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ATTN_UPDATE", "ATTN_UPDATE_TEMP", "", IDCARDNO1, adt,
+                            Convert.ToDateTime(ATIME).ToString(), MACHID, "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    }
+                    
+
+                }
+
+             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //Delete File
+                string savelocation = Server.MapPath("~") + "\\Upload";
+                string[] filePaths = Directory.GetFiles(savelocation);
+                foreach (string filePath in filePaths)
+                    File.Delete(filePath);
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+
+
 
 
         }

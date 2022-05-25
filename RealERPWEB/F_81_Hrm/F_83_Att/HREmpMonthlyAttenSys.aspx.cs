@@ -31,27 +31,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.GetMonth();
                 this.GetEmployeeName();
-
-
             }
         }
-
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
         }
-
 
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
-
 
         private void GetMonth()
         {
@@ -62,13 +55,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //this.ddlMonth.DataSource = ds1.Tables[0];
             //this.ddlMonth.DataBind();
             //this.ddlMonth.SelectedValue =System.DateTime.Today.Month.ToString().Trim();
-
-
-
             string comcod = this.GetCompCode();
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "GETYEARMON", "", "", "", "", "", "", "", "", "");
-
             if (ds1 == null)
                 return;
             this.ddlMonth.DataTextField = "yearmon";
@@ -78,8 +66,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
             ds1.Dispose();
         }
-
-
         private void GetEmployeeName()
         {
             Session.Remove("tblEmpDesc");
@@ -99,9 +85,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
-            
-
         }
         //protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -118,8 +101,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         //}
         protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             string comcod = this.GetCompCode();
             string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
@@ -133,12 +114,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
 
             DataTable dt = ds4.Tables[0];
-
-
-
-
         }
-
         protected void lnkbtnUpdate_Click(object sender, EventArgs e)
         {
             //Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -153,10 +129,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //{
             //    this.lmsg11.Text = "Data was Noted Updated";
             //    return;
-
             //}
-
-
             //for (int i = 0; i < this.chkDate.Items.Count; i++) 
             //{
             //    if (this.chkDate.Items[i].Selected) 
