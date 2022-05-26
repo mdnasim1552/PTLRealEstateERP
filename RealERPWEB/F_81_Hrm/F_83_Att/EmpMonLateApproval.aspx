@@ -1432,13 +1432,13 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Late">
+                                        <asp:TemplateField HeaderText="Late(Grace Inc)">
 
                                             <ItemTemplate>
                                                 <asp:Label ID="mlblgvlatemin" runat="server" BackColor="Transparent"
                                                     BorderStyle="None" Font-Size="11px" Style="text-align: right"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "latemin")) %>'
-                                                    Width="50px"></asp:Label>
+                                                    Width="60px"></asp:Label>
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
