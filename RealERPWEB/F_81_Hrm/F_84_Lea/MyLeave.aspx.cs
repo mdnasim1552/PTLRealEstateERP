@@ -855,6 +855,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string callType = "GETSUPERVISERMAIL";
                 if (comcod == "3368" || comcod == "3101")
                 {
+                    empid = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ? "" : this.ddlDutyEmp.SelectedValue.ToString();                     
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
 
@@ -895,6 +896,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
                 string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
                 string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
                 #endregion
 
 
@@ -920,7 +922,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (compmail == "True")
                 {
 
-                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody);
+                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
                     if (Result_email == false)
                     {
                         string Messagesd = "Leave Applied but Notification has not been sent";

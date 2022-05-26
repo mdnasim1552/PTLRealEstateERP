@@ -53,7 +53,7 @@ namespace RealERPLIB
 
 
         
-        public bool SendEmailPTL(string hostname, int portnumber,  string frmemail, string psssword, string subj, string sendUsername, string sendUsrdesig, string sendDptdesc, string compName, string tomail, string msgbody)
+        public bool SendEmailPTL(string hostname, int portnumber,  string frmemail, string psssword, string subj, string sendUsername, string sendUsrdesig, string sendDptdesc, string compName, string tomail, string msgbody, bool isSSL)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace RealERPLIB
 
                 SmtpClient client = new SmtpClient(hostname, portnumber);
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.EnableSsl = false;
+                client.EnableSsl = isSSL;
                 System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
                 client.UseDefaultCredentials = false;
                 client.Credentials = credentials;

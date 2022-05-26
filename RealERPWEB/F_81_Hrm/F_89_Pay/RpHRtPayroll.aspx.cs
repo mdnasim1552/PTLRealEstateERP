@@ -5271,5 +5271,28 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.SaveSpecialBonus();
             this.LoadGrid();
         }
+
+        protected void gvlnkbtnTotalDed_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblpay"];
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empId = dt.Rows[rowIndex]["empid"].ToString();
+            
+            //this.GetDeductionDetails(empId);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDedModal();", true);
+        }
+
+        private void GetDeductionDetails(string empId)
+        {
+            string comcod = this.GetCompCode();
+            string fromDate = this.txtfromdate.Text;
+            string toDate = this.txttodate.Text;
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "[dbo_hrm].[SP_REPORT_PAYROLL]", "GET_ALL_DEDUCTION_INFO", fromDate, toDate, empId, "", "", "", "", "", "", "");
+            if (ds1==null)
+                return;
+
+
+        }
     }
 }

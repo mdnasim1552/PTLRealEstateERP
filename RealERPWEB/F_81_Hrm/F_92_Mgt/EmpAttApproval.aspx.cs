@@ -188,6 +188,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
                 string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
                 string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
+
                 #endregion
 
                 string roletypeCHk = (roletype == "SUP") ? "DPT" : "MGT";
@@ -232,7 +234,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     }
                     if (compmail == "True")
                     {
-                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, sendUsername, sendUsrdesig, sendDptdesc, compName, tomail, msgbody);
+                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, sendUsername, sendUsrdesig, sendDptdesc, compName, tomail, msgbody, isSSL);
                         if (Result_email == false)
                         {
                             string Messagesd = "Request Approved, Notification did not send";
@@ -267,7 +269,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 if (compmail == "True")
                 {
                     // bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, appusrid);
-                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, toEmpsub, sendUsername, sendUsrdesig, sendDptdesc, compName, empEmail, toMSgBody);
+                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, toEmpsub, sendUsername, sendUsrdesig, sendDptdesc, compName, empEmail, toMSgBody, isSSL);
 
                 }
                 #endregion
@@ -451,12 +453,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
                     string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
                     string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                    bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
+
                     #endregion
 
                     string mail = (string)ds.Tables[0].Rows[0]["mail"];
                     string toEmpsub = "Request Canceled";
                     string toMSgBody = "Dear " + to_empname + ",\n" + " Reason : " + remarks + "\n" + ", Request Canceled By : " + empname + ", Designation " + empdesig + ", Department Name: " + deptName + "\n";
-                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, toEmpsub, empname, empdesig, deptName, compName, mail, toMSgBody);
+                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, toEmpsub, empname, empdesig, deptName, compName, mail, toMSgBody, isSSL);
 
                     bool result2 = UserNotify.SendNotification(toEmpsub, toMSgBody, empUsrID);
                 }
