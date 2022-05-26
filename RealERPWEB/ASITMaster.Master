@@ -916,11 +916,8 @@
                                 <ul>
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" data-target="#" href="#">
-
-
                                             <asp:Image ID="userimg" CssClass="img-circle" ImageUrl="~/image/profile_img.png" runat="server" AlternateText="Image Not Found" Style="width: 60px; height: 50px;" /></a>
                                         <ul class="dropdown-menu">
-
                                             <li><a href="#">
                                                 <asp:Label ID="lblmoduleid" Style="display: none;" runat="server"></asp:Label>
                                                 <asp:Label ID="lblLoginInfo" runat="server">User ID : ADMIN</asp:Label>
@@ -929,9 +926,7 @@
                                             <li><a href="<%=this.ResolveUrl("~/home.aspx")%>">Modules</a></li>
                                             <li class="divider"></li>
                                             <li><a href="<%=this.ResolveUrl("~/F_33_Doc/GroupChat.aspx")%>">Chat Box<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-
                                             <li><a href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=0")%>">Old Modules</a></li>
-
                                             <li class="divider"></li>
                                             <li><a href="<%=this.ResolveUrl("~/Logout.aspx")%>">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                                         </ul>
