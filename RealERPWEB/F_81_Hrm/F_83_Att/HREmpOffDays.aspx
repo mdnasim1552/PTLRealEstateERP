@@ -94,12 +94,6 @@
                 </asp:UpdateProgress>
             </div>
 
-            <%-- <div class="row justify-content-md-center mt-4 mb-1">
-                <div class="col-9"></div>
-
-
-            </div>--%>
-
             <div class="card mt-5" style="min-height: 1000px;">
                 <div class="card-header">
                     <div class="row">
@@ -236,15 +230,15 @@
                                     </div>
                                 <br />
                     <asp:GridView ID="gvoffday" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                        AutoGenerateColumns="False" ShowFooter="True" Width="695px"
+                        AutoGenerateColumns="False" ShowFooter="True" 
                         OnPageIndexChanging="gvoffday_PageIndexChanging"
                         OnRowDeleting="gvoffday_RowDeleting">
-                        <PagerSettings Position="Top" />
+                        <%--<PagerSettings Position="Top" />--%>
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
+                                    <asp:Label ID="lblgvSlNo" runat="server"  Height="16px"
                                         Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                 </ItemTemplate>
@@ -281,8 +275,8 @@
                                         Width="150px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lnkbtnFUpOff" runat="server" Font-Bold="True"
-                                        Font-Size="12px" CssClass="btn  btn-danger   primarygrdBtn" OnClick="lnkbtnFUpOff_Click">Final Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnFUpOff" runat="server" 
+                                        Font-Size="12px" CssClass="btn  btn-danger primarygrdBtn" OnClick="lnkbtnFUpOff_Click">Final Update</asp:LinkButton>
                                 </FooterTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="left" />
@@ -637,8 +631,8 @@
                     </div>
                 </div>
             </div>--%>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
-</asp:Content>
+</asp:Content >
 
