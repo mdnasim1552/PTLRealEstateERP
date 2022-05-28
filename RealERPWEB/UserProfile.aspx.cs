@@ -632,37 +632,26 @@ namespace RealERPWEB
                 case "Pabx":
                     company = dt1.Rows[0]["company"].ToString();
                     secid = dt1.Rows[0]["secid"].ToString();
-
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
                         if (dt1.Rows[j]["company"].ToString() == company && dt1.Rows[j]["secid"].ToString() == secid)
                         {
-
                             dt1.Rows[j]["companyname"] = "";
                             dt1.Rows[j]["section"] = "";
                         }
-
                         else
                         {
                             if (dt1.Rows[j]["company"].ToString() == company)
                                 dt1.Rows[j]["companyname"] = "";
-
                             if (dt1.Rows[j]["secid"].ToString() == secid)
                                 dt1.Rows[j]["secton"] = "";
                         }
-
-
                         company = dt1.Rows[j]["company"].ToString();
                         secid = dt1.Rows[j]["secid"].ToString();
                     }
-
                     break;
-
-
             }
-
             return dt1;
-
         }
 
         private void Get_Events()
@@ -675,7 +664,6 @@ namespace RealERPWEB
             
             this.EventBirthday.Visible = (comcod=="3365" & usrid=="3")?false:true;
             
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 return;
@@ -685,39 +673,29 @@ namespace RealERPWEB
             string status = "";
             int i = 0;
 
-
-
-
-
-
-
             foreach (DataRow dr in ds1.Tables[0].Rows)
             {
+                string url = "";
+                if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
+                {
+                    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
+                }
+                else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
+                {
+                    byte[] biempimg = (byte[])dr["imgurl"];
+                    url = "data:image;base64," + Convert.ToBase64String(biempimg);
+                }
+                else
+                {
+                    url = "Content/Theme/images/avatars/human_avatar.png";
+                }
 
-                //string url = "";
-
-
-                //if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
-                //{
-                //    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
-                //}
-                //else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
-                //{
-
-                //    byte[] biempimg = (byte[])dr["imgurl"];
-                //    url = "data:image;base64," + Convert.ToBase64String(biempimg);
-                //}
-                //else
-                //{
-                //    url = "Content/Theme/images/avatars/human_avatar.png";
-                //}
-
-                //string type = dr["evtype"].ToString();
-                //if (type == "Birthday")
-                //{
-                //    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
-                //}
-                //i++;
+                string type = dr["evtype"].ToString();
+                if (type == "Birthday")
+                {
+                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+                }
+                i++;
             }
 
             foreach (DataRow dr in ds1.Tables[1].Rows)
