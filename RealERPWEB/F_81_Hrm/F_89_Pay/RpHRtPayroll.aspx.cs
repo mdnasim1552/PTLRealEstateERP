@@ -5303,7 +5303,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.gvDedDetails.DataSource= dt;
             this.gvDedDetails.DataBind();
 
-            this.lblmTotDed.Text = Convert.ToDouble(dt.Rows[0]["tdeduc"]).ToString("#,##0.00;(#,##0.00); ");
+            this.lblmTotDed.Text = Convert.ToDouble(dt.Rows[0]["tdeduc"]).ToString("#,##0;(#,##0); ");
         }
     }
 }
