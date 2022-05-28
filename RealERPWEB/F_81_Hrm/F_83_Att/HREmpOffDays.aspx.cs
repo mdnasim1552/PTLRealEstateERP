@@ -195,6 +195,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.lblPage.Visible = true;
             this.ddlpagesize.Visible = true;
             this.SrchPanel.Visible = true;
+           
             Session.Remove("tbloffday");
             string comcod = this.GetComCode();
 
@@ -343,23 +344,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string employee = (this.ddlEmpName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmpName.SelectedValue.ToString()) + "%";
             string reason = this.txtReason.Text.Trim();
 
-            string dStatus = this.ddlType.SelectedValue.ToString() == "" ? "W" : this.ddlType.SelectedValue.ToString();
-
-
+            string dStatus = this.ddlType.SelectedValue.ToString();
+            if (dStatus == "sh") // Select Holiday
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Please Select Holiday" + "');", true);
+                return;
+            }
             for (int i = 0; i < this.chkDate.Items.Count; i++)
             {
                 if (this.chkDate.Items[i].Selected)
                 {
-
                     string offdate = Convert.ToDateTime(this.chkDate.Items[i].Value).ToString("dd-MMM-yyyy");
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, employee, offdate, reason, dStatus, "", "", "", "", "", "", "", "");
-                  
-                    
+                                 
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail " + "');", true);
-
-
                         return;
 
                     }
@@ -390,13 +390,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //     this.gvoffday.DataSource = null;
             //     this.gvoffday.DataBind();
             //     return;
-
             // }
-
-
-
-
-
             // Session["tbloffday"] =ds3.Tables[0];;
             //this.LoadGrid();
             //this.chkoffDays.Checked = false;
@@ -494,12 +488,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.lnkbtnOffDay.Text = "New";
                 //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
                 this.ddlCompany.Enabled = false;
+                this.ddlDepartment.Enabled = false;
                 this.ddlProjectName.Enabled = false;
                 //this.lblProjectdesc.Visible = true;
                 //this.PnlEmp.Visible = true;
                 this.chkoffDays.Visible = true;
                 this.divemp.Visible = true;
-
+               
 
 
                 this.GetMonth();
@@ -513,6 +508,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 //this.ddlProjectName.Visible = true;
                 //this.lblProjectdesc.Visible = false;
                 this.ddlCompany.Enabled = true;
+                this.ddlDepartment.Enabled = true;
                 this.ddlProjectName.Enabled = true;
                 //this.PnlEmp.Visible = false;
                 //this.PnloffDays.Visible = false;
@@ -524,6 +520,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.ddlpagesize.Visible = false;
                 this.gvoffday.DataSource = null;
                 this.gvoffday.DataBind();
+                this.SrchPanel.Visible = false;
 
             }
         }

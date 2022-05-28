@@ -94,16 +94,10 @@
                 </asp:UpdateProgress>
             </div>
 
-            <%-- <div class="row justify-content-md-center mt-4 mb-1">
-                <div class="col-9"></div>
-
-
-            </div>--%>
-
             <div class="card mt-5" style="min-height: 1000px;">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="Label10" runat="server" CssClass="form-label">Company</asp:Label>
                                 <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="1">
@@ -127,11 +121,11 @@
                         <div class="col-sm-12 col-md-1 ">
                             <div class="form-group">
                                 <asp:Label ID="Label5" runat="server" CssClass="form-label"></asp:Label>
-                                <asp:LinkButton ID="lnkbtnOffDay" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtnOffDay" runat="server" CssClass="btn btn-primary btn-xs mt20" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-2">
-                            <asp:LinkButton ID="lnkAddHoliday" runat="server" CssClass="btn btn-info btn-sm pull-right mt20" OnClick="lnkAddHoliday_Click" ><i class="fas fa-plus"></i> Add Holiday</asp:LinkButton>
+                            <asp:LinkButton ID="lnkAddHoliday" runat="server" CssClass="btn btn-success btn-sm pull-right mt20" OnClick="lnkAddHoliday_Click" ><i class="fas fa-plus"></i> Add Holiday</asp:LinkButton>
                         </div>
 
 
@@ -145,7 +139,7 @@
                                 <%-- <asp:Label ID="lmsg" runat="server" CssClass=" btn btn-danger primaryBtn"></asp:Label>--%>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-2">
+                        <div class="col-sm-12 col-md-3">
                             <div class="form-group">
                                 <asp:Label ID="Label3" runat="server" CssClass="form-label">Employee
 
@@ -199,7 +193,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <asp:CheckBoxList ID="chkDate" runat="server" CssClass=" btn  checkBox" Style="border: 1px solid yellow;"
+                                <asp:CheckBoxList ID="chkDate" runat="server" CssClass="btn checkBox" 
                                     RepeatColumns="7" RepeatDirection="Horizontal">
                                 </asp:CheckBoxList>
                             </div>
@@ -210,16 +204,16 @@
                                 <asp:TextBox ID="txtReason" Style="margin: 5px 0" runat="server"
                                     CssClass="form-control" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
                                 <asp:DropDownList ID="ddlType" CssClass="form-control" Style="margin: 5px 0" runat="server" AutoPostBack="true">
-                                    <asp:ListItem>Select Holidays </asp:ListItem>
+                                    <asp:ListItem Value="sh">Select Holidays </asp:ListItem>
                                     <asp:ListItem Value="W">Weekend Day</asp:ListItem>
                                     <asp:ListItem Value="H">Govt.Holi Day</asp:ListItem>
                                     <asp:ListItem Value="ST">Special Thursday Day</asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:LinkButton ID="lnkbtnAllUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnAllUpdate_Click">Update</asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtnAllUpdate" runat="server" CssClass="btn btn-success btn-xs primaryBtn" OnClick="lnkbtnAllUpdate_Click">Update</asp:LinkButton>
                             </div>
 
                         </div>
-                    </div
+                    </div>
 
                 </div>
                 <div class="card-body">
@@ -236,19 +230,20 @@
                                     </div>
                                 <br />
                     <asp:GridView ID="gvoffday" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                        AutoGenerateColumns="False" ShowFooter="True" Width="695px"
+                        AutoGenerateColumns="False" ShowFooter="True" 
                         OnPageIndexChanging="gvoffday_PageIndexChanging"
                         OnRowDeleting="gvoffday_RowDeleting">
-                        <PagerSettings Position="Top" />
+                        <%--<PagerSettings Position="Top" />--%>
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+
+                            <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
+                                    <asp:Label ID="lblgvSlNo" runat="server"  Height="16px"
                                         Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Department Name">
@@ -271,9 +266,16 @@
                             </asp:TemplateField>
 
 
+                            <asp:TemplateField HeaderText="ID Card">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvidcard" runat="server" Height="16px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
+                                        Width="50px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="left" />
+                            </asp:TemplateField>
 
-
-                            <asp:CommandField ShowDeleteButton="True" />
                             <asp:TemplateField HeaderText="Employee Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvEmpName" runat="server"
@@ -281,20 +283,9 @@
                                         Width="150px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lnkbtnFUpOff" runat="server" Font-Bold="True"
-                                        Font-Size="12px" CssClass="btn  btn-danger   primarygrdBtn" OnClick="lnkbtnFUpOff_Click">Final Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnFUpOff" runat="server" 
+                                        Font-Size="12px" CssClass="btn btn-xs  btn-success primarygrdBtn" OnClick="lnkbtnFUpOff_Click">Final Update</asp:LinkButton>
                                 </FooterTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="left" />
-                            </asp:TemplateField>
-
-
-                            <asp:TemplateField HeaderText="ID CARD">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblgvidcard" runat="server" Height="16px"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                        Width="50px"></asp:Label>
-                                </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
@@ -331,6 +322,8 @@
                                 <ItemStyle HorizontalAlign="left" />
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
+                            <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red"  DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;'   />
+
 
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
@@ -637,8 +630,8 @@
                     </div>
                 </div>
             </div>--%>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
-</asp:Content>
+</asp:Content >
 

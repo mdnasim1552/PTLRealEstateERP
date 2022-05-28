@@ -850,8 +850,7 @@
                             <div class="col-md-4">
                                 <asp:LinkButton ID="lnkbtnFinalSWUpdate" runat="server" CssClass="btn btn-success"
                                     OnClick="lnkbtnFinalSWUpdate_Click" 
-                                    Visible="False" TabIndex="39">Final Update</asp:LinkButton>
-                                 
+                                    Visible="False" TabIndex="39">Final Update</asp:LinkButton>                                
                                 <asp:LinkButton ID="lnkUserGenerate" runat="server"  CssClass="btn btn-warning"
                                     OnClick="lnkUserGenerate_Click" 
                                     TabIndex="39">User Generate</asp:LinkButton>
@@ -876,9 +875,6 @@
                                             </asp:DropDownList>
                                             <asp:Label ID="Label5" runat="server" CssClass="form-control dataLblview" Height="22" Style="line-height: 1.5" Visible="false"></asp:Label>
                                         </div>
-
-
-
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
@@ -895,9 +891,6 @@
                                             <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnShow_Click"
                                                 TabIndex="47">Ok</asp:LinkButton>
                                         </div>
-
-
-
                                     </div>
                                 </asp:Panel>
                             </div>
@@ -905,11 +898,6 @@
                         <asp:Panel ID="pnlOfftime" runat="server" Visible="False">
                             <fieldset class="scheduler-border fieldset_A">
                                 <div class="form-horizontal">
-
-
-
-
-
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName" Visible="false">Date</asp:Label>
@@ -922,8 +910,6 @@
                                             <asp:Label ID="lbltodate" runat="server" CssClass="lblTxt lblName" Visible="false">To</asp:Label>
                                             <asp:TextBox ID="txttodate" runat="server" CssClass=" inputtextbox " Visible="false" Style="width: 85px;"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-
-
                                         </div>
                                     </div>
 
@@ -963,22 +949,11 @@
                                                 TabIndex="52">Update</asp:LinkButton>
                                         </div>
                                     </div>
-
-
-
-
                                 </div>
                             </fieldset>
 
-
-
-
-
-
                         </asp:Panel>
                     </div>
-
-
 
                 </asp:View>
             </asp:MultiView>
