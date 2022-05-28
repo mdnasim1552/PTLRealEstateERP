@@ -136,12 +136,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.lbtnOk.Text = "New";
                 this.ddlEmpList.Enabled = false;
                // this.lblEmpName.Text = this.ddlEmpList.SelectedItem.Text.Trim();
+                this.lnkSearcEMP.Enabled = false;
                 this.lbtnPrevLoanList.Enabled = false;
                 this.ddlPrevLoanList.Enabled = false;
                 //   this.ddlEmpList.Visible = false;
                 // this.lblEmpName.Visible = true;
                 this.ddlLoantype.Enabled = false;
-                this.pnlloan.Visible = true;
+                
                 this.chkAddIns.Checked = false;
                 this.chkVisible.Checked = false;
                 this.chkVisible.Visible = true;
@@ -150,6 +151,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.ShowLoanInfo();
                 if (this.ddlPrevLoanList.Items.Count > 0)
                 {
+                    this.pnlloan.Visible = true;
                     lbtnTotal_Click(null, null);
                 }
                 return;
@@ -859,6 +861,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             gvtxtamtComppay.Text = compvalue.ToString();
             gvtxtamt.Text = empvalue.ToString();
 
+        }
+
+        protected void lnkSearcEMP_Click(object sender, EventArgs e)
+        {
+            GetEmplist();
         }
     }
 }

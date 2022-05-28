@@ -74,7 +74,8 @@
                     <div class="row">
 
                         <div class="col-md-3 col-lg-3 col-xs-12">
-                            <asp:Label ID="lblEmplist" runat="server">Employee List</asp:Label>
+                            <asp:Label ID="lblEmplist" runat="server">Employee List 
+                                <asp:LinkButton ID="lnkSearcEMP" runat="server" OnClick="lnkSearcEMP_Click"><span class=" fa fa-search"></span></asp:LinkButton></asp:Label></asp:Label>
                             <asp:DropDownList ID="ddlEmpList" data-placeholder="Choose loan.." runat="server"
                                 CssClass="chzn-select form-control" AutoPostBack="true">
                             </asp:DropDownList>
@@ -122,17 +123,14 @@
 
                         <div class="col-md-2 col-lg-2 col-xs-12">
                             <asp:Label ID="Label5" runat="server">Total Amount 
-                                
+                               <span class="float-right isFormulaChekcboxdv"><asp:CheckBox ID="isFormulaChekcbox"  runat="server" AutoPostBack="True" ForeColor="red" Visible="false" OnCheckedChanged="isFormulaChekcbox_CheckedChanged" Text="Is Formula" CssClass="margin:0" /></span> 
                             </asp:Label>
                             <asp:TextBox ID="txtToamt" runat="server" onkeypress="return isNumberKey(this, event);" Style="text-align: right" CssClass="form-control"></asp:TextBox>
                         </div>
-                        <div class="col-md-2 col-lg-2 col-xs-12">
+                        <div class="col-md-1 col-lg-1 col-xs-12">
                             <asp:Label ID="Label1" runat="server">Ins. Amount
 
-                                <span class="float-right isFormulaChekcboxdv">
-                                <asp:CheckBox ID="isFormulaChekcbox"  runat="server" AutoPostBack="True" Visible="false" OnCheckedChanged="isFormulaChekcbox_CheckedChanged" Text="Is Formula" CssClass="margin:0" />
-
-                                    </span>
+                                
                             </asp:Label>
                             <asp:TextBox ID="txtinsamt" runat="server" CssClass="form-control" onkeypress="return isNumberKey(this, event);" Style="text-align: right"></asp:TextBox>
                         </div>
@@ -313,7 +311,7 @@
                                         <asp:Label ID="lblStatus" runat="server"  Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "paidamt")) %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Is formula">
+                                <asp:TemplateField HeaderText="Is formula" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblisformula" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isformula")) %>'></asp:Label>
                                     </ItemTemplate>

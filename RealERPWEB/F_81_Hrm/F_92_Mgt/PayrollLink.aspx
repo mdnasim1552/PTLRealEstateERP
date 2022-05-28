@@ -86,7 +86,7 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group">
-                                    <asp:Label ID="lblConTrolCode" runat="server">Company Code</asp:Label>
+                                    <asp:Label ID="lblConTrolCode" runat="server">Company Code  <asp:LinkButton ID="ImgbtnFindComp" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindComp_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton></asp:Label>
                                     <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>

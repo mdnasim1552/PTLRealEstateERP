@@ -5,14 +5,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RealERPWEB
+namespace ASITSTDWEB
 {
-    public partial class DashboardHRM_NEW : System.Web.UI.Page
+    public partial class DashboardOperation : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblTitle")).Text = "HR Interface";
-
+            if(!IsPostBack)
+            {
+                ((Label)this.Master.FindControl("lblTitle")).Text = "ERP DASHBOARD";
+            }
 
         }
     }

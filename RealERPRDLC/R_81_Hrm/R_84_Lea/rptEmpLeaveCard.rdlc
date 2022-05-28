@@ -1448,7 +1448,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Parameters!lvname3.Value, "#,##0.0;(#,##0.0);")</Value>
+                                  <Value>=Format(Parameters!lvname3.Value, "#,##0.0;(#,##0.0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
