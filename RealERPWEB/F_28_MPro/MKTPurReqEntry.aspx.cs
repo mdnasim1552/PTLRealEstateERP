@@ -128,8 +128,6 @@ namespace RealERPWEB.F_28_MPro
             this.ddlProject.DataBind();
             ViewState["tblprojlist"] = ds2.Tables[0];
 
-           
-
         }
         private void GetMaterial()
         {
@@ -505,6 +503,7 @@ namespace RealERPWEB.F_28_MPro
                     string reqNote = dr1["reqnote"].ToString();
                     string filePath = dr1["filepath"].ToString();
                     string justific = dr1["justific"].ToString();
+                    string reqType = "REQ";
                     //if(mREQRAT<=0)
                     //{
                     //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Insert Apprx. Unit Price " + "');", true);
@@ -514,7 +513,7 @@ namespace RealERPWEB.F_28_MPro
                     {
                         result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
                                     mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT.ToString(), prType, actType, mrkType,
-                                    expectDate, filePath, reqNote, justific, "", "", "", "");
+                                    expectDate, filePath, reqNote, justific, reqType, "", "", "");
 
 
                         if (!result)
@@ -811,13 +810,6 @@ namespace RealERPWEB.F_28_MPro
             }
             ViewState["tblReq"] = tbl1;
         }
-
-        
-
-
-
-
-
 
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
         {

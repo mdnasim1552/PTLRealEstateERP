@@ -131,7 +131,15 @@
     </style>
 
     <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            //For navigating using left and right arrow of the keyboard
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        function pageLoaded() {
 
+            $('.chzn-select').chosen({ search_contains: true });
+
+        }
         function PrintRDLC() {
             window.open('../RDLCViewerWin.aspx?PrintOpt=PDF', '_blank');
         }
@@ -142,11 +150,7 @@
             $.toaster('Sorry No Data Found of this Materials', '<span class="glyphicon glyphicon-info-sign"></span> Information', 'danger');
 
         }
-        function pageLoaded() {
 
-            $('.chzn-select').chosen({ search_contains: true });
-
-        }
         function openModal() {
             $('#myModal').modal('toggle');
         }
@@ -154,10 +158,7 @@
             $('#myModal').modal('hide');
         }
         function openServyModal() {
-            // alert("test");
-
             $('#ServyModal').modal('toggle');
-            $('.chzn-select').chosen({ search_contains: true });
         }
         function closeServyModal() {
             $('#ServyModal').modal('hide');
@@ -215,7 +216,7 @@
                                     <asp:TextBox ID="txtCurMSRNo2" runat="server" CssClass="form-control form-control-sm" ReadOnly="true">00000</asp:TextBox>
                                 </div>
                             </div>
-                            <div class="col-sm-2 col-md-2 col-lg-2 ml-1">
+                            <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
                                     <asp:Label ID="lblSurDate" runat="server" class="control-label  lblmargin-top9px" Text="Date:"></asp:Label>
                                     <asp:TextBox ID="txtCurMSRDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -225,7 +226,7 @@
                             </div>
                             <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
-                                    <asp:Label ID="lblReqList" runat="server" class="control-label  lblmargin-top9px" Text="Req List:"></asp:Label>
+                                    <asp:Label ID="lblReqList" runat="server" class="control-label" Text="Req List:"></asp:Label>
                                     <asp:TextBox ID="txtReqSearch" runat="server" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>
                                     <asp:LinkButton ID="lnkReqList" runat="server" Visible="false" OnClick="lnkReqList_Click"></asp:LinkButton>
                                     <asp:DropDownList ID="ddlReqList" runat="server" ValidationGroup="g1" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
@@ -234,9 +235,14 @@
                                         Text="*" ErrorMessage="ErrorMessage"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                            <div class="col-sm-2 col-md-2 col-lg-2 ml-2">
-                                <asp:LinkButton ID="lbtnMSROk" runat="server" Text="Ok" OnClick="lbtnMSROk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
+                            <div class="col-sm-1 col-md-1 col-lg-1 ml-2">
+                                <asp:LinkButton ID="lbtnMSROk" runat="server" Text="Ok" OnClick="lbtnMSROk_Click" CssClass="btn btn-primary btn-sm" Style="margin-top: 20px;"></asp:LinkButton>
                             </div>
+
+                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                <asp:LinkButton ID="lnkbtnNewReq" runat="server" OnClick="lnkbtnNewReq_Click" CssClass="btn btn-primary btn-sm" Style="margin-top: 20px;" ToolTip="Add New Work Details"><i class="fas fa-plus"></i>&nbsp;Add Work</asp:LinkButton>
+                            </div>
+
                         </div>
 
                         <div class="form-group">
@@ -246,6 +252,34 @@
                                 <asp:LinkButton ID="ImgbtnFindPreMR" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="ImgbtnFindPreMR_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
                                 <asp:DropDownList ID="ddlPrevMSRList" runat="server" Width="160px" CssClass="ddlPage"></asp:DropDownList>
                             </div>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlAddWorkDet" runat="server" Visible="false">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label ID="lblPRType" runat="server" class="control-label" Text="Pur. Req. Type"></asp:Label>
+                                    <asp:DropDownList ID="ddlPRType" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPRType_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label ID="lblActType" runat="server" class="control-label" Text="Activity Type"></asp:Label>
+                                    <asp:DropDownList ID="ddlActType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label ID="lblMatType" runat="server" class="control-label" Text="Marketing Type"></asp:Label>
+                                    <asp:DropDownList ID="ddlMarkType" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 col-md-1 col-lg-1">
+                                <div class="form-group">
+                                    <asp:LinkButton ID="lbtnSelectRes" runat="server" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary btn-sm" Style="margin-top: 20px;">Select</asp:LinkButton>
+                                </div>
+                            </div>
+
                         </div>
                     </asp:Panel>
                 </div>
@@ -290,10 +324,11 @@
                                                     Width="120px"></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:Label ID="lblFAmount" runat="server">Total</asp:Label>
-
+                                                <asp:LinkButton ID="lbtnBSFTotal" runat="server" Font-Bold="True" OnClick="lbtnBSFTotal_Click"
+                                                    CssClass="btn btn-warning btn-sm form-control">Total</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemStyle />
+                                            <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Materials Description">
@@ -346,10 +381,10 @@
 
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvpropqtyBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                <asp:TextBox ID="txtgvpropqtyBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="9px" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "propqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                                    Width="70px"></asp:Label>
+                                                    Width="70px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" />
@@ -396,14 +431,11 @@
 
 
                                         <asp:TemplateField HeaderText="Rate">
-                                            <FooterTemplate>
-                                                <%-- <asp:LinkButton ID="lbtnResUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnResUpdate_Click">Final Update</asp:LinkButton>--%>
-                                            </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvRateBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                <asp:TextBox ID="txtgvRateBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="10px" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.000000;(#,##0.000000); ") %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="80px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" />
@@ -418,10 +450,10 @@
                                                     Width="70px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvamounteBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                <asp:Label ID="lblgvamounteBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="10px" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="70px"></asp:TextBox>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" />
