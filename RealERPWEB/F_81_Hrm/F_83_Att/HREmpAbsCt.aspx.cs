@@ -124,7 +124,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3101":
                     date ="26-"+ASTUtility.Month3digit( Convert.ToInt32(yearmon.Substring(4, 2)))  +"-"+ yearmon.Substring(0, 4);
                     cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
-                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                   
                     break;
 
                 default:

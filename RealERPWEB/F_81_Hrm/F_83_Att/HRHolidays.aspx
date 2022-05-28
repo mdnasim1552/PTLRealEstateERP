@@ -348,7 +348,7 @@
                                         <ItemTemplate>
                                             <asp:LinkButton runat="server" ID="LnkbtnDelete" CssClass="btn btn-sm btn-danger"
                                                 OnClick="LnkbtnDelete_Click">
-                                                <span class="fa fa-sm fa-trash" aria-hidden="true" ></span>&nbsp;
+                                                <span class="fa fa-sm fa-trash " aria-hidden="true" ></span>&nbsp;
                                             </asp:LinkButton>
                                         </ItemTemplate>
 

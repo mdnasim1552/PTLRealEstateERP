@@ -131,8 +131,6 @@ namespace RealERPWEB.F_62_Mis
 
         }
 
-
-
         protected void ibtnEmpList_Click(object sender, EventArgs e)
         {
             this.GetEmpName();
@@ -184,7 +182,6 @@ namespace RealERPWEB.F_62_Mis
                 tblt01.Columns.Add("aclate", Type.GetType("System.Double"));
                 tblt01.Columns.Add("leave", Type.GetType("System.Double"));
                 ViewState["tblgrph"] = tblt01;
-
                 this.ShowJobRespon();
             }
 
@@ -203,8 +200,6 @@ namespace RealERPWEB.F_62_Mis
             ViewState["tblgrph"] = dt1;
             this.EmpUserImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgEmp";
             this.Data_Bind();
-
-
         }
 
         private void Data_Bind()
@@ -216,9 +211,6 @@ namespace RealERPWEB.F_62_Mis
                 this.gvempservices.DataSource = dt;
                 this.gvempservices.DataBind();
 
-
-
-
                 DataTable dt2 = (DataTable)ViewState["tblAttHist"];
                 this.ShowAttHistoryGraph();
                 this.RptAttHistroy.DataSource = dt2;
@@ -229,9 +221,6 @@ namespace RealERPWEB.F_62_Mis
                 this.gvLeaveStatus.DataSource = dt3;
                 this.gvLeaveStatus.DataBind();
 
-
-
-
                 //HyperLink lnknextbtn = (HyperLink)this.gvLeaveStatus.HeaderRow.FindControl("hlnkbtnNext");
                 string comcod = this.GetComeCode();
                 //string ymonid = this.txtDate.Text.ToString();
@@ -239,23 +228,13 @@ namespace RealERPWEB.F_62_Mis
                 string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
 
-
-
-
-
-
                 ////lnknextbtn.NavigateUrl = "~/F_82_App/LinkMyHRLeave.aspx?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 ((HyperLink)this.gvLeaveStatus.HeaderRow.FindControl("hlnkbtnNext")).NavigateUrl = "LinkMyHRLeave.aspx?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
 
-
-
-
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
-
-
 
             }
 
@@ -286,8 +265,6 @@ namespace RealERPWEB.F_62_Mis
         }
         protected void RptAttHistroy_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-
-
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
                 HyperLink lnkyearmon = (HyperLink)e.Item.FindControl("hlnkbtnadd");
@@ -298,27 +275,15 @@ namespace RealERPWEB.F_62_Mis
                 string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
                 lnkyearmon.NavigateUrl = "RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
             }
-
-
-
             if (e.Item.ItemType == ListItemType.Footer)
             {
-
                 DataTable dt3 = (DataTable)ViewState["tblAttHist"];
                 ((Label)e.Item.FindControl("lblacintime")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(acintime)", "")) ? 0.00 : dt3.Compute("Sum(acintime)", ""))).ToString("#,##0;(#,##0)");
                 ((Label)e.Item.FindControl("lbltotalabs")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(absnt)", "")) ? 0.00 : dt3.Compute("Sum(absnt)", ""))).ToString("#,##0;(#,##0)");
                 ((Label)e.Item.FindControl("lbltotallate")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(aclate)", "")) ? 0.00 : dt3.Compute("Sum(aclate)", ""))).ToString("#,##0;(#,##0)");
                 ((Label)e.Item.FindControl("lbltotalleave")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0;(#,##0)");
-
-
             }
-
         }
-
-
-
-
-
 
         protected void ibtnEmpListAllinfo_Click(object sender, EventArgs e)
         {
@@ -329,7 +294,6 @@ namespace RealERPWEB.F_62_Mis
         {
             if (dt1.Rows.Count == 0)
                 return dt1;
-
             string comname = dt1.Rows[0]["comname"].ToString();
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
@@ -338,17 +302,12 @@ namespace RealERPWEB.F_62_Mis
                     comname = dt1.Rows[j]["comname"].ToString();
                     dt1.Rows[j]["comdesc"] = "";
                 }
-
                 else
                     comname = dt1.Rows[j]["comname"].ToString();
             }
-
             return dt1;
 
         }
-
-
-
 
         private void ShowAttHistoryGraph()
         {
@@ -365,8 +324,6 @@ namespace RealERPWEB.F_62_Mis
 
             AttHistoryGraph.Series["Leave"].XValueMember = "yearmon";
             AttHistoryGraph.Series["Leave"].YValueMembers = "leave";
-
-
 
             //AttHistoryGraph.Series["Series1"].LegendText = "Month";
             //AttHistoryGraph.Series["Series2"].LegendText = "Status";
@@ -412,8 +369,6 @@ namespace RealERPWEB.F_62_Mis
             TextObject Empsigna = rptempservices.ReportDefinition.ReportObjects["Empsigna"] as TextObject;
             Empsigna.Text = (ds1.Tables[2].Rows.Count == 0) ? "Employee Name" : ds1.Tables[2].Rows[0]["empname"].ToString();
 
-
-
             TextObject txtCompName = rptempservices.ReportDefinition.ReportObjects["txtCompName"] as TextObject;
             txtCompName.Text = (ds1.Tables[2].Rows.Count == 0) ? comnam : ds1.Tables[2].Rows[0]["empcomdesc"].ToString();
 
@@ -432,13 +387,9 @@ namespace RealERPWEB.F_62_Mis
             Session["Report1"] = rptempservices;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
             this.ShowAttHistoryGraph();
             //this.lbtnOk_Click(null, null);
-
         }
-
-
         private void ShowJobRespon()
         {
             string comcod = this.GetComeCode();
