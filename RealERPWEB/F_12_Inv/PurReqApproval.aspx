@@ -520,7 +520,7 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvUseDat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
-                                                Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="60px"></asp:TextBox>
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Purchase Supply Date" Visible="false">

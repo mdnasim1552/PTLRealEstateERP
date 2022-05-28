@@ -1153,7 +1153,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             DataTable dtcl;
                             DataTable dtel;
                             DataView dv = ds2.Tables[0].DefaultView;
-                            dv.RowFilter = "(lateapp = 'False')";
+                            dv.RowFilter = "(lateapp = '0')";
                             dts = dv.ToTable();
                             dtcl = dts;
                             dtel = dts;
@@ -1407,7 +1407,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             adjLev = balclv;
 
                         }
-                        double ttdelv = adjLev + adjElLev;
+                        double ttdelv = adjLev + adjElLev+ dedday;
 
 
                         dt.Rows[rowindex]["delday"] = delayday;
@@ -1737,7 +1737,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     DataTable dtcl;
 
                     DataView dv = ds2.Tables[0].DefaultView;
-                    dv.RowFilter = "(lateapp = 'False')";
+                    dv.RowFilter = "(lateapp = '0')";
                     dts = dv.ToTable();
                     dtcl = dts;
 

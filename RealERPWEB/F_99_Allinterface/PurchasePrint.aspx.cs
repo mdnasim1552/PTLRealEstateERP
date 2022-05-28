@@ -3820,7 +3820,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
 
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316")
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3368" || comcod == "3101")
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -4047,7 +4047,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3336": // Suvastu
-                    case "3337":  // Suvastu
+                    case "3337": // Suvastu
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4059,13 +4059,14 @@ namespace RealERPWEB.F_99_Allinterface
                         terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
-
                         break;
 
+                    case "3101": // Pintech
+                    case "3368": // Finlay
                     case "3366": // Lanco
-                    case "1205"://P2P
-                    case "3351"://P2P
-                    case "3352"://P2P 
+                    case "1205": //P2P
+                    case "3351": //P2P
+                    case "3352": //P2P 
                         terms1 = terms.ToString();
                         break;
 
@@ -4075,7 +4076,6 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3335": // Edison Properties
-
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
                         terms3 = "3. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
@@ -4265,6 +4265,11 @@ namespace RealERPWEB.F_99_Allinterface
 
                     case "3354": //Edison Real Estate                        
                         Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
+                        break;                    
+                    
+                    case "3101": //pintech                      
+                    case "3368": //Finlay Properties Ltd                        
+                        Reportpath = "~/Report/RptPurchaseOrderFinlay.rdlc";
                         break;
 
                     default:
@@ -4343,6 +4348,22 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }
+                if (comcod == "3368" || comcod == "3101") // finlay
+                {
+                    Rpt1.SetParameters(new ReportParameter("lblsign4", ""));
+                    Rpt1.SetParameters(new ReportParameter("lblsign5", ""));
+                    Rpt1.SetParameters(new ReportParameter("costa", costa));
+                    Rpt1.SetParameters(new ReportParameter("costb", costb));
+                    Rpt1.SetParameters(new ReportParameter("costc", costc));
+                    Rpt1.SetParameters(new ReportParameter("costd", costd));
+                    Rpt1.SetParameters(new ReportParameter("coste", coste));
+
+                    Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                    Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                    Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                    Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                    Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+                }
 
 
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
@@ -4409,6 +4430,10 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SetParameters(new ReportParameter("cost4", cost4));
                         Rpt1.SetParameters(new ReportParameter("cost5", cost5));
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReportAssure);
+                        break;
+
+                    case "3101":
+                    case "3368":
                         break;
                     default:
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
