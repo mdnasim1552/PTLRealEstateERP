@@ -799,6 +799,11 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double p5 { get; set; }
             public double p6 { get; set; }
             public double p7 { get; set; }
+            public double p8 { get; set; }
+            public double p9 { get; set; }
+            public double p10 { get; set; }
+            public double p11 { get; set; }
+            public double p12 { get; set; }
             public double netpayprev { get; set; }
             public double diffrent { get; set; }
             public double per { get; set; }
@@ -837,8 +842,34 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
 
         }
 
+        [Serializable]
+        public class DeptWiseSal
+        {
+            public string comcod { get; set; }
+            public string acgcode { get; set; }
+            public string acgcodedesc { get; set; }
+            public string grp { get; set; }
+            public double netpayprev { get; set; }
+            public double pernprev { get; set; }
+            public double netpay { get; set; }
+            public double perncur { get; set; }
+            public double diffrent { get; set; }
+            public double per { get; set; }
+            public double netpayprev2 { get; set; }
+            public double pern2prev { get; set; }
+            public double net2pay { get; set; }
+            public double per2ncur { get; set; }
+            public double diffrent2 { get; set; }
+            public double per2 { get; set; }
+            public double net2payprev { get; set; }
+            public double per2monprev { get; set; }
+            public double net2paycurr { get; set; }
+            public double per2cumon { get; set; }
+            public double diff2mon { get; set; }
+            public double per2mon { get; set; }
 
-
+            public DeptWiseSal() { }
+        }
 
     }
 }
