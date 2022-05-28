@@ -35,24 +35,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
         }
-
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
         }
-
-
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
-
-
         private void GetMonth()
         {
             //string comcod = this.GetCompCode();
@@ -62,13 +55,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //this.ddlMonth.DataSource = ds1.Tables[0];
             //this.ddlMonth.DataBind();
             //this.ddlMonth.SelectedValue =System.DateTime.Today.Month.ToString().Trim();
-
-
-
             string comcod = this.GetCompCode();
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "GETYEARMON", "", "", "", "", "", "", "", "", "");
-
             if (ds1 == null)
                 return;
             this.ddlMonth.DataTextField = "yearmon";
@@ -86,7 +74,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetCompCode();
             string atttype = this.radioAttType.SelectedValue.ToString();
              
-
             string IdCard = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME_MANUAL", IdCard, atttype, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -100,10 +87,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
-        {
-
-            
-
+        {         
         }
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -120,27 +104,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             string comcod = this.GetCompCode();
             string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
             string date = "01-" + Month + "-" + year;
             string empid = this.ddlEmpName.SelectedValue.ToString();
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "ABSENT_DATE", date, empid, "", "", "", "", "", "", "");
-
             if (ds4 == null)
             {
                 return;
             }
-
             DataTable dt = ds4.Tables[0];
-
-
-
-
         }
-
         protected void lnkbtnUpdate_Click(object sender, EventArgs e)
         {
             //Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -155,22 +130,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //{
             //    this.lmsg11.Text = "Data was Noted Updated";
             //    return;
-
             //}
-
-
             //for (int i = 0; i < this.chkDate.Items.Count; i++) 
             //{
             //    if (this.chkDate.Items[i].Selected) 
             //    {
-
             //        string absdat = Convert.ToDateTime(this.chkDate.Items[i].Value).ToString("dd-MMM-yyyy");
             //        string absfl ="1";
             //        bool result1 = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT", empid, absdat, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
-
             //    }
             //}
-
             //this.lmsg11.Text = "Updated Successfully";
 
         }
@@ -194,11 +163,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void ShowData()
         {
-
-
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
-
             string Empid = this.ddlEmpName.SelectedValue.ToString();
             string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
             //string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
@@ -216,13 +182,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
                     //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
                     break;
-
                 default:
                     date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(MonthId.Substring(4, 2))) + "-" + MonthId.Substring(0, 4);
                     frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                     break;
             }
-
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "MONTHLYTENDENCE", Empid, MonthId, date, frmdate, "", "", "", "", "", "");
             if (ds4 == null)
             {
@@ -230,21 +194,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.gvMonthlyAttn.DataBind();
                 return;
             }
-
             Session["tblEmpDesc"] = ds4.Tables[0];
             this.LoadGrid();
-
         }
         private void LoadGrid()
         {
-
             //this.gvMonthlyAttn.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvMonthlyAttn.DataSource = (DataTable)Session["tblEmpDesc"]; ;
             this.gvMonthlyAttn.DataBind();
         }
         protected void gvMonthlyAttn_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
         }
         private void SaveValue()
         {
@@ -276,11 +236,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 dt.Rows[TblRowIndex]["hday"] = hday;
                 //dt.Rows[TblRowIndex]["dedout"] = dedout;
                 //dt.Rows[TblRowIndex]["addhour"] = Addhour;
-
             }
             Session["tblEmpDesc"] = dt;
-
-
         }
         protected void lFinalUpdate_Click(object sender, EventArgs e)
         {
@@ -288,12 +245,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string msg = "";
             DataTable dt = (DataTable)Session["tblEmpDesc"];
             string comcod = this.GetCompCode();
-
             string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
-
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-
                 string absent = dt.Rows[i]["absnt"].ToString().Trim();
                 string leave = dt.Rows[i]["leav"].ToString().Trim();
                 string hday = dt.Rows[i]["hday"].ToString().Trim();
@@ -314,7 +268,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     string lnoutime = dt.Rows[i]["lnchouttime"].ToString();
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPEMPOFFTIME", dayid, empid, machid, idcardno, intime, outtime, leave, absent, dedout, addhour, addoffhour, offintime, offoutime, lnintime, lnoutime);
                 }
-
                 if (absent == "A")
                 {
                     string empid = dt.Rows[i]["empid"].ToString();
@@ -324,26 +277,19 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     //tring month1 = month.PadLeft(2, '0');
                     string year = ASTUtility.Right(Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy"), 4);
                     string monyr = month + year;
-
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT", empid, frmdate, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
-
                 }
-
                 if (hday == "H")
                 {
                     string empid = dt.Rows[i]["empid"].ToString();
                     string hdate = Convert.ToDateTime(dt.Rows[i]["intime"]).ToString("dd-MMM-yyyy");
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUPHOLIDAY", hdate, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
-
                 }
-
             }
-
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             this.LoadGrid();
         }
-
         protected void radioAttType_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetEmployeeName();

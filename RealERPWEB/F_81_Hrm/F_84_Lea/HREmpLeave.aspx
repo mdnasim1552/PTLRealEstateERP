@@ -122,14 +122,15 @@
 
 
             <div class="row justify-content-md-center mt-4 mb-1">
-                <div class="col-9"></div>
+                <div class="col-7"></div>
+                <div class="col-2">
+                    <asp:LinkButton ID="lnkReset" runat="server" CssClass="btn btn-danger btn-sm pull-right" OnClick="lnkReset_Click" ><i class="fa fa-refresh"></i> Reset Rule</asp:LinkButton>
 
+                </div>
                 <div class="col-2">
                     <asp:HyperLink ID="LinkButton1" runat="server" CssClass="btn btn-denger d-none btn-sm pull-right" NavigateUrl="~/F_81_Hrm/F_84_Lea/UploadLeavExcel.aspx" Target="_blank"><i class="fas fa-plus"></i> Upload Excel </asp:HyperLink>
 
                     <%--  <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-info btn-sm pull-right" OnClick="lnkRule_Click"><i class="fas fa-plus"></i> Create Rule </asp:LinkButton>  --%>
-
-
                     <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-info btn-sm pull-right" data-toogle="modal" data-target="#createRuleModal" OnClick="lnkRule_Click"><i class="fas fa-plus"></i> Create Rule </asp:LinkButton>
 
 
