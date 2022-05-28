@@ -523,6 +523,82 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             LocalReport Rpt1 = new LocalReport();
 
             int index = this.rbtnAtten.SelectedIndex;
+
+            //switch (index)
+            //{
+            //    case 0:
+            //        rptitle = "All bank summary " + month;
+            //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
+            //        Rpt1.EnableExternalImages = true;
+            //        break;
+
+            //    case 1:
+            //        rptitle = "Mode of payment " + month;
+            //        var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
+            //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
+            //        Rpt1.EnableExternalImages = true;
+            //        for (int i = 0; i < dt3.Rows.Count; i++)
+            //        {
+            //            monname = dt3.Rows[i]["bankname"].ToString();
+            //            Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+            //        }
+            //        break;
+
+            //    case 2:
+            //        rptitle = "Net salary comparison for " + month;
+            //        var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+            //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptNetComparison", list, list2, null);
+            //        Rpt1.EnableExternalImages = true;
+            //        for (int i = 0; i < dt2.Rows.Count; i++)
+            //        {
+            //            monname = dt2.Rows[i]["monname"].ToString();
+            //            Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+            //        }
+            //        break;
+            //    case 3:
+            //        rptitle = "Gross salary comparison for " + month;
+            //         list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+            //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossComparison", list, list2, null);
+            //        Rpt1.EnableExternalImages = true;
+
+
+            //        for (int i = 0; i < dt2.Rows.Count; i++)
+            //        {
+            //            monname = dt2.Rows[i]["monname"].ToString();
+            //            Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+            //        }
+            //        break;
+            //    case 4:
+            //        rptitle = "Reconciliation of gross salary " + month;
+            //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossRecon", list, null, null);
+            //        Rpt1.EnableExternalImages = true;
+            //        break;
+
+            //    case 5:
+            //        rptitle = "Monthwise Salary of " + subyear;
+            //         list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+            //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptTotalSal", list, list2, null);
+            //        Rpt1.EnableExternalImages = true;
+            //        for (int i = 0; i < dt2.Rows.Count; i++)
+            //        {
+            //            monname = dt2.Rows[i]["monname"].ToString();
+            //            Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+            //        }
+            //        break;
+            //    case 6:
+            //        rptitle = "Department wise Salary of " + subyear;
+            //        var list4 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.DeptWiseSal>();
+            //         list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+            //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptSalsumDept", list4, list2, null);
+            //        Rpt1.EnableExternalImages = true;
+            //        for (int i = 0; i < dt2.Rows.Count; i++)
+            //        {
+            //            monname = dt2.Rows[i]["monname"].ToString();
+            //            Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+            //        }
+
+            //        break;
+            //}
             if (index == 0)
             {
                 rptitle = "All bank summary " + month;
@@ -537,7 +613,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Rpt1.EnableExternalImages = true;
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
-                     monname = dt3.Rows[i]["bankname"].ToString();
+                    monname = dt3.Rows[i]["bankname"].ToString();
                     Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
                 }
             }
@@ -549,7 +625,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Rpt1.EnableExternalImages = true;
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
-                     monname = dt2.Rows[i]["monname"].ToString();
+                    monname = dt2.Rows[i]["monname"].ToString();
                     Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
                 }
             }
@@ -563,18 +639,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
-                     monname = dt2.Rows[i]["monname"].ToString();
+                    monname = dt2.Rows[i]["monname"].ToString();
                     Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
                 }
             }
-            else if(index==4)
+            else if (index == 4)
             {
-                
+
                 rptitle = "Reconciliation of gross salary " + month;
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossRecon", list, null, null);
                 Rpt1.EnableExternalImages = true;
             }
-            else
+            else if (index == 5)
             {
                 rptitle = "Monthwise Salary of " + subyear;
                 var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
@@ -582,7 +658,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Rpt1.EnableExternalImages = true;
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
-                     monname = dt2.Rows[i]["monname"].ToString();
+                    monname = dt2.Rows[i]["monname"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+                }
+            }
+            else
+            {
+                rptitle = "Department wise salary of " + subyear;
+                var list4 = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.DeptWiseSal>();
+                var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptSalsumDept", list4, list2, null);
+                Rpt1.EnableExternalImages = true;
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    monname = dt2.Rows[i]["monname"].ToString();
                     Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
                 }
             }
