@@ -1808,12 +1808,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             if (!result)
             {
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Reset failed');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Rules Applied failed! Try Again');", true);
                 return;
             }
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Sucessfully Reset');", true);
-
-            lnkUpdateLeaveRule_Click(null,null);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Rules Applied Sucessfully');", true);   
+            lbtnOk_Click(null,null);
+            lnkUpdateLeaveRule_Click(null, null);
         }
     }
 }

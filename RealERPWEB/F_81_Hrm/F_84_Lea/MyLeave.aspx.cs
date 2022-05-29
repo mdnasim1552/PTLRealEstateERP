@@ -258,7 +258,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.btnSave.Enabled = false;
                     return;
                 }
-                else if (gcod == "51999")
+                else if (gcod == "51999" || gcod=="51005")
                 {
                     DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                     DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
@@ -346,7 +346,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                         if (comcod != "3330")
                         {
-                            if (dfdays > ballv)
+                            if (dfdays > ballv && gcod!= "51005")
                             {
                                 string Messaged = "Oops!! Insufficient Leave Balance, please conctact with your Managment";
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
@@ -360,8 +360,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         else
                         {
                             this.btnSave.Enabled = true;
-                        }
-                        
+                        }                     
 
                     }
                     else
@@ -371,8 +370,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         this.btnSave.Enabled = false;
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -380,31 +377,28 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-
-
-
         }
 
         private void getLevExitingLv(string fdate, string tdate)
         {
             string comcod = this.GetComeCode();
             string empid = this.GetEmpID();
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEXITINGELEAVEBYEMPID", empid, fdate, tdate, "", "", "", "", "", "");
+            string fdate1 = Convert.ToDateTime(fdate).ToString("dd-MMM-yyyy");
+            string tdate1 = Convert.ToDateTime(tdate).ToString("dd-MMM-yyyy");
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEXITINGELEAVEBYEMPID", empid, fdate1, tdate1, "", "", "", "", "", "");
             ViewState["tblextlv"] = ds5.Tables[0];
         }
         private void getLevExitingHoliday(string fdate, string tdate)
         {
             string comcod = this.GetComeCode();
             string empid = this.GetEmpID();
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GET_EXITINGE_HOLIDAY_BYEMPID", empid, fdate, tdate, "", "", "", "", "", "");
+            string fdate1 = Convert.ToDateTime(fdate).ToString("dd-MMM-yyyy");
+            string tdate1 = Convert.ToDateTime(tdate).ToString("dd-MMM-yyyy");
+
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GET_EXITINGE_HOLIDAY_BYEMPID", empid, fdate1, tdate1, "", "", "", "", "", "");
 
             ViewState["tblextHoliday"] = ds5.Tables[0];
         }
-
-
-
-
-
         protected void txtgvenjoydt1_TextChanged1(object sender, EventArgs e)
         {
 
