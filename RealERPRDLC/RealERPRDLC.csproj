@@ -111,6 +111,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+MktPurchaseOrderInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+MktPurchasePayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PaymentOtherCost.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurchaseOrderInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurOrderTermsCondition.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
@@ -1072,6 +1073,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentAcme.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptIncrementStatus.rdlc" />
+    <EmbeddedResource Include="R_98_Purchase\RptPurchaseOrderFinlay1.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptBillCon.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCashRcv.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCkhDeposit.rdlc" />

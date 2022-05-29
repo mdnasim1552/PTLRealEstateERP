@@ -25,12 +25,11 @@
                 search_contains: true,
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
-            });
+            });          
 
-            function CloseModal() {
-                $('#detialsinfo').modal('hide');
-            };
-
+        };
+        function CloseModal() {
+            $('#detialsinfo').modal('hide');
         };
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

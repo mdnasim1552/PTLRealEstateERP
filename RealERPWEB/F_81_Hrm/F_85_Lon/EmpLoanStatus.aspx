@@ -24,22 +24,17 @@
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
-
-
             var gvAllPayroll = $('#<%=this.gvEmpLoanStatus.ClientID %>');
-            gvAllPayroll.Scrollable();
-           
+            gvAllPayroll.Scrollable();          
         };
 
         function Search_Gridview(strKey)
         {
-
             var strData = strKey.value.toLowerCase().split(" ");
             var tblData = document.getElementById("<%=gvEmpLoanStatus.ClientID %>");
             var rowData;
             for (var i = 1; i < tblData.rows.length; i++)
             {
-
                 rowData = tblData.rows[i].innerHTML;
                 var styleDisplay = 'none';
                 for (var j = 0; j < strData.length; j++)
@@ -55,7 +50,6 @@
                 tblData.rows[i].style.display = styleDisplay;
             }
         }
-
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -77,7 +71,6 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-
             <div class="card card-fluid container-data" style="min-height: 500px;">
                 <div class="card-header mt-3 mb-0 pb-0">
                     <div class="row mb-0 pb-0">
@@ -102,19 +95,15 @@
                             <asp:ListItem  Value="0">InActive</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-
                     <div class="row mt-2  pb-0">
                         <asp:CheckBox ID="Chkbalance" runat="server" Text="loan Balance" CssClass="btn btn-info btn-sm ml-1 col-1" AutoPostBack="True" />
                         <asp:Label ID="lbldate" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Date</asp:Label>
                         <asp:TextBox ID="txtDate" runat="server" CssClass="form-control form-control-sm col-1 "></asp:TextBox>
                         <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
-
                         <asp:Label ID="Label5" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Loan Type</asp:Label>
-
                         <asp:DropDownList ID="ddlLoantype" data-placeholder="Choose loan.." runat="server"
                             CssClass="chzn-select form-control col-2" AutoPostBack="true" OnSelectedIndexChanged="ddlLoantype_SelectedIndexChanged">
                         </asp:DropDownList>
-
                         <asp:Label ID="lblPage" runat="server" Visible="false" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Page Size</asp:Label>
                         <asp:DropDownList ID="ddlpagesize" runat="server" Visible="false" AutoPostBack="True" CssClass="chzn-select form-control col-1" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                             <asp:ListItem>10</asp:ListItem>
@@ -127,16 +116,11 @@
                             <asp:ListItem>200</asp:ListItem>
                             <asp:ListItem Selected="True">300</asp:ListItem>
                         </asp:DropDownList>
-
                         <asp:Label ID="lblser" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Search</asp:Label>
-
-                        <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control col-2" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
-                        
+                        <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control col-2" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>                      
                     </div>
                 </div>
-
                 <div class="card-body">
-
                     <div class="row table table-responsive">
                         <asp:GridView ID="gvEmpLoanStatus" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -212,8 +196,6 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "uptopaid")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
-
                                 <asp:TemplateField HeaderText="Paid Amt." Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvPaidamt" runat="server" BackColor="Transparent"
@@ -242,8 +224,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-
-                                <asp:TemplateField HeaderText="Courrent Month Loan">
+                                <asp:TemplateField HeaderText="Current Month Loan">
                                     <ItemTemplate>
                                           <asp:Label ID="lblMontloan" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"  Width="80px" 
@@ -254,9 +235,7 @@
                                             ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                 </asp:TemplateField>
-
                             </Columns>
-
 
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
@@ -266,10 +245,7 @@
                         </asp:GridView>
                     </div>
                 </div>
-
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
 </asp:Content>

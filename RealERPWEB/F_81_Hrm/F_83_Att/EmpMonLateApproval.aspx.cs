@@ -1153,7 +1153,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             DataTable dtcl;
                             DataTable dtel;
                             DataView dv = ds2.Tables[0].DefaultView;
-                            dv.RowFilter = "(lateapp = 'False')";
+                            dv.RowFilter = "(lateapp = '0')";
                             dts = dv.ToTable();
                             dtcl = dts;
                             dtel = dts;
@@ -1363,9 +1363,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
 
                 case "3365":// BTI
-
-
-
                     for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
                     {
                         double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
@@ -1392,9 +1389,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             adjLev = tadjLev;
                             double adjElLevttl = ToAdjustLeaveDayBTIEL((double)redelay);
                             adjElLev = adjElLevttl;
-
                         }
-
                         if (balernlv < adjElLev)
                         {
                            // dedday = adjElLev - balernlv;
@@ -1407,9 +1402,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             adjLev = balclv;
 
                         }
-                        double ttdelv = adjLev + adjElLev;
-
-
+                        double ttdelv = adjLev + adjElLev+ dedday;
                         dt.Rows[rowindex]["delday"] = delayday;
                         dt.Rows[rowindex]["aprday"] = Aprvday;
                         dt.Rows[rowindex]["dedday"] = dedday;
@@ -1434,12 +1427,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     }
                     break;
 
-
-
-
             }
-
-
 
             Session["tblover"] = dt;
             this.Data_Bind();
@@ -1481,12 +1469,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     sum = sum + 1;
                     n = r;
                 }
-
-
-
             }
             return sum;
-
         }
 
         // ACME
@@ -1737,7 +1721,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     DataTable dtcl;
 
                     DataView dv = ds2.Tables[0].DefaultView;
-                    dv.RowFilter = "(lateapp = 'False')";
+                    dv.RowFilter = "(lateapp = '0')";
                     dts = dv.ToTable();
                     dtcl = dts;
 

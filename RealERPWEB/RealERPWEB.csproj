@@ -2208,6 +2208,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
@@ -3844,6 +3845,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.cs">
+      <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.designer.cs">
+      <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
@@ -12119,6 +12127,7 @@
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>

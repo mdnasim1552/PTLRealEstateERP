@@ -638,8 +638,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
                 string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=SUP";
                 string totalpath = uhostname + currentptah;
-
-
                 string maildescription = "Dear Sir, Please Approve My Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                      "Department Name : " + deptname + "," + "<br>" + "Request Type : " + reqfor + ",<br>" + " Request id: " + ltrnid + ". <br>";
                 maildescription += htmtableboyd;

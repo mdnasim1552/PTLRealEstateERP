@@ -338,8 +338,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void showMgtAttendance()
         {
-
-
             string comcod = this.GetCompCode();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_HR_MGTATTENDENCE", "RPTMGTDAILYATTN", date, "", "", "", "", "", "", "", "");
@@ -367,13 +365,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.lblValoutw61to90mi.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["outw61to90mi"]).ToString("#,##0;(#,##0); ");
             this.lblValoutw91toabove.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["outw91toabove"]).ToString("#,##0;(#,##0); ");
             this.Data_Bind();
-
-
         }
 
         private void ShowDailyOverTime()
         {
-
             this.pnlGroup.Visible = true;
             Session.Remove("tbldailyattn");
             string comcod = this.GetCompCode();
@@ -389,7 +384,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 else
                     foreach (string s1 in sec)
                         section = section + this.ddlDeptName.SelectedValue.ToString().Substring(0, 8) + s1.Substring(0, 4);
-
             }
             //added khalil
             string FrmDesignation = "0399999";
@@ -414,17 +408,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.gvDailyOvr.DataSource = null;
                 this.gvDailyOvr.DataBind();
                 return;
-
             }
             Session["tbldailyattn"] = this.HiddenSameData(ds1.Tables[0]);
-
             this.Data_Bind();
         }
 
         private void ShowMonthlyLateAtten()
         {
-
-
             Session.Remove("tbldailyattn");
             string comcod = this.GetCompCode();
             string Company = ((this.ddlCompanyName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2)) + "%";
@@ -440,7 +430,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 else
                     foreach (string s1 in sec)
                         section = section + this.ddlDeptName.SelectedValue.ToString().Substring(0, 8) + s1.Substring(0, 4);
-
             }
             //added khalil
             string FrmDesignation = "0399999";
@@ -466,17 +455,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.gvMoLateAttn.DataSource = null;
                 this.gvMoLateAttn.DataBind();
                 return;
-
             }
             Session["tbldailyattn"] = this.HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
-
-
         }
-
-
-
-
         private void ShowDeptList()
         {
 
@@ -521,13 +503,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             if ((this.ddlDeptName.SelectedValue.ToString() != "000000000000"))
             {
                 string[] sec = this.DropCheck1.Text.Trim().Split(',');
-
                 if (sec[0].Substring(0, 3) == "000")
                     section = "";
                 else
                     foreach (string s1 in sec)
                         section = section + this.ddlDeptName.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
-
             }
             //added khalil
             string FrmDesignation = "0399999";
@@ -536,7 +516,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 case "3102":
                     //pnlDesig.Visible = true;
-
                     FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
                     ToDesignation = this.ddlToDesig.SelectedValue.ToString();
                     break;
@@ -554,7 +533,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.gvattendsum.DataSource = null;
                 this.gvattendsum.DataBind();
                 return;
-
             }
             Session["tbldailyattn"] = ds1.Tables[0];
             this.Data_Bind();
@@ -591,16 +569,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.gvdeptlist.DataBind();
                     //this.FoooterCalculation();
                     break;
-
-
-
-
             }
-
-
-
-
-
         }
         private void FoooterCalculation()
         {

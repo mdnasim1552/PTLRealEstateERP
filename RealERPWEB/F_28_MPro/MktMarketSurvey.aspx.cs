@@ -323,66 +323,49 @@ namespace RealERPWEB.F_28_MPro
 
         protected void gvResInfo_DataBind()
         {
-            string reqtype = ASTUtility.Right(this.ddlReqList.SelectedItem.Text.Trim(), 2);
-
-            if (reqtype == "LC")
+            try
             {
+                DataTable tbl1 = (DataTable)Session["tblsup"];
+                DataTable tbl2 = (DataTable)Session["tblBestSelect"];
+                string comcod = this.GetCompCode();
 
-                this.gvBestSelect.Columns[10].Visible = true;
-                this.gvBestSelect.Columns[11].Visible = true;
-                this.gvBestSelect.Columns[14].Visible = true;
-
-                this.gvBestSelect.Columns[12].HeaderText = "FC Rate";
-                this.gvBestSelect.Columns[13].HeaderText = "FC Amount";
-
-                ////////////////////////
-
-                this.gvResInfo.Columns[09].Visible = true;
-                this.gvResInfo.Columns[10].Visible = true;
-                this.gvResInfo.Columns[13].Visible = true;
-
-                this.gvResInfo.Columns[11].HeaderText = "FC Rate";
-                this.gvResInfo.Columns[12].HeaderText = "FC Amount";
-            }
+                if (tbl1.Rows.Count == 0)
+                    return;
+                if (tbl2.Rows.Count == 0)
+                    return;
+                tbl1 = this.HiddenSameData(tbl1);
 
 
 
-
-            DataTable tbl1 = (DataTable)Session["tblsup"];
-            DataTable tbl2 = (DataTable)Session["tblBestSelect"];
-            string comcod = this.GetCompCode();
-
-            if (tbl1.Rows.Count == 0)
-                return;
-            if (tbl2.Rows.Count == 0)
-                return;
-            tbl1 = this.HiddenSameData(tbl1);
+                this.gvResInfo.DataSource = tbl1;
+                this.gvResInfo.DataBind();
 
 
-
-            this.gvResInfo.DataSource = tbl1;
-            this.gvResInfo.DataBind();
-
-
-            this.gvBestSelect.DataSource = HiddenSameData(tbl2);
-            this.gvBestSelect.DataBind();
-            for (int i = 0; i < this.gvBestSelect.Rows.Count; i++)
-            {
-                Label txtgvRate = (Label)gvBestSelect.Rows[i].FindControl("lblgvRateBSel");
-                txtgvRate.Style.Add("color", "blue");
-
-
-                string supcode1 = ((Label)this.gvBestSelect.Rows[i].FindControl("lblgvSuplBSel")).Text.Trim();
-                if (supcode1 == "000000000000")
+                this.gvBestSelect.DataSource = HiddenSameData(tbl2);
+                this.gvBestSelect.DataBind();
+                for (int i = 0; i < this.gvBestSelect.Rows.Count; i++)
                 {
-                    LinkButton txtgvBsup = (LinkButton)gvBestSelect.Rows[i].FindControl("lblgrmet1BSel");
-                    txtgvBsup.Style.Add("color", "red");
+                    Label txtgvRate = (Label)gvBestSelect.Rows[i].FindControl("txtgvRateBSel");
+                    txtgvRate.Style.Add("color", "blue");
+
+
+                    string supcode1 = ((Label)this.gvBestSelect.Rows[i].FindControl("lblgvSuplBSel")).Text.Trim();
+                    if (supcode1 == "000000000000")
+                    {
+                        LinkButton txtgvBsup = (LinkButton)gvBestSelect.Rows[i].FindControl("lblgrmet1BSel");
+                        txtgvBsup.Style.Add("color", "red");
+                    }
                 }
+
+
+                this.FooterAmount();
+
             }
+            catch (Exception ex)
+            {
 
-
-            this.FooterAmount();
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+            }
         }
 
         protected void lnkReqList_Click(object sender, EventArgs e)
@@ -523,46 +506,7 @@ namespace RealERPWEB.F_28_MPro
             int index;
             string Rsircode = "000000000000", spcfcod = "000000000000";
             double chkqty = 0.00, treqqty = 0.00;
-            //for (int j = 0; j < this.gvResInfo.Rows.Count; j++)
-            //{
-
-            //    index = (this.gvResInfo.PageSize) * (this.gvResInfo.PageIndex) + j;
-
-            //    string acttype = tbl1.Rows[index]["acttype"].ToString();
-            //    string spcfcode = "000000000000";
-            //    string approved = tbl1.Rows[index]["approved"].ToString();
-
-            //    double gvpropqty = Convert.ToDouble(tbl1.Rows[index]["propqty"]);
-
-
-
-            //    double gvcsreqqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvResInfo.Rows[j].FindControl("txtgvcsreqqty")).Text.Trim()));
-
-
-
-            //    if (Rsircode == Resocde && spcfcod == spcfcode)
-            //    {
-            //        chkqty = chkqty - gvcsreqqty;
-            //        if (chkqty < 0)
-            //        {
-            //            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Requisition" + "');", true);
-            //            return;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        chkqty = gvpropqty - gvcsreqqty;
-            //    }
-
-            //    Rsircode = tbl1.Rows[index]["rsircode"].ToString();
-            //    spcfcod = tbl1.Rows[index]["spcfcod"].ToString();
-
-
-            //}
-         
-
-
-
+  
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
@@ -651,16 +595,37 @@ namespace RealERPWEB.F_28_MPro
 
             for (int i = 0; i < tbl2.Rows.Count; i++)
             {
-                string acttype = tbl2.Rows[i]["acttype"].ToString();
+                string mREQNO = tbl2.Rows[i]["reqno"].ToString();
+                string prType = tbl2.Rows[i]["prtype"].ToString();
+                string actType = tbl2.Rows[i]["acttype"].ToString();
+                string mrkType = tbl2.Rows[i]["mkttype"].ToString();
                 string rSirDetDesc = tbl2.Rows[i]["rsirdetdesc"].ToString();
+                double mPREQTY = Convert.ToDouble(tbl2.Rows[i]["propqty"]);
+                double mAREQTY = Convert.ToDouble(tbl2.Rows[i]["propqty"]);
+                double mREQRAT = Convert.ToDouble(tbl2.Rows[i]["amount"]);
+                string reqType = "CS";
 
-                result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "UPDATEREQDETDESC", reqno, acttype, rSirDetDesc, "", "", "", "", "", "", "", "", "", "", "");
-
+                result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "UPDATEREQDETDESC", reqno, actType, rSirDetDesc, "", "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
+
+                //Insert New Work From CS
+                if(prType!="" && mrkType!="")
+                {
+                    result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
+                                  mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT.ToString(), prType, actType, mrkType,
+                                  "01-Jan-1900", "", "", "", reqType, rSirDetDesc, "", "");
+
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                        return;
+                    }
+                }
+               
             }
 
 
@@ -722,25 +687,6 @@ namespace RealERPWEB.F_28_MPro
 
 
 
-
-        }
-
-        private void BS_SaveValue()
-        {
-
-            DataTable dt = (DataTable)Session["tblBestSelect"];
-            for (int i = 0; i < this.gvBestSelect.Rows.Count; i++)
-            {
-                //dt.Rows[i]["areqty"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvareqty")).Text.Trim()));
-                //dt.Rows[i]["rate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvBestSelect.Rows[i].FindControl("lblgvRateBSel")).Text.Trim()));
-                //dt.Rows[i]["paytype"] = ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvpaytype")).Text.Trim();
-                //dt.Rows[i]["advamt"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvadvamt")).Text.Trim()));
-                //dt.Rows[i]["conrate"] = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtconrate")).Text.Trim()));
-
-                dt.Rows[i]["rsirdetdesc"] = ((TextBox)this.gvBestSelect.Rows[i].FindControl("txtgvRSirDetDesc")).Text.Trim();
-
-            }
-            Session["tblBestSelect"] = dt;
 
         }
 
@@ -1398,6 +1344,153 @@ namespace RealERPWEB.F_28_MPro
             Print_PurchaseIssue();
            
 
+        }
+
+        protected void lnkbtnNewReq_Click(object sender, EventArgs e)
+        {
+            this.pnlAddWorkDet.Visible = true;
+            this.GetMaterial();
+            this.GetPRType();
+            this.GetMarkType();
+            this.ddlPRType_SelectedIndexChanged(null, null);
+        }
+        private void GetMaterial()
+        {
+            try
+            {
+                DataTable dt = (DataTable)Session["tblBestSelect"];
+                string comcod = this.GetCompCode();
+                string ReFindProject = dt.Rows[0]["pactcode"].ToString();
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GETMATLIST", ReFindProject, "", "", "", "", "", "", "", "");
+                if (ds2 == null)
+                    return;
+
+                ViewState["tblmatdetails"] = ds2.Tables[1];
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +ex.Message+ "');", true);
+                return;
+
+            }
+
+
+        }
+        protected void GetPRType()
+        {
+            string comcod = this.GetCompCode();
+            string ReFindProject = "%";
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_DDL_LIST", ReFindProject, "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            string gcod = "62%";
+            DataView dv = ds2.Tables[0].Copy().DefaultView;
+            dv.RowFilter = ("gcod  like '" + gcod + "'");
+
+            this.ddlPRType.DataTextField = "gdesc";
+            this.ddlPRType.DataValueField = "gcod";
+            this.ddlPRType.DataSource = dv.ToTable();
+            this.ddlPRType.DataBind();
+
+            ViewState["tblddllist"] = ds2.Tables[0];
+
+
+        }
+        protected void ddlPRType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblmatdetails"];
+            string code = this.ddlPRType.SelectedValue;
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "mapcode like ('" + code + "')";
+            this.ddlActType.DataTextField = "rsirdesc";
+            this.ddlActType.DataValueField = "rsircode";
+            this.ddlActType.DataSource = dv1.ToTable();
+            this.ddlActType.DataBind();
+
+        }
+        protected void GetMarkType()
+        {
+            DataTable dt = (DataTable)ViewState["tblddllist"];
+            string gcod = "64%";
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("gcod  like '" + gcod + "'");
+
+            this.ddlMarkType.DataTextField = "gdesc";
+            this.ddlMarkType.DataValueField = "gcod";
+            this.ddlMarkType.DataSource = dv.ToTable();
+            this.ddlMarkType.DataBind();
+
+        }
+        protected void lbtnSelectRes_Click(object sender, EventArgs e)
+        {
+            this.BS_SaveValue();
+            DataTable tbl1 = (DataTable)Session["tblBestSelect"];
+            string acttype = this.ddlActType.SelectedValue.ToString();
+            DataRow[] dr2 = tbl1.Select("acttype = '" + acttype + "'");
+            if (dr2.Length == 0)
+            {
+                DataRow dr1 = tbl1.NewRow();
+                dr1["reqno"] = tbl1.Rows[0]["reqno"].ToString();
+                dr1["prtype"] = this.ddlPRType.SelectedValue.ToString();
+                dr1["acttype"] = this.ddlActType.SelectedValue.ToString();
+                dr1["mkttype"] = this.ddlMarkType.SelectedValue.ToString();
+                dr1["rsirdesc"] = this.ddlActType.SelectedItem.Text.Trim();
+                dr1["rsirunit"] = "";
+                dr1["stkqty"] = 0;
+                dr1["propqty"] = 0;
+                dr1["areqty"] = 0;
+                dr1["csreqqty"] = 0;
+                dr1["rate"] = 0;
+                dr1["amount"] = 0;
+                dr1["bdtamt"] = 0;
+                dr1["lstpurate"] = 0;
+                dr1["lpurqty"] = 0;
+                dr1["lpurdate"] = "01-Jan-1900";
+                dr1["supdesc"] = "";
+                dr1["paytype"] = "";
+                dr1["advamt"] = 0;
+                dr1["payment"] = "";
+                dr1["cperson"] = "";
+                dr1["mobile"] = "";
+                dr1["leadtime"] = 0;
+                tbl1.Rows.Add(dr1);
+
+            }
+
+            Session["tblBestSelect"] = tbl1;
+            this.gvResInfo_DataBind();
+
+        }
+        private void BS_SaveValue()
+        {
+            DataTable tbl1 = (DataTable)Session["tblBestSelect"];
+            int rowindex;
+
+            double areqqty = 0.00, rate = 0.00, amount =0.00;
+            for (int j = 0; j < this.gvBestSelect.Rows.Count; j++)
+            {
+                rowindex = (this.gvBestSelect.PageSize) * (this.gvBestSelect.PageIndex) + j;
+                areqqty = ASTUtility.StrPosOrNagative(((TextBox)this.gvBestSelect.Rows[j].FindControl("txtgvpropqtyBSel")).Text.Trim());
+                rate = ASTUtility.StrPosOrNagative(((TextBox)this.gvBestSelect.Rows[j].FindControl("txtgvRateBSel")).Text.Trim());
+                string rsirdetDesc = ((TextBox)this.gvBestSelect.Rows[j].FindControl("txtgvRSirDetDesc")).Text.Trim();
+
+                amount = areqqty * rate;
+
+                tbl1.Rows[rowindex]["propqty"] = areqqty;
+                tbl1.Rows[rowindex]["rate"] = rate;
+                tbl1.Rows[rowindex]["amount"] = amount;
+                tbl1.Rows[rowindex]["rsirdetdesc"] = rsirdetDesc;
+
+            }
+            Session["tblBestSelect"] = tbl1;
+        }
+
+        protected void lbtnBSFTotal_Click(object sender, EventArgs e)
+        {
+            this.BS_SaveValue();            
+            this.gvResInfo_DataBind();
+            this.FooterAmount();
         }
 
         private void Print_PurchaseIssue()

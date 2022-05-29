@@ -3820,7 +3820,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
 
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316")
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3368")
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -3967,6 +3967,15 @@ namespace RealERPWEB.F_99_Allinterface
                         sign6 = "Approved By";
                         break;
 
+                    case "3368":
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign4 = ""; //_ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign5 = ""; //_ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign6 = "Approved By";
+                        break;
+
                     default:
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4002,7 +4011,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 switch (comcod)
-                {  
+                {
                     case "3330": // Bridge Holdings
                         //terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         //terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4047,7 +4056,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3336": // Suvastu
-                    case "3337":  // Suvastu
+                    case "3337": // Suvastu
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4059,13 +4068,14 @@ namespace RealERPWEB.F_99_Allinterface
                         terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
-
                         break;
 
+                    //case "3101": // Pintech
+                    case "3368": // Finlay
                     case "3366": // Lanco
-                    case "1205"://P2P
-                    case "3351"://P2P
-                    case "3352"://P2P 
+                    case "1205": //P2P
+                    case "3351": //P2P
+                    case "3352": //P2P 
                         terms1 = terms.ToString();
                         break;
 
@@ -4075,7 +4085,6 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3335": // Edison Properties
-
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
                         terms3 = "3. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
@@ -4124,7 +4133,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-
+                    //case "3101": // Pintech
                     case "3364": //JBS
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4134,7 +4143,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    case "3354": // Edison Real estate                      
+                    case "3354": // Edison Real estate                     
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
                         terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
@@ -4148,7 +4157,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                 
+
                     case "1108":
                     case "1109":
                     case "3315":
@@ -4255,6 +4264,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
+                    //case "3101": //pintech                      
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
@@ -4265,6 +4275,11 @@ namespace RealERPWEB.F_99_Allinterface
 
                     case "3354": //Edison Real Estate                        
                         Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
+                        break;
+
+                    //case "3101": //pintech                      
+                    case "3368": //Finlay Properties Ltd                        
+                        Reportpath = "~/Report/RptPurchaseOrderFinlay.rdlc";
                         break;
 
                     default:
@@ -4343,6 +4358,22 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }
+                if (comcod == "3368") // finlay
+                {
+                    Rpt1.SetParameters(new ReportParameter("lblsign4", ""));
+                    Rpt1.SetParameters(new ReportParameter("lblsign5", ""));
+                    Rpt1.SetParameters(new ReportParameter("costa", costa));
+                    Rpt1.SetParameters(new ReportParameter("costb", costb));
+                    Rpt1.SetParameters(new ReportParameter("costc", costc));
+                    Rpt1.SetParameters(new ReportParameter("costd", costd));
+                    Rpt1.SetParameters(new ReportParameter("coste", coste));
+
+                    Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                    Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                    Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                    Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                    Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+                }
 
 
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
@@ -4409,6 +4440,10 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SetParameters(new ReportParameter("cost4", cost4));
                         Rpt1.SetParameters(new ReportParameter("cost5", cost5));
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReportAssure);
+                        break;
+
+                    //case "3101":
+                    case "3368":
                         break;
                     default:
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
@@ -4690,13 +4725,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                     case "3354": // Edison Real estate
                     case "3101":
-                        terms1 = termscondition.FindAll(p => p.termsid == "001").Count == 0 ?"":( termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "");
+                        terms1 = termscondition.FindAll(p => p.termsid == "001").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "");
                         terms2 = termscondition.FindAll(p => p.termsid == "002").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "");
                         terms3 = termscondition.FindAll(p => p.termsid == "003").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "");
-                        terms4 = termscondition.FindAll(p => p.termsid == "004").Count == 0 ? "" :( termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString().Length > 0 ? "4." + (termscondition.FindAll(p => p.termsid == "004")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString()) : "");
+                        terms4 = termscondition.FindAll(p => p.termsid == "004").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString().Length > 0 ? "4." + (termscondition.FindAll(p => p.termsid == "004")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString()) : "");
                         terms5 = termscondition.FindAll(p => p.termsid == "005").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString().Length > 0 ? "5." + (termscondition.FindAll(p => p.termsid == "005")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString()) : "");
                         terms6 = termscondition.FindAll(p => p.termsid == "006").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString().Length > 0 ? "6." + (termscondition.FindAll(p => p.termsid == "006")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString()) : "");
-                        terms7 = termscondition.FindAll(p => p.termsid == "007").Count == 0 ? "" :( termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString().Length > 0 ? "7." + (termscondition.FindAll(p => p.termsid == "007")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "");
+                        terms7 = termscondition.FindAll(p => p.termsid == "007").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString().Length > 0 ? "7." + (termscondition.FindAll(p => p.termsid == "007")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "");
                         terms8 = termscondition.FindAll(p => p.termsid == "008").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString().Length > 0 ? "8." + (termscondition.FindAll(p => p.termsid == "008")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString()) : "");
                         terms9 = termscondition.FindAll(p => p.termsid == "009").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "");
                         cperson = termscondition.FindAll(p => p.termsid == "010").Count == 0 ? "" : (termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "");
@@ -4851,7 +4886,7 @@ namespace RealERPWEB.F_99_Allinterface
             List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule> lst = (List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule>)ViewState["tblpaysch"];
             e.DataSources.Add(new ReportDataSource("DataSet1", lst));
         }
-        void LoadSubReportAssure(object sender, SubreportProcessingEventArgs e) 
+        void LoadSubReportAssure(object sender, SubreportProcessingEventArgs e)
         {
             List<RealEntity.C_12_Inv.EclassPurchase.MktPurchasePayment> lst = (List<RealEntity.C_12_Inv.EclassPurchase.MktPurchasePayment>)ViewState["tblpayment01"];
             e.DataSources.Add(new ReportDataSource("DataSet1", lst));
