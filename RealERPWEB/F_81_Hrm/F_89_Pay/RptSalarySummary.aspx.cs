@@ -145,10 +145,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.MultiView1.ActiveViewIndex = 1;
                     this.loadSalSum02();
                     break;
-
-
-
-
             }
         }
         protected void loadSalSum()
