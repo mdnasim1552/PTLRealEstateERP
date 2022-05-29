@@ -1425,7 +1425,6 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnSelectRes_Click(object sender, EventArgs e)
         {
             this.BS_SaveValue();
-
             DataTable tbl1 = (DataTable)Session["tblBestSelect"];
             string acttype = this.ddlActType.SelectedValue.ToString();
             DataRow[] dr2 = tbl1.Select("acttype = '" + acttype + "'");
