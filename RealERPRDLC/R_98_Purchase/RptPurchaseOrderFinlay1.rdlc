@@ -164,34 +164,34 @@
                   <Width>0.30624in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.00541in</Width>
+                  <Width>0.92208in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.22416in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.96374in</Width>
+                  <Width>1.00541in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.44292in</Width>
+                  <Width>0.495in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.60958in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.69291in</Width>
+                  <Width>0.66166in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.45332in</Width>
+                  <Width>0.51582in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.63041in</Width>
+                  <Width>0.55749in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.88988in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.70268in</Width>
+                  <Width>0.73391in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -241,22 +241,22 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>1.13846in</Width>
+                                    <Width>0.69844in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.09627in</Width>
+                                    <Width>0.03125in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3.02088in</Width>
+                                    <Width>2.79961in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>1.10002in</Width>
+                                    <Width>0.7225in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.10669in</Width>
+                                    <Width>0.03125in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.45889in</Width>
+                                    <Width>2.31053in</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -1314,7 +1314,7 @@
                               <DataSetName>DataSet1</DataSetName>
                               <Top>0.33959in</Top>
                               <Height>0.9625in</Height>
-                              <Width>7.92123in</Width>
+                              <Width>6.59358in</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -1383,7 +1383,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.20833in</Height>
+                  <Height>0.23958in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1805,7 +1805,6 @@
                                   <Value>Disc %</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1839,22 +1838,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Rate-</Value>
-                                  <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>After Dis</Value>
+                                  <Value EvaluationMode="Constant">Rate-After Dis</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1972,7 +1956,7 @@
                                   <Value>=Fields!rowid.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2007,7 +1991,7 @@
                                   <Value>=Fields!reqno.Value+", "+Fields!mrfno.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2040,7 +2024,7 @@
                                   <Value>=Fields!rsirdesc.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2073,7 +2057,7 @@
                                   <Value>=Fields!spcfdesc.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2106,7 +2090,7 @@
                                   <Value>=Fields!rsirunit.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2141,7 +2125,7 @@
                                   <Value>=format(Fields!ordrqty.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2176,7 +2160,7 @@
                                   <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2211,7 +2195,7 @@
                                   <Value>=iif(Fields!grp.Value="B","",format(Fields!dispercnt.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2246,7 +2230,7 @@
                                   <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2281,7 +2265,7 @@
                                   <Value>=iif(Fields!grp.Value="B","",format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2316,12 +2300,12 @@
                                   <Value>=Fields!expusedt.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -2431,7 +2415,6 @@
                                   <Value>=iif(Fields!grp.Value="C","",format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2582,7 +2565,6 @@
                                   <Value>=Parameters!cost1.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2733,7 +2715,6 @@
                                   <Value>=Parameters!cost2.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2884,7 +2865,6 @@
                                   <Value>=Parameters!cost3.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3035,7 +3015,6 @@
                                   <Value>=Parameters!cost4.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3186,7 +3165,6 @@
                                   <Value>=Parameters!cost5.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3337,7 +3315,6 @@
                                   <Value>=iif(Fields!grp.Value="B","",Parameters!disamt.Value)</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3492,7 +3469,6 @@
                                   <Value>=iif(Fields!grp.Value="B","",Parameters!nettotal.Value)</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3648,7 +3624,6 @@
                                   <Value>=iif(Fields!grp.Value="B","",Parameters!advamt.Value)</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -4243,8 +4218,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.05in</Top>
             <Left>0.05in</Left>
-            <Height>5.02707in</Height>
-            <Width>7.92125in</Width>
+            <Height>5.05832in</Height>
+            <Width>7.92123in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

@@ -1764,7 +1764,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
 
-                case "3101":
+                //case "3101":
                 case "3366": // lanco
                 case "3357": // Cube
                 case "3368": // finlay
@@ -2349,7 +2349,7 @@ namespace RealERPWEB.F_14_Pro
                     //this.ImagePanel.Visible = false;
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3357":
                 case "3366": //lanco
                 case "3368": // finlay
@@ -2401,7 +2401,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
 
-                case "3101":
+                //case "3101":
                 case "3368":
                     msg = "1. Please send all your bills in duplicate." +
                         "\n2. Payment shall be made after (30) days of receipt of all materials in good conditions" +

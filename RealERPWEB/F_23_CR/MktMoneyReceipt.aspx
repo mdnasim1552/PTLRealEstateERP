@@ -19,6 +19,7 @@
             $('.chzn-select').chosen({ search_contains: true });
 
         }
+
     </script>
     <style>
         .inputtextbox_s {
