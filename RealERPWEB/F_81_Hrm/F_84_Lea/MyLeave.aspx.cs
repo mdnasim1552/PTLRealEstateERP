@@ -23,11 +23,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-               
-
-                
-
+            {                           
                 //txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                 string reqdate= this.Request.QueryString["LevDay"] ?? "";
                 if (reqdate.Length > 0)
@@ -258,7 +254,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.btnSave.Enabled = false;
                     return;
                 }
-                else if (gcod == "51999" || gcod=="51005")
+                else if (gcod == "51999")
                 {
                     DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                     DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
@@ -291,6 +287,70 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 }
+                else if(gcod == "51005")
+                {
+                    DataTable dt = (DataTable)Session["tblleavest"];
+                    DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
+                    DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+                    DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
+                    getLevExitingLv(fdate.ToString(), tdate.ToString());
+                    DataTable extlv = (DataTable)ViewState["tblextlv"];
+                    if (extlv.Rows.Count == 0)
+                    {
+
+                        double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
+                        TimeSpan difference = (tdate - fdate); //create TimeSpan object
+                        string diffdays = "0.00";
+                        if (chkBoxSkippWH.Checked == false)
+                        {
+                            isHalfday = (this.CheckBox1.Checked ? 0.5 : 0.00);
+                            if (difference.Days == 0 && isHalfday == 0.5)
+                            {
+                                diffdays = (difference.Days + isHalfday).ToString();
+                            }
+                            else if (difference.Days != 0 && isHalfday == 0.5)
+                            {
+                                diffdays = (difference.Days + isHalfday).ToString();
+                            }
+                            else
+                            {
+                                diffdays = (difference.Days + isHalfday + 1).ToString();
+                            }
+                        }
+                        else
+                        {
+                            int skpday = dt1.Rows.Count;
+                            if (skpday == 1 && isHalfday == 0.5)
+                            {
+                                diffdays = (skpday - isHalfday).ToString();
+                            }
+                            else if (skpday != 0 && isHalfday == 0.5)
+                            {
+                                diffdays = (skpday + isHalfday).ToString();
+                            }
+                            else
+                            {
+                                diffdays = (skpday + isHalfday).ToString();
+                            }
+                        }
+                        //DataView dv = dt.Copy().DefaultView;
+                        //dv.RowFilter = ("gcod=" + gcod);
+                        //dt = dv.ToTable();
+                        //double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
+                        //double dfdays = Convert.ToDouble(diffdays);
+                        this.Duration.Value = diffdays;
+                        this.btnSave.Enabled = true;
+                       
+
+                    }
+                    else
+                    {
+                        string Messaged = "Oops!! Already applied for leave within date range";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                        this.btnSave.Enabled = false;
+                    }
+                }
+
                 else
                 {
                     DataTable dt = (DataTable)Session["tblleavest"];
@@ -337,6 +397,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                                 diffdays = (skpday + isHalfday).ToString();
                             }
                         }
+                        
+                        
                         DataView dv = dt.Copy().DefaultView;
                         dv.RowFilter = ("gcod=" + gcod);
                         dt = dv.ToTable();

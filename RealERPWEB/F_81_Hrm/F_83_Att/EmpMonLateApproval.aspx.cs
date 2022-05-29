@@ -1362,6 +1362,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     }
                     break;
 
+                case "3101":// BTI
                 case "3365":// BTI
                     for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
                     {
@@ -1372,12 +1373,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
 
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
-                        double redelay = Aprvday;//delayday - Aprvday;
+                        double redelay = Aprvday==0 ? delayday : Aprvday;//delayday - Aprvday;
                         double adjLev = 0.00;
                         double adjElLev = 0.00;
                         double ttllv = 0.00;
                         
+                        
                         dedday = delayday - redelay; // after infrom dues late day
+
+                       
 
                         if (redelay <= 6)
                         {
