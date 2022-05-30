@@ -12124,6 +12124,7 @@
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
     <Content Include="Report\RptPaymentScheduleAssure.rdlc" />
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderCube_Old.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
