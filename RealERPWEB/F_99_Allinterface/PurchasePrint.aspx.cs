@@ -4079,6 +4079,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms1 = terms.ToString();
                         break;
 
+                    case "3101": // Cube 
                     case "3357": // Cube 
                         terms1 = terms.ToString();
                         pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", " + _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
@@ -4269,6 +4270,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
+                    case "3101": //Cube
                     case "3357": //Cube
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
@@ -4354,7 +4356,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                 }
-                if (comcod == "3357")
+                if (comcod == "3357" || comcod == "3101")
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }
