@@ -436,7 +436,7 @@
                   <Width>0.24875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.6524in</Width>
+                  <Width>0.56907in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.0604in</Width>
@@ -454,7 +454,7 @@
                   <Width>0.28542in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.49875in</Width>
+                  <Width>0.54042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.49908in</Width>
@@ -525,7 +525,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.94792in</Height>
+                  <Height>0.98125in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -684,7 +684,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -852,7 +852,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.47396in</Height>
+                                <Height>0.49063in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -864,10 +864,31 @@
                                             <TextRuns>
                                               <TextRun>
                                                 <Value />
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>cambria</FontFamily>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>REMUNERATION</Value>
+                                                <Style>
+                                                  <FontStyle>Normal</FontStyle>
+                                                  <FontFamily>cambria</FontFamily>
+                                                  <FontSize>8.5pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                  <TextDecoration>None</TextDecoration>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <LeftIndent>0cm</LeftIndent>
+                                            <RightIndent>0cm</RightIndent>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
                                           </Paragraph>
                                         </Paragraphs>
                                         <rd:DefaultName>Textbox175</rd:DefaultName>
@@ -897,7 +918,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.47396in</Height>
+                                <Height>0.49063in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -911,7 +932,7 @@
                                                 <Value>Basic</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -946,7 +967,7 @@
                                                 <Value>House Rent</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1030,7 +1051,7 @@
                                                 <Value>D/</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1044,7 +1065,7 @@
                                                 <Value>Allow</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1076,10 +1097,10 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Entertan</Value>
+                                                <Value>Entertain</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>8pt</FontSize>
+                                                  <FontSize>6.5pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1093,7 +1114,7 @@
                                                 <Value>Allow</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>8pt</FontSize>
+                                                  <FontSize>6.5pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1128,7 +1149,7 @@
                                                 <Value>Tiffin</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1163,7 +1184,7 @@
                                                 <Value>Trans Allow</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1198,7 +1219,7 @@
                                                 <Value>Arrear</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1233,7 +1254,7 @@
                                                 <Value>Other</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1300,10 +1321,10 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Total O/T Amt</Value>
+                                                <Value>Total OT Amount</Value>
                                                 <Style>
                                                   <FontFamily>cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>7pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1431,7 +1452,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.47396in</Height>
+                                <Height>0.49063in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1478,7 +1499,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.47396in</Height>
+                                <Height>0.49063in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1839,7 +1860,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.47396in</Height>
+                                <Height>0.49063in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1882,7 +1903,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.47396in</Height>
+                                <Height>0.49063in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -2073,7 +2094,7 @@
                                   <Value>=RowNumber(nothing)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2107,7 +2128,7 @@
                                   <Value>=Fields!idcard.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2121,7 +2142,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2155,7 +2176,7 @@
                                   <Value>=Fields!empname.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2187,7 +2208,7 @@
                                   <Value>=Fields!desig.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2221,7 +2242,7 @@
                                   <Value>=Format(Fields!wd.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2255,7 +2276,7 @@
                                   <Value>=Format(Fields!absday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2289,7 +2310,7 @@
                                   <Value>=Format(Fields!netwday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2323,7 +2344,7 @@
                                   <Value>=Format(Fields!gssal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2357,7 +2378,7 @@
                                   <Value>=Format(Fields!bsal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2391,7 +2412,7 @@
                                   <Value>=Format(Fields!hrent.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2425,7 +2446,7 @@
                                   <Value>=Format(Fields!mallow.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2459,7 +2480,7 @@
                                   <Value>=Format(Fields!cven.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2493,7 +2514,7 @@
                                   <Value>=Format(Fields!entaint.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2527,7 +2548,7 @@
                                   <Value>=Format(Fields!foodal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2561,7 +2582,7 @@
                                   <Value>=Format(Fields!pickup.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2595,7 +2616,7 @@
                                   <Value>=Format(Fields!arsal.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2629,7 +2650,7 @@
                                   <Value>=Format(Fields!otall.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2663,7 +2684,7 @@
                                   <Value>=Format(Fields!ohour.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2697,7 +2718,7 @@
                                   <Value>=Format(Fields!oallow.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2731,7 +2752,7 @@
                                   <Value>=Format(Fields!gssal.Value+Fields!foodal.Value+Fields!arsal.Value+Fields!oallow.Value+Fields!otall.Value , "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2765,7 +2786,7 @@
                                   <Value>=Format(Fields!absded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2799,7 +2820,7 @@
                                   <Value>=Format(Fields!pfund.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2833,7 +2854,7 @@
                                   <Value>=Format(Fields!adv.Value+Fields!loanins.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2867,7 +2888,7 @@
                                   <Value>=Format(Fields!othded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2901,7 +2922,7 @@
                                   <Value>=Format(Fields!itax.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2935,7 +2956,7 @@
                                   <Value>=Format(Fields!mbillded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2969,7 +2990,7 @@
                                   <Value>=Format(Fields!tdeduc.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3003,7 +3024,7 @@
                                   <Value>=Format(Fields!netpay.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3037,7 +3058,7 @@
                                   <Value>=Format(Fields!bankamt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3071,7 +3092,7 @@
                                   <Value>=Format(Fields!cashamt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5403,8 +5424,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.05034in</Top>
             <Left>0.025in</Left>
-            <Height>1.89584in</Height>
-            <Width>14.53448in</Width>
+            <Height>1.92917in</Height>
+            <Width>14.4928in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -7729,7 +7750,14 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Days Available: 24</Value>
+                          <Value>Days Available: </Value>
+                          <Style>
+                            <FontFamily>cambria</FontFamily>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                        <TextRun>
+                          <Value>=Parameters!availday.Value</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
@@ -7760,7 +7788,14 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Weekly Holiday: 5</Value>
+                          <Value>Weekly Holiday: </Value>
+                          <Style>
+                            <FontFamily>cambria</FontFamily>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                        <TextRun>
+                          <Value>=Parameters!wekday.Value</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
@@ -7792,7 +7827,14 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Festival Holiday: 1</Value>
+                          <Value>Festival Holiday: </Value>
+                          <Style>
+                            <FontFamily>cambria</FontFamily>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                        <TextRun>
+                          <Value>=Parameters!govday.Value</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
@@ -7822,7 +7864,7 @@
               <Top>0.87167in</Top>
               <Left>3.19667in</Left>
               <Height>0.3in</Height>
-              <Width>8.73107in</Width>
+              <Width>8.37274in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
