@@ -424,10 +424,6 @@
                                                     <ItemStyle HorizontalAlign="Right" />
                                                 </asp:TemplateField>
 
-
-
-
-
                                                 <asp:TemplateField HeaderText="LWP Days">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtAdj" runat="server" BackColor="Transparent" OnTextChanged="txtAdj_TextChanged"

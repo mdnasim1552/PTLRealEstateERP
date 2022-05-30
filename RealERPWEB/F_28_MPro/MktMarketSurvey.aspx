@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MktMarketSurvey.aspx.cs" Inherits="RealERPWEB.F_28_MPro.MktMarketSurvey" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -131,15 +130,21 @@
     </style>
 
     <script language="javascript" type="text/javascript">
+
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
 
-            $('.chzn-select').chosen({ search_contains: true });
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
 
-        }
+            $('.chzn-select').chosen({ search_contains: true });
+        };
+
         function PrintRDLC() {
             window.open('../RDLCViewerWin.aspx?PrintOpt=PDF', '_blank');
         }
@@ -185,6 +190,7 @@
 
         }
     </script>
+
 
     <asp:UpdatePanel ID="UpdatePanel1" EnableViewState="true" runat="server">
         <ContentTemplate>
@@ -1472,68 +1478,4 @@
                 </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-    <script language="javascript" type="text/javascript">
-
-        $(document).ready(function () {
-            //For navigating using left and right arrow of the keyboard
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-        });
-        function pageLoaded() {
-
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
-
-           <%-- var gvBestSelect = $('#<%=this.gvBestSelect.ClientID %>');
-            gvBestSelect.gridviewScroll({
-                width: 1220,
-                height: 310,
-                arrowsize: 30,
-                railsize: 16,
-                barsize: 8,
-                varrowtopimg: "../Image/arrowvt.png",
-                varrowbottomimg: "../Image/arrowvb.png",
-                harrowleftimg: "../Image/arrowhl.png",
-                harrowrightimg: "../Image/arrowhr.png",
-                freezesize: 7
-            });
-            var gvResInfo = $('#<%=this.gvResInfo.ClientID %>');
-            gvResInfo.gridviewScroll({
-                width: 1220,
-                height: 410,
-                arrowsize: 30,
-                railsize: 16,
-                barsize: 8,
-                varrowtopimg: "../Image/arrowvt.png",
-                varrowbottomimg: "../Image/arrowvb.png",
-                harrowleftimg: "../Image/arrowhl.png",
-                harrowrightimg: "../Image/arrowhr.png",
-                freezesize: 7
-            });--%>
-            <%-- var gvBestSelect = $('#<%=this.gvBestSelect.ClientID %>');
-            gvBestSelect.Scrollable();--%>
-            <%--  var gvResInfo = $('#<%=this.gvResInfo.ClientID %>');
-            gvResInfo.Scrollable();--%>
-
-
-            <%--var gridview = $('#<%=this.gvResInfo.ClientID %>');
-             $.keynavigation(gridview);--%>
-        }
-    </script>
-    <script type="text/javascript">
-        function uploadComplete(sender) {
-            $get("<%=lblMesg.ClientID%>").style.color = "green";
-            $get("<%=lblMesg.ClientID%>").innerHTML = "File Uploaded Successfully";
-        }
-
-        function uploadError(sender) {
-            $get("<%=lblMesg.ClientID%>").style.color = "red";
-            $get("<%=lblMesg.ClientID%>").innerHTML = "File upload failed.";
-        }
-
-
-    </script>
-
 </asp:Content>

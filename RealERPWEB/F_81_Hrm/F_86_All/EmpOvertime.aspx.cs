@@ -590,6 +590,30 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         }
 
+        private string GetComOvertimeCallType()
+        {
+
+            string comcod = this.GetComeCode();
+            string CallType = "";
+            switch (comcod)
+            {
+                case "3368"://Finlay
+                case "3101":
+                    CallType = "EMPALLOYOVERTIMEFINLAY";
+                    break;
+
+                default:
+                    CallType = "EMPALLOYOVERTIME";
+                    break;
+            
+            }
+
+
+            return CallType;
+
+
+        }
+
 
         private void ShowOvertime()
         {
@@ -608,7 +632,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             txtdate = Convert.ToDateTime(txtdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPALLOYOVERTIME", deptname, dayid, txtdate, comnam, Empcode, section, "", "", "");
+            string CallType = this.GetComOvertimeCallType();
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, deptname, dayid, txtdate, comnam, Empcode, section, "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpOverTime.DataSource = null;
