@@ -1230,6 +1230,8 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "2303000", "2303120", "F_23_CR", "RptCustomerDues?", "Type=Report", "Customer Dues Information", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303121", "F_23_CR", "RptDuesReportAll", "", "Dues Report ALL", "Credit Realization", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "2303000", "2303130", "F_23_CR", "CustChDishoner", "", "List of Return Cheque -01", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303140", "F_23_CR", "RptTransactionSt?", "Type=TransDateWise", "Daily Collection(Date Wise)", "Credit Realization", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "2303000", "2303141", "RptTransactionSt?", "Type=TransPrjWise", "Daily Collection(Project Wise)", "Credit Realization", "False", "False", "False", "False" });;
@@ -7514,6 +7516,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "24. Dues Collection -Summary", "F_23_CR/RptReceivedList02?Type=AllProDuesCollect&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "25. Dues Collection Statment", "F_23_CR/RptReceivedList02?Type=DuesCollect&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "26. Dues Collection Statment 02", "F_23_CR/RptReceivedList02?Type=DuesCollCR&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000008", "26. Dues Report ALL", "F_23_CR/RptDuesReportAll", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "27. Project Wise Clieint Status", "F_23_CR/RptReceivedList02?Type=ProClientst&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000010", "27. Project Wise Clieint Status 02", "F_23_CR/RptPrjWiseClientStatus02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000011", "28. Account Receivable & Unsold Flates Statement", "F_23_CR/RptSalesReportBR", "", true, "" });
