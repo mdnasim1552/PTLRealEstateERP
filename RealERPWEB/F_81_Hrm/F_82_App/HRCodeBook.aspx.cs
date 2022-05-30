@@ -139,7 +139,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 DataTable tbl1 = (DataTable)Session["storedata"];
                 this.grvacc.Columns[7].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
                 //this.grvacc.Columns[8].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
-                this.grvacc.Columns[9].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "04") ? true : false;
+               // this.grvacc.Columns[9].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "04") ? true : false;
 
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();

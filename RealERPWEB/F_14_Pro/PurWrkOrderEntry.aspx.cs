@@ -154,6 +154,12 @@ namespace RealERPWEB.F_14_Pro
                     //case "3101":
                     comsubject = " requests you to arrange supply of following materials from your organization.";
                     break;
+                
+                case "3101":
+                case "3368":
+                    comsubject = " As per our agreed terms and conditions, please arrange to deliver the following items :";
+                    break;
+
                 default:
                     comsubject = " requests you to  supply the following materials from your organization.";
                     break;
@@ -1761,6 +1767,7 @@ namespace RealERPWEB.F_14_Pro
                 //case "3101":
                 case "3366": // lanco
                 case "3357": // Cube
+                case "3368": // finlay
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -2344,7 +2351,8 @@ namespace RealERPWEB.F_14_Pro
 
                 //case "3101":
                 case "3357":
-                case "3366":
+                case "3366": //lanco
+                case "3368": // finlay
                     this.divtermsp2p.Visible = true;
                     this.divterms.Visible = false;
                     this.txtOrderNarrP.Text = this.bindDataText();
@@ -2390,6 +2398,14 @@ namespace RealERPWEB.F_14_Pro
                         "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque." +
                         "\n9. Payment shall have to be received from this office through money receipt of the company." +
                         "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
+                    break;
+
+
+                //case "3101":
+                case "3368":
+                    msg = "1. Please send all your bills in duplicate." +
+                        "\n2. Payment shall be made after (30) days of receipt of all materials in good conditions" +
+                        "\n3. Company may have the right to alter/change/reject the PO at any time.";
                     break;
 
                 default:

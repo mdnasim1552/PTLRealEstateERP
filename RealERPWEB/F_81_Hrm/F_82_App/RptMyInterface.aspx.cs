@@ -244,8 +244,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             ViewState["tblgrph"] = dt1;
             this.EmpUserImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgEmp";
             this.Data_Bind();
-
-
         }
 
         private void Data_Bind()
@@ -256,9 +254,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 this.gvempservices.DataSource = dt;
                 this.gvempservices.DataBind();
-
-
-
 
                 DataTable dt2 = (DataTable)ViewState["tblAttHist"];
                 this.ShowAttHistoryGraph();
@@ -288,9 +283,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
-
-
-
             }
 
             catch (Exception ex)
@@ -395,12 +387,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
 
         }
-
-
-
-
-
-
         protected void ibtnEmpListAllinfo_Click(object sender, EventArgs e)
         {
             this.GetEmpName();

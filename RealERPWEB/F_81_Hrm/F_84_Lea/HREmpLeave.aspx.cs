@@ -1800,6 +1800,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             ViewState["tblleavinfoCT"] = dt;
         }
 
+        protected void lnkReset_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            string yearid = this.ddlyear.SelectedValue.ToString();
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETELEAVERULES", yearid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
 
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Rules Applied failed! Try Again');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Rules Applied Sucessfully');", true);   
+            lbtnOk_Click(null,null);
+            lnkUpdateLeaveRule_Click(null, null);
+        }
     }
 }
