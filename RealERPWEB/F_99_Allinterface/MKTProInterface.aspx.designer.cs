@@ -132,6 +132,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.HyperLink hlnkmktsurvey;
 
         /// <summary>
+        /// hlnkbudget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlnkbudget;
+
+        /// <summary>
         /// hyplnkMktMonBudget control.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hyplnkMktMonBudget;
+
+        /// <summary>
+        /// hyplnkMktReqAdjust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyplnkMktReqAdjust;
 
         /// <summary>
         /// hlnkgencode control.
@@ -157,15 +175,6 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
-
-        /// <summary>
-        /// hlnkbudget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlnkbudget;
 
         /// <summary>
         /// hyplnkRptMktStock control.
