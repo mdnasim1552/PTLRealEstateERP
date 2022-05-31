@@ -14,6 +14,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using System.IO;
+using System.Data.OleDb;
+
 namespace RealERPWEB.F_81_Hrm.F_86_All
 {
     public partial class EmpFoodAllow : System.Web.UI.Page
@@ -43,16 +46,82 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             }
 
+            ////Excel Upload (Deduction Upload)
+            //if (fileuploadExcel.HasFile)
+            //{
+            //    try
+            //    {
+            //        Session.Remove("ExcelData");
+            //        string connString = "";
+            //        string StrFileName = string.Empty;
+            //        if (fileuploadExcel.PostedFile != null && fileuploadExcel.PostedFile.FileName != "")
+            //        {
+            //            StrFileName = fileuploadExcel.PostedFile.FileName.Substring(fileuploadExcel.PostedFile.FileName.LastIndexOf("\\") + 1);
+            //            string StrFileType = fileuploadExcel.PostedFile.ContentType;
+            //            int IntFileSize = fileuploadExcel.PostedFile.ContentLength;
+            //            if (IntFileSize <= 0)
+            //            {
+            //                return;
+            //            }
+            //            else
+            //            {
+            //                string savelocation = Server.MapPath("~") + "\\ExcelFile\\";
+            //                string[] filePaths = Directory.GetFiles(savelocation);
+            //                foreach (string filePath in filePaths)
+            //                    File.Delete(filePath);
+            //                fileuploadExcel.PostedFile.SaveAs(Server.MapPath("~") + "\\ExcelFile\\" + StrFileName);
+            //            }
+            //        }
+
+            //        string strFileType = Path.GetExtension(fileuploadExcel.FileName).ToLower();
+            //        string apppath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath.ToString();
+            //        string path = Server.MapPath("~") + ("\\ExcelFile\\" + StrFileName);
+
+            //        //Connection String to Excel Workbook
+            //        if (strFileType.Trim() == ".xls")
+            //        {
+            //            connString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+            //        }
+            //        else if (strFileType.Trim() == ".xlsx")
+            //        {
+            //            connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+            //        }
+
+            //        string query = "";
+            //        query = "SELECT * FROM [Sheet1$]";
+            //        OleDbConnection conn = new OleDbConnection(connString);
+            //        if (conn.State == ConnectionState.Closed)
+            //            conn.Open();
+            //        OleDbCommand cmd = new OleDbCommand(query, conn);
+            //        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            //        DataSet ds = new DataSet();
+            //        da.Fill(ds);
+
+
+            //        DataView dv = ds.Tables[0].DefaultView;
+            //        // dv.RowFilter = ("Card<>''");
+            //        Session["ExcelData"] = dv.ToTable();
+            //        da.Dispose();
+            //        conn.Close();
+            //        conn.Dispose();
+            //        string msg = "Please Click Adjust Button";
+            //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+
+            //        throw ex;
+            //    }
+            //}
+
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
 
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
-
         }
-
         private string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -77,20 +146,28 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             //string txtdate = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMMM-yyyy");
             ds1.Dispose();
         }
+        protected void chkcopy_CheckedChanged(object sender, EventArgs e)
+        {
 
+            if (this.chkcopy.Checked)
+            {
+                this.GetPreYearMonth();
+            }
+            this.Pnlother.Visible = (this.chkcopy.Checked);
+        }
         private void GetPreYearMonth()
         {
-            //string comcod = this.GetComeCode();
-            //DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_EMPLOYEE01", "GETYEARMON", "", "", "", "", "", "", "", "", "");
-            //if (ds1 == null)
-            //    return;
-            //this.ddlpreyearmon.DataTextField = "yearmon";
-            //this.ddlpreyearmon.DataValueField = "ymon";
-            //this.ddlpreyearmon.DataSource = ds1.Tables[0];
-            //this.ddlpreyearmon.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
-            //this.ddlpreyearmon.DataBind();
+            string comcod = this.GetComeCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETYEARMON", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlpreyearmon.DataTextField = "yearmon";
+            this.ddlpreyearmon.DataValueField = "ymon";
+            this.ddlpreyearmon.DataSource = ds1.Tables[0];
+            this.ddlpreyearmon.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
+            this.ddlpreyearmon.DataBind();
 
-            //ds1.Dispose();
+            ds1.Dispose();
         }
 
         private void GetCompName()
@@ -134,6 +211,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 this.ddlyearmon.Enabled = false;
                 this.ddlCompanyName.Enabled = false;
                 this.ddlDepartment.Enabled = false;
+                this.lnkcopy.Visible = true;
+                
                 //this.lblCompanyName.Visible = true;
                 //this.lblDeptDesc.Visible = true;
 
@@ -154,8 +233,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             //this.lblDeptDesc.Visible = false;
             //this.lblPage.Visible = false;
             //this.ddlpagesize.Visible = false;
-
-
+            this.lnkcopy.Visible = false;
+            this.Pnlother.Visible = false;
             this.lnkbtnShow.Text = "Ok";
             //this.lblCompanyName.Text = "";
 
@@ -420,5 +499,39 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.gvEmpFAllow.PageIndex = e.NewPageIndex;
             this.Data_Bind();
         }
+
+        protected void lbtnCopy_Click(object sender, EventArgs e)
+        {
+            Session.Remove("tblfallow");
+            string comcod = this.GetComeCode();
+            //string comnam = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+
+            //int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            //string nozero = (hrcomln == 4) ? "0000" : "00";
+            //string txtCompanyname = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
+
+
+            string comnam = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString() + "%";
+            string MonthId = this.ddlpreyearmon.SelectedValue.ToString();
+            string date = Convert.ToDateTime(ASTUtility.Right(this.ddlpreyearmon.Text.Trim(), 2) + "/01/" + this.ddlpreyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
+            string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
+            string mantype ="86%";
+            string section = "%%";
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPFOODALLOWANCEBILLINFO", deptname, MonthId, date, comnam, Empcode, "", "", "", "");
+            if (ds2 == null)
+            {      
+                return;
+            }
+          
+            Session["tblfallow"] = HiddenSameData(ds2.Tables[0]);
+            this.Data_Bind();
+            this.chkcopy.Checked = false;
+            this.chkcopy_CheckedChanged(null, null);
+        }
+
+
+
     }
 }

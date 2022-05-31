@@ -377,10 +377,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //case "3101":
                 case "3354"://Edison Real Estate
                     this.rbtSalSheet.SelectedIndex = 19;
-
                     break;
-
-
                 case "3358"://Entrust Real Estate
                     this.rbtSalSheet.SelectedIndex = 20;
 
