@@ -377,10 +377,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //case "3101":
                 case "3354"://Edison Real Estate
                     this.rbtSalSheet.SelectedIndex = 19;
-
                     break;
-
-
                 case "3358"://Entrust Real Estate
                     this.rbtSalSheet.SelectedIndex = 20;
 
@@ -534,7 +531,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
             string txtCompany = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETCOMPANYNAME1_NEW", txtCompany, userid, "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
@@ -548,8 +545,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void GetBranch()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string userid = hst["usrid"].ToString();
+
             string comcod = this.GetCompCode();
             if (this.ddlCompany.Items.Count == 0)
                 return;
@@ -558,8 +554,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
-           
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETBRANCH_NEW", Company, userid, "", "", "", "", "", "", "");
+            string txtSProject = "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETBRANCH", Company, txtSProject, "", "", "", "", "", "", "");
             this.ddlBranch.DataTextField = "actdesc";
             this.ddlBranch.DataValueField = "actcode";
             this.ddlBranch.DataSource = ds1.Tables[0];
@@ -600,7 +596,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
 
             string txtSProject = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETDPTLIST_NEW", branch, txtSProject, "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", branch, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
@@ -616,7 +612,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
 
             string txtSSec = "%%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETSECTION_LIST", projectcode, txtSSec, "", "", "", "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
             this.ddlSection.DataSource = ds2.Tables[0];
