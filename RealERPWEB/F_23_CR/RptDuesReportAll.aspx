@@ -944,6 +944,16 @@
 
                                             </div>
                                         </div>
+
+                                         <asp:RadioButtonList ID="rbtntype1" RepeatDirection="Horizontal" CssClass=""  runat="server">
+
+                                   
+                                   <asp:ListItem Value ="Booking" >Booking Dues</asp:ListItem>
+                                  <asp:ListItem Value="CRDUES"> CR Dues</asp:ListItem>                               
+                                  <asp:ListItem Selected="True">Both</asp:ListItem>
+                                </asp:RadioButtonList>
+
+
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <div class="msgHandSt">
