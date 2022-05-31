@@ -39,7 +39,13 @@ namespace RealERPWEB.F_23_CR
                 if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
-                this.txtDatefrom.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                // this.txtDatefrom.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string date1 = "01-" + ASTUtility.Right(date, 8);
+               
+                this.txtDatefrom.Text = date1;
+                this.txttodate.Text = Convert.ToDateTime(date1).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 RadioButtonList1.SelectedIndex = 0;
@@ -60,20 +66,16 @@ namespace RealERPWEB.F_23_CR
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
 
-            string filter = "%";
+            //string filter = "%";
 
             // string pactcode = (this.Request.QueryString["Type"].ToString() == "LandPrj") ? "16%" : "4[1-9]%";
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TB", "GETPROJECTNAME", "", filter, "", "", "", "", "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT06", "GETPROJECTNAME", "", "", "", "", "", "", "", "", "");
             DataTable dt1 = ds1.Tables[0];
-            this.ddlProjectInd.DataSource = dt1;
-            this.ddlProjectInd.DataTextField = "actdesc1";
-            this.ddlProjectInd.DataValueField = "actcode";
-            this.ddlProjectInd.DataBind();
+            this.ddlProjectName.DataSource = dt1;
+            this.ddlProjectName.DataTextField = "actdesc1";
+            this.ddlProjectName.DataValueField = "actcode";
+            this.ddlProjectName.DataBind();
 
-            this.ddlProjectInd2.DataSource = dt1;
-            this.ddlProjectInd2.DataTextField = "actdesc1";
-            this.ddlProjectInd2.DataValueField = "actcode";
-            this.ddlProjectInd2.DataBind();
         }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -85,18 +87,24 @@ namespace RealERPWEB.F_23_CR
                 case "Mains":
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Trial Balance";
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
+                    this.ImgbtnFindProjind_Click(null, null);
                     break;
                 case "TBConsolidated":
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Trial Balance (Consolidated)";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
+                    this.ImgbtnFindProjind_Click(null, null);
                     break;
                 case "Trial02":
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Trial Balance (Category Wise)";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "HOTB":
+                case "AsOnDues":
+
+                    
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Head Office Trial Balance";
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                    this.ImgbtnFindProjind_Click(null, null);
                     break;
 
                 case "PrjTrailBal":
@@ -288,8 +296,10 @@ namespace RealERPWEB.F_23_CR
                     date1 = this.txtDatefrom.Text.Substring(0, 11).ToString();
                     date2 = this.txtDateto.Text.Substring(0, 11).ToString();
                     string type = this.rbtntype.SelectedValue.ToString();
+                    string prjcode = this.ddlProjectName.SelectedValue.ToString();
+
                     //string CallType = (this.chknetbalance.Checked ? "TBNET_COMPANY_0" : "TB_COMPANY_0") + level;
-                    ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT06", "GETCURRENTDUES", date1, date2, type, "", "", "", "", "", "");
+                    ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT06", "GETCURRENTDUES", date1, date2, type, prjcode, "", "", "", "", "");
                     break;
 
                 case "PrjTrailBal":
@@ -307,8 +317,9 @@ namespace RealERPWEB.F_23_CR
 
                 case "HOTB":
                 case "AsOnDues":
-                    string date = this.txtAsDate.Text.Substring(0, 11).ToString();                                   
-                    ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT06", "GETASONDUES", "", date, "", "", "", "", "", "", "");
+                    string date = this.txtAsDate.Text.Substring(0, 11).ToString();
+                    string type1 = this.rbtntype1.SelectedValue.ToString();
+                    ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT06", "GETASONDUES", "", date, type1, "", "", "", "", "", "");
                     break;
 
 
@@ -531,52 +542,52 @@ namespace RealERPWEB.F_23_CR
         {
 
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = GetComcod();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = GetComcod();
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string comsnam = hst["comsnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            //string session = hst["session"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-            string frmdate = Convert.ToDateTime(this.txtDatefrom.Text.Trim()).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txtDateto.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds1 = this.GetDataForReport();
-            if (ds1 == null)
-                return;
+            //string frmdate = Convert.ToDateTime(this.txtDatefrom.Text.Trim()).ToString("dd-MMM-yyyy");
+            //string todate = Convert.ToDateTime(this.txtDateto.Text.Trim()).ToString("dd-MMM-yyyy");
+            //DataSet ds1 = this.GetDataForReport();
+            //if (ds1 == null)
+            //    return;
 
-            if (ds1.Tables[0].Rows.Count == 0)
-                return;
-            var AccTrialBl1 = ds1.Tables[0].DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.AccTrialBl1>();
-            LocalReport Rpt1 = new LocalReport();
-            //Hashtable reportParm = new Hashtable();
-            string opndram = Convert.ToDouble(ds1.Tables[1].Rows[0]["opndram"]).ToString("#,##0;(#,##0); ");
-            string opncram = Convert.ToDouble(ds1.Tables[1].Rows[0]["opncram"]).ToString("#,##0;(#,##0); ");
-            string dram = Convert.ToDouble(ds1.Tables[1].Rows[0]["dram"]).ToString("#,##0;(#,##0); ");
-            string cram = Convert.ToDouble(ds1.Tables[1].Rows[0]["cram"]).ToString("#,##0;(#,##0); ");
-            string closdram = Convert.ToDouble(ds1.Tables[1].Rows[0]["closdram"]).ToString("#,##0;(#,##0); ");
-            string closcram = Convert.ToDouble(ds1.Tables[1].Rows[0]["closcram"]).ToString("#,##0;(#,##0); ");
-            string closam = Convert.ToDouble(ds1.Tables[1].Rows[0]["closam"]).ToString("#,##0;(#,##0); ");
+            //if (ds1.Tables[0].Rows.Count == 0)
+            //    return;
+            //var AccTrialBl1 = ds1.Tables[0].DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.AccTrialBl1>();
+            //LocalReport Rpt1 = new LocalReport();
+            ////Hashtable reportParm = new Hashtable();
+            //string opndram = Convert.ToDouble(ds1.Tables[1].Rows[0]["opndram"]).ToString("#,##0;(#,##0); ");
+            //string opncram = Convert.ToDouble(ds1.Tables[1].Rows[0]["opncram"]).ToString("#,##0;(#,##0); ");
+            //string dram = Convert.ToDouble(ds1.Tables[1].Rows[0]["dram"]).ToString("#,##0;(#,##0); ");
+            //string cram = Convert.ToDouble(ds1.Tables[1].Rows[0]["cram"]).ToString("#,##0;(#,##0); ");
+            //string closdram = Convert.ToDouble(ds1.Tables[1].Rows[0]["closdram"]).ToString("#,##0;(#,##0); ");
+            //string closcram = Convert.ToDouble(ds1.Tables[1].Rows[0]["closcram"]).ToString("#,##0;(#,##0); ");
+            //string closam = Convert.ToDouble(ds1.Tables[1].Rows[0]["closam"]).ToString("#,##0;(#,##0); ");
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptTrialBl1", AccTrialBl1, null, null);
-            Rpt1.SetParameters(new ReportParameter("companyname", comnam.ToUpper()));
-            Rpt1.SetParameters(new ReportParameter("txtopndram", opndram));
-            Rpt1.SetParameters(new ReportParameter("txtopncram", opncram));
-            Rpt1.SetParameters(new ReportParameter("txtdram", dram));
-            Rpt1.SetParameters(new ReportParameter("txtcram", cram));
-            Rpt1.SetParameters(new ReportParameter("txtclosdram", closdram));
-            Rpt1.SetParameters(new ReportParameter("txtcloscram", closcram));
-            Rpt1.SetParameters(new ReportParameter("txtnetam", closam));
-            Rpt1.SetParameters(new ReportParameter("txtHeader", (this.RadioButtonList1.SelectedValue.ToString() == "TBConsolidated") ? "TRIAL BALANCE - " + this.ddlReportLevel.SelectedValue.ToString().Trim() : "TRIAL BALANCE ( Level - " + this.ddlReportLevel.SelectedValue.ToString().Trim() + " )"));
-            Rpt1.SetParameters(new ReportParameter("txtdate", "( For The Period From " + Convert.ToDateTime(this.txtDatefrom.Text.Trim()).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text.Trim()).ToString("dd-MMM-yyyy") + " )"));
-            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
-            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptTrialBl1", AccTrialBl1, null, null);
+            //Rpt1.SetParameters(new ReportParameter("companyname", comnam.ToUpper()));
+            //Rpt1.SetParameters(new ReportParameter("txtopndram", opndram));
+            //Rpt1.SetParameters(new ReportParameter("txtopncram", opncram));
+            //Rpt1.SetParameters(new ReportParameter("txtdram", dram));
+            //Rpt1.SetParameters(new ReportParameter("txtcram", cram));
+            //Rpt1.SetParameters(new ReportParameter("txtclosdram", closdram));
+            //Rpt1.SetParameters(new ReportParameter("txtcloscram", closcram));
+            //Rpt1.SetParameters(new ReportParameter("txtnetam", closam));
+            //Rpt1.SetParameters(new ReportParameter("txtHeader", (this.RadioButtonList1.SelectedValue.ToString() == "TBConsolidated") ? "TRIAL BALANCE - " + this.ddlReportLevel.SelectedValue.ToString().Trim() : "TRIAL BALANCE ( Level - " + this.ddlReportLevel.SelectedValue.ToString().Trim() + " )"));
+            //Rpt1.SetParameters(new ReportParameter("txtdate", "( For The Period From " + Convert.ToDateTime(this.txtDatefrom.Text.Trim()).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text.Trim()).ToString("dd-MMM-yyyy") + " )"));
+            //Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            //Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            //Session["Report1"] = Rpt1;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
@@ -838,89 +849,89 @@ namespace RealERPWEB.F_23_CR
 
         protected void dgv1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = GetComcod();
-            if (e.Row.RowType != DataControlRowType.DataRow)
-                return;
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = GetComcod();
+            //if (e.Row.RowType != DataControlRowType.DataRow)
+            //    return;
 
-            HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvDesc");
-            string mCOMCOD = comcod;
-            string mACTCODE = ((Label)e.Row.FindControl("lblgvcode")).Text;
-            string mACTDESC = ((Label)e.Row.FindControl("lblgvAcDesc")).Text;
-
-
-
-            string mTRNDAT1 = this.txtDatefrom.Text;
-            string mTRNDAT2 = this.txtDateto.Text;
-            //------------------------------//////
-            Label actcode = (Label)e.Row.FindControl("lblgvcode");
-            HyperLink actdesc = (HyperLink)e.Row.FindControl("HLgvDesc");
-            Label lblgvopndramt = (Label)e.Row.FindControl("lblgvopndramt");
-            Label lblgvopncramt = (Label)e.Row.FindControl("lblgvopncramt");
-            Label lblgvDramt = (Label)e.Row.FindControl("lblgvDramt");
-            Label lblgvCramt = (Label)e.Row.FindControl("lblgvCramt");
-            Label lblgvclodramt = (Label)e.Row.FindControl("lblgvclodramt");
-            Label lblgvclocramt = (Label)e.Row.FindControl("lblgvclocramt");
-            Label lblgvnetamt = (Label)e.Row.FindControl("lblgvnetamt");
-
-
-            string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode4")).ToString().Trim();
-            string lebel2 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "leb2")).ToString().Trim();
+            //HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvDesc");
+            //string mCOMCOD = comcod;
+            //string mACTCODE = ((Label)e.Row.FindControl("lblgvcode")).Text;
+            //string mACTDESC = ((Label)e.Row.FindControl("lblgvAcDesc")).Text;
 
 
 
+            //string mTRNDAT1 = this.txtDatefrom.Text;
+            //string mTRNDAT2 = this.txtDateto.Text;
+            ////------------------------------//////
+            //Label actcode = (Label)e.Row.FindControl("lblgvcode");
+            //HyperLink actdesc = (HyperLink)e.Row.FindControl("HLgvDesc");
+            //Label lblgvopndramt = (Label)e.Row.FindControl("lblgvopndramt");
+            //Label lblgvopncramt = (Label)e.Row.FindControl("lblgvopncramt");
+            //Label lblgvDramt = (Label)e.Row.FindControl("lblgvDramt");
+            //Label lblgvCramt = (Label)e.Row.FindControl("lblgvCramt");
+            //Label lblgvclodramt = (Label)e.Row.FindControl("lblgvclodramt");
+            //Label lblgvclocramt = (Label)e.Row.FindControl("lblgvclocramt");
+            //Label lblgvnetamt = (Label)e.Row.FindControl("lblgvnetamt");
 
-            if (code == "")
-            {
-                return;
-            }
 
-            string level = this.ddlReportLevel.SelectedValue.ToString();
-
-            if (ASTUtility.Right(code, 4) == "0000" && level == "4")
-            {
-                actcode.Attributes["style"] = "color:maroon;font-weight:bold;";
-                actdesc.Attributes["style"] = "color:maroon;font-weight:bold;";
-                lblgvopndramt.Attributes["style"] = "color:maroon;font-weight:bold;";
-                lblgvopncramt.Attributes["style"] = "color:maroon;font-weight:bold;";
-                lblgvDramt.Attributes["style"] = "color:maroon;font-weight:bold;";
-                lblgvCramt.Attributes["style"] = "color:maroon;font-weight:bold;";
-                lblgvclodramt.Attributes["style"] = "color:maroon;font-weight:bold;";
-                lblgvclocramt.Attributes["style"] = "color:maroon;font-weight:bold;";
-                lblgvnetamt.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode4")).ToString().Trim();
+            //string lebel2 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "leb2")).ToString().Trim();
 
 
 
-            }
-            ///---------------------------------//// 
 
-            if (ASTUtility.Left(mACTCODE, 1) == "4")
-            {
-                hlink1.NavigateUrl = "AccProjectReports.aspx?actcode=" + mACTCODE + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
+            //if (code == "")
+            //{
+            //    return;
+            //}
 
-            }
-            else if (lebel2 == "")
-            {
-                //int lactcode = Convert.ToInt16(code.Substring(0, 1));
-                //string opnoption = lactcode >= 3 ? "withoutOpn" : "";
-                string opnoption = "";
+            //string level = this.ddlReportLevel.SelectedValue.ToString();
 
-                if (ASTUtility.Right(mACTCODE, 4) == "0000")
-                    hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=schedule&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
-                         "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
-                else
-                    hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=ledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
-                         "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&actdesc=" + mACTDESC + "&opnoption=" + opnoption;
-            }
-            else
-            {
-                if (ASTUtility.Right(mACTCODE, 4) == "0000")
-                    hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=schedule&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
-                         "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
-                else
-                    hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=detailsTB&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
-                         "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
-            }
+            //if (ASTUtility.Right(code, 4) == "0000" && level == "4")
+            //{
+            //    actcode.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    actdesc.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    lblgvopndramt.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    lblgvopncramt.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    lblgvDramt.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    lblgvCramt.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    lblgvclodramt.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    lblgvclocramt.Attributes["style"] = "color:maroon;font-weight:bold;";
+            //    lblgvnetamt.Attributes["style"] = "color:maroon;font-weight:bold;";
+
+
+
+            //}
+            /////---------------------------------//// 
+
+            //if (ASTUtility.Left(mACTCODE, 1) == "4")
+            //{
+            //    hlink1.NavigateUrl = "AccProjectReports.aspx?actcode=" + mACTCODE + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
+
+            //}
+            //else if (lebel2 == "")
+            //{
+            //    //int lactcode = Convert.ToInt16(code.Substring(0, 1));
+            //    //string opnoption = lactcode >= 3 ? "withoutOpn" : "";
+            //    string opnoption = "";
+
+            //    if (ASTUtility.Right(mACTCODE, 4) == "0000")
+            //        hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=schedule&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
+            //             "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
+            //    else
+            //        hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=ledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
+            //             "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&actdesc=" + mACTDESC + "&opnoption=" + opnoption;
+            //}
+            //else
+            //{
+            //    if (ASTUtility.Right(mACTCODE, 4) == "0000")
+            //        hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=schedule&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
+            //             "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
+            //    else
+            //        hlink1.NavigateUrl = "AccMultiReport.aspx?rpttype=detailsTB&comcod=" + mCOMCOD + "&actcode=" + mACTCODE +
+            //             "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2;
+            //}
 
 
 
