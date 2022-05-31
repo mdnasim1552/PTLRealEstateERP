@@ -330,13 +330,13 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.Label Label15;
 
         /// <summary>
-        /// ddlReportLevelcon control.
+        /// ddlProjectName2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlReportLevelcon;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProjectName2;
 
         /// <summary>
         /// lnkTrialBalCon control.
