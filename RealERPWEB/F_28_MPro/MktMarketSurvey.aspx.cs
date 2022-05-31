@@ -612,7 +612,7 @@ namespace RealERPWEB.F_28_MPro
                     return;
                 }
 
-                //Insert New Work From CS
+                //Insert New Req. From CS
                 if(prType!="" && mrkType!="")
                 {
                     result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
@@ -673,6 +673,7 @@ namespace RealERPWEB.F_28_MPro
                     msg = "Market Survey Updated successfully";
                     break;
             }
+
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             if (ConstantInfo.LogStatus == true)
@@ -684,10 +685,6 @@ namespace RealERPWEB.F_28_MPro
             }
 
             this.Get_Survey_Info();
-
-
-
-
         }
 
 

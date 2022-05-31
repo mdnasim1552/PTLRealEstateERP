@@ -30,7 +30,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.GetCompany();
                     this.topPanle.Visible = true;
                     string comcod = GetCompCode();
-                    if (comcod == "3365" || comcod == "3101")
+                    if (comcod == "3365")
                     {
                         this.GetEmpName();
                         this.WorkComments.Visible = false;
@@ -42,7 +42,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 else
                 {
                     string comcod = GetCompCode();
-                    if (comcod == "3365"||comcod=="3101")
+                    if (comcod == "3365")
                     {
                         this.GetEmpName();
                         this.ShowEmp.Visible = true;
@@ -74,19 +74,19 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 return;
             }
 
-            if (comcod == "3365" || comcod == "3101")
-            {
+            if (comcod == "3365")
+            { 
                 this.btnSaveAttn.Text = "Save";
             }
             else
             {
-                if (ds5.Tables[0].Rows.Count > 0)
+                if (this.btnSaveAttn.Text== ""|| this.btnSaveAttn.Text== "Punch Out")
                 {
-                    this.btnSaveAttn.Text = "punch Out";
+                    this.btnSaveAttn.Text = "Punch In";
                 }
                 else
                 {
-                    this.btnSaveAttn.Text = "punch In";
+                    this.btnSaveAttn.Text = "Punch Out";
                 }
             }
         }
@@ -182,7 +182,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = GetCompCode();
             switch (comcod)
             {
-                case "3101":
+              
                 case "3365":
                     this.InsertUpdateAttBti();
                     break;
@@ -263,6 +263,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Save Successfully" + "');", true);
             }
+            this.GetEmpAttandance();
         }
 
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
