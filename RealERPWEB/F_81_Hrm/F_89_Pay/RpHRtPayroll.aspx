@@ -50,28 +50,10 @@
             $('#DeductinModal').modal('hide');
         }
 
+     
 
     </script>
-    <%--<script language="javascript" type="text/javascript">
-       $(document).ready(function () {       
-           var ddlpage = $('#<%=this.ddlpagesize.ClientID %>');
-           ddlpage.change(function () {
-             var ddlpageno = ddlpage.val();
-             alert(ddlpageno);
-             var gvpaysal = $('#<%=this.gvpayroll.ClientID %>');
-             gvpaysal.Scrollable();
-           });
-       });<a href="RpHRtPayroll.aspx">RpHRtPayroll.aspx</a>
-    --%>
-    <%--       function ChangePage() {
-
-////           var ddlpage = $('#<%=this.ddlpagesize.ClientID %>').val();
-//           //           alert(ddlpage);
-//           var gvpaysal = $('#<%=t<a href="RpHRtPayroll.aspx">RpHRtPayroll.aspx</a>his.gvpayroll.ClientID %>');
-//           gvpaysal.Scrollable();              
-//       }
-//  
-  </script>--%>
+ 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -384,6 +366,16 @@
                                             </div>
                                         </asp:Panel>
                                     </div>
+                                     <div class="col-3">
+                                    <div class="input-group input-group-alt">
+                                        <div class="input-group-prepend ">
+                                            <asp:Label ID="Label7" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                        </div>
+                                        <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+
+                                    </div>
+                                </div>
+                                <br />
                                 </fieldset>
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvpayroll" runat="server" AllowPaging="false" CssClass="table-striped table-hover table-bordered grvContentarea"
