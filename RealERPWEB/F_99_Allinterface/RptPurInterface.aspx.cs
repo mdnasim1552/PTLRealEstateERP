@@ -1826,6 +1826,11 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3367": // Epic
                     case "3368": // Finlay
 
+                    case "3358": // Entrust
+                    case "3359": // Entrust
+                    case "3360": // Entrust
+                    case "3361": // Entrust 
+
                         hlink1.Visible = false;
                         break;
                     default:

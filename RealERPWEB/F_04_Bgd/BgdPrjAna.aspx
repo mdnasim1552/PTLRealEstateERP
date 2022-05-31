@@ -566,7 +566,7 @@
 
                                         <asp:TemplateField ShowHeader="true">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" OnClick="lbtnDelete_Click" ToolTip="Zero Qty"><span class="glyphicon glyphicon-remove"> </span> </asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" OnClick="lbtnDelete_Click" ToolTip="Zero Qty" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-remove"> </span> </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
