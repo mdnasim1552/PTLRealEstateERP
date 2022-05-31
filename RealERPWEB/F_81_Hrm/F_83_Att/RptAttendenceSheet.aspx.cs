@@ -648,8 +648,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Session["tblallData"] = ds1.Tables[0];
             this.Data_Bind();
         }
-
-
         private void DailyAttendance()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -685,12 +683,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             {
                                 section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
                             }
-
                         }
-
-
                 }
-
             }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN", frmdate, deptCode, Company, section, Actime, "", "", "", "");
@@ -713,20 +707,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.gvAttnLog.DataSource = dt;
                     this.gvAttnLog.DataBind();
                     break;
-
                 case 1:
                     this.gvdailyatt.DataSource = dt;
                     this.gvdailyatt.DataBind(); 
                     break;
-
                 case 2:
                     this.gvEmpStatus.DataSource = dt; 
                     this.gvEmpStatus.DataBind(); 
                     break;
 
                 case 3:
-
-
                     if (this.rbtnAttStatus.SelectedIndex==1)
                     {
                         int i;
@@ -757,16 +747,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
                         this.gvMonthlyattSummary.DataSource = dt;
-                        this.gvMonthlyattSummary.DataBind();
-                
+                        this.gvMonthlyattSummary.DataBind();              
                     }
                     else
-                    {
-
-                        
+                    {                       
                         if (comcod == "3365")
                         {
-
                             int i;
                             DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
                             DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
@@ -1111,13 +1097,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             }
 
                         }
-
-
                 }
-
             }
-
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN02", frmdate, deptid, Company, section, "", "", "", "", "");
             if (ds1 == null)
                 return;
