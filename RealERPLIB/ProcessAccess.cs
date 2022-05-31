@@ -166,7 +166,7 @@ namespace RealERPLIB
 
 
         public DataSet GetTransInfo(string comCode, string SQLprocName, string CallType, string mDesc1 = "", string mDesc2 = "",
-     string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "", string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "")
+     string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "", string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "", string mDesc11 = "")
         {
             try
             {
@@ -186,6 +186,7 @@ namespace RealERPLIB
                 cmd.Parameters.Add(new SqlParameter("@Desc8", mDesc8));
                 cmd.Parameters.Add(new SqlParameter("@Desc9", mDesc9));
                 cmd.Parameters.Add(new SqlParameter("@Desc10", mDesc10));
+                cmd.Parameters.Add(new SqlParameter("@Desc11", mDesc11));
 
                 DataSet result = _dataAccess.GetDataSet(cmd);
                 if (result == null)  //_result==false

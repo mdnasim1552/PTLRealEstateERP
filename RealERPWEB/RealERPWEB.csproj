@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>C:\Users\HP\OneDrive\Desktop\Bin_real\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2651,7 +2651,6 @@
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
-    <Content Include="F_28_MPro\MktReqAdjustment.aspx" />
     <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
     <Content Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx" />
     <Content Include="F_28_MPro\RptMktProjectStock.aspx" />
@@ -4092,13 +4091,6 @@
     </Compile>
     <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.designer.cs">
       <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_28_MPro\MktReqAdjustment.aspx.cs">
-      <DependentUpon>MktReqAdjustment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_28_MPro\MktReqAdjustment.aspx.designer.cs">
-      <DependentUpon>MktReqAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.cs">
       <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
@@ -12140,7 +12132,7 @@
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
     <Content Include="Report\RptPaymentScheduleAssure.rdlc" />
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
-    <EmbeddedResource Include="Report\RptPurchaseOrderCube_Old.rdlc" />
+    <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
