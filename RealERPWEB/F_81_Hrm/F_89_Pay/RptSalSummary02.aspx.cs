@@ -541,9 +541,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
             }
-
-
-
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "RPTCASHSALARY", month, Company, Department, section, exclumgt, mantype, DesigFrom, DesigTo, "");
 
             if (ds3 == null)

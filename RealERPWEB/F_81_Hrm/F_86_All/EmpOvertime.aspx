@@ -18,10 +18,8 @@
 
 
         });
-        function pageLoaded() {
-
-
-
+        function pageLoaded()
+        {
             var gvOvertime = $('#<%=this.gvEmpOverTime.ClientID %>');
             var gvBankPay = $('#<%=this.gvBankPay.ClientID %>');
             var gvEmpHoliday = $('#<%=this.gvEmpHoliday.ClientID %>');
@@ -57,9 +55,6 @@
             gvOvertime.Scrollable();
             gvEmpOtherded.Scrollable();
             //  gvEmpMbill.Scrollable();
-
-
-
             $('.chzn-select').chosen({ search_contains: true });
         }
 
@@ -611,8 +606,6 @@
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
 
-
-
                                 <asp:Panel ID="pnlCopy" runat="server" Visible="false" Style="border: 1px solid blue;">
 
                                     <div class="form-group">
@@ -622,10 +615,6 @@
                                             <asp:DropDownList ID="ddlpreyearmon" runat="server" AutoPostBack="True"
                                                 TabIndex="11" CssClass=" ddlPage">
                                             </asp:DropDownList>
-
-
-
-
                                             <div class="colMdbtn pading5px">
                                                 <asp:LinkButton ID="lbtnCopy" runat="server" Text="Copy" OnClick="lbtnCopy_Click" CssClass="btn btn-primary okBtn" TabIndex="9"></asp:LinkButton>
                                             </div>
@@ -648,9 +637,6 @@
 
                             </div>
                         </fieldset>
-
-
-
 
                         <asp:GridView ID="gvEmpMbill" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             AutoGenerateColumns="False" OnPageIndexChanging="gvEmpMbill_PageIndexChanging"

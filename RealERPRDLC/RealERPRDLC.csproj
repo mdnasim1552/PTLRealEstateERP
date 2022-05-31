@@ -97,6 +97,7 @@
     <Folder Include="R_81_Hrm\R_94_Task\" />
     <Folder Include="R_81_Hrm\R_97_MIS\" />
     <Folder Include="R_81_Hrm\R_99_MgtAct\" />
+    <Folder Include="R_98_Purchase\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1073,7 +1074,6 @@
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentAcme.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptIncrementStatus.rdlc" />
-    <EmbeddedResource Include="R_98_Purchase\RptPurchaseOrderFinlay1.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptBillCon.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCashRcv.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCkhDeposit.rdlc" />
