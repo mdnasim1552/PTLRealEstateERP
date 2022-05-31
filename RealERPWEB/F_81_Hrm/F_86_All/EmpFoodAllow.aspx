@@ -18,7 +18,7 @@
             width: 100% !important;
         }
 
-   .chzn-container-single .chzn-single {
+        .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
         }
@@ -110,61 +110,103 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                 
-                                        <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Department</asp:Label>
-                                        <asp:DropDownList ID="ddlDepartment" runat="server" Width="233" CssClass="form-control chzn-select" TabIndex="7">
-                                        </asp:DropDownList>
-                               
-                                </div>
-                            </div>
-                        <div class="col-lg-1">
-                                     <asp:Label ID="Label3" runat="server">Code 
-                                        <asp:LinkButton ID="imgbtnSearchEmployee" runat="server"  OnClick="imgbtnSearchEmployee_Click" ><i class="fa fa-search"> </i></asp:LinkButton>
 
-                                     </asp:Label>
-                                        <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Department</asp:Label>
+                                <asp:DropDownList ID="ddlDepartment" runat="server" Width="233" CssClass="form-control chzn-select" TabIndex="7">
+                                </asp:DropDownList>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <asp:Label ID="Label3" runat="server">Code 
+                                        <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" OnClick="imgbtnSearchEmployee_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+
+                            </asp:Label>
+                            <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                         </div>
 
-                                                                                          <div class="col-lg-1">
-                     <div class="form-group">
-                                     <asp:Label ID="Label4" runat="server" >ID Card</asp:Label>
-                         <input name="txtTerm" onkeyup="filter2(this, '<%=gvEmpFAllow.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
-                 </div>
-                           </div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="Label4" runat="server">ID Card</asp:Label>
+                                <input name="txtTerm" onkeyup="filter2(this, '<%=gvEmpFAllow.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
+                            </div>
+                        </div>
 
-                         <div class="col-lg-1">
-				<div class="form-group">
-                             <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" >
-                                            <asp:ListItem>10</asp:ListItem>
-                                            <asp:ListItem>15</asp:ListItem>
-                                            <asp:ListItem>20</asp:ListItem>
-                                            <asp:ListItem>30</asp:ListItem>
-                                            <asp:ListItem>50</asp:ListItem>
-                                            <asp:ListItem>100</asp:ListItem>
-                                            <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
-                                            <asp:ListItem>300</asp:ListItem>
-                                        </asp:DropDownList>
-				</div>
-			</div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem Selected="True">200</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
 
-                         <div class="col-lg-1">
-                     <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" Text="Ok" OnClick="lnkbtnShow_Click1"></asp:LinkButton>
-	
+                        <div class="col-lg-1">
+                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt20" Text="Ok" OnClick="lnkbtnShow_Click1"></asp:LinkButton>
 
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                         <asp:Panel ID="pnlDedEarnExcel" CssClass="col-md-4" runat="server" Visible="false">
+                                <div class="input-group">    
+                                    <asp:FileUpload ID="fileuploadExcel" runat="server" class="form-control btn" style="height:34px; padding:5px" onchange="submitform();" />
+                                    <span class="input-group-addon bg-primary" style="background:#ff6a00 !important" id="basic-addons1">
+                                        <asp:LinkButton ID="lbtnDedorOtherEernExcelAdjust" runat="server" CssClass=""  ForeColor="White" ToolTip="Adjust Food Allowance" >
+                                            <i class="fas fa-file-excel"></i>&nbsp;Adjust </asp:LinkButton>
+                                    </span>
+                                </div>
+                            </asp:Panel>
                     </div>
                 </div>
-              
-            </div>
-                  <div class="card-body">
+                <div class="card-body">
+
+
+                    <asp:Panel ID="Pnlother" runat="server" Visible="false" >
+                        <div class="row">
+
+                            <div class="col-3">
+                                <div class="form-group">
+                                   <%-- <asp:Label ID="Label5" runat="server" Text="Month:"></asp:Label>--%>
+                                    <asp:DropDownList ID="ddlpreyearmon" runat="server"
+                                        TabIndex="11" CssClass="form-control">
+                                    </asp:DropDownList>
+
+
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <asp:LinkButton ID="lbtnCopy" runat="server" Text="Copy" OnClick="lbtnCopy_Click" CssClass="btn btn-primary btn-sm okBtn" TabIndex="9"></asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+
+                    </asp:Panel>
+
+
+                    <div class="col-md-2" id="lnkcopy" runat="server" visible="false">
+                        <asp:CheckBox ID="chkcopy" runat="server" TabIndex="10" Text="Copy " CssClass="btn btn-primary btn-sm okBtn" AutoPostBack="True" OnCheckedChanged="chkcopy_CheckedChanged" />
+
+                    </div>
+                    <br />
+
                     <asp:GridView ID="gvEmpFAllow" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                         AutoGenerateColumns="False"
                         ShowFooter="True" OnRowDeleting="gvEmpFAllow_RowDeleting" OnPageIndexChanging="gvEmpFAllow_PageIndexChanging">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True"
                                         Style="text-align: right"
