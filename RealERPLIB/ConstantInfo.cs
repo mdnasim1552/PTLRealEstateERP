@@ -8283,7 +8283,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000019", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000020","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000021", "07. Monthly Budget (Marketing)", "F_28_MPro/AccMktMonthlyBgd?Type=All&actcode=&year=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000022", "08. Requisition Adjustment", "F_28_MPro/MktReqAdjustment?Type=ReqAdjust", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000022", "08. Marketing Requisition Adjustment", "F_28_MPro/MktReqAdjustment?Type=ReqAdjust", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000023","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000024", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0325000000", "", "", "", true, "" });

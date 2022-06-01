@@ -244,7 +244,7 @@ namespace RealERPWEB.F_28_MPro
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "You have no permission" + "');", true);
                 return;
             }
 
@@ -255,32 +255,31 @@ namespace RealERPWEB.F_28_MPro
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            string adjno = this.lbladjstmentno.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy").Substring(7, 4) + this.lbladjstmentno.Text.Trim().Substring(3, 2) + ASTUtility.Right(this.lbladjstmentno.Text.Trim(), 5);
+            string adjno = this.lbladjstmentno.Text.Trim().Substring(0, 3) + this.txtDate.Text.Trim().Substring(7, 4) + 
+                this.lbladjstmentno.Text.Trim().Substring(3, 2) + this.txtAdjustNo2.Text.Trim();
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblreqadj"];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string reqno = dt.Rows[i]["reqno"].ToString();
-
                 string rsircode = dt.Rows[i]["rsircode"].ToString();
-                string spccode = dt.Rows[i]["spcfcod"].ToString();
                 double adsjtqty = Convert.ToDouble(dt.Rows[i]["adjstqty"]);
                 if (adsjtqty != 0)
                 {
 
+                    bool result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "INSERT_UPDATE_REQ_ADJ", adjno, reqno,
+                             pactcode, rsircode, adsjtqty.ToString(), date, userid, Terminal, Sessionid, "", "", "", "", "");
 
-                    bool result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_REQADJSTMENT", "INSORUPDATEREQADJST", adjno, reqno,
-                             pactcode, rsircode, spccode, adsjtqty.ToString(), date, userid, Terminal, Sessionid, "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = PurData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + PurData.ErrorObject["Msg"].ToString() + "');", true);
                         return;
                     }
                 }
             }
 
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Requisiton Adjustment Updated successfully" + "');", true);
             ((LinkButton)this.gvReqStatus.FooterRow.FindControl("lbtnFinalUpdate")).Enabled = false;
 
             if (ConstantInfo.LogStatus == true)
@@ -312,7 +311,7 @@ namespace RealERPWEB.F_28_MPro
 
             if (balqty<adjqty)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Adjusted quantity must be equal or less balance quantity');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Adjusted Quantity must be Equal or Less than Balance Quantity" + "');", true);
                 return;
             }
         }
