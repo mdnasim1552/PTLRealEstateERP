@@ -814,7 +814,7 @@
 
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
-                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger d-none" ToolTip="Print Pay Slip"><span class=" fa fa-print">Print</span>
+                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print">Print</span>
                                                         </asp:HyperLink>
                                                         <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
                                                         </asp:HyperLink>
@@ -1283,7 +1283,7 @@ d) 6 Days Late = 3 CL & half day leave
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Please Contact with HR/Payroll Department </p>
+           
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -2943,6 +2943,7 @@
     <Content Include="F_81_Hrm\F_82_App\EntryAllEmp.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRDesigCode.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpOfficeTimeSetup.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HREmpEntry.aspx" />
     <Content Include="F_81_Hrm\F_82_App\ImgUpload.aspx" />
     <Content Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx" />
@@ -4204,6 +4205,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx.designer.cs">
       <DependentUpon>EmpProfileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpOfficeTimeSetup.aspx.cs">
+      <DependentUpon>EmpOfficeTimeSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpOfficeTimeSetup.aspx.designer.cs">
+      <DependentUpon>EmpOfficeTimeSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>

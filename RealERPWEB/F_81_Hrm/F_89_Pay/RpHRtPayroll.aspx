@@ -26,7 +26,7 @@
         function pageLoaded() {
             var gvAllPayroll = $('#<%=this.gvpayroll.ClientID %>');
             gvAllPayroll.gridviewScroll({
-                width: 1160,
+                width: 1400,
                 height: 420,
                 arrowsize: 30,
                 railsize: 16,
@@ -403,7 +403,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="ID CARD">
+                                            <asp:TemplateField HeaderText="ID #">
 
                                                 <%--  <FooterTemplate>
                                                     <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn  btn-primary primarygrdBtn" OnClick="lnkTotal_Click">Total</asp:LinkButton>
@@ -442,13 +442,22 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Name &amp; Designation">
-                                                <%--<FooterTemplate>
-                                                    <asp:LinkButton ID="lnkFiUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkFiUpdate_Click">Update</asp:LinkButton>
-                                                </FooterTemplate>--%>
+                                            <asp:TemplateField HeaderText="Name">
+                                                
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvndesig" runat="server"
-                                                        Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>"+"<br>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
+                                                        Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>" %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Designation">
+                                                
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvndesigs" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
