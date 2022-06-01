@@ -483,7 +483,10 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvlenddate" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lenddat"))%>'
-                                                        Width="80px"></asp:Label>
+                                                       ></asp:Label>
+                                                    <asp:Label ID="lbldutyst" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dutyday")) %>'
+                                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />

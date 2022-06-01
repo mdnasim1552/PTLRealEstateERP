@@ -183,6 +183,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 dt = view.ToTable();
             }
+            Session["tbloan"] = dt;
+
             this.gvEmpLoanStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpLoanStatus.DataSource = dt;
             this.gvEmpLoanStatus.DataBind();
