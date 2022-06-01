@@ -963,7 +963,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
             }
             DataTable dt1 = (DataTable)Session["tblspledger"];
-
+            // head1 ="AB" or "04CT" can be apply in rdlc
             var list = dt1.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>();
             LocalReport Rpt1 = new LocalReport();
             switch (comcod)

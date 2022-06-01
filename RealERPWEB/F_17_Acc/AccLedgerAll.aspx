@@ -93,18 +93,6 @@
                                     <asp:ListItem>5000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="clearfix"></div>
                         </div>
 
@@ -740,30 +728,21 @@
                                             <HeaderStyle VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-
                                         <asp:TemplateField HeaderText="Vou.Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="Labelsp02" runat="server" CssClass="GridLebelL"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat1")) %>' Width="65px"></asp:Label>
                                             </ItemTemplate>
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Voucher No.">
-
                                             <ItemTemplate>
-
-
-
                                                 <asp:HyperLink ID="HLgvvounumsp02" runat="server" Font-Size="12px" __designer:wfdid="w38"
                                                     CssClass="GridLebelL" Font-Underline="False" Target="_blank"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
                                                     Width="75px"></asp:HyperLink>
-
-
-
-
                                             </ItemTemplate>
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
 
@@ -800,7 +779,7 @@
                                                 <asp:Label ID="lblgvcatdesc" runat="server" CssClass="GridLebelL"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>' Width="200px"></asp:Label>
                                             </ItemTemplate>
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
 
@@ -814,7 +793,7 @@
                                                     Width="65px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                          
@@ -829,7 +808,7 @@
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Rate">
@@ -846,7 +825,7 @@
                                             <HeaderStyle VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText=" Amount">
+                                        <asp:TemplateField HeaderText="Bill Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvCrAmountsp02" runat="server" CssClass="GridLebel"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cram")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
@@ -857,11 +836,11 @@
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                       
 
-                                        <asp:TemplateField HeaderText=" Paid Amount">
+                                        <asp:TemplateField HeaderText="Paid Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvDrAmountsp02" runat="server" CssClass="GridLebel"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
@@ -872,7 +851,7 @@
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
 
@@ -887,7 +866,7 @@
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
 
