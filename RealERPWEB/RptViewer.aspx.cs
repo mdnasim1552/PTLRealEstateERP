@@ -15,6 +15,8 @@ using CrystalDecisions.ReportSource;
 using System.IO;
 using RealERPLIB;
 using RealERPRPT;
+using System.Drawing;
+
 namespace RealERPWEB
 {
     public partial class RptViewer : System.Web.UI.Page
@@ -150,19 +152,43 @@ namespace RealERPWEB
             {
                 //this.form1.Controls.Remove(this.CRViewer1);
                 GridView GridView1 = (GridView)Session["Report1"];
+                string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                //string extfilename = Session["ReportName"].ToString();
+                //string fileName = extfilename == null ? extfilename : "DataTable_" + date1;
+                string fileName = "DataTable_" + date1;
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=DataTable.xls");
+                Response.AddHeader("content-disposition", "attachment;filename=" + fileName + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
 
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter hw = new HtmlTextWriter(sw);
 
+                GridView1.AllowPaging = false;
+                GridView1.BackColor = Color.White;
+                GridView1.HeaderRow.BackColor = Color.White;
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+
+                {
+
+                    //Apply text style to each Row
+
+                    GridView1.Rows[i].Attributes.Add("class", "textmode");
+
+                }
+
                 this.form1.Controls.Add(GridView1);
                 GridView1.RenderControl(hw);
 
+                //style to format numbers to string
+                GridView1.Style.Remove("BackColor");
+                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
 
+                Response.Write(style);
+
+
+                // Response.Write("<style> BODY { background-color:white; } TD { background-color:lightgrey; } </style>");
                 Response.Write(sw.ToString());
                 Response.Flush();
                 Response.End();
