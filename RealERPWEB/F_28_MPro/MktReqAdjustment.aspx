@@ -17,8 +17,7 @@
         function pageLoaded() {
 
             $('.chzn-select').chosen({ search_contains: true });
-            var gv1 = $('#<%=this.gvReqStatus.ClientID %>');
-            gv1.Scrollable();
+           
         };
 
     </script>
@@ -101,16 +100,16 @@
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewReqAd" runat="server">
                             <div class="row">
-                                <div class="table table-responsive" runat="server">
-                                    <asp:GridView ID="gvReqStatus" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False" Width="901px" Style="margin-right: 0px" ShowFooter="True">
+                                <div class="table-responsive" runat="server">
+                                    <asp:GridView ID="gvReqStatus" runat="server" CssClass=" table-striped table-bordered grvContentarea"
+                                        AutoGenerateColumns="False" ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="SL.">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
+                                                    <asp:Label ID="lblgvSlNo" runat="server"
                                                         Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -118,21 +117,21 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvReqNo1" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="90px"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="MRF No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvMrfNo" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="30px"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvDate" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat1")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="">
@@ -148,7 +147,7 @@
                                                         Width="180px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnFinalUpdate_Click">Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lbtnFinalUpdate" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbtnFinalUpdate_Click" ToolTip="Update Requisition Adjustment" Width="100">Update</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Left" />
                                             </asp:TemplateField>
@@ -192,28 +191,15 @@
                                                         Width="65px" BackColor="White"
                                                         BorderStyle="None" Style="text-align: right" AutoPostBack="true"></asp:TextBox>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Right" Width="65px" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Specification">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSpfDesc" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
-                                                        Width="120px"></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle HorizontalAlign="Center" />
-                                                <HeaderStyle HorizontalAlign="Left" />
-                                            </asp:TemplateField>
                                         </Columns>
-
-
-                                        <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooterNew" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
                                     </asp:GridView>
-
                                 </div>
                             </div>
                         </asp:View>

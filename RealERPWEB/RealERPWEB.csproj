@@ -2651,6 +2651,7 @@
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
+    <Content Include="F_28_MPro\MktReqAdjustment.aspx" />
     <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
     <Content Include="F_28_MPro\RptAccMktQuarterlyBgd.aspx" />
     <Content Include="F_28_MPro\RptMktProjectStock.aspx" />
@@ -4091,6 +4092,13 @@
     </Compile>
     <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.designer.cs">
       <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktReqAdjustment.aspx.cs">
+      <DependentUpon>MktReqAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktReqAdjustment.aspx.designer.cs">
+      <DependentUpon>MktReqAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.cs">
       <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
