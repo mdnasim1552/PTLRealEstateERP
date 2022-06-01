@@ -68,12 +68,8 @@ namespace RealEntity
 
 
             }
-
-
             return lst;
         }
-
-
         private void CreateTable()
         {
             DataTable mnuTbl1 = new DataTable();
@@ -87,25 +83,17 @@ namespace RealEntity
             Session["tblpageinfo"] = mnuTbl1;
 
         }
-
-
-
-
-
         public List<EClassModule> ShowModule(string Moduleid, string Inputtype)
         {
             this.CreateTable();
             List<EClassModule> lst = new List<EClassModule>();
             DataTable dt = ConstantInfo.MenuTable(Moduleid);
 
-
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("itemcod like '" + Inputtype + "'");
             DataTable dt1 = dv.ToTable();
 
-
-
-             DataTable dtdb = ((DataSet)Session["tblusrlog"]).Tables[1];
+            DataTable dtdb = ((DataSet)Session["tblusrlog"]).Tables[1];
 
             DataTable dtpage = (DataTable)Session["tblpageinfo"];
             int i = 1;
@@ -132,8 +120,7 @@ namespace RealEntity
                 DataRow[] dr1 = dtdb.Select("(frmname+qrytype)='" + frmname + "'");
 
                 if (dr1.Length > 0)
-                {
-                    
+                {                  
                     DataRow dr2 = dtpage.NewRow();
                     dr2["formid"] = dr1[0]["frmid"].ToString();
                     dr2["itemcod"] = dt1.Rows[j]["itemcod"].ToString();
@@ -144,8 +131,6 @@ namespace RealEntity
                     dr2["fbold"] = dt1.Rows[j]["fbold"].ToString();
                     dtpage.Rows.Add(dr2);
                     i++;
-
-
                 }
                 else if (itemslct == false)
                 {
@@ -337,9 +322,7 @@ namespace RealEntity
             public int notifyid { get; set; }
             public string meassage { get; set; }
             public string eventitle { get; set; }
-            public int userid { get; set; }
-           
-          
+            public int userid { get; set; }          
             public string sendname { get; set; }
             public string sendphoto { get; set; }
             public string refid { get; set; }

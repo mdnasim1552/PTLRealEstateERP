@@ -332,8 +332,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     return;
                 }
             }
-
-
             //// only for bti
             //if (isFormulaChekcbox.Checked)
             //{
@@ -348,14 +346,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             //        setcomppay = compamt;
             //        setemppay = empamt;
             //    }
-
             //    if(lnamt!=(setcomppay+ setemppay))
             //    {
             //        string Msg = "Please Equal Formula amount = Instalment amount";
             //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
             //        return;
             //    }
-
             //}
             //else
             //{
@@ -363,9 +359,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             //    setemppay = lnamt;
             //}
             // end bti formula
-
-
-
 
             int dur = Convert.ToInt32(this.ddlMonth.SelectedValue.ToString());
             string date = this.txtstrdate.Text.Trim();
@@ -388,8 +381,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                         setcomppay = 0.00;
                         setemppay = lnamt;
                     }
-
-
                     if (i == 0)
                     {
                         dr1 = dt1.NewRow();
@@ -420,7 +411,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 else
                 {
                     break;
-
                 }
             }
             ViewState["tblln"] = dt1;
@@ -448,8 +438,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     break;
                         
             } 
-
-
         }
         protected void lbtnFinalUpdate_Click(object sender, EventArgs e)
         {
@@ -478,8 +466,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
                     isformula = dr[0]["isformula"].ToString();
                 }
-
-
                 if (lnnoqu.Length > 0)
                 {
                     this.txtCurDate.Enabled = false;
@@ -523,24 +509,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 toamt = toamt + tcomppay;
               //  double ttlinsamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ttlinsamt)", "")) ? 0.00 : dt.Compute("sum(ttlinsamt)", "")));
                 double tloan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", "")));
-
               //  tloan = comcod == "3365" ? ttlinsamt : tloan;
-
                 double balance1 = loanamt - tloan;
                 string balance = balance1 == 0 ? "Level" : balance1.ToString();
-
                 //if (loanamt < tloan)
                 //{
                 //    string msg = "Sorry, Please adjust or delete before add Installment. Balance amount " + balance;
                 //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
                 //    return;
                 //}
                 //else if (loanamt > tloan)
                 //{
                 //    string msg = "Sorry, Please adjust the amount. Balance amount " + balance;
                 //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
                 //    return;
                 //}
                 bool result;
@@ -556,7 +537,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 }
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    string lndate = dt.Rows[i]["lndate"].ToString();
+                    string lndate  = Convert.ToDateTime(dt.Rows[i]["lndate"]).ToString("dd-MMM-yyyy");
                     string lnamt = Convert.ToDouble(dt.Rows[i]["lnamt"]).ToString();
                     string comppay = Convert.ToDouble(dt.Rows[i]["comppay"]).ToString();
 
@@ -574,9 +555,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 {
                     Response.Redirect("~/F_81_Hrm/F_85_Lon/EmpLoanStatus?Type=Report&comcod=&lnno=update");
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -585,15 +563,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
         }
         protected void lbtnTotal_Click(object sender, EventArgs e)
-        {
-            
-
-
-            string comcod = this.GetComeCode();
-            
+        {          
+            string comcod = this.GetComeCode();    
             string ulndat =  this.txtUptoDate.Text.Trim().ToString()==""?"01-Jan-1900": this.txtUptoDate.Text.Trim().ToString();
-
-
             DataTable dt = (DataTable)ViewState["tblln"];
             string lnno = "";
             string lnnoqu = this.Request.QueryString["lnno"] ?? "";
@@ -613,15 +585,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 }
                 DataRow[] dr = dt1.Select("lnno='" + lnno + "'");
                 loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
-                //double comppay = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["comppay"]); // Get Loan Amount
-
-                
+                //double comppay = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["comppay"]); // Get Loan Amount            
             }
             if (lnnoqu.Length > 0)
             {
                 this.txtCurDate.Enabled = false;
-
-
                 DataTable dt1 = (DataTable)ViewState["tblln1"];
                 if (dt1 == null)
                 {
@@ -631,8 +599,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
                 lnno = lnnoqu;
             }
-
-
             for (int i = 0; i < this.gvloan.Rows.Count; i++)
             {
                 string Insdate = Convert.ToDateTime(((TextBox)this.gvloan.Rows[i].FindControl("txtgvinstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
@@ -655,14 +621,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     dt.Rows[i]["paidamt"] = paidamt;
                 }
             }
-
-            double tloan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ttlinsamt)", "")) ? 0.00 : dt.Compute("sum(ttlinsamt)", ""))); //Installment Loan
+           double tloan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ttlinsamt)", "")) ? 0.00 : dt.Compute("sum(ttlinsamt)", ""))); //Installment Loan
           //  double tloan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", ""))); //Installment Loan
 
            // tloan = (isformultype != "") ? ttlinsamt : tloan;
-
-
-
             double balance1 = loanamt - tloan;
             string balance = balance1 == 0 ? "Level" : balance1.ToString();
 

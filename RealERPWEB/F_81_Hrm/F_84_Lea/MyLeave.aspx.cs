@@ -1009,8 +1009,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
 
         }
-
-
         private void EmpLeaveInfo()
         {
             try
