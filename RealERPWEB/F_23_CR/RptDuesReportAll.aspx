@@ -249,7 +249,7 @@
             margin-bottom: 15px;
             text-align: center;
             width: 125px;
-            font-size: 10px;
+            font-size: 18px;
         }
 
         .circle-tile-heading {
@@ -584,7 +584,7 @@
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvCRdues" runat="server"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cbookam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pinsam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -921,17 +921,14 @@
                                         </div>
                                         <div class="col-md-1">
                                             <div class="form-group">
-                                                <asp:Label ID="Label15" runat="server" CssClass="control-label lblmargin-top9px" Text="Report Level"></asp:Label>
+                                                <asp:Label ID="Label15" runat="server" CssClass="control-label lblmargin-top9px" Text="Project Name :"></asp:Label>
 
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <asp:DropDownList ID="ddlReportLevelcon" runat="server" CssClass="custom-select" TabIndex="6"  Visible="false">
-                                                    <asp:ListItem Value="2">Level-1</asp:ListItem>
-                                                    <asp:ListItem Value="4">Level-2</asp:ListItem>
-                                                    <asp:ListItem Value="8">Level-3</asp:ListItem>
-                                                    <asp:ListItem Selected="True" Value="12">Level-4</asp:ListItem>
+                                                <asp:DropDownList ID="ddlProjectName2" runat="server" CssClass="custom-select chzn-select" TabIndex="6">
+                                                   
                                                 </asp:DropDownList>
 
                                             </div>
@@ -948,9 +945,9 @@
                                          <asp:RadioButtonList ID="rbtntype1" RepeatDirection="Horizontal" CssClass=""  runat="server">
 
                                    
-                                   <asp:ListItem Value ="Booking" >Booking Dues</asp:ListItem>
+                                   <asp:ListItem Value ="Booking" Selected="True">Booking Dues</asp:ListItem>
                                   <asp:ListItem Value="CRDUES"> CR Dues</asp:ListItem>                               
-                                  <asp:ListItem Selected="True">Both</asp:ListItem>
+                                <%--  <asp:ListItem Selected="True">Both</asp:ListItem>--%>
                                 </asp:RadioButtonList>
 
 
@@ -1055,13 +1052,25 @@
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Booking Dues">
+                                    <asp:TemplateField HeaderText="Booking Dues" Visible="false">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lblfBookduesas" runat="server" Font-Bold="True"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvBookdueas" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbookam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
+                                           <asp:TemplateField HeaderText="CR Dues" Visible="false">
                                         <FooterTemplate>
                                             <asp:Label ID="lblfCurrentduesas" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvCurrentdue" runat="server"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbookam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                            <asp:Label ID="lblgvCurrentdueas" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pinsam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />

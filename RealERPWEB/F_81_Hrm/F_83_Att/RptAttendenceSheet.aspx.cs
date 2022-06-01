@@ -184,10 +184,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
-                    this.rbtnAttStatus.Visible = true;
-                    
-
-                    
+                    this.isStatusType.Visible = true;
+                    this.empListPnl.Visible = true; 
                     this.PnlSection.Visible = true;
                     break;
                 case 4:
@@ -332,11 +330,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             string company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string projectName = ((ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : ddlProjectName.SelectedValue.ToString().Substring(0, 8)) + "%";
-
-
-
-
-
+ 
             string txtSEmployee = "%%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
             if (ds3 == null)
@@ -346,6 +340,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlEmpName.DataSource = ds3.Tables[0];
             this.ddlEmpName.DataBind();
         }
+
+        private void GetEmpNameResign()
+        {
+            string comcod = this.GetComCode();
+            string company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string projectName = (ddlProjectName.SelectedValue.ToString() == "000000000000") ? company : ddlProjectName.SelectedValue.ToString().Substring(0, 8) + "%" ;
+
+            string isResign = this.isResignChekcbox.Checked == true ? "true" : "";
+             
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETRESIGNEMPLIST", company, projectName, "", "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
+            this.ddlEmpName.DataTextField = "empname";
+            this.ddlEmpName.DataValueField = "empid";
+            this.ddlEmpName.DataSource = ds3.Tables[0];
+            this.ddlEmpName.DataBind();
+        }
+
 
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -369,7 +381,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.txtfromdate.Text = (this.rbtnAtten.SelectedIndex == 1 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtfromdate.Text.Trim());
             this.lbltodate.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 3) || (this.rbtnAtten.SelectedIndex == 4 || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6));
             this.txttodate.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 3) || (this.rbtnAtten.SelectedIndex == 4) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
-            this.rbtnAttStatus.Visible = (this.rbtnAtten.SelectedIndex == 3);
+            this.isStatusType.Visible = (this.rbtnAtten.SelectedIndex == 3);
+            this.RbtnAttanTypeDiv.Visible = (this.rbtnAtten.SelectedIndex == 3);
             this.PanelVisivility();
 
         }
@@ -601,15 +614,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
 
-            string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+            string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? Company : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
             string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
             string todesig = this.ddlToDesig.SelectedValue.ToString();
             string acclate = this.GetComLateAccTime();
-             
+
 
             if (empid == "%")
             {
-                if (this.ddlProjectName.SelectedValue.ToString() == "000000000000" && comcod != "3315")
+                if (this.ddlProjectName.SelectedValue.ToString() == "000000000000" && comcod != "3315" && comcod != "3365")
                 {
                     string Msg = "Please Select Department";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
@@ -642,7 +655,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }
             }
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, empid);
+            string isResign = this.isResignChekcbox.Checked == true ?"True": "";
+            string isAttnType = this.RbtnAttanType.SelectedValue == "" ?"%": this.RbtnAttanType.SelectedValue.ToString()+"%";
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, empid, isResign, isAttnType);
             if (ds1 == null)
                 return;
             Session["tblallData"] = ds1.Tables[0];
@@ -2154,8 +2170,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.GetEmpName();
         }
 
-       
+        protected void isResignChekcbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isResignChekcbox.Checked == true)
+            {
+                this.GetEmpNameResign();
+            }
+           
         }
+    }
 }
 
 
