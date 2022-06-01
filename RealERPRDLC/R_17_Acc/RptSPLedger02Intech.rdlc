@@ -497,7 +497,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Amount</Value>
+                                  <Value>Bill Amount</Value>
                                   <Style>
                                     <FontFamily>Century Gothic</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -648,7 +648,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=cDate(Fields!voudat.Value).ToString("dd/MM/yyyy")</Value>
+                                  <Value>=IIF(Fields!actcode.Value="BBBBBBBBBBBB","", IIF(Fields!actcode.Value="AAAAAAAABBBB","",IIF((Fields!actcode.Value="000000000000" and Fields!actdesc.Value=""),"",cDate(Fields!voudat.Value).ToString("dd/MM/yyyy"))))</Value>
                                   <Style>
                                     <FontFamily>Century Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -687,7 +687,7 @@
                                   <Style>
                                     <FontFamily>Century Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>=IIF(trim(Fields!actcode.Value)="BBBBBBBBBBBB","Bold", IIF(trim(Fields!actcode.Value)="AAAAAAAABBBB","Bold","Default"))</FontWeight>
+                                    <FontWeight>=IIF(trim(Fields!head1.Value)="AB","Bold", IIF(trim(Fields!head1.Value)="04CT","Bold","Default"))</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -894,7 +894,7 @@
                                   <Style>
                                     <FontFamily>Century Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>=IIF(Fields!actcode.Value="BBBBBBBBBBBB","Bold", IIF(Fields!actcode.Value="AAAAAAAABBBB","Bold","Default"))</FontWeight>
+                                    <FontWeight>=IIF(Fields!actcode.Value="BBBBBBBBBBBB","Bold", IIF(Fields!actcode.Value="AAAAAAAABBBB","Bold",IIF((Fields!actcode.Value="000000000000" and Fields!actdesc.Value=""),"Bold","Default")))</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -930,7 +930,7 @@
                                   <Style>
                                     <FontFamily>Century Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>=IIF(Fields!actcode.Value="BBBBBBBBBBBB","Bold", IIF(Fields!actcode.Value="AAAAAAAABBBB","Bold","Default"))</FontWeight>
+                                    <FontWeight>=IIF(Fields!actcode.Value="BBBBBBBBBBBB","Bold", IIF(Fields!actcode.Value="AAAAAAAABBBB","Bold",IIF((Fields!actcode.Value="000000000000" and Fields!actdesc.Value=""),"Bold","Default")))</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -966,7 +966,7 @@
                                   <Style>
                                     <FontFamily>Century Gothic</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>=IIF(Fields!actcode.Value="BBBBBBBBBBBB","Bold", IIF(Fields!actcode.Value="AAAAAAAABBBB","Bold","Default"))</FontWeight>
+                                    <FontWeight>=IIF(Fields!actcode.Value="BBBBBBBBBBBB","Bold", IIF(Fields!actcode.Value="AAAAAAAABBBB","Bold",IIF((Fields!actcode.Value="000000000000" and Fields!actdesc.Value=""),"Bold","Default")))</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
