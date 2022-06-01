@@ -1949,7 +1949,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102010", "F_81_Hrm/F_82_App", "HREmpEntry?", "Type=Aggrement", "Employee Agreement", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102011", "F_81_Hrm/F_81_Rec", "ImgUpload?", "Type=Entry", "Employee Image Upload", "Appointment", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "8102000", "8102012", "F_81_Hrm/F_82_App", "HREmpEntry?", "Type=Officetime", "Office Time Setup", "Appointment", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102012", "F_81_Hrm/F_82_App", "EmpOfficeTimeSetup?", "Type=Officetime", "Office Time Setup", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102013", "F_81_Hrm/F_82_App", "RptEmpInformation?", "Type=Services", "Employee Services Information", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102014", "F_81_Hrm/F_82_App", "EmpAcaRecord", "", "Academic Record Code", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102016", "F_81_Hrm/F_82_App", "EmpEntryForm", "", "New Employee Code", "Appointment", "False", "False", "False", "False" }); ;
@@ -14765,7 +14765,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000006", "04. Daily Attendance - Upload", "F_81_Hrm/F_83_Att/HRDailyAttenUpload", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000007", "06. Monthly Attendance - Manually", "F_81_Hrm/F_83_Att/HREmpMonthlyAtten", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000008", "07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000009", "08. Office Time Setup", "F_81_Hrm/F_82_App/HREmpEntry?Type=Officetime", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000009", "08. Office Time Setup", "F_81_Hrm/F_82_App/EmpOfficeTimeSetup?Type=Officetime", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000010", "09. Office Time Setup(Special Day)", "F_81_Hrm/F_82_App/HREmpEntry?Type=shifttime", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000011", "10.  Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });//"07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
             
