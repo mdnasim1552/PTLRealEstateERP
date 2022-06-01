@@ -87,6 +87,15 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.Label lblprjname;
 
         /// <summary>
+        /// HiddednPactcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddednPactcode;
+
+        /// <summary>
         /// gvEmployeeInfo control.
         /// </summary>
         /// <remarks>
