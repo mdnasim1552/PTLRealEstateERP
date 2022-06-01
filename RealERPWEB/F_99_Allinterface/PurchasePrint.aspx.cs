@@ -3825,7 +3825,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
 
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3368" || comcod == "3101")
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3368")
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -3972,7 +3972,6 @@ namespace RealERPWEB.F_99_Allinterface
                         sign6 = "Approved By";
                         break;
 
-                    case "3101":
                     case "3368":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4076,7 +4075,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // Pintech
+                    //case "3101": // Pintech
                     case "3368": // Finlay
                     case "3366": // Lanco
                     case "1205": //P2P
@@ -4302,7 +4301,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
                         break;
 
-                    case "3101": //pintech                      
+                    //case "3101": //pintech                      
                     case "3368": //Finlay Properties Ltd                        
                         Reportpath = "~/Report/RptPurchaseOrderFinlay.rdlc";
                         break;                    
@@ -4390,7 +4389,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }
-                if (comcod == "3368" || comcod == "3101") // finlay
+                if (comcod == "3368") // finlay
                 {
                     Rpt1.SetParameters(new ReportParameter("lblsign4", ""));
                     Rpt1.SetParameters(new ReportParameter("lblsign5", ""));
@@ -4474,7 +4473,6 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReportAssure);
                         break;
 
-                    case "3101":
                     case "3358":
                     case "3359":
                     case "3360":
