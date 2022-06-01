@@ -1438,6 +1438,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                     Session["Report1"] = gvpayroll;
+                    string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
+                    Session["ReportName"] = "Salary_Sheet_"+ frmdate;
                     ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
 

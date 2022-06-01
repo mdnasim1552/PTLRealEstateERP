@@ -58,6 +58,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.ddlEmpName_SelectedIndexChanged(null, null);
                    
                 }
+               else if (qtype == "COMMON")
+                {
+                    int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                            (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("~/AcceessError.aspx");
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (COMMON)";
+
+                    this.empMgt.Visible = true;
+                    GetEmpLoyee();
+                    // GetSupvisorCheck();
+                    this.ddlEmpName_SelectedIndexChanged(null, null);
+
+                }
                 else
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE";
@@ -588,7 +603,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             string Empid = "";
             string qtype = this.Request.QueryString["Type"] ?? "";
-            if (qtype == "MGT")
+            if ((qtype == "MGT") || (qtype == "COMMON"))
             {
                 Empid = this.ddlEmpName.SelectedValue.ToString();
 
