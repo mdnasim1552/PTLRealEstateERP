@@ -138,7 +138,6 @@
                   <TextRun>
                     <Value>=Parameters!txtDate.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                       <Format>dd/MM/yyyy</Format>
                     </Style>
@@ -173,7 +172,6 @@
                   <TextRun>
                     <Value>Customer Copy</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -207,7 +205,6 @@
                   <TextRun>
                     <Value>Date :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -240,7 +237,6 @@
                   <TextRun>
                     <Value>=Parameters!mrno.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
                       <FontSize>9pt</FontSize>
                       <Format>dd/MM/yyyy</Format>
                     </Style>
@@ -276,7 +272,6 @@
                   <TextRun>
                     <Value>Receipt No #</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -309,7 +304,6 @@
                   <TextRun>
                     <Value>CUSTOMER DETAILS :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -342,7 +336,6 @@
                   <TextRun>
                     <Value>=Parameters!custname.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -375,7 +368,6 @@
                   <TextRun>
                     <Value>=Parameters!CustAdd.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -408,7 +400,6 @@
                   <TextRun>
                     <Value>=Parameters!custmob.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -441,14 +432,12 @@
                   <TextRun>
                     <Value>: </Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Parameters!project.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -481,14 +470,12 @@
                   <TextRun>
                     <Value>: </Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Parameters!unit.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -521,8 +508,7 @@
                   <TextRun>
                     <Value>COLLECTED BY</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -559,8 +545,7 @@
                   <TextRun>
                     <Value>ACCOUNTS</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -631,7 +616,7 @@
                                 <TextRun>
                                   <Value>Sl.</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -667,7 +652,7 @@
                                 <TextRun>
                                   <Value>PAYMENT MODE</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -703,7 +688,7 @@
                                 <TextRun>
                                   <Value>CHEQUE/</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -717,7 +702,7 @@
                                 <TextRun>
                                   <Value>P.O. NO.</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -753,7 +738,7 @@
                                 <TextRun>
                                   <Value>CHEQUE/</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -767,7 +752,7 @@
                                 <TextRun>
                                   <Value>P.O DATE</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -803,7 +788,7 @@
                                 <TextRun>
                                   <Value>BANK</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -839,7 +824,7 @@
                                 <TextRun>
                                   <Value>BRANCH</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -875,7 +860,7 @@
                                 <TextRun>
                                   <Value>PURPOSE / PARTICULARS</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -911,7 +896,7 @@
                                 <TextRun>
                                   <Value>AMOUNT (TAKA)</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -952,7 +937,7 @@
                                 <TextRun>
                                   <Value>=RowNumber(nothing)</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -985,7 +970,7 @@
                                 <TextRun>
                                   <Value>=Fields!paytype.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1016,7 +1001,7 @@
                                 <TextRun>
                                   <Value>=Fields!chqno.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1047,7 +1032,7 @@
                                 <TextRun>
                                   <Value>=cDate(Fields!paydate.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1080,7 +1065,7 @@
                                 <TextRun>
                                   <Value>=Fields!bankname.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1111,7 +1096,7 @@
                                 <TextRun>
                                   <Value>=Fields!bbranch.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1142,7 +1127,7 @@
                                 <TextRun>
                                   <Value>=Fields!rectype.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1173,7 +1158,7 @@
                                 <TextRun>
                                   <Value>=Format(Fields!paidamt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1242,8 +1227,6 @@
                   <TextRun>
                     <Value>Grand Total (Taka)     :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1276,8 +1259,6 @@
                   <TextRun>
                     <Value>=Parameters!amount.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1327,8 +1308,6 @@
                   <TextRun>
                     <Value>Taka   :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1360,10 +1339,7 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!takainword.Value</Value>
-                    <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
+                    <Style />
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -1394,7 +1370,6 @@
                   <TextRun>
                     <Value>Project  </Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1427,7 +1402,6 @@
                   <TextRun>
                     <Value>Apt./Office/Shop</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1460,7 +1434,6 @@
                   <TextRun>
                     <Value>=Parameters!txtDate.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                       <Format>dd/MM/yyyy</Format>
                     </Style>
@@ -1496,7 +1469,6 @@
                   <TextRun>
                     <Value>Office Copy</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1530,7 +1502,6 @@
                   <TextRun>
                     <Value>Date :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1563,7 +1534,6 @@
                   <TextRun>
                     <Value>=Parameters!mrno.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
                       <FontSize>9pt</FontSize>
                       <Format>dd/MM/yyyy</Format>
                     </Style>
@@ -1599,7 +1569,6 @@
                   <TextRun>
                     <Value>Receipt No #</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1632,7 +1601,6 @@
                   <TextRun>
                     <Value>CUSTOMER DETAILS :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1665,7 +1633,6 @@
                   <TextRun>
                     <Value>=Parameters!custname.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1698,7 +1665,6 @@
                   <TextRun>
                     <Value>=Parameters!CustAdd.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1731,8 +1697,7 @@
                   <TextRun>
                     <Value>COLLECTED BY</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1769,8 +1734,7 @@
                   <TextRun>
                     <Value>ACCOUNTS</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1841,7 +1805,7 @@
                                 <TextRun>
                                   <Value>Sl.</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1877,7 +1841,7 @@
                                 <TextRun>
                                   <Value>PAYMENT MODE</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1913,7 +1877,7 @@
                                 <TextRun>
                                   <Value>CHEQUE/</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1927,7 +1891,7 @@
                                 <TextRun>
                                   <Value>P.O. NO.</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1963,7 +1927,7 @@
                                 <TextRun>
                                   <Value>CHEQUE/</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1977,7 +1941,7 @@
                                 <TextRun>
                                   <Value>P.O DATE</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2013,7 +1977,7 @@
                                 <TextRun>
                                   <Value>BANK</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2049,7 +2013,7 @@
                                 <TextRun>
                                   <Value>BRANCH</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2085,7 +2049,7 @@
                                 <TextRun>
                                   <Value>PURPOSE / PARTICULARS</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2121,7 +2085,7 @@
                                 <TextRun>
                                   <Value>AMOUNT (TAKA)</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2162,7 +2126,7 @@
                                 <TextRun>
                                   <Value>=RowNumber(nothing)</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2195,7 +2159,7 @@
                                 <TextRun>
                                   <Value>=Fields!paytype.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2226,7 +2190,7 @@
                                 <TextRun>
                                   <Value>=Fields!chqno.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2257,7 +2221,7 @@
                                 <TextRun>
                                   <Value>=cDate(Fields!paydate.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2290,7 +2254,7 @@
                                 <TextRun>
                                   <Value>=Fields!bankname.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2321,7 +2285,7 @@
                                 <TextRun>
                                   <Value>=Fields!bbranch.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2352,7 +2316,7 @@
                                 <TextRun>
                                   <Value>=Fields!rectype.Value</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2383,7 +2347,7 @@
                                 <TextRun>
                                   <Value>=Format(Fields!paidamt.Value, "#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
-                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2452,8 +2416,6 @@
                   <TextRun>
                     <Value>Grand Total (Taka)     :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -2486,8 +2448,6 @@
                   <TextRun>
                     <Value>=Parameters!amount.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -2537,8 +2497,6 @@
                   <TextRun>
                     <Value>Taka   :</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -2570,10 +2528,7 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!takainword.Value</Value>
-                    <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontSize>11pt</FontSize>
-                    </Style>
+                    <Style />
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -2604,7 +2559,6 @@
                   <TextRun>
                     <Value>=Parameters!custmob.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -2637,14 +2591,12 @@
                   <TextRun>
                     <Value>: </Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Parameters!project.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -2677,14 +2629,12 @@
                   <TextRun>
                     <Value>: </Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Parameters!unit.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -2717,7 +2667,6 @@
                   <TextRun>
                     <Value>Project  </Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -2750,7 +2699,6 @@
                   <TextRun>
                     <Value>Apt./Office/Shop</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -2783,7 +2731,6 @@
                   <TextRun>
                     <Value>THANK YOU FOR YOUR BUSINESS</Value>
                     <Style>
-                      <FontFamily>times New Roman</FontFamily>
                       <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>

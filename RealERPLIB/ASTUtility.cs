@@ -567,11 +567,15 @@ namespace RealERPLIB
 
         }
         public static string DateFormat(string date)
-
         {
-
             int index1 = date.IndexOf(".");
             return ((!date.Contains(".")) ? date : (date.Substring(index1 + 1, 2).Replace(".", "") + "." + date.Substring(0, index1) + "." + Right(date, 4)));
+        }
+
+        public static string DateFormat2(string date) 
+        {
+            int index1 = date.IndexOf("/");
+            return ((!date.Contains("/")) ? date : (date.Substring(index1 + 1, 2).Replace("/", "") + "/" + date.Substring(0, index1) + "/" + Right(date, 4)));
         }
 
         public static string Month3digit(int digit)
@@ -579,7 +583,6 @@ namespace RealERPLIB
         {
             digit = digit - 1;
             string[] Mon = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-
 
             return Mon[digit];
         }

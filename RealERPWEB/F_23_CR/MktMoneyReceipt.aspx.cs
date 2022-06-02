@@ -51,7 +51,7 @@ namespace RealERPWEB.F_23_CR
                 this.GetProjectName();
                 this.GetInsType();
                 string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
-                if(qPrjCode.Length>0)
+                if (qPrjCode.Length > 0)
                 {
                     this.lbtnOk_Click(null, null);
                 }
@@ -220,12 +220,12 @@ namespace RealERPWEB.F_23_CR
 
                 case "3337":
                 case "3336":
-               // case "3101":
+                    // case "3101":
                     mrprint = "MRPrint4";
                     break;
 
                 case "3339":
-                //case "3101":
+                    //case "3101":
                     mrprint = "MRPrint5";
                     break;
 
@@ -417,9 +417,9 @@ namespace RealERPWEB.F_23_CR
                 this.lblPhone.Text = dv1.ToTable().Rows[0]["custphn"].ToString();
 
                 this.txtPaidamt.Focus();
-               
-                
-                this.PayInf();              
+
+
+                this.PayInf();
                 this.GetCurMrNo();
                 this.PayType();
                 this.PrintDupOrOrginal();
@@ -460,9 +460,9 @@ namespace RealERPWEB.F_23_CR
                 case "3309":
                 case "3310":
                 case "3311":
-                //leisure
-                //case "2325":
-                //case "3325":
+                    //leisure
+                    //case "2325":
+                    //case "3325":
                     dt = ds1.Tables[3];
                     break;
 
@@ -677,12 +677,12 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetComCode();
             string UsirCode = this.lblCode.Text;
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string date =this.txtReceiveDate.Text.Trim().Length==0?System.DateTime.Today.ToString("dd-MMM-yyyy"): this.txtReceiveDate.Text;
+            string date = this.txtReceiveDate.Text.Trim().Length == 0 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtReceiveDate.Text;
             //string date =Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
             DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, "", "", "", "", "", "");
-                                 
+
             this.HiddenSameDate(ds2.Tables[0]);
             this.ShowTotalAmt();
 
@@ -726,7 +726,11 @@ namespace RealERPWEB.F_23_CR
             Session["status"] = dt1;
             this.gvPayment.DataSource = dt1;
             this.gvPayment.DataBind();
-
+            if (dt1.Rows.Count > 0)
+            {
+                Session["Report1"] = gvPayment;
+                ((HyperLink)this.gvPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
             DataTable dt2 = dtable;
             DataView dv2 = dt2.DefaultView;
             dv2.RowFilter = "grp like 'BB' ";
@@ -1028,7 +1032,7 @@ namespace RealERPWEB.F_23_CR
                             break;
 
                         case "3339":
-                        //case "3101":
+                            //case "3101":
 
                             PactCode = (RecType == "54004" || RecType == "54006" || RecType == "54009" || RecType == "54012" || RecType == "54015" || RecType == "54018" || RecType == "54020") ? ("27" + this.ddlProjectName.SelectedValue.ToString().Substring(2)) : this.ddlProjectName.SelectedValue.ToString();
                             break;
@@ -1196,18 +1200,18 @@ namespace RealERPWEB.F_23_CR
                 //    }
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
-               // string usercode = ViewState["usricode"].ToString();
+                // string usercode = ViewState["usricode"].ToString();
                 switch (comcod)
                 {
                     //case "3101": // Pintech                   
                     case "3356": //Intech                    
-                      this.SMSSendMoneyRecipt(comcod, PactCode, Usircode,  mrno,  mrdate);
+                        this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
                         break;
                     default:
                         break;
-                }              
-               
-             
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -1306,7 +1310,9 @@ namespace RealERPWEB.F_23_CR
             string mrno = this.lblReceiveNo.Text.Trim();
             string mrdate = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
 
+
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+            //string hostname = "~/F_17_Acc/";
             string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
@@ -1375,7 +1381,7 @@ namespace RealERPWEB.F_23_CR
                 this.txtremarks.Text = dr1[0]["rmrks"].ToString();
                 this.txtbookno.Text = dr1[0]["bookno"].ToString();
                 this.ddlCollType.SelectedValue = dr1[0]["collfrm"].ToString();
-                this.ddlRecType.SelectedValue = dr1[0]["recType"].ToString(); 
+                this.ddlRecType.SelectedValue = dr1[0]["recType"].ToString();
                 this.lblSchCode.Text = dr1[0]["schcode"].ToString();
                 string instypecode = ((dr1[0]["schcode"].ToString() == "") ?
                     ((this.ddlRecType.SelectedValue == "54001") ? "07"
@@ -1527,7 +1533,7 @@ namespace RealERPWEB.F_23_CR
                         }
                         DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKMRRREFNO", refno, "", "", "",
                             "", "", "", "", "");
-                        if (ds1.Tables[0].Rows.Count == 0);
+                        if (ds1.Tables[0].Rows.Count == 0) ;
                         else
                         {
                             DataView dv1 = ds1.Tables[0].DefaultView;
@@ -1801,7 +1807,7 @@ namespace RealERPWEB.F_23_CR
             string paytype = this.ddlpaytype.SelectedValue.ToString();
             if (paytype == "82002" || paytype == "82007")
             {
-                txtpaydate.Text =this.txtReceiveDate.Text.Trim().Length == 0 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtReceiveDate.Text;
+                txtpaydate.Text = this.txtReceiveDate.Text.Trim().Length == 0 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtReceiveDate.Text;
                 //txtpaydate.Text = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
             }
         }

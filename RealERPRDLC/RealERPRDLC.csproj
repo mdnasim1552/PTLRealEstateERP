@@ -658,6 +658,7 @@
     <EmbeddedResource Include="R_17_Acc\RptTrialBl1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherPrinJV.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherPrint.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptVoucherTopSheetFinaly.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherTopSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVouTopSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RrptChqReceivedVsClr.rdlc" />

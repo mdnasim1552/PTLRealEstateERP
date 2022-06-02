@@ -35,22 +35,22 @@
     <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
     <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+            <ProgressTemplate>
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="lading"></div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <div>
@@ -158,7 +158,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Phone">
                                 <ItemTemplate>
-                                     <asp:Label ID="lgvcustphn" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custphn")) %>'
+                                    <asp:Label ID="lgvcustphn" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custphn")) %>'
                                         Width="100px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -166,15 +166,15 @@
 
                             <asp:TemplateField HeaderText="Customer Id">
                                 <ItemTemplate>
-                                     <asp:Label ID="lgvfilecode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
+                                    <asp:Label ID="lgvfilecode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
                                         Width="100px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="Car Parking">
+                            <asp:TemplateField HeaderText="Car Parking">
                                 <ItemTemplate>
-                                     <asp:Label ID="lgvcparking" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cparking")) %>'
+                                    <asp:Label ID="lgvcparking" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cparking")) %>'
                                         Width="100px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -182,7 +182,7 @@
 
                             <asp:TemplateField HeaderText="Customer Id" Visible="false">
                                 <ItemTemplate>
-                                     <asp:Label ID="lgvCustid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custid")) %>'
+                                    <asp:Label ID="lgvCustid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custid")) %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -416,29 +416,29 @@
 
                                 <div class="form-group">
 
-                                 
 
-                                        <asp:Panel ID="panelexcel" runat="server">
-                                            <div class=" form-group">
-                                                <div class="col-sm-3 col-md-3 col-lg-3">
-                                                    <asp:Panel ID="pnlxcel" runat="server">
-                                                        <asp:Label ID="lblExel" runat="server" CssClass="lblTxt lblName txtAlgRight" Text="Exele :"></asp:Label>
-                                                        <div class="uploadFile">
-                                                            <asp:FileUpload ID="fileuploadExcel" runat="server" onchange="submitform();" />
-                                                        </div>
 
-                                                    </asp:Panel>
-                                                </div>
-                                                <div class="col-sm-1 col-md-1 col-lg-1">
-                                                    <asp:LinkButton ID="btnexcuplosd" OnClientClick="javascript: return FunConfirmSave();" runat="server" OnClick="btnexcuplosd_OnClick" CssClass=" btn btn-danger primarygrdBtn" Text="Upload Exel"></asp:LinkButton>
-                                                </div>
+                                    <asp:Panel ID="panelexcel" runat="server">
+                                        <div class=" form-group">
+                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                <asp:Panel ID="pnlxcel" runat="server">
+                                                    <asp:Label ID="lblExel" runat="server" CssClass="lblTxt lblName txtAlgRight" Text="Exele :"></asp:Label>
+                                                    <div class="uploadFile">
+                                                        <asp:FileUpload ID="fileuploadExcel" runat="server" onchange="submitform();" />
+                                                    </div>
 
-                                                <div class="clearfix"></div>
+                                                </asp:Panel>
+                                            </div>
+                                            <div class="col-sm-1 col-md-1 col-lg-1">
+                                                <asp:LinkButton ID="btnexcuplosd" OnClientClick="javascript: return FunConfirmSave();" runat="server" OnClick="btnexcuplosd_OnClick" CssClass=" btn btn-danger primarygrdBtn" Text="Upload Exel"></asp:LinkButton>
                                             </div>
 
+                                            <div class="clearfix"></div>
+                                        </div>
 
 
-                                        </asp:Panel>
+
+                                    </asp:Panel>
 
 
 
@@ -652,8 +652,7 @@
                     </div>
                     <div>
 
-                        <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                            >
+                        <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -678,7 +677,13 @@
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Description of Item" FooterText="Total">
+                                <asp:TemplateField HeaderText="" FooterText="Total">
+                                    <HeaderTemplate>
+                                        <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Description of Item" Width="200px"></asp:Label>
+
+                                        <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                        </asp:HyperLink>
+                                    </HeaderTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgcResDesc2" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
                                             Width="250px"></asp:Label>
