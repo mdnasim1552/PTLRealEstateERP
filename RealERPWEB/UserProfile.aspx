@@ -2,7 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
+
     <script>
+
+        $(document).keyup(function (e) {
+            if (e.keyCode == 44) return false;
+        });
+
         $(document).ready(function () {
             ExcuteEmpStatus();
         });
@@ -47,6 +55,22 @@
 
     </script>
     <style>
+                .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome, Edge, Opera and Firefox */
+        }
+        
+        @media print {
+
+  #exampleModal{
+    visibility: hidden;
+  }
+
+}
         .topMenu li .nav-link {
             padding: 10px 10px;
         }
@@ -814,9 +838,9 @@
 
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
-                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print">Print</span>
+                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip" Visible="false"><span class=" fa fa-print">Print</span>
                                                         </asp:HyperLink>
-                                                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
+                                                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-eye"> View</span>
                                                         </asp:HyperLink>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -912,10 +936,10 @@
                         <div class="col-6">
                             <div class="card " style="max-height: 550px; overflow-y: scroll">
                                 <div class="card-header">
-                                            <span class="mr-auto">Upcoming BirthDay </span>
-                                 
-                                                 <asp:LinkButton ID="birthday" runat="server" onclick="birthday_print_click"
-                                                CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
+                                    <span class="mr-auto">Upcoming BirthDay </span>
+
+                                    <asp:LinkButton ID="birthday" runat="server" OnClick="birthday_print_click"
+                                        CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
                                 </div>
                                 <div class="card-body row" id="EventBirthday" runat="server">
                                 </div>
@@ -1253,9 +1277,9 @@ d) 6 Days Late = 3 CL & half day leave
                 <div class="tab-pane fade" id="CodeofConduct">
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
-                            <div class="col-12"> 
+                            <div class="col-12">
                                 <div class="card-body">
-                                    <h1 class="text-center">Code of Conduct</h1> 
+                                    <h1 class="text-center">Code of Conduct</h1>
                                     <div runat="server" class="text-center" id="conductid">
                                     </div>
 
@@ -1273,19 +1297,195 @@ d) 6 Days Late = 3 CL & half day leave
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade noselect" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Request Pay slip</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-           
+                        <div class="slip-container">
+                            <div class="header text-center font-weight-bold" style="width: 100%;">
+                        
+                                    <h4>PAYSLIP</h4>
+                                    <h5 id="RptTitle" runat="server">March-2022 (Month of salary disbursement)</h5>
+                              
+
+                            </div>
+                            <div class="employee-details mt-3 d-none">
+                                <table style="border: 1px solid black;border-collapse: collapse;width:100%;">
+                                    <tr style="border: 1px solid black;border-collapse: collapse;">
+                                        <td class="font-weight-bold">Employee Details :</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Employee ID</td>
+                                        <td>:<span id="EmployeeId" runat="server"></span></td>
+                                        <td class="font-weight-bold">Employee Name</td>
+                                        <td>:<span id="EmployeeName" runat="server"></span></td>
+                                    </tr>
+
+                                      <tr>
+                                        <td class="font-weight-bold">Department</td>
+                                        <td>:<span id="Department" runat="server"></span></td>
+                                        <td class="font-weight-bold">Designation</td>
+                                        <td>:<span id="Designation" runat="server"></span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold">Joinning Date</td>
+                                        <td>: <span id="JoinDate" runat="server"></span></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                            <div class="salary-details d-none mt-3">
+                            
+                                <table style="border: 1px solid black;border-collapse: collapse;width:100%;">
+                                    <tr style="border: 1px solid black;border-collapse: collapse;">
+                                        <td class="font-weight-bold">Salary Details :</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Days in Month</td>
+                                        <td>:<span id="DaysInMonth" runat="server"></span></td>
+                                        <td class="font-weight-bold">Gross Salary</td>
+                                        <td>:<span id="GrossSal" runat="server"></span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold">Working Days</td>
+                                        <td>: <span id="WorkingDays" runat="server"></span></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+                                </table>
+
+
+                            </div>
+                            <div class="salary-details2 mt-3">
+                                    <p class="font-weight-bold m-0">Salary Details(Component-wise Breakdown):</p>
+                                <table style="border: 1px solid black;border-collapse: collapse;width:100%;">
+                                    <tr class="font-weight-bold" style="border: 1px solid black;border-collapse: collapse;">
+                                        <td>Earnings</td>
+                                        <td>BDT</td>
+                         <td style="border-left:1px solid"></td>
+                                        <td>Deduction</td>
+                                        <td>BDT</td>
+                                    </tr>
+                                    <tr>
+                                        <td>House Rent</td>
+                                        <td>:<span id="HouseRent" runat="server"></span></td>
+                <td style="border-left:1px solid"></td>
+                                        <td>Income Tax</td>
+                                        <td>:<span id="IncomeTax" runat="server"></span></td>
+                                    </tr>
+                                     <tr>
+                                        <td>Basic</td>
+                                        <td>:<span id="Basic" runat="server"></span></td>
+                 <td style="border-left:1px solid"></td>
+                                        <td>W.F Fund</td>
+                                        <td>:<span id="WFfund" runat="server"></span></td>
+                                    </tr>
+                                       <tr>
+                                        <td>Medical</td>
+                                        <td>:<span id="Medical" runat="server"></span></td>
+               <td style="border-left:1px solid"></td>
+                                        <td>Transport</td>
+                                        <td>:<span id="Transport" runat="server"></span></td>
+                                    </tr>
+
+                                       <tr>
+                                        <td>Conveyance</td>
+                                        <td>:<span id="Conveyance" runat="server"></span></td>
+                         <td style="border-left:1px solid"></td>
+                                        <td>Absent</td>
+                                        <td>:<span id="Absent" runat="server"></span></td>
+                                    </tr>
+
+
+                                      <tr>
+                                        <td>Arrear/Others</td>
+                                        <td>:<span runat="server" id="ArrearOthers"></span></td>
+                     <td style="border-left:1px solid"></td>
+                                        <td>Gratuity loan</td>
+                                        <td>:<span id="Gratuity" runat="server"></span></td>
+                                    </tr>
+
+                                       <tr>
+                                        <td>Food & Others</td>
+                                        <td>:<span id="FoodAndOthrs" runat="server"></span></td>
+                         <td style="border-left:1px solid"></td>
+                                        <td>Car loan</td>
+                                        <td>:<span id="CarLoan" runat="server"></span></td>
+                                    </tr>
+                                      <tr>
+                                        <td>Car Allowance</td>
+                                        <td>:<span id="CarAllow" runat="server">222</span></td>
+                          <td style="border-left:1px solid"></td>
+                                      <td>Adv./Other</td>
+                                        <td>:<span id="AdvOthers" runat="server">222</span></td>
+                                    </tr>
+                                      <tr>
+                                        <td>Earn leave</td>
+                                        <td>:<span id="EarnLeave" runat="server">33</span></td>
+                                           <td style="border-left:1px solid"></td>
+                                        <td>Others</td>
+                                        <td>:<span id="Others" runat="server">400</span></td>
+                                    </tr>
+
+                                        <tr class="text-bold">
+                                        <td>Total Earnings</td>
+                                        <td>:<span id="TotalEarning" runat="server">25223</span></td>
+                                            <td style="border-left:1px solid"></td>
+                                        <td>Total Deduction</td>
+                                        <td>:<span id="TotalDeduction" runat="server">43000</span></td>
+                                    </tr>
+                    
+                                </table>
+
+                            </div>
+                            <div class="net-payment mt-2">
+                                <table>
+                                    <tr class="font-weight-bold">
+                                        <td>Net Payment</td>
+                                        <td>:<span id="NetPayment" runat="server"></span></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">In words:</td>
+                                        <td>:<span id="InWords" runat="server">(Taka Twenty Nine Thousand Two Hundred Twenty Five only)</span></td>
+                                       
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                            <div class="nb border border-dark d-none mt-5">
+                                <p class="text-center m-0 p-3">
+                                    <span class="font-weight-bold">NB: </span>
+             This payslip is software generated, Any Discrepancy must be notify to HR Department within 7 days, Else it will be deemed that the staff has found this salary statement correct.
+                                </p>
+
+                            </div>
+                            
+                        </div>
+                                   <p class="text-danger font-weight-bold float-left mt-3"><strong>For print, Please contact with HR/Payroll Department.</strong></p>
                     </div>
                     <div class="modal-footer">
+             
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                     </div>
