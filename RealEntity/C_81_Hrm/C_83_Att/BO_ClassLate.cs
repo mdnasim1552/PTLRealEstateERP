@@ -82,6 +82,16 @@ namespace RealEntity.C_81_Hrm.C_83_Att
 
         }
 
+        [Serializable]
+        public class HolidayType
+        {
+            public string gcod { get; set; }
+            public string unit { get; set; }
+            public string hrdesc { get; set; }
+            public HolidayType() { } 
+
+        }
+
 
 
     }

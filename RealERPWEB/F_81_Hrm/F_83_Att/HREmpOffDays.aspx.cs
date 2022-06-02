@@ -39,12 +39,25 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetDepartment();
                 this.GetProjectName();
                 this.GetEmployee();
-
+                this.getHoliday();
 
 
             }
         }
 
+        private void getHoliday()
+        {
+            string comcod = this.GetComCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETHOLIDAY", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlType.DataSource = ds1.Tables[0];
+            this.ddlType.DataBind();
+            this.ddlType.DataTextField = "hrgdesc";
+            this.ddlType.DataValueField = "unit";
+            this.ddlType.DataBind();
+
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event

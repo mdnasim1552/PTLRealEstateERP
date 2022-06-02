@@ -71,6 +71,31 @@
 
     </style>
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            alert("Hello");
+            var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetHday")%>';
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    console.log('data', response);
+                    alert(response);
+                    //var s = '<option value="-1">Please Select Holiday</option>';
+                    //for (var i = 0; i < data.length; i++) {
+                    //    s += '<option value="' + data[i].unit + '">' + data[i].hrdesc + '</option>';
+                    //}
+                    //$("#htype").html(s);
+                }
+            });
+        });
+ 
+
+
+
         $(document).ready(function () {
             $(document).on("click", ".classAdd", function () {
 
@@ -80,9 +105,9 @@
                     '<td> <select name="htype' + rowCount + '" id="htype" class="form-control htype01"> ' +
                     '< option value = "" > Select Holidays </option>' +
 
-                    '<option value="W">Weekend Day</option>' +
-                    '<option value="H">Govt.Holi Day</option>' +
-                    '<option value="ST">Special Thursday Day</option>' +
+           '<option value="W">Weekend Day</option>' +
+            '<option value="H">Govt.Holi Day</option>' +
+            '<option value="ST">Special Thursday Day</option>' +
 
                     '</select ></td>' +
 
@@ -201,6 +226,10 @@
         function closeModal() {
             $('#addHolidayModal').modal('hide');
         }
+
+
+  
+
 
 
     </script>
@@ -387,7 +416,7 @@
                                                     <tr class="data-holiday">
                                                         <td>
 
-                                                            <select name="htype" id="htype" class="form-control htype01">
+                                                            <select name="htype" id="htype" class="form-control htype01" runat="server">
                                                                 <option value="">Select Holidays </option>
 
                                                                 <option value="W">Weekend Day</option>
