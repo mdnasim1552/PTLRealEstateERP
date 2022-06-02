@@ -24,7 +24,6 @@
             });
             var gvloan = $('#<%=this.gvloan.ClientID %>');
             gvloan.Scrollable();
-
         }
         function isNumberKey(txt, evt) {
             var charCode = (evt.which) ? evt.which : evt.keyCode;
