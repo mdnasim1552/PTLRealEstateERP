@@ -677,7 +677,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void GetComASecSelected()
         {
             string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString().Trim();
+            if (empid == "000000000000" || empid == "")
+                return;
             DataTable dt = (DataTable)ViewState["tblemp"];
+            
             DataRow[] dr = dt.Select("empid = '" + empid + "'");
             if (dr.Length > 0)
             {
@@ -2554,9 +2557,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string companyname = this.ddlCompany.SelectedItem.Text.Trim();
             double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
 
-
-
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+
+           // double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ? 0.00 : dt.Compute("sum(cashamt)", "")));
 
             ReportDocument rpcp = new ReportDocument();
 
