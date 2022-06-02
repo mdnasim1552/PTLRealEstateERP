@@ -223,8 +223,18 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="Current Month Loan">
+                                <asp:TemplateField HeaderText="Total Month Loan">
+                                    <ItemTemplate>
+                                          <asp:Label ID="lblTMontloan" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Style="text-align: right"  Width="80px" 
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalmon")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                    </ItemTemplate>
+                                     <FooterTemplate>
+                                        <asp:Label ID="lblTgvMonlon" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Current Month Employee">
                                     <ItemTemplate>
                                           <asp:Label ID="lblMontloan" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"  Width="80px" 
@@ -232,6 +242,18 @@
                                     </ItemTemplate>
                                      <FooterTemplate>
                                         <asp:Label ID="lblgvMonlon" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
+                                </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Current Month Company">
+                                    <ItemTemplate>
+                                          <asp:Label ID="lblComploan" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Style="text-align: right"  Width="80px" 
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "moncomp")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                    </ItemTemplate>
+                                     <FooterTemplate>
+                                        <asp:Label ID="lblgvComp" runat="server" Font-Bold="True" Font-Size="12px"
                                             ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                 </asp:TemplateField>
