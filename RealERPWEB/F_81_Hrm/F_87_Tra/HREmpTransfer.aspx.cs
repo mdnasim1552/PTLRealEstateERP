@@ -308,6 +308,8 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         private void GetComASecSelected()
         {
             string empid = this.ddlEmpList.SelectedValue.ToString().Trim();
+            if (empid == "000000000000" || empid == "")
+                return;
             DataTable dt = (DataTable)Session["tblemp"];
             DataRow[] dr = dt.Select("empid = '" + empid + "'");
             if (dr.Length > 0)

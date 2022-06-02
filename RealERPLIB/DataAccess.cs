@@ -128,12 +128,9 @@ namespace RealERPLIB
         }
         public Boolean ExecuteCommand(string SQL)
         {
-            SqlCommand cmd = new SqlCommand();
-           
+            SqlCommand cmd = new SqlCommand();     
             cmd.CommandText = SQL;
             cmd.Connection = this.m_Conn;
-
-
             try
             {
                 this.m_Conn.Open();

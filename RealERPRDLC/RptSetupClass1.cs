@@ -560,6 +560,7 @@ namespace RealERPRDLC
 
                 case "R_17_Acc.RptMonthWiseBankLedger": Rpt1a = SetRptMonthWiseBankLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptVoucherTopSheet": Rpt1a = SetRptVoucherTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptVoucherTopSheetFinaly": Rpt1a = SetRptVoucherTopSheetFinaly(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptOthersAccCode": Rpt1a = SetrptOthersAccCode(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccCodeBookAcme": Rpt1a = SetRptAccCodeBookAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -1752,6 +1753,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>)RptDataSet2));
             return Rpt1a;
         }
+        private static LocalReport SetRptVoucherTopSheetFinaly(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>)RptDataSet2));
+            return Rpt1a;
+        } 
         private static LocalReport SetrptOthersAccCode(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>)RptDataSet));

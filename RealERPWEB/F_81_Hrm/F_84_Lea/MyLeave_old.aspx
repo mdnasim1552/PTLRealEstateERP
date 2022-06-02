@@ -13,11 +13,7 @@
 
         function pageLoaded() {
             $('.chzn-select').chosen({ search_contains: true });
-          
-
-       
-
-
+            
         }
 
     </script>

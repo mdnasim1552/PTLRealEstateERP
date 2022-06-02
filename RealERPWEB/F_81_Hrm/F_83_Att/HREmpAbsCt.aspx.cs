@@ -289,11 +289,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlEmpName.DataSource = ds5.Tables[0];
             this.ddlEmpName.DataBind();
             ViewState["tblemp"] = ds5.Tables[0];
-            this.GetComASecSelected();
+           // this.GetComASecSelected();
         }
         private void GetComASecSelected()
         {
             string empid = this.ddlEmpName.SelectedValue.ToString();
+            if (empid == "000000000000" || empid == "")
+                return;
             DataTable dt = (DataTable)ViewState["tblemp"];
             DataRow[] dr = dt.Select("empid = '" + empid + "'");
             if (dr.Length > 0)
@@ -318,6 +320,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void imgbtnEmployee_Click1(object sender, EventArgs e)
         {
             this.GetEmpName();
+
+            //this.GetEmployeeName();
 
         }
         protected void ddldepartmentagg_SelectedIndexChanged(object sender, EventArgs e)

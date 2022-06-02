@@ -269,7 +269,7 @@ namespace RealERPWEB.F_23_CR
         private DataSet GetDataForReport()
         {
 
-            RadioButtonList1_SelectedIndexChanged(null, null);
+            //RadioButtonList1_SelectedIndexChanged(null, null);
             string Type = this.RadioButtonList1.SelectedValue.ToString(); //this.Request.QueryString["Type"].ToString().Trim();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComcod();
@@ -1355,15 +1355,17 @@ namespace RealERPWEB.F_23_CR
 
             if (rbtntype1.SelectedIndex==0)
             {
+
                 this.gvtbcon.Columns[7].Visible = true;
             }
 
 
-            else
+           else 
             {
                 this.gvtbcon.Columns[8].Visible = true;
 
             }
+            
 
 
             //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
