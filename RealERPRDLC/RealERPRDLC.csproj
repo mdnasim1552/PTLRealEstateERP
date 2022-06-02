@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -654,6 +654,7 @@
     <EmbeddedResource Include="R_17_Acc\RptTrialBl1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherPrinJV.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherPrint.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptVoucherTopSheetFinaly.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherTopSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVouTopSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RrptChqReceivedVsClr.rdlc" />

@@ -196,7 +196,7 @@ namespace RealERPWEB.F_17_Acc
             }
 
             DataSet ds4 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", pactCode, usirCode, mrno, "", "", "", "", "", "");
-            if (ds4 == null)
+            if (ds4 == null || ds4.Tables[0].Rows.Count==0)
                 return;
             DataTable dtrpt = ds4.Tables[0];
             string custname = dtrpt.Rows[0]["custname"].ToString();
