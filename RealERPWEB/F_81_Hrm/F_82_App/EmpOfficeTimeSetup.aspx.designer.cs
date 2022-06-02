@@ -7,21 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_81_Hrm.F_86_All
+namespace RealERPWEB.F_81_Hrm.F_82_App
 {
 
 
-    public partial class EmpFoodAllow
+    public partial class EmpOfficeTimeSetup
     {
-
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// UpdateProgress2 control.
@@ -33,24 +24,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lbldate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldate;
-
-        /// <summary>
-        /// ddlyearmon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlyearmon;
-
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -60,13 +33,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// ddlCompanyName control.
+        /// ddlCompany control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCompanyName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
 
         /// <summary>
         /// Label2 control.
@@ -87,58 +60,22 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
 
         /// <summary>
-        /// Label3 control.
+        /// lblSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label lblSection;
 
         /// <summary>
-        /// imgbtnSearchEmployee control.
+        /// ddlSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnSearchEmployee;
-
-        /// <summary>
-        /// txtSrcEmployee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcEmployee;
-
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// lblPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage;
-
-        /// <summary>
-        /// ddlpagesize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSection;
 
         /// <summary>
         /// lnkbtnShow control.
@@ -150,84 +87,93 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
 
         /// <summary>
-        /// pnlDedEarnExcel control.
+        /// pnlOfftime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDedEarnExcel;
+        protected global::System.Web.UI.WebControls.Panel pnlOfftime;
 
         /// <summary>
-        /// fileuploadExcel control.
+        /// lbltOfftime1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileuploadExcel;
+        protected global::System.Web.UI.WebControls.Label lbltOfftime1;
 
         /// <summary>
-        /// lbtnDedorOtherEernExcelAdjust control.
+        /// ddlOffintimedw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnDedorOtherEernExcelAdjust;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOffintimedw;
 
         /// <summary>
-        /// Pnlother control.
+        /// lbltLantime1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Pnlother;
+        protected global::System.Web.UI.WebControls.Label lbltLantime1;
 
         /// <summary>
-        /// ddlpreyearmon control.
+        /// ddlLanintimedw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpreyearmon;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanintimedw;
 
         /// <summary>
-        /// lbtnCopy control.
+        /// lbltOfftime2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnCopy;
+        protected global::System.Web.UI.WebControls.Label lbltOfftime2;
 
         /// <summary>
-        /// lnkcopy control.
+        /// ddlOffouttimedw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lnkcopy;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOffouttimedw;
 
         /// <summary>
-        /// chkcopy control.
+        /// lbltLantime2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkcopy;
+        protected global::System.Web.UI.WebControls.Label lbltLantime2;
 
         /// <summary>
-        /// gvEmpFAllow control.
+        /// ddlLanouttimedw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEmpFAllow;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanouttimedw;
+
+        /// <summary>
+        /// lnkbtnUpdateOfftime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnUpdateOfftime;
     }
 }

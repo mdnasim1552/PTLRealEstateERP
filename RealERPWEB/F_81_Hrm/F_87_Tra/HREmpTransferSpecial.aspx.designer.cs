@@ -168,22 +168,13 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         protected global::System.Web.UI.WebControls.Panel pnlToCompany;
 
         /// <summary>
-        /// Label5 control.
+        /// Label8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-
-        /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
         /// ddlToCompany control.
@@ -195,13 +186,13 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         protected global::System.Web.UI.WebControls.DropDownList ddlToCompany;
 
         /// <summary>
-        /// Label7 control.
+        /// Label6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
         /// ddlToProject control.
@@ -213,13 +204,13 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         protected global::System.Web.UI.WebControls.DropDownList ddlToProject;
 
         /// <summary>
-        /// Label1 control.
+        /// Label9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label9;
 
         /// <summary>
         /// ddlToSection control.

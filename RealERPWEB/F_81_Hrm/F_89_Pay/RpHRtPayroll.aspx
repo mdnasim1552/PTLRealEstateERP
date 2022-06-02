@@ -26,7 +26,7 @@
         function pageLoaded() {
             var gvAllPayroll = $('#<%=this.gvpayroll.ClientID %>');
             gvAllPayroll.gridviewScroll({
-                width: 1160,
+                width: 1400,
                 height: 420,
                 arrowsize: 30,
                 railsize: 16,
@@ -50,28 +50,10 @@
             $('#DeductinModal').modal('hide');
         }
 
+     
 
     </script>
-    <%--<script language="javascript" type="text/javascript">
-       $(document).ready(function () {       
-           var ddlpage = $('#<%=this.ddlpagesize.ClientID %>');
-           ddlpage.change(function () {
-             var ddlpageno = ddlpage.val();
-             alert(ddlpageno);
-             var gvpaysal = $('#<%=this.gvpayroll.ClientID %>');
-             gvpaysal.Scrollable();
-           });
-       });<a href="RpHRtPayroll.aspx">RpHRtPayroll.aspx</a>
-    --%>
-    <%--       function ChangePage() {
-
-////           var ddlpage = $('#<%=this.ddlpagesize.ClientID %>').val();
-//           //           alert(ddlpage);
-//           var gvpaysal = $('#<%=t<a href="RpHRtPayroll.aspx">RpHRtPayroll.aspx</a>his.gvpayroll.ClientID %>');
-//           gvpaysal.Scrollable();              
-//       }
-//  
-  </script>--%>
+ 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -384,6 +366,16 @@
                                             </div>
                                         </asp:Panel>
                                     </div>
+                                     <div class="col-3">
+                                    <div class="input-group input-group-alt">
+                                        <div class="input-group-prepend ">
+                                            <asp:Label ID="Label7" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                        </div>
+                                        <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+
+                                    </div>
+                                </div>
+                                <br />
                                 </fieldset>
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvpayroll" runat="server" AllowPaging="false" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -411,7 +403,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="ID CARD">
+                                            <asp:TemplateField HeaderText="ID #">
 
                                                 <%--  <FooterTemplate>
                                                     <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn  btn-primary primarygrdBtn" OnClick="lnkTotal_Click">Total</asp:LinkButton>
@@ -450,13 +442,22 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Name &amp; Designation">
-                                                <%--<FooterTemplate>
-                                                    <asp:LinkButton ID="lnkFiUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkFiUpdate_Click">Update</asp:LinkButton>
-                                                </FooterTemplate>--%>
+                                            <asp:TemplateField HeaderText="Name">
+                                                
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvndesig" runat="server"
-                                                        Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>"+"<br>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
+                                                        Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>" %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Designation">
+                                                
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvndesigs" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />

@@ -377,10 +377,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //case "3101":
                 case "3354"://Edison Real Estate
                     this.rbtSalSheet.SelectedIndex = 19;
-
                     break;
-
-
                 case "3358"://Entrust Real Estate
                     this.rbtSalSheet.SelectedIndex = 20;
 
@@ -1441,6 +1438,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                     Session["Report1"] = gvpayroll;
+                    string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
+                    Session["ReportName"] = "Salary_Sheet_"+ frmdate;
                     ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
 

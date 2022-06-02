@@ -47,34 +47,27 @@
 
             <div class="card card-fluid container-data">
                 <div class="card-header mt-3 mb-0 pb-0">
-                    <div class="row mb-0 pb-0">                      
+                    <div class="row mb-0 pb-0">
                         <asp:Label ID="lblfrmdate" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Transfer Date</asp:Label>
                         <asp:TextBox ID="txtCurTransDate" runat="server" CssClass="form-control form-control-sm col-2 "></asp:TextBox>
                         <cc1:CalendarExtender ID="txtCurTransDate_CalendarExtender" runat="server" Format="dd.MM.yyyy" TargetControlID="txtCurTransDate"></cc1:CalendarExtender>
-
                         <asp:Label ID="trnsferNo" runat="server" CssClass=" btn btn-sm btn-secsondary col-1">Transfer No</asp:Label>
                         <asp:Label ID="lblCurTransNo1" runat="server" CssClass=" btn btn-sm btn-secsondary mr-2 col-1">Transfer No</asp:Label>
                         <asp:TextBox ID="txtCurTransNo2" runat="server" ReadOnly="true" CssClass="form-control form-control-sm col-1"></asp:TextBox>
-
                         <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-success btn-sm ml-1 col-1">Ok</asp:LinkButton>
-
-                         <asp:LinkButton ID="lbtnPrevTransList" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1" OnClick="lbtnPrevTransList_Click">Prev. Trans List:</asp:LinkButton>
+                        <asp:LinkButton ID="lbtnPrevTransList" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1" OnClick="lbtnPrevTransList_Click">Prev. Trans List:</asp:LinkButton>
                         <asp:DropDownList ID="ddlPrevISSList" data-placeholder="Choose previous.." runat="server" CssClass="chzn-select form-control col-2 ">
                         </asp:DropDownList>
                     </div>
 
                     <div class="row mb-0 pb-0 mt-2">
                         <div class="col-6 well" id="pnlCompany" runat="server" visible="False">
-
-
                             <asp:Label ID="lcomp" runat="server" CssClass="btn btn-sm btn-secsondary mr-2">From Company</asp:Label>
                             <asp:DropDownList ID="ddlCompany" data-placeholder="Choose Company.." runat="server" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" CssClass="chzn-select form-control" AutoPostBack="true">
                             </asp:DropDownList>
-
                             <asp:Label ID="lbldep" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 ">Department</asp:Label>
                             <asp:DropDownList ID="ddlDepartment" data-placeholder="Choose Department.." runat="server" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control">
                             </asp:DropDownList>
-
                             <asp:Label ID="Label3" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 ">Section</asp:Label>
                             <asp:DropDownList ID="ddlprjlistfrom" runat="server" CssClass="chzn-select form-control" OnSelectedIndexChanged="ddlprjlistfrom_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
@@ -84,26 +77,19 @@
                             </asp:DropDownList>
                         </div>
 
-
                         <div class="col-6 well " id="pnlToCompany" runat="server" visible="False">
-
                             <asp:Label ID="Label1" runat="server" CssClass="btn btn-sm btn-secsondary mr-2">To Company</asp:Label>
                             <asp:DropDownList ID="ddlToCompany" data-placeholder="Choose Company.." runat="server" OnSelectedIndexChanged="ddlToCompany_SelectedIndexChanged" CssClass="chzn-select form-control" AutoPostBack="true">
                             </asp:DropDownList>
-
-
                             <asp:Label ID="Label2" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 ">Department</asp:Label>
                             <asp:DropDownList ID="ddlTodept" data-placeholder="Choose ToDepartment.." runat="server" OnSelectedIndexChanged="ddlTodept_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control">
                             </asp:DropDownList>
-
-
                             <asp:Label ID="Label4" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 ">Section</asp:Label>
                             <asp:DropDownList ID="ddlprjlistto" data-placeholder="Choose Department.." runat="server" CssClass="chzn-select form-control" AutoPostBack="true">
                             </asp:DropDownList>
 
                             <div class="col-12 row mb-0 pb-0 mt-2">
                                 <asp:TextBox ID="txtEmpDesignation" runat="server" CssClass="form-control form-control-sm col-3"></asp:TextBox>
-
                                 <asp:Label ID="lblResList0" runat="server" CssClass="btn btn-sm btn-secsondary  col-2">Present At Place</asp:Label>
                                 <asp:TextBox ID="txtpatplacedate" runat="server" CssClass="form-control form-control-sm col-2 mr-2"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtpatplacedate_CalendarExtender" runat="server"
@@ -114,11 +100,8 @@
                                 </asp:RadioButtonList>
                                 <asp:LinkButton ID="lnkselect" runat="server" CssClass="btn btn-success btn-sm  col-1" OnClick="lnkselect_Click">Select</asp:LinkButton>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -186,8 +169,7 @@
                                 <asp:TemplateField HeaderText="To Section">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvttprjdesc" runat="server" Style="text-align: left"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttprjdesc")) %>'
-                                            ></asp:Label>
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttprjdesc")) %>'></asp:Label>
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
@@ -215,14 +197,11 @@
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
                     </div>
-
-
                     <div id="pnlremarks" runat="server" visible="False">
                         <div class="row mb-0 pb-0 mt-2">
                             <asp:Label runat="server" class="btn btn-sm btn-secsondary  col-2" ID="ContentPlaceHolder1_Label6">Information of Finalcial matters</asp:Label>
                             <asp:TextBox class="form-control col-10" runat="server" TabIndex="17" ID="txtfmaters" TextMode="MultiLine" cols="20" Rows="2"></asp:TextBox>
                         </div>
-
                         <div class=" row mb-0 pb-0 mt-2">
                             <asp:Label runat="server" class="btn btn-sm btn-secsondary col-2" ID="lbl1">Special Note</asp:Label>
                             <asp:TextBox class="form-control col-10" runat="server" ID="txtspnote" TextMode="MultiLine" cols="20" Rows="2"></asp:TextBox>

@@ -675,7 +675,7 @@ namespace RealERPWEB
 
             foreach (DataRow dr in ds1.Tables[0].Rows)
             {
-                string url = "";
+                //string url = "";
                 //if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
                 //{
                 //    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);

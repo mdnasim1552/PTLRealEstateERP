@@ -324,7 +324,7 @@ namespace RealERPWEB.F_34_Mgt
             string procode = ((Label)this.gvPrjCode.Rows[index].FindControl("Label5")).Text.ToString();
 
             this.isLoadDataEmployeeGv(procode);
-
+            this.HiddednPactcode.Value = procode;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
         }
 
@@ -365,7 +365,7 @@ namespace RealERPWEB.F_34_Mgt
             DataSet ds1 = new DataSet("ds1");
             ds1.Tables.Add(dv.ToTable());
             ds1.Tables[0].TableName = "tbl1";
-            string procode1 = this.ddlProjectList.SelectedValue.ToString();
+            string procode1 = this.HiddednPactcode.Value.ToString();
             string procode = "16" + ASTUtility.Right(procode1, 10);
 
             string comcod = this.GetComeCode();

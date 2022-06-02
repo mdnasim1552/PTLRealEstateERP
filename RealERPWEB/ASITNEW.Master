@@ -1036,20 +1036,14 @@
                 })
             })
 
-            // setTimeout($("#AlertArea").fadeOut(5000), 5000);
-            //auto complete
-
-
-
-
-
+           
         });
 
 
         function clickinside() {
             openNav();
             functionIsRunning = 1;
-        }
+        };
 
         function FunOrdConfirm() {
             if (confirm('Are you sure you want to Order this  Item?')) {
@@ -1057,7 +1051,7 @@
             } else {
                 return false;
             }
-        }
+        };
 
         function FunAssignConfirm() {
             if (confirm('Are you sure you want to Assign Client?')) {
@@ -1065,7 +1059,7 @@
             } else {
                 return false;
             }
-        }
+        };
 
 
         function FunConfirmMerge() {
@@ -1074,7 +1068,7 @@
             } else {
                 return false;
             }
-        }
+        };
 
         function FunConfirm() {
             if (confirm('Are you sure you want to delete this  Item?')) {
@@ -1082,7 +1076,7 @@
             } else {
                 return false;
             }
-        }
+        };
 
         function FunConfirmMail() {
             if (confirm('Are you sure you want to send this Mail?')) {
@@ -1090,14 +1084,14 @@
             } else {
                 return false;
             }
-        }
+        };
         function FunConfirmSave() {
             if (confirm('Are you sure you want to save this  Item?')) {
                 return;
             } else {
                 return false;
             }
-        }
+        };
 
 
 
@@ -1107,7 +1101,7 @@
             } else {
                 return false;
             }
-        }
+        };
 
         function FunAppConfirm() {
             if (confirm('Are you sure you want to Approved this  Item?')) {
@@ -1115,8 +1109,8 @@
             } else {
                 return false;
             }
-        }
-
+        };
+        
 
         function FunCheckConfirm() {
             if (confirm('Are you sure you want to Checked this  Item?')) {
@@ -1124,7 +1118,7 @@
             } else {
                 return false;
             }
-        }
+        };
 
 
         function HideLabel(id) {
@@ -1139,19 +1133,19 @@
                 $('#lblmsg').addClass("msgsuccess");
             }
             setTimeout("lblHide()", 3000);
-        }
+        };
 
 
 
         function lblHide() {
             $('#lblmsg').hide();
-        }
+        };
 
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
             dataLayer.push(arguments);
-        }
+        };
         gtag('js', new Date());
         gtag('config', 'UA-116692175-1');
         var specialKeys = new Array();
@@ -1161,7 +1155,7 @@
             var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
             document.getElementById("error").style.display = ret ? "none" : "inline";
             return ret;
-        }
+        };
 
         //toster
         function showContent(msg) {
