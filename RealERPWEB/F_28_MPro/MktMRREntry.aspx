@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="lblMRRDate" runat="server" class="control-label  lblmargin-top9px" Text="MRR Date"></asp:Label>
+                                    <asp:Label ID="lblMRRDate" runat="server" class="control-label " Text="MRR Date"></asp:Label>
                                     <asp:TextBox ID="txtCurMRRDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                     <cc1:CalendarExtender ID="txtCurMRRDate_CalendarExtender" runat="server" Enabled="True"
                                         Format="dd.MMM.yyyy" TargetControlID="txtCurMRRDate"></cc1:CalendarExtender>
@@ -87,15 +87,15 @@
                             </div>
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="lblRefNo" runat="server" class="control-label  lblmargin-top9px" Text="Ref No."></asp:Label>
-                                    <asp:Label ID="lblCurMRRNo1" runat="server" class="control-label  lblmargin-top9px" Text="MRR00-"></asp:Label>
+                                    <asp:Label ID="lblRefNo" runat="server" class="control-label " Text="MRR No."></asp:Label>
+                                    <asp:Label ID="lblCurMRRNo1" runat="server" class="control-label " Text="MRR00-"></asp:Label>
                                     <asp:TextBox ID="txtCurMRRNo2" runat="server" CssClass="form-control form-control-sm" Text="00000" Enabled="false"></asp:TextBox>
                                 </div>
                             </div>
 
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="lblMRRNo" runat="server" class="control-label  lblmargin-top9px" Text="MRR No."></asp:Label>
+                                    <asp:Label ID="lblMRRNo" runat="server" class="control-label " Text="MRR Ref No."></asp:Label>
                                     <asp:TextBox ID="txtMRRRef" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                             </div>
 
                             <div class="col-1 ml-3 pull-right">
-                                <asp:Label ID="lblPO" runat="server" class="control-label  lblmargin-top9px" Text="Order"></asp:Label>
+                                <asp:Label ID="lblPO" runat="server" class="control-label " Text="Order"></asp:Label>
                             </div>
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <asp:DropDownList ID="ddlOrderList" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
@@ -163,19 +163,19 @@
                         <div class="row mt-1">
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" class="control-label  lblmargin-top9px" Text="Chalan No"></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" class="control-label " Text="Chalan No"></asp:Label>
                                     <asp:TextBox ID="txtChalanNo" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="Label2" runat="server" class="control-label  lblmargin-top9px" Text="QC No"></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" class="control-label " Text="QC No"></asp:Label>
                                     <asp:TextBox ID="txtQc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="lblChaDate" runat="server" class="control-label  lblmargin-top9px" Text="Challan Date"></asp:Label>
+                                    <asp:Label ID="lblChaDate" runat="server" class="control-label " Text="Challan Date"></asp:Label>
                                     <asp:TextBox ID="txtChaDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                     <cc1:CalendarExtender ID="CalendarExtender_txtChaDate" runat="server" Enabled="True"
                                         Format="dd.MMM.yyyy" TargetControlID="txtChaDate"></cc1:CalendarExtender>
@@ -185,13 +185,13 @@
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-3">
                                 <div class="form-group">
-                                    <asp:Label ID="lblPRType" runat="server" class="control-label  lblmargin-top9px" Text="Pur. Req. Type"></asp:Label>
+                                    <asp:Label ID="lblPRType" runat="server" class="control-label " Text="Pur. Req. Type"></asp:Label>
                                     <asp:DropDownList ID="ddlPRType" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPRType_SelectedIndexChanged1"></asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-sm-3 col-md-3 col-lg-3 ml-1">
                                 <div class="form-group">
-                                    <asp:Label ID="lblActType" runat="server" class="control-label  lblmargin-top9px" Text="Activity Type"></asp:Label>
+                                    <asp:Label ID="lblActType" runat="server" class="control-label " Text="Activity Type"></asp:Label>
                                     <asp:DropDownList ID="ddlActType" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
@@ -352,7 +352,7 @@
                         <div class="row mt-2">
                             <div class="col-sm-2 col-md-2 col-lg-2">
                                 <div class="form-group">
-                                    <asp:Label ID="lblreqnaration" runat="server" class="control-label  lblmargin-top9px" Text="Req Narration:" Font-Bold="true" Style="text-align: left"></asp:Label>
+                                    <asp:Label ID="lblreqnaration" runat="server" class="control-label " Text="Req Narration:" Font-Bold="true" Style="text-align: left"></asp:Label>
                                 </div>
                             </div>
                         </div>
