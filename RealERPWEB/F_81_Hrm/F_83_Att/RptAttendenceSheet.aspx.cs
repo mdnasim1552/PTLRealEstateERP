@@ -1660,7 +1660,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             var list = ds4.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpAttnIdWise>();
             LocalReport rpt1 = new LocalReport();
 
-            rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptNewEmpStatus", list, null, null);
+            if (comcod == "3354" || comcod=="3101")
+            {
+                rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptNewEmpStatusEdi", list, null, null);
+
+            }
+            else
+            {
+                rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptNewEmpStatus", list, null, null);
+
+            }
 
 
 
@@ -1692,7 +1701,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string leday = Convert.ToDouble(ds4.Tables[1].Rows[0]["tlvday"]).ToString("#,##0;(#,##0); ");
             string abday = Convert.ToDouble(ds4.Tables[1].Rows[0]["tabsday"]).ToString("#,##0;(#,##0); ");
             string hday = Convert.ToDouble(ds4.Tables[1].Rows[0]["thday"]).ToString("#,##0;(#,##0); ");
-
+            string earlyleav = Convert.ToDouble(ds4.Tables[1].Rows[0]["terlyday"]).ToString("#,##0;(#,##0); ");
+            
             rpt1.SetParameters(new ReportParameter("comnam", comnam));
             //rpt1.SetParameters(new ReportParameter("RptTitle", rptDt));
             rpt1.SetParameters(new ReportParameter("empname", empnam));
@@ -1708,6 +1718,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             rpt1.SetParameters(new ReportParameter("leday", leday));
             rpt1.SetParameters(new ReportParameter("abday", abday));
             rpt1.SetParameters(new ReportParameter("hday", hday));
+            rpt1.SetParameters(new ReportParameter("earlyleav", earlyleav));
             rpt1.SetParameters(new ReportParameter("TotalHour", TotalHour));
 
             rpt1.SetParameters(new ReportParameter("RptTitle", "Individual Attendance Summary Report"));

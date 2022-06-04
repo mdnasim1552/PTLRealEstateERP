@@ -499,6 +499,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptPrintVoucherBridge": Rpt1a = SetrptPrintVoucherBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherISBL": Rpt1a = SetrptPrintVoucherISBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherFinlay": Rpt1a = SetrptPrintVoucherFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVoucherEpic": Rpt1a = SerptPrintVoucherEpic(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu": Rpt1a = SetrptPrintVocherSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu02": Rpt1a = SetrptPrintVocherSuvastu02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherSuvastu03": Rpt1a = SetrptPrintVocherSuvastu03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -620,6 +621,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptDuesCollAll": Rpt1a = SetRptDuesCollAll(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMoneyReceiptIntech": Rpt1a = SetRptMoneyReceiptIntech(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMoneyReceiptFinlay": Rpt1a = SetRptMoneyReceiptFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptMoneyReceiptFinlay2": Rpt1a = SetRptMoneyReceiptFinlay2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 //Uzzal Money receipt
                 case "R_22_Sal.RptMoneyReceiptLeisure": Rpt1a = SetRptMoneyReceiptLeisure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1565,6 +1567,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
+        } 
+        private static LocalReport SerptPrintVoucherEpic(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a; 
         }
         private static LocalReport SetrptPrintVocherSuvastu(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -3987,6 +3994,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptMoneyReceiptFinlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptMoneyReceiptFinlay2(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>)RptDataSet)); 
             return Rpt1a;
         }
         private static LocalReport SetRptMoneyReceiptSuvastu(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

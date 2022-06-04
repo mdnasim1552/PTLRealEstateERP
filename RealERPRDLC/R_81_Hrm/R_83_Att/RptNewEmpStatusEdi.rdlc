@@ -1265,7 +1265,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>2.38474in</Top>
+            <Top>2.75974in</Top>
             <Height>0.28125in</Height>
             <Width>2.04167in</Width>
             <ZIndex>29</ZIndex>
@@ -2030,6 +2030,7 @@
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>=iif(TimeValue(Fields!stdtimein.Value)&lt;TimeValue(Fields!actualin.Value), "Bold","Default")</FontWeight>
+                                    <Color>=iif(TimeValue(Fields!stdtimein.Value)&lt;TimeValue(Fields!actualin.Value), "Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2068,6 +2069,8 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>=iif(TimeValue(Fields!stdtimeout.Value)&gt;TimeValue(Fields!actualout.Value), "Bold","Default")</FontWeight>
+                                    <Color>=iif(TimeValue(Fields!stdtimeout.Value)&gt;TimeValue(Fields!actualout.Value), "Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2408,7 +2411,7 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>2.76321in</Top>
+            <Top>3.13821in</Top>
             <Left>0.03932in</Left>
             <Height>0.73956in</Height>
             <Width>7.60195in</Width>
@@ -2419,14 +2422,120 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox42">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Total  Early Leave</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox13</rd:DefaultName>
+            <Top>2.50625in</Top>
+            <Left>4.28917in</Left>
+            <Height>0.21528in</Height>
+            <Width>1.19792in</Width>
+            <ZIndex>43</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="hday2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!earlyleav.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>hday</rd:DefaultName>
+            <Top>2.51888in</Top>
+            <Left>5.63167in</Left>
+            <Height>0.19792in</Height>
+            <Width>1in</Width>
+            <ZIndex>44</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox44">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:  </Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox13</rd:DefaultName>
+            <Top>2.50625in</Top>
+            <Left>5.48709in</Left>
+            <Height>0.21528in</Height>
+            <Width>0.12501in</Width>
+            <ZIndex>45</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>3.54444in</Height>
+        <Height>3.90277in</Height>
         <Style />
       </Body>
       <Width>7.64585in</Width>
       <Page>
         <PageFooter>
-          <Height>0.34653in</Height>
+          <Height>0.74653in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
