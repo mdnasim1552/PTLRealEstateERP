@@ -1044,6 +1044,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     Gvalue = (((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-jan-1900" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                 }
 
+               else if (Gcode == "01050")
+                {
+                    Gvalue = Gvalue.Length == 0 ? "0" : Gvalue;
+                }
+
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
                             "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn);

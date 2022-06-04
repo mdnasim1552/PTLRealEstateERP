@@ -191,6 +191,7 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCube.rdlc" />
@@ -691,6 +692,7 @@
     <EmbeddedResource Include="R_22_Sal\RptDummyPaywithoutDiscount02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDWiseRealCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptIntech.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt360.rdlc" />
@@ -896,6 +898,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonthPre.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyEarlyLeaveEmp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyLateAttnEmp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatusEdi.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptRetiredEmployee.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\EmpLeavApp.rdlc" />
