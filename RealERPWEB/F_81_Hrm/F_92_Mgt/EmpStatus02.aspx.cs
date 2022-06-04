@@ -1044,8 +1044,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvinacEmplist.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvinacEmplist.DataSource = dt;
                     this.gvinacEmplist.DataBind();
+
                     Session["Report1"] = gvinacEmplist;
-                    //  ((HyperLink)this.gvinacEmplist.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                         ((HyperLink)this.gvinacEmplist.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    }
+
 
                     break;
                 case "TotalEmplist":
