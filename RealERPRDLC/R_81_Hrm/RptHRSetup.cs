@@ -39,6 +39,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_84_Lea.rptBirthday": Rpt1a = setRptBirthday(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
                 case "R_81_Hrm.R_83_Att.RptNewEmpStatus": Rpt1a = SetRptEmpStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_83_Att.RptNewEmpStatusEdi": Rpt1a = SetRptEmpStatusEdi(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                // case "R_81_Hrm.R_83_Att.RptMonAttendance": Rpt1a = SetRptMonAttendance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                     
                 #region RD_89_Pay
@@ -191,6 +192,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptDailyAttendenceCHL(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.DailyAttenCHLDayWize>)rptDataSet));
+            return rpt1a;
+        }
+        private static LocalReport SetRptEmpStatusEdi(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpAttnIdWise>)rptDataSet));
             return rpt1a;
         }
         private static LocalReport SetRptEmpStatus(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)

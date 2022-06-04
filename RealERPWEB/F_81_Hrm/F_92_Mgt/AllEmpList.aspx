@@ -305,8 +305,6 @@
             }
 
         }, ["pie"]);
-
-
     <%--    var pres = this.parseFloat($("#<%=this.txtpresent.ClientID %>").val());
         var el = this.parseFloat($("#<%=this.txtearlylev.ClientID %>").val());
         var ol = this.parseFloat($("#<%=this.txtonleave.ClientID %>").val());
