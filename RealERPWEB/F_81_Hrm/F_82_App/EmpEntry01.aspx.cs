@@ -569,8 +569,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                     case "01997": // Grade
-                        dv1 = dt1.DefaultView;
-                        dv1.RowFilter = ("gcod like '86%'");
+                        if (comcod == "3354")
+                        {
+                            dv1 = dt1.DefaultView;
+                            dv1.RowFilter = ("gcod like '03%'");
+                        }
+                        else
+                        {
+                            dv1 = dt1.DefaultView;
+                            dv1.RowFilter = ("gcod like '86%'");
+                        }
+                      
+
+
                         ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ddlgval = ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval"));
@@ -1031,6 +1042,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 if (Gcode == "01999")
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-jan-1900" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                }
+
+               else if (Gcode == "01050")
+                {
+                    Gvalue = Gvalue.Length == 0 ? "0" : Gvalue;
                 }
 
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;

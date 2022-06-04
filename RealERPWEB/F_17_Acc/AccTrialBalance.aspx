@@ -140,7 +140,7 @@
                 </asp:UpdateProgress>
             </div>
             <div class=" card card-fluid">
-                <div class=" card-body" style="min-height:250px;">
+                <div class=" card-body" style="min-height:300px;">
 
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="TrialBalance" runat="server">
