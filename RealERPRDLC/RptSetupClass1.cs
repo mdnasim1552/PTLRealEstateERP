@@ -338,8 +338,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptChequeGreenwoodSHBL": Rpt1a = SetRptChequeGreenwoodSHBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeGreenwoodSHIBL": Rpt1a = SetRptChequeGreenwoodSHIBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeGreenwoodFSIBL": Rpt1a = SetRptChequeGreenwoodFSIBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
-
+                case "R_17_Acc.PrintChqFinlayBRAC": Rpt1a = SetPrintChqFinlayBRAC(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_17_Acc.RptTrialBl1": Rpt1a = SetRptTrialBl1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1368,7 +1367,27 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport SetPrintChqFinlayBRAC(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            Rpt1a.SetParameters(new ReportParameter("compName", hshParm["compName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo1", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt1", hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("naration", hshParm["naration"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("Chequeno", hshParm["Chequeno"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("ProjectDesc", hshParm["ProjectDesc"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
 
+            return Rpt1a;
+        }
         private static LocalReport SetRptChequeSBL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Hashtable hshParm = (Hashtable)RptDataSet;
