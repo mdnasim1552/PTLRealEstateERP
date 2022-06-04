@@ -175,9 +175,15 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
 
         protected void grvacc_DataBind()
         {
-
-            this.gvEmpListTrans.DataSource = (DataTable)Session["tbltrnasemp"];
+            DataTable dt = (DataTable)Session["tbltrnasemp"];
+            this.gvEmpListTrans.DataSource = dt;
             this.gvEmpListTrans.DataBind();
+
+            if(dt.Rows.Count>0)
+            {
+                Session["Report1"] = gvEmpListTrans;
+                ((HyperLink)this.gvEmpListTrans.HeaderRow.FindControl("hlbtntbCdataExcelemplist")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
         }
 
 
@@ -187,7 +193,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             string comcod = this.GetCompCode();
             if (this.ddlCompany.Items.Count == 0)
                 return;
-
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";

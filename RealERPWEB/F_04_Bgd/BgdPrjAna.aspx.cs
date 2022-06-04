@@ -472,8 +472,19 @@ namespace RealERPWEB.F_04_Bgd
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             DataTable dt = (DataTable)Session["tblResource"];
-            // ViewState["tblconarea"] = ds1.Tables[0]; // nayan
+
+            //this. Report_Resource_Basis(DataTable dt);
+
+
+            //string comcod = this.GetComeCode();
+           
+
+            //ViewState["tblconarea"] = ds1.Tables[0];
+
+            //ViewState["tblconarea"] = ds1.Tables[0]; // nayan
             DataTable dt1 = (DataTable)ViewState["tblconarea"];
+
+
 
             DataView dv = dt.Copy().DefaultView;
 
@@ -490,8 +501,11 @@ namespace RealERPWEB.F_04_Bgd
 
             double totalCost = totalCost1;
 
+          
 
-            double conarea = dt1.Rows.Count == 0 ? 0 : Convert.ToDouble(dt1.Rows[0]["conarea"]);
+           
+
+            double conarea =  dt1.Rows.Count == 0 ? 0 : Convert.ToDouble(dt1.Rows[0]["conarea"]);
 
             double CostPsft = conarea == 0 ? 0 : (totalCost / conarea);
 

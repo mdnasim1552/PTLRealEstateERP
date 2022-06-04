@@ -22,6 +22,9 @@
         .chzn-drop {
             width: 100% !important;
         }
+        .chzn-container{
+            width: 100% !important;
+        }
 
         .chzn-container-single .chzn-single {
             height: 35px !important;

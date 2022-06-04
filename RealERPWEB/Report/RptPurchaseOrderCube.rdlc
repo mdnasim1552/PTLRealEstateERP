@@ -3513,34 +3513,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Subreport Name="Subreport3">
-                          <ReportName>RptPaymentSchedule</ReportName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                          </Style>
-                        </Subreport>
-                        <ColSpan>11</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.20833in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox201">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -3887,9 +3859,6 @@
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
-                      <KeepWithGroup>Before</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
                       <Visibility>
                         <Hidden>=iif(Parameters!terms1.Value="",true,false)</Hidden>
                       </Visibility>
@@ -3903,7 +3872,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.04458in</Top>
             <Left>0.00815in</Left>
-            <Height>4.97082in</Height>
+            <Height>4.76249in</Height>
             <Width>8.10749in</Width>
             <Style>
               <Border>
@@ -3912,7 +3881,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.1404in</Height>
+        <Height>4.83832in</Height>
         <Style />
       </Body>
       <Width>8.11564in</Width>

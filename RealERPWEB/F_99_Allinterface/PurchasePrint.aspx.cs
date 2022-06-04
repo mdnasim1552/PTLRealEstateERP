@@ -2610,6 +2610,11 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3367": // Epic
                 case "3368": // Finlay
 
+                case "3358": // Entrust
+                case "3359": // Entrust
+                case "3360": // Entrust
+                case "3361": // Entrust 
+
 
                     this.OrderPrintRDLC();
                     break;
@@ -4079,6 +4084,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms1 = terms.ToString();
                         break;
 
+                    //case "3101": // Cube 
                     case "3357": // Cube 
                         terms1 = terms.ToString();
                         pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", " + _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
@@ -4162,6 +4168,24 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1109":
                     case "3315":
                     case "3316":
+
+                        terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
+                        terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
+                        terms3 = termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "";
+                        terms4 = termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString().Length > 0 ? "4." + (termscondition.FindAll(p => p.termsid == "004")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString()) : "";
+                        terms5 = termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString().Length > 0 ? "5." + (termscondition.FindAll(p => p.termsid == "005")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString()) : "";
+                        terms6 = termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString().Length > 0 ? "6." + (termscondition.FindAll(p => p.termsid == "006")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString()) : "";
+                        terms7 = termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString().Length > 0 ? "7." + (termscondition.FindAll(p => p.termsid == "007")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "";
+                        terms8 = termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString().Length > 0 ? "8." + (termscondition.FindAll(p => p.termsid == "008")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString()) : "";
+                        terms9 = termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+                        break;
+                                            
+                    
+                    case "3358":
+                    case "3359":
+                    case "3360":
+                    case "3361":
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
                         terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
@@ -4280,6 +4304,13 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101": //pintech                      
                     case "3368": //Finlay Properties Ltd                        
                         Reportpath = "~/Report/RptPurchaseOrderFinlay.rdlc";
+                        break;                    
+                    
+                    case "3358": //Entrust Ltd                        
+                    case "3359": //Entrust Ltd                        
+                    case "3360": //Entrust Ltd                        
+                    case "3361": //Entrust Ltd                        
+                        Reportpath = "~/Report/RptPurchaseOrderEntrust.rdlc";
                         break;
 
                     default:
@@ -4442,8 +4473,12 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReportAssure);
                         break;
 
-                    //case "3101":
-                    case "3368":
+                    case "3358":
+                    case "3359":
+                    case "3360":
+                    case "3361":
+                    case "3368": // finlay
+                    case "3357": // cube
                         break;
                     default:
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);

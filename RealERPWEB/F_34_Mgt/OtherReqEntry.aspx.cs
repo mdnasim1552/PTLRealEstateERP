@@ -2716,7 +2716,8 @@ namespace RealERPWEB.F_34_Mgt
             if (dt1.Rows.Count == 0)
                 return dt1;
             DataView dv = dt1.DefaultView;
-            dv.Sort = "pactcode,rsircode";
+            //dv.Sort = "pactcode,rsircode";
+            dv.Sort = "pactcode";
             dt1 = dv.ToTable();
             string pactcode = dt1.Rows[0]["pactcode"].ToString();
             for (int j = 1; j < dt1.Rows.Count; j++)

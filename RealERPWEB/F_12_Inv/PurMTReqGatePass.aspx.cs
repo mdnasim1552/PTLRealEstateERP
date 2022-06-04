@@ -721,14 +721,10 @@ namespace RealERPWEB.F_12_Inv
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
             }
-            if (this.ddlPrevList.Items.Count == 0)
-                this.GetGetPassNo();
-
 
 
             //log Report
             string mmGetpdat = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
-            string mGetpNo = this.lblGatePassNo1.Text.Trim().Substring(0, 3) + this.txtCurAprovDate.Text.Trim().Substring(6, 4) + this.lblGatePassNo1.Text.Trim().Substring(3, 2) + this.txtGatePassNo2.Text.Trim();
             string getpref = this.txtGatemPassNo.Text.ToString();
             string mtrnar = this.txtgetpNarr.Text.ToString();
 
@@ -818,6 +814,13 @@ namespace RealERPWEB.F_12_Inv
 
             }
             ////////
+
+            if (this.ddlPrevList.Items.Count == 0)
+                this.GetGetPassNo();
+
+            string mGetpNo = this.lblGatePassNo1.Text.Trim().Substring(0, 3) + this.txtCurAprovDate.Text.Trim().Substring(6, 4) + this.lblGatePassNo1.Text.Trim().Substring(3, 2) + this.txtGatePassNo2.Text.Trim();
+
+
             string mrdate = tbl1.Rows[0]["mtrdat"].ToString();
             bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(mrdate), Convert.ToDateTime(mmGetpdat));
             if (!dcon)

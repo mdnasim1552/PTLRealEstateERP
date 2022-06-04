@@ -58,6 +58,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.ddlEmpName_SelectedIndexChanged(null, null);
                    
                 }
+               else if (qtype == "COMMON")
+                {
+                    int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                            (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("~/AcceessError.aspx");
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (COMMON)";
+
+                    this.empMgt.Visible = true;
+                    GetEmpLoyee();
+                    // GetSupvisorCheck();
+                    this.ddlEmpName_SelectedIndexChanged(null, null);
+
+                }
                 else
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE";
@@ -254,7 +269,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.btnSave.Enabled = false;
                     return;
                 }
-                else if (gcod == "51999")
+                else if (gcod == "51999") // altarnative leav apply
                 {
                     DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                     DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
@@ -287,7 +302,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 }
-                else if(gcod == "51005")
+                else if(gcod == "51005") // without pay leave condiiton 
                 {
                     DataTable dt = (DataTable)Session["tblleavest"];
                     DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
@@ -398,6 +413,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             }
                         }
                         
+
+                        if(gcod== "51002" && comcod=="3368" && Convert.ToDouble(diffdays) > 3)
+                        {
+                            string Messaged = "Oops!! Casual leave cannot be taken for more than 3 days at a time";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                            this.btnSave.Enabled = false;
+                            return;
+                        }
                         
                         DataView dv = dt.Copy().DefaultView;
                         dv.RowFilter = ("gcod=" + gcod);
@@ -588,7 +611,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             string Empid = "";
             string qtype = this.Request.QueryString["Type"] ?? "";
-            if (qtype == "MGT")
+            if ((qtype == "MGT") || (qtype == "COMMON"))
             {
                 Empid = this.ddlEmpName.SelectedValue.ToString();
 
@@ -994,8 +1017,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
 
         }
-
-
         private void EmpLeaveInfo()
         {
             try

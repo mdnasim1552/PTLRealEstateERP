@@ -50,8 +50,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //this.gvholiday.DataSource = ds3.Tables[0];
             //this.gvholiday.DataBind();
             //ViewState["HolidayInfo"] = ds3.Tables[0];
+            string comcod = this.GetComCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETHOLIDAY", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.htype.DataSource = ds1.Tables[0];
+            this.htype.DataBind();
+            this.htype.DataTextField = "hrgdesc";
+            this.htype.DataValueField = "unit";
+            this.htype.DataBind();
+
 
         }
+
+
         private void ShowHoliday()
         {
             string comcod = this.GetComCode();

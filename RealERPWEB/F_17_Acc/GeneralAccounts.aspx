@@ -104,6 +104,7 @@
 
         function isNumberKey(txt, evt) {
             var charCode = (evt.which) ? evt.which : evt.keyCode;
+            
             if (charCode == 46) {
                 //Check if the text already contains the . character
                 if (txt.value.indexOf('.') === -1) {
@@ -112,8 +113,7 @@
                     return false;
                 }
             } else {
-                if (charCode > 31 &&
-                    (charCode < 48 || charCode > 57))
+                if (charCode != 43 && charCode != 45 && charCode != 42 && charCode != 47 && charCode > 31 && (charCode < 48 || charCode > 57))
                     return false;
             }
             return true;
@@ -750,7 +750,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvQty" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None"
-                                                        onkeypress="return isNumberKey(this, event);"
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="50px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="79"></asp:TextBox>

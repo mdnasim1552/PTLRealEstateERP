@@ -263,8 +263,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvfiApproved.DataBind();
                     break;
 
-
-
                 case "gvConfirm":
                     this.gvConfirm.DataSource = (dt);
                     this.gvConfirm.DataBind();
@@ -613,8 +611,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 }
             }
             this.SaleRequRpt();
-
-
         }
     }
 }

@@ -30,19 +30,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.GetCompany();
                     this.topPanle.Visible = true;
                     string comcod = GetCompCode();
-                    if (comcod == "3365" || comcod == "3101")
+                    if (comcod == "3365")
                     {
                         this.GetEmpName();
                         this.WorkComments.Visible = false;
                         this.ReasonType.Visible = false;
-
                     }
-
                 }
                 else
                 {
                     string comcod = GetCompCode();
-                    if (comcod == "3365"||comcod=="3101")
+                    if (comcod == "3365")
                     {
                         this.GetEmpName();
                         this.ShowEmp.Visible = true;
@@ -54,9 +52,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         this.ShowEmp.Visible = false;
                     }
                     lblCurrentDate.Text= "Current Time: "+ System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                }
-                
-                
+                }               
                 this.txtfromdate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 this.GetEmpAttandance();
             }
@@ -67,6 +63,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompCode();            
             string userrole = hst["userrole"].ToString();
+            string deptcod = this.ddlDpt.SelectedValue.ToString();
             string empid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "GETATTANDANCEINFOINDIVIDUAL", empid, "", "", "", "", "", "", "", "");
             if (ds5 == null)
@@ -74,20 +71,29 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 return;
             }
 
-            if (comcod == "3365" || comcod == "3101")
-            {
+            if (comcod == "3365")
+            { 
                 this.btnSaveAttn.Text = "Save";
             }
             else
             {
-                if (ds5.Tables[0].Rows.Count > 0)
-                {
-                    this.btnSaveAttn.Text = "punch Out";
-                }
-                else
-                {
-                    this.btnSaveAttn.Text = "punch In";
-                }
+                //if (comcod == "3101" && deptcod!= "945100101000")
+                //{
+                //    this.btnSaveAttn.Text = "Punch";
+                //}
+                //else
+                //{
+                    if (this.btnSaveAttn.Text == "" || this.btnSaveAttn.Text == "Punch Out")
+                    {
+                        this.btnSaveAttn.Text = "Punch In";
+                    }
+                    else
+                    {
+                        this.btnSaveAttn.Text = "Punch Out";
+                    }
+                //}
+                
+                
             }
         }
 
@@ -182,7 +188,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = GetCompCode();
             switch (comcod)
             {
-                case "3101":
+              
                 case "3365":
                     this.InsertUpdateAttBti();
                     break;
@@ -263,6 +269,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Save Successfully" + "');", true);
             }
+            this.GetEmpAttandance();
         }
 
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
