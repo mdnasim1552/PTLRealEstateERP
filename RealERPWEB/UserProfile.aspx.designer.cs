@@ -177,6 +177,24 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink HypOrganogram;
 
         /// <summary>
+        /// List_EmpDirectory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl List_EmpDirectory;
+
+        /// <summary>
+        /// EmpDirectory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink EmpDirectory;
+
+        /// <summary>
         /// hyplPreviewCv control.
         /// </summary>
         /// <remarks>
@@ -400,6 +418,24 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl orgrm3;
+
+        /// <summary>
+        /// BtiPolicy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BtiPolicy;
+
+        /// <summary>
+        /// edidisonPolicy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl edidisonPolicy;
 
         /// <summary>
         /// winUlList control.

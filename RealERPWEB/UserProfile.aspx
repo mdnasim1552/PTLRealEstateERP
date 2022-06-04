@@ -55,7 +55,7 @@
 
     </script>
     <style>
-                .noselect {
+        .noselect {
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
             -moz-user-select: none; /* Old versions of Firefox */
@@ -63,14 +63,14 @@
             user-select: none; /* Non-prefixed version, currently
                                       supported by Chrome, Edge, Opera and Firefox */
         }
-        
+
         @media print {
 
-  #exampleModal{
-    visibility: hidden;
-  }
+            #exampleModal {
+                visibility: hidden;
+            }
+        }
 
-}
         .topMenu li .nav-link {
             padding: 10px 10px;
         }
@@ -272,6 +272,7 @@
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">Activities</a> </li>
                         <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
                         <li class="nav-item"><a href="#HolidayCalender" class="nav-link smooth-scroll" data-toggle="tab">Holiday Calender</a></li>
+
                         <li class="nav-item"><a id="hrpolicy" runat="server" href="#LeavePolicy" class="nav-link smooth-scroll" data-toggle="tab">HR Policy</a></li>
                         <li class="nav-item">
                             <asp:HyperLink ID="lnkOrintation" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Orintation Link</asp:HyperLink>
@@ -286,10 +287,11 @@
                         <li class="nav-item">
                             <asp:HyperLink ID="HypOrganogram" CssClass="nav-link smooth-scrol" Visible="true" NavigateUrl='#Organogram' data-toggle="tab" runat="server">Organogram</asp:HyperLink>
 
-
                         </li>
 
-
+                        <li class="nav-item" id="List_EmpDirectory" runat="server">
+                            <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" Target="_blank"   runat="server">Employee directory</asp:HyperLink>
+                        </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link smooth-scrol" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a></li>
@@ -800,7 +802,7 @@
 
                                 <div class="card-body">
 
-                                         <div class="table-responsive pb-3">
+                                    <div class="table-responsive pb-3">
                                         <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
                                             ShowFooter="True">
                                             <RowStyle />
@@ -838,9 +840,9 @@
 
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
-                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print">Print</span>
+                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
                                                         </asp:HyperLink>
-                                                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
+                                                        <asp:HyperLink ID="HyplnkModal" Visible="false" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>
                                                         </asp:HyperLink>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1140,7 +1142,7 @@
 
 
 
-                                <div class="accordion-container">
+                                <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
 
                                     <div class="set">
                                         <a href="#" class="active">Leave Policy 
@@ -1238,6 +1240,20 @@ d) 6 Days Late = 3 CL & half day leave
                                     </div>
                                 </div>
 
+                                 <div class="accordion-container" id="edidisonPolicy" runat="server" visible="false">
+
+                                    <div class="set">
+                                        <a href="#" class="active">Leave Policy 
+      <i class="fa fa-plus"></i>
+                                        </a>
+                                        <div class="content" style="display: block;">
+
+                                           <p>Content Comming son..............</p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
                             </div>
                         </div>
                     </section>
@@ -1297,7 +1313,7 @@ d) 6 Days Late = 3 CL & half day leave
         </div>
 
         <!-- Modal -->
-        <div class="modal fade noselect" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
+        <div class="modal fade noselect" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1309,15 +1325,15 @@ d) 6 Days Late = 3 CL & half day leave
                     <div class="modal-body">
                         <div class="slip-container">
                             <div class="header text-center font-weight-bold" style="width: 100%;">
-                        
-                                    <h4>PAYSLIP</h4>
-                                    <h5 id="RptTitle" runat="server">March-2022 (Month of salary disbursement)</h5>
-                              
+
+                                <h4>PAYSLIP</h4>
+                                <h5 id="RptTitle" runat="server">March-2022 (Month of salary disbursement)</h5>
+
 
                             </div>
                             <div class="employee-details mt-3 d-none">
-                                <table style="border: 1px solid black;border-collapse: collapse;width:100%;">
-                                    <tr style="border: 1px solid black;border-collapse: collapse;">
+                                <table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+                                    <tr style="border: 1px solid black; border-collapse: collapse;">
                                         <td class="font-weight-bold">Employee Details :</td>
                                         <td></td>
                                         <td></td>
@@ -1330,7 +1346,7 @@ d) 6 Days Late = 3 CL & half day leave
                                         <td>:<span id="EmployeeName" runat="server"></span></td>
                                     </tr>
 
-                                      <tr>
+                                    <tr>
                                         <td class="font-weight-bold">Department</td>
                                         <td>:<span id="Department" runat="server"></span></td>
                                         <td class="font-weight-bold">Designation</td>
@@ -1349,9 +1365,9 @@ d) 6 Days Late = 3 CL & half day leave
                             </div>
 
                             <div class="salary-details d-none mt-3">
-                            
-                                <table style="border: 1px solid black;border-collapse: collapse;width:100%;">
-                                    <tr style="border: 1px solid black;border-collapse: collapse;">
+
+                                <table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+                                    <tr style="border: 1px solid black; border-collapse: collapse;">
                                         <td class="font-weight-bold">Salary Details :</td>
                                         <td></td>
                                         <td></td>
@@ -1376,84 +1392,84 @@ d) 6 Days Late = 3 CL & half day leave
 
                             </div>
                             <div class="salary-details2 mt-3">
-                                    <p class="font-weight-bold m-0">Salary Details(Component-wise Breakdown):</p>
-                                <table style="border: 1px solid black;border-collapse: collapse;width:100%;">
-                                    <tr class="font-weight-bold" style="border: 1px solid black;border-collapse: collapse;">
+                                <p class="font-weight-bold m-0">Salary Details(Component-wise Breakdown):</p>
+                                <table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+                                    <tr class="font-weight-bold" style="border: 1px solid black; border-collapse: collapse;">
                                         <td>Earnings</td>
                                         <td>BDT</td>
-                         <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Deduction</td>
                                         <td>BDT</td>
                                     </tr>
                                     <tr>
                                         <td>House Rent</td>
                                         <td>:<span id="HouseRent" runat="server"></span></td>
-                <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Income Tax</td>
                                         <td>:<span id="IncomeTax" runat="server"></span></td>
                                     </tr>
-                                     <tr>
+                                    <tr>
                                         <td>Basic</td>
                                         <td>:<span id="Basic" runat="server"></span></td>
-                 <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>W.F Fund</td>
                                         <td>:<span id="WFfund" runat="server"></span></td>
                                     </tr>
-                                       <tr>
+                                    <tr>
                                         <td>Medical</td>
                                         <td>:<span id="Medical" runat="server"></span></td>
-               <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Transport</td>
                                         <td>:<span id="Transport" runat="server"></span></td>
                                     </tr>
 
-                                       <tr>
+                                    <tr>
                                         <td>Conveyance</td>
                                         <td>:<span id="Conveyance" runat="server"></span></td>
-                         <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Absent</td>
                                         <td>:<span id="Absent" runat="server"></span></td>
                                     </tr>
 
 
-                                      <tr>
+                                    <tr>
                                         <td>Arrear/Others</td>
                                         <td>:<span runat="server" id="ArrearOthers"></span></td>
-                     <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Gratuity loan</td>
                                         <td>:<span id="Gratuity" runat="server"></span></td>
                                     </tr>
 
-                                       <tr>
+                                    <tr>
                                         <td>Food & Others</td>
                                         <td>:<span id="FoodAndOthrs" runat="server"></span></td>
-                         <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Car loan</td>
                                         <td>:<span id="CarLoan" runat="server"></span></td>
                                     </tr>
-                                      <tr>
+                                    <tr>
                                         <td>Car Allowance</td>
                                         <td>:<span id="CarAllow" runat="server">222</span></td>
-                          <td style="border-left:1px solid"></td>
-                                      <td>Adv./Other</td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Adv./Other</td>
                                         <td>:<span id="AdvOthers" runat="server">222</span></td>
                                     </tr>
-                                      <tr>
+                                    <tr>
                                         <td>Earn leave</td>
                                         <td>:<span id="EarnLeave" runat="server">33</span></td>
-                                           <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Others</td>
                                         <td>:<span id="Others" runat="server">400</span></td>
                                     </tr>
 
-                                        <tr class="text-bold">
+                                    <tr class="text-bold">
                                         <td>Total Earnings</td>
                                         <td>:<span id="TotalEarning" runat="server">25223</span></td>
-                                            <td style="border-left:1px solid"></td>
+                                        <td style="border-left: 1px solid"></td>
                                         <td>Total Deduction</td>
                                         <td>:<span id="TotalDeduction" runat="server">43000</span></td>
                                     </tr>
-                    
+
                                 </table>
 
                             </div>
@@ -1462,12 +1478,12 @@ d) 6 Days Late = 3 CL & half day leave
                                     <tr class="font-weight-bold">
                                         <td>Net Payment</td>
                                         <td>:<span id="NetPayment" runat="server"></span></td>
-                                       
+
                                     </tr>
                                     <tr>
                                         <td class="font-weight-bold">In words:</td>
                                         <td>:<span id="InWords" runat="server">(Taka Twenty Nine Thousand Two Hundred Twenty Five only)</span></td>
-                                       
+
                                     </tr>
                                 </table>
 
@@ -1476,16 +1492,16 @@ d) 6 Days Late = 3 CL & half day leave
                             <div class="nb border border-dark d-none mt-5">
                                 <p class="text-center m-0 p-3">
                                     <span class="font-weight-bold">NB: </span>
-             This payslip is software generated, Any Discrepancy must be notify to HR Department within 7 days, Else it will be deemed that the staff has found this salary statement correct.
+                                    This payslip is software generated, Any Discrepancy must be notify to HR Department within 7 days, Else it will be deemed that the staff has found this salary statement correct.
                                 </p>
 
                             </div>
-                            
+
                         </div>
-                                   <p class="text-danger font-weight-bold float-left mt-3"><strong>For print, Please contact with HR/Payroll Department.</strong></p>
+                        <p class="text-danger font-weight-bold float-left mt-3"><strong>For print, Please contact with HR/Payroll Department.</strong></p>
                     </div>
                     <div class="modal-footer">
-             
+
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                     </div>
