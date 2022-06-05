@@ -274,7 +274,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         innHTML += @"<div class='col-xs-12 col-sm-6 col-md-3' style='padding: 0 5px; '>" +
                                    "<div id = 'EmpAll' runat = 'server'>" +
                                    topview +
-                                        "<div class='well well-sm' style='height: 180px; margin-bottom: 2px;'>" +
+                                        "<div class='well well-sm p-0' style='height: 180px; margin-bottom: 2px;'>" +
 
                                             "<div class='row'>" +
                                                 "<div class='col-sm-6 col-md-4'>" +
@@ -283,7 +283,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                                                    " </a></div>" +
 
-                                                "<div class='col-sm-6 col-md-8 pading5px'>" +
+                                                "<div class='col-sm-6 col-md-8 p-0'>" +
                                                     "<h4>" + dr["empname"] + "</h4>" +
                                                     "<h4>ID #: " + dr["idcardno"] + "</h4>" +
                                                     "<p>Department: " + dr["section"] + "</p>" +

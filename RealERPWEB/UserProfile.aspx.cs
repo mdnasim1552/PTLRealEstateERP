@@ -105,7 +105,7 @@ namespace RealERPWEB
         private void getLink()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            this.EmpDirectory.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=";
+            
             string comcod = GetCompCode();
             switch (comcod)
             {
@@ -162,7 +162,7 @@ namespace RealERPWEB
 
 
             }
-
+            this.EmpDirectory.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=";
         }
 
         private void GetWinList()
