@@ -387,6 +387,7 @@
                     <Value>=Parameters!compName.Value</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -407,6 +408,47 @@
                 <Style>None</Style>
               </Border>
               <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+              <WritingMode>Vertical</WritingMode>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox11">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Authorized Signatory</Value>
+                    <Style>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>7.50744in</Top>
+            <Left>2.87494in</Left>
+            <Height>2.07361in</Height>
+            <Width>0.27122in</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+                <Width>1.2pt</Width>
+              </Border>
+              <RightBorder>
+                <Style>Solid</Style>
+              </RightBorder>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
