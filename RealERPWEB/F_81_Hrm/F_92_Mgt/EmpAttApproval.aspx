@@ -97,7 +97,7 @@
                                         <label for="validationTooltip01">
                                             Request Type
                            
-                            <abbr title="Required">*</abbr>
+                                        <abbr title="Required">*</abbr>
                                         </label>
                                         <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">
                                              <asp:ListItem Value="LA">Late Approval Request (if Finger 9:04:59 to 9:59:59)</asp:ListItem>
