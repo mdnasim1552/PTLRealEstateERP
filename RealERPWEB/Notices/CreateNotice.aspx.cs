@@ -89,6 +89,7 @@ namespace RealERPWEB.Notices
             string txtStartDate = this.txtStartDate.Text.ToString();
             string txtEndDate = this.txtEndDate.Text.ToString();
             string txtUser = "";
+            string msg = "";
             foreach (ListItem listUser in listboxUser.Items)
             {
                 if(listUser.Selected)
@@ -97,15 +98,18 @@ namespace RealERPWEB.Notices
                    
                 }
             }
-            bool result = purData.UpdateTransInfo(comcod, "SP_REPORT_NOTICE", "INSERTUPDATENOTICE", noticeTitle, noticeDesc, noCrateDate, txtUser, txtdeapartment, noCreatdBy, txtStartDate, txtEndDate, "", "", "", "", "", "", "");
+            bool result = purData.UpdateTransInfo(comcod, "SP_REPORT_NOTICE", "INSERTUPDATENOTICE", noticeTitle, noticeDesc, noCrateDate, txtUser, txtdeapartment, noCreatdBy, txtStartDate, txtEndDate, "Notice", "", "", "", "", "", "");
             if (!result)
             {
+                msg = "Update Failed!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
             }
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg = "Data Updated successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
             }
         }
 
