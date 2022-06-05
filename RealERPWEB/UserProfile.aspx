@@ -55,6 +55,29 @@
 
     </script>
     <style>
+        #payslipmodal{
+                  z-index:9999;
+        }
+#{
+
+          z-index:1;
+}
+        .dbx {
+            height: 60px;
+            width:100%;
+          display: flex;
+  justify-content: center;
+  text-align:center;
+  align-items: center;
+
+        }
+        .dbx a{
+            text-decoration:none;
+        }
+        .dbx:hover{
+            background:crimson;
+        }
+
         .noselect {
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
@@ -220,26 +243,64 @@
 
                 </div>
                 <div class="col-4">
-
-
-                    <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
-
+                    <asp:Panel runat="server" ID="pnlUpcmEdison">
+                                       <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
                         <header class="card-header border-0 pb-0">
                             <div class="d-flex align-items-center">
                                 <span class="mr-auto">Upcoming Holidays </span>
                             </div>
                         </header>
+                        <div class="card-body" style="max-height: 200px; overflow-y: scroll" id="Div1" runat="server">
 
+
+
+                            <div class="row">
+                        
+
+                                <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">    <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT")%>" target="_blank">Apply Leave</a></div></div>
+                                                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">    <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>" target="_blank">Online Attendance</a></div></div>
+
+                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">
+                                                 <asp:HyperLink ID="hlnkattreport" runat="server" Target="_blank"  >
+                                                     Attendance Report
+                                                        </asp:HyperLink>
+                                                        </div></div>
+                            </div>
+                             <div class="row mt-2">
+                                   <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HREmpMonthlyAtten")%>" target="_blank">Manual Attendance</a></div></div>
+                                   <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/UserProfile")%>" target="_blank">Profile</a></div></div>
+
+                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a data-toggle="modal" data-target="#payslipmodal">Pay Slip</a></div></div>
+                            </div>
+                            
+                                          <div class="row mt-2">
+                          <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div></div>
+                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">Business Card</div></div>
+                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">KPI</div></div>
+                            </div>
+
+                        </div>
+                    </section>
+                    </asp:Panel>
+     
+
+
+
+                    <asp:Panel runat="server" ID="pnlUpcmBti">
+                                 <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
+                        <header class="card-header border-0 pb-0">
+                            <div class="d-flex align-items-center">
+                                <span class="mr-auto">Upcoming Holidays </span>
+                            </div>
+                        </header>
                         <div class="card-body" style="max-height: 200px; overflow-y: scroll" id="upComingHolidays" runat="server">
                         </div>
 
 
-                        <%--<footer class="card-footer">
-                            <a href="<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")%>" target="_blank" class="card-footer-item">View All <i class="fa fa-fw fa-angle-right"></i>
-                            </a>
-                        </footer>--%>
-                        <!-- /.card-footer -->
+        
                     </section>
+                    </asp:Panel>
+           
 
 
 
@@ -264,7 +325,7 @@
                 </div>
             </div>
 
-            <nav class="page-navs">
+            <nav class="page-navs" id="page-navs">
                 <!-- .nav-scroller -->
                 <div class="card-body m-0 p-0">
 
@@ -290,7 +351,7 @@
                         </li>
 
                         <li class="nav-item" id="List_EmpDirectory" runat="server">
-                            <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank"   runat="server">Employee directory</asp:HyperLink>
+                            <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Employee directory</asp:HyperLink>
                         </li>
 
                         <li class="nav-item">
@@ -299,6 +360,7 @@
                         <li class="nav-item">
                             <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
                         <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
+                           <li class="nav-item" runat="server" id="modalPayslipBti"><a data-toggle="modal" data-target="#payslipmodal" class="btn btn-light">Pay Slip</a></li>
 
 
 
@@ -787,80 +849,7 @@
 
                         <!-- /grid column -->
                     </div>
-                    <div class="row" id="PaySlipPart" runat="server">
-                        <!-- grid column -->
-                        <div class="col-xl-12">
-                            <div class="card card-fluid" id="divPayslip" runat="server">
-                                <!-- .card-header -->
-                                <div class="card-header border-0">
-                                    <!-- .d-flex -->
-                                    <div class="d-flex align-items-center">
-                                        <span class="mr-auto">PAY SLIP</span>
-                                        <%--<asp:Label ID="lblPaySlip" runat="server" CssClass="btn btn-success btn-sm headPart">Pay Slip</asp:Label>--%>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-
-                                    <div class="table-responsive pb-3">
-                                        <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
-                                            ShowFooter="True">
-                                            <RowStyle />
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Sl.No.">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
-                                                            Style="text-align: right"
-                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Month">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvpayslipmonth" runat="server"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
-                                                        <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
-                                                        <asp:Label ID="lblgvempid" runat="server" Visible="false"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Amount">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvnetamt" runat="server"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="Right" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="">
-                                                    <ItemTemplate>
-                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
-                                                        </asp:HyperLink>
-                                                        <asp:HyperLink ID="HyplnkModal" Visible="false" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>
-                                                        </asp:HyperLink>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                            <FooterStyle CssClass="grvFooter" />
-                                            <EditRowStyle />
-                                            <AlternatingRowStyle />
-                                            <PagerStyle CssClass="gvPagination" />
-                                            <HeaderStyle CssClass="grvHeader" />
-                                        </asp:GridView>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <!-- /grid row -->
-                    </div>
+             
 
 
                 </div>
@@ -1240,7 +1229,7 @@ d) 6 Days Late = 3 CL & half day leave
                                     </div>
                                 </div>
 
-                                 <div class="accordion-container" id="edidisonPolicy" runat="server" visible="false">
+                                <div class="accordion-container" id="edidisonPolicy" runat="server" visible="false">
 
                                     <div class="set">
                                         <a href="#" class="active">Leave Policy 
@@ -1248,10 +1237,10 @@ d) 6 Days Late = 3 CL & half day leave
                                         </a>
                                         <div class="content" style="display: block;">
 
-                                           <p>Content Comming son..............</p>
+                                            <p>Content Comming son..............</p>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
@@ -1508,6 +1497,88 @@ d) 6 Days Late = 3 CL & half day leave
                 </div>
             </div>
         </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="payslipmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Pay Slip Last 3 Month</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+                            <div class="card" id="PaySlipPart" runat="server">
+           
+
+                                <div class="card-body" id="payslipdiv">
+
+                                    <div class="table-responsive pb-3">
+                                        <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
+                                            ShowFooter="True">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Month">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvpayslipmonth" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
+                                                        <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
+                                                        <asp:Label ID="lblgvempid" runat="server" Visible="false"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Amount">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvnetamt" runat="server"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
+                                                        </asp:HyperLink>
+                                                        <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>
+                                                        </asp:HyperLink>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+
+
+           
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
     </div>
