@@ -2073,7 +2073,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                //case "3101":
+                case "3101":
                 case "3337":
                 case "3336":
                     this.PrintchKSuvastu();
@@ -2111,7 +2111,7 @@ namespace RealERPWEB.F_17_Acc
                     PrinChequeGreenWood();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3368":
                     this.PrintChqFinlay();
                     break;
@@ -2134,19 +2134,17 @@ namespace RealERPWEB.F_17_Acc
                 DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "PRINTCHECK", vounum, "", "", "", "", "", "", "", "");
                 if (_ReportDataSet == null)
                     return;
+                
                 DataTable dt1 = _ReportDataSet.Tables[0];
-
                 string woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
+                string voudat = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                string voudat1 = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
 
-
-                string voudat = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
-                string voudat1 = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
-
-                if (voudat.Trim() == "01011900")
+                if (voudat.Trim() == "01/01/1900")
                 {
-                    voudat = "          ";
+                    voudat = "";
                 }
-                if (voudat1.Trim() == "01.01.1900")
+                if (voudat1.Trim() == "01/01/1900")
                 {
                     voudat1 = "";
                 }

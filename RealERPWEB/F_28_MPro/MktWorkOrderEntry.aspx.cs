@@ -44,7 +44,6 @@ namespace RealERPWEB.F_28_MPro
                 string comcod = hst["comcod"].ToString();
                 string comnam = hst["comnam"].ToString();
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtLETDES.Text = comnam + this.CompanySubject();
                 this.txtCurOrderDate_CalendarExtender.EndDate = System.DateTime.Today;
                 this.SendMail();
@@ -239,16 +238,13 @@ namespace RealERPWEB.F_28_MPro
 
                 //For Charging
                 ViewState.Remove("tblproject");
-                this.ddlProjectName.Items.Clear();
-                this.txtPreparedBy.Text = "";                
+                this.ddlProjectName.Items.Clear();            
                 this.txtOrderNarr.Text = "";
                 this.lblissueno.Text = "";
                 this.gvOrderInfo.DataSource = null;
                 this.gvOrderInfo.DataBind();
                 this.gvOrderTerms.DataSource = null;
                 this.gvOrderTerms.DataBind();
-                this.gvPayment.DataSource = null;
-                this.gvPayment.DataBind();
                 this.lbtnOk.Text = "Ok";
                 this.ddlSuplierList.Items.Clear();
                 return;
@@ -269,7 +265,6 @@ namespace RealERPWEB.F_28_MPro
             
             this.MultiView1.ActiveViewIndex = 1;
             this.Get_Pur_Order_Info();
-            this.ShowProjectFiles();
         }
 
         private void GetProConPerson(string pactcode)
@@ -569,8 +564,6 @@ namespace RealERPWEB.F_28_MPro
 
         private string GetReqApproval(string approval)
         {
-
-
             string type = this.Request.QueryString["InputType"];
             string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -822,7 +815,6 @@ namespace RealERPWEB.F_28_MPro
 
 
             }
-
 
             return approval;
 
@@ -1190,7 +1182,6 @@ namespace RealERPWEB.F_28_MPro
                 this.MultiView1.ActiveViewIndex = 1;
                 ViewState["tblOrder"] = this.HiddenSameData(dt1);
                 this.gvOrderInfo_DataBind();
-                this.ShowProjectFiles();
             }
             catch (Exception ex)
             {
@@ -1283,107 +1274,6 @@ namespace RealERPWEB.F_28_MPro
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
-
-        }
-
-        protected void lbtnGenerate_Click(object sender, EventArgs e)
-        {
-            this.pnlschgenerate.Visible = false;
-            DataTable dt = (DataTable)ViewState["tblpaysch"];
-            int toins = Convert.ToInt32("0" + this.txtTInstall.Text.Trim());
-            int incode = 0;
-            for (int i = 0; i < toins; i++)
-            {
-                incode = incode + 1;
-                string inscode = incode.ToString().PadLeft(3, '0');
-                incode = Convert.ToInt32(inscode);
-                DataRow dr = dt.NewRow();
-
-                dr["inscode"] = inscode;
-                dr["insdesc"] = "";
-                dr["insdate"] = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                dr["insamt"] = 0.00;
-                dr["amt"] = 0.00;
-                dr["ait"] = 0.00;
-                dr["aitper"] = 0.00;
-                dr["rmrks"] = "";
-                dr["rmrks02"] = "";
-                dt.Rows.Add(dr);
-            }
-
-            ViewState["tblpaysch"] = dt;
-            this.chkVisible.Checked = false;
-        }
-
-        private void SavePaymentSchdule()
-        {
-
-            DataTable dt = (DataTable)ViewState["tblpaysch"];
-            //dt.Columns.Add ("aitper", typeof (double));
-            //DataRow dr = dt.NewRow ();
-            //dr["aitper"] = 0;
-            //dt.Rows.Add (dr);
-
-
-            for (int i = 0; i < this.gvPayment.Rows.Count; i++)
-            {
-                string desc = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschdesc")).Text.Trim();
-                string Date = Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
-                double ait = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvait")).Text.Trim()));
-                double aitper = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvaitper")).Text.Trim()));
-
-                double Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text.Trim()));
-                double insamt = Amt - ait;
-                ait = ait > 0 ? ait : (Amt * .01 * aitper);
-                aitper = ait > 0 ? (ait * 100) / Amt : aitper;
-
-                string Remarks = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschrmrks")).Text.Trim();
-                string Remarks02 = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschrmrks02")).Text.Trim();
-
-                dt.Rows[i]["insdesc"] = desc;
-                dt.Rows[i]["insdate"] = Date;
-                dt.Rows[i]["insamt"] = insamt;
-                dt.Rows[i]["amt"] = Amt;
-                dt.Rows[i]["ait"] = ait;
-                dt.Rows[i]["rmrks"] = Remarks;
-                dt.Rows[i]["rmrks02"] = Remarks02;
-                dt.Rows[i]["aitper"] = aitper;
-                //dt.Rows[i]["aitpercen"] = aitper;
-            }
-
-            ViewState["tblpaysch"] = dt;
-
-        }
-
-        protected void lUpdatpayment_Click(object sender, EventArgs e)
-        {
-            this.SavePaymentSchdule();
-            DataTable dt = (DataTable)ViewState["tblpaysch"];
-            for (int i = 0; i < this.gvPayment.Rows.Count; i++)
-            {
-                string desc = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschdesc")).Text.Trim();
-                string Date = Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
-                double Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text.Trim()));
-                string Remarks = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschrmrks")).Text.Trim();
-                dt.Rows[i]["insdesc"] = desc;
-                dt.Rows[i]["insdate"] = Date;
-                dt.Rows[i]["insamt"] = Amt;
-                dt.Rows[i]["rmrks"] = Remarks;
-            }
-
-            ViewState["tblpaysch"] = dt;
-        }
-        protected void lTotalPayment_Click(object sender, EventArgs e)
-        {
-            this.SavePaymentSchdule();
-            //this.SchData_Bind();
-        }
-        protected void chkVisible_CheckedChanged(object sender, EventArgs e)
-        {
-            this.pnlschgenerate.Visible = this.chkVisible.Checked;
-        }
-        protected void gvPayment_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
 
         }
 
@@ -1667,124 +1557,6 @@ namespace RealERPWEB.F_28_MPro
             this.Session_tblOrder_Update();
             this.gvOrderInfo.PageIndex = e.NewPageIndex;
             this.gvOrderInfo_DataBind();
-
-        }
-
-        private void ShowProjectFiles()
-        {
-            ViewState.Remove("tblimages");
-            string comcod = this.GetCompCode();
-            string orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERFILES", orderno, "", "", "", "", "", "", "");
-
-            ViewState["tblimages"] = ds1.Tables[0];
-            ListViewEmpAll.DataSource = ds1.Tables[0];
-            ListViewEmpAll.DataBind();
-
-        }
-        protected void btnDelall_OnClick(object sender, EventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblimages"];
-            for (int j = 0; j < this.ListViewEmpAll.Items.Count; j++)
-            {
-                string orderno = ((Label)this.ListViewEmpAll.Items[j].FindControl("orderno")).Text.ToString();
-                string filesname = ((Label)this.ListViewEmpAll.Items[j].FindControl("ImgLink")).Text.ToString();
-                if (((CheckBox)this.ListViewEmpAll.Items[j].FindControl("ChDel")).Checked == true)
-                {
-                    DataRow dr = dt.Rows[j];
-                    dr.Delete();
-                    DataSet ds1 = new DataSet("ds1");
-                    ds1.Tables.Add(dt);
-                    ds1.Tables[0].TableName = "tbl1";
-                    bool result = purData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERIMG", ds1, null, null, orderno, "", "", "", "", "", "", "", "", "", "", "", "");
-
-                    if (result == true)
-                    {
-                        string filePath = Server.MapPath("~/");
-                        System.IO.File.Delete(filePath + filesname.Replace("~", ""));
-                        this.lblMesg.Text = " Files Removed ";
-                        this.ShowProjectFiles();
-                    }
-                }
-
-            }
-
-        }
-        protected void ListViewEmpAll_ItemDataBound(object sender, ListViewItemEventArgs e)
-        {
-
-            if (e.Item.ItemType == ListViewItemType.DataItem)
-            {
-                System.Web.UI.WebControls.Image imgname = (System.Web.UI.WebControls.Image)e.Item.FindControl("GetImg");
-                Label imglink = (Label)e.Item.FindControl("ImgLink");
-                string extension = Path.GetExtension(imglink.Text.ToString());
-                switch (extension)
-                {
-                    case ".PNG":
-                    case ".png":
-                    case ".JPEG":
-                    case ".JPG":
-                    case ".jpg":
-                    case ".jpeg":
-                    case ".GIF":
-                    case ".gif":
-                        imgname.ImageUrl = imglink.Text.ToString();
-                        break;
-                    case ".PDF":
-                    case ".pdf":
-                        imgname.ImageUrl = "~/Images/pdf.png";
-                        break;
-                    case ".xls":
-                    case ".xlsx":
-                        imgname.ImageUrl = "~/Images/excel.svg";
-                        break;
-                    case ".doc":
-                    case ".docx":
-                        imgname.ImageUrl = "~/Images/word.png";
-                        break;
-                }
-            }
-           
-
-        }
-        protected void FileUploadComplete(object sender, AsyncFileUploadEventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblimages"];
-            string filename = System.IO.Path.GetFileName(AsyncFileUpload1.FileName);
-            string orderno = "";
-            if (AsyncFileUpload1.HasFile)
-            {
-                orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-                string extension = Path.GetExtension(AsyncFileUpload1.PostedFile.FileName);
-                string random = ASTUtility.RandNumber(1, 99999).ToString();
-                AsyncFileUpload1.SaveAs(Server.MapPath("~/Upload/purorder/") + orderno + random + extension);
-
-                // Url = Server.MapPath("~/Upload/purorder/") + orderno + random + extension;
-                Url = "~/Upload/purorder/" + orderno + random + extension;
-                //  Url = Url.Substring(0, (Url.Length - 1));
-                dt.Rows.Add(comcod, orderno, Url);
-            }
-
-            DataSet ds1 = new DataSet("ds1");
-            ds1.Tables.Add(dt);
-            ds1.Tables[0].TableName = "tbl1";
-            bool result = purData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERIMG", ds1, null, null, orderno, "", "", "", "", "");
-
-            if (result == true)
-            {
-                this.lblMesg.Text = " Successfully Updated ";
-                this.ShowProjectFiles();
-
-            }
-            else
-            {
-                string filePath = Server.MapPath("~/");
-                System.IO.File.Delete(filePath + Url.Replace("~", ""));
-            }
-
 
         }
         protected void lnkselect_Click(object sender, EventArgs e)
