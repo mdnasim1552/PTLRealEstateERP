@@ -2073,7 +2073,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                //case "3101":
+                case "3101":
                 case "3337":
                 case "3336":
                     this.PrintchKSuvastu();
@@ -2111,7 +2111,7 @@ namespace RealERPWEB.F_17_Acc
                     PrinChequeGreenWood();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3368":
                     this.PrintChqFinlay();
                     break;
@@ -2217,7 +2217,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 Hashtable hshtbl = new Hashtable();
-                hshtbl["compName"] = "Finlay Properties Ltd.";
+                hshtbl["compName"] = compName;
                 hshtbl["bankName"] = "";
                 hshtbl["payTo"] = payto;
                 hshtbl["acpayee"] = value;
