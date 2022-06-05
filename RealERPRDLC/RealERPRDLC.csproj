@@ -44,12 +44,17 @@
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>C:\Users\HP\OneDrive\Desktop\Bin_real\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> 493de18d35cb0315fc525452ef7c14fba2c7dbac
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -185,12 +190,14 @@
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankBalance02Cube.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherIntech.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCube.rdlc" />
@@ -691,6 +698,7 @@
     <EmbeddedResource Include="R_22_Sal\RptDummyPaywithoutDiscount02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDWiseRealCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptIntech.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt360.rdlc" />
@@ -896,6 +904,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonthPre.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyEarlyLeaveEmp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyLateAttnEmp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatusEdi.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptRetiredEmployee.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\EmpLeavApp.rdlc" />

@@ -505,7 +505,20 @@ namespace RealERPWEB.F_17_Acc
             else if (Type == "MRPrintFinlay")
             {
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptFinlay", list, null, null);
+
+                string paytype1 = "";
+                if (paytype == "CHEQUE" || paytype == "P.O")
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptFinlay", list, null, null);
+                    paytype1 = "CHEQUE/" + "\n" + "PO";
+                }                
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptFinlay2", list, null, null);
+                    paytype1 = "CASH"+ "/Adj"+"/Bank Trans";
+
+                }
+
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate1", curDate));
@@ -521,11 +534,12 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("project1", project));
                 Rpt1.SetParameters(new ReportParameter("unit", udesc));
                 Rpt1.SetParameters(new ReportParameter("unit1", udesc));
-                Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
-                Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
+                Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
+                Rpt1.SetParameters(new ReportParameter("amount1", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
                 Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "")));
                 Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "")));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("paytype", paytype1));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

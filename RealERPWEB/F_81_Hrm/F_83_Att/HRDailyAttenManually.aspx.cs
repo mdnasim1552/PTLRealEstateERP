@@ -142,7 +142,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string dayid = Convert.ToDateTime(this.txtdate.Text).ToString("yyyyMMdd");
             string date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
             string txtempcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DAILYATTENDENCE", Deptid, dayid, date, Company, txtempcode, section, "", "", "");
+            string atttype = this.radioAttType.SelectedValue.ToString();
+
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DAILYATTENDENCE", Deptid, dayid, date, Company, txtempcode, section, atttype, "", "");
             if (ds4 == null)
             {
                 this.gvDailyAttn.DataSource = null;
@@ -343,5 +345,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ShowData();
         }
 
+        protected void radioAttType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

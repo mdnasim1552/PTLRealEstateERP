@@ -105,12 +105,12 @@ namespace RealERPWEB
         private void getLink()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-
+            
             string comcod = GetCompCode();
             switch (comcod)
             {
                 case "3365":
-                case "3101":
+                
 
                     string userrole = hst["userrole"].ToString();
 
@@ -121,10 +121,30 @@ namespace RealERPWEB
                     this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
+                    this.BtiPolicy.Visible = true;
 
                     this.GetWinList();
                     this.OrganoGram();
                     this.getConduct();
+                    break;
+                case "3354":
+                    this.PaySlipPart.Visible = true;
+                    this.hrpolicy.Visible = true;
+                    this.List_EmpDirectory.Visible = true;
+                    this.lnkOrintation.Visible = false;
+                    this.HyperCodeofConduct.Visible = false;
+                    this.HypOrganogram.Visible = false;
+                    this.pnlServHis.Visible = true;
+                    this.winsList.Visible = false;
+                    this.edidisonPolicy.Visible = true;
+                    
+
+                    break;
+                case "3101":
+                    this.PaySlipPart.Visible = true;
+                    this.hrpolicy.Visible = true;
+                    this.List_EmpDirectory.Visible = true;
+                   
                     break;
                 default:
 
@@ -135,11 +155,14 @@ namespace RealERPWEB
                     this.winsList.Visible = false;
                     this.hrpolicy.Visible = false;
                     this.PaySlipPart.Visible = false;
+                    this.List_EmpDirectory.Visible = false;
                     break;
+
+                   
 
 
             }
-
+            this.EmpDirectory.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=";
         }
 
         private void GetWinList()
@@ -979,14 +1002,19 @@ namespace RealERPWEB
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                string comcod = this.GetCompCode();
+
                 HyperLink hlnkPrintPaySlip = (HyperLink)e.Row.FindControl("hlnkPrintPaySlip");
+                HyperLink HyplnkModal = (HyperLink)e.Row.FindControl("HyplnkModal");
                 string monthid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "monthid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
-
+                hlnkPrintPaySlip.Visible = (comcod == "3365" ? false : true);
                 hlnkPrintPaySlip.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
-
+                
+                HyplnkModal.Visible = (comcod != "3365" ? false : true);
+                 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
+                
                 string date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
                 string frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");

@@ -118,7 +118,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             //string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
             //string DesigTo = this.ddlToDesig.SelectedValue.ToString();
-            string empcard = this.txtEmpSearch.Text == "" ? "%%" : this.txtEmpSearch.Text.Trim()+"%";
+            string empcard = this.txtEmpSearch.Text == "" ? "%%" : "%"+this.txtEmpSearch.Text.Trim()+"%";
 
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS03", "RPTALLEMPLISTWITHPIC", empcard, "", "", "", "", "", "", "", "");
             if (ds4 == null)
@@ -207,7 +207,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             try
             {
                 DataTable dt = (DataTable)Session["tblEmpstatus"];
-                
+                 string comcod = this.GetCompCode();
+
                 DataTable dtsec = (DataTable)ViewState["sectiondata"];
                 // DataTable dtnew = new DataTable();
                 // dtnew = dt.Clone();
@@ -259,7 +260,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                         if (j != 0)
                         {
-                            topview = "<h4><p style='height: 30px;'></p></h4>";
+                            topview = "<h4><p style='height: 30px;  margin: 0 auto;''></p></h4>";
                         }
 
 
@@ -273,7 +274,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         innHTML += @"<div class='col-xs-12 col-sm-6 col-md-3' style='padding: 0 5px; '>" +
                                    "<div id = 'EmpAll' runat = 'server'>" +
                                    topview +
-                                        "<div class='well well-sm' style='height: 120px; margin-bottom: 2px;'>" +
+                                        "<div class='well well-sm p-0' style='height: 180px; margin-bottom: 2px;'>" +
 
                                             "<div class='row'>" +
                                                 "<div class='col-sm-6 col-md-4'>" +
@@ -282,13 +283,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                                                    " </a></div>" +
 
-                                                "<div class='col-sm-6 col-md-8 pading5px'>" +
+                                                "<div class='col-sm-6 col-md-8 p-0'>" +
                                                     "<h4>" + dr["empname"] + "</h4>" +
-                                                    "<p>" + dr["desig"] + "</p>" +
-                                                     "<p>" + dr["section"] + "</p>" +
-                                                    "<p><i class='glyphicon glyphicon-calendar'></i>" +
-                                                         dr["joindate"] + "</p>" +
-                                                            "</div></div></div></div></div>";
+                                                    "<h4>ID #: " + dr["idcardno"] + "</h4>" +
+                                                    "<p>Department: " + dr["section"] + "</p>" +
+                                                    "<p>Designation: " + dr["desig"] + "</p>" +
+                                                    "<p>offi. E-mail: " + dr["offcemail"] + "</p>" +
+                                                    "<p>Contact No: " + dr["mobile"] + "</p>" +
+                                                    "<p>Offi. Cell: " + dr["offcmobile"] + "</p>" +
+                                                    "<p><i class='fa fa-calander'></i> DOJ: " + dr["joindate"] + "</p>"+
+                                                    "</div></div></div></div></div>";
 
 
 
@@ -306,22 +310,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
                             innHTML += @"<div class='col-xs-12 col-sm-6 col-md-3' style='padding: 0 5px; '>" +
-                                 "<div id = 'EmpAll' runat = 'server'>" +
-                             "<h4><p style='color:white; height: 30px;'></p></h4>" +
-                                      "<div class='well well-sm' style='height: 120px; margin-bottom: 2px;'>" +
-
-                                          "<div class='row'>" +
-                                              "<div class='col-sm-6 col-md-4'>" +
-
-
-
-                                                 "</div>" +
-
-                                              "<div class='col-sm-6 col-md-8 pading5px'>" +
-                                                  "<h4>" + "" + "</h4>" +
-                                                  "<p>" + "" + "</p>" +
-                                                   "<p>" + "" + "</p>" +
-                                                          "</div></div></div></div></div>";
+                               "</div>";
 
 
 
