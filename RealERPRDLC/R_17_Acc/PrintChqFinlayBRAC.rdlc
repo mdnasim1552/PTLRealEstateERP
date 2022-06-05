@@ -125,236 +125,20 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Format(Parameters!date.Value).Substring(0,1)</Value>
+                        <Value>=Parameters!date.Value</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <Style />
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>0.0316in</Top>
-                <Height>0.25in</Height>
+                <Height>2.1316in</Height>
                 <Width>0.259in</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox22">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Format(Parameters!date.Value).Substring(1,1)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>0.28298in</Top>
-                <Height>0.25in</Height>
-                <Width>0.259in</Width>
-                <ZIndex>1</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="date2">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(2,1)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>date</rd:DefaultName>
-                <Top>0.53298in</Top>
-                <Height>0.25in</Height>
-                <Width>0.259in</Width>
-                <ZIndex>2</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="date3">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(3,1)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>date</rd:DefaultName>
-                <Top>0.79548in</Top>
-                <Height>0.25in</Height>
-                <Width>0.259in</Width>
-                <ZIndex>3</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="date4">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(4,1)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.06076in</Top>
-                <Height>0.25in</Height>
-                <Width>0.259in</Width>
-                <ZIndex>4</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="date5">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(5, 1)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.31632in</Top>
-                <Height>0.25in</Height>
-                <Width>0.259in</Width>
-                <ZIndex>5</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="date7">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(7, 1)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.8441in</Top>
-                <Height>0.25in</Height>
-                <Width>0.259in</Width>
-                <ZIndex>6</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="date6">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(6, 1)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.58021in</Top>
-                <Height>0.25in</Height>
-                <Width>0.259in</Width>
-                <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -368,8 +152,8 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>7.4977in</Top>
-            <Left>4.99289in</Left>
+            <Top>7.55883in</Top>
+            <Left>4.9755in</Left>
             <Height>2.1316in</Height>
             <Width>0.27639in</Width>
             <ZIndex>3</ZIndex>
@@ -399,7 +183,7 @@
             <rd:DefaultName>amtWord1</rd:DefaultName>
             <Top>2.7875in</Top>
             <Left>3.64336in</Left>
-            <Height>4.75744in</Height>
+            <Height>4.71994in</Height>
             <Width>0.28278in</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -454,7 +238,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
                 <Top>0.54062in</Top>
-                <Left>2.17601in</Left>
+                <Left>2.18991in</Left>
                 <Height>1.47544in</Height>
                 <Width>0.32594in</Width>
                 <Style>
@@ -490,7 +274,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
                 <Top>0.35312in</Top>
-                <Left>1.83479in</Left>
+                <Left>1.84868in</Left>
                 <Height>1.66294in</Height>
                 <Width>0.31345in</Width>
                 <ZIndex>1</ZIndex>
@@ -608,14 +392,14 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>7.5293in</Top>
-            <Left>3.64336in</Left>
-            <Height>2.25591in</Height>
+            <Top>7.50744in</Top>
+            <Left>3.62947in</Left>
+            <Height>2.22638in</Height>
             <Width>0.27122in</Width>
             <ZIndex>7</ZIndex>
             <Style>

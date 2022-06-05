@@ -756,7 +756,7 @@ namespace RealERPWEB.F_17_Acc
 
                 switch (comcod)
                 {
-                    case "3101":
+                    //case "3101":
                     case "3356":
                     case "3357":
                         HyperLink hlnkgvdesc = (HyperLink)e.Row.FindControl("hlnkgvactdesc");
