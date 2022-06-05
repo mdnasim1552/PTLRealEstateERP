@@ -30,7 +30,7 @@
             function drawChart() {
 
                 var data = google.visualization.arrayToDataTable([
-                    ['Task', 'This Months Attendance status'],
+                    ['Task', 'This Yearly Attendance status'],
 
                     ['Present', present],
                     ['Absent', abs],
@@ -41,7 +41,7 @@
                 ]);
 
                 var options = {
-                    title: 'Attendance status',
+                    title: 'Your Yearly Attendance status',
                     is3D: true,
                     pieSliceText: 'value'
 
@@ -290,7 +290,7 @@
                         </li>
 
                         <li class="nav-item" id="List_EmpDirectory" runat="server">
-                            <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" Target="_blank"   runat="server">Employee directory</asp:HyperLink>
+                            <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank"   runat="server">Employee directory</asp:HyperLink>
                         </li>
 
                         <li class="nav-item">
