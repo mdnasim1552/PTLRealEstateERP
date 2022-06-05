@@ -999,6 +999,8 @@ namespace RealERPWEB.F_14_Pro
 
                 case "3354"://Edison Real Estate
                 case "3335":
+                case "3368":
+                case "3101":
                     ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp");
                     break;
 
@@ -1248,6 +1250,51 @@ namespace RealERPWEB.F_14_Pro
                         case "3351":  //wecon Properties
                         case "3352":  //p2p360
                                       //case "3101": // ASIT
+
+                            break;
+
+                        case "3101":
+                        case "3368"://finlay
+                            if (approval == "")
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["secappid"] = "";
+                                dr1["secappdat"] = "";
+                                dr1["secapptrmid"] = "";
+                                dr1["secappseson"] = "";
+
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+
+                            }
+
+
+                            else
+                            {
+
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+                                ds1.Tables[0].Rows[0]["secappid"] = "";
+                                ds1.Tables[0].Rows[0]["secappdat"] = "";
+                                ds1.Tables[0].Rows[0]["secapptrmid"] = "";
+                                ds1.Tables[0].Rows[0]["secappseson"] = "";
+
+                                approval = ds1.GetXml();
+
+                            }
 
                             break;
 

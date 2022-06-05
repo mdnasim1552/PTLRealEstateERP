@@ -611,6 +611,15 @@ namespace RealERPWEB.F_99_Allinterface
                     Order2ndAprv = "Ord. Final App";
                     
                     break;
+                case "3368"://  Finlay
+                case "3101"://  Edison Real Estate 
+
+                    reqcheck = "Checked";
+                    reqforward = "Forward";
+                    reqapproval = "Req. App.";
+                   // OrderfApproved = "Ord. 1st App";
+                    Order2ndAprv = "Ord. Final App";
+                    break;
 
 
 

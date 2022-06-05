@@ -561,10 +561,10 @@ namespace RealERPWEB.F_12_Inv
             dv1.RowFilter = "rsircode = '" + mResCode + "' or spcfcod = '000000000000'";
             DataTable dt = dv1.ToTable();
 
-            if (dt.Rows.Count > 1)
-            {
-                dt.Rows[0].Delete();
-            }
+            //if (dt.Rows.Count > 1)
+            //{
+            //    dt.Rows[0].Delete();
+            //}
 
 
             this.ddlResSpcf.DataTextField = "spcfdesc";
@@ -821,7 +821,7 @@ namespace RealERPWEB.F_12_Inv
             // string Specification = this.ddlResSpcf.SelectedValue.ToString();
             string Empcode = this.ddlDeptCode.SelectedValue.ToString();
             string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
-            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "' and  deptcode='" + Empcode + "'");
+            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod  + "'");
             if (dr2.Length == 0)
             {
                 DataRow dr1 = tbl1.NewRow();
