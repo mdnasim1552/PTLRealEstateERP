@@ -427,7 +427,7 @@ namespace RealERPWEB
                 switch (comcod)
                 {
                     case "3365":
-                    case "3101":
+                    
                         date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
                         frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
                         //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");

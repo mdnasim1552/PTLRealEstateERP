@@ -20,8 +20,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (!IsPostBack)
             {
                 GetDptUserCheck();
+                GetLeaveType();
                 this.ShowData();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE APPROVAL";//
+
+
+              
             }
         }
 
@@ -29,7 +33,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
-
+            //if (comcod == "3354" || comcod == "3101")
+            //{
+            //    ddlReqType.Enabled = false;
+            //}
             string date = this.Request.QueryString["Date"] ?? "";
             
             string usrid = hst["usrid"].ToString();// (this.Request.QueryString["Type"] == "Ind") || (this.Request.QueryString["Type"] == "DeptHead") ? hst["usrid"].ToString() : "";
@@ -46,7 +53,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ViewState["tblattreq"] = ds1.Tables[0];
             this.data_Bind();
         }
+        private void GetLeaveType()
+        {
 
+
+        }
         private void data_Bind()
         {
             DataTable dt1 = (DataTable)ViewState["tblattreq"];
@@ -66,8 +77,25 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.lbldadte.Text =Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
             this.ddlReqType.SelectedValue = reqtype;
 
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3354":
+                case "3101":
+                 
+                    this.ddlReqType.Items.Remove("LA");
+                    this.ddlReqType.Items.Remove("TC");
+                    this.ddlReqType.Items.Remove("LP");
+                    this.ddlReqType.Items.Remove("TLV");
+                    //this.ddlReqType.Items.RemoveAt(0);
+                    //this.ddlReqType.Items.RemoveAt(1);
+                    //this.ddlReqType.Items.RemoveAt(2);              
+                    break;
+                default:
+                    break;
+            }
+
             /// for employee information 
-            
 
             this.UserName.InnerText = empname;
             this.UDesignation.InnerText = empdesig;
@@ -78,8 +106,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //// Approval Part 
             ///
             this.Reqst.InnerHtml ="Current Status : "+ restatus;
-
-
         }
 
         public string GetCompCode()
