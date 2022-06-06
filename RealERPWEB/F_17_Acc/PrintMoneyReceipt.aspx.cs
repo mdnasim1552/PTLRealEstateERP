@@ -75,7 +75,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3351":
-               // case "3101":
+                    // case "3101":
                     mrprint = "MRPrintWecon";
                     break;
 
@@ -85,7 +85,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3356":
-               // case "3101":
+                    // case "3101":
                     mrprint = "MRPrintIntech";
                     break;
 
@@ -93,7 +93,7 @@ namespace RealERPWEB.F_17_Acc
                 //case "3101":
                 case "3368":
                     mrprint = "MRPrintFinlay";
-                        break;
+                    break;
 
                 default:
                     mrprint = "MRPrint";
@@ -124,7 +124,7 @@ namespace RealERPWEB.F_17_Acc
             DataTable dtmr = dv1.ToTable();
             string Installment = "";
             string Installment2 = "";
-            bool isMoneyRecpt=false;
+            bool isMoneyRecpt = false;
             bool isPartial = false;
             for (int i = 0; i < dtmr.Rows.Count; i++)
             {
@@ -144,7 +144,7 @@ namespace RealERPWEB.F_17_Acc
                     {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
                     }
-                        
+
 
                 }
                 else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
@@ -163,7 +163,7 @@ namespace RealERPWEB.F_17_Acc
                     {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
                         isPartial = true;
-                    }                        
+                    }
 
                 }
 
@@ -180,7 +180,7 @@ namespace RealERPWEB.F_17_Acc
                     if (isMoneyRecpt)
                     {
                         string part1 = ASTUtility.Left(Installment2, 4);
-                        string part2 = isPartial==true ? ASTUtility.Right(Installment2, 25) : ASTUtility.Right(Installment2, 16);
+                        string part2 = isPartial == true ? ASTUtility.Right(Installment2, 25) : ASTUtility.Right(Installment2, 16);
                         Installment = part1 + " - " + part2;
                     }
                     else
@@ -196,7 +196,7 @@ namespace RealERPWEB.F_17_Acc
             }
 
             DataSet ds4 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", pactCode, usirCode, mrno, "", "", "", "", "", "");
-            if (ds4 == null || ds4.Tables[0].Rows.Count==0)
+            if (ds4 == null || ds4.Tables[0].Rows.Count == 0)
                 return;
             DataTable dtrpt = ds4.Tables[0];
             string custname = dtrpt.Rows[0]["custname"].ToString();
@@ -504,6 +504,7 @@ namespace RealERPWEB.F_17_Acc
 
             else if (Type == "MRPrintFinlay")
             {
+                string amt1t2 = ASTUtility.Trans(amt1, 4);
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
 
                 string paytype1 = "";
@@ -511,19 +512,19 @@ namespace RealERPWEB.F_17_Acc
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptFinlay", list, null, null);
                     paytype1 = "CHEQUE/" + "\n" + "PO";
-                }                
+                }
                 else
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptFinlay2", list, null, null);
-                    paytype1 = "CASH"+ "/Adj"+"/Bank Trans";
+                    paytype1 = "CASH" + "/Adj" + "/Bank Trans";
 
                 }
 
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate1", curDate));
-                Rpt1.SetParameters(new ReportParameter("mrno", "MR"+mrno));
-                Rpt1.SetParameters(new ReportParameter("mrno1", "MR"+mrno));
+                Rpt1.SetParameters(new ReportParameter("mrno", "MR" + mrno));
+                Rpt1.SetParameters(new ReportParameter("mrno1", "MR" + mrno));
                 Rpt1.SetParameters(new ReportParameter("custname", custname));
                 Rpt1.SetParameters(new ReportParameter("custname1", custname));
                 Rpt1.SetParameters(new ReportParameter("CustAdd", custadd));
@@ -536,8 +537,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("unit1", udesc));
                 Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
                 Rpt1.SetParameters(new ReportParameter("amount1", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
-                Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "")));
-                Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "")));
+                Rpt1.SetParameters(new ReportParameter("takainword", amt1t2));
+                Rpt1.SetParameters(new ReportParameter("takainword1", amt1t2));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("paytype", paytype1));
 
@@ -545,7 +546,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
             }
-            
+
             else
             {
 

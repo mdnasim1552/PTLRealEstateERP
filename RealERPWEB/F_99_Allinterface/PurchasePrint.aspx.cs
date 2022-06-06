@@ -3968,16 +3968,18 @@ namespace RealERPWEB.F_99_Allinterface
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
                         sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();                       
                         sign6 = "Approved By";
                         break;
 
+                        // finlay 
                     case "3368":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
-                        sign4 = ""; //_ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = ""; //_ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
+                        sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy"))=="01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
                         sign6 = "Approved By";
                         break;
 
@@ -4000,6 +4002,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string Supadd = _ReportDataSet.Tables[1].Rows[0]["address"].ToString();
                 string Supmobile = _ReportDataSet.Tables[1].Rows[0]["phone"].ToString();
                 string cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
+                string supemail = _ReportDataSet.Tables[1].Rows[0]["supemail"].ToString();
                 string podate = Convert.ToDateTime(_ReportDataSet.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
                 string pordnar = _ReportDataSet.Tables[4].Rows[0]["pordnar"].ToString();
 
@@ -4392,8 +4395,7 @@ namespace RealERPWEB.F_99_Allinterface
                 }
                 if (comcod == "3368") // finlay
                 {
-                    Rpt1.SetParameters(new ReportParameter("lblsign4", ""));
-                    Rpt1.SetParameters(new ReportParameter("lblsign5", ""));
+                    Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                     Rpt1.SetParameters(new ReportParameter("costa", costa));
                     Rpt1.SetParameters(new ReportParameter("costb", costb));
                     Rpt1.SetParameters(new ReportParameter("costc", costc));
@@ -4406,6 +4408,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cost4", cost4));
                     Rpt1.SetParameters(new ReportParameter("cost5", cost5));
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
+                    Rpt1.SetParameters(new ReportParameter("supemail", supemail));
                 }
 
 
