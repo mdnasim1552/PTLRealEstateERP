@@ -612,7 +612,7 @@ namespace RealERPWEB.F_99_Allinterface
                     
                     break;
                 case "3368"://  Finlay
-                case "3101"://  Edison Real Estate 
+              //  case "3101"://  Edison Real Estate 
 
                     reqcheck = "Checked";
                     reqforward = "Forward";
