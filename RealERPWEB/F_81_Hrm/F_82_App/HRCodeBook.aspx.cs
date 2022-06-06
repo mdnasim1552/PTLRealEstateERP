@@ -109,6 +109,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string slno = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvtslno")).Text.Trim();
             string rate = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvRate")).Text.Trim()).ToString();
             string sl = slno.Length == 0 ? "0" : slno;
+
             bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTUPHRINF", tgcod,
                            gdesc, Gtype, percent, unit, rate, sl, "", gdescbn, "", "", "", "", "", "");
 
@@ -137,7 +138,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
-                this.grvacc.Columns[7].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
+                //this.grvacc.Columns[7].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
                 //this.grvacc.Columns[8].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
                // this.grvacc.Columns[9].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "04") ? true : false;
 
