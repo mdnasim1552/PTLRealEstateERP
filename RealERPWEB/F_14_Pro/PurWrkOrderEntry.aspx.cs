@@ -2450,9 +2450,10 @@ namespace RealERPWEB.F_14_Pro
 
                 //case "3101":
                 case "3368":
-                    msg = "1. Please send all your bills in duplicate." +
-                        "\n2. Payment shall be made after (30) days of receipt of all materials in good conditions" +
-                        "\n3. Company may have the right to alter/change/reject the PO at any time.";
+                    msg = "1. Delivery Date : " +
+                        "\n2. Please send all your bills in duplicate." +
+                        "\n3. Payment shall be made after (30) days of receipt of all materials in good conditions" +
+                        "\n4. Company may have the right to alter/change/reject the PO at any time.";
                     break;
 
                 default:
