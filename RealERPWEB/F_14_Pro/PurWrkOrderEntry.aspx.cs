@@ -4035,23 +4035,40 @@ namespace RealERPWEB.F_14_Pro
                 string Type = this.CompanyPrintWorkOrder();
                 ReportDocument rptwork = new ReportDocument();
 
-                string fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
 
-                string trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
-                string place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
-                string trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
-                string pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
-                string trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
-                string carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
-                //string trmbill = "* " + dtterm.Rows[9]["termssubj"].ToString() + "";
-                string bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
-                string trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
-                string payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
+                string fax = "";
+                
+                string trmplace = "";
+                string place = "";
+                string trmpdate = "";
+                string pdate = "";
+                string trmcarring = "";
+                string carring = "";
+              
+                string bill = "";
+                string trmpayment = "";
+                string payment = "";
+                string trmothers = "";
+                string Others = "";
 
-                string trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
-                string Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
+                if (dtterm.Rows.Count != 0)
+                {
+                     fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+                     trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
+                     place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
+                     trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
+                     pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
+                     trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
+                     carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
+                    //string trmbill = "* " + dtterm.Rows[9]["termssubj"].ToString() + "";
+                     bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
+                     trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
+                     payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
 
+                     trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
+                     Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
 
+                }
 
 
 
