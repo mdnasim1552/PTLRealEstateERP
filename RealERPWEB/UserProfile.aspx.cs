@@ -132,6 +132,7 @@ namespace RealERPWEB
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
                     this.BtiPolicy.Visible = true;
+
                     this.pnlUpcmEdison.Visible = false;
                     this.pnlUpcmBti.Visible = true;
                     this.modalPayslipBti.Visible = true;
@@ -150,6 +151,7 @@ namespace RealERPWEB
                     this.pnlServHis.Visible = true;
                     this.winsList.Visible = false;
                     this.edidisonPolicy.Visible = true;
+
                     this.pnlUpcmBti.Visible = false;
                     this.pnlUpcmEdison.Visible = true;
                     this.modalPayslipBti.Visible = false;
@@ -160,7 +162,11 @@ namespace RealERPWEB
                     this.PaySlipPart.Visible = true;
                     this.hrpolicy.Visible = true;
                     this.List_EmpDirectory.Visible = true;
-                   
+
+                    this.pnlUpcmEdison.Visible = false;
+                    this.pnlUpcmBti.Visible = true;
+                    this.modalPayslipBti.Visible = true;
+
                     break;
                 default:
 
@@ -172,6 +178,10 @@ namespace RealERPWEB
                     this.hrpolicy.Visible = false;
                     this.PaySlipPart.Visible = false;
                     this.List_EmpDirectory.Visible = false;
+
+                    this.pnlUpcmEdison.Visible = false;
+                    this.pnlUpcmBti.Visible = true;
+                    this.modalPayslipBti.Visible = true;
                     break;
 
                    
@@ -427,7 +437,7 @@ namespace RealERPWEB
                 switch (comcod)
                 {
                     case "3365":
-                    case "3101":
+                    
                         date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
                         frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
                         //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");

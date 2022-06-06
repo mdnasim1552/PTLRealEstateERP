@@ -136,8 +136,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0203000", "0203141", "F_02_Fea", "RptProFeasibilityAll?", "Type=FeInSumm", "Income Statement All Project(Summary)", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203150", "F_02_Fea", "RptProductPricing", "", "Product Pricing", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203160", "F_02_Fea", "RptFeasiVsActualAll", "", "Top Sheet Feasibility Vs Actual", "Feasibility", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0203000", "0203170", "F_02_Fea", "RptRevsiFeasibility?", "Type=RevFeaCL", "Reivised Feasibility", "Feasibility", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0202000", "0203171", "F_02_Fea", "RptRevsiFeasibility?", "Type=RevFeaCL", "Reivised Feasibility City/Land", "Feasibility", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0203000", "0203170", "F_02_Fea", "RptRevsiFeasibility?", "Type=RevFeaCL", "Revised  Feasibility", "Feasibility", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0202000", "0203171", "F_02_Fea", "RptRevsiFeasibility?", "Type=RevFeaCL", "Revised  Feasibility City/Land", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0201000", "0201180", "F_02_Fea", "FeaPrjGenInformation", "", "Project Gen. Information", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0202000", "0202190", "F_02_Fea", "FeaProjectCost", "", "Project Feasibility", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203200", "F_02_Fea", "RptPrjFeasibility04?", "Type=SoldUSold", "Sales Statement", "Feasibility", "False", "False", "False", "False" }); ;
@@ -147,7 +147,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0251000", "0251001", "F_99_Allinterface", "FeasibilityInterface", "", " Land Feasibility", "Land Feasibility-Interface", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0252000", "0251002", "F_99_Allinterface", "LandInterface_Land", "", " Land Feasibility  (Land)", "Land Feasibility-Interface", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0252000", "0251003", "F_99_Allinterface", "EntryLandRegProcess.aspx", "", "Land Managment", "Land Managment", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0252000", "0251003", "F_99_Allinterface", "EntryLandRegProcess.aspx", "", "Land Management", "Land Management", "False", "False", "False", "False" });
 
 
             // tblObj.Rows.Add(new Object[] { "0203000", "0203220", "F_02_Fea", "ProSeriCode", "", "Catagory Code", "Management", "False", "False", "False", "False" });  
@@ -258,7 +258,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0701000", "0701020", "F_07_Ten", "TASCodeBooks?", "BookName=Project", "Project Code", "Tender", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0701000", "0701030", "F_17_Acc", "AccSubCodeBook?", "InputType=Wrkschedule", "Work Schedule", "Tender", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0701000", "0701035", "F_17_Acc", "AccSubCodeBook?", "InputType=Res", "Resource Code", "Tender", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0701000", "0701022", "F_07_Ten", "TASCodeBooks?", "BookName=Resource", "Recource Code", "Tender", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0701000", "0701022", "F_07_Ten", "TASCodeBooks?", "BookName=Resource", "Resource  Code", "Tender", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0701000", "0701040", "F_07_Ten", "TasGenCodeBook", "", "Margin Code", "Tender", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0702000", "0702050", "F_07_Ten", "TasProjectcost?", "Type=Margin", "Margin Input", "Tender", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0703000", "0703051", "F_07_Ten", "RptTenIncomeStatement?", "Type=MasterBgdAcWk", "Income Statement-Tender(Work)", "Tender", "False", "False", "False", "False" }); ;
@@ -328,70 +328,70 @@ namespace RealERPLIB
             #endregion
             //09. Project Implementaion
             #region PImp
-            tblObj.Rows.Add(new Object[] { "0901000", "0901001", "F_09_PImp", "PurOpenigBillCon", "", "Sub-Contractor Bill Opening", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0901000", "0901010", "F_22_Sal", "SalesCodeBook?Type=RABill", "", "Sub-Contractor R/A Code Book", "Project Implementaion", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0901000", "0901001", "F_09_PImp", "PurOpenigBillCon", "", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0901000", "0901010", "F_22_Sal", "SalesCodeBook?Type=RABill", "", "Sub-Contractor R/A Code Book", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902005", "F_09_PImp", "ImplementPlan", "", "Monthly Implementation Plan", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0902000", "0902030", "F_09_PImp", "PurIssueEntry?", "Type=Report", "Work Execution-Category Wise", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902055", "F_09_PImp", "PurLabIssue?", "Type=Opening", "Sub-Contractor Bill Opening", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0902000", "0902056", "F_09_PImp", "PurLabIssue?", "Type=Current", "Sub-Contractor Bill -Category Wise", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902070", "F_09_PImp", "PurSubConBillFinal?", "Type=BillEntry", "Bill Finalization", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902071", "F_09_PImp", "PurSubConBillFinal?", "Type=FirstRecom", "Bill Finalization-First Recommendation", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902072", "F_09_PImp", "PurSubConBillFinal?", "Type=SecRecom", "Bill Finalization-Second Recommendation", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902073", "F_09_PImp", "PurSubConBillFinal?", "Type=ThirdRecom", "Bill Finalization-Third Recommendation", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902076", "F_09_PImp", "ConAssessment?", "Type=ConcAss", "Contractor Assessment", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0902000", "0902077", "F_09_PImp", "RptMonthConAss?", "Type=MnthAss", "Contractor Monthly Assessment", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902092", "F_09_PImp", "PurConWrkOrderEntry02?", "Type=Entry", "Contractor Work Order(Standard)", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903110", "F_09_PImp", "RptImpExeStatus?", "Type=ImpPlan", "Monthly Implementation Plan", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903111", "F_09_PImp", "RptImpExeStatus?", "Type=Execution", "Work Execution", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903112", "F_09_PImp", "RptImpExeStatus?", "Type=PlanVSEx", "Monthly Plan VS Execution", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903113", "F_09_PImp", "RptImpExeStatus?", "Type=DayWiseExecution", "Day Wise Execution", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903130", "F_09_PImp", "RptImpExeStatus?", "Type=BgdVSEx", "Budget VS Execution", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903131", "F_09_PImp", "RptImpExeStatus?", "Type=MaPlanVsPlanVsEx", "Master Plan, Monthly Plan & Execution", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903132", "F_09_PImp", "RptImpExeStatus?", "Type=ImpPlan02", "System Generated Work Plan Vs. Real Plan", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903133", "F_09_PImp", "RptImpExeStatus?", "Type=BgdVSEx02", "Budget VS Execution(Graph)", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903140", "F_09_PImp", "RptExeResRequirement", "", "Consumption Based On Execution", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903150", "F_09_PImp", "RptResBgdBal", "", "Budget Balance (Resource)", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903160", "F_09_PImp", "RptSubConBill?", "Type=SubBill", "Sub-Contractor Bill", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903161", "F_09_PImp", "RptSubConBill?", "Type=SubConBill", "Periodic Sub-Contractor Bill", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0902000", "0902200", "F_09_PImp", "ConBillTracking", "", "Sub-Contractor Bill Tracking", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903210", "F_09_PImp", "RptSubContractorSd?", "Type=BillDetails", "Sub-Contractor Status (R/A Bill All)", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903211", "F_09_PImp", "RptSubContractorSd?", "Type=BillRAWise", "Sub-Contractor Bill - R/A Wise", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903220", "F_09_PImp", "RptSubConBillStatus", "", "Sub-Contractor Bill Summary", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903225", "F_09_PImp", "PurLabIssue2?", "Type=Current", "Sub-Contractor Bill-Work Wise", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903226", "F_09_PImp", "PurLabIssue2?", "Type=CheckaVerify", "Sub-Contractor Bill-Checked", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903227", "F_09_PImp", "PurLabIssue2?", "Type=FirstRecom", "Sub-Contractor Bill-First Recommendation", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903228", "F_09_PImp", "PurLabIssue2?", "Type=SecRecom", "Sub-Contractor Bill-Second Recommendation", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903229", "F_09_PImp", "PurLabIssue2?", "Type=ThirdRecom", "Sub-Contractor Bill-Third Recommendation", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903230", "F_09_PImp", "RptSunConOverAll", "", "Sub Contractor Over All", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903240", "F_09_PImp", "PurIssueWorkWiseEntry?", "Type=Entry", "Work Execution (Work Wise)", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903250", "F_09_PImp", "RptConTractorBillAll", "", "Sub-Contractor Bill (All)-Work Wise", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903260", "F_09_PImp", "RptSubContractorTopSheet", "", "Sub-Contractor Top Sheet ", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903270", "F_09_PImp", "RptSubConOverall02", "", "Sub Contractor Budget", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903280", "F_09_PImp", "SubConPrjWiseBilldetails", "", "Sub-Contractor's Project Wise Bill Report", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903290", "F_09_PImp", "RptProjWiseSubContractorBillReport", "", "Project Wise Sub-Contractor's Bill Report", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903295", "F_09_PImp", "RptSubConBillStatus", "", "Sub-Contractor Bill Status", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903296", "F_09_PImp", "RptProjectWiseBillReport", "", "Project Wise Bill Status", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903297", "F_09_PImp", "RptPrjGrpWrkBillReport?", "Type=BillStatus", "Group Wise Bill Report", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903298", "F_09_PImp", "RptPrjGrpWrkBillReport?", "Type=BillQty", "Project Wise Bill Quantity Report", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903299", "F_09_PImp", "RptSubconWiseWrkOrder", "", "Sub-Contractor Wise Work Report ", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903301", "F_09_PImp", "SubConBillWiseReport", "", "Sub-Contractor Wise Bill Report ", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903302", "F_09_PImp", "SubConBillAllPrj?", "Type=AllPrj", "Sub-Contractor Bill (All Project) ", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0903000", "0903305", "F_09_PImp", "RptBgdPrjoject?", "Type=MatRequired", "Material Requirements", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903306", "F_09_PImp", "RptMonthlyResRequir?", "Type=Report", "Monthly Resource Requirement", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903310", "F_09_PImp", "RptConsConBillStatus?", "Type=ConBillSummary", "Sub-Contractor Bill(All in One)", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903311", "F_09_PImp", "PurLabRequisition?", "Type=Entry", "Sub-Contractor Bill Requisition", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903312", "F_09_PImp", "PurLabRequisition?", "Type=Edit", "Sub-Contractor Bill Requisition Edit", "Project Implementaion", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903313", "F_09_PImp", "PurLabRequisition?", "Type=CSApproval", "Sub-Contractor Bill CS Approval", "Project Implementaion", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902030", "F_09_PImp", "PurIssueEntry?", "Type=Report", "Work Execution-Category Wise", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902055", "F_09_PImp", "PurLabIssue?", "Type=Opening", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902056", "F_09_PImp", "PurLabIssue?", "Type=Current", "Sub-Contractor Bill -Category Wise", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902070", "F_09_PImp", "PurSubConBillFinal?", "Type=BillEntry", "Bill Finalization", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902071", "F_09_PImp", "PurSubConBillFinal?", "Type=FirstRecom", "Bill Finalization-First Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902072", "F_09_PImp", "PurSubConBillFinal?", "Type=SecRecom", "Bill Finalization-Second Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902073", "F_09_PImp", "PurSubConBillFinal?", "Type=ThirdRecom", "Bill Finalization-Third Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902076", "F_09_PImp", "ConAssessment?", "Type=ConcAss", "Contractor Assessment", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902077", "F_09_PImp", "RptMonthConAss?", "Type=MnthAss", "Contractor Monthly Assessment", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902092", "F_09_PImp", "PurConWrkOrderEntry02?", "Type=Entry", "Contractor Work Order(Standard)", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903110", "F_09_PImp", "RptImpExeStatus?", "Type=ImpPlan", "Monthly Implementation Plan", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903111", "F_09_PImp", "RptImpExeStatus?", "Type=Execution", "Work Execution", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903112", "F_09_PImp", "RptImpExeStatus?", "Type=PlanVSEx", "Monthly Plan VS Execution", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903113", "F_09_PImp", "RptImpExeStatus?", "Type=DayWiseExecution", "Day Wise Execution", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903130", "F_09_PImp", "RptImpExeStatus?", "Type=BgdVSEx", "Budget VS Execution", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903131", "F_09_PImp", "RptImpExeStatus?", "Type=MaPlanVsPlanVsEx", "Master Plan, Monthly Plan & Execution", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903132", "F_09_PImp", "RptImpExeStatus?", "Type=ImpPlan02", "System Generated Work Plan Vs. Real Plan", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903133", "F_09_PImp", "RptImpExeStatus?", "Type=BgdVSEx02", "Budget VS Execution(Graph)", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903140", "F_09_PImp", "RptExeResRequirement", "", "Consumption Based On Execution", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903150", "F_09_PImp", "RptResBgdBal", "", "Budget Balance (Resource)", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903160", "F_09_PImp", "RptSubConBill?", "Type=SubBill", "Sub-Contractor Bill", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903161", "F_09_PImp", "RptSubConBill?", "Type=SubConBill", "Periodic Sub-Contractor Bill", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902200", "F_09_PImp", "ConBillTracking", "", "Sub-Contractor Bill Tracking", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903210", "F_09_PImp", "RptSubContractorSd?", "Type=BillDetails", "Sub-Contractor Status (R/A Bill All)", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903211", "F_09_PImp", "RptSubContractorSd?", "Type=BillRAWise", "Sub-Contractor Bill - R/A Wise", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903220", "F_09_PImp", "RptSubConBillStatus", "", "Sub-Contractor Bill Summary", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903225", "F_09_PImp", "PurLabIssue2?", "Type=Current", "Sub-Contractor Bill-Work Wise", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903226", "F_09_PImp", "PurLabIssue2?", "Type=CheckaVerify", "Sub-Contractor Bill-Checked", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903227", "F_09_PImp", "PurLabIssue2?", "Type=FirstRecom", "Sub-Contractor Bill-First Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903228", "F_09_PImp", "PurLabIssue2?", "Type=SecRecom", "Sub-Contractor Bill-Second Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903229", "F_09_PImp", "PurLabIssue2?", "Type=ThirdRecom", "Sub-Contractor Bill-Third Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903230", "F_09_PImp", "RptSunConOverAll", "", "Sub Contractor Over All", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903240", "F_09_PImp", "PurIssueWorkWiseEntry?", "Type=Entry", "Work Execution (Work Wise)", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903250", "F_09_PImp", "RptConTractorBillAll", "", "Sub-Contractor Bill (All)-Work Wise", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903260", "F_09_PImp", "RptSubContractorTopSheet", "", "Sub-Contractor Top Sheet ", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903270", "F_09_PImp", "RptSubConOverall02", "", "Sub Contractor Budget", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903280", "F_09_PImp", "SubConPrjWiseBilldetails", "", "Sub-Contractor's Project Wise Bill Report", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903290", "F_09_PImp", "RptProjWiseSubContractorBillReport", "", "Project Wise Sub-Contractor's Bill Report", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903295", "F_09_PImp", "RptSubConBillStatus", "", "Sub-Contractor Bill Status", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903296", "F_09_PImp", "RptProjectWiseBillReport", "", "Project Wise Bill Status", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903297", "F_09_PImp", "RptPrjGrpWrkBillReport?", "Type=BillStatus", "Group Wise Bill Report", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903298", "F_09_PImp", "RptPrjGrpWrkBillReport?", "Type=BillQty", "Project Wise Bill Quantity Report", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903299", "F_09_PImp", "RptSubconWiseWrkOrder", "", "Sub-Contractor Wise Work Report ", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903301", "F_09_PImp", "SubConBillWiseReport", "", "Sub-Contractor Wise Bill Report ", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903302", "F_09_PImp", "SubConBillAllPrj?", "Type=AllPrj", "Sub-Contractor Bill (All Project) ", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903305", "F_09_PImp", "RptBgdPrjoject?", "Type=MatRequired", "Material Requirements", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903306", "F_09_PImp", "RptMonthlyResRequir?", "Type=Report", "Monthly Resource Requirement", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903310", "F_09_PImp", "RptConsConBillStatus?", "Type=ConBillSummary", "Sub-Contractor Bill(All in One)", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903311", "F_09_PImp", "PurLabRequisition?", "Type=Entry", "Sub-Contractor Bill Requisition", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903312", "F_09_PImp", "PurLabRequisition?", "Type=Edit", "Sub-Contractor Bill Requisition Edit", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903313", "F_09_PImp", "PurLabRequisition?", "Type=CSApproval", "Sub-Contractor Bill CS Approval", "Project Implementation", "False", "False", "False", "False" });
 
-            //tblObj.Rows.Add(new Object[] { "0901000", "0901020", "EmpAssesmentCode?", "Type=AssessmntCode", "Assessment Code", "Project Implementaion", "False", "False", "False", "False" }); rihan/emdad
-            //tblObj.Rows.Add(new Object[] { "0902000", "0902033", "PurFinProIssueEntry", "", "Work Execution-Finishing Project", "Project Implementaion", "False", "False", "False", "False" });;
+            //tblObj.Rows.Add(new Object[] { "0901000", "0901020", "EmpAssesmentCode?", "Type=AssessmntCode", "Assessment Code", "Project Implementation", "False", "False", "False", "False" }); rihan/emdad
+            //tblObj.Rows.Add(new Object[] { "0902000", "0902033", "PurFinProIssueEntry", "", "Work Execution-Finishing Project", "Project Implementation", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "0902000", "0902060", "SubConBillEntry", "", "Sub-Cont. Payment", "Project Implementaion", "False", "False", "False", "False" });;
 
-            tblObj.Rows.Add(new Object[] { "0902000", "0902078", "PurSubConBillFinal?", "Type=BillConfirmed", "Bill Finalization(Confirmed)", "Project Implementaion", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902078", "PurSubConBillFinal?", "Type=BillConfirmed", "Bill Finalization(Confirmed)", "Project Implementation", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0902000", "0902080", "InvResourceRequirement", "", "Resource Requirement-All Project", "Project Implementaion", "False", "False", "False", "False" }); ;//rihan
 
-            tblObj.Rows.Add(new Object[] { "0951000", "0951001", "F_99_Allinterface", "SubContractorBillInterface?", "Type=Report", "Sub-Contractor", "Project Implementaion-Interface", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0951000", "0951001", "F_99_Allinterface", "SubContractorBillInterface?", "Type=Report", "Sub-Contractor", "Project Implementation-Interface", "False", "False", "False", "False" }); ;
 
 
             #endregion
@@ -408,15 +408,15 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1202000", "1202035", "F_12_Inv", "PurInterComMatTransfer", "", "Inter Company Material Transfer", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202040", "F_12_Inv", "PurMatIssue?", "Type=Entry", "Material Issue", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1202000", "1202050", "F_12_Inv", "PurPhyStock", "", "Physical Stock", "Inventory", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1202000", "1202060", "F_12_Inv", "PurTopSheetCashPur?", "Type=Entry&genno=", "Top Sheet(Cash Purcase)", "Inventory", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1202000", "1202061", "F_12_Inv", "PurReqEntry?", "InputType=LcEntry", "Lc Requisition", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1202000", "1202060", "F_12_Inv", "PurTopSheetCashPur?", "Type=Entry&genno=", "Top Sheet(Cash Purchase)", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1202000", "1202061", "F_12_Inv", "PurReqEntry?", "InputType=LcEntry", "LC Requisition", "Inventory", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "1202000", "1202062", "F_12_Cen", "EntryLostSoldAndDes01", "", " Entry Lost, Sold & Destroyed", "Inventory", "False", "False", "False", "False" }); ;
 
 
 
             tblObj.Rows.Add(new Object[] { "1203000", "1203060", "F_12_Inv", "RptPrurVarAna?", "Type=IssueBasis", "Material Evaluation - Based on Issue", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203061", "F_12_Inv", "RptPrurVarAna?", "Type=StkBasis", "Material Evaluation - Based on Progress", "Inventory", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1203000", "1203070", "F_12_Inv", "RptInvResourceConsum", "", "Ind. Material Consumtion", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1203070", "F_12_Inv", "RptInvResourceConsum", "", "Ind. Material Consumption", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203080", "F_12_Inv", "RptProjectStock?", "Type=acc", "Materials Stock Information", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203081", "F_12_Inv", "RptProjectStock?", "Type=inv", "Materials Stock Information(Inventory)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203082", "F_12_Inv", "RptProjectStock?", "Type=invWithSpec", "Materials Stock Information(Inventory-Specification)", "Inventory", "False", "False", "False", "False" }); ;
@@ -427,7 +427,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1202122", "F_12_Inv", "PurMTReqEntry?", "Type=ReqEdit", "MTR Requisition Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1202121", "F_12_Inv", "PurMTReqEntry?", "Type=ReqApproval", "Transfer Requisition Approval", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203130", "F_12_Inv", "PurMTReqGatePass?", "Type=Entry", "Gate Pass", "Inventory", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1203000", "1203131", "F_12_Inv", "PurMTReqGatePass?", "Type=GpaEdit", "MTR Gatepass Edit", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1203131", "F_12_Inv", "PurMTReqGatePass?", "Type=GpaEdit", "MTR Gate Pass Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203140", "F_12_Inv", "RptMaterialStock?", "Type=inv", "Materials Stock Information(Project Wise)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203145", "F_12_Inv", "RptInventoryAll?", "Type=Report", "Inventory Report All", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203150", "F_12_Inv", "RptPurchaseStatus?", "Type=Purchase&Rpt=DaywPur", "Day Wise Purchase", "Inventory", "False", "False", "False", "False" });
@@ -467,7 +467,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1401000", "1401020", "F_22_Sal", "SalesCodeBook?Type=Procurement", "", " Supplier/Sub-Contractor Information Field ", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1401000", "1401030", "F_14_Pro", "PurSupplierinfo?Type=Entry", "", "Supplier/Sub-Contractor Information", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1401000", "1401040", "F_14_Pro", "wrkordercodebook", "", "Work Order Code Book", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1401000", "1401050", "F_14_Pro", "PurOrderTermsCon", "", "Puchase Order (Terms & Condition)", "Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1401000", "1401050", "F_14_Pro", "PurOrderTermsCon", "", "Purchase Order (Terms & Condition)", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1401000", "1401055", "F_14_Pro", "SuppLimitCodeBook", "", "Supplier Limit Information", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1401000", "1401060", "F_14_Pro", "MatLedCodeBook?", "InputType=Res", "Material Code Book (Lead Time Input)", "Procurement", "False", "False", "False", "False" }); ;
 
@@ -533,7 +533,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403132", "F_14_Pro", "RptDeliveryEfficiency?", "Type=Report", "Materials Delivery Efficiency Report", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403170", "F_14_Pro", "RptReqAdjust", "", "Requisition Adjustment", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403180", "F_14_Pro", "RptPurchaseStatus02?", "Type=Purchase", "Purchase Summary with Opening", "Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1403000", "1403200", "F_14_Pro", "PurReqEntry02?", "InputType=HeadUsed", "Material Requisition Input (Central Warehouese)-(H/O Used)", "Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1403000", "1403200", "F_14_Pro", "PurReqEntry02?", "InputType=HeadUsed", "Material Requisition Input (Central Warehouse)-(H/O Used)", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403210", "F_14_Pro", "RptPaymentStatus?", "Type=PayStatusSwise", "Payment History Supplier Wise", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403220", "F_14_Pro", "RptSupPayableStatus?", "Type=RptSuppPayable", "Monthly Supplier & Group Wise Payable", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403221", "F_14_Pro", "RptSupPayableStatus?", "Type=RptgrpPayable", "Monthly Payable( Group Wise)", "Procurement", "False", "False", "False", "False" }); ;

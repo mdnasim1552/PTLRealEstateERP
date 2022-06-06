@@ -11,7 +11,6 @@
         function RedirNoticeCreate() {
 
             window.open('CreateNotice.aspx', '_blank');
-
         }
 
     </script>

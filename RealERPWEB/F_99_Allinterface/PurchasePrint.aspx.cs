@@ -4076,7 +4076,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     //case "3101": // Pintech
-                    case "3368": // Finlay
+
                     case "3366": // Lanco
                     case "1205": //P2P
                     case "3351": //P2P
@@ -4084,6 +4084,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms1 = terms.ToString();
                         break;
 
+                    case "3368": // Finlay
                     //case "3101": // Cube 
                     case "3357": // Cube 
                         terms1 = terms.ToString();
@@ -4404,6 +4405,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cost3", cost3));
                     Rpt1.SetParameters(new ReportParameter("cost4", cost4));
                     Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+                    Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }
 
 
