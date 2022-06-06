@@ -48,7 +48,7 @@ namespace RealERPWEB.F_23_CR
                 this.txtDateto.Text = Convert.ToDateTime(date1).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                RadioButtonList1.SelectedIndex = 0;
+                RadioButtonList1.SelectedIndex = 1;
                 RadioButtonList1_SelectedIndexChanged(null, null);
                 this.ViewSection();
             }
@@ -304,10 +304,20 @@ namespace RealERPWEB.F_23_CR
                 case "HOTB":
                 case "AsOnDues":
                     string date = this.txtAsDate.Text.Substring(0, 11).ToString();
-                    string type1 = this.rbtntype1.SelectedValue.ToString();
-                    string prjcode1 = this.ddlProjectName2.SelectedValue.ToString();
+                    //string frdate = "01" + this.txtAsDate.Text.Trim().Substring(2); //"25-May-2016";
+                    ////string todate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+                    //string endmonth = Convert.ToDateTime(frdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                    ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT06", "GETASONDUES", "", date, type1, prjcode1, "", "", "", "", "");
+                    string type1 = this.rbtntype1.SelectedValue.ToString();
+                    string prjcode1 = this.ddlProjectName2.SelectedValue.ToString()=="000000000000"?"18%" : this.ddlProjectName2.SelectedValue.ToString()+"%";
+
+                    string calltype =this.ddlreportType.SelectedValue.ToString()== "AsOn"? "GETASONDUES": "GETCURRENTDUES";
+
+                    ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT06", calltype, "", date, type1, prjcode1, "", "", "", "", "");
+
+
+                    Session["tblCustDues"] = this.HiddenSameData(ds1.Tables[0]);
+
                     break;
 
 
@@ -321,6 +331,8 @@ namespace RealERPWEB.F_23_CR
                     string leveltb2 = this.ddlReportLeveltb2.SelectedValue.ToString();
 
                     ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TB", "REPORT_TRIALBALANCE_COMPANYUDDL_0" + leveltb2, date1, date2, "", "", "", "", "", "", "");
+                   
+                    
                     break;
             }
             return ds1;
@@ -1315,8 +1327,45 @@ namespace RealERPWEB.F_23_CR
 
                     break;
 
-                case "HOTB":
-                case "TBConsolidated":
+                case "AsOnDues":
+
+                    if (dt1.Rows.Count == 0)
+                        return dt1;
+                    string pactcode = dt1.Rows[0]["pactcode"].ToString();
+                    string usircode = dt1.Rows[0]["usircode"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["pactcode"].ToString() == pactcode && dt1.Rows[j]["usircode"].ToString() == usircode)
+                        {
+                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            usircode = dt1.Rows[j]["usircode"].ToString();
+                            dt1.Rows[j]["pactdesc"] = "";
+                            dt1.Rows[j]["Unitname"] = "";
+                            dt1.Rows[j]["custname"] = "";
+                            
+                          
+
+                        }
+
+                        else
+                        {
+                            if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                                dt1.Rows[j]["pactdesc"] = "";
+                            else if (dt1.Rows[j]["usircode"].ToString() == usircode)
+                            {
+                                dt1.Rows[j]["udesc"] = "";
+                                dt1.Rows[j]["custname"] = "";
+                           
+                               
+                            }
+
+
+                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            usircode = dt1.Rows[j]["usircode"].ToString();
+                        }
+
+                    }
+
                     break;
 
 
@@ -1334,9 +1383,13 @@ namespace RealERPWEB.F_23_CR
 
 
         }
+
+       
         protected void lnkTrialBalCon_Click(object sender, EventArgs e)
         {
             DataSet ds1 = this.GetDataForReport();
+
+
             if (ds1 == null)
                 return;
 
@@ -1351,37 +1404,21 @@ namespace RealERPWEB.F_23_CR
             this.gvtbcon.DataSource = ds1.Tables[0];
             this.gvtbcon.DataBind();
 
-            string ddd = rbtntype1.SelectedIndex.ToString();
-
-            if (rbtntype1.SelectedIndex==0)
-            {
-
-                this.gvtbcon.Columns[7].Visible = true;
-            }
-
-
-           else 
-            {
-                this.gvtbcon.Columns[8].Visible = true;
-
-            }
-            
-
 
             //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             ////((HyperLink)this.gvtbcon.HeaderRow.FindControl("hlbtntbCdataExelcon")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-            //DataTable dt = ds1.Tables[0];
+            DataTable dt = ds1.Tables[0];
 
 
-            //((Label)this.gvtbcon.FooterRow.FindControl("lblfClosDramtcon")).Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["closdram"]).ToString("#,##0;(#,##0); ");
-            //((Label)this.gvtbcon.FooterRow.FindControl("lblfClosCramtcon")).Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["closcram"]).ToString("#,##0;(#,##0); ");
-            //((Label)this.gvtbcon.FooterRow.FindControl("lblfnetdramtcon")).Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["netdram"]).ToString("#,##0;(#,##0); ");
-            //((Label)this.gvtbcon.FooterRow.FindControl("lblfnetcramtcon")).Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["netcram"]).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvtbcon.FooterRow.FindControl("lblfBookduesas")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pbookam)", "")) ? 0.00 : dt.Compute("sum(pbookam)", ""))).ToString("#,##0.00;(#,##0.00); "); // Convert.ToDouble(ds1.Tables[0].Rows[0]["pbookam"]).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvtbcon.FooterRow.FindControl("lblfCurrentduesas")).Text=Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pinsam)", "")) ? 0.00 : dt.Compute("sum(pinsam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            if (dt.Rows.Count>0)
+            {
+                Session["Report1"] = gvtbcon;
+                ((HyperLink)this.gvtbcon.HeaderRow.FindControl("hlbtntbCdataExelas")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-
-            //Session["Report1"] = gvtbcon;
-            //((HyperLink)this.gvtbcon.HeaderRow.FindControl("hlbtntbCdataExelcon")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
 
         }
         protected void gvtbcon_RowDataBound(object sender, GridViewRowEventArgs e)

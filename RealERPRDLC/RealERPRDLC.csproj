@@ -682,6 +682,7 @@
     <EmbeddedResource Include="R_22_Sal\RptCustApp.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerBillInfo.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerinf.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleEpic.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\rptDailySaleVsCollTarget.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDayWiseSales.rdlc" />
@@ -978,6 +979,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterGreenwood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsLanco.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptTotalSal.rdlc" />

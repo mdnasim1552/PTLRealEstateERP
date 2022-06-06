@@ -39,7 +39,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE";//
-
+                this.GetRequestType();
                 this.SelectDate();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
@@ -48,7 +48,25 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
             }
         }
+        private void GetRequestType()
+        {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+
+            DataSet ds = accData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETREQUESTTYPE", "", "");
+            if (ds == null)
+                return;
+            //dtprof.Rows.Add("000000000000", "Choose Peofession..", "");
+            this.ddlfilterby.DataTextField = "hrgdesc";
+            this.ddlfilterby.DataValueField = "unit";
+            this.ddlfilterby.DataSource = ds.Tables[0];
+            this.ddlfilterby.DataBind();
+            this.ddlfilterby.Items.Insert(0, new ListItem("All", "%%"));
+
+
+
+        }
         private void SelectDate()
         {
             string comcod = this.GetCompCode();          

@@ -66,6 +66,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void ShowHoliday()
         {
+            ViewState.Remove("HolidayInfo");
             string comcod = this.GetComCode();
             string monthid = this.rblmonth.SelectedValue.ToString();
             string year = System.DateTime.Now.ToString("yyyy");
@@ -84,7 +85,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
-
         }
 
         //protected void gvholiday_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -252,6 +252,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         protected void LnkbtnDelete_Click(object sender, EventArgs e)
         {
+    
             LinkButton btn = (LinkButton)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;        
             int index = row.RowIndex;
@@ -267,9 +268,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             if (result)
             {
-                dt.Rows[index].Delete();
+                //dt.Rows[index].Delete();
+                this.ShowHoliday();
             }
-            ViewState["HolidayInfo"] = dt;
+            //ViewState["HolidayInfo"] = dt;
 
 
 

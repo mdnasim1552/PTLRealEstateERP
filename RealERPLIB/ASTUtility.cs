@@ -168,6 +168,7 @@ namespace RealERPLIB
                     break;
                 case 2:
                 case 4:
+                case 5:
                     N_2 = ((N_2.Substring(0, 1) == ".") ? ((string)(N_2.Substring(1) + "00000")).Substring(0, 2) : "00");
                     break;
             }
@@ -179,6 +180,7 @@ namespace RealERPLIB
             {
                 case 1:
                 case 2:
+                case 5: // Braket not exist
                     L[0] = "";
                     L[1] = ((Convert.ToInt32(N_O.Substring(0, 1)) == 0) ? "" : X1[Int32.Parse(N_O.Substring(0, 1))] + Y1[1]);
                     L[2] = ((Convert.ToInt32(N_O.Substring(1, 2)) == 0) ? "" : X1[Int32.Parse(N_O.Substring(1, 2))] + Y1[4]);
@@ -191,6 +193,7 @@ namespace RealERPLIB
                     L[9] = ((Convert.ToInt32(N_O.Substring(14, 1)) == 0) ? "" : X1[Int32.Parse(N_O.Substring(14, 1))] + Y1[1]);
                     L[10] = (Convert.ToInt32(N_O.Substring(15, 2)) == 0) ? "" : X1[Int32.Parse(N_O.Substring(15, 2))];
                     break;
+
                 case 3:
                 case 4:
                     L[0] = ((Convert.ToInt32(N_O.Substring(0, 2)) == 0) ? "" : X1[Int32.Parse(N_O.Substring(0, 2))] + Y1[2]);
@@ -231,6 +234,14 @@ namespace RealERPLIB
                     P = M[6] + M[1];
                     Q_ = "( Taka " + O + P + "Only )";
                     break;
+
+                case 5: // Braket not exist
+                    M[1] = ((Convert.ToInt32(N_2) >= 1) ? X1[Int32.Parse(N_2)] : "");
+                    M[6] = ((Convert.ToInt32(N_2) > 0) ? "And Paisa " : "");
+                    P = M[6] + M[1];
+                    Q_ = O + P + "Only";
+                    break;
+
                 case 4:
                     M[1] = ((Convert.ToInt32(N_2) >= 1) ? X1[Int32.Parse(N_2)] : "");
                     M[6] = ((Convert.ToInt32(N_2) > 0) ? "And Cent " : "");

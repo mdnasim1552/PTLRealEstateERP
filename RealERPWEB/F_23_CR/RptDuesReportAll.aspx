@@ -358,11 +358,11 @@
             <div class=" card card-fluid">
                 <div class=" card-body" style="min-height: 250px;">
                     <div class="row">
-                        <fieldset class="tabMenu">
+                        <fieldset class="tabMenu" >
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <div class="tbMenuWrp nav nav-tabs">
-                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal" Visible="false">
                                             <asp:ListItem Value="Mains"><div class='circle-tile'><div class='circle-tile-content common_color'><div class='circle-tile-description text-faded'>Current Dues</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="AsOnDues"><div class='circle-tile'><div class='circle-tile-content common_color'><div class='circle-tile-description text-faded'> As On Dues</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="Trial02"><div class='circle-tile'><div class='circle-tile-content common_color'><div class='circle-tile-description text-faded'></div></div></div></asp:ListItem>
@@ -941,13 +941,25 @@
 
                                             </div>
                                         </div>
+                                        <div class="col-md-2">
+                                  <%--          <asp:Label ID="Label5" runat="server" CssClass="control-label lblmargin-top9px" Text="Type :"></asp:Label>--%>
+                                            <div class="form-group">
 
-                                         <asp:RadioButtonList ID="rbtntype1" RepeatDirection="Horizontal" CssClass=""  runat="server">
+                                                <asp:DropDownList ID="ddlreportType" runat="server" CssClass="custom-select" TabIndex="6" >
+                                                    <asp:ListItem Value="AsOn">As on Dues</asp:ListItem>
+                                                    <asp:ListItem Value="Current" Selected="True">Current Dues</asp:ListItem>
+                                                  <%--  <asp:ListItem Value="3">Level-3</asp:ListItem>
+                                                    <asp:ListItem Selected="True" Value="4">Level-4</asp:ListItem>--%>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+
+                                    <asp:RadioButtonList ID="rbtntype1" RepeatDirection="Horizontal" CssClass=""  runat="server">
 
                                    
                                    <asp:ListItem Value ="Booking" Selected="True">Booking Dues</asp:ListItem>
                                   <asp:ListItem Value="CRDUES"> CR Dues</asp:ListItem>                               
-                                <%--  <asp:ListItem Selected="True">Both</asp:ListItem>--%>
+                                  <asp:ListItem Selected="True">Both</asp:ListItem>
                                 </asp:RadioButtonList>
 
 
@@ -976,7 +988,7 @@
                                             CssClass=" table-striped table-hover table-bordered grvContentarea gvTopHeader"
                                             PageSize="20" ShowFooter="True">
                                             <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl#">
                                         <ItemTemplate>
                                             <asp:Label ID="lblserialnoidas" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="33px"></asp:Label>
@@ -999,7 +1011,7 @@
                                         <HeaderTemplate>
 
                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                Text="Description Of Accounts" Width="180px"></asp:Label>
+                                                Text="Project Name" Width="180px"></asp:Label>
 
 
                                             <asp:HyperLink ID="hlbtntbCdataExelas" runat="server"
@@ -1052,7 +1064,7 @@
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Booking Dues" Visible="false">
+                                    <asp:TemplateField HeaderText="Booking Dues">
                                         <FooterTemplate>
                                             <asp:Label ID="lblfBookduesas" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>
@@ -1064,7 +1076,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                           <asp:TemplateField HeaderText="CR Dues" Visible="false">
+                                           <asp:TemplateField HeaderText="CR Dues" >
                                         <FooterTemplate>
                                             <asp:Label ID="lblfCurrentduesas" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>

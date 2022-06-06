@@ -243,7 +243,7 @@
 
                 </div>
                 <div class="col-4">
-                    <asp:Panel runat="server" ID="pnlUpcmEdison">
+                    <asp:Panel runat="server" ID="pnlUpcmEdison" visiable="false">
                                        <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
                         <header class="card-header border-0 pb-0">
                             <div class="d-flex align-items-center">
