@@ -182,7 +182,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string lateapp = "0";
                 
                 // this part for the Attedance update process 
-                if (roletype == "DPT")
+                if (roletype == "DPT" || (roletype=="SUP" && comcod=="3354"))
                 {
                     if (reqtype == "AB")
                     {
