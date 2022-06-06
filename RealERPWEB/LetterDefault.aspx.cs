@@ -590,16 +590,70 @@ namespace RealERPWEB
                         "</div>";
 
                     break;
-
+                    
                 //offer later for sales department;
                 case "10003":
-                    lbody = "<p style='margin-bottom:0'><br/><br/>Ref: bti/HR/2021/</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
-                        "<p style='margin-bottom:-11px'>Address: House: 271, Tejgaon I/A, </p>" +
-                        "<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : 01913169818</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>" + name + "," + "</strong></p>" +
-                        "<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + Desig + ", " + dptdesc + ",</strong> in " + depart + ", which shall commence on or before <strong> " + cdate + " </strong>." +
-                        "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
-                        "<li>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li>Photocopy of National ID card/ Passport (employee and nominee).</li><li>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
-                        "</li><li>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director and Head of HR" + "</p><p>" + "Admin and Security Department" + "</p>";
+
+               if(this.GetCompCode() == "3354")
+                    {
+                        lbody =
+                       "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
+                       "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
+                       "<p><strong>Subject:</strong> Offer Letter-<strong>" + Desig + "</strong></p>" +
+                       "<p>Dear " + name + ",</p>" +
+
+                       "<p style='margin-bottom:-11px'>We are delighted to offer you the position of <strong>" + Desig + "</strong> of the <strong>" + depart + "</strong> department under <strong>" + dptdesc + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>"+
+                       "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
+                       "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
+                        "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + Desig + "</span></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + cdate + "</span></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
+                       "<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>" +
+
+                       "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a three-month probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
+                       "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                       "<p style='margin-bottom:-11px'>We look forward to the opportunity to work with you in an atmosphere that is successful and mutually challenging and rewarding.If you don’t accept this letter, please let us know within " + cdate + ".</p>" +
+
+                           "<p></p>" +
+
+                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>Ahmed Pasha</strong></p></span></p>" +
+                  "<br>" +
+                           "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Business Officer</strong></p></span></p>" +
+
+                       
+                       "<p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p>" +
+        
+
+                       "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p>";
+
+                    }
+
+                   else if(this.GetCompCode()=="3365")
+                    {
+                        lbody = "<p style='margin-bottom:0'><br/><br/>Ref: bti/HR/2021/</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+       "<p style='margin-bottom:-11px'>Address: House: 271, Tejgaon I/A, </p>" +
+       "<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : 01913169818</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>" + name + "," + "</strong></p>" +
+       "<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + Desig + ", " + dptdesc + ",</strong> in " + depart + ", which shall commence on or before <strong> " + cdate + " </strong>." +
+       "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
+       "<li>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li>Photocopy of National ID card/ Passport (employee and nominee).</li><li>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
+       "</li><li>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director and Head of HR" + "</p><p>" + "Admin and Security Department" + "</p>";
+
+                    }
+                    else
+                    {
+                        lbody = "<p style='margin-bottom:0'><br/><br/>Ref: HR/2021/</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+"<p style='margin-bottom:-11px'>Address: House: 271, Tejgaon I/A, </p>" +
+"<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : 01xxxxxxxxxx</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>" + name + "," + "</strong></p>" +
+"<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + Desig + ", " + dptdesc + ",</strong> in " + depart + ", which shall commence on or before <strong> " + cdate + " </strong>." +
+"<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
+"<li>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li>Photocopy of National ID card/ Passport (employee and nominee).</li><li>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
+"</li><li>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Mr x" + "</span></strong></p> <p>" + "Additional Managing Director and Head of HR" + "</p><p>" + "Admin and Security Department" + "</p>";
+
+                    }
+
 
                     break;
                 //offer Later For general
