@@ -504,7 +504,7 @@ namespace RealERPWEB.F_17_Acc
 
             else if (Type == "MRPrintFinlay")
             {
-                string amt1t2 = ASTUtility.Trans(amt1, 4);
+                string amt1t2 = ASTUtility.Trans(amt1, 5);
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
 
                 string paytype1 = "";
