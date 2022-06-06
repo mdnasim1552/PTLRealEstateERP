@@ -1629,23 +1629,35 @@ namespace RealERPWEB.F_22_Sal
             double directcost = Convert.ToDouble((Convert.IsDBNull(dv.ToTable().Compute("sum(amt)", "")) ?
                                  0 : dv.ToTable().Compute("sum(amt)", "")));
 
-
-            string address = "";
-            switch (comcod)
-            {
-                case "3101":
-                case "3368":
-                    address = ds2.Tables[0].Rows[0]["presentadd"].ToString();
-                    break;
-                default:
-                    address = ds2.Tables[0].Rows[0]["paddress"].ToString();
-                    break;
-            }
-
             LocalReport Rpt1 = new LocalReport();
             var lst = ds2.Tables[1].DataTableToList<RealEntity.C_22_Sal.Sales_BO.PaymentScheduleN>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
             Rpt1.EnableExternalImages = true;
+
+            string address = "";
+            string sign1 = "", sign2 = "", sign3 = "", sign4 = "";
+
+            switch (comcod)
+            {
+                //case "3101": // finlay 
+                case "3368": 
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
+                    address = ds2.Tables[0].Rows[0]["presentadd"].ToString();
+                    break;
+                    
+                case "3101": // epic 
+                case "3367":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleEpic", lst, null, null);
+                    address = ds2.Tables[0].Rows[0]["paddress"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("sign1", sign1));
+                    Rpt1.SetParameters(new ReportParameter("sign2", sign2));
+                    Rpt1.SetParameters(new ReportParameter("sign3", sign3));
+                    Rpt1.SetParameters(new ReportParameter("sign4", sign4));
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
+                    address = ds2.Tables[0].Rows[0]["paddress"].ToString();
+                    break;
+            }           
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("custnam", this.ddlCustName.SelectedItem.Text.Trim()));

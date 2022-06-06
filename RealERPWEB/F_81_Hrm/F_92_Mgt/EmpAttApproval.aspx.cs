@@ -20,12 +20,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (!IsPostBack)
             {
                 GetDptUserCheck();
-                GetLeaveType();
+                GetRequestType();
                 this.ShowData();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE APPROVAL";//
-
-
-              
+                ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE APPROVAL";//             
             }
         }
 
@@ -53,10 +50,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ViewState["tblattreq"] = ds1.Tables[0];
             this.data_Bind();
         }
-        private void GetLeaveType()
+        private void GetRequestType()
         {
 
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETREQUESTTYPE", "", "");
+            if (ds == null)
+                return;
+            this.ddlReqType.DataTextField = "hrgdesc";
+            this.ddlReqType.DataValueField = "unit";
+            this.ddlReqType.DataSource = ds.Tables[0];
+            this.ddlReqType.DataBind();
+   
         }
         private void data_Bind()
         {
@@ -82,11 +89,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
                 case "3354":
                 case "3101":
-                 
-                    this.ddlReqType.Items.Remove("LA");
-                    this.ddlReqType.Items.Remove("TC");
-                    this.ddlReqType.Items.Remove("LP");
-                    this.ddlReqType.Items.Remove("TLV");
+                    //var isReadonly = ((DropDownList)ddlReqType).ReadOnly;
+                    //this.ddlReqType.IsReadOnly=true;
+                    //this.ddlReqType.Items.Remove("LA");
+                    //this.ddlReqType.Items.Remove("TC");
+                    //this.ddlReqType.Items.Remove("LP");
+                    //this.ddlReqType.Items.Remove("TLV");
                     //this.ddlReqType.Items.RemoveAt(0);
                     //this.ddlReqType.Items.RemoveAt(1);
                     //this.ddlReqType.Items.RemoveAt(2);              
@@ -174,7 +182,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string lateapp = "0";
                 
                 // this part for the Attedance update process 
-                if (roletype == "DPT")
+                if (roletype == "DPT" || (roletype=="SUP" && comcod=="3354"))
                 {
                     if (reqtype == "AB")
                     {

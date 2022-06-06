@@ -521,6 +521,7 @@
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
+               
 
                     case 1103:   //tanvir
 

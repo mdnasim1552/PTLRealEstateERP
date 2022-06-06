@@ -57,7 +57,7 @@
                     <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                         AutoGenerateColumns="False" Font-Size="12px"
                         OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                        OnRowUpdating="grvacc_RowUpdating" PageSize="200" Width="284px"
+                        OnRowUpdating="grvacc_RowUpdating" PageSize="200" Width="400px"
                         ShowFooter="True">
                         <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
                         <FooterStyle Font-Bold="True" />
