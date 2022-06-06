@@ -452,14 +452,14 @@
                                     <div class="table table-responsive">
                                         <asp:GridView ID="gvEmpList" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                             AutoGenerateColumns="False" OnPageIndexChanging="gvEmpList_PageIndexChanging" AllowPaging="true"
-                                            ShowFooter="True" Width="420px" PageSize="300">
+                                            ShowFooter="True" PageSize="300">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                                             Style="text-align: right"
-                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
@@ -468,20 +468,15 @@
                                                 <asp:TemplateField HeaderText="Company Name">
 
                                                     <HeaderTemplate>
-
                                                         <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                            Text="Company Name" Width="150px"></asp:Label>
-
-
+                                                            Text="Company Name" Width="140px"></asp:Label>
                                                         <asp:HyperLink ID="hlbtntbCdataExcelemplist" runat="server"
-                                                            CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i class=" fa fa-file-excel "></i></asp:HyperLink>
-
+                                                            CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i class="fa fa-file-excel"></i></asp:HyperLink>
                                                     </HeaderTemplate>
-
                                                     <ItemTemplate>
                                                         <asp:Label ID="lgvcustname" runat="server"
                                                             Text='<%# "<B>" +Convert.ToString(DataBinder.Eval(Container.DataItem, "companyname"))+"<B>" %>'
-                                                            Width="200px"></asp:Label>
+                                                            Width="180px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:Label ID="lgvTotalnagad" runat="server" Font-Bold="True" Font-Size="12px"
@@ -511,7 +506,7 @@
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvdepname" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                                            Width="130px"></asp:Label>
+                                                            Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
@@ -523,7 +518,7 @@
                                                             Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "empname").ToString().Trim().Length>0 ? 
                                                                           Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).Trim()+". "+
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
-                                                            Width="250px"> 
+                                                            Width="150px"> 
                                               
                                                         </asp:Label>
                                                     </ItemTemplate>
@@ -534,7 +529,7 @@
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvcardnoemp" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                                            Width="80px"></asp:Label>
+                                                            Width="60px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
@@ -565,7 +560,7 @@
                                                         <asp:Label ID="lblgvbloodgrp" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" 
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "blood")) %>'
-                                                            Width="80px"></asp:Label>
+                                                            Width="60px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
@@ -576,7 +571,7 @@
                                                         <asp:Label ID="lblgvmobile" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" 
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobile")) %>'
-                                                            Width="80px"></asp:Label>
+                                                            Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
@@ -587,7 +582,7 @@
                                                         <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" 
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'
-                                                            Width="130px"></asp:Label>
+                                                            Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />

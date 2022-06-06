@@ -4760,8 +4760,8 @@ namespace RealERPWEB.F_21_MKT
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
-                string eventtype = "Show Potential Information (sales CRM)";
-                string eventdesc = "Show Potential Information (sales CRM)";
+                string eventtype = "Show Potential Prospect Info (CRM)";
+                string eventdesc = "Show Potential Prospect Info (CRM)";
                 string eventdesc2 = "";
                 string comcod = this.GetCompCode();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);

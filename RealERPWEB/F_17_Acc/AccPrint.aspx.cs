@@ -2134,22 +2134,28 @@ namespace RealERPWEB.F_17_Acc
                 DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "PRINTCHECK", vounum, "", "", "", "", "", "", "", "");
                 if (_ReportDataSet == null)
                     return;
+                
                 DataTable dt1 = _ReportDataSet.Tables[0];
-
-                string woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
-
-
-                string voudat = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
-                string voudat1 = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
-
-                if (voudat.Trim() == "01011900")
+                string woutchqdat = "", voudat = "", voudat1 = "";
+                if (Request.QueryString.AllKeys.Contains("woutchqdat"))
                 {
-                    voudat = "          ";
+                    woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
+                    voudat = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                    voudat1 = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                    if (voudat.Trim() == "01/01/1900")
+                    {
+                        voudat = "";
+                    }
+                    if (voudat1.Trim() == "01/01/1900")
+                    {
+                        voudat1 = "";
+                    }
                 }
-                if (voudat1.Trim() == "01.01.1900")
+                else
                 {
-                    voudat1 = "";
-                }
+                    voudat = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                    voudat1 = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                }             
 
 
                 string bankcode = dt1.Rows[0]["bnkcode"].ToString();
@@ -2219,7 +2225,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 Hashtable hshtbl = new Hashtable();
-                hshtbl["compName"] = compName;
+                hshtbl["compName"] = compName+".";
                 hshtbl["bankName"] = "";
                 hshtbl["payTo"] = payto;
                 hshtbl["acpayee"] = value;
