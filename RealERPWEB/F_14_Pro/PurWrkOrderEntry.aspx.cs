@@ -3574,27 +3574,40 @@ namespace RealERPWEB.F_14_Pro
 
 
                 DataTable dtterm = _ReportDataSet.Tables[2];
-
                 // string Type = this.CompanyPrintWorkOrder();
                 ReportDocument rptwork = new ReportDocument();
-                string fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
-                string comname = this.Compserial();
-                string trmplace = ((comcod == "3338" || comname == "Rup") ? "1. " + dtterm.Rows[0]["termssubj"].ToString() : "*" + dtterm.Rows[0]["termssubj"].ToString() + " : ");
-                string place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
-                string trmpdate = ((comcod == "3338" || comname == "Rup") ? "2. " + dtterm.Rows[1]["termssubj"].ToString() : "*" + dtterm.Rows[1]["termssubj"].ToString() + " : ");
-                string pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
-                string trmcarring = ((comcod == "3338" || comname == "Rup") ? "3. " + dtterm.Rows[2]["termssubj"].ToString() : "*" + dtterm.Rows[2]["termssubj"].ToString() + " : ");
-                string carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
-                string trmbill = (comcod == "3330") ? "" : (comcod == "3338" || comname == "Rup") ? "4. " + (dtterm.Rows[3]["termssubj"]).ToString() : "*" + dtterm.Rows[3]["termssubj"].ToString() + ": ";
-                string bill = (comcod == "3330") ? ("* " + dtterm.Rows[3]["termsdesc"].ToString().Trim()) : dtterm.Rows[3]["termsdesc"].ToString().Trim();
-                string trmpayment = ((comcod == "3338") ? dtterm.Rows[4]["termssubj"].ToString() : (comname == "Rup") ? "4. " + dtterm.Rows[4]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[4]["termssubj"].ToString() + " : ");
-                string payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
-
-                string trmothers = ((comcod == "3338") ? dtterm.Rows[5]["termssubj"].ToString() : (comname == "Rup") ? "5. " + dtterm.Rows[5]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[5]["termssubj"].ToString() + " : ");
-                string Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
-
-                //
-
+                string fax = "";
+                string comname = "";
+                string trmplace = "";
+                string place = "";
+                string trmpdate = "";
+                string pdate = "";
+                string trmcarring = "";
+                string carring = "";
+                string trmbill = "";
+                string bill = "";
+                string trmpayment = "";
+                string payment = "";
+                string trmothers = "";
+                string Others = "";
+                if (dtterm.Rows.Count != 0)
+                {
+                     fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+                     comname = this.Compserial();
+                     trmplace = ((comcod == "3338" || comname == "Rup") ? "1. " + dtterm.Rows[0]["termssubj"].ToString() : "*" + dtterm.Rows[0]["termssubj"].ToString() + " : ");
+                     place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
+                     trmpdate = ((comcod == "3338" || comname == "Rup") ? "2. " + dtterm.Rows[1]["termssubj"].ToString() : "*" + dtterm.Rows[1]["termssubj"].ToString() + " : ");
+                     pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
+                     trmcarring = ((comcod == "3338" || comname == "Rup") ? "3. " + dtterm.Rows[2]["termssubj"].ToString() : "*" + dtterm.Rows[2]["termssubj"].ToString() + " : ");
+                     carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
+                     trmbill = (comcod == "3330") ? "" : (comcod == "3338" || comname == "Rup") ? "4. " + (dtterm.Rows[3]["termssubj"]).ToString() : "*" + dtterm.Rows[3]["termssubj"].ToString() + ": ";
+                     bill = (comcod == "3330") ? ("* " + dtterm.Rows[3]["termsdesc"].ToString().Trim()) : dtterm.Rows[3]["termsdesc"].ToString().Trim();
+                     trmpayment = ((comcod == "3338") ? dtterm.Rows[4]["termssubj"].ToString() : (comname == "Rup") ? "4. " + dtterm.Rows[4]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[4]["termssubj"].ToString() + " : ");
+                     payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
+                     trmothers = ((comcod == "3338") ? dtterm.Rows[5]["termssubj"].ToString() : (comname == "Rup") ? "5. " + dtterm.Rows[5]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[5]["termssubj"].ToString() + " : ");
+                     Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
+                }
+                 
 
                 // For Acme
 

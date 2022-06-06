@@ -38,19 +38,15 @@ namespace RealERPWEB.Notices
             Session["tblNotice"] = ds1.Tables[2];
             this.Data_Bind();
         }
-
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblNotice"];
             this.grvNotice.DataSource = dt;
             this.grvNotice.DataBind();
         }
-
         protected void grvNotice_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
         }
-
         protected void lbtnCreateNotice_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "RedirNoticeCreate();", true);

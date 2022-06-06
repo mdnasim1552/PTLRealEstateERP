@@ -41,6 +41,7 @@ namespace RealERPWEB.F_34_Mgt
                 this.getListModulename();
                 //this.ModuleVisible();
                 this.GetCompPermission();
+                this.getHomeMenu();
             }
         }
 
@@ -72,6 +73,19 @@ namespace RealERPWEB.F_34_Mgt
         {
             this.ShowUserInfo();
 
+        }
+
+        private void getHomeMenu()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds1 = User.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "HOMEMENULINK", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlMenuLink.DataSource = ds1.Tables[0];
+            this.ddlMenuLink.DataBind();
+            this.ddlMenuLink.DataTextField = "modulename";
+            this.ddlMenuLink.DataValueField = "url";
+            this.ddlMenuLink.DataBind();
         }
         private void getListModulename()
         {
@@ -1224,12 +1238,13 @@ namespace RealERPWEB.F_34_Mgt
             string usermail = this.txtmUserEmail.Text.Trim();
             string webmailpwd = this.txtmWebMailPass.Text.Trim();
             string userRole = this.ddlmUserRole.SelectedValue.ToString();
+            string homeurl = this.ddlMenuLink.SelectedValue.ToString();
 
             
 
             usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
             bool result = User.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
-                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
+                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, homeurl, "", "", "");
 
 
             if (!result)

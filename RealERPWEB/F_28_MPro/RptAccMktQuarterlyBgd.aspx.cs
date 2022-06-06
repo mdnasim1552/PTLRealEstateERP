@@ -113,24 +113,32 @@ namespace RealERPWEB.F_28_MPro
                     0.00 : dt.Compute("Sum(btlq1)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ1")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq1)", "")) ?
                     0.00 : dt.Compute("Sum(ttlq1)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFQ1")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(totq1)", "")) ?
+                    0.00 : dt.Compute("Sum(totq1)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFATLQ2")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(atlq2)", "")) ?
                     0.00 : dt.Compute("Sum(atlq2)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFBTLQ2")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(btlq2)", "")) ?
                     0.00 : dt.Compute("Sum(btlq2)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ2")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq2)", "")) ?
                     0.00 : dt.Compute("Sum(ttlq2)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFQ2")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(totq2)", "")) ?
+                    0.00 : dt.Compute("Sum(totq2)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFATLQ3")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(atlq3)", "")) ?
                     0.00 : dt.Compute("Sum(atlq3)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFBTLQ3")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(btlq3)", "")) ?
                     0.00 : dt.Compute("Sum(btlq3)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ3")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq3)", "")) ?
                     0.00 : dt.Compute("Sum(ttlq3)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFQ3")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(totq3)", "")) ?
+                   0.00 : dt.Compute("Sum(totq3)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFATLQ4")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(atlq4)", "")) ?
                     0.00 : dt.Compute("Sum(atlq4)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFBTLQ4")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(btlq4)", "")) ?
                     0.00 : dt.Compute("Sum(btlq4)", "")).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFTTLQ4")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(ttlq4)", "")) ?
                     0.00 : dt.Compute("Sum(ttlq4)", "")).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvQuartBgd.FooterRow.FindControl("gvlblFQ4")).Text = Convert.ToDouble(Convert.IsDBNull(dt.Compute("Sum(totq4)", "")) ?
+                   0.00 : dt.Compute("Sum(totq4)", "")).ToString("#,##0;(#,##0); ");
             }
         }
 

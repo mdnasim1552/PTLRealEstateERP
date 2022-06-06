@@ -38,6 +38,16 @@ namespace RealERPWEB
 
                 GetAllHolidays();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
+
+
+
+               Hashtable hst = (Hashtable)Session["tblLogin"];
+              string empid=hst["empid"].ToString();
+                string fdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                string tdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+                hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + fdate + "&todate=" + tdate ;
+                //hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
             }
 
             this.GetProfile();
@@ -122,6 +132,9 @@ namespace RealERPWEB
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
                     this.BtiPolicy.Visible = true;
+                    this.pnlUpcmEdison.Visible = false;
+                    this.pnlUpcmBti.Visible = true;
+                    this.modalPayslipBti.Visible = true;
 
                     this.GetWinList();
                     this.OrganoGram();
@@ -137,7 +150,10 @@ namespace RealERPWEB
                     this.pnlServHis.Visible = true;
                     this.winsList.Visible = false;
                     this.edidisonPolicy.Visible = true;
-                    
+                    this.pnlUpcmBti.Visible = false;
+                    this.pnlUpcmEdison.Visible = true;
+                    this.modalPayslipBti.Visible = false;
+
 
                     break;
                 case "3101":
@@ -411,7 +427,7 @@ namespace RealERPWEB
                 switch (comcod)
                 {
                     case "3365":
-                    case "3101":
+                    
                         date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
                         frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
                         //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
