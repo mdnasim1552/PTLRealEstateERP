@@ -1253,7 +1253,7 @@ namespace RealERPWEB.F_14_Pro
 
                             break;
 
-                        case "3101":
+                        //case "3101":
                         case "3368"://finlay
                             if (approval == "")
                             {
