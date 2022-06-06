@@ -243,7 +243,7 @@
 
                 </div>
                 <div class="col-4">
-                    <asp:Panel runat="server" ID="pnlUpcmEdison">
+                    <asp:Panel runat="server" ID="pnlUpcmEdison" visiable="false">
                                        <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
                         <header class="card-header border-0 pb-0">
                             <div class="d-flex align-items-center">
@@ -1505,7 +1505,7 @@ d) 6 Days Late = 3 CL & half day leave
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Pay Slip Last 3 Month</h5>
+        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip last 3 month</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1525,7 +1525,7 @@ d) 6 Days Late = 3 CL & half day leave
                                                 <asp:TemplateField HeaderText="Sl.No.">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
-                                                            Style="text-align: right"
+                                                            Style="text-align: center"
                                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

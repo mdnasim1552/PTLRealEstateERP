@@ -972,7 +972,7 @@
             </Style>
           </Textbox>
           <Line Name="Line1">
-            <Top>2.99944in</Top>
+            <Top>3.01194in</Top>
             <Left>6.61747in</Left>
             <Height>0in</Height>
             <Width>1.1054in</Width>
@@ -1216,7 +1216,7 @@
             <Top>7.46646in</Top>
             <Left>6.51662in</Left>
             <Height>0.20833in</Height>
-            <Width>1.1054in</Width>
+            <Width>1.20625in</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
@@ -1235,7 +1235,7 @@
             <Top>7.69215in</Top>
             <Left>6.51662in</Left>
             <Height>0in</Height>
-            <Width>1.1054in</Width>
+            <Width>1.2054in</Width>
             <ZIndex>14</ZIndex>
             <Style>
               <Border>
@@ -1998,7 +1998,6 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>6.77707in</Top>
-            <Left>0in</Left>
             <Height>0.60417in</Height>
             <Width>7.73686in</Width>
             <ZIndex>18</ZIndex>
@@ -2496,7 +2495,7 @@
             </TablixRowHierarchy>
             <Top>0.79582in</Top>
             <Left>5.4032in</Left>
-            <Height>0.94865in</Height>
+            <Height>0.94864in</Height>
             <Width>2.25123in</Width>
             <ZIndex>24</ZIndex>
             <Style>

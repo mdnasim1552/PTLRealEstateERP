@@ -2073,7 +2073,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "3337":
                 case "3336":
                     this.PrintchKSuvastu();
@@ -2111,7 +2111,7 @@ namespace RealERPWEB.F_17_Acc
                     PrinChequeGreenWood();
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3368":
                     this.PrintChqFinlay();
                     break;
@@ -2136,18 +2136,26 @@ namespace RealERPWEB.F_17_Acc
                     return;
                 
                 DataTable dt1 = _ReportDataSet.Tables[0];
-                string woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
-                string voudat = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
-                string voudat1 = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
-
-                if (voudat.Trim() == "01/01/1900")
+                string woutchqdat = "", voudat = "", voudat1 = "";
+                if (Request.QueryString.AllKeys.Contains("woutchqdat"))
                 {
-                    voudat = "";
+                    woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
+                    voudat = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                    voudat1 = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                    if (voudat.Trim() == "01/01/1900")
+                    {
+                        voudat = "";
+                    }
+                    if (voudat1.Trim() == "01/01/1900")
+                    {
+                        voudat1 = "";
+                    }
                 }
-                if (voudat1.Trim() == "01/01/1900")
+                else
                 {
-                    voudat1 = "";
-                }
+                    voudat = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                    voudat1 = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd/MM/yyyy");
+                }             
 
 
                 string bankcode = dt1.Rows[0]["bnkcode"].ToString();
@@ -2217,7 +2225,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 Hashtable hshtbl = new Hashtable();
-                hshtbl["compName"] = compName;
+                hshtbl["compName"] = compName+".";
                 hshtbl["bankName"] = "";
                 hshtbl["payTo"] = payto;
                 hshtbl["acpayee"] = value;
