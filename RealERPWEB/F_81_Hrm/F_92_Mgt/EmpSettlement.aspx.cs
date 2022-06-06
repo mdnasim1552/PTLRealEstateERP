@@ -45,15 +45,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnUpdate_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkbtnRecalculate_Click);
             ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Click += new EventHandler(lnkbtnLedger_Click);
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).OnClientClick = "return confirm('Do You want to Approve?')";
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Click += new EventHandler(lnkbtnApprove_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).OnClientClick = "return confirm('Do You want to Approve?')";
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            Response.Redirect(prevPage);
+            Response.Redirect(Request.UrlReferrer.ToString());
         }
 
         private void lnkbtnRecalculate_Click(object sender, EventArgs e)
@@ -64,23 +62,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         private void CommonButton()
         {
-
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Save";
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Text = "Approve";
-
-            ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
-            ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
-            ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
-            ((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Text = "Approve";
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
         }
         private void GetEmployeeName()
         {
@@ -125,21 +112,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (this.lbtnOk.Text == "Ok")
             {
                 this.lbtnOk.Text = "New";
-                this.lblEmpname.Text = this.ddlEmpName.SelectedItem.Text.Trim().Substring(13);
-                this.ddlEmpName.Visible = false;
-                this.lblEmpname.Visible = true;
+                this.ddlEmpName.Enabled = false;
                 this.ddlEmpName.Enabled = false;
                 this.ViewDataPanel.Visible = true;
                 this.ShowPerformance();
                 return;
             }
             this.lbtnOk.Text = "Ok";
-            this.lblmsg.Text = "";
             this.ViewDataPanel.Visible = false;
-            this.ddlEmpName.Visible = true;
-            this.lblEmpname.Visible = false;
             this.ddlEmpName.Enabled = true;
-
             this.txtCurDate.Enabled = true;
         }
 
@@ -156,7 +137,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             var shorempdata = emplist.FindAll(d => d.empid == empid);
             if (rpttype == "0")
             {
-                this.bngst.Visible = false;
                 this.engst.Visible = true;
                 this.lblname.Text = shorempdata[0].empname.ToString();
                 this.lbldesig.Text = shorempdata[0].designation.ToString();
@@ -170,17 +150,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
             else
             {
-                this.bngst.Visible = true;
-                this.engst.Visible = false;
-                this.lblnam.Text = shorempdata[0].empname.ToString();
-                this.lbldesg.Text = shorempdata[0].designation.ToString();
-                this.lblid.Text = shorempdata[0].idno.ToString();
-                this.lblsec.Text = shorempdata[0].deptname.ToString();
-                this.lbljobtype.Text = shorempdata[0].septypedesc.ToString();
-                this.lbljdate.Text = shorempdata[0].joindat.ToString("dd-MMM-yyyy");
-                this.lblsepdate.Text = shorempdata[0].retdat.ToString("dd-MMM-yyyy");
-                this.lbljonlen.Text = shorempdata[0].servleng.ToString();
-                this.lbldate.Text = this.txtCurDate.Text;
+               
             }
 
             this.Data_Bind();
@@ -421,7 +391,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.NetAmount.Text = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
         }
 
-        private void lnkbtnLedger_Click(object sender, EventArgs e)
+        private void lnkbtnApprove_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             string comcod = this.GetComeCode();
