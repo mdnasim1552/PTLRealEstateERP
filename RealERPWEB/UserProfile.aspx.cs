@@ -151,7 +151,7 @@ namespace RealERPWEB
                     this.pnlServHis.Visible = true;
                     this.winsList.Visible = false;
                     this.edidisonPolicy.Visible = true;
-
+                  
                     this.pnlUpcmBti.Visible = false;
                     this.pnlUpcmEdison.Visible = true;
                     this.modalPayslipBti.Visible = false;
