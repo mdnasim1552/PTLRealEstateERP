@@ -74,7 +74,7 @@ namespace RealERPLIB
                 //msg.Bcc.Add(new MailAddress("nahid@pintechltd.com"));
                 msg.Subject = subj;
                 body += msgbody;
-                body += "<br />Thanks & Regards<br/>" + sendUsername + "<br>" + sendUsrdesig + "<br>" + sendDptdesc + "<br>" + compName;
+               // body += "<br />Thanks & Regards<br/>" + sendUsername + "<br>" + sendUsrdesig + "<br>" + sendDptdesc + "<br>" + compName;
                 msg.Body = body;
                 msg.IsBodyHtml = true;
                 try
