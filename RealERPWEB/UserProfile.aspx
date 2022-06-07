@@ -53,6 +53,15 @@
             }
         }
 
+
+        function OpenPayslipModal() {
+
+            $('#exampleModal').modal('toggle');
+        }
+        function closePayslipModal() {
+            $('#delivery_agency').modal('hide');
+            location.reload();
+        }
     </script>
     <style>
         #payslipmodal{
@@ -1307,9 +1316,8 @@ d) 6 Days Late = 3 CL & half day leave
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            
+                         <asp:LinkButton ID="payslip_modal_close" runat="server" CssClass="close close_btn"  OnClientClick="closePayslipModal();" data-dismiss="modal"> &times; </asp:LinkButton>
                     </div>
                     <div class="modal-body">
                         <div class="slip-container">
@@ -1489,11 +1497,7 @@ d) 6 Days Late = 3 CL & half day leave
                         </div>
                         <p class="text-danger font-weight-bold float-left mt-3"><strong>For print, Please contact with HR/Payroll Department.</strong></p>
                     </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    </div>
+      
                 </div>
             </div>
         </div>
@@ -1518,7 +1522,7 @@ d) 6 Days Late = 3 CL & half day leave
                                 <div class="card-body" id="payslipdiv">
 
                                     <div class="table-responsive pb-3">
-                                        <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
+                                                 <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
                                             ShowFooter="True">
                                             <RowStyle />
                                             <Columns>
@@ -1557,8 +1561,9 @@ d) 6 Days Late = 3 CL & half day leave
                                                     <ItemTemplate>
                                                         <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
                                                         </asp:HyperLink>
-                                                        <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>
-                                                        </asp:HyperLink>
+                                                       <%-- <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>     </asp:HyperLink>--%>
+                                                         <asp:LinkButton ID="HyplnkModal" OnClick="payslip_modal_Click"  Style="margin-left:3px;" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View</asp:LinkButton>
+                                                   
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
@@ -1568,6 +1573,7 @@ d) 6 Days Late = 3 CL & half day leave
                                             <PagerStyle CssClass="gvPagination" />
                                             <HeaderStyle CssClass="grvHeader" />
                                         </asp:GridView>
+                                       
                                     </div>
                                 </div>
                             </div>
