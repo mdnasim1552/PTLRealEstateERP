@@ -101,19 +101,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         //}
         protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();
-            string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
-            string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string date = "01-" + Month + "-" + year;
-            string empid = this.ddlEmpName.SelectedValue.ToString();
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "ABSENT_DATE", date, empid, "", "", "", "", "", "", "");
+            //string comcod = this.GetCompCode();
+            //string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
+            //string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            //string date = "01-" + Month + "-" + year;
+            //string empid = this.ddlEmpName.SelectedValue.ToString();
+            //DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "ABSENT_DATE", date, empid, "", "", "", "", "", "", "");
 
-            if (ds4 == null)
-            {
-                return;
-            }
+            //if (ds4 == null)
+            //{
+            //    return;
+            //}
 
-            DataTable dt = ds4.Tables[0];
+            //DataTable dt = ds4.Tables[0];
+            this.GetEmployeeName();
         }
         protected void lnkbtnUpdate_Click(object sender, EventArgs e)
         {
@@ -141,7 +142,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             //    }
             //}
-
             //this.lmsg11.Text = "Updated Successfully";
 
         }
@@ -331,5 +331,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
         }
+
+       
     }
 }
