@@ -73,7 +73,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            alert("Hello");
+
             var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetHday")%>';
             $.ajax({
                 type: "GET",
@@ -99,25 +99,36 @@
         $(document).ready(function () {
             $(document).on("click", ".classAdd", function () {
 
+                var ddlvalue = $('#<%=htype.ClientID%> option:selected').val();
+                var ddltext = $('#<%=htype.ClientID %> option:selected').text();
+         
+
+                var hdate = $('#hdate01').val();
+                var hocasion = $('#hoccasion01').val();
+
+                if (hdate == "" || undefined) {
+                    alert('Please select date!');
+                    return;
+                }
+
 
                 var rowCount = $('.data-holiday').length + 1;
                 var holidaydiv = '<tr class="data-holiday">' +
-                    '<td> <select name="htype' + rowCount + '" id="htype" class="form-control htype01"> ' +
-                    '< option value = "" > Select Holidays </option>' +
-
-           '<option value="W">Weekend Day</option>' +
-            '<option value="H">Govt.Holi Day</option>' +
-            '<option value="ST">Special Thursday Day</option>' +
-
+                    '<td> <select name="htype' + rowCount + '"  class="form-control htype01" disabled> ' +
+                    '<option value = "'+ddlvalue+'" >'+ ddltext+' </option>' +
                     '</select ></td>' +
+                    '<td><input type="date" name="h-date' + rowCount + '" class="form-control hdate01" value="' + hdate +'" disabled /></td>' +
+                    '<td><input type="text" name="h-occasion' + rowCount + '" class="form-control hoccasion01" value="' + hocasion +'" disabled /></td>' +
 
-                    '<td><input type="date" name="h-date' + rowCount + '" class="form-control hdate01" /></td>' +
-
-                    '<td><input type="text" name="h-occasion' + rowCount + '" class="form-control hoccasion01" /></td>' +
-                    '<td><button type="button" id="btnAdd" class="btn btn-xs btn-primary classAdd">Add More</button>' +
-                    '<button type="button" id="btnDelete" class="deleteHoliday btn btn btn-danger btn-xs">Remove</button></td>' +
+                    //'<td><button type="button" id="btnAdd" class="btn btn-xs btn-primary classAdd">Add More</button>' +
+                    '<td><button type="button" id="btnDelete" class="deleteHoliday btn btn btn-danger btn-xs">Remove</button></td>' +
                     '</tr>';
                 $('#maintable').append(holidaydiv);
+
+       
+
+                $('#hdate01').val("");
+                $('#hoccasion01').val("");
             });
 
 
@@ -162,6 +173,7 @@
                 data: JSON.stringify({ 'holidaydata': data }),
                 success: function () {
                     alert("Data Added Successfully");
+                    location.reload();
                 },
                 error: function () {
                     alert("Error while inserting data");
@@ -169,22 +181,20 @@
             });
         });
 
-        $(document).on("change", '.hdate01', function () {
+        $(document).on("change", '#hdate01', function () {
             var $this = $(this),
                 date = $this.val();
 
             var valueArray = $('.hdate01').map(function () {
                 return this.value;
             }).get();
-
+    
             //console.log(date);
             //console.log(valueArray);
 
-            var result = valueArray.slice(0, -1);
+            //var result = valueArray.slice(0, -1);
 
-            /*  console.log(result);*/
-
-            if (result.indexOf(date) !== -1) {
+            if (valueArray.indexOf(date) !== -1) {
                 alert("Yes, Date Already  exists!")
                 $this.val('');
             }
@@ -399,11 +409,11 @@
                                     <div class="modal-content col-md-12 col-sm-12 ">
                                         <div class="modal-header hedcon">
 
-                                            <h4>Holiday Entry</h4>
+                                            <h5>Holiday Entry</h5>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body" style="padding-bottom:12px;">
                                             <table class="table" id="maintable">
                                                 <thead>
                                                     <tr>
@@ -429,9 +439,9 @@
 
                                                             <%-- <input type="text" name="f-name" class="form-control f-name01" /></td>--%>
                                                         <td>
-                                                            <input type="date" name="h-date" class="form-control hdate01" /></td>
+                                                            <input type="date" name="h-date" class="form-control " id="hdate01"/></td>
                                                         <td>
-                                                            <input type="text" name="h-occasion" class="form-control hoccasion01" /></td>
+                                                            <input type="text" name="h-occasion" class="form-control " id="hoccasion01"/></td>
                                                         <td>
                                                             <button type="button" id="btnAdd" class="btn btn-xs btn-primary classAdd">Add More</button>
                                                         </td>
