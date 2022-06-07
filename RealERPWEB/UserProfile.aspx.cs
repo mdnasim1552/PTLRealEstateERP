@@ -43,8 +43,12 @@ namespace RealERPWEB
 
                Hashtable hst = (Hashtable)Session["tblLogin"];
               string empid=hst["empid"].ToString();
-                string fdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                string tdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+                string fdate = "01-" + System.DateTime.Now.ToString("MMM-yyyy");
+                string tdate = Convert.ToDateTime(fdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                //string fdate = "01-"+System.DateTime.Now.ToString("MMM-yyyy");
+                //string tdate = "30-"+System.DateTime.Now.ToString("MMM-yyyy");
 
                 hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + fdate + "&todate=" + tdate ;
                 //hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
@@ -724,27 +728,29 @@ namespace RealERPWEB
 
             foreach (DataRow dr in ds1.Tables[0].Rows)
             {
-                //string url = "";
-                //if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
-                //{
-                //    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
-                //}
+                string url = "";
+                if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
+                {
+                    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
+                }
                 //else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
                 //{
-                //    byte[] biempimg = (byte[])dr["imgurl"];
+                //    string byturl = dr["imgurl"].ToString();
+                //    byte[] biempimg = (byte[])byturl;
+                //    //byte[] biempimg = (byte[])dr["imgurl"];
                 //    url = "data:image;base64," + Convert.ToBase64String(biempimg);
                 //}
-                //else
-                //{
-                //    url = "Content/Theme/images/avatars/human_avatar.png";
-                //}
+                else
+                {
+                    url = "Content/Theme/images/avatars/human_avatar.png";
+                }
 
-                //string type = dr["evtype"].ToString();
-                //if (type == "Birthday")
-                //{
-                //    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
-                //}
-                //i++;
+                string type = dr["evtype"].ToString();
+                if (type == "Birthday")
+                {
+                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+                }
+                i++;
             }
 
             foreach (DataRow dr in ds1.Tables[1].Rows)
