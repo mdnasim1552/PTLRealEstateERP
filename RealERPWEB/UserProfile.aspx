@@ -353,6 +353,8 @@
                         <li class="nav-item" id="List_EmpDirectory" runat="server">
                             <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Employee directory</asp:HyperLink>
                         </li>
+                           <li class="nav-item" runat="server" id="modalPayslipBti">
+                               <a data-toggle="modal" data-target="#payslipmodal" class="nav-link smooth-scrol">Pay Slip</a></li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link smooth-scrol" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a></li>
@@ -360,7 +362,6 @@
                         <li class="nav-item">
                             <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
                         <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
-                           <li class="nav-item" runat="server" id="modalPayslipBti"><a data-toggle="modal" data-target="#payslipmodal" class="btn btn-light">Pay Slip</a></li>
 
 
 
@@ -1522,7 +1523,7 @@ d) 6 Days Late = 3 CL & half day leave
                                             ShowFooter="True">
                                             <RowStyle />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                <asp:TemplateField HeaderText="Sl#">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
                                                             Style="text-align: center"
