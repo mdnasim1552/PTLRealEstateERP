@@ -1505,7 +1505,7 @@ d) 6 Days Late = 3 CL & half day leave
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip 12 month</p>
+        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
