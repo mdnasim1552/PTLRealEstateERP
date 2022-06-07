@@ -1150,6 +1150,8 @@ namespace RealERPWEB.F_09_PImp
                     {
                         //case "3101":
                         case "1103":
+                        case "3368":
+
                             break;
 
                         default:
@@ -1205,27 +1207,62 @@ namespace RealERPWEB.F_09_PImp
                     {
 
 
-                        this.CreateDataTable();
-                        DataTable dt = (DataTable)ViewState["tblapproval"];
-                        DataRow dr1 = dt.NewRow();
+                        if(comcod=="3368")
+                        {
 
-                        dr1["frecid"] = usrid;
-                        dr1["frecdat"] = Date;
-                        dr1["frectrmid"] = trmnid;
-                        dr1["frecseson"] = session;
-                        dr1["secrecid"] = "";
-                        dr1["secrecdat"] = "";
-                        dr1["secrectrmid"] = "";
-                        dr1["secrecseson"] = "";
-                        dr1["threcid"] = "";
-                        dr1["threcdat"] = "";
-                        dr1["threctrmid"] = "";
-                        dr1["threcseson"] = "";
+                            this.CreateDataTable();
+                            DataTable dt = (DataTable)ViewState["tblapproval"];
+                            DataRow dr1 = dt.NewRow();
 
-                        dt.Rows.Add(dr1);
-                        ds1.Merge(dt);
-                        ds1.Tables[0].TableName = "tbl1";
-                        approval = ds1.GetXml();
+                            dr1["frecid"] = usrid;
+                            dr1["frecdat"] = Date;
+                            dr1["frectrmid"] = trmnid;
+                            dr1["frecseson"] = session;
+                            dr1["secrecid"] = usrid;
+                            dr1["secrecdat"] = Date;
+                            dr1["secrectrmid"] = trmnid;
+                            dr1["secrecseson"] = session;
+                            dr1["threcid"] = usrid;
+                            dr1["threcdat"] = Date;
+                            dr1["threctrmid"] = trmnid;
+                            dr1["threcseson"] = session;
+
+                            dt.Rows.Add(dr1);
+                            ds1.Merge(dt);
+                            ds1.Tables[0].TableName = "tbl1";
+                            approval = ds1.GetXml();
+
+
+                        }
+
+                        else
+                        {
+                            this.CreateDataTable();
+                            DataTable dt = (DataTable)ViewState["tblapproval"];
+                            DataRow dr1 = dt.NewRow();
+
+                            dr1["frecid"] = usrid;
+                            dr1["frecdat"] = Date;
+                            dr1["frectrmid"] = trmnid;
+                            dr1["frecseson"] = session;
+                            dr1["secrecid"] = "";
+                            dr1["secrecdat"] = "";
+                            dr1["secrectrmid"] = "";
+                            dr1["secrecseson"] = "";
+                            dr1["threcid"] = "";
+                            dr1["threcdat"] = "";
+                            dr1["threctrmid"] = "";
+                            dr1["threcseson"] = "";
+
+                            dt.Rows.Add(dr1);
+                            ds1.Merge(dt);
+                            ds1.Tables[0].TableName = "tbl1";
+                            approval = ds1.GetXml();
+
+                        }
+
+
+                        
 
                     }
 
@@ -1548,6 +1585,8 @@ namespace RealERPWEB.F_09_PImp
                         case "3351":
                         case "3352":
                         case "3353"://Manama realds
+                        case "3368"://Finlay
+
 
 
 
