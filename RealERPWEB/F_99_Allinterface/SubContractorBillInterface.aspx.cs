@@ -69,6 +69,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.Panelrpt.Visible = true;
                     break;
 
+                //case "3368":
+                //    this.pnltan.Visible = true;
+                //    this.Panelrpt.Visible = true;
+                //    break;
+
+
+
                 case "3101":
                 case "1205":
                 case "3351":
@@ -184,6 +191,11 @@ namespace RealERPWEB.F_99_Allinterface
                     billapprove = "Approved";
                     break;
 
+                case "3368":
+
+                    billapprove = "Final Approval";
+                    break;
+
                 default:
 
                     billapprove = "Bill Confirmed";
@@ -195,7 +207,28 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
-        private void SaleRequRpt()
+
+        private string Gettxtfrecon()
+        {
+            string frecon = "";
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+
+                case "3368":
+                    frecon = "Checked";
+
+                    break;
+
+                default:
+                    frecon = "1st Recom.";
+                    break;
+            }
+            return frecon;
+        }
+
+            private void SaleRequRpt()
         {
             string comcod = this.GetCompCode();
             string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
@@ -203,6 +236,8 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "SUBCONTRACTORINTERFACE", Date, mtrrf, "", "", "", "", "", "", "");
             string billfinal = this.GettxtBillFinal();
             string billapprove = this.GettxtBillApproved();
+            string frecon = this.Gettxtfrecon();
+
 
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Monthly Plan</div></div></div>";
@@ -218,7 +253,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>" + billfinal + "</div></div></div>";
 
-            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray  '><div class='circle-tile-description text-faded'>1st Recom.</div></div></div>";
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray  '><div class='circle-tile-description text-faded'>" + frecon + "</div></div></div>";
             this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading   dark-blue  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["secrecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue '><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
             this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["threcom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red '><div class='circle-tile-description text-faded'>Forward</div></div></div>";
 
@@ -1423,6 +1458,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //case "3101":
                 case "1103":
+            
+
                     thofiapproval = "thapproval";
                     break;
 
@@ -1437,12 +1474,43 @@ namespace RealERPWEB.F_99_Allinterface
             return thofiapproval;
 
         }
+
+
+        private string GetFristApproval()
+        {
+            string comcod = this.GetCompCode();
+            string firstarpval = "";
+            switch (comcod)
+            {
+
+                //case "3101":
+                case "3368": //Finlay
+
+
+                    firstarpval = "firstarpval";
+                    break;
+
+
+                default:
+                    firstarpval = "";
+                    break;
+
+
+            }
+
+            return firstarpval;
+
+        }
+
+
         protected void btnDelfinapp_OnClick(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
             int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string billno = ((Label)this.gvfinalapp.Rows[index].FindControl("lgAPPcordernofiapp")).Text.Trim();
             string thofiapproval = this.GetthorFirApproval();
+            string firstarpval = this.GetFristApproval(); //Only frist Approval 
+
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETCBILLINFO", billno, "", "", "", "", "", "", "");
             //  DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", genno, "",
 
@@ -1460,7 +1528,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
 
-            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEBILLFINALFIAPP", billno, thofiapproval, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEBILLFINALFIAPP", billno, thofiapproval, firstarpval, "", "", "", "", "", "", "", "", "", "", "", "");
 
 
 
