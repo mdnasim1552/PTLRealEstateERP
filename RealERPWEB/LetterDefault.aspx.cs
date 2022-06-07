@@ -462,22 +462,23 @@ namespace RealERPWEB
             //Table end.
             html.Append("</table>");
             string tablesale = html.ToString();
-
-            DataSet dtempinf = (DataSet)ViewState["empinfo"];
+              DataSet dtempinf = (DataSet)ViewState["empinfo"];
             DataView dv = dtempinf.Tables[0].DefaultView;
             dv.RowFilter = ("empid='" + empid + "'");
             DataTable dtempinf_ = dv.ToTable();
             string jdate = "", idCard = "";
-            DataTable dtempsal = dtempinf.Tables[2];
-            string bsal =String.Format("{0:0.##}", dtempsal.Rows[0]["bsal"]);
-            string hrent = String.Format("{0:0.##}", dtempsal.Rows[0]["hrent"]);
-            string cven = String.Format("{0:0.##}", dtempsal.Rows[0]["cven"]);
-            string mallow = String.Format("{0:0.##}", dtempsal.Rows[0]["mallow"]);
-            DataTable dtemplv = dtempinf.Tables[1];
-            foreach (DataRow drlv in dtemplv.Rows)
-            {
+
+
+            //DataTable dtempsal = dtempinf.Tables[2];
+            //string bsal =String.Format("{0:0.##}", dtempsal.Rows[0]["bsal"]);
+            //string hrent = String.Format("{0:0.##}", dtempsal.Rows[0]["hrent"]);
+            //string cven = String.Format("{0:0.##}", dtempsal.Rows[0]["cven"]);
+            //string mallow = String.Format("{0:0.##}", dtempsal.Rows[0]["mallow"]);
+            //DataTable dtemplv = dtempinf.Tables[1];
+            //foreach (DataRow drlv in dtemplv.Rows)
+            //{
                 
-            }
+            //}
 
 
                 if (type1 == "10015" || type1 == "10012")
@@ -604,25 +605,29 @@ namespace RealERPWEB
                     }
                     else if (this.GetCompCode() == "3354")
                     {
+
                         lbody =
-                 "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:EREL/AL2022/027</strong></p>" +
-                 "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
-                 "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
-                 "<p><strong>Subject:</strong> Appointment Letter-<strong>" + Desig + "</strong></p>" +
-                 "<p>Dear " + name + ",</p>" +
+"<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:EREL/AL2022/027</strong></p>" +
+"<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+"<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
+"<p><strong>Subject:</strong> Appointment Letter-<strong>" + Desig + "</strong></p>" +
+"<p>Dear " + name + ",</p>" +
 
-                 "<p style='margin-bottom:-11px'>We are delighted to appoint you as a  <strong>" + Desig + "</strong> of the <strong>" + depart + "</strong> department under <strong>" + dptdesc + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
-                 "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
-                 "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
+"<p style='margin-bottom:-11px'>We are delighted to appoint you as a  <strong>" + Desig + "</strong> of the <strong>" + depart + "</strong> department under <strong>" + dptdesc + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
+"<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
+"<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
 
-                 "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + Desig + "</span></p>" +
-                 "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
-                 "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + cdate + "</span></p>" +
+"<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + Desig + "</span></p>" +
+"<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
+"<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + cdate + "</span></p>" +
 
-                 "<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
-                 "<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>";
+"<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
+"<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>";
 
 
+                    }
+                    else
+                    {
 
                     }
 
