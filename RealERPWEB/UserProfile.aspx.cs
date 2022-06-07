@@ -68,7 +68,7 @@ namespace RealERPWEB
                 Session["i"] = image_file;
                 Session["s"] = size;
 
-                if (size < 125000)
+                if (size < 5048576)
                 {
                     string oldImg = this.userimg.ImageUrl;
                     string dburl = "~/Upload/UserImages/" + UserId + extension;
