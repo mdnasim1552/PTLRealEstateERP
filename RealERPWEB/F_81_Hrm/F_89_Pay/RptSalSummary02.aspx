@@ -14,10 +14,7 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
         });
-
         function pageLoaded() {
 
             var gv1 = $('#<%=this.gvSalSum.ClientID %>');
@@ -26,27 +23,18 @@
             var gv4 = $('#<%=this.gvdisbursement.ClientID %>');
             var gvnsalary = $('#<%=this.gvnsalary.ClientID %>');
             var gv5 = $('#<%=this.gvtopsheetpid.ClientID %>');
-
-
             gv1.Scrollable();
             gv2.Scrollable();
             gv3.Scrollable();
             gv4.Scrollable();
             gv5.Scrollable();
-
             gvnsalary.Scrollable();
-
-
-
 
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
-
             });
-
             $('.chzn-select').chosen({ search_contains: true });
-
         }
 
         function loadModal() {
@@ -56,11 +44,6 @@
             $('#bankChecksInfo').modal('hide');
         };
     </script>
-
-
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -123,10 +106,7 @@
                                         <asp:DropDownList ID="ddlDepartName" runat="server" Width="233" CssClass="form-control inputTxt chzn-select" OnSelectedIndexChanged="ddlDepartName_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                         </asp:DropDownList>
 
-
                                     </div>
-
-
                                 </div>
 
                                 <div class="form-group">

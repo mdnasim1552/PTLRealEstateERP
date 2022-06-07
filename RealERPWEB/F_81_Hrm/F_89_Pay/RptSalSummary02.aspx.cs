@@ -1268,33 +1268,53 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3330":
 
                     this.PrintSalSumBridge();
+                    break;           
+                case "3333":
+                    this.PrintSalSumAlli();
                     break;
 
-                case "3101":
-                case "3333":
-
-                    this.PrintSalSumAlli();
+                case "3368":
+                    PrintSalSumFinlay();
                     break;
 
                 default:
                     this.PrintSalSum();
                     break;
-
-
-
-
             }
-
-
-
-
-
-
-
-
         }
 
+        private void PrintSalSumFinlay()
+        {
+            DataTable dt = (DataTable)Session["tblSalSum"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
+            date = Convert.ToDateTime(date).ToString("MMMM, yyyy");
+            double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
+            ReportDocument rptstk = new ReportDocument();
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.SalSummary2>();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalSummaryFinlay", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comname));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Summary Sheet of Salary for the " + "Month of: " + date)); //+"(" + frmdate + "- " + todate + ")"
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void PrintSalRupayanGroup()
         {
 

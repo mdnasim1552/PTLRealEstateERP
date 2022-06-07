@@ -235,11 +235,15 @@ namespace RealERPWEB.F_12_Inv
                     this.gvReqInfo.Columns[11].Visible = true;
                     this.gvReqInfo.Columns[12].Visible = true;
                     this.gvReqInfo.Columns[13].Visible = true;
-                    //this.gvReqInfo.Columns[14].Visible = true;
+                    this.gvReqInfo.Columns[14].Visible = true;
                     this.gvReqInfo.Columns[15].Visible = true;
                     this.gvReqInfo.Columns[16].Visible = true;
                     this.gvReqInfo.Columns[17].Visible = true;
                     break;
+
+
+               
+
 
             }
 
