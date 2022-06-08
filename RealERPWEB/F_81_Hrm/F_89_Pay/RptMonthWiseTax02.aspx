@@ -114,7 +114,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblpreAdv" runat="server">Employee</asp:Label>
-                                <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control chzn-select" AutoPostBack="True" TabIndex="7" OnSelectedIndexChanged="ddlEmployee_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control chzn-select" AutoPostBack="True" TabIndex="7" >
                                 </asp:DropDownList>
                             </div>
                         </div>
