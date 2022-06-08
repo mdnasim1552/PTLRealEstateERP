@@ -2071,7 +2071,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.28334in</Height>
+          <Height>0.79584in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2093,7 +2093,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>footer</rd:DefaultName>
-              <Top>1.0625in</Top>
+              <Top>0.575in</Top>
               <Height>0.22084in</Height>
               <Width>5.9877in</Width>
               <Style>
@@ -2126,7 +2126,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox10</rd:DefaultName>
-              <Top>1.05417in</Top>
+              <Top>0.56667in</Top>
               <Left>5.94235in</Left>
               <Height>0.22917in</Height>
               <Width>1.68938in</Width>
@@ -2163,7 +2163,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
-                  <Top>0.41875in</Top>
+                  <Top>0.18958in</Top>
                   <Left>1.98506in</Left>
                   <Height>0.25in</Height>
                   <Width>1.78472in</Width>
@@ -2200,7 +2200,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
-                  <Top>0.41875in</Top>
+                  <Top>0.18958in</Top>
                   <Left>3.90452in</Left>
                   <Height>0.25in</Height>
                   <Width>1.78472in</Width>
@@ -2238,7 +2238,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
-                  <Top>0.41875in</Top>
+                  <Top>0.18958in</Top>
                   <Left>5.79827in</Left>
                   <Height>0.25in</Height>
                   <Width>1.78472in</Width>
@@ -2276,7 +2276,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
-                  <Top>0.41875in</Top>
+                  <Top>0.18958in</Top>
                   <Left>0.01006in</Left>
                   <Height>0.25in</Height>
                   <Width>1.78472in</Width>
@@ -2296,8 +2296,8 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.22014in</Top>
-              <Height>0.70486in</Height>
+              <Top>0.03681in</Top>
+              <Height>0.47569in</Height>
               <Width>7.62132in</Width>
               <ZIndex>2</ZIndex>
               <Style>

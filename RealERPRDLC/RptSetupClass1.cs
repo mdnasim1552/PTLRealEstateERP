@@ -590,6 +590,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptDummyPaywithoutDiscount": Rpt1a = SetRptDummyPaywithoutDiscount(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptBgdSales": Rpt1a = SetRptBgdSales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCustPaySchedule": Rpt1a = SetRptCustPaySchedule(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptCustPayScheduleEpic": Rpt1a = SetRptCustPayScheduleEpic(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalSumary": Rpt1a = SetRptSalSumary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalSumAmtBasis": Rpt1a = SetRptSalSumAmtBasis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSaleSoldUsold": Rpt1a = SetRptSaleSoldUsold(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3636,6 +3637,11 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptCustPaySchedule(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.PaymentScheduleN>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptCustPayScheduleEpic(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset) 
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.PaymentScheduleN>)RptDataSet));
             return Rpt1a;
