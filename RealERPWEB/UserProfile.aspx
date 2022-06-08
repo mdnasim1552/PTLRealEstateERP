@@ -254,11 +254,7 @@
                 <div class="col-4">
                     <asp:Panel runat="server" ID="pnlUpcmEdison" visiable="false">
                                        <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
-                        <header class="card-header border-0 pb-0">
-                            <div class="d-flex align-items-center">
-                                <span class="mr-auto">Upcoming Holidays </span>
-                            </div>
-                        </header>
+    
                         <div class="card-body" style="max-height: 200px; overflow-y: scroll" id="Div1" runat="server">
 
 
@@ -266,7 +262,7 @@
                             <div class="row">
                         
 
-                                <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">    <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT")%>" target="_blank">Apply Leave</a></div></div>
+                                <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">    <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>" target="_blank">Apply Leave</a></div></div>
                                                                   <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">    <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>" target="_blank">Online Attendance</a></div></div>
 
                                   <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">
@@ -284,7 +280,7 @@
                             
                                           <div class="row mt-2">
                           <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div></div>
-                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">Business Card</div></div>
+                                 
                                   <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">KPI</div></div>
                             </div>
 
@@ -1509,7 +1505,7 @@ d) 6 Days Late = 3 CL & half day leave
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip last 3 month</p>
+        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

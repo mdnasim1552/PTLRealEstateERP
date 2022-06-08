@@ -1631,7 +1631,6 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
             var lst = ds2.Tables[1].DataTableToList<RealEntity.C_22_Sal.Sales_BO.PaymentScheduleN>();
-            Rpt1.EnableExternalImages = true;
 
             string address = "";
             string sign1 = "", sign2 = "", sign3 = "", sign4 = "";
@@ -1641,12 +1640,19 @@ namespace RealERPWEB.F_22_Sal
                 //case "3101": // finlay 
                 case "3368": 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["presentadd"].ToString();
                     break;
                     
                 case "3101": // epic 
                 case "3367":
+                    sign1 = ds2.Tables[0].Rows[0]["name"].ToString() + "\n"+ "Customer";
+                    sign2 = "";
+                    sign3 = "Kazi Abdul Hamid" + "\n"+ "AGM Sales & Marketing";
+                    sign4 = "Approved By" + "\n"+ "Director / Managing Director";
+
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleEpic", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["paddress"].ToString();
                     Rpt1.SetParameters(new ReportParameter("sign1", sign1));
                     Rpt1.SetParameters(new ReportParameter("sign2", sign2));
@@ -1655,6 +1661,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["paddress"].ToString();
                     break;
             }           
