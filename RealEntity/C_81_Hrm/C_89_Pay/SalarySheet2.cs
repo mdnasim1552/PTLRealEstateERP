@@ -104,6 +104,8 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double advaloan { get; set; }
             public double mbilaothded { get; set; }
             public double dedday { get; set; }
+            public double otall { get; set; }
+            public double ohour { get; set; }
         }
 
          [Serializable]

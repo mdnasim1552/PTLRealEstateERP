@@ -43,8 +43,12 @@ namespace RealERPWEB
 
                Hashtable hst = (Hashtable)Session["tblLogin"];
               string empid=hst["empid"].ToString();
-                string fdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                string tdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+                string fdate = "01-" + System.DateTime.Now.ToString("MMM-yyyy");
+                string tdate = Convert.ToDateTime(fdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                //string fdate = "01-"+System.DateTime.Now.ToString("MMM-yyyy");
+                //string tdate = "30-"+System.DateTime.Now.ToString("MMM-yyyy");
 
                 hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + fdate + "&todate=" + tdate ;
                 //hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
@@ -729,11 +733,13 @@ namespace RealERPWEB
                 {
                     url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
                 }
-                else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
-                {
-                    byte[] biempimg = (byte[])dr["imgurl"];
-                    url = "data:image;base64," + Convert.ToBase64String(biempimg);
-                }
+                //else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
+                //{
+                //    string byturl = dr["imgurl"].ToString();
+                //    byte[] biempimg = (byte[])byturl;
+                //    //byte[] biempimg = (byte[])dr["imgurl"];
+                //    url = "data:image;base64," + Convert.ToBase64String(biempimg);
+                //}
                 else
                 {
                     url = "Content/Theme/images/avatars/human_avatar.png";
@@ -1030,76 +1036,91 @@ namespace RealERPWEB
             {
                 string comcod = this.GetCompCode();
 
-                HyperLink hlnkPrintPaySlip = (HyperLink)e.Row.FindControl("hlnkPrintPaySlip");
-                HyperLink HyplnkModal = (HyperLink)e.Row.FindControl("HyplnkModal");
+                HyperLink hlnkPrintPaySlipx = (HyperLink)e.Row.FindControl("hlnkPrintPaySlip");
+                LinkButton HyplnkModal = (LinkButton)e.Row.FindControl("HyplnkModal");
                 string monthid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "monthid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
-                hlnkPrintPaySlip.Visible = (comcod == "3365" ? false : true);
-                hlnkPrintPaySlip.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
+                hlnkPrintPaySlipx.Visible = (comcod == "3365" ? false : true);
+                hlnkPrintPaySlipx.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
 
-                HyplnkModal.Visible = (comcod != "3365" ? false : true);
+               HyplnkModal.Visible = (comcod != "3365" ? false : true);
 
-                // Hashtable hst = (Hashtable)Session["tblLogin"];
-
-                // string date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
-                // string frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
-                // string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-
-
-                // string month = Convert.ToDateTime(todate).ToString("MMM-yyyy");
-                // string projectcode = "%";
-                // string section = "%";
-                // string CompanyName = "94";
-                // DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
-
-
-
-                // DataTable dt= ds3.Tables[0];
-                // //double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
-                // //string Inword =  ASTUtility.Trans(netamt, 2);
-
-                // this.RptTitle.InnerText = "For The Month Of " + month;
-                // this.EmployeeId.InnerText= dt.Rows[0]["idcard"].ToString();
-                //this.EmployeeName.InnerText= dt.Rows[0]["empname"].ToString();
-                // this.Department.InnerText = dt.Rows[0]["refdesc"].ToString();
-                // this.Designation.InnerText = dt.Rows[0]["desig"].ToString();
-                // this.JoinDate.InnerText =Convert.ToDateTime(dt.Rows[0]["joindate"]).ToString("dd-MMM-yyyy");
-                // this.WorkingDays.InnerText = dt.Rows[0]["wd"].ToString();
-                // this.GrossSal.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["grossal1"])).ToString();
-
-                // this.HouseRent.InnerText = Math.Round(Convert.ToDouble( dt.Rows[0]["hrent"])).ToString();
-                // this.Basic.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["bsal"])).ToString();
-                // this.Medical.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["mallow"])).ToString();
-
-                // this.ArrearOthers.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["othearn"])).ToString();
-                // this.Conveyance.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["cven"])).ToString();
-                // this.FoodAndOthrs.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["foodal"])).ToString();
-                // this.CarAllow.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["haircutal"])).ToString();
-
-                // this.EarnLeave.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tptallow"])).ToString();
-                // this.IncomeTax.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["itax"])).ToString();
-
-                // this.WFfund.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["pfund"])).ToString();
-                // this.Transport.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["transded"])).ToString();
-
-                // this.Absent.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["absded"])).ToString();
-                // this.Gratuity.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["genloan"])).ToString();
-
-                // this.CarLoan.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["carloan"])).ToString();
-                // this.AdvOthers.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["adv"])).ToString();
-
-                // this.Others.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["othded"])).ToString();
-
-                // this.TotalEarning.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["grossalsub"])).ToString();
-                // this.TotalDeduction.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tdeduc"])).ToString();
-
-                // this.NetPayment.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["netpay"])).ToString();
-                // this.InWords.InnerText = Math.Round( Convert.ToDouble(dt.Rows[0]["aminword"])).ToString();
 
 
             }
         }
-    }
+
+        protected void payslip_modal_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string empid = ((Label)this.gvPaySlip.Rows[index].FindControl("lblgvempid")).Text.ToString();
+            string monthid = ((Label)this.gvPaySlip.Rows[index].FindControl("lblgvmonthid")).Text.ToString();
+            string comcod = this.GetCompCode();
+
+            string date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+            string frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+
+            string month = Convert.ToDateTime(todate).ToString("MMM-yyyy");
+            string projectcode = "%";
+            string section = "%";
+            string CompanyName = "94";
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
+
+
+
+            DataTable dt = ds3.Tables[0];
+            //double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
+            //string Inword =  ASTUtility.Trans(netamt, 2);
+
+            this.RptTitle.InnerText = "FOR THE MONTH OF " + month;
+            this.EmployeeId.InnerText = dt.Rows[0]["idcard"].ToString();
+            this.EmployeeName.InnerText = dt.Rows[0]["empname"].ToString()??"";
+            this.Department.InnerText = dt.Rows[0]["refdesc"].ToString()??"";
+            this.Designation.InnerText = dt.Rows[0]["desig"].ToString()??"";
+            this.JoinDate.InnerText = Convert.ToDateTime(dt.Rows[0]["joindate"]).ToString("dd-MMM-yyyy")??"";
+            this.WorkingDays.InnerText = dt.Rows[0]["wd"].ToString()??"";
+            this.GrossSal.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["grossal1"])).ToString()??"";
+
+            this.HouseRent.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["hrent"])).ToString()??"";
+            this.Basic.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["bsal"])).ToString()??"";
+            this.Medical.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["mallow"])).ToString()??"";
+
+            this.ArrearOthers.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["othearn"])).ToString()??"";
+            this.Conveyance.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["cven"])).ToString()??"";
+            this.FoodAndOthrs.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["foodal"])).ToString()??"";
+            this.CarAllow.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["haircutal"])).ToString()??"";
+
+            this.EarnLeave.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tptallow"])).ToString();
+            this.IncomeTax.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["itax"])).ToString()??"";
+
+            this.WFfund.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["pfund"])).ToString()??"";
+            this.Transport.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["transded"])).ToString()??"";
+
+            this.Absent.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["absded"])).ToString()??"";
+            this.Gratuity.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["genloan"])).ToString()??"";
+
+            this.CarLoan.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["carloan"])).ToString()??"";
+            this.AdvOthers.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["adv"])).ToString()??"";
+
+            this.Others.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["othded"])).ToString()??"";
+
+            this.TotalEarning.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["grossalsub"])).ToString()??"";
+            this.TotalDeduction.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tdeduc"])).ToString()??"";
+
+            this.NetPayment.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["netpay"])).ToString()??"";
+            this.InWords.InnerText = dt.Rows[0]["aminword"].ToString()??"";
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPayslipModal();", true);
+        }
+
+
+
+        }
+
 }
 
 
