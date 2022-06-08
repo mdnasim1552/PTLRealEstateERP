@@ -756,7 +756,7 @@ namespace RealERPWEB
             foreach (DataRow dr in ds1.Tables[1].Rows)
             {
                 status = (i == 0) ? "active" : "";
-                innHTMLTopnot += @"<p>" + dr["eventitle"] + "</p>";
+                innHTMLTopnot += @"<p>" + dr["eventitle"]  +" ( "+ (dr["ndetails"].ToString().Length>140? dr["ndetails"].ToString().Substring(0,139)+"....": dr["ndetails"].ToString()) +")"+ "</p>";
                 i++;
             }
 
@@ -1117,9 +1117,46 @@ namespace RealERPWEB
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPayslipModal();", true);
         }
 
+        protected void gvAllNotice_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                DateTime startdate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "nstartdate"));
+                DateTime enddate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "nenddate"));
+                DateTime today = System.DateTime.Now;
+
+                if(today>=startdate && today <= enddate)
+                {
+               
+                        e.Row.FindControl("NoticeDet").Visible = true;
+                }
+                else
+                {
+                    e.Row.FindControl("NoticeDet").Visible = false;
+                }
 
 
+            }
         }
+
+        protected void NoticeTitle_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+  
+            this.modalNoticeTitle.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeTitle")).Text.ToString();
+            this.modalNoticeDet.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeDet")).Text.ToString();
+            this.publishDate.InnerText= Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblpubdate")).Text).ToString("dd-MMM-yyy hh:mm");
+            this.noticeStartDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblstartdate")).Text).ToString("dd-MMM-yyy hh:mm");
+            this.noticeEndDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblenddate")).Text).ToString("dd-MMM-yyy hh:mm");
+
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNoticeModal();", true);
+            
+        }
+    }
 
 }
 
