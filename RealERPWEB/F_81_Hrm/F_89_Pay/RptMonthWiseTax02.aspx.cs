@@ -88,7 +88,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
     {
         string comcod = this.GetComeCode();
         string deptcode = ((this.ddldepartmentagg.SelectedValue == "000000000000") ? "94" : this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 9)) + "%";
-        string txtSProject = this.ddlProjectName.Text.Trim() + "%";
+        string txtSProject = "%";
         DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", deptcode, txtSProject, "", "", "", "", "", "", "");
         this.ddlProjectName.DataTextField = "actdesc";
         this.ddlProjectName.DataValueField = "actcode";
@@ -108,8 +108,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         string comcod = this.GetComeCode();
         //string ProjectCode = (this.ddlEmployee.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
         string ProjectCode =  this.ddlProjectName.SelectedValue.ToString() + "%";
-
-        string txtSProject = "%" + this.ddlEmployee.Text + "%";
+        string txtSProject = "%";
 
         DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "GETEMPLOYEE", ProjectCode, txtSProject, "", "", "", "", "", "", "");
         this.ddlEmployee.DataTextField = "empname";
@@ -263,7 +262,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         this.gvsalary.DataSource = (DataTable)Session["tbltax"];
         this.gvsalary.DataBind();
-       // this.FooterCalCulation();
+        this.FooterCalCulation();
 
     }
 
