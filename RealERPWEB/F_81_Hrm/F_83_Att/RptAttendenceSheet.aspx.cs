@@ -1156,33 +1156,34 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string todesig = this.ddlToDesig.SelectedValue.ToString();
             string acclate = this.GetComLateAccTime();
             var rptMonth = comcod == "3330" ? "For The Month of " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMMM, yyyy") : "For The Month of " + Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("MMMM, yyyy");
-            string section = "";
-            if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
-            {
+            //string section = "";
+            //if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+            //{
 
-                string gp = this.DropCheck1.SelectedValue.Trim();
-                if (gp.Length > 0)
-                {
-                    if (gp.Substring(0, 3).Trim() == "000" || gp.Trim() == "")
-                        section = "";
-                    else
-                        foreach (ListItem s1 in DropCheck1.Items)
-                        {
-                            if (s1.Selected)
-                            {
-                                section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
-                            }
+            //    string gp = this.DropCheck1.SelectedValue.Trim();
+            //    if (gp.Length > 0)
+            //    {
+            //        if (gp.Substring(0, 3).Trim() == "000" || gp.Trim() == "")
+            //            section = "";
+            //        else
+            //            foreach (ListItem s1 in DropCheck1.Items)
+            //            {
+            //                if (s1.Selected)
+            //                {
+            //                    section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
+            //                }
 
-                        }
-                }
+            //            }
+            //    }
+            //}
 
-            }
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, "");
+            //if (ds1 == null)
+            //    return;
+            DataTable dt1 = (DataTable)Session["tblallData"];
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, "");
-            if (ds1 == null)
-                return;
-
-            var list = ds1.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
+            var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
+            //var list = ds1.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceAlli", list, null, null);
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
@@ -1215,40 +1216,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string comcod = this.GetComCode();
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-            string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
-            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
-            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
-            string todesig = this.ddlToDesig.SelectedValue.ToString();
-            string acclate = this.GetComLateAccTime();
+            //string empid = (this.ddlEmpName.SelectedValue.ToString() == "") ? "%" : this.ddlEmpName.SelectedValue.ToString();
+            //string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            //string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
+            //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            //string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+            //string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+            //string todesig = this.ddlToDesig.SelectedValue.ToString();
+            //string acclate = this.GetComLateAccTime();
             var rptMonth = comcod == "3330" ? "For The Month of " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMMM, yyyy") : "For The Month of " + Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("MMMM, yyyy");
-            string section = "";
-            if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
-            {
-                string gp = this.DropCheck1.SelectedValue.Trim();
-                if (gp.Length > 0)
-                {
-                    if (gp.Substring(0, 3).Trim() == "000" || gp.Trim() == "")
-                        section = "";
-                    else
-                        foreach (ListItem s1 in DropCheck1.Items)
-                        {
-                            if (s1.Selected)
-                            {
-                                section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
-                            }
-                        }
-                }
 
-            }
+            DataTable dt1 = (DataTable)Session["tblallData"];
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, "");
-            if (ds1 == null)
-                return;
-
-            var list = ds1.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
+            var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
+            //var list = ds1.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendance", list, null, null);
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
