@@ -165,29 +165,32 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
-            string Empid = this.ddlEmpName.SelectedValue.ToString();
+            string Empid = this.ddlEmpName.SelectedValue.ToString();    
             string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
             //string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
             // string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);        
             // DateTime date2 = DateTime.ParseExact(date1, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
             //DateTime date1 = DateTime.Parse(this.ddlMonth.SelectedValue.ToString());
            // string ymonid = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "ymonid")).ToString();
+            string todate = "";
             string frmdate = "";
-            string date = "";
+            
             switch (comcod)
             {
                 case "3365":
                 case "3101":
-                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(MonthId.Substring(4, 2))) + "-" + MonthId.Substring(0, 4);
-                    frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                //case "3348":
+                    string date1 = "26-" + ASTUtility.Month3digit(Convert.ToInt32(MonthId.Substring(4, 2))) + "-" + MonthId.Substring(0, 4);
+                    frmdate = Convert.ToDateTime(date1).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
                     break;
                 default:
-                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(MonthId.Substring(4, 2))) + "-" + MonthId.Substring(0, 4);
-                    frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                    frmdate = "01-" + ASTUtility.Month3digit(Convert.ToInt32(MonthId.Substring(4, 2))) + "-" + MonthId.Substring(0, 4);
+                    todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"); 
                     break;
             }
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "MONTHLYTENDENCE", Empid, MonthId, date, frmdate, "", "", "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "MONTHLYTENDENCE", Empid, MonthId, frmdate, todate, "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvMonthlyAttn.DataSource = null;

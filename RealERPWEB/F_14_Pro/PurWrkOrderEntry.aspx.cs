@@ -999,6 +999,8 @@ namespace RealERPWEB.F_14_Pro
 
                 case "3354"://Edison Real Estate
                 case "3335":
+                case "3368":
+                case "3101":
                     ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp");
                     break;
 
@@ -1248,6 +1250,51 @@ namespace RealERPWEB.F_14_Pro
                         case "3351":  //wecon Properties
                         case "3352":  //p2p360
                                       //case "3101": // ASIT
+
+                            break;
+
+                        //case "3101":
+                        case "3368"://finlay
+                            if (approval == "")
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["secappid"] = "";
+                                dr1["secappdat"] = "";
+                                dr1["secapptrmid"] = "";
+                                dr1["secappseson"] = "";
+
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+
+                            }
+
+
+                            else
+                            {
+
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+                                ds1.Tables[0].Rows[0]["secappid"] = "";
+                                ds1.Tables[0].Rows[0]["secappdat"] = "";
+                                ds1.Tables[0].Rows[0]["secapptrmid"] = "";
+                                ds1.Tables[0].Rows[0]["secappseson"] = "";
+
+                                approval = ds1.GetXml();
+
+                            }
 
                             break;
 
@@ -3527,27 +3574,40 @@ namespace RealERPWEB.F_14_Pro
 
 
                 DataTable dtterm = _ReportDataSet.Tables[2];
-
                 // string Type = this.CompanyPrintWorkOrder();
                 ReportDocument rptwork = new ReportDocument();
-                string fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
-                string comname = this.Compserial();
-                string trmplace = ((comcod == "3338" || comname == "Rup") ? "1. " + dtterm.Rows[0]["termssubj"].ToString() : "*" + dtterm.Rows[0]["termssubj"].ToString() + " : ");
-                string place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
-                string trmpdate = ((comcod == "3338" || comname == "Rup") ? "2. " + dtterm.Rows[1]["termssubj"].ToString() : "*" + dtterm.Rows[1]["termssubj"].ToString() + " : ");
-                string pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
-                string trmcarring = ((comcod == "3338" || comname == "Rup") ? "3. " + dtterm.Rows[2]["termssubj"].ToString() : "*" + dtterm.Rows[2]["termssubj"].ToString() + " : ");
-                string carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
-                string trmbill = (comcod == "3330") ? "" : (comcod == "3338" || comname == "Rup") ? "4. " + (dtterm.Rows[3]["termssubj"]).ToString() : "*" + dtterm.Rows[3]["termssubj"].ToString() + ": ";
-                string bill = (comcod == "3330") ? ("* " + dtterm.Rows[3]["termsdesc"].ToString().Trim()) : dtterm.Rows[3]["termsdesc"].ToString().Trim();
-                string trmpayment = ((comcod == "3338") ? dtterm.Rows[4]["termssubj"].ToString() : (comname == "Rup") ? "4. " + dtterm.Rows[4]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[4]["termssubj"].ToString() + " : ");
-                string payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
-
-                string trmothers = ((comcod == "3338") ? dtterm.Rows[5]["termssubj"].ToString() : (comname == "Rup") ? "5. " + dtterm.Rows[5]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[5]["termssubj"].ToString() + " : ");
-                string Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
-
-                //
-
+                string fax = "";
+                string comname = "";
+                string trmplace = "";
+                string place = "";
+                string trmpdate = "";
+                string pdate = "";
+                string trmcarring = "";
+                string carring = "";
+                string trmbill = "";
+                string bill = "";
+                string trmpayment = "";
+                string payment = "";
+                string trmothers = "";
+                string Others = "";
+                if (dtterm.Rows.Count != 0)
+                {
+                     fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+                     comname = this.Compserial();
+                     trmplace = ((comcod == "3338" || comname == "Rup") ? "1. " + dtterm.Rows[0]["termssubj"].ToString() : "*" + dtterm.Rows[0]["termssubj"].ToString() + " : ");
+                     place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
+                     trmpdate = ((comcod == "3338" || comname == "Rup") ? "2. " + dtterm.Rows[1]["termssubj"].ToString() : "*" + dtterm.Rows[1]["termssubj"].ToString() + " : ");
+                     pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
+                     trmcarring = ((comcod == "3338" || comname == "Rup") ? "3. " + dtterm.Rows[2]["termssubj"].ToString() : "*" + dtterm.Rows[2]["termssubj"].ToString() + " : ");
+                     carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
+                     trmbill = (comcod == "3330") ? "" : (comcod == "3338" || comname == "Rup") ? "4. " + (dtterm.Rows[3]["termssubj"]).ToString() : "*" + dtterm.Rows[3]["termssubj"].ToString() + ": ";
+                     bill = (comcod == "3330") ? ("* " + dtterm.Rows[3]["termsdesc"].ToString().Trim()) : dtterm.Rows[3]["termsdesc"].ToString().Trim();
+                     trmpayment = ((comcod == "3338") ? dtterm.Rows[4]["termssubj"].ToString() : (comname == "Rup") ? "4. " + dtterm.Rows[4]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[4]["termssubj"].ToString() + " : ");
+                     payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
+                     trmothers = ((comcod == "3338") ? dtterm.Rows[5]["termssubj"].ToString() : (comname == "Rup") ? "5. " + dtterm.Rows[5]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[5]["termssubj"].ToString() + " : ");
+                     Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
+                }
+                 
 
                 // For Acme
 
@@ -3974,23 +4034,40 @@ namespace RealERPWEB.F_14_Pro
                 string Type = this.CompanyPrintWorkOrder();
                 ReportDocument rptwork = new ReportDocument();
 
-                string fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
 
-                string trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
-                string place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
-                string trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
-                string pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
-                string trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
-                string carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
-                //string trmbill = "* " + dtterm.Rows[9]["termssubj"].ToString() + "";
-                string bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
-                string trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
-                string payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
+                string fax = "";
+                
+                string trmplace = "";
+                string place = "";
+                string trmpdate = "";
+                string pdate = "";
+                string trmcarring = "";
+                string carring = "";
+              
+                string bill = "";
+                string trmpayment = "";
+                string payment = "";
+                string trmothers = "";
+                string Others = "";
 
-                string trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
-                string Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
+                if (dtterm.Rows.Count != 0)
+                {
+                     fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+                     trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
+                     place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
+                     trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
+                     pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
+                     trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
+                     carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
+                    //string trmbill = "* " + dtterm.Rows[9]["termssubj"].ToString() + "";
+                     bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
+                     trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
+                     payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
 
+                     trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
+                     Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
 
+                }
 
 
 

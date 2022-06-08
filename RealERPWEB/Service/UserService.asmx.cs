@@ -13,6 +13,7 @@ using RealERPLIB;
 using System.Data;
 using Newtonsoft.Json;
 using System.Configuration;
+using System.Web.Script.Serialization;
 
 namespace RealERPWEB.Service
 {
@@ -403,15 +404,28 @@ namespace RealERPWEB.Service
             return null;
         }
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetHday(string data)
+        {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            DataSet ds = accData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETHOLIDAY", "", "", "", "", "", "", "", "", "");
 
-        
+            if (ds == null)
+                return "";
+            else
+            {
+                var catlist = ds.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.BO_ClassLate.HolidayType>();
+                var catlist2 = catlist.Select(e => new { e.unit, e.gcod, e.hrdesc }).ToList();
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(catlist2);
+                return json;
+            }
 
-
-
-
-
-}
+        }
+    }
 
 
 }

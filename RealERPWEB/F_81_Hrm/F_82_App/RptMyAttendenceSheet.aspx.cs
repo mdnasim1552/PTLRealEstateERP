@@ -60,6 +60,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string comcod = this.GetComeCode();
             switch (comcod)
             {
+                case "3354":
+                case "3101":
+                   // ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
+                    // ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
+                    // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
+                    ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger/Attandance missed but present)", "AB"));
+                    break;
                 case "3366":
                     ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
                    // ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
@@ -281,8 +288,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 switch (comcod)
                 {
                     case "3365":
-                    case "3101":
                     case "3366":
+                    
                         if (ahleave == "A" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
@@ -290,9 +297,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;color:red";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq==""? true:false;
                             ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
-
-
-
                         }
                         else if (ahleave == "H" || ahleave == "Lv" && iscancel == "False")
                         {
@@ -301,35 +305,47 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
 
                         }
-
                         else if ((offimein < actualin) && lateapp == "False" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
-                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
-
-                            
-
-
+                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;                         
                         }
                         else if (iscancel == "True")
                         {
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Text = "Re Apply Request";
-
-
                         }
                         else
                         {
-                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
-                            
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;                          
                         }
-
                         if (qtype == "MGT")
                         {
                             hyplinkapp.NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT&Empid="+ empid+"&LevDay="+ offimein + "&LvType=";
+                            //Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT");
+                        }
+                        else
+                        {
+                            hyplinkapp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=User";
+                            //Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User");
+                        }
+                        break;
+                    case "3354":
+                    case "3101":
+                        if (ahleave == "A" && iscancel == "False")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Visible = false;
+                            ((Label)e.Item.FindControl("lblactualin")).Visible = false;
+                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;color:red";
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
+                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
+                        }
+                        if (qtype == "MGT")
+                        {
+                            hyplinkapp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT&Empid=" + empid + "&LevDay=" + offimein + "&LvType=";
                             //Response.Redirect("~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT");
                         }
                         else

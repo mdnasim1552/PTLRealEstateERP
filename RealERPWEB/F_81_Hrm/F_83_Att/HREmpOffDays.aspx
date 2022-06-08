@@ -204,10 +204,10 @@
                                 <asp:TextBox ID="txtReason" Style="margin: 5px 0" runat="server"
                                     CssClass="form-control" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
                                 <asp:DropDownList ID="ddlType" CssClass="form-control" Style="margin: 5px 0" runat="server" AutoPostBack="true">
-                                    <asp:ListItem Value="sh">Select Holidays </asp:ListItem>
+<%--                                    <asp:ListItem Value="sh">Select Holidays </asp:ListItem>
                                     <asp:ListItem Value="W">Weekend Day</asp:ListItem>
                                     <asp:ListItem Value="H">Govt.Holi Day</asp:ListItem>
-                                    <asp:ListItem Value="ST">Special Holiday Day</asp:ListItem>
+                                    <asp:ListItem Value="ST">Special Holiday Day</asp:ListItem>--%>
                                 </asp:DropDownList>
                                 <asp:LinkButton ID="lnkbtnAllUpdate" runat="server" CssClass="btn btn-success btn-xs primaryBtn" OnClick="lnkbtnAllUpdate_Click">Update</asp:LinkButton>
                             </div>

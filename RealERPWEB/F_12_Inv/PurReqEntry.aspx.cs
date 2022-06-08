@@ -66,7 +66,7 @@ namespace RealERPWEB.F_12_Inv
                 string reqcheckorApproved = this.GetReqcheckorApproved();
                 string title = (Request.QueryString["InputType"].ToString() == "Entry") ? "Materials Requisition"
                      : (Request.QueryString["InputType"].ToString() == "Approval") ? "Materials Requisition Approval Screen"
-                     : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Fixed Assets Requisition Information Input/Edit Screen"
+                     : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Store Requisition"
                       : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Materials Requisition Information Input/Edit Screen"
                        : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? reqcheckorApproved
                        : (Request.QueryString["InputType"].ToString() == "ReqcRMCheck") ? "Req CRM Check"
@@ -235,11 +235,15 @@ namespace RealERPWEB.F_12_Inv
                     this.gvReqInfo.Columns[11].Visible = true;
                     this.gvReqInfo.Columns[12].Visible = true;
                     this.gvReqInfo.Columns[13].Visible = true;
-                    //this.gvReqInfo.Columns[14].Visible = true;
+                    this.gvReqInfo.Columns[14].Visible = true;
                     this.gvReqInfo.Columns[15].Visible = true;
                     this.gvReqInfo.Columns[16].Visible = true;
                     this.gvReqInfo.Columns[17].Visible = true;
                     break;
+
+
+               
+
 
             }
 

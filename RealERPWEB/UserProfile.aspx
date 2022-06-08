@@ -2,7 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- Latest compiled and minified CSS -->
+
+
     <script>
+
+        $(document).keyup(function (e) {
+            if (e.keyCode == 44) return false;
+        });
+
         $(document).ready(function () {
             ExcuteEmpStatus();
         });
@@ -22,7 +30,7 @@
             function drawChart() {
 
                 var data = google.visualization.arrayToDataTable([
-                    ['Task', 'This Months Attendance status'],
+                    ['Task', 'This Yearly Attendance status'],
 
                     ['Present', present],
                     ['Absent', abs],
@@ -33,7 +41,7 @@
                 ]);
 
                 var options = {
-                    title: 'Attendance status',
+                    title: 'Your Yearly Attendance status',
                     is3D: true,
                     pieSliceText: 'value'
 
@@ -45,8 +53,56 @@
             }
         }
 
+
+        function OpenPayslipModal() {
+
+            $('#exampleModal').modal('toggle');
+        }
+        function closePayslipModal() {
+            $('#delivery_agency').modal('hide');
+            location.reload();
+        }
     </script>
     <style>
+        #payslipmodal{
+                  z-index:9999;
+        }
+#{
+
+          z-index:1;
+}
+        .dbx {
+            height: 60px;
+            width:100%;
+          display: flex;
+  justify-content: center;
+  text-align:center;
+  align-items: center;
+
+        }
+        .dbx a{
+            text-decoration:none;
+        }
+        .dbx:hover{
+            background:crimson;
+        }
+
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome, Edge, Opera and Firefox */
+        }
+
+        @media print {
+
+            #exampleModal {
+                visibility: hidden;
+            }
+        }
+
         .topMenu li .nav-link {
             padding: 10px 10px;
         }
@@ -196,26 +252,60 @@
 
                 </div>
                 <div class="col-4">
+                    <asp:Panel runat="server" ID="pnlUpcmEdison" visiable="false">
+                                       <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
+    
+                        <div class="card-body" style="max-height: 200px; overflow-y: scroll" id="Div1" runat="server">
 
 
-                    <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
 
+                            <div class="row">
+                        
+
+                                <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">    <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>" target="_blank">Apply Leave</a></div></div>
+                                                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">    <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>" target="_blank">Online Attendance</a></div></div>
+
+                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">
+                                                 <asp:HyperLink ID="hlnkattreport" runat="server" Target="_blank"  >
+                                                     Attendance Report
+                                                        </asp:HyperLink>
+                                                        </div></div>
+                            </div>
+                             <div class="row mt-2">
+                                   <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HREmpMonthlyAtten")%>" target="_blank">Manual Attendance</a></div></div>
+                                   <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/UserProfile")%>" target="_blank">Profile</a></div></div>
+
+                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a data-toggle="modal" data-target="#payslipmodal">Pay Slip</a></div></div>
+                            </div>
+                            
+                                          <div class="row mt-2">
+                          <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div></div>
+                                 
+                                  <div class="col-lg-4"><div class="dbx shadow-sm bg-white rounded border">KPI</div></div>
+                            </div>
+
+                        </div>
+                    </section>
+                    </asp:Panel>
+     
+
+
+
+                    <asp:Panel runat="server" ID="pnlUpcmBti">
+                                 <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
                         <header class="card-header border-0 pb-0">
                             <div class="d-flex align-items-center">
                                 <span class="mr-auto">Upcoming Holidays </span>
                             </div>
                         </header>
-
                         <div class="card-body" style="max-height: 200px; overflow-y: scroll" id="upComingHolidays" runat="server">
                         </div>
 
 
-                        <%--<footer class="card-footer">
-                            <a href="<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")%>" target="_blank" class="card-footer-item">View All <i class="fa fa-fw fa-angle-right"></i>
-                            </a>
-                        </footer>--%>
-                        <!-- /.card-footer -->
+        
                     </section>
+                    </asp:Panel>
+           
 
 
 
@@ -240,7 +330,7 @@
                 </div>
             </div>
 
-            <nav class="page-navs">
+            <nav class="page-navs" id="page-navs">
                 <!-- .nav-scroller -->
                 <div class="card-body m-0 p-0">
 
@@ -248,6 +338,7 @@
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">Activities</a> </li>
                         <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
                         <li class="nav-item"><a href="#HolidayCalender" class="nav-link smooth-scroll" data-toggle="tab">Holiday Calender</a></li>
+
                         <li class="nav-item"><a id="hrpolicy" runat="server" href="#LeavePolicy" class="nav-link smooth-scroll" data-toggle="tab">HR Policy</a></li>
                         <li class="nav-item">
                             <asp:HyperLink ID="lnkOrintation" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Orintation Link</asp:HyperLink>
@@ -262,10 +353,11 @@
                         <li class="nav-item">
                             <asp:HyperLink ID="HypOrganogram" CssClass="nav-link smooth-scrol" Visible="true" NavigateUrl='#Organogram' data-toggle="tab" runat="server">Organogram</asp:HyperLink>
 
-
                         </li>
 
-
+                        <li class="nav-item" id="List_EmpDirectory" runat="server">
+                            <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Employee directory</asp:HyperLink>
+                        </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link smooth-scrol" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a></li>
@@ -273,6 +365,7 @@
                         <li class="nav-item">
                             <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
                         <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
+                           <li class="nav-item" runat="server" id="modalPayslipBti"><a data-toggle="modal" data-target="#payslipmodal" class="btn btn-light">Pay Slip</a></li>
 
 
 
@@ -761,80 +854,7 @@
 
                         <!-- /grid column -->
                     </div>
-                    <div class="row" id="PaySlipPart" runat="server">
-                        <!-- grid column -->
-                        <div class="col-xl-6">
-                            <div class="card card-fluid" id="divPayslip" runat="server">
-                                <!-- .card-header -->
-                                <div class="card-header border-0">
-                                    <!-- .d-flex -->
-                                    <div class="d-flex align-items-center">
-                                        <span class="mr-auto">PAY SLIP</span>
-                                        <%--<asp:Label ID="lblPaySlip" runat="server" CssClass="btn btn-success btn-sm headPart">Pay Slip</asp:Label>--%>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-
-                                    <div class="table-responsive pb-3">
-                                        <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
-                                            ShowFooter="True">
-                                            <RowStyle />
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Sl.No.">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
-                                                            Style="text-align: right"
-                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Month">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvpayslipmonth" runat="server"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
-                                                        <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
-                                                        <asp:Label ID="lblgvempid" runat="server" Visible="false"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Amount">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvnetamt" runat="server"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="Right" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="">
-                                                    <ItemTemplate>
-                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print">Print</span>
-                                                        </asp:HyperLink>
-                                                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
-                                                        </asp:HyperLink>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                            <FooterStyle CssClass="grvFooter" />
-                                            <EditRowStyle />
-                                            <AlternatingRowStyle />
-                                            <PagerStyle CssClass="gvPagination" />
-                                            <HeaderStyle CssClass="grvHeader" />
-                                        </asp:GridView>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <!-- /grid row -->
-                    </div>
+             
 
 
                 </div>
@@ -912,10 +932,10 @@
                         <div class="col-6">
                             <div class="card " style="max-height: 550px; overflow-y: scroll">
                                 <div class="card-header">
-                                            <span class="mr-auto">Upcoming BirthDay </span>
-                                 
-                                                 <asp:LinkButton ID="birthday" runat="server" onclick="birthday_print_click"
-                                                CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
+                                    <span class="mr-auto">Upcoming BirthDay </span>
+
+                                    <asp:LinkButton ID="birthday" runat="server" OnClick="birthday_print_click"
+                                        CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
                                 </div>
                                 <div class="card-body row" id="EventBirthday" runat="server">
                                 </div>
@@ -1116,7 +1136,7 @@
 
 
 
-                                <div class="accordion-container">
+                                <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
 
                                     <div class="set">
                                         <a href="#" class="active">Leave Policy 
@@ -1214,6 +1234,20 @@ d) 6 Days Late = 3 CL & half day leave
                                     </div>
                                 </div>
 
+                                <div class="accordion-container" id="edidisonPolicy" runat="server" visible="false">
+
+                                    <div class="set">
+                                        <a href="#" class="active">Leave Policy 
+      <i class="fa fa-plus"></i>
+                                        </a>
+                                        <div class="content" style="display: block;">
+
+                                            <p>Content Comming son..............</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </section>
@@ -1253,9 +1287,9 @@ d) 6 Days Late = 3 CL & half day leave
                 <div class="tab-pane fade" id="CodeofConduct">
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
-                            <div class="col-12"> 
+                            <div class="col-12">
                                 <div class="card-body">
-                                    <h1 class="text-center">Code of Conduct</h1> 
+                                    <h1 class="text-center">Code of Conduct</h1>
                                     <div runat="server" class="text-center" id="conductid">
                                     </div>
 
@@ -1273,25 +1307,280 @@ d) 6 Days Late = 3 CL & half day leave
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade noselect" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Request Pay slip</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+            
+                         <asp:LinkButton ID="payslip_modal_close" runat="server" CssClass="close close_btn"  OnClientClick="closePayslipModal();" data-dismiss="modal"> &times; </asp:LinkButton>
                     </div>
                     <div class="modal-body">
-           
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <div class="slip-container">
+                            <div class="header text-center font-weight-bold" style="width: 100%;">
 
+                                <h4>PAYSLIP</h4>
+                                <h5 id="RptTitle" runat="server">March-2022 (Month of salary disbursement)</h5>
+
+
+                            </div>
+                            <div class="employee-details mt-3 d-none">
+                                <table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+                                    <tr style="border: 1px solid black; border-collapse: collapse;">
+                                        <td class="font-weight-bold">Employee Details :</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Employee ID</td>
+                                        <td>:<span id="EmployeeId" runat="server"></span></td>
+                                        <td class="font-weight-bold">Employee Name</td>
+                                        <td>:<span id="EmployeeName" runat="server"></span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold">Department</td>
+                                        <td>:<span id="Department" runat="server"></span></td>
+                                        <td class="font-weight-bold">Designation</td>
+                                        <td>:<span id="Designation" runat="server"></span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold">Joinning Date</td>
+                                        <td>: <span id="JoinDate" runat="server"></span></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                            <div class="salary-details d-none mt-3">
+
+                                <table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+                                    <tr style="border: 1px solid black; border-collapse: collapse;">
+                                        <td class="font-weight-bold">Salary Details :</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Days in Month</td>
+                                        <td>:<span id="DaysInMonth" runat="server"></span></td>
+                                        <td class="font-weight-bold">Gross Salary</td>
+                                        <td>:<span id="GrossSal" runat="server"></span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold">Working Days</td>
+                                        <td>: <span id="WorkingDays" runat="server"></span></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+                                </table>
+
+
+                            </div>
+                            <div class="salary-details2 mt-3">
+                                <p class="font-weight-bold m-0">Salary Details(Component-wise Breakdown):</p>
+                                <table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+                                    <tr class="font-weight-bold" style="border: 1px solid black; border-collapse: collapse;">
+                                        <td>Earnings</td>
+                                        <td>BDT</td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Deduction</td>
+                                        <td>BDT</td>
+                                    </tr>
+                                    <tr>
+                                        <td>House Rent</td>
+                                        <td>:<span id="HouseRent" runat="server"></span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Income Tax</td>
+                                        <td>:<span id="IncomeTax" runat="server"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Basic</td>
+                                        <td>:<span id="Basic" runat="server"></span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>W.F Fund</td>
+                                        <td>:<span id="WFfund" runat="server"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medical</td>
+                                        <td>:<span id="Medical" runat="server"></span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Transport</td>
+                                        <td>:<span id="Transport" runat="server"></span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Conveyance</td>
+                                        <td>:<span id="Conveyance" runat="server"></span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Absent</td>
+                                        <td>:<span id="Absent" runat="server"></span></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>Arrear/Others</td>
+                                        <td>:<span runat="server" id="ArrearOthers"></span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Gratuity loan</td>
+                                        <td>:<span id="Gratuity" runat="server"></span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Food & Others</td>
+                                        <td>:<span id="FoodAndOthrs" runat="server"></span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Car loan</td>
+                                        <td>:<span id="CarLoan" runat="server"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Car Allowance</td>
+                                        <td>:<span id="CarAllow" runat="server">222</span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Adv./Other</td>
+                                        <td>:<span id="AdvOthers" runat="server">222</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Earn leave</td>
+                                        <td>:<span id="EarnLeave" runat="server">33</span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Others</td>
+                                        <td>:<span id="Others" runat="server">400</span></td>
+                                    </tr>
+
+                                    <tr class="text-bold">
+                                        <td>Total Earnings</td>
+                                        <td>:<span id="TotalEarning" runat="server">25223</span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td>Total Deduction</td>
+                                        <td>:<span id="TotalDeduction" runat="server">43000</span></td>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+                            <div class="net-payment mt-2">
+                                <table>
+                                    <tr class="font-weight-bold">
+                                        <td>Net Payment</td>
+                                        <td>:<span id="NetPayment" runat="server"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">In words:</td>
+                                        <td>:<span id="InWords" runat="server">(Taka Twenty Nine Thousand Two Hundred Twenty Five only)</span></td>
+
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                            <div class="nb border border-dark d-none mt-5">
+                                <p class="text-center m-0 p-3">
+                                    <span class="font-weight-bold">NB: </span>
+                                    This payslip is software generated, Any Discrepancy must be notify to HR Department within 7 days, Else it will be deemed that the staff has found this salary statement correct.
+                                </p>
+
+                            </div>
+
+                        </div>
+                        <p class="text-danger font-weight-bold float-left mt-3"><strong>For print, Please contact with HR/Payroll Department.</strong></p>
                     </div>
+      
                 </div>
             </div>
         </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="payslipmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+                            <div class="card" id="PaySlipPart" runat="server">
+           
+
+                                <div class="card-body" id="payslipdiv">
+
+                                    <div class="table-responsive pb-3">
+                                                 <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
+                                            ShowFooter="True">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: center"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Month">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvpayslipmonth" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
+                                                        <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
+                                                        <asp:Label ID="lblgvempid" runat="server" Visible="false"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Amount">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvnetamt" runat="server"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
+                                                        </asp:HyperLink>
+                                                       <%-- <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>     </asp:HyperLink>--%>
+                                                         <asp:LinkButton ID="HyplnkModal" OnClick="payslip_modal_Click"  Style="margin-left:3px;" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View</asp:LinkButton>
+                                                   
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+
+           
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
     </div>

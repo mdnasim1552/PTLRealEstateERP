@@ -38,6 +38,20 @@ namespace RealERPWEB
 
                 GetAllHolidays();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
+
+
+
+               Hashtable hst = (Hashtable)Session["tblLogin"];
+              string empid=hst["empid"].ToString();
+
+                string fdate = "01-" + System.DateTime.Now.ToString("MMM-yyyy");
+                string tdate = Convert.ToDateTime(fdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                //string fdate = "01-"+System.DateTime.Now.ToString("MMM-yyyy");
+                //string tdate = "30-"+System.DateTime.Now.ToString("MMM-yyyy");
+
+                hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + fdate + "&todate=" + tdate ;
+                //hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
             }
 
             this.GetProfile();
@@ -58,7 +72,7 @@ namespace RealERPWEB
                 Session["i"] = image_file;
                 Session["s"] = size;
 
-                if (size < 125000)
+                if (size < 5048576)
                 {
                     string oldImg = this.userimg.ImageUrl;
                     string dburl = "~/Upload/UserImages/" + UserId + extension;
@@ -105,12 +119,12 @@ namespace RealERPWEB
         private void getLink()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-
+            
             string comcod = GetCompCode();
             switch (comcod)
             {
                 case "3365":
-                case "3101":
+                
 
                     string userrole = hst["userrole"].ToString();
 
@@ -121,10 +135,42 @@ namespace RealERPWEB
                     this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
+                    this.BtiPolicy.Visible = true;
+
+                    this.pnlUpcmEdison.Visible = false;
+                    this.pnlUpcmBti.Visible = true;
+                    this.modalPayslipBti.Visible = true;
 
                     this.GetWinList();
                     this.OrganoGram();
                     this.getConduct();
+                    break;
+                case "3354":
+                    this.PaySlipPart.Visible = true;
+                    this.hrpolicy.Visible = true;
+                    this.List_EmpDirectory.Visible = true;
+                    this.lnkOrintation.Visible = false;
+                    this.HyperCodeofConduct.Visible = false;
+                    this.HypOrganogram.Visible = false;
+                    this.pnlServHis.Visible = true;
+                    this.winsList.Visible = false;
+                    this.edidisonPolicy.Visible = true;
+                  
+                    this.pnlUpcmBti.Visible = false;
+                    this.pnlUpcmEdison.Visible = true;
+                    this.modalPayslipBti.Visible = false;
+
+
+                    break;
+                case "3101":
+                    this.PaySlipPart.Visible = true;
+                    this.hrpolicy.Visible = true;
+                    this.List_EmpDirectory.Visible = true;
+
+                    this.pnlUpcmEdison.Visible = false;
+                    this.pnlUpcmBti.Visible = true;
+                    this.modalPayslipBti.Visible = true;
+
                     break;
                 default:
 
@@ -135,11 +181,18 @@ namespace RealERPWEB
                     this.winsList.Visible = false;
                     this.hrpolicy.Visible = false;
                     this.PaySlipPart.Visible = false;
+                    this.List_EmpDirectory.Visible = false;
+
+                    this.pnlUpcmEdison.Visible = false;
+                    this.pnlUpcmBti.Visible = true;
+                    this.modalPayslipBti.Visible = true;
                     break;
+
+                   
 
 
             }
-
+            this.EmpDirectory.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=";
         }
 
         private void GetWinList()
@@ -388,7 +441,7 @@ namespace RealERPWEB
                 switch (comcod)
                 {
                     case "3365":
-                    case "3101":
+                    
                         date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
                         frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
                         //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -675,27 +728,29 @@ namespace RealERPWEB
 
             foreach (DataRow dr in ds1.Tables[0].Rows)
             {
-                //string url = "";
-                //if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
-                //{
-                //    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
-                //}
+                string url = "";
+                if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
+                {
+                    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
+                }
                 //else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
                 //{
-                //    byte[] biempimg = (byte[])dr["imgurl"];
+                //    string byturl = dr["imgurl"].ToString();
+                //    byte[] biempimg = (byte[])byturl;
+                //    //byte[] biempimg = (byte[])dr["imgurl"];
                 //    url = "data:image;base64," + Convert.ToBase64String(biempimg);
                 //}
-                //else
-                //{
-                //    url = "Content/Theme/images/avatars/human_avatar.png";
-                //}
+                else
+                {
+                    url = "Content/Theme/images/avatars/human_avatar.png";
+                }
 
-                //string type = dr["evtype"].ToString();
-                //if (type == "Birthday")
-                //{
-                //    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
-                //}
-                //i++;
+                string type = dr["evtype"].ToString();
+                if (type == "Birthday")
+                {
+                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+                }
+                i++;
             }
 
             foreach (DataRow dr in ds1.Tables[1].Rows)
@@ -979,15 +1034,93 @@ namespace RealERPWEB
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlnkPrintPaySlip = (HyperLink)e.Row.FindControl("hlnkPrintPaySlip");
+                string comcod = this.GetCompCode();
+
+                HyperLink hlnkPrintPaySlipx = (HyperLink)e.Row.FindControl("hlnkPrintPaySlip");
+                LinkButton HyplnkModal = (LinkButton)e.Row.FindControl("HyplnkModal");
                 string monthid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "monthid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+                hlnkPrintPaySlipx.Visible = (comcod == "3365" ? false : true);
+                hlnkPrintPaySlipx.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
 
-                hlnkPrintPaySlip.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
+               HyplnkModal.Visible = (comcod != "3365" ? false : true);
+
+
 
             }
         }
-    }
+
+        protected void payslip_modal_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string empid = ((Label)this.gvPaySlip.Rows[index].FindControl("lblgvempid")).Text.ToString();
+            string monthid = ((Label)this.gvPaySlip.Rows[index].FindControl("lblgvmonthid")).Text.ToString();
+            string comcod = this.GetCompCode();
+
+            string date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+            string frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+
+            string month = Convert.ToDateTime(todate).ToString("MMM-yyyy");
+            string projectcode = "%";
+            string section = "%";
+            string CompanyName = "94";
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
+
+
+
+            DataTable dt = ds3.Tables[0];
+            //double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
+            //string Inword =  ASTUtility.Trans(netamt, 2);
+
+            this.RptTitle.InnerText = "FOR THE MONTH OF " + month;
+            this.EmployeeId.InnerText = dt.Rows[0]["idcard"].ToString();
+            this.EmployeeName.InnerText = dt.Rows[0]["empname"].ToString()??"";
+            this.Department.InnerText = dt.Rows[0]["refdesc"].ToString()??"";
+            this.Designation.InnerText = dt.Rows[0]["desig"].ToString()??"";
+            this.JoinDate.InnerText = Convert.ToDateTime(dt.Rows[0]["joindate"]).ToString("dd-MMM-yyyy")??"";
+            this.WorkingDays.InnerText = dt.Rows[0]["wd"].ToString()??"";
+            this.GrossSal.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["grossal1"])).ToString()??"";
+
+            this.HouseRent.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["hrent"])).ToString()??"";
+            this.Basic.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["bsal"])).ToString()??"";
+            this.Medical.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["mallow"])).ToString()??"";
+
+            this.ArrearOthers.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["othearn"])).ToString()??"";
+            this.Conveyance.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["cven"])).ToString()??"";
+            this.FoodAndOthrs.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["foodal"])).ToString()??"";
+            this.CarAllow.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["haircutal"])).ToString()??"";
+
+            this.EarnLeave.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tptallow"])).ToString();
+            this.IncomeTax.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["itax"])).ToString()??"";
+
+            this.WFfund.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["pfund"])).ToString()??"";
+            this.Transport.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["transded"])).ToString()??"";
+
+            this.Absent.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["absded"])).ToString()??"";
+            this.Gratuity.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["genloan"])).ToString()??"";
+
+            this.CarLoan.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["carloan"])).ToString()??"";
+            this.AdvOthers.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["adv"])).ToString()??"";
+
+            this.Others.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["othded"])).ToString()??"";
+
+            this.TotalEarning.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["grossalsub"])).ToString()??"";
+            this.TotalDeduction.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tdeduc"])).ToString()??"";
+
+            this.NetPayment.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["netpay"])).ToString()??"";
+            this.InWords.InnerText = dt.Rows[0]["aminword"].ToString()??"";
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPayslipModal();", true);
+        }
+
+
+
+        }
+
 }
 
 

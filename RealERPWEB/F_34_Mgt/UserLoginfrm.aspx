@@ -875,6 +875,16 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+
+
+                                 <div class="row mb-1">
+                                <div class="col-md-3">
+                                    <label>Home Menu Link</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <asp:DropDownList ID="ddlMenuLink" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer ">
                             <asp:LinkButton ID="lbtnSaveUser" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="closeUserModal();" OnClick="lbtnSaveUser_Click"><i class="fas fa-badge-check"></i>&nbsp;Update </asp:LinkButton>

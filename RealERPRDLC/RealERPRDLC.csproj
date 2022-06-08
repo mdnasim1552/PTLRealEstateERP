@@ -44,9 +44,6 @@
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
@@ -189,16 +186,19 @@
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankBalance02Cube.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherIntech.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCube.rdlc" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptCashPay02.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+SalSummary2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -658,6 +658,7 @@
     <EmbeddedResource Include="R_17_Acc\RptTrialBl1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherPrinJV.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherPrint.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptVoucherTopSheetFinaly.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVoucherTopSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptVouTopSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RrptChqReceivedVsClr.rdlc" />
@@ -682,6 +683,7 @@
     <EmbeddedResource Include="R_22_Sal\RptCustApp.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerBillInfo.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerinf.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleEpic.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\rptDailySaleVsCollTarget.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDayWiseSales.rdlc" />
@@ -694,6 +696,7 @@
     <EmbeddedResource Include="R_22_Sal\RptDummyPaywithoutDiscount02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDWiseRealCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptIntech.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt360.rdlc" />
@@ -899,6 +902,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonthPre.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyEarlyLeaveEmp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyLateAttnEmp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatusEdi.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptRetiredEmployee.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\EmpLeavApp.rdlc" />
@@ -976,6 +980,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterGreenwood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalSummaryFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsLanco.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptTotalSal.rdlc" />

@@ -201,16 +201,16 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="col-md-2 ml-5">
+                <div class="col-md-4 ml-5">
                     <div class="form-group">
                         <label for="ddlLvType" >
-                            Employee ID Card
+                             Name/ID/Department/Designation/E-mail/Contact No/Phone No
                             <asp:LinkButton ID="imgbtnEmpSeach" runat="server" OnClick="imgbtnEmpSeach_Click"><i class="fas fa-search "></i></asp:LinkButton>
                         </label>
                         <asp:TextBox ID="txtEmpSearch" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="form-group">  
                          <label for="ddlLvType" class="d-block">
                        <asp:HyperLink ID="hlnktoEmployee" CssClass="d-block" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_97_MIS/RptMgtInterface.aspx">Total Employee</asp:HyperLink>                            
@@ -305,8 +305,6 @@
             }
 
         }, ["pie"]);
-
-
     <%--    var pres = this.parseFloat($("#<%=this.txtpresent.ClientID %>").val());
         var el = this.parseFloat($("#<%=this.txtearlylev.ClientID %>").val());
         var ol = this.parseFloat($("#<%=this.txtonleave.ClientID %>").val());

@@ -521,12 +521,30 @@
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
+               
 
                     case 1103:   //tanvir
 
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        break;
+
+                    case 3368: // Finlay
+
+                        $(".tbMenuWrp table tr td:nth-child(3)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(12)").hide();
+
+
+
+              
+
+                       
                         break;
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();

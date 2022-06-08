@@ -106,7 +106,7 @@
                                             Width="2px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Type" Visible="False">
+                                <asp:TemplateField HeaderText="Type" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvgval" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>

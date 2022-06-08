@@ -231,7 +231,16 @@ namespace RealERPWEB.F_17_Acc
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
             var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptVoucherTopSheet", list, list1, null);
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptVoucherTopSheetFinaly", list, list1, null);
+                    break;
+                default:
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptVoucherTopSheet", list, list1, null);
+                    break;
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "All Voucher Top Sheet"));

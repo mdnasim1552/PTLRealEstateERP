@@ -325,9 +325,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             view.Table = dt;
             string mtype = this.ddlModiType.SelectedValue.ToString();
             if(mtype== "Updated")
-            {
-
-             
+            { 
                 //                             
                 view.RowFilter = "lvupdate='Updated'";
                 dtfilter = view.ToTable();

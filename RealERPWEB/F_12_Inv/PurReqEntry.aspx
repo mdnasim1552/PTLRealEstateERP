@@ -361,7 +361,7 @@
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Current. Rate">
+                                        <asp:TemplateField HeaderText="Current. Rate" Visible="false">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvResRat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:TextBox>
                                             </ItemTemplate>

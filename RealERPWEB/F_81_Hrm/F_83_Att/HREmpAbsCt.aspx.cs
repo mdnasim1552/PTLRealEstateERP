@@ -294,6 +294,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void GetComASecSelected()
         {
             string empid = this.ddlEmpName.SelectedValue.ToString();
+            if (empid == "000000000000" || empid == "")
+                return;
             DataTable dt = (DataTable)ViewState["tblemp"];
             DataRow[] dr = dt.Select("empid = '" + empid + "'");
             if (dr.Length > 0)
