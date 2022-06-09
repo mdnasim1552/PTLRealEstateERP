@@ -331,7 +331,7 @@
                                         <asp:ListItem>20</asp:ListItem>
                                         <asp:ListItem>30</asp:ListItem>
                                         <asp:ListItem>50</asp:ListItem>
-                                        <asp:ListItem>100</asp:ListItem>
+                                        <asp:ListItem Selected="True">100</asp:ListItem>
                                         <asp:ListItem>150</asp:ListItem>
                                         <asp:ListItem>200</asp:ListItem>
                                         <asp:ListItem>300</asp:ListItem>
