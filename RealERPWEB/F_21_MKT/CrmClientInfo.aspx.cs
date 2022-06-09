@@ -2616,7 +2616,7 @@ namespace RealERPWEB.F_21_MKT
                 }
                 if (Gcode == "0301005")
                 {
-                    altphone1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                    altphone2 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
                     //if (Phone.Trim().Length > 11)
                     //{
@@ -2625,9 +2625,9 @@ namespace RealERPWEB.F_21_MKT
                     //    return;
                     //}
                 }
-                if (Gcode == "0301006")
+                if (Gcode == "0301004")
                 {
-                    altphone2 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                    altphone1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
 
 
