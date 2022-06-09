@@ -5,62 +5,64 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <style type="text/css">
-        .modal-dialog {
+        .modal-dialog 
+        {
             margin: 44px auto;
             width: 100%;
         }
-
-        .InBox {
+        .InBox 
+        {
             color: red !important;
         }
-
-        .ServProdInfo .panel-body {
+        .ServProdInfo .panel-body 
+        {
             padding: 0 5px 2px;
         }
-
-        .ServProdInfo label {
+        .ServProdInfo label 
+        {
             margin-bottom: 0;
         }
 
-        .ServProdInfo .panel {
+        .ServProdInfo .panel 
+        {
             margin-bottom: 5px;
         }
-
-        .ServProdInfo .panel-heading {
+        .ServProdInfo .panel-heading 
+        {
             padding: 1px 15px;
             font-weight: bold;
             font-size: 16px;
         }
-
-        .modal-title {
+        .modal-title 
+        {
             font-weight: bold;
             color: #000;
         }
-
-            .modal-title span {
-                color: red;
-            }
-
-        .wrntLbl {
+        .modal-title span 
+        {
+          color: red;
+        }
+        .wrntLbl 
+        {
             float: right;
             width: 60%;
             background: #DFF0D8;
             border: 1px solid #DFF0D8;
         }
-
-        .contentPart .ServProdInfo .form-group {
+        .contentPart .ServProdInfo .form-group 
+        {
             overflow: hidden;
         }
 
-        ul.sidebarMenu {
+        ul.sidebarMenu 
+        {
             margin: 0;
             padding: 0;
             width: 115%;
         }
-
-        .OverAll {
+        .OverAll 
+        {
             /*animation-name: example;
             animation-duration: 4s;
             animation-iteration-count: 5;*/
@@ -70,52 +72,46 @@
             text-align: center !important;
             margin-top: 0px;
         }
-
-        .tbMenuWrp table {
+        .tbMenuWrp table 
+        {
             border: none !important;
             background: none !important;
         }
-
-            .tbMenuWrp table tr {
-                border: none !important;
-                background: none !important;
-            }
-
-                .tbMenuWrp table tr td {
-                    width: 140px;
-                    float: left;
-                    list-style: none;
-                    margin: 2px 5px;
-                    border: 0;
-                    cursor: pointer;
-                    background: #fff;
-                    position: relative;
-                    -webkit-border-radius: 5px;
-                    -moz-border-radius: 5px;
-                    border-radius: 5px;
-                }
-
-                    .tbMenuWrp table tr td label {
-                        color: #000;
-                        cursor: pointer;
-                        font-weight: bold;
-                        height: 100%;
-                        margin: 1px 0;
-                        padding: 2px;
-                        width: 100%;
-                    }
-
-                        .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
-                            /*background: #12A5A6;*/
-                            /*color: #fff;*/
-                        }
-
-
-                    .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
-                        display: none;
-                    }
-
-        .tabMenu a {
+        .tbMenuWrp table tr 
+        {
+           border: none !important;
+           background: none !important;
+        }
+        .tbMenuWrp table tr td 
+        {
+            width: 140px;
+            float: left;
+            list-style: none;
+            margin: 2px 5px;
+            border: 0;
+            cursor: pointer;
+            background: #fff;
+            position: relative;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .tbMenuWrp table tr td label 
+        {
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            height: 100%;
+            margin: 1px 0;
+            padding: 2px;
+            width: 100%;
+        }                                       
+       .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] 
+       {
+          display: none;
+       }
+        .tabMenu a 
+        {
             display: block;
             line-height: 15px;
             font-size: 14px;
@@ -124,7 +120,8 @@
             background-color: #00ff21;
         }
 
-        .tbMenuWrp table tr td label span.lbldata {
+        .tbMenuWrp table tr td label span.lbldata 
+        {
             border-radius: 50%;
             color: #fff;
             font-size: 17px;
@@ -132,7 +129,8 @@
             padding: 2px;
         }
 
-        .rptPurInt span.lbldata2 {
+        .rptPurInt span.lbldata2 
+        {
             display: block;
             font-size: 12px;
             color: #fff;
@@ -142,23 +140,28 @@
             text-align: center;
         }
 
-        .tbMenuWrp table tr td:nth-child(1) {
+        .tbMenuWrp table tr td:nth-child(1) 
+        {
             background: #0179a8 !important;
         }
 
-        .tbMenuWrp table tr td:nth-child(2) {
+        .tbMenuWrp table tr td:nth-child(2) 
+        {
             background: #5f4b8b !important;
         }
 
-        .tbMenuWrp table tr td:nth-child(3) {
+        .tbMenuWrp table tr td:nth-child(3) 
+        {
             background: #b76ba3 !important;
         }
 
-        .tbMenuWrp table tr td:nth-child(4) {
+        .tbMenuWrp table tr td:nth-child(4) 
+        {
             background: #00a28a !important;
         }
 
-        .tbMenuWrp table tr td:nth-child(5) {
+        .tbMenuWrp table tr td:nth-child(5)
+        {
             background: #f7c46c !important;
         }
     </style>
@@ -223,15 +226,6 @@
 
     </script>
 
-    <%-- <asp:ObjectDataSource ID="source_session_online" runat="server" SelectMethod="session_online" TypeName="t_session" />--%>
-
-
-
-    <%--<asp:Button ID="Button1" runat="server" Text="Refresh" OnClick="btn_refresh_Click" />--%>
-
-    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -259,13 +253,6 @@
                 <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
 
             </triggers>
-            <%-- </ContentTemplate>
-
-    </asp:UpdatePanel>--%>
-
-
-            <%--  <div class="container moduleItemWrpper">
-                <div class="contentPart">--%>
 
             <div class="card card-fluid">
                 <div class="card-body">
@@ -306,9 +293,9 @@
                         <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
-                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Filter</asp:Label>
+                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary ">Filter</asp:Label>
                                 </div>
-                                <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control form-control-sm" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control " AutoPostBack="True">
                                     <asp:ListItem Value="%%">All</asp:ListItem>
                                     <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>
                                     <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
@@ -317,15 +304,20 @@
                                     <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                        </div>
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
+                        </div>                      
+                        <div class="col-md-3">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <asp:Label ID="Label4" runat="server" CssClass="btn btn-secondary">ID Card</asp:Label>
+                                </div>
+                                <asp:TextBox ID="txtSearch"  runat="server" CssClass="form-control" placeholder="Type ID CARD..." ></asp:TextBox>
+                                <div class="input-group-prepend ">
+                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-2">
+                      <%--  <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
@@ -333,24 +325,11 @@
                                 <asp:TextBox ID="txtSearch" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
 
                             </div>
-                        </div>
-
-
-                        <div class="col-md-2" runat="server" visible="false">
-                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Apply</asp:HyperLink>
-
-                        </div>
-
-
-
-
+                        </div>--%>
                     </div>
 
                 </div>
-
             </div>
-
-
 
             <div class="card card-fluid">
                 <div class="card-body">
@@ -1442,23 +1421,9 @@
                     </div>
                 </asp:Panel>
             </asp:Panel>
-            </div>
-                </div>
-
-
-
-
-            </div>
-            </div>
+         
 
         </ContentTemplate>
-
-
-        <%-- <Triggers>
-
-<asp:AsyncPostBackTrigger ControlID="btn_refresh" EventName="Click"></asp:AsyncPostBackTrigger>
-
-</Triggers>--%>
     </asp:UpdatePanel>
     <asp:Label ID="lblprintstkl" runat="server"></asp:Label>
 </asp:Content>
