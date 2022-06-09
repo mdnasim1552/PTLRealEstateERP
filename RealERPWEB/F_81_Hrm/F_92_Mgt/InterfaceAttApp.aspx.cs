@@ -147,8 +147,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string type = "";//(this.Request.QueryString["Type"]) == "Ind" || (this.Request.QueryString["Type"] == "DeptHead") ? "" : "Management";
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
             string reqtyp = this.ddlfilterby.SelectedValue.ToString();
+            string searchkey = "%" + this.txtSearch.Text.Trim() + "%";
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead,"", reqtyp, "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead,"", reqtyp, searchkey, "", "");
             if (ds1 == null)
                 return;
 
@@ -172,7 +173,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //dv.RowFilter = ("sostatus = 'In-process' or  sostatus = 'Request' ");
             dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' and lvstatus <> 'Canceled'");
            
-
             this.Data_Bind("gvInprocess", dv.ToTable());
 
             //Approved
@@ -181,16 +181,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dv.RowFilter = ("dptstatus = '' and  supstatus<>''  and lvstatus <> 'Approved'");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvApproved", dv.ToTable());
-
-          
-
+        
             //Confirm
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
             dv.RowFilter = ("lvstatus = 'Approved' ");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvConfirm", dv.ToTable());
-
 
             //Canceled Data
             dt = ((DataTable)ds1.Tables[0]).Copy();
