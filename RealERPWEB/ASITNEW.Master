@@ -967,7 +967,7 @@
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
                                     <div class="float-left">
-                                        <asp:LinkButton ID="LinkButton1" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btn btn-success btn-sm" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnLedger" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btn btn-success btn-sm" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnApprove" Visible="false" runat="server" CssClass="btn btn-sm btn-success" Style="margin: 0 5px;"><i class="fas fa-check"></i>&nbsp;Approve</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnHisprice" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnTranList" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
