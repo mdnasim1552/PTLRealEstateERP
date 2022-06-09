@@ -139,7 +139,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         private void SaleRequRpt()
         {
-            Session.Remove("tblaproved");
+            ViewState.Remove("tbltotalleav");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             string usrid = hst["usrid"].ToString();// (this.Request.QueryString["Type"] == "Ind") || (this.Request.QueryString["Type"] == "DeptHead") ? hst["usrid"].ToString() : "";
