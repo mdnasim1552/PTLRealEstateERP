@@ -249,11 +249,12 @@
 
     </script>
 
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <%--<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>--%>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
@@ -420,11 +421,11 @@
                                                         ShowFooter="True" OnRowDataBound="gvLvReq_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
-                                                            <asp:TemplateField HeaderText="Sl">
+                                                            <asp:TemplateField HeaderText="SL">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
                                                                         Style="text-align: right"
-                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="15px"></asp:Label>
+                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
@@ -1360,14 +1361,14 @@
                     </div>
                 </asp:Panel>
             </asp:Panel>
-            </div>
+         <%--   </div>
                 </div>
 
 
 
 
             </div>
-            </div>
+            </div>--%>
 
         </ContentTemplate>
 
