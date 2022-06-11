@@ -231,15 +231,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink EmpDirectory;
 
         /// <summary>
-        /// hyplPreviewCv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton hyplPreviewCv;
-
-        /// <summary>
         /// modalPayslipBti control.
         /// </summary>
         /// <remarks>
@@ -247,6 +238,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalPayslipBti;
+
+        /// <summary>
+        /// hyplPreviewCv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton hyplPreviewCv;
 
         /// <summary>
         /// fileuploaddropzone control.
