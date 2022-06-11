@@ -1108,7 +1108,7 @@ namespace RealERPWEB.F_22_Sal
                  */
                 }
 
-                else if (comcod1 == "3305" || comcod1 == "2305" || comcod1 == "3306" || comcod1 == "3311" || comcod1 == "3101")
+                else if (comcod1 == "3305" || comcod1 == "2305" || comcod1 == "3306" || comcod1 == "3311" || comcod1 == "3310" || comcod1 == "3101")
                 {
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
@@ -1128,6 +1128,8 @@ namespace RealERPWEB.F_22_Sal
 
                     double mardelay = Convert.ToDouble(dtmacrdelay.Rows[0]["mardelay"]);
                     double crdelay = Convert.ToDouble(dtmacrdelay.Rows[0]["crdelay"]);
+                    double apramt = Convert.ToDouble(dtmacrdelay.Rows[0]["apramt"]);
+
 
 
                     //Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvInterest.FooterRow.FindControl("lgvFinamt")).Text));
@@ -1138,7 +1140,7 @@ namespace RealERPWEB.F_22_Sal
                     dueamt = (dueamt > 0) ? dueamt : delcharge;
                     cdishonourcharge = (cdishonourcharge > 0) ? cdishonourcharge : 0.00;
                     //insamt = insamt - chqnotyetcl;
-                    double todueamt = cdishonourcharge + dueamt;
+                    double todueamt = cdishonourcharge + dueamt- apramt;
 
                     string txtcustname = this.ddlCustName.SelectedItem.Text;
                     string txtCustaddress = ds2.Tables[0].Rows[0]["custadd"].ToString();
@@ -1155,6 +1157,12 @@ namespace RealERPWEB.F_22_Sal
                     string totalcharge = ((Label)this.gvInterest.FooterRow.FindControl("lgvFinamt")).Text.ToString();
                     string txtdischarge = cdishonourcharge.ToString("#,##0;(#,##0); ");
 
+                    // net dues 
+
+                    double totalcharge1 = Convert.ToDouble(totalcharge);
+
+                    double netdues = totalcharge1 - apramt;
+;
 
 
                     DataView dv1 = dt1.Copy().DefaultView;
@@ -1198,6 +1206,10 @@ namespace RealERPWEB.F_22_Sal
                     rpt.SetParameters(new ReportParameter("totalcharge", totalcharge));
                     rpt.SetParameters(new ReportParameter("txtSubject", txtSubject));
                     rpt.SetParameters(new ReportParameter("txtdischarge", txtdischarge));
+                    rpt.SetParameters(new ReportParameter("txtapramt", apramt.ToString("#,##0;(#,##0); ")));
+                    rpt.SetParameters(new ReportParameter("txtnetdues", netdues.ToString("#,##0;(#,##0); ")));
+
+
 
                     rpt.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                     rpt.SetParameters(new ReportParameter("compLogo", ComLogo));
@@ -1631,7 +1643,6 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
             var lst = ds2.Tables[1].DataTableToList<RealEntity.C_22_Sal.Sales_BO.PaymentScheduleN>();
-            Rpt1.EnableExternalImages = true;
 
             string address = "";
             string sign1 = "", sign2 = "", sign3 = "", sign4 = "";
@@ -1641,12 +1652,19 @@ namespace RealERPWEB.F_22_Sal
                 //case "3101": // finlay 
                 case "3368": 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["presentadd"].ToString();
                     break;
                     
                 case "3101": // epic 
                 case "3367":
+                    sign1 = ds2.Tables[0].Rows[0]["name"].ToString() + "\n"+ "Customer";
+                    sign2 = "";
+                    sign3 = "Kazi Abdul Hamid" + "\n"+ "AGM Sales & Marketing";
+                    sign4 = "Approved By" + "\n"+ "Director / Managing Director";
+
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleEpic", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["paddress"].ToString();
                     Rpt1.SetParameters(new ReportParameter("sign1", sign1));
                     Rpt1.SetParameters(new ReportParameter("sign2", sign2));
@@ -1655,6 +1673,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["paddress"].ToString();
                     break;
             }           

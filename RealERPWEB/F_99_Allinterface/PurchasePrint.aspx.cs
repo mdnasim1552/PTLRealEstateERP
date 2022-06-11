@@ -20,6 +20,9 @@ using RealERPLIB;
 using RealERPRPT;
 using System.Reflection;
 using RealERPRDLC;
+using EASendMail;
+using System.Net.Mail;
+
 namespace RealERPWEB.F_99_Allinterface
 {
     public partial class PurchasePrint : System.Web.UI.Page
@@ -2690,19 +2693,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
 
 
-
-
-
-
-
-
-
                 // For Acme
-
-
-
-
-
                 //      
                 string trmcperson = ((dtterm.Rows.Count == 0) ? "" : dtterm.Select("termsid='010'").Length > 0 ? "* " + (dtterm.Select("termsid='010'")[0]["termssubj"]).ToString() + " : " : "");
                 string cperson = ((dtterm.Rows.Count == 0) ? "" : dtterm.Select("termsid='010'").Length > 0 ? (dtterm.Select("termsid='010'")[0]["termsdesc"]).ToString() : ""); ;
@@ -3771,7 +3762,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string Calltype = this.PrintCallType();
                 string ordercopy = this.GetCompOrderCopy();
                 DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", Calltype, wrkid, ordercopy, "", "", "", "", "", "", "");
-
+                
 
                 List<RealEntity.C_12_Inv.EclassPurchase.PurchaseOrderInfo> purlist = _ReportDataSet.Tables[0].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PurchaseOrderInfo>();
                 List<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition> termscondition = _ReportDataSet.Tables[2].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition>();
@@ -4489,11 +4480,68 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
                         break;
                 }
-
                 Session["Report1"] = Rpt1;
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                string qtype = this.Request.QueryString["Orderstatus"] ?? "";
 
+                if (qtype == "Download")
+                {
+
+                    string deviceInfo = "<DeviceInfo>" +
+                    "  <OutputFormat>PDF</OutputFormat>" +
+                  
+                    "  <EmbedFonts>None</EmbedFonts>" +
+                    "</DeviceInfo>";
+                    string mimeType;
+                    string encoding;
+                    string fileNameExtension;
+                    Warning[] warnings;
+                    string[] streams;
+                    byte[] renderedBytes = Rpt1.Render("PDF", deviceInfo, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                    //return File(renderedBytes, mimeType);
+
+
+                    //Warning[] warnings;
+                    //string[] streamids;
+                    //string mimeType;
+                    //string encoding;
+                    //string extension;
+                    //byte[] bytes = Rpt1.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+                   // string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
+                    //  CODE TO SAVE THE REPORT FILE ON SERVER
+                    if (File.Exists(Server.MapPath("~/SupWorkOreder/" + orderno + ".pdf")))
+                    {
+                        File.Delete(Server.MapPath("~/SupWorkOreder/" + orderno + ".pdf"));
+                    }
+
+                    FileStream fileStream = new FileStream(Server.MapPath("~/SupWorkOreder/" + orderno + ".pdf"), FileMode.Create);
+
+                    for (int i = 0; i < renderedBytes.Length; i++)
+                    {
+                        fileStream.WriteByte(renderedBytes[i]);
+                    }
+                    fileStream.Close();
+
+                    bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
+                    switch (ssl)
+                    {
+                        case true:
+                            this.SendSSLMail(orderno, supemail);
+
+                            break;
+
+                        case false:
+                            this.SendNormalMail(orderno, supemail);
+                            break;
+                    }
+                }
+
+                else
+                {
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                }
+
+              
             }
             catch (Exception ex)
             {
@@ -4502,7 +4550,139 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
+        private void SendNormalMail(string orderno, string supemail)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string comcod = this.GetCompCode();
+            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
 
+
+            string mORDERNO = orderno;
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+
+            string subject = "Work Order";
+            //SMTP
+            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+
+            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(hostname, portnumber);
+            //SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //client.EnableSsl = true;
+            client.EnableSsl = false;
+            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
+            client.UseDefaultCredentials = false;
+            client.Credentials = credentials;
+
+            ///////////////////////
+            ///
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.From = new System.Net.Mail.MailAddress(frmemail);
+
+            //msg.To.Add(new System.Net.Mail.MailAddress(ds1.Tables[0].Rows[0]["mailid"].ToString()));
+            msg.To.Add(supemail);
+            msg.Subject = subject;
+            msg.IsBodyHtml = true;
+
+            System.Net.Mail.Attachment attachment;
+
+            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
+
+            attachment = new System.Net.Mail.Attachment(apppath);
+            msg.Attachments.Add(attachment);
+
+
+
+            msg.Body = string.Format("<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>");
+            try
+            {
+                client.Send(msg);
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+                //string savelocation = Server.MapPath("~") + "\\SupWorkOreder";
+                //string[] filePaths = Directory.GetFiles(savelocation);
+                //foreach (string filePath in filePaths)
+                //    File.Delete(filePath);
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+        private void SendSSLMail(string orderno, string supemail)
+        {
+
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string comcod = this.GetCompCode();
+            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+
+
+            string mORDERNO = orderno;
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+
+            string subject = "Work Order";
+            //SMTP
+            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+            string frmemail =  dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+            string mailtousr = supemail;// ds1.Tables[0].Rows[0]["mailid"].ToString();
+            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
+
+
+            EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+
+            //Connection Details 
+            SmtpServer oServer = new SmtpServer(hostname);
+            oServer.User = frmemail;
+            oServer.Password = psssword;
+            oServer.Port = portnumber;
+            oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+            //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+            EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
+            oMail.From = frmemail;
+            oMail.To = mailtousr;
+            oMail.Cc = frmemail;
+            oMail.Subject = subject;
+
+
+            oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
+            oMail.AddAttachment(apppath);
+
+
+            //System.Net.Mail.Attachment attachment;
+
+            //attachment = new System.Net.Mail.Attachment(apppath);
+            //oMail.AddAttachment(attachment);
+
+            try
+            {
+
+                oSmtp.SendMail(oServer, oMail);
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+            }
+
+        }
         private void MktReqPrint()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -4986,7 +5166,6 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-
         private void PurBill_Print()
         {
 
@@ -5011,7 +5190,6 @@ namespace RealERPWEB.F_99_Allinterface
                 this.PrintBill02();
 
         }
-
 
         private void PrintBill06()
         {
@@ -5647,9 +5825,6 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-
-
-
         private string CompanyBillCon()
         {
             string comcod = this.GetCompCode();
@@ -5748,8 +5923,6 @@ namespace RealERPWEB.F_99_Allinterface
             return PrintReq;
 
         }
-
-
 
         private void PurConBill_Print()
         {
@@ -6326,7 +6499,6 @@ namespace RealERPWEB.F_99_Allinterface
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
 
-
         //private void PrintLabIssue02()
         //{
 
@@ -6374,7 +6546,6 @@ namespace RealERPWEB.F_99_Allinterface
         //                       ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_Self');</script>";
 
         //}
-
 
         private void PrintLabIssueAssure()
         {
@@ -6455,8 +6626,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
-
-
         private void PrintLabIssueSubCon()
         {
             DataTable dt1 = (DataTable)ViewState["tblbillinfo"];
@@ -6499,7 +6668,6 @@ namespace RealERPWEB.F_99_Allinterface
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
-
         private void PrintLabIssue()
         {
             DataTable dt1 = (DataTable)ViewState["tblbillinfo"];
@@ -6638,7 +6806,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
-
         private DataTable HiddenSameDataConBil(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -6705,8 +6872,6 @@ namespace RealERPWEB.F_99_Allinterface
 
             return dt1;
         }
-
-
         private DataTable HiddenSameDataMRRReceipt(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)

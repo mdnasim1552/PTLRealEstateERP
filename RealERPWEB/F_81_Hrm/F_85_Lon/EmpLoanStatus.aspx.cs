@@ -194,6 +194,16 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 case "3365":
                 case "3101":
                     this.gvEmpLoanStatus.Columns[7].Visible = true;
+                    this.gvEmpLoanStatus.Columns[8].Visible = true;
+                    this.gvEmpLoanStatus.Columns[9].Visible = true;
+                    this.gvEmpLoanStatus.Columns[10].Visible = true;
+                    this.gvEmpLoanStatus.Columns[11].Visible = true;
+                    this.gvEmpLoanStatus.Columns[14].Visible = true;
+                    this.gvEmpLoanStatus.Columns[15].Visible = true;
+                    this.gvEmpLoanStatus.Columns[17].Visible = true;
+                    this.gvEmpLoanStatus.Columns[18].Visible = true;
+
+
                     break;
             }             
         }

@@ -915,7 +915,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
       <Width>8.05248in</Width>
       <Page>
         <PageHeader>
-          <Height>1.25362in</Height>
+          <Height>1.37862in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1012,9 +1012,9 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraphs>
               <rd:DefaultName>Textbox9</rd:DefaultName>
               <Top>0.77375in</Top>
-              <Left>4.03139in</Left>
+              <Left>6.03511in</Left>
               <Height>0.22709in</Height>
-              <Width>3.99222in</Width>
+              <Width>1.9885in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1047,7 +1047,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               <Top>1.01612in</Top>
               <Left>0.02084in</Left>
               <Height>0.19583in</Height>
-              <Width>3.99513in</Width>
+              <Width>4.4743in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -1080,9 +1080,9 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraphs>
               <rd:DefaultName>Textbox12</rd:DefaultName>
               <Top>1.01612in</Top>
-              <Left>4.02986in</Left>
+              <Left>4.50903in</Left>
               <Height>0.19583in</Height>
-              <Width>4.00764in</Width>
+              <Width>3.52847in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1164,7 +1164,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               <Top>0.77375in</Top>
               <Left>0.02237in</Left>
               <Height>0.22709in</Height>
-              <Width>3.99513in</Width>
+              <Width>6.01274in</Width>
               <ZIndex>7</ZIndex>
               <Style>
                 <Border>

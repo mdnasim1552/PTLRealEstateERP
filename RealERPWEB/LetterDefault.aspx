@@ -50,9 +50,21 @@
         
     </script>
     <style>
-        .clname{
-            font-size:35px;
+        body{
+            font-family:"Calibri, sans-serif";
+            font-size:11px;
         }
+
+        @media print {
+    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+}
+ 
+table, th, td {
+  border: 1px solid black!important;
+  border-collapse: collapse!important;
+  padding:5px!important;
+  border-style: solid!important;
+}
         ol.ollist{
      margin: 0 !important;
 }
@@ -84,10 +96,10 @@
             margin-top: -63px;
             max-width: 100%;
         }
-
+/*
         body {
             font-family: Tahoma !important;
-        }
+        }*/
 
         @page {
             size: A4;

@@ -4226,6 +4226,12 @@ namespace RealERPWEB.F_14_Pro
 
 
         }
+
+        protected void lnkSendMail_Click(object sender, EventArgs e)
+        {
+            string OrderNo = this.Request.QueryString["genno"] ?? "";
+            Response.Redirect("~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno="+ OrderNo + "&Orderstatus=Download");
+        }
         protected void btnSendmail_Click(object sender, EventArgs e)
         {
 
@@ -4336,10 +4342,6 @@ namespace RealERPWEB.F_14_Pro
             string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
             int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
 
-
-
-
-
             System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(hostname, portnumber);
             //SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -4352,11 +4354,9 @@ namespace RealERPWEB.F_14_Pro
             client.Credentials = credentials;
 
             ///////////////////////
-
+            ///
             System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
             msg.From = new System.Net.Mail.MailAddress(frmemail);
-
-
 
             msg.To.Add(new System.Net.Mail.MailAddress(ds1.Tables[0].Rows[0]["mailid"].ToString()));
             msg.Subject = subject;
@@ -4463,13 +4463,10 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void gvOrderInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
             this.Session_tblOrder_Update();
             this.gvOrderInfo.PageIndex = e.NewPageIndex;
             this.gvOrderInfo_DataBind();
-
         }
-
 
         private void ShowProjectFiles()
         {
@@ -4769,6 +4766,6 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-
+       
     }
 }

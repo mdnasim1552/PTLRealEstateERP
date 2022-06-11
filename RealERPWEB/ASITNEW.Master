@@ -967,7 +967,7 @@
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
                                     <div class="float-left">
-                                        <asp:LinkButton ID="LinkButton1" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btn btn-success btn-sm" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnLedger" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btn btn-success btn-sm" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnApprove" Visible="false" runat="server" CssClass="btn btn-sm btn-success" Style="margin: 0 5px;"><i class="fas fa-check"></i>&nbsp;Approve</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnHisprice" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnTranList" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
@@ -980,7 +980,7 @@
 
                                         <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>New</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</asp:LinkButton>
-                                        <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>Save</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>&nbsp;Save</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
