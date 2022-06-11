@@ -68,6 +68,16 @@
         }
     </script>
     <style>
+<<<<<<< HEAD
+        #payslipmodal {
+            z-index: 9999;
+        }
+
+        # {
+            z-index: 1;
+        }
+
+=======
 
         .accordion_two_section {
     background: #f7f7f7;
@@ -199,6 +209,7 @@ a:link {
             z-index: 1;
         }
 
+>>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
         .dbx {
             height: 60px;
             width: 100%;
@@ -382,13 +393,57 @@ a:link {
                 </div>
                 <div class="col-4">
                     <asp:Panel runat="server" ID="pnlUpcmEdison" visiable="false">
+<<<<<<< HEAD
+                        <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
+=======
                         <section class="card card-fluid mb-0" style="width: 100%; height: 250px;">
+>>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
 
                             <div class="card-body" id="Div1" runat="server">
 
 
 
                                 <div class="row">
+<<<<<<< HEAD
+
+
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-green rounded border text-white">
+                                            <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>" target="_blank">Apply Leave</a></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>" target="_blank">Online Attendance</a></div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-pink rounded border">
+                                            <asp:HyperLink ID="hlnkattreport" runat="server" Target="_blank">
+                                                     Attendance Report
+                                            </asp:HyperLink>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-blue rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HREmpMonthlyAtten")%>" target="_blank">Manual Attendance</a></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-yeallow rounded border"><a href="<%=this.ResolveUrl("~/UserProfile")%>" target="_blank">Profile</a></div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-success rounded border"><a data-toggle="modal" data-target="#payslipmodal">Pay Slip</a></div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-primary rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-white rounded border">KPI</div>
+=======
 
 
                                     <div class="col-lg-4">
@@ -426,6 +481,7 @@ a:link {
 
                                     <div class="col-lg-4">
                                         <div class="dbx shadow-sm bg-secondary text-dark rounded border">KPI</div>
+>>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
                                     </div>
                                 </div>
 
@@ -503,6 +559,8 @@ a:link {
                         <li class="nav-item" id="List_EmpDirectory" runat="server">
                             <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Employee directory</asp:HyperLink>
                         </li>
+                        <li class="nav-item" runat="server" id="modalPayslipBti">
+                            <a data-toggle="modal" data-target="#payslipmodal" class="nav-link smooth-scrol">Pay Slip</a></li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link smooth-scrol" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a></li>
@@ -510,7 +568,10 @@ a:link {
                         <li class="nav-item">
                             <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
                         <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
+<<<<<<< HEAD
+=======
                         <li class="nav-item" runat="server" id="modalPayslipBti"><a data-toggle="modal" data-target="#payslipmodal" class="btn btn-light">Pay Slip</a></li>
+>>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
 
 
 
@@ -1712,7 +1773,11 @@ d) 6 Days Late = 3 CL & half day leave
                                         ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
+<<<<<<< HEAD
+                                            <asp:TemplateField HeaderText="Sl#">
+=======
                                             <asp:TemplateField HeaderText="Sl.No.">
+>>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
                                                         Style="text-align: center"
@@ -1770,6 +1835,8 @@ d) 6 Days Late = 3 CL & half day leave
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+=======
 
         <!-- Modal -->
         <div class="modal fade" id="NoticeModal" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true">
@@ -1802,6 +1869,7 @@ d) 6 Days Late = 3 CL & half day leave
                 </div>
             </div>
         </div>
+>>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
 
 
 
