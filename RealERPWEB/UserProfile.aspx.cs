@@ -1147,9 +1147,9 @@ namespace RealERPWEB
   
             this.modalNoticeTitle.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeTitle")).Text.ToString();
             this.modalNoticeDet.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeDet")).Text.ToString();
-            this.publishDate.InnerText= Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblpubdate")).Text).ToString("dd-MMM-yyy hh:mm");
-            this.noticeStartDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblstartdate")).Text).ToString("dd-MMM-yyy hh:mm");
-            this.noticeEndDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblenddate")).Text).ToString("dd-MMM-yyy hh:mm");
+            this.publishDate.InnerText= Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblpubdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
+            this.noticeStartDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblstartdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
+            this.noticeEndDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblenddate")).Text).ToString("dd-MMM-yyy hh:mm tt");
 
 
 

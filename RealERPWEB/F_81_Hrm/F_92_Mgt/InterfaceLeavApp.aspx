@@ -1212,10 +1212,10 @@
                                                         <asp:LinkButton ID="lnkbtnView" runat="server"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </asp:LinkButton>--%>
 
-                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default" ToolTip="Print Leave Application"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
+                                                                     <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default" ToolTip="Remove Forward"><span  class="fa fa-undo"></span>
                                                                     </asp:LinkButton>
 
                                                                 </ItemTemplate>

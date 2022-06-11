@@ -54,6 +54,10 @@
             font-family:"Calibri, sans-serif";
             font-size:11px;
         }
+
+        @media print {
+    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+}
  
 table, th, td {
   border: 1px solid black!important;
