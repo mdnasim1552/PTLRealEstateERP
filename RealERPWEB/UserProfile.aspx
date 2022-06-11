@@ -68,148 +68,116 @@
         }
     </script>
     <style>
-<<<<<<< HEAD
-        #payslipmodal {
-            z-index: 9999;
-        }
-
-        # {
-            z-index: 1;
-        }
-
-=======
-
         .accordion_two_section {
-    background: #f7f7f7;
-}
+            background: #f7f7f7;
+        }
 
-       .panel-default{
-           border-top:1px solid #dddd!important;
-       }
-.ptb-100 {
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
+        .panel-default {
+            border-top: 1px solid #dddd !important;
+        }
 
-.accordionTwo .panel-group {
-    margin-bottom: 0;
-}
+        .ptb-100 {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
 
-.accordionTwo .panel {
-    background-color: transparent;
-    box-shadow: none;
-    border-bottom: 10px solid transparent;
-    border-radius: 0;
-    margin: 0;
-}
+        .accordionTwo .panel-group {
+            margin-bottom: 0;
+        }
 
-.accordionTwo .panel-default {
-    border: 0;
-}
+        .accordionTwo .panel {
+            background-color: transparent;
+            box-shadow: none;
+            border-bottom: 10px solid transparent;
+            border-radius: 0;
+            margin: 0;
+        }
 
-.accordionTwo .panel-default>.panel-heading {
-    background: #3399cc;
-    border-radius: 0px;
-    border-color: #4385f5;
-}
+        .accordionTwo .panel-default {
+            border: 0;
+        }
 
-.accordion-wrap .panel-heading {
-    padding: 0px;
-    border-radius: 0px;
-}
+            .accordionTwo .panel-default > .panel-heading {
+                background: #3399cc;
+                border-radius: 0px;
+                border-color: #4385f5;
+            }
 
-.panel-title {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 16px;
-    color: inherit;
-}
+        .accordion-wrap .panel-heading {
+            padding: 0px;
+            border-radius: 0px;
+        }
 
-.accordionTwo .panel .panel-heading a.collapsed {
-    color: #999999;
-    background-color: #fff;
-    display: block;
-    padding: 12px 20px;
-}
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: inherit;
+        }
 
-.accordionTwo .panel .panel-heading a {
-    display: block;
-    padding: 12px 20px;
-    color: #fff;
-}
+        .accordionTwo .panel .panel-heading a.collapsed {
+            color: #999999;
+            background-color: #fff;
+            display: block;
+            padding: 12px 20px;
+        }
 
-.accordion-wrap .panel .panel-heading a {
-    font-size: 14px;
-}
+        .accordionTwo .panel .panel-heading a {
+            display: block;
+            padding: 12px 20px;
+            color: #fff;
+        }
+
+        .accordion-wrap .panel .panel-heading a {
+            font-size: 14px;
+        }
 
 
-.accordionTwo .panel-group .panel-heading+.panel-collapse>.panel-body {
-    border-top: 0;
-    padding-top: 0;
-    padding: 20px 20px 20px 30px;
-/*    background: #4385f5;
+        .accordionTwo .panel-group .panel-heading + .panel-collapse > .panel-body {
+            border-top: 0;
+            padding-top: 0;
+            padding: 20px 20px 20px 30px;
+            /*    background: #4385f5;
     color: #fff;*/
-    font-size: 14px;
-    line-height: 24px;
-}
-
-.accordionTwo .panel .panel-heading a:after {
-    content: "\2212";
-    color: #4285f4;
-    background: #fff;
-}
-
-.accordionTwo .panel .panel-heading a:after, .accordionTwo .panel .panel-heading a.collapsed:after {
-    font-family: 'FontAwesome';
-    font-size: 14px;
-    float: right;
-    width: 21px;
-    display: block;
-    height: 21px;
-    line-height: 21px;
-    text-align: center;
-    border-radius: 50%;
-    color: #FFF;
-}
-
-.accordionTwo .panel .panel-heading a.collapsed:after {
-    content: "\2b";
-    color: #fff;
-    background-color: #DADADA;
-}
-
-.accordionTwo .panel .panel-heading a:after {
-    content: "\2212";
-    color: #4285f4;
-    background: #dadada;
-}
-
-a:link {
-    text-decoration: none
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //===================
-        #payslipmodal {
-            z-index: 9999;
+            font-size: 14px;
+            line-height: 24px;
         }
 
-        # {
-            z-index: 1;
+        .accordionTwo .panel .panel-heading a:after {
+            content: "\2212";
+            color: #4285f4;
+            background: #fff;
         }
 
->>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
+        .accordionTwo .panel .panel-heading a:after, .accordionTwo .panel .panel-heading a.collapsed:after {
+            font-family: 'FontAwesome';
+            font-size: 14px;
+            float: right;
+            width: 21px;
+            display: block;
+            height: 21px;
+            line-height: 21px;
+            text-align: center;
+            border-radius: 50%;
+            color: #FFF;
+        }
+
+        .accordionTwo .panel .panel-heading a.collapsed:after {
+            content: "\2b";
+            color: #fff;
+            background-color: #DADADA;
+        }
+
+        .accordionTwo .panel .panel-heading a:after {
+            content: "\2212";
+            color: #4285f4;
+            background: #dadada;
+        }
+
+        a:link {
+            text-decoration: none
+        }
+
         .dbx {
             height: 60px;
             width: 100%;
@@ -223,9 +191,6 @@ a:link {
                 text-decoration: none;
             }
 
-            .dbx:hover {
-                background: crimson;
-            }
 
         .noselect {
             -webkit-touch-callout: none; /* iOS Safari */
@@ -393,23 +358,20 @@ a:link {
                 </div>
                 <div class="col-4">
                     <asp:Panel runat="server" ID="pnlUpcmEdison" visiable="false">
-<<<<<<< HEAD
+
                         <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
-=======
-                        <section class="card card-fluid mb-0" style="width: 100%; height: 250px;">
->>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
+
 
                             <div class="card-body" id="Div1" runat="server">
 
 
 
                                 <div class="row">
-<<<<<<< HEAD
-
-
+            
                                     <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-green rounded border text-white">
-                                            <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>" target="_blank">Apply Leave</a></div>
+                                        <div class="dbx shadow-sm bg-green rounded border ">
+                                            <a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>" target="_blank">Apply Leave</a>
+                                        </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="dbx shadow-sm bg-white rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>" target="_blank">Online Attendance</a></div>
@@ -417,7 +379,7 @@ a:link {
 
                                     <div class="col-lg-4">
                                         <div class="dbx shadow-sm bg-pink rounded border">
-                                            <asp:HyperLink ID="hlnkattreport" runat="server" Target="_blank">
+                                            <asp:HyperLink CssClass="text-white" ID="hlnkattreport" runat="server" Target="_blank">
                                                      Attendance Report
                                             </asp:HyperLink>
                                         </div>
@@ -425,67 +387,27 @@ a:link {
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-blue rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HREmpMonthlyAtten")%>" target="_blank">Manual Attendance</a></div>
+                                        <div class="dbx shadow-sm bg-blue rounded border"><a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HREmpMonthlyAtten")%>" target="_blank">Manual Attendance</a></div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-yeallow rounded border"><a href="<%=this.ResolveUrl("~/UserProfile")%>" target="_blank">Profile</a></div>
+                                        <div class="dbx shadow-sm bg-yeallow rounded border"><a class="text-dark" href="<%=this.ResolveUrl("~/UserProfile")%>" target="_blank">Profile</a></div>
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-success rounded border"><a data-toggle="modal" data-target="#payslipmodal">Pay Slip</a></div>
+                                        <div class="dbx shadow-sm bg-success rounded border"><a class="text-white" data-toggle="modal" data-target="#payslipmodal">Pay Slip</a></div>
                                     </div>
                                 </div>
+                                  <div class="row mt-2">
+                                        <div class="col-lg-4">
+                                            <div class="dbx shadow-sm bg-success rounded border"><a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div>
+                                        </div>
 
-                                <div class="row mt-2">
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-primary rounded border"><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-white rounded border">KPI</div>
-=======
-
-
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm rounded border bg-primary "><a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>" target="_blank">Apply Leave</a></div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-secondary rounded border "><a class="text-dark" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>" target="_blank">Online Attendance</a></div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-success text-white rounded border">
-                                            <asp:HyperLink CssClass="text-white" ID="hlnkattreport" runat="server" Target="_blank">
-                                                  Attendance Report
-                                            </asp:HyperLink>
+                                        <div class="col-lg-4">
+                                            <div class="dbx shadow-sm bg-secondary text-dark rounded border">KPI</div>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="row mt-2">
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-warning  rounded border"><a class="text-dark" href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/HREmpMonthlyAtten")%>" target="_blank">Manual Attendance</a></div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-info rounded border"><a class="text-white" href="<%=this.ResolveUrl("~/UserProfile")%>" target="_blank">Profile</a></div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-danger text-dark rounded border"><a class="text-white" data-toggle="modal" data-target="#payslipmodal">Pay Slip</a></div>
-                                    </div>
-                                </div>
-
-                                <div class="row mt-2">
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-success rounded border"><a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="dbx shadow-sm bg-secondary text-dark rounded border">KPI</div>
->>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
-                                    </div>
-                                </div>
-
-                            </div>
                         </section>
                     </asp:Panel>
 
@@ -568,11 +490,6 @@ a:link {
                         <li class="nav-item">
                             <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
                         <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
-<<<<<<< HEAD
-=======
-                        <li class="nav-item" runat="server" id="modalPayslipBti"><a data-toggle="modal" data-target="#payslipmodal" class="btn btn-light">Pay Slip</a></li>
->>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
-
 
 
 
@@ -1142,14 +1059,88 @@ a:link {
                         </div>
 
                         <div class="col-6">
-                            <div class="card " style="max-height: 550px; overflow-y: scroll">
-                                <div class="card-header">
-                                    <span class="mr-auto">Upcoming BirthDay </span>
+                            <div class="row">
+                                <div class="card" style="max-height: 350px; overflow-y: scroll">
+                                    <div class="card-header">
+                                        <span class="mr-auto">Upcoming BirthDay </span>
 
-                                    <asp:LinkButton ID="birthday" runat="server" OnClick="birthday_print_click"
-                                        CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="birthday" runat="server" OnClick="birthday_print_click"
+                                            CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
+                                    </div>
+                                    <div class="card-body row" id="EventBirthday" runat="server">
+                                    </div>
                                 </div>
-                                <div class="card-body row" id="EventBirthday" runat="server">
+                            </div>
+                            <div class="row">
+                                <div class="card" style="max-height: 350px; overflow-y: scroll">
+                                    <div class="card-header">
+                                        <span class="mr-auto" runat="server" id="longTermTitle"></span>
+                                    </div>
+                                    <div class="card-body row" id="LongTerm" runat="server">
+                                        <div class="table table-responsive card-body pt-0 pb-0">
+                                            <asp:GridView ID="gvServiceInfo" runat="server" CssClass="table-striped table-hover table-bordered"
+                                                AutoGenerateColumns="False"
+                                                ShowFooter="false">
+
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Month">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblserviceMonth" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monname")) %>' Width="80"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+
+                                                    <asp:TemplateField HeaderText="10 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year10" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year10")) %>' Width="80"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+
+                                                    <asp:TemplateField HeaderText="15 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year15" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year15")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+
+                                                    <asp:TemplateField HeaderText="20 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year20" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year20")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+
+                                                    <asp:TemplateField HeaderText="25 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year25" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year25")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+
+                                                    <asp:TemplateField HeaderText="30 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year30" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year30")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+
+                                            </asp:GridView>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1345,62 +1336,60 @@ a:link {
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
                             <div class="col-12">
-                                 <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
+                                <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
 
 
 
-                        <div class=" accordionTwo">
-                            <div class="panel-group" id="accordionTwoLeft">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftone" aria-expanded="false" class="collapsed">
-                        Leave Policy 
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftone" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
-                                        <div class="panel-body">
- <p>
-                                                We are enjoying leave facility in all formats as bti treated us as second VIP. To
+                                    <div class=" accordionTwo">
+                                        <div class="panel-group" id="accordionTwoLeft">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftone" aria-expanded="false" class="collapsed">Leave Policy 
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftone" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            We are enjoying leave facility in all formats as bti treated us as second VIP. To
 enhance this facility for the betterment of our employee following option is included
 at our leave policy which is agree by all HOD at standing meeting this month.
-                                            </p>
-                                            <p>
-                                                i) In case of 4 to 5 days continue leave, the first 3 days will be considered as
+                                                        </p>
+                                                        <p>
+                                                            i) In case of 4 to 5 days continue leave, the first 3 days will be considered as
 casual leave. Rest 1 or 2 days leave may be considered as CL or EL which
 will be depends on the applicants respective HOD.
-                                            </p>
-                                            <p>
-                                                ii) If the enjoyed leave duration is more than 05 days then it shall be treated as
+                                                        </p>
+                                                        <p>
+                                                            ii) If the enjoyed leave duration is more than 05 days then it shall be treated as
 Earn Leave.
-                                            </p>
+                                                        </p>
 
-                                            <p>This is for all of your information</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-default -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftTwo" aria-expanded="false">
-                         SOP for Late Attendance
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                        <div class="panel-body">
-                                            <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i> Purpose:</h6>
+                                                        <p>This is for all of your information</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.panel-default -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftTwo" aria-expanded="false">SOP for Late Attendance
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                                    <div class="panel-body">
+                                                        <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i>Purpose:</h6>
 
-                                            <p>
-                                                To ensure the maximum attendance of all employee of bti.
+                                                        <p>
+                                                            To ensure the maximum attendance of all employee of bti.
 
-                                            </p>
-                                            <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i> Late Attendance Procedure:</h6>
+                                                        </p>
+                                                        <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i>Late Attendance Procedure:</h6>
 
-                                            <p>
-                                                i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
+                                                        <p>
+                                                            i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
 ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
 iii) In case of continuous late of any employee which is 3 or more than 3 days will be adjusted from his/ her Casual Leave (CL) and Earn Leave (EL) as per the
 following schedule:
@@ -1409,81 +1398,79 @@ b) 4 Days Late = 1 CL & half day leave
 c) 5 Days Late = 2 CL & half day leave
 d) 6 Days Late = 3 CL & half day leave
  Each attendance after 10:00am will be marked as absent for the day.
-                                            </p>
-                                            <h6 class="text-left">Note: </h6>
+                                                        </p>
+                                                        <h6 class="text-left">Note: </h6>
 
-                                            <p>
-                                                i. For each late after 6 days late additional 1 EL will be deducted.
+                                                        <p>
+                                                            i. For each late after 6 days late additional 1 EL will be deducted.
 
-                                            </p>
+                                                        </p>
 
-                                            <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-default -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftThree" aria-expanded="false">
-                  Late Present Policy 
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftThree" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                        <div class="panel-body">
-                                                          <p>
-                                                i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
-                                            </p>
-                                            <p>
-                                                ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                                         <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftFour" aria-expanded="false">
-                     Half day leave Policy 
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftFour" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                        <div class="panel-body">
-                                            <p><i class="fas fa-arrow-circle-right"></i> Half day  leave  is  divided into  below 2 time  slots:</p>
-                                            <p>i.  	9:00  am to  1:00  pm</p>
-                                            <p>ii.	1:00  pm to  5:30  pm.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> 3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> 2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> Half day leave can be enjoyed maximum 10 times in a year.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> 2 half day leave will be considered as 1 day CL/ SL.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> No half day leave information will be accepted after 9:00am. </p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> All other condition regarding leave will remain unchanged.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-default -->
-                            </div>
-                            <!--end of /.panel-group-->
-     
-                        <!--end of /.col-sm-6-->
-
-                        <!--end of /.col-sm-6-->
-
-                                    </div>
+                                                        <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
 
                                                     </div>
-                 
-                
+                                                </div>
+                                            </div>
+                                            <!-- /.panel-default -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftThree" aria-expanded="false">Late Present Policy 
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftThree" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
+                                                        </p>
+                                                        <p>
+                                                            ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                               
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftFour" aria-expanded="false">Half day leave Policy 
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftFour" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                                    <div class="panel-body">
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Half day  leave  is  divided into  below 2 time  slots:</p>
+                                                        <p>i.  	9:00  am to  1:00  pm</p>
+                                                        <p>ii.	1:00  pm to  5:30  pm.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Half day leave can be enjoyed maximum 10 times in a year.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>2 half day leave will be considered as 1 day CL/ SL.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>No half day leave information will be accepted after 9:00am. </p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>All other condition regarding leave will remain unchanged.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.panel-default -->
+                                        </div>
+                                        <!--end of /.panel-group-->
+
+                                        <!--end of /.col-sm-6-->
+
+                                        <!--end of /.col-sm-6-->
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
 
                                 <div class="accordion-container" id="edidisonPolicy" runat="server" visible="false">
 
@@ -1749,96 +1736,7 @@ d) 6 Days Late = 3 CL & half day leave
             </div>
         </div>
 
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="payslipmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="card" id="PaySlipPart" runat="server">
-
-
-                            <div class="card-body" id="payslipdiv">
-
-                                <div class="table-responsive pb-3">
-                                    <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
-                                        ShowFooter="True">
-                                        <RowStyle />
-                                        <Columns>
-<<<<<<< HEAD
-                                            <asp:TemplateField HeaderText="Sl#">
-=======
-                                            <asp:TemplateField HeaderText="Sl.No.">
->>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: center"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Month">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvpayslipmonth" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
-                                                    <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
-                                                    <asp:Label ID="lblgvempid" runat="server" Visible="false"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Amount">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvnetamt" runat="server"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Right" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="">
-                                                <ItemTemplate>
-                                                    <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
-                                                    </asp:HyperLink>
-                                                    <%-- <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>     </asp:HyperLink>--%>
-                                                    <asp:LinkButton ID="HyplnkModal" OnClick="payslip_modal_Click" Style="margin-left: 3px;" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View</asp:LinkButton>
-
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                        <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                    </asp:GridView>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-<<<<<<< HEAD
-=======
-
-        <!-- Modal -->
+                <!-- Modal -->
         <div class="modal fade" id="NoticeModal" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -1869,8 +1767,88 @@ d) 6 Days Late = 3 CL & half day leave
                 </div>
             </div>
         </div>
->>>>>>> 27ddba66593eebbfd9df94705a83a8be32a41053
 
+        <!-- Modal -->
+        <div class="modal fade" id="payslipmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="card" id="PaySlipPart" runat="server">
+
+
+                            <div class="card-body" id="payslipdiv">
+
+                                <div class="table-responsive pb-3">
+                                    <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
+                                        ShowFooter="True">
+                                        <RowStyle />
+                                        <Columns>
+                                         
+                                            <asp:TemplateField HeaderText="Sl#">                               
+                                                <itemtemplate>
+                                                    <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
+                                                        Style="text-align: center"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                </itemtemplate>
+                                                <headerstyle horizontalalign="Center" verticalalign="Top" />
+                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Month">
+                                                    <itemtemplate>
+                                                    <asp:Label ID="lblgvpayslipmonth" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
+                                                    <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
+                                                    <asp:Label ID="lblgvempid" runat="server" Visible="false"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
+                                                </itemtemplate>
+                                                    <headerstyle horizontalalign="Center" />
+                                                    <itemstyle horizontalalign="Left" />
+                                                    <headerstyle horizontalalign="Center" verticalalign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Amount">
+                                                    <itemtemplate>
+                                                    <asp:Label ID="lblgvnetamt" runat="server"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                </itemtemplate>
+                                                    <headerstyle horizontalalign="Center" />
+                                                    <itemstyle horizontalalign="Right" />
+                                                    <headerstyle horizontalalign="Center" verticalalign="Top" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="">
+                                                    <itemtemplate>
+                                                    <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
+                                                    </asp:HyperLink>
+                                                    <%-- <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>     </asp:HyperLink>--%>
+                                                    <asp:LinkButton ID="HyplnkModal" OnClick="payslip_modal_Click" Style="margin-left: 3px;" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View</asp:LinkButton>
+
+                                                </itemtemplate>
+                                                </asp:TemplateField>
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </div>
