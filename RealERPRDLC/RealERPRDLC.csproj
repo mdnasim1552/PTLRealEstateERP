@@ -46,11 +46,13 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -198,6 +200,7 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCube.rdlc" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptCashPay02.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptMonthlySalaryTaxFinlay.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+SalSummary2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
   </ItemGroup>
@@ -979,6 +982,9 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterGreenwood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseSalSheet.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTaxFinlay.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTax.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalSummaryFinlay.rdlc" />

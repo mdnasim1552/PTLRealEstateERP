@@ -231,15 +231,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink EmpDirectory;
 
         /// <summary>
-        /// hyplPreviewCv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton hyplPreviewCv;
-
-        /// <summary>
         /// modalPayslipBti control.
         /// </summary>
         /// <remarks>
@@ -247,6 +238,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalPayslipBti;
+
+        /// <summary>
+        /// hyplPreviewCv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton hyplPreviewCv;
 
         /// <summary>
         /// fileuploaddropzone control.
@@ -373,6 +373,33 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventBirthday;
+
+        /// <summary>
+        /// longTermTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl longTermTitle;
+
+        /// <summary>
+        /// LongTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LongTerm;
+
+        /// <summary>
+        /// gvServiceInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvServiceInfo;
 
         /// <summary>
         /// gvholidayprint control.
@@ -744,24 +771,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InWords;
 
         /// <summary>
-        /// PaySlipPart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PaySlipPart;
-
-        /// <summary>
-        /// gvPaySlip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPaySlip;
-
-        /// <summary>
         /// modalNoticeTitle control.
         /// </summary>
         /// <remarks>
@@ -805,5 +814,23 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl noticeEndDate;
+
+        /// <summary>
+        /// PaySlipPart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PaySlipPart;
+
+        /// <summary>
+        /// gvPaySlip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPaySlip;
     }
 }

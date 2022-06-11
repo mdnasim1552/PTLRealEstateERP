@@ -352,10 +352,6 @@ namespace RealERPLIB
             }
 
         }
-
-
-
-
         public static string ToRoman(int N)
         {
             const string Digits = "IVXLCDM";
