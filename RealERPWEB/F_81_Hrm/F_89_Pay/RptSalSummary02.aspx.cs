@@ -3001,7 +3001,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 LinkButton linkBtn =((LinkButton)this.gvcashpay.Rows[index].FindControl("btnPrintCheck"));
-                double  amt = Convert.ToDouble(((Label)this.gvcashpay.Rows[index].FindControl("lgvnetamtcash")).Text);
+                //double  amt = Convert.ToDouble(((Label)this.gvcashpay.Rows[index].FindControl("lgvnetamtcash")).Text);
+
+                double amt = 0;
                 string card = ((Label)this.gvcashpay.Rows[index].FindControl("lgIdCardcash")).Text.ToString();
                 string empname = ((Label)this.gvcashpay.Rows[index].FindControl("lblempname")).Text.ToString();
                 string bankcode = ((DropDownList)this.gvcashpay.Rows[index].FindControl("ddlBankList")).SelectedValue.ToString();
