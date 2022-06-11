@@ -1520,17 +1520,17 @@ d) 6 Days Late = 3 CL & half day leave
 
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="payslipmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip 12 month</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+<!-- Modal -->
+<div class="modal fade" id="payslipmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title font-weight-bold" id="exampleModalLongTitle">Pay Slip</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
                         <div class="card" id="PaySlipPart" runat="server">
 
