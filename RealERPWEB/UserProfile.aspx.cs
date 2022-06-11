@@ -35,6 +35,7 @@ namespace RealERPWEB
                 Get_UpComingHoliday();
                 Get_Events();
                 getLink();
+                getServiceLen();
 
                 GetAllHolidays();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
@@ -226,6 +227,23 @@ namespace RealERPWEB
                 return;
             DataTable dt = ds1.Tables[2];
             this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
+        }
+
+        private void getServiceLen()
+        {
+            string comcod = this.GetCompCode();
+            string curr_year =Convert.ToDateTime( System.DateTime.Now).ToString("yyyy");
+
+            this.longTermTitle.InnerText = "Employee Long Term Service-"+curr_year;
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "LONGTERMSERVICE", "","", "", "", "", "", "");
+            if (ds == null)
+            {
+                return;
+            }
+            DataTable dt = ds.Tables[0];
+
+            this.gvServiceInfo.DataSource = dt;
+            this.gvServiceInfo.DataBind();
         }
 
         private void OrganoGram()

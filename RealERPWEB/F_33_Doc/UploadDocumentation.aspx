@@ -130,7 +130,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <asp:Label ID="Label11" runat="server" Text="Documents:"></asp:Label>
-                                        <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" />
+                                        <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" accept=".pdf"/>
                                         <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />
                                     </div>
                                 </div>

@@ -139,7 +139,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        <asp:Button ID="btnSaveAttn" runat="server" OnClick="btnSaveAttn_Click"  CssClass="btn btn-md btn-success" />
+                        <asp:Button ID="btnSaveAttn" runat="server" OnClick="btnSaveAttn_Click" Text="Save"  CssClass="btn btn-md btn-success" />
                     </div>
                 </div>
             </div>
