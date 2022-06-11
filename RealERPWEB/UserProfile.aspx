@@ -68,115 +68,115 @@
         }
     </script>
     <style>
-
         .accordion_two_section {
-    background: #f7f7f7;
-}
+            background: #f7f7f7;
+        }
 
-       .panel-default{
-           border-top:1px solid #dddd!important;
-       }
-.ptb-100 {
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
+        .panel-default {
+            border-top: 1px solid #dddd !important;
+        }
 
-.accordionTwo .panel-group {
-    margin-bottom: 0;
-}
+        .ptb-100 {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
 
-.accordionTwo .panel {
-    background-color: transparent;
-    box-shadow: none;
-    border-bottom: 10px solid transparent;
-    border-radius: 0;
-    margin: 0;
-}
+        .accordionTwo .panel-group {
+            margin-bottom: 0;
+        }
 
-.accordionTwo .panel-default {
-    border: 0;
-}
+        .accordionTwo .panel {
+            background-color: transparent;
+            box-shadow: none;
+            border-bottom: 10px solid transparent;
+            border-radius: 0;
+            margin: 0;
+        }
 
-.accordionTwo .panel-default>.panel-heading {
-    background: #3399cc;
-    border-radius: 0px;
-    border-color: #4385f5;
-}
+        .accordionTwo .panel-default {
+            border: 0;
+        }
 
-.accordion-wrap .panel-heading {
-    padding: 0px;
-    border-radius: 0px;
-}
+            .accordionTwo .panel-default > .panel-heading {
+                background: #3399cc;
+                border-radius: 0px;
+                border-color: #4385f5;
+            }
 
-.panel-title {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 16px;
-    color: inherit;
-}
+        .accordion-wrap .panel-heading {
+            padding: 0px;
+            border-radius: 0px;
+        }
 
-.accordionTwo .panel .panel-heading a.collapsed {
-    color: #999999;
-    background-color: #fff;
-    display: block;
-    padding: 12px 20px;
-}
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: inherit;
+        }
 
-.accordionTwo .panel .panel-heading a {
-    display: block;
-    padding: 12px 20px;
-    color: #fff;
-}
+        .accordionTwo .panel .panel-heading a.collapsed {
+            color: #999999;
+            background-color: #fff;
+            display: block;
+            padding: 12px 20px;
+        }
 
-.accordion-wrap .panel .panel-heading a {
-    font-size: 14px;
-}
+        .accordionTwo .panel .panel-heading a {
+            display: block;
+            padding: 12px 20px;
+            color: #fff;
+        }
+
+        .accordion-wrap .panel .panel-heading a {
+            font-size: 14px;
+        }
 
 
-.accordionTwo .panel-group .panel-heading+.panel-collapse>.panel-body {
-    border-top: 0;
-    padding-top: 0;
-    padding: 20px 20px 20px 30px;
-/*    background: #4385f5;
+        .accordionTwo .panel-group .panel-heading + .panel-collapse > .panel-body {
+            border-top: 0;
+            padding-top: 0;
+            padding: 20px 20px 20px 30px;
+            /*    background: #4385f5;
     color: #fff;*/
-    font-size: 14px;
-    line-height: 24px;
-}
+            font-size: 14px;
+            line-height: 24px;
+        }
 
-.accordionTwo .panel .panel-heading a:after {
-    content: "\2212";
-    color: #4285f4;
-    background: #fff;
-}
+        .accordionTwo .panel .panel-heading a:after {
+            content: "\2212";
+            color: #4285f4;
+            background: #fff;
+        }
 
-.accordionTwo .panel .panel-heading a:after, .accordionTwo .panel .panel-heading a.collapsed:after {
-    font-family: 'FontAwesome';
-    font-size: 14px;
-    float: right;
-    width: 21px;
-    display: block;
-    height: 21px;
-    line-height: 21px;
-    text-align: center;
-    border-radius: 50%;
-    color: #FFF;
-}
+        .accordionTwo .panel .panel-heading a:after, .accordionTwo .panel .panel-heading a.collapsed:after {
+            font-family: 'FontAwesome';
+            font-size: 14px;
+            float: right;
+            width: 21px;
+            display: block;
+            height: 21px;
+            line-height: 21px;
+            text-align: center;
+            border-radius: 50%;
+            color: #FFF;
+        }
 
-.accordionTwo .panel .panel-heading a.collapsed:after {
-    content: "\2b";
-    color: #fff;
-    background-color: #DADADA;
-}
+        .accordionTwo .panel .panel-heading a.collapsed:after {
+            content: "\2b";
+            color: #fff;
+            background-color: #DADADA;
+        }
 
-.accordionTwo .panel .panel-heading a:after {
-    content: "\2212";
-    color: #4285f4;
-    background: #dadada;
-}
+        .accordionTwo .panel .panel-heading a:after {
+            content: "\2212";
+            color: #4285f4;
+            background: #dadada;
+        }
 
-a:link {
-    text-decoration: none
-}
+        a:link {
+            text-decoration: none
+        }
 
 
 
@@ -1081,14 +1081,88 @@ a:link {
                         </div>
 
                         <div class="col-6">
-                            <div class="card " style="max-height: 550px; overflow-y: scroll">
-                                <div class="card-header">
-                                    <span class="mr-auto">Upcoming BirthDay </span>
+                            <div class="row">
+                                <div class="card" style="max-height: 350px; overflow-y: scroll">
+                                    <div class="card-header">
+                                        <span class="mr-auto">Upcoming BirthDay </span>
 
-                                    <asp:LinkButton ID="birthday" runat="server" OnClick="birthday_print_click"
-                                        CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="birthday" runat="server" OnClick="birthday_print_click"
+                                            CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
+                                    </div>
+                                    <div class="card-body row" id="EventBirthday" runat="server">
+                                    </div>
                                 </div>
-                                <div class="card-body row" id="EventBirthday" runat="server">
+                            </div>
+                            <div class="row">
+                                <div class="card" style="max-height: 350px; overflow-y: scroll">
+                                    <div class="card-header">
+                                        <span class="mr-auto" runat="server" id="longTermTitle"> </span>
+                                    </div>
+                                    <div class="card-body row" id="LongTerm" runat="server">
+                                        <div class="table table-responsive card-body pt-0 pb-0">
+                                            <asp:GridView ID="gvServiceInfo" runat="server" CssClass="table-striped table-hover table-bordered"
+                                                AutoGenerateColumns="False"
+                                                ShowFooter="false">
+
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Month">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblserviceMonth" runat="server" Font-Bold="True" 
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monname")) %>' Width="80"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+
+                                                        <asp:TemplateField HeaderText="10 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year10" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year10")) %>' Width="80"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+                                                    
+                                                        <asp:TemplateField HeaderText="15 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year15" runat="server" Font-Bold="True" 
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year15")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+                                                    
+                                                        <asp:TemplateField HeaderText="20 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year20" runat="server" Font-Bold="True" 
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year20")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+                                                    
+                                                        <asp:TemplateField HeaderText="25 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year25" runat="server" Font-Bold="True" 
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year25")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+                                                    
+                                                        <asp:TemplateField HeaderText="30 Years">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="year30" runat="server" Font-Bold="True" 
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year30")) %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+
+                                            </asp:GridView>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1284,62 +1358,60 @@ a:link {
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
                             <div class="col-12">
-                                 <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
+                                <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
 
 
 
-                        <div class=" accordionTwo">
-                            <div class="panel-group" id="accordionTwoLeft">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftone" aria-expanded="false" class="collapsed">
-                        Leave Policy 
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftone" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
-                                        <div class="panel-body">
- <p>
-                                                We are enjoying leave facility in all formats as bti treated us as second VIP. To
+                                    <div class=" accordionTwo">
+                                        <div class="panel-group" id="accordionTwoLeft">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftone" aria-expanded="false" class="collapsed">Leave Policy 
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftone" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            We are enjoying leave facility in all formats as bti treated us as second VIP. To
 enhance this facility for the betterment of our employee following option is included
 at our leave policy which is agree by all HOD at standing meeting this month.
-                                            </p>
-                                            <p>
-                                                i) In case of 4 to 5 days continue leave, the first 3 days will be considered as
+                                                        </p>
+                                                        <p>
+                                                            i) In case of 4 to 5 days continue leave, the first 3 days will be considered as
 casual leave. Rest 1 or 2 days leave may be considered as CL or EL which
 will be depends on the applicants respective HOD.
-                                            </p>
-                                            <p>
-                                                ii) If the enjoyed leave duration is more than 05 days then it shall be treated as
+                                                        </p>
+                                                        <p>
+                                                            ii) If the enjoyed leave duration is more than 05 days then it shall be treated as
 Earn Leave.
-                                            </p>
+                                                        </p>
 
-                                            <p>This is for all of your information</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-default -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftTwo" aria-expanded="false">
-                         SOP for Late Attendance
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                        <div class="panel-body">
-                                            <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i> Purpose:</h6>
+                                                        <p>This is for all of your information</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.panel-default -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftTwo" aria-expanded="false">SOP for Late Attendance
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                                    <div class="panel-body">
+                                                        <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i>Purpose:</h6>
 
-                                            <p>
-                                                To ensure the maximum attendance of all employee of bti.
+                                                        <p>
+                                                            To ensure the maximum attendance of all employee of bti.
 
-                                            </p>
-                                            <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i> Late Attendance Procedure:</h6>
+                                                        </p>
+                                                        <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i>Late Attendance Procedure:</h6>
 
-                                            <p>
-                                                i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
+                                                        <p>
+                                                            i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
 ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
 iii) In case of continuous late of any employee which is 3 or more than 3 days will be adjusted from his/ her Casual Leave (CL) and Earn Leave (EL) as per the
 following schedule:
@@ -1348,81 +1420,79 @@ b) 4 Days Late = 1 CL & half day leave
 c) 5 Days Late = 2 CL & half day leave
 d) 6 Days Late = 3 CL & half day leave
  Each attendance after 10:00am will be marked as absent for the day.
-                                            </p>
-                                            <h6 class="text-left">Note: </h6>
+                                                        </p>
+                                                        <h6 class="text-left">Note: </h6>
 
-                                            <p>
-                                                i. For each late after 6 days late additional 1 EL will be deducted.
+                                                        <p>
+                                                            i. For each late after 6 days late additional 1 EL will be deducted.
 
-                                            </p>
+                                                        </p>
 
-                                            <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-default -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftThree" aria-expanded="false">
-                  Late Present Policy 
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftThree" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                        <div class="panel-body">
-                                                          <p>
-                                                i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
-                                            </p>
-                                            <p>
-                                                ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                                         <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                              <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftFour" aria-expanded="false">
-                     Half day leave Policy 
-                              </a>
-                            </h4>
-                                    </div>
-                                    <div id="collapseTwoLeftFour" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                        <div class="panel-body">
-                                            <p><i class="fas fa-arrow-circle-right"></i> Half day  leave  is  divided into  below 2 time  slots:</p>
-                                            <p>i.  	9:00  am to  1:00  pm</p>
-                                            <p>ii.	1:00  pm to  5:30  pm.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> 3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> 2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> Half day leave can be enjoyed maximum 10 times in a year.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> 2 half day leave will be considered as 1 day CL/ SL.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> No half day leave information will be accepted after 9:00am. </p>
-                                            <p><i class="fas fa-arrow-circle-right"></i> All other condition regarding leave will remain unchanged.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-default -->
-                            </div>
-                            <!--end of /.panel-group-->
-     
-                        <!--end of /.col-sm-6-->
-
-                        <!--end of /.col-sm-6-->
-
-                                    </div>
+                                                        <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
 
                                                     </div>
-                 
-                
+                                                </div>
+                                            </div>
+                                            <!-- /.panel-default -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftThree" aria-expanded="false">Late Present Policy 
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftThree" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
+                                                        </p>
+                                                        <p>
+                                                            ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                               
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftFour" aria-expanded="false">Half day leave Policy 
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwoLeftFour" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                                    <div class="panel-body">
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Half day  leave  is  divided into  below 2 time  slots:</p>
+                                                        <p>i.  	9:00  am to  1:00  pm</p>
+                                                        <p>ii.	1:00  pm to  5:30  pm.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Half day leave can be enjoyed maximum 10 times in a year.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>2 half day leave will be considered as 1 day CL/ SL.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>No half day leave information will be accepted after 9:00am. </p>
+                                                        <p><i class="fas fa-arrow-circle-right"></i>All other condition regarding leave will remain unchanged.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.panel-default -->
+                                        </div>
+                                        <!--end of /.panel-group-->
+
+                                        <!--end of /.col-sm-6-->
+
+                                        <!--end of /.col-sm-6-->
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
 
                                 <div class="accordion-container" id="edidisonPolicy" runat="server" visible="false">
 

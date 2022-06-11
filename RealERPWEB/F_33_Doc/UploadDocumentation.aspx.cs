@@ -157,14 +157,28 @@ namespace RealERPWEB.F_33_Doc
 
 
             //validates the posted file before saving  
-            if (imgFileUpload.PostedFile != null && imgFileUpload.PostedFile.FileName != "")
-
+            if (imgFileUpload.HasFile)
             {
-                string imgName = Guid.NewGuid() + imgFileUpload.PostedFile.FileName;
-                //sets the image path           
-                imgPath = "~/Upload/HRM/Doc/" + imgName;
-                //then save it to the Folder  
-                imgFileUpload.SaveAs(Server.MapPath(imgPath));
+               
+                string filePath = imgFileUpload.PostedFile.FileName;
+                string filename1 = Path.GetFileName(filePath); // getting the file name of uploaded file  
+                string ext = Path.GetExtension(filename1);
+
+                if (ext == ".pdf")
+                {
+
+                    string imgName = Guid.NewGuid() + ext;
+                    //sets the image path           
+                    imgPath = "~/Upload/HRM/Doc/" + imgName;
+                    //then save it to the Folder  
+                    imgFileUpload.SaveAs(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    string msgfail = "Please select pdf file only";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgfail + "');", true);
+                    return;
+                }
             }
 
             if (title.Length == 0)

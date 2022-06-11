@@ -375,6 +375,33 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventBirthday;
 
         /// <summary>
+        /// longTermTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl longTermTitle;
+
+        /// <summary>
+        /// LongTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LongTerm;
+
+        /// <summary>
+        /// gvServiceInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvServiceInfo;
+
+        /// <summary>
         /// gvholidayprint control.
         /// </summary>
         /// <remarks>
