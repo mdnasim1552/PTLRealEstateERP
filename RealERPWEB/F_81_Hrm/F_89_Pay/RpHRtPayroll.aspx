@@ -39,7 +39,7 @@
                     freezeColumnCssClass: "GridViewScrollItemFreeze",
                     freezeFooterCssClass: "GridViewScrollFooterFreeze",
                     freezeHeaderRowCount:1,
-                    freezeColumnCount: 12,
+                    freezeColumnCount: 8,
 
                 });
                 gridViewScroll.enhance();
@@ -213,7 +213,7 @@
                         </div>
 
 
-                        <div class="col-lg-3 col-md-3 col-sm-6" id="rbtnPayTypeDiv" runat="server">
+                        <div class="col-lg-3 col-md-3 col-sm-6" id="rbtnPayTypeDiv" runat="server" visible="false">
                             <asp:RadioButtonList ID="rbtnPayType" RepeatDirection="Horizontal" CssClass="rbtnList1" Visible="false" runat="server">
                                 <asp:ListItem>Cash</asp:ListItem>
                                 <asp:ListItem>Bank</asp:ListItem>
@@ -223,8 +223,10 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-2" id="gndDiv" visible="false"  runat="server">
-                            <asp:Label ID="Label15" runat="server">Print Grand Total</asp:Label>
-                            <asp:CheckBox ID="chkgrndt" runat="server" />
+                             <asp:Label ID="Label15" CssClass="d-block" runat="server">Print Grand Total</asp:Label>
+                            <asp:CheckBox ID="chkgrndt" runat="server" CssClass="form-control" />
+
+                           
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-2" id="lblBanglaDiv" runat="server" visible="false">
                             <asp:Label ID="lblBangla" runat="server" Visible="false">Bangla Print</asp:Label>
@@ -394,7 +396,7 @@
 
 
                                                     <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
-                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i></asp:HyperLink>
+                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
 
                                                 </HeaderTemplate>
 
@@ -690,8 +692,6 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                             </asp:TemplateField>
-                                            <%-- =Format(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value,"#,##0;(#,##0); ")--%>
-<<<<<<< HEAD
 
                                               <asp:TemplateField HeaderText="Mobile">
                                                 <ItemTemplate>
@@ -706,20 +706,11 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Other ded.">
-=======
-                                            <asp:TemplateField HeaderText="Other <br> ded.">
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
+                                            <asp:TemplateField HeaderText="Other <br> ded."> 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvothded" runat="server" Style="text-align: right" Width="80px"
-                                                        Text='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded"))+
-<<<<<<< HEAD
-                                                           Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="45px"></asp:Label>
-=======
-                                                            Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mbillded"))+Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
-                                                        ></asp:Label>
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
+                                                    <asp:Label ID="lgvothded" runat="server" Style="text-align: right"  
+                                                        Text='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded"))+Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="45px"></asp:Label> 
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFothded" runat="server" Font-Bold="True" Font-Size="12px"
