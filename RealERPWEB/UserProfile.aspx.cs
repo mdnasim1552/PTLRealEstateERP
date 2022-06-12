@@ -232,9 +232,7 @@ namespace RealERPWEB
             {
                 DataTable dt = ds1.Tables[2];
                 this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
-
             }
-
 
         }
 
