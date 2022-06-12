@@ -85,7 +85,7 @@
                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"
                                                 Text="Particualars"></asp:Label>
                                             <asp:HyperLink ID="hlbtntbCdataExcelbank" runat="server"
-                                                CssClass="btn btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o"></i></asp:HyperLink>
+                                                CssClass="btn btn-success btn-xs" ToolTip="Export Excel"><i  class="fa fa-file-excel-o"></i></asp:HyperLink>
 
                                         </HeaderTemplate>
                                         <ItemTemplate>

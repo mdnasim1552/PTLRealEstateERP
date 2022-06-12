@@ -114,7 +114,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblpreAdv" runat="server">Employee</asp:Label>
-                                <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control chzn-select" AutoPostBack="True" TabIndex="7" OnSelectedIndexChanged="ddlEmployee_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control chzn-select" AutoPostBack="True" TabIndex="7" >
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -159,8 +159,31 @@
                         </asp:TemplateField>
                            
 
+                           <asp:TemplateField FooterText="Total"
+                                                    HeaderText="Employee Name">
+                                                    <HeaderTemplate>
 
-                        <asp:TemplateField HeaderText="">
+                                                         <asp:Label ID="Label4" runat="server" Font-Bold="True"
+                                                                        Text="Description Of Accounts" Width="180px"></asp:Label>
+
+
+                                                        <asp:HyperLink ID="hlbtntbCdataExel11" runat="server"
+                                                                        CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+                                                     
+                                                    </HeaderTemplate>
+                                                  <ItemTemplate>
+                                <asp:Label ID="lgvsalempname" runat="server"
+                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                    Width="200px"></asp:Label>
+                            </ItemTemplate>
+                                                 
+
+                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                    <ItemStyle HorizontalAlign="left" />
+                                                    <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
+                                                </asp:TemplateField>
+
+                    <%--    <asp:TemplateField HeaderText="">
                             <HeaderTemplate>
                                 <table style="width: 200px">
                                     <tr>
@@ -184,7 +207,7 @@
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Left" />
                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         
                         <asp:TemplateField HeaderText="Empid" visible="false">
                             <ItemTemplate>

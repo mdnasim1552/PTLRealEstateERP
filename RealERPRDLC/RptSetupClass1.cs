@@ -943,6 +943,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptEmpLeaveStatus": Rpt1a = SetRptEmpLeaveStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptMonthWiseSalSheet": Rpt1a = SetRptMonthWiseSalSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptMonthWiseTax": Rpt1a = SetRptMonthWiseTax(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptMonthWiseTaxFinlay": Rpt1a = SetRptMonthWiseTaxFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 //Employee Attendence
                 case "R_81_Hrm.R_84_Lea.RptAllEmpLeavStatus": Rpt1a = SetRptAllEmpLeavStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -5029,6 +5030,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptMonthlySalaryTax>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport SetRptMonthWiseTaxFinlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptMonthlySalaryTaxFinlay>)RptDataSet));
+            return Rpt1a;
+        }
+
         private static LocalReport SetRptSalaryDetailsPEBFactoryCashDriver(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>)RptDataSet));

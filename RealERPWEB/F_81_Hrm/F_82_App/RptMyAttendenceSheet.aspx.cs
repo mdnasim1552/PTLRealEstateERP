@@ -21,7 +21,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         ProcessAccess HRData = new ProcessAccess();
         SendNotifyForUsers UserNotify = new SendNotifyForUsers();
         Common compUtility = new Common();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -49,12 +48,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.mgtCard.Visible = false;
                     this.empMgt.Visible = false;
                     this.getMyAttData();
-
                 }
-
             }
         }
-
         private void GetLeaveType()
         {
             string comcod = this.GetComeCode();
@@ -117,9 +113,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
         }
         private string GetComeCode()
         {
@@ -371,11 +365,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
                         break;
                 }
-
             }
-
-
-
             if (e.Item.ItemType == ListItemType.Footer)
             {
                 double AcTime = 0.00;
@@ -389,10 +379,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 //Double actTimehour =Convert.ToDouble(dt3.Rows[0]["actTimehour"]);
                 //((Label)e.Item.FindControl("lblTotalHour")).Text = Convert.ToDouble((Convert.IsDBNull(Convert.ToDouble(dt3.Compute("Sum(actTimehour)", ""))))).ToString("#,##0.00;(#,##0.00);"); //? 0.00 : dt3.Compute("Sum(actTimehour)", ""))).ToString("#,##0.00;(#,##0.00);");
-
             }
         }
-
         protected void lnkRequstApply_Click(object sender, EventArgs e)
         {
             this.ddlReqType.Items.Clear();

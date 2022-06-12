@@ -3001,13 +3001,34 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 LinkButton linkBtn =((LinkButton)this.gvcashpay.Rows[index].FindControl("btnPrintCheck"));
-                string amt = ((Label)this.gvcashpay.Rows[index].FindControl("lgvnetamtcash")).Text.ToString();
+                //double  amt = Convert.ToDouble(((Label)this.gvcashpay.Rows[index].FindControl("lgvnetamtcash")).Text);
+
+                double amt = 0;
                 string card = ((Label)this.gvcashpay.Rows[index].FindControl("lgIdCardcash")).Text.ToString();
                 string empname = ((Label)this.gvcashpay.Rows[index].FindControl("lblempname")).Text.ToString();
                 string bankcode = ((DropDownList)this.gvcashpay.Rows[index].FindControl("ddlBankList")).SelectedValue.ToString();
                 string ckdate = ((TextBox)this.gvcashpay.Rows[index].FindControl("txtckDate")).Text.ToString();
 
+                int i;
+                for(i= 0; i < gvcashpay.Rows.Count; i++ ){
+
+                    if(((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked == true)
+                    {
+                        double  mergeamt = Convert.ToDouble(((Label)this.gvcashpay.Rows[i].FindControl("lgvnetamtcash")).Text);
+
+                        amt += mergeamt;
+
+                        ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked = false;
+
+
+
+                    }
+                }
+
+
               
+
+
                 if (bankcode.Length != 12)
                 {
                     msg = "Please Select Bank Name, Emp Name: " + empname;
@@ -3017,7 +3038,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 else
                 {
                     //Response.Write("<script>window.open ('~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt + "&ckdate=" + ckdate + "','_blank');</script>");
-                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt + "&ckdate=" + ckdate+ "&bankcode="+ bankcode);    
+                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt.ToString() + "&ckdate=" + ckdate+ "&bankcode="+ bankcode);    
                 }
             }
 
