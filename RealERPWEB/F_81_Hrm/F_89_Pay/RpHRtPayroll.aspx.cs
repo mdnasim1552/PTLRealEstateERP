@@ -1291,22 +1291,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.gvsbonus.DataBind();
                         Session["Report1"] = gvsbonus;
                         ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-
                         break;
-
                 }
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
                 return;
-
-
             }
         }
-
-
         private void FooterCalculation()
         {
             DataTable dt = (DataTable)Session["tblpay"];
@@ -1353,8 +1346,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
                     Session["ReportName"] = "Salary_Sheet_"+ frmdate;
                     ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-
                     break;
 
                 case "Bonus":
@@ -1364,18 +1355,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmtbon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt)", "")) ? 0.00 : dt.Compute("sum(bankamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmt2bon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt2)", "")) ? 0.00 : dt.Compute("sum(bankamt2)", ""))).ToString("#,##0;(#,##0); ");
-
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFcashAmtbon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ? 0.00 : dt.Compute("sum(cashamt)", ""))).ToString("#,##0;(#,##0); ");
-
-
-
-
-
                     Session["Report1"] = gvBonus;
                     ((HyperLink)this.gvBonus.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
                     break;
-
 
                 case "CashPay":
                     ((Label)this.gvcashpay.FooterRow.FindControl("lgvFToCahamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(othded)", "")) ? 0.00 : dt.Compute("sum(othded)", ""))).ToString("#,##0;(#,##0); ");
@@ -1387,11 +1370,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
             }
-
-
-
         }
-
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
@@ -1424,17 +1403,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "SpecialBonus":
                     this.PrintEmpSpecialBonus();
                     break;
-
-
-
             }
-
         }
-
-
         private void PrintBonusSheetAcme()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -1455,10 +1427,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var lst = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
 
             double tAmt = lst.Select(p => p.bonamt).Sum();
-
-
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetAcme", lst, null, null);
-
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
