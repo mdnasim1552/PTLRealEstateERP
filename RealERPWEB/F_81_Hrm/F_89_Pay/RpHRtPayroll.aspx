@@ -39,7 +39,7 @@
                     freezeColumnCssClass: "GridViewScrollItemFreeze",
                     freezeFooterCssClass: "GridViewScrollFooterFreeze",
                     freezeHeaderRowCount:1,
-                    freezeColumnCount: 12,
+                    freezeColumnCount: 8,
 
                 });
                 gridViewScroll.enhance();
@@ -690,7 +690,11 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                             </asp:TemplateField>
+<<<<<<< HEAD
                                             <%-- =Format(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value,"#,##0;(#,##0); ")--%>
+=======
+                                            
+>>>>>>> 795add01ba1a6348bca7d6416ffa0db76d21c4ad
 
                                               <asp:TemplateField HeaderText="Mobile">
                                                 <ItemTemplate>
@@ -706,6 +710,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             
+<<<<<<< HEAD
                                             <asp:TemplateField HeaderText="Other <br> ded.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvothded" runat="server" Style="text-align: right" Width="80px"
@@ -713,6 +718,13 @@
                                                            Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
                                                    ></asp:Label>
                                                            
+=======
+                                            <asp:TemplateField HeaderText="Other <br> ded."> 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvothded" runat="server" Style="text-align: right"  
+                                                        Text='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded"))+Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="45px"></asp:Label> 
+>>>>>>> 795add01ba1a6348bca7d6416ffa0db76d21c4ad
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFothded" runat="server" Font-Bold="True" Font-Size="12px"

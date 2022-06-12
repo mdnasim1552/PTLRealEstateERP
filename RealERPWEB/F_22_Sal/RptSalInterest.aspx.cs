@@ -1659,7 +1659,7 @@ namespace RealERPWEB.F_22_Sal
                 case "3101": // epic 
                 case "3367":
                     sign1 = ds2.Tables[0].Rows[0]["name"].ToString() + "\n"+ "Customer";
-                    sign2 = "";
+                    sign2 = ds2.Tables[0].Rows[0]["usrname"].ToString() + "\n" + ds2.Tables[0].Rows[0]["usrdesig"].ToString();
                     sign3 = "Kazi Abdul Hamid" + "\n"+ "AGM Sales & Marketing";
                     sign4 = "Approved By" + "\n"+ "Director / Managing Director";
 
