@@ -269,7 +269,12 @@ namespace RealERPWEB.F_12_Inv
             string fxtast = (this.Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "ReqEdit") ? "ReqEdit"
-                        : (this.Request.QueryString["InputType"].ToString() == "HeadUsed") ? "HeadUsed" : "";
+                        : (this.Request.QueryString["InputType"].ToString() == "HeadUsed") ? "HeadUsed" 
+                        : (this.Request.QueryString["InputType"].ToString() == "IndentEntry") ? "ReqIndent" : "";
+
+
+
+
 
 
             string Aproval = (this.Request.QueryString["InputType"].ToString() == "Approval") ? "Aproval" : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "Aproval" : "";
