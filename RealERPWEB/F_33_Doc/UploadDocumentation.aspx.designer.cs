@@ -132,13 +132,13 @@ namespace RealERPWEB.F_33_Doc
         protected global::System.Web.UI.WebControls.TextBox txtDetails1;
 
         /// <summary>
-        /// Label11 control.
+        /// lblimg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.Label lblimg;
 
         /// <summary>
         /// imgFileUpload control.
@@ -157,6 +157,15 @@ namespace RealERPWEB.F_33_Doc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnk_save;
+
+        /// <summary>
+        /// datatype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList datatype;
 
         /// <summary>
         /// gvdoc control.

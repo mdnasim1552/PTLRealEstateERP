@@ -1337,133 +1337,14 @@
                         <div class="card-body" style="min-height: 550px">
                             <div class="col-12">
                                 <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
+                                     <div class=" accordionTwo">
+                                        <div class="panel-group" id="accordionTwoLeft" ClientIDMode="Static" runat="server">
 
-
-
-                                    <div class=" accordionTwo">
-                                        <div class="panel-group" id="accordionTwoLeft">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftone" aria-expanded="false" class="collapsed">Leave Policy 
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseTwoLeftone" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            We are enjoying leave facility in all formats as bti treated us as second VIP. To
-enhance this facility for the betterment of our employee following option is included
-at our leave policy which is agree by all HOD at standing meeting this month.
-                                                        </p>
-                                                        <p>
-                                                            i) In case of 4 to 5 days continue leave, the first 3 days will be considered as
-casual leave. Rest 1 or 2 days leave may be considered as CL or EL which
-will be depends on the applicants respective HOD.
-                                                        </p>
-                                                        <p>
-                                                            ii) If the enjoyed leave duration is more than 05 days then it shall be treated as
-Earn Leave.
-                                                        </p>
-
-                                                        <p>This is for all of your information</p>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <!-- /.panel-default -->
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftTwo" aria-expanded="false">SOP for Late Attendance
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseTwoLeftTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                                    <div class="panel-body">
-                                                        <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i>Purpose:</h6>
-
-                                                        <p>
-                                                            To ensure the maximum attendance of all employee of bti.
-
-                                                        </p>
-                                                        <h6 class="text-left"><i class="fas fa-arrow-circle-right"></i>Late Attendance Procedure:</h6>
-
-                                                        <p>
-                                                            i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
-ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
-iii) In case of continuous late of any employee which is 3 or more than 3 days will be adjusted from his/ her Casual Leave (CL) and Earn Leave (EL) as per the
-following schedule:
-a) 3 Days Late = 1 CL
-b) 4 Days Late = 1 CL & half day leave
-c) 5 Days Late = 2 CL & half day leave
-d) 6 Days Late = 3 CL & half day leave
- Each attendance after 10:00am will be marked as absent for the day.
-                                                        </p>
-                                                        <h6 class="text-left">Note: </h6>
-
-                                                        <p>
-                                                            i. For each late after 6 days late additional 1 EL will be deducted.
-
-                                                        </p>
-
-                                                        <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.panel-default -->
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftThree" aria-expanded="false">Late Present Policy 
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseTwoLeftThree" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
-                                                        </p>
-                                                        <p>
-                                                            ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                         </div>
 
 
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftFour" aria-expanded="false">Half day leave Policy 
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseTwoLeftFour" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-                                                    <div class="panel-body">
-                                                        <p><i class="fas fa-arrow-circle-right"></i>Half day  leave  is  divided into  below 2 time  slots:</p>
-                                                        <p>i.  	9:00  am to  1:00  pm</p>
-                                                        <p>ii.	1:00  pm to  5:30  pm.</p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>Half day leave can be enjoyed maximum 10 times in a year.</p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>2 half day leave will be considered as 1 day CL/ SL.</p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>No half day leave information will be accepted after 9:00am. </p>
-                                                        <p><i class="fas fa-arrow-circle-right"></i>All other condition regarding leave will remain unchanged.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.panel-default -->
-                                        </div>
-                                        <!--end of /.panel-group-->
-
-                                        <!--end of /.col-sm-6-->
-
-                                        <!--end of /.col-sm-6-->
-
-                                    </div>
+     
 
                                 </div>
 
