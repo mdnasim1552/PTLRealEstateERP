@@ -277,7 +277,7 @@ namespace RealERPWEB.F_28_MPro
             string comcod = this.GetComeCode();
             string reqno = this.Request.QueryString["reqno"].ToString();
             string recom = "";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPT_MKT_PURCHASE_TRACKING", reqno, recom, "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_MKT_PROCUREMENT", "RPT_MKT_PURCHASE_TRACKING", reqno, recom, "", "", "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvPurstk01.DataSource = null;
