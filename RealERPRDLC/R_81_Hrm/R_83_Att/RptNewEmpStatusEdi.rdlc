@@ -1682,10 +1682,10 @@
                   <Width>0.96089in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.90941in</Width>
+                  <Width>0.72608in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.97191in</Width>
+                  <Width>0.83858in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.23825in</Width>
@@ -1702,7 +1702,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.28123in</Height>
+                  <Height>0.38956in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1907,7 +1907,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Official Hour</Value>
+                                  <Value>Working Hour</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
@@ -2413,8 +2413,8 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
             <DataSetName>DataSet1</DataSetName>
             <Top>3.13821in</Top>
             <Left>0.03932in</Left>
-            <Height>0.73956in</Height>
-            <Width>7.60195in</Width>
+            <Height>0.84789in</Height>
+            <Width>7.28528in</Width>
             <ZIndex>42</ZIndex>
             <Style>
               <Border>
@@ -2529,7 +2529,7 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.90277in</Height>
+        <Height>3.9861in</Height>
         <Style />
       </Body>
       <Width>7.64585in</Width>
@@ -2613,6 +2613,8 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
             </Border>
           </Style>
         </PageFooter>
+        <PageHeight>11.69in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
         <LeftMargin>0.5in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>

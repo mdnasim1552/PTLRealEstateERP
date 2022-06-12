@@ -691,7 +691,6 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                             </asp:TemplateField>
                                             <%-- =Format(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value,"#,##0;(#,##0); ")--%>
-<<<<<<< HEAD
 
                                               <asp:TemplateField HeaderText="Mobile">
                                                 <ItemTemplate>
@@ -706,20 +705,14 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Other ded.">
-=======
+                                            
                                             <asp:TemplateField HeaderText="Other <br> ded.">
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvothded" runat="server" Style="text-align: right" Width="80px"
                                                         Text='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded"))+
-<<<<<<< HEAD
                                                            Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="45px"></asp:Label>
-=======
-                                                            Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mbillded"))+Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
-                                                        ></asp:Label>
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
+                                                   ></asp:Label>
+                                                           
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFothded" runat="server" Font-Bold="True" Font-Size="12px"

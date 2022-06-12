@@ -185,7 +185,7 @@
                                 <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-md-2" id="desFrom" runat="server" visible="false">
+                        <div class="col-md-2" id="desFrom" runat="server" >
                             <div class="form-group">
                                 <asp:Label ID="lblfrmd" CssClass="mb-2 d-block" runat="server">Form</asp:Label>
 
@@ -194,7 +194,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2" id="desTo" runat="server" visible="false">
+                        <div class="col-md-2" id="desTo" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lbltdeg" CssClass="mb-2 d-block" runat="server">To</asp:Label>
 
@@ -305,10 +305,7 @@
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Company Name">
-
                                                 <HeaderTemplate>
-
-
                                                     <table style="width: 200px;">
                                                         <tr>
                                                             <td class="style58">
