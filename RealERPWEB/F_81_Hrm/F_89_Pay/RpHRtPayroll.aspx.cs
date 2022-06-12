@@ -1124,8 +1124,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.gvpayroll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvpayroll.DataSource = dt;
                         this.gvpayroll.DataBind();
-                        this.gvpayroll.Columns[1].Visible = (this.ddlProjectName.SelectedValue == "000000000000") ? true : false;
-                        ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = (this.lblComSalLock.Text == "True") ? true : false;
+                        if (dt.Rows.Count > 0)
+                        {
+                            this.gvpayroll.Columns[1].Visible = (this.ddlProjectName.SelectedValue == "000000000000") ? true : false;
+                            ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = (this.lblComSalLock.Text == "True") ? true : false;
+                        }
+                      
                         //this.gvpayroll.Columns[6].Visible = (this.rbtSalSheet.SelectedIndex == 0);
                         //this.gvpayroll.Columns[7].Visible = (this.rbtSalSheet.SelectedIndex == 0);
                         //this.gvpayroll.Columns[8].Visible = (this.rbtSalSheet.SelectedIndex == 0);
@@ -1240,8 +1244,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         }
                         if (Request.QueryString["Entry"].ToString() == "Payroll")
                         {
-                            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? false : true;
-                            ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Enabled = false;
+                            if (dt.Rows.Count > 0)
+                            {
+                                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? false : true;
+                                ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Enabled = false;
+                            }
                         }
                         this.FooterCalculation();
                         //if (mon > 1)

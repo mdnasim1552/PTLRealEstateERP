@@ -213,7 +213,7 @@
                         </div>
 
 
-                        <div class="col-lg-3 col-md-3 col-sm-6" id="rbtnPayTypeDiv" runat="server">
+                        <div class="col-lg-3 col-md-3 col-sm-6" id="rbtnPayTypeDiv" runat="server" visible="false">
                             <asp:RadioButtonList ID="rbtnPayType" RepeatDirection="Horizontal" CssClass="rbtnList1" Visible="false" runat="server">
                                 <asp:ListItem>Cash</asp:ListItem>
                                 <asp:ListItem>Bank</asp:ListItem>
@@ -223,8 +223,10 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-2" id="gndDiv" visible="false"  runat="server">
-                            <asp:Label ID="Label15" runat="server">Print Grand Total</asp:Label>
-                            <asp:CheckBox ID="chkgrndt" runat="server" />
+                             <asp:Label ID="Label15" CssClass="d-block" runat="server">Print Grand Total</asp:Label>
+                            <asp:CheckBox ID="chkgrndt" runat="server" CssClass="form-control" />
+
+                           
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-2" id="lblBanglaDiv" runat="server" visible="false">
                             <asp:Label ID="lblBangla" runat="server" Visible="false">Bangla Print</asp:Label>

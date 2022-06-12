@@ -139,7 +139,6 @@ namespace RealERPWEB
             LoadReportSceleton();
             string reportType = "Excel";
             string deviceInfo =
-
                    "<DeviceInfo>" +
                    "  <OutputFormat>" + reportType + "</OutputFormat>" +
                    "</DeviceInfo>";
