@@ -394,7 +394,7 @@
 
 
                                                     <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
-                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i></asp:HyperLink>
+                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
 
                                                 </HeaderTemplate>
 
