@@ -39,7 +39,7 @@
                     freezeColumnCssClass: "GridViewScrollItemFreeze",
                     freezeFooterCssClass: "GridViewScrollFooterFreeze",
                     freezeHeaderRowCount:1,
-                    freezeColumnCount: 12,
+                    freezeColumnCount: 8,
 
                 });
                 gridViewScroll.enhance();
@@ -394,7 +394,7 @@
 
 
                                                     <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
-                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i></asp:HyperLink>
+                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
 
                                                 </HeaderTemplate>
 
@@ -690,8 +690,11 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                             </asp:TemplateField>
-                                            <%-- =Format(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value,"#,##0;(#,##0); ")--%>
 <<<<<<< HEAD
+                                            <%-- =Format(Fields!mbillded.Value+Fields!othded.Value+Fields!fine.Value,"#,##0;(#,##0); ")--%>
+=======
+                                            
+>>>>>>> 795add01ba1a6348bca7d6416ffa0db76d21c4ad
 
                                               <asp:TemplateField HeaderText="Mobile">
                                                 <ItemTemplate>
@@ -706,20 +709,22 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Other ded.">
-=======
+                                            
+<<<<<<< HEAD
                                             <asp:TemplateField HeaderText="Other <br> ded.">
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvothded" runat="server" Style="text-align: right" Width="80px"
                                                         Text='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded"))+
-<<<<<<< HEAD
                                                            Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="45px"></asp:Label>
+                                                   ></asp:Label>
+                                                           
 =======
-                                                            Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mbillded"))+Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
-                                                        ></asp:Label>
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
+                                            <asp:TemplateField HeaderText="Other <br> ded."> 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvothded" runat="server" Style="text-align: right"  
+                                                        Text='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded"))+Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine"))).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="45px"></asp:Label> 
+>>>>>>> 795add01ba1a6348bca7d6416ffa0db76d21c4ad
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFothded" runat="server" Font-Bold="True" Font-Size="12px"

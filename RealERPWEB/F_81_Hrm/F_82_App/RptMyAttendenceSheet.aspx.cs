@@ -702,7 +702,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (qtype == "MGT")
             {
                 Empid = this.ddlEmpName.SelectedValue.ToString();
-
             }
             else
             {
@@ -711,7 +710,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
             return (Empid);
-
         }
 
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
@@ -720,10 +718,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
 
         protected void hyplnkApplyLv_Click(object sender, EventArgs e)
-        {
-            
+        {      
         }
-
         protected void lnkbtnRefresh_Click(object sender, EventArgs e)
         {
             getMyAttData();
