@@ -396,7 +396,7 @@
 
 
                                                     <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
-                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i></asp:HyperLink>
+                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
 
                                                 </HeaderTemplate>
 
@@ -692,7 +692,6 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
                                             </asp:TemplateField>
-                                            
 
                                               <asp:TemplateField HeaderText="Mobile">
                                                 <ItemTemplate>
@@ -707,7 +706,6 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            
                                             <asp:TemplateField HeaderText="Other <br> ded."> 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvothded" runat="server" Style="text-align: right"  
