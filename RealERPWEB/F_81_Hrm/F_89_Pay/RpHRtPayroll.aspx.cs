@@ -44,11 +44,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         public void CommonButton()
         {
-            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
-            //((Label)this.Master.FindControl("lblmsg")).Visible = false;
-            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
-
-<<<<<<< HEAD
+             
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
@@ -62,23 +58,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
-=======
-
-            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
-            //((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
-            //((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
-
-            //((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
-            //((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
-
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
+ 
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -120,11 +100,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.MultiView1.ActiveViewIndex = 0;
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
                     ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
-<<<<<<< HEAD
-=======
                     this.gndDiv.Visible = true;
                     this.SeachDivForGrid.Visible = true;
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
                     this.pnlsalops.Visible = true;
                     this.CompanySalary();
                     switch (comcod)
@@ -498,11 +475,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void GetBranch()
         {
-<<<<<<< HEAD
-=======
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
             string comcod = this.GetCompCode();
             if (this.ddlCompany.Items.Count == 0)
                 return;
@@ -533,11 +507,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void GetProjectName()
         {
-<<<<<<< HEAD
-=======
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
             string comcod = this.GetCompCode();
             if (this.ddlCompany.Items.Count == 0)
                 return;
@@ -556,17 +528,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void SectionName()
         {
-<<<<<<< HEAD
-            string comcod = this.GetCompCode();
-            string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
-=======
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
           //  string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
-
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
             string txtSSec = "%%";
            // DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
 
@@ -581,11 +548,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void SectionNameAll()
         {
-<<<<<<< HEAD
-=======
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
@@ -605,13 +570,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string empcode = "";
             this.GetEmpName(empcode);
         }
-<<<<<<< HEAD
-        private void GetEmpName()
-=======
 
 
         private void GetEmpName( string empcode)
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
@@ -638,15 +599,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         protected void ibtnEmpListAllinfo_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             SectionNameAll();
-            //this.ddlBranch_SelectedIndexChanged(null,null);
-            //this.ddlProjectName_SelectedIndexChanged(null, null);
-            this.GetEmpName();
-=======
             string empcode = "all";
             this.GetEmpName(empcode);
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
         }
         protected void ddlEmpNameAllInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -718,11 +673,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void ShowSal()
         {
-<<<<<<< HEAD
-=======
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
             string saltype = "";
             string type = this.Request.QueryString["Type"].ToString().Trim();
             if (type == "SalResign")
@@ -975,11 +927,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             Session.Remove("tblpay");
             Hashtable hst = (Hashtable)Session["tblLogin"];
-
             string result = "";
             string comcod = this.GetCompCode();
             string userid = hst["usrid"].ToString();
-
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
@@ -988,16 +938,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
             string empid = ddlEmpNameAllInfo.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlEmpNameAllInfo.SelectedValue.ToString() + "%";
-<<<<<<< HEAD
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
-            if (ds3 == null)
-            {
-                return;
-            }
-=======
-
-            
-            
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, userid, "", "");
             //if (ds3 == null)
             //{
@@ -1005,7 +945,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //    this.gvBonus.DataBind();
             //    return;
             //}
->>>>>>> 6bab4bbc1fd59a70f74131aed23e833ab38277d8
+
             DataTable dt = ds3.Tables[0];
             Session["tblpay"] = dt;
             this.TakaInWord();
