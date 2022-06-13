@@ -143,9 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
       <HintPath>..\..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2197,6 +2195,7 @@
     <Content Include="F_09_PImp\SubConBillEntry.aspx" />
     <Content Include="F_09_PImp\SubConBillWiseReport.aspx" />
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
+    <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
     <Content Include="F_12_Inv\LinkMatSpeciStock.aspx" />
@@ -3848,6 +3847,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\SubContracBillTracking.aspx.cs">
+      <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
+      <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.cs">
       <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
