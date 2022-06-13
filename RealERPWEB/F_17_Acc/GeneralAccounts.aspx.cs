@@ -145,6 +145,14 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+        private bool  GetCompayUnPost()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return ((bool)hst["comunpost"]);
+
+
+        }
+
         private void VoucherTypeSelected()
         {
             ////string voutype = this.ddlvoucher.SelectedValue.ToString();
@@ -191,21 +199,30 @@ namespace RealERPWEB.F_17_Acc
 
         private void CompanyPost()
         {
-            string comcod = this.GetCompCode();
 
-            switch (comcod)
-            {
-                //case "3101": // Test
-                case "3332":
-                case "3339":
-                case "3356": // intech 
-                    this.chkpost.Checked = true;
-                    break;
 
-                default:
-                    this.chkpost.Checked = false;
-                    break;
-            }
+           // bool comunpost = this.GetCompayUnPost();
+            this.chkpost.Checked = this.GetCompayUnPost(); 
+
+            //string comcod = this.GetCompCode();
+
+
+
+            //switch (comcod)
+            //{
+
+
+            //    //case "3101": // Test
+            //    case "3332":
+            //    case "3339":// Tropical
+            //    case "3356": // intech 
+            //        this.chkpost.Checked = true;
+            //        break;
+
+            //    default:
+            //        this.chkpost.Checked = false;
+            //        break;
+            //}
 
 
         }
