@@ -441,6 +441,9 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
+                                             
+
+
                                             <asp:TemplateField HeaderText="Office <br> Duty">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvoffdu" runat="server" Style="text-align: right" Width="45px"
@@ -449,6 +452,17 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Leave Day">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvwlday" runat="server" Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wld")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle HorizontalAlign="Right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                            
+
                                             <asp:TemplateField HeaderText="Absday <br> (Oth.)">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lFgvoffdu" runat="server" Style="text-align: right" Width="45px"
