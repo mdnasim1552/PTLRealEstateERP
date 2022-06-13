@@ -1750,6 +1750,18 @@ namespace RealERPLIB
 
             #endregion
 
+            //30. Facility Management
+
+            #region Facility Management
+            
+            tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Facility Management", "Facility-Interface", "False", "False", "False", "False" }); ;
+
+
+            #endregion
+
+
+
+
             #endregion
 
             #region KPI
@@ -3314,12 +3326,6 @@ namespace RealERPLIB
                 case "79":   // KPI
                     MenuAllKPI(mnuTbl1);
                     break;
-
-
-
-
-
-
             }
 
 
@@ -12246,9 +12252,6 @@ namespace RealERPLIB
 
 
         }
-
-
-
 
         public static void MenuGrMgtInterface(DataTable mnuTbl1)
         {
