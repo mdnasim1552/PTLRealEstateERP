@@ -519,15 +519,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.RadioButtonList rbtnMantype;
 
         /// <summary>
-        /// PnlBonus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlBonus;
-
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -535,33 +526,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// txtBonusPer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBonusPer;
-
-        /// <summary>
-        /// lnkbtnGenBonus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnGenBonus;
-
-        /// <summary>
-        /// Panel5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel5;
 
         /// <summary>
         /// chkBonus control.
@@ -573,13 +537,49 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.CheckBox chkBonus;
 
         /// <summary>
-        /// rbtlBonSheet control.
+        /// PnlBonus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtlBonSheet;
+        protected global::System.Web.UI.WebControls.Panel PnlBonus;
+
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+
+        /// <summary>
+        /// lnkbtnGenBonus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnGenBonus;
+
+        /// <summary>
+        /// txtBonusPer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBonusPer;
+
+        /// <summary>
+        /// Panel5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel5;
 
         /// <summary>
         /// lblfrmdate0 control.
@@ -600,6 +600,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.TextBox txtafterdays;
 
         /// <summary>
+        /// Label12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+
+        /// <summary>
         /// chkBonustype control.
         /// </summary>
         /// <remarks>
@@ -609,6 +618,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.CheckBox chkBonustype;
 
         /// <summary>
+        /// Label16 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label16;
+
+        /// <summary>
         /// chkSignatureSheet control.
         /// </summary>
         /// <remarks>
@@ -616,6 +634,24 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkSignatureSheet;
+
+        /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
+        /// rbtlBonSheet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtlBonSheet;
 
         /// <summary>
         /// gvBonus control.
@@ -717,6 +753,24 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.View viewspecialbonus;
 
         /// <summary>
+        /// Label17 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label17;
+
+        /// <summary>
+        /// CheckBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+
+        /// <summary>
         /// Panelspbonus control.
         /// </summary>
         /// <remarks>
@@ -726,22 +780,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.Panel Panelspbonus;
 
         /// <summary>
-        /// Label5 control.
+        /// Label18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-
-        /// <summary>
-        /// txtspecialbonus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtspecialbonus;
+        protected global::System.Web.UI.WebControls.Label Label18;
 
         /// <summary>
         /// lnkbtnGenspBonus control.
@@ -751,6 +796,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnGenspBonus;
+
+        /// <summary>
+        /// txtspecialbonus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtspecialbonus;
 
         /// <summary>
         /// lblfrmd control.
@@ -771,13 +825,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.DropDownList ddlfrmDesig;
 
         /// <summary>
-        /// lbltdeg control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltdeg;
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
         /// ddlToDesig control.

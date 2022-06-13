@@ -5222,7 +5222,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
                 Msg = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
                  
             }
 
