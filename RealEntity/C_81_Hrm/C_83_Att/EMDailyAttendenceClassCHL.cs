@@ -89,6 +89,8 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public string lt { get; set; }
             public DateTime joindate { get; set; }
             public string remarks { get; set; }
+            public string dlathour { get; set; }
+            public string derlevtimehour { get; set; }
 
         }
 
