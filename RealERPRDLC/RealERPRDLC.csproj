@@ -146,6 +146,7 @@
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpAttnIdWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+birthdayDate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet.datasource" />
@@ -180,6 +181,7 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerWqty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntechOld.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerIntech.rdlc" />

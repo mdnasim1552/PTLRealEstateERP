@@ -1417,9 +1417,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             #endregion
         }
 
-
-
-
         private void PrintEmpAttnIdWise()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1511,19 +1508,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             var list = ds4.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpAttnIdWise>();
             LocalReport rpt1 = new LocalReport();
 
-            if (comcod == "3354" )
+            if (comcod == "3354" || comcod=="3101")
             {
                 rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptNewEmpStatusEdi", list, null, null);
-
             }
             else
             {
                 rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptNewEmpStatus", list, null, null);
 
             }
-
-
-
             DataTable dtdailyiemp = ds4.Tables[0];
             int sum = 0;
             string hour, minute;

@@ -1661,7 +1661,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintCashSalaryEdison();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3368":
                     this.PrintCashSalaryFinlay();
                     break;
@@ -2999,7 +2999,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string comcod = hst["comcod"].ToString();
                 int index = this.gvcashpay.PageSize * this.gvcashpay.PageIndex + RowIndex;
 
-
+                string yearmon = this.txtfMonth.Text.ToString();
                 LinkButton linkBtn =((LinkButton)this.gvcashpay.Rows[index].FindControl("btnPrintCheck"));
                 //double  amt = Convert.ToDouble(((Label)this.gvcashpay.Rows[index].FindControl("lgvnetamtcash")).Text);
 
@@ -3038,7 +3038,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 else
                 {
                     //Response.Write("<script>window.open ('~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt + "&ckdate=" + ckdate + "','_blank');</script>");
-                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt.ToString() + "&ckdate=" + ckdate+ "&bankcode="+ bankcode);    
+                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt.ToString() + "&ckdate=" + ckdate+ "&bankcode="+ bankcode + "&yearmon="+ yearmon);    
                 }
             }
 

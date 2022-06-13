@@ -182,7 +182,10 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\02.Local Projects\PTLRealEstateERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+        <HintPath>..\..\..\..\02.Local Projects\PTLRealEstateERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -3153,6 +3156,7 @@
     <Content Include="F_99_Allinterface\RptCashPurInterface.aspx" />
     <Content Include="F_99_Allinterface\RptEngInterface.aspx" />
     <Content Include="F_99_Allinterface\RptFacilityInterface.aspx" />
+    <Content Include="F_99_Allinterface\RptIndentPurInterface.aspx" />
     <Content Include="F_99_Allinterface\RptLCInterface.aspx" />
     <Content Include="F_99_Allinterface\RptMarketingInterface.aspx" />
     <Content Include="F_99_Allinterface\RptPurInterface.aspx" />
@@ -4779,6 +4783,14 @@
     </Compile>
     <Compile Include="F_99_Allinterface\RptFacilityInterface.aspx.designer.cs">
       <DependentUpon>RptFacilityInterface.aspx</DependentUpon>
+        <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptIndentPurInterface.aspx.cs">
+      <DependentUpon>RptIndentPurInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptIndentPurInterface.aspx.designer.cs">
+      <DependentUpon>RptIndentPurInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="LetterDefault.aspx.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
