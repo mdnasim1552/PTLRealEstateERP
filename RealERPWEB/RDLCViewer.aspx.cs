@@ -16,6 +16,8 @@ using System.IO;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
+using System.Drawing;
+
 namespace RealERPWEB
 {
     public partial class RDLCViewer : System.Web.UI.Page
@@ -45,7 +47,8 @@ namespace RealERPWEB
                     break;
 
                 case "GRIDTOEXCEL":
-                    this.ExportGridToExcel();
+                   // this.ExportGridToExcel();
+                    this.ExportGridToExcel2();
                     break;
             }
         }
@@ -204,6 +207,95 @@ namespace RealERPWEB
                 return;
             }
         }
+
+        protected void ExportGridToExcel2()
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                GridView GridView1 = (GridView)Session["Report1"];
+
+                //To Export all pages
+                GridView1.AllowPaging = false;
+                
+
+                GridView1.HeaderRow.BackColor = Color.White;
+                foreach (TableCell cell in GridView1.HeaderRow.Cells)
+                {
+                    cell.BackColor = GridView1.HeaderStyle.BackColor;
+                }
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    row.BackColor = Color.White;
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        if (row.RowIndex % 2 == 0)
+                        {
+                            cell.BackColor = GridView1.AlternatingRowStyle.BackColor;
+                        }
+                        else
+                        {
+                            cell.BackColor = GridView1.RowStyle.BackColor;
+                        }
+                        cell.CssClass = "textmode";
+                        List<Control> controls = new List<Control>();
+
+                        //Add controls to be removed to Generic List
+                        foreach (Control control in cell.Controls)
+                        {
+                            controls.Add(control);
+                        }
+
+                        //Loop through the controls to be removed and replace then with Literal
+                        foreach (Control control in controls)
+                        {
+                            switch (control.GetType().Name)
+                            {
+                                case "HyperLink":
+                                    cell.Controls.Add(new Literal { Text = (control as HyperLink).Text });
+                                    break;
+                                case "TextBox":
+                                    cell.Controls.Add(new Literal { Text = (control as TextBox).Text });
+                                    break;
+                                case "LinkButton":
+                                    cell.Controls.Add(new Literal { Text = (control as LinkButton).Text });
+                                    break;
+                                case "CheckBox":
+                                    cell.Controls.Add(new Literal { Text = (control as CheckBox).Text }) ;
+                                    break;
+                                case "RadioButton":
+                                    cell.Controls.Add(new Literal { Text = (control as RadioButton).Text });
+                                    break;
+                                case "Label":
+                                    cell.Controls.Add(new Literal { Text = (control as Label).Text });
+                                    break;
+                                case "DropDownList":
+                                    cell.Controls.Add(new Literal { Text = (control as DropDownList).SelectedItem.Text.ToString() });
+                                    break;
+                                 
+
+                            }
+                            cell.Controls.Remove(control);
+                        }
+                    }
+                }
+
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+            }
+        }
+
 
 
 
