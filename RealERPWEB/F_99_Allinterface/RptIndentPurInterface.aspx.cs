@@ -117,6 +117,9 @@ namespace RealERPWEB.F_99_Allinterface
             return refno;
         }
 
+     
+
+
         private void GetUserPermissionurl()
         {
             string comcod = this.GetCompCode();
@@ -556,7 +559,10 @@ namespace RealERPWEB.F_99_Allinterface
             // string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string ptype = "001";
             string mrfno = "%" + this.txtmrfno.Text.Trim() + "%";
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEDASHBOARD", frmdate, ptype, length, usrid, mrfno, todate, "", "", "");
+
+           
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEDASHBOARDINDENT", frmdate, ptype, length, usrid, mrfno, todate, "", "", "");
 
             Session["Alltable"] = ds1;
 
