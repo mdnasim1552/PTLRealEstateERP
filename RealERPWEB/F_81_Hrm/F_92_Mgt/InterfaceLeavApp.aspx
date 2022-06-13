@@ -249,11 +249,12 @@
 
     </script>
 
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <%--<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>--%>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
@@ -420,11 +421,11 @@
                                                         ShowFooter="True" OnRowDataBound="gvLvReq_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
-                                                            <asp:TemplateField HeaderText="Sl">
+                                                            <asp:TemplateField HeaderText="SL">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
                                                                         Style="text-align: right"
-                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="15px"></asp:Label>
+                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
@@ -1211,10 +1212,10 @@
                                                         <asp:LinkButton ID="lnkbtnView" runat="server"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </asp:LinkButton>--%>
 
-                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default" ToolTip="Print Leave Application"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
+                                                                     <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default" ToolTip="Remove Forward"><span  class="fa fa-undo"></span>
                                                                     </asp:LinkButton>
 
                                                                 </ItemTemplate>
@@ -1360,14 +1361,14 @@
                     </div>
                 </asp:Panel>
             </asp:Panel>
-            </div>
+         <%--   </div>
                 </div>
 
 
 
 
             </div>
-            </div>
+            </div>--%>
 
         </ContentTemplate>
 

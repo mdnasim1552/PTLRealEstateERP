@@ -35,9 +35,11 @@ namespace RealERPWEB
                 Get_UpComingHoliday();
                 Get_Events();
                 getLink();
+                getServiceLen();
 
                 GetAllHolidays();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
+                gethrpolicy();
+               ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
 
 
 
@@ -210,7 +212,7 @@ namespace RealERPWEB
             DataTable dt = ds1.Tables[0];
 
             string winlist = "";
-            for (int j = 1; j < dt.Rows.Count; j++)
+            for (int j = 0; j < dt.Rows.Count; j++)
             {
                 winlist += "<li class='list-group-item pt-1 pb-1'><a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a></li>";
 
@@ -222,10 +224,33 @@ namespace RealERPWEB
         {
             string comcod = this.GetCompCode();
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
-            if (ds1 == null)
+            if (ds1 == null || ds1.Tables[2].Rows.Count == 0) 
+            { 
                 return;
-            DataTable dt = ds1.Tables[2];
-            this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[2];
+                this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
+            }
+
+        }
+
+        private void getServiceLen()
+        {
+            string comcod = this.GetCompCode();
+            string curr_year =Convert.ToDateTime( System.DateTime.Now).ToString("yyyy");
+
+            this.longTermTitle.InnerText = "Employee Long Term Service-"+curr_year;
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "LONGTERMSERVICE", "","", "", "", "", "", "");
+            if (ds == null)
+            {
+                return;
+            }
+            DataTable dt = ds.Tables[0];
+
+            this.gvServiceInfo.DataSource = dt;
+            this.gvServiceInfo.DataBind();
         }
 
         private void OrganoGram()
@@ -288,6 +313,33 @@ namespace RealERPWEB
             this.orgrm3.InnerHtml = ormlist3;
         }
 
+
+        private void gethrpolicy()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            DataTable dt = ds1.Tables[3];
+           
+            string hrplc = "";
+
+            for (int j = 0; j < dt.Rows.Count; j++)
+            {
+                hrplc +=  "<div class='panel panel-default'>"+
+                                                "<div class='panel-heading'>"+
+                                                    "<h4 class='panel-title'>"+
+                                                        "<a data-toggle='collapse' data-parent='#accordionTwoLeft' href='#collapseTwoLeftone_"+j+"' aria-expanded='false' class='collapsed'>" + dt.Rows[j]["title"].ToString() +"</a>"+                                                       
+                                                    "</h4>" +
+                                                "</div>" +
+                                                "<div id='collapseTwoLeftone_"+j+"' class='panel-collapse collapse' aria-expanded='false' role='tablist' style='height: 0px;'>" +
+                                                    "<div class='panel-body'>" + dt.Rows[j]["details"].ToString() +"</div>" +
+                            "</div> </div>";
+
+            }
+            this.accordionTwoLeft.InnerHtml = hrplc;
+
+        }
 
         public void GetProfile()
         {
@@ -1147,9 +1199,9 @@ namespace RealERPWEB
   
             this.modalNoticeTitle.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeTitle")).Text.ToString();
             this.modalNoticeDet.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeDet")).Text.ToString();
-            this.publishDate.InnerText= Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblpubdate")).Text).ToString("dd-MMM-yyy hh:mm");
-            this.noticeStartDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblstartdate")).Text).ToString("dd-MMM-yyy hh:mm");
-            this.noticeEndDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblenddate")).Text).ToString("dd-MMM-yyy hh:mm");
+            this.publishDate.InnerText= Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblpubdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
+            this.noticeStartDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblstartdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
+            this.noticeEndDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblenddate")).Text).ToString("dd-MMM-yyy hh:mm tt");
 
 
 

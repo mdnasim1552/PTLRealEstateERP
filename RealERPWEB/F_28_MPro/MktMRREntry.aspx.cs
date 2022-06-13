@@ -23,11 +23,7 @@ namespace RealERPWEB.F_28_MPro
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-
-
-
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtChaDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
 
                 string qgenno = this.Request.QueryString["genno"] ?? "";
@@ -155,22 +151,15 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlPrevMRRList.Visible = true;
                 this.ddlPrevMRRList.Items.Clear();
                 this.ddlProject.Visible = true;
-
                 this.ddlSupList.Enabled = true;
                 this.ImgbtnFindSup.Enabled = true;
                 this.lblCurMRRNo1.Text = "MRR" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurMRRDate.Enabled = true;
                 this.txtMRRRef.Text = "";
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 this.ddlOrderList.Enabled = true;
-                this.txtPreparedBy.Text = "";
-                this.txtApprovedBy.Text = "";
                 this.txtMRRNarr.Text = "";
-
                 this.gvMRRInfo.DataSource = null;
                 this.gvMRRInfo.DataBind();
-
-
                 this.lbtnOk.Text = "Ok";
                 this.txtChalanNo.Text = "";
                 this.pnlResDetails.Visible = false;
@@ -217,10 +206,10 @@ namespace RealERPWEB.F_28_MPro
                 // double dgvOrderBal = dgvOrderQty - dgvMRRQty;
                 if (Balqty >= dgvMRRQty)
                 {
-                    ((TextBox)this.gvMRRInfo.Rows[j].FindControl("txtgvMRRQty")).Text = dgvMRRQty.ToString("#,##0.000;(#,##0.000); ");
-                    ((Label)this.gvMRRInfo.Rows[j].FindControl("lblgvMRRRate")).Text = dgvMRRRate.ToString("#,##0.0000;(#,##0.0000); ");
-                    ((TextBox)this.gvMRRInfo.Rows[j].FindControl("txtgvChlnqty")).Text = dgvChlnQty.ToString("#,##0.000;(#,##0.000); ");
-                    ((Label)this.gvMRRInfo.Rows[j].FindControl("lblgvMRRAmt")).Text = dgvMRRAmt.ToString("#,##0.000;(#,##0.000); ");
+                    ((TextBox)this.gvMRRInfo.Rows[j].FindControl("txtgvMRRQty")).Text = dgvMRRQty.ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvMRRInfo.Rows[j].FindControl("lblgvMRRRate")).Text = dgvMRRRate.ToString("#,##0.00;(#,##0.00); ");
+                    ((TextBox)this.gvMRRInfo.Rows[j].FindControl("txtgvChlnqty")).Text = dgvChlnQty.ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvMRRInfo.Rows[j].FindControl("lblgvMRRAmt")).Text = dgvMRRAmt.ToString("#,##0.00;(#,##0.00); ");
                     TblRowIndex2 = (this.gvMRRInfo.PageIndex) * this.gvMRRInfo.PageSize + j;
                     tbl1.Rows[TblRowIndex2]["mrrqty"] = dgvMRRQty;
                     tbl1.Rows[TblRowIndex2]["mrrrate"] = dgvMRRRate;
@@ -352,7 +341,6 @@ namespace RealERPWEB.F_28_MPro
                 return;
 
 
-
             ViewState["tblMRR"] = ds1.Tables[0];
             Session["UserLog"] = ds1.Tables[1];
 
@@ -375,19 +363,16 @@ namespace RealERPWEB.F_28_MPro
             if (ds1.Tables[1].Rows.Count > 0)
             {
                 //Project
-
                 this.ddlProject.DataTextField = "pactdesc";
                 this.ddlProject.DataValueField = "pactcode";
                 this.ddlProject.DataSource = ds1.Tables[1];
                 this.ddlProject.DataBind();
-
 
                 // Supplier
                 this.ddlSupList.DataTextField = "ssirdesc1";
                 this.ddlSupList.DataValueField = "ssircode";
                 this.ddlSupList.DataSource = ds1.Tables[1];
                 this.ddlSupList.DataBind();
-
 
                 //Order
                 this.ddlOrderList.DataTextField = "orderno1";
@@ -397,24 +382,13 @@ namespace RealERPWEB.F_28_MPro
             }
 
             this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            // this.ImgbtnFindSup_Click(null, null);
-
             this.ddlSupList.SelectedValue = ds1.Tables[1].Rows[0]["ssircode"].ToString();
-            // this.FindOrderList();        
-
-
-
             this.ddlOrderList.SelectedValue = ds1.Tables[1].Rows[0]["orderno"].ToString();
-
             this.txtMRRRef.Text = ds1.Tables[1].Rows[0]["mrrref"].ToString();
             this.ddlOrderList.SelectedValue = ds1.Tables[1].Rows[0]["orderno"].ToString();
             this.lblCurMRRNo1.Text = ds1.Tables[1].Rows[0]["mrrno1"].ToString().Substring(0, 6);
             this.txtCurMRRNo2.Text = ds1.Tables[1].Rows[0]["mrrno1"].ToString().Substring(6, 5);
             this.txtCurMRRDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd.MM.yyyy");
-            //this.lblddlProject.Text = (this.ddlProject.Items.Count == 0 ? "XXX" : this.ddlProject.SelectedItem.Text.Trim());
-            //this.txtPreparedBy.Text = ds1.Tables[1].Rows[0]["mrrbydes"].ToString();
-            //this.txtApprovedBy.Text = ds1.Tables[1].Rows[0]["appbydes"].ToString();
-            //this.txtApprovalDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["apprdat"]).ToString("dd.MM.yyyy");
             this.txtMRRNarr.Text = ds1.Tables[1].Rows[0]["mrrnar"].ToString();
             this.txtChalanNo.Text = ds1.Tables[1].Rows[0]["chlnno"].ToString();
             this.txtQc.Text = ds1.Tables[1].Rows[0]["qcno"].ToString();
@@ -515,12 +489,6 @@ namespace RealERPWEB.F_28_MPro
 
         }
 
-        protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Session_tblMRR_Update();
-            this.gvMRRInfo.PageIndex = ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
-            this.gvMRRInfo_DataBind();
-        }
         protected void lbtnUpdateMRR_Click(object sender, EventArgs e)
         {
 

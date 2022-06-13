@@ -32,7 +32,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (Type)
             {
                 case "ApplyPrint":
-                    this.PreLeaveno();
                     this.PrinEmpApplication();
                     break;
 
@@ -40,24 +39,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
             }
         }
-
-        private void PreLeaveno()
+        private string GetCompCode()
         {
-
-            ViewState.Remove("tblprelinf");
-            string comcod = this.GetCompCode();
-            string empid = this.Request.QueryString["empid"].ToString();
-            string date = this.Request.QueryString["strtdat"].ToString();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "PREVIOUSLEAVENO", empid, date, "", "", "", "", "", "", "");
-            if (ds1 == null)
-            {
-
-                return;
-            }
-            ViewState["tblprelinf"] = ds1.Tables[0];
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
         }
-
         public void PrinEmpApplication()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -72,20 +58,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string empid = this.Request.QueryString["empid"].ToString();
             string date = this.Request.QueryString["strtdat"].ToString();
             string ltrnid = this.Request.QueryString["LeaveId"].ToString();
+            this.PreLeaveno();
             DataTable dt = (DataTable)ViewState["tblprelinf"];
             DataRow[] drp = dt.Select("ltrnid='" + ltrnid + "'");
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "LEAVEPrintApplication", empid, date, "", "", "", "", "", "", "");
-
             if (ds1 == null)
             {
                 return;
             }
 
-
             DataTable dt1 = ds1.Tables[1];
             DataTable dt2 = ds1.Tables[0];
-
 
             string gcod = drp[0]["gcod"].ToString();
             DataRow[] drl = dt1.Select("gcod='" + gcod + "'");
@@ -105,12 +89,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             drls[0]["appday"] = drp[0]["lapplied"];
             drls[0]["applydate"] = drp[0]["strtdat"];
             drls[0]["appdate"] = drp[0]["strtdat"];
-            // drls[0]["todate"] = drp[0]["strtdat"];
-
             drls[0]["balleave"] = Clsleave - leaveday;
             drls[0]["tltakreq"] = leaveday;
-            //drls[0]["balleave"] = Clsleave - (leaveday + enjleave);
-            //drls[0]["tltakreq"] = (leaveday + enjleave);
 
             Session["tblleave"] = dt1;
             Session["tblleavest"] = dt2;
@@ -120,7 +100,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dv.RowFilter = ("appday>0");
             DataTable dt3 = dv.ToTable();
 
-            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpLeaveAPP>();
+            var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpLeaveAPP>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.EmpLeavApp", list, null, null);
             Rpt1.EnableExternalImages = true;
@@ -129,8 +109,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtRecordNo", this.Request.QueryString["LeaveId"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtleaveday", Convert.ToInt32(dt3.Rows[0]["appday"]).ToString("#,##0;(#,##0); ") + " days"));
-            Rpt1.SetParameters(new ReportParameter("txtldatefrm", startdate));// Convert.ToDateTime(dt3.Rows[0]["applydate"]).ToString("dd-MMM-yyyy")
-            Rpt1.SetParameters(new ReportParameter("txtldateto", endate)); //Convert.ToDateTime(dt3.Rows[0]["applydate"]).AddDays(Convert.ToInt32(dt.Rows[0]["appday"]) - 1).ToString("dd-MMM-yyyy")
+            Rpt1.SetParameters(new ReportParameter("txtldatefrm", startdate));
+            Rpt1.SetParameters(new ReportParameter("txtldateto", endate)); 
             Rpt1.SetParameters(new ReportParameter("txtlday", Convert.ToInt32(dt3.Rows[0]["appday"]).ToString("#,##0;(#,##0); ")));
             Rpt1.SetParameters(new ReportParameter("txtRecordNo1", this.Request.QueryString["LeaveId"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtEmpName", ds1.Tables[2].Rows[0]["empname"].ToString()));
@@ -146,60 +126,22 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
-                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-            #region OLD
-            //ReportDocument rptTest = new RealERPRPT.R_81_Hrm.R_84_Lea.EmpLeavApp();
-            //TextObject txtRptComName = rptTest.ReportDefinition.ReportObjects["txtRptComName"] as TextObject;
-            //txtRptComName.Text = comnam;
-            //TextObject txtRptCompAdd = rptTest.ReportDefinition.ReportObjects["txtRptCompAdd"] as TextObject;
-            //txtRptCompAdd.Text = comadd;
-            //TextObject txtRecordNo = rptTest.ReportDefinition.ReportObjects["txtRecordNo"] as TextObject;
-            //txtRecordNo.Text = this.Request.QueryString["LeaveId"].ToString();// this.lbltrnleaveid.Text.Trim();
-            //TextObject txtRecordNo1 = rptTest.ReportDefinition.ReportObjects["txtRecordNo1"] as TextObject;
-            //txtRecordNo1.Text = this.Request.QueryString["LeaveId"].ToString();
-            //TextObject txtleaveday = rptTest.ReportDefinition.ReportObjects["txtleaveday"] as TextObject;
-            //txtleaveday.Text = Convert.ToInt32(dt3.Rows[0]["appday"]).ToString("#,##0;(#,##0); ") + " days";
-
-            //TextObject txtldatefrm = rptTest.ReportDefinition.ReportObjects["txtldatefrm"] as TextObject;
-            //txtldatefrm.Text = Convert.ToDateTime(dt3.Rows[0]["applydate"]).ToString("dd-MMM-yyyy");
-            //TextObject txtldateto = rptTest.ReportDefinition.ReportObjects["txtldateto"] as TextObject;
-            //txtldateto.Text = Convert.ToDateTime(dt3.Rows[0]["applydate"]).AddDays(Convert.ToInt32(dt3.Rows[0]["appday"]) - 1).ToString("dd-MMM-yyyy");
-            //TextObject txtlday = rptTest.ReportDefinition.ReportObjects["txtlday"] as TextObject;
-            //txtlday.Text = Convert.ToInt32(dt3.Rows[0]["appday"]).ToString("#,##0;(#,##0); ");
-
-            //TextObject txtEmpName = rptTest.ReportDefinition.ReportObjects["txtEmpName"] as TextObject;
-            //txtEmpName.Text = ds1.Tables[2].Rows[0]["empname"].ToString();
-            //TextObject txtEmpName1 = rptTest.ReportDefinition.ReportObjects["txtEmpName1"] as TextObject;
-            //txtEmpName1.Text = ds1.Tables[2].Rows[0]["empname"].ToString();
-            //TextObject txtDesig = rptTest.ReportDefinition.ReportObjects["txtDesig"] as TextObject;
-            //txtDesig.Text = ds1.Tables[2].Rows[0]["desig"].ToString();
-            //TextObject txtDesig1 = rptTest.ReportDefinition.ReportObjects["txtDesig1"] as TextObject;
-            //txtDesig1.Text = ds1.Tables[2].Rows[0]["desig"].ToString();
-            ////TextObject txtApprdate = rptTest.ReportDefinition.ReportObjects["txtApprdate"] as TextObject;
-            ////txtApprdate.Text = Convert.ToDateTime(this.txtApprdate.Text).ToString("dd-MMM-yyyy");
-            //TextObject txtApplydate = rptTest.ReportDefinition.ReportObjects["txtApplydate"] as TextObject;
-            //txtApplydate.Text = Convert.ToDateTime(dt3.Rows[0]["applydate"]).ToString("dd-MMM-yyyy");
-
-            //TextObject rpttxtReasons = rptTest.ReportDefinition.ReportObjects["txtReasons"] as TextObject;
-            //rpttxtReasons.Text = ds1.Tables[3].Rows[0]["lreason"].ToString();
-            //TextObject txttitlelappslip = rptTest.ReportDefinition.ReportObjects["txttitlelappslip"] as TextObject;
-            //txttitlelappslip.Text = "Leave Approval Slip";
-            //TextObject txtAppDays = rptTest.ReportDefinition.ReportObjects["txtAppDays"] as TextObject;
-            //txtAppDays.Text = Convert.ToInt32(dt3.Rows[0]["appday"]).ToString("#,##0;(#,##0); ") + " days " + dt3.Rows[0]["gdesc"].ToString() + " from " + Convert.ToDateTime(dt3.Rows[0]["applydate"]).ToString("dd-MMM-yyyy");
-            //rptTest.SetDataSource(((DataTable)Session["tblleavest"]));
-
-            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            //rptTest.SetParameterValue("ComLogo", ComLogo);
-            //Session["Report1"] = rptTest;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                   ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_Self');</script>";
-            #endregion
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
-        private string GetCompCode()
+
+        private void PreLeaveno()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            return (hst["comcod"].ToString());
+            ViewState.Remove("tblprelinf");
+            string comcod = this.GetCompCode();
+            string empid = this.Request.QueryString["empid"].ToString();
+            string date = this.Request.QueryString["strtdat"].ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "PREVIOUSLEAVENO", empid, date, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            ViewState["tblprelinf"] = ds1.Tables[0];
+
         }
+
     }
 }

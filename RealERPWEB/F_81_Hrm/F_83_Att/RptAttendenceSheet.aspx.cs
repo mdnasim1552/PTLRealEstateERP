@@ -1878,8 +1878,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             }
 
                         }
-
-
                 }
 
             }
@@ -1921,7 +1919,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             if (gvRow.RowType == DataControlRowType.Header)
             {
 
-
                 GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
 
                 TableCell cell01 = new TableCell();
@@ -1929,7 +1926,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 cell01.HorizontalAlign = HorizontalAlign.Center;
                 cell01.RowSpan = 2;
                 gvrow.Cells.Add(cell01);
-
 
 
                 TableCell cell02 = new TableCell();
@@ -2007,7 +2003,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 e.Row.Cells[11].Visible = false;
 
             }
-
         }
 
         protected void gvMonthlyattSummary_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -2037,6 +2032,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             if (isResignChekcbox.Checked == true)
             {
                 this.GetEmpNameResign();
+            }
+            else
+            {
+                this.GetEmpName();
             }
            
         }

@@ -150,7 +150,7 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Loan Amt">
+                                <asp:TemplateField HeaderText="Employee Loan Amt">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvLoanamt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -166,7 +166,26 @@
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Upto Paid" Visible="false">
+                                 <asp:TemplateField HeaderText="Company Loan Amt" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvLoanamtCom" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Font-Size="12px" Style="text-align: right"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lnamtcom")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFLoanamtcom" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+
+
+                                 <asp:TemplateField HeaderText="Upto Paid" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblUpPaidAmt" runat="server" BackColor="Transparent"
                                               BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -178,7 +197,7 @@
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Paid Amt.">
+                                <asp:TemplateField HeaderText="Employee Paid Amt.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvPaidamt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -193,7 +212,24 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Bal. Amt.">
+                                <asp:TemplateField HeaderText="Company Paid <br/> Amt." Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvPaidamtCom" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Font-Size="12px" Style="text-align: right"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "paidamtcom")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFPaidamtCom" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
+
+
+                                <asp:TemplateField HeaderText="Employee Bal. <br/> Amt.">
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFbalamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
@@ -207,6 +243,23 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
+
+                                 <asp:TemplateField HeaderText="Company Bal. Amt." Visible="false">
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFbalamtCom" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvbalamtCom" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Font-Size="12px" Style="text-align: right"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balamtcom")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
+
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
