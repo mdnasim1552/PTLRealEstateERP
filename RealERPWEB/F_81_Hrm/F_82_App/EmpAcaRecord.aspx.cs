@@ -145,10 +145,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string Message;            
             string comcod = this.GetCompCode();
             string gdesc = this.txtBoxTitle.Text.Trim();
-            string maincode = (this.ddlEmpAcarecord.SelectedValue.ToString()).Substring(0, 5); 
-                 
+            string maincode = (this.ddlEmpAcarecord.SelectedValue.ToString()).Substring(0, 5);
+            string editedid = editbyId.Value.ToString()??"";
 
-            maincode= (editbyId.Value != null) ? editbyId.Value : maincode;
+            maincode = (editedid!="") ? editedid : maincode;
 
             bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INOUPEACADEMICRECORDLASTIDWISE", maincode,gdesc, "", "", "", "", "", "", "", "", "", "", "", "");
 
