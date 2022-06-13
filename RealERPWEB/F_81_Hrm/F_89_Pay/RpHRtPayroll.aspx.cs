@@ -689,8 +689,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? branch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)+"%"); 
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString()); 
             
- 
- 
             string monthid = Convert.ToDateTime(this.txttodate.Text).ToString("yyyyMM").ToString();
             string dt1 = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string curdate = Convert.ToDateTime(DateTime.Now).ToString("dd-MMM-yyyy");
@@ -5222,7 +5220,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
                 Msg = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
                  
             }
 

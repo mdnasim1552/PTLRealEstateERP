@@ -4327,7 +4327,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.17291in</Height>
+          <Height>1.11041in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4349,7 +4349,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox134</rd:DefaultName>
-              <Top>0.49583in</Top>
+              <Top>0.50278in</Top>
               <Left>0.025in</Left>
               <Height>0.17709in</Height>
               <Width>5.55417in</Width>
@@ -4384,8 +4384,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox203</rd:DefaultName>
-              <Top>0.06667in</Top>
-              <Left>0.025in</Left>
+              <Top>0.27431in</Top>
               <Height>0.17292in</Height>
               <Width>1.1in</Width>
               <ZIndex>1</ZIndex>
@@ -4393,9 +4392,9 @@
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <BottomBorder>
+                <TopBorder>
                   <Style>Solid</Style>
-                </BottomBorder>
+                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -4422,8 +4421,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.24167in</Top>
-              <Left>0.025in</Left>
+              <Top>0.02778in</Top>
               <Height>0.21875in</Height>
               <Width>1.08958in</Width>
               <ZIndex>2</ZIndex>
@@ -4458,18 +4456,18 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox203</rd:DefaultName>
-              <Top>0.06667in</Top>
-              <Left>1.17125in</Left>
+              <Top>0.27431in</Top>
+              <Left>1.14167in</Left>
               <Height>0.17292in</Height>
-              <Width>1.1125in</Width>
+              <Width>1.11458in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <BottomBorder>
+                <TopBorder>
                   <Style>Solid</Style>
-                </BottomBorder>
+                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -4496,8 +4494,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.24167in</Top>
-              <Left>1.17125in</Left>
+              <Top>0.02778in</Top>
+              <Left>1.14375in</Left>
               <Height>0.21875in</Height>
               <Width>1.1125in</Width>
               <ZIndex>4</ZIndex>
@@ -4532,18 +4530,18 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox203</rd:DefaultName>
-              <Top>0.0625in</Top>
-              <Left>2.33375in</Left>
+              <Top>0.27431in</Top>
+              <Left>2.32569in</Left>
               <Height>0.18334in</Height>
-              <Width>1.08125in</Width>
+              <Width>1.05833in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <BottomBorder>
+                <TopBorder>
                   <Style>Solid</Style>
-                </BottomBorder>
+                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -4570,8 +4568,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.24167in</Top>
-              <Left>2.33375in</Left>
+              <Top>0.02778in</Top>
+              <Left>2.31319in</Left>
               <Height>0.21875in</Height>
               <Width>1.07083in</Width>
               <ZIndex>6</ZIndex>
@@ -4609,8 +4607,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox203</rd:DefaultName>
-              <Top>0.06667in</Top>
-              <Left>3.49625in</Left>
+              <Top>0.28819in</Top>
+              <Left>3.50667in</Left>
               <Height>0.18334in</Height>
               <Width>1.05in</Width>
               <ZIndex>7</ZIndex>
@@ -4618,9 +4616,9 @@
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <BottomBorder>
+                <TopBorder>
                   <Style>Solid</Style>
-                </BottomBorder>
+                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -4647,8 +4645,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.24167in</Top>
-              <Left>3.49625in</Left>
+              <Top>0.02778in</Top>
+              <Left>3.50667in</Left>
               <Height>0.21875in</Height>
               <Width>1.03958in</Width>
               <ZIndex>8</ZIndex>
@@ -4669,7 +4667,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Purchase Order</Value>
+                      <Value>Prepared By</Value>
                       <Style>
                         <FontFamily>times New Roman</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -4683,7 +4681,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox203</rd:DefaultName>
-              <Top>0.0625in</Top>
+              <Top>0.27431in</Top>
               <Left>4.65875in</Left>
               <Height>0.18334in</Height>
               <Width>1.025in</Width>
@@ -4692,9 +4690,9 @@
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <BottomBorder>
+                <TopBorder>
                   <Style>Solid</Style>
-                </BottomBorder>
+                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -4721,9 +4719,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.25104in</Top>
+              <Top>0.02778in</Top>
               <Left>4.65875in</Left>
-              <Height>0.20833in</Height>
+              <Height>0.21875in</Height>
               <Width>1.01458in</Width>
               <ZIndex>10</ZIndex>
               <Style>
@@ -4756,7 +4754,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.25104in</Top>
+              <Top>0.27431in</Top>
               <Left>6.90875in</Left>
               <Height>0.21875in</Height>
               <Width>1.0625in</Width>
@@ -4794,9 +4792,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.2474in</Top>
+              <Top>0.02778in</Top>
               <Left>5.77313in</Left>
-              <Height>0.20833in</Height>
+              <Height>0.21875in</Height>
               <Width>1.02708in</Width>
               <ZIndex>12</ZIndex>
               <Style>
@@ -4816,7 +4814,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Constant">Order Approval</Value>
+                      <Value>Checked By</Value>
                       <Style>
                         <FontFamily>times New Roman</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -4830,7 +4828,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox203</rd:DefaultName>
-              <Top>0.05886in</Top>
+              <Top>0.27431in</Top>
               <Left>5.77313in</Left>
               <Height>0.18334in</Height>
               <Width>1.0375in</Width>
@@ -4839,9 +4837,9 @@
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <BottomBorder>
+                <TopBorder>
                   <Style>Solid</Style>
-                </BottomBorder>
+                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
