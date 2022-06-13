@@ -1352,7 +1352,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = gvpayroll;
                     string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
                     Session["ReportName"] = "Salary_Sheet_"+ frmdate;
-                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
                 case "Bonus":
@@ -5268,6 +5268,37 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.gvDedDetails.DataBind();
 
             this.lblmTotDed.Text = Convert.ToDouble(dt.Rows[0]["tdeduc"]).ToString("#,##0;(#,##0); ");
+        }
+
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            SearchText();
+        }
+        //Called on input textbox value is changed
+        private void SearchText()
+        {
+            DataTable dt = (DataTable)Session["tblpay"];
+            DataView dv = new DataView(dt);
+            string SearchExpression = null;
+            //check if value is null or not, if not search it
+            if (!String.IsNullOrEmpty(txtSearch.Text))
+            {
+                SearchExpression = string.Format("{0} '%{1}%'",
+                gvpayroll.SortExpression, txtSearch.Text);
+                dv.RowFilter = "idcard like" + SearchExpression;
+                gvpayroll.DataSource = dv;
+                gvpayroll.DataBind();
+
+            }
+
+            gvpayroll.DataSource = dv;
+            gvpayroll.DataBind();
+
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
         }
     }
 }
