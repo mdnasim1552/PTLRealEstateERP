@@ -5,10 +5,18 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+
+
     <style>
-        .bw-100{
-            width:100px!important;
+        input#ContentPlaceHolder1_txtSearch {
+            height: 29px;
         }
+
+        .bw-100 {
+            width: 100px !important;
+        }
+
         .tbMenuWrp table {
             border: none !important;
             background: none !important;
@@ -44,10 +52,7 @@
                     }
 
                         .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
-                            /*background: #12A5A6;*/
-                            /*color: #fff;*/
                         }
-
 
                     .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
                         display: none;
@@ -146,15 +151,15 @@
                                 </div>
                             </div>
 
-              <asp:Label ID="Label19" runat="server" CssClass="mr-2">Loan Type</asp:Label>
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control form-control-sm" style="width:350px;" >  
-            <asp:ListItem Value="">Please Select</asp:ListItem>  
-            <asp:ListItem>Home Loan</asp:ListItem>  
-            <asp:ListItem>Car Loan</asp:ListItem>  
+                            <asp:Label ID="Label19" runat="server" CssClass="mr-2">Loan Type</asp:Label>
+                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control form-control-sm" Style="width: 350px;">
+                                <asp:ListItem Value="">Please Select</asp:ListItem>
+                                <asp:ListItem>Home Loan</asp:ListItem>
+                                <asp:ListItem>Car Loan</asp:ListItem>
 
-        </asp:DropDownList>  
+                            </asp:DropDownList>
 
-                
+
                             <button type="button" class="btn btn-primary  ml-auto bw-100 btn-sm" data-toggle="modal" data-target="#myModal">
                                 Apply Loan
                             </button>
@@ -190,13 +195,50 @@
                                 </asp:Panel>
                             </div>
                         </div>
+                 
+                          <div class="table table-sm table-responsive">
+                                <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvloan" runat="server" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Loan Type">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbltitle" runat="server" Text='<%#Eval("loantype")%>' Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Loan Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbltitle" runat="server" Text='<%#Eval("loanamt")%>' Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Installment Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbltitle" runat="server" Text='<%#Eval("instlnum")%>' Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                                             <asp:TemplateField HeaderText="Per Installment Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbltitle" runat="server" Text='<%#Eval("perinstlamt")%>' Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                                             <asp:TemplateField HeaderText="Effective Date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbltitle" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                    
                     </div>
                 </div>
             </div>
 
 
 
-            <div class="modal" id="myModal">
+            <div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header bg-light">
@@ -208,94 +250,107 @@
                                 <div class="col-lg-3">
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label5" runat="server">Loan Id</asp:Label>
-                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-sm " placeholder="Loan ID" Enabled="false"></asp:TextBox>
+                                        <asp:Label ID="lblLoanId" runat="server">Loan Id</asp:Label>
+                                        <asp:TextBox ID="txtLoanId" runat="server" CssClass="form-control form-control-sm " placeholder="Loan ID" Enabled="false"></asp:TextBox>
                                     </div>
 
 
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label6" runat="server" CssClass="">Statutory Deduction</asp:Label>
-                                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control form-control-sm" placeholder="Statutory Deduction"></asp:TextBox>
+                                        <asp:Label ID="lblStd" runat="server" CssClass="">Statutory Deduction</asp:Label>
+                                        <asp:TextBox ID="txtStd" runat="server" CssClass="form-control form-control-sm" placeholder="Statutory Deduction"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <asp:Label ID="Label7" runat="server">Rate & Intrest</asp:Label>
-                                        <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control form-control-sm" placeholder="Rate & Intrest"></asp:TextBox>
+                                        <asp:Label ID="lblrt" runat="server">Rate & Intrest</asp:Label>
+                                        <asp:TextBox ID="txtrt" runat="server" CssClass="form-control form-control-sm" placeholder="Rate & Intrest"></asp:TextBox>
                                     </div>
 
-                                       <div class="form-group">
-                                        <asp:Label ID="Label4" runat="server">Purpose of loan</asp:Label>
-                                          <textarea class="form-control form-control-sm"  rows="4" style="min-height:60px;"></textarea>
+                                    <div class="form-group">
+                                        <asp:Label ID="lblLoanDesc" runat="server">Purpose of loan</asp:Label>
+                                     <asp:TextBox ID="txtLoanDescc" runat="server" CssClass="form-control form-control-sm" placeholder="Purpose Loan"></asp:TextBox>
+
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3">
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label8" runat="server" >Loan Amount</asp:Label>
-                                        <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control form-control-sm" placeholder="Loan ID" ></asp:TextBox>
+                                        <asp:Label ID="lblLoanAmt" runat="server">Loan Amount</asp:Label>
+                                        <asp:TextBox ID="txtLoanAmt" runat="server" CssClass="form-control form-control-sm" placeholder="Loan Amount"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label9" runat="server">Previous loan Amount</asp:Label>
-                                        <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
+                                        <asp:Label ID="lblPloanAmt" runat="server">Previous loan Amount</asp:Label>
+                                        <asp:TextBox ID="txtPloanAmt" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label10" runat="server">Provident Fund</asp:Label>
-                                        <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
+                                        <asp:Label ID="lblPFAmt" runat="server">Provident Fund</asp:Label>
+                                        <asp:TextBox ID="txtPFAmt" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <asp:Label ID="Label11" runat="server" >Effective Date</asp:Label>
-                                        <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control form-control-sm " placeholder="Effective Date"></asp:TextBox>
+                                        <asp:Label ID="lblEffDate" runat="server">Effective Date</asp:Label>
+
+                                        <asp:TextBox ID="txtEffDate" runat="server" CssClass="form-control form-control-sm  mr-2"></asp:TextBox>
+
+                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtEffDate"></cc1:CalendarExtender>
+
+
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <asp:Label ID="Label12" runat="server" CssClass="">Installment Number</asp:Label>
-                                        <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control form-control-sm" placeholder="Installment Number"></asp:TextBox>
+                                        <asp:Label ID="lblInstNum" runat="server" CssClass="">Installment Number</asp:Label>
+                                        <asp:TextBox ID="txtInstNum" runat="server" CssClass="form-control form-control-sm" placeholder="Installment Number"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label13" runat="server">Gross Monthly Salary</asp:Label>
-                                        <asp:TextBox ID="TextBox10" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
+                                        <asp:Label ID="lblGMS" runat="server">Gross Monthly Salary</asp:Label>
+                                        <asp:TextBox ID="txtGMS" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group ">
-                                        <asp:Label ID="Label14" runat="server">Income Tax</asp:Label>
-                                        <asp:TextBox ID="TextBox11" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
+                                        <asp:Label ID="lblTax" runat="server">Income Tax</asp:Label>
+                                        <asp:TextBox ID="txtTax" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div class="form-group row">
-                                        <asp:Label ID="Label15" runat="server">Loan Type</asp:Label>
-                                        <asp:TextBox ID="TextBox12" runat="server" CssClass="form-control form-control-sm" placeholder="Loan type"></asp:TextBox>
+                                        <asp:Label ID="lblLoanType" runat="server">Loan Type</asp:Label>
+                                  <asp:DropDownList ID="ddlLoanType" runat="server" CssClass="form-control form-control-sm">
+                                <asp:ListItem Value="">Please Select</asp:ListItem>
+                                <asp:ListItem Value="1">Home Loan</asp:ListItem>
+                                <asp:ListItem Value="2">Car Loan</asp:ListItem>
+
+                            </asp:DropDownList>
+
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3">
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label16" runat="server">Amount Per Installment</asp:Label>
-                                        <asp:TextBox ID="TextBox13" runat="server" CssClass="form-control form-control-sm" placeholder="Amt Per Installment"></asp:TextBox>
+                                        <asp:Label ID="lblAmtPerIns" runat="server">Amount Per Installment</asp:Label>
+                                        <asp:TextBox ID="txtAmtPerIns" runat="server" CssClass="form-control form-control-sm" placeholder="Amt Per Installment"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label17" runat="server">Other Income</asp:Label>
-                                        <asp:TextBox ID="TextBox14" runat="server" CssClass="form-control form-control-sm" placeholder="Other Income"></asp:TextBox>
+                                        <asp:Label ID="lblOI" runat="server">Other Income</asp:Label>
+                                        <asp:TextBox ID="txtOI" runat="server" CssClass="form-control form-control-sm" placeholder="Other Income"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group">
-                                        <asp:Label ID="Label18" runat="server">Other Deduction</asp:Label>
-                                        <asp:TextBox ID="TextBox15" runat="server" CssClass="form-control form-control-sm" placeholder="Other Deduction"></asp:TextBox>
+                                        <asp:Label ID="lblOD" runat="server">Other Deduction</asp:Label>
+                                        <asp:TextBox ID="txtOD" runat="server" CssClass="form-control form-control-sm" placeholder="Other Deduction"></asp:TextBox>
                                     </div>
-                       
+
                                 </div>
                             </div>
                             <div class="rowmt-2">
                                 <div class="d-flex justify-content-center">
-<button class="btn btn-success btn-sm m-2 p2  bw-100" type="submit" >Save</button>
-                                    <button class="btn btn-primary btn-sm p2 m-2 bw-100" type="submit" >Update</button>
-                
+
+                                    <asp:LinkButton ID="lnkAdd" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkAdd_Click">Save</asp:LinkButton>
+                                    <button class="btn btn-primary btn-sm p2 m-2 bw-100" type="submit">Update</button>
+
                                 </div>
                             </div>
                         </div>
