@@ -6,6 +6,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
+        input#ContentPlaceHolder1_txtSearch{
+            height:29px;
+        }
         .bw-100{
             width:100px!important;
         }
@@ -196,7 +199,7 @@
 
 
 
-            <div class="modal" id="myModal">
+            <div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header bg-light">
