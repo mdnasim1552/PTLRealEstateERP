@@ -1045,8 +1045,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.HeaderRow.Cells[6].Text = "Earned Leave";
                             this.gvothearn.HeaderRow.Cells[7].Text = "Arear Salary";
                             this.gvothearn.HeaderRow.Cells[8].Text = "Project Visit";
-                            this.gvothearn.HeaderRow.Cells[9].Text = "Car Allowance";
+                            //this.gvothearn.HeaderRow.Cells[9].Text = "Car Allowance";
                             this.gvothearn.HeaderRow.Cells[12].Text = "Refund";
+                            this.gvothearn.Columns[9].Visible = false;
                             this.gvothearn.Columns[10].Visible = false;
                             this.gvothearn.Columns[14].Visible = false;
                             // this.gvothearn.HeaderRow.Cells[14].Text = "Dress Bill";
@@ -2714,21 +2715,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
                 }
-
-
-
-                //if (item.SelectedValue == "000")
-                //{
-
-                //    break;
-                //}
-
-                //else
-                //{ 
-
-
-                //}
-
             }
             field = field.Length > 0 ? field.Substring(0, field.Length - 1) : field;
             string comothdedtype = this.GetCompOtherDeduc();
@@ -2952,15 +2938,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     ((CheckBox)this.gvarrear.Rows[i].FindControl("chkCash")).Checked = true;
                     index = (this.gvarrear.PageSize) * (this.gvarrear.PageIndex) + i;
                     dt.Rows[index]["chkcash"] = "True";
-
-
                 }
-
-
             }
-
-
-
             else
             {
                 for (i = 0; i < gvarrear.Rows.Count; i++)
@@ -2968,11 +2947,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     ((CheckBox)this.gvarrear.Rows[i].FindControl("chkCash")).Checked = false;
                     index = (this.gvarrear.PageSize) * (this.gvarrear.PageIndex) + i;
                     dt.Rows[index]["saltrn"] = "False";
-
                 }
-
             }
-
             Session["tblover"] = dt;
 
         }
@@ -2990,8 +2966,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             DropDownList ddlPaystatus = ((DropDownList)e.Row.FindControl("ddlPaystatus"));
             // string lblpaystatus1 = ((Label)e.Row.FindControl("paystatus1")).Text;
 
-
-
             if (lblpaystatus == "1")
             {
                 ddlPaystatus.SelectedValue = "1";
@@ -3006,9 +2980,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             {
                 ddlPaystatus.SelectedValue = "0";
             }
-
-
-
 
         }
         protected void btnUploadovrtime_Click(object sender, EventArgs e)
@@ -3346,7 +3317,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                  Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
                                  Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
                                  Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0" : dt.Rows[i]["Project_Visit"].ToString();
-                                 Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();                                 
+                                 //Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();                                 
                                  Refund = dt.Rows[i]["Refund"].ToString().Length == 0 ? "0" : dt.Rows[i]["Refund"].ToString();
                                  Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();                               
 

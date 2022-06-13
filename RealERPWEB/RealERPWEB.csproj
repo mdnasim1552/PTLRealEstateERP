@@ -144,8 +144,6 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
 
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2992,6 +2990,7 @@
     <Content Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\TimeOfLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\InterfaceLoan.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx" />
@@ -4485,6 +4484,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx.designer.cs">
       <DependentUpon>UploadLeavExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\InterfaceLoan.aspx.cs">
+      <DependentUpon>InterfaceLoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\InterfaceLoan.aspx.designer.cs">
+      <DependentUpon>InterfaceLoan.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx.cs">
       <DependentUpon>EmpAllow.aspx</DependentUpon>
