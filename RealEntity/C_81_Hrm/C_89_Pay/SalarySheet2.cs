@@ -187,5 +187,26 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public RptMonthlySalaryTax() { }
         }
 
+
+        [Serializable]
+        public class RptMonthlySalaryTaxFinlay
+        {
+            public string empname { get; set; }
+            public string empid { get; set; }
+            public string grp { get; set; }
+            public string idcardno { get; set; }
+           
+            public string tin { get; set; }
+            public string monthid1 { get; set; }
+            public double itax { get; set; }
+         
+
+            public RptMonthlySalaryTaxFinlay() { }
+        }
+
+
+
+
+
     }
 }

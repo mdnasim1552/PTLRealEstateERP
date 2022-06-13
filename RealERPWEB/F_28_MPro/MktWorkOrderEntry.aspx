@@ -136,7 +136,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo1" runat="server" Height="16px"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -226,22 +226,18 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvResDesc0" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtypedesc")) %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Activity Type">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSpfDesc0" runat="server" Font-Bold="False" Font-Size="12px"
-                                                    Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")) + "</B>"+
-                                                                         (DataBinder.Eval(Container.DataItem, "rsirdetdesc").ToString().Trim().Length>0 ? 
-                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")).Trim().Length>0 ?  "<br>" : "")+                                                          
-                                                                         
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdetdesc")).Trim(): "") 
-                                                                         
-                                                                    %>'
-                                                    Width="300px"></asp:Label>
+                                                <asp:Label ID="lblgvSpfDesc0" runat="server" Font-Bold="False" 
+                                                    Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")) + "</B>"%>'
+                                                    Width="350px"></asp:Label>
+                                                <asp:TextBox ID="txtgvRsirdetDesc" runat="server" Font-Bold="False"  TextMode="MultiLine" Rows="5" ReadOnly="true" Width="350px"
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdetdesc"))%>'></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Left" />
@@ -251,7 +247,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvResUnit0" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mkttypedesc")) %>'
-                                                    Width="120px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -259,7 +255,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvReqNo3" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1")) %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -271,24 +267,24 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Approved Qty">
+                                        <asp:TemplateField HeaderText="Approv. Qty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvApprvQty" runat="server" Style="text-align: right;"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprvqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                                <asp:Label ID="lblgvApprvQty" runat="server" Style="text-align: right;" 
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprvqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvRate" runat="server" Style="text-align: right;"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                                <asp:Label ID="lblgvRate" runat="server" Style="text-align: right;" 
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Order Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvOrderAmt" runat="server" Style="text-align: right;"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "orderamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "orderamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -389,7 +385,7 @@
                             <div class="table-responsive mb-2">
                                 <asp:GridView ID="gvOrderInfo" runat="server"
                                     AutoGenerateColumns="False" ShowFooter="true"
-                                    CssClass="table-striped table-bordered grvContentarea" OnPageIndexChanging="gvOrderInfo_PageIndexChanging">
+                                    CssClass="table-striped table-bordered grvContentarea" OnRowDataBound="gvOrderInfo_RowDataBound">
 
                                     <RowStyle />
                                     <Columns>
@@ -446,7 +442,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSupDesc" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc1")) %>'
-                                                    Width="180px"></asp:Label>
+                                                    Width="120px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -454,7 +450,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvProjDesc" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projdesc1")) %>'
-                                                    Width="150px"></asp:Label>
+                                                    Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Left" />
@@ -462,19 +458,15 @@
 
                                         <asp:TemplateField HeaderText="Description of Products">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvResDesc" runat="server"
+                                                <asp:Label ID="lblgvResDesc" runat="server" CssClass="d-block"
                                                     Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "prtypedesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "acttypedesc").ToString().Trim().Length>0 ? 
-                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "prtypedesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
-                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
-                                                                         "<B>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")).Trim()+"</B>": "")+
-                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")).Trim().Length>0 ?  "<br>" : "")+ 
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdetdesc")).Trim() 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "prtypedesc")).Trim().Length>0 ?  "<br>" : "")+"&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         "<B>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")).Trim()+"</B>": "")
                                                                          
-                                                                    %>'
-                                                    Width="350px">                                                           
-                                                            
-                                                </asp:Label>
+                                                                    %>'></asp:Label>
+                                                <asp:TextBox ID="txtgvRsirdetDesc1" runat="server" Font-Bold="False" CssClass="from-control" Width="450px" TextMode="MultiLine" Rows="5"   ReadOnly="true"  
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdetdesc"))%>'></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm" OnClick="lbtnDelete_Click">Delete</asp:LinkButton>
@@ -504,19 +496,19 @@
                                             </FooterTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Pur. Appr. Qty">
+                                        <asp:TemplateField HeaderText="Pur. Appr. <br> Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPurApprvQty" runat="server" Style="text-align: right;"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprvqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Order Qty.">
+                                        <asp:TemplateField HeaderText="Order <br> Qty.">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvOrderQty" runat="server" BorderColor="#99CCFF"
-                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                    BorderStyle="Solid" BorderWidth="0px" 
                                                     Style="text-align: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordrqty")).ToString("#,##0.000;(#,##0.000); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordrqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>
@@ -528,12 +520,11 @@
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvOrderRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                                    Width="75px"></asp:Label>
+                                                    BorderWidth="0px"  Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:Label>
                                             </ItemTemplate>
-
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True"  HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
@@ -542,12 +533,12 @@
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvOrderAmt" runat="server" BackColor="Transparent" BorderStyle="none"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordramt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="80px" Font-Size="11px" Style="text-align: right"></asp:TextBox>
+                                                    Width="80px"  Style="text-align: right"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lblgvFooterTOrderAmt" runat="server" Width="80px"></asp:Label>
                                             </FooterTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True"  HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
@@ -622,11 +613,9 @@
                                                     <asp:Label ID="lssircode" runat="server" Visible="False"></asp:Label></td>
                                                 </div>
                                             </div>
-                                            <asp:GridView ID="gvOrderTerms" runat="server" AllowPaging="True"
+                                            <asp:GridView ID="gvOrderTerms" runat="server"
                                                 AutoGenerateColumns="False" PageSize="30" ShowFooter="true"
                                                 CssClass="table table-striped table-bordered grvContentarea" Width="500px">
-                                                <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
-                                                    Mode="NumericFirstLast" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Sl.No.">
                                                         <ItemTemplate>
@@ -635,6 +624,15 @@
                                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
+                                                    
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lbtndelterm" runat="server" ToolTip="Delete Terms & Condition" OnClientClick="javascript:return FunConfirm();" OnClick="lbtndelterm_Click"> <i class="fa fa-trash" style="color:red;"  aria-hidden="true"></i></asp:LinkButton>
+                                                        </ItemTemplate>
+                                                        <ItemStyle Width="40px" />
+                                                        <HeaderStyle HorizontalAlign="Center" Width="40px" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
                                                     <asp:TemplateField HeaderText="Terms ID" Visible="False">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvTermsID" runat="server"
@@ -656,7 +654,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText=" ">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvColon" runat="server" Font-Bold="true" Font-Size="16px"
+                                                            <asp:Label ID="lblgvColon" runat="server" Font-Bold="true" 
                                                                 Text=" : "></asp:Label>
                                                         </ItemTemplate>
                                                         <FooterStyle HorizontalAlign="Center" />
@@ -681,17 +679,6 @@
                                                                 Width="70px"></asp:TextBox>
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Left" />
-                                                    </asp:TemplateField>
-
-                                                    <asp:TemplateField HeaderText="">
-                                                        <ItemTemplate>
-
-
-                                                            <asp:LinkButton ID="lbtndelterm" runat="server" ToolTip="Delete" OnClientClick="javascript:return FunConfirm();" OnClick="lbtndelterm_Click"> <i class="fa fa-trash" style="color:red;"  aria-hidden="true"></i></asp:LinkButton>
-
-                                                        </ItemTemplate>
-                                                        <ItemStyle Width="40px" />
-                                                        <HeaderStyle HorizontalAlign="Center" Width="40px" VerticalAlign="Top" />
                                                     </asp:TemplateField>
 
                                                 </Columns>

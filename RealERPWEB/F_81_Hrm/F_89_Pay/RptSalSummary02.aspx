@@ -568,6 +568,15 @@
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="">
+                                            <ItemTemplate>
+                                              <asp:CheckBox ID="chkMerge" runat="server" CssClass="input-control" Text="" />
+
+                                            </ItemTemplate>
+                                            <ItemStyle Width="30" />
+                                        </asp:TemplateField>
+
+
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />

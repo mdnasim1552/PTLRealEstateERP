@@ -141,10 +141,10 @@
                             <PagerSettings Visible="False" />
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="SL">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo0" runat="server" Height="16px" Style="text-align: right"
-                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -160,7 +160,7 @@
                                 <asp:TemplateField HeaderText="PR Type">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvPRType" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prdesc")) %>' Width="80px"></asp:Label>
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prdesc")) %>' Width="70px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -178,15 +178,14 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-
                                 <asp:TemplateField HeaderText="Description">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtgvJustification" runat="server" BackColor="Transparent" BorderStyle="none"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "justific")) %>' Width="120px"></asp:TextBox>
+                                        <asp:TextBox ID="txtgvJustification" runat="server" BackColor="Transparent" BorderStyle="none" TextMode="MultiLine" Rows="5"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "justific")) %>' Width="220px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click"
-                                            CssClass="btn btn-warning btn-sm form-control">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click" Width="120px"
+                                            CssClass="btn btn-warning btn-sm">Total</asp:LinkButton>
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
@@ -277,7 +276,7 @@
                                 <asp:TemplateField HeaderText="Remarks">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvReqNote" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
-                                            Text='<%# DataBinder.Eval(Container.DataItem, "reqnote").ToString() %>' Width="150px"></asp:TextBox>
+                                            Text='<%# DataBinder.Eval(Container.DataItem, "reqnote").ToString() %>' Width="120px"></asp:TextBox>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>

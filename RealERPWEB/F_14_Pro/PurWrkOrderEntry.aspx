@@ -732,10 +732,14 @@
 
 
                                     <div class="form-group">
-                                        <div class="col-md-6 pading5px ">
+                                        <div class="col-md-2 pading5px ">
 
                                             <asp:LinkButton ID="btnSendmail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="btnSendmail_Click">Send Email</asp:LinkButton>
                                         </div>
+                                        <div class="col-md-2 pading5px hidden">
+                                            <asp:LinkButton ID="lnkSendMail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="lnkSendMail_Click">Send Email</asp:LinkButton>
+
+                                         </div>
 
                                         <div class="col-md-3 pading5px pull-right">
                                             <div class="input-group">

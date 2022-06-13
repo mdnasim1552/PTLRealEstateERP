@@ -435,11 +435,7 @@ namespace RealERPWEB.F_28_MPro
                         return;
                     }
 
-
-
                 }
-
-
 
                 string PostedByid = comcod + ASTUtility.Right(hst["usrid"].ToString(), 3);
                 string Postedtrmid = hst["compname"].ToString();
@@ -495,7 +491,7 @@ namespace RealERPWEB.F_28_MPro
 
                     if (!result)
                     {
-                        ////ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                         return;
                     }
 

@@ -215,8 +215,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
             Session["tbltax"] = HiddenSameData(ds1.Tables[0]);
+          
+
            // Session["tbltax"] = ds1.Tables[0];
-             this.Data_Bind();
+            this.Data_Bind();
     }
 
 
@@ -283,36 +285,27 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
     }
 
     protected void lbtnPrint_Click(object sender, EventArgs e)
-
     {
-        Hashtable hst = (Hashtable)Session["tblLogin"];
-        string comnam = hst["comnam"].ToString();
-        string compname = hst["compname"].ToString();
-        string username = hst["username"].ToString();
-        string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-        DataTable dt = (DataTable)Session["tbltax"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = hst["comcod"].ToString();
 
-        var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptMonthlySalaryTax>();
-        LocalReport Rpt1 = new LocalReport();
-        Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptMonthWiseTax", list, null, null);
-        Rpt1.SetParameters(new ReportParameter("compName", comnam));
-        Rpt1.SetParameters(new ReportParameter("rptTitle", "Month Wise Tax Sheet"));
-        DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
-        DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
-        for (int i = 1; i <= 12; i++)
-        {
-            if (datefrm > dateto)
-                break;
-            Rpt1.SetParameters(new ReportParameter("txtMonth" + i.ToString(), datefrm.ToString("MMM yy")));
-            datefrm = datefrm.AddMonths(1);
-        }
-        Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + ")"));
-        Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
 
-        Session["Report1"] = Rpt1;
-        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
-                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+                    this.PrintTaxReportFinlay();
+                    break;
 
+                default:
+                    this.PrintTaxReportGen();
+                    break;
+            }
+
+
+
+      
 
         //ReportDocument rptpf = new RealERPRPT.R_81_Hrm.R_89_Pay.RptMonthWiseTax();
 
@@ -353,7 +346,87 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
     }
 
-    protected void imgbtnEmployee_Click(object sender, EventArgs e)
+        private void PrintTaxReportGen()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["tbltax"];
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptMonthlySalaryTax>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptMonthWiseTax", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Month Wise Tax Sheet"));
+            DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+            DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+            for (int i = 1; i <= 12; i++)
+            {
+                if (datefrm > dateto)
+                    break;
+                Rpt1.SetParameters(new ReportParameter("txtMonth" + i.ToString(), datefrm.ToString("MMM yy")));
+                datefrm = datefrm.AddMonths(1);
+            }
+            Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + ")"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void PrintTaxReportFinlay()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+
+            DataTable dt = (DataTable)Session["tbltax"];
+
+            EnumerableRowCollection<DataRow> query = from tax in dt.AsEnumerable()
+                                                     where tax.Field<string>("grp") != "B"
+                                                     orderby tax.Field<string>("empid")
+                                                     select tax;
+
+            DataView view = query.AsDataView();
+
+            DataTable dt2 = view.ToTable();
+
+            var list = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptMonthlySalaryTaxFinlay>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptMonthWiseTaxFinlay", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Tax Report"));
+            DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+            DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            //for (int i = 1; i <= 12; i++)
+            //{
+            //    if (datefrm > dateto)
+            //        break;
+            //    Rpt1.SetParameters(new ReportParameter("txtMonth" + i.ToString(), datefrm.ToString("MMM yy")));
+            //    datefrm = datefrm.AddMonths(1);
+            //}
+            Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + ")"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        protected void imgbtnEmployee_Click(object sender, EventArgs e)
     {
         this.GetEmpName();
     }

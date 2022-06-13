@@ -382,7 +382,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         string diffdays = "0.00";
                         if (chkBoxSkippWH.Checked == false)
                         {
-                            isHalfday = (this.CheckBox1.Checked ? 0.5 : 0.00);
+                            //isHalfday = (this.CheckBox1.Checked ? 0.5 : 0.00);
+                            isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
                             if (difference.Days == 0 && isHalfday == 0.5)
                             {
                                 diffdays = (difference.Days + isHalfday).ToString();
@@ -934,7 +935,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string callType = "GETSUPERVISERMAIL";
                 if (comcod == "3368" || comcod == "3101")
                 {
-                    empid = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ? "" : this.ddlDutyEmp.SelectedValue.ToString();                     
+                    empid = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ? empid : this.ddlDutyEmp.SelectedValue.ToString();                     
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
 
