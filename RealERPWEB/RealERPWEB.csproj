@@ -2235,6 +2235,7 @@
     <Content Include="F_09_PImp\SubConBillEntry.aspx" />
     <Content Include="F_09_PImp\SubConBillWiseReport.aspx" />
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
+    <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
     <Content Include="F_12_Inv\LinkMatSpeciStock.aspx" />
@@ -3889,6 +3890,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\SubContracBillTracking.aspx.cs">
+      <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
+      <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.cs">
       <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
