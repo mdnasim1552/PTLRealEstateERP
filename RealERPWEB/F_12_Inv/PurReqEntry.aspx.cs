@@ -68,6 +68,8 @@ namespace RealERPWEB.F_12_Inv
                 string title = (Request.QueryString["InputType"].ToString() == "Entry") ? "Materials Requisition"
                      : (Request.QueryString["InputType"].ToString() == "Approval") ? "Materials Requisition Approval Screen"
                      : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Store Requisition"
+                     : (Request.QueryString["InputType"].ToString() == "IndentEntry") ? "Indent Requisition"
+
                       : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Materials Requisition Information Input/Edit Screen"
                        : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? reqcheckorApproved
                        : (Request.QueryString["InputType"].ToString() == "ReqcRMCheck") ? "Req CRM Check"
@@ -385,7 +387,10 @@ namespace RealERPWEB.F_12_Inv
                 this.gvReqInfo.DataBind();
                 this.Panel1.Visible = false;
                 this.Panel2.Visible = false;
-                this.PnlDesc.Visible = false;
+                
+                    this.PnlDesc.Visible = false;
+               
+                
                 this.lbtnOk.Text = "Ok";
                 // this.ImgbtnSpecification_Click(null, null);
 
@@ -458,7 +463,17 @@ namespace RealERPWEB.F_12_Inv
             this.txtCurReqNo2.ReadOnly = true;
             this.Panel1.Visible = true;
             this.Panel2.Visible = true;
-            this.PnlDesc.Visible = true;
+            if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+            {
+                this.PnlDesc.Visible = false;
+                this.uPrj.Visible = false;
+            }
+            else
+            {
+                this.PnlDesc.Visible = true;
+            }
+            
+            
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();
@@ -1487,6 +1502,9 @@ namespace RealERPWEB.F_12_Inv
                         // case "3101":
                         // case "3338": //ACME
                         case "3348": //Credence
+                        case "3367": //EPic
+                        case "3368": //Finlay
+                      //  case "3101": //Model
                             break;
 
                         default:
@@ -1521,105 +1539,103 @@ namespace RealERPWEB.F_12_Inv
 
 
                 case "ReqFirstApproved":
-                    //switch (comcod) 
-                    //{ 
-                    //case "3338": //ACME
-                    //    if (approval == "")
-                    //    {
-
-
-                    //        this.CreateDataTable();
-                    //        DataTable dt = (DataTable)ViewState["tblapproval"];
-                    //        DataRow dr1 = dt.NewRow();
-
-                    //        dr1["fappid"] = usrid;
-                    //        dr1["fappdat"] = Date;
-                    //        dr1["fapptrmid"] = trmnid;
-                    //        dr1["fappseson"] = session;
-                    //        dr1["sappid"] = usrid;
-                    //        dr1["sappdat"] = Date;
-                    //        dr1["sapptrmid"] = trmnid;
-                    //        dr1["sappseson"] = session;
-                    //        dt.Rows.Add(dr1);
-                    //        ds1.Merge(dt);
-                    //        ds1.Tables[0].TableName = "tbl1";
-                    //        approval = ds1.GetXml();
-
-                    //    }
-
-                    //    else
-                    //    {
-
-                    //        xmlSR = new System.IO.StringReader(approval);
-                    //        ds1.ReadXml(xmlSR);
-                    //        ds1.Tables[0].TableName = "tbl1";
-                    //        ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                    //        ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                    //        ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                    //        ds1.Tables[0].Rows[0]["fappseson"] = session;
-
-                    //        ds1.Tables[0].Rows[0]["sappid"] = usrid;
-                    //        ds1.Tables[0].Rows[0]["sappdat"] = Date;
-                    //        ds1.Tables[0].Rows[0]["sapptrmid"] = trmnid;
-                    //        ds1.Tables[0].Rows[0]["sappseson"] = session;
-                    //        approval = ds1.GetXml();
-
-                    //    }
-                    //    break;
-
-
-                    //default:
-                    if (approval == "")
+                    switch (comcod)
                     {
+                        //case "3338": //ACME
+                        case "3367": //EPic
+                        case "3368": //Finlay
+                       // case "3101": //Model
 
 
-                        this.CreateDataTable();
-                        DataTable dt = (DataTable)ViewState["tblapproval"];
-                        DataRow dr1 = dt.NewRow();
+                            if (approval == "")
+                            {
 
-                        dr1["fappid"] = usrid;
-                        dr1["fappdat"] = Date;
-                        dr1["fapptrmid"] = trmnid;
-                        dr1["fappseson"] = session;
-                        dr1["sappid"] = "";
-                        dr1["sappdat"] = "";
-                        dr1["sapptrmid"] = "";
-                        dr1["sappseson"] = "";
-                        dt.Rows.Add(dr1);
-                        ds1.Merge(dt);
-                        ds1.Tables[0].TableName = "tbl1";
-                        approval = ds1.GetXml();
 
-                    }
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["sappid"] = usrid;
+                                dr1["sappdat"] = Date;
+                                dr1["sapptrmid"] = trmnid;
+                                dr1["sappseson"] = session;
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
 
-                    else
-                    {
+                            }
 
-                        xmlSR = new System.IO.StringReader(approval);
-                        ds1.ReadXml(xmlSR);
-                        ds1.Tables[0].TableName = "tbl1";
-                        ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                        ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                        ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                        ds1.Tables[0].Rows[0]["fappseson"] = session;
-                        ds1.Tables[0].Rows[0]["sappid"] = "";
-                        ds1.Tables[0].Rows[0]["sappdat"] = "";
-                        ds1.Tables[0].Rows[0]["sapptrmid"] = "";
-                        ds1.Tables[0].Rows[0]["sappseson"] = "";
-                        approval = ds1.GetXml();
+                            else
+                            {
 
-                    }
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+
+                                ds1.Tables[0].Rows[0]["sappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["sappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["sapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["sappseson"] = session;
+                                approval = ds1.GetXml();
+
+                            }
+                            break;
+
+
+                           
+                        default:
+                            if (approval == "")                    
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["sappid"] = "";
+                                dr1["sappdat"] = "";
+                                dr1["sapptrmid"] = "";
+                                dr1["sappseson"] = "";
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+                            }
+
+                            else
+                            {
+
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+                                ds1.Tables[0].Rows[0]["sappid"] = "";
+                                ds1.Tables[0].Rows[0]["sappdat"] = "";
+                                ds1.Tables[0].Rows[0]["sapptrmid"] = "";
+                                ds1.Tables[0].Rows[0]["sappseson"] = "";
+                                approval = ds1.GetXml();
+
+                            }
+                        break;
+
+
+
+
+                    }              
                     break;
-
-
-
-
-                // }
-
-
-
-
-                //        break;
 
 
 
@@ -2237,24 +2253,22 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblSpcf"] = ds1.Tables[1];
             ViewState["tblcat"] = ds1.Tables[2];
 
-            if (Request.QueryString["InputType"].ToString() == "IndentEntry")
-            {
-                DataTable dt1 = ds1.Tables[0].Copy();
+            //if (Request.QueryString["InputType"].ToString() == "IndentEntry")
+            //{
+            //    DataTable dt1 = ds1.Tables[0].Copy();
 
-                DataView dv = dt1.DefaultView;
+            //    DataView dv = dt1.DefaultView;
 
-                dv.RowFilter = "rsircode like '2298%' ";
+            //    dv.RowFilter = "rsircode like '2298%' ";
 
-                DataTable dt2 = new DataTable();
+            //    DataTable dt2 = new DataTable();
 
-                dt2 = dv.ToTable();
+            //    dt2 = dv.ToTable();
 
-                ViewState["tblMat"] = dt2;
-                //var selectRow = dt1.Rows.Cast<DataRow>().All(row => row.Field<int>("rsircode").ToString().Substring(0,4) == "2298");
+            //    ViewState["tblMat"] = dt2;
+                
 
-
-
-            }
+            //}
 
 
 
