@@ -68,6 +68,8 @@ namespace RealERPWEB.F_12_Inv
                 string title = (Request.QueryString["InputType"].ToString() == "Entry") ? "Materials Requisition"
                      : (Request.QueryString["InputType"].ToString() == "Approval") ? "Materials Requisition Approval Screen"
                      : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Store Requisition"
+                     : (Request.QueryString["InputType"].ToString() == "IndentEntry") ? "Indent Requisition"
+
                       : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Materials Requisition Information Input/Edit Screen"
                        : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? reqcheckorApproved
                        : (Request.QueryString["InputType"].ToString() == "ReqcRMCheck") ? "Req CRM Check"
@@ -385,7 +387,10 @@ namespace RealERPWEB.F_12_Inv
                 this.gvReqInfo.DataBind();
                 this.Panel1.Visible = false;
                 this.Panel2.Visible = false;
-                this.PnlDesc.Visible = false;
+                
+                    this.PnlDesc.Visible = false;
+               
+                
                 this.lbtnOk.Text = "Ok";
                 // this.ImgbtnSpecification_Click(null, null);
 
@@ -458,7 +463,17 @@ namespace RealERPWEB.F_12_Inv
             this.txtCurReqNo2.ReadOnly = true;
             this.Panel1.Visible = true;
             this.Panel2.Visible = true;
-            this.PnlDesc.Visible = true;
+            if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+            {
+                this.PnlDesc.Visible = false;
+                this.uPrj.Visible = false;
+            }
+            else
+            {
+                this.PnlDesc.Visible = true;
+            }
+            
+            
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();
