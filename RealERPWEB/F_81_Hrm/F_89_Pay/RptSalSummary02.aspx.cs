@@ -3037,8 +3037,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 }
                 else
                 {
+                    //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+                    //string currentptah = "AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt.ToString() + "&ckdate=" + ckdate + "&bankcode=" + bankcode + "&yearmon=" + yearmon;
+                    //string totalpath = hostname + currentptah;
+                    ////string totalpath = "~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt.ToString() + "&ckdate=" + ckdate + "&bankcode=" + bankcode + "&yearmon=" + yearmon;
+                    //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+
+
                     //Response.Write("<script>window.open ('~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt + "&ckdate=" + ckdate + "','_blank');</script>");
-                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt.ToString() + "&ckdate=" + ckdate+ "&bankcode="+ bankcode + "&yearmon="+ yearmon);    
+                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt.ToString() + "&ckdate=" + ckdate + "&bankcode=" + bankcode + "&yearmon=" + yearmon);
                 }
             }
 
