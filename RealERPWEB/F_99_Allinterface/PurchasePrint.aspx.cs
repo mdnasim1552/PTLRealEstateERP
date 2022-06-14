@@ -3862,6 +3862,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "";
+                string dat1 = "", dat2 = "", dat3 = "", dat4 = "";
 
                 /// signature       // appnam - PURAPROVB and ordnam - purorder     
                 switch (comcod)
@@ -3965,13 +3966,21 @@ namespace RealERPWEB.F_99_Allinterface
 
                         // finlay 
                     case "3368":
-                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
-                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
-                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
-                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
-                        sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy"))=="01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString();
+                        dat1 = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString(); 
+                        dat2 =  _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() ;
+                        dat3 = _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString();
+                        dat4 =  _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
+                        sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy"))=="01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString();
                         sign6 = "Approved By";
+
+
+
+
                         break;
 
                     default:
@@ -4400,6 +4409,10 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cost5", cost5));
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                     Rpt1.SetParameters(new ReportParameter("supemail", supemail));
+                    Rpt1.SetParameters(new ReportParameter("dat1", dat1));
+                    Rpt1.SetParameters(new ReportParameter("dat2", dat2));
+                    Rpt1.SetParameters(new ReportParameter("dat3", dat3));
+                    Rpt1.SetParameters(new ReportParameter("dat4", dat4));
                 }
 
 

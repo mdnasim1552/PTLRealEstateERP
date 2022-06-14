@@ -505,7 +505,14 @@
                                         </div>
 
 
+                                        <div class="col-md-4 pading5px" id="Dept" runat="server" >
+                                            <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="Department"></asp:Label>
+                                            <div class="ddlListPart">
+                                                <asp:DropDownList ID="ddlDeptCode" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="3" Style="width: 313px;"></asp:DropDownList>
+                                            </div>
 
+
+                                        </div>
                                         <div class="col-md-4 pading5px" id="uPrj" runat="server" visible="false">
                                             <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Use Project"></asp:Label>
                                             <div class="ddlListPart">
@@ -515,14 +522,7 @@
 
                                         </div>
 
-                                           <div class="col-md-4 pading5px" id="Dept" runat="server" >
-                                            <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="Department"></asp:Label>
-                                            <div class="ddlListPart">
-                                                <asp:DropDownList ID="ddlDeptCode" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="3" Style="width: 313px;"></asp:DropDownList>
-                                            </div>
-
-
-                                        </div>
+                                           
 
 
 
@@ -593,7 +593,7 @@
                                     <PagerSettings Visible="False" />
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo1" runat="server" Height="16px"
                                                     Style="text-align: right"

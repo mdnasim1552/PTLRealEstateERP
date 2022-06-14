@@ -377,8 +377,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 gvProLinkInfo_DataBind();
             }
             BindGrid();
-
-
         }
         protected void lbtnDeleteAll_Click(object sender, EventArgs e)
         {
@@ -427,10 +425,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     //ddlEmploye.Enabled = true;
                     this.Panel2.Visible = false;
                 }
-
                 return;
             }
-
             if (lbtnOkOrNew.Text == "New")
             {
                 ddldpt.Enabled = true;
@@ -441,18 +437,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 lbtnOkOrNew.Text = "Ok";
                 this.Panel2.Visible = false;
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
             }
-
         }
         protected void BindGrid()
         {
             LoadOrderDapp();
             gvProLinkInfo_DataBind();
         }
-
-
-
 
     }
 }
