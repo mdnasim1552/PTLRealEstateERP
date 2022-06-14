@@ -176,7 +176,6 @@
 
                                     <div class="col-12">
 
-
                                         <asp:GridView ID="gvPayrollLinkInfo" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                             AutoGenerateColumns="False" ShowFooter="True"
                                             OnRowDeleting="gvPayrollLinkInfo_RowDeleting">
@@ -246,14 +245,7 @@
                                 </div>
                             </div>
 
-
-
-
                         </div>
-
-
-
-
 
 
                     </asp:Panel>

@@ -111,6 +111,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlBranch.DataSource = ds1.Tables[0];
             this.ddlBranch.DataBind();
             ds1.Dispose();
+            ddlBranch_SelectedIndexChanged(null,null);
 
         }
         public void LoadOrderDapp()
@@ -150,9 +151,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlSectionList.DataBind();
 
         }
-
-
-
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -256,8 +254,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //   ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
             //    return;
             //}
-
-
             string comcod = this.GetCompCode();
             string msg = "";
             this.Session_tbltbPreLink_Update();
@@ -280,8 +276,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             msg = "Data Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
-
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
@@ -290,8 +284,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
-
-
 
         protected void ImgbtnFindUser1_Click(object sender, EventArgs e)
         {
@@ -310,6 +302,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataTable dt = (DataTable)Session["tblPayPer"];
             string actcode = ((Label)this.gvPayrollLinkInfo.Rows[e.RowIndex].FindControl("lblgvCompCod")).Text.Trim();
             string usrid = ((Label)this.gvPayrollLinkInfo.Rows[e.RowIndex].FindControl("lblgvCompusrid")).Text.Trim();
+
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "DELETEPAYLINK", actcode, usrid, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
                 return;

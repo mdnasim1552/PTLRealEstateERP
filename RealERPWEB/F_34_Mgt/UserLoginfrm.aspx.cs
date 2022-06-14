@@ -844,12 +844,6 @@ namespace RealERPWEB.F_34_Mgt
 
 
 
-
-
-
-
-
-
             DataTable dt1 = (DataTable)Session["tblusrper"];
 
             for (int i = 0; i < dt1.Rows.Count; i++)

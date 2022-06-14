@@ -174,15 +174,7 @@ namespace RealERPWEB
                 this.listComName.SelectedValue = comcod;
             }
 
-
-
-
-
-
-
         }
-
-
         private void getListModulename()
         {
 
@@ -242,8 +234,6 @@ namespace RealERPWEB
 
             newpass = ASTUtility.EncodePassword(newpass);
 
-
-
             ProcessAccess ulogin = (ASTUtility.Left(this.listComName.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
             DataSet ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSEROLDPASS", username, oldpass, "", "", "", "", "", "", "");
             if (ds5.Tables[0].Rows.Count == 0)
@@ -278,7 +268,6 @@ namespace RealERPWEB
 
         private void MasComNameaAdd()
         {
-
             //DataTable dt1 = ((DataTable)Session["tbllog"]);
             //DataRow[] dr = dt1.Select("comcod='" + this.listComName.SelectedValue.ToString() + "'");
             //((Label)this.Master.FindControl("LblGrpCompany")).Text = this.listComName.SelectedItem.Text.Trim();// ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
@@ -539,9 +528,9 @@ namespace RealERPWEB
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-                
 
-                string Url1 = "";
+
+                string Url1 = "";// ds5.Tables[0].Rows[0]["homeurl"].ToString();
 
                 string userrole = ds5.Tables[0].Rows[0]["userrole"].ToString();
 
@@ -554,15 +543,15 @@ namespace RealERPWEB
                 {
                     Url1 = "AllGraph";
                 }
-                
-                else if(userrole == "3" && hrmodule=="81")
+
+                else if (userrole == "3" && hrmodule == "81")
                 {
                     //use nahid for crm users 
                     string crmlink = "F_99_Allinterface/CRMDashboard";
                     Url1 = "UserProfile";
-                    Url1 = dptcod == "9402"? crmlink : Url1;
+                    Url1 = dptcod == "9402" ? crmlink : Url1;
                 }
-               
+
                 else if (userrole == "4" && hrmodule == "81")
                 {
                     Url1 = "DashboardHRM_NEW";
@@ -572,12 +561,12 @@ namespace RealERPWEB
                 {
                     Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
                 }
-               
+
 
                 else
                 {
                     if (masterurl != "")
-                    {                        
+                    {
                         Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
                     }
                     else
