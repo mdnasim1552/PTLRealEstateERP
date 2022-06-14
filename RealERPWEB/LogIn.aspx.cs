@@ -36,15 +36,9 @@ namespace RealERPWEB
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-
             if (!IsPostBack)
             {
-
-
                 this.Initilize();
-
                 this.getComName();
                 this.GetHitCounter();
 
@@ -57,16 +51,10 @@ namespace RealERPWEB
                 //this.notice();
                 if ((Hashtable)Session["tblLogin"] == null)
                     return;
-
                 this.txtuserid.Text = ((Hashtable)Session["tblLogin"])["username"].ToString();
                 this.txtuserpass.Text = ((Hashtable)Session["tblLogin"])["password"].ToString();
-
-
             }
             Session.Remove("tblLogin");
-
-
-
         }
 
         private void GetHitCounter()
@@ -129,10 +117,6 @@ namespace RealERPWEB
 
             }
         }
-
-
-
-
         private void getComName()
         {
             //Access Database (List View)
@@ -483,6 +467,7 @@ namespace RealERPWEB
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
                 hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
                 //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
                 //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
 
@@ -521,16 +506,12 @@ namespace RealERPWEB
 
 
 
-
-
                 string eventtype = "1";
                 string eventdesc = "Login into the system";
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-
-
-                string Url1 = "";// ds5.Tables[0].Rows[0]["homeurl"].ToString();
+                string Url1 =  ds5.Tables[0].Rows[0]["homeurl"].ToString(); //"";
 
                 string userrole = ds5.Tables[0].Rows[0]["userrole"].ToString();
 
@@ -539,80 +520,80 @@ namespace RealERPWEB
 
                 string dptcod = ds5.Tables[0].Rows[0]["deptcode"].ToString().Substring(0, 4);
 
-                if (userrole == "2")
-                {
-                    Url1 = "AllGraph";
-                }
+                //if (userrole == "2")
+                //{
+                //    Url1 = "AllGraph";
+                //}
 
-                else if (userrole == "3" && hrmodule == "81")
-                {
-                    //use nahid for crm users 
-                    string crmlink = "F_99_Allinterface/CRMDashboard";
-                    Url1 = "UserProfile";
-                    Url1 = dptcod == "9402" ? crmlink : Url1;
-                }
+                //else if (userrole == "3" && hrmodule == "81")
+                //{
+                //    //use nahid for crm users 
+                //    string crmlink = "F_99_Allinterface/CRMDashboard";
+                //    Url1 = "UserProfile";
+                //    Url1 = dptcod == "9402" ? crmlink : Url1;
+                //}
 
-                else if (userrole == "4" && hrmodule == "81")
-                {
-                    Url1 = "DashboardHRM_NEW";
+                //else if (userrole == "4" && hrmodule == "81")
+                //{
+                //    Url1 = "DashboardHRM_NEW";
 
-                }
-                else if (comcod.Substring(0, 1) == "8")
-                {
-                    Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
-                }
+                //}
+                //else if (comcod.Substring(0, 1) == "8")
+                //{
+                //    Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
+                //}
 
 
-                else
-                {
-                    if (masterurl != "")
-                    {
-                        Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
-                    }
-                    else
-                    {
-                        if (comcod == "3333")
-                        {
-                            Url1 = "DeafultMenu?Type=3333";
-                        }
+                //else
+                //{
+                //    if (masterurl != "")
+                //    {
+                //        Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+                //    }
+                //    else
+                //    {
+                //        if (comcod == "3333")
+                //        {
+                //            Url1 = "DeafultMenu?Type=3333";
+                //        }
 
-                        else if (comcod == "3335")
-                        {
-                            Url1 = "MyDashboard?Type=5020";
-                        }
-                        else if (comcod == "3349")
-                        {
-                            Url1 = "MyDashboard?Type=5500";
-                        }
-                        else if (comcod == "3109")
-                        {
-                            Url1 = "MyDashboard?Type=5019";
-                        }
-                        else if (comcod == "3347")
-                        {
-                            Url1 = "HrWinMenu";
-                        }
-                        else
-                        {
-                            Url1 = "MyDashboard?Type=";
-                            string UComcode = ASTUtility.Left(Comcode, 1);
-                            if (UComcode == "3")
-                            {
-                                Url1 += "5000";
-                            }
-                            else if (UComcode == "4")
-                            {
-                                Url1 += "7000";
-                            }
-                            else
-                            {
-                                Url1 += "5000";
+                //        else if (comcod == "3335")
+                //        {
+                //            Url1 = "MyDashboard?Type=5020";
+                //        }
+                //        else if (comcod == "3349")
+                //        {
+                //            Url1 = "MyDashboard?Type=5500";
+                //        }
+                //        else if (comcod == "3109")
+                //        {
+                //            Url1 = "MyDashboard?Type=5019";
+                //        }
+                //        else if (comcod == "3347")
+                //        {
+                //            Url1 = "HrWinMenu";
+                //        }
+                //        else
+                //        {
+                //            Url1 = "MyDashboard?Type=";
+                //            string UComcode = ASTUtility.Left(Comcode, 1);
+                //            if (UComcode == "3")
+                //            {
+                //                Url1 += "5000";
+                //            }
+                //            else if (UComcode == "4")
+                //            {
+                //                Url1 += "7000";
+                //            }
+                //            else
+                //            {
+                //                Url1 += "5000";
 
-                            }
-                        }
+                //            }
+                //        }
 
-                    }
-                }
+                //    }
+                //}
 
                 Response.Redirect(Url1, false);
 

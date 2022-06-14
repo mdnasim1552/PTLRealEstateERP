@@ -206,8 +206,14 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
                                                             Width="350px"></asp:Label>
                                                     </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:LinkButton ID="lbtnDeleteAll" runat="server" Font-Bold="True"
+                                                            Font-Size="13px" Height="16px" OnClick="lbtnDeleteAll_Click"
+                                                            Width="100px">Delete All</asp:LinkButton>
+                                                    </FooterTemplate>
                                                     <FooterStyle HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Left" />
+
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Remarks">
                                                     <FooterTemplate>
