@@ -2252,24 +2252,22 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblSpcf"] = ds1.Tables[1];
             ViewState["tblcat"] = ds1.Tables[2];
 
-            if (Request.QueryString["InputType"].ToString() == "IndentEntry")
-            {
-                DataTable dt1 = ds1.Tables[0].Copy();
+            //if (Request.QueryString["InputType"].ToString() == "IndentEntry")
+            //{
+            //    DataTable dt1 = ds1.Tables[0].Copy();
 
-                DataView dv = dt1.DefaultView;
+            //    DataView dv = dt1.DefaultView;
 
-                dv.RowFilter = "rsircode like '2298%' ";
+            //    dv.RowFilter = "rsircode like '2298%' ";
 
-                DataTable dt2 = new DataTable();
+            //    DataTable dt2 = new DataTable();
 
-                dt2 = dv.ToTable();
+            //    dt2 = dv.ToTable();
 
-                ViewState["tblMat"] = dt2;
-                //var selectRow = dt1.Rows.Cast<DataRow>().All(row => row.Field<int>("rsircode").ToString().Substring(0,4) == "2298");
+            //    ViewState["tblMat"] = dt2;
+                
 
-
-
-            }
+            //}
 
 
 
