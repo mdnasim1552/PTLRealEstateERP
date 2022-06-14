@@ -1487,6 +1487,9 @@ namespace RealERPWEB.F_12_Inv
                         // case "3101":
                         // case "3338": //ACME
                         case "3348": //Credence
+                        case "3367": //EPic
+                        case "3368": //Finlay
+                      //  case "3101": //Model
                             break;
 
                         default:
@@ -1521,105 +1524,103 @@ namespace RealERPWEB.F_12_Inv
 
 
                 case "ReqFirstApproved":
-                    //switch (comcod) 
-                    //{ 
-                    //case "3338": //ACME
-                    //    if (approval == "")
-                    //    {
-
-
-                    //        this.CreateDataTable();
-                    //        DataTable dt = (DataTable)ViewState["tblapproval"];
-                    //        DataRow dr1 = dt.NewRow();
-
-                    //        dr1["fappid"] = usrid;
-                    //        dr1["fappdat"] = Date;
-                    //        dr1["fapptrmid"] = trmnid;
-                    //        dr1["fappseson"] = session;
-                    //        dr1["sappid"] = usrid;
-                    //        dr1["sappdat"] = Date;
-                    //        dr1["sapptrmid"] = trmnid;
-                    //        dr1["sappseson"] = session;
-                    //        dt.Rows.Add(dr1);
-                    //        ds1.Merge(dt);
-                    //        ds1.Tables[0].TableName = "tbl1";
-                    //        approval = ds1.GetXml();
-
-                    //    }
-
-                    //    else
-                    //    {
-
-                    //        xmlSR = new System.IO.StringReader(approval);
-                    //        ds1.ReadXml(xmlSR);
-                    //        ds1.Tables[0].TableName = "tbl1";
-                    //        ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                    //        ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                    //        ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                    //        ds1.Tables[0].Rows[0]["fappseson"] = session;
-
-                    //        ds1.Tables[0].Rows[0]["sappid"] = usrid;
-                    //        ds1.Tables[0].Rows[0]["sappdat"] = Date;
-                    //        ds1.Tables[0].Rows[0]["sapptrmid"] = trmnid;
-                    //        ds1.Tables[0].Rows[0]["sappseson"] = session;
-                    //        approval = ds1.GetXml();
-
-                    //    }
-                    //    break;
-
-
-                    //default:
-                    if (approval == "")
+                    switch (comcod)
                     {
+                        //case "3338": //ACME
+                        case "3367": //EPic
+                        case "3368": //Finlay
+                       // case "3101": //Model
 
 
-                        this.CreateDataTable();
-                        DataTable dt = (DataTable)ViewState["tblapproval"];
-                        DataRow dr1 = dt.NewRow();
+                            if (approval == "")
+                            {
 
-                        dr1["fappid"] = usrid;
-                        dr1["fappdat"] = Date;
-                        dr1["fapptrmid"] = trmnid;
-                        dr1["fappseson"] = session;
-                        dr1["sappid"] = "";
-                        dr1["sappdat"] = "";
-                        dr1["sapptrmid"] = "";
-                        dr1["sappseson"] = "";
-                        dt.Rows.Add(dr1);
-                        ds1.Merge(dt);
-                        ds1.Tables[0].TableName = "tbl1";
-                        approval = ds1.GetXml();
 
-                    }
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["sappid"] = usrid;
+                                dr1["sappdat"] = Date;
+                                dr1["sapptrmid"] = trmnid;
+                                dr1["sappseson"] = session;
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
 
-                    else
-                    {
+                            }
 
-                        xmlSR = new System.IO.StringReader(approval);
-                        ds1.ReadXml(xmlSR);
-                        ds1.Tables[0].TableName = "tbl1";
-                        ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                        ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                        ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                        ds1.Tables[0].Rows[0]["fappseson"] = session;
-                        ds1.Tables[0].Rows[0]["sappid"] = "";
-                        ds1.Tables[0].Rows[0]["sappdat"] = "";
-                        ds1.Tables[0].Rows[0]["sapptrmid"] = "";
-                        ds1.Tables[0].Rows[0]["sappseson"] = "";
-                        approval = ds1.GetXml();
+                            else
+                            {
 
-                    }
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+
+                                ds1.Tables[0].Rows[0]["sappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["sappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["sapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["sappseson"] = session;
+                                approval = ds1.GetXml();
+
+                            }
+                            break;
+
+
+                           
+                        default:
+                            if (approval == "")                    
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["sappid"] = "";
+                                dr1["sappdat"] = "";
+                                dr1["sapptrmid"] = "";
+                                dr1["sappseson"] = "";
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+                            }
+
+                            else
+                            {
+
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+                                ds1.Tables[0].Rows[0]["sappid"] = "";
+                                ds1.Tables[0].Rows[0]["sappdat"] = "";
+                                ds1.Tables[0].Rows[0]["sapptrmid"] = "";
+                                ds1.Tables[0].Rows[0]["sappseson"] = "";
+                                approval = ds1.GetXml();
+
+                            }
+                        break;
+
+
+
+
+                    }              
                     break;
-
-
-
-
-                // }
-
-
-
-
-                //        break;
 
 
 
