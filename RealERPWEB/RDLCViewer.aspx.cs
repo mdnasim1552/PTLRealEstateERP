@@ -210,9 +210,11 @@ namespace RealERPWEB
 
         protected void ExportGridToExcel2()
         {
+            string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string fileName = "ExportTable_" + date1;
             Response.Clear();
             Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.xls");
+            Response.AddHeader("content-disposition", "attachment;filename="+ fileName + ".xls");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
             using (StringWriter sw = new StringWriter())
