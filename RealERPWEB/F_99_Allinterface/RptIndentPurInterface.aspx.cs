@@ -52,7 +52,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Response.Redirect("~/AcceessError");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Interface";//
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Indent Interface";//
 
                 //string date = System.DateTime.Today.ToString("dd-MMM-yyyy") ;
                 // this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
@@ -85,11 +85,11 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "3354"://ERL
                 case "3101":
-                    this.hlnkMktInterface.Visible = true;
+                    //this.hlnkMktInterface.Visible = true;
                     break;
 
                 default:
-                    this.hlnkMktInterface.Visible = false;
+                    //this.hlnkMktInterface.Visible = false;
                     break;
 
 
@@ -1603,8 +1603,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
 
 
-                //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
-
+               
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_12_Inv/PurReqApproval?Type=RateInput&prjcode=" + pactcode + "&genno=" + reqno;
 

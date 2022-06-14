@@ -738,9 +738,11 @@
                         $(".tbMenuWrp table tr td:nth-child(8)").hide()
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
-                        //$(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
+                       
+
                         break;
 
                     default:
@@ -931,8 +933,9 @@
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
                                         <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Go Purchase</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=IndentEntry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requsition</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink9" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Store Requsition</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=IndentEntry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Indent Requsition</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=res" CssClass="dropdown-item" Style="padding: 0 10px">Indent Item List</asp:HyperLink>
+                                        
                                         <asp:LinkButton ID="LinkButton2" runat="server" CssClass="dropdown-item" Style="padding: 0 10px" OnClick="lnkInteface_Click">Interface</asp:LinkButton></li>
                                                 <asp:LinkButton ID="LinkButton3" runat="server" CssClass="dropdown-item" Style="padding: 0 10px" Visible="false" OnClick="lnkRept_Click">ALL Reports</asp:LinkButton></li>
                                                 <asp:HyperLink ID="HyperLink10" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurInformation" CssClass="dropdown-item" Style="padding: 0 10px">Dashboard</asp:HyperLink>
@@ -960,12 +963,12 @@
                             <asp:Button ID="lblMIMEInfo" runat="server" CssClass="smLbl_to" Height="20px" Style="text-align: center; line-height: 20px; padding: 0; float: right;" Text="Search" />
                         </div>
 
-                          <div class="col-md-1">
+                         <%-- <div class="col-md-1">
                             <div class="form-group">     
 
                                 <asp:HyperLink ID="hlnkMktInterface" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/MKTProInterface?Type=Report" Visible="false" CssClass=" btn btn-warning">Mar. Interface</asp:HyperLink>
                             </div>
-                        </div>
+                        </div>--%>
 
                       
 
@@ -1035,12 +1038,20 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvpatcdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                                         Width="180px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Req <br>  Date">
                                                                 <ItemTemplate>
@@ -1131,14 +1142,7 @@
                                                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Department">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
-                                                                        Width="130px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
-                                                            </asp:TemplateField>
+                                                            
 
 
 
@@ -1381,12 +1385,20 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label10" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                                         Width="180px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Req <br>  Date">
                                                                 <ItemTemplate>
@@ -1888,14 +1900,21 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label23" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                                         Width="180px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Req <br>  Date">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label24" runat="server"
@@ -2029,14 +2048,14 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyperLink6" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
                                                                     <asp:HyperLink ID="HyInprPrintCS" runat="server" ToolTip="Print CS" Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
 
-                                                                    <asp:HyperLink ID="HyperLink18" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                                     </asp:HyperLink>
 
 
@@ -2575,12 +2594,20 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label34" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                                         Width="180px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Req <br>  Date">
                                                                 <ItemTemplate>
@@ -2682,14 +2709,14 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyperLink19" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="HyperLink20" runat="server" ToolTip="Print CS " Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintCS" runat="server" ToolTip="Print CS " Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="HyperLink21" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
 
@@ -2744,12 +2771,20 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label43" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                                         Width="180px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Req <br>  Date">
                                                                 <ItemTemplate>
@@ -2851,11 +2886,11 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprFAppPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
+                                                                   <asp:HyperLink ID="HyInprFAppPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="HyperLink22" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
 
@@ -2915,14 +2950,21 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label52" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                                         Width="180px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Supplier">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvsupplier" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
@@ -3024,13 +3066,14 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyperLink23" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                   <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="HyperLink24" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
 
                                                                     </asp:HyperLink>
+
 
                                                                     <asp:LinkButton ID="btnDelAprovedNo_Click" OnClick="btnDelAprovedNo_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                                     <%-- <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
@@ -3479,14 +3522,21 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label59" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                                         Width="150px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-
+                                                             <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Supplier">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvsuppliermrr" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
@@ -3572,7 +3622,7 @@
                                                                         Width="50px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="Label65" runat="server" Style="text-align: right"></asp:Label>
+                                                                    <asp:Label ID="lblgvFWoamt" runat="server" Style="text-align: right"></asp:Label>
                                                                 </FooterTemplate>
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" Width="50px" />
                                                             </asp:TemplateField>
@@ -3616,15 +3666,15 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyperLink26" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="HyperLink27" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
 
-                                                                    <asp:HyperLink ID="HyperLink28" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
 
@@ -3889,7 +3939,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Project Name">
+                                                            <asp:TemplateField HeaderText="Store Name">
                                                                 <HeaderTemplate>
                                                                     <asp:TextBox ID="txtSearchProNameBill" runat="server" BackColor="Transparent" BorderStyle="None" SortExpression="project name" Width="180px" placeholder="Project Name" onkeyup="Search_Gridview(this,1,'gvPurBill')"></asp:TextBox><br />
                                                                 </HeaderTemplate>
@@ -3898,6 +3948,14 @@
                                                                         Width="180px" Font-Bold="true"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText="Supplier">
@@ -4026,11 +4084,12 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyperLink29" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                   
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="HyperLink30" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
                                                                     <asp:LinkButton ID="btnDelBill" OnClick="btnDelBill_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>

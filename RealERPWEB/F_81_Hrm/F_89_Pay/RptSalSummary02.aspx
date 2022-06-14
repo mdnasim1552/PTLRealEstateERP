@@ -43,6 +43,10 @@
         function CloseModal() {
             $('#bankChecksInfo').modal('hide');
         };
+        function NewWindow() {
+            document.forms[0].target = "_blank";
+        };
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -559,8 +563,7 @@
 
                                         <asp:TemplateField HeaderText="" Visible="false">
                                             <ItemTemplate>
-
-                                                <asp:LinkButton ID="btnPrintCheck" runat="server" OnClick="btnPrintCheck_Click" CssClass="btn btn-sm btn-primary"><i class="fa fa-print "></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnPrintCheck" runat="server" OnClick="btnPrintCheck_Click" CssClass="btn btn-sm btn-primary"   PostBackUrl="#" AutoPostBack="True" ToolTip="Print Check"  OnClientClick="NewWindow();" ><i class="fa fa-print"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="chekPrint" runat="server" OnClick="chekPrint_Click" CssClass="btn btn-sm btn-primary hidden">Entry</asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
