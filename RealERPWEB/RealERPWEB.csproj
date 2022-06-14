@@ -167,6 +167,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\..\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -182,9 +185,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
-        <HintPath>..\..\..\..\02.Local Projects\PTLRealEstateERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -4793,7 +4794,7 @@
     </Compile>
     <Compile Include="F_99_Allinterface\RptFacilityInterface.aspx.designer.cs">
       <DependentUpon>RptFacilityInterface.aspx</DependentUpon>
-        <SubType>ASPXCodeBehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_99_Allinterface\RptIndentPurInterface.aspx.cs">
       <DependentUpon>RptIndentPurInterface.aspx</DependentUpon>
