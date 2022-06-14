@@ -292,8 +292,8 @@ namespace RealERPWEB
         {
 
 
-            try
-            {
+            //try
+            //{
 
                 UserLogin ulog = new UserLogin();
                 DataSet ds1 = ulog.GetHitCounter();
@@ -466,12 +466,25 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
-                hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
-                hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
-                //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
-                //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
+                //hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
 
+                if (ds5.Tables[0].Columns.Contains("comunpost"))
+                {
+                    hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                }
+                else
+                {
+                    hst["comunpost"] = "0";
+                }
 
+                if (ds5.Tables[0].Columns.Contains("homeurl"))
+                {
+                    hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+                }
+                else
+                {
+                    hst["homeurl"] = "UserProfile";
+                }
 
                 // hst["permission"] = ds5.Tables[0].Rows[0]["permission"];
                 Session["tblLogin"] = hst;
@@ -499,19 +512,23 @@ namespace RealERPWEB
 
                 //Company Logstatus
                 ConstantInfo.LogStatus = Convert.ToBoolean(ds5.Tables[0].Rows[0]["logstatus"]);
-                //string eventtype = ""
-                //string eventdesc = "Login into the system";
-                //string eventdesc2 = "";
-                //bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+           
 
 
-
+                string Url1 = "";
                 string eventtype = "1";
                 string eventdesc = "Login into the system";
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-                string Url1 =  ds5.Tables[0].Rows[0]["homeurl"].ToString(); //"";
+                if (ds5.Tables[0].Columns.Contains("homeurl"))
+                {
+                    Url1 = ds5.Tables[0].Rows[0]["homeurl"].ToString(); //"";
+                }
+                else
+                {
+                    Url1 = "UserProfile";
+                }
+               
 
                 string userrole = ds5.Tables[0].Rows[0]["userrole"].ToString();
 
@@ -598,15 +615,15 @@ namespace RealERPWEB
                 Response.Redirect(Url1, false);
 
 
-            }
-            catch (Exception ex)
-            {
-                this.lblmsg.Visible = true;
-                this.lblmsg.Text = ex.Message;
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.lblmsg.Visible = true;
+            //    this.lblmsg.Text = ex.Message;
 
 
 
-            }
+            //}
 
             //Response.Redirect("ASITDefault");
 
