@@ -292,8 +292,8 @@ namespace RealERPWEB
         {
 
 
-            //try
-            //{
+            try
+            {
 
                 UserLogin ulog = new UserLogin();
                 DataSet ds1 = ulog.GetHitCounter();
@@ -559,8 +559,6 @@ namespace RealERPWEB
                 //{
                 //    Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
                 //}
-
-
                 //else
                 //{
                 //    if (masterurl != "")
@@ -615,19 +613,19 @@ namespace RealERPWEB
                 Response.Redirect(Url1, false);
 
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.lblmsg.Visible = true;
-            //    this.lblmsg.Text = ex.Message;
-
-
-
-            //}
-
-            //Response.Redirect("ASITDefault");
-
         }
+            catch (Exception ex)
+            {
+                this.lblmsg.Visible = true;
+                this.lblmsg.Text = ex.Message;
+
+
+
+            }
+
+    //Response.Redirect("ASITDefault");
+
+}
 
 
         protected void listComName_SelectedIndexChanged(object sender, EventArgs e)
