@@ -106,8 +106,11 @@ namespace RealERPWEB
         }
         private void GetMenuGenerate()
         {
+            Hashtable hst = (Hashtable)System.Web.HttpContext.Current.Session["tblLogin"];
 
-            this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+            string homelink = hst["homeurl"].ToString();
+            this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/"+ homelink));
+            //this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
             List<EClassComModule> lst = (List<EClassComModule>)Session["tblmodule"];
             MenuItem FirstParentItem = null;
 

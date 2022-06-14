@@ -90,20 +90,21 @@
                     <Value>=Format(Parameters!amt.Value)</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>7.91229in</Top>
-            <Left>3.95486in</Left>
-            <Height>1.96875in</Height>
-            <Width>0.35555in</Width>
+            <Left>4.00486in</Left>
+            <Height>1.99375in</Height>
+            <Width>0.34305in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -368,8 +369,8 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>7.9477in</Top>
-            <Left>4.99289in</Left>
+            <Top>7.9852in</Top>
+            <Left>5.03039in</Left>
             <Height>2.1316in</Height>
             <Width>0.27639in</Width>
             <ZIndex>3</ZIndex>
@@ -442,7 +443,7 @@
                         <Value>=Parameters!date1.Value</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
-                          <FontSize>8pt</FontSize>
+                          <FontSize>9pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -489,10 +490,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>0.35312in</Top>
+                <Top>0.44687in</Top>
                 <Left>1.58479in</Left>
-                <Height>1.66294in</Height>
-                <Width>0.31345in</Width>
+                <Height>1.58169in</Height>
+                <Width>0.30303in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -527,7 +528,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox25</rd:DefaultName>
                 <Top>0.35312in</Top>
-                <Left>0.50362in</Left>
+                <Left>0.44112in</Left>
                 <Height>1.66294in</Height>
                 <Width>0.29834in</Width>
                 <ZIndex>2</ZIndex>
@@ -559,13 +560,13 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Left</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
                 <Top>0.20417in</Top>
-                <Left>0.9714in</Left>
+                <Left>0.9339in</Left>
                 <Height>1.8119in</Height>
                 <Width>0.28397in</Width>
                 <ZIndex>3</ZIndex>
@@ -610,8 +611,8 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>3.93195in</Top>
-            <Left>4.99289in</Left>
-            <Height>3.9918in</Height>
+            <Left>5.03039in</Left>
+            <Height>4.0543in</Height>
             <Width>0.27639in</Width>
             <ZIndex>7</ZIndex>
             <Style>
