@@ -998,7 +998,7 @@
                                                         <asp:ListItem Value="12"></asp:ListItem>
                                                         <asp:ListItem Value="13"></asp:ListItem>
                                                         <asp:ListItem Value="14"></asp:ListItem>
-                                                      <asp:ListItem Value="15"></asp:ListItem>  <%--Material Received(Approved)--%>
+                                                        <asp:ListItem Value="15"></asp:ListItem>  <%--Material Received(Approved)--%>
                                                         <asp:ListItem Value="16"></asp:ListItem>
                                                         <asp:ListItem Value="17"></asp:ListItem>
                                                         <asp:ListItem Value="18"></asp:ListItem>
@@ -1121,6 +1121,27 @@
                                                                 </FooterTemplate>
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" Width="80px" />
                                                             </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Dept Code" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptcode" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptcode")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Department">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                                        Width="130px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
+
+
+
 
                                                             <asp:TemplateField HeaderText="Curent Status">
                                                                 <ItemTemplate>
@@ -1390,7 +1411,7 @@
 
                                                             <asp:TemplateField HeaderText="">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="TextBox1" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqChk')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnumrchq" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqChk')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 
@@ -1463,13 +1484,13 @@
                                                                 <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>--%>
-                                                            <asp:TemplateField HeaderText="">
+                                                              <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" ForeColor="Blue" Font-Underline="false"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" ForeColor="Blue" Font-Underline="false"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
 
@@ -1487,6 +1508,8 @@
                                                                 <ItemStyle Width="100px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="167px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
+
+
 
 
 
