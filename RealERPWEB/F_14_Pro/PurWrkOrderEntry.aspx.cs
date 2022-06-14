@@ -1954,8 +1954,8 @@ namespace RealERPWEB.F_14_Pro
                 {
                     try
                     {
-                        string empid = "930100101086"; // MD Sir Employee ID Card 
-                        /*  string empid = "930100101005";*/ // MD Sir Employee ID Card 
+                        string empid = "930100101086"; // MD Sir Employee ID  
+                        /*  string empid = "930100101005";*/ // MD Sir Employee 
                         var ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
 
                         if (ds1 == null)
@@ -1967,11 +1967,15 @@ namespace RealERPWEB.F_14_Pro
                         string project = dsty.Rows[0]["projdesc1"].ToString();
                         string supname = dsty.Rows[0]["ssirdesc1"].ToString();
                         string amount = dsty.Rows[0]["ordramt"].ToString() + " BDT";
-
+                      
+                        string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+                        string currentptah = "/F_14_Pro/PurWrkOrderEntry?InputType=SecondApp&genno=" + mORDERNO + "&comcod=" + comcod + "&usrid=" + suserid;
+                        string totalpath = uhostname + currentptah;
 
                         string maildescription = "Dear Sir, Please check details information <br>" + "<br> Project Name : " + project + ",<br>" + "Supplier Name : " + supname + ",<br>" + "Amount : " + amount + "." + "<br>" +
                              " <br> <br> <br> N.B: This email is system generated. ";
 
+                        maildescription += "<br> <br><div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Interface</div>" + "<br/>";
                         ///GET SMTP AND SMS API INFORMATION
                         #region
                         string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
