@@ -299,7 +299,7 @@
                                     <asp:TemplateField HeaderText="Team Head">
                                         <HeaderTemplate>
                                             <asp:Label ID="txtsrcE" runat="server" Width="100px">Team Head</asp:Label>
-                                            <%--<asp:TextBox ID="txtsrcE" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Team Head" onkeyup="Search_Gridview(this,6)" Font-Size="12px"></asp:TextBox>--%>
+                                          
                                             <a id="head" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -309,7 +309,19 @@
 
 
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Status">
+                                    <asp:TemplateField HeaderText="Previous Status">
+                                        <HeaderTemplate>
+                                            <asp:Label ID="txtsrcps" runat="server" Width="60px">Previous Status</asp:Label>
+                                            
+                                            <a id="psstatus" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllpsstatus" runat="server" Width="80px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "preleadst")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Status">
                                         <HeaderTemplate>
                                             <asp:Label ID="txtsrcF" runat="server" Width="60px">Status</asp:Label>
                                             <%--<asp:TextBox ID="txtsrcF" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Status" onkeyup="Search_Gridview(this,7)" Font-Size="12px"></asp:TextBox>--%>
@@ -320,6 +332,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstatus")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Type">
                                         <HeaderTemplate>
                                             <asp:Label ID="txtsrcH" runat="server" Width="40px">Type</asp:Label>
@@ -330,6 +343,10 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadType")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+
+
+
                                     <asp:TemplateField HeaderText="Lead Source" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lLSrc" runat="server" Width="100px" Font-Size="12px"

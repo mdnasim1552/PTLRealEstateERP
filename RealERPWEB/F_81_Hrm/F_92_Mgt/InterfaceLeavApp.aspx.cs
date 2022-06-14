@@ -455,9 +455,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
-                //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
                 string Messaged = "Leave deleted successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentl('" + Messaged + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
 
                 int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
                 dt.Rows[ins].Delete();
@@ -474,6 +473,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
             this.SaleRequRpt();
         }
 
@@ -482,7 +486,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "You have no permission" + "');", true);
                 return;
             }
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
@@ -501,9 +505,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "LEVAAPPFROWARD", leavid, empid, lvdptuid, usrid, "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
-                //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
-                string Messaged = "Leave Forward  successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentl('" + Messaged + "');", true);
+                string Messaged = "Leave Forward Remove successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
 
                 int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
                 dt.Rows[ins].Delete();
@@ -520,6 +523,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
             this.SaleRequRpt();
             this.LeaveReset(leavid, empid, lvstatdat, lvenddat);
         }
@@ -528,7 +536,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "You have no permission" + "');", true);
                 return;
             }
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
@@ -543,7 +551,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data deleted successfully" + "');", true);
                 int ins = this.gvApproved.PageSize * this.gvApproved.PageIndex + index;
                 dt.Rows[ins].Delete();
                 ViewState.Remove("tbltotalleav");
@@ -565,7 +573,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "You have no permission" + "');", true);
                 return;
             }
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
@@ -596,12 +604,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
             this.SaleRequRpt();
         }
 
         private void LeaveReset(string leavid, string empidd, string lvstatdat, string lvenddat)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             string comcod = this.GetCompCode();
             string trnid = leavid;
             string empid = empidd;
