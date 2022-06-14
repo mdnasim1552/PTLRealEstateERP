@@ -108,8 +108,6 @@
                 <div class="row" id="warning" runat="server" visible="false">
                     <div class="col-12 col-lg-12 col-xl-12">
                         <div class="section-block">
-
-
                             <div class="alert alert-danger has-icon" role="alert">
                                 <div class="alert-icon">
                                     <span class="fa fa-bullhorn"></span>
@@ -118,9 +116,18 @@
                                 <br />
                                 Please Contact you HR Department 
                             </div>
-
-
-
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divApproval" runat="server" visible="false">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="section-block">
+                            <div class="alert alert-danger has-icon" role="alert">
+                                <div class="alert-icon">
+                                    <span class="fa fa-bullhorn"></span>
+                                </div>
+                                The leave already has been approved!.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -426,8 +433,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="card-body">
-                                             
-                                            <asp:Label ID="lblDutesInfo" CssClass="d-block text-info" Font-Bold="true" runat="server"></asp:Label>
+
+                                        <asp:Label ID="lblDutesInfo" CssClass="d-block text-info" Font-Bold="true" runat="server"></asp:Label>
 
                                     </div>
                                 </div>
