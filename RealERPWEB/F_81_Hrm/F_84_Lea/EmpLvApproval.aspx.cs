@@ -48,25 +48,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.GetComNameAAdd();
                     this.GetUserPermission();
                     this.MasComNameAndAdd();
-
                 }
-
-                //if (prevPage.Length == 0)
-                //{
-                //    prevPage = Request.UrlReferrer.ToString();
-                //}
-                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                //    Response.Redirect("../AcceessError.aspx");
-                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Leave Approval";
                 string Type = this.Request.QueryString["Type"].ToString();
                 string Date = (Type == "Ind") ? this.Request.QueryString["Date"].ToString() : System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
                 this.txtdate.Text = Date;
 
-                GetDptUserCheck();
+                this.IsApprovalCheck();
+                this.GetDptUserCheck();
 
                 // this.CommonButton();
                 this.GetProjectName();
@@ -80,12 +70,31 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
 
         }
+        private void IsApprovalCheck()
+        {
+            string comcod = this.GetCompCode();
+            string ltrnId = this.Request.QueryString["ltrnid"] ?? "";
 
+            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GET_LEAVE_APPROVAL", ltrnId, "", "", "", "", "", "", "", "");
+            if (ds == null)
+            {
+                return;
+            }
+            string aprovDate = Convert.ToDateTime(ds.Tables[0].Rows[0]["aprovdat"]).ToString("dd-MMM-yyyy");
+            if (aprovDate != "01-Jan-1900")
+            {
+                this.divApproval.Visible = true;
+                this.levapp.Visible = false;
+                return;
+            }
+
+        }
         private void GetDptUserCheck()
         {
             string comcod = this.GetCompCode();
             string refno = this.Request.QueryString["refno"] ?? "";
             string RoleType = this.Request.QueryString["RoleType"] ?? "";
+
             if (RoleType == "SUP")
             {
                 RoleType = RoleType == "SUP" ? "DPT" : "";
@@ -101,7 +110,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.dptNameset.InnerText = ds.Tables[0].Rows[0]["dptname"].ToString();
                     this.warning.Visible = true;
                     this.levapp.Visible = false;
-
                     return;
                 }
             }
@@ -1396,7 +1404,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[0].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[0].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                 DataTable dt = (DataTable)ViewState["tblempinfo"];
-                string supapp = "Your leave request approved has been approved by the Supervisor, please waiting for Department/Section Head approval.";
+                string supapp = "Your leave request has been approved by the Supervisor, please waiting for Department/Section Head approval.";
                 string dptapp = "Your leave request has been approved by the Department/Section Head.";
 
                 string empUsrID = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empuserid"].ToString();
@@ -1483,9 +1491,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 // for applied user send notification
-
                 string toMSgBody = (roletype == "SUP" ? supapp :
-                                     roletype == "DPT" ? dptapp : "Your leave request has been approved");
+                                    roletype == "DPT" ? dptapp : "Your leave request has been approved");
+
+
+                 toMSgBody = "Hi !! ,"+ toMSgBody + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                    "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+               
+
                 string toEmpsub = "Leave Request Approved";
                 bool result3 = UserNotify.SendNotification(toEmpsub, toMSgBody, empUsrID);
                 if (result3 == false)
