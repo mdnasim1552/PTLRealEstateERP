@@ -1931,8 +1931,6 @@ namespace RealERPWEB.F_14_Pro
                         break;
 
                     default:
-
-
                         if ((this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry"))
                         {
                             SendSmsProcess sms = new SendSmsProcess();
@@ -1943,68 +1941,69 @@ namespace RealERPWEB.F_14_Pro
                             string SMSText = comnam + ":\n" + SMSHead + "\n" + dsty.Rows[0]["projdesc1"].ToString() + "\n" + "MRF No:" + dsty.Rows[0]["mrfno"].ToString() + "\n" + "to Supplier: " +
                              dsty.Rows[0]["ssirdesc1"].ToString();
                             bool resultsms = sms.SendSmms(SMSText, userid, frmname);
-
                         }
                         break;
                 }
-
             }
 
             if (comcod == "3368"|| comcod=="3101")
             {
-                try
+
+                string pactcode = dsty.Rows[0]["pactcode"].ToString().Substring(0,4);
+                if (pactcode != "1102")
                 {
-                    string empid = "930100101086"; // MD Sir Employee ID Card 
-                  /*  string empid = "930100101005";*/ // MD Sir Employee ID Card 
-                    var ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
+                    try
+                    {
+                        string empid = "930100101086"; // MD Sir Employee ID Card 
+                        /*  string empid = "930100101005";*/ // MD Sir Employee ID Card 
+                        var ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
 
-                    if (ds1 == null)
-                        return;
-                    
-                    string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
-                    string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
-                    string idcard = (string)ds1.Tables[1].Rows[0]["idcard"];
-                    string project = dsty.Rows[0]["projdesc1"].ToString();
-                    string supname = dsty.Rows[0]["ssirdesc1"].ToString();
-                    string amount = dsty.Rows[0]["ordramt"].ToString()+" BDT";
-                    
+                        if (ds1 == null)
+                            return;
 
-                    string maildescription = "Dear Sir, Please check details information <br>" + "<br> Project Name : " + project + ",<br>" + "Supplier Name : " + supname + ",<br>" + "Amount : " + amount + "." + "<br>" +
-                         " <br> <br> <br> N.B: This email is system generated. ";
-                   
-                    ///GET SMTP AND SMS API INFORMATION
-                    #region
-                    string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-                    DataSet dssmtpandmail = purData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-                    if (dssmtpandmail == null)
-                        return;
-                    //SMTP
-                    string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-                    int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-                    string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
-                    string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
-                    bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
-                    #endregion
+                        string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
+                        string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
+                        string idcard = (string)ds1.Tables[1].Rows[0]["idcard"];
+                        string project = dsty.Rows[0]["projdesc1"].ToString();
+                        string supname = dsty.Rows[0]["ssirdesc1"].ToString();
+                        string amount = dsty.Rows[0]["ordramt"].ToString() + " BDT";
 
 
-                    #region
-                    string subj = "Purchase Order";
-                    string msgbody = maildescription;
+                        string maildescription = "Dear Sir, Please check details information <br>" + "<br> Project Name : " + project + ",<br>" + "Supplier Name : " + supname + ",<br>" + "Amount : " + amount + "." + "<br>" +
+                             " <br> <br> <br> N.B: This email is system generated. ";
 
-                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, "", "", "", "", tomail, msgbody, isSSL);
-                       
-                   
-                    #endregion
+                        ///GET SMTP AND SMS API INFORMATION
+                        #region
+                        string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                        DataSet dssmtpandmail = purData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                        if (dssmtpandmail == null)
+                            return;
+                        //SMTP
+                        string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                        int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                        string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                        string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                        bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
+                        #endregion
+
+
+                        #region
+                        string subj = "Purchase Order";
+                        string msgbody = maildescription;
+
+                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, "", "", "", "", tomail, msgbody, isSSL);
+
+
+                        #endregion
+                    }
+                    catch (Exception ex)
+                    {
+                        string Messagesd = "Mail Not Send " + ex.Message;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    string Messagesd = "Mail Not Send " + ex.Message;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-                }
+                
             }
-
-
-
 
             //if (ConstantInfo.LogStatus == true)
             //{
