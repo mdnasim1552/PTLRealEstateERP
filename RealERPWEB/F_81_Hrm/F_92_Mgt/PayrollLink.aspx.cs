@@ -111,6 +111,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlBranch.DataSource = ds1.Tables[0];
             this.ddlBranch.DataBind();
             ds1.Dispose();
+            ddlBranch_SelectedIndexChanged(null,null);
 
         }
         public void LoadOrderDapp()
@@ -150,9 +151,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlSectionList.DataBind();
 
         }
-
-
-
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -256,8 +254,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //   ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
             //    return;
             //}
-
-
             string comcod = this.GetCompCode();
             string msg = "";
             this.Session_tbltbPreLink_Update();
@@ -280,8 +276,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             msg = "Data Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
-
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
@@ -291,14 +285,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
         }
 
-
-
         protected void ImgbtnFindUser1_Click(object sender, EventArgs e)
         {
             this.Getuser();
         }
-
-
         protected void ImgbtnFindComp_Click(object sender, EventArgs e)
         {
             this.GetCompany();
@@ -307,16 +297,35 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            DataTable dt = (DataTable)Session["tblPayPer"];
+            DataTable dt = (DataTable)ViewState["tblPayPer"];
             string actcode = ((Label)this.gvPayrollLinkInfo.Rows[e.RowIndex].FindControl("lblgvCompCod")).Text.Trim();
             string usrid = ((Label)this.gvPayrollLinkInfo.Rows[e.RowIndex].FindControl("lblgvCompusrid")).Text.Trim();
+
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "DELETEPAYLINK", actcode, usrid, "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (!result)
-                return;
+          
+            if (result == true)
+            {
+                int rowindex = (this.gvPayrollLinkInfo.PageSize) * (this.gvPayrollLinkInfo.PageIndex) + e.RowIndex;
+                dt.Rows[rowindex].Delete();
+                ViewState["tblPayPer"] = dt;
+                ///gvProLinkInfo_DataBind();
+            }    
+            //string Messagesd = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+            this.Data_Bind();
+        }
+        protected void lbtnDeleteAll_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string usrid = this.ddlUserList.SelectedValue.ToString();
 
-            string Messagesd = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
-
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "DELETEPAYLINK", "", usrid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (result == true)
+            {
+                string Messagesd = "Delete Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+            }
             this.ShowPayLink();
         }
 
@@ -510,7 +519,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             else if (actcode == "000000000000" && dptlist == "000000000000" && brnch == "000000000000") // for all branch 
             {
-
                 for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
                 {
                     section = this.ddlSectionList.Items[i].Value;
@@ -529,13 +537,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         }
                         ViewState["tblPayPer"] = tbl1;
                     }
-
                 }
             }
             else
             {
-
-
                 for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
                 {
                     section = this.ddlSectionList.Items[i].Value;
@@ -554,15 +559,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         }
                         ViewState["tblPayPer"] = tbl1;
                     }
-
                 }
-
-
-
             }
-
-
-
             this.Data_Bind();
         }
 

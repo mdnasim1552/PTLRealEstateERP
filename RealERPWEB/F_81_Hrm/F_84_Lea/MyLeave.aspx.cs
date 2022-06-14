@@ -932,10 +932,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 DataTable dt = (DataTable)ViewState["tblempinfo"];
                 string leavedesc = this.ddlLvType.SelectedItem.ToString();
                 string empid = this.GetEmpID();
+                string delgationemp = this.ddlDutyEmp.SelectedValue.ToString();
                 string callType = "GETSUPERVISERMAIL";
-                if (comcod == "3368" || comcod == "3101")
+                if ((comcod == "3368" || comcod == "3101") && delgationemp != "000000000000")
                 {
-                    empid = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ? empid : this.ddlDutyEmp.SelectedValue.ToString();                     
+                    empid = delgationemp;                     
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
 
