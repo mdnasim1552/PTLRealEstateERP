@@ -49,6 +49,7 @@ namespace RealERPWEB.F_12_Inv
                 this.chkneBudget.Checked = true;
                 //this.DupMRR();
                 this.Load_Project_Combo();
+                this.GetDeparment();
 
                 this.VisibleGrid();
                 this.lblmrfno.Text = ReadCookie();
@@ -253,6 +254,27 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
+
+
+        protected void GetDeparment()
+        {
+            string comcod = this.GetCompCode();
+            //string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "FXTASSTGETDEPARTMENT", "%%", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ds1.Tables[0].Rows.Add(comcod, "000000000000", "Department");
+            ds1.Tables[0].Rows.Add(comcod, "AAAAAAAAAAAA", "-------Select-----------");
+
+
+            this.ddlDeptCode.DataTextField = "fxtgdesc";
+            this.ddlDeptCode.DataValueField = "fxtgcod";
+            this.ddlDeptCode.DataSource = ds1.Tables[0];
+            this.ddlDeptCode.DataBind();
+            this.ddlDeptCode.SelectedValue = "AAAAAAAAAAAA";
+        }
+
+
         private string GetCompCode()
         {
 
@@ -269,7 +291,12 @@ namespace RealERPWEB.F_12_Inv
             string fxtast = (this.Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "ReqEdit") ? "ReqEdit"
-                        : (this.Request.QueryString["InputType"].ToString() == "HeadUsed") ? "HeadUsed" : "";
+                        : (this.Request.QueryString["InputType"].ToString() == "HeadUsed") ? "HeadUsed" 
+                        : (this.Request.QueryString["InputType"].ToString() == "IndentEntry") ? "ReqIndent" : "";
+
+
+
+
 
 
             string Aproval = (this.Request.QueryString["InputType"].ToString() == "Approval") ? "Aproval" : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "Aproval" : "";
@@ -527,6 +554,7 @@ namespace RealERPWEB.F_12_Inv
             this.txtCurReqNo2.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(6, 5);
             this.txtCurReqDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["reqdat"]).ToString("dd.MM.yyyy");
 
+            this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
 
             this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
             if (ASTUtility.Left(ds1.Tables[1].Rows[0]["pactcode"].ToString(), 4) == "1102")
@@ -1091,6 +1119,9 @@ namespace RealERPWEB.F_12_Inv
             string mAPPBYDES = this.txtApprovedBy.Text.Trim();
             string reqtype = "";
             string uFP = this.ddlPrjForUse.SelectedValue.ToString();
+
+            string deptcode  = this.ddlDeptCode.SelectedValue.ToString();
+
             if (this.Request.QueryString["InputType"] == "LcEntry")
             {
                 reqtype = "LC";
@@ -1172,14 +1203,18 @@ namespace RealERPWEB.F_12_Inv
 
             //}
 
-
+            string indentType = "";
+            if (this.Request.QueryString["InputType"] == "IndentEntry")
+            {
+                indentType = "Indent";
+            }
 
 
             string mREQNAR = this.txtReqNarr.Text.Trim();
             //string ptype = this.ddlptype.SelectedValue.ToString();
             bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURREQINFO", "PURREQB", mREQNO, mREQDAT, mPACTCODE, mFLRCOD, mREQUSRID,
                 mAPPRUSRID, mAPPRDAT, mEDDAT, mREQBYDES, mAPPBYDES, mMRFNO, mREQNAR, PostedByid, Posttrmid, PostSession, EditByid, Edittrmid, EditSession,
-                EditDat, PostedDat, reqtype, uFP, crmchekd, crmcheckbyid, crnPosttrmid, crmPostSession, crmcPostedDat);
+                EditDat, PostedDat, reqtype, uFP, crmchekd, crmcheckbyid, crnPosttrmid, crmPostSession, crmcPostedDat , indentType ,  deptcode);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1720,12 +1755,21 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
+            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
+
+            string indent = "";
+            if (deptcode != "AAAAAAAAAAAA")
+            {
+                indent = "Indent"; 
+            }
+
+
             //string reqapproval = this.GetReqApproval();
             //bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEREQCHECKED", mREQNO, Approval, "", "", "", "", "", "",
             //    "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEREQCHECKED", mREQNO, checkusrid, checkTerminal, checkSessionid, checkDate, Approval, crmData, crmNarr,
-                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                indent, deptcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -2187,9 +2231,32 @@ namespace RealERPWEB.F_12_Inv
             if (ds1 == null)
                 return;
 
+     
+
             ViewState["tblMat"] = ds1.Tables[0];
             ViewState["tblSpcf"] = ds1.Tables[1];
             ViewState["tblcat"] = ds1.Tables[2];
+
+            if (Request.QueryString["InputType"].ToString() == "IndentEntry")
+            {
+                DataTable dt1 = ds1.Tables[0].Copy();
+
+                DataView dv = dt1.DefaultView;
+
+                dv.RowFilter = "rsircode like '2298%' ";
+
+                DataTable dt2 = new DataTable();
+
+                dt2 = dv.ToTable();
+
+                ViewState["tblMat"] = dt2;
+                //var selectRow = dt1.Rows.Cast<DataRow>().All(row => row.Field<int>("rsircode").ToString().Substring(0,4) == "2298");
+
+
+
+            }
+
+
 
 
             // Catagory
@@ -2345,13 +2412,19 @@ namespace RealERPWEB.F_12_Inv
             if (ASTUtility.Left(actcode, 4) == "1102")
             {
                 this.uPrj.Visible = true;
+               
                 this.Load_Project_To_Combo();
             }
             else
             {
                 this.uPrj.Visible = false;
+               
                 this.ddlPrjForUse.Items.Clear();
             }
+
+           
+
+
 
 
 

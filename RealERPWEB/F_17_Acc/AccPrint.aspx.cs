@@ -47,7 +47,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "CashSalaryCheque":
-                    PrinChequeBti();
+                    PrinChequeCashSalary();
                     break;
 
 
@@ -4426,10 +4426,8 @@ namespace RealERPWEB.F_17_Acc
 
         /// BTI Check Print
         /// 
-        private void PrinChequeBti()
+        private void PrinChequeCashSalary()
         {
-
-
             try
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -4439,14 +4437,15 @@ namespace RealERPWEB.F_17_Acc
                 string cashamt = this.Request.QueryString["amt"].ToString();
                 string ckdate = this.Request.QueryString["ckdate"].ToString();
                 string bankcode = this.Request.QueryString["bankcode"].ToString();
+                string yearmon = this.Request.QueryString["yearmon"].ToString();
+                string daydesc = "Salary" + ASTUtility.Month3digit(Convert.ToInt32(ASTUtility.Right(yearmon, 2))).ToString() + "/ " + ASTUtility.Left(yearmon, 4);
+                
+                //DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "PRINTCHECK", "", "", "", "", "", "", "", "", "");
+                //if (_ReportDataSet == null)
+                //    return;
+                //DataTable dt1 = _ReportDataSet.Tables[0];
 
-                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "PRINTCHECK", "", "", "", "", "", "", "", "", "");
-                if (_ReportDataSet == null)
-                    return;
-                DataTable dt1 = _ReportDataSet.Tables[0];
                 string voudat = Convert.ToDateTime(ckdate).ToString("ddMMyyyy");
-
-
                 string payto = empname;
                 double amt = Convert.ToDouble(cashamt);
                 string amt1 = ASTUtility.Trans(Math.Round(amt), 2);
@@ -4454,7 +4453,6 @@ namespace RealERPWEB.F_17_Acc
                 string amt2 = amt1.Substring(7, (len - 8));
                 string wam1 = string.Empty;
                 string wam2 = string.Empty;
-                string Chequeprint = this.CompanyPrintCheque();
                 string[] amtWrd1 = ASTUtility.Trans(Math.Round(amt, 0), 2).Split('(', ')');
                 string[] amtdivide = amtWrd1[1].Split(' ');
 
@@ -4482,39 +4480,47 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["payTo"] = payto;
                 hshtbl["acpayee"] = value;
                 hshtbl["date"] = voudat;
+                hshtbl["ckdate"] = ckdate;
                 hshtbl["amtWord"] = wam2;//.ToUpper();
                 hshtbl["amtWord1"] = wam1;//.ToUpper();
-                                          // hshtbl["payble"] = value;
+                // hshtbl["payble"] = value;
                 hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
+                hshtbl["prjdesc"] = daydesc;
                 LocalReport rpt1 = new LocalReport();
                 string banktype = bankcode;
+                switch (comcod)
+                {
+                    case "3365":
+                        rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeOneBankBti", hshtbl, null, null);
+                        break;
+                    default:
+                        // defult Trust Bank 
+                        if (banktype == "TBL")
+                        {
+                            rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                        }
+                        // Shimanto Bank RptChequeGreenwoodSHBL
+                        else if (banktype == "SHBL")
+                        {
+                            rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHBL", hshtbl, null, null);
+                        }
+                        // Shahjalal Islami Bank Ltd RptChequeGreenwoodSHIBL
+                        else if (banktype == "SHIBL")
+                        {
+                            rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHIBL", hshtbl, null, null);
+                        }
+                        // Fast Security Bank Ltd RptChequeGreenwoodFSIBL
+                        else if (banktype == "FSIBL")
+                        {
+                            rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodFSIBL", hshtbl, null, null);
+                        }
+                        else
+                        {
+                            rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                        }
+                        break;
 
-                // defult Trust Bank 
-                if (banktype == "TBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
                 }
-                // Shimanto Bank RptChequeGreenwoodSHBL
-                else if (banktype == "SHBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHBL", hshtbl, null, null);
-                }
-                // Shahjalal Islami Bank Ltd RptChequeGreenwoodSHIBL
-                else if (banktype == "SHIBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHIBL", hshtbl, null, null);
-                }
-                // Fast Security Bank Ltd RptChequeGreenwoodFSIBL
-                else if (banktype == "FSIBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodFSIBL", hshtbl, null, null);
-                }
-                else
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
-                }
-
-
                 Session["Report1"] = rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

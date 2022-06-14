@@ -1509,7 +1509,7 @@
                                             <asp:ListItem Value="001">Earned Leave</asp:ListItem>
                                             <asp:ListItem Value="003">Arear Salary</asp:ListItem>
                                             <asp:ListItem Value="005">Project Visit</asp:ListItem>
-                                            <asp:ListItem Value="007">Car Allowance</asp:ListItem>
+                                  <%--          <asp:ListItem Value="007">Car Allowance</asp:ListItem>--%>
                                             <%--<asp:ListItem Value="008">Fooding</asp:ListItem>--%>
                                             <asp:ListItem Value="009">Refund</asp:ListItem>
                                             <asp:ListItem Value="012">Others</asp:ListItem>

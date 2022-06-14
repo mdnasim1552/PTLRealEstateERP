@@ -383,6 +383,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903311", "F_09_PImp", "PurLabRequisition?", "Type=Entry", "Sub-Contractor Bill Requisition", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903312", "F_09_PImp", "PurLabRequisition?", "Type=Edit", "Sub-Contractor Bill Requisition Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903313", "F_09_PImp", "PurLabRequisition?", "Type=CSApproval", "Sub-Contractor Bill CS Approval", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903314", "F_09_PImp", "SubContracBillTracking?", "Type=billtrack", "Sub-Contractor Bill Tracking -01", "Project Implementation", "False", "False", "False", "False" });
 
             //tblObj.Rows.Add(new Object[] { "0901000", "0901020", "EmpAssesmentCode?", "Type=AssessmntCode", "Assessment Code", "Project Implementation", "False", "False", "False", "False" }); rihan/emdad
             //tblObj.Rows.Add(new Object[] { "0902000", "0902033", "PurFinProIssueEntry", "", "Work Execution-Finishing Project", "Project Implementation", "False", "False", "False", "False" });;
@@ -439,6 +440,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203183", "F_12_Inv", "Material_Issue?", "Type=Entry", "Indent Materials Issue", "Inventory", "False", "False", "False", "False" });
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203195", "F_12_Inv", "PurReqEntry?", "InputType=IndentEntry", "Purcahase Requisition(Indent)", "Inventory", "False", "False", "False", "False" });
+
+
+
+
+
+
 
             tblObj.Rows.Add(new Object[] { "1251000", "1251001", "F_99_Allinterface", "InventoryInterface", "", "Inventory", "Inventory-Interface", "False", "False", "False", "False" });
 
@@ -577,6 +585,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1451000", "1451002", "F_99_Allinterface", "RptPurInterface?", "Type=Report", "Purchase", "Procurement-Interface", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1451000", "1451003", "F_99_Allinterface", "RptCashPurInterface", "", "Purchase(Cash)", "Procurement-Interface", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1451000", "1451004", "F_99_Allinterface", "RptLCInterface", "", "Import Interface", "Procurement-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1451000", "1451005", "F_99_Allinterface", "RptIndentPurInterface", "", "Purchase (Indent)", "Procurement-Interface", "False", "False", "False", "False" });
 
             //09.foreign Procurement
             #region
@@ -1742,6 +1751,18 @@ namespace RealERPLIB
 
             #endregion
 
+            //30. Facility Management
+
+            #region Facility Management
+            
+            tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Facility Management", "Facility-Interface", "False", "False", "False", "False" }); ;
+
+
+            #endregion
+
+
+
+
             #endregion
 
             #region KPI
@@ -1911,6 +1932,9 @@ namespace RealERPLIB
 
 
             #endregion
+
+
+
 
             #region HR
 
@@ -3303,12 +3327,6 @@ namespace RealERPLIB
                 case "79":   // KPI
                     MenuAllKPI(mnuTbl1);
                     break;
-
-
-
-
-
-
             }
 
 
@@ -4834,6 +4852,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000006", "11. Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000007", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000008", "14. Sub-Contractor Bill Tracking -01", "F_09_PImp/SubContracBillTracking?Type=billtrack", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "06. Consumption Based On Execution", "F_09_PImp/RptExeResRequirement", "", true, "" });
@@ -4971,7 +4991,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "04. Entry Lost, Sold & Destroyed", "F_13_Cen/EntryLostSoldAndDes01", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000000", "05. Purchase Requisition (Indent)", "F_12_Inv/PurReqEntry?InputType=IndentEntry&prjcode=&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0215000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0216000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0217000000", "", "", "", true, "" });
@@ -12235,9 +12255,6 @@ namespace RealERPLIB
 
 
         }
-
-
-
 
         public static void MenuGrMgtInterface(DataTable mnuTbl1)
         {
