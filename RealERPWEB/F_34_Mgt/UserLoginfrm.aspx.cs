@@ -844,12 +844,6 @@ namespace RealERPWEB.F_34_Mgt
 
 
 
-
-
-
-
-
-
             DataTable dt1 = (DataTable)Session["tblusrper"];
 
             for (int i = 0; i < dt1.Rows.Count; i++)
@@ -1298,7 +1292,7 @@ namespace RealERPWEB.F_34_Mgt
             this.txtmPassword.Text = "";
             this.txtmUserEmail.Text = ds1.Tables[0].Rows[0]["mailid"].ToString();
             this.txtmWebMailPass.Text = ds1.Tables[0].Rows[0]["mailpass"].ToString();
-            this.txtmGraph.Text = ds1.Tables[0].Rows[0]["eventspanel"].ToString();
+            this.txtmGraph.Text = ds1.Tables[0].Rows[0]["usrrmrk"].ToString();
             
             if (empid != "")
             {
@@ -1308,6 +1302,7 @@ namespace RealERPWEB.F_34_Mgt
 
             this.ddlmUserRole.SelectedValue = ds1.Tables[0].Rows[0]["userrole"].ToString();
             this.chkmUserActive.Checked= (ds1.Tables[0].Rows[0]["usractive"].ToString()=="True")?true:false;
+            this.ddlMenuLink.SelectedValue = ds1.Tables[0].Rows[0]["homeurl"].ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openUserModal();", true);
 
         }

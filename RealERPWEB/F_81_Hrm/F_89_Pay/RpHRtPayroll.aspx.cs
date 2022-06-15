@@ -305,6 +305,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtnPayTypeDiv.Visible = true;
                     this.rbtnPayType.Visible = true;
                     break;
+
                 case "3355"://Green Wood
                     this.rbtSalSheet.SelectedIndex = 17;
                     this.rbtnlistsaltypeAddItem();
@@ -323,27 +324,34 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3354"://Edison Real Estate
                     this.rbtSalSheet.SelectedIndex = 19;
                     break;
+
                 case "3358"://Entrust Real Estate
                     this.rbtSalSheet.SelectedIndex = 20;
                     break;
-                case "3365"://BTI
-                case "3101"://
-                    this.rbtSalSheet.SelectedIndex = 21;
-                    break;
+
                 //case "3101"://
                 case "3364"://JBS
                     this.rbtSalSheet.SelectedIndex = 22;
                     break;
 
-                case "3366"://JBS
+                case "3365"://BTI
+                case "3101":
+                    this.rbtSalSheet.SelectedIndex = 21;
+                    break;
+
+                case "3366"://Lanco
+                //case "3101":
                     this.rbtSalSheet.SelectedIndex = 23;
                     break;
+
                 case "3367"://Epic
                     this.rbtSalSheet.SelectedIndex = 25;
                     break;
+
                 case "3368"://Finlay
                     this.rbtSalSheet.SelectedIndex = 24;
                     break;
+
                 default:
                     this.rbtSalSheet.SelectedIndex = 14;
                     break;
@@ -5291,6 +5299,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             gvpayroll.DataSource = dv;
             gvpayroll.DataBind();
+
+
+
+
 
         }
 

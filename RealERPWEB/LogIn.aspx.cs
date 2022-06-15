@@ -36,15 +36,9 @@ namespace RealERPWEB
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-
             if (!IsPostBack)
             {
-
-
                 this.Initilize();
-
                 this.getComName();
                 this.GetHitCounter();
 
@@ -57,16 +51,10 @@ namespace RealERPWEB
                 //this.notice();
                 if ((Hashtable)Session["tblLogin"] == null)
                     return;
-
                 this.txtuserid.Text = ((Hashtable)Session["tblLogin"])["username"].ToString();
                 this.txtuserpass.Text = ((Hashtable)Session["tblLogin"])["password"].ToString();
-
-
             }
             Session.Remove("tblLogin");
-
-
-
         }
 
         private void GetHitCounter()
@@ -129,10 +117,6 @@ namespace RealERPWEB
 
             }
         }
-
-
-
-
         private void getComName()
         {
             //Access Database (List View)
@@ -174,15 +158,7 @@ namespace RealERPWEB
                 this.listComName.SelectedValue = comcod;
             }
 
-
-
-
-
-
-
         }
-
-
         private void getListModulename()
         {
 
@@ -242,8 +218,6 @@ namespace RealERPWEB
 
             newpass = ASTUtility.EncodePassword(newpass);
 
-
-
             ProcessAccess ulogin = (ASTUtility.Left(this.listComName.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
             DataSet ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSEROLDPASS", username, oldpass, "", "", "", "", "", "", "");
             if (ds5.Tables[0].Rows.Count == 0)
@@ -278,7 +252,6 @@ namespace RealERPWEB
 
         private void MasComNameaAdd()
         {
-
             //DataTable dt1 = ((DataTable)Session["tbllog"]);
             //DataRow[] dr = dt1.Select("comcod='" + this.listComName.SelectedValue.ToString() + "'");
             //((Label)this.Master.FindControl("LblGrpCompany")).Text = this.listComName.SelectedItem.Text.Trim();// ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
@@ -493,11 +466,25 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
-                hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
-                //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
-                //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
+                //hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
 
+                if (ds5.Tables[0].Columns.Contains("comunpost"))
+                {
+                    hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                }
+                else
+                {
+                    hst["comunpost"] = "0";
+                }
 
+                if (ds5.Tables[0].Columns.Contains("homeurl"))
+                {
+                    hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+                }
+                else
+                {
+                    hst["homeurl"] = "UserProfile";
+                }
 
                 // hst["permission"] = ds5.Tables[0].Rows[0]["permission"];
                 Session["tblLogin"] = hst;
@@ -525,23 +512,23 @@ namespace RealERPWEB
 
                 //Company Logstatus
                 ConstantInfo.LogStatus = Convert.ToBoolean(ds5.Tables[0].Rows[0]["logstatus"]);
-                //string eventtype = ""
-                //string eventdesc = "Login into the system";
-                //string eventdesc2 = "";
-                //bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+           
 
 
-
-
-
+                string Url1 = "";
                 string eventtype = "1";
                 string eventdesc = "Login into the system";
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-                
-
-                string Url1 = "";
+                if (ds5.Tables[0].Columns.Contains("homeurl"))
+                {
+                    Url1 = ds5.Tables[0].Rows[0]["homeurl"].ToString(); //"";
+                }
+                else
+                {
+                    Url1 = "UserProfile";
+                }
+               
 
                 string userrole = ds5.Tables[0].Rows[0]["userrole"].ToString();
 
@@ -550,85 +537,83 @@ namespace RealERPWEB
 
                 string dptcod = ds5.Tables[0].Rows[0]["deptcode"].ToString().Substring(0, 4);
 
-                if (userrole == "2")
-                {
-                    Url1 = "AllGraph";
-                }
-                
-                else if(userrole == "3" && hrmodule=="81")
-                {
-                    //use nahid for crm users 
-                    string crmlink = "F_99_Allinterface/CRMDashboard";
-                    Url1 = "UserProfile";
-                    Url1 = dptcod == "9402"? crmlink : Url1;
-                }
-               
-                else if (userrole == "4" && hrmodule == "81")
-                {
-                    Url1 = "DashboardHRM_NEW";
+                //if (userrole == "2")
+                //{
+                //    Url1 = "AllGraph";
+                //}
 
-                }
-                else if (comcod.Substring(0, 1) == "8")
-                {
-                    Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
-                }
-               
+                //else if (userrole == "3" && hrmodule == "81")
+                //{
+                //    //use nahid for crm users 
+                //    string crmlink = "F_99_Allinterface/CRMDashboard";
+                //    Url1 = "UserProfile";
+                //    Url1 = dptcod == "9402" ? crmlink : Url1;
+                //}
 
-                else
-                {
-                    if (masterurl != "")
-                    {                        
-                        Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
-                    }
-                    else
-                    {
-                        if (comcod == "3333")
-                        {
-                            Url1 = "DeafultMenu?Type=3333";
-                        }
+                //else if (userrole == "4" && hrmodule == "81")
+                //{
+                //    Url1 = "DashboardHRM_NEW";
 
-                        else if (comcod == "3335")
-                        {
-                            Url1 = "MyDashboard?Type=5020";
-                        }
-                        else if (comcod == "3349")
-                        {
-                            Url1 = "MyDashboard?Type=5500";
-                        }
-                        else if (comcod == "3109")
-                        {
-                            Url1 = "MyDashboard?Type=5019";
-                        }
-                        else if (comcod == "3347")
-                        {
-                            Url1 = "HrWinMenu";
-                        }
-                        else
-                        {
-                            Url1 = "MyDashboard?Type=";
-                            string UComcode = ASTUtility.Left(Comcode, 1);
-                            if (UComcode == "3")
-                            {
-                                Url1 += "5000";
-                            }
-                            else if (UComcode == "4")
-                            {
-                                Url1 += "7000";
-                            }
-                            else
-                            {
-                                Url1 += "5000";
+                //}
+                //else if (comcod.Substring(0, 1) == "8")
+                //{
+                //    Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
+                //}
+                //else
+                //{
+                //    if (masterurl != "")
+                //    {
+                //        Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+                //    }
+                //    else
+                //    {
+                //        if (comcod == "3333")
+                //        {
+                //            Url1 = "DeafultMenu?Type=3333";
+                //        }
 
-                            }
-                        }
+                //        else if (comcod == "3335")
+                //        {
+                //            Url1 = "MyDashboard?Type=5020";
+                //        }
+                //        else if (comcod == "3349")
+                //        {
+                //            Url1 = "MyDashboard?Type=5500";
+                //        }
+                //        else if (comcod == "3109")
+                //        {
+                //            Url1 = "MyDashboard?Type=5019";
+                //        }
+                //        else if (comcod == "3347")
+                //        {
+                //            Url1 = "HrWinMenu";
+                //        }
+                //        else
+                //        {
+                //            Url1 = "MyDashboard?Type=";
+                //            string UComcode = ASTUtility.Left(Comcode, 1);
+                //            if (UComcode == "3")
+                //            {
+                //                Url1 += "5000";
+                //            }
+                //            else if (UComcode == "4")
+                //            {
+                //                Url1 += "7000";
+                //            }
+                //            else
+                //            {
+                //                Url1 += "5000";
 
-                    }
-                }
+                //            }
+                //        }
+
+                //    }
+                //}
 
                 Response.Redirect(Url1, false);
 
 
-            }
+        }
             catch (Exception ex)
             {
                 this.lblmsg.Visible = true;
@@ -638,9 +623,9 @@ namespace RealERPWEB
 
             }
 
-            //Response.Redirect("ASITDefault");
+    //Response.Redirect("ASITDefault");
 
-        }
+}
 
 
         protected void listComName_SelectedIndexChanged(object sender, EventArgs e)

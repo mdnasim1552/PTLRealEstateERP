@@ -30,6 +30,8 @@ namespace RealERPWEB.F_14_Pro
     {
         ProcessAccess purData = new ProcessAccess();
         UserManPurchase objUserMan = new UserManPurchase();
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
+
         public static string Url = "";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,7 +44,6 @@ namespace RealERPWEB.F_14_Pro
                 //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("~/AcceessError.aspx");
-
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled =  (Convert.ToBoolean(dr1[0]["printable"]));
@@ -53,65 +54,44 @@ namespace RealERPWEB.F_14_Pro
                 // this.lbtnPrevOrderList_Click(null, null);
                 this.txtCurOrderDate_CalendarExtender.EndDate = System.DateTime.Today;
                 this.SendMail();
-
                 //only current date
-
                 // this.CurDate();
-
                 if (Session["tblordrange"] == null)
                 {
-
-
                     switch (comcod)
                     {
                         case "3354": //Edison Real Estate
                         case "3335": //Edison
                         //case "3101": // ptl
                         case "3355": // greenwood
-
                             this.GetOrderRange();
                             this.btnSendmail.Visible = false;
                             break;
 
                         default:
                             break;
-
-
                     }
-
                 }
                 string ordero = this.Request.QueryString["genno"].ToString().Trim();
                 if (ordero.Length > 0)
                 {
                     if (ordero.Substring(0, 3) == "POR")
                     {
-
                         this.lbtnPrevOrderList_Click(null, null);
                         this.lbtnOk_Click(null, null);
-
                     }
-
-
                 }
-
-
-
-
             }
         }
 
         //private void CurDate()
-
         //{
-
         //    string comcod = this.GetCompCode();
         //    string type = this.Request.QueryString["InputType"].ToString().Trim();
         //    if ((comcod == "3339") && type== "OrderEntry")
         //    {
         //        this.txtCurOrderDate_CalendarExtender.StartDate = System.DateTime.Today;
-
         //    }
-
         //}
         private void SendMail()
         {
@@ -120,28 +100,18 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "3335": //Edison
                              //case "3101":
-
                     this.btnSendmail.Visible = false;
                     break;
-
                 default:
                     break;
-
-
             }
-
         }
-
         private void GetOrderRange()
         {
-
             Session.Remove("tblordrange");
             string comcod = this.GetCompCode();
             List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange> lst = objUserMan.GetOrderRange(comcod);
             Session["tblordrange"] = lst;
-
-
-
         }
         private string CompanySubject()
         {
@@ -1684,7 +1654,6 @@ namespace RealERPWEB.F_14_Pro
             string subject = this.txtSubject.Text.Trim();
             double AdvAmt = Convert.ToDouble("0" + this.txtadvAmt.Text.Trim());
             //log report
-
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
@@ -1696,23 +1665,17 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = (DataTable)ViewState["tblOrder"];
             foreach (DataRow drf in tbl1.Rows)
             {
-
-
                 bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(drf["aprovdat"].ToString()), Convert.ToDateTime(mORDERDAT));
                 if (!dcon)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Order Date is equal or greater Approved Date');", true);
                     return;
                 }
-
             }
-
-
             if (this.ddlPrevOrderList.Items.Count == 0)
                 this.GetOrderNo();
 
             string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
             if ((this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry"))
             {
 
@@ -1846,9 +1809,6 @@ namespace RealERPWEB.F_14_Pro
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Order Date is equal or greater Approved Date');", true);
                     return;
                 }
-
-
-
                 string mREQNO = tbl1.Rows[i]["reqno"].ToString();
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string SSIRCODE = tbl1.Rows[i]["ssircode"].ToString();
@@ -1971,8 +1931,6 @@ namespace RealERPWEB.F_14_Pro
                         break;
 
                     default:
-
-
                         if ((this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry"))
                         {
                             SendSmsProcess sms = new SendSmsProcess();
@@ -1983,14 +1941,73 @@ namespace RealERPWEB.F_14_Pro
                             string SMSText = comnam + ":\n" + SMSHead + "\n" + dsty.Rows[0]["projdesc1"].ToString() + "\n" + "MRF No:" + dsty.Rows[0]["mrfno"].ToString() + "\n" + "to Supplier: " +
                              dsty.Rows[0]["ssirdesc1"].ToString();
                             bool resultsms = sms.SendSmms(SMSText, userid, frmname);
-
                         }
                         break;
                 }
-
             }
 
+            if (comcod == "3368"|| comcod=="3101")
+            {
 
+                string pactcode = dsty.Rows[0]["pactcode"].ToString().Substring(0,4);
+                if (pactcode != "1102")
+                {
+                    try
+                    {
+                        string empid = "930100101086"; // MD Sir Employee ID  
+                        /*  string empid = "930100101005";*/ // MD Sir Employee 
+                        var ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
+
+                        if (ds1 == null)
+                            return;
+
+                        string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
+                        string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
+                        string idcard = (string)ds1.Tables[1].Rows[0]["idcard"];
+                        string project = dsty.Rows[0]["projdesc1"].ToString();
+                        string supname = dsty.Rows[0]["ssirdesc1"].ToString();
+                        string amount = dsty.Rows[0]["ordramt"].ToString() + " BDT";
+                      
+                        string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+                        string currentptah = "/F_14_Pro/PurWrkOrderEntry?InputType=SecondApp&genno=" + mORDERNO + "&comcod=" + comcod + "&usrid=" + suserid;
+                        string totalpath = uhostname + currentptah;
+
+                        string maildescription = "Dear Sir, Please check details information <br>" + "<br> Project Name : " + project + ",<br>" + "Supplier Name : " + supname + ",<br>" + "Amount : " + amount + "." + "<br>" +
+                             " <br> <br> <br> N.B: This email is system generated. ";
+
+                        maildescription += "<br> <br><div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Interface</div>" + "<br/>";
+                        ///GET SMTP AND SMS API INFORMATION
+                        #region
+                        string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                        DataSet dssmtpandmail = purData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                        if (dssmtpandmail == null)
+                            return;
+                        //SMTP
+                        string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                        int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                        string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                        string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                        bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
+                        #endregion
+
+
+                        #region
+                        string subj = "Purchase Order";
+                        string msgbody = maildescription;
+
+                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, "", "", "", "", tomail, msgbody, isSSL);
+
+
+                        #endregion
+                    }
+                    catch (Exception ex)
+                    {
+                        string Messagesd = "Mail Not Send " + ex.Message;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    }
+                }
+                
+            }
 
             //if (ConstantInfo.LogStatus == true)
             //{

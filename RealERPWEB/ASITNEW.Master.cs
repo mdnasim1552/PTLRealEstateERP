@@ -395,25 +395,27 @@ namespace RealERPWEB
 
             string usrid = hst["usrid"].ToString();
             string userrole = hst["userrole"].ToString();
+            string homelink = hst["homeurl"].ToString();
             // string usrperm = "1";
+            this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/"+ homelink));
 
-            if (comcod == "3365" || comcod == "3347")
+            //if (comcod == "3365" || comcod == "3347")
 
-            {
-                string urlnorm = (userrole == "3" ? "~/UserProfile" : "~/Index?pid=");
-                this.LogoBar.Attributes.Add("href", this.ResolveUrl(urlnorm));
+            //{
+            //    string urlnorm = (userrole == "3" ? "~/UserProfile" : "~/Index?pid=");
+            //    this.LogoBar.Attributes.Add("href", this.ResolveUrl(urlnorm));
 
-            }
-            else if (comcod.Substring(0, 1) == "8")
-            {
+            //}
+            //else if (comcod.Substring(0, 1) == "8")
+            //{
 
-                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod="));
+            //    this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod="));
 
-            }
-            else
-            {
-                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
-            }
+            //}
+            //else
+            //{
+            //    this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+            //}
 
 
             this.CompanyHome();
