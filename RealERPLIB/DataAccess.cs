@@ -188,9 +188,12 @@ namespace RealERPLIB
         }
         private void SetError(Exception ex)
         {
-            this.m_Erroobj["Src"] = ex.Source;
-            this.m_Erroobj["Msg"] = ex.Message;
-            this.m_Erroobj["Location"] = ex.StackTrace;           
+             
+                this.m_Erroobj["Src"] = ex.Source;
+                this.m_Erroobj["Msg"] = ex.Message;
+                this.m_Erroobj["Location"] = ex.StackTrace;
+           
+                     
         }
     }
 }

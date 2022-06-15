@@ -61,9 +61,9 @@ namespace RealERPWEB.F_17_Acc
 
             switch (grpinded)
             {
-                case 0:
-                    this.gvtbOpPay.Columns[2].HeaderText = (comcod == "2305") ? "Up to 5000" : "Up to 10000";
-                    this.gvtbOpPay.Columns[3].HeaderText = (comcod == "2305") ? "5001-50000" : "10001-50000";
+                case 0: // shahin vai say 
+                    //this.gvtbOpPay.Columns[2].HeaderText = (comcod == "2305") ? "Up to 5000" : "Up to 10000";
+                    //this.gvtbOpPay.Columns[3].HeaderText = (comcod == "2305") ? "5001-50000" : "10001-50000";
 
                     break;
                 case 1:
