@@ -26,8 +26,41 @@ namespace RealERPWEB.F_30_Facility
                 ddlProject_SelectedIndexChanged(null, null);
                 GETCOMTYPE();
                 GETWARRANTY();
-
+                if (Request.QueryString["ComplNo"] != null)
+                {
+                    EditFunctionality();
+                }
             }
+        }
+
+        private void EditFunctionality()
+        {
+            string comcod = GetComCode();
+            string complno = Request.QueryString["ComplNo"].ToString();
+            DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINFOREDIT", complno, "", "", "", "", "", "", "", "", "", "");
+
+            List<EClass_Complain_List> obj = ds.Tables[0].DataTableToList<EClass_Complain_List>();            
+            Bind_Grid(obj);
+            ddlProject.Enabled = false;
+            ddlCustomer.Enabled = false;
+            ddlIssueType.Enabled = false;
+            pnlComplain.Visible = true;            
+            btnOKClick.Enabled = false;
+            DataTable dt = ds.Tables[1];
+            if(dt.Rows.Count>0 || dt == null)
+            {
+                ddlWarranty.SelectedValue = dt.Rows[0]["warranty"].ToString();
+                ddlCommunicationType.SelectedValue = dt.Rows[0]["communicationtype"].ToString();
+                txtEstimatedDate.Text = dt.Rows[0]["estimateddate"].ToString();
+                txtNarration.Text= dt.Rows[0]["addremarks"].ToString();
+                ddlIssueType.SelectedValue = dt.Rows[0]["issuetype"].ToString();
+                ddlProject.SelectedValue = dt.Rows[0]["pactcode"].ToString();
+                ddlCustomer.SelectedValue = dt.Rows[0]["custcode"].ToString();
+                getHandOverAndUnit();
+            }
+            
+
+
         }
 
         private string GetComCode()
@@ -101,7 +134,7 @@ namespace RealERPWEB.F_30_Facility
                 if (warperiod > todate)
                 {
                     //In Warranty
-                    lblWarrantyRemainText.Text = (warperiod - todate).ToString("dd-MMM-yyyy");
+                    lblWarrantyRemainText.Text = (warperiod - todate).TotalDays.ToString();
                     ddlWarranty.SelectedValue = "43001";
                 }
                 else
@@ -241,22 +274,24 @@ namespace RealERPWEB.F_30_Facility
             string unit = lblUnitText.Text;
             string warranty = ddlWarranty.SelectedValue.ToString();
             string compldate = txtEntryDate.Text;
-            string comunicationtype = ddlIssueType.SelectedValue.ToString();
+            string comunicationtype = ddlCommunicationType.SelectedValue.ToString();
             string estimateddate = txtEstimatedDate.Text;
             string addremarks = txtNarration.Text;
             string userId = hst["usrid"].ToString();
+            string issuetype = ddlIssueType.SelectedValue.ToString();
 
-            bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINB", complno, pactcode, custcode, unit, warranty, compldate, comunicationtype, estimateddate, addremarks, "", "", "",
-                "", "", "", "", "", "", "", "", "", "", userId);
-
-            if (result)
+            DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINB",null,null,null, complno, pactcode, custcode, unit, warranty, compldate, comunicationtype, estimateddate, addremarks, issuetype,"","","",
+                "","","","","","",userId);
+            DataTable dt = ds.Tables[0];
+            if (dt!=null || dt.Rows.Count>0)
             {
-                int i = 0;
+                int i = 1;
+                bool resultDelete = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "DElETECOMPLAINA", dt.Rows[0]["complno"].ToString(), "", "", "", "", "", "", "", "", "", "", "",
+                            "", "", "", "", "", "", "", "", "", "", userId);
                 List<EClass_Complain_List> list = (List<EClass_Complain_List>)ViewState["ComplainList"];
                 foreach (var item in list)
                 {
-
-                    bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINA", complno, item.complainDesc, item.remarks,i.ToString(), "", "", "", "", "", "", "", "",
+                    bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINA", dt.Rows[0]["complno"].ToString(), item.complainDesc, item.remarks,i.ToString(), "", "", "", "", "", "", "", "",
                             "", "", "", "", "", "", "", "", "", "", userId);
                     if (!resultA)
                     {
@@ -265,6 +300,10 @@ namespace RealERPWEB.F_30_Facility
                     i++;
                 }
                 //Update Successful
+                if (complno == "0")
+                {
+                    ClearPage();
+                }
             }
             else
             {
@@ -274,7 +313,34 @@ namespace RealERPWEB.F_30_Facility
 
         protected void lnkRefresh_Click(object sender, EventArgs e)
         {
+            if (Request.QueryString["ComplNo"]==null)
+            {
+                ClearPage();
+            }
+            else
+            {
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+        }
 
+        private void ClearPage()
+        {
+            txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            ddlProject.SelectedIndex = 0;
+            ddlCustomer.SelectedIndex = 0;
+            ddlIssueType.SelectedIndex = 0;
+            getHandOverAndUnit();
+            ddlCommunicationType.SelectedIndex = 0;
+            txtEstimatedDate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy");
+            txtNarration.Text = "";
+            CreateComplainList();
+            var obj = (List<EClass_Complain_List>)ViewState["ComplainList"];
+            Bind_Grid(obj);
+            ddlProject.Enabled = true;
+            ddlCustomer.Enabled = true;
+            ddlIssueType.Enabled = true;
+            pnlComplain.Visible = false;
+            btnOKClick.Text = "OK";
         }
     }
 }
