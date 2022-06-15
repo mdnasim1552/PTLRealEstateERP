@@ -1650,8 +1650,23 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
             hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
             hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
-            //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
-            //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
+            if (ds5.Tables[0].Columns.Contains("comunpost"))
+            {
+                hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+            }
+            else
+            {
+                hst["comunpost"] = "0";
+            }
+
+            if (ds5.Tables[0].Columns.Contains("homeurl"))
+            {
+                hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+            }
+            else
+            {
+                hst["homeurl"] = "UserProfile";
+            }
 
 
 
