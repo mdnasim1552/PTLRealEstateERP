@@ -2249,7 +2249,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8151000", "8151001", "F_99_Allinterface", "HRInterfaceTopSheet", "", "Salary  360 <sup>0</span>", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151002", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "HR Interface", "HR Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151003", "F_99_Allinterface", "HRMAllInOne", "", "HR Dashboard", "HR Management", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "8151000", "8151004", "F_81_Hrm/F_85_Lon", "InterfaceLoan", "", "Loan Interface", "HR Management", "False", "False", "False", "False" });
 
 
 
@@ -5068,8 +5068,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000007", "02. Material Evaluation - Based on Progress", "F_12_Inv/RptPrurVarAna?Type=StkBasis&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000008", "04. Materials Stock Information(Account)", "F_12_Inv/RptProjectStock?Type=acc&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000009", "05. Indent Issue List", "F_12_Inv/AllIndentIsuList?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=&prjcode=&sircode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=&prjcode=&sircode=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });

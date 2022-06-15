@@ -1063,6 +1063,7 @@ namespace RealERPRDLC
         private static LocalReport SetRptPaySlipFinlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet2));
             return Rpt1a;
         }
         private static LocalReport SetRptPaySlipBTI(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
