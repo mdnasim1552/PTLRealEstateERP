@@ -356,7 +356,7 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPINDREFNO", Refno, "", "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count == 0) ;
 
 
@@ -376,8 +376,9 @@ namespace RealERPWEB.F_12_Inv
                 }
             }
             string pactcode = this.ddlProject.SelectedValue.ToString();
+            string reqno = (this.Request.QueryString["sircode"].Length == 0) ? "" : this.Request.QueryString["sircode"].ToString();
             bool result;
-            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "INSORUPTXTTTOEMPINF", "indissueb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, "", "", "", "", "");
+            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indissueb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, "", "", "", "");
 
 
             foreach (DataRow dr in dt.Rows)
@@ -391,7 +392,7 @@ namespace RealERPWEB.F_12_Inv
                 string empid = dr["empid"].ToString().Trim();
                 string remarks = dr["remarks"].ToString().Trim();
 
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "INSORUPTXTTTOEMPINF", "indissuea", Issueno, rsircode, spcfcod,
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indissuea", Issueno, rsircode, spcfcod,
                    deptcode, issueqty, issueamt, empid, remarks, "", "", "", "", "", "");
             }
 
@@ -466,9 +467,9 @@ namespace RealERPWEB.F_12_Inv
                 if (SearchInfo.Length > 0)
                     SearchInfo = "(" + SearchInfo.Substring(0, SearchInfo.Length - 3) + ")";
             }
+            string reqno = (this.Request.QueryString["sircode"].Length == 0) ? "" : this.Request.QueryString["sircode"].ToString();
 
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INDENTGETMATLIST", mProject, mSrchTxt, date, "", "", "", "", "", "");
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INDENTGETMATLIST", mProject, mSrchTxt, date, reqno, "", "", "", "", "");
 
             if (ds1 == null)
             {
@@ -525,6 +526,13 @@ namespace RealERPWEB.F_12_Inv
             this.ddlDeptCode.DataSource = ds1.Tables[0];
             this.ddlDeptCode.DataBind();
             this.ddlDeptCode.SelectedValue = "AAAAAAAAAAAA";
+            if (this.Request.QueryString["prjcode"].Length > 0)
+            {
+                string deptcode = this.Request.QueryString["prjcode"].ToString();
+
+                this.ddlDeptCode.SelectedValue = deptcode;
+
+            }
         }
         private void GetEmployeeList()
         {
@@ -543,6 +551,7 @@ namespace RealERPWEB.F_12_Inv
             this.ddlEmpList.DataValueField = "sircode";
             this.ddlEmpList.DataSource = ds1.Tables[0];
             this.ddlEmpList.DataBind();
+            
             ds1.Dispose();
 
         }
@@ -588,7 +597,7 @@ namespace RealERPWEB.F_12_Inv
 
             string comcod = this.GetCompCode();
             string curdate = this.txtCurDate.Text.ToString().Trim();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "GETPREISSUELIST", curdate, "", "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETPREISSUELIST", curdate, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -700,48 +709,48 @@ namespace RealERPWEB.F_12_Inv
         {
 
 
-            //ViewState.Remove("tblIssue");
-            //string comcod = this.GetCompCode();
-            //string CurDate1 = this.txtCurDate.Text.Trim();
-            //string mISUNo = "NEWISU";
-            //if (this.ddlPreList.Items.Count > 0)
-            //{
-            //    this.txtCurDate.Enabled = false;
-            //    mISUNo = this.ddlPreList.SelectedValue.ToString();
+            ViewState.Remove("tblIssue");
+            string comcod = this.GetCompCode();
+            string CurDate1 = this.txtCurDate.Text.Trim();
+            string mISUNo = "NEWISU";
+            if (this.ddlPreList.Items.Count > 0)
+            {
+                this.txtCurDate.Enabled = false;
+                mISUNo = this.ddlPreList.SelectedValue.ToString();
 
-            //}
-            //string pactcode = this.ddlProject.SelectedValue.ToString();
+            }
+            string pactcode = this.ddlProject.SelectedValue.ToString();
 
-            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, CurDate1, "%%", "GETMETERIALS", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUEINFO", mISUNo, CurDate1,"");
 
-            ////  DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", CurDate1, mISUNo, "", "", "", "", "", "", "");
-            //if (ds1 == null)
-            //    return;
+            //  DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", CurDate1, mISUNo, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
 
-            //ViewState["tblIssue"] = ds1.Tables[0];
-
-
-            //if (mISUNo == "NEWISU")
-            //{
-            //    ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLASTMISSUEINFO", CurDate1, "", "", "", "", "", "", "", "");
-            //    if (ds1 == null)
-            //        return;
-            //    this.lblCurNo1.Text = ds1.Tables[0].Rows[0]["maxmisuno1"].ToString().Trim().Substring(0, 6);
-            //    this.txtCurNo2.Text = ds1.Tables[0].Rows[0]["maxmisuno1"].ToString().Trim().Substring(6);
-            //    return;
-            //}
+            ViewState["tblIssue"] = ds1.Tables[0];
 
 
+            if (mISUNo == "NEWISU")
+            {
+                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUENO", CurDate1, "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                this.lblCurNo1.Text = ds1.Tables[0].Rows[0]["maxissueno1"].ToString().Trim().Substring(0, 6);
+                this.txtCurNo2.Text = ds1.Tables[0].Rows[0]["maxissueno1"].ToString().Trim().Substring(6);
+                return;
+            }
 
-            //this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            //this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
-            //this.ddlEmpList.SelectedValue = ds1.Tables[1].Rows[0]["empid"].ToString();
 
-            //this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["issuedat"]).ToString("dd-MMM-yyyy");
-            //this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
-            //this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(0, 6);
-            //this.txtCurNo2.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(6);
-            //this.Data_Bind();
+
+            this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
+            this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
+            this.ddlEmpList.SelectedValue = ds1.Tables[1].Rows[0]["empid"].ToString();
+
+            this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["issuedat"]).ToString("dd-MMM-yyyy");
+            this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
+            this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(0, 6);
+            this.txtCurNo2.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(6);
+            this.Data_Bind();
         }
 
 
@@ -838,8 +847,8 @@ namespace RealERPWEB.F_12_Inv
                 DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
                 dr1["rsirunit"] = dr3[0]["rsirunit"];
                 dr1["stkqty"] = dr3[0]["stkqty"];
-                dr1["stkrate"] = dr3[0]["stkrate"]; ;
-                dr1["issueqty"] = 0;
+                dr1["stkrate"] = dr3[0]["stkrate"];
+                dr1["issueqty"] = dr3[0]["issueqty"];
                 dr1["issueamt"] = 0;
                 dr1["remarks"] = "";
                 tbl1.Rows.Add(dr1);
@@ -879,7 +888,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
                     dr1["stkqty"] = tbl2.Rows[i]["stkqty"];
                     dr1["stkrate"] = tbl2.Rows[i]["stkrate"];
-                    dr1["issueqty"] = 0;
+                    dr1["issueqty"] = tbl2.Rows[i]["issueqty"];
                     dr1["issueamt"] = 0;
                     dr1["remarks"] = "";
 

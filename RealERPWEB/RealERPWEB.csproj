@@ -183,7 +183,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2712,6 +2712,7 @@
     <Content Include="F_29_Fxt\RptFxtAsstBillRent.aspx" />
     <Content Include="F_29_Fxt\RptFxtAsstStatus.aspx" />
     <Content Include="F_29_Fxt\RptFxtStore.aspx" />
+    <Content Include="F_30_Facility\EngrCheck.aspx" />
     <Content Include="F_30_Facility\ComplainForm.aspx" />
     <Content Include="F_31_EDAct\EntryDailyActivities.aspx" />
     <Content Include="F_31_EDAct\GenCodeBook.aspx" />
@@ -4183,6 +4184,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_30_Facility\EngrCheck.aspx.cs">
+      <DependentUpon>EngrCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_30_Facility\EngrCheck.aspx.designer.cs">
+      <DependentUpon>EngrCheck.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_30_Facility\ComplainForm.aspx.cs">
       <DependentUpon>ComplainForm.aspx</DependentUpon>
