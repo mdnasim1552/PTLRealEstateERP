@@ -3899,6 +3899,37 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
+
+
+        public  List<T>[] Partition<T>(List<T> list, int totalPartitions)
+        {
+            if (list == null)
+                throw new ArgumentNullException("list");
+
+            if (totalPartitions < 1)
+                throw new ArgumentOutOfRangeException("totalPartitions");
+
+            List<T>[] partitions = new List<T>[totalPartitions];
+
+            int maxSize = (int)Math.Ceiling(list.Count / (double)totalPartitions);
+            int k = 0;
+
+            for (int i = 0; i < partitions.Length; i++)
+            {
+                partitions[i] = new List<T>();
+                for (int j = k; j < k + maxSize; j++)
+                {
+                    if (j >= list.Count)
+                        break;
+                    partitions[i].Add(list[j]);
+                }
+                k += maxSize;
+            }
+
+            return partitions;
+        }
+
+
         private void PrintPaySlip()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -4036,7 +4067,19 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
 
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
-                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
+
+                List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>[] partitionList = Partition<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>(list, 2);
+
+
+                var list1 = partitionList[0];
+                var list2 = partitionList[1];
+
+
+
+                //Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
+
+
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list1, list2, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
@@ -4062,6 +4105,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
+
+
+      
+
+
 
 
         private void PrintSignature()
