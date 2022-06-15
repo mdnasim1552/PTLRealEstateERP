@@ -68,7 +68,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3330":
                 case "3355":
                 case "3365":
-                case "3101":
+                
                     this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
                     this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -304,6 +304,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
                 string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
 
+                string mgtusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mgtusid")).ToString().Trim();
+
                 string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "susrid")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
@@ -327,6 +329,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     hlink3.Visible = false;
                     lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
                 }
+                if ((userid == mgtusid))
+                {
+                    lnkbtnDptApp.Visible = true;
+                    hlink3.Visible = false;
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                }
+
                 hlnDel.Visible = (userid == empusrid) ? true : false;
                 hlnEdit.Visible = (userid == empusrid) ? true : false;
 
