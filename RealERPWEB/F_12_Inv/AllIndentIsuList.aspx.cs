@@ -131,32 +131,29 @@ namespace RealERPWEB.F_12_Inv
 
         private void GetIndentIssueList()
         {
-            //string comcod = this.GetcompCode();
-            //string frmDate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            //string Circode = (this.ddlcircle.SelectedValue.Trim().ToString() == "00000") ? "%" : this.ddlcircle.SelectedValue.ToString();
-            //string regcode = (this.ddlRegi.SelectedValue.Trim().ToString() == "00000") ? "%" : this.ddlRegi.SelectedValue.ToString();
-            //string arecode = (this.ddlArea.SelectedValue.Trim().ToString() == "00000") ? "%" : this.ddlArea.SelectedValue.ToString();
-            //string tericode = (this.ddlterri.SelectedValue.Trim().ToString() == "00000") ? "%" : this.ddlterri.SelectedValue.ToString();
+            string comcod = this.GetcompCode();
+            string frmDate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+           
 
-            //DataSet ds1 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_MATERIAL_ISSUE", "RPTINDENTITEMSUMMARY", frmDate, todate, Circode, regcode, arecode, tericode, "", "");
-            //var replist = ds1.Tables[0].DataTableToList<MFGOBJ.C_11_Pro.EClassPur.PromMatHistory>();
-            //  if (replist == null)
-            //{
-            //    this.gvPromData.DataSource = null;
-            //    this.gvPromData.DataBind();
-            //    return;
-            //}
+            DataSet ds1 = _DataEntry.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "RPTINDENTITEMSUMMARY", frmDate, todate);
+            var replist = ds1.Tables[0].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PromMatHistory>();
+            if (replist == null)
+            {
+                this.gvPromData.DataSource = null;
+                this.gvPromData.DataBind();
+                return;
+            }
 
-            //ViewState["tblPromTop"] = replist;
-            //this.Data_Bind();
+            ViewState["tblPromTop"] = replist;
+            this.Data_Bind();
         }
         public void Data_Bind()
         {
-            //var lst = (List<MFGOBJ.C_11_Pro.EClassPur.PromMatHistory>)ViewState["tblPromTop"];
+            var lst = (List<RealEntity.C_12_Inv.EclassPurchase.PromMatHistory>)ViewState["tblPromTop"];
 
-            //this.gvPromData.DataSource = lst;
-            //this.gvPromData.DataBind();
+            this.gvPromData.DataSource = lst;
+            this.gvPromData.DataBind();
             ////if (this.ddltype.SelectedValue.ToString() == "CUST")
             ////{
             ////    this.gvPromData.Columns[8].Visible = false;
@@ -223,7 +220,7 @@ namespace RealERPWEB.F_12_Inv
                 hlink3.NavigateUrl = "~/F_23_SaM/Print.aspx?Type=IssueChallan&comcod=" + comcod + "&issueno=" + issueno + "&issuedat=" + issuedat;
                 if (apstatus == "False")
                 {
-                    hlink1.NavigateUrl = "~/F_07_Inv/Material_Issue.aspx?Type=Approve&genno=" + issueno;
+                    hlink1.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno;
                     hlink1.Target = "blank";
                 }
                 else
@@ -252,7 +249,7 @@ namespace RealERPWEB.F_12_Inv
             int index = row.RowIndex;
 
             string isuno = ((Label)this.gvPromData.Rows[index].FindControl("lblissueno")).Text.ToString();
-            DataSet res = _DataEntry.GetTransInfo(comcod, "SP_REPORT_MATERIAL_ISSUE", "DEL_IND_ISSUE", isuno, "", "", "", "", "", "");
+            DataSet res = _DataEntry.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "DEL_IND_ISSUE", isuno, "", "", "", "", "", "");
             if (res == null)
             {
                 this.LblMsg.Text = "Delete Invalid";

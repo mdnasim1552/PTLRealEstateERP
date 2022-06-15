@@ -799,7 +799,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     string mtREQNO = tbl1.Rows[i]["mtreqno"].ToString();
                     string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                    string mspcfcod = tbl1.Rows[i]["rsircode"].ToString();
+                    string mspcfcod = tbl1.Rows[i]["spcfcod"].ToString();
                     DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "BALMTREQQTY", mtREQNO, mRSIRCODE, mspcfcod, "", "", "", "", "", "");
                     if (ds.Tables[0].Rows.Count == 0) continue;
                     else if (Convert.ToDouble(ds.Tables[0].Rows[0]["balqty"]) <= 0)

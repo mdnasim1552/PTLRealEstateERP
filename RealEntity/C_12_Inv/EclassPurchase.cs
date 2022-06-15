@@ -9,6 +9,32 @@ namespace RealEntity.C_12_Inv
   public  class EclassPurchase
     {
         [Serializable]
+        public class PromMatHistory
+        {
+            public string comcod { get; set; }
+            public string issueno { get; set; }
+            public string actcode { get; set; }
+            public string rsircode { get; set; }
+            public string rsirdesc { get; set; }
+            public string unit { get; set; }
+            public string spcfcod { get; set; }
+            public string spcfdesc { get; set; }
+            public string deptcode { get; set; }//
+            public string deptname { get; set; }
+            public string empid { get; set; }
+            public string empname { get; set; }
+            public string idcard { get; set; }
+
+            public DateTime issuedat { get; set; }
+            public double issueqty { get; set; }
+            public double issueamt { get; set; }
+            public double rate { get; set; }
+            public string vounum { get; set; }
+            public string narr { get; set; }
+            public string apstatus { get; set; }
+
+        }
+        [Serializable]
         public class PurchaseOrderInfo
         {
             public string orderno { get; set; }
