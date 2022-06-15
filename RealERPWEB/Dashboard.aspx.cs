@@ -44,15 +44,12 @@ namespace RealERPWEB
                     this.divuser.Visible = true;
                     this.div_admin.Visible = true;
                     this.div_groupUSers.Visible = false;
-
                     GetModulename();
                     //   this.ShowData();
                     this.ddlyearSale_SelectedIndexChanged(null, null);
                     this.Get_Events();
                     this.getPnale();
                 }
-
-
             }
         }
         private void getComName()
@@ -65,8 +62,6 @@ namespace RealERPWEB
             dv.RowFilter = ("comcod not like '8%'");
             dv.Sort = "slnum";
             DataTable dt1 = dv.ToTable();
-
-
 
             this.ddlCompcode.DataTextField = "comnam";
             this.ddlCompcode.DataValueField = "comcod";
@@ -189,31 +184,8 @@ namespace RealERPWEB
             if (userrole == "admin")
             {
 
-
-
                 if (Cache["dsinterface"] == null)
-            {
-                ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
-                if (ds2 == null)
-                    return;
-                int minute = this.GetCacheTimeinMinute();
-                Cache.Remove("dsinterface");
-                //Cache.Remove("dsinterface");
-                // Cache.Insert("dsalllogin", ds1, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
-                Cache.Insert("dsinterface", ds2, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
-            }
-
-            else
-            {
-
-
-                ds2 = (DataSet)Cache["dsinterface"];
-                // ds1 = (DataSet)Cache["dsalllogin"];
-
-                string pcomod = ds2.Tables[0].Rows.Count == 0 ? comcod : ds2.Tables[0].Rows[0]["comcod"].ToString();
-                if (pcomod != comcod)
                 {
-
                     ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
                     if (ds2 == null)
                         return;
@@ -222,22 +194,30 @@ namespace RealERPWEB
                     //Cache.Remove("dsinterface");
                     // Cache.Insert("dsalllogin", ds1, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
                     Cache.Insert("dsinterface", ds2, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
-
                 }
 
+            else
+            {
+                ds2 = (DataSet)Cache["dsinterface"];
+                // ds1 = (DataSet)Cache["dsalllogin"];
+                string pcomod = ds2.Tables[0].Rows.Count == 0 ? comcod : ds2.Tables[0].Rows[0]["comcod"].ToString();
+                if (pcomod != comcod)
+                {
+                    ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
+                    if (ds2 == null)
+                        return;
+                    int minute = this.GetCacheTimeinMinute();
+                    Cache.Remove("dsinterface");
+                    //Cache.Remove("dsinterface");
+                    // Cache.Insert("dsalllogin", ds1, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
+                    Cache.Insert("dsinterface", ds2, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
+                }
                 else
                 {
                     ds2 = (DataSet)Cache["dsinterface"];
 
                 }
-
-
-
             }
-
-           
-           
-
                 var lst = ds2.Tables[0].DataTableToList<Salgraph>();
                 var lst1 = ds2.Tables[1].DataTableToList<Purgraph>();
                 var lst2 = ds2.Tables[2].DataTableToList<Accgraph>();
