@@ -208,7 +208,7 @@
                                                         <ItemStyle HorizontalAlign="Right" />
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="50,000-100000">
+                                                    <asp:TemplateField HeaderText="50,001-100000">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lgvAv" runat="server" 
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam3")).ToString("#,##0;(#,##0); ") %>' 
