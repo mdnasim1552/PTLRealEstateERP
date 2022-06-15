@@ -159,7 +159,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.Panel pnlQue;
 
         /// <summary>
-<<<<<<< HEAD
         /// gvPending control.
         /// </summary>
         /// <remarks>
@@ -250,8 +249,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.LinkButton ModalLoanClose;
 
         /// <summary>
-=======
->>>>>>> ca90ee60beedbcfdb94ecd8a9c145f1ffca7a952
         /// lblLoanId control.
         /// </summary>
         /// <remarks>
