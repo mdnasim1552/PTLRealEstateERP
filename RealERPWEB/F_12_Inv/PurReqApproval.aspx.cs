@@ -29,6 +29,8 @@ namespace RealERPWEB.F_12_Inv
         //public static string Narration = "";
         public static double TAmount = 0;
         ProcessAccess accData = new ProcessAccess();
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
+
         public static int PageNumber = 0;
 
         public static int i, j;
@@ -118,7 +120,7 @@ namespace RealERPWEB.F_12_Inv
 
             string Type = Request.QueryString["Type"].ToString();
             this.lblmrfno.Text = this.ReadCookie();
-            this.dgv1.Columns[7].HeaderText = this.ReadCookie(); 
+            this.dgv1.Columns[7].HeaderText = this.ReadCookie();
             switch (Type)
             {
                 case "Approval":
@@ -2136,6 +2138,7 @@ namespace RealERPWEB.F_12_Inv
                 DataTable dt1 = (DataTable)Session["tblreq"];
                 string mrfno = dt1.Rows[0]["mrfno"].ToString();
                 string Type = this.Request.QueryString["Type"].ToString();
+                string projcod = this.Request.QueryString["prjcode"] ?? "";
 
                 if (Type == "VenSelect")
                 {
@@ -2393,6 +2396,77 @@ namespace RealERPWEB.F_12_Inv
 
                             }
                             break;
+
+                        case "3101":
+                        case "3368":
+
+
+                            string pactcode = projcod.Substring(0, 4);
+                            if (pactcode == "1102")
+                            {
+                                try
+                                {
+                                    DataSet dsruaauser = accData.GetTransInfo(comcod, "SP_ENTRY_REQUISITION_APPROVAL", "SHOWREQAAPROVEUSERMAIL", reqno, "", "", "", "");
+
+
+                                    string rusername = dsruaauser.Tables[0].Rows[0]["rusername"].ToString();
+                                    string chkusername = dsruaauser.Tables[0].Rows[0]["chkusername"].ToString();
+                                    string ratepusername = dsruaauser.Tables[0].Rows[0]["ratepusername"].ToString();
+                                    //string frmname = "PurReqApproval?Type=Approval";
+
+                                    string empid = "930100101086"; // MD Sir Employee ID
+                                   // string empid = "930100101005";
+                                    var ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
+
+                                    if (ds1 == null)
+                                        return;
+
+                                    string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
+                                    string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
+                                    string idcard = (string)ds1.Tables[1].Rows[0]["idcard"];
+
+                                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath ;
+                                    string currentptah = "/F_12_Inv/PurReqApproval?Type=Approval&prjcode="+ projcod + "&genno="+ reqno + "&comcod=" + comcod + "&usrid=" + suserid;
+                                    string totalpath = uhostname + currentptah;
+
+                                    string maildescription = "Dear Sir, Please check details information <br>"
+                                        + "<br> Ready for Requisition Approval(Purchase) MRF No : " + mrfno + ",<br>" + "Req. Entry:" + rusername + ",<br>" + "Rate proposed by : " + ratepusername + "." + "<br>" +
+                                             " <br> <br> <br> N.B: This email is system generated. ";
+                                    maildescription += "<br> <br><div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Interface</div>" + "<br/>";
+                                    ///GET SMTP AND SMS API INFORMATION
+                                    #region
+                                    string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                                    DataSet dssmtpandmail = accData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                                    if (dssmtpandmail == null)
+                                        return;
+                                    //SMTP
+                                    string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                                    int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                                    string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                                    string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                                    bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
+                                    #endregion
+
+
+                                    #region
+                                    string subj = "Ready for Requisition Approval";
+                                    string msgbody = maildescription;
+
+                                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, "", "", "", "", tomail, msgbody, isSSL);
+
+
+                                    #endregion
+                                }
+                                catch (Exception ex)
+                                {
+                                    string Messagesd = "Mail Not Send " + ex.Message;
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                                }
+                            }
+
+
+                            break;
+
                         default:
                             break;
 
