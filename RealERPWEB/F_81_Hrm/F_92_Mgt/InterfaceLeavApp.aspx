@@ -212,40 +212,40 @@
 
             var gvConfirm = $('#<%=this.gvConfirm.ClientID %>');
             gvConfirm.Scrollable();
-         
+
         };
 
 
 
         function Search_Gridview2(strKey) {
             try {
- 
+
                 var strData = strKey.value.toLowerCase().split(" ");
                 /*alert()*/
-                   var tblData = document.getElementById("<%=this.gvLvReq.ClientID %>");
+                var tblData = document.getElementById("<%=this.gvLvReq.ClientID %>");
 
-                   var rowData;
-                   for (var i = 1; i < tblData.rows.length; i++) {
-                       rowData = tblData.rows[i].innerHTML;
-                       var styleDisplay = 'none';
-                       for (var j = 0; j < strData.length; j++) {
-                           if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                               styleDisplay = '';
-                           else {
-                               styleDisplay = 'none';
-                               break;
-                           }
-                       }
-                       tblData.rows[i].style.display = styleDisplay;
-                   }
-               }
+                var rowData;
+                for (var i = 1; i < tblData.rows.length; i++) {
+                    rowData = tblData.rows[i].innerHTML;
+                    var styleDisplay = 'none';
+                    for (var j = 0; j < strData.length; j++) {
+                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                            styleDisplay = '';
+                        else {
+                            styleDisplay = 'none';
+                            break;
+                        }
+                    }
+                    tblData.rows[i].style.display = styleDisplay;
+                }
+            }
 
-               catch (e) {
-                   alert(e.message);
+            catch (e) {
+                alert(e.message);
 
-               }
+            }
 
-           }
+        }
 
     </script>
 
@@ -253,8 +253,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>--%>
     <script>
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
@@ -292,10 +291,10 @@
             </asp:Timer>
 
             <triggers>
- 
-                   <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
- 
-               </triggers>
+
+                <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+
+            </triggers>
             <%-- </ContentTemplate>
 
     </asp:UpdatePanel>--%>
@@ -305,60 +304,41 @@
                 <div class="contentPart">--%>
 
             <div class="card card-fluid">
-                <div class="card-body mt-3">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label class="control-label  lblmargin-top9px" for="lblfrmdate">From</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <asp:TextBox ID="txFdate" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txFdate"></cc1:CalendarExtender>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label class="control-label  lblmargin-top9px" for="lblfrmdateto">To</label>
-
-                            </div>
+                <div class="card-body mt-2">
+                    <div class="row mb-2">
+                        <div class="col-md-2 col-lg-2 col-sm-6">
+                            <label for="From">
+                                From  
+                            </label>
+                            <asp:TextBox ID="txFdate" runat="server" CssClass="form-control"></asp:TextBox>
+                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Enabled="True"
+                                Format="dd-MMM-yyyy" TargetControlID="txFdate"></cc1:CalendarExtender>
 
                         </div>
 
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <asp:TextBox ID="txtdate" runat="server" CssClass="form-control" Width="160px"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
-
-                            </div>
-
-
-
-
-                        </div>
-                         
-                        <div class="col-md-3">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary">ID Card</asp:Label>
-                                </div>
-                                <asp:TextBox ID="txtSearch"   runat="server" CssClass="form-control" placeholder="Type ID CARD..." ></asp:TextBox>
-                                <div class="input-group-prepend ">
-                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn  btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
-                                </div>
-                            </div>
+                        <div class="col-md-2 col-lg-2 col-sm-6">
+                            <label for="To">
+                                To  
+                            </label>
+                            <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
+                            <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Enabled="True"
+                                Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                         </div>
 
-                        <div class="col-md-1">
-</div>
-                        <div class="col-md-2 text-right">
-                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Apply Leave</asp:HyperLink>
+                        <div class="col-md-2 col-lg-2 col-sm-6">
+                            <label for="Employee">
+                                ID #  
+                            </label>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Type ID CARD..."></asp:TextBox>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-6">
+
+                            <asp:LinkButton ID="lnkbtnok" runat="server" style="margin-top:29px;" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
+
+                        </div>
+
+                        <div class="col-md-2 col-lg-2 col-sm-2 text-right">
+                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" style="margin-top:29px;" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-primary full-right"> <i class="fa fa-plus "></i> Apply Leave</asp:HyperLink>
 
                         </div>
 
@@ -536,15 +516,14 @@
 
                                                             <asp:TemplateField HeaderText="Notes">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'
-                                                                         ></asp:Label>
-                                                  
+                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'></asp:Label>
+
 
 
 
                                                                     <asp:HyperLink runat="server" data-toggle="tooltip" title='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>' Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")).Length > 0 ? Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")).Substring(0,8).Insert(8,"....") : "" %>' NavigateUrl="#"></asp:HyperLink>
-                                                                     
+
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
@@ -565,11 +544,11 @@
 
 
                                                             <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>                                                                    
+                                                                <ItemTemplate>
                                                                     <asp:HyperLink ID="lnkbtnEditUser" Visible="false" CssClass="btn btn-xs btn-default" Target="_blank" runat="server">
                                                                         <span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank" 
+                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank"
                                                                         ForeColor="Black" CssClass="btn btn-xs btn-default" Font-Underline="false">
                                                                         <span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
@@ -702,12 +681,12 @@
                                                                 <ItemStyle HorizontalAlign="Center" />
                                                                 <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
                                                             </asp:TemplateField>
-                                                                  <asp:TemplateField HeaderText="Current Status">
+                                                            <asp:TemplateField HeaderText="Current Status">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus")) %>'
                                                                         Width="80px"></asp:Label>
-                                                                     <asp:Label ID="Label2" runat="server" BackColor="Transparent"
+                                                                    <asp:Label ID="Label2" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus1")) %>'
                                                                         Width="80px"></asp:Label>
                                                                 </ItemTemplate>
@@ -723,16 +702,15 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
 
-                                                               <asp:TemplateField HeaderText="Notes">
+                                                            <asp:TemplateField HeaderText="Notes">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'
-                                                                         ></asp:Label>
-                                          <%--                          <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"  
+                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'></asp:Label>
+                                                                    <%--                          <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"  
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>'
                                                                          ></asp:Label>--%>
-                                                                                                <asp:HyperLink runat="server" data-toggle="tooltip" title='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>' Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")).Length > 0 ? Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")).Substring(0,8).Insert(8,"....") : "" %>' NavigateUrl="#"></asp:HyperLink>
-                                                                     
+                                                                    <asp:HyperLink runat="server" data-toggle="tooltip" title='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>' Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")).Length > 0 ? Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")).Substring(0,8).Insert(8,"....") : "" %>' NavigateUrl="#"></asp:HyperLink>
+
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
@@ -746,7 +724,7 @@
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:HyperLink ID="lnkbtnDptApp" runat="server" Visible="false" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
+                                                                    <asp:HyperLink ID="lnkbtnDptApp" runat="server" Visible="false" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
 
                                                                     <asp:LinkButton ID="lnkRemove" runat="server" Visible="false" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemove_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
@@ -880,15 +858,13 @@
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                                             </asp:TemplateField>
-                                                               <asp:TemplateField HeaderText="Notes">
+                                                            <asp:TemplateField HeaderText="Notes">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'
-                                                                         ></asp:Label>
-                                                                    <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>'
-                                                                         ></asp:Label>
-                                                                     
+                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'></asp:Label>
+                                                                    <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>'></asp:Label>
+
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
@@ -1031,15 +1007,13 @@
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                                             </asp:TemplateField>
 
-                                                               <asp:TemplateField HeaderText="Notes">
+                                                            <asp:TemplateField HeaderText="Notes">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'
-                                                                         ></asp:Label>
-                                                                    <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>'
-                                                                         ></asp:Label>
-                                                                     
+                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'></asp:Label>
+                                                                    <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>'></asp:Label>
+
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
@@ -1092,7 +1066,7 @@
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dptusid")) %>'
                                                                         Width="49px"></asp:Label>
 
-                                                                     <asp:Label ID="lblLeavId" runat="server" Visible="false"
+                                                                    <asp:Label ID="lblLeavId" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
                                                                         Width="49px"></asp:Label>
                                                                     <asp:Label ID="lblgvempid" runat="server"
@@ -1190,15 +1164,13 @@
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                                             </asp:TemplateField>
 
-                                                               <asp:TemplateField HeaderText="Notes">
+                                                            <asp:TemplateField HeaderText="Notes">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'
-                                                                         ></asp:Label>
-                                                                    <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>'
-                                                                         ></asp:Label>
-                                                                     
+                                                                    <asp:Label ID="lbllreason" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'></asp:Label>
+                                                                    <asp:Label ID="txtgvdenameadesig" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "denameadesig")) %>'></asp:Label>
+
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
@@ -1215,7 +1187,7 @@
                                                                     <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default" ToolTip="Print Leave Application"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default" ToolTip="Remove Forward"><span  class="fa fa-undo"></span>
+                                                                    <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default" ToolTip="Remove Forward"><span  class="fa fa-undo"></span>
                                                                     </asp:LinkButton>
 
                                                                 </ItemTemplate>
@@ -1361,7 +1333,7 @@
                     </div>
                 </asp:Panel>
             </asp:Panel>
-         <%--   </div>
+            <%--   </div>
                 </div>
 
 
@@ -1369,7 +1341,6 @@
 
             </div>
             </div>--%>
-
         </ContentTemplate>
 
 
