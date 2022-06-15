@@ -936,13 +936,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string callType = "GETSUPERVISERMAIL";
                 if ((comcod == "3368" || comcod == "3101") && delgationemp != "000000000000")
                 {
-                    empid = delgationemp;                     
+                                       
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
 
 
 
-                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, "", "", "", "", "", "", "", "");
+                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, delgationemp, "", "", "", "", "", "", "");
 
                 if (ds1 == null)
                     return;
