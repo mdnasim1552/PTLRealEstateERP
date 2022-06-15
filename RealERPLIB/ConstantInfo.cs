@@ -438,6 +438,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203181", "F_12_Inv", "RptOrderVsReceive", "", "Purchase Order Search", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203182", "F_12_Inv", "AllIndentIsuList?", "Type=Entry", "Indent Issue List", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203183", "F_12_Inv", "Material_Issue?", "Type=Entry", "Indent Materials Issue", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203184", "F_12_Inv", "Material_Issue?", "Type=Approve", "Indent Materials Approve", "Inventory", "False", "False", "False", "False" });
+
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203195", "F_12_Inv", "PurReqEntry?", "InputType=IndentEntry", "Indent Requisition", "Inventory", "False", "False", "False", "False" });
@@ -5065,6 +5067,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000008", "04. Materials Stock Information(Account)", "F_12_Inv/RptProjectStock?Type=acc&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000009", "05. Indent Issue List", "F_12_Inv/AllIndentIsuList?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
