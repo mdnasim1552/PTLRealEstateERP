@@ -2245,7 +2245,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8151000", "8151001", "F_99_Allinterface", "HRInterfaceTopSheet", "", "Salary  360 <sup>0</span>", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151002", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "HR Interface", "HR Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151003", "F_99_Allinterface", "HRMAllInOne", "", "HR Dashboard", "HR Management", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "8151000", "8151004", "F_81_Hrm/F_85_Lon", "InterfaceLoan", "", "Loan Interface", "HR Management", "False", "False", "False", "False" });
 
 
 
