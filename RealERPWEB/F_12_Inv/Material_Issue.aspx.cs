@@ -356,7 +356,7 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPINDREFNO", Refno, "", "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count == 0) ;
 
 
@@ -377,7 +377,7 @@ namespace RealERPWEB.F_12_Inv
             }
             string pactcode = this.ddlProject.SelectedValue.ToString();
             bool result;
-            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "INSORUPTXTTTOEMPINF", "indissueb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, "", "", "", "", "");
+            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indissueb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, "", "", "", "", "");
 
 
             foreach (DataRow dr in dt.Rows)
@@ -391,7 +391,7 @@ namespace RealERPWEB.F_12_Inv
                 string empid = dr["empid"].ToString().Trim();
                 string remarks = dr["remarks"].ToString().Trim();
 
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "INSORUPTXTTTOEMPINF", "indissuea", Issueno, rsircode, spcfcod,
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indissuea", Issueno, rsircode, spcfcod,
                    deptcode, issueqty, issueamt, empid, remarks, "", "", "", "", "", "");
             }
 
@@ -588,7 +588,7 @@ namespace RealERPWEB.F_12_Inv
 
             string comcod = this.GetCompCode();
             string curdate = this.txtCurDate.Text.ToString().Trim();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "GETPREISSUELIST", curdate, "", "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETPREISSUELIST", curdate, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -700,48 +700,48 @@ namespace RealERPWEB.F_12_Inv
         {
 
 
-            //ViewState.Remove("tblIssue");
-            //string comcod = this.GetCompCode();
-            //string CurDate1 = this.txtCurDate.Text.Trim();
-            //string mISUNo = "NEWISU";
-            //if (this.ddlPreList.Items.Count > 0)
-            //{
-            //    this.txtCurDate.Enabled = false;
-            //    mISUNo = this.ddlPreList.SelectedValue.ToString();
+            ViewState.Remove("tblIssue");
+            string comcod = this.GetCompCode();
+            string CurDate1 = this.txtCurDate.Text.Trim();
+            string mISUNo = "NEWISU";
+            if (this.ddlPreList.Items.Count > 0)
+            {
+                this.txtCurDate.Enabled = false;
+                mISUNo = this.ddlPreList.SelectedValue.ToString();
 
-            //}
-            //string pactcode = this.ddlProject.SelectedValue.ToString();
+            }
+            string pactcode = this.ddlProject.SelectedValue.ToString();
 
-            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, CurDate1, "%%", "GETMETERIALS", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUEINFO", mISUNo, CurDate1,"");
 
-            ////  DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", CurDate1, mISUNo, "", "", "", "", "", "", "");
-            //if (ds1 == null)
-            //    return;
+            //  DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", CurDate1, mISUNo, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
 
-            //ViewState["tblIssue"] = ds1.Tables[0];
-
-
-            //if (mISUNo == "NEWISU")
-            //{
-            //    ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLASTMISSUEINFO", CurDate1, "", "", "", "", "", "", "", "");
-            //    if (ds1 == null)
-            //        return;
-            //    this.lblCurNo1.Text = ds1.Tables[0].Rows[0]["maxmisuno1"].ToString().Trim().Substring(0, 6);
-            //    this.txtCurNo2.Text = ds1.Tables[0].Rows[0]["maxmisuno1"].ToString().Trim().Substring(6);
-            //    return;
-            //}
+            ViewState["tblIssue"] = ds1.Tables[0];
 
 
+            if (mISUNo == "NEWISU")
+            {
+                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUENO", CurDate1, "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                this.lblCurNo1.Text = ds1.Tables[0].Rows[0]["maxissueno1"].ToString().Trim().Substring(0, 6);
+                this.txtCurNo2.Text = ds1.Tables[0].Rows[0]["maxissueno1"].ToString().Trim().Substring(6);
+                return;
+            }
 
-            //this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            //this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
-            //this.ddlEmpList.SelectedValue = ds1.Tables[1].Rows[0]["empid"].ToString();
 
-            //this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["issuedat"]).ToString("dd-MMM-yyyy");
-            //this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
-            //this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(0, 6);
-            //this.txtCurNo2.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(6);
-            //this.Data_Bind();
+
+            this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
+            this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
+            this.ddlEmpList.SelectedValue = ds1.Tables[1].Rows[0]["empid"].ToString();
+
+            this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["issuedat"]).ToString("dd-MMM-yyyy");
+            this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
+            this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(0, 6);
+            this.txtCurNo2.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(6);
+            this.Data_Bind();
         }
 
 
