@@ -584,8 +584,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1451000", "1451002", "F_99_Allinterface", "RptPurInterface?", "Type=Report", "Purchase", "Procurement-Interface", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1451000", "1451003", "F_99_Allinterface", "RptCashPurInterface", "", "Purchase(Cash)", "Procurement-Interface", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1451000", "1451004", "F_99_Allinterface", "RptLCInterface", "", "Import Interface", "Procurement-Interface", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1451000", "1451005", "F_99_Allinterface", "RptIndentPurInterface", "", "Indent Interface", "Procurement-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1451000", "1451004", "F_99_Allinterface", "RptLCInterface", "", "Import", "Procurement-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1451000", "1451005", "F_99_Allinterface", "RptIndentPurInterface", "", "Indent", "Procurement-Interface", "False", "False", "False", "False" });
 
             //09.foreign Procurement
             #region
