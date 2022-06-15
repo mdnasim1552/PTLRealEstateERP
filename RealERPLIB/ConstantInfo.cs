@@ -438,6 +438,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203181", "F_12_Inv", "RptOrderVsReceive", "", "Purchase Order Search", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203182", "F_12_Inv", "AllIndentIsuList?", "Type=Entry", "Indent Issue List", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203183", "F_12_Inv", "Material_Issue?", "Type=Entry", "Indent Materials Issue", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203184", "F_12_Inv", "Material_Issue?", "Type=Approve", "Indent Materials Approve", "Inventory", "False", "False", "False", "False" });
+
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203195", "F_12_Inv", "PurReqEntry?", "InputType=IndentEntry", "Indent Requisition", "Inventory", "False", "False", "False", "False" });
@@ -584,8 +586,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1451000", "1451002", "F_99_Allinterface", "RptPurInterface?", "Type=Report", "Purchase", "Procurement-Interface", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1451000", "1451003", "F_99_Allinterface", "RptCashPurInterface", "", "Purchase(Cash)", "Procurement-Interface", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1451000", "1451004", "F_99_Allinterface", "RptLCInterface", "", "Import Interface", "Procurement-Interface", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1451000", "1451005", "F_99_Allinterface", "RptIndentPurInterface", "", "Indent Interface", "Procurement-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1451000", "1451004", "F_99_Allinterface", "RptLCInterface", "", "Import", "Procurement-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1451000", "1451005", "F_99_Allinterface", "RptIndentPurInterface", "", "Indent", "Procurement-Interface", "False", "False", "False", "False" });
 
             //09.foreign Procurement
             #region
@@ -881,6 +883,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703451", "F_17_Acc", "RptAccPayUpdate?", "Type=GroupWiseChqIssued", "Cheque Issued - Group Wise", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703452", "F_17_Acc", "RptAccPayUpdate?", "Type=DateWiseChqIssued", "Date Wise Cheque Issued", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703453", "F_17_Acc", "RptAccPayUpdate?", "Type=PayStatusResource", "Payment Status Resource", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703454", "F_17_Acc", "RptAccPayUpdate?", "Type=PVSegment", "Segment wise Post Dated Voucher Report", "Accounts", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "1703000", "1703460", "F_17_Acc", "RptTransactionSearch02", "", "Transaction Search - 02", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703461", "F_17_Acc", "RptTransactionSearch03", "", "Transaction Search - 03", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702465", "F_17_Acc", "AccChqueDeposit?", "Type=RegChqCl", "Cheque Register History", "Accounts", "False", "False", "False", "False" }); ;
@@ -5065,6 +5069,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000008", "04. Materials Stock Information(Account)", "F_12_Inv/RptProjectStock?Type=acc&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000009", "05. Indent Issue List", "F_12_Inv/AllIndentIsuList?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
@@ -6141,6 +6146,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000010", "08. Day Wise Issued(Cheque Date)", "F_17_Acc/RptAccPayUpdate?Type=ChqIsssued", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000011", "09. Cheque Issued- Group Wise", "F_17_Acc/RptAccPayUpdate?Type=GroupWiseChqIssued", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000012", "10. Date Wise Cheque Issued", "F_17_Acc/RptAccPayUpdate?Type=DateWiseChqIssued", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000012", "10. Segment wise Post Dated Voucher Report", "F_17_Acc/RptAccPayUpdate?Type=PVSegment", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0302000013", "11. Issue Vs. Payment(Main Head)", "F_17_Acc/RptAccSpLedger?Type=IssPay&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000014", "12. Issue Vs. Payment Summary(Main Head)", "F_17_Acc/RptAccSpLedger?Type=IssPaySum&comcod=", "", true, "" });
