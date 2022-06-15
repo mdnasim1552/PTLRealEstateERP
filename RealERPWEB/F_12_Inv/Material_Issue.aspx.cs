@@ -376,8 +376,9 @@ namespace RealERPWEB.F_12_Inv
                 }
             }
             string pactcode = this.ddlProject.SelectedValue.ToString();
+            string reqno = (this.Request.QueryString["sircode"].Length == 0) ? "" : this.Request.QueryString["sircode"].ToString();
             bool result;
-            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indissueb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, "", "", "", "", "");
+            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indissueb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, "", "", "", "");
 
 
             foreach (DataRow dr in dt.Rows)
@@ -466,9 +467,9 @@ namespace RealERPWEB.F_12_Inv
                 if (SearchInfo.Length > 0)
                     SearchInfo = "(" + SearchInfo.Substring(0, SearchInfo.Length - 3) + ")";
             }
+            string reqno = (this.Request.QueryString["sircode"].Length == 0) ? "" : this.Request.QueryString["sircode"].ToString();
 
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INDENTGETMATLIST", mProject, mSrchTxt, date, "", "", "", "", "", "");
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INDENTGETMATLIST", mProject, mSrchTxt, date, reqno, "", "", "", "", "");
 
             if (ds1 == null)
             {
@@ -525,6 +526,13 @@ namespace RealERPWEB.F_12_Inv
             this.ddlDeptCode.DataSource = ds1.Tables[0];
             this.ddlDeptCode.DataBind();
             this.ddlDeptCode.SelectedValue = "AAAAAAAAAAAA";
+            if (this.Request.QueryString["prjcode"].Length > 0)
+            {
+                string deptcode = this.Request.QueryString["prjcode"].ToString();
+
+                this.ddlDeptCode.SelectedValue = deptcode;
+
+            }
         }
         private void GetEmployeeList()
         {
@@ -543,6 +551,7 @@ namespace RealERPWEB.F_12_Inv
             this.ddlEmpList.DataValueField = "sircode";
             this.ddlEmpList.DataSource = ds1.Tables[0];
             this.ddlEmpList.DataBind();
+            
             ds1.Dispose();
 
         }
@@ -838,8 +847,8 @@ namespace RealERPWEB.F_12_Inv
                 DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
                 dr1["rsirunit"] = dr3[0]["rsirunit"];
                 dr1["stkqty"] = dr3[0]["stkqty"];
-                dr1["stkrate"] = dr3[0]["stkrate"]; ;
-                dr1["issueqty"] = 0;
+                dr1["stkrate"] = dr3[0]["stkrate"];
+                dr1["issueqty"] = dr3[0]["issueqty"];
                 dr1["issueamt"] = 0;
                 dr1["remarks"] = "";
                 tbl1.Rows.Add(dr1);
@@ -879,7 +888,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
                     dr1["stkqty"] = tbl2.Rows[i]["stkqty"];
                     dr1["stkrate"] = tbl2.Rows[i]["stkrate"];
-                    dr1["issueqty"] = 0;
+                    dr1["issueqty"] = tbl2.Rows[i]["issueqty"];
                     dr1["issueamt"] = 0;
                     dr1["remarks"] = "";
 

@@ -642,41 +642,44 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["reqqty"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["iscrchecked"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>CRM Check</div></div></div>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["reqqty"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["iscrchecked"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>CRM Check</div></div></div>";
 
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["chqqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + reqcheck + "</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["faprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>1st App.</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["chqqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + reqcheck + "</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["faprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>1st App.</div></div></div>";
 
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["saprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>2nd App.</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["saprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>2nd App.</div></div></div>";
 
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["raproqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Rate Prop.</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["raproqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Rate Prop.</div></div></div>";
 
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>1st Recom.</div></div></div>";
-            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["secrecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
-            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["threcom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + reqforward + "</div></div></div>";
-            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["appqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + reqapproval + "</div></div></div>";
-            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["ordprqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Order Proc.</div></div></div>";
-            this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["worderqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>Pur. Order</div></div></div>";
-            this.RadioButtonList1.Items[12].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["ofapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>" + OrderfApproved + "</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>1st Recom.</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["secrecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["threcom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + reqforward + "</div></div></div>";
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["appqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + reqapproval + "</div></div></div>";
+            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["ordprqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Order Proc.</div></div></div>";
+            this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["worderqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>Pur. Order</div></div></div>";
+            this.RadioButtonList1.Items[12].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["ofapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>" + OrderfApproved + "</div></div></div>";
 
-            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["osecapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + Order2ndAprv + "</div></div></div>";
+            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["osecapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + Order2ndAprv + "</div></div></div>";
 
-            this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Received</div></div></div>";
+            this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["mrrqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Received</div></div></div>";
 
-            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Received(App)</div></div></div>";
+            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["mrrapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Received(App)</div></div></div>";
 
-            this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["billqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Bill Confirm.</div></div></div>";
+            this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["billqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Bill Confirm.</div></div></div>";
             //this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["compqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Acc. Update</div></div></div>";
 
             //Added
-            this.RadioButtonList1.Items[18].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["compqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Acc. Update</div></div></div>";
+            this.RadioButtonList1.Items[18].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["compqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Acc. Update</div></div></div>";
 
             if (this.RadioButtonList1.Items[17].Enabled == true)
             {
-                this.RadioButtonList1.Items[17].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["billaudit"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red''><div class='circle-tile-description text-faded'>Bill Audit</div></div></div>";
+                this.RadioButtonList1.Items[17].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["billaudit"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red''><div class='circle-tile-description text-faded'>Bill Audit</div></div></div>";
 
             }
+            this.RadioButtonList1.Items[19].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["indisu"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Indent Issue</div></div></div>";
+            this.RadioButtonList1.Items[20].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["indapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Indent Approve</div></div></div>";
+
             ds1.Dispose();
 
 
@@ -826,6 +829,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelComp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
 
                     // this.RadioButtonList1.Items[0].Attributes["style"] =  "background:#5A5C59; display:block";
@@ -860,6 +865,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelComp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[1].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background:#5A5C59; display:block";
@@ -892,6 +899,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelComp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[1].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background:#5A5C59; display:block";
@@ -955,6 +964,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background:#5A5C59; display:block";
@@ -988,6 +999,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1021,6 +1034,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[3].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[3].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1060,6 +1075,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[4].Attributes.Add("class", "lblactive");
                     //  this.RadioButtonList1.Items[4].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1095,6 +1112,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
 
                     break;
@@ -1126,6 +1145,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[6].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[6].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1162,6 +1183,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[7].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[7].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1197,6 +1220,8 @@ namespace RealERPWEB.F_99_Allinterface
                     // this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[8].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[8].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1233,6 +1258,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[11].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1270,6 +1297,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[12].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1302,6 +1331,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[13].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1338,6 +1369,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[14].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[10].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1379,6 +1412,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[15].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[10].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1421,7 +1456,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = true;
                     this.PanelBillAudit.Visible = false;
-
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[16].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[11].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[11].Attributes["style"] = "background:#5A5C59; display:block";
@@ -1457,6 +1493,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = true;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[17].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "18":
@@ -1480,13 +1518,68 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelBill.Visible = false;
                     this.PanelComp.Visible = true;
                     this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = false;
                     this.RadioButtonList1.Items[18].Attributes["class"] = "lblactive blink_me";
-                    //  this.RadioButtonList1.Items[12].Attributes.Add("class", "lblactive");
-                    // this.RadioButtonList1.Items[12].Attributes["style"] = "background:#5A5C59; display:block";
 
                     break;
 
+                case "19":
+                    //Indent
+                    dt = (DataTable)ds1.Tables[7];
+                    this.Data_Bind("gvInd", dt);
+                    this.pnlReqInfo.Visible = false;
+                    this.PnlReqChq.Visible = false;
+                    this.Pnlfirstapp.Visible = false;
+                    this.Pnlsecapp.Visible = false;
+                    this.pnlRatePro.Visible = false;
+                    this.pnlCRM.Visible = false;
+                    this.PaneWorder.Visible = false;
+                    this.pnlfRec.Visible = false;
+                    this.pnlSecRec.Visible = false;
+                    this.pnlThRec.Visible = false;
+                    this.pnlRateApp.Visible = false;
+                    this.PanelOrProc.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
+                    this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
+                    this.PanelBill.Visible = false;
+                    this.PanelComp.Visible = false;
+                    this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = true;
+                    this.PanelIndAp.Visible = false;
+                    this.RadioButtonList1.Items[19].Attributes["class"] = "lblactive blink_me";
 
+                    break;
+                case "20":
+                    //IndApp
+                    dt = (DataTable)ds1.Tables[8];
+                    this.Data_Bind("gvIndAp", dt);
+                    this.pnlReqInfo.Visible = false;
+                    this.PnlReqChq.Visible = false;
+                    this.Pnlfirstapp.Visible = false;
+                    this.Pnlsecapp.Visible = false;
+                    this.pnlRatePro.Visible = false;
+                    this.pnlCRM.Visible = false;
+                    this.PaneWorder.Visible = false;
+                    this.pnlfRec.Visible = false;
+                    this.pnlSecRec.Visible = false;
+                    this.pnlThRec.Visible = false;
+                    this.pnlRateApp.Visible = false;
+                    this.PanelOrProc.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
+                    this.PanelRecv.Visible = false;
+                    this.pnlmrrapp.Visible = false;
+                    this.PanelBill.Visible = false;
+                    this.PanelComp.Visible = false;
+                    this.PanelBillAudit.Visible = false;
+                    this.PanelInd.Visible = false;
+                    this.PanelIndAp.Visible = true;
+                    this.RadioButtonList1.Items[20].Attributes["class"] = "lblactive blink_me";
+
+                    break;
 
 
 
@@ -1947,6 +2040,45 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
+
+        protected void gvInd_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnInd");
+                // HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnEditIN");
+                //HyperLink hlnkgvgvmrfno = (HyperLink)e.Row.FindControl("hlnkgvgvmrfno");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+                string deptcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptcode")).ToString();
+
+                //string mrfno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrfno")).ToString();
+                //string comcod1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
+
+                hlink2.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Entry&genno="+ "&prjcode=" + deptcode + "&sircode=" + reqno;
+
+            }
+        }
+
+        protected void gvIndAp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+              
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnAppIN");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString();
+                string deptcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptcode")).ToString();
+
+                hlink2.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno + "&prjcode=&sircode=";
+
+            }
+        }
         private DataTable HiddenSameData(DataTable dt1)
         {
 
@@ -2173,6 +2305,14 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvPurBillAudit":
                     this.gvPurBillAudit.DataSource = HiddenSameData(dt);
                     this.gvPurBillAudit.DataBind();
+                    break;
+                case "gvInd":
+                    this.gvInd.DataSource = HiddenSameData(dt);
+                    this.gvInd.DataBind();
+                    break;
+                case "gvIndAp":
+                    this.gvIndAp.DataSource = HiddenSameData(dt);
+                    this.gvIndAp.DataBind();
                     break;
 
 
