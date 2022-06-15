@@ -248,24 +248,18 @@
                         <div class="panel with-nav-tabs panel-primary">
                             <fieldset class="tabMenu">
                                 <div class="form-horizontal">
-<<<<<<< HEAD
+
 
                                     <div class="tbMenuWrp nav nav-tabs rptPurInt text-center text-white">
                                         <asp:RadioButtonList ID="LoantState" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="LoantState_SelectedIndexChanged">
-=======
-                                    <div class="tbMenuWrp nav nav-tabs rptPurInt text-center text-white">
-                                        <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" RepeatDirection="Horizontal">
->>>>>>> ca90ee60beedbcfdb94ecd8a9c145f1ffca7a952
+
                                             <asp:ListItem Value="0"><h4 ><span class="font-weight-bold text-white">44</span></h4><span class="font-weight-bold text-white">Loan Queue</span></asp:ListItem>
                                             <asp:ListItem Value="1"><h4><span class="font-weight-bold text-white">44</span></h4><span class="font-weight-bold text-white">Loan Process</span></asp:ListItem>
                                             <asp:ListItem Value="2"><h4><span class="font-weight-bold text-white">44</span></h4><span class="font-weight-bold text-white">Loan Approval</span></asp:ListItem>
                                             <asp:ListItem Value="3"><h4><span class="font-weight-bold text-white">44</span></h4><span class="font-weight-bold text-white">Loan Generate</span></asp:ListItem>
                                             <asp:ListItem Value="4"><h4><span class="font-weight-bold text-white">44</span></h4><span class=" font-weight-bold text-white">Loan Completed</span></asp:ListItem>
                                         </asp:RadioButtonList>
-<<<<<<< HEAD
 
-=======
->>>>>>> ca90ee60beedbcfdb94ecd8a9c145f1ffca7a952
                                     </div>
 
                                 </div>
