@@ -223,11 +223,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-
             <asp:LinkButton ID="lnkPageloadData" Style="display: none" OnClick="lnkPageloadData_Click" Class="btn btn-sm btn-primary d-none" runat="server">lnkPageloadData</asp:LinkButton>
-
-
-
             <div class="card card-fluid mt-4">
                 <div class="card-header">
                     <div class="row">
@@ -242,10 +238,7 @@
                             <asp:ListItem Value="9">Sub Code-3</asp:ListItem>
                             <asp:ListItem Selected="True" Value="12">Details Code</asp:ListItem>
                         </asp:DropDownList>
-
                         <button class="btn btn-sm btn-secsondary col-1" type="button">Catagory</button>
-
-
                         <asp:DropDownList ID="ddlcatagory" runat="server" CssClass="chzn-select col-3">
                         </asp:DropDownList>
                     </div>
@@ -254,26 +247,20 @@
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <asp:Label ID="LblBookName2" runat="server" CssClass="btn btn-secondary btn-sm" Text="Search Option:"></asp:Label>
-
                                 </div>
                                 <asp:TextBox ID="txtsrch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <div class="input-group-prepend">
                                     <asp:LinkButton ID="ibtnSrch" runat="server" OnClick="ibtnSrch_Click" CssClass="btn btn-secondary btn-sm">  <i class="fa fa-search"></i></asp:LinkButton>
-
                                 </div>
-
                                 <div class="input-group-prepend">
                                     <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-sm btn-primary "></asp:LinkButton>
-
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group input-group-alt">
-
                                 <div class="input-group-prepend">
                                     <asp:Label ID="lblPage" runat="server" CssClass="btn btn-secondary btn-sm" Text="Page Size"></asp:Label>
-
                                 </div>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
@@ -295,7 +282,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-body" style="min-height: 350px;">
                     <div class="row mb-2">
                         <div class="table-responsive">
@@ -304,12 +290,9 @@
                                 OnRowUpdating="grvacc_RowUpdating" PageSize="900" OnPageIndexChanging="grvacc_PageIndexChanging"
                                 OnRowDataBound="grvacc_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 Width="700px" OnDataBound="grvacc_DataBound" ShowFooter="True">
-
-
                                 <FooterStyle BackColor="#5F9467" />
-
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="SL.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblserialnoid" runat="server"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -317,7 +300,6 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle />
                                     </asp:TemplateField>
-
                                     <asp:TemplateField HeaderText="+">
 
                                         <ItemTemplate>
@@ -329,7 +311,6 @@
 
                                         <ItemStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
-
                                     <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
                                         SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
@@ -356,9 +337,6 @@
                                                 MaxLength="13" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode4")) %>'
                                                 Width="100px"></asp:Label>
-
-
-
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
                                         <ItemStyle Font-Size="12px" />
@@ -374,32 +352,27 @@
                                             <asp:Label ID="Label8" runat="server" Text="Description of Code" Width="350px"></asp:Label>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-
                                             <asp:HyperLink ID="hlnkgvdesc" runat="server" BorderColor="#99CCFF" BorderStyle="none"
                                                 Font-Size="11px" Style="text-align: left; background-color: Transparent; color: Black;"
                                                 Font-Underline="false" Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc"))  %>'
-                                                Width="350px">                                             
-                                            
+                                                Width="350px">    
                                             </asp:HyperLink>
-
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Description of Code BN" HeaderStyle-Width="400px">
+                                    <asp:TemplateField HeaderText="Description of Code BN">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="txtgvDescbn" runat="server" Font-Size="12px" MaxLength="250"
                                                 Style="border-style: none;"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn")) %>'
-                                                Width="300px"></asp:TextBox>
+                                                Width="280px"></asp:TextBox>
                                         </EditItemTemplate>
                                         <HeaderTemplate>
-                                            <asp:Label ID="Label8" runat="server" Text="Description of Code BN" Width="300px"></asp:Label>
+                                            <asp:Label ID="Label8" runat="server" Text="Description of Code BN" Width="280px"></asp:Label>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="Label8" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn"))  %>' Width="300px"></asp:Label>
-
-
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn"))  %>' Width="280px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle />
@@ -409,10 +382,8 @@
                                             <asp:TextBox ID="txtgvsirunit" runat="server" MaxLength="100" Visible="false"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
                                                 Width="80px"></asp:TextBox>
-
                                             <asp:DropDownList ID="ddlUnit" CssClass="chzn-select form-control" Visible="false" runat="server">
                                             </asp:DropDownList>
-
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblunit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
@@ -421,7 +392,6 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
                                     <asp:TemplateField HeaderText="Std.Rate">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="txtgvsirval" runat="server" Font-Size="12px" MaxLength="100"
@@ -524,9 +494,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                     </asp:TemplateField>
-
                                     <asp:TemplateField HeaderText="Sir Code" Visible="false">
-
                                         <ItemTemplate>
                                             <asp:Label ID="lbllgrcodefull" runat="server" Font-Size="12px"
                                                 MaxLength="13" BackColor="Transparent"
@@ -536,14 +504,11 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
                                         <ItemStyle Font-Size="12px" />
                                     </asp:TemplateField>
-
                                     <asp:TemplateField HeaderText="Seq" Visible="false">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvseq" runat="server"
                                                 Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "seq")) %>'
                                                 Width="60px"></asp:TextBox>
-
-
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
@@ -551,33 +516,36 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Mapping" Visible="false">
+                                         <EditItemTemplate>
+                                              <asp:Label ID="lblgvMapDesc" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mapdesc")) %>'
+                                                Width="80px"></asp:Label>
+                                           <asp:DropDownList ID="ddlMapping" runat="server" CssClass="form-control form-control-sm chzn-select" Width="80px"></asp:DropDownList>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblMapDesc" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mapdesc")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                    </asp:TemplateField>
                                 </Columns>
-
-
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
-
                             </asp:GridView>
-
-
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
-
             <div class="modal fade " id="detialsinfo" role="dialog">
                 <div class="modal-dialog  modal-lg ">
                     <div class="modal-content ">
                         <div class="modal-header">
-                            <h4 class="modal-title text-center">Details Information</h4>                            
+                            <h4 class="modal-title text-center">Details Information</h4>
                             <button type="button" data-dismiss="modal" class="btn btn-xs btn-danger" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -609,18 +577,13 @@
                     </div>
                 </div>
             </div>
-
-
             <div id="AddResCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content  ">
                         <div class="modal-header">
-
-                            <h5 class="modal-title"><span class="fa fa-table"></span>&nbsp;Add New Code</h5>
+                            <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;Add New Code</h5>
                             <asp:Label ID="lblmobile" runat="server"></asp:Label>
-                            <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal"><i class="fas fa-times-circle"></i></button>
-
-
+                            <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal" title="Close"><i class="fas fa-times-circle"></i></button>
                         </div>
                         <div class="modal-body form-horizontal">
                             <div class="row mb-1">
@@ -655,7 +618,6 @@
                             </div>
 
                             <div class="row mb-1">
-
                                 <label class="col-md-4">Unit </label>
                                 <div class="col-md-4">
                                     <asp:TextBox ID="txtunit" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
@@ -674,55 +636,46 @@
                                 </div>
 
                             </div>
-
                             <div class="row mb-1">
                                 <label class="col-md-4" id="lblsdrate" runat="server">Standard Rate </label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtstdrate" runat="server" CssClass="form-control" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
                                 </div>
-
                             </div>
-
                             <div class="row mb-1">
                                 <label class="col-md-4">Brand </label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtbrand" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-
                             </div>
-
                             <div class="row mb-1">
-
                                 <label class="col-md-4">Details</label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtTDetails" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row mb-1">
-
                                 <label id="lblddlproject" runat="server" class="col-md-4">Department</label>
                                 <div class="col-md-8">
                                     <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
-
                             </div>
-
-
-
-
+                            <div class="row mb-1">
+                                <label id="lblMapping" runat="server" class="col-md-4">Mapping</label>
+                                <div class="col-md-8">
+                                    <asp:DropDownList ID="ddlModMapping" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer ">
-                            <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click"><span class="glyphicon glyphicon-save"></span> Update </asp:LinkButton>
-
-                            <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
+                            <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click" ToolTip="Update Code Info.">
+                                <i class="fas fa-save"></i>&nbsp;Update </asp:LinkButton>
                         </div>
                     </div>
                 </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
 </asp:Content>
 
 
