@@ -83,7 +83,7 @@
                                    
                                     <FooterTemplate>
                                         <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="12px" 
-                                            ForeColor="White" Text="Total"></asp:Label>
+                                            ForeColor="Black" Text="Total"></asp:Label>
                                     </FooterTemplate>
                                    
                                     <ItemTemplate>
@@ -136,7 +136,7 @@
                                 <asp:TemplateField HeaderText="Amount">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvDrAmt" runat="server" BackColor="Transparent" 
-                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" 
+                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" style="text-align:right"
                                             CssClass="GridTextbox" Font-Size="12px" ForeColor="Black" TabIndex="78" 
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0;(#,##0.); ") %>' 
                                             Width="80px"></asp:Label>
@@ -144,9 +144,9 @@
                                     <FooterTemplate>
                                         <asp:Label ID="lblTgvDrAmt" runat="server" BackColor="Transparent" 
                                             BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" 
-                                            Font-Size="12px" ForeColor="White" Width="80px"></asp:Label>
+                                            Font-Size="12px" ForeColor="Black" Width="80px"></asp:Label>
                                     </FooterTemplate>
-                                    <FooterStyle ForeColor="White" />
+                                    <FooterStyle ForeColor="Black" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Remarks">
