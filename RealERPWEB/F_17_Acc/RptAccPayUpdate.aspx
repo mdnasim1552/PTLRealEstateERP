@@ -90,10 +90,10 @@
 
                                                     <asp:Label ID="lblsegment" runat="server" CssClass=" smLbl_to" Visible="false">Slap </asp:Label>
                                                   <asp:DropDownList ID="ddlRange" runat="server" AutoPostBack="True" CssClass="ddlPage" Width="120px" Visible="false">
-                                                <asp:ListItem Value="rang1" Selected="True">Slap = 1-5000</asp:ListItem>
-                                                <asp:ListItem Value="rang2">Slap = 50001-50000</asp:ListItem>
-                                                <asp:ListItem Value="rang3" >Slap = 50001-100000</asp:ListItem>
-                                                <asp:ListItem Value="rang4">Slap = 100001-Above</asp:ListItem>
+                                                <asp:ListItem Value="rang1" Selected="True">Slab = 1-5000</asp:ListItem>
+                                                <asp:ListItem Value="rang2">Slab = 5001-50000</asp:ListItem>
+                                                <asp:ListItem Value="rang3" >Slab = 50001-100000</asp:ListItem>
+                                                <asp:ListItem Value="rang4">Slab = 100001-Above</asp:ListItem>
                                        
                                                    </asp:DropDownList>  
 
