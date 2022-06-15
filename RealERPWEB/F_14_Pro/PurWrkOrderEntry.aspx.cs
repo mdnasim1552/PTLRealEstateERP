@@ -4412,76 +4412,83 @@ namespace RealERPWEB.F_14_Pro
         private void SendSSLMail()
         {
 
-
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            string comcod = this.GetCompCode();
-            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
-
-            string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
-            if(ds1==null || ds1.Tables[0].Rows.Count==0)
-            {
-                string Messagesd = "Purchase order didn't save";
-                ((Label)this.Master.FindControl("lblmsg")).Text = Messagesd;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            string subject = "Work Order";
-            //SMTP
-            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-            string mailtousr = ds1.Tables[0].Rows[0]["mailid"].ToString();
-            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
-
-
-            EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
-
-            //Connection Details 
-            SmtpServer oServer = new SmtpServer(hostname);
-            oServer.User = frmemail;
-            oServer.Password = psssword;
-            oServer.Port = portnumber;
-            oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-            //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-
-            EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
-            oMail.From = frmemail;
-            oMail.To = mailtousr;
-            oMail.Cc = frmemail;
-            oMail.Subject = subject;
-
-
-            oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
-            oMail.AddAttachment(apppath);
-
-
-            //System.Net.Mail.Attachment attachment;
-
-            //attachment = new System.Net.Mail.Attachment(apppath);
-            //oMail.AddAttachment(attachment);
-
-
-
-
-
             try
             {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                string comcod = this.GetCompCode();
+                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
 
-                oSmtp.SendMail(oServer, oMail);
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
 
+                string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                {
+                    string Messagesd = "Purchase order didn't save";
+                    ((Label)this.Master.FindControl("lblmsg")).Text = Messagesd;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                string subject = "Work Order";
+                //SMTP
+                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+                string mailtousr = ds1.Tables[0].Rows[0]["mailid"].ToString();
+                string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
+
+
+                EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+
+                //Connection Details 
+                SmtpServer oServer = new SmtpServer(hostname);
+                oServer.User = frmemail;
+                oServer.Password = psssword;
+                oServer.Port = portnumber;
+                oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+                EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
+                oMail.From = frmemail;
+                oMail.To = mailtousr;
+                oMail.Cc = frmemail;
+                oMail.Subject = subject;
+
+
+                oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
+                oMail.AddAttachment(apppath);
+
+
+                //System.Net.Mail.Attachment attachment;
+
+                //attachment = new System.Net.Mail.Attachment(apppath);
+                //oMail.AddAttachment(attachment);
+
+
+
+
+
+                try
+                {
+
+                    oSmtp.SendMail(oServer, oMail);
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+
+                }
+                catch (Exception ex)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                }
             }
             catch (Exception ex)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
             }
+           
 
         }
         protected void gvOrderInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)

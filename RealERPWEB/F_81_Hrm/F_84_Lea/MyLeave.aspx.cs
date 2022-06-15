@@ -936,7 +936,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string callType = "GETSUPERVISERMAIL";
                 if ((comcod == "3368" || comcod == "3101") && delgationemp != "000000000000")
                 {
-                                      
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
 
