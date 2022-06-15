@@ -47,8 +47,8 @@ namespace RealERPWEB
                     break;
 
                 case "GRIDTOEXCEL":
-                   // this.ExportGridToExcel();
-                    this.ExportGridToExcel2();
+                    this.ExportGridToExcel();
+                    //this.ExportGridToExcel2();
                     break;
             }
         }
@@ -182,11 +182,13 @@ namespace RealERPWEB
         {
             try
             {
+                string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string fileName = "ExportTable_" + date1; 
                 //this.form1.Controls.Remove(this.CRViewer1);
                 GridView GridView1 = (GridView)Session["Report1"];
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=DataTable.xls");
+                Response.AddHeader("content-disposition", "attachment;filename="+ fileName + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
 
