@@ -712,7 +712,7 @@ namespace RealERPWEB.F_12_Inv
             }
             string pactcode = this.ddlProject.SelectedValue.ToString();
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUEINFO", mISUNo, CurDate1,);
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUEINFO", mISUNo, CurDate1,"");
 
             //  DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", CurDate1, mISUNo, "", "", "", "", "", "", "");
             if (ds1 == null)
