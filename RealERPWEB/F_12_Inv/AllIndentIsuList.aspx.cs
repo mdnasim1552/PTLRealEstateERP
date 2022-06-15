@@ -75,7 +75,7 @@ namespace RealERPWEB.F_12_Inv
 
             ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
-            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Attributes.Add("href", "../F_12_Inv/Material_Issue.aspx?Type=Entry&genno=");
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Attributes.Add("href", "../F_12_Inv/Material_Issue.aspx?Type=Entry&genno=prjcode=&sircode=");
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Attributes.Add("target", "_blank");
 
 
@@ -220,7 +220,7 @@ namespace RealERPWEB.F_12_Inv
                 hlink3.NavigateUrl = "~/F_23_SaM/Print.aspx?Type=IssueChallan&comcod=" + comcod + "&issueno=" + issueno + "&issuedat=" + issuedat;
                 if (apstatus == "False")
                 {
-                    hlink1.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno;
+                    hlink1.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno+ "&prjcode=&sircode=";
                     hlink1.Target = "blank";
                 }
                 else
