@@ -36,7 +36,7 @@ namespace RealERPWEB.F_17_Acc
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "GroupWiseChqIssued" ? "Cheque Issued (Group Wise)" : "Day Wise Issued (Cheque Date)";
+                ((Label)this.Master.FindControl("lblTitle")).Text = type == "GroupWiseChqIssued" ? "Cheque Issued (Group Wise)" : type == "PVSegment"? "Segment wise Post Dated Voucher Report" : "Day Wise Issued (Cheque Date)";
                 this.Master.Page.Title = "Day Wise Issued (Cheque Date)";
 
                 this.txtfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -101,11 +101,52 @@ namespace RealERPWEB.F_17_Acc
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
 
+                case "PVSegment":
+
+                   
+                    this.lblsegment.Visible = true;
+                    this.ddlRange.Visible = true;
+                    this.chkrange.Visible = true;
+
+                    
+
+
+                    this.MultiView1.ActiveViewIndex = 4;
+                    break;
+
 
             }
 
 
         }
+
+
+        protected void chkrange_CheckedChanged(object sender, EventArgs e)
+        {
+             if(chkrange.Checked)
+            {
+                this.lblfrmrange.Visible = true;
+                this.lbltorange.Visible = true;
+                this.txtfrmrange.Visible = true;
+                this.txttorange.Visible = true;
+                this.txttorange.Visible = true;
+
+            }
+
+            else
+            {
+                this.lblfrmrange.Visible = false;
+                this.lbltorange.Visible = false;
+                this.txtfrmrange.Visible = false;
+                this.txttorange.Visible = false;
+                this.txttorange.Visible = false;
+                this.txtfrmrange.Text = "";
+                this.txttorange.Text = "";
+
+            }
+            
+        }
+
         protected void imgbtnSrchBank_Click(object sender, EventArgs e)
         {
             this.GetBankName();
@@ -181,6 +222,14 @@ namespace RealERPWEB.F_17_Acc
                     //this.lblPage.Visible = true;
                     //this.ddlpagesize.Visible = true;
                     break;
+                case "PVSegment":
+                
+                    this.ShowDateWisePv();
+                    this.lblPage.Visible = true;
+                    this.ddlpagesize.Visible = true;
+                    break;
+
+                    
 
 
 
@@ -254,6 +303,45 @@ namespace RealERPWEB.F_17_Acc
 
 
 
+
+        }
+
+        private void ShowDateWisePv()
+        {
+            try
+            {
+                Session.Remove("tblpenchq");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                string voutype = "PV%";
+                double frmrange = (Convert.ToDouble("0" + this.txtfrmrange.Text.ToString())); // Convert.ToDouble(txtfrmsalary.Text);
+                double torange = Convert.ToDouble("0" + this.txttorange.Text.ToString()) == 0 ? 2000000000000 : Convert.ToDouble(txttorange.Text);
+                string BankName = ((this.ddlBankName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlBankName.SelectedValue.ToString()) + "%";
+                string range = this.ddlRange.SelectedValue.ToString();
+                string chkrange = this.chkrange.Checked ? "Range" : "";
+
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", "REPORTPVWISEVOURANGE", frmdate, todate, voutype, BankName, chkrange, range, frmrange.ToString(), torange.ToString(), "","");
+                if (ds1 == null)
+                {
+                    this.dgv5.DataSource = null;
+                    this.dgv5.DataBind();
+                    return;
+                }
+
+                Session["tblpenchq"] = ds1.Tables[0];
+                // Session["tblpenchq"] = this.HiddenSameDate(ds1.Tables[0]);
+                this.Data_Bind();
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+            }
 
         }
 
@@ -371,10 +459,22 @@ namespace RealERPWEB.F_17_Acc
                     this.CalculatrGridTotal();
                     break;
 
+
                 case "PayStatusResource":
                     this.dgv4.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.dgv4.DataSource = dt;
                     this.dgv4.DataBind();
+                    //Session["Report1"] = dgv2;
+                    //if (dt.Rows.Count > 0)
+                    //((HyperLink)this.dgv2.HeaderRow.FindControl("hlbtnbtbCdateWiseExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    this.CalculatrGridTotal();
+                    break;
+
+
+                case "PVSegment":
+                    this.dgv5.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.dgv5.DataSource = dt;
+                    this.dgv5.DataBind();
                     //Session["Report1"] = dgv2;
                     //if (dt.Rows.Count > 0)
                     //((HyperLink)this.dgv2.HeaderRow.FindControl("hlbtnbtbCdateWiseExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
@@ -527,6 +627,18 @@ namespace RealERPWEB.F_17_Acc
                     //if (dt.Rows.Count > 0)
                     //((HyperLink)this.dgv2.HeaderRow.FindControl("hlbtnbtbCdateWiseExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
+               
+                case "PVSegment":
+
+                    if (dt1.Rows.Count == 0)
+                        return;
+                    ((Label)this.dgv5.FooterRow.FindControl("lgvDatFCrAmtp")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(cramt)", "")) ? 0 : dt1.Compute("sum(cramt)", ""))).ToString("#,##0.00;#,##0.00; ");
+                    Session["Report1"] = dgv5;
+                    if (dt.Rows.Count > 0)
+                    ((HyperLink)this.dgv5.HeaderRow.FindControl("hlbtnbtbCdateWiseExelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    break;
+
+                    
             }
 
 
@@ -743,6 +855,46 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
+        }
+
+        protected void dgv5_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.Data_Bind();
+        }
+
+        protected void dgv5_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("HLgvvounum");
+           
+                string vounum = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "vounum")).ToString();
+
+                if (vounum == "")
+                {
+                    return;
+                }
+
+
+                if (vounum.Trim().Length == 14)
+                {
+                    if (ASTUtility.Left(vounum, 2) == "PV")
+                    {
+                        hlink.NavigateUrl = "RptAccVouher02.aspx?vounum=" + vounum;
+                        hlink.Text = vounum.Substring(0, 2) + vounum.Substring(6, 2) + "-" + vounum.Substring(8, 6);
+                      
+                    }
+
+                }
+
+
+
+            }
+
+
+
+
         }
     }
 }
