@@ -4422,7 +4422,13 @@ namespace RealERPWEB.F_14_Pro
             string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
-
+            if(ds1==null || ds1.Tables[0].Rows.Count==0)
+            {
+                string Messagesd = "Purchase order didn't save";
+                ((Label)this.Master.FindControl("lblmsg")).Text = Messagesd;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
             string subject = "Work Order";
             //SMTP
             string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
