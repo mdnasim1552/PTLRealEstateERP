@@ -215,7 +215,6 @@ namespace RealERPWEB.F_99_Allinterface
             hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
             hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
             hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
-
             Session["tblLogin"] = hst;
             dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
             dt2.Rows[0]["session"] = sessionid;
