@@ -533,7 +533,7 @@
                     case 'gvmrrapp':
                         tblData = document.getElementById("<%=this.gvmrrapp.ClientID %>");
                         break;
-                        
+
                     case 'gvPurBill':
                         tblData = document.getElementById("<%=this.gvPurBill.ClientID %>");
                         break;
@@ -632,7 +632,7 @@
 
 
                     case 3354:  //Edison Real Estate
-                   
+
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
@@ -648,7 +648,7 @@
 
 
 
-                    
+
                     case 1205:  //P2P Construction
                     case 3351:  //wecon Properties
                     case 3352:  //p2p360
@@ -704,7 +704,7 @@
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();                       
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
 
                         break;
@@ -741,7 +741,7 @@
                         $(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
-                       
+
 
                         break;
 
@@ -923,7 +923,7 @@
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-md-1">
                             <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -935,7 +935,7 @@
                                         <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Go Purchase</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=IndentEntry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Indent Requsition</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=res" CssClass="dropdown-item" Style="padding: 0 10px">Indent Item List</asp:HyperLink>
-                                        
+
                                         <asp:LinkButton ID="LinkButton2" runat="server" CssClass="dropdown-item" Style="padding: 0 10px" OnClick="lnkInteface_Click">Interface</asp:LinkButton></li>
                                                 <asp:LinkButton ID="LinkButton3" runat="server" CssClass="dropdown-item" Style="padding: 0 10px" Visible="false" OnClick="lnkRept_Click">ALL Reports</asp:LinkButton></li>
                                                 <asp:HyperLink ID="HyperLink10" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurInformation" CssClass="dropdown-item" Style="padding: 0 10px">Dashboard</asp:HyperLink>
@@ -963,15 +963,12 @@
                             <asp:Button ID="lblMIMEInfo" runat="server" CssClass="smLbl_to" Height="20px" Style="text-align: center; line-height: 20px; padding: 0; float: right;" Text="Search" />
                         </div>
 
-                         <%-- <div class="col-md-1">
+                        <%-- <div class="col-md-1">
                             <div class="form-group">     
 
                                 <asp:HyperLink ID="hlnkMktInterface" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/MKTProInterface?Type=Report" Visible="false" CssClass=" btn btn-warning">Mar. Interface</asp:HyperLink>
                             </div>
                         </div>--%>
-
-                      
-
                     </div>
 
                     <div class="row">
@@ -1001,7 +998,8 @@
                                                         <asp:ListItem Value="12"></asp:ListItem>
                                                         <asp:ListItem Value="13"></asp:ListItem>
                                                         <asp:ListItem Value="14"></asp:ListItem>
-                                                        <asp:ListItem Value="15"></asp:ListItem>  <%--Material Received(Approved)--%>
+                                                        <asp:ListItem Value="15"></asp:ListItem>
+                                                        <%--Material Received(Approved)--%>
                                                         <asp:ListItem Value="16"></asp:ListItem>
                                                         <asp:ListItem Value="17"></asp:ListItem>
                                                         <asp:ListItem Value="18"></asp:ListItem>
@@ -1144,7 +1142,7 @@
                                                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
 
-                                                            
+
 
 
 
@@ -1498,7 +1496,7 @@
                                                                 <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
                                                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>--%>
-                                                              <asp:TemplateField HeaderText="">
+                                                            <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" ForeColor="Blue" Font-Underline="false"><span class="fa fa-print"></span>
@@ -2888,7 +2886,7 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                   <asp:HyperLink ID="HyInprFAppPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprFAppPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
@@ -3068,7 +3066,7 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                   <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
 
@@ -3531,7 +3529,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                             <asp:TemplateField HeaderText="Department">
+                                                            <asp:TemplateField HeaderText="Department">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbldeptdesc" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
                                                                         Width="130px"></asp:Label>
@@ -3668,7 +3666,7 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
@@ -3709,12 +3707,12 @@
                                             </div>
                                         </asp:Panel>
 
-                                         <asp:Panel ID="pnlmrrapp" Visible="false" runat="server">
-                                              <div class="row">
+                                        <asp:Panel ID="pnlmrrapp" Visible="false" runat="server">
+                                            <div class="row">
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvmrrapp" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True"  OnRowDataBound="gvmrrapp_RowDataBound" >
+                                                        ShowFooter="True" OnRowDataBound="gvmrrapp_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
 
@@ -3837,7 +3835,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            
+
 
 
 
@@ -3867,7 +3865,7 @@
                                                                 </FooterTemplate>
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" Width="50px" />
                                                             </asp:TemplateField>
-                                                           
+
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
@@ -3878,7 +3876,7 @@
                                                                     <asp:HyperLink ID="lnkbtnEntrymapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
-                                                                    <asp:LinkButton ID="btnDelBillmapp" OnClick="btnDelBillmapp_Click"  OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelBillmapp" OnClick="btnDelBillmapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                                     <%--                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
                                                     
@@ -3901,7 +3899,7 @@
                                                 </div>
                                             </div>
 
-                                             </asp:Panel>
+                                        </asp:Panel>
 
                                         <asp:Panel ID="PanelBill" Visible="false" runat="server">
                                             <div class="row">
@@ -4086,7 +4084,7 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                   
+
                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
@@ -4635,30 +4633,29 @@
                                                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
 
-                                                            
 
 
 
 
-                                                            
-                                                            <asp:TemplateField  HeaderText="">
+
+
+                                                            <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                   <%-- <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" ForeColor="Blue" Font-Underline="false" CssClass="btn  btn-default btn-xs"><span class=" fa fa-print"></span>
+                                                                    <%-- <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" ForeColor="Blue" Font-Underline="false" CssClass="btn  btn-default btn-xs"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>--%>
 
                                                                     <asp:HyperLink ID="lnkbtnInd" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
 
-                                                                  <%--  <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-warning btn-xs"><span class="fa fa-edit"></span>
+                                                                    <%--  <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-warning btn-xs"><span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>--%>
-
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="100px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            
+
                                                         </Columns>
                                                         <FooterStyle CssClass="grvFooter" />
                                                         <EditRowStyle />
@@ -4718,8 +4715,6 @@
                                                                     <%--<asp:Label ID="lnkgvreqrat1" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat1")) %>'
                                                                         Width="70px"></asp:Label>--%>
-
-
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -4792,30 +4787,25 @@
                                                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                                             </asp:TemplateField>
 
-                                                            
 
 
 
 
-                                                            
-                                                            <asp:TemplateField  HeaderText="">
+
+
+                                                            <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
-
-                                                                <%--    <asp:HyperLink ID="HyInprPrint" runat="server" Target="_blank" ForeColor="Blue" Font-Underline="false" CssClass="btn  btn-default btn-xs"><span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="lnkbtnAppIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
-                                                                    </asp:HyperLink>--%>
-
-                                                                    <asp:HyperLink ID="lnkbtnAppIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-warning btn-xs"><span class="fa fa-edit"></span>
-                                                                    </asp:HyperLink>
+                                                                  
 
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="100px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            
+
                                                         </Columns>
                                                         <FooterStyle CssClass="grvFooter" />
                                                         <EditRowStyle />
