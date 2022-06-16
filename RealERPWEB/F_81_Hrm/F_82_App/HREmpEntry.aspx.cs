@@ -1157,7 +1157,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.ddldepartmentagg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["deptcode"].ToString();
                 this.ddlProjectName.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
 
-
             }
         }
 
