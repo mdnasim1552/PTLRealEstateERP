@@ -116,7 +116,12 @@
             var txtFirstNumberValue = document.getElementById("<%=txtLoanAmt.ClientID%>").value;
             var txtSecondNumberValue = document.getElementById("<%=txtInstNum.ClientID%>").value;
             var result = parseInt(txtFirstNumberValue) / parseFloat(txtSecondNumberValue);
+            if (result < 1) {
+                alert("Amount Per Installment can not be 0")
+                return;
+            }
             if (!isNaN(result)) {
+
                 document.getElementById("<%=txtAmtPerIns.ClientID%>").value = result.toFixed(2);
             }
         }
