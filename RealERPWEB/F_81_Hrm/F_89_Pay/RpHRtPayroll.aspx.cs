@@ -3210,7 +3210,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else
             {
-                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI2", list, null, null);
             }
 
             Rpt1.EnableExternalImages = true;
