@@ -1285,7 +1285,7 @@ namespace RealERPWEB.F_14_Pro
                 tbl1.Rows.Add(dr1);
 
             }
-            Session["tblt02"] = this.HiddenSameData(tbl1);   //tblMSR
+            Session["tblt02"] = (comcod == "3101" || comcod =="1205" || comcod=="3351" || comcod=="3352") ? tbl1 : this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
         }
 
