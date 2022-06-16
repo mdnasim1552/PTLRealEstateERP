@@ -441,9 +441,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
-                                             
-
-
+                                            
                                             <asp:TemplateField HeaderText="Office <br> Duty">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvoffdu" runat="server" Style="text-align: right" Width="45px"
@@ -453,7 +451,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="Leave Day">
+                                             <asp:TemplateField HeaderText="Leave Enjoyed">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvwlday" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wld")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
@@ -591,7 +589,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Absent">
+                                            <asp:TemplateField HeaderText="Absent Amount">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAbsent" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absded")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
