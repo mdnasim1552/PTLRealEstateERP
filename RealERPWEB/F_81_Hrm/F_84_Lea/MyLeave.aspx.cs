@@ -936,13 +936,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string callType = "GETSUPERVISERMAIL";
                 if ((comcod == "3368" || comcod == "3101") && delgationemp != "000000000000")
                 {
-                    empid = delgationemp;                     
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
 
 
 
-                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, "", "", "", "", "", "", "", "");
+                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, delgationemp, "", "", "", "", "", "", "");
 
                 if (ds1 == null)
                     return;
@@ -953,8 +952,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string empname = (string)ds1.Tables[1].Rows[0]["name"];
                 string empdesig = (string)ds1.Tables[1].Rows[0]["desig"];
                 string deptname = (string)ds1.Tables[1].Rows[0]["deptname"];
+
+                string roletype = "";
+                if (suserid == "3368003")
+                {
+                    roletype = "DPT";                  
+                }
+                else
+                {
+                    roletype = "SUP";
+                }
+
                 string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=SUP";
+                string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType="+ roletype;
                 string totalpath = uhostname + currentptah;
 
 

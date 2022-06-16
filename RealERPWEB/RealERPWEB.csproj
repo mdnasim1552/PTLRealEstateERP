@@ -287,9 +287,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RealERPEntity">
-      <HintPath>..\..\..\..\..\bin\RealERPEntity.dll</HintPath>
-    </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
@@ -2733,6 +2730,7 @@
     <Content Include="F_29_Fxt\RptFxtAsstBillRent.aspx" />
     <Content Include="F_29_Fxt\RptFxtAsstStatus.aspx" />
     <Content Include="F_29_Fxt\RptFxtStore.aspx" />
+    <Content Include="F_30_Facility\EngrCheck.aspx" />
     <Content Include="F_30_Facility\ComplainForm.aspx" />
     <Content Include="F_31_EDAct\EntryDailyActivities.aspx" />
     <Content Include="F_31_EDAct\GenCodeBook.aspx" />
@@ -4204,6 +4202,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_30_Facility\EngrCheck.aspx.cs">
+      <DependentUpon>EngrCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_30_Facility\EngrCheck.aspx.designer.cs">
+      <DependentUpon>EngrCheck.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_30_Facility\ComplainForm.aspx.cs">
       <DependentUpon>ComplainForm.aspx</DependentUpon>
