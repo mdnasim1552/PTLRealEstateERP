@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="RealERPWEB.Dashboard" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
-   <%-- <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
+    <%-- <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
---%>
+    --%>
 
     <script type="text/javascript">        
         $(document).ready(function () {
@@ -56,16 +57,16 @@
                 };
             });
 
-        });        
+        });
         function GetData() {
             try {
-               
+
                 comcod = <%=this.GetCompCode()%>;
                 var temp = comcod.toString();
                 var com = temp.slice(0, 1);
-                
-                if (com == "1"){
-                    
+
+                if (com == "1") {
+
                     $("#dpSales").hide();
                     $("#dpCRM").hide();
                 }
@@ -82,7 +83,7 @@
             var consdata = JSON.parse(data3);
             var sucondata = JSON.parse(data4);
 
-            var chartsal= Highcharts.chart('salchartG', {
+            var chartsal = Highcharts.chart('salchartG', {
                 chart: {
                     type: gtype
                 },
@@ -148,7 +149,7 @@
                     ],
                     color: '#759ABE'
 
-                }, 
+                },
                 {
                     name: 'Actual',
                     //color:red,
@@ -188,12 +189,12 @@
             });
 
 
-            
-            
+
+
             //End of Sales Chart
             //Start of Sales Chart
 
-            var chartpur= Highcharts.chart('purchart',{
+            var chartpur = Highcharts.chart('purchart', {
 
 
                 chart: {
@@ -298,7 +299,7 @@
             });
             //End of Purchase
             //Start of Accounts Chart
-            var chartacc= Highcharts.chart('accchart',{
+            var chartacc = Highcharts.chart('accchart', {
                 chart: {
                     type: gtype
                 },
@@ -376,8 +377,8 @@
                     accdata[9].cramcore,
                     accdata[10].cramcore,
                     accdata[11].cramcore
-                    
-                 
+
+
                     ],
                     color: '#759ABE'
 
@@ -385,26 +386,26 @@
 
                     name: 'Payment',
                     //color:red,
-                    data:[accdata[0].dramcore,
-                      accdata[1].dramcore,
-                      accdata[2].dramcore,
-                      accdata[3].dramcore,
-                      accdata[4].dramcore,
-                      accdata[5].dramcore,
-                      accdata[6].dramcore,
-                      accdata[7].dramcore,
-                      accdata[8].dramcore,
-                      accdata[9].dramcore,
-                      accdata[10].dramcore,
-                      accdata[11].dramcore
+                    data: [accdata[0].dramcore,
+                    accdata[1].dramcore,
+                    accdata[2].dramcore,
+                    accdata[3].dramcore,
+                    accdata[4].dramcore,
+                    accdata[5].dramcore,
+                    accdata[6].dramcore,
+                    accdata[7].dramcore,
+                    accdata[8].dramcore,
+                    accdata[9].dramcore,
+                    accdata[10].dramcore,
+                    accdata[11].dramcore
                     ],
                     color: 'black'
                 }]
             });
-           
+
 
             //Start of Construction Chart
-            var chartcons= Highcharts.chart('conschart', {
+            var chartcons = Highcharts.chart('conschart', {
 
 
                 chart: {
@@ -508,7 +509,7 @@
                 }]
             });
             //Start of Construction Chart
-            var chartsubcon= Highcharts.chart('subconchart', {
+            var chartsubcon = Highcharts.chart('subconchart', {
                 chart: {
                     type: gtype
                 },
@@ -552,7 +553,7 @@
                     shared: true,
                     useHTML: true,
 
-                   
+
                 },
                 plotOptions: {
                     column: {
@@ -601,7 +602,7 @@
             });
 
             let w = $(".graph-main").width();
-            let h= 325;
+            let h = 325;
             chartsal.setSize(w, h);
             chartpur.setSize(w, h);
             chartacc.setSize(w, h);
@@ -620,7 +621,7 @@
             resizeObserver.observe(elem);
         }
         function ExecuteUserdata(data1) {
-            
+
             console.log(JSON.parse(data1));
             var userdata = JSON.parse(data1);
             var descdata = [];
@@ -668,14 +669,14 @@
 
 
 
-        }         
+        }
         function ExecuteGraph_column(data, data1, data2, data3, data4, data5) {
             var saldata = JSON.parse(data);
             var purdata = JSON.parse(data1);
             var accdata = JSON.parse(data2);
             var consdata = JSON.parse(data3);
-            var sucondata = JSON.parse(data4);            
-            var chartsal= Highcharts.chart('salchart', {
+            var sucondata = JSON.parse(data4);
+            var chartsal = Highcharts.chart('salchart', {
                 chart: {
                     type: 'column'
                 },
@@ -719,7 +720,7 @@
                     shared: true,
                     useHTML: true,
 
-                    
+
 
                 },
                 plotOptions: {
@@ -767,7 +768,7 @@
                     color: 'black'
                 }]
             });
-            var chartpur= Highcharts.chart('purchart', {
+            var chartpur = Highcharts.chart('purchart', {
                 chart: {
                     type: 'column'
                 },
@@ -868,7 +869,7 @@
                     color: 'black'
                 }]
             });
-            var chartacc= Highcharts.chart('accchart', {
+            var chartacc = Highcharts.chart('accchart', {
                 chart: {
                     type: 'column'
                 },
@@ -946,8 +947,8 @@
                     accdata[9].cramcore,
                     accdata[10].cramcore,
                     accdata[11].cramcore
-                    
-                 
+
+
                     ],
                     color: '#759ABE'
 
@@ -955,23 +956,23 @@
 
                     name: 'Payment',
                     //color:red,
-                    data:[accdata[0].dramcore,
-                      accdata[1].dramcore,
-                      accdata[2].dramcore,
-                      accdata[3].dramcore,
-                      accdata[4].dramcore,
-                      accdata[5].dramcore,
-                      accdata[6].dramcore,
-                      accdata[7].dramcore,
-                      accdata[8].dramcore,
-                      accdata[9].dramcore,
-                      accdata[10].dramcore,
-                      accdata[11].dramcore
+                    data: [accdata[0].dramcore,
+                    accdata[1].dramcore,
+                    accdata[2].dramcore,
+                    accdata[3].dramcore,
+                    accdata[4].dramcore,
+                    accdata[5].dramcore,
+                    accdata[6].dramcore,
+                    accdata[7].dramcore,
+                    accdata[8].dramcore,
+                    accdata[9].dramcore,
+                    accdata[10].dramcore,
+                    accdata[11].dramcore
                     ],
                     color: 'black'
                 }]
             });
-            var chartcons= Highcharts.chart('conschart', {
+            var chartcons = Highcharts.chart('conschart', {
                 chart: {
                     type: 'column'
                 },
@@ -1072,7 +1073,7 @@
                     color: 'Black'
                 }]
             });
-            var chartsubcon= Highcharts.chart('subconchart', {
+            var chartsubcon = Highcharts.chart('subconchart', {
                 chart: {
                     type: 'column'
                 },
@@ -1116,7 +1117,7 @@
                     shared: true,
                     useHTML: true,
 
-                   
+
                 },
                 plotOptions: {
                     column: {
@@ -1164,7 +1165,7 @@
                 }]
             });
             let w = $(".graph-main").width();
-            let h= 325;
+            let h = 325;
             chartsal.setSize(w, h);
             chartpur.setSize(w, h);
             chartacc.setSize(w, h);
@@ -1181,7 +1182,7 @@
             });
             resizeObserver.observe(elem);
 
-        }          
+        }
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
             var saldata = JSON.parse(data);
@@ -1190,7 +1191,7 @@
             var consdata = JSON.parse(data3);
             var sucondata = JSON.parse(data4);
 
-            var chartsal= Highcharts.chart('salchartG', {
+            var chartsal = Highcharts.chart('salchartG', {
                 chart: {
                     type: gtype
                 },
@@ -1256,7 +1257,7 @@
                     ],
                     color: '#759ABE'
 
-                }, 
+                },
                 {
                     name: 'Actual',
                     //color:red,
@@ -1296,12 +1297,12 @@
             });
 
 
-            
-            
+
+
             //End of Sales Chart
             //Start of Sales Chart
 
-            var chartpur= Highcharts.chart('purchartG',{
+            var chartpur = Highcharts.chart('purchartG', {
 
 
                 chart: {
@@ -1406,7 +1407,7 @@
             });
             //End of Purchase
             //Start of Accounts Chart
-            var chartacc= Highcharts.chart('accchartG',{
+            var chartacc = Highcharts.chart('accchartG', {
                 chart: {
                     type: gtype
                 },
@@ -1484,8 +1485,8 @@
                     accdata[9].cramcore,
                     accdata[10].cramcore,
                     accdata[11].cramcore
-                    
-                 
+
+
                     ],
                     color: '#759ABE'
 
@@ -1493,26 +1494,26 @@
 
                     name: 'Payment',
                     //color:red,
-                    data:[accdata[0].dramcore,
-                      accdata[1].dramcore,
-                      accdata[2].dramcore,
-                      accdata[3].dramcore,
-                      accdata[4].dramcore,
-                      accdata[5].dramcore,
-                      accdata[6].dramcore,
-                      accdata[7].dramcore,
-                      accdata[8].dramcore,
-                      accdata[9].dramcore,
-                      accdata[10].dramcore,
-                      accdata[11].dramcore
+                    data: [accdata[0].dramcore,
+                    accdata[1].dramcore,
+                    accdata[2].dramcore,
+                    accdata[3].dramcore,
+                    accdata[4].dramcore,
+                    accdata[5].dramcore,
+                    accdata[6].dramcore,
+                    accdata[7].dramcore,
+                    accdata[8].dramcore,
+                    accdata[9].dramcore,
+                    accdata[10].dramcore,
+                    accdata[11].dramcore
                     ],
                     color: 'black'
                 }]
             });
-           
+
 
             //Start of Construction Chart
-            var chartcons= Highcharts.chart('conschartG', {
+            var chartcons = Highcharts.chart('conschartG', {
 
 
                 chart: {
@@ -1616,7 +1617,7 @@
                 }]
             });
             //Start of Construction Chart
-            var chartsubcon= Highcharts.chart('subconchartG', {
+            var chartsubcon = Highcharts.chart('subconchartG', {
                 chart: {
                     type: gtype
                 },
@@ -1660,7 +1661,7 @@
                     shared: true,
                     useHTML: true,
 
-                   
+
                 },
                 plotOptions: {
                     column: {
@@ -1709,7 +1710,7 @@
             });
 
             let w = $(".graph-main").width();
-            let h= 325;
+            let h = 325;
             chartsal.setSize(w, h);
             chartpur.setSize(w, h);
             chartacc.setSize(w, h);
@@ -1778,7 +1779,6 @@
             /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
             /*background: linear-gradient(to right, #01a9ac, #01dbdf);*/
         }
-       
     </style>
 
 
@@ -1787,7 +1787,7 @@
             <div style="display: none;">
                 <asp:TextBox ID="ParentDir" runat="server" CssClass="hide"></asp:TextBox>
             </div>
-           
+
             <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
                 <div class="row">
                     <!--Breaking box-->
@@ -1801,7 +1801,6 @@
                             <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
                                 <!--breaking news-->
                                 <div class="carousel-inner " id="EventCaro" runat="server">
-                                     
                                 </div>
                                 <!--end breaking news-->
 
@@ -1871,7 +1870,7 @@
                                             <div class="col">
                                                 <!-- .metric -->
 
-                                                  <a href="#" target="_self" runat="server" id="noProj" class="metric metric-bordered align-items-center card p-1">
+                                                <a href="#" target="_self" runat="server" id="noProj" class="metric metric-bordered align-items-center card p-1">
                                                     <h2 class="metric-label">No of Projects </h2>
                                                     <%--Teams--%>
                                                     <p class="metric-value h3">
@@ -1880,7 +1879,7 @@
                                                 </a>
 
 
-                                               
+
                                                 <!-- /.metric -->
                                             </div>
 
@@ -1917,34 +1916,30 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#Contractor">Sub-Contractor</a>
                                                 </li>
-
-
-
                                             </ul>
                                         </div>
 
                                         <div class="dropdown">
 
-                                            <div class="form-group">
-                                                <label class="control-label" for="ddlUserName">Year</label>
+
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend text-white">
+                                                    <span class="input-group-text pl-5 pr-5" id="basic-addon1">Year</span>
+                                                </div>
                                                 <asp:DropDownList ID="ddlyearSale" runat="server" OnSelectedIndexChanged="ddlyearSale_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
                                                     <asp:ListItem Value="2020">2020</asp:ListItem>
                                                     <asp:ListItem Value="2021">2021</asp:ListItem>
                                                     <asp:ListItem Value="2022" Selected="True">2022</asp:ListItem>
-                                                   
-
                                                 </asp:DropDownList>
-
-                                                <asp:DropDownList ID="ddlGraphtype" runat="server" OnSelectedIndexChanged="ddlGraphtype_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                 <asp:DropDownList ID="ddlGraphtype" runat="server" OnSelectedIndexChanged="ddlGraphtype_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
                                                     <asp:ListItem Value="line">Line</asp:ListItem>
                                                     <asp:ListItem Value="column" Selected="True">Column</asp:ListItem>
-                                                    <asp:ListItem Value="area" >Area</asp:ListItem>
+                                                    <asp:ListItem Value="area">Area</asp:ListItem>
                                                     <asp:ListItem Value="pie"> </asp:ListItem>
 
                                                 </asp:DropDownList>
                                             </div>
-
-
+                                             
 
                                         </div>
                                     </div>
@@ -2050,138 +2045,137 @@
 
 
 
-                
+
                 <div class="row" id="div_groupUSers" runat="server">
-                        <div class="col-md-12">
-                            <div id="div4" runat="server">
-                                <!-- .card-header -->
-                                <header class="card-header">
-                                    <div class="d-flex align-items-center">
-                                        <div class="mr-auto">
-                                            <ul class="nav ">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active show" data-toggle="tab" href="#Salesg">Sales</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Procurementg">Procurement</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Accountsg">Accounts</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Constructiong">Construction</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Sub-Contractorg">Sub-Contractor</a>
-                                                </li>
+                    <div class="col-md-12">
+                        <div id="div4" runat="server">
+                            <!-- .card-header -->
+                            <header class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-auto">
+                                        <ul class="nav ">
+                                            <li class="nav-item">
+                                                <a class="nav-link active show" data-toggle="tab" href="#Salesg">Sales</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#Procurementg">Procurement</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#Accountsg">Accounts</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#Constructiong">Construction</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#Sub-Contractorg">Sub-Contractor</a>
+                                            </li>
 
 
 
-                                            </ul>
+                                        </ul>
+                                    </div>
+
+                                    <div class="dropdown">
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="ddlUserName">Company</label>
+                                            <asp:DropDownList ID="ddlCompcode" runat="server" OnSelectedIndexChanged="ddlCompcode_SelectedIndexChanged" AutoPostBack="true" Width="300px" CssClass="custom-select chzn-select">
+                                            </asp:DropDownList>
+
+                                            <label class="control-label" for="ddlUserName">Year</label>
+                                            <asp:DropDownList ID="ddlGropuYear" runat="server" OnSelectedIndexChanged="ddlGropuYear_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                <asp:ListItem Value="2019">2019</asp:ListItem>
+                                                <asp:ListItem Value="2020">2020</asp:ListItem>
+                                                <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
+
+                                            </asp:DropDownList>
+
+                                            <asp:DropDownList ID="ddlGrpGraphtype" runat="server" OnSelectedIndexChanged="ddlGrpGraphtype_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                <asp:ListItem Value="line">Line</asp:ListItem>
+                                                <asp:ListItem Value="column" Selected="True">Column</asp:ListItem>
+                                                <asp:ListItem Value="area">Area</asp:ListItem>
+
+
+                                            </asp:DropDownList>
                                         </div>
 
-                                        <div class="dropdown">
-
-                                            <div class="form-group">
-                                                <label class="control-label" for="ddlUserName">Company</label>
-                                                  <asp:DropDownList ID="ddlCompcode" runat="server" OnSelectedIndexChanged="ddlCompcode_SelectedIndexChanged" AutoPostBack="true" Width="300px" CssClass="custom-select chzn-select">
-                                                  
-                                                </asp:DropDownList>
-
-                                                <label class="control-label" for="ddlUserName">Year</label>
-                                                <asp:DropDownList ID="ddlGropuYear" runat="server" OnSelectedIndexChanged="ddlGropuYear_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                    <asp:ListItem Value="2019">2019</asp:ListItem>
-                                                    <asp:ListItem Value="2020">2020</asp:ListItem>
-                                                    <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
-
-                                                </asp:DropDownList>
-
-                                                <asp:DropDownList ID="ddlGrpGraphtype" runat="server" OnSelectedIndexChanged="ddlGrpGraphtype_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                    <asp:ListItem Value="line">Line</asp:ListItem>
-                                                    <asp:ListItem Value="column" Selected="True">Column</asp:ListItem>
-                                                    <asp:ListItem Value="area" >Area</asp:ListItem>
-                                                     
-
-                                                </asp:DropDownList>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>                                   
-                                </header>
-                                <!-- /.card-header -->
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <!-- .tab-content -->
-                                    <div id="myTabContentg" class="tab-content graph-main" style="width: 100%; height: 375px;">
-
-
-                                        <div class="tab-pane fade active show" id="Salesg">
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="salesView" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
-                                                </div>
-                                            </div>
-
-
-                                            <div id="salchartG" style="width: 90%; max-height: 325px;"></div>
-
-                                        </div>
-                                        <div class="tab-pane fade" id="Procurementg">
-
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="Purchaselink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
-
-                                                    
-                                                </div>
-                                            </div>
-                                            <div id="purchartG" style="width: 90%; max-height: 325px;"></div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Accountsg">
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="Accountsglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
-
-                                                    
-                                                </div>
-                                            </div>
-                                            <div id="accchartG" style="width: 90%; height: 325px;"></div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Constructiong">
-
-
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="Constructionglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
-
-                                                    
-                                                </div>
-                                            </div>
-                                            <div id="conschartG" style="width: 90%; height: 325px;"></div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Sub-Contractorg">
-
-
-
-                                            <div id="subconchartG" style="width: 90%; height: 325px;"></div>
-                                        </div>
 
 
                                     </div>
-                                    <!-- /.tab-content -->
                                 </div>
-                                <!-- /.card-body -->
+                            </header>
+                            <!-- /.card-header -->
+                            <!-- .card-body -->
+                            <div class="card-body">
+                                <!-- .tab-content -->
+                                <div id="myTabContentg" class="tab-content graph-main" style="width: 100%; height: 375px;">
+
+
+                                    <div class="tab-pane fade active show" id="Salesg">
+                                        <div class="row ">
+                                            <div class="col-md-12 text-right">
+                                                <asp:HyperLink ID="salesView" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
+                                            </div>
+                                        </div>
+
+
+                                        <div id="salchartG" style="width: 90%; max-height: 325px;"></div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="Procurementg">
+
+                                        <div class="row ">
+                                            <div class="col-md-12 text-right">
+                                                <asp:HyperLink ID="Purchaselink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
+
+
+                                            </div>
+                                        </div>
+                                        <div id="purchartG" style="width: 90%; max-height: 325px;"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="Accountsg">
+                                        <div class="row ">
+                                            <div class="col-md-12 text-right">
+                                                <asp:HyperLink ID="Accountsglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
+
+
+                                            </div>
+                                        </div>
+                                        <div id="accchartG" style="width: 90%; height: 325px;"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="Constructiong">
+
+
+                                        <div class="row ">
+                                            <div class="col-md-12 text-right">
+                                                <asp:HyperLink ID="Constructionglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
+
+
+                                            </div>
+                                        </div>
+                                        <div id="conschartG" style="width: 90%; height: 325px;"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="Sub-Contractorg">
+
+
+
+                                        <div id="subconchartG" style="width: 90%; height: 325px;"></div>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.tab-content -->
                             </div>
-
+                            <!-- /.card-body -->
                         </div>
+
                     </div>
-            
+                </div>
 
 
 
- 
+
+
                 <div id="divuser" runat="server">
                     <div class="card-deck-xl">
                         <!-- .card -->
@@ -2209,7 +2203,7 @@
                         <!-- /.card -->
                         <!-- .card -->
                         <div class="card card-fluid" id="div9">
-                           
+
                             <!-- .card-body -->
                             <div class="card-body" style="min-height: 230px;">
                                 <div id="empdata" style="width: 480px;"></div>
@@ -2220,119 +2214,119 @@
                     </div>
                 </div>
 
-                 <div class="row" id="divPostDateChecSchdule" runat="server" visible="false">
-                     <div class="card-deck-xl">
+                <div class="row" id="divPostDateChecSchdule" runat="server" visible="false">
+                    <div class="card-deck-xl">
                         <!-- .card -->
                         <div class="card card-fluid" id="divd8">
                             <div class="card-header">
-                               Today's Cheque Payment
+                                Today's Cheque Payment
                             </div>
                             <!-- .lits-group -->
                             <div class="card-body" style="min-height: 230px;">
-                                
+
                                 <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False"
-                               CssClass="table-striped table-hover table-bordered">
-                                <RowStyle />
-                                <Columns>
-                                    <asp:TemplateField HeaderText="Sl">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvSlNo" runat="server"  
-                                                Style="text-align: center"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")) %>' Width="20px"></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Cheque Date">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lgvchdat" runat="server" Style="text-align: left"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequedat")) %>'
-                                                Width="80px"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    
-                                    
-                                    
-                                    <asp:TemplateField HeaderText="Acc. Description">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lgactdesc" runat="server"
-                                                Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) + "</B>"+
+                                    CssClass="table-striped table-hover table-bordered">
+                                    <RowStyle />
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Sl">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvSlNo" runat="server"
+                                                    Style="text-align: center"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")) %>' Width="20px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Cheque Date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvchdat" runat="server" Style="text-align: left"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequedat")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+
+
+                                        <asp:TemplateField HeaderText="Acc. Description">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgactdesc" runat="server"
+                                                    Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "resdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")).Trim().Length>0 ? "<br>" : "") + 
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim(): "")  %>'
-                                                Width="200px"></asp:Label>
-                                        </ItemTemplate>
-                                        
-                                        <HeaderStyle HorizontalAlign="Left" />
-                                        <FooterStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    
-                                    <asp:TemplateField HeaderText="Bank Name">
-                                        
-                                        <ItemTemplate>
-                                            <asp:Label ID="lgvbankname" runat="server" 
-                                                Text='<%# (DataBinder.Eval(Container.DataItem, "cactdesc").ToString().Trim().Length>0 ? 
+                                                    Width="200px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <HeaderStyle HorizontalAlign="Left" />
+                                            <FooterStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Bank Name">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvbankname" runat="server"
+                                                    Text='<%# (DataBinder.Eval(Container.DataItem, "cactdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")).Trim().Length>0 ? "<br>" : "") + 
                                                                          
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")).Trim(): "")  %>'
-                                                Width="180px"></asp:Label>
-                                           
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Cheque No.">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lgvchnono" runat="server"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequeno")) %>'
-                                                Width="100px"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    
-                                    <asp:TemplateField HeaderText="Amount">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lgvcramt" runat="server" Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cramt")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="70px"></asp:Label>
-                                        </ItemTemplate>
-                                        <FooterTemplate>
-                                            <asp:Label ID="lgvFCrAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                ForeColor="#000" Style="text-align: right" Width="70px"></asp:Label>
-                                        </FooterTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="Right" />
-                                        <FooterStyle HorizontalAlign="right" />
-                                    </asp:TemplateField>
+                                                    Width="180px"></asp:Label>
 
-                                    <asp:TemplateField HeaderText="Dr. Amt" Visible="False">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lgvdramt" runat="server"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dramt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
-                                    
-                                    
-                                </Columns>
-                                <FooterStyle CssClass="grvFooter" />
-                                <EditRowStyle />
-                                <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
-                            </asp:GridView>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Cheque No.">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvchnono" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequeno")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvcramt" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cramt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFCrAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right" Width="70px"></asp:Label>
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Dr. Amt" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvdramt" runat="server"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dramt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
+                                    </Columns>
+                                    <FooterStyle CssClass="grvFooter" />
+                                    <EditRowStyle />
+                                    <AlternatingRowStyle />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                </asp:GridView>
                                 <br />
                             </div>
 
                         </div>
-                       
+
                     </div>
 
-                      
-                    </div>
+
+                </div>
             </div>
 
 
-             
+
             <!-- /.page-section -->
         </div>
     </div>
@@ -2394,7 +2388,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-     
+
     <!-- /.page -->
 </asp:Content>
 
