@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using static RealERPEntity.C_30_Facility.EClass_Facility_Mgt;
+
 
 namespace RealERPWEB.F_30_Facility
 {
@@ -38,7 +38,7 @@ namespace RealERPWEB.F_30_Facility
             string comcod = GetComCode();
             string complno = Request.QueryString["ComplNo"].ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINFOREDIT", complno, "", "", "", "", "", "", "", "", "", "");
-
+           
             List<EClass_Complain_List> obj = ds.Tables[0].DataTableToList<EClass_Complain_List>();            
             Bind_Grid(obj);
             ddlProject.Enabled = false;
