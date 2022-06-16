@@ -1124,7 +1124,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     case "SalResign":
                         if (comcod == "3365" ||comcod=="3101")
                         {
-                            this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
+                            this.gvpayroll.Columns[23].HeaderText = "W.F Fund";
                         }
                         this.gvpayroll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvpayroll.DataSource = dt;
@@ -1137,7 +1137,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                           
                         switch (comcod)
                         {
-                            case "3101":
+                            
                             case "3365":
                                 this.gvpayroll.Columns[11].Visible = false;                      
                                 this.gvpayroll.Columns[12].Visible = false;
