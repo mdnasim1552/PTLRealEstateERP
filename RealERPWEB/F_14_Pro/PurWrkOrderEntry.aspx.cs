@@ -1204,6 +1204,10 @@ namespace RealERPWEB.F_14_Pro
             string session = hst["session"].ToString();
             string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
+            DataTable tbl1 = (DataTable)ViewState["tblOrder"];
+
+            string pactcode =ASTUtility.Left(tbl1.Rows[0]["pactcode"].ToString(),8);
+
             DataSet ds1 = new DataSet("ds1");
             System.IO.StringReader xmlSR;
 
@@ -1222,31 +1226,59 @@ namespace RealERPWEB.F_14_Pro
                                       //case "3101": // ASIT
 
                             break;
-
+                            
                         //case "3101":
                         case "3368"://finlay
-                            if (approval == "")
+                            if (comcod == "3368" & pactcode != "11020099")//Finlay
                             {
-                                this.CreateDataTable();
-                                DataTable dt = (DataTable)ViewState["tblapproval"];
-                                DataRow dr1 = dt.NewRow();
-                                dr1["fappid"] = usrid;
-                                dr1["fappdat"] = Date;
-                                dr1["fapptrmid"] = trmnid;
-                                dr1["fappseson"] = session;
-                                dr1["secappid"] = "";
-                                dr1["secappdat"] = "";
-                                dr1["secapptrmid"] = "";
-                                dr1["secappseson"] = "";
+                                if (approval == "")
+                                {
+                                    this.CreateDataTable();
+                                    DataTable dt = (DataTable)ViewState["tblapproval"];
+                                    DataRow dr1 = dt.NewRow();
+                                    dr1["fappid"] = usrid;
+                                    dr1["fappdat"] = Date;
+                                    dr1["fapptrmid"] = trmnid;
+                                    dr1["fappseson"] = session;
+                                    dr1["secappid"] = "";
+                                    dr1["secappdat"] = "";
+                                    dr1["secapptrmid"] = "";
+                                    dr1["secappseson"] = "";
 
-                                dt.Rows.Add(dr1);
-                                ds1.Merge(dt);
-                                ds1.Tables[0].TableName = "tbl1";
-                                approval = ds1.GetXml();
+                                    dt.Rows.Add(dr1);
+                                    ds1.Merge(dt);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    approval = ds1.GetXml();
+                                }
+
+
+                                
+                            }
+                            else if (comcod == "3368" & pactcode == "11020099")//Finlay
+                            {
+                                if (approval == "")
+                                {
+                                    this.CreateDataTable();
+                                    DataTable dt = (DataTable)ViewState["tblapproval"];
+                                    DataRow dr1 = dt.NewRow();
+                                    dr1["fappid"] = usrid;
+                                    dr1["fappdat"] = Date;
+                                    dr1["fapptrmid"] = trmnid;
+                                    dr1["fappseson"] = session;
+                                    dr1["secappid"] = usrid;
+                                    dr1["secappdat"] = Date;
+                                    dr1["secapptrmid"] = trmnid;
+                                    dr1["secappseson"] = session;
+
+                                    dt.Rows.Add(dr1);
+                                    ds1.Merge(dt);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    approval = ds1.GetXml();
+                                }
+
+
 
                             }
-
-
                             else
                             {
 
@@ -1265,6 +1297,48 @@ namespace RealERPWEB.F_14_Pro
                                 approval = ds1.GetXml();
 
                             }
+
+
+                            //if (approval == "")
+                            //{
+                            //    this.CreateDataTable();
+                            //    DataTable dt = (DataTable)ViewState["tblapproval"];
+                            //    DataRow dr1 = dt.NewRow();
+                            //    dr1["fappid"] = usrid;
+                            //    dr1["fappdat"] = Date;
+                            //    dr1["fapptrmid"] = trmnid;
+                            //    dr1["fappseson"] = session;
+                            //    dr1["secappid"] = "";
+                            //    dr1["secappdat"] = "";
+                            //    dr1["secapptrmid"] = "";
+                            //    dr1["secappseson"] = "";
+
+                            //    dt.Rows.Add(dr1);
+                            //    ds1.Merge(dt);
+                            //    ds1.Tables[0].TableName = "tbl1";
+                            //    approval = ds1.GetXml();
+
+                            //}
+
+
+                            //else
+                            //{
+
+                            //    xmlSR = new System.IO.StringReader(approval);
+                            //    ds1.ReadXml(xmlSR);
+                            //    ds1.Tables[0].TableName = "tbl1";
+                            //    ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                            //    ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                            //    ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                            //    ds1.Tables[0].Rows[0]["fappseson"] = session;
+                            //    ds1.Tables[0].Rows[0]["secappid"] = "";
+                            //    ds1.Tables[0].Rows[0]["secappdat"] = "";
+                            //    ds1.Tables[0].Rows[0]["secapptrmid"] = "";
+                            //    ds1.Tables[0].Rows[0]["secappseson"] = "";
+
+                            //    approval = ds1.GetXml();
+
+                            //}
 
                             break;
 
@@ -1752,7 +1826,7 @@ namespace RealERPWEB.F_14_Pro
             string appxml = tbl1.Rows[0]["approval"].ToString();
             string Approval = this.GetReqApproval(appxml);
 
-
+           
             bool forwarddesc = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;
             string type = this.Request.QueryString["InputType"];
             switch (type)
