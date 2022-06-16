@@ -7,7 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using static RealERPEntity.C_30_Facility.EClass_Facility_Mgt;
+using static RealEntity.C_30_Facility.EClass_Facility_Mgt;
+
 
 namespace RealERPWEB.F_30_Facility
 {
