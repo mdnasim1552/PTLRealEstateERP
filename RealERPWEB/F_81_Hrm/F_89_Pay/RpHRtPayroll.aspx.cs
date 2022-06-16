@@ -970,7 +970,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["tblpay"] = ds3.Tables[0];
             ds3.Dispose();
         }
-
         private void EmpCashPay()
         {
             Session.Remove("tblpay");
@@ -1123,7 +1122,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 {
                     case "Salary":
                     case "SalResign":
-                        if (comcod == "3365")
+                        if (comcod == "3365" ||comcod=="3101")
                         {
                             this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
                         }
@@ -1135,93 +1134,38 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.gvpayroll.Columns[1].Visible = (this.ddlProjectName.SelectedValue == "000000000000") ? true : false;
                             ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = (this.lblComSalLock.Text == "True") ? true : false;
                         }
-                      
-                        //this.gvpayroll.Columns[6].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        //this.gvpayroll.Columns[7].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        //this.gvpayroll.Columns[8].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        //this.gvpayroll.Columns[9].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        //this.gvpayroll.Columns[10].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        //this.gvpayroll.Columns[11].Visible = !(this.rbtSalSheet.SelectedIndex == 0);
-                        //this.gvpayroll.Columns[13].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        // this.gvpayroll.Columns[18].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        // this.gvpayroll.Columns[20].Visible = (this.rbtSalSheet.SelectedIndex == 0);
-                        //this.gvpayroll.Columns[21].Visible = (this.rbtSalSheet.SelectedIndex == 0);
+                                          
                         switch (comcod)
                         {
+                            case "3101":
                             case "3365":
-                                this.gvpayroll.Columns[10].Visible = false;
-                                this.gvpayroll.Columns[11].Visible = false;
+                                this.gvpayroll.Columns[11].Visible = false;                      
                                 this.gvpayroll.Columns[12].Visible = false;
                                 this.gvpayroll.Columns[13].Visible = false;
                                 this.gvpayroll.Columns[14].Visible = false;
                                 this.gvpayroll.Columns[15].Visible = false;
                                 this.gvpayroll.Columns[16].Visible = false;
+                                this.gvpayroll.Columns[17].Visible = false;
                                 this.gvpayroll.Columns[18].Visible = false;
-                                this.gvpayroll.Columns[29].Visible = false;
-                                this.gvpayroll.Columns[40].Visible = false;
-                                //string deptname = this.ddlBranch.SelectedItem.Text.ToString();
-                                //if (deptname == "Head Office")
-                                //{
-                                //    this.gvpayroll.Columns[41].Visible = true;
-                                //    this.gvpayroll.Columns[42].Visible = false;
-                                //    this.gvpayroll.Columns[43].Visible = true;
-                                //    this.gvpayroll.Columns[44].Visible = false;
-                                //    this.gvpayroll.Columns[45].Visible = false;
-                                //    this.gvpayroll.Columns[46].Visible = false;
-                                //}
-                                //else if (deptname == "Dhaka Project")
-                                //{
-                                //    this.gvpayroll.Columns[41].Visible = true;
-                                //    this.gvpayroll.Columns[42].Visible = true;
-                                //    this.gvpayroll.Columns[43].Visible = true;
-                                //    this.gvpayroll.Columns[44].Visible = false;
-                                //    this.gvpayroll.Columns[45].Visible = false;
-                                //    this.gvpayroll.Columns[46].Visible = false;
-                                //}
-                                //else if (deptname == "Ctg Office")
-                                //{
-                                //    this.gvpayroll.Columns[41].Visible = true;
-                                //    this.gvpayroll.Columns[42].Visible = false;
-                                //    this.gvpayroll.Columns[43].Visible = true;
-                                //    this.gvpayroll.Columns[44].Visible = false;
-                                //    this.gvpayroll.Columns[45].Visible = false;
-                                //    this.gvpayroll.Columns[46].Visible = false;
-                                //}
-                                //else if (deptname == "SICOL")
-                                //{
-                                //    this.gvpayroll.Columns[41].Visible = false;
-                                //    this.gvpayroll.Columns[42].Visible = true;
-                                //    this.gvpayroll.Columns[43].Visible = false;
-                                //    this.gvpayroll.Columns[44].Visible = false;
-                                //    this.gvpayroll.Columns[45].Visible = false;
-                                //    this.gvpayroll.Columns[46].Visible = false;
-                                //}
-                                //else if (deptname == "CP")
-                                //{
-                                //    this.gvpayroll.Columns[41].Visible = false;
-                                //    this.gvpayroll.Columns[42].Visible = false;
-                                //    this.gvpayroll.Columns[43].Visible = false;
-                                //    this.gvpayroll.Columns[44].Visible = false;
-                                //    this.gvpayroll.Columns[45].Visible = false;
-                                //    this.gvpayroll.Columns[46].Visible = true;
-                                //}
+                                this.gvpayroll.Columns[20].Visible = false;
+                                this.gvpayroll.Columns[31].Visible = false;
+                                this.gvpayroll.Columns[41].Visible = false;
+                               
                                 break;
-                            case "3101":
+                           
                             case "3347":
-                                this.gvpayroll.Columns[12].Visible = false;
+                              
                                 this.gvpayroll.Columns[13].Visible = false;
-                                this.gvpayroll.Columns[15].Visible = false;
-                                this.gvpayroll.Columns[16].Visible = true;
-                                this.gvpayroll.Columns[18].Visible = false;
-                                this.gvpayroll.Columns[22].Visible = false;
-                                this.gvpayroll.Columns[23].Visible = false;
-                                this.gvpayroll.Columns[25].Visible = false;
-                                this.gvpayroll.Columns[28].Visible = false;
-                                this.gvpayroll.Columns[30].Visible = false;
+                                this.gvpayroll.Columns[16].Visible = false;
+                                this.gvpayroll.Columns[18].Visible = true;                                                        
+                                this.gvpayroll.Columns[24].Visible = false;
+                                this.gvpayroll.Columns[26].Visible = false;
+                                this.gvpayroll.Columns[29].Visible = false;
                                 this.gvpayroll.Columns[31].Visible = false;
                                 this.gvpayroll.Columns[32].Visible = false;
+                                this.gvpayroll.Columns[33].Visible = false;
                                 this.gvpayroll.Columns[34].Visible = false;
-                                this.gvpayroll.Columns[37].Visible = false;
+                                this.gvpayroll.Columns[38].Visible = false;
                                 this.gvpayroll.Columns[40].Visible = true;
                                 break;
                             default:
@@ -1240,12 +1184,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.gvpayroll.Columns[34].Visible = false;
                                 this.gvpayroll.Columns[37].Visible = false;
                                 this.gvpayroll.Columns[40].Visible = true;
-                                //this.gvpayroll.Columns[41].Visible = false;
-                                //this.gvpayroll.Columns[42].Visible = false;
-                                //this.gvpayroll.Columns[43].Visible = false;
-                                //this.gvpayroll.Columns[44].Visible = false;
-                                //this.gvpayroll.Columns[45].Visible = false;
-                                //this.gvpayroll.Columns[46].Visible = false;
+                                
                                 break;
                         }
                         if (Request.QueryString["Entry"].ToString() == "Payroll")
@@ -1303,7 +1242,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.gvsbonus.DataSource = dt;
                         this.gvsbonus.DataBind();
                         Session["Report1"] = gvsbonus;
-                        ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                         break;
                 }
             }
@@ -1358,7 +1297,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = gvpayroll;
                     string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
                     Session["ReportName"] = "Salary_Sheet_"+ frmdate;
-                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                     break;
 
                 case "Bonus":
@@ -3899,6 +3838,37 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
+
+
+        public  List<T>[] Partition<T>(List<T> list, int totalPartitions)
+        {
+            if (list == null)
+                throw new ArgumentNullException("list");
+
+            if (totalPartitions < 1)
+                throw new ArgumentOutOfRangeException("totalPartitions");
+
+            List<T>[] partitions = new List<T>[totalPartitions];
+
+            int maxSize = (int)Math.Ceiling(list.Count / (double)totalPartitions);
+            int k = 0;
+
+            for (int i = 0; i < partitions.Length; i++)
+            {
+                partitions[i] = new List<T>();
+                for (int j = k; j < k + maxSize; j++)
+                {
+                    if (j >= list.Count)
+                        break;
+                    partitions[i].Add(list[j]);
+                }
+                k += maxSize;
+            }
+
+            return partitions;
+        }
+
+
         private void PrintPaySlip()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -4036,6 +4006,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
 
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+
+                //List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>[] partitionList = Partition<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>(list, 2);
+
+
+                //var list1 = partitionList[0];
+                //var list2 = partitionList[1];
+
+
+
+                //Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
+
+
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
@@ -4062,6 +4044,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
+
+
+      
+
+
 
 
         private void PrintSignature()

@@ -32,7 +32,7 @@
 
                 var gridViewScroll = new GridViewScroll({
                     elementID: "gvpayroll",
-                    width: 1500,
+                    width: 1400,
                     height: 500,
                     freezeColumn: true,
                     freezeFooter: true,
@@ -46,7 +46,8 @@
                 $('.chzn-select').chosen({ search_contains: true });
             }
 
-            catch (e) {
+            catch (e)
+            {
                 alert(e);
             }
         }
@@ -350,7 +351,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="table-responsive">
+                     <%--           <div class="table-responsive">--%>
                                     <asp:GridView ID="gvpayroll" runat="server" ClientIDMode="Static" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False" ShowFooter="True">
 
@@ -441,9 +442,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
-                                             
-
-
+                                            
                                             <asp:TemplateField HeaderText="Office <br> Duty">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvoffdu" runat="server" Style="text-align: right" Width="45px"
@@ -453,7 +452,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="Leave Day">
+                                             <asp:TemplateField HeaderText="Leave Enjoyed">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvwlday" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wld")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
@@ -591,7 +590,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Absent">
+                                            <asp:TemplateField HeaderText="Absent Amount">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAbsent" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absded")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
@@ -988,7 +987,7 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
                                 </div>
-                            </div>
+                          <%--  </div>--%>
 
 
 

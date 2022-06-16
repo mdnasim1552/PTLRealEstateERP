@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealERPEntity.C_30_Facility
+namespace RealEntity.C_30_Facility
 {
     public class EClass_Facility_Mgt
     {

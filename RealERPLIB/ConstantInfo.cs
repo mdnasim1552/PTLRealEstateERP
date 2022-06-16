@@ -692,6 +692,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1701000", "1701830", "F_17_Acc", "FinCodeBook", "", "Code Book", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1701000", "1701840", "F_17_Acc", "AccGenAdjJournal", "", "Requisition Adjustment", "Accounts", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1701000", "1701841", "F_17_Acc", "AccIndentUpdate", "Type=Entry", "Indent Update", "Accounts", "False", "False", "False", "False" });
 
 
             //Oprerational Manu
@@ -2249,7 +2250,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8151000", "8151001", "F_99_Allinterface", "HRInterfaceTopSheet", "", "Salary  360 <sup>0</span>", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151002", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "HR Interface", "HR Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151003", "F_99_Allinterface", "HRMAllInOne", "", "HR Dashboard", "HR Management", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "8151000", "8151004", "F_81_Hrm/F_85_Lon", "InterfaceLoan", "", "Loan Interface", "HR Management", "False", "False", "False", "False" });
 
 
 
@@ -5068,8 +5069,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000007", "02. Material Evaluation - Based on Progress", "F_12_Inv/RptPrurVarAna?Type=StkBasis&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000008", "04. Materials Stock Information(Account)", "F_12_Inv/RptProjectStock?Type=acc&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000009", "05. Indent Issue List", "F_12_Inv/AllIndentIsuList?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=&prjcode=&sircode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=&prjcode=&sircode=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
@@ -6031,7 +6032,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0203000006", "04. Post Dated Cheque(Received)", "F_17_Acc/AccPayUpdate?Type=AccRec", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000007", "05. Contractor Bill Update", "F_17_Acc/AccConBillUpdate?Type=Entry&genno=&Date1=", "", true, "" });
 
-
+           // tblObj.Rows.Add(new Object[] { "1701000", "1701841", "F_17_Acc", "AccIndentUpdate", "Type=Entry", "Indent Update", "Accounts", "False", "False", "False", "False" });
+            //
             //"05. Contractor Bill Update", "F_17_Acc/AccConBillUpdate?Type=Entry&genno=&Date1=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000008", "", "", "", true, "" });//"06. Sales Journal", "F_17_Acc/AccSalJournal?Type=Consolidate&prjcode=&usircode=&Date1=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000009", "", "", "", true, "" });

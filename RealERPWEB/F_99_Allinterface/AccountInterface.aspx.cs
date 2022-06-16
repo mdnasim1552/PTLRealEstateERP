@@ -152,35 +152,36 @@ namespace RealERPWEB.F_99_Allinterface
             //this is side bar menu (Nahid)
 
             this.RadioButtonList1.Items[0].Text = "Update Sales" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["salupcout"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["salupcout"].ToString() + "</span>";
             this.RadioButtonList1.Items[1].Text = "Cheque Deposit" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["adchqdep"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["adchqdep"].ToString() + "</span>";
             this.RadioButtonList1.Items[2].Text = "Update Collection" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["colupcount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["colupcount"].ToString() + "</span>";
             this.RadioButtonList1.Items[3].Text = "Update Purchase" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["lpurcount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["lpurcount"].ToString() + "</span>";
             this.RadioButtonList1.Items[4].Text = "Cont. Bill Update" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["subconcount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["subconcount"].ToString() + "</span>";
             this.RadioButtonList1.Items[5].Text = "Update M.Transfer" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["mtrncount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["mtrncount"].ToString() + "</span>";
             this.RadioButtonList1.Items[6].Text = "Update PDC" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["pdccount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["pdccount"].ToString() + "</span>";
             this.RadioButtonList1.Items[7].Text = "Bank Reconcilation" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["bnkrecount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["bnkrecount"].ToString() + "</span>";
             this.RadioButtonList1.Items[8].Text = "Client Modification" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["adcount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["adcount"].ToString() + "</span>";
             this.RadioButtonList1.Items[9].Text = "General Bill Update" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["othreq"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["othreq"].ToString() + "</span>";
             this.RadioButtonList1.Items[10].Text = "LSD Update" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["lsdcount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["lsdcount"].ToString() + "</span>";
             this.RadioButtonList1.Items[11].Text = "Petty Cash Update" + "<span class='lbldata counter'>" +
-                                                  ds1.Tables[16].Rows[0]["pettcycount"].ToString() + "</span>";
+                                                  ds1.Tables[17].Rows[0]["pettcycount"].ToString() + "</span>";
 
             this.RadioButtonList1.Items[12].Text = "Unit Cancellation" + "<span class='lbldata counter'>" +
-                                                     ds1.Tables[16].Rows[0]["canunit"].ToString() + "</span>";
+                                                     ds1.Tables[17].Rows[0]["canunit"].ToString() + "</span>";
 
-            this.RadioButtonList1.Items[13].Text = "Material Conversion" + "<span class='lbldata counter'>" + ds1.Tables[16].Rows[0]["conversion"].ToString() + "</span>";
-            this.RadioButtonList1.Items[14].Text = "Transfer Unit" + "<span class='lbldata counter'>" + ds1.Tables[16].Rows[0]["trnunit"].ToString() + "</span>";
+            this.RadioButtonList1.Items[13].Text = "Material Conversion" + "<span class='lbldata counter'>" + ds1.Tables[17].Rows[0]["conversion"].ToString() + "</span>";
+            this.RadioButtonList1.Items[14].Text = "Transfer Unit" + "<span class='lbldata counter'>" + ds1.Tables[17].Rows[0]["trnunit"].ToString() + "</span>";
+            this.RadioButtonList1.Items[15].Text = "Indent Update" + "<span class='lbldata counter'>" + ds1.Tables[17].Rows[0]["indup"].ToString() + "</span>";
 
 
             ////Update Sales
@@ -276,6 +277,8 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
+
                         this.RadioButtonList1.Items[0].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -299,6 +302,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[1].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -323,6 +327,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[2].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -345,7 +350,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
-
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[3].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -368,6 +373,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[4].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -392,6 +398,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[5].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -415,6 +422,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[6].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -438,6 +446,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[7].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -460,6 +469,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[8].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -482,6 +492,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[9].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -504,6 +515,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[10].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -526,6 +538,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[11].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -550,6 +563,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = true;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[12].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
                         break;
@@ -572,6 +586,7 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = true;
                         this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[13].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
 
@@ -596,11 +611,34 @@ namespace RealERPWEB.F_99_Allinterface
                         this.pnlUnposted.Visible = false;
                         this.pnlMAtConversion.Visible = false;
                         this.pnltrnUnit.Visible = true;
+                        this.PanelIndAp.Visible = false;
                         this.RadioButtonList1.Items[14].Attributes["style"] =
                             "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
 
                         break;
+                    case "15":
+                        dt = ((DataTable)ds1.Tables[16]).Copy();
+                        this.Data_Bind("gvIndAp", dt);
+                        this.pnlUpSales.Visible = false;
+                        this.pnlChequeDeposit.Visible = false;
+                        this.pnlUpColl.Visible = false;
+                        this.PanlUpCon.Visible = false;
+                        this.pnlPurchase.Visible = false;
+                        this.PnlBRec.Visible = false;
+                        this.PnlPDC.Visible = false;
+                        this.PnlMTras.Visible = false;
+                        this.PnlClientMod.Visible = false;
+                        this.PnlotherBill.Visible = false;
+                        this.pnllsd.Visible = false;
+                        this.pnlPatCash.Visible = false;
+                        this.pnlUnposted.Visible = false;
+                        this.pnlMAtConversion.Visible = false;
+                        this.pnltrnUnit.Visible = false;
+                        this.PanelIndAp.Visible = true;
+                        this.RadioButtonList1.Items[15].Attributes["style"] =
+                            "background: #189697; display:block; -webkit-border-radius: 30px;-moz-border-radius: 30px;border-radius: 30px;";
 
+                        break;
                 }
 
                 ds1.Dispose();
@@ -1175,7 +1213,10 @@ namespace RealERPWEB.F_99_Allinterface
                         }
                         break;
 
-
+                    case "gvIndAp":
+                        this.gvIndAp.DataSource = dt;
+                        this.gvIndAp.DataBind();
+                        break;
 
 
 
@@ -2254,6 +2295,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string vounum = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "vounum")).ToString();
 
                 hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint?Type=accVou&vounum=" + vounum;
+
+            }
+        }
+
+        protected void gvIndAp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnAppIN");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString();
+                string issuedat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issuedat1")).ToString();
+
+                //hlink2.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno + "&prjcode=&sircode=";
+                hlink2.NavigateUrl = "~/F_17_Acc/AccIndentUpdate?Type=Entry&genno=" + issueno + "&date=" + issuedat;
 
             }
         }
