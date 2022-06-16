@@ -2280,7 +2280,6 @@
     <Content Include="F_12_Inv\PurMTReqGatePass.aspx" />
     <Content Include="F_12_Inv\PurPhyStock.aspx" />
     <Content Include="F_12_Inv\PurReqApproval.aspx" />
-    <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurReqEntry02.aspx" />
     <Content Include="F_12_Inv\PurTopSheetCashPur.aspx" />
     <Content Include="F_12_Inv\RptDayWiseAdvance.aspx" />
@@ -6381,13 +6380,6 @@
     </Compile>
     <Compile Include="F_12_Inv\PurReqApproval.aspx.designer.cs">
       <DependentUpon>PurReqApproval.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_12_Inv\PurReqEntry.aspx.cs">
-      <DependentUpon>PurReqEntry.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_12_Inv\PurReqEntry.aspx.designer.cs">
-      <DependentUpon>PurReqEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\PurReqEntry02.aspx.cs">
       <DependentUpon>PurReqEntry02.aspx</DependentUpon>

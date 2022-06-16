@@ -4007,18 +4007,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
 
-                List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>[] partitionList = Partition<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>(list, 2);
+                //List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>[] partitionList = Partition<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>(list, 2);
 
 
-                var list1 = partitionList[0];
-                var list2 = partitionList[1];
+                //var list1 = partitionList[0];
+                //var list2 = partitionList[1];
 
 
 
                 //Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
 
 
-                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list1, list2, null);
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
