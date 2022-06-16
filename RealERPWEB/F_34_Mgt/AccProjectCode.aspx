@@ -385,8 +385,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6">
+                            <div class="row ">
+                                <div class="col-lg-6 d-none">
                                     <div id="prvProjt" runat="server">
                                         <div class="form-group">
                                             <label for="ddlLvType" class="d-block">

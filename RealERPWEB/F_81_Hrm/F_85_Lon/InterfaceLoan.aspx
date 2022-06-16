@@ -213,6 +213,11 @@
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender1" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
+                             <div class="col-lg-4">
+                                <asp:Label ID="Label19" runat="server">Loan Type</asp:Label>
+                                <asp:DropDownList ID="ddlLoanTypeSearch" runat="server" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
+                            </div>
                             <div class="col-lg-2">
                                 <asp:Label ID="Label3" runat="server">Search Emp.</asp:Label>
                                 <div class="input-group input-group-alt input-group-sm">
@@ -222,11 +227,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <asp:Label ID="Label19" runat="server">Loan Type</asp:Label>
-                                <asp:DropDownList ID="ddlLoanTypeSearch" runat="server" CssClass="form-control form-control-sm">
-                                </asp:DropDownList>
-                            </div>
+                           
                             <div class="col-lg-2 d-flex">
                                 <asp:LinkButton ID="lnkApplyModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20" OnClick="lnkApplyModal_Click">Apply Loan</asp:LinkButton>
                             </div>
@@ -251,7 +252,7 @@
                                 <asp:Panel ID="pnlQue" runat="server" Visible="false">
                                     <div class="row mt-3">
                                         <div class="table table-sm table-responsive">
-                                            <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvPending" runat="server" AutoGenerateColumns="false">
+                                            <asp:GridView CssClass="table-striped table-hover table-bordered grvContentarea" ID="gvPending" runat="server" AutoGenerateColumns="false">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SL#">
                                                         <ItemTemplate>
@@ -269,13 +270,13 @@
                                                             <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="100px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="ID Card">
+                                                    <asp:TemplateField HeaderText="ID #">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblpendempid" runat="server" Text='<%#Eval("empid")%>' Visible="false"></asp:Label>
                                                             <asp:Label ID="lblempidPend" runat="server" Text='<%#Eval("idcard")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Emp Name">
+                                                    <asp:TemplateField HeaderText="Employee Name">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblempnamepend" runat="server" Text='<%#Eval("empname")%>'></asp:Label>
                                                         </ItemTemplate>
@@ -297,13 +298,16 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Amount">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblloanamtPend" runat="server" Text='<%#Eval("loanamt")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblloanamtPend" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "loanamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Installment">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblinstPend" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
+
                                                     </asp:TemplateField>
                                                       <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
@@ -320,6 +324,12 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                        <EditRowStyle />
+                                                        <AlternatingRowStyle />
+                                                        <PagerStyle CssClass="gvPagination" />
+                                                        <HeaderStyle CssClass="grvHeader" />
+                                                        <RowStyle CssClass="grvRows" />
                                             </asp:GridView>
                                         </div>
                                     </div>
