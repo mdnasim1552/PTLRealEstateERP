@@ -1242,7 +1242,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.gvsbonus.DataSource = dt;
                         this.gvsbonus.DataBind();
                         Session["Report1"] = gvsbonus;
-                        ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                         break;
                 }
             }
@@ -1297,7 +1297,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = gvpayroll;
                     string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
                     Session["ReportName"] = "Salary_Sheet_"+ frmdate;
-                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                     break;
 
                 case "Bonus":
@@ -3211,7 +3211,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else
             {
-                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI2", list, null, null);
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
             }
 
             Rpt1.EnableExternalImages = true;

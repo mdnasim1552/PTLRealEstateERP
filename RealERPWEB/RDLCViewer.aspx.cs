@@ -48,7 +48,11 @@ namespace RealERPWEB
 
                 case "GRIDTOEXCEL":
                     this.ExportGridToExcel();
-                    //this.ExportGridToExcel2();
+                   
+                    break;
+                case "GRIDTOEXCELNEW":
+                   
+                    this.ExportGridToExcel2();
                     break;
             }
         }
