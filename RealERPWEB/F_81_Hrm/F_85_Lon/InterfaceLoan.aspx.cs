@@ -364,7 +364,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 return;
             
             DataTable dt = ds.Tables[0];
-            this.txtLoanId.Text = dt.Rows[0]["id"].ToString() ?? "";
+            this.txtLoanId.Text =dt.Rows[0]["id"].ToString();
             this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
             this.txtLoanAmt.Text = dt.Rows[0]["loanamt"].ToString() ?? "";
             this.txtInstNum.Text = dt.Rows[0]["instlnum"].ToString() ?? "";
@@ -432,6 +432,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
         protected void lnkApplyModal_Click(object sender, EventArgs e)
         {
+
+            //GetLoanType();
+            //GetGross();
+            //GetPrevLoan();
 
             this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
             this.txtLoanAmt.Text = "";
