@@ -1434,9 +1434,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
 
-                string roletypeCHk = (roletype == "SUP") ? "DPT" : "MGT";
+                string roletypeCHk = (roletype == "SUP") ? "DPT" : "DPT";// MGT now Removed, Pls discused wiht nahid
                 var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETAPPRVPMAIL", deptcode, roletypeCHk, "", "", "", "", "", "", "");
-
+                if(ds==null)
+                {
+                    string Messagesd = "Leave Approved";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    return;
+                }
                 // var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "HRAPPROVAL_DPT_HEAD_USERID", deptcode, roletypeCHk, "", "", "", "", "", "", "");
                 if (ds == null)
                     return;
