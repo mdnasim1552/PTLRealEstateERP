@@ -435,7 +435,7 @@
 
                                             <asp:TemplateField HeaderText="Working Day">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvwday" runat="server" Style="text-align: right"
+                                                    <asp:Label ID="lgvwday" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wd")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -445,7 +445,7 @@
                                             
                                             <asp:TemplateField HeaderText="Office <br> Duty">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvoffdu" runat="server" Style="text-align: right" Width="45px"
+                                                    <asp:Label ID="lgvoffdu" runat="server" Style="text-align:center" Width="45px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netwday")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -454,7 +454,7 @@
 
                                              <asp:TemplateField HeaderText="Leave Enjoyed">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvwlday" runat="server" Style="text-align: right"
+                                                    <asp:Label ID="lgvwlday" runat="server" Style="text-align:center"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wld")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -464,7 +464,7 @@
 
                                             <asp:TemplateField HeaderText="Absday <br> (Oth.)">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lFgvoffdu" runat="server" Style="text-align: right" Width="45px"
+                                                    <asp:Label ID="lFgvoffdu" runat="server" Style="text-align:center" Width="45px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tabday")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
