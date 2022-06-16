@@ -2075,9 +2075,10 @@ namespace RealERPWEB.F_99_Allinterface
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString();
-                string deptcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptcode")).ToString();
+                string issuedat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issuedat1")).ToString();
 
-                hlink2.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno + "&prjcode=&sircode=";
+                //hlink2.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno + "&prjcode=&sircode=";
+                hlink2.NavigateUrl = "~/F_17_Acc/AccIndentUpdate?Type=Entry&genno="+ issueno + "&date="+ issuedat;
 
             }
         }
