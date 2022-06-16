@@ -50,10 +50,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
         private void getAllData()
         {
-    
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOAN", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOAN", "", "", usrid, "", "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
               return;
 
@@ -205,10 +205,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string id = "0";
             string loantype = ddlLoanType.SelectedValue.ToString()??"";
             string loanamt = "0"+this.txtLoanAmt.Text.ToString();
-            string instlnum = "0"+this.txtInstNum.Text.ToString()??"0";
+            string instlnum = this.txtInstNum.Text.ToString()??"0";
             string perinstlamt = "0"+this.txtAmtPerIns.Text.ToString()??"0";
             string loandesc = this.txtLoanDescc.Text.ToString();
-            string rate = "0"+this.txtrt.Text.ToString()??"0";
+            string rate = this.txtrt.Text.ToString()??"0";
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy")??"";
             string posteddate = System.DateTime.Now.ToString("dd-MMM-yyy")??"";
             string pstdusrid = hst["usrid"].ToString();
@@ -251,22 +251,18 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             string comcod = this.GetCompCode();
             string empid = hst["empid"].ToString() ?? "";
-            string id = this.txtLoanId.Text.ToString();
+            string id = this.txtLoanId.Text.ToString().Remove(0,3);
             string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
             string loanamt = "0" + this.txtLoanAmt.Text.ToString();
-            string instlnum = "0" + this.txtInstNum.Text.ToString() ?? "0";
+            string instlnum = this.txtInstNum.Text.ToString() ?? "0";
             string perinstlamt = "0" + this.txtAmtPerIns.Text.ToString() ?? "0";
             string loandesc = this.txtLoanDescc.Text.ToString();
             string rate = "0" + this.txtrt.Text.ToString() ?? "0";
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
-            string posteddate = System.DateTime.Now.ToString("dd-MMM-yyy") ?? "";
-            string pstdusrid = hst["usrid"].ToString();
-            string pstdsession = hst["session"].ToString();
-            string pstdtrmnlid = hst["compname"].ToString();
-            string pstdusredt = "";
-            string pstdssnedt = "";
-            string pstdtrmnledt = "";
-            string postdateedited = "";
+            string pstdusredt = hst["usrid"].ToString();
+            string pstdssnedt = hst["session"].ToString();
+            string pstdtrmnledt = hst["compname"].ToString();
+            string postdateedited = System.DateTime.Now.ToString("dd-MMM-yyy") ?? "";
             string lnstatus = "0";
 
             string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
@@ -277,7 +273,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
             //maincode = (editedid != "") ? editedid : maincode;
-            bool result = HRData.UpdateTransInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, id, loantype, loanamt, instlnum, perinstlamt, loandesc, rate, effedat, posteddate, pstdusrid, pstdsession, pstdtrmnlid, pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, "");
+            bool result = HRData.UpdateTransInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, id, loantype, loanamt, instlnum, perinstlamt, loandesc, rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, "");
             if (result == true)
             {
 
@@ -364,7 +360,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 return;
             
             DataTable dt = ds.Tables[0];
-            this.txtLoanId.Text = dt.Rows[0]["id"].ToString() ?? "";
+            this.txtLoanId.Text ="Ln-" +dt.Rows[0]["id"].ToString();
             this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
             this.txtLoanAmt.Text = dt.Rows[0]["loanamt"].ToString() ?? "";
             this.txtInstNum.Text = dt.Rows[0]["instlnum"].ToString() ?? "";
@@ -409,7 +405,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.txtEffDate.Enabled = false;
             this.ddlLoanType.Enabled = false;
             this.txtLoanDescc.Enabled = false;
-            this.txtLoanId.Text = dt.Rows[0]["id"].ToString() ?? "";
+            this.txtLoanId.Text = "Ln-" + dt.Rows[0]["id"].ToString();
             this.txtcreateDate.Text =Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
             this.txtLoanAmt.Text = dt.Rows[0]["loanamt"].ToString() ?? "";
             this.txtInstNum.Text = dt.Rows[0]["instlnum"].ToString() ?? "";
@@ -433,6 +429,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected void lnkApplyModal_Click(object sender, EventArgs e)
         {
 
+            GetLoanType();
+            GetGross();
+            GetPrevLoan();
+
             this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
             this.txtLoanAmt.Text = "";
             this.txtInstNum.Text = "";
@@ -442,6 +442,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.txtrt.Text = "";
             this.txtEffDate.Text = "";
             this.txtLoanDescc.Text = "";
+            this.txtAmtPerIns.Text = "";
 
             this.lnkAdd.Visible = true;
 

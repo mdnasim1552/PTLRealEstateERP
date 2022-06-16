@@ -938,9 +938,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
-
-
-
                 var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, delgationemp, "", "", "", "", "", "", "");
 
                 if (ds1 == null)

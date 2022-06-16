@@ -32,7 +32,7 @@
 
                 var gridViewScroll = new GridViewScroll({
                     elementID: "gvpayroll",
-                    width: 1500,
+                    width: 1400,
                     height: 500,
                     freezeColumn: true,
                     freezeFooter: true,
@@ -46,7 +46,8 @@
                 $('.chzn-select').chosen({ search_contains: true });
             }
 
-            catch (e) {
+            catch (e)
+            {
                 alert(e);
             }
         }
@@ -350,7 +351,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="table-responsive">
+                     <%--           <div class="table-responsive">--%>
                                     <asp:GridView ID="gvpayroll" runat="server" ClientIDMode="Static" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False" ShowFooter="True">
 
@@ -986,7 +987,7 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
                                 </div>
-                            </div>
+                          <%--  </div>--%>
 
 
 
