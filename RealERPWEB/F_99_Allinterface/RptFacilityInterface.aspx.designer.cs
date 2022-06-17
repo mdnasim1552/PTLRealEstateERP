@@ -114,22 +114,22 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
 
         /// <summary>
-        /// pnlReqInfo control.
+        /// pnlComplainCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlReqInfo;
+        protected global::System.Web.UI.WebControls.Panel pnlComplainCount;
 
         /// <summary>
-        /// gvReqInfo control.
+        /// gvComplainList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvReqInfo;
+        protected global::System.Web.UI.WebControls.GridView gvComplainList;
 
         /// <summary>
         /// lblprintstkl control.
