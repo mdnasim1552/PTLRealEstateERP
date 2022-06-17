@@ -32,7 +32,7 @@
 
                 var gridViewScroll = new GridViewScroll({
                     elementID: "gvpayroll",
-                    width: 1500,
+                    width: 1400,
                     height: 500,
                     freezeColumn: true,
                     freezeFooter: true,
@@ -46,7 +46,8 @@
                 $('.chzn-select').chosen({ search_contains: true });
             }
 
-            catch (e) {
+            catch (e)
+            {
                 alert(e);
             }
         }
@@ -350,7 +351,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="table-responsive">
+                     <%--           <div class="table-responsive">--%>
                                     <asp:GridView ID="gvpayroll" runat="server" ClientIDMode="Static" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False" ShowFooter="True">
 
@@ -434,7 +435,7 @@
 
                                             <asp:TemplateField HeaderText="Working Day">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvwday" runat="server" Style="text-align: right"
+                                                    <asp:Label ID="lgvwday" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wd")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -444,7 +445,7 @@
                                             
                                             <asp:TemplateField HeaderText="Office <br> Duty">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvoffdu" runat="server" Style="text-align: right" Width="45px"
+                                                    <asp:Label ID="lgvoffdu" runat="server" Style="text-align:center" Width="45px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netwday")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -453,7 +454,7 @@
 
                                              <asp:TemplateField HeaderText="Leave Enjoyed">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvwlday" runat="server" Style="text-align: right"
+                                                    <asp:Label ID="lgvwlday" runat="server" Style="text-align:center"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wld")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -463,7 +464,7 @@
 
                                             <asp:TemplateField HeaderText="Absday <br> (Oth.)">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lFgvoffdu" runat="server" Style="text-align: right" Width="45px"
+                                                    <asp:Label ID="lFgvoffdu" runat="server" Style="text-align:center" Width="45px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tabday")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -986,7 +987,7 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
                                 </div>
-                            </div>
+                          <%--  </div>--%>
 
 
 

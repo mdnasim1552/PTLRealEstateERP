@@ -1122,9 +1122,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 {
                     case "Salary":
                     case "SalResign":
-                        if (comcod == "3365")
+                        if (comcod == "3365" ||comcod=="3101")
                         {
-                            this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
+                            this.gvpayroll.Columns[23].HeaderText = "W.F Fund";
                         }
                         this.gvpayroll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvpayroll.DataSource = dt;
@@ -1147,11 +1147,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.gvpayroll.Columns[16].Visible = false;
                                 this.gvpayroll.Columns[17].Visible = false;
                                 this.gvpayroll.Columns[18].Visible = false;
+                                this.gvpayroll.Columns[20].Visible = false;
                                 this.gvpayroll.Columns[31].Visible = false;
                                 this.gvpayroll.Columns[41].Visible = false;
                                
                                 break;
-                            case "3101":
+                           
                             case "3347":
                               
                                 this.gvpayroll.Columns[13].Visible = false;
@@ -1241,7 +1242,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.gvsbonus.DataSource = dt;
                         this.gvsbonus.DataBind();
                         Session["Report1"] = gvsbonus;
-                        ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                         break;
                 }
             }
@@ -1296,7 +1297,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = gvpayroll;
                     string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
                     Session["ReportName"] = "Salary_Sheet_"+ frmdate;
-                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                     break;
 
                 case "Bonus":
@@ -4006,18 +4007,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
 
-                List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>[] partitionList = Partition<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>(list, 2);
+                //List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>[] partitionList = Partition<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>(list, 2);
 
 
-                var list1 = partitionList[0];
-                var list2 = partitionList[1];
+                //var list1 = partitionList[0];
+                //var list2 = partitionList[1];
 
 
 
                 //Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
 
 
-                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list1, list2, null);
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipFinlay", list, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));

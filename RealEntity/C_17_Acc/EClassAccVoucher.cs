@@ -41,6 +41,7 @@ namespace RealEntity.C_17_Acc
            public string actelev { set; get; }
            public string acttype { set; get; }
 
+            public EClassAccHead() { }
            public EClassAccHead(string actcode, string actdesc, string actdesc1, string actelev, string acttype)
            {
                this.actcode = actcode;
