@@ -169,6 +169,63 @@ namespace RealERPWEB.F_30_Facility
 
         protected void btnOKClick_Click(object sender, EventArgs e)
         {
+            getComplainUser();
+        }
+
+        protected void lnkSave_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComCode();
+            string dgno = Request.QueryString["EngrNo"] ?? "0";
+            string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
+            string dgdate = txtEntryDate.Text;
+            string sitevisiteddate = txtSiteVisisted.Text;
+            string estimatedwddate = txtwdtime.Text;
+            string userId = hst["usrid"].ToString();
+            string addremarks = txtNarration.Text;
+
+
+            DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISB", null, null, null, dgno, complno, dgdate, sitevisiteddate, estimatedwddate, addremarks, 
+                "", "", "", "", "", "", "", "", "", "", "", "", "", userId);
+            DataTable dt = ds.Tables[0];
+            if (dt != null || dt.Rows.Count > 0)
+            {
+                int i = 1;
+                bool resultDelete = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "DElETEDIAGNOSISA", dt.Rows[0]["dgno"].ToString(), "", "", "", "", "", "", "", "", "", "", "",
+                            "", "", "", "", "", "", "", "", "", "", userId);
+                if (resultDelete)
+                {
+                    List<EClass_Complain_List> list = (List<EClass_Complain_List>)ViewState["ComplainList"];
+                    foreach (var item in list)
+                    {
+                        bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISA", dt.Rows[0]["dgno"].ToString(), item.complainDesc, item.remarks, i.ToString(), "", "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", "", userId);
+                        if (!resultA)
+                        {
+                            //Failed
+                        }
+                        i++;
+                    }
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEENGRFLAG", complno, "", "", "", "", "", "", "", "", "", "", "",
+                               "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+                        //Update Successful
+                        if (dgno == "0")
+                        {
+                            ClearPage();
+                        }
+                    }
+                        
+                }
+               
+            }
+            else
+            {
+
+            }
+
+
 
         }
     }
