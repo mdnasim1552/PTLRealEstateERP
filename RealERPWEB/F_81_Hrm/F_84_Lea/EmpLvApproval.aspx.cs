@@ -290,7 +290,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
                 string SrchChequeno = "%%";
 
-
                 string DeptCode = ((this.ddlCenter.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCenter.SelectedValue.ToString()) + "%";
                 //string Approval = this.RateorApproved();
                 string Userid = hst["usrid"].ToString();
@@ -302,11 +301,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.gvLvReq.DataBind();
                     return;
                 }
-
                 var lst = ds.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>();
                 ViewState["tblt01"] = lst;
                 ViewState["tblempinfo"] = ds.Tables[2];
-
 
                 //applied informaiton 
                 DataTable dt1 = ds.Tables[2];
@@ -340,15 +337,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     "Department Name : " + deptName;
                 this.lblDutesInfo.Text = denameadesig;
                 //end head data
-
                 this.ShowEmppLeave(ds.Tables[0].Rows[0]["empid"].ToString());
-
                 this.lblvalNarration.Text = ds.Tables[0].Rows[0]["LREASON"].ToString();
                 this.lblRemarks.Text = ds.Tables[0].Rows[0]["LRMARKS"].ToString();
                 this.Chboxforward.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["forward"]);
 
                 GetLeavType(empid);
-
                 this.Data_Bind();
 
                 if (ds.Tables[1].Rows.Count == 0)
