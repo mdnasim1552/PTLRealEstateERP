@@ -112,7 +112,7 @@
                             <asp:RadioButtonList ID="rbtnSalType" RepeatDirection="Horizontal" CssClass=""  runat="server">
                                 <asp:ListItem>Sold</asp:ListItem>
                                 <asp:ListItem>UnSold</asp:ListItem>
-                               
+                            
                                 <asp:ListItem Selected="True">Both</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
