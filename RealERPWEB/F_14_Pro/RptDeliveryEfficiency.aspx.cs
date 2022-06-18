@@ -57,7 +57,7 @@ namespace RealERPWEB.F_14_Pro
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
-        }     
+        }
 
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,6 +194,89 @@ namespace RealERPWEB.F_14_Pro
             //Session["Report1"] = rptstate;
             ////lbljavascript.Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
             ////                    this.DDPrintOpt.SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void lbtnAddMat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.Getcomcod();
+                Session.Remove("matleadtime");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE01", "GETMATDELLEADTIME", "", "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.grvmatlead.DataSource = null;
+                    this.grvmatlead.DataBind();
+                    return;
+                }
+                Session["matleadtime"] = ds1.Tables[0];
+                this.Data_BindMat();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openLeadModal();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
+        private void Data_BindMat()
+        {
+            try
+            {
+                DataTable tbl1 = (DataTable)Session["matleadtime"];
+                this.grvmatlead.DataSource = tbl1;
+                this.grvmatlead.DataBind();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        protected void btnSaveLead_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Session_Update();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                DataTable tblt05 = (DataTable)Session["matleadtime"];
+                foreach (DataRow dr in tblt05.Rows)
+                {
+                    string sircode = dr["sircode"].ToString();
+                    string mark = dr["mark"].ToString();
+                    bool resulta = MktData.UpdateTransInfo(comcod, "SP_REPORT_PURCHASE01", "INSUPDATEMATLEADTIME", sircode, mark, "", "", "", "",
+                                "", "", "", "", "", "", "", "", "");
+                    if (!resulta)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
+                        return;
+                    }
+                }
+               ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully.";
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+            }
+        }
+
+        protected void Session_Update()
+        {
+            DataTable tbl1 = (DataTable)Session["matleadtime"];
+            int TblRowIndex2;
+            for (int j = 0; j < this.grvmatlead.Rows.Count; j++)
+            {
+                double mark = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.grvmatlead.Rows[j].FindControl("txtgvmark")).Text.Trim()));
+                ((TextBox)this.grvmatlead.Rows[j].FindControl("txtgvmark")).Text = mark.ToString("#,##0.00;(#,##0.00); ");
+                TblRowIndex2 = (this.grvmatlead.PageIndex) * this.grvmatlead.PageSize + j;
+                tbl1.Rows[TblRowIndex2]["mark"] = mark;
+            }
+            Session["matleadtime"] = tbl1;
+            this.Data_BindMat();
         }
     }
 }
