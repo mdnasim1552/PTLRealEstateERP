@@ -95,7 +95,7 @@
                                         <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lnkbtnOk_Click">Ok</asp:LinkButton>
                                     </div>
                                     <div class="col-md-2">
-                                        <asp:LinkButton ID="lbtnAddMat" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Material Delivery Lead Time" BackColor="Transparent" OnClick="lbtnAddMat_Click" Width="100px" Visible="false"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnAddMat" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Material Delivery Lead Time" BackColor="Transparent" OnClick="lbtnAddMat_Click" Width="100px"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
                                     </div>
 
                                 </div>
@@ -263,11 +263,11 @@
                                 <i class="fa fa-hand-point-right"></i>Material Delivery Lead Time</h4>
                             <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
-                        <div class="modal-body " style="min-height: 400px">
+                        <div class="modal-body" style="max-height: 400px; overflow-x: hidden;">
                             <div class="container">
                                 <div class="table-responsive">
                                     <asp:GridView ID="grvmatlead" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False" Font-Size="12px" ShowFooter="True" >
+                                        AutoGenerateColumns="False" Font-Size="14px" ShowFooter="True" >
                                         <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="#000" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL">
@@ -276,7 +276,7 @@
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                                <ItemStyle Font-Size="12px" />
+                                                <ItemStyle Font-Size="14px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Code">
                                                 <ItemTemplate>
@@ -285,25 +285,25 @@
                                                         Width="90px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                                <ItemStyle Font-Size="12px" />
+                                                <ItemStyle Font-Size="14px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Materials Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvsirdesc" runat="server" Font-Size="12px" Style="font-size: 12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
-                                                        Width="150"></asp:Label>
+                                                        Width="200"></asp:Label>
                                                 </ItemTemplate>                                                
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
-                                                <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                                <ItemStyle Font-Size="14px" HorizontalAlign="Left" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Lead Days">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvmark" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Style="text-align: right; background-color: Transparent"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "mark")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="80px"></asp:TextBox>
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "mark")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="120px"></asp:TextBox>
                                                 </ItemTemplate>
-                                                <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
+                                                <ItemStyle Font-Size="13px" HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
