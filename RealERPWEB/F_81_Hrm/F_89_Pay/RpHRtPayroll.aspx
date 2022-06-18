@@ -1804,8 +1804,9 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
+                             <h4 class="modal-title">Deduction Details</h4>
                             <button type="button" class="close btn btn-xs" data-dismiss="modal" title="Close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                            <h4 class="modal-title"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Deduction Details</h4>
+                           
                         </div>
                         <div class="modal-body form-horizontal" style="min-height: 200px;">
                             <div class="row-fluid">
@@ -1833,7 +1834,7 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Leave Deduction">
+                                              <%--  <asp:TemplateField HeaderText="Leave Deduction">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtgvleaveded" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -1841,18 +1842,9 @@
                                                             Width="70px"></asp:TextBox>
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Right" />
-                                                </asp:TemplateField>
+                                                </asp:TemplateField>--%>
 
-                                                <asp:TemplateField HeaderText="Arrear Deduccion">
-                                                    <ItemTemplate>
-                                                        <asp:TextBox ID="txtgvarairded" runat="server" BackColor="Transparent"
-                                                            BorderStyle="None" Font-Size="12px" Style="text-align: right"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "arded")).ToString("#,##0;(#,##0); ") %>'
-                                                            Width="70px"></asp:TextBox>
-                                                    </ItemTemplate>
-                                                    <ItemStyle HorizontalAlign="Right" />
-                                                </asp:TemplateField>
-
+                                          
                                                 <asp:TemplateField HeaderText="Income Tax">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblmitax" runat="server" Style="text-align: right"
@@ -1862,7 +1854,7 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Pro. Fund">
+                                                <asp:TemplateField HeaderText="W.F Fund">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblmpfund" runat="server" Style="text-align: right"
                                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pfund")).ToString("#,##0;(#,##0); ") %>'
@@ -1944,7 +1936,7 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Food Ded.">
+                                                <%--<asp:TemplateField HeaderText="Food Ded.">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblmfallded" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -1952,7 +1944,7 @@
                                                             Width="70px"></asp:Label>
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Right" />
-                                                </asp:TemplateField>
+                                                </asp:TemplateField>--%>
 
                                                 <asp:TemplateField HeaderText="Mobile bill ">
                                                     <ItemTemplate>
@@ -1967,7 +1959,7 @@
                                                 <asp:TemplateField HeaderText="Other ded.">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblmothded" runat="server" Style="text-align: right"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded")).ToString("#,##0;(#,##0); ") %>'
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "othded"))+Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fine")).ToString("#,##0;(#,##0); ") %>'
                                                             Width="45px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1992,7 +1984,7 @@
                                     </div>
                                 </div>
                                 <div class="row" style="text-align: center; margin-top: 10px;">
-                                    <h4><span style="font-weight: bold;">Total Deductin : </span>
+                                    <h4><span style="font-weight: bold;">Total Deduction : </span>
                                         <asp:Label ID="lblmTotDed" runat="server" Font-Bold="true" ForeColor="#ff9900"></asp:Label></h4>
                                 </div>
                             </div>
