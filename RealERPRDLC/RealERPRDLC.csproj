@@ -193,6 +193,7 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEpic.rdlc" />

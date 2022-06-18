@@ -2263,6 +2263,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
@@ -3915,6 +3916,12 @@
     </Compile>
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\PurReqEntry.aspx.cs">
+      <DependentUpon>PurReqEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\PurReqEntry.aspx.designer.cs">
+      <DependentUpon>PurReqEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.cs">
       <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
