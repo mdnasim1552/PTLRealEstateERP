@@ -271,6 +271,46 @@
                                                                 CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Appoinment Letter</asp:HyperLink>
                                                             <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
                                                         </li>
+
+                                                          <li class="mt-2">
+                                                            <asp:HyperLink ID="lnkConfirmation" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10025&Entry=confirmation Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Confirmation Letter</asp:HyperLink>
+                                                            <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
+                                                        </li>
+
+                                                           <li class="mt-2">
+                                                            <asp:HyperLink ID="lnkProbExtension" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10026&Entry=probation extension Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Probation Extension Letter</asp:HyperLink>
+                                                        </li>
+
+                                                                     <li class="mt-2">
+                                                            <asp:HyperLink ID="lnkConfWithProm" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10024&Entry=confirmation with promotion Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Confirmation With Promotion Letter</asp:HyperLink>
+                                                        </li>
+
+                                                        <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink4" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10027&Entry=confirmation without increment Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Confirmation Without Increment Letter</asp:HyperLink>
+                                                        </li>
+
+                                                                        <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink5" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10028&Entry=Salary certificate Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Salary Cerificate Letter</asp:HyperLink>
+                                                        </li>
+
+                                                                                                     <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink6" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10029&Entry=Salary certificate Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Experience Certificate</asp:HyperLink>
+                                                        </li>
+
+
+
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkbtnAggrement" Target="_blank"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>'
