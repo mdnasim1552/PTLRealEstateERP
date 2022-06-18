@@ -213,7 +213,7 @@
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender1" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
-                             <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <asp:Label ID="Label19" runat="server">Loan Type</asp:Label>
                                 <asp:DropDownList ID="ddlLoanTypeSearch" runat="server" CssClass="form-control form-control-sm">
                                 </asp:DropDownList>
@@ -223,11 +223,15 @@
                                 <div class="input-group input-group-alt input-group-sm">
                                     <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                     <div class="input-group-prepend ">
-                                        <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-light btn-sm "><i class="fa fa-search"></i></asp:LinkButton></li>
+                                        <asp:LinkButton ID="lnkbtfind" runat="server" CssClass=" btn btn-light btn-sm "><i class="fa fa-search"></i></asp:LinkButton></li>
                                     </div>
                                 </div>
                             </div>
-                           
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
+                                </div>
+                            </div>
                             <div class="col-lg-2 d-flex">
                                 <asp:LinkButton ID="lnkApplyModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20" OnClick="lnkApplyModal_Click">Apply Loan</asp:LinkButton>
                             </div>
@@ -256,7 +260,7 @@
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SL#">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblslpend" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                            <asp:Label ID="lblslpend" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan ID">
@@ -267,7 +271,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Apply Date">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="ID #">
@@ -302,34 +306,54 @@
                                                         </ItemTemplate>
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Loan Installment">
+                                                    <asp:TemplateField HeaderText="# Installment">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblinstPend" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
 
                                                     </asp:TemplateField>
-                                                      <asp:TemplateField HeaderText="Status">
+                                                    <asp:TemplateField HeaderText="Per Installment">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblperinstlamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perinstlamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblstatus" runat="server" Text='<%#Convert.ToBoolean(Eval("lnstatus"))==false?"Pending":"Approved" %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Action">
+                                                    <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" runat="server" class="btn btn-info btn-sm mr-1"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="pendlnEdit" OnClick="pendlnEdit_Click" runat="server" class="btn btn-primary btn-sm mr-1 ml-1"><i class="fa fa-edit"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <%--<asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="pendlnEdit" OnClick="pendlnEdit_Click" runat="server" ><i class="fa fa-edit"></i></asp:LinkButton>
+                                                                
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server"><i class="fa fa-trash"></i></asp:LinkButton>
                                                             </div>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
                                                 <FooterStyle CssClass="grvFooter" />
-                                                        <EditRowStyle />
-                                                        <AlternatingRowStyle />
-                                                        <PagerStyle CssClass="gvPagination" />
-                                                        <HeaderStyle CssClass="grvHeader" />
-                                                        <RowStyle CssClass="grvRows" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                                <RowStyle CssClass="grvRows" />
                                             </asp:GridView>
                                         </div>
                                     </div>
@@ -341,49 +365,98 @@
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SL#">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblslproc" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                            <asp:Label ID="lblslpend" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan ID">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblnnoProc" runat="server">#Loan<%#  Convert.ToString(Eval("id")) %></asp:Label>
+                                                            <asp:Label runat="server" ID="lblidPend" Visible="false" Text='<%# Convert.ToString(Eval("id")) %>'></asp:Label>
+                                                            <asp:Label runat="server" ID="lbllnstatus" Visible="false" Text='<%# Convert.ToString(Eval("lnstatus")) %>'></asp:Label>
+
+                                                            <asp:Label ID="lblnnoPend" runat="server">Ln-<%#  Convert.ToString(Eval("id")) %></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Apply Date">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblapplydatProc" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Employee ID">
+                                                    <asp:TemplateField HeaderText="ID #">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblempidProc" runat="server" Text='<%#Eval("empid")%>'></asp:Label>
+                                                            <asp:Label ID="lblpendempid" runat="server" Text='<%#Eval("empid")%>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="lblempidPend" runat="server" Text='<%#Eval("idcard")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Employee Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblempnamepend" runat="server" Text='<%#Eval("empname")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Designation">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldesigpend" runat="server" Text='<%#Eval("desig")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Department">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldeptpend" runat="server" Text='<%#Eval("dept")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Type">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblloantypeProc" runat="server" Text='<%#Eval("lnname")%>'></asp:Label>
+                                                            <asp:Label ID="lblloantypePend" runat="server" Text='<%#Eval("lnname")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Amount">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblloanamtProc" runat="server" Text='<%#Eval("loanamt")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblloanamtPend" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "loanamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Loan Installment">
+                                                    <asp:TemplateField HeaderText="# Installment">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblinstProc" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
+                                                            <asp:Label ID="lblinstPend" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
+
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Action">
+                                                    <asp:TemplateField HeaderText="Per Installment">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblperinstlamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perinstlamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="proclnView" runat="server" class="btn btn-info btn-sm mr-1"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="proclnEdit" runat="server" class="btn btn-primary btn-sm mr-1 ml-1"><i class="fa fa-edit"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="proclnDel" runat="server" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="proslnView" OnClick="proslnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+
                                                             </div>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="pendlnEdit" OnClick="pendlnEdit_Click" runat="server"><i class="fa fa-edit"></i></asp:LinkButton>
+
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <%--<asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                               <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" ><i class="fa fa-trash"></i></asp:LinkButton>
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
                                                 </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                                <RowStyle CssClass="grvRows" />
                                             </asp:GridView>
                                         </div>
                                     </div>
@@ -395,49 +468,97 @@
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SL#">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblslapr" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                            <asp:Label ID="lblslpend" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan ID">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblnnoApr" runat="server">#Loan<%#  Convert.ToString(Eval("id")) %></asp:Label>
+                                                            <asp:Label runat="server" ID="lblidPend" Visible="false" Text='<%# Convert.ToString(Eval("id")) %>'></asp:Label>
+                                                            <asp:Label runat="server" ID="lbllnstatus" Visible="false" Text='<%# Convert.ToString(Eval("lnstatus")) %>'></asp:Label>
+                                                            <asp:Label ID="lblnnoPend" runat="server">Ln-<%#  Convert.ToString(Eval("id")) %></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Apply Date">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblaplydatApr" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Employee ID">
+                                                    <asp:TemplateField HeaderText="ID #">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblempidApr" runat="server" Text='<%#Eval("empid")%>'></asp:Label>
+                                                            <asp:Label ID="lblpendempid" runat="server" Text='<%#Eval("empid")%>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="lblempidPend" runat="server" Text='<%#Eval("idcard")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Employee Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblempnamepend" runat="server" Text='<%#Eval("empname")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Designation">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldesigpend" runat="server" Text='<%#Eval("desig")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Department">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldeptpend" runat="server" Text='<%#Eval("dept")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Type">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lbllntypeApr" runat="server" Text='<%#Eval("lnname")%>'></asp:Label>
+                                                            <asp:Label ID="lblloantypePend" runat="server" Text='<%#Eval("lnname")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Amount">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblloanamtApr" runat="server" Text='<%#Eval("loanamt")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblloanamtPend" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "loanamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Loan Installment">
+                                                    <asp:TemplateField HeaderText="# Installment">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblinstApr" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
+                                                            <asp:Label ID="lblinstPend" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
+
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Action">
+                                                    <asp:TemplateField HeaderText="Per Installment">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblperinstlamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perinstlamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="aprlnView" runat="server" class="btn btn-info btn-sm mr-1"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="aprclnEdit" runat="server" class="btn btn-primary btn-sm mr-1 ml-1"><i class="fa fa-edit"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="aprclnDel" runat="server" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="AprlnView" OnClick="AprlnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+
                                                             </div>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="pendlnEditApr" OnClick="pendlnEditApr_Click" runat="server"><i class="fa fa-edit"></i></asp:LinkButton>
+
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <%-- <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                               <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" ><i class="fa fa-trash"></i></asp:LinkButton>
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
                                                 </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                                <RowStyle CssClass="grvRows" />
                                             </asp:GridView>
                                         </div>
                                     </div>
@@ -449,49 +570,97 @@
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SL#">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblslgen" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                            <asp:Label ID="lblslpend" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan ID">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblidgen" runat="server">#Loan<%#  Convert.ToString(Eval("id")) %></asp:Label>
+                                                            <asp:Label runat="server" ID="lblidPend" Visible="false" Text='<%# Convert.ToString(Eval("id")) %>'></asp:Label>
+                                                            <asp:Label runat="server" ID="lbllnstatus" Visible="false" Text='<%# Convert.ToString(Eval("lnstatus")) %>'></asp:Label>
+                                                            <asp:Label ID="lblnnoPend" runat="server">Ln-<%#  Convert.ToString(Eval("id")) %></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Apply Date">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblaplydatGen" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Employee ID">
+                                                    <asp:TemplateField HeaderText="ID #">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblempidGen" runat="server" Text='<%#Eval("empid")%>'></asp:Label>
+                                                            <asp:Label ID="lblpendempid" runat="server" Text='<%#Eval("empid")%>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="lblempidPend" runat="server" Text='<%#Eval("idcard")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Employee Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblempnamepend" runat="server" Text='<%#Eval("empname")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Designation">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldesigpend" runat="server" Text='<%#Eval("desig")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Department">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldeptpend" runat="server" Text='<%#Eval("dept")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Type">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lbllntypeGen" runat="server" Text='<%#Eval("lnname")%>'></asp:Label>
+                                                            <asp:Label ID="lblloantypePend" runat="server" Text='<%#Eval("lnname")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Loan Amount">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblloanamtGen" runat="server" Text='<%#Eval("loanamt")%>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblloanamtPend" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "loanamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Loan Installment">
+                                                    <asp:TemplateField HeaderText="# Installment">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblinstGen" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
+                                                            <asp:Label ID="lblinstPend" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
+
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Action">
+                                                    <asp:TemplateField HeaderText="Per Installment">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblperinstlamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perinstlamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="genlnView" runat="server" class="btn btn-info btn-sm mr-1"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="genlnEdit" runat="server" class="btn btn-primary btn-sm mr-1 ml-1"><i class="fa fa-edit"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="genlnDel" runat="server" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="LoGenlnView" OnClick="LoGenlnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+
                                                             </div>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
+                                                    <%--<asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="pendlnEditApr" OnClick="pendlnEditApr_Click" runat="server" ><i class="fa fa-edit"></i></asp:LinkButton>
+                                                                
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                    <%-- <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                               <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" ><i class="fa fa-trash"></i></asp:LinkButton>
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
                                                 </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                                <RowStyle CssClass="grvRows" />
                                             </asp:GridView>
                                         </div>
                                     </div>
@@ -601,7 +770,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                                 <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblAmtPerIns" runat="server">Amount Per Installment</asp:Label>
                                         <asp:TextBox ID="txtAmtPerIns" runat="server" CssClass="form-control form-control-sm" Enabled="false" onkeypress="return isNumberKey(this, event);"></asp:TextBox>
                                     </div>
@@ -609,25 +778,25 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-3">
-                                          <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblStd" runat="server" CssClass="">Statutory Deduction</asp:Label>
                                         <asp:TextBox ID="txtStd" runat="server" CssClass="form-control form-control-sm" onkeypress="return isNumberKey(this, event);"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                                        <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblPloanAmt" runat="server">Previous loan Amount</asp:Label>
                                         <asp:TextBox ID="txtPloanAmt" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                               <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="Label5" runat="server">Gross Monthly Salary</asp:Label>
                                         <asp:TextBox ID="txtGMS" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                                    <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblOI" runat="server">Other Income</asp:Label>
                                         <asp:TextBox ID="txtOI" runat="server" CssClass="form-control form-control-sm" onkeypress="return isNumberKey(this, event);"></asp:TextBox>
                                     </div>
@@ -635,26 +804,26 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-3">
-                                      <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblrt" runat="server">Intrest Rate(%)</asp:Label>
                                         <asp:TextBox ID="txtrt" runat="server" CssClass="form-control form-control-sm" onkeypress="return isNumberKey(this, event);"></asp:TextBox>
                                     </div>
                                 </div>
-                       
+
                                 <div class="col-lg-3">
-                <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblPFAmt" runat="server">Provident Fund</asp:Label>
                                         <asp:TextBox ID="txtPFAmt" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                          <div class="form-group ">
+                                    <div class="form-group ">
                                         <asp:Label ID="lblTax" runat="server">Income Tax</asp:Label>
                                         <asp:TextBox ID="txtTax" runat="server" CssClass="form-control form-control-sm" Enabled="false" onkeypress="return isNumberKey(this, event);"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                      <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblOD" runat="server">Other Deduction</asp:Label>
                                         <asp:TextBox ID="txtOD" runat="server" CssClass="form-control form-control-sm" onkeypress="return isNumberKey(this, event);"></asp:TextBox>
                                     </div>
@@ -663,7 +832,7 @@
 
                             <div class="row">
                                 <div class="col-lg-3">
-                                          <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblEffDate" runat="server">Effective Date *
                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Font-Size="8" Font-Italic="true" ForeColor="Red" ValidationGroup="one"
                                              ControlToValidate="txtEffDate" ErrorMessage="Required"></asp:RequiredFieldValidator>
@@ -673,16 +842,26 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                                     <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblLoanType" runat="server">Loan Type *</asp:Label>
                                         <asp:DropDownList ID="ddlLoanType" runat="server" CssClass="form-control form-control-sm">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                                     <div class="form-group">
+                                    <div class="form-group">
                                         <asp:Label ID="lblLoanDesc" runat="server">Purpose of loan</asp:Label>
                                         <asp:TextBox ID="txtLoanDescc" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" Rows="3" Style="min-height: 70px;"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label6" runat="server">Employee Name</asp:Label>
+                                        <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control form-control-sm chzn-select">
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
 
@@ -690,8 +869,10 @@
                             <div class="rowmt-2">
                                 <div class="d-flex justify-content-center">
                                     <asp:LinkButton ID="lnkAdd" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkAdd_Click" ValidationGroup="one">Save</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkUpdate" CssClass="btn btn-primary btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkUpdate_Click" Visible="false" ValidationGroup="one">Update</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkCancel" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" Visible="false" data-dismiss="modal" ValidationGroup="one">Cancel</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkUpdate" CssClass="btn btn-primary btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkUpdate_Click" ValidationGroup="one">Loan Process</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkApprov" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkApprov_Click" Visible="false" ValidationGroup="one">Loan Approval</asp:LinkButton>
+
+                                    <%--<asp:LinkButton ID="lnkCancel" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" Visible="false" data-dismiss="modal" ValidationGroup="one">Cancel</asp:LinkButton>--%>
                                 </div>
                             </div>
                         </div>
