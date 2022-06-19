@@ -2052,6 +2052,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102067", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpList", "Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102068", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=InActiveEmpList", "Inactive Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102069", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=TotalEmplist", "Total Employee List", "HR Management", "False", "False", "False", "False" }); ;
+            
             tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
@@ -2088,10 +2089,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102107", "F_81_Hrm/F_86_All", "EntryOvertimeExelUpload", " ", "Overtime Upload", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102108", "F_81_Hrm/F_86_All", "EntryDeduction02", " ", "Entry Deduction 02", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102109", "F_81_Hrm/F_89_Pay", "ModeofPaymentDept", "", "Others Department Setup", "HR Management", "False", "False", "False", "False" }); ;
-
+     
             tblObj.Rows.Add(new Object[] { "8102000", "8102113", "F_81_Hrm/F_83_Att", "AttnOutOfOffice", "", "Online Attendance", "Attendance", "False", "False", "False", "False" }); ;
 
-            
+            tblObj.Rows.Add(new Object[] { "8102000", "8102114", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=bonusextra", "Additional Bonus", "PayRoll", "False", "False", "False", "False" }); ;
+
             //////90. PF Account  
             tblObj.Rows.Add(new Object[] { "8102000", "8102120", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Payment Voucher", "Payment Voucher", "PF Account", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102125", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Deposit Voucher", "Deposit Voucher", "PF Account", "False", "False", "False", "False" }); ;
@@ -14829,7 +14831,7 @@ namespace RealERPLIB
 
 
 
-            // E. Loan Monitoring  //"", "", "", true, "" });
+            // E. Loan Monitoring  //"", "", "", true, "" }); &genno=&empid=&Date1=&sircode=
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "Loan Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0305000001", "01. Loan Installment", "F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000002", "", "", "", true, "" });// "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
@@ -14867,6 +14869,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0308000006", "05. Other Earning", "F_81_Hrm/F_86_All/EmpOvertime?Type=otherearn", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0308000007", "06. Salary Day Adjustment", "F_81_Hrm/F_86_All/EmpOvertime?Type=dayadj", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0308000008", "06. Salary Reduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=SalaryReduction", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000009", "09. Additional Bonus", "F_81_Hrm/F_86_All/EmpOvertime?Type=bonusextra", "", true, "" });
 
 
             // G. P.F Account

@@ -818,8 +818,6 @@ namespace RealERPWEB
 
             this.EventBirthday.InnerHtml = BirthdayHTML;
             this.EventCaro.InnerHtml = innHTMLTopnot;
-
-
         }
 
 
@@ -988,8 +986,8 @@ namespace RealERPWEB
 
             Session["Report1"] = Rpt1;
 
-            string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
-            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
+            ////string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt();", true);
 
 
         }
