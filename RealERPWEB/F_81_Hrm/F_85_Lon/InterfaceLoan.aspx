@@ -213,7 +213,7 @@
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender1" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3" style="display:none;">
                                 <asp:Label ID="Label19" runat="server">Loan Type</asp:Label>
                                 <asp:DropDownList ID="ddlLoanTypeSearch" runat="server" CssClass="form-control form-control-sm">
                                 </asp:DropDownList>
@@ -229,7 +229,7 @@
                             </div>
                             <div class="col-md-1">
                                 <div class="form-group-">
-                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
+                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
                                 </div>
                             </div>
                             <div class="col-lg-2 d-flex">
@@ -269,11 +269,12 @@
                                                             <asp:Label ID="lblnnoPend" runat="server">Ln-<%#  Convert.ToString(Eval("id")) %></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Effective</br> Date">
+                                                    <asp:TemplateField HeaderText="Loan</br> Date">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
+                                                            <asp:Label ID="lblcreatedate" runat="server" Text='<%# Convert.ToDateTime( Eval("createdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
+                                                    
                                                     <asp:TemplateField HeaderText="ID #">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblpendempid" runat="server" Text='<%#Eval("empid")%>' Visible="false"></asp:Label>
@@ -322,6 +323,11 @@
                                                     <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblstatus" runat="server" Text='<%#Convert.ToBoolean(Eval("isaproved"))==false?"Pending":"Approved" %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Effective</br> Date">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="">

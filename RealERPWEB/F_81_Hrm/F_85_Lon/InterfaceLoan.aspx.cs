@@ -25,20 +25,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
-                this.GetEmplist();
-                this.getAllData();
-                this.GetLoanType();
-                this.GetGross();
-                this.GetPrevLoan();
+               
                 this.txtcreateDate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy");
-
                 DateTime now = DateTime.Now;
                 var startDate = new DateTime(now.Year, now.Month, 1);
                 var endDate = startDate.AddMonths(1).AddDays(-1);
 
                 this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
-                //LoanReport();
+                this.GetEmplist();
+                this.getAllData();
+                this.GetLoanType();
+                this.GetGross();
+                this.GetPrevLoan();
                 this.LoantState.SelectedIndex = 0;
                 LoantState_SelectedIndexChanged(null,null);
 
@@ -59,7 +58,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOAN", "", "", usrid, "", "", "", "", "", "");
+            string fDate = this.txtfrmdate.Text;
+            string tDate = this.txttodate.Text;
+            string lType = this.ddlLoanType.SelectedValue.ToString();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOAN", fDate, tDate, usrid, lType, "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
               return;
 
@@ -546,7 +549,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = ((Label)this.gvPending.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
 
             this.AllVie_Data(empid, lnid);
-           
+            this.GetGross();
+
+
         }
         protected void proslnView_Click(object sender, EventArgs e)
         {
@@ -557,6 +562,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = ((Label)this.gvProcess.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
 
             this.AllVie_Data(empid, lnid);
+            this.GetGross();
 
         }
         protected void AprlnView_Click(object sender, EventArgs e)
@@ -568,6 +574,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = ((Label)this.gvApproved.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
 
             this.AllVie_Data(empid, lnid);
+            this.GetGross();
 
         }
         protected void LoGenlnView_Click(object sender, EventArgs e)
@@ -579,7 +586,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = ((Label)this.gvGen.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
 
             this.AllVie_Data(empid, lnid);
-
+            this.GetGross();
         }
 
         private void AllVie_Data(string empid, string lnid) {
