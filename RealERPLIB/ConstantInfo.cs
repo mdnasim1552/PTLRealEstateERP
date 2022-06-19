@@ -14829,7 +14829,7 @@ namespace RealERPLIB
 
 
 
-            // E. Loan Monitoring  //"", "", "", true, "" });
+            // E. Loan Monitoring  //"", "", "", true, "" }); &genno=&empid=&Date1=&sircode=
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "Loan Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0305000001", "01. Loan Installment", "F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000002", "", "", "", true, "" });// "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
