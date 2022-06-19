@@ -16,6 +16,7 @@ namespace RealERPWEB
     public partial class LetterDefault1 : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -492,6 +493,8 @@ namespace RealERPWEB
             string incmtax = "";
             string payablesal = "";
             string idcard = "";
+            string  inwords2 = "";
+            double inwrd = 0;
 
 
 
@@ -510,6 +513,11 @@ namespace RealERPWEB
                 total = dtempsal.Rows[0]["total"].ToString() ?? "";
                 incmtax = dtempsal.Rows[0]["incmtax"].ToString() ?? "";
                 payablesal = dtempsal.Rows[0]["payablesal"].ToString() ?? "";
+                inwrd = Convert.ToDouble(dtempsal.Rows[0]["payablesal"]);
+
+                string amt1 = ASTUtility.Trans(Math.Round(inwrd), 2);
+                int len = amt1.Length;
+                inwords2 = amt1.Substring(7, (len - 8));
             }
             DataTable dtemplv = ds5.Tables[1];
             string temptable = "";
@@ -536,7 +544,8 @@ namespace RealERPWEB
                 this.btnsave.Visible = true;
             }
 
-            string date = "Date:" + System.DateTime.Now.ToString("dd/MM/yyyy");
+
+            string date = "Date:" + System.DateTime.Now.ToString("MMM dd,yyyy");
             string year = System.DateTime.Now.ToString("yyyy");
             //string empid = this.ddlEmployee.SelectedValue.ToString();
             // var empname = this.ddlEmployee.SelectedItem.ToString();
@@ -1189,124 +1198,133 @@ namespace RealERPWEB
                 case "10028":
                     if (this.GetCompCode() == "3354")
                     {
-                        lbody = "<h4 style='text-align: center;'>TO WHOM IT MAY CONCERN</h4>" +
-                        "<p>This is to certify that " + name + " is a permanent employee of " + companme + ". His employee ID is " + idcard + " and serving as a " + Desig + ". <p/>" +
-                        //salary break down table
-                        "<p>His salary break down is as follows:</p>" +
-                        "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'>Earnings</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:center';color:red>" + bsal + "</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;color:red'>" + hrent + "</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;color:red;'>" + mallow + "</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:center;color:red'>" + cven + "</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + total + "</strong></td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'>Deduction</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Income Tax</td><td style='text-align:center;color:red'>" + incmtax + "</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>Stamp</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Others</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                        lbody = "<p style='text-align:right;margin-bottom:-11px'>" + date + "</p>" +
 
+                            "<div style='display:flex;justify-content:center'><h3 style='display:inline-block;border-bottom:1px solid;font-size:16px'>TO WHOM IT MAY CONCERN</h3></div>" +
+                            "<p>This is to certify that " + name + " is a permanent employee of " + companme + ". His employee ID is " + idcard + " and serving as a " + Desig + ". <p/>" +
+                                      
+                                 //salary break down table
+                                 "<p>His salary break down is as follows:</p>" +
+                                 "<table style='width:70%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;background:#B4C6E7;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'><strong>Earnings</strong></td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:right';color:red>" + bsal + "</td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:right;border-style:solid;border: 1px solid black;color:red'>" + hrent + "</td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:right;border-style:solid;border: 1px solid black;color:red;'>" + mallow + "</td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:right;color:red'>" + cven + "</td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align:right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + total + "</strong></td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'><strong>Deduction</strong></td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Income Tax</td><td style='text-align:right;color:red'>" + incmtax + "</td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>Stamp</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Others</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total Deduction</strong></td><td style='text-align: right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + incmtax + "</strong></td></tr>" +
+                                 "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salay in Bank</strong></td><td style='text-align: right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + payablesal + "</strong></td></tr>" +
+                                  "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salary in Cash</strong></td><td style='text-align:center;border-style:solid;border:1px solid black;'><strong style='color:red;'>-</strong></td></tr>" +
 
-                                                "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total Deduction</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + incmtax + "</strong></td></tr>" +
-                                                                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salay in Bank</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + payablesal + "</strong></td></tr>" +
-                                                                                                "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salary in Cash</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>-</strong></td></tr>" +
+                                 "</table>" +
 
-                        "</table>" +
+                                 "<p>In words: " + inwords2 + "</p>" +
+                                       "<p></p>" +
 
-                        "<p>In words:</p>" +
+                                  "<p><strong>Thanking you,</strong></p>" +
+                                  "<p></p>" +
+                                  "<p></p>" +
+                                  "<p></p>" +
 
-                         "<p><strong>Thank you,</strong></p>" +
-                         "<p></p>" +
-                         "<p></p>" +
-                         "<p></p>" +
-                         "<p style='color:red;margin-bottom:-11px;'><strong>Md. Mizanur Rahman Khan</strong></p>" +
-                         "<p style='color:red';margin-bottom:-11px;>Senior Manager</p>" +
-                         "<p style='margin-bottom:-11px;'>Human Resources </p>" +
-                         "<p style='margin-bottom:-11px;'>" + comnam + "</p>" +
-                        "<p></p>" +
-                         "<p></p>" +
-                         "<p style='font-style:italic'>This certificate is issued to him for loan purpose on his specific request .</p>";
+                                  "<p style='color:red';margin-bottom:-11px;><strong>Md. Mizanur Rahman Khan</strong></p>" +
+                                  "<p style='color:red;margin-bottom:-11px;'>Senior Manager</p>" +
+                                  "<p style='margin-bottom:-11px;'>Human Resources </p>" +
+                                  "<p style='margin-bottom:-11px;'>" + comnam + "</p>" +
+                                 "<p></p>" +
+                                  "<p></p>" +
+                                  "<p style='font-style:italic;font-weight:bold'>This certificate is issued to him for loan purpose on his specific request .</p>";
+
 
                     }
                     else
                     {
-                        lbody = "<h4 style='text-align: center;'>TO WHOM IT MAY CONCERN</h4>" +
-"<p>This is to certify that " + name + " is a permanent employee of " + companme + ". His employee ID is " + idcard + " and serving as a " + Desig + ". <p/>" +
-//salary break down table
-"<p>His salary break down is as follows:</p>" +
-"<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'>Earnings</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:center';color:red>" + bsal + "</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;color:red'>" + hrent + "</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;color:red;'>" + mallow + "</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:center;color:red'>" + cven + "</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + total + "</strong></td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'>Deduction</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Income Tax</td><td style='text-align:center;color:red'>" + incmtax + "</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>Stamp</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
-"<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Others</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                        lbody = "<p style='text-align:right;margin-bottom:-11px'>" + date + "</p>" +
+
+                "<div style='display:flex;justify-content:center'><h3 style='display:inline-block;border-bottom:1px solid;font-size:16px'>TO WHOM IT MAY CONCERN</h3></div>" +
+                "<p>This is to certify that " + name + " is a permanent employee of " + companme + ". His employee ID is " + idcard + " and serving as a " + Desig + ". <p/>" +
+                           //salary break down table
 
 
-                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total Deduction</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + incmtax + "</strong></td></tr>" +
-                                                "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salay in Bank</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + payablesal + "</strong></td></tr>" +
-                                                                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salary in Cash</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong style='color:red;'>-</strong></td></tr>" +
+                     "<p>His salary break down is as follows:</p>" +
+                     "<table style='width:70%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;background:#B4C6E7;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'><strong>Earnings</strong></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:right';color:red>" + bsal + "</td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:right;border-style:solid;border: 1px solid black;color:red'>" + hrent + "</td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:right;border-style:solid;border: 1px solid black;color:red;'>" + mallow + "</td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:right;color:red'>" + cven + "</td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align:right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + total + "</strong></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'><strong>Deduction</strong></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Income Tax</td><td style='text-align:right;color:red'>" + incmtax + "</td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>Stamp</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Others</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total Deduction</strong></td><td style='text-align: right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + incmtax + "</strong></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salay in Bank</strong></td><td style='text-align: right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + payablesal + "</strong></td></tr>" +
+                      "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salary in Cash</strong></td><td style='text-align:center;border-style:solid;border:1px solid black;'><strong style='color:red;'>-</strong></td></tr>" +
 
-"</table>" +
+                     "</table>" +
 
-"<p>In words:</p>" +
+                     "<p>In words: " + inwords2 + "</p>" +
+                           "<p></p>" +
 
- "<p><strong>Thank you,</strong></p>" +
- "<p></p>" +
- "<p></p>" +
- "<p></p>" +
- "<p style='color:red;margin-bottom:-11px;'><strong>Md. Mizanur Rahman Khan</strong></p>" +
- "<p style='color:red';margin-bottom:-11px;>Senior Manager</p>" +
- "<p style='margin-bottom:-11px;'>Human Resources </p>" +
- "<p style='margin-bottom:-11px;'>" + comnam + "</p>" +
-"<p></p>" +
- "<p></p>" +
- "<p style='font-style:italic'>This certificate is issued to him for loan purpose on his specific request .</p>";
+                      "<p><strong>Thanking you,</strong></p>" +
+                      "<p></p>" +
+                      "<p></p>" +
+                      "<p></p>" +
+
+                      "<p style='color:red';margin-bottom:-11px;><strong>Md. Mizanur Rahman Khan</strong></p>" +
+                      "<p style='color:red;margin-bottom:-11px;'>Senior Manager</p>" +
+                      "<p style='margin-bottom:-11px;'>Human Resources </p>" +
+                      "<p style='margin-bottom:-11px;'>" + comnam + "</p>" +
+                     "<p></p>" +
+                      "<p></p>" +
+                      "<p style='font-style:italic;font-weight:bold'>This certificate is issued to him for loan purpose on his specific request .</p>";
+
                     }
+                    //experience certificate
                     break;
                 case "10029":
                     if (this.GetCompCode() == "3354")
                     {
-                        lbody = "<p style='text-align:right;style='margin-bottom:-11px'><strong> " + date + "</strong></p>" +
-                             "<h4 style='text-align: center;font-weight:bold;'>TO WHOM IT MAY CONCERN</h4>" +
-                              "<p>This is to certify that <strong> " + name + "</strong> Employee ID: " + idcard + ", worked as an “" + Desig + "” (July 1, 2021 up to May 10, 2022) at " + comnam + ". He is hereby released from the services of the company with an effective date of May 11, 2022. </p>" +
-                    "<p></p>" +
-                                        "<p></p>" +
-                              "<p>We wish him all the best in his future endeavors.</p>" +
-                                                  "<p></p>" +
-                                                      "<p></p>" +
-                     "<p>Your Sincerely</p>" +
 
-                                   "<p></p>" +
-                                   "<p></p>" +
-                                   "<p></p>" +
-  "<p style='margin-bottom:-11px;border-top:1px solid;display:inline-block'><strong>Md. Mizanur Rahman Khan</strong></p>" +
- "<p style='margin-bottom:-11px;'>Senior Manager</p>" +
- "<p style='margin-bottom:-11px;'>Human Resources </p>" +
- "<p style='margin-bottom:-11px;'>" + comnam + "</p>";
+                        lbody = "<p style='text-align:right;margin-bottom:-11px'><strong> " + date + "</strong></p>" +
+                            "<p></p>"+
+"<div style='display:flex;justify-content:center'><h3 style='display:inline-block;border-bottom:1px solid;font-size:16px'>TO WHOM IT MAY CONCERN</h3></div>" +
+                             "<p>This is to certify that <strong> " + name + "</strong> Employee ID: " + idcard + ", worked as an “" + Desig + "” (July 1, 2021 up to May 10, 2022) at " + comnam + ". He is hereby released from the services of the company with an effective date of May 11, 2022. </p>" +
+                             "<p></p>" +
+                      
+                              "<p>We wish him all the best in his future endeavors.</p>" +
+                               "<p></p>" +   
+                               "<p>Your Sincerely</p>" +
+                               "<p></p>" +
+                               "<p></p>" +
+              
+                  "<p style='margin-bottom:-11px;border-top:1px solid;display:inline-block'><strong>Md. Mizanur Rahman Khan</strong></p>" +
+                 "<p style='margin-bottom:-11px;'>Senior Manager</p>" +
+                 "<p style='margin-bottom:-11px;'>Human Resources </p>" +
+                 "<p style='margin-bottom:-11px;'>" + comnam + "</p>";
                     }
                     else
                     {
-                        lbody = "<p style='text-align:right;style='margin-bottom:-11px'><strong> " + date + "</strong></p>" +
-                             "<h4 style='text-align: center;font-weight:bold;'>TO WHOM IT MAY CONCERN</h4>" +
-                              "<p>This is to certify that <strong> " + name + "</strong> Employee ID: " + idcard + ", worked as an “" + Desig + "” (July 1, 2021 up to May 10, 2022) at " + comnam + ". He is hereby released from the services of the company with an effective date of May 11, 2022. </p>" +
-                               "<p></p>" +
-                               "<p></p>" +
-                              "<p>We wish him all the best in his future endeavors.</p>" +
-                              "<p></p>" +
-                               "<p></p>" +
-                              "<p>Your Sincerely</p>" +
+                        lbody = "<p style='text-align:right;margin-bottom:-11px'><strong> " + date + "</strong></p>" +
+                            "<p></p>" +
+                             "<h3 style='text-align:center;font-weight:bold;border-bottom:1px solid;'>TO WHOM IT MAY CONCERN</h3>" +
+                             "<p>This is to certify that <strong> " + name + "</strong> Employee ID: " + idcard + ", worked as an “" + Desig + "” (July 1, 2021 up to May 10, 2022) at " + comnam + ". He is hereby released from the services of the company with an effective date of May 11, 2022. </p>" +
+                             "<p></p>" +
 
-                                   "<p></p>" +
-                                   "<p></p>" +
-                                   "<p></p>" +
- "<p style='margin-bottom:-11px;border-top:1px solid;display:inline-block'><strong>Md. Mizanur Rahman Khan</strong></p>" +
- "<p style='margin-bottom:-11px;'>Senior Manager</p>" +
- "<p style='margin-bottom:-11px;'>Human Resources </p>" +
- "<p style='margin-bottom:-11px;'>" + comnam + "</p>";
+                              "<p>We wish him all the best in his future endeavors.</p>" +
+                               "<p></p>" +
+                               "<p>Your Sincerely</p>" +
+                               "<p></p>" +
+                               "<p></p>" +
+
+                  "<p style='margin-bottom:-11px;border-top:1px solid;display:inline-block'><strong>Md. Mizanur Rahman Khan</strong></p>" +
+                 "<p style='margin-bottom:-11px;'>Senior Manager</p>" +
+                 "<p style='margin-bottom:-11px;'>Human Resources </p>" +
+                 "<p style='margin-bottom:-11px;'>" + comnam + "</p>";
                     }
                         
                     break;

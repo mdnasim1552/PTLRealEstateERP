@@ -49,6 +49,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                      : (this.Request.QueryString["Type"].ToString().Trim() == "loan") ? "EMPLOYEE LOAN INFORMATION"
                      : (this.Request.QueryString["Type"].ToString().Trim() == "dayadj") ? "Salary Adjustment"
                      : (this.Request.QueryString["Type"].ToString().Trim() == "otherearn") ? "Employee Other Earning"
+                     : (this.Request.QueryString["Type"].ToString().Trim() == "bonusextra") ? "Additional Bonus"
                      : (this.Request.QueryString["Type"].ToString().Trim() == "SalaryReduction") ? "Salary Reduction" : "EMPLOYEE ARREAR INFORMATION";
 
 
@@ -354,9 +355,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "dayadj":
                     this.SalaryDayAdj();
                     break;
+                case "bonusextra":
+                   // this.AdditionalBonus();
+                    break;
 
             }
         }
+
+     
+
         private void ViewVisibility()
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
@@ -423,6 +430,14 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "SalaryReduction":
 
                     break;
+
+                case "bonusextra":
+                    this.ddlyearmon.Text = System.DateTime.Today.ToString("yyyyMM");
+                    this.lbldate.Text = "Month Id:";
+                    //this.txtDate_CalendarExtender.Format = "yyyyMM";
+                    //this.txtDate.MaxLength = 6;
+                    break;
+
 
 
             }
@@ -585,6 +600,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.MultiView1.ActiveViewIndex = 10;
                     this.SalaryReduction();
                     break;
+                case "bonusextra":
+                    this.MultiView1.ActiveViewIndex = 11;
+                  //  AdditionalBonus();
+                    break;
 
             }
 
@@ -607,14 +626,36 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     break;
             
             }
-
-
             return CallType;
 
 
         }
 
+        private void AdditionalBonus()
+        {
+            Session.Remove("tblover");
+            string comcod = this.GetComeCode();
 
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string nozero = (hrcomln == 4) ? "0000" : "00";
+            string compname = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string MonthId = this.ddlyearmon.Text.Trim();
+            string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
+            string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
+            string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPADDITIONALBONUS", compname, MonthId, date, deptname, Empcode, section, "", "", "");
+            if (ds2 == null)
+            {
+                this.GvAddiBonus.DataSource = null;
+                this.GvAddiBonus.DataBind();
+                return;
+            }
+            Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
+            this.Data_Bind();
+        }
         private void ShowOvertime()
         {
             Session.Remove("tblover");
@@ -1085,6 +1126,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.FooterCalculation();
                     break;
 
+                case "bonusextra":
+                    //this.gvarrear.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.GvAddiBonus.DataSource = dt;
+                    this.GvAddiBonus.DataBind();
+                    this.FooterCalculation();
+                    break;
+
 
             }
 
@@ -1224,7 +1272,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     break;
 
 
+                case "bonusextra":
+                    ((Label)this.GvAddiBonus.FooterRow.FindControl("lgvFAddibonus")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(aramt)", "")) ? 0.00
+                            : dt.Compute("sum(aramt)", ""))).ToString("#,##0;(#,##0); ");
+                  
 
+                    Session["Report1"] = gvarrear;
+                    ((HyperLink)this.gvarrear.HeaderRow.FindControl("hlbtntbCdataExeladd")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+                    break;
 
             }
 
@@ -1423,20 +1479,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         private void rptMobileAllowance()
         {
-
-
-
-
-
             DataTable dt = ((DataTable)Session["tblover"]).Copy();
-
-
-
-
             string dptName = ddlDepartment.SelectedItem.Text.Trim().Substring(13);
             string monthid = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("MMM-yyyy");// txtdate
-
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -1497,19 +1542,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-
         }
-
-
-
-
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SaveValue();
             this.Data_Bind();
-
-
         }
         protected void lTotal_Click(object sender, EventArgs e)
         {
@@ -1766,6 +1803,24 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["redamt"] = redamt;
 
 
+
+                    }
+                    break;
+
+                case "":
+                    for (int i = 0; i < this.gvarrear.Rows.Count; i++)
+                    {
+                        double pf = 0.00;
+                        double bacic = 0.00;
+                        double addbonus = Convert.ToDouble("0" + ((TextBox)this.gvarrear.Rows[i].FindControl("txtaddbonus")).Text.Trim());
+                        string paystatus = ((DropDownList)this.gvEmpOtherded.Rows[i].FindControl("ddlPaystatusaddi")).SelectedValue.ToString();
+
+                        rowindex = (this.gvarrear.PageSize) * (this.gvarrear.PageIndex) + i;
+
+                        dt.Rows[rowindex]["aramt"] = addbonus;
+                        // dt.Rows[rowindex]["pfamt"] = pf;
+                       // dt.Rows[rowindex]["tapfamt"] = arrear - pf;
+                        dt.Rows[rowindex]["paystatus"] = paystatus;
 
                     }
                     break;
@@ -2105,6 +2160,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "otherearn":
                 case "dayadj":
                 case "SalaryReduction":
+                case "bonusextra":
 
                     secid = dt1.Rows[0]["secid"].ToString();
                     for (j = 1; j < dt1.Rows.Count; j++)
@@ -3490,6 +3546,26 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             return isValid;
         }
 
+        protected void GvAddiBonus_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.SaveValue();
+            this.GvAddiBonus.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
+
+        protected void GvAddiBonus_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+        protected void lbtnTotalAddi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbntUpdateAddition_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
