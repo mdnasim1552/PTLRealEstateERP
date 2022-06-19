@@ -730,7 +730,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 LinkButton lnkDel = (LinkButton)e.Row.FindControl("confmDelModal");
 
                 string lnstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lnstatus")).ToString();
-                if (lnstatus == "0")
+                if (lnstatus == "True")
                 {
                     lnkDel.Enabled = false;
                 }
