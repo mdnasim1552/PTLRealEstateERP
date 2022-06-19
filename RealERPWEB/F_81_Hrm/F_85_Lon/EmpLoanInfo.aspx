@@ -194,7 +194,7 @@
                             ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvloan_RowDataBound">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No." FooterText="Total ">
+                                <asp:TemplateField HeaderText="Sl" FooterText="Total ">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-info btn-sm" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                     </FooterTemplate>
@@ -279,7 +279,7 @@
 
                                 <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkDel" runat="server" CssClass="btn btn-xs btn-danger" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkDel_Click" Text="Delete"><i class="fa fa-trash"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="lnkDel" runat="server"  OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkDel_Click" Text="Delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
