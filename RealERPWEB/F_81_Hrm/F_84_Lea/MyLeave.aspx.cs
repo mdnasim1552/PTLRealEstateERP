@@ -739,189 +739,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
         }
-        private bool SendSSLMail(string comcod, string subject, string maildescription, string hostname, int portnumber, string frmemail, string psssword, string mailtousr)
-        {
-            try
-            {
-
-
-                EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
-                //Connection Details 
-                SmtpServer oServer = new SmtpServer(hostname);
-                oServer.User = frmemail;
-                oServer.Password = psssword;
-                oServer.Port = portnumber;
-                oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-                //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto; 
-                EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
-                oMail.From = frmemail;
-                oMail.To = mailtousr;
-                oMail.Cc = frmemail;
-                oMail.Subject = subject;
-
-                string totalpath = "";
-                string body = "<pre>";
-
-                body += "Dear Sir, Please accept my leave request";
-                body += "\n" + maildescription + "\n" +
-                "<div style='float:left;  padding:10px; background:Lavender; width:150px; height:40px; text-align:center '>" +
-                "<a href='" + totalpath + "' style='float:left; align:center; padding:10px; padding-left:40px; padding-right:45px;background:darkorange; color:white;text-decoration:none; text-align:center''> Click </a></div>";
-                body += "\n" + "\n" + "\n" + "<div style='float:left;clear:both;margin-top:40px;'>Best Regards" + "<div></pre>";
-                oMail.HtmlBody = body;
-                //return false;
-                //oMail.HtmlBody = true; 
-                try
-                {
-                    oSmtp.SendMail(oServer, oMail);
-                }
-                catch (Exception ex)
-                {
-                    string Messaged = "Error occured while sending your message." + ex.Message;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                string Messaged = "Error occured while sending your message." + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                return false;
-            }// try
-
-        }
-
-        private void sendmail(string frmdate, string todate, string ltrnid, string deptcode, string htmtableboyd)
-        {
-            try
-            {
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = this.GetComeCode();
-                string empid = this.GetEmpID();
-                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
-
-                if (ds == null)
-                    return;
-                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                string currentptah = "EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate;
-                string totalpath = uhostname + currentptah;
-
-                double lapplied = Convert.ToDouble(this.Duration.Value.ToString());
-                string leavedesc = this.ddlLvType.SelectedItem.ToString();
-
-
-                string idcard = (string)ds.Tables[1].Rows[0]["idcard"];
-                string empname = (string)ds.Tables[1].Rows[0]["name"];
-                string empdesig = (string)ds.Tables[1].Rows[0]["desig"];
-                string deptname = (string)ds.Tables[1].Rows[0]["deptname"];
-
-                string maildescription = "Employee ID : " + idcard + " \n" + "Employee Name : " + empname + "\n" + "Designation : " + empdesig + "\n" +
-                    "Department Name : " + deptname + //"\n" + "Leave Period : " + frmdate + " To " + todate + "\n" + "Leave Duration : " + lapplied +
-                    "\n" + "Leave Type : " + leavedesc + "\n" + "Leave Reason : " + this.txtLeavLreasons.Text + "\n" + "<hr>" + htmtableboyd + "\n" +
-                    "<table><tr><td><a href='" + totalpath + "' style='float:left; align:center; padding:10px; padding-left:40px; padding-right:45px;background:green; color:white;text-decoration:none; text-align:center''> Approved </a></td></tr></table>";
-
-                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-                DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
-                //SMTP
-                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-                string mailtousr = ds.Tables[0].Rows[0]["mail"].ToString();
-
-
-                EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
-
-                //Connection Details 
-                SmtpServer oServer = new SmtpServer(hostname);
-                oServer.User = frmemail;
-                oServer.Password = psssword;
-                oServer.Port = portnumber;
-                oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-                //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-
-                //F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=3365&refno=940100101028&ltrnid=100000000001&Date=07-Mar-2022&RoleType=SUP
-                EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
-                oMail.From = frmemail;
-                oMail.To = mailtousr;
-                oMail.Cc = frmemail;
-                oMail.Subject = "New Leave Request";
-
-
-                oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify; font-weight: bold;font-size: 14px'>" + "Dear Sir," + "<br/>" + maildescription +
-                    "</pre></body></html>";
-
-
-                try
-                {
-
-                    oSmtp.SendMail(oServer, oMail);
-
-                    string Messaged = "Your message has been successfully sent";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
-
-                }
-                catch (Exception ex)
-                {
-                    string Messaged = "Error occured while sending your message." + ex.Message;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                }
-            }
-            catch (Exception ex)
-            {
-                string Messaged = "Error occured while sending your message." + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-
-            }// try
-
-
-        }
-
-
-        //private void SendNotificaion(string frmdate, string todate, string ltrnid, string deptcode, string htmtableboyd)
-        //{
-        //    try
-        //    {
-        //        string comcod = this.GetComeCode();
-
-        //        string leavedesc = this.ddlLvType.SelectedItem.ToString();
-        //        string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-        //        string currentptah = "EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate;
-        //        string totalpath = uhostname + currentptah;
-        //        Hashtable hst = (Hashtable)Session["tblLogin"];
-
-        //        string empid = this.GetEmpID();
-        //        var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
-
-        //        if (ds == null)
-        //            return;
-        //        string usrid = ds.Tables[0].Rows[0]["suserid"].ToString();
-        //        string idcard = (string)ds.Tables[1].Rows[0]["idcard"];
-        //        string empname = (string)ds.Tables[1].Rows[0]["name"];
-        //        string empdesig = (string)ds.Tables[1].Rows[0]["desig"];
-        //        string deptname = (string)ds.Tables[1].Rows[0]["deptname"];
-
-        //        string maildescription = "Employee ID : " + idcard + "," + "Employee Name : " + empname + "," + "Designation : " + empdesig + "," +
-        //            "Department Name : " + deptname + //"\n" + "Leave Period : " + frmdate + " To " + todate + "\n" + "Leave Duration : " + lapplied +
-        //            "," + "Leave Type : " + leavedesc + "," + "Leave Reason : " + this.txtLeavLreasons.Text + " Request id: " + ltrnid
-        //            //", <a href='" + totalpath + "'> Approved </a>
-        //            ;
-
-        //        string eventdesc = "Leave Request";
-        //        string eventdesc2 = maildescription;
-
-        //        bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string Messaged = "Error occured while sending your message." + ex.Message;
-        //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-
-        //    }// try
-        //}
+        
 
         private void SendNotificaion(string frmdate, string todate, string ltrnid, string deptcode, string compsms, string compmail, string ssl, string compName, string htmtableboyd)
         {
@@ -933,45 +751,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string leavedesc = this.ddlLvType.SelectedItem.ToString();
                 string empid = this.GetEmpID();
                 string delgationemp = this.ddlDutyEmp.SelectedValue.ToString();
-                string callType = "GETSUPERVISERMAIL";
-                if ((comcod == "3368" || comcod == "3101") && delgationemp != "000000000000")
-                {
-                    callType = "GETDELEGATIONEMPEMAIL";
-                }
-                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, delgationemp, "", "", "", "", "", "", "");
-
-                if (ds1 == null)
-                    return;
-                string supphone = "";
-                string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
-                string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
-                string idcard = (string)ds1.Tables[1].Rows[0]["idcard"];
-                string empname = (string)ds1.Tables[1].Rows[0]["name"];
-                string empdesig = (string)ds1.Tables[1].Rows[0]["desig"];
-                string deptname = (string)ds1.Tables[1].Rows[0]["deptname"];
-
-                string roletype = "";
-                if (suserid == "3368003")
-                {
-                    roletype = "DPT";                  
-                }
-                else
-                {
-                    roletype = "SUP";
-                }
-
-                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType="+ roletype;
-                string totalpath = uhostname + currentptah;
-
-
-                string maildescription = "Dear Sir, Please Approve My Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                     "Department Name : " + deptname + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
-                maildescription += htmtableboyd;
-                maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
-
-
-
 
                 ///GET SMTP AND SMS API INFORMATION
                 #region
@@ -986,38 +765,66 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
                 bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
                 #endregion
-
-
-
-
-
-
-                #region
-
-                string subj = "New Leave Request";
-                string msgbody = maildescription;
-
-
-
-                bool result2 = UserNotify.SendNotification(subj, msgbody, suserid);
-
-                if (compsms == "True")
+                 
+                string callType = "GETSUPERVISERMAIL";
+                if ((comcod == "3368" || comcod == "3101"))
                 {
-                    SendSmsProcess sms = new SendSmsProcess();
-                    string SMSText = "New Leave Request from : " + frmdate + " To " + todate;// 
-                    bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
+                    callType = "GETDELEGATIONEMPEMAIL";
+                }              
+                else
+                {
+                    callType = "GETSUPERVISERMAIL";
                 }
-                if (compmail == "True")
-                {
 
-                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
-                    if (Result_email == false)
+
+                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, delgationemp, ltrnid, "", "", "", "", "", "");
+
+                if (ds1 == null)
+                    return;
+                string supphone = "";                
+                string idcard = (string)ds1.Tables[1].Rows[0]["idcard"];
+                string empname = (string)ds1.Tables[1].Rows[0]["name"];
+                string empdesig = (string)ds1.Tables[1].Rows[0]["desig"];
+                string deptname = (string)ds1.Tables[1].Rows[0]["deptname"];
+                 
+
+                for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
+                {
+                    string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
+                    string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
+                    string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
+                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
+                    string totalpath = uhostname + currentptah;
+
+
+                    string maildescription = "Dear Sir, Please Approve My Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                         "Department Name : " + deptname + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                    maildescription += htmtableboyd;
+                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+                  
+                    #region
+                    string subj = "New Leave Request";
+                    string msgbody = maildescription;
+                    bool result2 = UserNotify.SendNotification(subj, msgbody, suserid);
+                    if (compsms == "True")
                     {
-                        string Messagesd = "Leave Applied but Notification has not been sent";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        SendSmsProcess sms = new SendSmsProcess();
+                        string SMSText = "New Leave Request from : " + frmdate + " To " + todate;// 
+                        bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
                     }
+                    if (compmail == "True")
+                    {
+                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
+                        if (Result_email == false)
+                        {
+                            string Messagesd = "Leave Applied but Notification has not been sent, Email or SMTP info Empty";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        }
+                    }
+                    #endregion
                 }
-                #endregion
+                 
             }
             catch (Exception ex)
             {
