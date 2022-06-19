@@ -384,7 +384,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.GvModPayment.DataSource = dt;
                     this.GvModPayment.DataBind();
                     Session["Report1"] = GvModPayment;
-                    ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                     break;
                 case 2:
                     //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)

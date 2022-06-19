@@ -1771,10 +1771,12 @@
             });
 
         });
-
-        function PrintRpt(printype) {
-            window.open('../../RDLCViewerWin.aspx?PrintOpt=' + printype + '', '_blank');
+     
+        function PrintRpt()
+        {                    
+           window.open('<%= ResolveUrl("RDLCViewerWin.aspx?PrintOpt=PDF") %>', '_blank');
         }
+      
 
     </script>
 </asp:Content>

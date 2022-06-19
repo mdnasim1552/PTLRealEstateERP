@@ -143,7 +143,7 @@
 
                     <div class="row">
                         <div class="col-md-2">
-                            <div class="  form-group">
+                          <div class="  form-group">
                                 <label for="Label5" runat="server" class=" control-label  lblmargin-top9px ">From</label>
                                 <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputDateBox" ToolTip="(dd.mmm.yyyy)"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
