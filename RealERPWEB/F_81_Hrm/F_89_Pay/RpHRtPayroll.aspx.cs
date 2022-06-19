@@ -1138,6 +1138,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         switch (comcod)
                         {
                             
+                            case "3101":
                             case "3365":
                                 this.gvpayroll.Columns[11].Visible = false;                      
                                 this.gvpayroll.Columns[12].Visible = false;
@@ -2274,8 +2275,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
         }
 
         private void PrintSalaryInnStar()
@@ -2292,7 +2291,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
             //double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
-
             //double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
             //ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.RptSalaryInnstar01();
             //TextObject CompName = rpcp.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -2316,9 +2314,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
-
-
-
 
         private void PrintSalaryBridge()
         {
@@ -5286,10 +5281,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             gvpayroll.DataSource = dv;
             gvpayroll.DataBind();
-
-
-
-
 
         }
 
