@@ -95,13 +95,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             //Generate
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("isaproved=1");
+            dv.RowFilter = ("isaproved=1 and lnno='' ");
             this.Data_Bind("gvGen", dv.ToTable());
 
             //Completed
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("lnstatus=1");
+            dv.RowFilter = ("lnno <> ''");
             this.Data_Bind("gvCompleted", dv.ToTable());
         }
         protected void LoantState_SelectedIndexChanged(object sender, EventArgs e)
@@ -704,6 +704,38 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.delempid.InnerText = empid.ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDeleteModal();", true);
             
+        }
+
+        protected void gvGen_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+               
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnInd");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string genno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString();
+
+
+                hlink2.NavigateUrl = "~/F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry&genno="+ genno;
+
+            }
+        }
+
+        protected void gvPending_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkDel = (LinkButton)e.Row.FindControl("confmDelModal");
+
+                string lnstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lnstatus")).ToString();
+                if (lnstatus == "0")
+                {
+                    lnkDel.Enabled = false;
+                }
+
+            }
         }
     }
 }
