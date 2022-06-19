@@ -2158,7 +2158,7 @@
                                             Width="150px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbntUpdateAddition" runat="server" OnClick="lbntUpdateAddition_Click" CssClass="btn btn-danger primaryBtn">Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbntUpdateAddition" runat="server" OnClick="lbntUpdateAddition_Click" CssClass="btn btn-success primaryBtn">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
@@ -2166,7 +2166,7 @@
                                 <asp:TemplateField HeaderText="Amount">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtaddbonus" runat="server" BackColor="Transparent" BorderStyle="None"
-                                            Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aramt")).ToString("#,##0;(#,##0); ") %>'
+                                            Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bonamt")).ToString("#,##0;(#,##0); ") %>'
                                             Width="80px" Font-Size="11px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
