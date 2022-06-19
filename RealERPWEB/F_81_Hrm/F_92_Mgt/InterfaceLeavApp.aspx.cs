@@ -38,15 +38,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
-
                 this.SelectDate();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
                 GetStep();
-
                 this.SaleRequRpt();
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
-
             }
         }
 
@@ -56,12 +53,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataSet datSetup = compUtility.GetCompUtility();
             if (datSetup == null)
                 return;
-
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
             //this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
             //this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
             //this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-
 
             switch (comcod)
             {
@@ -73,14 +68,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
                     this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
-
                 default:
                     this.txFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
                     this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
             }
-
         }
         private void GetStep()
         {
@@ -90,14 +83,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //sup_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_SUPERVISOR"]);
             //dpthead_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_DPTHEAD"]);
             //mgt_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_MGTHEAD"]);
-
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-
-
         }
-
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             this.SaleRequRpt();
@@ -359,10 +348,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
                 string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
+                string mgtusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mgtusid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
 
-                hlink3.Visible = ((userid == dptusid) && (lvstatus != "Approved")) ? true : false;
+                hlink3.Visible = (((userid == dptusid) || (userid == mgtusid))  && (lvstatus != "Approved")) ? true : false;
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
                 hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 

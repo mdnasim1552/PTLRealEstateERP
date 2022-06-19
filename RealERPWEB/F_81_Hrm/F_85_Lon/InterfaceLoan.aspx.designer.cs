@@ -123,6 +123,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
+        /// lnkbtfind control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtfind;
+
+        /// <summary>
         /// lnkbtnok control.
         /// </summary>
         /// <remarks>
@@ -591,6 +600,24 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.TextBox txtLoanDescc;
 
         /// <summary>
+        /// Label6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
+
+        /// <summary>
+        /// ddlEmpList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmpList;
+
+        /// <summary>
         /// lnkAdd control.
         /// </summary>
         /// <remarks>
@@ -609,13 +636,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.LinkButton lnkUpdate;
 
         /// <summary>
-        /// lnkCancel control.
+        /// lnkApprov control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
+        protected global::System.Web.UI.WebControls.LinkButton lnkApprov;
 
         /// <summary>
         /// confirmDelete control.

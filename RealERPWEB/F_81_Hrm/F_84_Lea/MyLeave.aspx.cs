@@ -777,7 +777,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
 
 
-                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, delgationemp, "", "", "", "", "", "", "");
+                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", callType, empid, delgationemp, ltrnid, "", "", "", "", "", "");
 
                 if (ds1 == null)
                     return;
