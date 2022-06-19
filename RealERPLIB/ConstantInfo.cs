@@ -2035,6 +2035,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102054", "F_81_Hrm/F_86_All", "EmpAllow", "", "Monthly Allowance", "PayRoll", "False", "False", "False", "False" }); ;
             // tblObj.Rows.Add(new Object[] { "8102000", "8102055", "EmpOvertime?", "Type=BankPayment", "Bank Payment", "PayRoll", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8102000", "8102056", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=arrear", "Arrear Salary", "PayRoll", "False", "False", "False", "False" }); ;
+            
+            
             tblObj.Rows.Add(new Object[] { "8102000", "8102057", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=otherearn", "Other Earning", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102058", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=OtherDeduction", "Other Deduction", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102059", "F_81_Hrm/F_89_Pay", "EmpBankSalary?", "Type=Entry", "Salary Transfer Statement", "PayRoll", "False", "False", "False", "False" }); ;

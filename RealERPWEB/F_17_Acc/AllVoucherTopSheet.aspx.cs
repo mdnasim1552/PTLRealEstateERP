@@ -107,8 +107,6 @@ namespace RealERPWEB.F_17_Acc
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string voutype = this.ddlvoucher.SelectedValue.ToString();
             string refnum = "%" + this.txtrefno.Text.Trim() + "%";
-
-
             DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "RPTACCOUNTTOPSHEET", frmdate, todate, voutype, refnum, "", "", "", "", "", "");
             if (ds1 == null)
             {
