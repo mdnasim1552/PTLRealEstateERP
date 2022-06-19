@@ -64,7 +64,8 @@ namespace RealERPWEB.F_17_Acc
             string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string refnum = "%" + this.txtrefno.Text.Trim() + "%";
-            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETUNVOULIST", frmdate, todate, refnum, "", "", "", "", "", "");
+            string voutype = this.ddlvoucher.SelectedValue.ToString()==""? "%": this.ddlvoucher.SelectedValue.ToString()+ "%";
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETUNVOULIST", frmdate, todate, refnum, voutype, "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvAccUnPosted.DataSource = null;
