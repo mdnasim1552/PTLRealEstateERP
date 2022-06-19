@@ -156,7 +156,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     empName.Font.Bold = true;
                     curAmt.Font.Bold = true;
                     prevAmt.Font.Bold = true;
-                    empName.Attributes["style"]= " font-size:14px; color:blue !important;";
+                    empName.Attributes["style"] = " font-size:14px; color:blue !important;";
+                }
+                else if (empId == "GGGGAAAAAAAA")
+                {
+                    empName.Font.Bold = true;
+                    
+                    prevAmt.Font.Bold = true;
+                    prevAmt.Attributes["style"] = " font-size:14px; color:red !important;";
+                    empName.Attributes["style"] = " font-size:14px; color:red !important;";
+
+
                 }
 
             }
