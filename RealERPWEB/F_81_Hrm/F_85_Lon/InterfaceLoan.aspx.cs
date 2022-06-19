@@ -25,6 +25,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.GetEmplist();
                 this.getAllData();
                 this.GetLoanType();
@@ -63,11 +67,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
               return;
 
-            this.LoantState.Items[0].Text = "<h4 class='text-center'><span class='lbldata'>"+ Convert.ToDouble(ds1.Tables[1].Rows[0]["tloan"]).ToString("#,##0;(#,##0); ") + "</span></h4>" + "<span class='lbldata2'>" + "Loan Queue" + "</span>";
-            this.LoantState.Items[1].Text = "<h4 class='text-center'><span class='lbldata'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lpros"]).ToString("#,##0;(#,##0); ") + "</span></h4>" + "<span class=lbldata2>" + "Loan Process" + "</span>";
-            this.LoantState.Items[2].Text = "<h4 class='text-center'><span class='lbldata'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lapp"]).ToString("#,##0;(#,##0); ") + "</span></h4>" + "<span class=lbldata2>" + "Loan Approval" + "</span>";
-            this.LoantState.Items[3].Text = "<h4 class='text-center'><span class='lbldata'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lgen"]).ToString("#,##0;(#,##0); ") + "</span></h4>" + "<span class=lbldata2>" + "Loan Generate" + "</span>";
-            this.LoantState.Items[4].Text = "<h4 class='text-center'><span class='lbldata'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lcomp"]).ToString("#,##0;(#,##0); ") + "</span></h4>" + "<span class=lbldata2>" + "Loan Completed" + "</span>";
+            this.LoantState.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["tloan"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Loan Queue</div></div></div>";
+            this.LoantState.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lpros"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description txt-white'>Loan Process</div></div></div>";
+            this.LoantState.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'>Loan Approval</div></div></div>";
+            this.LoantState.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lgen"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description txt-white'>Loan Generate</div></div></div>";
+            this.LoantState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-green counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lcomp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-green'><div class='circle-tile-description txt-white'>Loan Completed</div></div></div>";
 
 
 

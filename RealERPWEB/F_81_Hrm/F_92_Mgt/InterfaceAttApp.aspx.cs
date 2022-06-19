@@ -153,11 +153,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (ds1 == null)
                 return;
 
-            this.RadioButtonList1.Items[0].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</span></h4>" + "<span class='lbldata2'>" + "Request" + "</span>";
-            this.RadioButtonList1.Items[1].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Process" + "</span>";
-            this.RadioButtonList1.Items[2].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Approval" + "</span>";
-            this.RadioButtonList1.Items[3].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Confirmed" + "</span>";
-            this.RadioButtonList1.Items[4].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcancel"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Canceled" + "</span>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Request</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description txt-white'>Process</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'> Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description txt-white'>Confirmed</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-green counter'>" + ds1.Tables[1].Rows[0]["tcancel"].ToString() + "</div></a><div class='circle-tile-content deep-green'><div class='circle-tile-description txt-white'>Canceled</div></div></div>";
 
             // All Order
             DataTable dt = new DataTable();
