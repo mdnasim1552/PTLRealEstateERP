@@ -617,6 +617,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             lnkbtnShow_Click(null,null);
         }
 
+
         private void GetComASecSelected()
         {
             string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString().Trim();
@@ -926,6 +927,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 return;
             }
             DataTable dt = this.HiddenSameData(ds3.Tables[0]);
+
+            //DataTable dt = ds3.Tables[0];
+
+
+
             Session["tblpay"] = dt;
             this.LoadGrid();
         }
@@ -1044,6 +1050,53 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
             }
         }
+
+
+        private DataTable ExtractSameData(DataTable dt1)
+        {
+
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string refno = dt1.Rows[0]["refno"].ToString();
+            string section = dt1.Rows[0]["section"].ToString();
+
+            string refdesc = dt1.Rows[0]["refdesc"].ToString();
+            string sectionname = dt1.Rows[0]["sectionname"].ToString();
+
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if ( dt1.Rows[j]["section"].ToString() == section)
+                {
+                    refno = dt1.Rows[j]["refno"].ToString();
+                    section = dt1.Rows[j]["section"].ToString();
+                    dt1.Rows[j]["refdesc"] = refdesc;
+                    dt1.Rows[j]["sectionname"] = sectionname;
+                }
+                else
+                {
+                    
+                    if (dt1.Rows[j]["section"].ToString() != section)
+                    {
+                        dt1.Rows[j]["sectionname"] = dt1.Rows[j]["sectionname"];
+                    }
+                    refno = dt1.Rows[j]["refno"].ToString();
+                    section = dt1.Rows[j]["section"].ToString();
+
+                    refdesc = dt1.Rows[j]["refdesc"].ToString();
+                    sectionname = dt1.Rows[j]["sectionname"].ToString();
+                }
+            }
+
+            return dt1;
+
+
+
+        }
+
+
+
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -1117,6 +1170,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 string comcod = this.GetCompCode();
                 DataTable dt = (DataTable)Session["tblpay"];
+
+                ////dt = (DataTable)(this.HiddenSameData(Session["tblpay"]));
+
+                //DataTable dt2 = this.HiddenSameData(dt);
+
+               
+
                 string type = this.Request.QueryString["Type"].ToString().Trim();
                 switch (type)
                 {
@@ -1210,10 +1270,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         {
                             this.gvBonus.Columns[10].HeaderText = "Duration(Year)";
                         }
-                        else if (comcod == "3354")//Edison
+                        else if (comcod == "3354" || comcod=="3368")//Edison
                         {
                             this.gvBonus.Columns[10].HeaderText = "Duration(Day)";
                         }
+
+
+
+
                         this.gvBonus.DataSource = dt;
                         this.gvBonus.DataBind();
                         ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
@@ -3471,6 +3535,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     case "3354"://Edison
                         this.PrintBonusEdison();
                         break;
+                    case "3368"://Edison
+                        this.PrintBonusFinlay();
+                        break;
 
                     default:
                         this.PrintBonusSheet();
@@ -3480,6 +3547,64 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             }
 
+        }
+
+        private void PrintBonusFinlay()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = this.ddlCompany.SelectedItem.Text;
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITAR";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM, yyyy").ToUpper();
+
+            string frmdateyear = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy").ToUpper();
+            string frmdatemonth = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM");
+
+
+
+
+            DataTable dt3 = (DataTable)Session["tblpay"];
+
+
+            DataTable dt4 = this.ExtractSameData(dt3);
+
+            DataView dv = dt4.DefaultView;
+            dv.RowFilter = "bonamt > 0";
+
+            DataTable dt5 = new DataTable();
+            dt5 = dv.ToTable();
+
+
+
+            var list = dt5.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
+            double tAmt = list.Select(p => p.bonamt).Sum();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetFinlay", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Bonus Name :  " + bonusType));
+            Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("frmdateyear", "Year :  " + frmdateyear));
+
+            Rpt1.SetParameters(new ReportParameter("frmdatemonth", "Month of " + frmdatemonth + " / " + frmdateyear));
+
+            Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
+            Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         private void PrintEmpSpecialBonus()
@@ -4379,6 +4504,35 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
 
                     break;
+
+                case "3368": //Edison Real Estate
+                    i = 0;
+                    foreach (GridViewRow gv1 in this.gvBonus.Rows)
+                    {
+
+
+                        double bonamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBonusAmt")).Text.Trim());
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
+                        double bankamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmtbon")).Text.Trim());
+                        double bankamt2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmt2bon")).Text.Trim()); ;
+                        double cashamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()); ;
+
+
+                        double percentbon = (bonamt * 100) / bsal;
+
+                        dt.Rows[rowindex]["perbon"] = percentbon;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["bankamt"] = bonamt > 0 ? bankamt : 0.00;
+                        dt.Rows[rowindex]["bankamt2"] = bonamt > 0 ? bankamt2 : 0.00;
+                        dt.Rows[rowindex]["cashamt"] = bonamt > 0 ? cashamt : 0.00;
+                        i++;
+                    }
+
+                    break;
+
+
 
 
                 default:

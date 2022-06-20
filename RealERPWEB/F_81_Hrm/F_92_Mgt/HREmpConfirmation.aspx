@@ -79,7 +79,7 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                         <button onclick="printPage()">prin`enter code here`t</button>
+                         <button onclick="printPage()" style="display:none;"></button>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="Label1" runat="server">Company</asp:Label>
