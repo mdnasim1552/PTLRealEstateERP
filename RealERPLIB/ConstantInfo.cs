@@ -2129,8 +2129,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103015", "F_81_Hrm/F_84_Lea", "RptHREmpLeave?", "Type=EmpLeaveSt", "Individual Employee Leave Status", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103016", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=EmpLeaveStatus", "Employee Leave- Company Wise", "Leave", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" }); 
-           
+            tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8103000", "8103115", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=DateRange", "Employee Leave- Date Range", "Leave", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102111", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employee Leave Record", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102112", "F_81_Hrm/F_84_Lea", "RptYearlyLeaveRecord", "", "Yearly Leave Record", "HR Management", "False", "False", "False", "False" }); ;
@@ -14915,6 +14915,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0404000001", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000002", "02. Leave Status- Company Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=EmpLeaveStatus&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000003", "03. Employee Leave- Month Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=MonWiseLeave&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000003", "03. Employee Leave- Date Range", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=DateRange&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000004", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000005", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000006", "05. Yearly Leave Record", "F_81_Hrm/F_84_Lea/RptYearlyLeaveRecord", "", true, "" });

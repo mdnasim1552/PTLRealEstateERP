@@ -118,6 +118,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
 
+                case "DateRange":
+                    this.MultiView1.ActiveViewIndex = 3;
+
+                    break;
+
 
 
 
@@ -246,11 +251,53 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.ShowyleaveRegis() ;
                     break;
 
+                case "DateRange":
+                    this.ShowDateRange();
+                    break;
+
 
 
 
             }
 
+
+
+        }
+
+        private void ShowDateRange()
+        {
+            Session.Remove("tblover");
+            string comcod = this.GetCompCode();
+            string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 8) + "%";
+            string section = "";
+            if ((this.ddlDepartment.SelectedValue.ToString() != "000000000000"))
+            {
+                string[] sec = this.DropCheck1.Text.Trim().Split(',');
+
+                if (sec[0].Substring(0, 3) == "000")
+                    section = "";
+                else
+                    foreach (string s1 in sec)
+                        section = section + this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
+
+            }
+
+            string frmdate = this.txtfrmDate.Text.Trim();
+            string todate = this.txttoDate.Text.Trim();
+            string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            string calltype = "LEAVEDATERANGE";
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", calltype, compname, deptname, section, frmdate, todate, Empcode, "", "", "");
+            if (ds2 == null ||ds2.Tables.Count==0)
+            {
+                this.gvDateRange.DataSource = null;
+                this.gvDateRange.DataBind();
+                return;
+            }
+          
+            Session["tblover"] =ds2.Tables[0];
+            Session["tbldaterng"] = ds2.Tables[0];
+            this.Data_Bind();
 
 
         }
@@ -493,6 +540,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     break;
 
+                case "DateRange":
+                    this.gvDateRange.DataSource = dt;
+                    this.gvDateRange.DataBind();
+                    break;
+
 
 
 
@@ -530,6 +582,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.PrintMonLeave();
                     break;
 
+                case "DateRange":
+                    this.PrintDateRange();
+                    break;
+
 
 
 
@@ -537,6 +593,45 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
 
+
+        }
+
+        private void PrintDateRange()
+        {
+            DataTable dt = (DataTable)Session["tbldaterng"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString(); 
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+           string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpLeaveStatus>();
+
+            LocalReport Rpt1 = new LocalReport();
+
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptLeaveDateRange", list, null, null);
+                   
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", " Leave Report"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Period: " + frmdate + " To " + todate));
+            Rpt1.SetParameters(new ReportParameter("txtaddress", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+
+
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
@@ -1056,6 +1151,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
             }
+
+        }
+
+        protected void gvDateRange_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
 
         }
     }

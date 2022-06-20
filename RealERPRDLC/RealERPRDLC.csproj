@@ -153,10 +153,12 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheetPEB.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+currentLeaveInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+LeaveRule.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+prevtLeaveInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+yearlyholiday.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+YearlyLeaveRecord.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+AllBankSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+DeptWiseSal.datasource" />
@@ -911,6 +913,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptRetiredEmployee.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\EmpLeavApp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptLeaveDateRange.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatusBR.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\rptBirthday.rdlc" />
