@@ -2093,7 +2093,7 @@
                       
                         <asp:GridView ID="GvAddiBonus" runat="server" AutoGenerateColumns="False"
                             OnPageIndexChanging="GvAddiBonus_PageIndexChanging" ShowFooter="True" Width="572px" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            OnRowDeleting="GvAddiBonus_RowDeleting">
+                            OnRowDeleting="GvAddiBonus_RowDeleting" OnRowDataBound="GvAddiBonus_RowDataBound">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -2177,7 +2177,20 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                
+                                 <asp:TemplateField HeaderText="Payment Status" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblpaystatusaddi" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Style="text-align: right" BorderColor="#660033" BorderWidth="1px"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "chkcash")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="65px" Font-Size="11px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFpaystusus" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="65px"></asp:Label>
+                                    </FooterTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Payment Status">
                                     <FooterTemplate>
                                     </FooterTemplate>
