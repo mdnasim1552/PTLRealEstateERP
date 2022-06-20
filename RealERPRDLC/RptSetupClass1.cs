@@ -838,7 +838,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetAcme": Rpt1a = SetRptBonusSheetAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetBTI": Rpt1a = SetRptBonusSheetBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetEdison": Rpt1a = SetRptBonusSheetEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
+                case "R_81_Hrm.R_89_Pay.RptBonusSheetFinlay": Rpt1a = SetRptBonusSheetFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_89_Pay.RptSalaryGrndT": Rpt1a = SetRptSalaryGrndT(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryGrndTotalTropical": Rpt1a = SetRptSalaryGrndTotalTropical(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1044,6 +1044,13 @@ namespace RealERPRDLC
             Rpt1a.Refresh();
             return Rpt1a;
         }
+
+        private static LocalReport SetRptBonusSheetFinlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
+            return Rpt1a;
+        }
+
         private static LocalReport SetRptSalSummaryFinlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.SalSummary2>)RptDataSet));
