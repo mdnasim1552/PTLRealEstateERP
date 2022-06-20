@@ -504,8 +504,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt2 = (DataTable)Session["tblmondesc"];
             DataTable dt3 = (DataTable)Session["tblbankdesc"];
 
-       
 
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
 
 
@@ -609,7 +609,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 rptitle = "Mode of payment " + month;
                 var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
+                if (printtype == "EXCEL")
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePaymentExcel", list, list3, null);
+
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
+
+                }
+
                 Rpt1.EnableExternalImages = true;
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {

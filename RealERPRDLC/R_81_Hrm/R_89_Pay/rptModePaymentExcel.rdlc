@@ -609,7 +609,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!netpay.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!netpay.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -645,7 +645,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!p1.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!p1.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -681,7 +681,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!p2.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!p2.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -717,7 +717,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!p3.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!p3.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -753,7 +753,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!p4.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!p4.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -789,7 +789,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!p5.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!p5.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -825,7 +825,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!p6.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!p6.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -861,7 +861,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!p7.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=CDec(Fields!p7.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -918,7 +918,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.125in</Top>
             <Height>0.38542in</Height>
             <Width>10.64733in</Width>
             <Style>
@@ -928,183 +927,11 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.55208in</Height>
+        <Height>0.49375in</Height>
         <Style />
       </Body>
       <Width>10.65568in</Width>
       <Page>
-        <PageHeader>
-          <Height>0.71875in</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Image Name="Image1">
-              <Source>External</Source>
-              <Value>=Parameters!ComLogo.Value</Value>
-              <Sizing>FitProportional</Sizing>
-              <Height>0.65361in</Height>
-              <Width>1.5in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-            <Textbox Name="Textbox20">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!comnam.Value</Value>
-                      <Style>
-                        <FontFamily>calibri</FontFamily>
-                        <FontSize>14pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox20</rd:DefaultName>
-              <Left>1.54167in</Left>
-              <Height>0.22917in</Height>
-              <Width>7.59598in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox22">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!RptTitle.Value</Value>
-                      <Style>
-                        <FontFamily>calibri</FontFamily>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox20</rd:DefaultName>
-              <Top>0.26611in</Top>
-              <Left>1.54167in</Left>
-              <Height>0.1875in</Height>
-              <Width>7.59598in</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageHeader>
-        <PageFooter>
-          <Height>0.18625in</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Textbox Name="Textbox19">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!printFooter.Value</Value>
-                      <Style>
-                        <FontFamily>calibri</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox19</rd:DefaultName>
-              <Top>0.03473in</Top>
-              <Height>0.11805in</Height>
-              <Width>8.49054in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox23">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=IIF(Globals!TotalPages="1","",Globals!PageNumber &amp; " of " &amp; Globals!TotalPages)</Value>
-                      <Style>
-                        <FontFamily>calibri</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox23</rd:DefaultName>
-              <Top>0.03473in</Top>
-              <Left>9.86333in</Left>
-              <Height>0.11805in</Height>
-              <Width>0.78402in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
         <LeftMargin>0.5in</LeftMargin>
