@@ -356,7 +356,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.SalaryDayAdj();
                     break;
                 case "bonusextra":
-                   // this.AdditionalBonus();
+                    this.AdditionalBonus();
                     break;
 
             }
@@ -602,7 +602,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     break;
                 case "bonusextra":
                     this.MultiView1.ActiveViewIndex = 11;
-                  //  AdditionalBonus();
+                    AdditionalBonus();
                     break;
 
             }
@@ -626,6 +626,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     break;
             
             }
+
+
             return CallType;
 
 
@@ -1273,12 +1275,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
                 case "bonusextra":
-                    ((Label)this.GvAddiBonus.FooterRow.FindControl("lgvFAddibonus")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(aramt)", "")) ? 0.00
-                            : dt.Compute("sum(aramt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.GvAddiBonus.FooterRow.FindControl("lgvFAddibonus")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00
+                            : dt.Compute("sum(bonamt)", ""))).ToString("#,##0;(#,##0); ");
                   
-
                     Session["Report1"] = gvarrear;
-                    ((HyperLink)this.gvarrear.HeaderRow.FindControl("hlbtntbCdataExeladd")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.GvAddiBonus.HeaderRow.FindControl("hlbtntbCdataExeladd")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                     break;
 
@@ -3564,7 +3565,33 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         protected void lbntUpdateAddition_Click(object sender, EventArgs e)
         {
-
+            this.Master.FindControl("lblmsg").Visible = true;
+            ///this.lbtnTotalArrear_Click(null, null);
+            DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string postDat = System.DateTime.Today.ToString("yyyy-MM-dd hh:mm:ss");
+            string sessionid = hst["session"].ToString();
+            string trmid = hst["compname"].ToString();
+            string comcod = this.GetComeCode();
+            string Monthid = this.ddlyearmon.Text.Trim();
+            string Remarks = "";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string empid = dt.Rows[i]["empid"].ToString();
+                //string gcod = dt.Rows[i]["gcod"].ToString();
+                double bonamt = Convert.ToDouble("0" + dt.Rows[i]["bonamt"]);
+                double pfamt = Convert.ToDouble("0" + dt.Rows[i]["pfamt"]);
+                string chkcash = dt.Rows[i]["chkcash"].ToString();
+                if (bonamt > 0)
+                {
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTARREAR", Monthid, empid, bonamt.ToString(), pfamt.ToString(), chkcash, userid, postDat, trmid, sessionid, Remarks, "", "", "", "", "");
+                    if (!result)
+                        return;
+                }
+            }
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
     }
 

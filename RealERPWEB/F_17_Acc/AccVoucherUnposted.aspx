@@ -146,15 +146,34 @@
                             </div>
                         </div>
 
+                        <div class="col-md-2">
+                            <div class="  form-group">
+                                <label for="lblPrivVou" runat="server" class=" control-label lblmargin-top9px ">Type</label>
+                                <asp:DropDownList ID="ddlvoucher" runat="server" CssClass=" ddlPage120px" AutoPostBack="True">
+                                    <asp:ListItem Value="BD">Bank Payment</asp:ListItem>
+                                    <asp:ListItem Value="CD">Cash Payment</asp:ListItem>
+                                    <asp:ListItem Value="BC">Bank Deposit</asp:ListItem>
+                                    <asp:ListItem Value="CC">Cash Deposit</asp:ListItem>
+                                    <asp:ListItem Value="CT">Contra Voucher</asp:ListItem>
+                                    <asp:ListItem Value="JV">Journal Voucher</asp:ListItem>
+                                    <asp:ListItem Value="" Selected="True">All Voucher</asp:ListItem>
+                                </asp:DropDownList>
+
+                            </div>
+
+                        </div>
+
                         <div class="col-md-1">
                             <div class="form-group">
                                 <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-md-2">
+
+                        <div class="col-md-1">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" Style="float: left">Ok</asp:LinkButton>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                            
                             <asp:CheckBox ID="ChboxPayee" runat="server" Text="A/C Payee" CssClass="btn btn-primary" />
                             <asp:Label ID="lblmsg" CssClass="btn-danger btn  primaryBtn" runat="server" Visible="false"></asp:Label>
                         </div>
