@@ -1808,20 +1808,20 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     }
                     break;
 
-                case "":
-                    for (int i = 0; i < this.gvarrear.Rows.Count; i++)
+                case "bonusextra":
+                    for (int i = 0; i < this.GvAddiBonus.Rows.Count; i++)
                     {
                         double pf = 0.00;
                         double bacic = 0.00;
-                        double addbonus = Convert.ToDouble("0" + ((TextBox)this.gvarrear.Rows[i].FindControl("txtaddbonus")).Text.Trim());
-                        string paystatus = ((DropDownList)this.gvEmpOtherded.Rows[i].FindControl("ddlPaystatusaddi")).SelectedValue.ToString();
+                        double addbonus = Convert.ToDouble("0" + ((TextBox)this.GvAddiBonus.Rows[i].FindControl("txtaddbonus")).Text.Trim());
+                        string paystatus = ((DropDownList)this.GvAddiBonus.Rows[i].FindControl("ddlPaystatusaddi")).SelectedValue.ToString();
 
-                        rowindex = (this.gvarrear.PageSize) * (this.gvarrear.PageIndex) + i;
+                        rowindex = (this.GvAddiBonus.PageSize) * (this.GvAddiBonus.PageIndex) + i;
 
-                        dt.Rows[rowindex]["aramt"] = addbonus;
+                        dt.Rows[rowindex]["bonamt"] = addbonus;
                         // dt.Rows[rowindex]["pfamt"] = pf;
                        // dt.Rows[rowindex]["tapfamt"] = arrear - pf;
-                        dt.Rows[rowindex]["paystatus"] = paystatus;
+                        dt.Rows[rowindex]["chkcash"] = paystatus;
 
                     }
                     break;
@@ -3237,14 +3237,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         //row.Cells[14].Style.Add("background-color", "#C2D69B");
 
                     }
-                }
-
-
-                //Session["Report1"]=gvothearn;
-                //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=GRIDTOEXCEL', target='_blank');</script>";
-                // DataTable dt = (DataTable)Session["tblover"];
-
-
+                }             
                 gvothearn.RenderControl(hw);
                 string style = @"<style> .textmode { } </style>";
                 Response.Write(style);
@@ -3280,9 +3273,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     //DataView dv = dt.DefaultView;
                     //dv.RowFilter = ("Card <> ''");
                     //dt = dv.ToTable();
-
-
-
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string Card = dt.Rows[i]["Card"].ToString();
@@ -3329,13 +3319,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                             if (rows.Length > 0)
                             {
-
                                 double Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
                               //  double transded = 0.00;// Convert.ToDouble("0" + (rows[0]["Transport"]));
                                 double otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
                                 double Penalty = Convert.ToDouble("0" + (rows[0]["Penalty"]));
                                 double ttlamt = Mobile_Bill + otherded+ Penalty;
-
                                 dt1.Rows[i]["mbillded"] = Mobile_Bill;
                                // dt1.Rows[i]["transded"] = transded;
                                 dt1.Rows[i]["otherded"] = otherded;
@@ -3343,21 +3331,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                 dt1.Rows[i]["toamt"] = ttlamt;
                                 rowCount++;
                                 dt1.AcceptChanges();
-
                             }
-
                         }
                     }
-
-
-
                     break;
-
                 case "otherearn":
-
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-
                         string Earned_Leave = "0.00";
                         string Arear_Salary = "0.00";
                         string Project_Visit = "0.00";
@@ -3366,20 +3346,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         string Refund = "0.00";
                         string Others = "0.00";
                         string Dress_Bill = "0.00";
-
                         switch (comcod)
                         {
                             case "3365":
-
                                  Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
                                  Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
                                  Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0" : dt.Rows[i]["Project_Visit"].ToString();
                                  //Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();                                 
                                  Refund = dt.Rows[i]["Refund"].ToString().Length == 0 ? "0" : dt.Rows[i]["Refund"].ToString();
                                  Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();                               
-
                                 break;
-
                             default:
                                  Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
                                  Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
@@ -3391,15 +3367,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                  Dress_Bill = dt.Rows[i]["Dress_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Dress_Bill"].ToString();
                                 break;
                         }
-
-
-
-
                         string Card = dt.Rows[i]["Card"].ToString();
                       
-
-
-
                         if (Card.Length == 0)
                         {
                             dt.Rows.RemoveAt(i);
@@ -3490,10 +3459,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                          Dress_Bill = Convert.ToDouble("0" + rows[0]["Dress_Bill"]);
                                         break;
                                 }
-
-
-
-
                                 dt1.Rows[i]["tptallow"] = Earned_Leave;
                                 dt1.Rows[i]["kpi"] = Arear_Salary;
                                 dt1.Rows[i]["perbon"] = Project_Visit;
@@ -3526,10 +3491,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         }
         private bool IsNuoDecimal(string value)
         {
-
             Regex regexLetter = new Regex(@"^[+-] ? ([0 - 9] +\.?[0 - 9]*|\.[0 - 9]+)+$");
             return !(regexLetter.IsMatch(value));
-
         }
         private bool IsLetter(string value)
         {
@@ -3546,25 +3509,60 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             isValid = DateTime.TryParseExact(value, "dd/MM/yyyy", new CultureInfo("en-GB"), DateTimeStyles.None, out dt);
             return isValid;
         }
-
         protected void GvAddiBonus_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.SaveValue();
             this.GvAddiBonus.PageIndex = e.NewPageIndex;
             this.Data_Bind();
         }
-
         protected void GvAddiBonus_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            DataTable dt = (DataTable)Session["tblover"];
+            string Monthid = this.ddlyearmon.Text.Trim();
+            string empid = ((Label)this.GvAddiBonus.Rows[e.RowIndex].FindControl("lgvEmpIdadd")).Text.Trim();
 
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "DELETEMPADDBONUS", Monthid, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+                return;
+
+            msg = "Deleted Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+            if (result == true)
+            {
+                int rowindex = (this.GvAddiBonus.PageSize) * (this.GvAddiBonus.PageIndex) + e.RowIndex;
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            Session.Remove("tblover");
+            Session["tblover"] = dv.ToTable();
+            this.Data_Bind();
         }
         protected void lbtnTotalAddi_Click(object sender, EventArgs e)
         {
+            DataTable dt = (DataTable)Session["tblover"];
+            int rowindex;
+            for (int i = 0; i < this.GvAddiBonus.Rows.Count; i++)
+            {
+                double addbonus = Convert.ToDouble("0" + ((TextBox)this.GvAddiBonus.Rows[i].FindControl("txtaddbonus")).Text.Trim());
+                string paystatus = ((DropDownList)this.GvAddiBonus.Rows[i].FindControl("ddlPaystatusaddi")).SelectedValue.ToString();
 
+                rowindex = (this.GvAddiBonus.PageSize) * (this.GvAddiBonus.PageIndex) + i;
+
+                dt.Rows[rowindex]["bonamt"] = addbonus;
+                // dt.Rows[rowindex]["pfamt"] = pf;
+                // dt.Rows[rowindex]["tapfamt"] = arrear - pf;
+                dt.Rows[rowindex]["chkcash"] = paystatus;
+            }
+            Session["tblover"] = dt;
+            this.Data_Bind();
         }
-
         protected void lbntUpdateAddition_Click(object sender, EventArgs e)
         {
+            this.SaveValue();
             this.Master.FindControl("lblmsg").Visible = true;
             ///this.lbtnTotalArrear_Click(null, null);
             DataTable dt = (DataTable)Session["tblover"];
@@ -3580,18 +3578,41 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             {
                 string empid = dt.Rows[i]["empid"].ToString();
                 //string gcod = dt.Rows[i]["gcod"].ToString();
-                double bonamt = Convert.ToDouble("0" + dt.Rows[i]["bonamt"]);
-                double pfamt = Convert.ToDouble("0" + dt.Rows[i]["pfamt"]);
+                double bonamt = Convert.ToDouble("0" + dt.Rows[i]["bonamt"]);           
                 string chkcash = dt.Rows[i]["chkcash"].ToString();
                 if (bonamt > 0)
                 {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTARREAR", Monthid, empid, bonamt.ToString(), pfamt.ToString(), chkcash, userid, postDat, trmid, sessionid, Remarks, "", "", "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTADDBONUS", Monthid, empid, bonamt.ToString(), chkcash, userid, postDat, trmid, sessionid, Remarks, "", "", "", "", "");
                     if (!result)
                         return;
                 }
             }
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+        }
+
+        protected void GvAddiBonus_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            if (e.Row.RowType != DataControlRowType.DataRow)
+                return;
+
+
+            string mCOMCOD = comcod;
+
+            string lblpaystatus = ((Label)e.Row.FindControl("lblpaystatusaddi")).Text;
+            DropDownList ddlPaystatus = ((DropDownList)e.Row.FindControl("ddlPaystatusaddi"));
+            // string lblpaystatus1 = ((Label)e.Row.FindControl("paystatus1")).Text;
+
+            if (lblpaystatus == "1")
+            {
+                ddlPaystatus.SelectedValue = "1";
+            }
+            else
+            {
+                ddlPaystatus.SelectedValue = "0";
+            }
         }
     }
 

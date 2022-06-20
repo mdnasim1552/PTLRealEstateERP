@@ -32,7 +32,7 @@
         <ContentTemplate>
             <div class="card card-fluid container-data">
                 <div class="card-header mt-3 mb-0 pb-0">
-                    <h3>Prospect Transfer from Associate to Associate</h3>
+                    <h3>Land Transfer from Associate to Associate</h3>
                 </div>
 
                 <div class="card-body mb-0 pb-0" style="min-height: 450px;">

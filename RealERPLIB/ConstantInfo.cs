@@ -71,7 +71,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0102000", "0102060", "F_01_LPA", "ProjectFeasibility04?", "Type=fea", "Land Feasibility-4", "Land Proposal", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0102000", "0102090", "F_01_LPA", "EntryLandRegProcess", "", "Land Procurement Status", "Land Proposal", "False", "False", "False", "False" }); ;
-
+            tblObj.Rows.Add(new Object[] { "0102000", "0102091", "F_21_MKT", "LandProspectTransfer", "", "Land Transfer", "Land Proposal", "False", "False", "False", "False" });
 
 
 
@@ -213,9 +213,6 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0451000", "0451001", "F_99_Allinterface", "BudgetInterface", "", "Budget", "Budget-Interface", "False", "False", "False", "False" }); ;
 
-
-
-
             #endregion
 
 
@@ -223,7 +220,6 @@ namespace RealERPLIB
             //tblObj.Rows.Add(new Object[] { "0401000", "0401130", "EstCodeBook", "", "Estimated Code Book", "Budget", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "0401000", "0401140", "EstWorkBook", "", "Estimated Work Book", "Budget", "False", "False", "False", "False" });;
             ////
-
 
             //05. Business Planning
             #region Business Planning
@@ -239,11 +235,7 @@ namespace RealERPLIB
             //tblObj.Rows.Add(new Object[] { "0502000", "0502005", "YearlyPlanningBudget?", "Type=Yearly", "Yearly Budget", "Business Planning", "False", "False", "False", "False" });;
             #endregion
 
-
-
-
             //07. Tender
-
             //tblObj.Rows.Add(new Object[] { "0502000", "17080", "AccSubCodeBook?", "InputType=Res", "Resource Code", "Accounts", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "0502000", "17081", "AccSubCodeBook?", "InputType=Overhead", "Overhead & Others", "Accounts", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "0502000", "17082", "AccSubCodeBook?", "InputType=Assets", "Assets Details", "Accounts", "False", "False", "False", "False" });;
@@ -286,7 +278,6 @@ namespace RealERPLIB
         
 
             #endregion
-
 
             //08. Project Planning
             #region PPlan
@@ -397,7 +388,6 @@ namespace RealERPLIB
 
             #endregion
 
-
             //12.Inventory
             #region Inventory
             tblObj.Rows.Add(new Object[] { "1202000", "1202010", "F_12_Inv", "PurReqEntry?", "InputType=Entry", "Material Requisition", "Inventory", "False", "False", "False", "False" });
@@ -456,7 +446,6 @@ namespace RealERPLIB
 
             #endregion
 
-
             //13.Cetral Store
             #region Central
             tblObj.Rows.Add(new Object[] { "1302000", "1302010", "F_13_Cen", "PurReqEntry02?", "InputType=FxtAstEntry", "Store Requisition", "Central Warehouse", "False", "False", "False", "False" }); ;
@@ -469,7 +458,6 @@ namespace RealERPLIB
 
 
             #endregion
-
 
             // 14. Procurement One time Input
             #region Procurement
@@ -641,7 +629,6 @@ namespace RealERPLIB
             #region  account
 
             //One Time Input
-
             tblObj.Rows.Add(new Object[] { "1701000", "1701070", "F_17_Acc", "AccCodeBook?", "InputType=Accounts", "Account Code", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1701000", "1701075", "F_17_Acc", "AccCostCenterCodeBook", "", "Cost Center Code  ", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1701000", "1701080", "F_17_Acc", "AccSubCodeBook?", "InputType=Res", "Resource Code", "Accounts", "False", "False", "False", "False" }); ;
@@ -1075,7 +1062,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102135", "F_21_MKT", "RptProspectWorking", "", "Prospect Working Report", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102137", "F_21_MKT", "ProspectTransfer", "", "CRM Prospect Transfer", "CRM", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2102000", "2102138", "F_21_MKT", "LandProspectTransfer", "", "Land Prospect Transfer", "CRM", "False", "False", "False", "False" });
+          
 
             //kpi 
             // 05. My Marketing Interface(Sales)
@@ -2090,7 +2077,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102113", "F_81_Hrm/F_83_Att", "AttnOutOfOffice", "", "Online Attendance", "Attendance", "False", "False", "False", "False" }); ;
 
-            
+            tblObj.Rows.Add(new Object[] { "8102000", "8102114", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=bonusextra", "Additional Bonus", "PayRoll", "False", "False", "False", "False" }); ;
+
             //////90. PF Account  
             tblObj.Rows.Add(new Object[] { "8102000", "8102120", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Payment Voucher", "Payment Voucher", "PF Account", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102125", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Deposit Voucher", "Deposit Voucher", "PF Account", "False", "False", "False", "False" }); ;
@@ -6959,7 +6947,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Client Transfer List ", "F_21_MKT/ClientTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "05. Center Wise Client List ", "F_21_MKT/RptCenterWiseClient", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "06. CRM Prospect Transfer ", "F_21_MKT/ProspectTransfer", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000007", "07. Land Prospect Transfer ", "F_21_MKT/LandProspectTransfer", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000007", "07. Land Transfer ", "F_21_MKT/LandProspectTransfer", "", true, "" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0202000006", "", "", "", true, "" });//"03. Basic Information Field", "F_21_Mkt/MktGenCodeBook", "", true, "" });
@@ -14866,6 +14854,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0308000006", "05. Other Earning", "F_81_Hrm/F_86_All/EmpOvertime?Type=otherearn", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0308000007", "06. Salary Day Adjustment", "F_81_Hrm/F_86_All/EmpOvertime?Type=dayadj", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0308000008", "06. Salary Reduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=SalaryReduction", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000009", "07. Additional Bonus", "F_81_Hrm/F_86_All/EmpOvertime?Type=bonusextra", "", true, "" });
 
 
             // G. P.F Account

@@ -770,6 +770,7 @@ namespace RealERPWEB
                 case "3353":
                 case "3101":
                 case "3364":
+                case "3366":
                     refno = "MPR No";
                     break;
                 default:

@@ -562,7 +562,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
                 case "1205":
-                //case "3101":
+                    //case "3101":
                     this.printP2P_cs_approval();
                     break;
                 default:
@@ -621,8 +621,8 @@ namespace RealERPWEB.F_14_Pro
                 userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
                 rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
 
-                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString(); 
-                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdat"].ToString(); 
+                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
+                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdat"].ToString();
                 txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
 
             }
@@ -938,7 +938,7 @@ namespace RealERPWEB.F_14_Pro
                     string qty = tbl1.Rows[i]["qty"].ToString();
                     mRESRATE = Convert.ToDouble("0" + tbl1.Rows[i]["resrate" + (j + 1).ToString()]).ToString();
 
-                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B",  mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, "", "", "", "", "", "", "");
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B", mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, "", "", "", "", "", "", "");
                 }
 
                 if (!result)
@@ -994,7 +994,8 @@ namespace RealERPWEB.F_14_Pro
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string mSrchTxt = this.txtMSRSupSearch.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRSUPLIST01", mSrchTxt, "", "", "", "", "", "", "", "");
+            string rtype = (this.Request.QueryString["Type"].ToString() == "ConCS") ? "ConCS" : "";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRSUPLIST01", mSrchTxt, rtype, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["Supplier"] = ds1.Tables[0];
@@ -1285,7 +1286,7 @@ namespace RealERPWEB.F_14_Pro
                 tbl1.Rows.Add(dr1);
 
             }
-            Session["tblt02"] = (comcod == "3101" || comcod =="1205" || comcod=="3351" || comcod=="3352") ? tbl1 : this.HiddenSameData(tbl1);   //tblMSR
+            Session["tblt02"] = (comcod == "3101" || comcod == "1205" || comcod == "3351" || comcod == "3352") ? tbl1 : this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
         }
 
