@@ -3309,7 +3309,7 @@
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=LND" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="hyplnkProspectTransfer" Target="_blank" NavigateUrl="~/F_21_MKT/LandProspectTransfer" runat="server">Prospect Transfer</asp:HyperLink>
+                                                <asp:HyperLink ID="hyplnkProspectTransfer" Target="_blank" NavigateUrl="~/F_21_MKT/LandProspectTransfer" runat="server">Land Transfer</asp:HyperLink>
                                             </li>
 
                                             <li>

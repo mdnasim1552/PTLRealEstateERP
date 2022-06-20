@@ -71,7 +71,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0102000", "0102060", "F_01_LPA", "ProjectFeasibility04?", "Type=fea", "Land Feasibility-4", "Land Proposal", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0102000", "0102090", "F_01_LPA", "EntryLandRegProcess", "", "Land Procurement Status", "Land Proposal", "False", "False", "False", "False" }); ;
-
+            tblObj.Rows.Add(new Object[] { "0102000", "0102091", "F_21_MKT", "LandProspectTransfer", "", "Land Transfer", "Land Proposal", "False", "False", "False", "False" });
 
 
 
@@ -1075,7 +1075,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102135", "F_21_MKT", "RptProspectWorking", "", "Prospect Working Report", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102137", "F_21_MKT", "ProspectTransfer", "", "CRM Prospect Transfer", "CRM", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2102000", "2102138", "F_21_MKT", "LandProspectTransfer", "", "Land Prospect Transfer", "CRM", "False", "False", "False", "False" });
+          
 
             //kpi 
             // 05. My Marketing Interface(Sales)
@@ -6959,7 +6959,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Client Transfer List ", "F_21_MKT/ClientTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "05. Center Wise Client List ", "F_21_MKT/RptCenterWiseClient", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "06. CRM Prospect Transfer ", "F_21_MKT/ProspectTransfer", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000007", "07. Land Prospect Transfer ", "F_21_MKT/LandProspectTransfer", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000007", "07. Land Transfer ", "F_21_MKT/LandProspectTransfer", "", true, "" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0202000006", "", "", "", true, "" });//"03. Basic Information Field", "F_21_Mkt/MktGenCodeBook", "", true, "" });
