@@ -6,6 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
+        .nav-tabs{
+            border-bottom:0!important;
+        }
         .modal-dialog 
         {
             margin: 44px auto;
@@ -203,7 +206,7 @@
             color: #000 !important;
         }
 
-/*        .blink_me {
+        .blink_me {
             animation: blinker 5s linear infinite;
         }
 
@@ -211,7 +214,7 @@
             50% {
                 opacity: 0;
             }
-        }*/
+        }
 
         .grvContentarea tr td:last-child {
             /*width: 120px;*/

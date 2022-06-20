@@ -157,7 +157,11 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public double balleave { get; set; }
             public string lstrtdat { get; set; }
             public string descrip { get; set; }
-       
+            public string unit { get; set; }
+            public string deptid { get; set; }
+            public string deptdesc { get; set; }
+
+
             public EmpLeaveStatus() { }
         }
 
