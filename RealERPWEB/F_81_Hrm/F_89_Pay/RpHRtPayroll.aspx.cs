@@ -3244,13 +3244,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string companyname = this.ddlCompany.SelectedItem.Text.Trim();
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
             string deptname = this.ddlBranch.SelectedItem.Text.ToString();
-
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             if (deptname=="Head Office")
             {
-                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryHOBTI", list, null, null);
+                if (printtype == "EXCEL")
+                {
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryHOBTIExcel", list, null, null);
+                }
+                else
+                {
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryHOBTI", list, null, null);
+                }
             }
             else if (deptname=="Dhaka Project")
             {
