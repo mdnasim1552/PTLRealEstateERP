@@ -5,8 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-
-
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -23,9 +21,6 @@
         }
 
     </script>
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -45,11 +40,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-
-
             <div class="card-fluid container-data  mt-2">
-
-
                 <div class="row">
                     <div class="col-12 col-lg-12 col-xl-3">
                         <section class="card card-fluid" style="height: 650px">
@@ -83,10 +74,7 @@
                                         </label>
                                         <asp:DropDownList ID="ddlUserList" runat="server" CssClass="form-control inputTxt chzn-select">
                                         </asp:DropDownList>
-
-                                    </div>
-                                   
-
+                                    </div>                                  
                                     <div class="row">
                                         <div class="col-md-6 pl-0">
                                            
@@ -96,7 +84,6 @@
 
                                                 <asp:LinkButton ID="lbtnSelect" runat="server" CssClass="btn btn-sm btn-primary okBtn" OnClick="Select_Click">Select</asp:LinkButton>
                                                 <asp:LinkButton ID="lbtnSelectAll" runat="server" Visible="false" CssClass="btn  btn-sm btn-primary okBtn" OnClick="SelectAll_Click">Select All</asp:LinkButton>
-
                                             </div>
                                         </div>
                                     </div>
