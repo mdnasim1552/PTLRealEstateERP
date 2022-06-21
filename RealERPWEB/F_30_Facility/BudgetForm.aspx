@@ -294,7 +294,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <asp:LinkButton ID="lnkRefresh" runat="server" CssClass="btn btn-sm btn-warning mx-2 my-2" OnClick="lnkRefresh_Click" Width="100px">Refresh</asp:LinkButton>
-                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" Width="100px">Save</asp:LinkButton>
+                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" Width="100px" OnClick="lnkSave_Click">Save</asp:LinkButton>
                             <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-sm btn-info mx-2 my-2" OnClick="lnkProceed_Click" Width="150px">Proceed to Next Step</asp:LinkButton>
                         </div>
 
