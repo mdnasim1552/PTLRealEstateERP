@@ -378,7 +378,6 @@
         }
 
     
-
         .yellow {
             background-color: #F1C40F;
         }
@@ -393,7 +392,9 @@
             background-color: #B76BA3;
         }
 
-
+        .danger{
+           background:#DC3545;
+        }
 
         .text-lime {
             color: #32CD32;
@@ -426,6 +427,11 @@
 
         </script>
     <script>
+
+        function checkEmptyNote() {
+            alert('Please Add Note!');
+            OpenApplyLoan();
+        }
 
         function sum() {
 
@@ -563,7 +569,8 @@
                                            <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white">Loan Process</div></div></div></asp:ListItem>
                                               <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">Loan Approval</div></div></div></asp:ListItem>
                                              <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Loan Generate</div></div></div></asp:ListItem>
-                                             <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  deep-green counter">0</div></a><div class="circle-tile-content  deep-green"><div class="circle-tile-description txt-white">Loan Generate</div></div></div></asp:ListItem>
+                                             <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-green counter">0</div></a><div class="circle-tile-content  deep-green"><div class="circle-tile-description txt-white">Loan Generate</div></div></div></asp:ListItem>
+                                             <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </div>
                                 </div>
@@ -638,7 +645,8 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblstatus" runat="server" Text='<%#Convert.ToBoolean(Eval("isaproved"))==false?"Pending":"Approved" %>'></asp:Label>
+                                                            <asp:Label ID="lblstatus" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "badge badge-danger" :"badge badge-success" %>' Text=' <%#Convert.ToBoolean(Eval("isaproved"))==false? "Pending" :"Approved" %>'> 
+                                                            </asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Effective</br> Date">
@@ -649,7 +657,7 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -665,7 +673,8 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "" :"d-none" %>'><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                
                                                             </div>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -752,7 +761,7 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="proslnView" OnClick="proslnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="proslnView" OnClick="proslnView_Click" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -760,7 +769,17 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="pendlnEdit" OnClick="pendlnEdit_Click" runat="server"><i class="fa fa-edit"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="pendlnEdit" OnClick="pendlnEdit_Click" runat="server" ToolTip="Edit Loan"><i class="fa fa-edit"></i></asp:LinkButton>
+
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+
+                                                         <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="pendlnAproved" OnClick="AprvProcsView"  runat="server" ToolTip="Approve Loan"><i class="fa fa-check"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -854,19 +873,20 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="AprlnView" OnClick="AprlnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="AprlnView" OnClick="AprlnView_Click" runat="server" ToolTip="Aprove Loan"><i class="fa fa-check"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="">
+                                     <%--               <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="pendlnEditApr" OnClick="pendlnEditApr_Click" runat="server"><i class="fa fa-edit"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="pendlnEditApr" OnClick="pendlnEditApr_Click" runat="server" ToolTip="Edit Loan"><i class="fa fa-edit"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    </asp:TemplateField>--%>
+    
                                                     <%-- <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
@@ -956,7 +976,7 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="LoGenlnView" OnClick="LoGenlnView_Click" runat="server"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="LoGenlnView" OnClick="LoGenlnView_Click" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -964,7 +984,7 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                 <asp:HyperLink ID="lnkbtnInd" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
+                                                                 <asp:HyperLink ID="lnkbtnInd" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" ToolTip="Aprove Loan"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
                                                             </div>
                                                         </ItemTemplate>
@@ -1089,7 +1109,119 @@
                                         </div>
                                     </div>
                                 </asp:Panel>
+                                 <asp:Panel ID="pnlCanc" runat="server" Visible="false">
+                                    <div class="row mt-3">
+                                        <div class="table table-sm table-responsive">
+                                            <asp:GridView CssClass="table-striped table-hover table-bordered grvContentarea" ID="gvCanc" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvPending_RowDataBound">
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="SL#">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblslpend" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Loan ID">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblidPend" Visible="false" Text='<%# Convert.ToString(Eval("id")) %>'></asp:Label>
+                                                            <asp:Label ID="lblnnoPend" runat="server">Ln-<%#  Convert.ToString(Eval("id")) %></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Loan</br> Date">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblcreatedate" runat="server" Text='<%# Convert.ToDateTime( Eval("createdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    
+                                                    <asp:TemplateField HeaderText="ID #">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblpendempid" runat="server" Text='<%#Eval("empid")%>' Visible="false"></asp:Label>
+                                                            <asp:Label ID="lblempidPend" runat="server" Text='<%#Eval("idcard")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Employee Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblempnamepend" runat="server" Text='<%#Eval("empname")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Designation">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldesigpend" runat="server" Text='<%#Eval("desig")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Department">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbldeptpend" runat="server" Text='<%#Eval("dept")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Loan Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblloantypePend" runat="server" Text='<%#Eval("lnname")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Loan Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblloanamtPend" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "loanamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="# Installment">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblinstPend" runat="server" Text='<%#Eval("instlnum")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
 
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Per </br> Installment">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblperinstlamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perinstlamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Status">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblstatus" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "badge badge-danger" :"badge badge-success" %>' Text=' <%#Convert.ToBoolean(Eval("isaproved"))==false? "Pending" :"Approved" %>'> 
+                                                            </asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Effective</br> Date">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
+
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <%--<asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="pendlnEdit" OnClick="pendlnEdit_Click" runat="server" ><i class="fa fa-edit"></i></asp:LinkButton>
+                                                                
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <div class="btn-group">
+                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "" :"d-none" %>'><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                                <RowStyle CssClass="grvRows" />
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                </asp:Panel>
                             </div>
                         </div>
                     </div>
@@ -1127,7 +1259,7 @@
                                 <div class="col-lg-3">
                                         <div class="form-group">
                                         <asp:Label ID="Label6" runat="server">Employee Name</asp:Label>
-                                        <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control form-control-sm chzn-select">
+                                        <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlEmpList_SelectedIndexChanged" AutoPostBack="true">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -1240,12 +1372,21 @@
              
 
                             </div>
+                            <div class="row" runat="server" id="dibNote" visible="false">
+                                     <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblnote" runat="server">Note</asp:Label>
+                                        <asp:TextBox ID="txtnote" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" Rows="3" Style="min-height: 70px;"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
           
                             <div class="rowmt-2">
                                 <div class="d-flex justify-content-center">
                                     <asp:LinkButton ID="lnkAdd" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkAdd_Click" ValidationGroup="one">Save</asp:LinkButton>
                                     <asp:LinkButton ID="lnkUpdate" CssClass="btn btn-primary btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkUpdate_Click" ValidationGroup="one">Loan Process</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkApprov" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkApprov_Click" Visible="false" ValidationGroup="one">Loan Approval</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkApprov" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkApprov_Click" Visible="false" ValidationGroup="one">Approve</asp:LinkButton>
+                                         <asp:LinkButton ID="lnkCancel" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkCancel_Click" Visible="false" ValidationGroup="one">Cancel</asp:LinkButton>
 
                                     <%--<asp:LinkButton ID="lnkCancel" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" Visible="false" data-dismiss="modal" ValidationGroup="one">Cancel</asp:LinkButton>--%>
                                 </div>
