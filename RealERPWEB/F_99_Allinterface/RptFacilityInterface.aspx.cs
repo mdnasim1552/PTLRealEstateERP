@@ -67,7 +67,13 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "0":
                     pnlComplainCount.Visible = true;
+                    pnlDiagnosis.Visible = false;
                     getComplainList();
+                    break;
+                case "1":
+                    pnlComplainCount.Visible = false;
+                    pnlDiagnosis.Visible = true;
+                    getDiagnosisList();
                     break;
             }
         }
@@ -81,6 +87,40 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETCOMPLAINLIST", date1, date2, "", "", "", "", "", "", "", "", "");
             gvComplainList.DataSource = ds.Tables[0];
             gvComplainList.DataBind();
+        }
+        private void getDiagnosisList()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETDIAGNOSISLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvDiagnosis.DataSource = ds.Tables[0];
+            gvDiagnosis.DataBind();
+        }
+
+        protected void lnkEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvComplainList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
+                hlink.NavigateUrl = "~/F_30_Facility/ComplainForm.aspx?ComplNo=" + complno;
+                hlink.ToolTip = "Edit";
+                hlink1.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?ComplNo=" + complno;
+                hlink1.ToolTip = "Edit";
+            }
+
+        }
+
+        protected void gvDiagnosis_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
         }
     }
 }

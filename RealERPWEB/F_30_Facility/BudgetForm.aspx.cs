@@ -244,5 +244,24 @@ namespace RealERPWEB.F_30_Facility
                 obj[rowindex].amount = quantity * rate;
             }
         }
+
+        protected void lnkSave_Click(object sender, EventArgs e)
+        {
+            List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComCode();
+            string userId = hst["usrid"].ToString();
+            string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
+            string bgddate = txtEntryDate.Text;
+            int i = 1;
+            foreach(var item in obj)
+            {
+                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(), bgddate, i.ToString(), "", "", "", "", "",
+                         "", "", "", "", "", "", "", "", "", "", userId);
+                i++;
+            }
+            bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                              "", "", "", "", "", "", "", "", "", "", userId);
+        }
     }
 }
