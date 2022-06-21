@@ -42,6 +42,19 @@
                     freezeColumnCount: 8,
 
                 });
+
+                //var gridViewScroll = new GridViewScroll({
+                //    elementID: "gvBonus",
+                //    width: 1000,
+                //    height: 500,
+                //    freezeColumn: true,
+                //    freezeFooter: true,
+                //    freezeColumnCssClass: "GridViewScrollItemFreeze",
+                //    freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                //    freezeHeaderRowCount: 1,
+                //    freezeColumnCount: 8,
+
+                //});
                 gridViewScroll.enhance();
                 $('.chzn-select').chosen({ search_contains: true });
             }
@@ -1071,10 +1084,10 @@
                             </div>
 
                             <div class="row mt-2">
-
+                              <div class="table-responsive">
                                 <asp:GridView ID="gvBonus" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvBonus_PageIndexChanging"
-                                    ShowFooter="True" Width="766px" OnRowDeleting="gvBonus_RowDeleting">
+                                    ShowFooter="True" OnRowDeleting="gvBonus_RowDeleting">
                                     <PagerSettings Position="Top" />
                                     <RowStyle />
                                     <Columns>
@@ -1122,9 +1135,6 @@
 
 
                                         <asp:TemplateField HeaderText="Id #">
-
-
-
 
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvidcardno" runat="server"
@@ -1258,6 +1268,39 @@
 
 
 
+                                           <asp:TemplateField HeaderText="Special Bonus Amt.">
+                                            <ItemTemplate>
+                                                <asp:label ID="txtgvSpbonusamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "spbonamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="65px"></asp:label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFSpBonusAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
+                                         <asp:TemplateField HeaderText="Total Amount">
+                                            <ItemTemplate>
+                                                <asp:label ID="txtgvtotalamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tbamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="65px"></asp:label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFtbamount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Bank Amt.">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvBankAmtbon" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
@@ -1326,7 +1369,7 @@
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
 
-
+                                  </div>
 
                             </div>
                         </asp:View>
