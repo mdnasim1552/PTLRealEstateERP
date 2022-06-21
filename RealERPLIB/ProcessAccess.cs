@@ -202,10 +202,10 @@ namespace RealERPLIB
             }// try
         }
 
-        public bool UpdateTransInfo(string comcod, string v1, string v2, string pactcode, string mktco, object bgdqty, object p1, object p2, string yearmon, string v3, string v4, string v5, string v6, string v7, string v8, string v9)
-        {
-            throw new NotImplementedException();
-        }
+        //public bool UpdateTransInfo(string comcod, string v1, string v2, string pactcode, string mktco, object bgdqty, object p1, object p2, string yearmon, string v3, string v4, string v5, string v6, string v7, string v8, string v9)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public bool UpdateTransInfo(string comCode, string SQLprocName, string CallType,
              string mDesc1 = "", string mDesc2 = "", string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "",

@@ -101,6 +101,8 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string cashamta { get; set; }
             public DateTime joindate { get; set; }
             public double duration { get; set; }
+            public double spbonamt { get; set; }
+            public double tbamt { get; set; }
             public string refdesc { get; set; }
             public string sectionname { get; set; }
             public string slength { get; set; }
