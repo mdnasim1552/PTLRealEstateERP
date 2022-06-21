@@ -585,7 +585,7 @@
                             </fieldset>
 
                         </asp:Panel>
-                        <asp:Panel ID="PnlDesc" runat="server" Visible="False">
+                        <asp:Panel ID="PnlDesc" runat="server">
                             <asp:Label ID="lblDescription" runat="server" CssClass="lblTxt panelTitel" Text="Description:"></asp:Label>
 
                             <div class="table-responsive">
