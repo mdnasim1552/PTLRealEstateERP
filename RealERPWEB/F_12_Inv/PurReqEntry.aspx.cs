@@ -463,15 +463,45 @@ namespace RealERPWEB.F_12_Inv
             this.txtCurReqNo2.ReadOnly = true;
             this.Panel1.Visible = true;
             this.Panel2.Visible = true;
-            if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+
+            string comcod = this.GetCompCode();
+            switch (comcod)
             {
-                this.PnlDesc.Visible = false;
-                this.uPrj.Visible = false;
+                case "1205":
+                case "3351":
+                case "3352":
+                case "3368":
+                    if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+                    {
+
+                        this.PnlDesc.Visible = false;
+                        this.uPrj.Visible = false;
+                    }
+                    else
+                    {
+                        this.PnlDesc.Visible = true;
+                    }
+
+                    break;
+
+
+                default:
+                    this.PnlDesc.Visible = true;
+                    break;
             }
-            else
-            {
-                this.PnlDesc.Visible = true;
-            }
+
+
+
+            //if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+            //{
+                
+            //    this.PnlDesc.Visible = false;
+            //    this.uPrj.Visible = false;
+            //}
+            //else
+            //{
+            //    this.PnlDesc.Visible = true;
+            //}
             
             
             this.lbtnOk.Text = "New";
