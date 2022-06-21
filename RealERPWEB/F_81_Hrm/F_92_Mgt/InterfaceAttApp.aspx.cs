@@ -210,7 +210,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[0].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
                     break;
 
                 case "1":
@@ -219,7 +219,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[1].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "2":
                     this.pnlallReq.Visible = false;
@@ -227,7 +227,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = true;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[2].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "3":
                     this.pnlallReq.Visible = false;
@@ -235,7 +235,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = true;
-                    this.RadioButtonList1.Items[3].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
 
                 case "4":
@@ -244,7 +244,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = true;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[4].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
             }
         }

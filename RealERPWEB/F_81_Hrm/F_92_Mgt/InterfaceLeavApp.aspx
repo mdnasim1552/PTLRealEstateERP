@@ -10,7 +10,9 @@
             margin: 44px auto;
             width: 100%;
         }
-
+        .nav-tabs{
+            border-bottom:0!important;
+        }
         .InBox {
             color: red !important;
         }
@@ -201,7 +203,7 @@
             color: #000 !important;
         }
 
-/*        .blink_me {
+        .blink_me {
             animation: blinker 5s linear infinite;
         }
 
@@ -209,7 +211,7 @@
             50% {
                 opacity: 0;
             }
-        }*/
+        }
 
         .grvContentarea tr td:last-child {
             /*width: 120px;*/
@@ -643,7 +645,7 @@
                         <asp:Panel ID="pnlInt" runat="server" Visible="false">
                             <div id="slSt" class=" col-md-12" style="float: left; clear: both;">
                                 <div class="panel with-nav-tabs panel-primary">
-                            <fieldset class="tabMenu">
+                            <fieldset class="tabMenu mb-2">
                                 <div class="form-horizontal">
                                      <div class="tbMenuWrp nav nav-tabs rptPurInt">
                                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
@@ -657,7 +659,7 @@
                                 </div>
                             </fieldset>
                             <div>
-
+                        
 
                                         <asp:Panel ID="pnlallReq" runat="server" Visible="false">
                                             <div class="row">

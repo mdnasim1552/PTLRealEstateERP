@@ -9,9 +9,21 @@
 
 
     <style>
-        .nav-tabs{
+                .nav-tabs{
             border:none!important;
         }
+             .chzn-drop {
+            width: 100% !important;
+        }
+        .chzn-container{
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
         .mt20 {
             margin-top: 20px;
         }
@@ -82,6 +94,11 @@
             color: #fff;
         }
 
+        
+        .tbMenuWrp > li.active > a, .tbMenuWrp > li.active > a:focus, .tbMenuWrp > li.active > {
+            background: #472AC6 !important;
+            color: #fff;
+        }
 
 
 
@@ -99,10 +116,14 @@
             /*padding: 2px;*/
             width: 100%;
         }
+                    .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active {
+                background: #12A5A6;
+                color: #fff;
+            }
 
             .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
-                /*background: #12A5A6;*/
-                /*color: #fff;*/
+                background: #12A5A6;
+                color: #fff;
             }
 
 
@@ -154,7 +175,7 @@
             color: #000 !important;
         }
 
-/*        .blink_me {
+        .blink_me {
             animation: blinker 5s linear infinite;
         }
 
@@ -162,7 +183,7 @@
             50% {
                 opacity: 0;
             }
-        }*/
+        }
 
         .grvContentarea tr td:last-child {
             /*width: 120px;*/
@@ -387,15 +408,32 @@
 
 
     </style>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function () {
+                Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+
+            });
+            function pageLoaded() {
+
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
+                });
+
+                $('.chzn-select').chosen({ search_contains: true });
+            }
+
+        </script>
     <script>
+
         function sum() {
 
             var txtFirstNumberValue = document.getElementById("<%=txtLoanAmt.ClientID%>").value;
             var txtSecondNumberValue = document.getElementById("<%=txtInstNum.ClientID%>").value;
             var result = parseInt(txtFirstNumberValue) / parseFloat(txtSecondNumberValue);
             if (result < 1) {
-                alert("Amount Per </br> Installment can not be 0")
+                alert("Amount Per  Installment can not be 0")
                 return;
             }
             if (!isNaN(result)) {
@@ -457,6 +495,7 @@
         }
     </script>--%>
 
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -478,7 +517,7 @@
             </div>
 
             <div class="section">
-                <div class="card mt-5">
+                <div class="card mt-4">
                     <div class="card-header pt-2 pb-2">
                         <div class="row">
                             <div class="col-lg-2">
@@ -497,7 +536,7 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="col-lg-2">
-                                <asp:Label ID="Label3" runat="server">Search Emp.</asp:Label>
+                                <asp:Label ID="Label3" runat="server">ID Card #</asp:Label>
                                 <div class="input-group input-group-alt input-group-sm">
                                     <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                     <div class="input-group-prepend ">
@@ -510,9 +549,7 @@
                                     <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
                                 </div>
                             </div>
-                            <div class="col-lg-2 d-flex">
-                                <asp:LinkButton ID="lnkApplyModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20" OnClick="lnkApplyModal_Click">Apply Loan</asp:LinkButton>
-                            </div>
+                                <asp:LinkButton ID="lnkApplyModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="lnkApplyModal_Click"><i class="fa fa-plus"></i> Apply Loan</asp:LinkButton>
                         </div>
                     </div>
                     <div class="card-body">
@@ -1069,12 +1106,16 @@
                         <div class="modal-body">
 
                             <div class="row mt-2">
-                                <div class="col-lg-3 row">
-                                    <div class="form-group col-6 p-0">
+                                <div class="col-lg-1">
+                                    <div class="form-group">
                                         <asp:Label ID="lblLoanId" runat="server">Loan Id</asp:Label>
                                         <asp:TextBox ID="txtLoanId" runat="server" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
                                     </div>
-                                    <div class="form-group col-6">
+                  
+                                </div>
+
+                                  <div class="col-lg-2">
+                                         <div class="form-group">
                                         <asp:Label ID="lblcreateDate" runat="server">Create Date 
                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ForeColor="Red" ValidationGroup="one"
                                                    ControlToValidate="txtcreateDate" ErrorMessage="Required" Font-Size="8" Font-Italic="true"></asp:RequiredFieldValidator>
@@ -1082,8 +1123,15 @@
                                         <asp:TextBox ID="txtcreateDate" runat="server" CssClass="form-control form-control-sm  mr-2" ValidationGroup="one"></asp:TextBox>
                                         <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtcreateDate"></cc1:CalendarExtender>
                                     </div>
-                                </div>
+                                   </div>
                                 <div class="col-lg-3">
+                                        <div class="form-group">
+                                        <asp:Label ID="Label6" runat="server">Employee Name</asp:Label>
+                                        <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control form-control-sm chzn-select">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <asp:Label ID="lblLoanAmt" runat="server">Loan Amount *
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" Font-Size="8" Font-Italic="true" runat="server" ForeColor="Red" ValidationGroup="one"
@@ -1092,19 +1140,21 @@
                                         </asp:Label>
                                         <asp:TextBox ID="txtLoanAmt" runat="server" CssClass="form-control form-control-sm" onKeyUp="sum()" onkeypress="return isNumberKey(this, event);" ValidationGroup="one"></asp:TextBox>
                                     </div>
+                 
                                 </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <asp:Label ID="Label4" runat="server" CssClass="">Installment Number *
+                                 <div class="col-lg-2">
+                                        <div class="form-group">
+                                        <asp:Label ID="Label4" runat="server" CssClass="">Installment No *
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red" ValidationGroup="one"
                                             ControlToValidate="txtInstNum" ErrorMessage="Required" Font-Size="8" Font-Italic="true"></asp:RequiredFieldValidator>
                                         </asp:Label>
                                         <asp:TextBox ID="txtInstNum" runat="server" CssClass="form-control form-control-sm" onKeyUp="sum()" onkeypress="return isNumberKey(this, event);" ValidationGroup="four"></asp:TextBox>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
+                                  </div>
+                           
+                                <div class="col-lg-2">
                                     <div class="form-group">
-                                        <asp:Label ID="lblAmtPerIns" runat="server">Amount Per </br> Installment</asp:Label>
+                                        <asp:Label ID="lblAmtPerIns" runat="server">Amount Per Inst</asp:Label>
                                         <asp:TextBox ID="txtAmtPerIns" runat="server" CssClass="form-control form-control-sm" Enabled="false" onkeypress="return isNumberKey(this, event);"></asp:TextBox>
                                     </div>
                                 </div>
@@ -1181,24 +1231,16 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                           <div class="col-lg-6">
                                     <div class="form-group">
                                         <asp:Label ID="lblLoanDesc" runat="server">Purpose of loan</asp:Label>
                                         <asp:TextBox ID="txtLoanDescc" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" Rows="3" Style="min-height: 70px;"></asp:TextBox>
                                     </div>
                                 </div>
+             
 
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <asp:Label ID="Label6" runat="server">Employee Name</asp:Label>
-                                        <asp:DropDownList ID="ddlEmpList" runat="server" CssClass="form-control form-control-sm chzn-select">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-
-                            </div>
+          
                             <div class="rowmt-2">
                                 <div class="d-flex justify-content-center">
                                     <asp:LinkButton ID="lnkAdd" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkAdd_Click" ValidationGroup="one">Save</asp:LinkButton>

@@ -221,8 +221,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.ddlLoanType.DataValueField = "gcod";
             this.ddlLoanType.DataSource = ds1.Tables[0];
             this.ddlLoanType.DataBind();
-            
-           this.ddlLoanTypeSearch.DataTextField = "loantype";
+            ddlLoanType.Items.Insert(0, new ListItem("All loan", ""));
+            ddlLoanType.Items[0].Attributes["disabled"] = "disabled";
+
+            this.ddlLoanTypeSearch.DataTextField = "loantype";
             this.ddlLoanTypeSearch.DataValueField = "gcod";
             this.ddlLoanTypeSearch.DataSource = ds1.Tables[0];
             this.ddlLoanTypeSearch.DataBind();
@@ -310,7 +312,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string instlnum = this.txtInstNum.Text.ToString()??"0";
             string perinstlamt = "0"+this.txtAmtPerIns.Text.ToString()??"0";
             string loandesc = this.txtLoanDescc.Text.ToString();
-            string rate = this.txtrt.Text.ToString()??"0";
+            string rate = "0"+this.txtrt.Text.ToString();
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy")??"";
             string posteddate = System.DateTime.Now.ToString("dd-MMM-yyy")??"";
             string pstdusrid = hst["usrid"].ToString();
