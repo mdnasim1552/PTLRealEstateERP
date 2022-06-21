@@ -57,6 +57,11 @@ namespace RealERPWEB.F_30_Facility
 
         private void getComplainUser()
         {
+            if (Request.QueryString["ComplNo"] != null)
+            {
+                ddlComplain.SelectedValue = Request.QueryString["ComplNo"].ToString();
+                ddlComplain.Enabled = false;
+            }
             string comcod = GetComCode();
             string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINUSER", complno, "", "", "", "", "", "", "", "", "", "");

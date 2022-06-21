@@ -618,7 +618,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptLeaveDateRange", list, null, null);
-                   
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", " Leave Report"));
