@@ -742,8 +742,7 @@ namespace RealERPWEB.F_24_CC
                 string comcod = this.GetCompCode();
                 string PactCode = this.ddlProjectName.SelectedValue.ToString();
                 string Usircode = this.ddlUnitName.Text.Trim();
-
-                DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPAYSCHCODE", PactCode, Usircode, SchCode, "", "", "", "", "", "");
+                DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPAYSCHCODE", PactCode, Usircode,ASTUtility.Left(SchCode,5), "", "", "", "", "", "");
                 SchCode = ds3.Tables[0].Rows[0]["schcode"].ToString();
                 this.lblSchCode.Text = ds3.Tables[0].Rows[0]["schcode"].ToString();
             }

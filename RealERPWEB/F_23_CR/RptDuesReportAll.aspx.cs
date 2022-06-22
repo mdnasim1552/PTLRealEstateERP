@@ -187,6 +187,46 @@ namespace RealERPWEB.F_23_CR
             this.gvDues.DataSource = dt;
             this.gvDues.DataBind();
             this.FooterCalculation();
+            this.visiblity();
+
+        }
+
+        private void visiblity()
+        {
+          string radiolist=  this.rbtntype1.SelectedValue.ToString();
+
+
+            this.gvDues.Columns[7].Visible = false;
+            this.gvDues.Columns[8].Visible = false;
+            this.gvDues.Columns[9].Visible = false;
+            this.gvDues.Columns[10].Visible = false;
+
+
+            if (radiolist== "Booking")
+            {
+                this.gvDues.Columns[7].Visible = true;
+                this.gvDues.Columns[9].Visible = true;
+
+            }
+
+            else if(radiolist == "CRDUES")
+            {
+                this.gvDues.Columns[8].Visible = true;
+                this.gvDues.Columns[10].Visible = true;
+
+            }
+
+            else
+            {
+                this.gvDues.Columns[7].Visible = true;
+                this.gvDues.Columns[8].Visible = true;
+                this.gvDues.Columns[9].Visible = true;
+                this.gvDues.Columns[10].Visible = true;
+            }
+
+
+
+
 
         }
 
