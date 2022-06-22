@@ -332,6 +332,48 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
         }
+
+        //apply loan view
+        protected void lnkApplyModal_Click(object sender, EventArgs e)
+        {
+
+            this.GetLoanType();
+            this.GetGross();
+            this.GetPrevLoan();
+
+            this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            this.txtLoanAmt.Text = "";
+            this.txtInstNum.Text = "";
+            this.txtStd.Text = "";
+            this.txtOI.Text = "";
+            this.txtOD.Text = "";
+            this.txtrt.Text = "";
+            this.txtEffDate.Text = "";
+            this.txtLoanDescc.Text = "";
+            this.txtAmtPerIns.Text = "";
+
+            this.lnkAdd.Visible = true;
+            this.ddlEmpList.Enabled = true;
+            this.txtcreateDate.Enabled = true;
+            this.txtLoanAmt.Enabled = true;
+            this.txtInstNum.Enabled = true;
+            this.txtStd.Enabled = true;
+            this.txtOI.Enabled = true;
+            this.txtOD.Enabled = true;
+            this.txtrt.Enabled = true;
+            this.txtEffDate.Enabled = true;
+            this.ddlLoanType.Enabled = true;
+            this.txtLoanDescc.Enabled = true;
+            this.lnkUpdate.Visible = false;
+            this.lnkApprov.Visible = false;
+
+            this.lnkCancel.Visible = false;
+            this.dibNote.Visible = false;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenApplyLoan();", true);
+        }
+
+
+        //create loan
         protected void lnkAdd_Click(object sender, EventArgs e)
         {
             
@@ -386,6 +428,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
         }
+        //update loan
         protected void lnkUpdate_Click(object sender, EventArgs e)
         {
 
@@ -436,8 +479,30 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         //loan process approval
         protected void lnkApprov_Click(object sender, EventArgs e)
         {
+            string empid = this.ddlEmpList.SelectedValue.ToString();
+            string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
+            string lnstatus = "1";
+            string lsApproved = "1";
+            string lsCancelled= "0";
+            this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, lsCancelled);
+        }
+        //loan cancellation
+        protected void lnkCancel_Click(object sender, EventArgs e)
+        {
+            string empid = this.ddlEmpList.SelectedValue.ToString();
+            string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
+            string lnstatus = "0";
+            string lsApproved = "0";
+            string IsCancelled = "1";
+            this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, IsCancelled);
+        }
+
+
+        //change  loan status
+        private void ChangeloanStatus(string empid,string loanid, string lnstatus, string lsApproved, string lsCancelled)
+        {
             string note = this.txtnote.Text.ToString() ?? "";
-            if (note == "")
+            if (note == "" && lsCancelled=="1")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "checkEmptyNote();", true);
                 return;
@@ -450,11 +515,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string compName = hst["comnam"].ToString();
             string usrid = hst["usrid"].ToString();
             string deptcode = hst["deptcode"].ToString();
-
             string comcod = this.GetCompCode();
-            string empid = this.ddlEmpList.SelectedValue.ToString();
-            //string empid = hst["empid"].ToString() ?? "";
-            string id = this.txtLoanId.Text.ToString().Remove(0, 3);
             string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
             string loanamt = "0" + this.txtLoanAmt.Text.ToString();
             string instlnum = this.txtInstNum.Text.ToString() ?? "0";
@@ -466,11 +527,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string pstdssnedt = hst["session"].ToString();
             string pstdtrmnledt = hst["compname"].ToString();
             string postdateedited = System.DateTime.Now.ToString("dd-MMM-yyy") ?? "";
-
-            string lnstatus = "1";
-            string lsApproved = "1";
-            string lsCancelled= "0";
-
             string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
             string othincm = "0" + this.txtOI.Text.ToString() ?? "0";
             string othdeduct = "0" + this.txtOD.Text.ToString();
@@ -478,17 +534,17 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
 
-            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, id, loantype, loanamt, instlnum, perinstlamt, loandesc, 
-                rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, lsApproved, lsCancelled,note,"", "", "", "", "", "", "");
+            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, loanid, loantype, loanamt, instlnum, perinstlamt, loandesc,
+                rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, lsApproved, lsCancelled, note, "", "", "", "", "", "", "");
             if (result == true)
             {
 
                 Message = "Successfully Updated";
                 //if (qtype != "MGT")
                 //{
-                    this.SendNotificaion(createDate, effedat, id, deptcode, compsms, compmail, ssl, compName, "");
+                this.SendNotificaion(createDate, effedat, loanid, deptcode, compsms, compmail, ssl, compName, "");
 
-               // }
+                // }
 
                 string eventdesc2 = "Details: " + "Loan Process Approval";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", "", "");
@@ -500,10 +556,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 Response.Redirect(Request.RawUrl);
             }
-
         }
-
-        
+       //edit view  
         protected void pendlnEdit_Click(object sender, EventArgs e)
         {
             this.txtcreateDate.Enabled = true;
@@ -517,49 +571,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.ddlLoanType.Enabled = true;
             this.txtLoanDescc.Enabled = true;
             this.ddlEmpList.Enabled = true;
-
             this.dibNote.Visible = true;
             this.lnkUpdate.Visible = true;
-
-
             string comcod = this.GetCompCode();
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
             string lnid = ((Label)this.gvProcess.Rows[index].FindControl("lblidPend")).Text.ToString();
             string empid= ((Label)this.gvProcess.Rows[index].FindControl("lblpendempid")).Text.ToString();
-            string lstatus = ((Label)this.gvProcess.Rows[index].FindControl("lbllnstatus")).Text.ToString();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
 
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANBYID", empid, lnid, "", "", "", "", "", "", "");
-            if (ds == null || ds.Tables.Count == 0)
-                return;
-            
-            DataTable dt = ds.Tables[0];
-            this.txtLoanId.Text ="Ln-" +dt.Rows[0]["id"].ToString();
-            this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
-            this.txtLoanAmt.Text = dt.Rows[0]["loanamt"].ToString() ?? "";
-            this.txtInstNum.Text = dt.Rows[0]["instlnum"].ToString() ?? "";
-            this.txtAmtPerIns.Text = dt.Rows[0]["perinstlamt"].ToString() ?? "";
-            this.txtStd.Text = dt.Rows[0]["statdeduction"].ToString() ?? "";
-            this.txtOI.Text = dt.Rows[0]["othincome"].ToString() ?? "";
-            this.txtOD.Text = dt.Rows[0]["othdeduction"].ToString() ?? "";
-            this.txtrt.Text = dt.Rows[0]["rate"].ToString() ?? "";
-            this.txtEffDate.Text = Convert.ToDateTime(dt.Rows[0]["effdate"]).ToString("dd-MMM-yyyy");
-            string loantype = dt.Rows[0]["loantype"].ToString().Trim();
-            ddlLoanType.ClearSelection();
-            ddlLoanType.Items.FindByValue(loantype).Selected = true;
-            this.txtLoanDescc.Text = dt.Rows[0]["loandesc"].ToString() ?? "";
-            
-
-           
-                this.lnkUpdate.Visible = true;
-                this.lnkAdd.Visible = false;
-                this.lnkApprov.Visible = false;
-           
-            this.ddlEmpList.SelectedValue = empid;
-            this.ddlEmpList.Enabled = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "EditLoan();", true);
         }
 
+       //edit view for aproval
         protected void pendlnEditApr_Click(object sender, EventArgs e)
         {
             this.txtcreateDate.Enabled = true;
@@ -572,46 +596,17 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.txtEffDate.Enabled = true;
             this.ddlLoanType.Enabled = true;
             this.txtLoanDescc.Enabled = true;
-
-
             string comcod = this.GetCompCode();
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
-            string lnid = ((Label)this.gvApproved.Rows[index].FindControl("lblidPend")).Text.ToString();
-            string empid = ((Label)this.gvApproved.Rows[index].FindControl("lblpendempid")).Text.ToString();
-            string lstatus = ((Label)this.gvApproved.Rows[index].FindControl("lbllnstatus")).Text.ToString();
-
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANBYID", empid, lnid, "", "", "", "", "", "", "");
-            if (ds == null || ds.Tables.Count == 0)
-                return;
-
-            DataTable dt = ds.Tables[0];
-            this.txtLoanId.Text = "Ln-" + dt.Rows[0]["id"].ToString();
-            this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
-            this.txtLoanAmt.Text = dt.Rows[0]["loanamt"].ToString() ?? "";
-            this.txtInstNum.Text = dt.Rows[0]["instlnum"].ToString() ?? "";
-            this.txtAmtPerIns.Text = dt.Rows[0]["perinstlamt"].ToString() ?? "";
-            this.txtStd.Text = dt.Rows[0]["statdeduction"].ToString() ?? "";
-            this.txtOI.Text = dt.Rows[0]["othincome"].ToString() ?? "";
-            this.txtOD.Text = dt.Rows[0]["othdeduction"].ToString() ?? "";
-            this.txtrt.Text = dt.Rows[0]["rate"].ToString() ?? "";
-            this.txtEffDate.Text = Convert.ToDateTime(dt.Rows[0]["effdate"]).ToString("dd-MMM-yyyy");
-            string loantype = dt.Rows[0]["loantype"].ToString().Trim();
-            ddlLoanType.ClearSelection();
-            ddlLoanType.Items.FindByValue(loantype).Selected = true;
-            this.txtLoanDescc.Text = dt.Rows[0]["loandesc"].ToString() ?? "";
-
-
-                this.lnkUpdate.Visible = false;
-                this.lnkAdd.Visible = false;
-                this.lnkApprov.Visible = true;
-          
-            this.ddlEmpList.SelectedValue = empid;
-            this.ddlEmpList.Enabled = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "EditLoan();", true);
+            string lnid = ((Label)this.gvApproved.Rows[index].FindControl("lblidPend")).Text.Trim().ToString();
+            string empid = ((Label)this.gvApproved.Rows[index].FindControl("lblpendempid")).Text.Trim().ToString();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
         }
 
 
+        //pending loan view
         protected void pendlnView_Click(object sender, EventArgs e)
         {
           
@@ -642,6 +637,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
         }
+       
+        //process loan view
         protected void proslnView_Click(object sender, EventArgs e)
         {
 
@@ -703,7 +700,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.GetGross();
         }
   
-
+        //approve loan view
         protected void AprlnView_Click(object sender, EventArgs e)
         {
 
@@ -738,6 +735,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.GetGross();
 
         }
+        //generate loan view
         protected void LoGenlnView_Click(object sender, EventArgs e)
         {
 
@@ -767,6 +765,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.GetGross();
         }
 
+        //all view
         private void AllVie_Data(string empid, string lnid) {
 
             string comcod = this.GetCompCode();
@@ -832,45 +831,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
         }
 
-        protected void lnkApplyModal_Click(object sender, EventArgs e)
-        {
-            
-            this.GetLoanType();
-            this.GetGross();
-            this.GetPrevLoan();
-
-            this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-            this.txtLoanAmt.Text = "";
-            this.txtInstNum.Text = "";
-            this.txtStd.Text = "";
-            this.txtOI.Text = "";
-            this.txtOD.Text = "";
-            this.txtrt.Text = "";
-            this.txtEffDate.Text = "";
-            this.txtLoanDescc.Text = "";
-            this.txtAmtPerIns.Text = "";
-
-            this.lnkAdd.Visible = true;
-            this.ddlEmpList.Enabled = true;
-            this.txtcreateDate.Enabled = true;
-            this.txtLoanAmt.Enabled = true;
-            this.txtInstNum.Enabled = true;
-            this.txtStd.Enabled = true;
-            this.txtOI.Enabled = true;
-            this.txtOD.Enabled = true;
-            this.txtrt.Enabled = true;
-            this.txtEffDate.Enabled = true;
-            this.ddlLoanType.Enabled = true;
-            this.txtLoanDescc.Enabled = true;
-            this.lnkUpdate.Visible = false;
-            this.lnkApprov.Visible = false;
-
-            this.lnkCancel.Visible = false;
-            this.dibNote.Visible = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenApplyLoan();", true);
-        }
-
-
+   
+        //delete confirm
         protected void confirmDelete_click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
@@ -903,6 +865,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
         }
 
+        //delete popup
         protected void confmDelModal_Click(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
@@ -915,6 +878,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             
         }
 
+        //loan generate gridview
         protected void gvGen_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -931,7 +895,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             }
         }
-
+        //loan pending gridview
         protected void gvPending_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -947,6 +911,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
         }
 
+        //Employee list dropdown
         protected void ddlEmpList_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetGross();
@@ -954,60 +919,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenApplyLoan();", true);
 
         }
-        protected void lnkCancel_Click(object sender, EventArgs e)
-        {
-            string note = this.txtnote.Text.ToString() ?? "";
-            if (note == "")
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "checkEmptyNote();", true);
-                return;
-            }
-            string Message;
-            Hashtable hst = (Hashtable)Session["tblLogin"];
 
-            string comcod = this.GetCompCode();
-            string empid = this.ddlEmpList.SelectedValue.ToString();
-            //string empid = hst["empid"].ToString() ?? "";
-            string id = this.txtLoanId.Text.ToString().Remove(0, 3);
-            string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
-            string loanamt = "0" + this.txtLoanAmt.Text.ToString();
-            string instlnum = this.txtInstNum.Text.ToString() ?? "0";
-            string perinstlamt = "0" + this.txtAmtPerIns.Text.ToString() ?? "0";
-            string loandesc = this.txtLoanDescc.Text.ToString();
-            string rate = "0" + this.txtrt.Text.ToString() ?? "0";
-            string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
-            string pstdusredt = hst["usrid"].ToString();
-            string pstdssnedt = hst["session"].ToString();
-            string pstdtrmnledt = hst["compname"].ToString();
-            string postdateedited = System.DateTime.Now.ToString("dd-MMM-yyy") ?? "";
-            string lnstatus = "0";
-            string lsApproved = "0";
-            string IsCancelled = "1";
-           
+   
 
-            string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
-            string othincm = "0" + this.txtOI.Text.ToString() ?? "0";
-            string othdeduct = "0" + this.txtOD.Text.ToString();
-            string stddeduct = "0" + this.txtStd.Text.ToString();
-
-
-
-            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, id, loantype, loanamt, instlnum, perinstlamt, loandesc,
-                rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, lsApproved,IsCancelled,note,"","","","","","","");
-            if (result == true)
-            {
-
-                Message = "Successfully Updated";
-                //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
-                Response.Redirect(Request.RawUrl);
-            }
-            else
-            {
-                Response.Redirect(Request.RawUrl);
-            }
-
-        }
-
+        //notification process
         private void SendNotificaion(string frmdate, string todate, string ltrnid, string deptcode, string compsms, string compmail, string ssl, string compName, string htmtableboyd)
         {
             try
