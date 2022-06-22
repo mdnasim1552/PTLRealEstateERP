@@ -211,28 +211,28 @@
                   <Width>0.52083in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.47084in</Width>
+                  <Width>1.38751in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.38626in</Width>
+                  <Width>1.31334in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.8125in</Width>
+                  <Width>0.76042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.55208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.69792in</Width>
+                  <Width>0.67709in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.65833in</Width>
+                  <Width>0.66875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7in</Width>
+                  <Width>0.73125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.6575in</Width>
+                  <Width>0.83458in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -396,7 +396,22 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Joining Date</Value>
+                                  <Value>Joining</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value> Date</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -522,7 +537,22 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Special Bonus</Value>
+                                  <Value>MGT</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Approved</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1628,7 +1658,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1731,7 +1760,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.00569in</Top>
             <Height>1.68598in</Height>
-            <Width>7.73958in</Width>
+            <Width>7.72917in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

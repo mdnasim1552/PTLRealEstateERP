@@ -1273,6 +1273,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         else if (comcod == "3354" || comcod=="3368")//Edison
                         {
                             this.gvBonus.Columns[10].HeaderText = "Duration(Day)";
+                            this.gvBonus.Columns[13].HeaderText = "MGT Approved";
                         }
 
 
@@ -2290,8 +2291,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             double cashamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ? 0.00 : dt.Compute("sum(cashamt)", "")));
 
 
+            string rptTitle = "Employee Salary Sheet : " + "Month of " + todate1;
 
             LocalReport Rpt1 = new LocalReport();
+             
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryFinlay", list, null, null);
             Rpt1.EnableExternalImages = true;
@@ -2338,9 +2341,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 
+
+
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&rptTitle="+ rptTitle + "', target='_blank');</script>";
         }
 
         private void PrintSalaryInnStar()

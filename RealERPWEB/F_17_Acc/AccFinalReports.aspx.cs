@@ -915,6 +915,10 @@ namespace RealERPWEB.F_17_Acc
             string RptType = Request.QueryString["RepType"].ToString();
             int j;
             string grpcode;
+
+            string grpsum;
+
+
             switch (RptType)
             {
 
@@ -995,6 +999,34 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "IPRJ":
+                    grpcode = dt1.Rows[0]["grp"].ToString();
+                    //grpsum = Convert.ToDouble(dt1.Rows[0]["grpsum"]).ToString("#,##0.00;(#,##0.00);");
+                    for (j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["grp"].ToString() == grpcode)
+                        {
+                            grpcode = dt1.Rows[j]["grp"].ToString();
+                            dt1.Rows[j]["grpdesc"] = "";
+
+                        }
+
+                        //if (dt1.Rows[j]["grpsum"].ToString() == grpsum)
+                        //{
+                        //    grpsum = dt1.Rows[j]["grpsum"].ToString();
+                        //    dt1.Rows[j]["grpsum"] = 0.00;
+
+                        //}
+
+
+                        else
+                        {
+                            grpcode = dt1.Rows[j]["grp"].ToString();
+                            //grpsum = dt1.Rows[j]["grpsum"].ToString();
+                        }
+                    }
+
+                    break;
 
 
                 default:
@@ -1007,6 +1039,9 @@ namespace RealERPWEB.F_17_Acc
                             dt1.Rows[j]["grpdesc"] = "";
 
                         }
+
+                     
+
 
                         else
                         {
@@ -2227,12 +2262,37 @@ namespace RealERPWEB.F_17_Acc
                 {
                     return;
                 }
-                if (ASTUtility.Right((code), 4) == "AAAA")
+
+                else if (ASTUtility.Right((code), 12) == "010000000000")
+                {
+                    actdesc.Font.Bold = true;
+                    Amount.Font.Bold = true;
+                    actdesc.Style.Add("text-align", "left");
+                }
+
+                else if (ASTUtility.Right((code), 12) == "040000000000")
+                {
+                    actdesc.Font.Bold = true;
+                    Amount.Font.Bold = true;
+                    actdesc.Style.Add("text-align", "left");
+                }
+
+                else if (ASTUtility.Right((code), 10) == "BBBBAAAAAA")
+                {
+                    actdesc.Font.Bold = true;
+                    Amount.Font.Bold = true;
+                    actdesc.Style.Add("text-align", "left");
+                }
+
+                if (ASTUtility.Right((code), 4) == "AAAA"  && ASTUtility.Right((code), 10) != "BBBBAAAAAA")
                 {
                     actdesc.Font.Bold = true;
                     Amount.Font.Bold = true;
                     actdesc.Style.Add("text-align", "right");
                 }
+
+               
+
                 if (code == "AAAAAAAAAAAA")
                 {
                     actdesc.Style.Add("text-align", "Left");

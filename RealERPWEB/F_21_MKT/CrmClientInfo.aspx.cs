@@ -4810,6 +4810,7 @@ namespace RealERPWEB.F_21_MKT
                 this.lbleditempid.Value = empid;
                 this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
+                this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString());
                 ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
@@ -4874,7 +4875,9 @@ namespace RealERPWEB.F_21_MKT
 
                 this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
-               ShowDiscussion();
+                this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
+
+                ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
                 
@@ -5301,6 +5304,8 @@ namespace RealERPWEB.F_21_MKT
 
 
                     case "810100101016": //Status
+                        string lstleadstatus = this.hiddenLedStatus.Value.ToString();
+
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
@@ -5321,7 +5326,9 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataValueField = "gcod";
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
-                        ChkBoxLstStatus.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus:((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
+
+
                         break;
 
 
