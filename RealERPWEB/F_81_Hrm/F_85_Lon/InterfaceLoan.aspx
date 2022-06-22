@@ -1384,7 +1384,7 @@
                             <div class="rowmt-2">
                                 <div class="d-flex justify-content-center">
                                     <asp:LinkButton ID="lnkAdd" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkAdd_Click" ValidationGroup="one">Save</asp:LinkButton>
-                                    <asp:LinkButton ID="lnkUpdate" CssClass="btn btn-primary btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkUpdate_Click" ValidationGroup="one">Loan Process</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkUpdate" CssClass="btn btn-primary btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkUpdate_Click" ValidationGroup="one">Loan Update</asp:LinkButton>
                                     <asp:LinkButton ID="lnkApprov" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkApprov_Click" Visible="false" ValidationGroup="one">Approve</asp:LinkButton>
                                          <asp:LinkButton ID="lnkCancel" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkCancel_Click" Visible="false" ValidationGroup="one">Cancel</asp:LinkButton>
 
