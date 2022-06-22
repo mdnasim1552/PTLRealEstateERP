@@ -712,7 +712,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
                         if (qtype != "MGT")
                         {
-                            this.SendNotificaion(frmdate, todate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
+                            1this.SendNotificaion(frmdate, todate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
 
                         }
 
