@@ -497,37 +497,37 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1402000", "1402063", "F_14_Pro", "LandOwnerPaymentSch?", "Type=Report", "Landowner Payment Information", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402064", "F_14_Pro", "RptLandOwnerPaySch?", "Type=Report", "Payment Schedule- Land Signing", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402065", "F_14_Pro", "RptSupMonthAss?", "Type=supMonthAss", "Supplier Monthly Assessment Report", "Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1403000", "1403060", "F_14_Pro", "RptRequsitionStatus?", "WType=ReqStatus&Type=Purchase", "Requisition Status", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403061", "F_14_Pro", "RptRequsitionStatus?", "WType=ReqAppStatus&Type=Purchase", "Requisition Status(Approved Date)", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403065", "F_14_Pro", "PurSuplinkWithMat", "", "Supply Link With Materials(Work)", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403070", "F_14_Pro", "RptWorkOrderStatus?", "Type=WorkIOrdStatus", "Purchase Order Status", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403071", "F_14_Pro", "RptWorkOrderStatus?", "Type=DetailsWorkIOrdStatus", "Purchase Order Details", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403072", "F_14_Pro", "RptPurchaseOrdItemRate", "", "Purchase Order Wise Item Rate", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403073", "F_14_Pro", "RptWorkOrderStatus?", "Type=RequisitionVsOrder", "Purchase Requisition Vs Order", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1403000", "1403060", "F_14_Pro", "RptRequsitionStatus?", "WType=ReqStatus&Type=Purchase", "Requisition Status", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403061", "F_14_Pro", "RptRequsitionStatus?", "WType=ReqAppStatus&Type=Purchase", "Requisition Status(Approved Date)", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403065", "F_14_Pro", "PurSuplinkWithMat", "", "Supply Link With Materials(Work)", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403070", "F_14_Pro", "RptWorkOrderStatus?", "Type=WorkIOrdStatus", "Purchase Order Status", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403071", "F_14_Pro", "RptWorkOrderStatus?", "Type=DetailsWorkIOrdStatus", "Purchase Order Details", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403072", "F_14_Pro", "RptPurchaseOrdItemRate", "", "Purchase Order Wise Item Rate", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403073", "F_14_Pro", "RptWorkOrderStatus?", "Type=RequisitionVsOrder", "Purchase Requisition Vs Order", "Procurement", "False", "False", "False", "False" }); 
 
-            tblObj.Rows.Add(new Object[] { "1403000", "1403080", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=DaywPur", "Day Wise Purchase", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403082", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=PenBill", "Pending Bill", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1403000", "1403080", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=DaywPur", "Day Wise Purchase", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403082", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=PenBill", "Pending Bill", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403081", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=PurSum", "Purchase Summary (Project Wise)", "Procurement", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403093", "F_14_Pro", "PurSumMatWise?Type=Report", "", "Purchase Summary (Material Wise)", "Procurement", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1403000", "1403083", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=IndSup", "Purchase History-Supplier Wise", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403084", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Purchasetrk", "Purchase Tracking-01", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1403000", "1403083", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=IndSup", "Purchase History-Supplier Wise", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403084", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Purchasetrk", "Purchase Tracking-01", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403092", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=BillRegTrack", "Bill Register Tracking", "Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1403000", "1403085", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Purchasetrk02", "Purchase Tracking-02", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403086", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=BgdBal", "Budget Tracking", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403087", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=PurBilltk", "Bill Tracking", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403088", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=MatRateVar", "Rate Variance - Materials", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403090", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrdVsSup&comcod=", "Purchase Order-Supplier Wise", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403091", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrderTk&comcod=", "Order Tracking", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403094", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking-01", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1403000", "1403085", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Purchasetrk02", "Purchase Tracking-02", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403086", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=BgdBal", "Budget Tracking", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403087", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=PurBilltk", "Bill Tracking", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403088", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=MatRateVar", "Rate Variance - Materials", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403090", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrdVsSup&comcod=", "Purchase Order-Supplier Wise", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403091", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrderTk&comcod=", "Order Tracking", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403094", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking-01", "Procurement", "False", "False", "False", "False" }); 
             //tblObj.Rows.Add(new Object[] { "14275", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking", "Procurement", "False", "False", "False", "False" });
 
 
-            tblObj.Rows.Add(new Object[] { "1403000", "1403100", "F_14_Pro", "RptMatPurHistory?", "Type=Report", "Purchase History-Material Wise", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403110", "F_14_Pro", "RptSupListWithMat?", "Type=SupWise", "Supplier List with Materials-Supplier Wise", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403111", "F_14_Pro", "RptSupListWithMat?", "Type=MatWise", "Supplier List with Materials-Materials Wise", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1402000", "1402120", "F_14_Pro", "BillTracking", "", "General Tracking", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1403000", "1403100", "F_14_Pro", "RptMatPurHistory?", "Type=Report", "Purchase History-Material Wise", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403110", "F_14_Pro", "RptSupListWithMat?", "Type=SupWise", "Supplier List with Materials-Supplier Wise", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403111", "F_14_Pro", "RptSupListWithMat?", "Type=MatWise", "Supplier List with Materials-Materials Wise", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1402000", "1402120", "F_14_Pro", "BillTracking", "", "General Tracking", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1402000", "1402130", "F_14_Pro", "RptDateWiseReq?", "Type=PeriodPurchase", "Periodic Purchase Tracking", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1403000", "1403131", "F_14_Pro", "RptDateWiseReq?", "Type=PendingStatus", "Pending Status", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1403000", "1403131", "F_14_Pro", "RptDateWiseReq?", "Type=PendingStatus", "Pending Status", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403132", "F_14_Pro", "RptDeliveryEfficiency?", "Type=Report", "Materials Delivery Efficiency Report", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403170", "F_14_Pro", "RptReqAdjust", "", "Requisition Adjustment", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403180", "F_14_Pro", "RptPurchaseStatus02?", "Type=Purchase", "Purchase Summary with Opening", "Procurement", "False", "False", "False", "False" });
@@ -569,6 +569,10 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "1403000", "1403615", "F_14_Pro", "LandResLink?", "Type=Report", "Land Code Link", "Procurement", "False", "False", "False", "False" });
+
+
+            tblObj.Rows.Add(new Object[] { "1403000", "1403620", "F_14_Pro", "RptPurOrderTopSheet", "", "Purchase Order Top Sheet", "Procurement", "False", "False", "False", "False" }); ;
+
 
 
 
@@ -1062,7 +1066,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102135", "F_21_MKT", "RptProspectWorking", "", "Prospect Working Report", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102137", "F_21_MKT", "ProspectTransfer", "", "CRM Prospect Transfer", "CRM", "False", "False", "False", "False" });
-          
+            tblObj.Rows.Add(new Object[] { "2102000", "2102138", "F_21_MKT", "RptPerDeleteProspect", "", "Permanent Delete Prospect", "CRM", "False", "False", "False", "False" });
+
 
             //kpi 
             // 05. My Marketing Interface(Sales)
@@ -5496,6 +5501,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000011", "07. Purchase Order History Resources", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisRes", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000012", "12. Periodic Purchase Tracking", "F_14_Pro/RptDateWiseReq?Type=PeriodPurchase", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000013", "17. Rate Variance-Materials", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=MatRateVar&comcod=&Date1=&Date2=", "", true, "" });
+
+            mnuTbl1.Rows.Add(new Object[] { "0302000014", "18. Purchase Order Top Sheet", "F_14_Pro/RptPurOrderTopSheet", "", true, "" });
+
+
 
             //mnuTbl1.Rows.Add(new Object[] { "0321000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0322000000", "", "", "", true, "" });

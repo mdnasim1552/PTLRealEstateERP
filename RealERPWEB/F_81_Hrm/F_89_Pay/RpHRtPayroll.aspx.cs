@@ -448,12 +448,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtlBonSheet.SelectedIndex = 13;
                     this.txtafterdays.Text = "90";
                     break;
-
+                case "3101":
                 case "3354"://Edison
                     this.rbtlBonSheet.SelectedIndex = 14;
                     break;
 
-                case "3101":
+           
                 case "3368":
                     this.rbtlBonSheet.SelectedIndex = 15;
                     break;
@@ -1369,6 +1369,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFbSalb")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bsal)", "")) ? 0.00 : dt.Compute("sum(bsal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFgssalb")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gssal)", "")) ? 0.00 : dt.Compute("sum(gssal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFBonusAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFSpBonusAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(spbonamt)", "")) ? 0.00 : dt.Compute("sum(spbonamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvBonus.FooterRow.FindControl("lgvFtbamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tbamt)", "")) ? 0.00 : dt.Compute("sum(tbamt)", ""))).ToString("#,##0;(#,##0); ");
 
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmtbon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt)", "")) ? 0.00 : dt.Compute("sum(bankamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvBonus.FooterRow.FindControl("lgvFbankAmt2bon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt2)", "")) ? 0.00 : dt.Compute("sum(bankamt2)", ""))).ToString("#,##0;(#,##0); ");
@@ -3529,7 +3531,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusSheetTerranova();
                         break;
 
-                    case "3101":
+                    //case "3101":
                     case "3355": //Greenwood
                         this.PrintBonusSheetGreenWood();
                         break;
@@ -3543,6 +3545,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusBTI();
                         break;
 
+                    case "3101":
                     case "3354"://Edison
                         this.PrintBonusEdison();
                         break;
@@ -5010,14 +5013,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string desigid = dt.Rows[i]["desigid"].ToString();
                 string duration = Convert.ToDouble(dt.Rows[i]["duration"]).ToString();
                 string bonamt = Convert.ToDouble(dt.Rows[i]["bonamt"]).ToString();
+              
                 string bankamt = Convert.ToDouble(dt.Rows[i]["bankamt"]).ToString();
                 string bankamt2 = Convert.ToDouble(dt.Rows[i]["bankamt2"]).ToString();
                 string cashamt = Convert.ToDouble(dt.Rows[i]["cashamt"]).ToString();
                 string rmrks = dt.Rows[i]["rmrks"].ToString();
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTORUPHRBONINF", monthid, empid, perbon, bsal, gssal, bondate, section, desigid, duration, bonamt, bankamt, bankamt2, cashamt, rmrks, "");
 
+                string spbonamt = Convert.ToDouble(dt.Rows[i]["spbonamt"]).ToString();
+                string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkcash"]).ToString();
 
-
+                result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTORUPHRBONINF", monthid, empid, perbon, bsal, gssal, bondate, section, desigid, duration, bonamt, bankamt, bankamt2, cashamt, rmrks, spbonamt, chkbnkcsh, "","","","","");
             }
 
             Msg = "Updated Success";

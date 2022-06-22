@@ -3770,7 +3770,9 @@
                                             <li>
                                                 <asp:HyperLink ID="hlnkProsWorkingReport" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptProspectWorking">Prospect Working Report</asp:HyperLink>
                                             </li>
-
+                                            <li>
+                                                <asp:HyperLink ID="hyplnkPerDeleteProspect" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptPerDeleteProspect"> Per. Delete Prospect</asp:HyperLink>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

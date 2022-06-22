@@ -1322,7 +1322,7 @@
 
                                                  <asp:TemplateField HeaderText="Leave Date">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lbllvdatedr" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "strtdat")).ToString("dd-MMM-yyyy") %>'
+                                                    <asp:Label ID="lbllvdatedr" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lstrtdat")).ToString("dd-MMM-yyyy") %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
