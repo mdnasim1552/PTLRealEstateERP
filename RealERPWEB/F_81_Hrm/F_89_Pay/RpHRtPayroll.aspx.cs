@@ -1273,6 +1273,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         else if (comcod == "3354" || comcod=="3368")//Edison
                         {
                             this.gvBonus.Columns[10].HeaderText = "Duration(Day)";
+                            this.gvBonus.Columns[13].HeaderText = "MGT Approved";
                         }
 
 
