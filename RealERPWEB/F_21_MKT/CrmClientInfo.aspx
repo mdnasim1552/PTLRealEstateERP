@@ -4643,7 +4643,7 @@
 
 
 
-            <div id="modalComments" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
+            <div id="modalComments" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-mid-width">
                     <div class="modal-content modal-content-mid-width">
                         <div class="modal-header">
