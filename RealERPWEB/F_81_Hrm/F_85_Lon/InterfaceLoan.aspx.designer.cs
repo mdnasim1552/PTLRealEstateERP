@@ -618,24 +618,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.DropDownList ddlLoanType;
 
         /// <summary>
-        /// lblLoanDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLoanDesc;
-
-        /// <summary>
-        /// txtLoanDescc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLoanDescc;
-
-        /// <summary>
         /// dibNote control.
         /// </summary>
         /// <remarks>
@@ -663,6 +645,33 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.TextBox txtnote;
 
         /// <summary>
+        /// lblLoanDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLoanDesc;
+
+        /// <summary>
+        /// txtLoanDescc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLoanDescc;
+
+        /// <summary>
+        /// lnkCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
+
+        /// <summary>
         /// lnkAdd control.
         /// </summary>
         /// <remarks>
@@ -670,6 +679,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkAdd;
+
+        /// <summary>
+        /// lnkEdited control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkEdited;
 
         /// <summary>
         /// lnkUpdate control.
@@ -690,13 +708,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.LinkButton lnkApprov;
 
         /// <summary>
-        /// lnkCancel control.
+        /// loanID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
+        protected global::System.Web.UI.WebControls.HiddenField loanID;
 
         /// <summary>
         /// confirmDelete control.
@@ -714,7 +732,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl delid;
+        protected global::System.Web.UI.WebControls.HiddenField delid;
 
         /// <summary>
         /// delempid control.
@@ -723,6 +741,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl delempid;
+        protected global::System.Web.UI.WebControls.HiddenField delempid;
+
+        /// <summary>
+        /// hiddenSeletedIndex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenSeletedIndex;
     }
 }

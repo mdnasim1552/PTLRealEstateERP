@@ -172,16 +172,39 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "Unitname")) %>' Width="120px"></asp:Label>
                                         </ItemTemplate>
                                              <FooterTemplate>
-                                            <asp:Label ID="lblgvFUDescas" runat="server" Font-Bold="True"> Total :</asp:Label>
+                                            <asp:Label ID="lblgvFUDescas" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>
                                          <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
                                     
+                                    <asp:TemplateField HeaderText="Installment">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvInstallment" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>' Width="120px"></asp:Label>
+                                        </ItemTemplate>
+                                             <FooterTemplate>
+                                            <asp:Label ID="lblgvFInstallment" runat="server" Font-Bold="True"> </asp:Label>
+                                        </FooterTemplate>
+                                         <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="left" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Schedule Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvschdat" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "schdat")) %>' Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                             <FooterTemplate>
+                                            <asp:Label ID="lblgvFschdat" runat="server" Font-Bold="True"> Total :</asp:Label>
+                                        </FooterTemplate>
+                                         <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="left" />
+                                    </asp:TemplateField>
                           
 
-                                            <asp:TemplateField HeaderText="Prev.</br> Booking Dues">
+                                      <asp:TemplateField HeaderText="Prev.</br> Booking Dues" Visible="false">
                                         <FooterTemplate>
                                             <asp:Label ID="lblFprbookdues" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>
@@ -193,7 +216,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Prev.</br> CR Dues">
+                                     <asp:TemplateField HeaderText="Prev.</br> CR Dues" Visible="false">
                                         <FooterTemplate>
                                             <asp:Label ID="lbplFCrdues" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>
@@ -205,7 +228,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText=" Current.</br>Booking Dues">
+                                    <asp:TemplateField HeaderText=" Current.</br>Booking Dues" Visible="false">
                                         <FooterTemplate>
                                             <asp:Label ID="lblfcbookdues" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>
@@ -217,7 +240,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                           <asp:TemplateField HeaderText="Current.</br> CR Dues" >
+                                        <asp:TemplateField HeaderText="Current.</br> CR Dues" Visible="false" >
                                         <FooterTemplate>
                                             <asp:Label ID="lblfcurrcrdues" runat="server" Font-Bold="True"></asp:Label>
                                         </FooterTemplate>
