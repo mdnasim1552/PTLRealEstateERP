@@ -2836,6 +2836,7 @@
     <Content Include="F_35_MgtAct\RptMisDailyActiviteis.aspx" />
     <Content Include="F_35_MgtAct\RptMisOverall.aspx" />
     <Content Include="F_35_MgtAct\UserLoginfrm.aspx" />
+    <Content Include="F_36_Vehcl\interfaceVchl.aspx" />
     <Content Include="F_36_Vehcl\VehicleMgt.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
@@ -4305,6 +4306,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_36_Vehcl\interfaceVchl.aspx.cs">
+      <DependentUpon>interfaceVchl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_36_Vehcl\interfaceVchl.aspx.designer.cs">
+      <DependentUpon>interfaceVchl.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_36_Vehcl\VehicleMgt.aspx.cs">
       <DependentUpon>VehicleMgt.aspx</DependentUpon>
