@@ -335,10 +335,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3365"://BTI
-                case "3101":
+               
                     this.rbtSalSheet.SelectedIndex = 21;
                     break;
 
+
+                case "3101":
                 case "3366"://Lanco
                 //case "3101":
                     this.rbtSalSheet.SelectedIndex = 23;
