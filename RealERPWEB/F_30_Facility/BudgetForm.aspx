@@ -260,7 +260,7 @@
                                                 BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="140px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:TextBox>
-                                        </ItemTemplate>                                     
+                                        </ItemTemplate>
                                         <FooterStyle ForeColor="Black" />
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="right" />
@@ -291,6 +291,17 @@
                             </asp:GridView>
 
                         </div>
+
+                        <asp:Panel runat="server" ID="pnlApproval" Visible="false">
+                            <div class="row">
+                                <div class="col-md-5 mt-1">
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Notes" TextMode="MultiLine" Rows="5"></asp:TextBox>
+
+                                </div>
+                            </div>
+                        </asp:Panel>
+
+
 
                         <div class="row d-flex justify-content-center">
                             <asp:LinkButton ID="lnkRefresh" runat="server" CssClass="btn btn-sm btn-warning mx-2 my-2" OnClick="lnkRefresh_Click" Width="100px">Refresh</asp:LinkButton>
