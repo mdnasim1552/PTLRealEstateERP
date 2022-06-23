@@ -56,13 +56,18 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
         private void GetCompany()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
             if (this.lnkbtnShow.Text == "New")
                 return;
 
             Session.Remove("tblcompany");
             string comcod = this.GetComeCode();
             string txtCompany = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETCOMPANYNAME", txtCompany, "", "", "", "", "", "", "", "");
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETCOMPANYNAME", txtCompany, "", "", "", "", "", "", "", "");
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtCompany, userid, "", "", "", "", "", "", "");
+
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];

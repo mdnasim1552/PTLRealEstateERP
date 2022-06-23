@@ -1156,7 +1156,7 @@
                         </div>
                     </div>
                     <asp:GridView ID="gvIncome" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvIncome_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                        ShowFooter="True" Width="758px">
+                        ShowFooter="True" Width="758px" >
 
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.No.">
