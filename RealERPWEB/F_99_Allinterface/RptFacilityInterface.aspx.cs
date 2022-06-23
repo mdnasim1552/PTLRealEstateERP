@@ -68,12 +68,20 @@ namespace RealERPWEB.F_99_Allinterface
                 case "0":
                     pnlComplainCount.Visible = true;
                     pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
                     getComplainList();
                     break;
                 case "1":
                     pnlComplainCount.Visible = false;
                     pnlDiagnosis.Visible = true;
+                    pnlBudget.Visible = false;
                     getDiagnosisList();
+                    break;
+                case "2":
+                    pnlComplainCount.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = true;
+                    getBudget();
                     break;
             }
         }
@@ -96,6 +104,16 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETDIAGNOSISLIST", date1, date2, "", "", "", "", "", "", "", "", "");
             gvDiagnosis.DataSource = ds.Tables[0];
             gvDiagnosis.DataBind();
+        } 
+
+        private void getBudget()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETBUDGETLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvBudget.DataSource = ds.Tables[0];
+            gvBudget.DataBind();
         }
 
         protected void lnkEdit_Click(object sender, EventArgs e)
@@ -119,6 +137,12 @@ namespace RealERPWEB.F_99_Allinterface
         }
 
         protected void gvDiagnosis_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        
+        protected void gvBudget_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }
