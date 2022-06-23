@@ -13,5 +13,12 @@ namespace RealERPWEB.F_36_Vehcl
         {
 
         }
+
+        protected void ReqvchlModal_click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenReqVehcl();", true);
+        }
+
+
     }
 }
