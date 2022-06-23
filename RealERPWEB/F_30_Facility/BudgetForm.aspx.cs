@@ -30,6 +30,11 @@ namespace RealERPWEB.F_30_Facility
                 {
                     EditFunctionality();
                 }
+                if (Request.QueryString["Type"] != null)
+                {
+                    pnlApproval.Visible = true;
+                    txtEntryDate.Enabled = false;
+                }
             }
         }
 
@@ -53,7 +58,17 @@ namespace RealERPWEB.F_30_Facility
         {
             string comcod = GetComCode();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGNO", "", "", "", "", "", "", "", "", "", "", "");
-            ddlDgNo.DataSource = ds.Tables[0];
+
+            if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString()=="Approval")
+            { 
+                DataTable dt = ds.Tables[0].Select("isbudget=1").CopyToDataTable();
+                ddlDgNo.DataSource = dt;
+            }
+            else
+            {
+                DataTable dt = ds.Tables[0].Select("isbudget=0").CopyToDataTable();
+                ddlDgNo.DataSource = dt;
+            }
             ddlDgNo.DataTextField = "dgdesc";
             ddlDgNo.DataValueField = "dgno";
             ddlDgNo.DataBind();
@@ -110,7 +125,15 @@ namespace RealERPWEB.F_30_Facility
         private void createMaterialList()
         {
             List<EClass_Material_List> obj = new List<EClass_Material_List>();
+            //if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString()=="Approval")
+            //{
+            string comcod = GetComCode();
+            string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
+            DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETBUDGETINFO", dgno, "", "", "", "", "", "", "", "", "", "");
+            obj = ds.Tables[0].DataTableToList<EClass_Material_List>();
+            //}
             ViewState["MaterialList"] = obj;
+            Bind_Grid_Material();
         }
 
         private void getUnit()
@@ -144,11 +167,11 @@ namespace RealERPWEB.F_30_Facility
                     quantity = 0,
                     amount = 0
                 });
-               
+
                 ViewState["MaterialList"] = obj;
                 Bind_Grid_Material();
             }
-            lbtnTotal_Click(null,null);
+            lbtnTotal_Click(null, null);
         }
 
 
@@ -194,6 +217,8 @@ namespace RealERPWEB.F_30_Facility
         protected void btnOKClick_Click(object sender, EventArgs e)
         {
             getComplainUser();
+            createMaterialList();
+
         }
 
         protected void ddlMatCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -215,7 +240,7 @@ namespace RealERPWEB.F_30_Facility
             List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
             obj.RemoveAt(index);
             ViewState["MaterialList"] = obj;
-            Bind_Grid_Material(); 
+            Bind_Grid_Material();
             lbtnTotal_Click(null, null);
         }
 
@@ -225,7 +250,7 @@ namespace RealERPWEB.F_30_Facility
             SessionMaterialList();
             Bind_Grid_Material();
             ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
-            
+
 
         }
         private void SessionMaterialList()
@@ -254,7 +279,7 @@ namespace RealERPWEB.F_30_Facility
             string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
             string bgddate = txtEntryDate.Text;
             int i = 1;
-            foreach(var item in obj)
+            foreach (var item in obj)
             {
                 bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(), bgddate, i.ToString(), "", "", "", "", "",
                          "", "", "", "", "", "", "", "", "", "", userId);
@@ -262,6 +287,14 @@ namespace RealERPWEB.F_30_Facility
             }
             bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
                               "", "", "", "", "", "", "", "", "", "", userId);
+
+            if (Request.QueryString["Type"]!=null && Request.QueryString["Type"].ToString() == "Approval")
+            {
+                string notes = txtNarration.Text;
+                bool resultR = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTAPPROVAL", dgno, notes, "", "", "", "", "", "", "", "", "", "",
+                        "", "", "", "", "", "", "", "", "", "", userId);
+                
+            }
         }
     }
 }

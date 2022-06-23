@@ -335,10 +335,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3365"://BTI
-                case "3101":
+               
                     this.rbtSalSheet.SelectedIndex = 21;
                     break;
 
+
+                case "3101":
                 case "3366"://Lanco
                             //case "3101":
                     this.rbtSalSheet.SelectedIndex = 23;
@@ -1438,7 +1440,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
             LocalReport Rpt1 = new LocalReport();
@@ -1478,7 +1480,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             string inword = "In Word: " + ASTUtility.Trans(tbonamt, 2);
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet01>();
@@ -1512,7 +1514,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
             //  double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
@@ -1549,7 +1551,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
             //  double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
@@ -1589,7 +1591,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             string paytype = (this.rbtnPayType.SelectedIndex == 0) ? "CASH" : (this.rbtnPayType.SelectedIndex == 1) ? "BANK" : (this.rbtnPayType.SelectedIndex == 2) ? "CHEQUE" : "ALL";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
@@ -1689,7 +1691,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
 
             DataTable dt3 = (DataTable)Session["tblpay"];
@@ -1702,7 +1704,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("rptTitle", bonusType + " BONUS/ " + frmdate));
-            Rpt1.SetParameters(new ReportParameter("bonusType", "BONUS " + (this.chkBonustype.Checked ? "AZHA" : "FITR") + "(" + frmdate + ")"));
+            Rpt1.SetParameters(new ReportParameter("bonusType", "BONUS " + (this.chkBonustype.Checked ? "ADHA" : "FITR") + "(" + frmdate + ")"));
             Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
             Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
@@ -1724,7 +1726,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM, yyyy").ToUpper();
 
             DataTable dt3 = (DataTable)Session["tblpay"];
@@ -1759,7 +1761,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
             //  double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
@@ -3597,7 +3599,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITAR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITAR";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM, yyyy").ToUpper();
 
             string frmdateyear = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy").ToUpper();
@@ -3658,7 +3660,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             string inword = "In Word: " + ASTUtility.Trans(tbonamt, 2);
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet01>();
@@ -3717,7 +3719,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
             LocalReport Rpt1 = new LocalReport();
@@ -3748,7 +3750,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             //frmdate = frmdate.ToUpper();
-            //string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            //string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             //double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             //ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.RptEmpBonus();
             //TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -3791,7 +3793,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comcod = hst["comcod"].ToString();
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
@@ -3824,7 +3826,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
             LocalReport Rpt1 = new LocalReport();
@@ -3854,7 +3856,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
             LocalReport Rpt1 = new LocalReport();
@@ -3885,7 +3887,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.RptEmpBonusRG();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -3925,7 +3927,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.RptEmpBonusRatulPro();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -3964,7 +3966,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.RptEmpBonusRestRG();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
