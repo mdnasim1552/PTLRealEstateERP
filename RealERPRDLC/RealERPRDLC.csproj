@@ -178,6 +178,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryFinlay.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
