@@ -1076,7 +1076,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             break;
 
 
-                        case "3101":
+                        //case "3101":
                         case "3364":
                             this.gvothearn.HeaderRow.Cells[8].Text = "Performance Allowance";
                             this.gvothearn.HeaderRow.Cells[9].Text = "Holiday Allowance";
@@ -1100,6 +1100,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             //this.gvothearn.Columns[8].Visible = true;
                             //this.gvothearn.Columns[12].Visible = false;
                             break;
+
+                        case "3101":
+                        case "3366":
+                            this.gvothearn.HeaderRow.Cells[7].Text = "Sales Commission";
+                            break;
+
+
+
+
 
                         case "3347":
                             this.gvothearn.Columns[11].Visible = true;

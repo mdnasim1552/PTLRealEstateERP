@@ -1721,7 +1721,7 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
                         Rpt1.SetParameters(new ReportParameter("txtcheckby", Checkby));
                         Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
-                        Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
+                        Rpt1.SetParameters(new ReportParameter("txtauthorizeby", aprvby2));
 
 
                     }

@@ -466,7 +466,7 @@
 
                                              <asp:TemplateField HeaderText="Leave Enjoyed">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvwlday" runat="server" Style="text-align:center"
+                                                    <asp:Label ID="lgvwlday" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wld")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -484,7 +484,7 @@
                                             <asp:TemplateField HeaderText="Adjust">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvdedday" runat="server"
-                                                        Style="text-align: right" Width="45px"
+                                                         Width="45px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dedday")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -1042,7 +1042,7 @@
                                         </div>
 
                                         <div class="col-lg-2 col-md-2 col-sm-6">
-                                            <asp:Label ID="Label12" runat="server">EID UL AZHA </asp:Label>
+                                            <asp:Label ID="Label12" runat="server">EID UL ADHA </asp:Label>
                                             <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" form-control" />
                                         </div>
 
@@ -1268,7 +1268,7 @@
 
 
 
-                                           <asp:TemplateField HeaderText="Special Bonus Amt.">
+                                        <asp:TemplateField HeaderText="Special Bonus Amt.">
                                             <ItemTemplate>
                                                 <asp:label ID="txtgvSpbonusamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "spbonamt")).ToString("#,##0;(#,##0); ") %>'
