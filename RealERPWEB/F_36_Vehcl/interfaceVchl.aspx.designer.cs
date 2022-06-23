@@ -11,7 +11,7 @@ namespace RealERPWEB.F_36_Vehcl
 {
 
 
-    public partial class VehicleMgt
+    public partial class interfaceVchl
     {
 
         /// <summary>

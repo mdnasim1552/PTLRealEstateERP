@@ -7,6 +7,9 @@
 
 
     <style>
+        .custom-file .custom-file-label,{
+            height:1.94rem!important;
+        }
         .mt20 {
             margin-top: 20px;
         }
@@ -120,11 +123,18 @@
                 </asp:UpdateProgress>
             </div>
             <div class="card mt-5">
-                <div class="card-header d-flex justify-content-end">
-                    <asp:LinkButton ID="AddvchlModal" runat="server" CssClass="btn btn-primary btn-sm ml-auto" OnClick="AddvchlModal_click"><i class="fa fa-plus"></i> Add Vehicles</asp:LinkButton>
+                <div class="card-header d-flex ">
+ 
+  <div class="p-2 mr-auto">
+      <h6 class="card-title" style="margin:0;">Vehicles Management</h6>
+  </div>
+  <div class="ml-auto p-2"> 
+                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary btn-sm ml-auto" OnClick="AddvchlModal_click"><i class="fa fa-plus"></i> Add Vehicles</asp:LinkButton>
+
+  </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered col-8 mx-auto">
+                    <table class="table table-bordered col-10 mx-auto">
                         <thead class="bg-light">
                             <tr>
 
@@ -237,6 +247,7 @@
                                     <div class="form-group">
                                         <asp:Label ID="Label5" runat="server">Date</asp:Label>
                                         <asp:TextBox ID="txtdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                     </div>
                                 </div>
 
@@ -265,10 +276,7 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <asp:Label ID="Label9" runat="server">Attachment</asp:Label>
-                                        <div class="custom-file">
-                                            <asp:FileUpload ID="VFileUplaod" CssClass="custom-file-input" runat="server" AllowMultiple="true" />
-                                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                                        </div>
+                           <asp:FileUpload ID="imgFileUpload" CssClass="form-control form-control-sm" runat="server" AllowMultiple="true"/>
                                     </div>
                                 </div>
 
