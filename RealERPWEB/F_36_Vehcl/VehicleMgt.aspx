@@ -299,7 +299,7 @@
                             <div class="customer_records_dynamic"></div>
 
                             <div class="doctbl row">
-                                <table class="table table-bordered col-8 mx-auto">
+                                <table class="table table-bordered table-striped table-hover table-bordered grvContentarea col-8 mx-auto">
                                     <thead class="bg-light">
                                         <tr>
 
