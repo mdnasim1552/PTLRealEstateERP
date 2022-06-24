@@ -281,7 +281,8 @@ namespace RealERPWEB.F_30_Facility
             int i = 1;
             foreach (var item in obj)
             {
-                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(), bgddate, i.ToString(), "", "", "", "", "",
+                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(), 
+                    bgddate, i.ToString(), "", "", "", "", "",
                          "", "", "", "", "", "", "", "", "", "", userId);
                 i++;
             }
