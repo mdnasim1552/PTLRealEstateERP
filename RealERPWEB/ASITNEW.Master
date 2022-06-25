@@ -279,6 +279,9 @@
             color: #fff !important;
             font-size:18px;
         }
+       .ajax__calendar{
+           font-weight:300 !important;
+       }
     </style>
 
 

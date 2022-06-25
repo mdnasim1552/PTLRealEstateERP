@@ -35,11 +35,32 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-
+                
                 this.CommonButton();
                 this.GetCompany();
+                this.visibilityBracnh();
                 //this.GetEmpName();
                 this.SelectType();
+            }
+        }
+        private void visibilityBracnh()
+        {
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3315":
+                case "3347":
+                case "3353":
+                case "3358":
+                    this.divBracnhLsit.Visible = false;
+                    this.ddlBranch.Items.Clear();
+                    break;
+
+                default:
+                    this.divBracnhLsit.Visible = true;
+                    break;
+
             }
         }
         public void CommonButton()
@@ -464,7 +485,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string txtCompany = "%%";
+            string txtCompany = "94%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtCompany, userid, "", "", "", "", "", "", "");
             // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
 
@@ -499,7 +520,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetBranch();
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3315":
+                case "3347":
+                case "3353":
+                case "3358":
+                    this.divBracnhLsit.Visible = false;
+                    this.ddlBranch.Items.Clear();
+                    this.GetProjectName();
+                    break;
+
+                default:
+                    this.GetBranch();
+                    break;
+
+            }
+
+           
         }
         protected void ddlBranch_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -518,7 +558,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 return;
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string txtSProject = "%%";
             //  DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", branch, txtSProject, "", "", "", "", "", "", "");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETDPTLIST_NEW", branch, userid, "", "", "", "", "", "", "");
@@ -581,7 +621,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string ProjectCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? branch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
             string section = this.ddlSection.SelectedValue.ToString() == "000000000000" ? ProjectCode : this.ddlSection.SelectedValue.ToString();
 
@@ -688,7 +728,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? CompanyName : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? branch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
 
@@ -4673,7 +4713,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string Department = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
                 string Section = ((this.ddlSection.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
 
-                string branchdel = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+                string branchdel = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
 
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "DELETESALSHEET", monthid, Company, Department, Section, mantype, emptype, branchdel, "", "", "", "", "", "", "", "");
 
@@ -4822,7 +4862,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string Terminal = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
 
-                string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4));
+                string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4));
 
                 string Salarylock = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? "1" : "0";
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INORUPSALLOCK", monthid, branch, Salarylock, userid, Posteddat, Terminal, Sessionid, "", "", "", "", "", "", "", "");
