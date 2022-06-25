@@ -26,12 +26,14 @@ namespace RealERPWEB.F_30_Facility
                 getMatCategory();
                 getMaterial();
                 getUnit();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Budget";
                 if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Edit")
                 {
                     EditFunctionality();
                 }
                 if (Request.QueryString["Type"] != null)
                 {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Approval";
                     pnlApproval.Visible = true;
                     txtEntryDate.Enabled = false;
                 }

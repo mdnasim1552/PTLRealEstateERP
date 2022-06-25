@@ -13,6 +13,29 @@
         function CloseModalComplain() {
             $('#modalEditComplain').modal('hide');
         }
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+        function TabChange() {
+            console.log(document.getElementById('btnProblem').getAttribute('aria-expanded'));
+            if (document.getElementById('btnProblem').getAttribute('aria-expanded')) {
+                $("#collapseExample").removeClass("show");
+            }
+            else {
+                $("#collapseExample").addClass("show");
+            }
+            
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,76 +46,69 @@
 
                 <div class="card-body" style="min-height: 600px;">
                     <div class="row mt-2">
-                        <div class="col-2 d-flex align-items-center">
-                            <asp:Label runat="server" ID="Label5" class="form-label">Select</asp:Label>
-                        </div>
-                        <div class="col-3 d-flex align-items-center">
-                            <asp:DropDownList ID="ddlComplain" CssClass="chzn-select form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
-                        </div>
-                        <div class="col-1 d-flex align-items-center">
-                            <asp:LinkButton ID="btnOKClick" runat="server" CssClass="btn btn-primary align-self-end" OnClick="btnOKClick_Click">OK</asp:LinkButton>
-                        </div>
-
-                    </div>
-
-                    <asp:Panel runat="server" ID="pnlComplain">
-
-
-                        <div class="row mt-1">
-                            <div class="col-2 d-flex align-items-center">
-                                <asp:Label runat="server" ID="lbldate" class="form-label">Date</asp:Label>
-                            </div>
-                            <div class="col-3 d-flex align-items-center">
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="lbldate" class="form-label">Diagnosis Date</asp:Label>
                                 <asp:TextBox ID="txtEntryDate" runat="server" CssClass="form-control"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender_txttoDate" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txtEntryDate"></cc1:CalendarExtender>
                             </div>
-                            <div class="col-2 d-flex align-items-center">
-                                <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
-                            </div>
-                            <div class="col-3 d-flex align-items-center">
-                                <asp:Label runat="server" ID="lblProjectText" class="form-control"></asp:Label>
-                            </div>
-
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-2 d-flex align-items-center">
-                                <asp:Label runat="server" ID="lblCustomer" class="form-label">Customer</asp:Label>
+                        <div class="col-lg-4 mr-3">
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="Label5" class="form-label">Select</asp:Label>
+                                <asp:DropDownList ID="ddlComplain" CssClass="chzn-select form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                             </div>
-                            <div class="col-3 d-flex align-items-center">
-                                <asp:Label runat="server" ID="lblCustomerText" class="form-control"></asp:Label>
-                            </div>
-                            <div class="col-2 d-flex align-items-center">
-                                <asp:Label runat="server" ID="lblUnitlabel" class="form-label">Unit</asp:Label>
-                            </div>
-                            <div class="col-3 d-flex align-items-center">
-                                <asp:Label runat="server" ID="lblUnitText" class="form-control"></asp:Label>
-                            </div>
-
                         </div>
-                        <hr />
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <br />
+                                <asp:LinkButton ID="btnOKClick" runat="server" CssClass="btn btn-primary align-self-end w-75" OnClick="btnOKClick_Click">
+                                    <span class="fa fa-check-circle" style="color:white;" aria-hidden="true"></span> OK</asp:LinkButton>
+                            </div>
+                        </div>
+                    </div>
 
-
+                    <asp:Panel runat="server" ID="pnlComplain">
                         <div class="row mt-1">
 
-                            <div class="col-2 d-flex align-items-center">
-                                <asp:Label runat="server" ID="Label3" class="form-label">Site Visited</asp:Label>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
+                                    <asp:Label runat="server" ID="lblProjectText" class="form-control"></asp:Label>
+                                </div>
                             </div>
-                            <div class="col-3 d-flex align-items-center">
-                                <asp:TextBox ID="txtSiteVisisted" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtSiteVisisted"></cc1:CalendarExtender>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="lblCustomer" class="form-label">Customer</asp:Label>
+                                    <asp:Label runat="server" ID="lblCustomerText" class="form-control"></asp:Label>
+                                </div>
                             </div>
-                            <div class="col-2 d-flex align-items-center">
-                                <asp:Label runat="server" ID="Label4" class="form-label">Estimated WD Time</asp:Label>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="lblUnitlabel" class="form-label">Unit</asp:Label>
+                                    <asp:Label runat="server" ID="lblUnitText" class="form-control"></asp:Label>
+                                </div>
                             </div>
-                            <div class="col-3 d-flex align-items-center">
-                                <asp:TextBox ID="txtwdtime" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtwdtime"></cc1:CalendarExtender>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="Label3" class="form-label">Site Visited</asp:Label>
+                                    <asp:TextBox ID="txtSiteVisisted" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Enabled="True"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtSiteVisisted"></cc1:CalendarExtender>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="Label4" class="form-label">Estimated WD Time</asp:Label>
+                                    <asp:TextBox ID="txtwdtime" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Enabled="True"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtwdtime"></cc1:CalendarExtender>
+                                </div>
                             </div>
                         </div>
                         <hr />
+                        
                         <div id="divComplainList" class="row">
                             <div class="col-7">
                                 <div class="row">
@@ -196,10 +212,9 @@
                             <div class="col-5">
 
                                 <p>
-                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                       Problem List-User
+                                    <a class="btn btn-primary" id="btnProblem" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Problem List-User
                                     </a>
-                                   
+
                                 </p>
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body">
