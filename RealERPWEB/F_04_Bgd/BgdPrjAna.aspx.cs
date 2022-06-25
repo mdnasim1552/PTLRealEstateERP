@@ -912,11 +912,7 @@ namespace RealERPWEB.F_04_Bgd
                 dt.DefaultView.Sort = "isircode Asc";
                 dt = dt.DefaultView.ToTable();
             }
-
-
             Session["tblActAna1"] = dt;
-
-
 
             this.gvAnalysis.PageSize = Convert.ToInt32(this.ddlpagesizeen.SelectedValue.ToString());
             this.gvAnalysis.DataSource = dt;
@@ -927,7 +923,6 @@ namespace RealERPWEB.F_04_Bgd
             Session["Report1"] = gvAnalysis;
             this.ddlItemColor();
             if (dt.Rows.Count > 0)
-
                 ((HyperLink)this.gvAnalysis.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
@@ -959,8 +954,11 @@ namespace RealERPWEB.F_04_Bgd
 
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
-            dv.Sort = ("cattype,flrcod");
-            dt = dv.ToTable();
+            dv.Sort = ("cattype,flrslno");
+            dt = dv.ToTable();            
+            //dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
+            //dv.Sort = ("cattype,flrcod");
+            //dt = dv.ToTable();
 
 
             if (sender != null)
@@ -1069,16 +1067,7 @@ namespace RealERPWEB.F_04_Bgd
                     Description.Attributes["style"] = "color:red;";
 
                 }
-
-
             }
-
-
-
-
-
-
-
         }
         protected void gvAnalysis_RowEditing(object sender, GridViewEditEventArgs e)
         {
