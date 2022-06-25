@@ -1043,7 +1043,7 @@
                                         </div>
 
                                         <div class="col-lg-2 col-md-2 col-sm-6">
-                                            <asp:Label ID="Label12" runat="server">EID UL AZHA </asp:Label>
+                                            <asp:Label ID="Label12" runat="server">EID UL ADHA </asp:Label>
                                             <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" form-control" />
                                         </div>
 

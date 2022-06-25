@@ -7,13 +7,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
-                .nav-tabs{
-            border:none!important;
+        .nav-tabs {
+            border: none !important;
         }
-             .chzn-drop {
+
+        .chzn-drop {
             width: 100% !important;
         }
-        .chzn-container{
+
+        .chzn-container {
             width: 100% !important;
         }
 
@@ -33,6 +35,7 @@
         .bw-100 {
             width: 100px !important;
         }
+
         ul.tbMenuWrp {
             margin: 0;
             padding: 0;
@@ -92,11 +95,11 @@
             color: #fff;
         }
 
-        
-        .tbMenuWrp > li.active > a, .tbMenuWrp > li.active > a:focus, .tbMenuWrp > li.active > {
-            background: #472AC6 !important;
-            color: #fff;
-        }
+
+            .tbMenuWrp > li.active > a, .tbMenuWrp > li.active > a:focus, .tbMenuWrp > li.active > {
+                background: #472AC6 !important;
+                color: #fff;
+            }
 
 
 
@@ -114,15 +117,16 @@
             /*padding: 2px;*/
             width: 100%;
         }
-                    .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active {
+
+            .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active {
                 background: #12A5A6;
                 color: #fff;
             }
 
-            .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
-                background: #12A5A6;
-                color: #fff;
-            }
+                .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
+                    background: #12A5A6;
+                    color: #fff;
+                }
 
 
         .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
@@ -375,13 +379,15 @@
             background-color: #8E44AD;
         }
 
-    
+
         .yellow {
             background-color: #F1C40F;
         }
-               .purple {
+
+        .purple {
             background-color: #8E44AD;
         }
+
         .deep-sky-blue {
             background-color: #0179A8;
         }
@@ -390,24 +396,32 @@
             background-color: #B76BA3;
         }
 
-        .danger{
-           background:#DC3545;
+        .danger {
+            background: #DC3545;
         }
 
         .text-lime {
             color: #32CD32;
         }
-        .deep-green{
-            background:#00A28A;
-        }
-        .txt-white{
-            color:white;
-        }
- 
 
+        .deep-green {
+            background: #00A28A;
+        }
 
+        .txt-white {
+            color: white;
+        }
     </style>
+    <script>
+        function OpenReqVehcl() {
 
+            $('#ReqVchlModal').modal('toggle');
+        }
+        function CloseVehcl() {
+
+            $('#ReqVchlModal').modal('toggle');
+        }
+    </script>
 
 
 
@@ -431,31 +445,173 @@
                 </asp:UpdateProgress>
             </div>
             <div class="card mt-5">
-                <div class="card-header">
-                    <h5 class="card-title">Vehicle Interface</h5>
+                <div class="card-header d-flex ">
+
+                    <div class="p-2 mr-auto">
+                        <h6 class="card-title" style="margin: 0;">Vehicles Interface</h6>
+                    </div>
+                    <div class="ml-auto p-2">
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary btn-sm ml-auto" OnClick="ReqvchlModal_click"><i class="fa fa-plus"></i> Add Vehicles</asp:LinkButton>
+
+                    </div>
                 </div>
                 <div class="card-body">
-                                 <div class="panel with-nav-tabs panel-primary">
-                            <fieldset class="tabMenu">
-                                <div class="form-horizontal">
-                                     <div class="tbMenuWrp nav nav-tabs rptPurInt">
-     
-                                        <asp:RadioButtonList ID="radiobtnv" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" >
-                                            <asp:ListItem Value="0"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white"> Queue</div></div></div></asp:ListItem>
-                                           <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white"> Process</div></div></div></asp:ListItem>
-                                              <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white"> Approval</div></div></div></asp:ListItem>
-                                             <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white"> Generate</div></div></div></asp:ListItem>
-                                             <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-green counter">0</div></a><div class="circle-tile-content  deep-green"><div class="circle-tile-description txt-white"> Generate</div></div></div></asp:ListItem>
-                                             <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white"> Cancelled</div></div></div></asp:ListItem>
-                                        </asp:RadioButtonList>
-                                    </div>
+                    <div class="panel with-nav-tabs panel-primary">
+                        <fieldset class="tabMenu">
+                            <div class="form-horizontal">
+                                <div class="tbMenuWrp nav nav-tabs rptPurInt">
+
+                                    <asp:RadioButtonList ID="radiobtnv" runat="server" AutoPostBack="true" RepeatDirection="Horizontal">
+                                        <asp:ListItem Value="0"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white"> Queue</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white"> Process</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white"> Approval</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white"> Generate</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-green counter">0</div></a><div class="circle-tile-content  deep-green"><div class="circle-tile-description txt-white"> Generate</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white"> Cancelled</div></div></div></asp:ListItem>
+                                    </asp:RadioButtonList>
                                 </div>
-                            </fieldset>
-                            <div>
-                </div>
-            </div>
+                            </div>
+                        </fieldset>
+                        <div>
+                        </div>
+                    </div>
 
 
+
+                    <div class="modal" id="ReqVchlModal" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light">
+                                    <h6 class="modal-title">Add Vehicles</h6>
+                                    <asp:LinkButton ID="CloseVehcl" runat="server" CssClass="close close_btn" OnClientClick="CloseVehcl();" data-dismiss="modal"> &times; </asp:LinkButton>
+                                </div>
+                                <div class="modal-body mt-3">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lblempid" runat="server">Emp Id</asp:Label>
+                                                        <asp:TextBox ID="txtVid" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="Label1" runat="server">Name</asp:Label>
+                                                        <asp:TextBox ID="txtRegNo" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="Label2" runat="server">Designation</asp:Label>
+                                                        <asp:TextBox ID="txtModel" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                     
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="Label4" runat="server">Department</asp:Label>
+                                                        <asp:TextBox ID="txtop" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                         
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="Label6" runat="server">Start Time</asp:Label>
+                                                        <asp:TextBox ID="txtstartdat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="Label7" runat="server">End Time</asp:Label>
+                                                        <asp:TextBox ID="txtenddat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                             <div class="row">
+                                   
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="Label5" runat="server">Destination</asp:Label>
+                                                        <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" Rows="4" Height="80"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="Label3" runat="server">Purpose</asp:Label>
+                                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" Rows="4" Height="80"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                       
+                                            </div>
+                                                <div class="row d-flex justify-content-center mb-3">
+                                                    
+                                                    <asp:HyperLink runat="server" CssClass="btn btn-success btn-sm text-white">Send Request</asp:HyperLink>
+                                          
+                                                </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                                    <h5 class="text-center font-weight-bold">Available Vehicles</h5>
+                                            <hr />
+                                <table class="table table-bordered table-striped table-hover table-bordered grvContentarea">
+                                    <thead class="bg-light">
+                                        <tr>
+
+                                            <th scope="col"> Vehicle</th>
+                                            <th scope="col">From</th>
+                                            <th scope="col">To</th>
+                                             <th scope="col">Model No</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td>Application for vehicle</td>
+                                            <td>2022-10-10</td>
+                                            <td>@URL</td>
+                                                         <td>2022-10-10</td>
+                                            <td>@URL</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>Application for vehicle</td>
+                                            <td>2022-10-10</td>
+                                            <td>@URL</td>
+                                                         <td>2022-10-10</td>
+                                            <td>@URL</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                 
+                                        </div>
+                                    </div>
+                                
+
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </ContentTemplate>
 
     </asp:UpdatePanel>

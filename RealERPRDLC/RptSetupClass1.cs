@@ -249,6 +249,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.rptProMatStock": Rpt1a = GetrptProMatStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptProMatStock2": Rpt1a = GetrptProMatStock2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntry": Rpt1a = GetrptPurMrrEntry(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.rptPurMrrEntryFinlay": Rpt1a = GetrptPurMrrEntryFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEdison": Rpt1a = GetrptPurMrrEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntryBridge": Rpt1a = GetrptPurMrrEntryBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsferReq": Rpt1a = GetRptMaterialTrnsferReq(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -984,6 +985,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptBonusSigSheet": Rpt1a = SetRptBonusSigSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSignatureSheet": Rpt1a = SetRptSignatureSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptEmpBonus": Rpt1a = SetRptEmpBonus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptEmpBonusEdison": Rpt1a = SetRptEmpBonusEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryReconciliation": Rpt1a = SetRptSalaryReconciliation(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 //nahid 20210703
@@ -2304,6 +2306,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptEmpBonus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEmpBonusEdison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset) 
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>)RptDataSet));
             return Rpt1a;
@@ -4256,7 +4263,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>)RptDataSet));
             return Rpt1a;
-
+        }
+        private static LocalReport GetrptPurMrrEntryFinlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>)RptDataSet));
+            return Rpt1a;
         }
         private static LocalReport GetrptProMatStock2(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

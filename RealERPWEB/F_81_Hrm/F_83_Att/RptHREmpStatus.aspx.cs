@@ -60,7 +60,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             string comcod = this.GetComCode();
             string txtSCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETCOMPANYNAME", txtSCompany, "", "", "", "", "", "", "", "");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETCOMPANYNAME", txtSCompany, "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtSCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
