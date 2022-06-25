@@ -5037,24 +5037,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string desigid = dt.Rows[i]["desigid"].ToString();
                 string duration = Convert.ToDouble(dt.Rows[i]["duration"]).ToString();
                 string bonamt = Convert.ToDouble(dt.Rows[i]["bonamt"]).ToString();
-
                 string bankamt = Convert.ToDouble(dt.Rows[i]["bankamt"]).ToString();
                 string bankamt2 = Convert.ToDouble(dt.Rows[i]["bankamt2"]).ToString();
                 string cashamt = Convert.ToDouble(dt.Rows[i]["cashamt"]).ToString();
                 string rmrks = dt.Rows[i]["rmrks"].ToString();
-
                 string spbonamt = Convert.ToDouble(dt.Rows[i]["spbonamt"]).ToString();
-<<<<<<< HEAD
-                //string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkcash"]).ToString();
-=======
-                 string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkbankcash"]).ToString();
->>>>>>> 6b54d622faeb263561e0261c37147fc1a7ee0279
+                string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkbankcash"]).ToString();
 
-<<<<<<< HEAD
-                result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTORUPHRBONINF", monthid, empid, perbon, bsal, gssal, bondate, section, desigid, duration, bonamt, bankamt, bankamt2, cashamt, rmrks, spbonamt, "", "","","","","");
-=======
                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTORUPHRBONINF", monthid, empid, perbon, bsal, gssal, bondate, section, desigid, duration, bonamt, bankamt, bankamt2, cashamt, rmrks, spbonamt, chkbnkcsh, "", "", "", "", "");
->>>>>>> d0c6857bef8d8c134844853bb7b2593ba6e38e9b
             }
 
             Msg = "Updated Success";
