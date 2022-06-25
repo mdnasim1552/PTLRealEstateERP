@@ -174,7 +174,7 @@
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
-                                        <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" checkbox chkBoxControl margin5px" Text="EID UL AZHA" Visible="False" />
+                                        <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" checkbox chkBoxControl margin5px" Text="EID UL ADHA" Visible="False" />
                                         <asp:CheckBox ID="chkExcluMgt" runat="server" CssClass="checkbox chkBoxControl" Text="Exclude Management" Visible="False" />
 
                                     </div>

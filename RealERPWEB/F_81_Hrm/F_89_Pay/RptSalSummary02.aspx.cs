@@ -1962,14 +1962,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
+            string dat2 = ASTUtility.Right(frmdate, 4);
+
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonus", list, null, null);
-            Rpt1.EnableExternalImages = true;
+            switch (comcod)
+            {
+                case "3354":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonusEdison", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonus", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    break;
+            }           
+
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("bonusType", "FESTIVAL BONUS OF " + bonusType + " (Cash)"));
             Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
@@ -2048,7 +2060,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
@@ -2084,7 +2096,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
@@ -2121,7 +2133,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
 
@@ -2156,7 +2168,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
@@ -2213,7 +2225,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBonousSummaryRG();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -2249,7 +2261,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBonousSummaryRatulPro();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -2285,7 +2297,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBonousSummaryRestRG();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -2315,7 +2327,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string Company = this.ddlCompany.SelectedValue.Substring(0, 2);
             string Department = (this.ddlDepartName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartName.SelectedValue.ToString() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTBONPAYSLIP", month, Company, Department, section, bonusType, "", "", "", "");
 
             if (ds3 == null)

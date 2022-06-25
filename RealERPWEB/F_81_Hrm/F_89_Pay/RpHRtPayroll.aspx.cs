@@ -73,7 +73,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
             ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
             ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
-
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
@@ -154,11 +153,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             }
                             break;
-
                         default:
-
                             //string comcod = this.GetComCode();
-
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                             this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -245,7 +241,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlfrmDesig.DataValueField = "desigcod";
             this.ddlfrmDesig.DataSource = ds1.Tables[0];
             this.ddlfrmDesig.DataBind();
-
             this.GetDessignationTo();
         }
         private void GetDessignationTo()
@@ -256,7 +251,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlToDesig.DataSource = dt;
             this.ddlToDesig.DataBind();
         }
-
         private void CompanySalary()
         {
             this.rbtSalSheet.Visible = false;
@@ -557,7 +551,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void GetProjectName()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
@@ -578,7 +571,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void SectionName()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
@@ -834,7 +826,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             day = dtto.Day - dtfrm.Day;
             if (day < 0)
             {
-
                 day = day + 30;
                 mon = mon - 1;
                 if (mon < 0)
@@ -971,9 +962,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt = this.HiddenSameData(ds3.Tables[0]);
 
             //DataTable dt = ds3.Tables[0];
-
-
-
             Session["tblpay"] = dt;
             this.LoadGrid();
         }
@@ -1090,6 +1078,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             catch (Exception ex)
             {
+
             }
         }
 
@@ -1767,7 +1756,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
-            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM, yyyy").ToUpper();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy").ToUpper();
+            string dat2 = ASTUtility.Right(frmdate, 4);
 
             DataTable dt3 = (DataTable)Session["tblpay"];
             var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
@@ -1778,7 +1768,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "FESTIVAL BONUS OF " + bonusType));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "FESTIVAL BONUS OF " + bonusType +" - "+ frmdate));
             Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
             Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
             Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
@@ -5076,14 +5066,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string desigid = dt.Rows[i]["desigid"].ToString();
                 string duration = Convert.ToDouble(dt.Rows[i]["duration"]).ToString();
                 string bonamt = Convert.ToDouble(dt.Rows[i]["bonamt"]).ToString();
-
                 string bankamt = Convert.ToDouble(dt.Rows[i]["bankamt"]).ToString();
                 string bankamt2 = Convert.ToDouble(dt.Rows[i]["bankamt2"]).ToString();
                 string cashamt = Convert.ToDouble(dt.Rows[i]["cashamt"]).ToString();
                 string rmrks = dt.Rows[i]["rmrks"].ToString();
-
                 string spbonamt = Convert.ToDouble(dt.Rows[i]["spbonamt"]).ToString();
-                 string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkbankcash"]).ToString();
+                string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkbankcash"]).ToString();
 
                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTORUPHRBONINF", monthid, empid, perbon, bsal, gssal, bondate, section, desigid, duration, bonamt, bankamt, bankamt2, cashamt, rmrks, spbonamt, chkbnkcsh, "", "", "", "", "");
             }
