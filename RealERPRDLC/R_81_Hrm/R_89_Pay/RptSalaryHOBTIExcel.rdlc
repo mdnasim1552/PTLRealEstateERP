@@ -7778,13 +7778,6 @@
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
-                                <TextRun>
-                                  <Value>s</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Right</TextAlign>
