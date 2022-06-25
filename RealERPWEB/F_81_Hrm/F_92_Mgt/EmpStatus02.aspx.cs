@@ -241,10 +241,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = GetCompCode();
 
             string txtCompany = "%";
-            string callType = (this.Request.QueryString["Type"].ToString() == "Pabx") ? "GETCOMPANYNAMEW_WPERMISSION" : "GETCOMPANYNAME";
+            //string callType = (this.Request.QueryString["Type"].ToString() == "Pabx") ? "GETCOMPANYNAMEW_WPERMISSION" : "GETCOMPANYNAME";
 
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", callType, txtCompany, userid, "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
