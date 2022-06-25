@@ -22,7 +22,8 @@
     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 

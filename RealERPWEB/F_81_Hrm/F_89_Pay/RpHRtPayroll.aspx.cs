@@ -43,8 +43,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
         }
         public void CommonButton()
-        {
-             
+        {       
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
@@ -52,13 +51,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
             ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
             ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
-
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
- 
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -133,11 +130,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             }
                             break;
-
                         default:
-
                             //string comcod = this.GetComCode();
-
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                             this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -224,7 +218,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlfrmDesig.DataValueField = "desigcod";
             this.ddlfrmDesig.DataSource = ds1.Tables[0];
             this.ddlfrmDesig.DataBind();
-
             this.GetDessignationTo();
         }
         private void GetDessignationTo()
@@ -235,7 +228,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlToDesig.DataSource = dt;
             this.ddlToDesig.DataBind();
         }
-
         private void CompanySalary()
         {
             this.rbtSalSheet.Visible = false;
@@ -452,8 +444,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3354"://Edison
                     this.rbtlBonSheet.SelectedIndex = 14;
                     break;
-
-           
+         
                 case "3368":
                     this.rbtlBonSheet.SelectedIndex = 15;
                     break;
@@ -471,8 +462,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string txtCompany = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtCompany, userid, "", "", "", "", "", "", "");
            // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
-
-           
+   
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
@@ -515,7 +505,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void GetProjectName()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
@@ -536,7 +525,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void SectionName()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
@@ -578,8 +566,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string empcode = "";
             this.GetEmpName(empcode);
         }
-
-
         private void GetEmpName( string empcode)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -792,7 +778,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             day = dtto.Day - dtfrm.Day;
             if (day < 0)
             {
-
                 day = day + 30;
                 mon = mon - 1;
                 if (mon < 0)
@@ -929,9 +914,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt = this.HiddenSameData(ds3.Tables[0]);
 
             //DataTable dt = ds3.Tables[0];
-
-
-
             Session["tblpay"] = dt;
             this.LoadGrid();
         }
@@ -1048,6 +1030,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             catch (Exception ex)
             {
+
             }
         }
 
