@@ -2733,6 +2733,7 @@
     <Content Include="F_29_Fxt\RptFxtAsstBillRent.aspx" />
     <Content Include="F_29_Fxt\RptFxtAsstStatus.aspx" />
     <Content Include="F_29_Fxt\RptFxtStore.aspx" />
+    <Content Include="F_30_Facility\Quotation.aspx" />
     <Content Include="F_30_Facility\BudgetForm.aspx" />
     <Content Include="F_30_Facility\EngrCheck.aspx" />
     <Content Include="F_30_Facility\ComplainForm.aspx" />
@@ -4237,6 +4238,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_30_Facility\Quotation.aspx.cs">
+      <DependentUpon>Quotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_30_Facility\Quotation.aspx.designer.cs">
+      <DependentUpon>Quotation.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_30_Facility\BudgetForm.aspx.cs">
       <DependentUpon>BudgetForm.aspx</DependentUpon>

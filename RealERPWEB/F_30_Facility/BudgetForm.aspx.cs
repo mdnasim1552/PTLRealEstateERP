@@ -26,12 +26,14 @@ namespace RealERPWEB.F_30_Facility
                 getMatCategory();
                 getMaterial();
                 getUnit();
-                if (Request.QueryString["EngrNo"] != null)
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Budget";
+                if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Edit")
                 {
                     EditFunctionality();
                 }
                 if (Request.QueryString["Type"] != null)
                 {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Approval";
                     pnlApproval.Visible = true;
                     txtEntryDate.Enabled = false;
                 }
@@ -59,8 +61,8 @@ namespace RealERPWEB.F_30_Facility
             string comcod = GetComCode();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGNO", "", "", "", "", "", "", "", "", "", "", "");
 
-            if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString()=="Approval")
-            { 
+            if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
+            {
                 DataTable dt = ds.Tables[0].Select("isbudget=1").CopyToDataTable();
                 ddlDgNo.DataSource = dt;
             }
@@ -72,6 +74,11 @@ namespace RealERPWEB.F_30_Facility
             ddlDgNo.DataTextField = "dgdesc";
             ddlDgNo.DataValueField = "dgno";
             ddlDgNo.DataBind();
+            if (Request.QueryString["DgNo"] != null)
+            {
+                ddlDgNo.SelectedValue = Request.QueryString["DgNo"].ToString();
+                ddlDgNo.Enabled = false;
+            }
         }
 
 
@@ -82,7 +89,7 @@ namespace RealERPWEB.F_30_Facility
         private void getComplainUser()
         {
             string comcod = GetComCode();
-            string dgno = Request.QueryString["EngrNo"] ?? ddlDgNo.SelectedValue.ToString();
+            string dgno = Request.QueryString["DgNo"] ?? ddlDgNo.SelectedValue.ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGINFO", dgno, "", "", "", "", "", "", "", "", "", "");
             DataTable dt01 = ds.Tables[0];
             DataTable dt02 = ds.Tables[1];
@@ -281,19 +288,20 @@ namespace RealERPWEB.F_30_Facility
             int i = 1;
             foreach (var item in obj)
             {
-                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(), bgddate, i.ToString(), "", "", "", "", "",
+                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(),
+                    bgddate, i.ToString(), "", "", "", "", "",
                          "", "", "", "", "", "", "", "", "", "", userId);
                 i++;
             }
             bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
                               "", "", "", "", "", "", "", "", "", "", userId);
 
-            if (Request.QueryString["Type"]!=null && Request.QueryString["Type"].ToString() == "Approval")
+            if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
             {
                 string notes = txtNarration.Text;
                 bool resultR = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTAPPROVAL", dgno, notes, "", "", "", "", "", "", "", "", "", "",
                         "", "", "", "", "", "", "", "", "", "", userId);
-                
+
             }
         }
     }

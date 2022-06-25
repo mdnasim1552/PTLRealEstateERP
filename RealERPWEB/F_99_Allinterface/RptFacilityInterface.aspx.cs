@@ -69,19 +69,29 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlComplainCount.Visible = true;
                     pnlDiagnosis.Visible = false;
                     pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
                     getComplainList();
                     break;
                 case "1":
                     pnlComplainCount.Visible = false;
                     pnlDiagnosis.Visible = true;
                     pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
                     getDiagnosisList();
                     break;
                 case "2":
                     pnlComplainCount.Visible = false;
                     pnlDiagnosis.Visible = false;
                     pnlBudget.Visible = true;
+                    pnlApproval.Visible = false;
                     getBudget();
+                    break;
+                case "3":
+                    pnlComplainCount.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = true;
+                    getBudgetApproval();
                     break;
             }
         }
@@ -115,6 +125,16 @@ namespace RealERPWEB.F_99_Allinterface
             gvBudget.DataSource = ds.Tables[0];
             gvBudget.DataBind();
         }
+        private void getBudgetApproval()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETAPPROVALBUDGET", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvApproval.DataSource = ds.Tables[0];
+            gvApproval.DataBind();
+        }
+
 
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
@@ -131,18 +151,41 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink.NavigateUrl = "~/F_30_Facility/ComplainForm.aspx?ComplNo=" + complno;
                 hlink.ToolTip = "Edit";
                 hlink1.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?ComplNo=" + complno;
-                hlink1.ToolTip = "Edit";
+                hlink1.ToolTip = "Engr. Check";
             }
 
         }
 
         protected void gvDiagnosis_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&Dgno=" + dgno;
+                hlink.ToolTip = "Edit";
+                hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?DgNo=" + dgno;
+                hlink1.ToolTip = "Generate Budget";
+            }
         }
 
         
         protected void gvBudget_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&Dgno=" + dgno;
+                hlink.ToolTip = "Edit";
+                hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?Type=Approval&DgNo=" + dgno;
+                hlink1.ToolTip = "Approval";
+            }
+        }
+
+        protected void gvApproval_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }
