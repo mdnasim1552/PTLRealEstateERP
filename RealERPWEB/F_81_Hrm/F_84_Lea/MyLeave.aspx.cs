@@ -39,7 +39,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.txtgvenjoydt1.Text = nextday;
                     this.txtgvenjoydt2.Text = nextday;
                     this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
                 }
                 string qtype = this.Request.QueryString["Type"] ?? "";
 
@@ -51,12 +50,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                         Response.Redirect("~/AcceessError.aspx");
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (MGT)";
-
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
                     // GetSupvisorCheck();
-                    this.ddlEmpName_SelectedIndexChanged(null, null);
-                   
+                    this.ddlEmpName_SelectedIndexChanged(null, null);                 
                 }
                else if (qtype == "COMMON")
                 {
@@ -71,22 +68,18 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     GetEmpLoyee();
                     // GetSupvisorCheck();
                     this.ddlEmpName_SelectedIndexChanged(null, null);
-
                 }
                 else
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE";
-
                     CreateTable();
                     GetLeavType();
                     GetSupvisorCheck();
                     getVisibilty();
-
                     this.EmpLeaveInfo();
                     this.ShowEmppLeave();
                     GetCalCulateDay();
                 }
-
                 GetEmpLoyeeAltDutys();
             }
         }
@@ -95,9 +88,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
         }
         private void GetSupvisorCheck()
         {
@@ -130,8 +121,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Messaged = "Oops!! " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
             }
-
-
         }
         private void GetEmpLoyee()
         {
@@ -154,18 +143,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlDutyEmp.DataSource = ds1.Tables[0];
             this.ddlDutyEmp.DataBind();
 
-
-
             if (empid != "")
             {
                 this.ddlEmpName.SelectedValue = empid;
-
             }
         }
 
         private void GetEmpLoyeeAltDutys()
-        {
-            
+        {           
             string comcod = this.GetComeCode();           
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "", "", "", "", "", "");
             if (ds1 == null)
@@ -173,14 +158,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlDutyEmp.DataTextField = "empname";
             this.ddlDutyEmp.DataValueField = "empid";
             this.ddlDutyEmp.DataSource = ds1.Tables[0];
-            this.ddlDutyEmp.DataBind();
-
-             
-        }
-        
+            this.ddlDutyEmp.DataBind();           
+        }       
         private void GetEmpLoyeeResign()
         {
-
             string comcod = this.GetComeCode();
             string empid = this.Request.QueryString["Empid"] ?? "";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "resign", "", "", "", "", "");
@@ -189,12 +170,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds1.Tables[0];
-            this.ddlEmpName.DataBind();
-           
+            this.ddlEmpName.DataBind();       
         }
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             getVisibilty();
             CreateTable();
             this.EmpLeaveInfo();
@@ -202,7 +181,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             GetLeavType();
             GetCalCulateDay();
         }
-
         private void getVisibilty()
         {
             string qtype = this.Request.QueryString["Type"] ?? "";
@@ -277,7 +255,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     DataTable extlv = (DataTable)ViewState["tblextlv"];
                     if (extlv.Rows.Count == 0)
                     {
-
                         //getLevExitingHoliday(tdate.ToString(), tdate.ToString());
                         //DataTable extHoliday = (DataTable)ViewState["tblextHoliday"];
                         //if (extHoliday.Rows.Count != 0)
@@ -285,13 +262,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         //    string Messaged = "Oops!! This Date is not  a Holiday:  " + extHoliday.Rows[0]["REASON"];
                         //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                         //    this.btnSave.Enabled = false;
-
                         //}
-
                         this.Duration.Value = "1";
                         this.btnSave.Enabled = true;
-
-
                     }
                     else
                     {
@@ -354,9 +327,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         //double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
                         //double dfdays = Convert.ToDouble(diffdays);
                         this.Duration.Value = diffdays;
-                        this.btnSave.Enabled = true;
-                       
-
+                        this.btnSave.Enabled = true;                      
                     }
                     else
                     {
@@ -376,7 +347,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     DataTable extlv = (DataTable)ViewState["tblextlv"];
                     if (extlv.Rows.Count == 0)
                     {
-
                         double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
                         TimeSpan difference = (tdate - fdate); //create TimeSpan object
                         string diffdays = "0.00";
@@ -412,9 +382,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             {
                                 diffdays = (skpday + isHalfday).ToString();
                             }
-                        }
-                        
-
+                        }                       
                         if(gcod== "51002" && comcod=="3368" && Convert.ToDouble(diffdays) > 3)
                         {
                             string Messaged = "Oops!! Casual leave cannot be taken for more than 3 days at a time";
@@ -541,11 +509,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         return;
                     seLvDate();
                 }
-
-
-
-
-
                 GetCalCulateDay();
             }
             catch (Exception ex)

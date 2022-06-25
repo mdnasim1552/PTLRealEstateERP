@@ -52,7 +52,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
             ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
             ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
-
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
@@ -133,11 +132,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             }
                             break;
-
                         default:
-
                             //string comcod = this.GetComCode();
-
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                             this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -224,7 +220,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlfrmDesig.DataValueField = "desigcod";
             this.ddlfrmDesig.DataSource = ds1.Tables[0];
             this.ddlfrmDesig.DataBind();
-
             this.GetDessignationTo();
         }
         private void GetDessignationTo()
@@ -235,7 +230,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlToDesig.DataSource = dt;
             this.ddlToDesig.DataBind();
         }
-
         private void CompanySalary()
         {
             this.rbtSalSheet.Visible = false;
@@ -517,7 +511,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void GetProjectName()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
@@ -538,7 +531,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void SectionName()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
@@ -794,7 +786,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             day = dtto.Day - dtfrm.Day;
             if (day < 0)
             {
-
                 day = day + 30;
                 mon = mon - 1;
                 if (mon < 0)
@@ -931,9 +922,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt = this.HiddenSameData(ds3.Tables[0]);
 
             //DataTable dt = ds3.Tables[0];
-
-
-
             Session["tblpay"] = dt;
             this.LoadGrid();
         }
@@ -1050,6 +1038,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             catch (Exception ex)
             {
+
             }
         }
 
