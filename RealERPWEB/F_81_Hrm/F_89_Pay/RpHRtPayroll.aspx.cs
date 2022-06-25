@@ -5043,7 +5043,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string rmrks = dt.Rows[i]["rmrks"].ToString();
 
                 string spbonamt = Convert.ToDouble(dt.Rows[i]["spbonamt"]).ToString();
-                string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkcash"]).ToString();
+                 string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkbankcash"]).ToString();
 
                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTORUPHRBONINF", monthid, empid, perbon, bsal, gssal, bondate, section, desigid, duration, bonamt, bankamt, bankamt2, cashamt, rmrks, spbonamt, chkbnkcsh, "", "", "", "", "");
             }
