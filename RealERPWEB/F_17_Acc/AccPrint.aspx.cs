@@ -757,7 +757,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintIntech";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3367":
                     vouprint = "VocherPrintEpic";
                     break;

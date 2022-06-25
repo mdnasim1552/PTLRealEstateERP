@@ -213,7 +213,7 @@
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Mobiliz.">
+                                    <asp:TemplateField HeaderText="Mo/biliz.">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty002" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty002")).ToString("#,##0.0000;(#,##0.0000); ") %>'
