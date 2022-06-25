@@ -1727,7 +1727,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
-            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM, yyyy").ToUpper();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM, yyyy").ToUpper();
+            string dat2 = ASTUtility.Right(frmdate, 4);
 
             DataTable dt3 = (DataTable)Session["tblpay"];
             var list = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
@@ -1738,7 +1739,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "FESTIVAL BONUS OF " + bonusType));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "FESTIVAL BONUS OF " + bonusType +" - "+ frmdate));
             Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
             Rpt1.SetParameters(new ReportParameter("tkInword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
             Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
@@ -5036,14 +5037,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string desigid = dt.Rows[i]["desigid"].ToString();
                 string duration = Convert.ToDouble(dt.Rows[i]["duration"]).ToString();
                 string bonamt = Convert.ToDouble(dt.Rows[i]["bonamt"]).ToString();
-
                 string bankamt = Convert.ToDouble(dt.Rows[i]["bankamt"]).ToString();
                 string bankamt2 = Convert.ToDouble(dt.Rows[i]["bankamt2"]).ToString();
                 string cashamt = Convert.ToDouble(dt.Rows[i]["cashamt"]).ToString();
                 string rmrks = dt.Rows[i]["rmrks"].ToString();
-
                 string spbonamt = Convert.ToDouble(dt.Rows[i]["spbonamt"]).ToString();
-                 string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkbankcash"]).ToString();
+                string chkbnkcsh = Convert.ToInt32(dt.Rows[i]["chkbankcash"]).ToString();
 
                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTORUPHRBONINF", monthid, empid, perbon, bsal, gssal, bondate, section, desigid, duration, bonamt, bankamt, bankamt2, cashamt, rmrks, spbonamt, chkbnkcsh, "", "", "", "", "");
             }
