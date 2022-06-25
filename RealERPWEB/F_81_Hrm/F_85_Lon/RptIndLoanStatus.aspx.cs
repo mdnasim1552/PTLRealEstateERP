@@ -118,7 +118,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     procedure = "dbo_hrm.SP_REPORT_PAYROLL";
                     break;
             }
-
+            
 
             //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "RPTEMPLOANIND", date, empid, loantype, "", "", "", "", "", "");
             DataSet ds2 = HRData.GetTransInfo(comcod, procedure, calltype , date, empid, loantype, "", "", "", "", "", "");
