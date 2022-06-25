@@ -122,7 +122,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "3330":
                     //case "3101":
-                    comsubject = " requests you to arrange supply of following materials from your organization.";
+                    comsubject = " Requests you to arrange supply of following materials from your organization.";
                     break;
                 
                 case "3101":
@@ -131,7 +131,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 default:
-                    comsubject = " requests you to  supply the following materials from your organization.";
+                    comsubject = " Requests you to  supply the following materials from your organization.";
                     break;
             }
             return comsubject;
