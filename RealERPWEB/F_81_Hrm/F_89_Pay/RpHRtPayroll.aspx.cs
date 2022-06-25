@@ -922,7 +922,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            string compBranch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName + "%" : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            string compBranch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName  : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? compBranch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
 
