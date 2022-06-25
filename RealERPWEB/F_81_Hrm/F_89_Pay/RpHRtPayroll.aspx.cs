@@ -3305,7 +3305,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string depcod = this.ddlBranch.SelectedValue.ToString().Substring(0, 4);
             string deptname = this.ddlBranch.SelectedItem.Text.ToString();
             string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
-            string vstatus = "0";
+
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
@@ -3318,6 +3318,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else
             {
+
                 //9401(head office)
                 if (depcod == "9401")
                 {
@@ -3368,6 +3369,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 Rpt1.SetParameters(new ReportParameter("depcod", depcod));
             }
+
+
+
 
 
             Session["Report1"] = Rpt1;
