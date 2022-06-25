@@ -283,7 +283,6 @@
                                     </asp:TemplateField>
 
 
-
                                     <asp:TemplateField HeaderText="Gr. Floor">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty011" runat="server" CssClass="style101"
@@ -291,292 +290,311 @@
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="1st Floor" Visible="False">
+
+
+                                     <asp:TemplateField HeaderText="Mz. Floor-1" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty012" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty012")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="2nd Floor" Visible="False">
+
+                                     <asp:TemplateField HeaderText="Mz. Floor-2" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty013" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty013")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="3rd Floor" Visible="False">
+
+
+                                    <asp:TemplateField HeaderText="1st Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty014" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty014")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="4th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="2nd Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty015" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty015")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="5th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="3rd Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty016" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty016")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="6th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="4th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty017" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty017")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="7th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="5th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty018" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty018")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="8th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="6th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty019" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty019")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="9th floor" Visible="False">
+                                    <asp:TemplateField HeaderText="7th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty020" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty020")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="10th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="8th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty021" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty021")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="11th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="9th floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty022" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty022")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="12th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="10th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty023" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty023")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="13th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="11th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty024" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty024")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="14th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="12th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty025" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty025")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="15th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="13th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty026" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty026")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="16th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="14th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty027" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty027")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="17th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="15th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty028" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty028")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="18th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="16th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty029" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty029")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="19th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="17th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty030" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty030")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="20th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="18th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty031" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty031")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="21st Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="19th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty032" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty032")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="22ndFloor" Visible="False">
+                                    <asp:TemplateField HeaderText="20th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty033" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty033")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="23rd Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="21st Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty034" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty034")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="24th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="22ndFloor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty035" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty035")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="25th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="23rd Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty036" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty036")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="26th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="24th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty037" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty037")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="27th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="25th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty038" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty038")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="28th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="26th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty039" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty039")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="29th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="27th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty040" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty040")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="30th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="28th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty041" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty041")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="31st Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="29th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty042" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty042")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="32nd Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="30th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty043" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty043")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="33nd Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="31st Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty044" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty044")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="34th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="32nd Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty045" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty045")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="35th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="33nd Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty046" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty046")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="36nd Floor" Visible="False">
+
+                                    <asp:TemplateField HeaderText="34th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty047" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty047")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="37th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="35th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty048" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty048")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="38th Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="36nd Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty049" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty049")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Roof Top" Visible="False">
+
+                                    <asp:TemplateField HeaderText="37th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty050" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty050")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Mezz.Floor" Visible="False">
+                                    <asp:TemplateField HeaderText="38th Floor" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty051" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty051")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Comm.Work" Visible="False">
+                                    <asp:TemplateField HeaderText="Roof Top" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty052" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty052")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                                Width="55px"></asp:TextBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Mezz.Floor" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvQty053" runat="server" CssClass="style101"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty053")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                                Width="55px"></asp:TextBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Comm.Work" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvQty054" runat="server" CssClass="style101"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty054")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
