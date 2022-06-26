@@ -218,8 +218,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                    : dt.Compute("sum(paidamt)", ""))).ToString("#,##0;(#,##0); ");
             ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFbalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(balamt)", "")) ? 0.00
                     : dt.Compute("sum(balamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvMonlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(monlon)", "")) ? 0.00
+
+            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblTgvMonlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(monlon)", "")) ? 0.00
                 : dt.Compute("sum(monlon)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvMonlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(monloanemp)", "")) ? 0.00
+                : dt.Compute("sum(monloanemp)", ""))).ToString("#,##0;(#,##0); ");
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
