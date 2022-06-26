@@ -413,6 +413,11 @@
 
 }
 
+
+tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
+
+
+}
     </style>
 
 
