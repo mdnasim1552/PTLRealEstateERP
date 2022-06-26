@@ -9,9 +9,11 @@
                 backdrop: 'static',
                 keyboard: false
             });
+            TabState();
         }
         function CloseModalComplain() {
             $('#modalEditComplain').modal('hide');
+            TabState();
         }
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -26,17 +28,35 @@
             });
             $('.chzn-select').chosen({ search_contains: true });
         }
-        function TabChange() {
-            console.log(document.getElementById('btnProblem').getAttribute('aria-expanded'));
-            if (document.getElementById('btnProblem').getAttribute('aria-expanded')) {
+        let tabStatus = 0;
+        function TabState() {
+            if (tabStatus == 1) {
+                $("#collapseExample").addClass("show");
+            }
+            else {
                 $("#collapseExample").removeClass("show");
+            }
+        }
+
+        function TabChange() {
+
+            if ($("#collapseExample").hasClass("show")) {
+                $("#collapseExample").removeClass("show");
+                tabStatus = 0;
             }
             else {
                 $("#collapseExample").addClass("show");
+                tabStatus = 1;
             }
-            
+
         }
     </script>
+    <style>
+        body{
+            font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            font-size:12px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -63,8 +83,15 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <br />
-                                <asp:LinkButton ID="btnOKClick" runat="server" CssClass="btn btn-primary align-self-end w-75" OnClick="btnOKClick_Click">
+                                <asp:LinkButton ID="btnOKClick" runat="server" CssClass="btn btn-primary align-self-end" OnClick="btnOKClick_Click">
                                     <span class="fa fa-check-circle" style="color:white;" aria-hidden="true"></span> OK</asp:LinkButton>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 justify-content-end">
+                            <div class="form-group">
+                                <br />
+                                <a class="btn btn-primary text-white" id="btnProblem" role="button" onclick="TabChange()">View Complain Form
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -108,27 +135,30 @@
                             </div>
                         </div>
                         <hr />
-                        
+
                         <div id="divComplainList" class="row">
-                            <div class="col-7">
+                            <div class="col-lg-7">
                                 <div class="row">
-                                    <h6>Diagnosis</h6>
+                                    <h6 class="ml-2">Diagnosis</h6>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
-                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtComplainDesc" placeholder="Write Problem"></asp:TextBox>
+                                    <div class="col-lg-5">
+                                        <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtComplainDesc" placeholder="Write Problem"></asp:TextBox>
                                     </div>
-                                    <div class="col-5">
-                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtComplainRemarks" placeholder="Write Remarks" TextMode="MultiLine" Rows="1"></asp:TextBox>
+                                    <div class="col-lg-5">
+                                        <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtComplainRemarks" placeholder="Write Remarks" TextMode="MultiLine" Rows="1"></asp:TextBox>
                                     </div>
-                                    <div class="col-2">
-                                        <asp:LinkButton ID="btnAdd" runat="server" CssClass="btn btn-sm btn-info" OnClick="btnAdd_Click">Add</asp:LinkButton>
+                                    <div class="col-lg-2">
+                                        <asp:LinkButton ID="btnAdd" runat="server" CssClass="btn btn-sm btn-success" OnClick="btnAdd_Click">
+                                            <span class="fa fa-plus-circle " style="color:white;" aria-hidden="true"  ></span>
+                                            Add
+                                        </asp:LinkButton>
                                     </div>
                                 </div>
 
-                                <div class="row table-responsive mt-1">
+                                <div class="row table-responsive mt-1 ml-2">
 
-                                    <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                    <asp:GridView ID="dgv1" runat="server" ShowFooter="true" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.">
@@ -147,7 +177,7 @@
                                                     </asp:LinkButton>
                                                     <asp:LinkButton runat="server" ID="LnkbtnEdit" OnClick="LnkbtnEdit_Click"
                                                         ToolTip="Edit Item">
-                                                <span class="fas fa-edit fa-sm" style="color:blue;" aria-hidden="true" Width="25px" ></span>&nbsp;
+                                                <span class="fas fa-edit fa-sm" style="color:blue;" aria-hidden="true" Width="25px"></span>&nbsp;
                                                     </asp:LinkButton>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" />
@@ -185,7 +215,7 @@
                                                     <asp:Label ID="lblgvitemdesc" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
-                                                        Width="300px" Font-Size="12px" ForeColor="Black"></asp:Label>
+                                                        Width="350px" Font-Size="12px" ForeColor="Black"></asp:Label>
 
                                                 </ItemTemplate>
 
@@ -204,81 +234,78 @@
                                 </div>
 
                                 <div class="row mt-1">
-                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Additional Notes" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                    <div class="col-lg-11">
+                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Additional Notes" TextMode="MultiLine" Rows="5"></asp:TextBox>
+
+                                    </div>
 
                                 </div>
 
                             </div>
-                            <div class="col-5">
-
-                                <p>
-                                    <a class="btn btn-primary" id="btnProblem" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Problem List-User
-                                    </a>
-
-                                </p>
+                            <div class="col-lg-5">
                                 <div class="collapse" id="collapseExample">
-                                    <div class="card card-body">
-                                        <div class="row  table-responsive m-1">
+                                    <br />
+                                    <h6 class="ml-1">Complain Form</h6>
+                                    <div class="row  table-responsive m-1">
 
-                                            <asp:GridView ID="dgvUser" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea">
-                                                <RowStyle />
-                                                <Columns>
-                                                    <asp:TemplateField HeaderText="Sl.">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="serialnoid" runat="server"
-                                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle Font-Bold="True" />
-                                                        <ItemStyle HorizontalAlign="Center" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Complain Code" Visible="false">
+                                        <asp:GridView ID="dgvUser" runat="server" AutoGenerateColumns="False" ShowFooter="true" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="serialnoid" runat="server"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" />
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Complain Code" Visible="false">
 
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblgvconcatcode" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainId")) %>'
-                                                                Width="100px"></asp:Label>
-                                                        </ItemTemplate>
-
-
-                                                        <HeaderStyle HorizontalAlign="Left" />
-
-                                                    </asp:TemplateField>
-
-                                                    <asp:TemplateField HeaderText="Problem Details">
-
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblgvconcatdesc" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainDesc")) %>'
-                                                                Width="170px"></asp:Label>
-                                                        </ItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvconcatcode" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainId")) %>'
+                                                            Width="100px"></asp:Label>
+                                                    </ItemTemplate>
 
 
-                                                        <HeaderStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Left" />
 
-                                                    </asp:TemplateField>
+                                                </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="Remarks">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblgvitemdesc" runat="server" BackColor="Transparent"
-                                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
-                                                                Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
-                                                                Width="280px" Font-Size="12px" ForeColor="Black"></asp:Label>
+                                                <asp:TemplateField HeaderText="Problem Details">
 
-                                                        </ItemTemplate>
-
-
-                                                        <HeaderStyle HorizontalAlign="Left" />
-                                                        <FooterStyle ForeColor="Black" />
-                                                        <FooterStyle HorizontalAlign="Right" />
-                                                    </asp:TemplateField>
-                                                </Columns>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvconcatdesc" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainDesc")) %>'
+                                                            Width="170px"></asp:Label>
+                                                    </ItemTemplate>
 
 
-                                                <FooterStyle CssClass="gvPagination" />
-                                                <PagerStyle CssClass="gvPagination" />
-                                                <HeaderStyle CssClass="grvHeader" />
-                                            </asp:GridView>
-                                        </div>
+                                                    <HeaderStyle HorizontalAlign="Left" />
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Remarks">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvitemdesc" runat="server" BackColor="Transparent"
+                                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                            Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
+                                                            Width="280px" Font-Size="12px" ForeColor="Black"></asp:Label>
+
+                                                    </ItemTemplate>
+
+
+                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                    <FooterStyle ForeColor="Black" />
+                                                    <FooterStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
+                                            </Columns>
+
+
+                                            <FooterStyle CssClass="gvPagination" />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
                                     </div>
                                 </div>
 
@@ -291,11 +318,15 @@
 
 
                         <div class="row d-flex justify-content-center">
-                            <asp:LinkButton ID="lnkRefresh" runat="server" CssClass="btn btn-sm btn-warning mx-2 my-2" OnClick="lnkRefresh_Click" Width="100px">Refresh</asp:LinkButton>
-                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" Width="100px" OnClick="lnkSave_Click">Save</asp:LinkButton>
-                            <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-sm btn-info mx-2 my-2" OnClick="lnkProceed_Click" Width="150px">Proceed to Next Step</asp:LinkButton>
+                            <asp:LinkButton ID="lnkRefresh" runat="server" CssClass="btn btn-sm btn-warning mx-2 my-2" OnClick="lnkRefresh_Click" Width="100px">
+                                <span class="fa fa-redo " style="color:black;" aria-hidden="true"></span> Refresh</asp:LinkButton>
+                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
+                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
+                            <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-sm btn-info mx-2 my-2" OnClick="lnkProceed_Click" Width="150px">
+                                <span class="fa fa-arrow-circle-right " style="color:white;" aria-hidden="true"></span>
+                                Proceed to Next Step
+                            </asp:LinkButton>
                         </div>
-
 
                     </asp:Panel>
 

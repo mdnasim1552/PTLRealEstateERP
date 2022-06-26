@@ -126,7 +126,7 @@ namespace RealERPWEB.F_30_Facility
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please write Problem and then click on Add. " + "');", true);
                 }
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabChange();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
                 
             }
             catch (Exception ex)
@@ -160,6 +160,7 @@ namespace RealERPWEB.F_30_Facility
                 list.Remove(obj);
                 Bind_Grid(list);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{obj.complainDesc} is removed from the table" + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
             }
             catch (Exception ex)
             {
@@ -205,6 +206,7 @@ namespace RealERPWEB.F_30_Facility
                     obj.remarks = remarks;
                     Bind_Grid(list);
                 }
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
             }
             catch (Exception ex)
             {
@@ -241,6 +243,7 @@ namespace RealERPWEB.F_30_Facility
         protected void btnOKClick_Click(object sender, EventArgs e)
         {
             getComplainUser();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
         }
 
         protected void lnkSave_Click(object sender, EventArgs e)
@@ -317,6 +320,7 @@ namespace RealERPWEB.F_30_Facility
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Add atleast 1 Complain in the table to continue" + "');", true);
                 }
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
             }
             catch (Exception ex)
             {
