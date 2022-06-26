@@ -943,15 +943,20 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Section">
+                                                 <HeaderTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Width="100px"
+                                                        Text="Section">
+                                                        <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
+                                                            CssClass="btn btn-success ml-2 btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
+                                                    </asp:Label>
+                                                </HeaderTemplate>
+
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="hlnkgvdeptandemployeeempabs02" runat="server" OnClick="hlnkgvdeptandemployeeempabs02_Click"
-                                                        Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) + "</B>"+
-                                                                         (DataBinder.Eval(Container.DataItem, "empname").ToString().Trim().Length>0 ? 
-                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "section")).Trim().Length>0 ?  "<br>" : "")+                                                             
-                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
-                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).Trim()+". "+
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
-                                                        Width="250px"></asp:LinkButton>
+                                                    <asp:Label ID="lblgvCardnoearnabs" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
+                                                        Width="100px"></asp:Label>
+
+                                                  
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -964,6 +969,19 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Employee Name">
+
+                                                <ItemTemplate>
+                                                     <asp:LinkButton ID="hlnkgvdeptandemployeeempabs02" runat="server" OnClick="hlnkgvdeptandemployeeempabs02_Click"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                                        Width="250px"></asp:LinkButton>
+                                                     <%--Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).Trim()+". "+ --%>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+
+                                            
+                                            
                                             <asp:TemplateField HeaderText="Designation">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvEmpNameearnabs02" runat="server" Height="16px"

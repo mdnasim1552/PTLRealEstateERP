@@ -1337,7 +1337,7 @@
                                         <asp:TemplateField HeaderText="Cash Amt">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvcashAmtbon" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0; (#,##0); ") %>'
                                                     Width="65px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>

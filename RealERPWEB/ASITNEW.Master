@@ -144,6 +144,12 @@
     </script>
     <!-- END THEME STYLES -->
     <style>
+ .ajax__calendar_day {
+       font-weight:100!important;
+ }
+ .ajax__calendar_dayname{
+     font-weight:100!important;
+ }
         .checkbox-menu li label {
             display: block;
             padding: 3px 10px;
