@@ -105,28 +105,18 @@
                         inputList[i].checked = true;
 
                     }
-
                     else {
-
                         //If the header checkbox is checked
-
                         //uncheck all checkboxes
-
                         //and change rowcolor back to original
-
-                        if (row.rowIndex % 2 == 0) {
-
-
+                        if (row.rowIndex % 2 == 0)
+                        {
                         }
-
-                        else {
-
+                        else
+                        {
                             //row.style.backgroundColor = "white";
-
                         }
-
                         inputList[i].checked = false;
-
                     }
 
                 }

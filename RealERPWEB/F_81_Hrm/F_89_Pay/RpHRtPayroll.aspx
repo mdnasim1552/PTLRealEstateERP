@@ -22,7 +22,8 @@
     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 
@@ -156,7 +157,7 @@
                             <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-2 col-md-2 col-sm-6" id="divBracnhLsit" runat="server">
                             <asp:Label ID="Label9" runat="server">Branch</asp:Label>
                             <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlBranch_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>

@@ -93,8 +93,11 @@ namespace RealERPWEB.F_04_Bgd
             string isircode = this.ddlItem.SelectedValue.ToString();
             string cattype = (dt1.Select("isircode='" + isircode + "'"))[0]["cattype"].ToString();
             DataView dv = dt.DefaultView;
+            //dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
+            //dv.Sort = ("cattype,flrcod");
+            //dt = dv.ToTable();
             dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
-            dv.Sort = ("cattype,flrcod");
+            dv.Sort = ("cattype,flrslno");
             dt = dv.ToTable();
 
             this.ddlFloor1.DataTextField = "flrdes";
@@ -343,12 +346,15 @@ namespace RealERPWEB.F_04_Bgd
             string isircode = this.ddlItem.SelectedValue.ToString();
             string cattype = (dt1.Select("isircode='" + isircode + "'"))[0]["cattype"].ToString();
             DataView dv = dt.DefaultView;
+
             dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
-            dv.Sort = ("cattype,flrcod");
+            dv.Sort = ("cattype,flrslno");
             dt = dv.ToTable();
-
-
-
+            /*
+                    dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
+                    dv.Sort = ("cattype,flrcod");
+                    dt = dv.ToTable();
+             */
             int j = 5;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -428,9 +434,8 @@ namespace RealERPWEB.F_04_Bgd
             this.gvAnalysis.Columns[54].Visible = (i == 8);
             this.gvAnalysis.Columns[55].Visible = (i == 8);
             this.gvAnalysis.Columns[56].Visible = (i == 8);
-
-
-
+            this.gvAnalysis.Columns[57].Visible = (i == 8);
+            this.gvAnalysis.Columns[58].Visible = (i == 8);
 
 
             this.lblColGroup.Text = Convert.ToString(i);
@@ -511,10 +516,15 @@ namespace RealERPWEB.F_04_Bgd
             DataTable dt = ((DataTable)Session["tblfloor"]).Copy();
             string cattype = (((DataTable)Session["tblItmCod"]).Select("isircode='" + ItmCod + "'"))[0]["cattype"].ToString();
             DataView dv = dt.DefaultView;
-            dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
-            dv.Sort = ("cattype,flrcod");
-            dt = dv.ToTable();
 
+            dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
+            dv.Sort = ("cattype,flrslno");
+            dt = dv.ToTable();
+            /*
+                    dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
+                    dv.Sort = ("cattype,flrcod");
+                    dt = dv.ToTable();
+             */
 
 
             int flr = 0, i = 0;
