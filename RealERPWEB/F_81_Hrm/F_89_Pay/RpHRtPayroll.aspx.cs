@@ -1682,7 +1682,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Rpt1.SetParameters(new ReportParameter("frmdate", date1));
             }
             // project
-            if (this.ddlProjectName.SelectedValue.Substring(0, 4) == "9451")
+            else if (this.ddlProjectName.SelectedValue.Substring(0, 4) == "9451")
             {
 
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetPebProj", lst, null, null);
