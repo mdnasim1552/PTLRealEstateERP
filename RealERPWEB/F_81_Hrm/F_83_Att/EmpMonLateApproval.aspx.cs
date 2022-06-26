@@ -151,7 +151,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
             }
         }
-
         private void visibility()
         {
             this.lblfrmDesig.Visible = false;
@@ -220,8 +219,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             ds1.Dispose();
 
         }
-
-
         private void GetDesignation()
         {
 
@@ -484,10 +481,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     //pnlDesig.Visible = false;
                     break;
             }
-
-
             string calltype = this.selectcomp(); //comcod == "3332" ? "EMPDAYADJUSTMENTMAN" : "EMPDAYADJUSTMENT";
-
 
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", calltype, compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
             if (ds2 == null || ds2.Tables[0].Rows.Count==0)
@@ -713,10 +707,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 else
                     foreach (string s1 in sec)
                         section = section + this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
-
             }
-
-
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
@@ -1827,18 +1818,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     }
 
                     break;
-
-
-
-
-
-
-
-
             }
-
-
-
             Session["tblover"] = dt;
             this.Data_Bind();
         }
@@ -1855,8 +1835,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             for (int j = 0; j < mgvbreakdown.Rows.Count; j++)
             {
-
-
                 if (((CheckBox)this.mgvbreakdown.Rows[j].FindControl("chkack")).Checked == true)
                 {
                     string lateappsta = (((CheckBox)this.mgvbreakdown.Rows[j].FindControl("chkack")).Checked == true) ? "1" : "0";
@@ -1868,20 +1846,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     if (!result)
                     {
-
                         this.lblmsg.Text = "Updated Failed";
                         return;
-
                     }
-
-
-                }
-
-
-
-              
+                }      
             }
-
             this.lblmsg.Text = "Updated Successfully";
             //Response.Redirect(Request.RawUrl);
             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
