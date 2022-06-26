@@ -16,7 +16,7 @@
         });
 
         $(document).ready(function () {
-            ExcuteEmpStatus();
+            ExcuteEmpStatus();p
         });
         function ExcuteEmpStatus() {
 
