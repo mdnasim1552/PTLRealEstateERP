@@ -997,6 +997,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.gvabsapp02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvabsapp02.DataSource = dt;
                     this.gvabsapp02.DataBind();
+                    Session["Report1"] = gvabsapp02;                  
+                    ((HyperLink)this.gvabsapp02.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                     break;
 
                 case "LPAproval":
@@ -2593,6 +2595,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void ModallnkBtnLateAFTER10AM_Click(object sender, EventArgs e)
         {
 
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
         }
     }
 }

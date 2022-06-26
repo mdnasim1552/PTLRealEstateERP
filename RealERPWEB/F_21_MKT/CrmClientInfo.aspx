@@ -381,12 +381,11 @@
         }
         
 /*You can use [title] selector as well*/
-[data-title] {
-  outline: red dotted 1px; /*optional styling*/
-  font-size: 30px; /*optional styling*/
-  
+[data-title] {  
+  font-size: 30px; /*optional styling*/  
   position: relative;
   cursor: help;
+  width:200px;
 }
 
 [data-title]:hover::before {
@@ -399,8 +398,8 @@
   background: #000;
   color: #fff;
   font-size: 12px;
-  font-family: sans-serif;
-  white-space: nowrap;
+  white-space: pre-wrap;
+ 
 }
 [data-title]:hover::after {
   content: '';
@@ -409,8 +408,9 @@
   left: 8px;
   display: inline-block;
   color: #fff;
-  border: 8px solid transparent;	
-  border-bottom: 8px solid #000;
+  border: 0px solid transparent;	
+  border-bottom: 0px solid #000;
+
 }
 
 
@@ -1929,15 +1929,9 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
             }
         };
-
         //// for selected follow then selected lead status 
 
-
     </script>
-
-
-t>
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -3054,8 +3048,8 @@ t>
 
                                                 <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbldesc" runat="server" Width="100px" data-title="Here is some text for example"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
+                                                        <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" data-title='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'
+                                                            Text='<%# Eval("ldiscuss")== "" ? "" : Eval("ldiscuss").ToString().Substring(0,20)%>'></asp:Label>
                                                          
 
                                                     </ItemTemplate>
