@@ -1206,8 +1206,6 @@
                 </div>
             </div>
             <div id="ApplyLoan" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
-
-             
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header bg-light">

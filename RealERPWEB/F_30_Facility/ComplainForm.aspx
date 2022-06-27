@@ -87,7 +87,7 @@
                         </div>
                         <div class="col-lg-2">
                             <br />
-                            <asp:LinkButton ID="btnOKClick" runat="server" CssClass="btn btn-info align-self-end w-75" OnClick="btnOKClick_Click">
+                            <asp:LinkButton ID="btnOKClick" runat="server" CssClass="btn btn-info align-self-end" OnClick="btnOKClick_Click">
                                 <span class="fa fa-check-circle" style="color:white;" aria-hidden="true"></span> OK
                             </asp:LinkButton>
                         </div>

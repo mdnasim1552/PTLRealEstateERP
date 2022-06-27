@@ -1682,7 +1682,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Rpt1.SetParameters(new ReportParameter("frmdate", date1));
             }
             // project
-            if (this.ddlProjectName.SelectedValue.Substring(0, 4) == "9451")
+            else if (this.ddlProjectName.SelectedValue.Substring(0, 4) == "9451")
             {
 
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetPebProj", lst, null, null);
@@ -4509,9 +4509,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "3338":
                     //case "3101":
-
                     //case "3101":
-
                     for (i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
@@ -4554,8 +4552,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 case "3355":
-
-
                     for (i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
 
@@ -4571,21 +4567,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     break;
 
-
                 case "3354": //Edison Real Estate
-                case "3365": //Edison Real Estate
+                case "3365": //BTI 
                     i = 0;
                     foreach (GridViewRow gv1 in this.gvBonus.Rows)
                     {
 
-
+                       
                         double bonamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBonusAmt")).Text.Trim());
                         rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
 
-
                         double bankamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmtbon")).Text.Trim());
                         double bankamt2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmt2bon")).Text.Trim()); ;
-                        double cashamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()); ;
+                        //double cashamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()); ;
+
+                        double cashamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()));
 
                         dt.Rows[rowindex]["bonamt"] = bonamt;
                         dt.Rows[rowindex]["bankamt"] = bonamt > 0 ? bankamt : 0.00;
@@ -4593,10 +4589,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         dt.Rows[rowindex]["cashamt"] = bonamt > 0 ? cashamt : 0.00;
                         i++;
                     }
-
                     break;
 
-                case "3368": //Edison Real Estate
+                case "3368": //Finlay 
                     i = 0;
                     foreach (GridViewRow gv1 in this.gvBonus.Rows)
                     {
@@ -4620,17 +4615,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         dt.Rows[rowindex]["cashamt"] = bonamt > 0 ? cashamt : 0.00;
                         i++;
                     }
-
                     break;
-
-
-
-
                 default:
-
                     for (i = 0; i < this.gvBonus.Rows.Count; i++)
                     {
-
                         double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
                         double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
 
@@ -4639,32 +4627,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         dt.Rows[rowindex]["perbon"] = perbonus;
                         dt.Rows[rowindex]["bonamt"] = bonamt;
                     }
-
                     break;
-
-
-
-
-
             }
 
             Session["tblpay"] = dt;
-
-
-
         }
 
         private void SaveRrmks()
         {
-
             int rowindex;
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tblpay"];
 
-
             for (int i = 0; i < this.gvpayroll.Rows.Count; i++)
             {
-
                 string rmrks = ((TextBox)this.gvpayroll.Rows[i].FindControl("lgvrmrks")).Text.Trim();
                 string rmrks2 = ((TextBox)this.gvpayroll.Rows[i].FindControl("lgvrmrks2")).Text.Trim();
                 rowindex = (this.gvpayroll.PageSize) * (this.gvpayroll.PageIndex) + i;
@@ -4673,7 +4649,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
             }
-
             Session["tblpay"] = dt;
         }
         private void SaveRrmks2()
