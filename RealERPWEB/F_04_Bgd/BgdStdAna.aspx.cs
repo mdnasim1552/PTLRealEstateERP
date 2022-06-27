@@ -323,7 +323,7 @@ namespace RealERPWEB.F_04_Bgd
             dr3["rsircode"] = ResCode;
             dr3["rsirdesc"] = ResDesc;
             dr3["rsirunit"] = ResUnit;
-            for (int i = 1; i <= 52; i++)
+            for (int i = 1; i <= 54; i++)
                 dr3["qty" + ASTUtility.Right("00" + i.ToString(), 3)] = 0;
 
             tbl1.Rows.Add(dr3);
@@ -450,7 +450,7 @@ namespace RealERPWEB.F_04_Bgd
             foreach (GridViewRow gv1 in gvAnalysis.Rows)
             {
                 string gvResCod = ((Label)gv1.FindControl("lblgvResCod")).Text.Trim();
-                for (int j = 1; j <= 52; j++)
+                for (int j = 1; j <= 54; j++)
                 {
                     string gvQty1 = "txtgvQty" + ASTUtility.Right("00" + j.ToString(), 3);
                     double gvQty2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl(gvQty1)).Text.Trim().Replace(",", ""));
