@@ -54,7 +54,6 @@
 
 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-
     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
 
