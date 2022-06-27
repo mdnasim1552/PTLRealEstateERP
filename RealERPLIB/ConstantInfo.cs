@@ -1752,7 +1752,7 @@ namespace RealERPLIB
 
             #region Facility Management
             
-            tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Facility Management", "Facility-Interface", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
 
 
             #endregion

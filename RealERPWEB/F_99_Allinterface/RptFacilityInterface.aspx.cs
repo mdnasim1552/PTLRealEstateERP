@@ -17,6 +17,15 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (!IsPostBack)
             {
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                    Response.Redirect("~/AcceessError");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
+
                 txtfrmdate.Text = System.DateTime.Now.AddDays(-30).ToString("dd-MMM-yyyy");
                 txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 ModuleName();
@@ -40,7 +49,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (ds != null || ds.Tables[0].Rows.Count > 0)
             {
                 DataTable dt = ds.Tables[0];
-                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + dt.Rows[0][1].ToString() + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complains</div></div></div>";
+                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + dt.Rows[0][1].ToString() + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complaints</div></div></div>";
                 this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + dt.Rows[0][2].ToString() + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Engr. Check</div></div></div>";
 
                 this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + dt.Rows[0][3].ToString() + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Budget" + "</div></div></div>";
