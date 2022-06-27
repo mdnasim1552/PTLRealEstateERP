@@ -56,8 +56,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string comcod = this.GetComeCode();
             switch (comcod)
             {
-                case "3354":
-                case "3101":
+                case "3354":                
                    // ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
                     // ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
                     // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
@@ -69,12 +68,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                    // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
                     break;
-                case "3365":
+                case "3365":               
                     ddlReqType.Items.Add(new ListItem("Late Approval Request(if Finger 9:04:59 to 9:59:59)", "LA"));
                     ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
                     ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
                     break;
+                case "3101":
+                    ddlReqType.Items.Add(new ListItem("Late Approval Request(if Finger 9:04:59 to 9:59:59)", "LA"));
+                    ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
+                    ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
+                    ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
+                    break;
+
                 default:
                     break;
             }
@@ -282,6 +288,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 switch (comcod)
                 {
                     case "3365":
+                    case "3101":
                     case "3366":
                     
                         if (ahleave == "A" && iscancel == "False")
@@ -328,7 +335,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
                         break;
                     case "3354":
-                    case "3101":
+              
                         if (ahleave == "A" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
