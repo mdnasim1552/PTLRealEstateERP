@@ -63,9 +63,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlfilterby.DataSource = ds.Tables[0];
             this.ddlfilterby.DataBind();
             this.ddlfilterby.Items.Insert(0, new ListItem("All", "%%"));
-
-
-
         }
         private void SelectDate()
         {
