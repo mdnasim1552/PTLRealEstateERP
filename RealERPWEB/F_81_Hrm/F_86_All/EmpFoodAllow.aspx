@@ -229,7 +229,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lgvSectionmb" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                        Width="180px" Font-Bold="True" Font-Size="11px"></asp:Label>
+                                        Width="180px"  ></asp:Label>
                                 </ItemTemplate>
                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -242,7 +242,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvCardno" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                        Width="50px"></asp:Label>
+                                        Width="90px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
