@@ -44,9 +44,9 @@
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -178,6 +178,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryFinlay.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
@@ -741,6 +742,7 @@
     <EmbeddedResource Include="R_23_CR\RptClientDOBMrrDay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientInfo.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptClientLedgerAssure.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02Cube.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedgerBridge.rdlc" />
@@ -980,6 +982,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Edison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02GreenWood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpAitCertificate.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpBonusEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpBonus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpBonusAssure.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpLeaveStatus.rdlc" />
@@ -994,6 +997,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTaxFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTax.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalSummaryFinlay.rdlc" />

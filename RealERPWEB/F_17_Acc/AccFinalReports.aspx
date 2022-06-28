@@ -1156,7 +1156,7 @@
                         </div>
                     </div>
                     <asp:GridView ID="gvIncome" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvIncome_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                        ShowFooter="True" Width="758px">
+                        ShowFooter="True" Width="758px" >
 
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.No.">
@@ -1208,6 +1208,16 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Amount">
                                 <ItemTemplate>
+
+                                     <%--<asp:Label ID="lgvAmt" runat="server"  Text='<%# "<B>"+ Convert.ToDouble(DataBinder.Eval(Container.DataItem, "grpsum")).ToString("#,##0;(#,##0); ") + "</B>"+
+                                                                         (Convert.ToDouble( DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0;(#,##0); ").Trim().Length > 0 ? 
+                                                                         (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "grpsum")).ToString("#,##0;(#,##0); ").Trim().Length > 0 ?  "<br>" : "")+                                                             
+                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0;(#,##0); ").Trim(): "")  %>' > </asp:Label>--%>
+
+
+
+
                                     <asp:Label ID="lgvAmt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0;(#,##0); ") %>'
                                         Width="75px"></asp:Label>
                                 </ItemTemplate>

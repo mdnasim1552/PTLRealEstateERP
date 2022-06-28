@@ -149,6 +149,9 @@ namespace RealERPWEB
                 case "3364":
                 case "3366": //lanco
                 case "3368": //finlay
+                case "3353":
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
                 case "3367": //epic
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);

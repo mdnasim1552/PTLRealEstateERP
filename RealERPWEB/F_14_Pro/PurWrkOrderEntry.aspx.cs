@@ -122,7 +122,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "3330":
                     //case "3101":
-                    comsubject = " requests you to arrange supply of following materials from your organization.";
+                    comsubject = " Requests you to arrange supply of following materials from your organization.";
                     break;
                 
                 case "3101":
@@ -131,7 +131,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 default:
-                    comsubject = " requests you to  supply the following materials from your organization.";
+                    comsubject = " Requests you to  supply the following materials from your organization.";
                     break;
             }
             return comsubject;
@@ -156,10 +156,14 @@ namespace RealERPWEB.F_14_Pro
             string comcod = hst["comcod"].ToString();
 
             string orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
+            /**
+            var scheme = HttpContext.Current.Request.Url.Scheme;
+            var host = HttpContext.Current.Request.Url.Host;
+            var port = HttpContext.Current.Request.Url.IsDefaultPort ? "" : ":"+HttpContext.Current.Request.Url.Port.ToString();
+            string hostname = scheme+"://" + host + port + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            **/
 
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "F_99_Allinterface/";
             string currentptah = "PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";

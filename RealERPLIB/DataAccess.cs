@@ -45,7 +45,6 @@ namespace RealERPLIB
                 ii = System.Windows.Forms.Application.ProductName + ".EXE";
                 ii = System.IO.Path.Combine(Environment.CurrentDirectory, ii);
                 Config1 = System.Configuration.ConfigurationManager.OpenExeConfiguration(ii);
-
             }
             ii = Config1.AppSettings.Settings["DBConnstr"].Value.ToString().Trim();
             return ii;
@@ -67,7 +66,6 @@ namespace RealERPLIB
                 adp.Fill(ds);
                 return ds.Tables[0];
             }
-
             catch (Exception ex)
             {
                 this.SetError(ex);
@@ -167,7 +165,6 @@ namespace RealERPLIB
                 this.m_Conn.Close();
             }
         }
-
         public SqlDataReader ExecuteReader(SqlCommand cmd) 
         {
             cmd.Connection = this.m_Conn;
@@ -191,9 +188,7 @@ namespace RealERPLIB
              
                 this.m_Erroobj["Src"] = ex.Source;
                 this.m_Erroobj["Msg"] = ex.Message;
-                this.m_Erroobj["Location"] = ex.StackTrace;
-           
-                     
+                this.m_Erroobj["Location"] = ex.StackTrace;                               
         }
     }
 }

@@ -22,7 +22,8 @@
     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 
@@ -156,7 +157,7 @@
                             <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-2 col-md-2 col-sm-6" id="divBracnhLsit" runat="server">
                             <asp:Label ID="Label9" runat="server">Branch</asp:Label>
                             <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlBranch_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
@@ -245,7 +246,7 @@
                             </asp:RadioButtonList>
                         </div>
 
-                        <div class="col-lg-1 col-md-1 col-sm-2" id="gndDiv" visible="false" runat="server">
+                        <div class="col-lg-2 col-md-2 col-sm-2" id="gndDiv" visible="false" runat="server">
                             <asp:Label ID="Label15" CssClass="d-block" runat="server">Print Grand Total</asp:Label>
                             <asp:CheckBox ID="chkgrndt" runat="server" CssClass="form-control" />
                         </div>
@@ -466,7 +467,7 @@
 
                                              <asp:TemplateField HeaderText="Leave Enjoyed">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvwlday" runat="server" Style="text-align:center"
+                                                    <asp:Label ID="lgvwlday" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wld")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -484,7 +485,7 @@
                                             <asp:TemplateField HeaderText="Adjust">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvdedday" runat="server"
-                                                        Style="text-align: right" Width="45px"
+                                                         Width="45px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dedday")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
@@ -1027,7 +1028,7 @@
                                 </div>
                                 <asp:Panel ID="PnlBonus" runat="server" CssClass="col-lg-1 col-md-1 col-sm-6" Visible="False">
                                     <asp:Label ID="Label3" runat="server">Bonus(%)
-                                                    <asp:LinkButton ID="lnkbtnGenBonus" runat="server" OnClick="lnkbtnGenBonus_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnGenBonus"  runat="server" CssClass="badge bg-danger text-white" OnClick="lnkbtnGenBonus_Click">Calculate</asp:LinkButton>
                                     </asp:Label>
                                     <asp:TextBox ID="txtBonusPer" runat="server" CssClass="form-control" AutoComplete="off"></asp:TextBox>
                                 </asp:Panel>
@@ -1042,7 +1043,7 @@
                                         </div>
 
                                         <div class="col-lg-2 col-md-2 col-sm-6">
-                                            <asp:Label ID="Label12" runat="server">EID UL AZHA </asp:Label>
+                                            <asp:Label ID="Label12" runat="server">EID UL ADHA </asp:Label>
                                             <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" form-control" />
                                         </div>
 
@@ -1268,7 +1269,7 @@
 
 
 
-                                           <asp:TemplateField HeaderText="Special Bonus Amt.">
+                                        <asp:TemplateField HeaderText="Special Bonus Amt.">
                                             <ItemTemplate>
                                                 <asp:label ID="txtgvSpbonusamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "spbonamt")).ToString("#,##0;(#,##0); ") %>'
@@ -1336,7 +1337,7 @@
                                         <asp:TemplateField HeaderText="Cash Amt">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvcashAmtbon" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0; (#,##0); ") %>'
                                                     Width="65px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>

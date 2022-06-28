@@ -195,9 +195,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2733,6 +2733,7 @@
     <Content Include="F_29_Fxt\RptFxtAsstBillRent.aspx" />
     <Content Include="F_29_Fxt\RptFxtAsstStatus.aspx" />
     <Content Include="F_29_Fxt\RptFxtStore.aspx" />
+    <Content Include="F_30_Facility\Quotation.aspx" />
     <Content Include="F_30_Facility\BudgetForm.aspx" />
     <Content Include="F_30_Facility\EngrCheck.aspx" />
     <Content Include="F_30_Facility\ComplainForm.aspx" />
@@ -2836,6 +2837,8 @@
     <Content Include="F_35_MgtAct\RptMisDailyActiviteis.aspx" />
     <Content Include="F_35_MgtAct\RptMisOverall.aspx" />
     <Content Include="F_35_MgtAct\UserLoginfrm.aspx" />
+    <Content Include="F_36_Vehcl\interfaceVchl.aspx" />
+    <Content Include="F_36_Vehcl\VehicleMgt.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
     <Content Include="F_39_MyPage\CustomerDetail.aspx" />
@@ -3061,6 +3064,7 @@
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\RptLoanEmpwise.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpFoodAllow.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpFoodingRate.aspx" />
@@ -4235,6 +4239,13 @@
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_30_Facility\Quotation.aspx.cs">
+      <DependentUpon>Quotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_30_Facility\Quotation.aspx.designer.cs">
+      <DependentUpon>Quotation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_30_Facility\BudgetForm.aspx.cs">
       <DependentUpon>BudgetForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4304,6 +4315,20 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_36_Vehcl\interfaceVchl.aspx.cs">
+      <DependentUpon>interfaceVchl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_36_Vehcl\interfaceVchl.aspx.designer.cs">
+      <DependentUpon>interfaceVchl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_36_Vehcl\VehicleMgt.aspx.cs">
+      <DependentUpon>VehicleMgt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_36_Vehcl\VehicleMgt.aspx.designer.cs">
+      <DependentUpon>VehicleMgt.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntry.aspx.cs">
       <DependentUpon>EmpEntry.aspx</DependentUpon>
@@ -4654,6 +4679,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx.designer.cs">
       <DependentUpon>EmpLoanStatusOpn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\RptLoanEmpwise.aspx.cs">
+      <DependentUpon>RptLoanEmpwise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\RptLoanEmpwise.aspx.designer.cs">
+      <DependentUpon>RptLoanEmpwise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx.cs">
       <DependentUpon>RptIndLoanStatus.aspx</DependentUpon>
