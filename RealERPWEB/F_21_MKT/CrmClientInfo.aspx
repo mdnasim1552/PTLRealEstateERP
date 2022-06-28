@@ -3048,10 +3048,8 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                                                 <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" data-title='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'
-                                                            Text='<%# Eval("ldiscuss")== "" ? "" : Eval("ldiscuss").ToString().Substring(0,20)%>'></asp:Label>
-                                                         
-
+                                                       <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" 
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>   
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                  <%--21--%>
