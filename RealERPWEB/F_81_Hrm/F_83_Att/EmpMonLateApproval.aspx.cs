@@ -1820,6 +1820,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Session["tblover"] = dt;
             this.Data_Bind();
         }
+        /*
         protected void ModalUpdateBtn_Click(object sender, EventArgs e)
         {
             this.lblmsg.Visible = true;
@@ -1854,7 +1855,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
 
 
-        }
+        }*/
         protected void lblgvdeptandemployeeemp_Click(object sender, EventArgs e)
         {
 
@@ -2591,6 +2592,61 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void ModallnkBtnLateAFTER10AM_Click(object sender, EventArgs e)
         {
 
+        }
+     
+
+        protected void ModalUpdateBtn_Click(object sender, EventArgs e)
+        {
+            this.lblmsg.Visible = true;
+            string comcod = this.GetCompCode();
+            bool result = false;
+            bool result2 = false;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string postDat = System.DateTime.Today.ToString("yyyy-MM-dd hh:mm:ss");
+            string sessionid = hst["session"].ToString();
+            string trmid = hst["compname"].ToString();
+            //'20220506','930100102037','12012','0','Time Correction','3365013','LP'
+            for (int j = 0; j < mgvbreakdown.Rows.Count; j++)
+            {
+                if (((CheckBox)this.mgvbreakdown.Rows[j].FindControl("chkack")).Checked == true)
+                {
+                    string latestatus = (((CheckBox)this.mgvbreakdown.Rows[j].FindControl("chkack")).Checked == true) ? "1" : "0";
+                    string empid = Convert.ToString(((Label)this.mgvbreakdown.Rows[j].FindControl("mlgvEmpIdAdj")).Text.Trim());
+                    string remarks = Convert.ToString(((TextBox)this.mgvbreakdown.Rows[j].FindControl("mTxtremarks")).Text.Trim());
+                    string idcard = Convert.ToString(((Label)this.mgvbreakdown.Rows[j].FindControl("mlblgvCardnoearn")).Text.Trim());
+                    string dayid = Convert.ToDateTime(((Label)this.mgvbreakdown.Rows[j].FindControl("mlblgvlateday")).Text).ToString("yyyyMMdd");
+                    string ltype = "LP";
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", dayid, empid, idcard, latestatus, remarks, userid, ltype, "", "", "", "");
+
+                    if (!result)
+                    {
+                        this.lblmsg.Text = "Updated Failed";
+                        return;
+                    }
+                }
+            }
+            int count = 0;
+            foreach(GridViewRow  row in mgvbreakdown.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkack");
+                if (chk.Checked)
+                {
+                    count++;
+                }
+            }
+            string empid2 = Convert.ToString(((Label)this.mgvbreakdown.Rows[0].FindControl("mlgvEmpIdAdj")).Text.Trim());
+            string dayid2 = Convert.ToDateTime(this.txttoDate.Text).ToString("yyyyMM");
+            result2 = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEADJUST", dayid2, empid2, count.ToString(), "", "", "", "", "");
+            if (!result2)
+            {
+                this.lblmsg.Text = "Adjust Updated Failed";
+                return;
+            }
+
+            this.lblmsg.Text = "Updated Successfully";
+            //Response.Redirect(Request.RawUrl);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal();", true);
         }
         public override void VerifyRenderingInServerForm(Control control)
         {

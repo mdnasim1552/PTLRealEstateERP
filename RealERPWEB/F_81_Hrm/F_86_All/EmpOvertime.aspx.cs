@@ -1108,8 +1108,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
 
-
-
                         case "3347":
                             this.gvothearn.Columns[11].Visible = true;
                             this.gvothearn.Columns[14].Visible = true;
@@ -1340,7 +1338,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "3347":
                     for (int i = 0; i < this.gvEmpOverTime.Rows.Count; i++)
                     {
-
+                       
                         double fixhourrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvFixedrate")).Text.Trim());
                         double hourlyrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvhourlyrate")).Text.Trim());
                         double c1rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc1rate")).Text.Trim());
@@ -1353,7 +1351,25 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc3")).Visible = c3rate > 0;
                     }
                     break;
+                case "3368"://Finlay
+                case "3101":
 
+                    
+                    for (int i = 0; i < this.gvEmpOverTime.Rows.Count; i++)
+                    {
+                        
+                        double fixhourrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvFixedrate")).Text.Trim());
+                        double hourlyrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvhourlyrate")).Text.Trim());
+                        double c1rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc1rate")).Text.Trim());
+                        double c2rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc2rate")).Text.Trim());
+                        double c3rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc3rate")).Text.Trim());
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixed")).Visible = fixhourrate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvhourly")).Visible = hourlyrate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc1")).Visible = c1rate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc2")).Visible = c2rate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc3")).Visible = c3rate > 0;
+                    }
+                    break;
 
                 default:
                     for (int i = 0; i < this.gvEmpOverTime.Rows.Count; i++)
