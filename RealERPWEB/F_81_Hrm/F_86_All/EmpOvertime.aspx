@@ -198,7 +198,7 @@
                              OnRowDeleting="gvEmpOverTime_RowDeleting">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True"
                                             Style="text-align: right"
@@ -207,12 +207,13 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:CommandField ShowDeleteButton="True" />
+                              
+                                        <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText="<span class='fa fa-trash'></span>" />
 
                                 <asp:TemplateField HeaderText="Section">
                                     <HeaderTemplate>
                                         <asp:HyperLink ID="hlbtntbCdataExel" runat="server" BackColor="#000066"
-                                            BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
+                                            BorderColor="White" BorderStyle="Solid" BorderWidth="1px" 
                                             ForeColor="White" Style="text-align: center" Width="90px">Export Exel</asp:HyperLink>
                                     </HeaderTemplate>
                                     <ItemTemplate>
