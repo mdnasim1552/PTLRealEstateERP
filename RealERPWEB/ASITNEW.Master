@@ -285,8 +285,11 @@
             color: #fff !important;
             font-size:18px;
         }
+        .card-header{
+            font-weight:normal !important;
+        }
        .ajax__calendar{
-           font-weight:300 !important;
+           font-weight:normal !important;
        }
     </style>
 
