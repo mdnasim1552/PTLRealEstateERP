@@ -246,7 +246,7 @@
                             </asp:RadioButtonList>
                         </div>
 
-                        <div class="col-lg-1 col-md-1 col-sm-2" id="gndDiv" visible="false" runat="server">
+                        <div class="col-lg-2 col-md-2 col-sm-2" id="gndDiv" visible="false" runat="server">
                             <asp:Label ID="Label15" CssClass="d-block" runat="server">Print Grand Total</asp:Label>
                             <asp:CheckBox ID="chkgrndt" runat="server" CssClass="form-control" />
                         </div>

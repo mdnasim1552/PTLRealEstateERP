@@ -343,15 +343,21 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Sold On Date/Win Date" Visible="false">
+                                    <asp:TemplateField HeaderText="Sold On  <br> Date/Win Date" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lbllnfollowupdateSold" runat="server" Width="100px" Font-Size="12px"
                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "solddate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "solddate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Last Follow <br> Up date" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllnfollowupdate" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "ldiscussdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Last Follow Up date" Visible="false">
+                                    <asp:TemplateField HeaderText="Next Follow <br> Up date" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lbllnfollowupdate" runat="server" Width="100px" Font-Size="12px"
                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
@@ -383,8 +389,9 @@
 
                                     <asp:TemplateField HeaderText="Interest Project" Visible="false">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblIntproject" runat="server" Width="120px" Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
+                                            <asp:Label ID="lblIntproject" runat="server" Width="120px" Font-Size="12px" 
+                                                class='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sameprjclass")) %>'                                                
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intrprj")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -438,7 +445,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Interest Project	" Visible="false">
+                                    <asp:TemplateField HeaderText="Budget desc" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblInterest" runat="server" Width="60px" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "bgddesc")) %>'></asp:Label>
