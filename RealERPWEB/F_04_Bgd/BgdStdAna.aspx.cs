@@ -693,12 +693,8 @@ namespace RealERPWEB.F_04_Bgd
 
 
 
-                for (int j = 1; j <= 52; j++)
+                for (int j = 1; j <= 54; j++)
                 {
-
-
-
-
 
                     //if (gvQty1 == 0.00)  //All Company (First Zero quantity)
                     //          break;

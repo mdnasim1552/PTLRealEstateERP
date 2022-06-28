@@ -365,9 +365,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3365":
                     calltype = "EMPDAYADJUSTMENTBTI";
                     break;
-
-
-
                 default:
                     calltype = "EMPDAYADJUSTMENT";
                     break;
@@ -459,7 +456,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         section = section + this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
 
             }
-
 
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();

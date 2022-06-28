@@ -384,7 +384,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.GvModPayment.DataSource = dt;
                     this.GvModPayment.DataBind();
                     Session["Report1"] = GvModPayment;
-                    ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                    ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
                 case 2:
                     //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
@@ -508,9 +508,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
 
-
-
-
             string getdate = this.ddlmon.SelectedValue.ToString();
             string subyear = getdate.Substring(0, 4);
             int submonth = Convert.ToInt32(getdate.Substring(4));
@@ -531,7 +528,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
             //        Rpt1.EnableExternalImages = true;
             //        break;
-
             //    case 1:
             //        rptitle = "Mode of payment " + month;
             //        var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
