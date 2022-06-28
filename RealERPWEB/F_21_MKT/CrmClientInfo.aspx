@@ -379,12 +379,45 @@
         .notifsectino .list-group-item-body {
             font-size: 10px !important;
         }
-        /* .checkbox label {
-        margin-right:2px;
         
-        }*/
+/*You can use [title] selector as well*/
+[data-title] {  
+  font-size: 30px; /*optional styling*/  
+  position: relative;
+  cursor: help;
+  width:200px;
+}
 
-        /**  modal design end **/
+[data-title]:hover::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -26px;
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 2px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  white-space: pre-wrap;
+ 
+}
+[data-title]:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 8px;
+  display: inline-block;
+  color: #fff;
+  border: 0px solid transparent;	
+  border-bottom: 0px solid #000;
+
+}
+
+
+tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
+
+
+}
     </style>
 
 
@@ -1896,15 +1929,9 @@
 
             }
         };
-
         //// for selected follow then selected lead status 
 
-
     </script>
-
-
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -2869,9 +2896,6 @@
                                                 </asp:TemplateField>
 
 
-
-
-
                                                 <%--7--%>
                                                 <asp:TemplateField HeaderText="Followup">
                                                     <ItemTemplate>
@@ -3024,11 +3048,13 @@
 
                                                 <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvfeedback" runat="server" Width="100px" Font-Size="10px"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
+                                                        <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" data-title='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'
+                                                            Text='<%# Eval("ldiscuss")== "" ? "" : Eval("ldiscuss").ToString().Substring(0,20)%>'></asp:Label>
+                                                         
+
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
+                                                 <%--21--%>
 
 
                                                 <asp:TemplateField HeaderText="Notes">
@@ -3038,7 +3064,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <%--21--%>
+                                                <%--22--%>
 
                                                 <asp:TemplateField HeaderText="Prefered Location" Visible="false">
                                                     <ItemTemplate>
@@ -3049,7 +3075,7 @@
 
 
 
-                                                <%--22--%>
+                                                <%--23--%>
 
                                                 <asp:TemplateField HeaderText="Code" Visible="false">
                                                     <ItemTemplate>
@@ -3069,8 +3095,18 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     <ItemStyle HorizontalAlign="center" />
                                                 </asp:TemplateField>
-
-
+                                                 <%--25--%>
+                                                 <asp:TemplateField HeaderText="Next Followup" Visible="false">
+                                                    <ItemTemplate> 
+                                                             <asp:Label ID="lbllfollowuplinkkpisum" Width="90px" runat="server" 
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy")%>'>                                                               
+                                                        </asp:Label>
+  
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                 <%--26--%>
 
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />

@@ -22,7 +22,8 @@
     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 
@@ -156,7 +157,7 @@
                             <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-2 col-md-2 col-sm-6" id="divBracnhLsit" runat="server">
                             <asp:Label ID="Label9" runat="server">Branch</asp:Label>
                             <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlBranch_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                             </asp:DropDownList>
@@ -245,7 +246,7 @@
                             </asp:RadioButtonList>
                         </div>
 
-                        <div class="col-lg-1 col-md-1 col-sm-2" id="gndDiv" visible="false" runat="server">
+                        <div class="col-lg-2 col-md-2 col-sm-2" id="gndDiv" visible="false" runat="server">
                             <asp:Label ID="Label15" CssClass="d-block" runat="server">Print Grand Total</asp:Label>
                             <asp:CheckBox ID="chkgrndt" runat="server" CssClass="form-control" />
                         </div>
@@ -1336,7 +1337,7 @@
                                         <asp:TemplateField HeaderText="Cash Amt">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvcashAmtbon" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="None"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0; (#,##0); ") %>'
                                                     Width="65px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>

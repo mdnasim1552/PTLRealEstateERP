@@ -17,6 +17,15 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (!IsPostBack)
             {
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                    Response.Redirect("~/AcceessError");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
+
                 txtfrmdate.Text = System.DateTime.Now.AddDays(-30).ToString("dd-MMM-yyyy");
                 txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 ModuleName();
@@ -40,7 +49,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (ds != null || ds.Tables[0].Rows.Count > 0)
             {
                 DataTable dt = ds.Tables[0];
-                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + dt.Rows[0][1].ToString() + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complains</div></div></div>";
+                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + dt.Rows[0][1].ToString() + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complaints</div></div></div>";
                 this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + dt.Rows[0][2].ToString() + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Engr. Check</div></div></div>";
 
                 this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + dt.Rows[0][3].ToString() + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Budget" + "</div></div></div>";
@@ -67,22 +76,61 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "0":
                     pnlComplainCount.Visible = true;
+                    pnlComplainToDiagnosis.Visible = false;
                     pnlDiagnosis.Visible = false;
                     pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
                     getComplainList();
                     break;
                 case "1":
                     pnlComplainCount.Visible = false;
-                    pnlDiagnosis.Visible = true;
+                    pnlComplainToDiagnosis.Visible = true;
+                    pnlDiagnosis.Visible = false;
                     pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
                     getDiagnosisList();
                     break;
                 case "2":
                     pnlComplainCount.Visible = false;
-                    pnlDiagnosis.Visible = false;
-                    pnlBudget.Visible = true;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = true;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
                     getBudget();
                     break;
+                case "3":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = true;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
+                    getBudgetApproval();
+                    break;
+                case "4":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = true;
+                    pnlMatReq.Visible = false;
+                    getQuotList();
+                    break;
+                case "5":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = true;
+                    getMATREQ();
+                    break;
+
+
+                    
             }
         }
 
@@ -102,8 +150,8 @@ namespace RealERPWEB.F_99_Allinterface
             string date1 = txtfrmdate.Text;
             string date2 = txttoDate.Text;
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETDIAGNOSISLIST", date1, date2, "", "", "", "", "", "", "", "", "");
-            gvDiagnosis.DataSource = ds.Tables[0];
-            gvDiagnosis.DataBind();
+            gvCmpltoDg.DataSource = ds.Tables[0];
+            gvCmpltoDg.DataBind();
         } 
 
         private void getBudget()
@@ -112,8 +160,35 @@ namespace RealERPWEB.F_99_Allinterface
             string date1 = txtfrmdate.Text;
             string date2 = txttoDate.Text;
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETBUDGETLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvDiagnosis.DataSource = ds.Tables[0];
+            gvDiagnosis.DataBind();
+        }
+        private void getBudgetApproval()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETAPPROVALBUDGET", date1, date2, "", "", "", "", "", "", "", "", "");
             gvBudget.DataSource = ds.Tables[0];
             gvBudget.DataBind();
+        }
+        private void getQuotList()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETQUOTLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvApproval.DataSource = ds.Tables[0];
+            gvApproval.DataBind();
+        }
+        private void getMATREQ()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETMATREQLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvMatReq.DataSource = ds.Tables[0];
+            gvMatReq.DataBind();
         }
 
         protected void lnkEdit_Click(object sender, EventArgs e)
@@ -126,23 +201,61 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+
                 string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
                 hlink.NavigateUrl = "~/F_30_Facility/ComplainForm.aspx?ComplNo=" + complno;
                 hlink.ToolTip = "Edit";
-                hlink1.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?ComplNo=" + complno;
-                hlink1.ToolTip = "Edit";
+                
             }
 
         }
 
         protected void gvDiagnosis_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&Dgno=" + dgno;
+                hlink.ToolTip = "Edit";
+                hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?DgNo=" + dgno;
+                hlink1.ToolTip = "Generate Budget";
+            }
         }
 
         
         protected void gvBudget_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&Dgno=" + dgno;
+                hlink.ToolTip = "Edit";
+                hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?Type=Approval&DgNo=" + dgno;
+                hlink1.ToolTip = "Approval";
+            }
+        }
+
+        protected void gvApproval_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void gvCmpltoDg_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
+                hlink1.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?ComplNo=" + complno;
+                hlink1.ToolTip = "Engr. Check";
+            }
+        }
+
+        protected void gvMatReq_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }

@@ -153,8 +153,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             
 
         }
-
-   
         private void SendNotificaion(string ltrnid, string deptcode, string roletype, string isForward, string compsms, string compmail, string ssl, string sendUsername, string sendDptdesc, string sendUsrdesig, string compName)
         {
             try
@@ -209,6 +207,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     {
                         absapp = "0";
                         string remarks = "Time Correction";
+                        frmdate = Convert.ToDateTime(frmdate).ToString("yyyyMMdd");
                         bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", frmdate, empid, idcard, "0", remarks, usrid, reqtype, "", "", "", "", "", "");
                     }
                 }               

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_99_Allinterface
+namespace RealERPWEB.F_30_Facility
 {
 
 
-    public partial class RptFacilityInterface
+    public partial class Quotation
     {
 
         /// <summary>
@@ -24,40 +24,58 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// UpdateProgress2 control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// txtfrmdate control.
+        /// ddlDgNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfrmdate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDgNo;
 
         /// <summary>
-        /// CalendarExtender_txtfrmdate control.
+        /// btnOKClick control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtfrmdate;
+        protected global::System.Web.UI.WebControls.LinkButton btnOKClick;
 
         /// <summary>
-        /// txttoDate control.
+        /// pnlComplain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttoDate;
+        protected global::System.Web.UI.WebControls.Panel pnlComplain;
+
+        /// <summary>
+        /// lbldate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldate;
+
+        /// <summary>
+        /// txtEntryDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEntryDate;
 
         /// <summary>
         /// CalendarExtender_txttoDate control.
@@ -69,112 +87,67 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txttoDate;
 
         /// <summary>
-        /// lnkbtnok control.
+        /// lblProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnok;
+        protected global::System.Web.UI.WebControls.Label lblProject;
 
         /// <summary>
-        /// HyperLink7 control.
+        /// lblProjectText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink7;
+        protected global::System.Web.UI.WebControls.Label lblProjectText;
 
         /// <summary>
-        /// pnlInterf control.
+        /// lblCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlInterf;
+        protected global::System.Web.UI.WebControls.Label lblCustomer;
 
         /// <summary>
-        /// RadioButtonList1 control.
+        /// lblCustomerText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.Label lblCustomerText;
 
         /// <summary>
-        /// pnlComplainCount control.
+        /// lblUnitlabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlComplainCount;
+        protected global::System.Web.UI.WebControls.Label lblUnitlabel;
 
         /// <summary>
-        /// gvComplainList control.
+        /// lblUnitText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvComplainList;
+        protected global::System.Web.UI.WebControls.Label lblUnitText;
 
         /// <summary>
-        /// pnlComplainToDiagnosis control.
+        /// gvQuotation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlComplainToDiagnosis;
-
-        /// <summary>
-        /// gvCmpltoDg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCmpltoDg;
-
-        /// <summary>
-        /// pnlDiagnosis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDiagnosis;
-
-        /// <summary>
-        /// gvDiagnosis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDiagnosis;
-
-        /// <summary>
-        /// pnlBudget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlBudget;
-
-        /// <summary>
-        /// gvBudget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvBudget;
+        protected global::System.Web.UI.WebControls.GridView gvQuotation;
 
         /// <summary>
         /// pnlApproval control.
@@ -186,39 +159,39 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlApproval;
 
         /// <summary>
-        /// gvApproval control.
+        /// txtNarration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApproval;
+        protected global::System.Web.UI.WebControls.TextBox txtNarration;
 
         /// <summary>
-        /// pnlMatReq control.
+        /// lnkRefresh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMatReq;
+        protected global::System.Web.UI.WebControls.LinkButton lnkRefresh;
 
         /// <summary>
-        /// gvMatReq control.
+        /// lnkSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMatReq;
+        protected global::System.Web.UI.WebControls.LinkButton lnkSave;
 
         /// <summary>
-        /// lblprintstkl control.
+        /// lnkProceed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprintstkl;
+        protected global::System.Web.UI.WebControls.LinkButton lnkProceed;
     }
 }

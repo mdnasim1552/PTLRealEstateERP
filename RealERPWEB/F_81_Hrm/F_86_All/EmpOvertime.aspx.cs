@@ -1108,8 +1108,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
 
-
-
                         case "3347":
                             this.gvothearn.Columns[11].Visible = true;
                             this.gvothearn.Columns[14].Visible = true;
