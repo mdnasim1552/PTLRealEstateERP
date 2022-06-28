@@ -158,7 +158,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             // All Order
             DataTable dt = new DataTable();
-
             DataView dv = new DataView();
             dt = ((DataTable)ds1.Tables[0]).Copy();
             ViewState["tbltotalleav"] = dt;
@@ -171,7 +170,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' and lvstatus <> 'Canceled'");
            
             this.Data_Bind("gvInprocess", dv.ToTable());
-
             //Approved
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
@@ -192,7 +190,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dv.RowFilter = ("lvstatus = 'Canceled'");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvfiApproved", dv.ToTable());
-
         }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -209,7 +206,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlConfrm.Visible = false;
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
                     break;
-
                 case "1":
                     this.pnlallReq.Visible = false;
                     this.PnlProcess.Visible = true;
@@ -234,7 +230,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlConfrm.Visible = true;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
-
                 case "4":
                     this.pnlallReq.Visible = false;
                     this.PnlProcess.Visible = false;
@@ -274,7 +269,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvfiApproved.DataSource = (dt);
                     this.gvfiApproved.DataBind();
                     break;
-
                 case "gvConfirm":
                     this.gvConfirm.DataSource = (dt);
                     this.gvConfirm.DataBind();
@@ -312,9 +306,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     hlink3.Visible = false;
                     lnkbtnDptApp.Visible = true;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT"+"&Reqtype="+ reqtyp;
-
-                    
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT"+"&Reqtype="+ reqtyp;                   
                 }
                 if (userid == suserid)
                 {
@@ -336,7 +328,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 //hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="; ;
                 //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="+ reqtyp;
-
             }
         }
         protected void gvApproved_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -385,8 +376,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //hlnEdit.Visible = ((usrid == empusrid) && (lvstatus != "Approved")) ? true : false;
                 //hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
                 //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-
-
             }
         }
 
@@ -396,7 +385,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyOrderPrint");
                 LinkButton hlinkForward = (LinkButton)e.Row.FindControl("lnkRemoveForward");
-
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -415,7 +403,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
                 //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-
             }
         }
         protected void gvfiApproved_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -441,20 +428,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     case "3348": //Credence
                         break;
-
                     default:
                         //DataRow[] dr1 = dt.Select("usrid='" + usrid + "' and centrid='" + refno + "'");
                         //DataRow[] dre = dte.Select("usrid='" + usrid + "'");
                         //hlink3.Enabled = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
                         //hlink3.Visible = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
-
                         break;
                 }
                 hlink1.Visible = ((usrid == dptusid) && (lvstatus == "Canceled")) ? true : false;
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=MGT";
-
-
-
             }
         }
 
