@@ -185,14 +185,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             string qtype = this.Request.QueryString["Type"] ?? "";
             string comcod = this.GetComeCode();
-            if (comcod == "3365" || comcod == "3354")
+            if (comcod == "3365" || comcod == "3354" || comcod == "3101")
             {
                 this.sspnlv.Visible = true;
                 
                 this.chkBoxSkippWH.Checked = true;
                 chkBoxSkippWH_CheckedChanged(null, null);
                 // this part for BTI Resign Employee show
-                if (comcod == "3365"&& qtype == "MGT")
+                if ((comcod == "3365" || (comcod == "3101")) && qtype == "MGT")
                 {
                     this.SpResign.Visible = true;
                 }
@@ -490,7 +490,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (chkBoxSkippWH.Checked == true)
                 {
                     bool isvalidate = true;
-                    if (comcod == "3365" || comcod == "3354")
+                    if (comcod == "3365" || comcod == "3354" || comcod == "3101")
                     {
                         getLevExitingHoliday(fdate.ToString(), fdate.ToString());
                         DataTable extHoliday = (DataTable)ViewState["tblextHoliday"];
@@ -681,6 +681,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                         string eventdesc2 = "Details: " + htmtableboyd;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", htmtableboyd, Messaged);
+
+                        CreateTable();
+                        GetLeavType();
+                        GetSupvisorCheck();
+                        getVisibilty();
+                        this.EmpLeaveInfo();
+                        this.ShowEmppLeave();
+                        GetCalCulateDay();
+                        GetEmpLoyeeAltDutys();
                     }
 
                     this.EmpLeaveInfo();
