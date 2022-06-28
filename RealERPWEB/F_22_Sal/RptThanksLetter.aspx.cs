@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class RptThanksLetter : System.Web.UI.Page
@@ -282,9 +284,48 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        //private void PrintThanksLetterInfo()
+        //{
+
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    string comnam = hst["comnam"].ToString();
+        //    string comadd = hst["comadd1"].ToString();
+        //    string compname = hst["compname"].ToString();
+        //    string username = hst["username"].ToString();
+        //    string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+        //    string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+        //    string pactcode = this.ddlProjectName.SelectedValue.ToString();
+        //    string usircode = this.ddlCustName.SelectedValue.ToString();
+        //    DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "RPTCUSTDOWNINFORMATION", pactcode, usircode, "", "", "", "", "", "", "");
+        //    if (ds2 == null)
+        //        return;
+        //    string sdate = Convert.ToDateTime(ds2.Tables[0].Rows[0]["schdate"]).ToString("MMMM dd, yyyy");
+        //    string Pactdesc = (this.ddlProjectName.SelectedItem.Text).Substring(13);
+        //    string Aptname = ((comcod.Substring(0, 1) == "3") ? "an apartment" : ((comcod.Substring(0, 1) == "2") ? "a plot" : "an apartment"));
+        //    string para2 = ((comcod == "2101") ? "" : comnam + " is highly commited to complete the project within the stipulated time. We shall use higest quality bulding materials and finished products to ensure durability and satisfaction. Keeping emphasis on earthquake resistant sound structure as per BNBC(Bangladesh National Building Code 1993) and visual design are our main focus which will be on the Quality of the apartment.");
+        //    ReportDocument rptletter = new RealERPRPT.R_22_Sal.RptThanksLetter11();
+
+        //    TextObject rptProjectName = rptletter.ReportDefinition.ReportObjects["Compwell"] as TextObject;
+
+        //    rptProjectName.Text = "Welcome to  " + '"' + " " + comnam + "  Familly " + '"';
+        //    TextObject rptdate = rptletter.ReportDefinition.ReportObjects["date"] as TextObject;
+        //    rptdate.Text = "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM dd, yyyy");
+        //    TextObject rptPara1 = rptletter.ReportDefinition.ReportObjects["pare1"] as TextObject;
+        //    rptPara1.Text = "We are extremly glad to have you as a valued member of " + '"' + comnam + '"' + " family. We would like to congratulate "
+        //                    + "you for booking " + Aptname + " in " + '"' + Pactdesc + '"' + " at " + sdate;
+        //    TextObject rptPara2 = rptletter.ReportDefinition.ReportObjects["pare2"] as TextObject;
+        //    rptPara2.Text = para2;
+        //    rptletter.SetDataSource(ds2.Tables[0]);
+        //    Session["Report1"] = rptletter;
+        //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+        //                       ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        //}
+
+
         private void PrintThanksLetterInfo()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -295,33 +336,54 @@ namespace RealERPWEB.F_22_Sal
             string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = this.ddlCustName.SelectedValue.ToString();
+            string Pactdesc = (this.ddlProjectName.SelectedItem.Text).Substring(13);
+            string Aptname = ((comcod.Substring(0, 1) == "3") ? "an apartment" : ((comcod.Substring(0, 1) == "2") ? "a plot" : "an apartment"));
             DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "RPTCUSTDOWNINFORMATION", pactcode, usircode, "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
-            string sdate = Convert.ToDateTime(ds2.Tables[0].Rows[0]["schdate"]).ToString("MMMM dd, yyyy");
-            string Pactdesc = (this.ddlProjectName.SelectedItem.Text).Substring(13);
-            string Aptname = ((comcod.Substring(0, 1) == "3") ? "an apartment" : ((comcod.Substring(0, 1) == "2") ? "a plot" : "an apartment"));
-            string para2 = ((comcod == "2101") ? "" : comnam + " is pledge bonded to complete the project within the stipulated time. We shall use higest quality bulding materials and finished products to ensure durability and satisfaction. Putting emphasis on earthquake resistant sound structure as per BNBC(Bangladesh National Building Code 1993) and visual design our main focus will be on the Quality of the apartment.");
-            ReportDocument rptletter = new RealERPRPT.R_22_Sal.RptThanksLetter11();
 
-            TextObject rptProjectName = rptletter.ReportDefinition.ReportObjects["Compwell"] as TextObject;
+            string sdate = Convert.ToDateTime(ds2.Tables[0].Rows[0]["schdate"]).ToString("MMMM dd, yyyy")??"";
+            string title = "THANKS LETTER";
+            string name = ds2.Tables[0].Rows[0]["custname"].ToString() ?? "";
+            string phone = "Phone: "+ds2.Tables[0].Rows[0]["phone"].ToString() ?? "";
+            string address = "Address: "+ds2.Tables[0].Rows[0]["cusadd"].ToString() ?? "";
+            string subject = "Welcome to  " + '"' + " " + comnam + "  Familly " + '"';
+            string salutation = "Dear Sir,";
+            string greetings = "Assalamu Alaikum";
+            string startline = "We are extremly glad to have you as a valued member of " + '"' + comnam + '"' + " family. We would like to congratulate "
+                  + "you for booking " + Aptname + " in " + '"' + Pactdesc + '"' + " at " + sdate;
+            string body = ((comcod == "2101") ? "" : comnam + " is highly commited to complete the project within the stipulated time. We shall use higest quality bulding materials and finished products to ensure durability and satisfaction. Keeping emphasis on earthquake resistant sound structure as per BNBC(Bangladesh National Building Code 1993) and visual design are our main focus which will be on the Quality of the apartment.");
 
-            rptProjectName.Text = "Welcome to  " + '"' + " " + comnam + "  Familly " + '"';
-            TextObject rptdate = rptletter.ReportDefinition.ReportObjects["date"] as TextObject;
-            rptdate.Text = "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM dd, yyyy");
-            TextObject rptPara1 = rptletter.ReportDefinition.ReportObjects["pare1"] as TextObject;
-            rptPara1.Text = "We are very happy to have you as a valued member of " + '"' + comnam + '"' + " family. We would like to congratulate "
-                            + "you for booking " + Aptname + " in " + '"' + Pactdesc + '"' + " at " + sdate;
-            TextObject rptPara2 = rptletter.ReportDefinition.ReportObjects["pare2"] as TextObject;
-            rptPara2.Text = para2;
-            rptletter.SetDataSource(ds2.Tables[0]);
-            Session["Report1"] = rptletter;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            string clouserBefor = "We desire your continuous cooperation to make this commitment a success.";
+            string closure = "Thank you, once again for being with us and we are always ready to give our best services.";
 
+            LocalReport Rpt1 = new LocalReport();
+ 
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.ClientLetter", null, null, null);
+                Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("title", title));
+            Rpt1.SetParameters(new ReportParameter("sdate", sdate));
+            Rpt1.SetParameters(new ReportParameter("name", name));
+            Rpt1.SetParameters(new ReportParameter("phone", phone));
+            Rpt1.SetParameters(new ReportParameter("address", address));
+            Rpt1.SetParameters(new ReportParameter("subject", subject));
+            Rpt1.SetParameters(new ReportParameter("salutation", salutation));
+            Rpt1.SetParameters(new ReportParameter("greetings", greetings));
+
+            Rpt1.SetParameters(new ReportParameter("startline", startline));
+            Rpt1.SetParameters(new ReportParameter("body", body));
+            Rpt1.SetParameters(new ReportParameter("closureBefore", clouserBefor));
+            Rpt1.SetParameters(new ReportParameter("closure", closure));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-        private void PrintInstallmentInfo()
+
+            private void PrintInstallmentInfo()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -540,6 +602,65 @@ namespace RealERPWEB.F_22_Sal
         }
         private void PrintCancellationLetter()
         {
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            //string usircode = this.ddlCustName.SelectedValue.ToString();
+            //string date = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            //DataSet ds6 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "RPTCUSTINSINFORMATION", pactcode, usircode, date, "", "", "", "", "", "");
+            //if (ds6 == null)
+            //    return;
+            //DataTable dt = ds6.Tables[0];
+            //string sdate = Convert.ToDateTime(ds6.Tables[0].Rows[0]["schdate"]).ToString("MMMM dd, yyyy");
+            //string Pactdesc = (this.ddlProjectName.SelectedItem.Text).Substring(13);
+            //string usirdesc = dt.Rows[0]["udesc"].ToString();
+            //double schamt = Convert.ToDouble(dt.Rows[0]["paidamt"]);
+            //string paidamt1 = ASTUtility.Trans(schamt, 2);
+            //double damt = Convert.ToDouble(dt.Rows[0]["damt"]);
+            //string damt1 = ASTUtility.Trans(damt, 2);
+            //string ddat = Convert.ToDateTime(dt.Rows[0]["indate"]).ToString("MMMM dd, yyyy");
+            //double delaycharge = schamt - damt;
+            //string delaycharge1 = ASTUtility.Trans(delaycharge, 2);
+            //string Aptname = ((comcod.Substring(0, 1) == "3") ? " apartment" : ((comcod.Substring(0, 1) == "2") ? " plot" : " apartment"));
+            //string AptNo = ((comcod.Substring(0, 1) == "3") ? " Apt.No. " : ((comcod.Substring(0, 1) == "2") ? " Plot No. " : " Apt.No. "));
+            //ReportDocument rdl = new RealERPRPT.R_22_Sal.RptCancellationLetter();
+
+
+
+            //string custname = Convert.ToString(dt.Rows[0]["custname"]);
+            //TextObject custname1 = rdl.ReportDefinition.ReportObjects["custname1"] as TextObject;
+            //custname1.Text = custname;
+
+            //TextObject custadd1 = rdl.ReportDefinition.ReportObjects["custadd1"] as TextObject;
+            //custadd1.Text = Convert.ToString(dt.Rows[0]["custadd"]);
+
+            //TextObject rptProjectName = rdl.ReportDefinition.ReportObjects["Compwell"] as TextObject;
+            //rptProjectName.Text = "Cancellation of your booking against" + AptNo + usircode + " (" + usirdesc + ") " + this.ddlProjectName.SelectedItem.Text.Substring(13);
+
+            //TextObject rptdate = rdl.ReportDefinition.ReportObjects["Date"] as TextObject;
+            //rptdate.Text = "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM dd,yyyy");
+
+            ////TextObject rptPara1 = rdl.ReportDefinition.ReportObjects["pare1"] as TextObject;
+            ////rptPara1.Text = "We are very happy to have you as a valued client of our project " + Pactdesc + " at " + sdate + "." + " For your kind information, you have already paid Tk " + schamt.ToString("#,##0.00;(#,##0.00); ") + " " + paidamt1 + "  only against the agreed value of your allotted apartment . According to the Payment schedule, the date of your last installment was on " + ddat + " amounting Tk  " + damt.ToString("#,##0.00;(#,##0.00); ") + " " + damt1 + " is still unpaid. Now your due amount is Tk " + delaycharge.ToString("#,##0.00;(#,##0.00); ") + " " + delaycharge1 + "with delay charge. In this connection we have already given you a reminder but unfortunately, you didn't co-operate with us.";
+
+            //TextObject rptPara1 = rdl.ReportDefinition.ReportObjects["pare1"] as TextObject;
+            //rptPara1.Text = "We draw your kind attention on our letters above reference, wherein we requested you to pay your dues Tk. " + damt.ToString("#,##0;(#,##0))") + " " + damt1 + " only against your allotted" + Aptname + ". We also requested you over phone to pay the dues but unfortunately we didn't get any positive response from your end.";
+
+            //TextObject pare2 = rdl.ReportDefinition.ReportObjects["pare2"] as TextObject;
+            //pare2.Text = "It is to be noted that, in terms of your schedule of payment for the" + Aptname + ", you have become over due defaulter. You have failed to pay the dues Tk. " + damt.ToString("#,##0;(#,##0))") + " " + damt1 + " despite our repeated request for payment of your dues. In the light of above facts, your booking for" + Aptname + " is liable to be cancelled and accordingly the authority of the company has cancelled the booking today.";
+
+            //rdl.SetDataSource(ds6.Tables[0]);
+            //Session["Report1"] = rdl;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            //                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+      
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -550,52 +671,62 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = this.ddlCustName.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            DataSet ds6 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "RPTCUSTINSINFORMATION", pactcode, usircode, date, "", "", "", "", "", "");
-            if (ds6 == null)
+            DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "RPTCUSTINSINFORMATION", pactcode, usircode, date, "", "", "", "", "", "");
+            if (ds2 == null)
                 return;
-            DataTable dt = ds6.Tables[0];
-            string sdate = Convert.ToDateTime(ds6.Tables[0].Rows[0]["schdate"]).ToString("MMMM dd, yyyy");
+
+            DataTable dt = ds2.Tables[0];
+          
             string Pactdesc = (this.ddlProjectName.SelectedItem.Text).Substring(13);
             string usirdesc = dt.Rows[0]["udesc"].ToString();
             double schamt = Convert.ToDouble(dt.Rows[0]["paidamt"]);
             string paidamt1 = ASTUtility.Trans(schamt, 2);
             double damt = Convert.ToDouble(dt.Rows[0]["damt"]);
             string damt1 = ASTUtility.Trans(damt, 2);
-            string ddat = Convert.ToDateTime(dt.Rows[0]["indate"]).ToString("MMMM dd, yyyy");
+            string ddat = Convert.ToDateTime(dt.Rows[0]["indate"]).ToString("MMMM dd, yyyy")??System.DateTime.Now.ToString("MMMM dd, yyyy");
             double delaycharge = schamt - damt;
             string delaycharge1 = ASTUtility.Trans(delaycharge, 2);
             string Aptname = ((comcod.Substring(0, 1) == "3") ? " apartment" : ((comcod.Substring(0, 1) == "2") ? " plot" : " apartment"));
             string AptNo = ((comcod.Substring(0, 1) == "3") ? " Apt.No. " : ((comcod.Substring(0, 1) == "2") ? " Plot No. " : " Apt.No. "));
-            ReportDocument rdl = new RealERPRPT.R_22_Sal.RptCancellationLetter();
+            string sdate = "Date:"+Convert.ToDateTime(ds2.Tables[0].Rows[0]["schdate"]).ToString("MMMM dd, yyyy") ?? System.DateTime.Now.ToString("MMMM dd, yyyy");
+     
+
+            string title = "CANCELLATION LETTER";
+            string name = ds2.Tables[0].Rows[0]["custname"].ToString() ?? "";
+            string phone = "Phone: " + ds2.Tables[0].Rows[0]["phone"].ToString() ?? "";
+            string address = "Address: " + ds2.Tables[0].Rows[0]["cusadd"].ToString() ?? "";
+            string subject = "Welcome to  " + '"' + " " + comnam + "  Familly " + '"';
+            string salutation = "Dear Sir,";
+            string greetings = "Assalamu Alaikum,";
+            string startline = "We draw your kind attention on our letters above reference, wherein we requested you to pay your dues Tk. " + damt.ToString("#,##0;(#,##0))") + " " + damt1 + " only against your allotted" + Aptname + ". We also requested you over phone to pay the dues but unfortunately we didn't get any positive response from your end.";
+            string body = "It is to be noted that, in terms of your schedule of payment for the" + Aptname + ", you have become over due defaulter. You have failed to pay the dues Tk. " + damt.ToString("#,##0;(#,##0))") + " " + damt1 + " despite our repeated request for payment of your dues. In the light of above facts, your booking for" + Aptname + " is liable to be cancelled and accordingly the authority of the company has cancelled the booking today.";
+
+            string clouserBefor = "You are further informed that your refundable money will be paid within 90 days from the date of the cancellation after deducting the service charges.";
+            string closure = "Thank you,";
+
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.ClientLetter", null, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("title", title));
+            Rpt1.SetParameters(new ReportParameter("sdate", sdate));
+            Rpt1.SetParameters(new ReportParameter("name", name));
+            Rpt1.SetParameters(new ReportParameter("phone", phone));
+            Rpt1.SetParameters(new ReportParameter("address", address));
+            Rpt1.SetParameters(new ReportParameter("subject", subject));
+            Rpt1.SetParameters(new ReportParameter("salutation", salutation));
+            Rpt1.SetParameters(new ReportParameter("greetings", greetings));
+
+            Rpt1.SetParameters(new ReportParameter("startline", startline));
+            Rpt1.SetParameters(new ReportParameter("body", body));
+            Rpt1.SetParameters(new ReportParameter("closureBefore", clouserBefor));
+            Rpt1.SetParameters(new ReportParameter("closure", closure));
 
 
-
-            string custname = Convert.ToString(dt.Rows[0]["custname"]);
-            TextObject custname1 = rdl.ReportDefinition.ReportObjects["custname1"] as TextObject;
-            custname1.Text = custname;
-
-            TextObject custadd1 = rdl.ReportDefinition.ReportObjects["custadd1"] as TextObject;
-            custadd1.Text = Convert.ToString(dt.Rows[0]["custadd"]);
-
-            TextObject rptProjectName = rdl.ReportDefinition.ReportObjects["Compwell"] as TextObject;
-            rptProjectName.Text = "Cancellation of your booking against" + AptNo + usircode + " (" + usirdesc + ") " + this.ddlProjectName.SelectedItem.Text.Substring(13);
-
-            TextObject rptdate = rdl.ReportDefinition.ReportObjects["Date"] as TextObject;
-            rptdate.Text = "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM dd,yyyy");
-
-            //TextObject rptPara1 = rdl.ReportDefinition.ReportObjects["pare1"] as TextObject;
-            //rptPara1.Text = "We are very happy to have you as a valued client of our project " + Pactdesc + " at " + sdate + "." + " For your kind information, you have already paid Tk " + schamt.ToString("#,##0.00;(#,##0.00); ") + " " + paidamt1 + "  only against the agreed value of your allotted apartment . According to the Payment schedule, the date of your last installment was on " + ddat + " amounting Tk  " + damt.ToString("#,##0.00;(#,##0.00); ") + " " + damt1 + " is still unpaid. Now your due amount is Tk " + delaycharge.ToString("#,##0.00;(#,##0.00); ") + " " + delaycharge1 + "with delay charge. In this connection we have already given you a reminder but unfortunately, you didn't co-operate with us.";
-
-            TextObject rptPara1 = rdl.ReportDefinition.ReportObjects["pare1"] as TextObject;
-            rptPara1.Text = "We draw your kind attention on our letters above reference, wherein we requested you to pay your dues Tk. " + damt.ToString("#,##0;(#,##0))") + " " + damt1 + " only against your allotted" + Aptname + ". We also requested you over phone to pay the dues but unfortunately we didn't get positive response from your end.";
-
-            TextObject pare2 = rdl.ReportDefinition.ReportObjects["pare2"] as TextObject;
-            pare2.Text = "It is to be noted that, in terms of your schedule of payment for the" + Aptname + ", you have become over due defaulter. You have failed to pay the dues Tk. " + damt.ToString("#,##0;(#,##0))") + " " + damt1 + " despite our repeated request for payment of your dues. In the light of above facts, your booking for" + Aptname + " is liable to be cancelled and accordingly the authority of the company has cancelled the booking today.";
-
-            rdl.SetDataSource(ds6.Tables[0]);
-            Session["Report1"] = rdl;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
 
         }

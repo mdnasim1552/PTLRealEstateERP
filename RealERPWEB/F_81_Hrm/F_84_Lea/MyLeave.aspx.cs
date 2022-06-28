@@ -681,6 +681,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                         string eventdesc2 = "Details: " + htmtableboyd;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", htmtableboyd, Messaged);
+
+                        CreateTable();
+                        GetLeavType();
+                        GetSupvisorCheck();
+                        getVisibilty();
+                        this.EmpLeaveInfo();
+                        this.ShowEmppLeave();
+                        GetCalCulateDay();
+                        GetEmpLoyeeAltDutys();
                     }
 
                     this.EmpLeaveInfo();

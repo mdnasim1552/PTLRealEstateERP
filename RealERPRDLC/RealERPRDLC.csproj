@@ -671,6 +671,7 @@
     <EmbeddedResource Include="R_17_Acc\RptVouTopSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RrptChqReceivedVsClr.rdlc" />
     <EmbeddedResource Include="R_17_Acc\TransectionPrint.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\ClientLetter.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCallCenterLead.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptClietList.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />

@@ -65,6 +65,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.PnlNarration.Visible = true;
                 this.ShowData();
                 stepForward();
+                if (GetCompCode() == "3365")
+                {
+                    this.pnlCommon.Visible = true;
+                    this.pnlFinly.Visible = false;
+                }
+                else
+                {
+                    this.pnlCommon.Visible = false;
+                    this.pnlFinly.Visible = true;
+                }
 
 
             }
@@ -323,6 +333,18 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
+
+                 this.elvallow.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["upachivelv"].ToString();
+                this.clvallow.Text = dtstatus.Rows.Count == 0 ? "" :   dtstatus.Rows[0]["upachivclv"].ToString();
+                this.slvallow.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["upachivslv"].ToString();
+
+                this.elvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["enjenleave"].ToString();
+                this.clvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["enjcleave"].ToString();
+                this.slvenjoy.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["enjsleave"].ToString();
+
+                this.elvbalanc.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["balleleave"].ToString();
+                this.clvbalanc.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["ballcleave"].ToString();
+                this.slvbalanc.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["ballsleave"].ToString();
 
 
                 string elst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["elst"].ToString();
