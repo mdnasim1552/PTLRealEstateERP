@@ -1628,6 +1628,7 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void gvSpayment_RowEditing(object sender, GridViewEditEventArgs e)
         {
+           
             var indx = e.NewEditIndex;
             string usircode = ((Label)this.gvSpayment.Rows[e.NewEditIndex].FindControl("lblgvItmCod")).Text.Trim();
 
