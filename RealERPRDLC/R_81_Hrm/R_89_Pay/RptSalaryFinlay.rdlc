@@ -2128,7 +2128,7 @@
                                   <Value>=Fields!idcard.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2142,7 +2142,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2176,7 +2176,7 @@
                                   <Value>=Fields!empname.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2344,7 +2344,7 @@
                                   <Value>=Format(Fields!gssal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2378,7 +2378,7 @@
                                   <Value>=Format(Fields!bsal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2412,7 +2412,7 @@
                                   <Value>=Format(Fields!hrent.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2446,7 +2446,7 @@
                                   <Value>=Format(Fields!mallow.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2480,7 +2480,7 @@
                                   <Value>=Format(Fields!cven.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2514,7 +2514,7 @@
                                   <Value>=Format(Fields!entaint.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2548,7 +2548,7 @@
                                   <Value>=Format(Fields!foodal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2582,7 +2582,7 @@
                                   <Value>=Format(Fields!pickup.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2616,7 +2616,7 @@
                                   <Value>=Format(Fields!arsal.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2681,7 +2681,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!ohour.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!ohour.Value, "#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -2718,7 +2718,7 @@
                                   <Value>=Format(Fields!oallow.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2752,7 +2752,7 @@
                                   <Value>=Format(Fields!gssal.Value+Fields!foodal.Value+Fields!arsal.Value+Fields!oallow.Value+Fields!otall.Value , "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2786,7 +2786,7 @@
                                   <Value>=Format(Fields!absded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2820,7 +2820,7 @@
                                   <Value>=Format(Fields!pfund.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2854,7 +2854,7 @@
                                   <Value>=Format(Fields!adv.Value+Fields!loanins.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2888,7 +2888,7 @@
                                   <Value>=Format(Fields!othded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2922,7 +2922,7 @@
                                   <Value>=Format(Fields!itax.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2956,7 +2956,7 @@
                                   <Value>=Format(Fields!mbillded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2990,7 +2990,7 @@
                                   <Value>=Format(Fields!tdeduc.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3024,7 +3024,7 @@
                                   <Value>=Format(Fields!netpay.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3058,7 +3058,7 @@
                                   <Value>=Format(Fields!bankamt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3092,7 +3092,7 @@
                                   <Value>=Format(Fields!cashamt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3685,7 +3685,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!ohour.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!ohour.Value), "#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4811,7 +4811,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!ohour.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!ohour.Value), "#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -7561,21 +7561,16 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Net Amount (TK)</Value>
+                        <Value>Net Amount (TK): </Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value>: </Value>
-                        <Style>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                      <TextRun>
                         <Value>=Parameters!netpay.Value</Value>
                         <Style>
+                          <FontFamily>cambria</FontFamily>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
