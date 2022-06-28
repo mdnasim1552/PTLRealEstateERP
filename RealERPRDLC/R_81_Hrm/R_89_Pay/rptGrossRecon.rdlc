@@ -45,8 +45,8 @@
           <DataField>desig</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="different">
-          <DataField>different</DataField>
+        <Field Name="diffrent">
+          <DataField>diffrent</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="empid">
@@ -73,6 +73,10 @@
           <DataField>gssalprev</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="idcardno">
+          <DataField>idcardno</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="incamt">
           <DataField>incamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -97,6 +101,18 @@
           <DataField>p1</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="p10">
+          <DataField>p10</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="p11">
+          <DataField>p11</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="p12">
+          <DataField>p12</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="p2">
           <DataField>p2</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -119,6 +135,14 @@
         </Field>
         <Field Name="p7">
           <DataField>p7</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="p8">
+          <DataField>p8</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="p9">
+          <DataField>p9</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="per">
@@ -165,25 +189,64 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.10364in</Width>
+                  <Width>0.54167in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.14532in</Width>
+                  <Width>1.89531in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.20781in</Width>
+                  <Width>1.78699in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.06197in</Width>
+                  <Width>1.91614in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.0125in</Width>
+                  <Width>0.75364in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.84583in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
                   <Height>0.20833in</Height>
                   <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>ID Card</Value>
+                                  <Style>
+                                    <FontFamily>calibri</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox7">
@@ -371,6 +434,41 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="idcardno">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!idcardno.Value</Value>
+                                  <Style>
+                                    <FontFamily>calibri</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>=Switch(Fields!empid.Value = "000000000000", "Bold",Fields!empid.Value = "AAAAAAAAAAAA", "Bold")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>idcardno</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=Switch(Fields!grp.Value = "1", "Tomato", Fields!grp.Value = "A", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="empname">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -402,7 +500,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -560,6 +657,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -575,7 +673,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.19667in</Top>
             <Height>0.41666in</Height>
-            <Width>7.53124in</Width>
+            <Width>7.73957in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -586,7 +684,7 @@
         <Height>0.70833in</Height>
         <Style />
       </Body>
-      <Width>7.7175in</Width>
+      <Width>7.73957in</Width>
       <Page>
         <PageHeader>
           <Height>0.63417in</Height>
