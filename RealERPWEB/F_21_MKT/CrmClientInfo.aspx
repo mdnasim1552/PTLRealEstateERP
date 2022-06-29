@@ -2766,7 +2766,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             <asp:LinkButton ID="lnkOk" runat="server" Text="OK" OnClick="lnkOk_Click" CssClass="btn btn-success"></asp:LinkButton>
                                         </div>
 
-                                        <div class="col-md-1">
+                                        <div class="col-md-2">
                                             <asp:CheckBox ID="Chkpdelete" runat="server" CssClass="form-control checkbox" Text="&nbsp;P.Delete" />
 
                                         </div>
