@@ -288,9 +288,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                                                     "<h4>ID #: " + dr["idcardno"] + "</h4>" +
                                                     "<p>Department: " + dr["section"] + "</p>" +
                                                     "<p>Designation: " + dr["desig"] + "</p>" +
-                                                    "<p>offi. E-mail: " + dr["offcemail"] + "</p>" +
+                                                    "<p>Offi. E-mail: " + dr["offcemail"] + "</p>" +
                                                     "<p>Contact No: " + dr["mobile"] + "</p>" +
                                                     "<p>Offi. Cell: " + dr["offcmobile"] + "</p>" +
+                                                     "<p>PABX: " + dr["pabx"] + "</p>" +
                                                     "<p><i class='fa fa-calander'></i> DOJ: " + dr["joindate"] + "</p>"+
                                                     "</div></div></div></div></div>";
 
