@@ -1104,6 +1104,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         case "3101":
                         case "3366":
                             this.gvothearn.HeaderRow.Cells[7].Text = "Sales Commission";
+                            this.gvothearn.HeaderRow.Cells[9].Text = "Lunch Subsidy";
                             break;
 
 
