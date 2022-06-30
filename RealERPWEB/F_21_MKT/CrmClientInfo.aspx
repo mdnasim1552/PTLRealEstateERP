@@ -2623,7 +2623,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                     <label class="control-label col-md-1">Filter</label>
 
 
-                                    <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 mr-1 mb-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
                                     </asp:DropDownList>
 
 
@@ -2766,7 +2766,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             <asp:LinkButton ID="lnkOk" runat="server" Text="OK" OnClick="lnkOk_Click" CssClass="btn btn-success"></asp:LinkButton>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-2 text-danger">
                                             <asp:CheckBox ID="Chkpdelete" runat="server" CssClass="form-control checkbox" Text="&nbsp;P.Delete" />
 
                                         </div>
