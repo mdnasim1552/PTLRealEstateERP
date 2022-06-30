@@ -660,7 +660,7 @@
                   <Width>0.34442in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.32482in</Width>
+                  <Width>0.48107in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.33275in</Width>
@@ -693,7 +693,7 @@
                   <Width>0.7055in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.78191in</Width>
+                  <Width>0.62192in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.62567in</Width>
@@ -1253,7 +1253,7 @@
                                 <Width>0.7055in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.78191in</Width>
+                                <Width>0.62192in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -5424,7 +5424,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.06944in</Top>
             <Height>1.73959in</Height>
-            <Width>14.63412in</Width>
+            <Width>14.63033in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

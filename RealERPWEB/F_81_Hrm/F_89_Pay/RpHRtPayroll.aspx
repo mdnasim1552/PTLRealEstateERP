@@ -81,6 +81,7 @@
 
     </script>
 
+
     <style>
         .GridViewScrollHeader TH, .GridViewScrollHeader TD {
             font-weight: normal;
@@ -414,7 +415,9 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sectionname")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:CheckBox ID="chkSalaryLock" runat="server" CssClass="btn btn-primary btn-sm checkBox" Text="Lock" />
+
+                                                    <asp:CheckBox ID="chkSalaryLock" runat="server"  CssClass="btn btn-primary btn-sm checkBox" Text="Lock"  />
+                                                  
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1072,6 +1075,7 @@
                                                 <asp:ListItem>BTI</asp:ListItem>
                                                 <asp:ListItem>Edison</asp:ListItem>
                                                 <asp:ListItem>Finlay</asp:ListItem>
+                                                <asp:ListItem>Lanco</asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
 
