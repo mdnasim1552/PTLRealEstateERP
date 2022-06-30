@@ -388,9 +388,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string LOnApprentice = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnApprentice")).Text.Trim()).ToString();
                 string LOnHajj = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnHajjlv")).Text.Trim()).ToString();
 
-                
-
-
                 TblRowIndex = (gvLeaveRule.PageIndex) * gvLeaveRule.PageSize + i;
 
                 dt.Rows[TblRowIndex]["ernleave"] = ernleave;
@@ -404,13 +401,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 dt.Rows[TblRowIndex]["lonsepaleave"] = lonsepaleave;
                 dt.Rows[TblRowIndex]["lappreleave"] = LOnApprentice;
                 dt.Rows[TblRowIndex]["lapphajjleave"] = LOnHajj;
-
-
             }
             Session["YearLeav"] = dt;
         }
-
-
         protected void gvLeaveRule_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.SaveValue();
@@ -434,53 +427,54 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string empid = dt.Rows[i]["empid"].ToString();
+
                 string ernid = dt.Rows[i]["ernid"].ToString();
                 string ernleave = dt.Rows[i]["ernleave"].ToString();
+
                 string csid = dt.Rows[i]["csid"].ToString();
                 string csleave = dt.Rows[i]["csleave"].ToString();
+
                 string skid = dt.Rows[i]["skid"].ToString();
                 string skleave = dt.Rows[i]["skleave"].ToString();
+
                 string mtid = dt.Rows[i]["mtid"].ToString();
                 string mtleave = dt.Rows[i]["mtleave"].ToString();
+
                 string wpid = dt.Rows[i]["wpid"].ToString();
                 string wpleave = dt.Rows[i]["wpleave"].ToString();
+
                 string trpid = dt.Rows[i]["trpid"].ToString();
                 string trpleave = dt.Rows[i]["trpleave"].ToString();
+
                 string ptid = dt.Rows[i]["ptid"].ToString();
                 string ptleave = dt.Rows[i]["ptleave"].ToString(); // Edison
+
                 string lonproid = dt.Rows[i]["lonproid"].ToString();
                 string lonproidleave = dt.Rows[i]["lonproidleave"].ToString();
+
                 string lonsepaid = dt.Rows[i]["lonsepaid"].ToString();
                 string lonsepaleave = dt.Rows[i]["lonsepaleave"].ToString();
+
                 string lappretiship = dt.Rows[i]["lappretiship"].ToString();
                 string lappreleave = dt.Rows[i]["lappreleave"].ToString();
 
                 string lapphajj = dt.Rows[i]["lapphajj"].ToString();
                 string lapphajjleave = dt.Rows[i]["lapphajjleave"].ToString();
 
-                
-
-
-
+               
                 bool result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAV", yearid, empid, ernid, ernleave, csid, csleave, skid, 
                     skleave, mtid, mtleave, wpid, wpleave, trpid, trpleave, ptid, ptleave, lonproid, lonproidleave, lonsepaid, lonsepaleave, lappretiship, lappreleave, lapphajj, lapphajjleave);
                 if (result == false)
                 {
-
                     Message = "Data Is Not Updated ";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                     
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);                     
                 }
                 else
                 {
                     Message = "Updated Successfully";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
- 
                 }
-
             }
-
-
         }
         protected void lnkbtnGenLeave_Click(object sender, EventArgs e)
         {
@@ -493,8 +487,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string ptleave = Convert.ToDouble("0" + this.txtptleave.Text).ToString();
             string lonproidleave = Convert.ToDouble("0" + this.txtleaveOnProvi.Text).ToString();
             string lonsepaleave = Convert.ToDouble("0" + this.txtleaveOnSepa.Text).ToString();
-
-
 
             DataTable dt = (DataTable)Session["YearLeav"];
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -510,9 +502,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 dt.Rows[i]["ptleave"] = ptleave;
                 dt.Rows[i]["lonproidleave"] = lonproidleave;
                 dt.Rows[i]["lonsepaleave"] = lonsepaleave;
-
-
-
             }
             Session["YearLeav"] = dt;
             this.chkLeave.Checked = false;
