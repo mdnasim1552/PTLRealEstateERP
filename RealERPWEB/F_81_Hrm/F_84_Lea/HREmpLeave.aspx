@@ -373,7 +373,7 @@
                                                         Width="150px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lnkbtnFUpLeave" runat="server" CssClass="btn btn-danger btn-xs"
+                                                    <asp:LinkButton ID="lnkbtnFUpLeave" runat="server" CssClass="btn btn-info btn-xs"
                                                         OnClick="lnkbtnFUpLeave_Click">Final Update</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
