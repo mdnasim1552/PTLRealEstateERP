@@ -242,12 +242,12 @@
         .circle-tile {
             margin-bottom: 15px;
             text-align: center;
-            width: 87px;
+             
         }
 
         .tbMenuWrp table tr td {
             /*height: 50px;*/
-            width: 90px;
+            width: 150px;
             padding: 0 0;
             float: left;
             list-style: none;
@@ -299,6 +299,7 @@
 
         .circle-tile-description {
             text-transform: capitalize;
+            margin-top:5px;
         }
 
         .circle-tile-footer {
@@ -579,11 +580,13 @@
 
                                         <asp:RadioButtonList ID="LoantState" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="LoantState_SelectedIndexChanged">
                                             <asp:ListItem Value="0"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white">Loan Queue</div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white">Loan Process</div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">Loan Approval</div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Loan Generate</div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-green counter">0</div></a><div class="circle-tile-content  deep-green"><div class="circle-tile-description txt-white">Loan Generate</div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white">Loan Process <small>(HOD)</small></div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">Loan Request QC <small>(HOHR)</small></div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">Fund Management <small>(HO Finance)</small></div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Loan Approval</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  deep-green counter">0</div></a><div class="circle-tile-content  deep-green"><div class="circle-tile-description txt-white">Loan Generate <small>(HOHR)</small></div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="6"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </div>
                                 </div>

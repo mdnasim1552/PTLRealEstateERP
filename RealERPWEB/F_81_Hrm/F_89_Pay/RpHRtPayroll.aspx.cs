@@ -2360,33 +2360,33 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
             // Earning 
-            Rpt1.SetParameters(new ReportParameter("basic", basic.ToString()));
-            Rpt1.SetParameters(new ReportParameter("hrent", hrent.ToString()));
-            Rpt1.SetParameters(new ReportParameter("mallow", mallow.ToString()));
-            Rpt1.SetParameters(new ReportParameter("dallow", dallow.ToString()));
-            Rpt1.SetParameters(new ReportParameter("transallow", transallow.ToString()));
-            Rpt1.SetParameters(new ReportParameter("tiffin", tiffin.ToString()));
-            Rpt1.SetParameters(new ReportParameter("otamt", otamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("arrear", arrear.ToString()));
-            Rpt1.SetParameters(new ReportParameter("entert", entert.ToString()));
-            Rpt1.SetParameters(new ReportParameter("ttalerning", ttalerning.ToString()));
+            Rpt1.SetParameters(new ReportParameter("basic", basic.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("hrent", hrent.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("mallow", mallow.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("dallow", dallow.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("transallow", transallow.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("tiffin", tiffin.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("otamt", otamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("arrear", arrear.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("entert", entert.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("ttalerning", ttalerning.ToString("#,##0;(#,##0); ")));
 
             // Deduction 
-            Rpt1.SetParameters(new ReportParameter("trnsded", trnsded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("absded", absded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("advloan", advloan.ToString()));
-            Rpt1.SetParameters(new ReportParameter("pfamt", pfamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("stampcost", stampcost.ToString()));
-            Rpt1.SetParameters(new ReportParameter("othersamt", othded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("taxamt", taxamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("mbilded", mbilded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("tdeduc", tdeduc.ToString()));
+            Rpt1.SetParameters(new ReportParameter("trnsded", trnsded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("absded", absded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("advloan", advloan.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("pfamt", pfamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("stampcost", stampcost.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("othersamt", othded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("taxamt", taxamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("mbilded", mbilded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("tdeduc", tdeduc.ToString("#,##0;(#,##0); ")));
 
 
             // Bank/Cash Amt 
-            Rpt1.SetParameters(new ReportParameter("bankamt", bankamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("cashamt", cashamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("netpay", netpay.ToString()));
+            Rpt1.SetParameters(new ReportParameter("bankamt", bankamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("cashamt", cashamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("netpay", netpay.ToString("#,##0;(#,##0); ")));
 
             Rpt1.SetParameters(new ReportParameter("Bankinword", ASTUtility.Trans(bankamt, 2)));
             Rpt1.SetParameters(new ReportParameter("Casinword", ASTUtility.Trans(cashamt, 2)));
