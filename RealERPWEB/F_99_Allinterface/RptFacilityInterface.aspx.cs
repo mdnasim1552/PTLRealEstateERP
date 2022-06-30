@@ -45,8 +45,8 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = GetComCode();
             string date1 = txtfrmdate.Text;
             string date2 = txttoDate.Text;
-            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETTOPNUMBER", date1, date2, "", "", "", "", "", "", "", "", "");
-            if (ds != null || ds.Tables[0].Rows.Count > 0)
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETTOPNUMBER", date1, date2, "", "", "", "", "", "", "", "", "");            
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 DataTable dt = ds.Tables[0];
                 this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + dt.Rows[0][1].ToString() + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complaints</div></div></div>";
@@ -201,11 +201,13 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
-
+                HyperLink hlink01 = (HyperLink)e.Row.FindControl("hnkProceed");
                 string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
                 hlink.NavigateUrl = "~/F_30_Facility/ComplainForm.aspx?ComplNo=" + complno;
                 hlink.ToolTip = "Edit";
-                
+                hlink01.NavigateUrl = "";
+
+
             }
 
         }
