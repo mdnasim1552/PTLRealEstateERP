@@ -694,6 +694,12 @@
 
 
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="">
+                                                                <ItemTemplate>
+                                                                    <asp:HyperLink ID="hnkProceed" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
+                                                                    </asp:HyperLink>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                         </Columns>
                                                         <FooterStyle CssClass="grvFooter" />
                                                         <EditRowStyle />
