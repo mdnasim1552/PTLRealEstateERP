@@ -2097,6 +2097,7 @@
     <Content Include="F_01_LPA\RptLandDevTopSheet.aspx" />
     <Content Include="F_01_LPA\RptLandInventory.aspx" />
     <Content Include="F_01_LPA\RptLandProcurement.aspx" />
+    <Content Include="F_02_Fea\EntryProjectFesibility05.aspx" />
     <Content Include="F_02_Fea\FeaPrjGenInformation.aspx" />
     <Content Include="F_02_Fea\FeaProjectCodeBook.aspx" />
     <Content Include="F_02_Fea\FeaProjectCost.aspx" />
@@ -2107,6 +2108,7 @@
     <Content Include="F_02_Fea\ProjectFeasibility03.aspx" />
     <Content Include="F_02_Fea\ProjectFeasibility04.aspx" />
     <Content Include="F_02_Fea\ProjFeasibilityLandDev.aspx" />
+    <Content Include="F_02_Fea\RptEstProfitloss.aspx" />
     <Content Include="F_02_Fea\RptFeaIncomeSt.aspx" />
     <Content Include="F_02_Fea\RptFeasiVsActualAll.aspx" />
     <Content Include="F_02_Fea\RptLinkFeaIncomeSt.aspx" />
@@ -3895,6 +3897,20 @@
     </Compile>
     <Compile Include="F_01_LPA\RptLandInventory.aspx.designer.cs">
       <DependentUpon>RptLandInventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_02_Fea\EntryProjectFesibility05.aspx.cs">
+      <DependentUpon>EntryProjectFesibility05.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_02_Fea\EntryProjectFesibility05.aspx.designer.cs">
+      <DependentUpon>EntryProjectFesibility05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_02_Fea\RptEstProfitloss.aspx.cs">
+      <DependentUpon>RptEstProfitloss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_02_Fea\RptEstProfitloss.aspx.designer.cs">
+      <DependentUpon>RptEstProfitloss.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
