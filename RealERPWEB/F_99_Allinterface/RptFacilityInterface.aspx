@@ -539,7 +539,7 @@
 
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary">Ok</asp:LinkButton></li>
+                                <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
                             </div>
                         </div>
 
@@ -602,7 +602,7 @@
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvComplainList" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True" OnRowDataBound="gvComplainList_RowDataBound">
+                                                        ShowFooter="True" OnRowDataBound="gvComplainList_RowDataBound" OnRowCommand="gvComplainList_RowCommand" >
                                                         <RowStyle />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sl">
@@ -620,8 +620,10 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="ID #">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="Label1" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                    <asp:Label ID="lblComplno" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complno"))%>' Width="50px"></asp:Label>
+                                                                      <asp:Label ID="lblStatus" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "engrcheck"))%>' Width="50px"></asp:Label>
                                                                     <asp:Label ID="lblgvcomplno" runat="server"  Style="text-align: center"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complno1"))%>' Width="50px"></asp:Label>
                                                                 </ItemTemplate>
@@ -695,9 +697,10 @@
 
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>
-                                                                    <asp:HyperLink ID="hnkProceed" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
-                                                                    </asp:HyperLink>
+                                                                <ItemTemplate>                                                                   
+                                                                    <asp:LinkButton ID="lnkProceed" runat="server"  CssClass="btn btn-default btn-xs" CommandName="Select" 
+                                                                        CommandArgument="<%# Container.DataItemIndex %>"><span class="fa fa-arrow-right"
+                                                                            ></span></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -718,7 +721,7 @@
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvCmpltoDg" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True" OnRowDataBound="gvCmpltoDg_RowDataBound">
+                                                        ShowFooter="True" OnRowDataBound="gvCmpltoDg_RowDataBound" OnRowCommand="gvCmpltoDg_RowCommand">
                                                         <RowStyle />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sl">
@@ -727,11 +730,21 @@
                                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>                                                            
+                                                            </asp:TemplateField>      
+                                                             <asp:TemplateField HeaderText="">
+                                                                <ItemTemplate>
+                                                                    <asp:HyperLink ID="lnkedit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-edit"></span>
+                                                                    </asp:HyperLink>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="ID #">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="Label1" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complno"))%>' Width="50px"></asp:Label>
+                                                                    <asp:Label ID="lbldgno" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dgno"))%>' Width="50px"></asp:Label>
+                                                                     <asp:Label ID="lblisBudget" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isbudget"))%>' Width="50px"></asp:Label>
                                                                     <asp:Label ID="lblgvcomplno" runat="server"  Style="text-align: center"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complno1"))%>' Width="50px"></asp:Label>
                                                                 </ItemTemplate>
@@ -808,6 +821,11 @@
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="lnkdg" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
+
+                                                                     <asp:LinkButton ID="lnkProceed" runat="server"  CssClass="btn btn-default btn-xs" CommandName="Select" 
+                                                                        CommandArgument="<%# Container.DataItemIndex %>"><span class=" fa fa-arrow-right"
+                                                                            ></span></asp:LinkButton>
+
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
@@ -829,7 +847,7 @@
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvDiagnosis" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True" OnRowDataBound="gvDiagnosis_RowDataBound">
+                                                        ShowFooter="True" OnRowDataBound="gvDiagnosis_RowDataBound" OnRowCommand="gvDiagnosis_RowCommand" >
                                                         <RowStyle />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sl">
@@ -849,6 +867,14 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblComplain" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complno"))%>' Width="50px"></asp:Label>
+                                                                     <asp:Label ID="lblisApproval" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isApproval"))%>' Width="50px"></asp:Label>
+
+                                                                    <asp:Label ID="lblisBudget" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isbudgetVal"))%>' Width="50px"></asp:Label>
+
+
+                                                                    
                                                                     <asp:Label ID="lblComplain1" runat="server"  Style="text-align: center"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complno1"))%>' Width="50px"></asp:Label>
                                                                 </ItemTemplate>
@@ -866,7 +892,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Diagnosis ID #">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblDiagnosis" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                    <asp:Label ID="lbldgno" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dgno"))%>' Width="50px"></asp:Label>
                                                                     <asp:Label ID="lblDiagnosis1" runat="server"  Style="text-align: center"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dgno1"))%>' Width="50px"></asp:Label>
@@ -948,6 +974,12 @@
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="lnkdg" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
+
+                                                                     <asp:LinkButton ID="lnkProceed" runat="server"  CssClass="btn btn-default btn-xs" CommandName="Select" 
+                                                                        CommandArgument="<%# Container.DataItemIndex %>"><span class=" fa fa-arrow-right"
+                                                                            ></span></asp:LinkButton>
+
+
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
