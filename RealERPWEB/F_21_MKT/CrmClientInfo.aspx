@@ -3555,9 +3555,9 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                     <div class="list-group list-group-bordered mb-3 notifsectino">
                                         <asp:LinkButton ID="lnkbtnDws" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnDws_Click">
                                             <div class="list-group-item-figure">
-                                                <div class="tile tile-circle bg-primary">DWS </div>
+                                                <div class="tile tile-circle bg-primary">SW </div>
                                             </div>
-                                            <div class="list-group-item-body">Daily Work Schedule</div>
+                                            <div class="list-group-item-body">Schedules Work</div>
                                             <div class="list-group-item-figure">
                                                 <button class="btn btn-sm btn-light">
                                                     <span class="badge badge-pill badge-danger" id="lbldws" runat="server">0</span>
