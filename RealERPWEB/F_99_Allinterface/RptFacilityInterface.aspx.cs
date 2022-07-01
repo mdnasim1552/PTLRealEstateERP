@@ -324,21 +324,27 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");                
-
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");   
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
-                hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&Dgno=" + dgno;
-                hlink.ToolTip = "Edit";
                 hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?Type=Approval&DgNo=" + dgno;
                 hlink1.ToolTip = "Approval";
-                
             } 
         }
 
         protected void gvApproval_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hnkCollection");
+                LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lblDgNo1");                
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                
+                hlink2.NavigateUrl= "~/F_30_Facility/Quotation.aspx?DgNo=" + dgno;
+                llink.Attributes["onclick"] = "if(!confirm('Do you want to Accept Quotation of: Dg-" + dgno + "? ')){ return false; };";
+                llink.ToolTip = "Accept Quotation";
+            }
         }
 
         protected void gvCmpltoDg_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -444,6 +450,38 @@ namespace RealERPWEB.F_99_Allinterface
                     {
                         ModuleName();
                         getBudget();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Approval" + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+        protected void gvApproval_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Select")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvApproval.Rows[rowIndex];
+                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQUOTAPPRFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+                        ModuleName();
+                        getQuotList();
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Approval" + "');", true);
                     }
                     else

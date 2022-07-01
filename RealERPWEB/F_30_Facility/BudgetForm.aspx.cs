@@ -46,7 +46,7 @@ namespace RealERPWEB.F_30_Facility
             string complno = Request.QueryString["Dgno"].ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINFOREDIT", complno, "", "", "", "", "", "", "", "", "", "");
             List<EClass_Complain_List> obj = ds.Tables[0].DataTableToList<EClass_Complain_List>();
-            Bind_Grid(obj);
+            //Bind_Grid(obj);
         }
 
         private string GetComCode()
@@ -458,6 +458,16 @@ namespace RealERPWEB.F_30_Facility
                                     "", "", "", "", "", "", "", "", "", "", userId);
                             if (resultR)
                             {
+                                if(warrantyCode!= "43002")
+                                {
+                                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATREQFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                                             "", "", "", "", "", "", "", "", "", "", userId);
+                                    if (!resultflag)
+                                    {
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                                        return;
+                                    }
+                                }
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Budget Approval of Dg-{dgno} - Updated Successful" + "');", true);
 
                             }
