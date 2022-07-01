@@ -1012,12 +1012,12 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="">
+                                                           <%-- <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="lnkedit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-edit"></span>
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            </asp:TemplateField>--%>
                                                             <asp:TemplateField HeaderText="Complain ID #">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblComplain" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
@@ -1140,7 +1140,7 @@
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvApproval" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True" OnRowDataBound="gvApproval_RowDataBound">
+                                                        ShowFooter="True" OnRowDataBound="gvApproval_RowDataBound" OnRowCommand="gvApproval_RowCommand">
                                                         <RowStyle />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sl">
@@ -1149,13 +1149,7 @@
                                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>
-                                                                    <asp:HyperLink ID="lnkedit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-edit"></span>
-                                                                    </asp:HyperLink>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            </asp:TemplateField>                                                         
                                                             <asp:TemplateField HeaderText="Complain ID #">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblComplain" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
@@ -1179,8 +1173,8 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblDgNo" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dgno"))%>' Width="50px"></asp:Label>
-                                                                    <asp:Label ID="lblDgNo1" runat="server" Style="text-align: center"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dgno1"))%>' Width="50px"></asp:Label>
+                                                                    <asp:HyperLink ID="lblDgNo1" runat="server" Style="text-align: center" Target="_blank"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dgno1"))%>' Width="50px"></asp:HyperLink>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -1256,15 +1250,21 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbladdnotes" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "notes"))%>'
-                                                                        Width="200px"></asp:Label>
+                                                                        Width="180px"></asp:Label>
                                                                 </ItemTemplate>
 
 
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="">
+                                                            <asp:TemplateField HeaderText="" ItemStyle-Width="100px">
                                                                 <ItemTemplate>
-                                                                    <asp:HyperLink ID="lnkdg" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
+                                                                     <asp:LinkButton ID="lnkProceed" runat="server"  CssClass="btn btn-default btn-xs" CommandName="Select" 
+                                                                        CommandArgument="<%# Container.DataItemIndex %>"><span class=" fa fa-check"
+                                                                            ></span></asp:LinkButton>
+                                                                    <asp:HyperLink ID="hnkCollection" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs">
+                                                                        <span class=" fa fa-receipt"></span>
                                                                     </asp:HyperLink>
+                                                                   
+
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
