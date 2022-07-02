@@ -72,6 +72,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0102000", "0102060", "F_01_LPA", "ProjectFeasibility04?", "Type=fea", "Land Feasibility-4", "Land Proposal", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0102000", "0102090", "F_01_LPA", "EntryLandRegProcess", "", "Land Procurement Status", "Land Proposal", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0102000", "0102091", "F_21_MKT", "LandProspectTransfer", "", "Land Transfer", "Land Proposal", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0102000", "0102092", "F_01_LPA", "RptEstProfitloss", "", "Estimated Profit & Loss", "Land Proposal", "False", "False", "False", "False" });
 
 
 
@@ -140,6 +141,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0202000", "0203171", "F_02_Fea", "RptRevsiFeasibility?", "Type=RevFeaCL", "Revised  Feasibility City/Land", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0201000", "0201180", "F_02_Fea", "FeaPrjGenInformation", "", "Project Gen. Information", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0202000", "0202190", "F_02_Fea", "FeaProjectCost", "", "Project Feasibility", "Feasibility", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0202000", "0202191", "F_02_Fea", "EntryProjectFesibility05", "", "Trading Feasibility 02 ", "Feasibility", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "0203000", "0203200", "F_02_Fea", "RptPrjFeasibility04?", "Type=SoldUSold", "Sales Statement", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203201", "F_02_Fea", "RptPrjFeasibility04?", "Type=GPNPALLPRO", "Feasibility Top Sheet", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203208", "F_02_Fea", "RptProFeasibilityAll?", "Type=FeTopSheet", "BEP Top Sheet", "Feasibility", "False", "False", "False", "False" }); ;
@@ -695,6 +698,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1702000", "1702010", "F_17_Acc", "AccPurchase?", "Type=Entry", "Purchase Update", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702015", "F_17_Acc", "AccSalJournal?", "Type=Consolidate", "Sales Journal", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702016", "F_17_Acc", "AccSalJournal?", "Type=Details", "Sales Journal-Details", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1702000", "1702018", "F_17_Acc", "AccSalJournal?", "Type=Complaint", "Sales Journal-Complaint", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702020", "F_17_Acc", "AccSales?", "Type=Entry", "Collection Update", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1702000", "1702021", "F_17_Acc", "AccTopPageUpdate?", "Type=Entry", "Petty Cash Bill Update", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1702000", "1702025", "F_17_Acc", "AccSalesADandDelay?", "Type=Entry", "Client Modification Update", "Accounts", "False", "False", "False", "False" }); ;
@@ -3374,6 +3378,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Land Feasibility", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0202000001", "03. Land Feasibility", "F_02_Fea/ProjectFeasibility?Type=fea&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000002", "04. Land Feasibility-4", "F_02_Fea/ProjectFeasibility04?Type=fea&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000002", "05. Estimated Profit & Loss", "F_01_LPA/RptEstProfitloss", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0209000003", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0209000004", "", "", "", true, "" });
@@ -3556,6 +3562,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000001", "01. Project Feasibility 01", "F_02_Fea/ProjectFeasibility?Type=FeaEntry", "", true, "" });//"01. Project Codebook", "F_02_Fea/FeaSCodeBook?BookName=Project", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Project Feasibility 02", "F_02_Fea/ProjectFeasibility03?Type=FeaEntry", "", true, "" });//"02. Revenue Code", "F_02_Fea/FeaSCodeBook?BookName=Resource", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Feasibility - Trading", "F_02_Fea/FeaProjectCost", "", true, "" });//"03. Cost Code", "F_02_Fea/FeaSCodeBook?BookName=Cost", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Trading-Feasibility  02", "F_02_Fea/EntryProjectFesibility05", "", true, "" });//"03. Cost Code", "F_02_Fea/FeaSCodeBook?BookName=Cost", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000004", "", "", "", true, "" });//"04. Other Code", "F_02_Fea/FeaSCodeBook?BookName=Other", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000005", "", "", "", true, "" });//"05. Project Information Code", "F_04_Bgd/PRCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "", "", "", true, "" });

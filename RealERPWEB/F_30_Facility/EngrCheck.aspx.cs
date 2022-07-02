@@ -20,14 +20,17 @@ namespace RealERPWEB.F_30_Facility
             if (!IsPostBack)
             {
                 txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                getProjUnitddl();
-                getComplainUser();
+                getProjUnitddl();                
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Engineer Check/Diagnosis";
-                txtSiteVisisted.Text= System.DateTime.Now.AddDays(2).ToString("dd-MMM-yyyy");
+                txtSiteVisisted.Text = System.DateTime.Now.AddDays(2).ToString("dd-MMM-yyyy");
                 txtwdtime.Text = System.DateTime.Now.AddDays(3).ToString("dd-MMM-yyyy");
-                if (Request.QueryString["EngrNo"] != null)
+                if (Request.QueryString["Dgno"] != null && Request.QueryString["ComplNo"] != null)
                 {
                     EditFunctionality();
+                }
+                else
+                {
+                    getComplainUser();
                 }
             }
         }
@@ -35,10 +38,35 @@ namespace RealERPWEB.F_30_Facility
         private void EditFunctionality()
         {
             string comcod = GetComCode();
-            string complno = Request.QueryString["ComplNo"].ToString();
-            DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINFOREDIT", complno, "", "", "", "", "", "", "", "", "", "");
+            string dgno = Request.QueryString["Dgno"].ToString();
+            ddlComplain.SelectedValue = Request.QueryString["ComplNo"].ToString();
+            ddlComplain.Enabled = false;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDIAGNOSISFOREDIT", dgno, "", "", "", "", "", "", "", "", "", "");
+            if (ds == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                return;
+            }
             List<EClass_Complain_List> obj = ds.Tables[0].DataTableToList<EClass_Complain_List>();
             Bind_Grid(obj);
+
+            DataTable dt02 = ds.Tables[1];
+            if (dt02 != null || dt02.Rows.Count > 0)
+            {
+                var row = dt02.Rows[0];
+                lblProjectText.Text = row["pactdesc"].ToString();
+                lblCustomerText.Text = row["custdesc"].ToString();
+                lblUnitText.Text = row["unit"].ToString();
+                txtNarration.Text = row["addremarks"].ToString();
+                txtEntryDate.Text = Convert.ToDateTime(row["dgdate"].ToString()).ToString("dd-MMM-yyyy");
+            }
+            DataSet ds01 = getComplainForm();
+            if(ds01 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                return;
+            }
+
         }
 
         private string GetComCode()
@@ -55,7 +83,7 @@ namespace RealERPWEB.F_30_Facility
                 string comcod = GetComCode();
                 DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETPROJCUSTFROMCOMPLAIN", "", "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                 ddlComplain.DataSource = ds.Tables[0];
                 ddlComplain.DataTextField = "descval";
                 ddlComplain.DataValueField = "id";
@@ -68,6 +96,20 @@ namespace RealERPWEB.F_30_Facility
 
         }
 
+        private DataSet getComplainForm()
+        {
+            string comcod = GetComCode();
+            string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
+            DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINUSER", complno, "", "", "", "", "", "", "", "", "", "");
+            DataTable dt01 = ds.Tables[0];
+            dgvUser.DataSource = dt01;
+            dgvUser.DataBind();            
+            return ds;
+        }
+
+
+
+
         private void getComplainUser()
         {
             try
@@ -77,11 +119,9 @@ namespace RealERPWEB.F_30_Facility
                     ddlComplain.SelectedValue = Request.QueryString["ComplNo"].ToString();
                     ddlComplain.Enabled = false;
                 }
-                string comcod = GetComCode();
-                string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINUSER", complno, "", "", "", "", "", "", "", "", "", "");
+                DataSet ds=getComplainForm();
                 if (ds == null)
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                 DataTable dt01 = ds.Tables[0];
                 DataTable dt02 = ds.Tables[1];
                 if (dt02 != null || dt02.Rows.Count > 0)
@@ -94,8 +134,7 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
                 ViewState["ComplainList"] = obj;
                 Bind_Grid(obj);
-                dgvUser.DataSource = dt01;
-                dgvUser.DataBind();
+                
             }
             catch (Exception ex)
             {
@@ -127,7 +166,7 @@ namespace RealERPWEB.F_30_Facility
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please write Problem and then click on Add. " + "');", true);
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
-                
+
             }
             catch (Exception ex)
             {
@@ -255,7 +294,7 @@ namespace RealERPWEB.F_30_Facility
                 {
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     string comcod = GetComCode();
-                    string dgno = Request.QueryString["EngrNo"] ?? "0";
+                    string dgno = Request.QueryString["Dgno"] ?? "0";
                     string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
                     string dgdate = txtEntryDate.Text;
                     string sitevisiteddate = txtSiteVisisted.Text;
@@ -267,7 +306,7 @@ namespace RealERPWEB.F_30_Facility
                     DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISB", null, null, null, dgno, complno, dgdate, sitevisiteddate, estimatedwddate, addremarks,
                         "", "", "", "", "", "", "", "", "", "", "", "", "", userId);
                     if (ds == null)
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     DataTable dt = ds.Tables[0];
                     if (dt != null || dt.Rows.Count > 0)
                     {
@@ -287,33 +326,26 @@ namespace RealERPWEB.F_30_Facility
                             }
                             if (resultCompA.Contains(false))
                             {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                             }
                             else
                             {
-                                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEENGRFLAG", complno, "", "", "", "", "", "", "", "", "", "", "",
-                                          "", "", "", "", "", "", "", "", "", "", userId);
-                                if (resultflag)
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dt.Rows[0]["dgno"].ToString()} - Updated Successful" + "');", true);
+                                if (dgno == "0")
                                 {
-                                    //Update Successful
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dt.Rows[0]["dgno"].ToString()} - Updated Successful" + "');", true);
-
-                                    if (dgno == "0")
-                                    {
-                                        ClearPage();
-                                    }
+                                    ClearPage();
                                 }
                             }
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                         }
 
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
                 }
                 else

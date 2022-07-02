@@ -762,7 +762,17 @@
                                                             <ItemStyle HorizontalAlign="center" Width="120px" />
                                                             <FooterStyle HorizontalAlign="left" Font-Bold="true" />
                                                         </asp:TemplateField>
+                                                           <asp:TemplateField HeaderText="Status">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbldgno" runat="server" Style="text-align: center; width: 120px;" Visible="false"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dgno")) %>'></asp:Label>
+                                                                <asp:Label ID="lblsstaus" runat="server" Style="text-align: center; width: 120px;"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sstatus")) %>'></asp:Label>
+                                                            </ItemTemplate>
 
+                                                            <ItemStyle HorizontalAlign="center" Width="120px" />
+                                                            <FooterStyle HorizontalAlign="left" Font-Bold="true" />
+                                                        </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Schedule Code" Visible="false">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvschcode" runat="server" Style="text-align: center; width: 40px;"
