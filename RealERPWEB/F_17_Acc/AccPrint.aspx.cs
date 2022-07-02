@@ -110,7 +110,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "2305":
                     vouprint = "VocherPrint4";
                     break;
@@ -237,6 +237,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3353":// manama  
 
                 case "3357":// Cube   
+                case "3367":// Epic    
 
                     break;
 
@@ -674,7 +675,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "2305": // rupayan land
                     vouprint = "VocherPrint4";
                     break;
@@ -1711,7 +1712,6 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
 
                 }
-
 
                 else if (Type == "VocherPrintEntrust")
                 {
