@@ -417,7 +417,16 @@ namespace RealERPWEB.F_99_Allinterface
         }
         protected void gvMatReq_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
 
+                hlink.NavigateUrl = "~/F_30_Facility/ComplaintMatReq.aspx?DgNo=" + dgno;
+                //llink.Attributes["onclick"] = "if(!confirm('Do you want to Accept Quotation of: Dg-" + dgno + "? ')){ return false; };";
+                //llink.ToolTip = "Accept Quotation";
+            }
         }
 
         protected void lnkbtnok_Click(object sender, EventArgs e)
