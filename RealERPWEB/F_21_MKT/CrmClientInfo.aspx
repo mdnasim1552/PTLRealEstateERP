@@ -3566,6 +3566,20 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                                         </asp:LinkButton>
 
+                                        <asp:LinkButton ID="lnkbtnTODayTask" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnTODayTask_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-primary">TD </div>
+                                            </div>
+                                            <div class="list-group-item-body">To Day Task</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lbltdt" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+
                                         <asp:LinkButton ID="lnkBtnDwr" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDwr_Click">
                                             <div class="list-group-item-figure">
                                                 <div class="tile tile-circle bg-success">DWR </div>
