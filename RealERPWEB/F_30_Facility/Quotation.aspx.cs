@@ -23,6 +23,7 @@ namespace RealERPWEB.F_30_Facility
                 getProjUnitddl();
                 getComplainUser();
                 createMaterialList();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Process";
                 //if (Request.QueryString["Type"] != null)
                 //{
                 //    pnlApproval.Visible = true;
