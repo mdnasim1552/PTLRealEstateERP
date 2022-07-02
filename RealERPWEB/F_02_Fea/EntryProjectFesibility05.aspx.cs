@@ -133,15 +133,20 @@ namespace RealERPWEB.F_02_Fea
                 string udesc = ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvfloor")).Text.Trim();
 
                 double usize = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvusize")).Text.Trim());
-                double Puramt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpuramt")).Text.Trim());
+                double uamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvamout")).Text.Trim());
 
-                double purvalue = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvbdamt")).Text.Trim());
-                
+                double txtgvpuramt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpuramt")).Text.Trim());
+                string txtgvpurDate = (((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpurDate")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpurDate")).Text.Trim();
+
+            
+               
                 double commitedval = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvcommision")).Text.Trim());
-                double toamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("lblgvtotalaamt")).Text.Trim());
+                string txtgvAgeingDay = (((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvAgeingDay")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvAgeingDay")).Text.Trim();
+
+                // double toamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("lblgvtotalaamt")).Text.Trim());
                 //double Comamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvcommision")).Text.Trim());
                 //double Othamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvothamt")).Text.Trim());
-                double purrate = (usize == 0) ? 0 : (Puramt / usize);
+                double rate = (usize == 0) ? 0 : (uamt / usize);
 
 
                 //double toamt = 0.00; //  Puramt + Cpamt + Utility + Bdamt + Comamt + Othamt;
@@ -150,12 +155,13 @@ namespace RealERPWEB.F_02_Fea
                 //dt.Rows[rowindex]["face"] = face;
                 dt.Rows[rowindex]["udesc"] = udesc;
                 dt.Rows[rowindex]["usize"] = usize;
-                dt.Rows[rowindex]["Puramt"] = Puramt;
-                dt.Rows[rowindex]["purvalue"] = purvalue;
-                dt.Rows[rowindex]["purvalue"] = purvalue;
+                dt.Rows[rowindex]["rate"] = rate;
 
+                dt.Rows[rowindex]["uamt"] = uamt;
+                dt.Rows[rowindex]["purvalue"] = txtgvpuramt;
+                dt.Rows[rowindex]["purdate"] = txtgvpurDate;
                 dt.Rows[rowindex]["commitedval"] = commitedval;
-                //dt.Rows[rowindex]["utility"] = Utility;
+                dt.Rows[rowindex]["AgeingDay"] = txtgvAgeingDay;
                 //dt.Rows[rowindex]["bdamt"] = Bdamt;
                 //dt.Rows[rowindex]["comamt"] = Comamt;
                 //dt.Rows[rowindex]["othamt"] = Othamt;
@@ -167,7 +173,7 @@ namespace RealERPWEB.F_02_Fea
         }
         protected void lbtnfUpdateCost_Click(object sender, EventArgs e)
         {
-
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
@@ -186,18 +192,21 @@ namespace RealERPWEB.F_02_Fea
                 foreach (DataRow dr in dt1.Rows)
                 {
                     string pactcode = dr["pactcode"].ToString().Trim();
-                    //string stored = dr["stored"].ToString().Trim();
-                    //string face = dr["face"].ToString();
+                    
 
-                    string usize = Convert.ToDouble(dr["usize"].ToString()).ToString();
+                    double usize = Convert.ToDouble(dr["usize"].ToString());
                     string udesc = dr["udesc"].ToString();
-                    string munit = dr["munit"].ToString();
-                    string uqty = Convert.ToDouble(dr["uqty"].ToString()).ToString();
-                    string purvalue = Convert.ToDouble(dr["purvalue"].ToString()).ToString();
-                    string commitedval = Convert.ToDouble(dr["commitedval"].ToString()).ToString();
-                    string purdate = Convert.ToDouble(dr["purdate"].ToString()).ToString();               
-                    result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "INSORUPDATEFEAPESTCOST", pactcode, munit, usize, uqty, udesc, purvalue, commitedval,
-                                                              purdate, "", "", "", "", "", "", "");
+                    string munit = "";// dr["munit"].ToString();
+                    double uamt = Convert.ToDouble(dr["uamt"].ToString());
+                    double purvalue = Convert.ToDouble(dr["purvalue"].ToString());
+                    double commitedval = Convert.ToDouble(dr["commitedval"].ToString());
+                    string purdate = Convert.ToDateTime(dr["purdate"].ToString()).ToString(); 
+                    string ageingday = Convert.ToDateTime(dr["ageingday"].ToString()).ToString();
+
+                  
+                    result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "INSORUPDATEFEAPESTCOST",
+                        pactcode, munit, usize.ToString(), udesc, uamt.ToString(), purvalue.ToString(), purdate,
+                                                              commitedval.ToString(), ageingday, "", "", "", "", "", "");
 
                     if (result == false)
                     {
