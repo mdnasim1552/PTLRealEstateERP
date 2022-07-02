@@ -447,6 +447,24 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldws;
 
         /// <summary>
+        /// lnkbtnTODayTask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnTODayTask;
+
+        /// <summary>
+        /// lbltdt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltdt;
+
+        /// <summary>
         /// lnkBtnDwr control.
         /// </summary>
         /// <remarks>
