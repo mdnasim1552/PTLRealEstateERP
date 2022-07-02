@@ -248,8 +248,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //    //this.txtDate.MaxLength = 6;
                 //    comBankStatement = "EMPBANKPAYINFOALLI";
                 //    break;
-
-
                 default:
                     comBankStatement = "EMPBANKPAYINFO";
                     //this.PrintAccountTrans();
@@ -257,10 +255,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
 
             return comBankStatement;
-
-
-
-
         }
 
 
