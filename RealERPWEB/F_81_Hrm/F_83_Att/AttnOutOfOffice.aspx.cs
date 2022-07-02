@@ -258,7 +258,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string userrole = hst["userrole"].ToString();
             string empid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
             string reason = this.ddlReson.SelectedValue.ToString();
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUTOFOFFICEATTENDANCE", usrid, Sessionid, Date, empid, reason, "", "", "", "", "", "", "", "", "", "");
+            string machinid = "online";
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUTOFOFFICEATTENDANCE", usrid, Sessionid, Date, empid, reason, machinid, "", "", "", "", "", "", "", "", "");
             if (result == true)
             {
                 string eventtype = "999";
