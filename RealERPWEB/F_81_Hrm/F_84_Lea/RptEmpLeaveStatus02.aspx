@@ -70,6 +70,13 @@
     </script>
 
     <style>
+      .chzn-drop {
+            width: 100% !important;
+        }
+        .chzn-container{
+            width: 100% !important;
+        }
+
         .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
@@ -1259,6 +1266,92 @@
                                     </asp:GridView>
                                 </div>
                     </asp:View>
+
+
+                           <asp:View ID="ViewDateRangeWise" runat="server">
+                                <div class="table-responsive">
+                                    <asp:GridView ID="gvDateRange" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                        AllowPaging="True" OnPageIndexChanging="gvDateRange_PageIndexChanging">
+                                        <RowStyle />
+                                        <Columns>
+
+                                            <asp:TemplateField HeaderText="Sl.No.">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="sldr" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+
+
+                                                              <asp:TemplateField HeaderText="Employee Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblidcardnodr" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="center" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Employee Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblempnamedr" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                                        Width="200px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="center" />
+                                            </asp:TemplateField>
+
+                                                               <asp:TemplateField HeaderText="Department">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbldeptdescdr" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                                        Width="200px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="center" />
+                                            </asp:TemplateField>
+
+                                              <asp:TemplateField HeaderText="Designation">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbldesigdr" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
+                                                        Width="200px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="center" />
+                                            </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="Leave Date">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbllvdatedr" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lstrtdat")).ToString("dd-MMM-yyyy") %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="center" />
+                                            </asp:TemplateField>
+
+
+                                             <asp:TemplateField HeaderText="Leave Type">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbllvnamedr" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="center" />
+                                            </asp:TemplateField>
+
+                                
+
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                </div>
+                            </asp:View>
+
+
                 </div>
                 </asp:MultiView>
             </div>

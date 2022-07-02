@@ -6,6 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
+        .nav-tabs{
+            border-bottom:0!important;
+        }
         .modal-dialog 
         {
             margin: 44px auto;
@@ -72,97 +75,365 @@
             text-align: center !important;
             margin-top: 0px;
         }
-        .tbMenuWrp table 
-        {
-            border: none !important;
+        ul.tbMenuWrp {
+            margin: 0;
+            padding: 0;
+            border: 0;
             background: none !important;
         }
-        .tbMenuWrp table tr 
-        {
-           border: none !important;
-           background: none !important;
+
+            ul.tbMenuWrp li {
+                width: 155px;
+                padding: 0px 0;
+                float: left;
+                list-style: none;
+                margin: 0 2px;
+                color: #fff;
+                background: #5F5F5F;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+            }
+
+                ul.tbMenuWrp li a {
+                    padding: 0 0;
+                    background: #5F5F5F;
+                    -webkit-border-radius: 4px;
+                    -moz-border-radius: 4px;
+                    border-radius: 4px;
+                    display: block;
+                    color: #fff;
+                    padding: 0px 0 0 0;
+                    vertical-align: middle;
+                    border: none !important;
+                }
+
+                    ul.tbMenuWrp li a:hover {
+                        background: #12A5A6;
+                    }
+
+                    ul.tbMenuWrp li a:focus {
+                        outline: none;
+                        outline-offset: 0;
+                    }
+
+                    ul.tbMenuWrp li a label {
+                        color: #fff;
+                        background: none;
+                        border: none;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 16px;
+                        display: block;
+                        cursor: pointer;
+                        width: 100%;
+                    }
+
+        .tbMenuWrp > li.active > a, .tbMenuWrp > li.active > a:focus, .tbMenuWrp > li.active > a:hover {
+            background: #472AC6 !important;
+            color: #fff;
         }
-        .tbMenuWrp table tr td 
-        {
-            width: 140px;
-            float: left;
-            list-style: none;
-            margin: 2px 5px;
-            border: 0;
-            cursor: pointer;
-            background: #fff;
-            position: relative;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
+
+
+
+
+
+        table.grvContentarea tr td span.glyphicon {
+            margin: 0 4px;
         }
-        .tbMenuWrp table tr td label 
-        {
+
+        .tbMenuWrp table tr td label {
             color: #000;
             cursor: pointer;
             font-weight: bold;
-            height: 100%;
+            height: 35px;
             margin: 1px 0;
-            padding: 2px;
+            /*padding: 2px;*/
             width: 100%;
-        }                                       
-       .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] 
-       {
-          display: none;
-       }
-        .tabMenu a 
-        {
+        }
+
+            .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
+                /*background: #12A5A6;*/
+                /*color: #fff;*/
+            }
+
+
+        .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
+            display: none;
+        }
+
+        .tabMenu a {
             display: block;
             line-height: 15px;
             font-size: 14px;
             color: #000;
             text-align: center;
-            background-color: #00ff21;
+            background: #fff;
         }
 
-        .tbMenuWrp table tr td label span.lbldata 
-        {
+        .tbMenuWrp table tr td label span.lbldata {
+            border: 2px solid #fff;
             border-radius: 50%;
             color: #fff;
+            display: inline-block;
+            float: left;
             font-size: 17px;
             font-weight: bold;
             padding: 2px;
+            position: absolute;
+            right: 4px;
+            top: 7px;
         }
 
-        .rptPurInt span.lbldata2 
-        {
+        .rptPurInt span.lbldata2 {
+            background: #e5dcdd none repeat scroll 0 0;
+            border: 1px solid #3ba8e0;
             display: block;
             font-size: 12px;
-            color: #fff;
             line-height: 22px;
-            margin: 5px 0 0;
+            margin: 14px 0 0;
             padding: 0;
             text-align: center;
         }
 
-        .tbMenuWrp table tr td:nth-child(1) 
-        {
-            background: #0179a8 !important;
+        .tbMenuWrp table tr td label .lblactive {
+            background: #667DE8;
+            color: #000000;
         }
 
-        .tbMenuWrp table tr td:nth-child(2) 
-        {
-            background: #5f4b8b !important;
+        .lblactive label tr td {
+            background: #667DE8 !important;
+            color: #000 !important;
         }
 
-        .tbMenuWrp table tr td:nth-child(3) 
-        {
-            background: #b76ba3 !important;
+        .blink_me {
+            animation: blinker 5s linear infinite;
         }
 
-        .tbMenuWrp table tr td:nth-child(4) 
-        {
-            background: #00a28a !important;
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
         }
 
-        .tbMenuWrp table tr td:nth-child(5)
-        {
-            background: #f7c46c !important;
+        .grvContentarea tr td:last-child {
+            /*width: 120px;*/
+        }
+
+
+        .fan:nth-child(1) {
+            background-color: #e6b0e1;
+            color: #fff;
+            height: 100%;
+            line-height: 32px;
+        }
+
+
+        .fan {
+            border-radius: 0;
+            px display: inline-block;
+            float: left;
+            font-size: 18px;
+            padding: 8px;
+        }
+
+            .fan:nth-child(1) {
+                background-color: #817E24;
+                border-bottom: 2px solid red;
+                /* border-top: 2px solid red; */
+                /* border-left: 3px solid #4800ff; */
+                color: #fff;
+                height: 35px;
+                line-height: 14px;
+            }
+
+            .fan:nth-child(2) {
+            }
+
+            .fan:nth-child(3) {
+            }
+
+            .fan:nth-child(4) {
+            }
+
+            .fan:nth-child(5) {
+            }
+
+            .fan:nth-child(6) {
+            }
+
+            .fan:nth-child(7) {
+            }
+        /* for interface*/
+
+        .circle-tile {
+            margin-bottom: 15px;
+            text-align: center;
+            width: 87px;
+        }
+
+        .tbMenuWrp table tr td {
+            /*height: 50px;*/
+            width: 90px;
+            padding: 0 0;
+            float: left;
+            list-style: none;
+            margin: 0 3px;
+            color: #fff;
+            text-align: center;
+            /*border: 2px solid #D1D735;*/
+            /*-webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;*/
+            cursor: pointer;
+            background: #fff;
+            position: relative;
+        }
+
+
+        .circle-tile-heading {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 100%;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-family: Calibri,Arial !important;
+            height: 38px;
+            margin: -2px auto -22px;
+            padding: 8px 4px;
+            position: relative;
+            text-align: center;
+            transition: all 0.3s ease-in-out 0s;
+            width: 42px;
+        }
+
+            .circle-tile-heading .fa {
+                line-height: 80px;
+            }
+
+        .circle-tile-content {
+            padding-top: 18px;
+            border-radius: 0px 15px;
+            font-family: Calibri;
+            font-size: 12px;
+        }
+
+        .circle-tile-number {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1;
+            padding: 5px 0 15px;
+        }
+
+        .circle-tile-description {
+            text-transform: capitalize;
+        }
+
+        .circle-tile-footer {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            display: block;
+            padding: 5px;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+            .circle-tile-footer:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+                color: rgba(255, 255, 255, 0.5);
+                text-decoration: none;
+            }
+
+        .circle-tile-heading.dark-blue:hover {
+            background-color: #8E44AD;
+        }
+
+        .circle-tile-heading.green:hover {
+            background-color: #05F37C;
+        }
+
+        .circle-tile-heading.orange:hover {
+            background-color: #34495E;
+        }
+
+        .circle-tile-heading.blue:hover {
+            background-color: #2473A6;
+        }
+
+        .circle-tile-heading.red:hover {
+            background-color: #16A085;
+        }
+
+        .circle-tile-heading.purple:hover {
+            background-color: #E74C3C;
+        }
+
+        .circle-tile-heading.deep-sky-blue:hover {
+            background-color: #0179A8;
+        }
+
+        .circle-tile-heading.deep-pink:hover {
+            background-color: #B76BA3
+        }
+
+        .circle-tile-heading.lime:hover {
+            background-color: #00BFFF;
+        }
+
+        .circle-tile-heading.chocolate:hover {
+            background-color: #32CD32;
+        }
+
+        .circle-tile-heading.blue-violet:hover {
+            background-color: #FF1493;
+        }
+
+        .tile-img {
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
+        }
+
+
+        .green {
+            background-color: #16A085;
+        }
+
+
+        .orange {
+            background-color: #F39C12;
+        }
+
+        .red {
+            background-color: #E74C3C;
+        }
+
+        .purple {
+            background-color: #8E44AD;
+        }
+
+    
+
+        .yellow {
+            background-color: #F1C40F;
+        }
+               .purple {
+            background-color: #8E44AD;
+        }
+        .deep-sky-blue {
+            background-color: #0179A8;
+        }
+
+        .deep-pink {
+            background-color: #B76BA3;
+        }
+
+
+
+        .text-lime {
+            color: #32CD32;
+        }
+        .deep-green{
+            background:#00A28A;
+        }
+        .txt-white{
+            color:white;
         }
     </style>
 

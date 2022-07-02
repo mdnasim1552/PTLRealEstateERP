@@ -154,9 +154,23 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[19].Visible = false;
                     this.gvSummary.Columns[20].Visible = true;
                     this.gvSummary.Columns[22].Visible = false;
+                    this.gvSummary.Columns[26].Visible = true;
                     break;
 
-
+                case "3101"://PTL SHOW all Column
+                    this.gvSummary.Columns[13].Visible = true;
+                    this.gvSummary.Columns[12].Visible = true;
+                    this.gvSummary.Columns[9].Visible = true;
+                    this.gvSummary.Columns[14].Visible = true;
+                    this.gvSummary.Columns[15].Visible = true;
+                    this.gvSummary.Columns[16].Visible = true;
+                    this.gvSummary.Columns[17].Visible = true;
+                    this.gvSummary.Columns[18].Visible = true;
+                    this.gvSummary.Columns[19].Visible = true;
+                    this.gvSummary.Columns[20].Visible = true;
+                    this.gvSummary.Columns[22].Visible = true;
+                    this.gvSummary.Columns[26].Visible = true;
+                    break;
                 default:
                     this.gvSummary.Columns[13].Visible = false;
                     this.gvSummary.Columns[12].Visible = false;
@@ -4103,6 +4117,7 @@ namespace RealERPWEB.F_21_MKT
                 return;
             }
             this.lbldws.InnerText = ds3.Tables[0].Rows[0]["dws"].ToString();
+            this.lbltdt.InnerText = ds3.Tables[0].Rows[0]["tdt"].ToString();
             this.lbldwr.InnerText = ds3.Tables[0].Rows[0]["dwr"].ToString();
             this.lblCall.InnerText = ds3.Tables[0].Rows[0]["call"].ToString();
             this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
@@ -4810,6 +4825,7 @@ namespace RealERPWEB.F_21_MKT
                 this.lbleditempid.Value = empid;
                 this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
+                this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString());
                 ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
@@ -4874,7 +4890,9 @@ namespace RealERPWEB.F_21_MKT
 
                 this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
-               ShowDiscussion();
+                this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
+
+                ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
                 
@@ -5070,16 +5088,29 @@ namespace RealERPWEB.F_21_MKT
                          
                         if (this.lblgeneratedate.Value.Length>0)
                         {
+                            string comcod = this.GetComeCode();
+                            AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
+
                             DataSet copSetup = compUtility.GetCompUtility();                           
                             bool bakdatain = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["crm_backdatain"]);
-
-                            if (bakdatain==false)
+                            if (bakdatain==false)// its backdate data inserted true/flase if based on prospoect generated date
                             {
-                                AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
-                                CalendarExtendere21.StartDate = Convert.ToDateTime(this.lblgeneratedate.Value);
-                                 
+                                CalendarExtendere21.StartDate = Convert.ToDateTime(this.lblgeneratedate.Value);                                 
+                            }
+                            switch (comcod) // its backdate data inserted true/flase if based on cuurent date requirment by pulok assure dev by nahid
+                            {
+                                case "3101":
+                                case "3315":
+                                case "3316":
+                                    DateTime tomorrow = DateTime.Now.AddDays(-2);
+
+                                    CalendarExtendere21.StartDate = Convert.ToDateTime(tomorrow);
+
+                                    break;
                             }
                         }
+
+
 
                          
                         break;
@@ -5301,6 +5332,8 @@ namespace RealERPWEB.F_21_MKT
 
 
                     case "810100101016": //Status
+                        string lstleadstatus = this.hiddenLedStatus.Value.ToString();
+
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
@@ -5321,7 +5354,9 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataValueField = "gcod";
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
-                        ChkBoxLstStatus.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus:((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
+
+
                         break;
 
 
@@ -6770,6 +6805,22 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        protected void lnkbtnTODayTask_Click(object sender, EventArgs e)
+        {
+            string rtype = "tdt";
+            this.ShowNotifications(rtype);
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Daily work Schedule (sales CRM)";
+                string eventdesc = "Daily work Schedule (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+        }
     }
 
 

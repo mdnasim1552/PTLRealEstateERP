@@ -48,7 +48,6 @@
                 $("input, select").bind("keydown", function (event) {
                     var k1 = new KeyPress();
                     k1.textBoxHandler(event);
-
                 });
                 $('.chzn-select').chosen({ search_contains: true });
 
@@ -69,10 +68,9 @@
                 //gridViewScroll.enhance();
             }
 
-            catch (e) {
+            catch (e)
+            {
                 alert(e);
-
-
             }
         }
 
@@ -375,7 +373,7 @@
                                                         Width="150px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lnkbtnFUpLeave" runat="server" CssClass="btn btn-danger btn-xs"
+                                                    <asp:LinkButton ID="lnkbtnFUpLeave" runat="server" CssClass="btn btn-info btn-xs"
                                                         OnClick="lnkbtnFUpLeave_Click">Final Update</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />

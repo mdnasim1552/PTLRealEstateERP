@@ -379,12 +379,45 @@
         .notifsectino .list-group-item-body {
             font-size: 10px !important;
         }
-        /* .checkbox label {
-        margin-right:2px;
         
-        }*/
+/*You can use [title] selector as well*/
+[data-title] {  
+  font-size: 30px; /*optional styling*/  
+  position: relative;
+  cursor: help;
+  width:200px;
+}
 
-        /**  modal design end **/
+[data-title]:hover::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -26px;
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 2px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  white-space: pre-wrap;
+ 
+}
+[data-title]:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 8px;
+  display: inline-block;
+  color: #fff;
+  border: 0px solid transparent;	
+  border-bottom: 0px solid #000;
+
+}
+
+
+tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
+
+
+}
     </style>
 
 
@@ -1896,15 +1929,9 @@
 
             }
         };
-
         //// for selected follow then selected lead status 
 
-
     </script>
-
-
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -2596,7 +2623,7 @@
                                     <label class="control-label col-md-1">Filter</label>
 
 
-                                    <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 mr-1 mb-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
                                     </asp:DropDownList>
 
 
@@ -2739,7 +2766,7 @@
                                             <asp:LinkButton ID="lnkOk" runat="server" Text="OK" OnClick="lnkOk_Click" CssClass="btn btn-success"></asp:LinkButton>
                                         </div>
 
-                                        <div class="col-md-1">
+                                        <div class="col-md-2 text-danger">
                                             <asp:CheckBox ID="Chkpdelete" runat="server" CssClass="form-control checkbox" Text="&nbsp;P.Delete" />
 
                                         </div>
@@ -2867,9 +2894,6 @@
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-
-
-
 
 
                                                 <%--7--%>
@@ -3024,11 +3048,11 @@
 
                                                 <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvfeedback" runat="server" Width="100px" Font-Size="10px"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
+                                                       <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" 
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>   
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
+                                                 <%--21--%>
 
 
                                                 <asp:TemplateField HeaderText="Notes">
@@ -3038,7 +3062,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <%--21--%>
+                                                <%--22--%>
 
                                                 <asp:TemplateField HeaderText="Prefered Location" Visible="false">
                                                     <ItemTemplate>
@@ -3049,7 +3073,7 @@
 
 
 
-                                                <%--22--%>
+                                                <%--23--%>
 
                                                 <asp:TemplateField HeaderText="Code" Visible="false">
                                                     <ItemTemplate>
@@ -3069,8 +3093,18 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     <ItemStyle HorizontalAlign="center" />
                                                 </asp:TemplateField>
-
-
+                                                 <%--25--%>
+                                                 <asp:TemplateField HeaderText="Next Followup" Visible="false">
+                                                    <ItemTemplate> 
+                                                             <asp:Label ID="lbllfollowuplinkkpisum" Width="90px" runat="server" 
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy")%>'>                                                               
+                                                        </asp:Label>
+  
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                 <%--26--%>
 
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
@@ -3521,9 +3555,9 @@
                                     <div class="list-group list-group-bordered mb-3 notifsectino">
                                         <asp:LinkButton ID="lnkbtnDws" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnDws_Click">
                                             <div class="list-group-item-figure">
-                                                <div class="tile tile-circle bg-primary">DWS </div>
+                                                <div class="tile tile-circle bg-primary">SW </div>
                                             </div>
-                                            <div class="list-group-item-body">Daily Work Schedule</div>
+                                            <div class="list-group-item-body">Schedules Work</div>
                                             <div class="list-group-item-figure">
                                                 <button class="btn btn-sm btn-light">
                                                     <span class="badge badge-pill badge-danger" id="lbldws" runat="server">0</span>
@@ -3531,6 +3565,20 @@
                                             </div>
 
                                         </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnTODayTask" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnTODayTask_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-primary">TD </div>
+                                            </div>
+                                            <div class="list-group-item-body">To Day Task</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lbltdt" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
 
                                         <asp:LinkButton ID="lnkBtnDwr" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDwr_Click">
                                             <div class="list-group-item-figure">
@@ -3770,7 +3818,9 @@
                                             <li>
                                                 <asp:HyperLink ID="hlnkProsWorkingReport" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptProspectWorking">Prospect Working Report</asp:HyperLink>
                                             </li>
-
+                                            <li>
+                                                <asp:HyperLink ID="hyplnkPerDeleteProspect" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptPerDeleteProspect"> Per. Delete Prospect</asp:HyperLink>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -4145,8 +4195,8 @@
                                     <%--<asp:LinkButton ID="lbtntfollowupcs" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtntfollowup_Click"><i  class="fa fa-handshake"></i> Followup</asp:LinkButton>--%>
 
                                     <button type="button" class="btn  btn-success btn-xs" id="lbtntfollowup" data-toggle="collapse" data-target="#followup"><i class="fa fa-handshake"></i>Followup</button>
-                                    <button type="button" class="btn  btn-success btn-xs" id="lbtnStatus" data-toggle="collapse" data-target="#Status"><i class="fa  fa-star-and-crescent"></i><span id="lbllaststatus" runat="server">Status</span></button>
-
+                                    <button type="button" class="btn  btn-success btn-xs" id="lbtnStatus"><i class="fa  fa-star-and-crescent"></i><span id="lbllaststatus" runat="server">Status</span></button>
+                                    <asp:HiddenField ID="hiddenLedStatus" runat="server" />
 
                                     <%--<asp:LinkButton ID="lbtntfollowup" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtntfollowup_Click"><i  class="fa fa-handshake"></i> Followup</asp:LinkButton>--%>
                                     <%-- <asp:LinkButton ID="lbtnStatus" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnStatus_Click"> <i  class="fa  fa-star-and-crescent"></i> Status</asp:LinkButton>
@@ -4641,7 +4691,7 @@
 
 
 
-            <div id="modalComments" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
+            <div id="modalComments" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-mid-width">
                     <div class="modal-content modal-content-mid-width">
                         <div class="modal-header">

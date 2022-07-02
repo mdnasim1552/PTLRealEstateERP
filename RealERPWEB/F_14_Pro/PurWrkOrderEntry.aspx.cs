@@ -122,7 +122,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "3330":
                     //case "3101":
-                    comsubject = " requests you to arrange supply of following materials from your organization.";
+                    comsubject = " Requests you to arrange supply of following materials from your organization.";
                     break;
                 
                 case "3101":
@@ -131,7 +131,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 default:
-                    comsubject = " requests you to  supply the following materials from your organization.";
+                    comsubject = " Requests you to  supply the following materials from your organization.";
                     break;
             }
             return comsubject;
@@ -156,10 +156,14 @@ namespace RealERPWEB.F_14_Pro
             string comcod = hst["comcod"].ToString();
 
             string orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
+            /**
+            var scheme = HttpContext.Current.Request.Url.Scheme;
+            var host = HttpContext.Current.Request.Url.Host;
+            var port = HttpContext.Current.Request.Url.IsDefaultPort ? "" : ":"+HttpContext.Current.Request.Url.Port.ToString();
+            string hostname = scheme+"://" + host + port + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            **/
 
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "F_99_Allinterface/";
             string currentptah = "PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
@@ -1204,6 +1208,10 @@ namespace RealERPWEB.F_14_Pro
             string session = hst["session"].ToString();
             string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
+            DataTable tbl1 = (DataTable)ViewState["tblOrder"];
+
+            string pactcode =ASTUtility.Left(tbl1.Rows[0]["pactcode"].ToString(),8);
+
             DataSet ds1 = new DataSet("ds1");
             System.IO.StringReader xmlSR;
 
@@ -1222,31 +1230,59 @@ namespace RealERPWEB.F_14_Pro
                                       //case "3101": // ASIT
 
                             break;
-
+                            
                         //case "3101":
                         case "3368"://finlay
-                            if (approval == "")
+                            if (comcod == "3368" & pactcode != "11020099")//Finlay
                             {
-                                this.CreateDataTable();
-                                DataTable dt = (DataTable)ViewState["tblapproval"];
-                                DataRow dr1 = dt.NewRow();
-                                dr1["fappid"] = usrid;
-                                dr1["fappdat"] = Date;
-                                dr1["fapptrmid"] = trmnid;
-                                dr1["fappseson"] = session;
-                                dr1["secappid"] = "";
-                                dr1["secappdat"] = "";
-                                dr1["secapptrmid"] = "";
-                                dr1["secappseson"] = "";
+                                if (approval == "")
+                                {
+                                    this.CreateDataTable();
+                                    DataTable dt = (DataTable)ViewState["tblapproval"];
+                                    DataRow dr1 = dt.NewRow();
+                                    dr1["fappid"] = usrid;
+                                    dr1["fappdat"] = Date;
+                                    dr1["fapptrmid"] = trmnid;
+                                    dr1["fappseson"] = session;
+                                    dr1["secappid"] = "";
+                                    dr1["secappdat"] = "";
+                                    dr1["secapptrmid"] = "";
+                                    dr1["secappseson"] = "";
 
-                                dt.Rows.Add(dr1);
-                                ds1.Merge(dt);
-                                ds1.Tables[0].TableName = "tbl1";
-                                approval = ds1.GetXml();
+                                    dt.Rows.Add(dr1);
+                                    ds1.Merge(dt);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    approval = ds1.GetXml();
+                                }
+
+
+                                
+                            }
+                            else if (comcod == "3368" & pactcode == "11020099")//Finlay
+                            {
+                                if (approval == "")
+                                {
+                                    this.CreateDataTable();
+                                    DataTable dt = (DataTable)ViewState["tblapproval"];
+                                    DataRow dr1 = dt.NewRow();
+                                    dr1["fappid"] = usrid;
+                                    dr1["fappdat"] = Date;
+                                    dr1["fapptrmid"] = trmnid;
+                                    dr1["fappseson"] = session;
+                                    dr1["secappid"] = usrid;
+                                    dr1["secappdat"] = Date;
+                                    dr1["secapptrmid"] = trmnid;
+                                    dr1["secappseson"] = session;
+
+                                    dt.Rows.Add(dr1);
+                                    ds1.Merge(dt);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    approval = ds1.GetXml();
+                                }
+
+
 
                             }
-
-
                             else
                             {
 
@@ -1265,6 +1301,48 @@ namespace RealERPWEB.F_14_Pro
                                 approval = ds1.GetXml();
 
                             }
+
+
+                            //if (approval == "")
+                            //{
+                            //    this.CreateDataTable();
+                            //    DataTable dt = (DataTable)ViewState["tblapproval"];
+                            //    DataRow dr1 = dt.NewRow();
+                            //    dr1["fappid"] = usrid;
+                            //    dr1["fappdat"] = Date;
+                            //    dr1["fapptrmid"] = trmnid;
+                            //    dr1["fappseson"] = session;
+                            //    dr1["secappid"] = "";
+                            //    dr1["secappdat"] = "";
+                            //    dr1["secapptrmid"] = "";
+                            //    dr1["secappseson"] = "";
+
+                            //    dt.Rows.Add(dr1);
+                            //    ds1.Merge(dt);
+                            //    ds1.Tables[0].TableName = "tbl1";
+                            //    approval = ds1.GetXml();
+
+                            //}
+
+
+                            //else
+                            //{
+
+                            //    xmlSR = new System.IO.StringReader(approval);
+                            //    ds1.ReadXml(xmlSR);
+                            //    ds1.Tables[0].TableName = "tbl1";
+                            //    ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                            //    ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                            //    ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                            //    ds1.Tables[0].Rows[0]["fappseson"] = session;
+                            //    ds1.Tables[0].Rows[0]["secappid"] = "";
+                            //    ds1.Tables[0].Rows[0]["secappdat"] = "";
+                            //    ds1.Tables[0].Rows[0]["secapptrmid"] = "";
+                            //    ds1.Tables[0].Rows[0]["secappseson"] = "";
+
+                            //    approval = ds1.GetXml();
+
+                            //}
 
                             break;
 
@@ -1752,7 +1830,7 @@ namespace RealERPWEB.F_14_Pro
             string appxml = tbl1.Rows[0]["approval"].ToString();
             string Approval = this.GetReqApproval(appxml);
 
-
+           
             bool forwarddesc = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;
             string type = this.Request.QueryString["InputType"];
             switch (type)
@@ -4412,70 +4490,83 @@ namespace RealERPWEB.F_14_Pro
         private void SendSSLMail()
         {
 
-
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            string comcod = this.GetCompCode();
-            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
-
-            string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
-
-            string subject = "Work Order";
-            //SMTP
-            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-            string mailtousr = ds1.Tables[0].Rows[0]["mailid"].ToString();
-            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
-
-
-            EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
-
-            //Connection Details 
-            SmtpServer oServer = new SmtpServer(hostname);
-            oServer.User = frmemail;
-            oServer.Password = psssword;
-            oServer.Port = portnumber;
-            oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-            //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-
-            EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
-            oMail.From = frmemail;
-            oMail.To = mailtousr;
-            oMail.Cc = frmemail;
-            oMail.Subject = subject;
-
-
-            oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
-            oMail.AddAttachment(apppath);
-
-
-            //System.Net.Mail.Attachment attachment;
-
-            //attachment = new System.Net.Mail.Attachment(apppath);
-            //oMail.AddAttachment(attachment);
-
-
-
-
-
             try
             {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                string comcod = this.GetCompCode();
+                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
 
-                oSmtp.SendMail(oServer, oMail);
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
 
+                string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                {
+                    string Messagesd = "Purchase order didn't save";
+                    ((Label)this.Master.FindControl("lblmsg")).Text = Messagesd;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                string subject = "Work Order";
+                //SMTP
+                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+                string mailtousr = ds1.Tables[0].Rows[0]["mailid"].ToString();
+                string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
+
+
+                EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+
+                //Connection Details 
+                SmtpServer oServer = new SmtpServer(hostname);
+                oServer.User = frmemail;
+                oServer.Password = psssword;
+                oServer.Port = portnumber;
+                oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+                EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
+                oMail.From = frmemail;
+                oMail.To = mailtousr;
+                oMail.Cc = frmemail;
+                oMail.Subject = subject;
+
+
+                oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
+                oMail.AddAttachment(apppath);
+
+
+                //System.Net.Mail.Attachment attachment;
+
+                //attachment = new System.Net.Mail.Attachment(apppath);
+                //oMail.AddAttachment(attachment);
+
+
+
+
+
+                try
+                {
+
+                    oSmtp.SendMail(oServer, oMail);
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+
+                }
+                catch (Exception ex)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                }
             }
             catch (Exception ex)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
             }
+           
 
         }
         protected void gvOrderInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)

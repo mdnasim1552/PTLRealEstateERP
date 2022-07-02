@@ -154,16 +154,6 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
-                                          <asp:TemplateField HeaderText="Area">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvArea" runat="server"  Font-Size="10px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "territory")) %>'
-                                                    Width="70px"></asp:Label>
-                                            </ItemTemplate>                                                                                        
-                                            <ItemStyle HorizontalAlign="left" />
-                                            <HeaderStyle VerticalAlign="Top" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
                                         
                                         
 

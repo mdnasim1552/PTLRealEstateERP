@@ -127,18 +127,14 @@ namespace RealERPWEB
             {
                 case "3365":
                 
-
                     string userrole = hst["userrole"].ToString();
-
                     this.winsList.Visible = true;
-
                     this.lnkOrintation.Visible = true;
                     this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
                     this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
                     this.BtiPolicy.Visible = true;
-
                     this.pnlUpcmEdison.Visible = false;
                     this.pnlUpcmBti.Visible = true;
                     this.modalPayslipBti.Visible = true;
@@ -321,19 +317,19 @@ namespace RealERPWEB
             if (ds1 == null)
                 return;
             DataTable dt = ds1.Tables[3];
-           
+
             string hrplc = "";
 
             for (int j = 0; j < dt.Rows.Count; j++)
             {
-                hrplc +=  "<div class='panel panel-default'>"+
-                                                "<div class='panel-heading'>"+
-                                                    "<h4 class='panel-title'>"+
-                                                        "<a data-toggle='collapse' data-parent='#accordionTwoLeft' href='#collapseTwoLeftone_"+j+"' aria-expanded='false' class='collapsed'>" + dt.Rows[j]["title"].ToString() +"</a>"+                                                       
+                hrplc += "<div class='panel panel-default'>" +
+                                                "<div class='panel-heading'>" +
+                                                    "<h4 class='panel-title'>" +
+                                                        "<a data-toggle='collapse' data-parent='#accordionTwoLeft' href='#collapseTwoLeftone_" + j + "' aria-expanded='false' class='collapsed'>" + dt.Rows[j]["title"].ToString() + "</a>" +
                                                     "</h4>" +
                                                 "</div>" +
-                                                "<div id='collapseTwoLeftone_"+j+"' class='panel-collapse collapse' aria-expanded='false' role='tablist' style='height: 0px;'>" +
-                                                    "<div class='panel-body'>" + dt.Rows[j]["details"].ToString() +"</div>" +
+                                                "<div id='collapseTwoLeftone_" + j + "' class='panel-collapse collapse' aria-expanded='false' role='tablist' style='height: 0px;'>" +
+                                                    "<div class='panel-body'>" + dt.Rows[j]["details"].ToString() + "</div>" +
                             "</div> </div>";
 
             }
@@ -818,8 +814,6 @@ namespace RealERPWEB
 
             this.EventBirthday.InnerHtml = BirthdayHTML;
             this.EventCaro.InnerHtml = innHTMLTopnot;
-
-
         }
 
 
@@ -988,8 +982,8 @@ namespace RealERPWEB
 
             Session["Report1"] = Rpt1;
 
-            string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
-            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
+            ////string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt();", true);
 
 
         }

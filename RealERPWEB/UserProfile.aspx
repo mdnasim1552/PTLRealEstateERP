@@ -11,12 +11,13 @@
             $('#NoticeModal').modal('toggle');
         }
 
-        $(document).keyup(function (e) {
+        $(document).keyup(function (e)
+        {
             if (e.keyCode == 44) return false;
         });
 
         $(document).ready(function () {
-            ExcuteEmpStatus();
+            ExcuteEmpStatus(); p
         });
         function ExcuteEmpStatus() {
 
@@ -367,7 +368,7 @@
 
 
                                 <div class="row">
-            
+
                                     <div class="col-lg-4">
                                         <div class="dbx shadow-sm bg-green rounded border ">
                                             <a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>" target="_blank">Apply Leave</a>
@@ -379,7 +380,7 @@
 
                                     <div class="col-lg-4">
                                         <div class="dbx shadow-sm bg-pink rounded border">
-                                            <asp:HyperLink CssClass="text-white" ID="hlnkattreport" runat="server" Target="_blank">
+                                            <asp:HyperLink CssClass="text-white" ID="hlnkattreport" class="text-white" runat="server" Target="_blank">
                                                      Attendance Report
                                             </asp:HyperLink>
                                         </div>
@@ -397,17 +398,21 @@
                                         <div class="dbx shadow-sm bg-success rounded border"><a class="text-white" data-toggle="modal" data-target="#payslipmodal">Pay Slip</a></div>
                                     </div>
                                 </div>
-                                  <div class="row mt-2">
-                                        <div class="col-lg-4">
-                                            <div class="dbx shadow-sm bg-success rounded border"><a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="dbx shadow-sm bg-secondary text-dark rounded border">KPI</div>
+                                <div class="row mt-2">
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-success rounded border"><a class="text-white" href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=")%>" target="_blank">Employee Directory</a></div>
+                                    </div>
+                                     <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-secondary text-dark rounded border">KPI</div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="dbx shadow-sm bg-blue text-dark rounded border">
+                                             <a class="text-white"  href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>' target="_blank">Leave Interface</a>
                                         </div>
                                     </div>
-
                                 </div>
+
+                            </div>
                         </section>
                     </asp:Panel>
 
@@ -1337,14 +1342,13 @@
                         <div class="card-body" style="min-height: 550px">
                             <div class="col-12">
                                 <div class="accordion-container" id="BtiPolicy" runat="server" visible="false">
-                                     <div class=" accordionTwo">
-                                        <div class="panel-group" id="accordionTwoLeft" ClientIDMode="Static" runat="server">
+                                    <div class=" accordionTwo">
+                                        <div class="panel-group" id="accordionTwoLeft" clientidmode="Static" runat="server">
+                                        </div>
+                                    </div>
 
-                                            </div>
-                                         </div>
 
 
-     
 
                                 </div>
 
@@ -1617,7 +1621,7 @@
             </div>
         </div>
 
-                <!-- Modal -->
+        <!-- Modal -->
         <div class="modal fade" id="NoticeModal" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -1671,47 +1675,47 @@
                                         ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
-                                         
-                                            <asp:TemplateField HeaderText="Sl#">                               
-                                                <itemtemplate>
+
+                                            <asp:TemplateField HeaderText="Sl#">
+                                                <ItemTemplate>
                                                     <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
                                                         Style="text-align: center"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
-                                                </itemtemplate>
-                                                <headerstyle horizontalalign="Center" verticalalign="Top" />
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Month">
-                                                    <itemtemplate>
+                                            <asp:TemplateField HeaderText="Month">
+                                                <ItemTemplate>
                                                     <asp:Label ID="lblgvpayslipmonth" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
                                                     <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
                                                     <asp:Label ID="lblgvempid" runat="server" Visible="false"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
-                                                </itemtemplate>
-                                                    <headerstyle horizontalalign="Center" />
-                                                    <itemstyle horizontalalign="Left" />
-                                                    <headerstyle horizontalalign="Center" verticalalign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Amount">
-                                                    <itemtemplate>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Amount">
+                                                <ItemTemplate>
                                                     <asp:Label ID="lblgvnetamt" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
-                                                </itemtemplate>
-                                                    <headerstyle horizontalalign="Center" />
-                                                    <itemstyle horizontalalign="Right" />
-                                                    <headerstyle horizontalalign="Center" verticalalign="Top" />
-                                                </asp:TemplateField>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="">
-                                                    <itemtemplate>
+                                            <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
                                                     </asp:HyperLink>
                                                     <%-- <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>     </asp:HyperLink>--%>
                                                     <asp:LinkButton ID="HyplnkModal" OnClick="payslip_modal_Click" Style="margin-left: 3px;" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View</asp:LinkButton>
 
-                                                </itemtemplate>
-                                                </asp:TemplateField>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />
@@ -1772,9 +1776,10 @@
 
         });
 
-        function PrintRpt(printype) {
-            window.open('../../RDLCViewerWin.aspx?PrintOpt=' + printype + '', '_blank');
+        function PrintRpt() {
+            window.open('<%= ResolveUrl("RDLCViewerWin.aspx?PrintOpt=PDF") %>', '_blank');
         }
+
 
     </script>
 </asp:Content>

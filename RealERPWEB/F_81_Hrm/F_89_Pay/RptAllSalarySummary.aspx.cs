@@ -504,13 +504,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt2 = (DataTable)Session["tblmondesc"];
             DataTable dt3 = (DataTable)Session["tblbankdesc"];
 
-       
-
-
-
-
-
-
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();            
             string getdate = this.ddlmon.SelectedValue.ToString();
             string subyear = getdate.Substring(0, 4);
             int submonth = Convert.ToInt32(getdate.Substring(4));
@@ -523,7 +517,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             LocalReport Rpt1 = new LocalReport();
 
             int index = this.rbtnAtten.SelectedIndex;
-
             //switch (index)
             //{
             //    case 0:
@@ -531,7 +524,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
             //        Rpt1.EnableExternalImages = true;
             //        break;
-
             //    case 1:
             //        rptitle = "Mode of payment " + month;
             //        var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
@@ -560,8 +552,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //         list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
             //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossComparison", list, list2, null);
             //        Rpt1.EnableExternalImages = true;
-
-
             //        for (int i = 0; i < dt2.Rows.Count; i++)
             //        {
             //            monname = dt2.Rows[i]["monname"].ToString();
@@ -596,7 +586,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //            monname = dt2.Rows[i]["monname"].ToString();
             //            Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
             //        }
-
             //        break;
             //}
             if (index == 0)
@@ -609,7 +598,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 rptitle = "Mode of payment " + month;
                 var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
+                if (printtype == "EXCEL")
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePaymentExcel", list, list3, null);
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
+                }
                 Rpt1.EnableExternalImages = true;
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
@@ -688,12 +684,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
-
         protected void GvNetComparison_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }
-
         protected void lnkUpdate_Click(object sender, EventArgs e)
         {
             bool result;

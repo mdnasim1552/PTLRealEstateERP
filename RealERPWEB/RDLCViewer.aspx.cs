@@ -30,6 +30,19 @@ namespace RealERPWEB
                 return;
 
             string PrtOpt = Request.QueryString["PrintOpt"].ToString();
+            string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            string rptTitle = this.Request.QueryString["rptTitle"] ?? "Export_Data_"+ date1;
+            if (string.IsNullOrEmpty(Page.Title))
+            {
+                Page.Title = rptTitle;
+            }
+            else
+            {
+                Page.Title = rptTitle;
+
+            }
+
             switch (PrtOpt)
             {
 
@@ -37,17 +50,21 @@ namespace RealERPWEB
                 //    this.RptHtml();
                 //    break;
                 case "PDF":
-                    this.RptRDLCPDF();
+                    this.RptRDLCPDF(rptTitle);
                     break;
                 case "WORD":
                     this.RptMSWord();
                     break;
                 case "EXCEL":
-                    this.RptMSExcel();
+                    this.RptMSExcel(rptTitle);
                     break;
 
                 case "GRIDTOEXCEL":
-                   // this.ExportGridToExcel();
+                    this.ExportGridToExcel();
+                   
+                    break;
+                case "GRIDTOEXCELNEW":
+                   
                     this.ExportGridToExcel2();
                     break;
             }
@@ -69,7 +86,7 @@ namespace RealERPWEB
         }
 
 
-        protected void RptRDLCPDF()
+        protected void RptRDLCPDF(string rptTitle)
         {
             LoadReportSceleton();
             string reportType = "PDF";
@@ -83,12 +100,12 @@ namespace RealERPWEB
             string mimeType;
             string encoding;
             string filenameExtension = string.Empty;
-
-
             byte[] bytes = rt.Render(reportType, deviceInfo, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
             Response.Clear();
             Response.Buffer = true;
             Response.ContentType = "Application/pdf";
+            Response.AddHeader("content-disposition", "filename=" + rptTitle + "." + filenameExtension);
+
             Response.BinaryWrite(bytes);
         }
         //protected void RptHtml()
@@ -137,9 +154,10 @@ namespace RealERPWEB
 
         }
 
-        protected void RptMSExcel()
+        protected void RptMSExcel(string rptTitle)
         {
-            LoadReportSceleton();
+            LoadReportSceleton();           
+
             string reportType = "Excel";
             string deviceInfo =
                    "<DeviceInfo>" +
@@ -154,7 +172,10 @@ namespace RealERPWEB
             Response.Clear();
             Response.Buffer = true;
             Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("content-disposition", "attachment; filename=" + rptTitle + "." + filenameExtension);
             Response.BinaryWrite(bytes);
+
+           
 
             //FileStream fs = new FileStream("d:\\report1.xls", FileMode.Create);
             ////create Excel file
@@ -182,11 +203,13 @@ namespace RealERPWEB
         {
             try
             {
+                string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string fileName = "ExportTable_" + date1; 
                 //this.form1.Controls.Remove(this.CRViewer1);
                 GridView GridView1 = (GridView)Session["Report1"];
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=DataTable.xls");
+                Response.AddHeader("content-disposition", "attachment;filename="+ fileName + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
 

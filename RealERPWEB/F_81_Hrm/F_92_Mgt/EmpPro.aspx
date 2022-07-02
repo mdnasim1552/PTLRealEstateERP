@@ -119,6 +119,7 @@
                                 <asp:DropDownList ID="ddlPrevProList" runat="server" CssClass="form-control chzn-select">
                                 </asp:DropDownList>
                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -143,7 +143,7 @@
 
                     <div class="row">
                         <div class="col-md-2">
-                            <div class="  form-group">
+                          <div class="  form-group">
                                 <label for="Label5" runat="server" class=" control-label  lblmargin-top9px ">From</label>
                                 <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputDateBox" ToolTip="(dd.mmm.yyyy)"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
@@ -292,12 +292,12 @@
 
                                         <asp:TemplateField HeaderText="Cheque No">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchrefnum" SortExpression="refnum" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Cheque No" onkeyup="Search_Gridview(this,3)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchrefnum" SortExpression="refnum" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Cheque No" onkeyup="Search_Gridview(this,3)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="txtINgvteamdesc" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refnum")) %>'
-                                                    Width="70px"></asp:Label>
+                                                    Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -307,7 +307,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblchequedat" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequedat")) %>'
-                                                    Width="70px"></asp:Label>
+                                                    Width="65px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -329,14 +329,26 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvpactdesc" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
-                                                    Width="150px"></asp:Label>
+                                                    Width="140px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Bank Name">
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchbank" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Bank Name" onkeyup="Search_Gridview(this,6)"></asp:TextBox><br />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvcactdesc" runat="server" BackColor="Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'
+                                                    Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Narration">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchvenar" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Narration" onkeyup="Search_Gridview(this,6)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchvenar" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Narration" onkeyup="Search_Gridview(this,7)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvNarration" runat="server" BackColor="Transparent" Style="word-break: break-all"
@@ -349,7 +361,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchpayto" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Party Name" onkeyup="Search_Gridview(this,7)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchpayto" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Party Name" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblogvpayto" runat="server" BackColor="Transparent"
@@ -364,7 +376,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchamt" BackColor="Transparent" BorderStyle="None" runat="server" Width="75px" placeholder="Vou. Amount" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchamt" BackColor="Transparent" BorderStyle="None" runat="server" Width="75px" placeholder="Vou. Amount" onkeyup="Search_Gridview(this,9)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvvouamt" runat="server" Style="text-align: right"

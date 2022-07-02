@@ -27,6 +27,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+                getBank();
 
                 this.GetMonth();
                 this.GetCompany();
@@ -40,7 +41,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     (this.Request.QueryString["Type"].ToString().Trim() == "TopSalary") ? "Salary Top Sheet" : (this.Request.QueryString["Type"].ToString().Trim() == "TopSheetPID") ? "Salary Top Sheet (Project)" :
                     "EMPLOYEE SALARY SUMMARY INFORMATION ";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-               
+                GetEmployeeName();
+   
+                
 
 
             }
@@ -1962,14 +1965,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
+            string dat2 = ASTUtility.Right(frmdate, 4);
+
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonus", list, null, null);
-            Rpt1.EnableExternalImages = true;
+            switch (comcod)
+            {
+                case "3354":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonusEdison", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonus", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    break;
+            }           
+
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("bonusType", "FESTIVAL BONUS OF " + bonusType + " (Cash)"));
             Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
@@ -2048,7 +2063,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
@@ -2084,7 +2099,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
@@ -2121,7 +2136,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
 
@@ -2156,7 +2171,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
@@ -2213,7 +2228,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBonousSummaryRG();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -2249,7 +2264,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBonousSummaryRatulPro();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -2285,7 +2300,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             frmdate = frmdate.ToUpper();
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             double tbonamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
             ReportDocument rptempBonus = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBonousSummaryRestRG();
             TextObject CompName = rptempBonus.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -2315,7 +2330,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string Company = this.ddlCompany.SelectedValue.Substring(0, 2);
             string Department = (this.ddlDepartName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartName.SelectedValue.ToString() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-AZHA" : "EID-UL-FITR";
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTBONPAYSLIP", month, Company, Department, section, bonusType, "", "", "", "");
 
             if (ds3 == null)
@@ -3057,5 +3072,169 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             }
         }
+
+
+
+        //rakib
+        protected void chkMergeAll_CheckedChanged(object sender, EventArgs e)
+        {
+
+            int i, index;
+            if (((CheckBox)this.gvcashpay.HeaderRow.FindControl("chkMergeAll")).Checked)
+            {
+
+                for (i = 0; i < this.gvcashpay.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked = true;
+                    index = (this.gvcashpay.PageSize) * (this.gvcashpay.PageIndex) + i;
+         
+
+
+                }
+
+
+            }
+
+            else
+            {
+                for (i = 0; i < this.gvcashpay.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked = false;
+                    index = (this.gvcashpay.PageSize) * (this.gvcashpay.PageIndex) + i;
+
+
+
+                }
+
+            }
+
+
+
+        }
+        private void GetEmployeeName()
+        {
+            try
+            {
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetComeCode();
+                int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+                string compcode = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+                string deptcode = (this.ddlDepartName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlDepartName.SelectedValue.ToString().Substring(0, 9) + "%";
+                string Section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+
+                string txtSProject = "%";
+                DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETEMPLOYEENAME", compcode, deptcode, Section, txtSProject, "", "", "", "", "");
+                Session["tblempdsg"] = ds3.Tables[0];
+                this.ddlEmployee.DataTextField = "empname";
+                this.ddlEmployee.DataValueField = "empid";
+                this.ddlEmployee.DataSource = ds3.Tables[0];
+                this.ddlEmployee.DataBind();
+
+            }
+
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+
+            }
+
+
+        }
+
+        protected void OpenChckPrintModal(object sender, EventArgs e)
+        {
+
+            double amt = 0;
+
+
+            int i;
+            for (i = 0; i < gvcashpay.Rows.Count; i++)
+            {
+
+                if (((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked == true)
+                {
+                    double mergeamt = Convert.ToDouble(((Label)this.gvcashpay.Rows[i].FindControl("lgvnetamtcash")).Text);
+
+                    amt += mergeamt;
+
+                    ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked = false;
+
+
+
+                }
+            }
+            this.ttlamt.Text = amt.ToString();
+            this.getBank();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openChckPrint();", true);
+        }
+
+
+
+        private void getBank()
+        {
+            DataTable tbnk = (DataTable)Session["tblbank"];
+            ddlBankModal.DataTextField = "actdesc";
+            ddlBankModal.DataValueField = "bankcode";
+            ddlBankModal.DataSource = tbnk;
+            ddlBankModal.DataBind();
+            ddlBankModal.Items.Insert(0, new ListItem("--Please Select--", ""));
+        }
+
+        protected void lnkchckPrintModal_Click(object sender, EventArgs e)
+        {
+            string msg="";
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["entry"]))
+            //{
+
+            //    msg = "You have no permission";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            //    return;
+            //}
+
+            try
+            {
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+
+
+                string yearmon = this.txtfMonth.Text.ToString();
+                string amt = this.ttlamt.Text.ToString();
+                
+                string empname = this.ddlEmployee.SelectedItem.Text.ToString().Remove(0,7);
+                string bankcode = ddlBankModal.SelectedValue.ToString();
+                string ckdate = this.txtchckdate.Text.ToString();
+
+
+                if (bankcode.Length != 12)
+                {
+                    msg = "Please Select Bank Name, Emp Name: " + empname;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
+                }
+                else
+                {
+
+                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt + "&ckdate=" + ckdate + "&bankcode=" + bankcode + "&yearmon=" + yearmon);
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                msg = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+            }
+        }
+
+ 
     }
 }

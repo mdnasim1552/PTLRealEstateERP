@@ -180,7 +180,7 @@
                                                         <ItemStyle HorizontalAlign="left" />
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Up to 10000">
+                                                    <asp:TemplateField HeaderText="Up to 5000">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lgvUp" runat="server" 
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam1")).ToString("#,##0;(#,##0); ") %>' 
@@ -194,7 +194,7 @@
                                                         <ItemStyle HorizontalAlign="Right" />
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="10001-50000">
+                                                    <asp:TemplateField HeaderText="5001-50,000">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lgvbtween" runat="server" 
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam2")).ToString("#,##0;(#,##0); ") %>' 
@@ -208,7 +208,7 @@
                                                         <ItemStyle HorizontalAlign="Right" />
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Above 50,000">
+                                                    <asp:TemplateField HeaderText="50,001-100000">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lgvAv" runat="server" 
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam3")).ToString("#,##0;(#,##0); ") %>' 
@@ -223,10 +223,25 @@
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
 
+                                                       <asp:TemplateField HeaderText="100001-Above">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvAv3" runat="server" 
+                                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam4")).ToString("#,##0;(#,##0); ") %>' 
+                                                                Width="70px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:Label ID="lgvFAv3" runat="server" Font-Size="11px" Height="16px" 
+                                                                style="text-align: right" Width="75px"></asp:Label>
+                                                        </FooterTemplate>
+                                                        <FooterStyle HorizontalAlign="Right" />
+                                                        <ItemStyle HorizontalAlign="Right" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
                                                       <asp:TemplateField HeaderText="Adjustment">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lgvAv4" runat="server" 
-                                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam4")).ToString("#,##0;(#,##0); ") %>' 
+                                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam5")).ToString("#,##0;(#,##0); ") %>' 
                                                                 Width="70px"></asp:Label>
                                                         </ItemTemplate>
                                                         <FooterTemplate>

@@ -47,6 +47,12 @@
             document.forms[0].target = "_blank";
         };
 
+
+        function openChckPrint() {
+
+            $('#ChckPrint').modal('toggle');
+        }
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -174,7 +180,7 @@
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
-                                        <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" checkbox chkBoxControl margin5px" Text="EID UL AZHA" Visible="False" />
+                                        <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" checkbox chkBoxControl margin5px" Text="EID UL ADHA" Visible="False" />
                                         <asp:CheckBox ID="chkExcluMgt" runat="server" CssClass="checkbox chkBoxControl" Text="Exclude Management" Visible="False" />
 
                                     </div>
@@ -563,17 +569,36 @@
 
                                         <asp:TemplateField HeaderText="" Visible="false">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnPrintCheck" runat="server" OnClick="btnPrintCheck_Click" CssClass="btn btn-sm btn-primary"   PostBackUrl="#" AutoPostBack="True" ToolTip="Print Check"  OnClientClick="NewWindow();" ><i class="fa fa-print"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnPrintCheck" runat="server" OnClick="btnPrintCheck_Click" CssClass="btn btn-sm btn-primary" PostBackUrl="#" AutoPostBack="True" ToolTip="Print Check" OnClientClick="NewWindow();"><i class="fa fa-print"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="chekPrint" runat="server" OnClick="chekPrint_Click" CssClass="btn btn-sm btn-primary hidden">Entry</asp:LinkButton>
                                             </ItemTemplate>
+
+                                            <FooterTemplate>
+                                                <asp:LinkButton runat="server" ID="lblchckprint" CssClass="btn btn-success btn-sm" OnClick="OpenChckPrintModal">Check Print</asp:LinkButton>
+                                            </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="">
+                                        <asp:TemplateField HeaderText="">
+                                            <HeaderTemplate>
+                                                <table style="width: 90px;">
+                                                    <tr>
+                                                        <td>
+                                                            <asp:Label ID="lblcheckall" runat="server" Text="Check All"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <asp:CheckBox ID="chkMergeAll" runat="server" AutoPostBack="True"
+                                                                OnCheckedChanged="chkMergeAll_CheckedChanged" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </HeaderTemplate>
                                             <ItemTemplate>
-                                              <asp:CheckBox ID="chkMerge" runat="server" CssClass="input-control" Text="" />
+                                                <asp:CheckBox ID="chkMerge" runat="server" CssClass="input-control" Text="" />
 
                                             </ItemTemplate>
                                             <ItemStyle Width="30" />
@@ -1957,6 +1982,44 @@
                 </div>
             </div>
 
+
+            <div id="ChckPrint" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h6 class="modal-title">Apply Loan</h6>
+                            <asp:LinkButton ID="ChckPrintClose" runat="server" CssClass="close close_btn" OnClientClick="OpenChckPrint();" data-dismiss="modal"> &times; </asp:LinkButton>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <asp:Label ID="lblEmployee" runat="server" class="control-label">Employee</asp:Label>
+                                <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control chzn-select form-control-sm" ></asp:DropDownList>
+                            </div>
+                              <div class="form-group">
+                                      <asp:Label ID="lblchckdat" runat="server">Cheque Date</asp:Label>
+                                        <asp:TextBox ID="txtchckdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtchckdate"
+                                            PopupButtonID="Image2"></cc1:CalendarExtender>
+                                  </div>
+                            <div class="form-group">
+                                <asp:Label ID="lblbank" runat="server" class="control-label">Bank</asp:Label>
+                                <asp:DropDownList ID="ddlBankModal" CssClass="form-control" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                          <div class="form-group">
+                                  <asp:Label ID="lblttlamt" runat="server" class="control-label">Total Amount</asp:Label>
+                              <asp:TextBox runat="server" ID="ttlamt" CssClass="form-control form-control-sm" Enabled="false"></asp:TextBox>
+                           </div>
+              
+
+                            <asp:button runat="server" ID="lnkchckPrintModal" CssClass="btn btn-success btn-sm" OnClick="lnkchckPrintModal_Click"  Text="Print" />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 

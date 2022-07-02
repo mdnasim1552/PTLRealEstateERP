@@ -149,6 +149,11 @@ namespace RealERPWEB
                 case "3364":
                 case "3366": //lanco
                 case "3368": //finlay
+                case "3353":
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
+
+
                 case "3367": //epic
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
@@ -173,6 +178,16 @@ namespace RealERPWEB
                     this.HypLinkReqInterFace.Visible = false;
 
                     break;
+                case "3354":
+                    
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;                   
+                    this.HypLinkReqInterFace.Visible = true;
+                   
+                    break;
+
                 case "3365":
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
@@ -314,6 +329,24 @@ namespace RealERPWEB
             hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
             hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
             hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+            if (ds5.Tables[0].Columns.Contains("comunpost"))
+            {
+                hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+            }
+            else
+            {
+                hst["comunpost"] = "0";
+            }
+
+            if (ds5.Tables[0].Columns.Contains("homeurl"))
+            {
+                hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+            }
+            else
+            {
+                hst["homeurl"] = "UserProfile";
+            }
+
 
             Session["tblLogin"] = hst;
             dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
@@ -808,6 +841,8 @@ namespace RealERPWEB
             }
             return sb;
         }
+
+       
     }
 
 }
