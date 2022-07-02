@@ -4117,6 +4117,7 @@ namespace RealERPWEB.F_21_MKT
                 return;
             }
             this.lbldws.InnerText = ds3.Tables[0].Rows[0]["dws"].ToString();
+            this.lbltdt.InnerText = ds3.Tables[0].Rows[0]["tdt"].ToString();
             this.lbldwr.InnerText = ds3.Tables[0].Rows[0]["dwr"].ToString();
             this.lblCall.InnerText = ds3.Tables[0].Rows[0]["call"].ToString();
             this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
@@ -6804,6 +6805,22 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        protected void lnkbtnTODayTask_Click(object sender, EventArgs e)
+        {
+            string rtype = "tdt";
+            this.ShowNotifications(rtype);
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Daily work Schedule (sales CRM)";
+                string eventdesc = "Daily work Schedule (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+        }
     }
 
 
