@@ -141,7 +141,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0201000", "0201180", "F_02_Fea", "FeaPrjGenInformation", "", "Project Gen. Information", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0202000", "0202190", "F_02_Fea", "FeaProjectCost", "", "Project Feasibility", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0202000", "0202191", "F_02_Fea", "EntryProjectFesibility05", "", "Trading Feasibility 02 ", "Feasibility", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0202000", "0102192", "F_02_Fes", "RptEstProfitloss", "", "RPL Product Costing (RTL)", "Land Proposal", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0202000", "0202192", "F_02_Fes", "RptEstProfitloss", "", " Product Costing (RPL)", "Feasibility", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "0203000", "0203200", "F_02_Fea", "RptPrjFeasibility04?", "Type=SoldUSold", "Sales Statement", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203201", "F_02_Fea", "RptPrjFeasibility04?", "Type=GPNPALLPRO", "Feasibility Top Sheet", "Feasibility", "False", "False", "False", "False" }); ;
@@ -3630,7 +3630,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000004", "05. Cost Details - 02", "F_02_Fea/RptProjectFeasibility03?Type=Cost", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000005", "06. Revenue Details - 02", "F_02_Fea/RptProjectFeasibility03?Type=Revenue", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000006", "07. Revised Feasibility", "F_02_Fea/RptRevsiFeasibility?Type=RevFeaCL", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000006", "08. Product Costing (RTL)", "F_02_Fea/RptEstProfitloss", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000006", "08. Product Costing (RPL)", "F_02_Fea/RptEstProfitloss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Provisional Budget Report", "F_02_Fea/RptProjectFeasibility?Type=Report&prjcode=", "", true, "" });
 
