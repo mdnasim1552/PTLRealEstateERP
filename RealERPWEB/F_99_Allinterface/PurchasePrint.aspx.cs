@@ -3830,8 +3830,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
-
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3368")
+                // return from switch case 
+                if (IsCarryingDynamic())
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -3858,7 +3858,6 @@ namespace RealERPWEB.F_99_Allinterface
                         coste = dt4.Rows[4]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[4]["rsirdesc1"].ToString();
                         cost5 = dt4.Rows[4]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[4]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
                     }
-
                 }
 
                 string discountdesc = dtorder1.Select("rsircode like '019999902003%'").Length == 0 ? "Discount" : dtorder1.Select("rsircode like '019999902003%'")[0]["rsirdesc1"].ToString();
@@ -4429,6 +4428,20 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("dat3", dat3));
                     Rpt1.SetParameters(new ReportParameter("dat4", dat4));
                 }
+                if (comcod == "3354") // edison
+                {
+                    Rpt1.SetParameters(new ReportParameter("costa", costa));
+                    Rpt1.SetParameters(new ReportParameter("costb", costb));
+                    Rpt1.SetParameters(new ReportParameter("costc", costc));
+                    Rpt1.SetParameters(new ReportParameter("costd", costd));
+                    Rpt1.SetParameters(new ReportParameter("coste", coste));
+
+                    Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                    Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                    Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                    Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                    Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+                }
 
 
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
@@ -4503,6 +4516,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3361":
                     case "3368": // finlay
                     case "3357": // cube
+                    case "3354": // edison
                         break;
                     default:
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
@@ -4578,6 +4592,31 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
+
+        private bool IsCarryingDynamic()
+        {
+            bool isDynamic = false;
+            string comcod = GetCompCode();
+            switch (comcod)
+            {
+                case "1205":
+                case "3351":
+                case "3352":
+                case "1108":
+                case "1109":
+                case "3315":
+                case "3316":
+                case "3368":
+                case "3354":
+                    isDynamic = true;
+                    break;
+                default:
+                    isDynamic = false;
+                    break;                     
+            }
+            return isDynamic;
+        }
+
         private void SendNormalMail(string orderno, string supemail)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
