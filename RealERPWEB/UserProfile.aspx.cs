@@ -757,18 +757,36 @@ namespace RealERPWEB
 
         private void Get_Events()
         {
-
+            string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
             switch (comcod)
             {
                case "3365":
+                    this.EventBirthday.Visible = false;
+                    this.pnlUpcmBD.Visible = false;
+                    this.pnlUpcmBDT.Visible = true;
+                  
+
+                    this.pnlUpcmBDT.Visible = true;
+                    this.EventBirthday.Visible = false;
+
+                    DataSet ds2 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
+                    if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+                        return;
+                    this.gvAllNotice.DataSource = ds2.Tables[1];
+                    this.gvAllNotice.DataBind();
+
+                    MonthWiseBDate();
+
+                    break;
+                default:
                     this.pnlUpcmBD.Visible = true;
                     this.pnlUpcmBDT.Visible = false;
-                    string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    Hashtable hst = (Hashtable)Session["tblLogin"];
-                    string usrid = hst["usrid"].ToString();
-
-                    this.EventBirthday.Visible = (comcod == "3365" & usrid == "3") ? false : true;
+                   
+                    this.pnlUpcmBDT.Visible = true;
+                    this.EventBirthday.Visible = false;
 
                     DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
                     if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
@@ -822,11 +840,7 @@ namespace RealERPWEB
                     this.EventCaro.InnerHtml = innHTMLTopnot;
                     break;
 
-                default:
-                    this.pnlUpcmBD.Visible = false;
-                    this.pnlUpcmBDT.Visible = true;
-                    MonthWiseBDate();
-                break;
+              
             }
 
 

@@ -1063,7 +1063,7 @@
                         </div>
 
                         <div class="col-6">
-                            <asp:Panel runat="server" ID="pnlUpcmBD">
+                            <asp:Panel runat="server" ID="pnlUpcmBD" Visible="false">
                                 <div class="row">
                                     <div class="card" style="max-height: 350px; overflow-y: scroll">
                                         <div class="card-header">
