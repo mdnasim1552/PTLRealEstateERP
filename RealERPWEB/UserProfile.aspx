@@ -1042,7 +1042,7 @@
                                                             </div>
                                                         </header>
 
-                                                        <p class="m-0" id="NoticeDet" runat="server"><%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ndetails").ToString())  %></p>
+                                                      <asp:Label id="NoticeDet" runat="server" Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ndetails").ToString())  %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" />
