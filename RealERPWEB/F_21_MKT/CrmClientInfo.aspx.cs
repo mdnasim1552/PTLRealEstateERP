@@ -4117,6 +4117,7 @@ namespace RealERPWEB.F_21_MKT
                 return;
             }
             this.lbldws.InnerText = ds3.Tables[0].Rows[0]["dws"].ToString();
+            this.lbltdt.InnerText = ds3.Tables[0].Rows[0]["tdt"].ToString();
             this.lbldwr.InnerText = ds3.Tables[0].Rows[0]["dwr"].ToString();
             this.lblCall.InnerText = ds3.Tables[0].Rows[0]["call"].ToString();
             this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
@@ -5087,16 +5088,29 @@ namespace RealERPWEB.F_21_MKT
                          
                         if (this.lblgeneratedate.Value.Length>0)
                         {
+                            string comcod = this.GetComeCode();
+                            AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
+
                             DataSet copSetup = compUtility.GetCompUtility();                           
                             bool bakdatain = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["crm_backdatain"]);
-
-                            if (bakdatain==false)
+                            if (bakdatain==false)// its backdate data inserted true/flase if based on prospoect generated date
                             {
-                                AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
-                                CalendarExtendere21.StartDate = Convert.ToDateTime(this.lblgeneratedate.Value);
-                                 
+                                CalendarExtendere21.StartDate = Convert.ToDateTime(this.lblgeneratedate.Value);                                 
+                            }
+                            switch (comcod) // its backdate data inserted true/flase if based on cuurent date requirment by pulok assure dev by nahid
+                            {
+                                case "3101":
+                                case "3315":
+                                case "3316":
+                                    DateTime tomorrow = DateTime.Now.AddDays(-2);
+
+                                    CalendarExtendere21.StartDate = Convert.ToDateTime(tomorrow);
+
+                                    break;
                             }
                         }
+
+
 
                          
                         break;
@@ -6791,6 +6805,22 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        protected void lnkbtnTODayTask_Click(object sender, EventArgs e)
+        {
+            string rtype = "tdt";
+            this.ShowNotifications(rtype);
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Daily work Schedule (sales CRM)";
+                string eventdesc = "Daily work Schedule (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+        }
     }
 
 

@@ -107,7 +107,6 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                     break;
 
             }
-
             return callType;
 
         }

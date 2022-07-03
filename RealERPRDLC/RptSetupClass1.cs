@@ -582,6 +582,8 @@ namespace RealERPRDLC
                 case "R_21_MKT.RptYearlySales": SetRptYearlySales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptProspectWorking": SetRptProspectWorking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptProspectTransfer": SetRptProspectTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_21_MKT.ClientLetter": SetRptClientLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 #endregion
                 #region Sales
@@ -6055,6 +6057,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport SetRptClientLetter(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+           // Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>)RptDataSet));
+            return Rpt1a;
+        }
+        
         private static LocalReport SetRptMktRequisition(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseRequisition>)RptDataSet));

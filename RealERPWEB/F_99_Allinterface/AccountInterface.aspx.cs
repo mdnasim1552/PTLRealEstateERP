@@ -180,7 +180,7 @@ namespace RealERPWEB.F_99_Allinterface
                                                      ds1.Tables[17].Rows[0]["canunit"].ToString() + "</span>";
 
             this.RadioButtonList1.Items[13].Text = "Material Conversion" + "<span class='lbldata counter'>" + ds1.Tables[17].Rows[0]["conversion"].ToString() + "</span>";
-           
+
             this.RadioButtonList1.Items[14].Text = "Transfer Unit" + "<span class='lbldata counter'>" + ds1.Tables[17].Rows[0]["trnunit"].ToString() + "</span>";
             this.RadioButtonList1.Items[15].Text = "Indent Update" + "<span class='lbldata counter'>" + ds1.Tables[17].Rows[0]["indup"].ToString() + "</span>";
 
@@ -778,7 +778,7 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink2.ToolTip = "DO Edit";
 
                 hlink2.NavigateUrl = "~/F_17_Acc/AccPurchase?Type=Entry&genno=" + billno + "&ssircode=" + ssircode + "&Date1=" + Date1;
-                hlink1.NavigateUrl = "~/F_14_Pro/PurBillEntry?Type=BillPrint&genno=" + billno +"&Date1=" + Date1;
+                hlink1.NavigateUrl = "~/F_14_Pro/PurBillEntry?Type=BillPrint&genno=" + billno + "&Date1=" + Date1;
 
 
             }
@@ -1642,15 +1642,15 @@ namespace RealERPWEB.F_99_Allinterface
                 string usircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "schdate")).ToString("dd-MMM-yyyy");
                 string schcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "schcode")).ToString();
-
-                hlink1.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Details&prjcode=" + pactcode + "&usircode=" + usircode + "&Date1=" + date + "&schcode=" + schcode;
-
-                // hlink2.ToolTip = "Consolidate";
-
-                //  hlink2.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Consolidate&prjcode=" + pactcode + "&usircode=&Date1=" + date;
-
-
-
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                if (dgno == "-1")
+                {
+                    hlink1.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Details&prjcode=" + pactcode + "&usircode=" + usircode + "&Date1=" + date + "&schcode=" + schcode;
+                }
+                else
+                {
+                    hlink1.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Complaint&DgNo=" + dgno+ "&prjcode=" + pactcode + "&usircode=" + usircode + "&Date1=" + date + "&schcode=" + schcode;
+                }
             }
 
         }
@@ -2369,15 +2369,15 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void txtgvReconDat_TextChanged(object sender, EventArgs e)
         {
-            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;   
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
             string voudat = ((Label)this.dgPdc.Rows[index].FindControl("lgvPVDate")).Text.Trim();
             string recondat = ((TextBox)this.dgPdc.Rows[index].FindControl("txtgvReconDat")).Text.Trim();
             DateTime dtvou = Convert.ToDateTime(voudat);
             DateTime dtrecon = Convert.ToDateTime(recondat);
-            if(dtvou > dtrecon)
+            if (dtvou > dtrecon)
             {
                 this.RiseError("Reconcilation Date Should be larger than Voucher Date");
-            }            
+            }
         }
 
         private void RiseError(string msg)

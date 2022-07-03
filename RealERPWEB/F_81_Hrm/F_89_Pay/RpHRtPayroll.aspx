@@ -81,6 +81,7 @@
 
     </script>
 
+
     <style>
         .GridViewScrollHeader TH, .GridViewScrollHeader TD {
             font-weight: normal;
@@ -414,7 +415,9 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sectionname")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:CheckBox ID="chkSalaryLock" runat="server" CssClass="btn btn-primary btn-sm checkBox" Text="Lock" />
+
+                                                    <asp:CheckBox ID="chkSalaryLock" runat="server"  CssClass="btn btn-primary btn-sm checkBox" Text="Lock"  />
+                                                  
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1028,7 +1031,8 @@
                                 </div>
                                 <asp:Panel ID="PnlBonus" runat="server" CssClass="col-lg-1 col-md-1 col-sm-6" Visible="False">
                                     <asp:Label ID="Label3" runat="server">Bonus(%)
-                                                    <asp:LinkButton ID="lnkbtnGenBonus" runat="server" OnClick="lnkbtnGenBonus_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnGenBonus"  runat="server" 
+                                                        CssClass="badge bg-danger text-white" OnClick="lnkbtnGenBonus_Click">Calculate</asp:LinkButton>
                                     </asp:Label>
                                     <asp:TextBox ID="txtBonusPer" runat="server" CssClass="form-control" AutoComplete="off"></asp:TextBox>
                                 </asp:Panel>
@@ -1072,6 +1076,7 @@
                                                 <asp:ListItem>BTI</asp:ListItem>
                                                 <asp:ListItem>Edison</asp:ListItem>
                                                 <asp:ListItem>Finlay</asp:ListItem>
+                                                <asp:ListItem>Lanco</asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
 

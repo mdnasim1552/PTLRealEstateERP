@@ -2623,7 +2623,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                     <label class="control-label col-md-1">Filter</label>
 
 
-                                    <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 mr-1 mb-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
                                     </asp:DropDownList>
 
 
@@ -2766,7 +2766,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             <asp:LinkButton ID="lnkOk" runat="server" Text="OK" OnClick="lnkOk_Click" CssClass="btn btn-success"></asp:LinkButton>
                                         </div>
 
-                                        <div class="col-md-1">
+                                        <div class="col-md-2 text-danger">
                                             <asp:CheckBox ID="Chkpdelete" runat="server" CssClass="form-control checkbox" Text="&nbsp;P.Delete" />
 
                                         </div>
@@ -3048,10 +3048,8 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                                                 <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" data-title='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'
-                                                            Text='<%# Eval("ldiscuss")== "" ? "" : Eval("ldiscuss").ToString().Substring(0,20)%>'></asp:Label>
-                                                         
-
+                                                       <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" 
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>   
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                  <%--21--%>
@@ -3557,9 +3555,9 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                     <div class="list-group list-group-bordered mb-3 notifsectino">
                                         <asp:LinkButton ID="lnkbtnDws" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnDws_Click">
                                             <div class="list-group-item-figure">
-                                                <div class="tile tile-circle bg-primary">DWS </div>
+                                                <div class="tile tile-circle bg-primary">SW </div>
                                             </div>
-                                            <div class="list-group-item-body">Daily Work Schedule</div>
+                                            <div class="list-group-item-body">Schedules Work</div>
                                             <div class="list-group-item-figure">
                                                 <button class="btn btn-sm btn-light">
                                                     <span class="badge badge-pill badge-danger" id="lbldws" runat="server">0</span>
@@ -3567,6 +3565,20 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             </div>
 
                                         </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnTODayTask" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnTODayTask_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-primary">TD </div>
+                                            </div>
+                                            <div class="list-group-item-body">To Day Task</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lbltdt" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
 
                                         <asp:LinkButton ID="lnkBtnDwr" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDwr_Click">
                                             <div class="list-group-item-figure">

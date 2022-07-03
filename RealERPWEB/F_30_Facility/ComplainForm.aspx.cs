@@ -342,6 +342,7 @@ namespace RealERPWEB.F_30_Facility
         protected void lnkProceed_Click(object sender, EventArgs e)
         {
 
+
         }
 
         protected void lnkSave_Click(object sender, EventArgs e)
@@ -387,7 +388,7 @@ namespace RealERPWEB.F_30_Facility
                             }
                             if (resultCompA.Contains(false))
                             {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                             }
                             else
                             {
@@ -400,14 +401,14 @@ namespace RealERPWEB.F_30_Facility
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                         }
 
 
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
                 }
                 else

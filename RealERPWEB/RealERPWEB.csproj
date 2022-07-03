@@ -201,7 +201,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2097,6 +2097,7 @@
     <Content Include="F_01_LPA\RptLandDevTopSheet.aspx" />
     <Content Include="F_01_LPA\RptLandInventory.aspx" />
     <Content Include="F_01_LPA\RptLandProcurement.aspx" />
+    <Content Include="F_02_Fea\EntryProjectFesibility05.aspx" />
     <Content Include="F_02_Fea\FeaPrjGenInformation.aspx" />
     <Content Include="F_02_Fea\FeaProjectCodeBook.aspx" />
     <Content Include="F_02_Fea\FeaProjectCost.aspx" />
@@ -2107,6 +2108,7 @@
     <Content Include="F_02_Fea\ProjectFeasibility03.aspx" />
     <Content Include="F_02_Fea\ProjectFeasibility04.aspx" />
     <Content Include="F_02_Fea\ProjFeasibilityLandDev.aspx" />
+    <Content Include="F_02_Fea\RptEstProfitloss.aspx" />
     <Content Include="F_02_Fea\RptFeaIncomeSt.aspx" />
     <Content Include="F_02_Fea\RptFeasiVsActualAll.aspx" />
     <Content Include="F_02_Fea\RptLinkFeaIncomeSt.aspx" />
@@ -2733,6 +2735,7 @@
     <Content Include="F_29_Fxt\RptFxtAsstBillRent.aspx" />
     <Content Include="F_29_Fxt\RptFxtAsstStatus.aspx" />
     <Content Include="F_29_Fxt\RptFxtStore.aspx" />
+    <Content Include="F_30_Facility\ComplaintMatReq.aspx" />
     <Content Include="F_30_Facility\Quotation.aspx" />
     <Content Include="F_30_Facility\BudgetForm.aspx" />
     <Content Include="F_30_Facility\EngrCheck.aspx" />
@@ -3896,6 +3899,20 @@
     <Compile Include="F_01_LPA\RptLandInventory.aspx.designer.cs">
       <DependentUpon>RptLandInventory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_02_Fea\EntryProjectFesibility05.aspx.cs">
+      <DependentUpon>EntryProjectFesibility05.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_02_Fea\EntryProjectFesibility05.aspx.designer.cs">
+      <DependentUpon>EntryProjectFesibility05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_02_Fea\RptEstProfitloss.aspx.cs">
+      <DependentUpon>RptEstProfitloss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_02_Fea\RptEstProfitloss.aspx.designer.cs">
+      <DependentUpon>RptEstProfitloss.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4238,6 +4255,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_30_Facility\ComplaintMatReq.aspx.cs">
+      <DependentUpon>ComplaintMatReq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_30_Facility\ComplaintMatReq.aspx.designer.cs">
+      <DependentUpon>ComplaintMatReq.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_30_Facility\Quotation.aspx.cs">
       <DependentUpon>Quotation.aspx</DependentUpon>
