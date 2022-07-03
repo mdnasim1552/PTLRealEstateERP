@@ -1773,6 +1773,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "1102":
                 case "1101":
+                case "1561":
 
                     break;
 
