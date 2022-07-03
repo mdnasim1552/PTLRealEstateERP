@@ -197,6 +197,11 @@ namespace RealERPWEB.F_17_Acc
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
+                    
+                case "3101":
+                case "3367":
+                    vouprint = "VocherPrintEpic";
+                    break;
 
                 default:
                     vouprint = "VocherPrint";
@@ -332,8 +337,7 @@ namespace RealERPWEB.F_17_Acc
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher", list, null, null);
                     Rpt1.EnableExternalImages = true;
-                }
-
+                }             
 
                 else if (Type == "VocherPrintAlliance")
                 {
@@ -530,6 +534,14 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("txtSign1", txtsign1));
 
+                }
+
+                else if (Type == "VocherPrintEpic")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherEpic", list, null, null);
+                    Rpt1.EnableExternalImages = true;
                 }
 
                 // defult rupayan RLDL

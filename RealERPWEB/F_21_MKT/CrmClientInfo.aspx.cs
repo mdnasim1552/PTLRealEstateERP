@@ -133,7 +133,7 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[5].Visible = true; // for pid show
                     // this.gvSummary.Columns[8].Visible = false;                
                     this.gvSummary.Columns[9].Visible = false;
-                    this.gvSummary.Columns[10].Visible = false;
+                    this.gvSummary.Columns[10].Visible = true;
                     this.gvSummary.Columns[11].Visible = false;
                     this.gvSummary.Columns[12].Visible = false;
                     this.gvSummary.Columns[12].Visible = false;
