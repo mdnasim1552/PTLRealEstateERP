@@ -1199,14 +1199,25 @@ namespace RealERPWEB
 
         protected void gvAllNotice_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+
+      
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
                 DateTime startdate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "nstartdate"));
                 DateTime enddate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "nenddate"));
                 DateTime today = System.DateTime.Now;
+                if (e.Row.RowIndex > 1)
+                {
+                    Label txtHours = e.Row.FindControl("NoticeDet") as Label;
+                    txtHours.Text = "";
+       
+                }
 
-                if(today>=startdate && today <= enddate)
+   
+                if (today>=startdate && today <= enddate)
                 {
                
                         e.Row.FindControl("NoticeDet").Visible = true;
