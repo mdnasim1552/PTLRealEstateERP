@@ -199,8 +199,10 @@ namespace RealERPWEB.F_02_Fea
             this.lblpurdate1.Text = Convert.ToDateTime (ds1.Tables[0].Rows[0]["purdate"]).ToString("dd-MMM-yyyy");
             this.lblPurValuse1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["purvalue"]).ToString("#,##0;(#,##0); ");
             this.lblcommitedval.Text =Convert.ToDouble( ds1.Tables[0].Rows[0]["commitedval"]).ToString("#,##0;(#,##0); ");
+            this.lblactualsal1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["acsalvalue"]).ToString("#,##0;(#,##0); ");
 
-            
+
+
 
             //this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
             //if (ASTUtility.Left(ds1.Tables[1].Rows[0]["pactcode"].ToString(), 4) == "1102")
@@ -240,8 +242,9 @@ namespace RealERPWEB.F_02_Fea
             Session.Remove("tblfeaprj");
             string comcod = this.GetComCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string fdate = this.txtCurDate.Text;
             // string Code = (this.rbtnList1.SelectedIndex == 1) ? "infcod like '51%'" : (this.rbtnList1.SelectedIndex == 2) ? "infcod like '5[2-5]%'" : "infcod like '5[67]%'";
-            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "FEAPRANDPRJCT05", pactcode, "", "", "", "", "", "", "", "");
+            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "FEAPRANDPRJCT05", pactcode, fdate, "", "", "", "", "", "", "");
             Session["tblfeaprj"] = ds3.Tables[0];
             this.Data_Bind();
         }
@@ -1096,6 +1099,8 @@ namespace RealERPWEB.F_02_Fea
                     case "08000":
 
                         comitedval2 = Convert.ToDouble("0" + (lblcommitedval.Text));
+                      double  comitedvalactual = Convert.ToDouble("0" + (lblactualsal1.Text));
+
 
 
                         //costoffundest = (costoffund * percnt * .01 * vality) / (360);
@@ -1103,8 +1108,8 @@ namespace RealERPWEB.F_02_Fea
 
                         // dt.Select("estgcod='08000'")[0]["fundamt"] = comitedval;
                         dt.Select("estgcod='08000'")[0]["estcost"] = comitedval2;
-                        dt.Select("estgcod='08000'")[0]["actual"] = comitedval2;
-                        dt.Select("estgcod='08000'")[0]["balamt"] = comitedval2 - comitedval2;
+                        dt.Select("estgcod='08000'")[0]["actual"] = comitedvalactual;
+                        dt.Select("estgcod='08000'")[0]["balamt"] = comitedval2 - comitedvalactual;
 
                         break;
 
