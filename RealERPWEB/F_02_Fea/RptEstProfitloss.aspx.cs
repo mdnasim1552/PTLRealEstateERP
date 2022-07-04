@@ -131,8 +131,10 @@ namespace RealERPWEB.F_02_Fea
                 this.GetAgeing();
 
                 this.GetData();
+                this.lblsaleprice.Visible = true;
+                this.lblsalecore.Visible = true;
                 //this.ProjectCDate();
-                // this.RadioVisibility();
+                // this.RadioVisibilitytrue
                 return;
             }
             this.lbtnOk.Text = "Ok";
@@ -151,7 +153,9 @@ namespace RealERPWEB.F_02_Fea
             this.ddlProjectName.Visible = true;        
             this.PanelSelName.Visible = false;
 
-            //  this.ImagePanel.Visible = false;
+            this.lblsaleprice.Visible = false;
+            this.lblsalecore.Visible = false;
+
 
 
 
@@ -792,7 +796,7 @@ namespace RealERPWEB.F_02_Fea
                   , costoffundest = 0.00, costoffundactual = 0.00, purvalue = 0.00, comitedval = 0.00, taginday = 0.00,
                   lossest=0.00,lossactual=0.00, comitedval2=0.00, lossest2=0.00,
             costest2 =0.00 ,costoffundest5=0.00, costoffundest2=0.00,
-            costacutal2=0.00 , costoffundactual5=0.00, costoffundactual2=0.00;
+            costacutal2=0.00 , costoffundactual5=0.00, costoffundactual2=0.00, costoffundest6 = 0.00, costoffundactual6 = 0.00 ;
 
             TimeSpan tday ;
             double NrOfDays=0.00;
@@ -1057,6 +1061,7 @@ namespace RealERPWEB.F_02_Fea
                         break;
                     case "07003":
 
+                        
                         DateTime datefrm3 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
                         DateTime dateto4 = Convert.ToDateTime(paymentdate.Trim());
 
@@ -1064,21 +1069,21 @@ namespace RealERPWEB.F_02_Fea
                         NrOfDays = tday.TotalDays;
 
 
-                        costoffundest = (costoffund * percnt * .01 * vality) / (360);
-                        costoffundactual = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+                        costoffundest6 = (costoffund * percnt * .01 * vality) / (360);
+                        costoffundactual6 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
 
                         dt.Select("estgcod='07003'")[0]["fundamt"] = costoffund;
-                        dt.Select("estgcod='07003'")[0]["estcost"] = costoffundest;
-                        dt.Select("estgcod='07003'")[0]["actual"] = costoffundactual;
-                        dt.Select("estgcod='07003'")[0]["balamt"] = costoffundest - costoffundactual;
+                        dt.Select("estgcod='07003'")[0]["estcost"] = costoffundest6;
+                        dt.Select("estgcod='07003'")[0]["actual"] = costoffundactual6;
+                        dt.Select("estgcod='07003'")[0]["balamt"] = costoffundest6 - costoffundactual6;
 
                         break;
 
 
                     case "07004":
                         
-                       costest2 = costoffundest + costoffundest5;
-                        costacutal2 = costoffundactual + costoffundactual5;
+                       costest2 = costoffundest + costoffundest5+costoffundest6;
+                        costacutal2 = costoffundactual + costoffundactual5+ costoffundactual6;
 
 
                         dt.Select("estgcod='07004'")[0]["fundamt"] = 0.00;
@@ -1139,10 +1144,13 @@ namespace RealERPWEB.F_02_Fea
 
             }
 
-            Session["tblprogeninfo"] = dt;
+            //Session["tblprogeninfo"] = dt;
+            Session["tblfeaprj"] = dt;
 
-            this.gvProjectInfo.DataSource = dt;
-            this.gvProjectInfo.DataBind();
+            this.Data_Bind();
+
+            //this.gvProjectInfo.DataSource = dt;
+            //this.gvProjectInfo.DataBind();
            
 
 
@@ -1329,6 +1337,10 @@ namespace RealERPWEB.F_02_Fea
 
             this.gvProjectInfo.DataSource = dt;
             this.gvProjectInfo.DataBind();
+
+            double salprice = dt.Select("estgcod='05008'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='05008'")[0]["estcost"]) : 0.00;
+            this.lblsalecore.Text = Convert.ToDouble(salprice / 10000000).ToString("#,##0.00;(#,##0.00); ")+" Crore";
+
 
             this.FooterCal();
 

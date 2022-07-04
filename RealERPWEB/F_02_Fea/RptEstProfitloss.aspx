@@ -86,26 +86,26 @@
                                 <div class="col-md-12">
                                     <asp:Label ID="lblUnitNameid" runat="server" CssClass="lblTxt lblName" Text="Unit Name :"></asp:Label>                                   
                                     <asp:Label ID="lblUnitName" runat="server" CssClass="smLbl"></asp:Label>
-                                    <asp:Label ID="lblunitsize" runat="server" CssClass="lblTxt lblName" Text="Size"></asp:Label>
-                                    <asp:Label ID="lblunitsizeval" runat="server" CssClass="smLbl"></asp:Label>
+                                    <asp:Label ID="lblunitsize" runat="server" CssClass="lblTxt lblName" Text="Size :"></asp:Label>
+                                    <asp:Label ID="lblunitsizeval" runat="server" CssClass="smLbl"  Font-Size="13px"></asp:Label>
                                     
                                     <asp:Label ID="lblrate1" runat="server" CssClass="lblTxt lblName" Text="Rate :"></asp:Label>
-                                    <asp:Label ID="lblrate" runat="server" CssClass="smLbl" ></asp:Label>
+                                    <asp:Label ID="lblrate" runat="server" CssClass="smLbl"  Font-Size="13px" ></asp:Label>
                                     
                            
-                                    <asp:Label ID="lblpurdate" runat="server" Text="Purchase Date:" CssClass="lblTxt lblName"></asp:Label>
-                                     <asp:Label ID="lblpurdate1" runat="server" CssClass="smLbl" Width="100px"></asp:Label>
+                                    <asp:Label ID="lblpurdate" runat="server" Text="Purchase Date :" CssClass="lblTxt lblName"></asp:Label>
+                                     <asp:Label ID="lblpurdate1" runat="server" CssClass="smLbl"  Width="100px" ></asp:Label>
 
 
                                     
-                                    <asp:Label ID="lblPurValuse" runat="server" Text="Pur Value :" CssClass="lblTxt lblName"></asp:Label>
-                                    <asp:Label ID="lblPurValuse1" runat="server" CssClass="smLbl"></asp:Label>
+                                    <asp:Label ID="lblPurValuse" runat="server" Text="Purchase Value :" CssClass="lblTxt lblName" ></asp:Label>
+                                    <asp:Label ID="lblPurValuse1" runat="server" CssClass="smLbl" Font-Size="13px" ></asp:Label>
 
 
 
-                                    <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Committed Sale Value:"></asp:Label>
+                                    <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Committed Sale Value:" Width="250px"></asp:Label>
 
-                                    <asp:Label ID="lblcommitedval" runat="server"  CssClass="smLbl"></asp:Label>
+                                    <asp:Label ID="lblcommitedval" runat="server"  CssClass="smLbl"  Font-Size="13px"></asp:Label>
 
                                     
 
@@ -376,6 +376,15 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
                 </div>
+
+                  <div class="col-md-3">
+                     <asp:Label ID="lblsaleprice" runat="server" Text="Break-even Sale Price :" Width="150px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false" ></asp:Label>
+                                    <asp:Label ID="lblsalecore" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px"  Font-Underline="true" ForeColor="#cc3399" Visible="false"></asp:Label>
+
+
+                    </div>
+
+              
            
             </div>
 

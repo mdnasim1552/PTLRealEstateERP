@@ -757,63 +757,111 @@ namespace RealERPWEB
 
         private void Get_Events()
         {
-
-            string comcod = this.GetCompCode();
             string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
-            
-            this.EventBirthday.Visible = (comcod=="3365" & usrid=="3")?false:true;
-            
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
-            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+               case "3365":
+                    this.EventBirthday.Visible = false;
+                    this.pnlUpcmBD.Visible = false;
+                    this.pnlUpcmBDT.Visible = true;
+                  
+
+                    this.pnlUpcmBDT.Visible = true;
+                    this.EventBirthday.Visible = false;
+
+                    DataSet ds2 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
+                    if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+                        return;
+                    this.gvAllNotice.DataSource = ds2.Tables[1];
+                    this.gvAllNotice.DataBind();
+
+                    MonthWiseBDate();
+
+                    break;
+                default:
+                    this.pnlUpcmBD.Visible = true;
+                    this.pnlUpcmBDT.Visible = false;
+                   
+                    this.pnlUpcmBDT.Visible = true;
+                    this.EventBirthday.Visible = false;
+
+                    DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
+                    if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                        return;
+                    string innHTML = "";
+                    string innHTMLTopnot = "";
+                    string BirthdayHTML = "";
+                    string status = "";
+                    int i = 0;
+
+                    foreach (DataRow dr in ds1.Tables[0].Rows)
+                    {
+
+                        string url = "";
+                        if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
+                        {
+                            url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
+                        }
+                        //else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
+                        //{
+                        //    string byturl = dr["imgurl"].ToString();
+                        //    byte[] biempimg = (byte[])byturl;
+                        //    //byte[] biempimg = (byte[])dr["imgurl"];
+                        //    url = "data:image;base64," + Convert.ToBase64String(biempimg);
+                        //}
+                        else
+                        {
+                            url = "Content/Theme/images/avatars/human_avatar.png";
+                        }
+
+                        string type = dr["evtype"].ToString();
+                        if (type == "Birthday")
+                        {
+                            BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+                        }
+                        i++;
+                    }
+
+                    foreach (DataRow dr in ds1.Tables[1].Rows)
+                    {
+                        status = (i == 0) ? "active" : "";
+                        innHTMLTopnot += @"<p>" + dr["eventitle"] + " ( " + (dr["ndetails"].ToString().Length > 140 ? dr["ndetails"].ToString().Substring(0, 139) + "...." : dr["ndetails"].ToString()) + ")" + "</p>";
+                        i++;
+                    }
+
+
+                    this.gvAllNotice.DataSource = ds1.Tables[1];
+                    this.gvAllNotice.DataBind();
+
+                    this.EventBirthday.InnerHtml = BirthdayHTML;
+                    this.EventCaro.InnerHtml = innHTMLTopnot;
+                    break;
+
+              
+            }
+
+
+        
+        }
+
+
+        private void MonthWiseBDate()
+        {
+            string comcod = this.GetCompCode();
+            string curr_year = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy");
+
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "UPCOMMINGBDATE", "", "", "", "", "", "", "");
+            if (ds == null)
+            {
                 return;
-            string innHTML = "";
-            string innHTMLTopnot = "";
-            string BirthdayHTML = "";
-            string status = "";
-            int i = 0;
-
-            foreach (DataRow dr in ds1.Tables[0].Rows)
-            {
-                string url = "";
-                if (dr["imgurl2"] != null && dr["imgurl2"].ToString() != "")
-                {
-                    url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
-                }
-                //else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
-                //{
-                //    string byturl = dr["imgurl"].ToString();
-                //    byte[] biempimg = (byte[])byturl;
-                //    //byte[] biempimg = (byte[])dr["imgurl"];
-                //    url = "data:image;base64," + Convert.ToBase64String(biempimg);
-                //}
-                else
-                {
-                    url = "Content/Theme/images/avatars/human_avatar.png";
-                }
-
-                string type = dr["evtype"].ToString();
-                if (type == "Birthday")
-                {
-                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
-                }
-                i++;
             }
+            DataTable dt = ds.Tables[0];
 
-            foreach (DataRow dr in ds1.Tables[1].Rows)
-            {
-                status = (i == 0) ? "active" : "";
-                innHTMLTopnot += @"<p>" + dr["eventitle"]  +" ( "+ (dr["ndetails"].ToString().Length>140? dr["ndetails"].ToString().Substring(0,139)+"....": dr["ndetails"].ToString()) +")"+ "</p>";
-                i++;
-            }
-
-
-            this.gvAllNotice.DataSource = ds1.Tables[1];
-            this.gvAllNotice.DataBind();
-
-            this.EventBirthday.InnerHtml = BirthdayHTML;
-            this.EventCaro.InnerHtml = innHTMLTopnot;
+            this.gvUpcmBDT.DataSource = dt;
+            this.gvUpcmBDT.DataBind();
         }
 
 
@@ -1165,14 +1213,25 @@ namespace RealERPWEB
 
         protected void gvAllNotice_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+
+      
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
                 DateTime startdate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "nstartdate"));
                 DateTime enddate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "nenddate"));
                 DateTime today = System.DateTime.Now;
+                if (e.Row.RowIndex > 1)
+                {
+                    Label txtHours = e.Row.FindControl("NoticeDet") as Label;
+                    txtHours.Text = "";
+       
+                }
 
-                if(today>=startdate && today <= enddate)
+   
+                if (today>=startdate && today <= enddate)
                 {
                
                         e.Row.FindControl("NoticeDet").Visible = true;
