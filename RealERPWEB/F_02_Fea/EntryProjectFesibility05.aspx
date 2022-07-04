@@ -28,16 +28,7 @@
 
             <div class="card card-fluid">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label class="control-label  lblmargin-top9px" for="lblfrmdate">From</label>
-                               <asp:CheckBox ID="chkAllRes" runat="server" CssClass="form-control"></asp:CheckBox>
-
-                            </div>
-                        </div>
-
-
+                    <div class="row">                       
                         <div class="col-md-3">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
@@ -49,9 +40,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2 pull-right pading5px">
-                                <asp:Label ID="lblMsg" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
-                            </div>
+                        
 
                     </div>
 

@@ -1159,7 +1159,7 @@ namespace RealERPWEB.F_02_Fea
         protected void lUpdatProInfo_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            DataTable dt = (DataTable)Session["tblprogeninfo"];
+            DataTable dt = (DataTable)Session["tblfeaprj"];
             string comcod = this.GetComCode();
             string prjcode = this.ddlProjectName.SelectedValue.ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -1356,7 +1356,11 @@ namespace RealERPWEB.F_02_Fea
         private void FooterCal()
         {
             Session["Report1"] = gvProjectInfo;
-            ((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            //((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                        ((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+
+
+
 
         }
 
@@ -1472,6 +1476,11 @@ namespace RealERPWEB.F_02_Fea
             }
 
 
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
         }
     }
 }
