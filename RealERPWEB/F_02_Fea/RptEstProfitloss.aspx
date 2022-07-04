@@ -60,7 +60,7 @@
                             <div class="col-md-3 pading5px ">
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="3">
                                 </asp:DropDownList>
-                              
+
 
                             </div>
 
@@ -68,9 +68,9 @@
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
                                 <asp:Label ID="lblCurDate" runat="server" CssClass="lblTxt lblDate " Text="Date"></asp:Label>
 
-                                                    <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox" TabIndex="5"></asp:TextBox>
-                                                    <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server"
-                                                       format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
+                                <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox" TabIndex="5"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
                             </div>
 
 
@@ -84,30 +84,30 @@
                         <div class="from-group">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <asp:Label ID="lblUnitNameid" runat="server" CssClass="lblTxt lblName" Text="Unit Name :"></asp:Label>                                   
+                                    <asp:Label ID="lblUnitNameid" runat="server" CssClass="lblTxt lblName" Text="Unit Name :"></asp:Label>
                                     <asp:Label ID="lblUnitName" runat="server" CssClass="smLbl"></asp:Label>
                                     <asp:Label ID="lblunitsize" runat="server" CssClass="lblTxt lblName" Text="Size :"></asp:Label>
-                                    <asp:Label ID="lblunitsizeval" runat="server" CssClass="smLbl"  Font-Size="13px"></asp:Label>
-                                    
+                                    <asp:Label ID="lblunitsizeval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+
                                     <asp:Label ID="lblrate1" runat="server" CssClass="lblTxt lblName" Text="Rate :"></asp:Label>
-                                    <asp:Label ID="lblrate" runat="server" CssClass="smLbl"  Font-Size="13px" ></asp:Label>
-                                    
-                           
+                                    <asp:Label ID="lblrate" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+
+
                                     <asp:Label ID="lblpurdate" runat="server" Text="Purchase Date :" CssClass="lblTxt lblName"></asp:Label>
-                                     <asp:Label ID="lblpurdate1" runat="server" CssClass="smLbl"  Width="100px" ></asp:Label>
+                                    <asp:Label ID="lblpurdate1" runat="server" CssClass="smLbl" Width="100px"></asp:Label>
 
 
-                                    
-                                    <asp:Label ID="lblPurValuse" runat="server" Text="Purchase Value :" CssClass="lblTxt lblName" ></asp:Label>
-                                    <asp:Label ID="lblPurValuse1" runat="server" CssClass="smLbl" Font-Size="13px" ></asp:Label>
+
+                                    <asp:Label ID="lblPurValuse" runat="server" Text="Purchase Value :" CssClass="lblTxt lblName"></asp:Label>
+                                    <asp:Label ID="lblPurValuse1" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
 
 
                                     <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Committed Sale Value:" Width="250px"></asp:Label>
 
-                                    <asp:Label ID="lblcommitedval" runat="server"  CssClass="smLbl"  Font-Size="13px"></asp:Label>
+                                    <asp:Label ID="lblcommitedval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
-                                    
+
 
 
                                 </div>
@@ -123,9 +123,6 @@
 
                                 <%--<div class="col-md-2 pading5px">
                                 </div>--%>
-
-
-
                             </div>
 
                         </div>
@@ -136,62 +133,62 @@
             </div>
             <div class="row">
 
-                 <div class="col-md-8">
-                     <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False"
-                    ShowFooter="True"  CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvProjectInfo_RowDataBound">
-                    <RowStyle Font-Size="11px" />
-                    <Columns>
-                        <asp:TemplateField HeaderText="Sl.No.">
-                            <ItemTemplate>
-                                <asp:Label ID="lblgvSlNo0"
-                                    runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
-                            </ItemTemplate>
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Code">
-                            <ItemTemplate>
-                                <asp:Label
-                                    ID="lblgvItmCode" runat="server" Height="16px"
-                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "estgcod")) %>'
-                                    Width="49px"></asp:Label>
-                            </ItemTemplate>
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="">
+                <div class="col-md-8">
+                    <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False"
+                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvProjectInfo_RowDataBound">
+                        <RowStyle Font-Size="11px" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="Sl.No.">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvSlNo0"
+                                        runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Code">
+                                <ItemTemplate>
+                                    <asp:Label
+                                        ID="lblgvItmCode" runat="server" Height="16px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "estgcod")) %>'
+                                        Width="49px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="">
 
-                             <HeaderTemplate>
-                                  <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Description" Width="120px"></asp:Label>
-                                  <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i>
-                                  </asp:HyperLink>
-                              </HeaderTemplate>
+                                <HeaderTemplate>
+                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Description" Width="120px"></asp:Label>
+                                    <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i>
+                                    </asp:HyperLink>
+                                </HeaderTemplate>
 
 
-                            <FooterTemplate>
-                                <%--<asp:LinkButton ID="lbtnTotalproinfo"
+                                <FooterTemplate>
+                                    <%--<asp:LinkButton ID="lbtnTotalproinfo"
                                     runat="server"
                                     OnClick="llbtnTotalproinfo_Click" CssClass="btn  btn-primary  primarygrdBtn">Total</asp:LinkButton>--%>
 
-                                <asp:LinkButton ID="Calculation"
-                                    runat="server"
-                                    OnClick="llbtnCalculation_Click" CssClass="btn  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
-                            </FooterTemplate>
+                                    <asp:LinkButton ID="Calculation"
+                                        runat="server"
+                                        OnClick="llbtnCalculation_Click" CssClass="btn  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
+                                </FooterTemplate>
 
-                            <ItemTemplate>
-                                <asp:Label
-                                    ID="lgcResDesc1" runat="server"
-                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "estgdesc")) %>'
-                                    Width="200px"></asp:Label>
-                            </ItemTemplate>
-                            <FooterStyle Font-Bold="True"
-                                HorizontalAlign="Left" />
-                            <HeaderStyle HorizontalAlign="Center"
-                                VerticalAlign="Top" />
-                        </asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Label
+                                        ID="lgcResDesc1" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "estgdesc")) %>'
+                                        Width="200px"></asp:Label>
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True"
+                                    HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center"
+                                    VerticalAlign="Top" />
+                            </asp:TemplateField>
 
-         <%--               <asp:TemplateField HeaderText="Type" Visible="False">
+                            <%--               <asp:TemplateField HeaderText="Type" Visible="False">
                             <ItemTemplate>
                                 <asp:Label
                                     ID="lgvgval" runat="server"
@@ -205,187 +202,185 @@
                                 HorizontalAlign="Center" VerticalAlign="Top" />
                         </asp:TemplateField>--%>
 
-                        <asp:TemplateField HeaderText="">
-                            <ItemTemplate>
-                                <asp:TextBox
-                                    ID="txtcostoffund" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
-                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fundamt")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                    Width="80px"></asp:TextBox>
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:TextBox
+                                        ID="txtcostoffund" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fundamt")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                        Width="80px"></asp:TextBox>
 
 
-                            </ItemTemplate>
+                                </ItemTemplate>
 
-                            <FooterTemplate>
-                                <asp:LinkButton ID="lUpdatProInfo"
-                                    runat="server"
-                                    OnClick="lUpdatProInfo_Click" CssClass="btn btn-danger primarygrdBtn">Update</asp:LinkButton>
-                            </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:LinkButton ID="lUpdatProInfo"
+                                        runat="server"
+                                        OnClick="lUpdatProInfo_Click" CssClass="btn btn-danger primarygrdBtn">Update</asp:LinkButton>
+                                </FooterTemplate>
 
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
-
-
-                        <asp:TemplateField HeaderText="Percent (%)">
-
-                            <ItemTemplate>
-                                <asp:TextBox
-                                    ID="txtpercnt" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
-                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percnt")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                    Width="45px"></asp:TextBox>
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
 
 
-                            </ItemTemplate>
+                            <asp:TemplateField HeaderText="Percent (%)">
 
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
-
-
-                        <asp:TemplateField HeaderText="Estimated Cost">
-
-                            <ItemTemplate>
-                                <asp:TextBox
-                                    ID="txtestcost" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
-                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "estcost")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                    Width="80px"></asp:TextBox>
+                                <ItemTemplate>
+                                    <asp:TextBox
+                                        ID="txtpercnt" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percnt")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                        Width="45px"></asp:TextBox>
 
 
-                            </ItemTemplate>
+                                </ItemTemplate>
 
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="Actual Cost">
-
-                            <ItemTemplate>
-                                <asp:TextBox
-                                    ID="txtbuiactual" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
-                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actual")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                    Width="80px"></asp:TextBox>
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
 
 
-                            </ItemTemplate>
+                            <asp:TemplateField HeaderText="Estimated Cost">
 
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="Saving/Excess">
-
-                            <ItemTemplate>
-                                <asp:Label
-                                    ID="lblsaving" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
-                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balamt")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                    Width="80px"></asp:Label>
+                                <ItemTemplate>
+                                    <asp:TextBox
+                                        ID="txtestcost" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "estcost")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                        Width="80px"></asp:TextBox>
 
 
-                            </ItemTemplate>
+                                </ItemTemplate>
 
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
 
-                          <asp:TemplateField HeaderText="Payment Date">
+                            <asp:TemplateField HeaderText="Actual Cost">
 
-                            <ItemTemplate>
-                           <asp:TextBox ID="txtgvDate" runat="server" Font-Size="11px" 
-                                            Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paymentdate")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paymentdate")).ToString("dd-MMM-yyyy")) %>'
-                                            Width="80px" BackColor="Transparent" BorderStyle="None"></asp:TextBox>                   
-                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                Format="dd-MMM-yyyy" TargetControlID="txtgvDate"></cc1:CalendarExtender>
-                        </ItemTemplate>
+                                <ItemTemplate>
+                                    <asp:TextBox
+                                        ID="txtbuiactual" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actual")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                        Width="80px"></asp:TextBox>
 
-                            <HeaderStyle
-                                HorizontalAlign="Center" VerticalAlign="Top" />
-                            <ItemStyle HorizontalAlign="Right" />
-                        </asp:TemplateField>
 
-                    </Columns>
-                    <FooterStyle CssClass="grvFooter" />
-                    <EditRowStyle />
-                    <AlternatingRowStyle />
-                    <PagerStyle CssClass="gvPagination" />
-                    <HeaderStyle CssClass="grvHeader" />
-                </asp:GridView>
-                 </div>
+                                </ItemTemplate>
+
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Saving/Excess">
+
+                                <ItemTemplate>
+                                    <asp:Label
+                                        ID="lblsaving" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balamt")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                        Width="80px"></asp:Label>
+
+
+                                </ItemTemplate>
+
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Payment Date">
+
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtgvDate" runat="server" Font-Size="11px"
+                                        Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paymentdate")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paymentdate")).ToString("dd-MMM-yyyy")) %>'
+                                        Width="80px" BackColor="Transparent" BorderStyle="None"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtgvDate"></cc1:CalendarExtender>
+                                </ItemTemplate>
+
+                                <HeaderStyle
+                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
+                        </Columns>
+                        <FooterStyle CssClass="grvFooter" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle CssClass="grvHeader" />
+                    </asp:GridView>
+                </div>
 
                 <div class="col-md-4">
 
                     <asp:GridView ID="gvAgeing" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False">
+                        AutoGenerateColumns="False">
 
-                                        <RowStyle />
-                                        <Columns>
+                        <RowStyle />
+                        <Columns>
 
-                                            <asp:TemplateField HeaderText="Ageing">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgvdesc" runat="server" Style="text-align: left" Font-Bold="true" Font-Size="14px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
-                                                        Width="80px"></asp:Label>
-                                                </ItemTemplate>
+                            <asp:TemplateField HeaderText="Ageing">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgvdesc" runat="server" Style="text-align: left" Font-Bold="true" Font-Size="14px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
+                                        Width="80px"></asp:Label>
+                                </ItemTemplate>
 
-                                                <FooterStyle HorizontalAlign="Right" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="14px" />
-                                                <ItemStyle HorizontalAlign="left" />
-                                            </asp:TemplateField>
+                                <FooterStyle HorizontalAlign="Right" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="14px" />
+                                <ItemStyle HorizontalAlign="left" />
+                            </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Days">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgnaginday" runat="server" Style="text-align: right" Font-Size="14px" Font-Bold="true"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "aginday")) %>'
-                                                        Width="75px"></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lgvFaginday" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
-                                                </FooterTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <HeaderStyle Font-Bold="true" Font-Size="14px" />
+                            <asp:TemplateField HeaderText="Days">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgnaginday" runat="server" Style="text-align: right" Font-Size="14px" Font-Bold="true"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "aginday")) %>'
+                                        Width="75px"></asp:Label>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvFaginday" runat="server" Font-Bold="True" Font-Size="12px"
+                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                </FooterTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <HeaderStyle Font-Bold="true" Font-Size="14px" />
 
-                                            </asp:TemplateField>
+                            </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Date">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgvdate" runat="server" Style="text-align: right" Font-Size="12px" Font-Bold="true"
-                                                       Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "efectivedate")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "efectivedate")).ToString("dd-MMM-yyyy")) %>'  
-                                                        
-                                                       
-                                                        Width="70px"></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lgvFgvdate" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
-                                                </FooterTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <HeaderStyle Font-Bold="true" Font-Size="14px" />
+                            <asp:TemplateField HeaderText="Date">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgvdate" runat="server" Style="text-align: right" Font-Size="12px" Font-Bold="true"
+                                        Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "efectivedate")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "efectivedate")).ToString("dd-MMM-yyyy")) %>'
+                                        Width="70px"></asp:Label>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvFgvdate" runat="server" Font-Bold="True" Font-Size="12px"
+                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                </FooterTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <HeaderStyle Font-Bold="true" Font-Size="14px" />
 
-                                            </asp:TemplateField>
+                            </asp:TemplateField>
 
-                                        </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                        <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                    </asp:GridView>
+                        </Columns>
+                        <FooterStyle CssClass="grvFooter" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle CssClass="grvHeader" />
+                    </asp:GridView>
                 </div>
 
-                  <div class="col-md-3">
-                     <asp:Label ID="lblsaleprice" runat="server" Text="Break-even Sale Price :" Width="150px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false" ></asp:Label>
-                                    <asp:Label ID="lblsalecore" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px"  Font-Underline="true" ForeColor="#cc3399" Visible="false"></asp:Label>
+                <div class="col-md-3">
+                    <asp:Label ID="lblsaleprice" runat="server" Text="Break-even Sale Price :" Width="150px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false"></asp:Label>
+                    <asp:Label ID="lblsalecore" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399" Visible="false"></asp:Label>
 
 
-                    </div>
+                </div>
 
-              
-           
+
+
             </div>
 
 
@@ -411,20 +406,6 @@
 
 
     </div>
-    </div>
- <%--   <script type="text/javascript">
-        function uploadComplete(sender) {
-            $get("<%=lblMesg.ClientID%>").style.color = "green";
-            $get("<%=lblMesg.ClientID%>").innerHTML = "File Uploaded Successfully";
-        }
+  
 
-        function uploadError(sender) {
-            $get("<%=lblMesg.ClientID%>").style.color = "red";
-            $get("<%=lblMesg.ClientID%>").innerHTML = "File upload failed.";
-        }
-
-
-    </script>--%>
-    <%--  </ContentTemplate>
-    </asp:UpdatePanel>--%>
 </asp:Content>
