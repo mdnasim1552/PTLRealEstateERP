@@ -1898,7 +1898,7 @@ namespace RealERPRDLC
         private static LocalReport SetrptEstmtProfitLoss(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>)RptDataSet2));
             return Rpt1a;
         }
 

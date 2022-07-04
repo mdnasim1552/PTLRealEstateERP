@@ -198,13 +198,8 @@ namespace RealERPWEB.F_02_Fea
             this.lblrate.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["rate"]).ToString("#,##0;(#,##0); ");
             this.lblpurdate1.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["purdate"]).ToString("dd-MMM-yyyy");
             this.lblPurValuse1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["purvalue"]).ToString("#,##0;(#,##0); ");
-<<<<<<< HEAD
-            this.lblcommitedval.Text =Convert.ToDouble( ds1.Tables[0].Rows[0]["commitedval"]).ToString("#,##0;(#,##0); ");
-            this.lblactualsal1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["acsalvalue"]).ToString("#,##0;(#,##0); ");
-
-=======
             this.lblcommitedval.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["commitedval"]).ToString("#,##0;(#,##0); ");
->>>>>>> 6372516b60e8599292ac792ee51568d052135ed5
+            this.lblactualsal1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["acsalvalue"]).ToString("#,##0;(#,##0); ");
 
 
 
@@ -258,31 +253,7 @@ namespace RealERPWEB.F_02_Fea
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetComCode();
-            switch (comcod)
-            {
 
-                case "3336":
-                case "3337":
-                    //  this.PrintFeasibilitySuvastu();
-                    break;
-
-                default:
-                    //this.PrintFeasibilitygen();
-                    //this.PrintFeasibilitySuvastu();
-                    this.printEstmtProfitLoss();
-                    break;
-
-            }
-
-
-
-        }
-
-
-
-        private void printEstmtProfitLoss()
-        {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -295,37 +266,30 @@ namespace RealERPWEB.F_02_Fea
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-            DataTable dt = (DataTable)ViewState["tblfeaprj"];
-            DataTable dt2 = (DataTable)ViewState["tblagin"];
-            DataTable dt3 = (DataTable)ViewState["tblintail"];
+            DataTable dt = (DataTable)Session["tblfeaprj"];
+            DataTable dt2 = (DataTable)Session["tblagin"];
 
             var list = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
             var list2 = dt2.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>();
-            string unit =dt.Rows[0]["munit"].ToString()??"";
-            string udesc = dt.Rows[0]["udesc"].ToString()??"";
 
-            string rate = dt.Rows[0]["rate"].ToString()??"";
-            string size = dt.Rows[0]["usize"].ToString()??"";
+            string unit = lblUnitName.Text.ToString();
+            string udesc = lblunitsizeval.Text.ToString();
+            string rate = lblrate.Text.ToString();
+            string size = lblunitsizeval.Text.ToString();
 
-            string purdate =Convert.ToDateTime( dt.Rows[0]["purdate"]).ToString("dd-MMM-yyyy")??"";
-            string purvalue = dt.Rows[0]["purvalue"].ToString()??"";
+            string purdate = lblpurdate1.Text.ToString();
+            string purvalue = lblPurValuse1.Text.ToString();
+            string commitedval = lblcommitedval.Text.ToString();
 
-            string commitedval = dt.Rows[0]["commitedval"].ToString()??"";
-            string ageingDay = dt.Rows[0]["ageingDay"].ToString()??"";
-            string projectName=this.ddlProjectName.SelectedItem.Text.ToString()??"";
-
-
-
-
-
-            double salprice = dt.Select("estgcod='05008'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='05008'")[0]["estcost"]) : 0.00;
-       
+            string projectName = this.ddlProjectName.SelectedItem.Text.ToString() ?? "";
+            string actualsal = this.lblactualsal1.Text.ToString();
+            string salprice =this.lblsalecore.Text.ToString();
 
 
             LocalReport Rpt1 = new LocalReport();
 
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, list2, null);
-                Rpt1.EnableExternalImages = true;
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, list2, null);
+            Rpt1.EnableExternalImages = true;
 
             Rpt1.SetParameters(new ReportParameter("unit", unit));
             Rpt1.SetParameters(new ReportParameter("udesc", udesc));
@@ -334,14 +298,16 @@ namespace RealERPWEB.F_02_Fea
             Rpt1.SetParameters(new ReportParameter("purdate", purdate));
             Rpt1.SetParameters(new ReportParameter("purvalue", purvalue));
             Rpt1.SetParameters(new ReportParameter("commitedval", commitedval));
-            Rpt1.SetParameters(new ReportParameter("ageingDay", ageingDay));
+            Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+            Rpt1.SetParameters(new ReportParameter("actualsal", actualsal));
+
 
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Estimated Profit & Loss A/c"));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("salprice", salprice.ToString()));
+            Rpt1.SetParameters(new ReportParameter("salprice", salprice));
 
 
 
@@ -351,319 +317,6 @@ namespace RealERPWEB.F_02_Fea
 
 
         }
-
-        private void PrintFeasibilitygen()
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comname = hst["comnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string prjname = this.ddlProjectName.SelectedItem.Text.Trim().Substring(13);
-            ReportDocument rpcp = new RealERPRPT.R_02_Fea.RptFeaProject();
-            TextObject CompName = rpcp.ReportDefinition.ReportObjects["CompName"] as TextObject;
-            CompName.Text = comname;
-            TextObject txtPrjName = rpcp.ReportDefinition.ReportObjects["txtPrjName"] as TextObject;
-            txtPrjName.Text = prjname;
-
-            TextObject txtuserinfo = rpcp.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-
-            rpcp.SetDataSource((DataTable)Session["tblfeaprj"]);
-            Session["Report1"] = rpcp;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        }
-
-
-        private string GetCompanyCallType()
-        {
-
-            string comcod = this.GetComCode();
-            string Calltype = "";
-            switch (comcod)
-            {
-                case "3336"://P2P Construction
-                case "3337"://Wecon Properties
-
-                    Calltype = "RPTPROJECTFEASIBILITYSUVASTU";
-                    break;
-
-
-                default:
-                    Calltype = "RPTPROJECTFEASIBILITY";
-                    break;
-
-
-
-            }
-
-            return Calltype;
-
-
-
-        }
-        //private void PrintFeasibilitySuvastu()
-        //{
-        //    string comcod = this.GetComCode();
-        //    Hashtable hst = (Hashtable)Session["tblLogin"];
-        //    string comnam = hst["comnam"].ToString();
-        //    string compname = hst["compname"].ToString();
-        //    string comsnam = hst["comsnam"].ToString();
-        //    string comadd = hst["comadd1"].ToString();
-        //    string session = hst["session"].ToString();
-        //    string username = hst["username"].ToString();
-        //    string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-        //    string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-        //    string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
-        //    string pactcode = this.ddlProjectName.SelectedValue.ToString();
-        //    //string CallType = this.GetCompanyCallType();
-        //    DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY", "RPTPROJECTFEASIBILITYSUVASTU", pactcode, "", "", "", "", "", "", "", "");
-
-        //    DataTable dtr = ds2.Tables[0].Copy();
-        //    DataTable dt = ds2.Tables[1];
-        //    DataTable dt1 = ds2.Tables[0];
-
-        //    LocalReport Rpt1 = new LocalReport();
-        //    DataView dv1 = new DataView();
-        //    //Sale Rate, Parking        
-        //    //  dv1.RowFilter = ("grp='B'  and  infcod like '510100101%' and infcod not like '%000'");
-
-        //    string salrate = (dtr.Select("grp='B'  and  infcod like '510100101%' and infcod not like '%000'")).Length == 0 ? ""
-        //        : Convert.ToDouble(dtr.Select("grp='B'  and  infcod like '510100101%' and infcod not like '%000'")[0]["salrate"]).ToString("#,##0;(#,##0);") + "/Sft";
-
-        //    string parking = (dtr.Select("grp='B'  and  infcod like '510100102001%' ")).Length == 0 ? ""
-        //        : Convert.ToDouble(dtr.Select("grp='B'  and  infcod like '510100102001%' ")[0]["salrate"]).ToString("#,##0;(#,##0);");
-        //    //Far
-        //    dv1 = dt.Copy().DefaultView;
-        //    double tuasarea = 0.00;
-        //    dv1.RowFilter = ("prgcod like '25%'  and prgdesc1<>''");
-        //    dt1 = dv1.ToTable();
-        //    foreach (DataRow drb in dt1.Rows)
-        //        tuasarea += Convert.ToDouble(drb["prgdesc1"]);
-        //    string basement = dt.Select("prgcod='11101'").Length == 0 ? "" : dt.Select("prgcod='11101'")[0]["prgdesc1"].ToString();
-
-        //    //Land Cost, Building Cost, Design Cost, Operation/Management Cost, Return of Investment
-        //    double landaread = dt.Select("prgcod='02003'").Length == 0 ? 0.00 : Convert.ToDouble(dt.Select("prgcod='02003'")[0]["prgdesc1"].ToString());
-        //    dv1 = dtr.DefaultView;
-        //    dv1.RowFilter = ("infcod like '5201001%'");
-        //    double landcost = Convert.ToDouble((Convert.IsDBNull(dv1.ToTable().Compute("Sum(amt)", "")) ? 0.00 : dv1.ToTable().Compute("Sum(amt)", "")));
-        //    string landcostpk = landaread == 0.00 ? "" : Convert.ToDouble((landcost * 0.0000001) / landaread).ToString("#,##0.00;(#,##0.00); ") + "Cr." + " /Katha";
-
-        //    dv1 = dtr.DefaultView;
-        //    dv1.RowFilter = ("infcod like '5201004%'");
-        //    double conscost = Convert.ToDouble((Convert.IsDBNull(dv1.ToTable().Compute("Sum(amt)", "")) ? 0.00 : dv1.ToTable().Compute("Sum(amt)", "")));
-        //    string conscostpk = landaread == 0.00 ? "" : Convert.ToDouble((conscost * 0.0000001) / landaread).ToString("#,##0.00;(#,##0.00); ") + "Cr." + " /Katha";
-
-        //    dv1 = dtr.DefaultView;
-        //    dv1.RowFilter = ("infcod like '5201002%'");
-        //    double designcost = Convert.ToDouble((Convert.IsDBNull(dv1.ToTable().Compute("Sum(amt)", "")) ? 0.00 : dv1.ToTable().Compute("Sum(amt)", "")));
-        //    string designcostpk = landaread == 0.00 ? "" : Convert.ToDouble((designcost * 0.0000001) / landaread).ToString("#,##0.00;(#,##0.00); ") + "Cr." + " /Katha";
-
-        //    dv1 = dtr.DefaultView;
-        //    dv1.RowFilter = ("infcod like '5201005%'");
-        //    double operecost = Convert.ToDouble((Convert.IsDBNull(dv1.ToTable().Compute("Sum(amt)", "")) ? 0.00 : dv1.ToTable().Compute("Sum(amt)", "")));
-        //    string operecostpk = landaread == 0.00 ? "" : Convert.ToDouble((operecost * 0.0000001) / landaread).ToString("#,##0.00;(#,##0.00); ") + "Cr." + " /Katha";
-
-        //    double signmoney = dtr.Select("infcod='520100101001'").Length == 0 ? 0.00 : Convert.ToDouble(dtr.Select("infcod='520100101001'")[0]["amt"].ToString());
-        //    double toprocost = dtr.Select("infcod='5201005BAAA'").Length == 0 ? 0.00 : Convert.ToDouble(dtr.Select("infcod='5201005BAAA'")[0]["amt"].ToString());
-        //    double profit = dtr.Select("infcod='5201006AAAAA'").Length == 0 ? 0.00 : Convert.ToDouble(dtr.Select("infcod='5201006AAAAA'")[0]["amt"].ToString());
-        //    string reinvest = signmoney == 0.00 ? "" : Convert.ToDouble((profit * 100) / signmoney).ToString("#,##0.00;(#,##0.00); ") + " %";
-        //    string proaprocost = toprocost == 0.00 ? "" : Convert.ToDouble((profit * 100) / toprocost).ToString("#,##0.00;(#,##0.00); ") + " %";
-
-        //    string proname = dt.Select("prgcod='02002'").Length == 0 ? "" : dt.Select("prgcod='02002'")[0]["prgdesc1"].ToString();
-        //    string landarea = dt.Select("prgcod='02003'").Length == 0 ? "" : dt.Select("prgcod='02003'")[0]["prgdesc1"].ToString() + " Katha";
-        //    string buildarea = dt.Select("prgcod='01001'").Length == 0 ? "" : dt.Select("prgcod='01001'")[0]["prgdesc1"].ToString() + " Sft";
-        //    string usablarea = dt.Select("prgcod='13002'").Length == 0 ? (tuasarea.ToString("#,##0.00;(#,##0.00); ") + " Sft")
-        //        : dt.Select("prgcod='13002'")[0]["prgdesc1"].ToString() + " Sft";
-        //    string selabelarea = dt.Select("prgcod='01002'").Length == 0 ? "" : dt.Select("prgcod='01002'")[0]["prgdesc1"].ToString() + " Sft";
-        //    string buildheight = dt.Select("prgcod='11001'").Length == 0 ? "" : dt.Select("prgcod='11001'")[0]["prgdesc1"].ToString();
-        //    basement = (dt.Select("prgcod='11002'").Length == 0 ? basement : dt.Select("prgcod='11002'")[0]["prgdesc1"].ToString()) + " Nos";
-        //    string tcomfloor = dt.Select("prgcod='12003'").Length == 0 ? "" : dt.Select("prgcod='12003'")[0]["prgdesc1"].ToString();
-        //    string tparking = dt.Select("prgcod='12005'").Length == 0 ? "" : dt.Select("prgcod='12005'")[0]["prgdesc1"].ToString();
-        //    string comshare = dt.Select("prgcod='14001'").Length == 0 ? "" : dt.Select("prgcod='14001'")[0]["prgdesc1"].ToString() + " %";
-
-        //    string groundfloor = dt.Select("prgcod='13105'").Length == 0 ? "" : dt.Select("prgcod='13105'")[0]["prgdesc1"].ToString() + " Sft";
-        //    string firstfloor = dt.Select("prgcod='13106'").Length == 0 ? "" : dt.Select("prgcod='13106'")[0]["prgdesc1"].ToString() + " Sft";
-        //    string Secondfloor = dt.Select("prgcod='13107'").Length == 0 ? "" : dt.Select("prgcod='13107'")[0]["prgdesc1"].ToString() + " Sft";
-        //    string thirdfloor = dt.Select("prgcod='13108'").Length == 0 ? "" : dt.Select("prgcod='13108'")[0]["prgdesc1"].ToString() + " Sft";
-        //    string tyfloor = dt.Select("prgcod='13109'").Length == 0 ? "" : dt.Select("prgcod='13109'")[0]["prgdesc1"].ToString() + " Sft";
-
-
-
-
-        //    //string prol = dt.Select("prgcod='02003'").Length == 0 ? "" : dt.Select("prgcod='02003'")[0]["prgdesc1"].ToString();
-        //    //string prol = dt.Select("prgcod='02002'").Length == 0 ? "" : dt.Select("prgcod='02002'")[0]["prgdesc1"].ToString();
-        //    //string prol = dt.Select("prgcod='02002'").Length == 0 ? "" : dt.Select("prgcod='02002'")[0]["prgdesc1"].ToString();
-        //    //string prol = dt.Select("prgcod='02002'").Length == 0 ? "" : dt.Select("prgcod='02002'")[0]["prgdesc1"].ToString();
-        //    //string prol = dt.Select("prgcod='02002'").Length == 0 ? "" : dt.Select("prgcod='02002'")[0]["prgdesc1"].ToString();
-        //    //string prol = dt.Select("prgcod='02002'").Length == 0 ? "" : dt.Select("prgcod='02002'")[0]["prgdesc1"].ToString();
-        //    //string prol = dt.Select("prgcod='02002'").Length == 0 ? "" : dt.Select("prgcod='02002'")[0]["prgdesc1"].ToString();
-        //    //string mAdNo = this.ddlPrevADNumber.SelectedValue.ToString();
-        //    //DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETADINFO", mAdNo, "",
-        //    //              "", "", "", "", "", "", "");
-
-
-        //    //Session["tbladwork"] = ds1.Tables[0];
-
-        //    //DataTable dt = (DataTable)Session["tbladwork"];
-        //    var lst = ds2.Tables[0].DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.EClassProFeasibility>();
-        //    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptProjectFeasibility", lst, null, null);
-        //    //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-        //    Rpt1.SetParameters(new ReportParameter("proname", proname));
-        //    Rpt1.SetParameters(new ReportParameter("landarea", landarea));
-        //    Rpt1.SetParameters(new ReportParameter("buildarea", buildarea));
-        //    Rpt1.SetParameters(new ReportParameter("usablarea", usablarea));
-        //    Rpt1.SetParameters(new ReportParameter("selabelarea", selabelarea));
-        //    Rpt1.SetParameters(new ReportParameter("buildheight", buildheight));
-        //    Rpt1.SetParameters(new ReportParameter("basement", basement));
-        //    Rpt1.SetParameters(new ReportParameter("tcomfloor", tcomfloor));
-        //    Rpt1.SetParameters(new ReportParameter("tparking", tparking));
-        //    Rpt1.SetParameters(new ReportParameter("comshare", comshare));
-        //    Rpt1.SetParameters(new ReportParameter("grfloor", groundfloor));
-        //    Rpt1.SetParameters(new ReportParameter("firstfloor", firstfloor));
-        //    Rpt1.SetParameters(new ReportParameter("sndfloor", Secondfloor));
-        //    Rpt1.SetParameters(new ReportParameter("thirdfloor", thirdfloor));
-        //    Rpt1.SetParameters(new ReportParameter("typicalfloor", tyfloor));
-        //    Rpt1.SetParameters(new ReportParameter("Averagefloor", salrate));
-        //    Rpt1.SetParameters(new ReportParameter("parking", parking));
-        //    Rpt1.SetParameters(new ReportParameter("landcpkhata", landcostpk));
-        //    Rpt1.SetParameters(new ReportParameter("bcostpkhata", conscostpk));
-        //    Rpt1.SetParameters(new ReportParameter("designcpkhata", designcostpk));
-        //    Rpt1.SetParameters(new ReportParameter("mancpkhata", operecostpk));
-        //    //Rpt1.SetParameters(new ReportParameter("pevenpoinwithp", parking));
-        //    //Rpt1.SetParameters(new ReportParameter("evenpoinwithoutp", parking));
-
-        //    Rpt1.SetParameters(new ReportParameter("retofinvestment", reinvest));
-        //    Rpt1.SetParameters(new ReportParameter("perofproapcost", proaprocost));
-
-        //    Session["Report1"] = Rpt1;
-        //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-        //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        //}
-
-
-
-
-        //private void GetProjectInfo()
-        //{
-
-        //    Hashtable hst = (Hashtable)Session["tblLogin"];
-        //    string comcod = hst["comcod"].ToString();
-        //    Session.Remove("tblprogeninfo");
-        //    //  string ProjectCode = this.ddlProjectName.SelectedValue.ToString();
-
-
-        //    string fpactcode = this.ddlProjectName.SelectedValue.ToString();
-
-        //    // (((DataTable)Session["tblpro"]).Select("infcod='"+fpactcode+"'"))[0]["pactcode"];
-
-        //    string pactcode = (((DataTable)Session["tblpro"]).Select("infcod='" + fpactcode + "'"))[0]["actcode"].ToString();
-        //    string prjtype = "Commercial";
-        //    DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY", "PROJECTINFO", pactcode, fpactcode, prjtype, "", "", "", "", "", "");
-        //    if (ds1 == null)
-        //    {
-        //        this.gvProjectInfo.DataSource = null;
-        //        this.gvProjectInfo.DataBind();
-        //        return;
-
-        //    }
-        //    DataTable dt = ds1.Tables[0];
-        //    // DataView dv1;
-        //    Session["tblprogeninfo"] = dt;
-        //    this.gvProjectInfo.DataSource = ds1.Tables[0];
-        //    this.gvProjectInfo.DataBind();
-        //    this.llbtnCalculation_Click(null, null);
-        //    this.GridTextDDLVisible();
-
-
-
-
-
-        //}
-
-        //private void GridTextDDLVisible()
-        //{
-        //    string comcod = this.GetComCode();
-        //    DataTable dt = ((DataTable)Session["tblprogeninfo"]).Copy();
-
-        //    int count = gvProjectInfo.Rows.Count;
-        //    for (int i = 0; i < dt.Rows.Count; i++)
-        //    {
-
-        //        string Gcode = dt.Rows[i]["prgcod"].ToString();
-        //        string val = dt.Rows[i]["prgdesc1"].ToString();
-        //        switch (Gcode)
-        //        {
-        //            case "01003": //Start Date                
-
-        //                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-        //                // ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-        //                ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc")).Visible = false;
-        //                break;
-
-
-
-        //            case "01004": //Start Date                   
-        //                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-        //                ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc")).Visible = false;
-
-        //                //ddlcataloc.SelectedValue = val;
-        //                break;
-
-
-
-        //            case "02041": //Location                
-        //                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-        //                ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc")).Visible = true;
-        //                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-        //                DropDownList ddlcataloc = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-        //                DataSet dsloc = feaData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETLOCATION", "", "", "", "", "", "", "", "", "");
-        //                ddlcataloc.DataTextField = "prgdesc";
-        //                ddlcataloc.DataValueField = "prgcod";
-        //                ddlcataloc.DataSource = dsloc.Tables[0];
-        //                ddlcataloc.DataBind();
-        //                if (val.Length > 0)
-        //                    ddlcataloc.SelectedValue = val;
-
-        //                break;
-
-
-        //            case "02045": //Category                  
-        //                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-        //                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-
-        //                ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc")).Visible = true;
-        //                DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-        //                DataSet dscatg = feaData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-        //                ddlcatag.DataTextField = "prgdesc";
-        //                ddlcatag.DataValueField = "prgcod";
-        //                ddlcatag.DataSource = dscatg.Tables[0];
-        //                ddlcatag.DataBind();
-        //                if (val.Length > 0)
-        //                    ddlcatag.SelectedValue = val;
-
-        //                break;
-
-
-
-
-        //            default:
-        //                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-        //                ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc")).Visible = false;
-        //                break;
-
-        //        }
-        //    }
-
-        //}
 
         private void SaveValue()
         {
@@ -744,99 +397,7 @@ namespace RealERPWEB.F_02_Fea
                 dt.Rows[i]["paymentdate"] = paymentdate;
                 Session["tblfeaprj"] = dt;
 
-            }
-
-            //for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
-            //{
-            //    string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
-            //    string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
-            //    string Gvalue = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-            //    string buildarea = Convert.ToDouble("0" + ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtbuildarea")).Text.Trim()).ToString("#,##0.0000;(#,##0.0000);");
-
-
-            //    if (Gcode == "01003" || Gcode == "01004")
-            //    {
-
-            //        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
-            //    }
-
-
-
-            //    Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
-            //    dt.Rows[i]["prgdesc1"] = Gvalue;
-            //    dt.Rows[i]["buildarea"] = buildarea;
-
-            //}
-
-
-
-
-
-            //string comcod = this.GetComCode();
-
-            //switch (comcod)
-            //{
-
-            //    case "3335":
-            //        double lsize = dt.Select("prgcod='02005'").Length > 0 ? Convert.ToDouble(dt.Select("prgcod='02005'")[0]["prgdesc1"]) : 0.00;
-            //        double mgc = dt.Select("prgcod='02004'").Length > 0 ? Convert.ToDouble(dt.Select("prgcod='02004'")[0]["prgdesc1"]) * .01 : 0.00;
-            //        double storeid = dt.Select("prgcod='02008'").Length > 0 ? Convert.ToDouble(dt.Select("prgcod='02008'")[0]["prgdesc1"]) : 0.00;
-
-            //        storeid = storeid > 1 ? storeid - 1 : storeid;
-            //        double flrconarea = lsize * 720 * mgc * storeid;
-            //        double cbarconarea = lsize * 720 * mgc * .05 * storeid;
-            //        double tconarea = ((flrconarea + cbarconarea) * .15) + (flrconarea + cbarconarea);
-
-            //        DataRow[] dr = dt.Select("prgcod='01001'");
-            //        dr[0]["prgdesc1"] = tconarea.ToString("#,##0;(#,##0);");
-            //        break;
-
-            //    default:
-
-            //        break;
-            //}
-
-
-
-
-
-
-
-            //this.gvProjectInfo.DataSource = dt;
-            //this.gvProjectInfo.DataBind();
-            //this.GridTextDDLVisible();
-
-
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-
-            //    string Gcode = dt.Rows[i]["prgcod"].ToString();
-
-            //    switch (Gcode)
-            //    {
-            //        case "01003": //Start Date                
-
-            //            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-            //            // ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-            //            break;
-
-
-
-            //        case "01004": //Start Date                   
-            //            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-            //            break;
-
-
-
-
-            //        default:
-            //            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-            //            break;
-
-            //    }
-            //}
-
-
+            }          
 
 
         }
@@ -1177,7 +738,7 @@ namespace RealERPWEB.F_02_Fea
                     case "08000":
 
                         comitedval2 = Convert.ToDouble("0" + (lblcommitedval.Text));
-                      double  comitedvalactual = Convert.ToDouble("0" + (lblactualsal1.Text));
+                        double comitedvalactual = Convert.ToDouble("0" + (lblactualsal1.Text));
 
 
 
@@ -1202,12 +763,13 @@ namespace RealERPWEB.F_02_Fea
 
                     case "09000":
                         lossest2 = Convert.ToDouble("0" + (lblcommitedval.Text));
+                        double lossest6 = Convert.ToDouble("0" + (lblactualsal1.Text));
                         // lossactual = Convert.ToDouble("0" + (lblcommitedval.Text));
                         lossest = lossest2 - totalcostest;
-                        lossactual = lossest2 - totalcostactual;
+                        lossactual = lossest6 - totalcostactual;
                         dt.Select("estgcod='09000'")[0]["estcost"] = lossest;
                         dt.Select("estgcod='09000'")[0]["actual"] = lossactual;
-                        dt.Select("estgcod='09000'")[0]["balamt"] = lossactual == 0 ? 0 : lossactual * 100 / lossest2;
+                        dt.Select("estgcod='09000'")[0]["balamt"] = lossactual == 0 ? 0 : lossactual * 100 / lossest6;
 
                         dt.Select("estgcod='09000'")[0]["percnt"] = lossest == 0 ? 0 : lossest * 100 / lossest2;
 
@@ -1314,93 +876,6 @@ namespace RealERPWEB.F_02_Fea
 
 
 
-        //private void Data_Bind()
-        //{
-        //    int rindex = this.rbtnList1.SelectedIndex;
-        //    DataTable dt = (DataTable)Session["tblfeaprj"];
-        //    switch (rindex)
-        //    {
-
-        //        case 1:
-
-        //            this.gvFeaPrj.DataSource = dt;
-        //            this.gvFeaPrj.DataBind();
-        //            this.FooterCal();
-        //            break;
-
-        //        case 2:
-        //            this.gvFeaPrjC.DataSource = dt;
-        //            this.gvFeaPrjC.DataBind();
-        //            this.FooterCal();
-        //            break;
-
-        //        case 3:
-        //            this.gvFeaLOwner.DataSource = dt;
-        //            this.gvFeaLOwner.DataBind();
-        //            this.FooterCal();
-        //            break;
-
-        //        case 4:
-        //            this.gvFeaPrjRep.DataSource = dt;
-        //            this.gvFeaPrjRep.DataBind();
-        //            break;
-
-
-
-        //    }
-
-
-        //}
-        //private void FooterCal()
-        //{
-        //    DataTable dt = (DataTable)Session["tblfeaprj"];
-        //    if (dt.Rows.Count == 0)
-        //        return;
-        //    double Stotalsize, stotalAmt;
-        //    int rindex = this.rbtnList1.SelectedIndex;
-        //    switch (rindex)
-        //    {
-
-        //        case 1:
-        //            DataView dv = dt.DefaultView;
-        //            dv.RowFilter = "infcod like('51%')";
-        //            DataTable dts = dv.ToTable().Copy();
-        //            //Size
-        //            dv = dts.DefaultView;
-        //            dv.RowFilter = ("infcod like '510100101%'");
-        //            DataTable dtsize = dv.ToTable();
-
-
-        //            Stotalsize = Convert.ToDouble((Convert.IsDBNull(dtsize.Compute("Sum(tsize)", "")) ?
-        //            0.00 : dtsize.Compute("Sum(tsize)", "")));
-        //            stotalAmt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt)", "")) ?
-        //            0.00 : dt.Compute("Sum(amt)", "")));
-        //            ((Label)this.gvFeaPrj.FooterRow.FindControl("lgvFTsize")).Text = Stotalsize.ToString("#,##0;(#,##0); ");
-        //            ((Label)this.gvFeaPrj.FooterRow.FindControl("lgvFSratepsft")).Text = ((Stotalsize == 0) ? "" : (stotalAmt / Stotalsize).ToString("#,##0;(#,##0); "));
-        //            ((Label)this.gvFeaPrj.FooterRow.FindControl("lgvFAmt")).Text = stotalAmt.ToString("#,##0;(#,##0); ");
-        //            break;
-        //        case 2:
-        //            //((Label)this.gvFeaPrjC.FooterRow.FindControl("lgvFsalrate")).Text =Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(salrate)", "")) ?
-        //            //0.00 : dt.Compute("Sum(salrate)", ""))).ToString("#,##0.00;(#,##0.00); ") ;
-
-        //            ((Label)this.gvFeaPrjC.FooterRow.FindControl("lgvFAmtc")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt)", "")) ?
-        //                0.00 : dt.Compute("Sum(amt)", ""))).ToString("#,##0;(#,##0); ");
-        //            break;
-
-        //        case 3:
-        //            Stotalsize = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tsize)", "")) ?
-        //            0.00 : dt.Compute("Sum(tsize)", "")));
-        //            stotalAmt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt)", "")) ?
-        //            0.00 : dt.Compute("Sum(amt)", "")));
-        //            ((Label)this.gvFeaLOwner.FooterRow.FindControl("lgvFTsizel")).Text = Stotalsize.ToString("#,##0;(#,##0); ");
-        //            ((Label)this.gvFeaLOwner.FooterRow.FindControl("lgvFsalratel")).Text = ((Stotalsize == 0) ? "" : (stotalAmt / Stotalsize).ToString("#,##0;(#,##0); "));
-        //            ((Label)this.gvFeaLOwner.FooterRow.FindControl("lgvFAmtl")).Text = stotalAmt.ToString("#,##0;(#,##0); ");
-        //            break;
-        //    }
-
-        //}
-
-
         protected void lbtnFUpdateSales_Click(object sender, EventArgs e)
         {
             //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
@@ -1440,7 +915,7 @@ namespace RealERPWEB.F_02_Fea
         {
             Session["Report1"] = gvProjectInfo;
             //((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
-                        ((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+            ((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
 
 
 
@@ -1568,30 +1043,6 @@ namespace RealERPWEB.F_02_Fea
     }
 }
 
-//string comcod = this.GetComCode();
-//DataView dv;
-//switch(comcod)
-//{ 
-//    case "3336":
-//        dv = dt.Copy().DefaultView;
-//        dv.RowFilter = ("infcod like '520100401%'");
-//        DataTable dt1 = dv.ToTable();
-//        double tocost = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(amt)", "")) ? 0.00 : dt1.Compute("Sum(amt)", "")));
-//        double infla = tocost * .01;
-//        double opeoverhead = tocost * .05;
-//        (dt.Select("infcod='520100402017'"))[0]["amt"]=infla;
-//        (dt.Select("infcod='520100403001'"))[0]["amt"] = opeoverhead;
-
-//        break;
-
-//    default:
-//        break;
-
-//}
-
-
-//Session["tblfeaprj"] = dt;
-//this.Data_Bind();
 
 
 

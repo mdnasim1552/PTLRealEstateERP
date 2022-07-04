@@ -107,15 +107,9 @@
 
                                     <asp:Label ID="lblcommitedval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
-
-<<<<<<< HEAD
                                     <asp:Label ID="lblactualsal" runat="server" CssClass="lblTxt lblName" Text="Actual Sale Value:" Width="250px"></asp:Label>
 
                                     <asp:Label ID="lblactualsal1" runat="server"  CssClass="smLbl"  Font-Size="13px"></asp:Label>
-
-                                    
-=======
->>>>>>> 6372516b60e8599292ac792ee51568d052135ed5
 
 
                                 </div>
@@ -400,7 +394,7 @@
                             <h4 class="modal-title" id="myModalLabel">Project Image preview</h4>
                         </div>
                         <div class="modal-body">
-                            <img src="" id="imagepreview" class="img img-responsive">
+                            <img src="" id="imagepreview" class="img img-responsive"/>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
