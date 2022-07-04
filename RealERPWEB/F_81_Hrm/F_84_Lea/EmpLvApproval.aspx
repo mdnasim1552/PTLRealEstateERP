@@ -324,6 +324,8 @@
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
+
+
                                                         <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
 
                                                     </FooterTemplate>
