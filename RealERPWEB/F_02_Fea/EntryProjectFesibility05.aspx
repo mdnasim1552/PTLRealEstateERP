@@ -198,6 +198,58 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField> 
+
+
+                                
+                                        <asp:TemplateField HeaderText="Parking">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvPamt" runat="server" AutoCompleteType="Disabled"
+                                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "carparking")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvPAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="Black" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Utility">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvUtility" runat="server" AutoCompleteType="Disabled"
+                                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "utility")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvPUtility" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="Black" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Total Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvTamt" runat="server" Font-Size="11px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvTAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="Black" Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
                                 
                                 
 
@@ -269,6 +321,25 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
+
+                           <asp:TemplateField HeaderText="Actual Sales </br> Value">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvactualsal" runat="server" BackColor="Transparent" 
+                                            BorderStyle="None" Font-size="11px" style="text-align: right" 
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acsalvalue")).ToString("#,##0;(#,##0); ") %>' 
+                                            Width="70px"></asp:TextBox>
+                                    </ItemTemplate>
+
+                                         <FooterTemplate>
+                                        <asp:Label ID="lgvFcommision22" runat="server" Font-Bold="True" Font-Size="12px" 
+                                            ForeColor="Black" style="text-align: right"></asp:Label>
+                                    </FooterTemplate>
+
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="right" />
+                                </asp:TemplateField>
+
 
                            <asp:TemplateField HeaderText="Ageing Date">
 

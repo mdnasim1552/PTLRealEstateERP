@@ -198,7 +198,13 @@ namespace RealERPWEB.F_02_Fea
             this.lblrate.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["rate"]).ToString("#,##0;(#,##0); ");
             this.lblpurdate1.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["purdate"]).ToString("dd-MMM-yyyy");
             this.lblPurValuse1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["purvalue"]).ToString("#,##0;(#,##0); ");
+<<<<<<< HEAD
+            this.lblcommitedval.Text =Convert.ToDouble( ds1.Tables[0].Rows[0]["commitedval"]).ToString("#,##0;(#,##0); ");
+            this.lblactualsal1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["acsalvalue"]).ToString("#,##0;(#,##0); ");
+
+=======
             this.lblcommitedval.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["commitedval"]).ToString("#,##0;(#,##0); ");
+>>>>>>> 6372516b60e8599292ac792ee51568d052135ed5
 
 
 
@@ -1171,6 +1177,8 @@ namespace RealERPWEB.F_02_Fea
                     case "08000":
 
                         comitedval2 = Convert.ToDouble("0" + (lblcommitedval.Text));
+                      double  comitedvalactual = Convert.ToDouble("0" + (lblactualsal1.Text));
+
 
 
                         //costoffundest = (costoffund * percnt * .01 * vality) / (360);
@@ -1178,8 +1186,8 @@ namespace RealERPWEB.F_02_Fea
 
                         // dt.Select("estgcod='08000'")[0]["fundamt"] = comitedval;
                         dt.Select("estgcod='08000'")[0]["estcost"] = comitedval2;
-                        dt.Select("estgcod='08000'")[0]["actual"] = comitedval2;
-                        dt.Select("estgcod='08000'")[0]["balamt"] = comitedval2 - comitedval2;
+                        dt.Select("estgcod='08000'")[0]["actual"] = comitedvalactual;
+                        dt.Select("estgcod='08000'")[0]["balamt"] = comitedval2 - comitedvalactual;
 
                         break;
 
