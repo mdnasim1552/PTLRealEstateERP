@@ -1356,7 +1356,11 @@ namespace RealERPWEB.F_02_Fea
         private void FooterCal()
         {
             Session["Report1"] = gvProjectInfo;
-            ((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            //((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                        ((HyperLink)this.gvProjectInfo.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+
+
+
 
         }
 
@@ -1472,6 +1476,11 @@ namespace RealERPWEB.F_02_Fea
             }
 
 
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
         }
     }
 }
