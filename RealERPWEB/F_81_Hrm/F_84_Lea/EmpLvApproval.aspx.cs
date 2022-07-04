@@ -1400,6 +1400,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     }
                 }
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Leave Approved";
+                    string eventdesc = "Leave Approved";
+                    string eventdesc2 = Orderno;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
             catch (Exception ex)
             {
@@ -1407,8 +1415,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                 return;
             }
-
-
         }
 
         private void SendNotificaion(string ltrnid, string deptcode, string roletype, string isForward, string compsms, string compmail, string ssl, string sendUsername, string sendDptdesc, string sendUsrdesig, string compName)
@@ -1546,7 +1552,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
                 #endregion
 
-
+               
             }
             catch (Exception ex)
             {
