@@ -108,6 +108,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getComplainList();
                     break;
                 case "1":
@@ -117,6 +118,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getDiagnosisList();
                     break;
                 case "2":
@@ -126,6 +128,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getBudget();
                     break;
                 case "3":
@@ -135,6 +138,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = true;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getBudgetApproval();
                     break;
                 case "4":
@@ -144,6 +148,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = true;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getQuotList();
                     break;
                 case "5":
@@ -153,11 +158,19 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = true;
+                    pnlQC.Visible = false;
                     getMATREQ();
                     break;
-
-
-
+                case "7":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
+                    pnlQC.Visible = true;
+                    getQC();
+                    break;
             }
         }
 
@@ -216,6 +229,15 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETMATREQLIST", date1, date2, "", "", "", "", "", "", "", "", "");
             gvMatReq.DataSource = ds.Tables[0];
             gvMatReq.DataBind();
+        }
+        private void getQC()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETQCLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvQC.DataSource = ds.Tables[0];
+            gvQC.DataBind();
         }
 
         protected void lnkEdit_Click(object sender, EventArgs e)
@@ -338,12 +360,36 @@ namespace RealERPWEB.F_99_Allinterface
                 
                 HyperLink hlink = (HyperLink)e.Row.FindControl("hnkCollection");
                 LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
+                LinkButton llink01 = (LinkButton)e.Row.FindControl("lnkMatReq");
+                
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lblDgNo1");                
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                string isMatReq = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "isMatReq")).ToString();
+                bool isquoted = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isquoted"));
+                hlink2.NavigateUrl = "~/F_30_Facility/Quotation.aspx?DgNo=" + dgno;
+                if (!Convert.ToBoolean(isMatReq))
+                {
+                    llink01.ToolTip = "Proceed to Material Req.";
+                    llink01.Attributes["onclick"] = "if(!confirm('Do you want to Proceed: Dg-" + dgno + " to Material Req.? ')){ return false; };";
+                }
+                else
+                {
+                    llink01.Visible = false;
+                }
+                if (isquoted)
+                {
+                    llink.Visible = false;
+                   
+                }
+                else
+                {
+                    llink.Attributes["onclick"] = "if(!confirm('Do you want to Accept Quotation of: Dg-" + dgno + "? ')){ return false; };";
+                    llink.ToolTip = "Accept Quotation";
+                    llink01.Visible = false;
+                }
+               
                 
-                hlink2.NavigateUrl= "~/F_30_Facility/Quotation.aspx?DgNo=" + dgno;
-                llink.Attributes["onclick"] = "if(!confirm('Do you want to Accept Quotation of: Dg-" + dgno + "? ')){ return false; };";
-                llink.ToolTip = "Accept Quotation";
+
             }
         }
 
@@ -498,10 +544,44 @@ namespace RealERPWEB.F_99_Allinterface
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
                 }
+                else if(e.CommandName == "Proceed")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvApproval.Rows[rowIndex];
+                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATREQFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+                        ModuleName();
+                        getQuotList();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Material Req." + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+        protected void gvQC_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+
+                hlink.NavigateUrl = "~/F_30_Facility/ComplainQC.aspx?DgNo=" + dgno;
+               
             }
         }
     }
