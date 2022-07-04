@@ -1052,6 +1052,10 @@ namespace RealERPRDLC
 
                     #endregion
 
+
+
+        case "R_02_Fea.rptEstmtProfitLoss": Rpt1a = SetrptEstmtProfitLoss(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
             }
 
             Rpt1a.Refresh();
@@ -1890,7 +1894,14 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_33_Doc.ActiveSimUser>)RptDataSet));
             return Rpt1a;
         }
-        
+
+        private static LocalReport SetrptEstmtProfitLoss(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>)RptDataSet));
+            return Rpt1a;
+        }
+
 
         private static LocalReport SetRptBillInvoiceP2P(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

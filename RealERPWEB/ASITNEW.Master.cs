@@ -152,6 +152,10 @@ namespace RealERPWEB
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
                     break;
                 case "3368": //finlay
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
+
                 case "3353":
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
                     break;

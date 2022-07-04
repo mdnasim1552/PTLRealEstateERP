@@ -201,7 +201,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2115,6 +2115,7 @@
     <Content Include="F_02_Fea\RptLinkRevenueACost.aspx" />
     <Content Include="F_02_Fea\RptPriceList.aspx" />
     <Content Include="F_02_Fea\RptPrjFeasibility04.aspx" />
+    <Content Include="F_02_Fea\RptProductCost.aspx" />
     <Content Include="F_02_Fea\RptProductPricing.aspx" />
     <Content Include="F_02_Fea\RptProFeasibilityAll.aspx" />
     <Content Include="F_02_Fea\RptProjectFeasibility.aspx" />
@@ -3912,6 +3913,13 @@
     </Compile>
     <Compile Include="F_02_Fea\RptEstProfitloss.aspx.designer.cs">
       <DependentUpon>RptEstProfitloss.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_02_Fea\RptProductCost.aspx.cs">
+      <DependentUpon>RptProductCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_02_Fea\RptProductCost.aspx.designer.cs">
+      <DependentUpon>RptProductCost.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
