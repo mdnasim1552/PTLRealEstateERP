@@ -201,7 +201,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2735,6 +2735,7 @@
     <Content Include="F_29_Fxt\RptFxtAsstBillRent.aspx" />
     <Content Include="F_29_Fxt\RptFxtAsstStatus.aspx" />
     <Content Include="F_29_Fxt\RptFxtStore.aspx" />
+    <Content Include="F_30_Facility\ComplainQC.aspx" />
     <Content Include="F_30_Facility\ComplaintMatReq.aspx" />
     <Content Include="F_30_Facility\Quotation.aspx" />
     <Content Include="F_30_Facility\BudgetForm.aspx" />
@@ -4255,6 +4256,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_30_Facility\ComplainQC.aspx.cs">
+      <DependentUpon>ComplainQC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_30_Facility\ComplainQC.aspx.designer.cs">
+      <DependentUpon>ComplainQC.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_30_Facility\ComplaintMatReq.aspx.cs">
       <DependentUpon>ComplaintMatReq.aspx</DependentUpon>
