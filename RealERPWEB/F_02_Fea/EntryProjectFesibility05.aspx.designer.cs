@@ -24,15 +24,6 @@ namespace RealERPWEB.F_02_Fea
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// chkAllRes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkAllRes;
-
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -58,15 +49,6 @@ namespace RealERPWEB.F_02_Fea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnok;
-
-        /// <summary>
-        /// lblMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
 
         /// <summary>
         /// gvFeaPrjC control.
