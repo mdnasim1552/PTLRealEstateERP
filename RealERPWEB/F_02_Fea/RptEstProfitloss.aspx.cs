@@ -1159,7 +1159,7 @@ namespace RealERPWEB.F_02_Fea
         protected void lUpdatProInfo_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            DataTable dt = (DataTable)Session["tblprogeninfo"];
+            DataTable dt = (DataTable)Session["tblfeaprj"];
             string comcod = this.GetComCode();
             string prjcode = this.ddlProjectName.SelectedValue.ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
