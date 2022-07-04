@@ -495,12 +495,7 @@
                             <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
                         <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
 
-
-
                     </ul>
-
-
-
                 </div>
                 <!-- /.nav-scroller -->
             </nav>
@@ -521,24 +516,17 @@
                     <!-- /.modal-header -->
                     <!-- .modal-body -->
                     <div class="modal-body px-0">
-
                         <div class="card-body">
                             <div id="dropzone" class="fileinput-dropzone">
                                 <span>Drop files or click to upload.</span>
                                 <!-- The file input field used as target for the file upload widget -->
                                 <asp:FileUpload ID="fileuploaddropzone" runat="server"
                                     onchange="submitform();" />
-
                             </div>
                             <div id="progress" class="progress progress-xs rounded-0 fade">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-
-
                         </div>
-
-
-
                     </div>
                     <!-- /.modal-body -->
                     <!-- .modal-footer -->
@@ -569,8 +557,6 @@
                                 <!-- /.switcher-control -->
                             </div>
                             <!-- metric row -->
-
-
                         </div>
                     </div>
                     <!-- /.section-block -->
@@ -1865,8 +1851,10 @@
 
     <script>
         $(document).ready(function () {
-            $(".set > a").on("click", function () {
-                if ($(this).hasClass("active")) {
+            $(".set > a").on("click", function ()
+            {
+                if ($(this).hasClass("active"))
+                {
                     $(this).removeClass("active");
                     $(this)
                         .siblings(".content")
@@ -1874,7 +1862,9 @@
                     $(".set > a i")
                         .removeClass("fa-minus")
                         .addClass("fa-plus");
-                } else {
+                }
+                else
+                {
                     $(".set > a i")
                         .removeClass("fa-minus")
                         .addClass("fa-plus");
@@ -1901,10 +1891,9 @@
 
         });
 
-        function PrintRpt() {
+        function PrintRpt()
+        {
             window.open('<%= ResolveUrl("RDLCViewerWin.aspx?PrintOpt=PDF") %>', '_blank');
         }
-
-
     </script>
 </asp:Content>
