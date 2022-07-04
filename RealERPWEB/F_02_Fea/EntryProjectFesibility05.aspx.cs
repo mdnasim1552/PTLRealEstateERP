@@ -55,7 +55,7 @@ namespace RealERPWEB.F_02_Fea
             ViewState.Remove("tblfeaprj");
             string comcod = this.GetComCode();
             string search = "%"; //"%" + this.txtSrcPro.Text.Trim() + "%";
-            string CallType = (this.chkAllRes.Checked) ? "GETPROJECTNAMEAll" : "GETPROJECTNAME";
+            string CallType = "GETPROJECTNAME";
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", CallType, search, "", "", "", "", "", "", "", "");
             if (ds2 == null)
@@ -185,7 +185,7 @@ namespace RealERPWEB.F_02_Fea
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 this.SaveValue();
-
+                string Messaged = "";
                 DataTable dt1 = (DataTable)ViewState["tblfeaprj"];
                 bool result = true;
 
@@ -215,11 +215,13 @@ namespace RealERPWEB.F_02_Fea
                     }
                     else
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                        Messaged = "Your request approved Successfully ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
+
                     }
 
 
-                    this.chkAllRes.Checked = false;
+                   // this.chkAllRes.Checked = false;
                     this.ShowProCost();
 
 
