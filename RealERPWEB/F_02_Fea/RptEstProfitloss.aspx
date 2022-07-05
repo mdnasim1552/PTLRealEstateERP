@@ -107,7 +107,7 @@
 
                                             <asp:Label ID="lblcommitedval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
-                                            <asp:Label ID="lblactualsal" runat="server" CssClass="lblTxt lblName" Text="Actual Sale Value:" Width="250px"></asp:Label>
+                                    <asp:Label ID="lblactualsal" runat="server" CssClass="lblTxt lblName" Text="Actual Sale Value:" Width="250px"></asp:Label>
 
                                             <asp:Label ID="lblactualsal1" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
