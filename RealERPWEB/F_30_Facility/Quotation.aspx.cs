@@ -149,6 +149,26 @@ namespace RealERPWEB.F_30_Facility
                     lblBgdDate.Text= Convert.ToDateTime(row["bgddate"].ToString()).ToString("dd-MMM-yyyy");
                     lblApprDate.Text= Convert.ToDateTime(row["approvalDate"].ToString()).ToString("dd-MMM-yyyy");
                     lblRemarksAppr.Text= row["notes"].ToString();
+                    bool isQuoted = Convert.ToBoolean(row["isquoted"].ToString());
+                    bool isMatReq = Convert.ToBoolean(row["isMatReq"].ToString());                    
+                    if (isMatReq)
+                    {
+                        lnkReq.Visible = false;
+                    }
+                    else
+                    {
+                        lnkReq.Visible = true;
+                    }
+                    if (isQuoted)
+                    {
+                        lnkQuotAcc.Visible = false;
+                        lnkReq.Visible = true;
+                    }
+                    else
+                    {
+                        lnkQuotAcc.Visible = true;
+                        lnkReq.Visible = false;
+                    }
                 }
                 obj = ds.Tables[0].DataTableToList<EClass_Material_List>();
                 ViewState["MaterialList"] = obj;
@@ -195,6 +215,8 @@ namespace RealERPWEB.F_30_Facility
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
             }
+            getComplainUser();
+            createMaterialList();
         }
 
         protected void lnkCollection_Click(object sender, EventArgs e)

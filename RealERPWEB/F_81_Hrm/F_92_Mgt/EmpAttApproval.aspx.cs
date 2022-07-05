@@ -385,6 +385,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     }
                 }
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Request Approved";
+                    string eventdesc = "Request Approved";
+                    string eventdesc2 = Orderno;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
             catch (Exception ex)
             {
