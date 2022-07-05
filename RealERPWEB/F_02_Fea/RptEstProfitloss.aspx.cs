@@ -198,13 +198,10 @@ namespace RealERPWEB.F_02_Fea
             this.lblrate.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["rate"]).ToString("#,##0;(#,##0); ");
             this.lblpurdate1.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["purdate"]).ToString("dd-MMM-yyyy");
             this.lblPurValuse1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["purvalue"]).ToString("#,##0;(#,##0); ");
-<<<<<<< HEAD
             this.lblcommitedval.Text =Convert.ToDouble( ds1.Tables[0].Rows[0]["commitedval"]).ToString("#,##0;(#,##0); ");
             this.lblactualsal1.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["acsalvalue"]).ToString("#,##0;(#,##0); ");
 
-=======
-            this.lblcommitedval.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["commitedval"]).ToString("#,##0;(#,##0); ");
->>>>>>> 6372516b60e8599292ac792ee51568d052135ed5
+
 
 
 
