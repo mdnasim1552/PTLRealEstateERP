@@ -43,6 +43,8 @@ namespace RealERPRDLC
                 case "R_02_Fea.RptFeaProject": Rpt1a = SetRptFeaProject(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_02_Fea.RptProjFeasibilityManama": Rpt1a = SetRptProjFeasibilityManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+                case "R_02_Fea.rptCostAnlys": Rpt1a = SetrptCostAnlys(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 #endregion
                 #region Budgetary Control
@@ -4496,6 +4498,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptFeaProject(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.EClassProjectFeasibility>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetrptCostAnlys(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.ProdCostAnalysis>)RptDataSet));
             return Rpt1a;
         }
 
