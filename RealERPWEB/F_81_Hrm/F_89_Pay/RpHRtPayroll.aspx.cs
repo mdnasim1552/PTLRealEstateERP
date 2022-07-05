@@ -1363,6 +1363,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         //this.gvsbonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Duration(Month)";
                         this.gvsbonus.DataSource = dt;
                         this.gvsbonus.DataBind();
+                        if (dt.Rows.Count == 0)
+                            return;
                         Session["Report1"] = gvsbonus;
                         ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                         break;
