@@ -207,7 +207,36 @@ namespace RealEntity.C_02_Fea
         }
 
 
-
+        [Serializable]
+        public class ProdCostAnalysis
+        {
+           // comcod,pactcode,pactdesc,munit,udesc ,usize,uamt,purvalue,purinstive,tpurcost,fxtcost,othmktexp, salincentive, adminovh, tcost,
+           //commitedval,margin=commitedval-tcost,accosttill ,ageingday,validity,ageing,remainday,purdate
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string munit { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public double uamt { get; set; }
+            public double purvalue { get; set; }
+            public double purinstive { get; set; }
+            public double tpurcost { get; set; }
+            public double fxtcost { get; set; }
+            public double othmktexp { get; set; }
+            public double salincentive { get; set; }
+            public double adminovh { get; set; }
+            public double tcost { get; set; }
+            public double commitedval { get; set; }
+            public double margin { get; set; }
+            public double accosttill { get; set; }
+            public string ageingday { get; set; }
+            public string validity { get; set; }
+            public string ageing { get; set; }
+            public string remainday { get; set; }
+            public DateTime purdate { get; set; }
+            public ProdCostAnalysis() { }
+        }
 
 
     }

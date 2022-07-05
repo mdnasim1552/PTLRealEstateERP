@@ -477,7 +477,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.10625in</Top>
             <Height>0.23958in</Height>
-            <Width>7.85549in</Width>
+            <Width>7.85548in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -816,7 +816,7 @@
             <DataSetName>DataSet2</DataSetName>
             <Top>0.41181in</Top>
             <Height>0.22917in</Height>
-            <Width>7.78257in</Width>
+            <Width>7.78256in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1162,6 +1162,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
