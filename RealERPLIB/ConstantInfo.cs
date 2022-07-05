@@ -143,6 +143,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0202000", "0202191", "F_02_Fea", "EntryProjectFesibility05", "", "Trading Feasibility 02 ", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0202000", "0202192", "F_02_Fes", "RptEstProfitloss", "", " Product Costing (RPL)", "Feasibility", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "0202000", "0202193", "F_02_Fea", "RptProductCost", "", " Product Cost Analysis", "Feasibility", "False", "False", "False", "False" });
+
+
+
+
+
             tblObj.Rows.Add(new Object[] { "0203000", "0203200", "F_02_Fea", "RptPrjFeasibility04?", "Type=SoldUSold", "Sales Statement", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203201", "F_02_Fea", "RptPrjFeasibility04?", "Type=GPNPALLPRO", "Feasibility Top Sheet", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203208", "F_02_Fea", "RptProFeasibilityAll?", "Type=FeTopSheet", "BEP Top Sheet", "Feasibility", "False", "False", "False", "False" }); ;
@@ -3440,6 +3446,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             //mnuTbl1.Rows.Add(new Object[] { "0304000000", "01. Land Proposal Report", "F_01_LPA/PriLandProposal?Type=Report&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Project Feasibility Report", "F_02_Fea/RptProjectFeasibility?Type=Report&prjcode=", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0303000002", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000003", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000004", "", "", "", true, "" });
@@ -3634,7 +3641,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Provisional Budget Report", "F_02_Fea/RptProjectFeasibility?Type=Report&prjcode=", "", true, "" });
 
-
+            mnuTbl1.Rows.Add(new Object[] { "0302000002", "02. Product Cost Analysis", "F_02_Fea/RptProductCost", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0302000002", "", "", "", true, "" });//"01. Project Feasibility 01", "F_02_Fea/ProjectFeasibility?Type=FeaEntry", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0302000003", "", "", "", true, "" });//"02. Project Feasibility 02", "F_02_Fea/ProjectFeasibility03?Type=FeaEntry", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0302000004", "", "", "", true, "" });//"03. Feasibility - Trading", "F_02_Fea/FeaProjectCost", "", true, "" });

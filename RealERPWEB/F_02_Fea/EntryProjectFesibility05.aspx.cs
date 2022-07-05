@@ -55,7 +55,7 @@ namespace RealERPWEB.F_02_Fea
             ViewState.Remove("tblfeaprj");
             string comcod = this.GetComCode();
             string search = "%"; //"%" + this.txtSrcPro.Text.Trim() + "%";
-            string CallType = (this.chkAllRes.Checked) ? "GETPROJECTNAMEAll" : "GETPROJECTNAME";
+            string CallType = "GETPROJECTNAME";
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", CallType, search, "", "", "", "", "", "", "", "");
             if (ds2 == null)
@@ -134,12 +134,15 @@ namespace RealERPWEB.F_02_Fea
 
                 double usize = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvusize")).Text.Trim());
                 double uamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvamout")).Text.Trim());
-
                 double txtgvpuramt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpuramt")).Text.Trim());
-                string txtgvpurDate = (((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpurDate")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpurDate")).Text.Trim();
 
-            
-               
+                double txtgvPamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvPamt")).Text.Trim());
+                double txtgvUtility = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvUtility")).Text.Trim());
+                double txtgvactualsal = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvactualsal")).Text.Trim());
+
+
+                
+                string txtgvpurDate = (((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpurDate")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvpurDate")).Text.Trim();                         
                 double commitedval = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvcommision")).Text.Trim());
                 string txtgvAgeingDay = (((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvAgeingDay")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvAgeingDay")).Text.Trim();
 
@@ -148,6 +151,8 @@ namespace RealERPWEB.F_02_Fea
                 //double Othamt = Convert.ToDouble("0" + ((TextBox)this.gvFeaPrjC.Rows[i].FindControl("txtgvothamt")).Text.Trim());
                 double rate = (usize == 0) ? 0 : (uamt / usize);
 
+
+                double tamt = Convert.ToDouble((usize * rate) + txtgvPamt + txtgvUtility );
 
                 //double toamt = 0.00; //  Puramt + Cpamt + Utility + Bdamt + Comamt + Othamt;
                 int rowindex = (this.gvFeaPrjC.PageIndex) * (this.gvFeaPrjC.PageSize) + i;
@@ -162,6 +167,11 @@ namespace RealERPWEB.F_02_Fea
                 dt.Rows[rowindex]["purdate"] = txtgvpurDate;
                 dt.Rows[rowindex]["commitedval"] = commitedval;
                 dt.Rows[rowindex]["AgeingDay"] = txtgvAgeingDay;
+                dt.Rows[rowindex]["carparking"] = txtgvPamt;
+                dt.Rows[rowindex]["utility"] = txtgvUtility;                
+                dt.Rows[rowindex]["acsalvalue"] = txtgvactualsal;               
+                dt.Rows[rowindex]["tamt"] = tamt;
+
                 //dt.Rows[rowindex]["bdamt"] = Bdamt;
                 //dt.Rows[rowindex]["comamt"] = Comamt;
                 //dt.Rows[rowindex]["othamt"] = Othamt;
@@ -185,7 +195,7 @@ namespace RealERPWEB.F_02_Fea
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 this.SaveValue();
-
+                string Messaged = "";
                 DataTable dt1 = (DataTable)ViewState["tblfeaprj"];
                 bool result = true;
 
@@ -202,11 +212,13 @@ namespace RealERPWEB.F_02_Fea
                     double commitedval = Convert.ToDouble(dr["commitedval"].ToString());
                     string purdate = Convert.ToDateTime(dr["purdate"].ToString()).ToString(); 
                     string ageingday = Convert.ToDateTime(dr["ageingday"].ToString()).ToString();
+                    double carparking = Convert.ToDouble(dr["carparking"].ToString());
+                    double utility = Convert.ToDouble(dr["utility"].ToString());
+                    double acsalvalue = Convert.ToDouble(dr["acsalvalue"].ToString());
 
-                  
                     result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "INSORUPDATEFEAPESTCOST",
                         pactcode, munit, usize.ToString(), udesc, uamt.ToString(), purvalue.ToString(), purdate,
-                                                              commitedval.ToString(), ageingday, "", "", "", "", "", "");
+                                                              commitedval.ToString(), ageingday, carparking.ToString(), utility.ToString(), acsalvalue.ToString(), "", "", "");
 
                     if (result == false)
                     {
@@ -215,11 +227,13 @@ namespace RealERPWEB.F_02_Fea
                     }
                     else
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                        Messaged = "Data Updated Successfully ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
+
                     }
 
 
-                    this.chkAllRes.Checked = false;
+                   // this.chkAllRes.Checked = false;
                     this.ShowProCost();
 
 
