@@ -125,7 +125,7 @@
                             <div class="col-lg-8">
                                 <div class="row table-responsive">
 
-                                    <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass=" table table-striped table-hover table-bordered grvContentarea" ShowFooter="True">
+                                    <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea" ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.">
@@ -195,9 +195,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                                <div class="col-md-5 mt-1">
+                                    <div class="form-group">
+                                        <asp:Label runat="server" ID="Label7" class="form-label mt-2">Remarks</asp:Label>
+                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Notes" TextMode="MultiLine" Rows="5"></asp:TextBox>
+
+                                    </div>
+
+                                </div>
+                            </div>
                          <div class="row d-flex justify-content-center">
-                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" Width="100px"
-                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
+                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" Width="100px" OnClick="lnkSave_Click"
+                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"></span>Save</asp:LinkButton>
                             <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-sm btn-info mx-2 my-2"  Width="150px">
                                 <span class="fa fa-arrow-circle-right " style="color:white;" aria-hidden="true"></span>
                                 Proceed to Next Step
