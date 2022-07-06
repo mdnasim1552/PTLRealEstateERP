@@ -118,7 +118,6 @@
                                 <label for="Employee">
                                     Employee <span class="text-danger">*</span>
                                 </label>
-
                                 <asp:DropDownList ID="ddlEmpName" runat="server"
                                     CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged">
                                 </asp:DropDownList>
@@ -130,12 +129,9 @@
                             <div class="form-group" id="Div1" runat="server">
                                 <label for="Employee">
                                 </label>
-
                                 <asp:LinkButton ID="lnkbtnRefresh" runat="server" CssClass="btn btn-info btn-md" Style="margin-top: 30px;" OnClick="lnkbtnRefresh_Click">
                                     Refresh 
                                 </asp:LinkButton>
-
-
                             </div>
                         </div>
 
@@ -258,9 +254,6 @@
                                     <asp:Label ID="lblHoliday" runat="server" CssClass="control-label badge bg-info text-white"> Card</asp:Label>
                                 </div>
                             </div>
-
-
-
                             <asp:HiddenField ID="empdeptid" runat="server" />
 
                         </div>
