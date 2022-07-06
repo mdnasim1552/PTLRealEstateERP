@@ -353,24 +353,23 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 
-                case "1101":
-
-                
+                case "1101":                
                 case "3333"://Alliance
-                case "3354": // Edison  
                 case "3353"://Manama
                 case "3355"://Green Wood
+                case "3368"://finlay
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
                     break;
 
                 case "3101":
-                case "3340": //Urban 
                 case "1108":
                 case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
+                case "3354": // Edison  
+
                     this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-3).ToString("dd-MMM-yyyy");
                     break;
 
