@@ -465,7 +465,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtlBonSheet.SelectedIndex = 13;
                     this.txtafterdays.Text = "90";
                     break;
-                case "3101":
+               
                 case "3354"://Edison
                     this.rbtlBonSheet.SelectedIndex = 14;
                     break;
@@ -474,6 +474,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3368":
                     this.rbtlBonSheet.SelectedIndex = 15;
                     break;
+                case "3101":
+                case "3366":
+                    this.rbtlBonSheet.SelectedIndex = 16;
+                    break;
+
                 default://Bridge  , Terranova        
                     this.rbtlBonSheet.SelectedIndex = 8;
                     break;
@@ -932,7 +937,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BONLOCK", monthid, compBranch, "", "", "", "", "", "", "");
             this.lblComBonLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
             string Calltype = (this.rbtlBonSheet.SelectedIndex == 0) ? "EMPBONUS" : (this.rbtlBonSheet.SelectedIndex == 1) ? "EMPBONUS1" : (this.rbtlBonSheet.SelectedIndex == 5) ? "EMPBONUS2" : (this.rbtlBonSheet.SelectedIndex == 2) ? "EMPBONUSSAN" : (this.rbtlBonSheet.SelectedIndex == 6) ? "EMPBONUSBRIDGE" : (this.rbtlBonSheet.SelectedIndex == 7) ? "EMPBONUSALLIANCE"
-                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : (this.rbtlBonSheet.SelectedIndex == 13) ? "EMPBONUSBTI" : (this.rbtlBonSheet.SelectedIndex == 14) ? "EMPBONUSEDISON" : (this.rbtlBonSheet.SelectedIndex == 15) ? "EMPBONUSFINLAY" : "EMPBONUSGEN";
+                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : (this.rbtlBonSheet.SelectedIndex == 13) ? "EMPBONUSBTI" : (this.rbtlBonSheet.SelectedIndex == 14) ? "EMPBONUSEDISON" : (this.rbtlBonSheet.SelectedIndex == 15) ? "EMPBONUSFINLAY" : (this.rbtlBonSheet.SelectedIndex == 16) ? "EMPBONUSLANCO": "EMPBONUSGEN";
             string afterdays = Convert.ToDouble("0" + this.txtafterdays.Text.Trim()).ToString();
             string comgross = this.Companygross();
             string bonpaytype = this.companyBonusPayType();
@@ -1358,6 +1363,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         //this.gvsbonus.Columns[8].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Duration(Month)";
                         this.gvsbonus.DataSource = dt;
                         this.gvsbonus.DataBind();
+                        if (dt.Rows.Count == 0)
+                            return;
                         Session["Report1"] = gvsbonus;
                         ((HyperLink)this.gvsbonus.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                         break;
@@ -2360,33 +2367,33 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
             // Earning 
-            Rpt1.SetParameters(new ReportParameter("basic", basic.ToString()));
-            Rpt1.SetParameters(new ReportParameter("hrent", hrent.ToString()));
-            Rpt1.SetParameters(new ReportParameter("mallow", mallow.ToString()));
-            Rpt1.SetParameters(new ReportParameter("dallow", dallow.ToString()));
-            Rpt1.SetParameters(new ReportParameter("transallow", transallow.ToString()));
-            Rpt1.SetParameters(new ReportParameter("tiffin", tiffin.ToString()));
-            Rpt1.SetParameters(new ReportParameter("otamt", otamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("arrear", arrear.ToString()));
-            Rpt1.SetParameters(new ReportParameter("entert", entert.ToString()));
-            Rpt1.SetParameters(new ReportParameter("ttalerning", ttalerning.ToString()));
+            Rpt1.SetParameters(new ReportParameter("basic", basic.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("hrent", hrent.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("mallow", mallow.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("dallow", dallow.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("transallow", transallow.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("tiffin", tiffin.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("otamt", otamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("arrear", arrear.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("entert", entert.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("ttalerning", ttalerning.ToString("#,##0;(#,##0); ")));
 
             // Deduction 
-            Rpt1.SetParameters(new ReportParameter("trnsded", trnsded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("absded", absded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("advloan", advloan.ToString()));
-            Rpt1.SetParameters(new ReportParameter("pfamt", pfamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("stampcost", stampcost.ToString()));
-            Rpt1.SetParameters(new ReportParameter("othersamt", othded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("taxamt", taxamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("mbilded", mbilded.ToString()));
-            Rpt1.SetParameters(new ReportParameter("tdeduc", tdeduc.ToString()));
+            Rpt1.SetParameters(new ReportParameter("trnsded", trnsded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("absded", absded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("advloan", advloan.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("pfamt", pfamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("stampcost", stampcost.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("othersamt", othded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("taxamt", taxamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("mbilded", mbilded.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("tdeduc", tdeduc.ToString("#,##0;(#,##0); ")));
 
 
             // Bank/Cash Amt 
-            Rpt1.SetParameters(new ReportParameter("bankamt", bankamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("cashamt", cashamt.ToString()));
-            Rpt1.SetParameters(new ReportParameter("netpay", netpay.ToString()));
+            Rpt1.SetParameters(new ReportParameter("bankamt", bankamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("cashamt", cashamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("netpay", netpay.ToString("#,##0;(#,##0); ")));
 
             Rpt1.SetParameters(new ReportParameter("Bankinword", ASTUtility.Trans(bankamt, 2)));
             Rpt1.SetParameters(new ReportParameter("Casinword", ASTUtility.Trans(cashamt, 2)));
@@ -4863,7 +4870,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4));
 
+
+                //bool islock = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked==true) ? true : false;
+                //string Salarylock = islock == false ? "0" : "1";
                 string Salarylock = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? "1" : "0";
+
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INORUPSALLOCK", monthid, branch, Salarylock, userid, Posteddat, Terminal, Sessionid, "", "", "", "", "", "", "", "");
 
                 if (!result)
@@ -5509,5 +5520,23 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             /* Verifies that the control is rendered */
         }
+
+        protected void chkSalaryLock_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+            if (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked == true)
+            {
+                ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = true;
+                this.lblComSalLock.Text = "True";
+            }
+            else
+            {
+                this.lblComSalLock.Text = "False";
+                ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = false;
+            }
+
+        }
+ 
     }
 }

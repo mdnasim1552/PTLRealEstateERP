@@ -755,7 +755,7 @@ namespace RealERPWEB.F_17_Acc
                     lbtnAdd.Visible = true;
                 }
 
-                if (this.Request.QueryString["InputType"].ToString() == "res")
+                if (this.Request.QueryString["InputType"].ToString() == "res" || this.Request.QueryString["InputType"].ToString() == "Supplier")
                 {
                     HyperLink hlnkgvdesc = (HyperLink)e.Row.FindControl("hlnkgvdesc");
                     if (hlnkgvdesc != null)

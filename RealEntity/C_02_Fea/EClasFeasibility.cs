@@ -177,6 +177,67 @@ namespace RealEntity.C_02_Fea
             public ProjectFeasibility() { }
         }
 
+        [Serializable]
+
+        public class ProfitAndLoss
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string estgcod { get; set; }
+            public string estgdesc { get; set; }
+            public string prgval { get; set; }
+            public double estcost { get; set; }
+            public double actual { get; set; }
+            public double balamt { get; set; }
+            public double fundamt { get; set; }
+            public double percnt { get; set; }
+            public DateTime paymentdate { get; set; }
+
+            public ProfitAndLoss() { }
+        }
+        [Serializable]
+        public class AgeingDays
+        {
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string gdesc { get; set; }
+            public string aginday { get; set; }
+            public DateTime efectivedate { get; set; }
+            public AgeingDays() { }
+        }
+
+
+        [Serializable]
+        public class ProdCostAnalysis
+        {
+           // comcod,pactcode,pactdesc,munit,udesc ,usize,uamt,purvalue,purinstive,tpurcost,fxtcost,othmktexp, salincentive, adminovh, tcost,
+           //commitedval,margin=commitedval-tcost,accosttill ,ageingday,validity,ageing,remainday,purdate
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string munit { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public double uamt { get; set; }
+            public double purvalue { get; set; }
+            public double purinstive { get; set; }
+            public double tpurcost { get; set; }
+            public double fxtcost { get; set; }
+            public double othmktexp { get; set; }
+            public double salincentive { get; set; }
+            public double adminovh { get; set; }
+            public double tcost { get; set; }
+            public double commitedval { get; set; }
+            public double margin { get; set; }
+            public double accosttill { get; set; }
+            public string ageingday { get; set; }
+            public string validity { get; set; }
+            public string ageing { get; set; }
+            public string remainday { get; set; }
+            public DateTime purdate { get; set; }
+            public ProdCostAnalysis() { }
+        }
+
 
     }
 }

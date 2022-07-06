@@ -411,5 +411,77 @@ namespace RealERPWEB.F_17_Acc
 
 
         }
+
+        protected void chkAllCheckid_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblunposted"];
+
+            int i, index;
+            if (((CheckBox)this.gvAccUnPosted.HeaderRow.FindControl("chkAllCheckid")).Checked)
+            {
+
+                for (i = 0; i < this.gvAccUnPosted.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvAccUnPosted.Rows[i].FindControl("chkvmrno")).Checked = true;
+                    index = (this.gvAccUnPosted.PageSize) * (this.gvAccUnPosted.PageIndex) + i;
+                    dt.Rows[index]["chkmv"] = "True";
+                }
+            }
+            else
+            {
+                for (i = 0; i < this.gvAccUnPosted.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvAccUnPosted.Rows[i].FindControl("chkvmrno")).Checked = false;
+                    index = (this.gvAccUnPosted.PageSize) * (this.gvAccUnPosted.PageIndex) + i;
+                    dt.Rows[index]["chkmv"] = "False";
+                }
+            }
+            Session["tblunposted"] = dt;
+        }
+
+        protected void lnkbtnChekedId_Click(object sender, EventArgs e)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string ApprovedByid = hst["usrid"].ToString();
+            string Approvedtrmid = hst["compname"].ToString();
+            string ApprovedSession = hst["session"].ToString();
+            string Approvedddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string msg = "";
+            DataTable dt = (DataTable)Session["tblunposted"];          
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                string chkemerge = dr["chkmv"].ToString();
+                string vounum = dr["vounum"].ToString();
+                if (chkemerge == "True")
+                {
+                    DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETEXISTPOSTEDVOUCHER", vounum, "", "", "", "", "", "", "", "");
+                    if (ds1.Tables[0].Rows.Count == 0)
+                    {
+                        bool resultb = AccData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPUNPOSTEDVOUCHER", vounum, ApprovedByid, Approvedtrmid, ApprovedSession, Approvedddat,
+                                       "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                        if (!resultb)
+                        {
+                            msg = AccData.ErrorObject["Msg"].ToString();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Voucher Posted Failed..!.."+ msg + "');", true);
+                            return;
+                        }
+                    }                    
+                }
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Voucher Posted Successfully" + "');", true);
+            this.lbtnOk_Click(null, null);
+        }       
+
+        protected void chkvmrno_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblunposted"];
+            GridViewRow row = (GridViewRow)((CheckBox)sender).NamingContainer;
+            int index = row.RowIndex;
+            dt.Rows[index]["chkmv"] = "True";
+            Session["tblunposted"] = dt;
+        }
     }
 }

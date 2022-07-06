@@ -148,10 +148,19 @@ namespace RealERPWEB
                 case "3348":
                 case "3364":
                 case "3366": //lanco
+                    this.HypLinkReqInterFace.Visible = true;
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
                 case "3368": //finlay
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
+
                 case "3353":
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
                     break;
+
+
                 case "3367": //epic
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
@@ -176,6 +185,16 @@ namespace RealERPWEB
                     this.HypLinkReqInterFace.Visible = false;
 
                     break;
+                case "3354":
+                    
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;                   
+                    this.HypLinkReqInterFace.Visible = true;
+                   
+                    break;
+
                 case "3365":
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);

@@ -197,6 +197,11 @@ namespace RealERPWEB.F_17_Acc
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
+                    
+                case "3101":
+                case "3367":
+                    vouprint = "VocherPrintEpic";
+                    break;
 
                 default:
                     vouprint = "VocherPrint";
@@ -237,6 +242,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3353":// manama  
 
                 case "3357":// Cube   
+                case "3367":// Epic    
 
                     break;
 
@@ -331,8 +337,7 @@ namespace RealERPWEB.F_17_Acc
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher", list, null, null);
                     Rpt1.EnableExternalImages = true;
-                }
-
+                }             
 
                 else if (Type == "VocherPrintAlliance")
                 {
@@ -372,6 +377,17 @@ namespace RealERPWEB.F_17_Acc
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher3", list, null, null);
                     Rpt1.EnableExternalImages = true;
+
+                }
+
+                else if(Type== "VocherPrint4")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher4", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtPay", (vounum.Substring(0, 2).ToString() == "PV") ? "Pay To " : "Receive From"));
+
 
                 }
                 else if (Type == "VocherPrint5")
@@ -520,16 +536,22 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
+                else if (Type == "VocherPrintEpic")
+                {
 
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherEpic", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                }
+
+                // defult rupayan RLDL
                 else
                 {
 
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
-
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher4", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("txtPay", (vounum.Substring(0, 2).ToString() == "PV") ? "Pay To " : "Receive From"));
-
 
                 }
 
@@ -1702,7 +1724,6 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
 
                 }
-
 
                 else if (Type == "VocherPrintEntrust")
                 {

@@ -22,16 +22,13 @@ namespace RealERPWEB.F_30_Facility
                 txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 getProjUnitddl();
                 getComplainUser();
-               
-                if (Request.QueryString["EngrNo"] != null)
-                {
-                    EditFunctionality();
-                }
-                if (Request.QueryString["Type"] != null)
-                {
-                    pnlApproval.Visible = true;
-                    txtEntryDate.Enabled = false;
-                }
+                createMaterialList();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Process";
+                //if (Request.QueryString["Type"] != null)
+                //{
+                //    pnlApproval.Visible = true;
+                //    txtEntryDate.Enabled = false;
+                //}
             }
         }
 
@@ -41,7 +38,7 @@ namespace RealERPWEB.F_30_Facility
             string complno = Request.QueryString["ComplNo"].ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINFOREDIT", complno, "", "", "", "", "", "", "", "", "", "");
             List<EClass_Complain_List> obj = ds.Tables[0].DataTableToList<EClass_Complain_List>();
-            Bind_Grid(obj);
+           
         }
 
         private string GetComCode()
@@ -53,123 +50,183 @@ namespace RealERPWEB.F_30_Facility
 
         private void getProjUnitddl()
         {
-            string comcod = GetComCode();
-            DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGNO", "", "", "", "", "", "", "", "", "", "", "");
-
-            if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString()=="Approval")
-            { 
-                DataTable dt = ds.Tables[0].Select("isbudget=1").CopyToDataTable();
-                ddlDgNo.DataSource = dt;
-            }
-            else
+            try
             {
-                DataTable dt = ds.Tables[0].Select("isbudget=0").CopyToDataTable();
+                string comcod = GetComCode();
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGNO", "", "", "", "", "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    return;
+                }
+                DataTable dt = ds.Tables[0];
                 ddlDgNo.DataSource = dt;
+                ddlDgNo.DataTextField = "dgdesc";
+                ddlDgNo.DataValueField = "dgno";
+                ddlDgNo.DataBind();
+                if (Request.QueryString["DgNo"] != null)
+                {
+                    ddlDgNo.SelectedValue = Request.QueryString["DgNo"].ToString();
+                    ddlDgNo.Enabled = false;
+                }
             }
-            ddlDgNo.DataTextField = "dgdesc";
-            ddlDgNo.DataValueField = "dgno";
-            ddlDgNo.DataBind();
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
         }
-
-
-
-
-
-
         private void getComplainUser()
         {
-            string comcod = GetComCode();
-            string dgno = Request.QueryString["EngrNo"] ?? ddlDgNo.SelectedValue.ToString();
-            DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGINFO", dgno, "", "", "", "", "", "", "", "", "", "");
-            DataTable dt01 = ds.Tables[0];
-            DataTable dt02 = ds.Tables[1];
-            if (dt02 != null || dt02.Rows.Count > 0)
+            try
             {
-                var row = dt02.Rows[0];
-                lblProjectText.Text = row["pactdesc"].ToString();
-                lblCustomerText.Text = row["custdesc"].ToString();
-                lblUnitText.Text = row["unit"].ToString();
+                string comcod = GetComCode();
+                string dgno = Request.QueryString["DgNo"] ?? ddlDgNo.SelectedValue.ToString();
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGINFO", dgno, "", "", "", "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    return;
+                }
+                DataTable dt01 = ds.Tables[0];
+                DataTable dt02 = ds.Tables[1];
+                DataTable dt03 = ds.Tables[2];
+                if (dt02 != null || dt02.Rows.Count > 0)
+                {
+                    var row = dt02.Rows[0];
+                    lblProjectText.Text = row["pactdesc"].ToString();
+                    lblCustomerText.Text = row["custdesc"].ToString();
+                    lblUnitText.Text = row["unit"].ToString();                    
+                    lblWarranty.Text = row["warrantydesc"].ToString();
+                    lblWarrantyCode.Text = row["warranty"].ToString();
+                    lblComplainDate.Text = Convert.ToDateTime(row["compldate"].ToString()).ToString("dd-MMM-yyyy");
+                    lblRemarksCmp.Text= row["complrem"].ToString(); 
+                    lblEngrDate.Text= Convert.ToDateTime(row["dgdate"].ToString()).ToString("dd-MMM-yyyy");
+                    lblRemarksDg.Text= row["dgrem"].ToString();
+                }
+                List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
+                List<EClass_Complain_List> obj1 = dt03.DataTableToList<EClass_Complain_List>();
+                gvComplainForm.DataSource = obj1;
+                gvComplainForm.DataBind();
+                ViewState["ComplainList"] = obj;
+                Bind_Grid(obj);
             }
-            List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
-            ViewState["ComplainList"] = obj;
-            Bind_Grid(obj);
-
-
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
         }
-
-      
-
-       
-
         private void Bind_Grid(List<EClass_Complain_List> obj)
         {
-            ViewState["ComplainList"] = obj;
-            gvQuotation.DataSource = obj;
-            gvQuotation.DataBind();
-        }
-
-
-        protected void lnkProceed_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        protected void lnkRefresh_Click(object sender, EventArgs e)
-        {
-            if (Request.QueryString["ComplNo"] == null)
+            try
             {
-                ClearPage();
+                ViewState["ComplainList"] = obj;
+                dgv1.DataSource = obj;
+                dgv1.DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
             }
-            else
+            catch (Exception ex)
             {
-                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
 
-        private void ClearPage()
+        private void createMaterialList()
         {
+            try
+            {
+                List<EClass_Material_List> obj = new List<EClass_Material_List>();
+                string comcod = GetComCode();
+                string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETBUDGETINFO", dgno, "", "", "", "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    return;
+                }
+                if (ds.Tables[1] != null || ds.Tables[1].Rows.Count > 0)
+                {
+                    var row = ds.Tables[1].Rows[0];
+                    lblBgdDate.Text= Convert.ToDateTime(row["bgddate"].ToString()).ToString("dd-MMM-yyyy");
+                    lblApprDate.Text= Convert.ToDateTime(row["approvalDate"].ToString()).ToString("dd-MMM-yyyy");
+                    lblRemarksAppr.Text= row["notes"].ToString();
+                    bool isQuoted = Convert.ToBoolean(row["isquoted"].ToString());
+                    bool isMatReq = Convert.ToBoolean(row["isMatReq"].ToString());                    
+                    if (isMatReq)
+                    {
+                        lnkReq.Visible = false;
+                    }
+                    else
+                    {
+                        lnkReq.Visible = true;
+                    }
+                    if (isQuoted)
+                    {
+                        lnkQuotAcc.Visible = false;
+                        lnkReq.Visible = true;
+                    }
+                    else
+                    {
+                        lnkQuotAcc.Visible = true;
+                        lnkReq.Visible = false;
+                    }
+                }
+                obj = ds.Tables[0].DataTableToList<EClass_Material_List>();
+                ViewState["MaterialList"] = obj;
+                Bind_Grid_Material();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
 
         }
-
+        private void Bind_Grid_Material()
+        {
+            try
+            {
+                List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
+                gvMaterials.DataSource = obj;
+                gvMaterials.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
         protected void btnOKClick_Click(object sender, EventArgs e)
         {
             getComplainUser();
-            
-
+            createMaterialList();
         }
 
-
-        
-
-
-        protected void lnkSave_Click(object sender, EventArgs e)
+        protected void lnkQuotAcc_Click(object sender, EventArgs e)
         {
-            List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
+            string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComCode();
             string userId = hst["usrid"].ToString();
-            string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
-            string bgddate = txtEntryDate.Text;
-            int i = 1;
-            foreach (var item in obj)
+            bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQUOTAPPRFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+            if (resultflag)
             {
-                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(), 
-                    bgddate, i.ToString(), "", "", "", "", "",
-                         "", "", "", "", "", "", "", "", "", "", userId);
-                i++;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Quotation for Dg-{dgno} is Accepted" + "');", true);
             }
-            bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
-                              "", "", "", "", "", "", "", "", "", "", userId);
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+            }
+            getComplainUser();
+            createMaterialList();
+        }
 
-            if (Request.QueryString["Type"]!=null && Request.QueryString["Type"].ToString() == "Approval")
-            {
-                string notes = txtNarration.Text;
-                bool resultR = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTAPPROVAL", dgno, notes, "", "", "", "", "", "", "", "", "", "",
-                        "", "", "", "", "", "", "", "", "", "", userId);
-                
-            }
+        protected void lnkCollection_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkReq_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

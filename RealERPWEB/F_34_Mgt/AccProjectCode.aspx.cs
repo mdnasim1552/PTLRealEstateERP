@@ -28,13 +28,17 @@ namespace RealERPWEB.F_34_Mgt
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
-                this.GeProjectMainCode();
+                
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Project Code Information";
                 //  this.ddlProjectList_SelectedIndexChanged(null, null);
                 //chkNewProject.Checked = true;
                 //this.chkNewProject_CheckedChanged(null, null);
                 ////previois
-                GetProjectDetailsCode();
+                ///
+
+                this.GeProjectMainCodeFilter();
+                this.GeProjectMainCode();
+                //GetProjectDetailsCode();
             }
         }
 
@@ -54,10 +58,54 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
+        private void GeProjectMainCodeFilter()
+        {
+            string comcod = this.GetComeCode();
+            string filter = "%%";
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROMAINCODE", filter, "", "", "", "", "", "", "", "");             
+            this.ddlMainFilter.DataSource = ds1.Tables[0];
+            this.ddlMainFilter.DataTextField = "actdesc";
+            this.ddlMainFilter.DataValueField = "actcode";
+            this.ddlMainFilter.DataBind();
+            this.GetProjectSubCode1Filter();
+            ds1.Dispose();
+        }
+
+        private void GetProjectSubCode1Filter()
+        {
+            string comcod = this.GetComeCode();
+            string ProMainCode = this.ddlMainFilter.SelectedValue.ToString().Substring(0, 2);
+            string filter = "%%";
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROSUBCODE1", ProMainCode, filter, "", "", "", "", "", "", ""); 
+            this.ddlSubFilter.DataSource = ds1.Tables[0];
+            this.ddlSubFilter.DataTextField = "actdesc";
+            this.ddlSubFilter.DataValueField = "actcode";
+            this.ddlSubFilter.DataBind();
+            this.GetProjectSubCode2Filter();
+            ds1.Dispose();
+
+        }
+        private void GetProjectSubCode2Filter()
+        {
+            string comcod = this.GetComeCode();
+            string ProSubCode1 = this.ddlSubFilter.SelectedValue.ToString().Substring(0, 4);
+            string filter = "%%";
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROSUBCODE2", ProSubCode1, filter, "", "", "", "", "", "", "");
+             
+            this.ddlSubDetailsFilter.DataSource = ds1.Tables[0];
+            this.ddlSubDetailsFilter.DataTextField = "actdesc";
+            this.ddlSubDetailsFilter.DataValueField = "actcode";
+            this.ddlSubDetailsFilter.DataBind(); 
+
+            this.GetProjectDetailsCode();
+            ds1.Dispose();
+
+        }
+
+
+
         private void GeProjectMainCode()
         {
-
-
             string comcod = this.GetComeCode();
             string filter = "%%";
             DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROMAINCODE", filter, "", "", "", "", "", "", "", "");
@@ -79,7 +127,7 @@ namespace RealERPWEB.F_34_Mgt
             this.ddlSub1.DataSource = ds1.Tables[0];
             this.ddlSub1.DataTextField = "actdesc";
             this.ddlSub1.DataValueField = "actcode";
-            this.ddlSub1.DataBind();
+            this.ddlSub1.DataBind();             
             this.GetProjectSubCode2();
             ds1.Dispose();
 
@@ -94,7 +142,7 @@ namespace RealERPWEB.F_34_Mgt
             this.ddlSub2.DataSource = ds1.Tables[0];
             this.ddlSub2.DataTextField = "actdesc";
             this.ddlSub2.DataValueField = "actcode";
-            this.ddlSub2.DataBind();
+            this.ddlSub2.DataBind();             
             this.GetProjectDetailsCode();
             ds1.Dispose();
 
@@ -104,20 +152,11 @@ namespace RealERPWEB.F_34_Mgt
         {
             ViewState.Remove("tblprolist");
             string comcod = this.GetComeCode();
-            string ProSubCode2 = this.ddlSub2.SelectedValue.ToString().Substring(0, 8);
+            string ProSubCode2 = this.ddlSubDetailsFilter.SelectedValue.ToString().Substring(0, 8);
             string filter = "%%";
-            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPRODETAILSCODE", ProSubCode2, filter, "", "", "", "", "", "", "");
-            //this.ddlProjectList.DataSource = ds1.Tables[0];
-            //this.ddlProjectList.DataTextField = "actdesc";
-            //this.ddlProjectList.DataValueField = "actcode";
-            //this.ddlProjectList.DataBind();
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPRODETAILSCODE", ProSubCode2, filter, "", "", "", "", "", "", "");            
             ViewState["tblprolist"] = ds1.Tables[0];
-            Data_bind();
-            ////  this.ddlProjectList_SelectedIndexChanged(null, null);
-
-            //this.gvPrjCode.DataSource = ds1.Tables[0];
-            //this.gvPrjCode.DataBind();
-            //ds1.Dispose();
+            Data_bind();          
         }
 
         protected void chkNewProject_CheckedChanged(object sender, EventArgs e)
@@ -162,20 +201,29 @@ namespace RealERPWEB.F_34_Mgt
         protected void ddlMainCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetProjectSubCode1();
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#newCodeBook", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "newCodebookOpen();", true);
         }
         protected void ddlSub1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ViewState.Remove("pcode");
             this.GetProjectSubCode2();
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#newCodeBook", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "newCodebookOpen();", true);
         }
 
         protected void ddlSub2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetProjectDetailsCode();
+             
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#newCodeBook", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "newCodebookOpen();", true);
+
 
         }
         protected void lnkbtnSave_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string Message;
+           
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
@@ -198,17 +246,19 @@ namespace RealERPWEB.F_34_Mgt
             }
             if (result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-                //this.txtProjectName.Text = "";
-                //this.txtShortName.Text = "";
-                Response.Redirect(Request.RawUrl);
+                Message = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#newCodeBook", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+                GetProjectDetailsCode();
             }
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Sorry, Data Updated Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                //this.lblmsg.ForeColor
+                Message = "Sorry, Data Updated Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#newCodeBook", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "newCodebookOpen();", true);
+
+
             }
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
@@ -441,6 +491,23 @@ namespace RealERPWEB.F_34_Mgt
                 hlink.NavigateUrl = "~/F_04_Bgd/PrjInformation?Type=Report&prjcode=16"+ ASTUtility.Right(actcode,10).ToString();
             }
 
+        }
+
+        protected void ddlMainFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectSubCode1Filter();
+        }
+
+        protected void ddlSubFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectSubCode2Filter();
+          
+
+        }
+
+        protected void ddlSubDetailsFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectDetailsCode();
         }
     }
 }

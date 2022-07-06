@@ -31,7 +31,7 @@ namespace RealERPWEB.F_30_Facility
                 {
                     EditFunctionality();
                 }
-                if (Request.QueryString["Type"] != null)
+                if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Approval";
                     pnlApproval.Visible = true;
@@ -43,10 +43,10 @@ namespace RealERPWEB.F_30_Facility
         private void EditFunctionality()
         {
             string comcod = GetComCode();
-            string complno = Request.QueryString["ComplNo"].ToString();
+            string complno = Request.QueryString["Dgno"].ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINFOREDIT", complno, "", "", "", "", "", "", "", "", "", "");
             List<EClass_Complain_List> obj = ds.Tables[0].DataTableToList<EClass_Complain_List>();
-            Bind_Grid(obj);
+            //Bind_Grid(obj);
         }
 
         private string GetComCode()
@@ -74,16 +74,8 @@ namespace RealERPWEB.F_30_Facility
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
                     return;
                 }
-                if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
-                {
-                    DataTable dt = ds.Tables[0].Select("isbudget=1").CopyToDataTable();
-                    ddlDgNo.DataSource = dt;
-                }
-                else
-                {
-                    DataTable dt = ds.Tables[0].Select("isbudget=0").CopyToDataTable();
-                    ddlDgNo.DataSource = dt;
-                }
+                DataTable dt = ds.Tables[0];
+                ddlDgNo.DataSource = dt;
                 ddlDgNo.DataTextField = "dgdesc";
                 ddlDgNo.DataValueField = "dgno";
                 ddlDgNo.DataBind();
@@ -458,39 +450,38 @@ namespace RealERPWEB.F_30_Facility
                     }
                     else
                     {
-                        bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
-                                     "", "", "", "", "", "", "", "", "", "", userId);
-                        if (resultflag)
+                        if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
                         {
-
-                            if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
+                            string notes = txtNarration.Text;
+                            string warrantyCode = lblWarrantyCode.Text;
+                            bool resultR = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTAPPROVAL", dgno, notes, warrantyCode, "", "", "", "", "", "", "", "", "",
+                                    "", "", "", "", "", "", "", "", "", "", userId);
+                            if (resultR)
                             {
-                                string notes = txtNarration.Text;
-                                string warrantyCode = lblWarrantyCode.Text;
-                                bool resultR = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTAPPROVAL", dgno, notes, warrantyCode, "", "", "", "", "", "", "", "", "",
-                                        "", "", "", "", "", "", "", "", "", "", userId);
-                                if (resultR)
+                                if(warrantyCode!= "43002")
                                 {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Budget Approval of Dg-{dgno} - Updated Successful" + "');", true);
-
+                                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATREQFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                                             "", "", "", "", "", "", "", "", "", "", userId);
+                                    if (!resultflag)
+                                    {
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                                        return;
+                                    }
                                 }
-                                else
-                                {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
-                                    return;
-                                }
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Budget Approval of Dg-{dgno} - Updated Successful" + "');", true);
 
                             }
                             else
                             {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Budget of Dg-{dgno} - Updated Successful" + "');", true);
-
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
+                                return;
                             }
+
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
-                            return;
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Budget of Dg-{dgno} - Updated Successful" + "');", true);
+
                         }
                     }
                 }

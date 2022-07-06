@@ -46,25 +46,52 @@ namespace RealERPWEB.F_99_Allinterface
             string date1 = txtfrmdate.Text;
             string date2 = txttoDate.Text;
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETTOPNUMBER", date1, date2, "", "", "", "", "", "", "", "", "");
-            if (ds != null || ds.Tables[0].Rows.Count > 0)
+            string item1, item2, item3, item4, item5, item6, item7, item8, item9, item10;
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 DataTable dt = ds.Tables[0];
-                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + dt.Rows[0][1].ToString() + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complaints</div></div></div>";
-                this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + dt.Rows[0][2].ToString() + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Engr. Check</div></div></div>";
-
-                this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + dt.Rows[0][3].ToString() + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Budget" + "</div></div></div>";
-                this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + dt.Rows[0][4].ToString() + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
-
-                this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + dt.Rows[0][5].ToString() + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Quotation</div></div></div>";
-
-                this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + dt.Rows[0][6].ToString() + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Material Req.</div></div></div>";
-
-                this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + dt.Rows[0][7].ToString() + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-                this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + dt.Rows[0][8].ToString() + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QC Pending</div></div></div>";
-                this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + dt.Rows[0][9].ToString() + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Customer Care" + "</div></div></div>";
-                this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + dt.Rows[0][10].ToString() + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + "Work Done" + "</div></div></div>";
-
+                item1 = dt.Rows[0][1].ToString();
+                item2 = dt.Rows[0][2].ToString();
+                item3 = dt.Rows[0][3].ToString();
+                item4 = dt.Rows[0][4].ToString();
+                item5 = dt.Rows[0][5].ToString();
+                item6 = dt.Rows[0][6].ToString();
+                item7 = dt.Rows[0][7].ToString();
+                item8 = dt.Rows[0][8].ToString();
+                item9 = dt.Rows[0][9].ToString();
+                item10 = dt.Rows[0][10].ToString();
             }
+            else
+            {
+                item1 = "0";
+                item2 = "0";
+                item3 = "0";
+                item4 = "0";
+                item5 = "0";
+                item6 = "0";
+                item7 = "0";
+                item8 = "0";
+                item9 = "0";
+                item10 = "0";
+            }
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item1 + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complaints</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item2 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Engr. Check</div></div></div>";
+
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item3 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Budget" + "</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item4 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
+
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item5 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Quotation</div></div></div>";
+
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + item6 + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Material Req.</div></div></div>";
+
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + item7 + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + item8 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QC Pending</div></div></div>";
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item9 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Customer Care" + "</div></div></div>";
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item10 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + "Work Done" + "</div></div></div>";
+
+
+
+
 
 
         }
@@ -81,6 +108,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getComplainList();
                     break;
                 case "1":
@@ -90,6 +118,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getDiagnosisList();
                     break;
                 case "2":
@@ -99,6 +128,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getBudget();
                     break;
                 case "3":
@@ -108,6 +138,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = true;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getBudgetApproval();
                     break;
                 case "4":
@@ -117,6 +148,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = true;
                     pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
                     getQuotList();
                     break;
                 case "5":
@@ -126,11 +158,19 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = true;
+                    pnlQC.Visible = false;
                     getMATREQ();
                     break;
-
-
-                    
+                case "7":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
+                    pnlQC.Visible = true;
+                    getQC();
+                    break;
             }
         }
 
@@ -152,7 +192,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETDIAGNOSISLIST", date1, date2, "", "", "", "", "", "", "", "", "");
             gvCmpltoDg.DataSource = ds.Tables[0];
             gvCmpltoDg.DataBind();
-        } 
+        }
 
         private void getBudget()
         {
@@ -190,6 +230,15 @@ namespace RealERPWEB.F_99_Allinterface
             gvMatReq.DataSource = ds.Tables[0];
             gvMatReq.DataBind();
         }
+        private void getQC()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETQCLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvQC.DataSource = ds.Tables[0];
+            gvQC.DataBind();
+        }
 
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
@@ -201,13 +250,59 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
+                LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
 
                 string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
-                hlink.NavigateUrl = "~/F_30_Facility/ComplainForm.aspx?ComplNo=" + complno;
-                hlink.ToolTip = "Edit";
-                
+                bool status = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "engrcheck"));
+                if (!status)
+                {
+                    hlink.NavigateUrl = "~/F_30_Facility/ComplainForm.aspx?ComplNo=" + complno;
+                    hlink.ToolTip = "Edit";
+                    llink.Visible = true;
+                    hlink.Visible = true;
+                }
+                else
+                {
+                    hlink.Visible = false;
+                    llink.Visible = false;
+                }
+                llink.Attributes["onclick"] = "if(!confirm('Do you want to Proceed: C-" + complno + " to Engineer Check? ')){ return false; };";
             }
 
+        }
+        protected void gvComplainList_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Select")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvComplainList.Rows[rowIndex];
+                    string complno = (row.FindControl("lblComplno") as Label).Text;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEENGRFLAG", complno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+
+                        ModuleName();
+                        getComplainList();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"C-{complno} proceeded to Engr. Check" + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+            
         }
 
         protected void gvDiagnosis_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -216,48 +311,278 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
-                hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&Dgno=" + dgno;
+                bool isApproval = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isApproval"));
+                bool isbudget= Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isbudgetVal"));
+                hlink.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?Type=Edit&Dgno=" + dgno;
                 hlink.ToolTip = "Edit";
                 hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?DgNo=" + dgno;
                 hlink1.ToolTip = "Generate Budget";
+                llink.Attributes["onclick"] = "if(!confirm('Do you want to Proceed: Dg-" + dgno + " to Approval? ')){ return false; };";
+                if (!isApproval && isbudget == false)
+                {
+                    hlink.Visible = false;
+                    llink.Visible = false;
+                    hlink1.Visible = true;
+                }
+                else if(isApproval==true && isbudget==true)
+                {
+                    hlink.Visible = false;
+                    llink.Visible = false;
+                    hlink1.Visible = false;
+                }
+                else
+                {
+                    hlink.Visible = true;
+                    llink.Visible = true;
+                    hlink1.Visible = false;
+                }
             }
         }
 
-        
+
         protected void gvBudget_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");   
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
-                hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&Dgno=" + dgno;
-                hlink.ToolTip = "Edit";
                 hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?Type=Approval&DgNo=" + dgno;
                 hlink1.ToolTip = "Approval";
-            }
+            } 
         }
 
         protected void gvApproval_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hnkCollection");
+                LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
+                LinkButton llink01 = (LinkButton)e.Row.FindControl("lnkMatReq");
+                
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lblDgNo1");                
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                string isMatReq = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "isMatReq")).ToString();
+                bool isquoted = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isquoted"));
+                hlink2.NavigateUrl = "~/F_30_Facility/Quotation.aspx?DgNo=" + dgno;
+                if (!Convert.ToBoolean(isMatReq))
+                {
+                    llink01.ToolTip = "Proceed to Material Req.";
+                    llink01.Attributes["onclick"] = "if(!confirm('Do you want to Proceed: Dg-" + dgno + " to Material Req.? ')){ return false; };";
+                }
+                else
+                {
+                    llink01.Visible = false;
+                }
+                if (isquoted)
+                {
+                    llink.Visible = false;
+                   
+                }
+                else
+                {
+                    llink.Attributes["onclick"] = "if(!confirm('Do you want to Accept Quotation of: Dg-" + dgno + "? ')){ return false; };";
+                    llink.ToolTip = "Accept Quotation";
+                    llink01.Visible = false;
+                }
+               
+                
 
+            }
         }
 
         protected void gvCmpltoDg_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
+                LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
                 string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                bool lblisBudget = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isbudget"));                
                 hlink1.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?ComplNo=" + complno;
                 hlink1.ToolTip = "Engr. Check";
+                if (dgno == "0" && lblisBudget==true)
+                {
+                    hlink.Visible = false;
+                    llink.Visible = false;
+                    hlink1.Visible = true;
+                }
+                else if(lblisBudget==false && dgno!="0")
+                {
+                    hlink1.Visible = false;
+                    hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&ComplNo="+ complno + "&Dgno=" + dgno;
+                    hlink.ToolTip = "Edit";
+                    llink.Attributes["onclick"] = "if(!confirm('Do you want to Proceed: Dg-" + dgno + " to Budget? ')){ return false; };";
+                    hlink.Visible = true;
+                    llink.Visible = true;
+                  
+                }
+                else
+                {
+                    hlink.Visible = false;
+                    llink.Visible = false;
+                    hlink1.Visible = false;
+                }
+            }
+        }
+        protected void gvCmpltoDg_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Select")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvCmpltoDg.Rows[rowIndex];
+                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+                        ModuleName();
+                        getDiagnosisList();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Budget" + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+
+        }
+        protected void gvMatReq_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+
+                hlink.NavigateUrl = "~/F_30_Facility/ComplaintMatReq.aspx?DgNo=" + dgno;
+                //llink.Attributes["onclick"] = "if(!confirm('Do you want to Accept Quotation of: Dg-" + dgno + "? ')){ return false; };";
+                //llink.ToolTip = "Accept Quotation";
             }
         }
 
-        protected void gvMatReq_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void lnkbtnok_Click(object sender, EventArgs e)
         {
+            ModuleName();
+            pnlComplainCount.Visible = true;
+            pnlComplainToDiagnosis.Visible = false;
+            pnlDiagnosis.Visible = false;
+            pnlBudget.Visible = false;
+            pnlApproval.Visible = false;
+            pnlMatReq.Visible = false;
+            getComplainList();
+        }
 
+        protected void gvDiagnosis_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Select")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvDiagnosis.Rows[rowIndex];
+                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEAPPRBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+                        ModuleName();
+                        getBudget();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Approval" + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+        protected void gvApproval_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Select")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvApproval.Rows[rowIndex];
+                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQUOTAPPRFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+                        ModuleName();
+                        getQuotList();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Approval" + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                }
+                else if(e.CommandName == "Proceed")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvApproval.Rows[rowIndex];
+                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATREQFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                             "", "", "", "", "", "", "", "", "", "", userId);
+                    if (resultflag)
+                    {
+                        ModuleName();
+                        getQuotList();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Material Req." + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+        protected void gvQC_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+
+                hlink.NavigateUrl = "~/F_30_Facility/ComplainQC.aspx?DgNo=" + dgno;
+               
+            }
         }
     }
 }

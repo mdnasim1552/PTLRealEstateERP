@@ -114,20 +114,58 @@
             <div class="card card-fluid container-data mt-5" style="min-height: 1000px;">
                 <div class="card-header">
                     <div class="row">
+
+
+                        <div class="col-lg-2">
+
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Main
+                                </label>
+                                <asp:DropDownList ID="ddlMainFilter" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlMainFilter_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2">
+
+                            <div class="form-group">
+                                <label for="ddlLvType">
+                                    Sub-1
+                                </label>
+                                <asp:DropDownList ID="ddlSubFilter" OnSelectedIndexChanged="ddlSubFilter_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+
+                            <div class="form-group">
+                                <label class="d-block" for="ddlLvType">
+                                    Sub-2  
+                                </label>
+                                <asp:DropDownList ID="ddlSubDetailsFilter" OnSelectedIndexChanged="ddlSubDetailsFilter_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+
+                        </div>
+
+
+
                         <div class="col-md-2">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary">Search</asp:Label>
-                                </div>
+                            <div class="form-group">
+                                <label class="d-block" for="ddlLvType">
+                                    Search
+                                </label>
                                 <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="Label2" runat="server" CssClass="btn btn-secondary">Page Size</asp:Label>
-                                </div>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control"
+                            <div class="form-group">
+                                <label class="d-block" for="ddlLvType">
+                                    Page Size
+                                </label>
+                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="5">
 
                                     <asp:ListItem Selected="True" Value="100">100</asp:ListItem>
@@ -141,10 +179,9 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                        </div>
+                         
                         <div class="col-md-2 text-right">
-                            <asp:LinkButton ID="lnknewcodebook" OnClick="lnknewcodebook_Click" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create Project</asp:LinkButton>
+                            <asp:LinkButton ID="lnknewcodebook" OnClick="lnknewcodebook_Click" runat="server" class="btn btn-primary btn-sm mt-4"><i class="fa fa-plus"></i> Create Project</asp:LinkButton>
 
                         </div>
                     </div>
@@ -206,11 +243,11 @@
                     <div class="modal-content col-md-12 col-sm-12 ">
                         <div class="modal-header hedcon">
                             <asp:Label ID="lblprjname" CssClass="titel" Font-Bold="true" Font-Size="Large" runat="server">User Permission Project Wise</asp:Label>
-                              
+
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <asp:HiddenField ID="HiddednPactcode" runat="server"  />
+                            <asp:HiddenField ID="HiddednPactcode" runat="server" />
                             <asp:GridView ID="gvEmployeeInfo" runat="server" AutoGenerateColumns="False"
                                 CssClass="table-condensed tblborder grvContentarea ml-3">
                                 <RowStyle />
@@ -262,7 +299,7 @@
                                             </table>
                                         </HeaderTemplate>
                                         <ItemTemplate>
- 
+
 
                                             <asp:CheckBox ID="chkPermission" runat="server" Width="20px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "permission"))=="True" %>' />
                                             <%--  <asp:CheckBox ID="CheckPermission" runat="server" Checked="false" />--%>
@@ -286,7 +323,7 @@
                 </div>
             </div>
 
-            <div id="newCodeBook" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+            <div id="newCodeBook" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content col-md-12 col-sm-12 ">
                         <div class="modal-header hedcon">
