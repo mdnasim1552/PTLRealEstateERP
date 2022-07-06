@@ -351,8 +351,8 @@
                                     </asp:TemplateField>
                                      <asp:TemplateField HeaderText="Last Follow <br> Up date" Visible="false">
                                         <ItemTemplate>
-                                            <asp:Label ID="lbllnfollowupdate" runat="server" Width="100px" Font-Size="12px"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "ldiscussdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                            <asp:Label ID="lastlbllnfollowupdate" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "ldiscussdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "ldiscussdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

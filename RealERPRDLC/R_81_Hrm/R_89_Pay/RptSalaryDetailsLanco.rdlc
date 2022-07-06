@@ -905,6 +905,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <WritingMode>Rotate270</WritingMode>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -918,7 +919,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Pres</Value>
+                                  <Value>Present</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -957,6 +958,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <WritingMode>Rotate270</WritingMode>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -970,7 +972,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Abs</Value>
+                                  <Value>Absent</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1009,6 +1011,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <WritingMode>Rotate270</WritingMode>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1679,7 +1682,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>                      Tax</Value>
+                                                <Value> Tax</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1697,7 +1700,7 @@
                                           <Border>
                                             <Style>Solid</Style>
                                           </Border>
-                                          <VerticalAlign>Top</VerticalAlign>
+                                          <VerticalAlign>Middle</VerticalAlign>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -2159,6 +2162,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
