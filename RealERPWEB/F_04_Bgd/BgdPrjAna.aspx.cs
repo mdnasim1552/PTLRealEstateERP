@@ -1668,6 +1668,11 @@ namespace RealERPWEB.F_04_Bgd
             this.UpdateSessionResource01();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
+            string postedbyid = hst["usrid"].ToString();
+            string postrmid = hst["compname"].ToString();
+            string postseson = hst["session"].ToString();
+
+            //postedbyid,posteddat,postrmid,postseson,
             string PrjCod = this.ddlProject.SelectedValue.ToString().Trim();
             DataTable tbl1 = (DataTable)Session["tblActRes1"];
             string Permission = (((CheckBox)this.gvResInfo.FooterRow.FindControl("chklkrate")).Checked) ? "1" : "0";
@@ -1693,6 +1698,9 @@ namespace RealERPWEB.F_04_Bgd
             dt1.Columns.Remove("rsirdesc");
             dt1.Columns.Remove("rsirdesc1");
             dt1.Columns.Remove("rsirunit");
+
+            dt1.Columns.Add("postedbyid", typeof(String), postedbyid.ToString());
+            dt1.Columns.Add("postseson", typeof(String), postseson.ToString());
 
             ds1.DataSetName = "ds1";
             ds1.Tables.Add(dt1);
