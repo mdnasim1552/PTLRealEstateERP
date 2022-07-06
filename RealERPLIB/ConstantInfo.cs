@@ -1755,14 +1755,15 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "5103000", "5103003", "F_14_Pro", "RptPaymetDueAllPrj", "", "Land Owner Payment Dues", "Budget-Land", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "5151000", "5151001", "F_99_Allinterface", "BudgetInterface", "", "Budget", "Budget-Interface", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "5151000", "5151002", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
 
             #endregion
 
             //30. Facility Management
 
             #region Facility Management
-            
-            tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
+
+           // tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
 
 
             #endregion
