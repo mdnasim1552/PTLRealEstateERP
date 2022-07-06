@@ -93,7 +93,7 @@ namespace RealERPWEB.F_30_Facility
                     lblRemarksCmp.Text = row["complrem"].ToString();
                 }
                 List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
-                List<EClass_Complain_List> obj1 = dt03.DataTableToList<EClass_Complain_List>();                
+                List<EClass_Complain_List> obj1 = dt03.DataTableToList<EClass_Complain_List>();
                 ViewState["ComplainList"] = obj;
                 Bind_Grid(obj);
             }
@@ -116,6 +116,25 @@ namespace RealERPWEB.F_30_Facility
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
+        private void Session_List()
+        {
+            try
+            {
+                List<EClass_Complain_List> obj = (List<EClass_Complain_List>)ViewState["ComplainList"];
+                int rowindex = 0;
+
+                for (int i = 0; i < dgv1.Rows.Count; i++)
+                {
+                    rowindex = (dgv1.PageIndex) * dgv1.PageSize + i;
+                    bool qcValue =((CheckBox)this.dgv1.Rows[rowindex].FindControl("chkQC")).Checked;
+                    obj[rowindex].qc = qcValue;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
         protected void btnOKClick_Click(object sender, EventArgs e)
         {
             if (btnOKClick.Text == "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK")
@@ -132,5 +151,51 @@ namespace RealERPWEB.F_30_Facility
         }
 
 
+
+
+
+        protected void lnkSave_Click(object sender, EventArgs e)
+        {
+            Session_List();
+            List<EClass_Complain_List> obj = (List<EClass_Complain_List>)ViewState["ComplainList"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComCode();
+            string userId = hst["usrid"].ToString();
+            string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
+            string qcdate = txtEntryDate.Text;
+            string Narration = txtNarration.Text;
+            int i = 0;
+            bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dgno, qcdate, Narration, "", "", "", "", "", "", "", "", "", "",
+                        "", "", "", "", "", "","","","", userId);
+            if (result)
+            {
+                List<bool> resultCompA = new List<bool>();
+                foreach (var item in obj)
+                {
+                    bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCA", dgno, item.complainDesc, "","", "", "", "", "", "", "", "", "",
+                            "", "", "", "", "", "", "", "", "", "", userId);
+                    resultCompA.Add(resultA);
+
+                    i++;
+                }
+                if (resultCompA.Contains(false))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"QC Updated" + "');", true);
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+            }
+
+            
+
+
+
+        }
     }
 }
