@@ -1,4 +1,5 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,13 @@ namespace RealERPWEB.F_02_Fea
 
 
             }
+        }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
 
 
@@ -150,7 +158,7 @@ namespace RealERPWEB.F_02_Fea
         //    {
         //        GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
 
-              
+
 
         //        TableCell cell02 = new TableCell();
         //        cell02.Text = "";
@@ -182,7 +190,7 @@ namespace RealERPWEB.F_02_Fea
         //        cell06.ColumnSpan = 4;
         //        cell06.RowSpan = 2;
 
-             
+
         //        gvrow.Cells.Add(cell06);
 
         //        TableCell cell07 = new TableCell();
@@ -230,5 +238,40 @@ namespace RealERPWEB.F_02_Fea
 
 
         //}
+
+        protected void lnkPrint_Click(object sender, EventArgs e)
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Software genarated print";
+
+            DataTable dt = (DataTable)Session["tblprocostana"];
+            var list = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProdCostAnalysis>();
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptCostAnlys", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Product Cost Analysis"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
+
     }
 }
