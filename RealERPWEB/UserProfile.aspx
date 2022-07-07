@@ -681,7 +681,8 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <span class="mr-auto">LEAVE HISTORY</span>
+                                        <h3 class="mr-auto card-title">LEAVE HISTORY</h3>
+                                        
                                         <!-- .card-header-control -->
 
                                         <asp:LinkButton ID="hlnkbtnNext" runat="server" CssClass="btn btn-sm btn-info primaryBtn pull-right" OnClick="hlnkbtnNext_Click" Text="View all"></asp:LinkButton>
@@ -787,7 +788,8 @@
                                 <div class="card-header border-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <span class="mr-auto">JOB RESPONSIBILITIES</span>
+                   
+                                        <h3 class="mr-auto card-title">JOB RESPONSIBILITIES</h3>
                                         <!-- .card-header-control -->
 
                                         <!-- /.card-header-control -->
@@ -980,9 +982,11 @@
                                     <div class="card-header border-0 mt-0 pt-0 pb-1">
                                         <!-- .d-flex -->
                                         <div class="d-flex align-items-center">
-                                            <span class="mr-auto">Upcoming Notice </span>
+                    
+                                            
+                                        <h3 class="mr-auto card-title">UPCOMMING NOTICE</h3>
 
-                                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=" Target="_blank"
+                                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Notification/GetNotification?Id=Notice&RefId=&notiytype=&ntype=" Target="_blank"
                                                 CssClass="btn btn-sm btn-info pull-right" Text="View all"></asp:HyperLink>
                                         </div>
 
@@ -1051,9 +1055,10 @@
                         <div class="col-6">
                             <asp:Panel runat="server" ID="pnlUpcmBD" Visible="false">
                                 <div class="row">
-                                    <div class="card" style="max-height: 350px; overflow-y: scroll">
+                                    <div class="card" style="max-height: 350px; overflow-y: scroll;width:100%;">
                                         <div class="card-header">
-                                            <span class="mr-auto">Upcomming BirthDay </span>
+                                            <h3 class="mr-auto card-title">UPCOMMING BIRTHDAY </h3>
+                                     
 
                                             <asp:LinkButton ID="birthday" runat="server" OnClick="birthday_print_click"
                                                 CssClass="btn btn-primary float-right"> <i class="fa fa-print"></i></asp:LinkButton>
@@ -1068,7 +1073,7 @@
                                 <div class="row">
                                     <div class="card mt-2" style="max-height: 350px;width:100%;">
                                         <div class="card-header">
-                                         <strong>Employee Upcomming Birthday</strong>
+                                         <h3 class="card-title"> UPCOMMING BIRTHDAY</h3>
                                         </div>
                                         <div class="card-body row"  runat="server">
                                             <div class="table table-responsive card-body pt-0 pb-0">
@@ -1852,7 +1857,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header order-bottom">
-                        <h6 class="modal-title font-weight-bold" id="">Employee Long Term Service</h6>
+                        <h6 class="modal-title font-weight-bold" id="">EMPLOYEE LONG TERM SERVICE</h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

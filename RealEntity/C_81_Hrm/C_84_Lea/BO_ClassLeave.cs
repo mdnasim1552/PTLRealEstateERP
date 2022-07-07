@@ -517,5 +517,24 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
 
             public birthdayDate() { }
         }
+
+
+        [Serializable]
+        public class applytimeoff
+        {
+            public string comcod { get; set; }
+            public string empid { get; set; }
+            public string dayid { get; set; }
+            public DateTime reqdate { get; set; }
+            public string outtime { get; set; }
+            public string intime { get; set; }
+            public string usetime { get; set; }
+            public string remarks { get; set; }
+            public string reqtype { get; set; }
+            public string reqstatus { get; set; }
+            public string useTimeMin { get; set; }
+            public string remaintime { get; set; }
+            public applytimeoff() { }
+        }
     }
 }
