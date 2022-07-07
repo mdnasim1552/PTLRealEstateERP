@@ -379,21 +379,23 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "phone")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Project" Visible="false">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblproject" runat="server" Width="120px" Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                         <%--This is Initial start Project (pactdesc) --%>
 
                                     <asp:TemplateField HeaderText="Interest Project" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblIntproject" runat="server" Width="120px" Font-Size="12px" 
                                                 class='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sameprjclass")) %>'                                                
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intrprj")) %>'></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <%--This is Main Last Lead Project--%>
+                                    <asp:TemplateField HeaderText="Project" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblproject" runat="server" Width="120px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstprjdiscussion")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                               
 
                                     <asp:TemplateField HeaderText="Approve Date" Visible="false">
                                         <ItemTemplate>

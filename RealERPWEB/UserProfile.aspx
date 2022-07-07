@@ -1244,7 +1244,7 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="30 Years">
+                                                    <asp:TemplateField HeaderText="Total">
                                                         <ItemTemplate>
                                                             <asp:Label ID="year30" runat="server" Font-Bold="True"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year30")) %>' Width="80px"></asp:Label>
@@ -1847,6 +1847,34 @@
         </div>
 
 
+          <!-- Modal -->
+        <div class="modal fade" id="LongTermModal" tabindex="-1" role="dialog" aria-labelledby="LongTermModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header order-bottom">
+                        <h6 class="modal-title font-weight-bold" id="">Employee Long Term Service</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-header bg-info ">
+                                <h6 class="font-weight-bold text-white" id="H1" runat="server"></h6>
+                            </div>
+                            <div class="card-body bg-light">
+                              
+                                
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
