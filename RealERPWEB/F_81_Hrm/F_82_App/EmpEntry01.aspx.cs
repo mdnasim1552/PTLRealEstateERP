@@ -569,17 +569,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                     case "01997": // Grade
-                        if (comcod == "3354")
-                        {
-                            dv1 = dt1.DefaultView;
-                            dv1.RowFilter = ("gcod like '03%'");
-                        }
-                        else
-                        {
-                            dv1 = dt1.DefaultView;
-                            dv1.RowFilter = ("gcod like '86%'");
-                        }
-                      
+                        //if (comcod == "3354")
+                        //{
+                        //    dv1 = dt1.DefaultView;
+                        //    dv1.RowFilter = ("gcod like '03%'");
+                        //}
+                        //else
+                        //{
+                        //    dv1 = dt1.DefaultView;
+                        //    dv1.RowFilter = ("gcod like '86%'");
+                        //}
+                        dv1 = dt1.DefaultView;
+                        dv1.RowFilter = ("gcod like '86%'");
 
 
                         ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Visible = false;

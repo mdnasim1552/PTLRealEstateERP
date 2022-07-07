@@ -29,8 +29,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 GetRemaningTime();
                 this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
                 this.txtToTime.Text = System.DateTime.Now.ToString("HH:mm");
-
-
             }
         }
 
@@ -58,7 +56,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, frmdate, tdate, "", "", "", "", "", "");
             if (ds1 == null)
+            {
+                this.gvLvReq.DataSource = null;
+                this.gvLvReq.DataBind();
                 return;
+
+            }
             DateTime useTime = ds1.Tables[2].Rows.Count == 0 ? DateTime.Parse("06:00") : DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
             if (ds1.Tables[0].Rows.Count != 0)
@@ -273,7 +276,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
 
             string comcod = this.GetCompCode();
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.[SP_REPORT_HR_MGT_INTERFACE]", "GETATTAPPID", empid, "", "", "", "", "", "", "", "");
+            string applydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("yyyyMMdd");
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.[SP_REPORT_HR_MGT_INTERFACE]", "GET_TLV_APPLY_ID", empid, applydat, "", "", "", "", "", "", "");
             string lstid = ds5.Tables[0].Rows[0]["ltrnid"].ToString().Trim();
             return lstid;
         }
@@ -287,6 +291,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DateTime fodate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtFromTime.Text.ToString());
             DateTime Offic_end = Convert.ToDateTime(cdate + " 05:30 PM");
             DateTime Offic_ST = Convert.ToDateTime(cdate + " 09:00 AM");
+            string addMin = Convert.ToDateTime(txtFromTime.Text).ToString("HH:mm");
+            this.txtToTime.Text = Convert.ToDateTime(addMin).AddMinutes(30).ToString("HH:mm");
+
+
+
             if (Offic_ST > fodate || Offic_end < fodate)
             {
                 this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
@@ -441,14 +450,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             }
 
+            GetRemaningTime();
 
             string Messagesd = "Deleted Success";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
-            GetRemaningTime();
+      
 
             string eventdesc2 = "Leave Request deleted, Request ID by:  " + trnid;
             bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "Delete Time Of Leave Request", eventdesc2, "");
+
         }
     }
 }
