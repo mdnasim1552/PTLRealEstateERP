@@ -52,9 +52,9 @@
         }
     </script>
     <style>
-        body{
-            font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-            font-size:12px;
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            font-size: 12px;
         }
     </style>
 </asp:Content>
@@ -135,18 +135,95 @@
                             </div>
                         </div>
                         <hr />
+                        <div class="row">
+                            <div class="collapse" id="collapseExample">
+                                <h6 class="ml-1">Complain Form</h6>
+                                <div class="row  table-responsive m-1">
 
-                        <div id="divComplainList" class="row">
-                            <div class="col-lg-7">
+                                    <asp:GridView ID="dgvUser" runat="server" AutoGenerateColumns="False" ShowFooter="true" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sl.">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="serialnoid" runat="server"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle Font-Bold="True" />
+                                                <ItemStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Complain Code" Visible="false">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvconcatcode" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainId")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+
+
+                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Issue Type">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvissueDesc" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueType")) %>'
+                                                        Width="170px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Left" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Problem Details">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvconcatdesc" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainDesc")) %>'
+                                                        Width="300px"></asp:Label>
+                                                </ItemTemplate>
+
+
+                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Remarks">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvitemdesc" runat="server" BackColor="Transparent"
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                        Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
+                                                        Width="280px" Font-Size="12px" ForeColor="Black"></asp:Label>
+
+                                                </ItemTemplate>
+
+
+                                                <HeaderStyle HorizontalAlign="Left" />
+                                                <FooterStyle ForeColor="Black" />
+                                                <FooterStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
+                                        </Columns>
+
+
+                                        <FooterStyle CssClass="gvPagination" />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="divComplainList">
+                            <div>
                                 <div class="row">
                                     <h6 class="ml-2">Diagnosis</h6>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                        <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtComplainDesc" placeholder="Write Problem"></asp:TextBox>
+                                <div class="row mt-1">
+                                    <div class="col-lg-2">
+                                        <asp:DropDownList ID="ddlIssueType" CssClass="form-control chzn-select" runat="server" AutoPostBack="True"></asp:DropDownList>
                                     </div>
-                                    <div class="col-lg-5">
-                                        <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtComplainRemarks" placeholder="Write Remarks" TextMode="MultiLine" Rows="1"></asp:TextBox>
+                                    <div class="col-lg-3">
+                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtComplainDesc" placeholder="Write Problem"></asp:TextBox>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtComplainRemarks" placeholder="Write Remarks" TextMode="MultiLine" Rows="1"></asp:TextBox>
                                     </div>
                                     <div class="col-lg-2">
                                         <asp:LinkButton ID="btnAdd" runat="server" CssClass="btn btn-sm btn-success" OnClick="btnAdd_Click">
@@ -190,13 +267,24 @@
                                                     <asp:Label ID="lblgvconcatcode" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainId")) %>'
                                                         Width="150px"></asp:Label>
+                                                    <asp:Label ID="Label4" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueId")) %>'
+                                                        Width="170px"></asp:Label>
                                                 </ItemTemplate>
 
 
                                                 <HeaderStyle HorizontalAlign="Left" />
 
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Issue Type">
 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvissueDesc" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueType")) %>'
+                                                        Width="120px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Left" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Problem Details">
 
                                                 <ItemTemplate>
@@ -234,7 +322,7 @@
                                 </div>
 
                                 <div class="row mt-1">
-                                    <div class="col-lg-11">
+                                    <div class="col-lg-7">
                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Additional Notes" TextMode="MultiLine" Rows="5"></asp:TextBox>
 
                                     </div>
@@ -242,74 +330,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-5">
-                                <div class="collapse" id="collapseExample">
-                                    <br />
-                                    <h6 class="ml-1">Complain Form</h6>
-                                    <div class="row  table-responsive m-1">
 
-                                        <asp:GridView ID="dgvUser" runat="server" AutoGenerateColumns="False" ShowFooter="true" CssClass="table-striped table-hover table-bordered grvContentarea">
-                                            <RowStyle />
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Sl.">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="serialnoid" runat="server"
-                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle Font-Bold="True" />
-                                                    <ItemStyle HorizontalAlign="Center" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Complain Code" Visible="false">
-
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvconcatcode" runat="server"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainId")) %>'
-                                                            Width="100px"></asp:Label>
-                                                    </ItemTemplate>
-
-
-                                                    <HeaderStyle HorizontalAlign="Left" />
-
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="Problem Details">
-
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvconcatdesc" runat="server"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainDesc")) %>'
-                                                            Width="170px"></asp:Label>
-                                                    </ItemTemplate>
-
-
-                                                    <HeaderStyle HorizontalAlign="Left" />
-
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="Remarks">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvitemdesc" runat="server" BackColor="Transparent"
-                                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
-                                                            Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
-                                                            Width="280px" Font-Size="12px" ForeColor="Black"></asp:Label>
-
-                                                    </ItemTemplate>
-
-
-                                                    <HeaderStyle HorizontalAlign="Left" />
-                                                    <FooterStyle ForeColor="Black" />
-                                                    <FooterStyle HorizontalAlign="Right" />
-                                                </asp:TemplateField>
-                                            </Columns>
-
-
-                                            <FooterStyle CssClass="gvPagination" />
-                                            <PagerStyle CssClass="gvPagination" />
-                                            <HeaderStyle CssClass="grvHeader" />
-                                        </asp:GridView>
-                                    </div>
-                                </div>
-
-                            </div>
 
 
 
