@@ -746,7 +746,8 @@
                                                         <asp:TemplateField HeaderText="Sold Date">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvsolddate" runat="server" Style="text-align: left; width: 70px;"
-                                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "schdate")).ToString("dd-MMM-yyyy ") %>'></asp:Label>
+                                                                    Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "schdate")).ToString("dd-MMM-yyyy")=="01-Jan-1900")?"":
+                                                                        (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "schdate")).ToString("dd-MMM-yyyy"))%>'></asp:Label>
                                                             </ItemTemplate>
 
                                                             <ItemStyle HorizontalAlign="Right" Width="80px" />

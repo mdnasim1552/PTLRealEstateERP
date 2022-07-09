@@ -28,10 +28,11 @@
         }
     </script>
     <style>
-        body{
-            font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-            font-size:12px;
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            font-size: 12px;
         }
+
         p {
             width: 100%;
             text-align: center;
@@ -39,8 +40,8 @@
             line-height: 0.1em;
             margin: 10px 0 20px;
             color: black;
-            font-weight:300;
-            font-size:14px;
+            font-weight: 300;
+            font-size: 14px;
         }
 
             p span {
@@ -66,12 +67,7 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txtEntryDate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <div class="form-group">
-                                <asp:Label runat="server" ID="lblissuetype" class="form-label">Issue Type</asp:Label>
-                                <asp:DropDownList ID="ddlIssueType" CssClass="form-control chzn-select" runat="server" AutoPostBack="True"></asp:DropDownList>
-                            </div>
-                        </div>
+
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
@@ -93,10 +89,10 @@
                         </div>
 
                     </div>
-                   
+
 
                     <asp:Panel ID="pnlComplain" runat="server" Visible="false">
-                         <p><span>Project Information</span></p>
+                        <p><span>Project Information</span></p>
                         <div class="row mt-1">
                             <div class="col-lg-2">
                                 <div class="form-group">
@@ -104,25 +100,25 @@
                                     <asp:Label runat="server" ID="lblUnitText" class="form-control"></asp:Label>
                                 </div>
                             </div>
-                             <div class="col-lg-2">
+                            <div class="col-lg-2">
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="lblHandOverDateLabel" class="form-label">HandOver Date</asp:Label>
                                     <asp:Label runat="server" ID="lblHandOverDateText" class="form-control"></asp:Label>
                                 </div>
                             </div>
-                             <div class="col-lg-2">
+                            <div class="col-lg-2">
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="lblWarranty" class="form-label">Warranty</asp:Label>
-                                     <asp:DropDownList ID="ddlWarranty" CssClass="chzn-select form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlWarranty" CssClass="chzn-select form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                                 </div>
                             </div>
-                             <div class="col-lg-2">
+                            <div class="col-lg-2">
                                 <div class="form-group">
-                                     <asp:Label runat="server" ID="lblWarrantyRemain" class="form-label">Warranty Day Remained</asp:Label>
+                                    <asp:Label runat="server" ID="lblWarrantyRemain" class="form-label">Warranty Day Remained</asp:Label>
                                     <asp:Label runat="server" ID="lblWarrantyRemainText" class="form-control"></asp:Label>
                                 </div>
                             </div>
-                             <div class="col-lg-2">
+                            <div class="col-lg-2">
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="lblComType" class="form-label">Communication Type</asp:Label>
                                     <asp:DropDownList ID="ddlCommunicationType" CssClass="chzn-select form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
@@ -131,11 +127,17 @@
 
 
 
-                        </div>                       
+                        </div>
                         <div id="divComplainList">
                             <div class="row">
                                 <div class="col-4">
                                     <p><span>Type Problem</span></p>
+                                    <div class="row">
+
+                                        <%--<asp:Label runat="server" ID="lblissuetype" class="form-label">Issue Type</asp:Label>--%>
+                                        <asp:DropDownList ID="ddlIssueType" CssClass="form-control chzn-select" runat="server" AutoPostBack="True"></asp:DropDownList>
+
+                                    </div>
                                     <div class="row">
                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtComplainDesc" placeholder="Write Problem"></asp:TextBox>
                                     </div>
@@ -146,7 +148,6 @@
                                         <asp:LinkButton ID="btnAdd" runat="server" CssClass="btn btn-sm btn-success" OnClick="btnAdd_Click" Width="150px">
                                             <span class="fa fa-plus-circle " style="color:white;" aria-hidden="true"  ></span>
                                             Add
-
                                         </asp:LinkButton>
                                     </div>
                                     <hr />
@@ -201,13 +202,27 @@
                                                         <asp:Label ID="lblgvconcatcode" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complainId")) %>'
                                                             Width="150px"></asp:Label>
+                                                        <asp:Label ID="Label4" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueId")) %>'
+                                                            Width="150px"></asp:Label>
                                                     </ItemTemplate>
 
 
                                                     <HeaderStyle HorizontalAlign="Left" />
 
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Issue Type">
 
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvissueDesc" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueType")) %>'
+                                                            Width="120px"></asp:Label>
+                                                    </ItemTemplate>
+
+
+                                                    <HeaderStyle HorizontalAlign="Left" />
+
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Problem Details">
 
                                                     <ItemTemplate>
