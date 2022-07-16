@@ -260,7 +260,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3315"://Assure
                     this.InsertDailyAttnAssure();
                     break;
-                case "3365"://Assure
+                case "3365"://
                     this.GetDailyAttenDanceZKT();
                     break;
                 default:
