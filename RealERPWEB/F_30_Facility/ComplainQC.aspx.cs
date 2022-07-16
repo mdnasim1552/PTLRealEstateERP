@@ -21,7 +21,14 @@ namespace RealERPWEB.F_30_Facility
                 getProjUnitddl();
                 txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 btnOKClick.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Material Requisition";
+                if (Request.QueryString["Type"] == "CustomerCare")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Customer Care";
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "QC Pending";
+                }
                 if (Request.QueryString["DgNo"] != null)
                 {
                     btnOKClick.Enabled = false;
@@ -71,6 +78,7 @@ namespace RealERPWEB.F_30_Facility
             {
                 string comcod = GetComCode();
                 string dgno = Request.QueryString["DgNo"] ?? ddlDgNo.SelectedValue.ToString();
+
                 DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETDGINFO", dgno, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                 {
@@ -91,6 +99,8 @@ namespace RealERPWEB.F_30_Facility
                     lblSiteVisisted.Text = row["sitevisiteddate"].ToString();
                     lblComplainDate.Text = Convert.ToDateTime(row["compldate"].ToString()).ToString("dd-MMM-yyyy");
                     lblRemarksCmp.Text = row["complrem"].ToString();
+                    txtNarration.Text = (Request.QueryString["Type"] == "CustomerCare") ? row["ccNotes"].ToString() : row["qcNotes"].ToString();
+                    txtEntryDate.Text = row["qcDate"].ToString() == "01-Jan-1900" ? System.DateTime.Now.ToString("dd-MMM-yyyy") : row["qcDate"].ToString();
                 }
                 List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
                 List<EClass_Complain_List> obj1 = dt03.DataTableToList<EClass_Complain_List>();
@@ -109,6 +119,18 @@ namespace RealERPWEB.F_30_Facility
                 ViewState["ComplainList"] = obj;
                 dgv1.DataSource = obj;
                 dgv1.DataBind();
+
+                if (Request.QueryString["Type"] == "CustomerCare")
+                {
+                    dgv1.Columns[4].Visible = false;
+                    dgv1.Columns[5].Visible = true;
+                }
+                else
+                {
+                    dgv1.Columns[4].Visible = true;
+                    dgv1.Columns[5].Visible = false;
+                }
+
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
             }
             catch (Exception ex)
@@ -126,8 +148,10 @@ namespace RealERPWEB.F_30_Facility
                 for (int i = 0; i < dgv1.Rows.Count; i++)
                 {
                     rowindex = (dgv1.PageIndex) * dgv1.PageSize + i;
-                    bool qcValue =((CheckBox)this.dgv1.Rows[rowindex].FindControl("chkQC")).Checked;
-                    obj[rowindex].qc = qcValue;
+                    bool qcValue = ((CheckBox)this.dgv1.Rows[rowindex].FindControl("chkQC")).Checked;
+                    bool ccValue = ((CheckBox)this.dgv1.Rows[rowindex].FindControl("chkCC")).Checked;
+                    obj[rowindex].isQC = qcValue;
+                    obj[rowindex].isCC = ccValue;
                 }
             }
             catch (Exception ex)
@@ -164,38 +188,89 @@ namespace RealERPWEB.F_30_Facility
             string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
             string qcdate = txtEntryDate.Text;
             string Narration = txtNarration.Text;
-            int i = 0;
-            bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dgno, qcdate, Narration, "", "", "", "", "", "", "", "", "", "",
-                        "", "", "", "", "", "","","","", userId);
-            if (result)
+            if (obj.Where(x => x.isQC == true).ToList().Count == 0)
             {
-                List<bool> resultCompA = new List<bool>();
-                foreach (var item in obj)
-                {
-                    bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCA", dgno, item.complainDesc, "","", "", "", "", "", "", "", "", "",
-                            "", "", "", "", "", "", "", "", "", "", userId);
-                    resultCompA.Add(resultA);
-
-                    i++;
-                }
-                if (resultCompA.Contains(false))
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"QC Updated" + "');", true);
-                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must have atleast one Checked to procceed" + "');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                bool result = false;
+                bool result01 = false;
+                if (Request.QueryString["Type"].ToString() == "CustomerCare")
+                {
+                    result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCB", dgno, qcdate, Narration, "", "", "", "", "", "", "", "", "", "",
+                      "", "", "", "", "", "", "", "", "", userId);
+                    result01 = true;
+                    //result01 = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCCHECKFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "", "",
+                    //       "", "", "", "", "", "", "", "", "", userId);
+                }
+                else
+                {
+                    result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dgno, qcdate, Narration, "", "", "", "", "", "", "", "", "", "",
+                       "", "", "", "", "", "", "", "", "", userId);
+                    result01 = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCCHECKFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "", "",
+                           "", "", "", "", "", "", "", "", "", userId);
+                }
+
+
+
+                if (result && result01)
+                {
+                    List<bool> resultCompA = new List<bool>();
+                    foreach (var item in obj)
+                    {
+                        if (Request.QueryString["Type"].ToString() == "CustomerCare")
+                        {
+                            if (item.isCC)
+                            {
+                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCA", dgno, item.complainDesc, "", "", "", "", "", "", "", "", "", "",
+                                   "", "", "", "", "", "", "", "", "", "", userId);
+                                resultCompA.Add(resultA);
+                            }
+                        }
+                        else
+                        {
+                            if (item.isQC)
+                            {
+                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCA", dgno, item.complainDesc, "", "", "", "", "", "", "", "", "", "",
+                                   "", "", "", "", "", "", "", "", "", "", userId);
+                                resultCompA.Add(resultA);
+                            }
+                        }
+
+
+                    }
+                    if (resultCompA.Contains(false))
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"QC Updated" + "');", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
             }
+        }
 
-            
-
-
-
+        protected void dgv1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (Request.QueryString["Type"].ToString() == "CustomerCare")
+            {
+                int i = 0;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    bool isQC = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isQC"));
+                    if (!isQC)
+                    {
+                        ((CheckBox)this.dgv1.Rows[i].FindControl("chkCC")).Enabled = false;
+                    }
+                    i++;
+                }
+            }
         }
     }
 }
