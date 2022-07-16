@@ -237,7 +237,7 @@ namespace RealERPWEB
             string comcod = this.GetCompCode();
             string curr_year =Convert.ToDateTime( System.DateTime.Now).ToString("yyyy");
 
-            this.longTermTitle.InnerText = "Employee Long Term Service-"+curr_year;
+            this.longTermTitle.InnerText = "EMPLOYEE LONG TERM SERVICE-"+curr_year;
             DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "LONGTERMSERVICE", "","", "", "", "", "", "");
             if (ds == null)
             {

@@ -195,6 +195,24 @@ namespace RealERPWEB.F_30_Facility
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender3;
 
         /// <summary>
+        /// dgvUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvUser;
+
+        /// <summary>
+        /// ddlIssueType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlIssueType;
+
+        /// <summary>
         /// txtComplainDesc control.
         /// </summary>
         /// <remarks>
@@ -238,15 +256,6 @@ namespace RealERPWEB.F_30_Facility
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNarration;
-
-        /// <summary>
-        /// dgvUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvUser;
 
         /// <summary>
         /// lnkRefresh control.
