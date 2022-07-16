@@ -125,7 +125,8 @@
                             <div class="col-lg-8">
                                 <div class="row table-responsive">
 
-                                    <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea" ShowFooter="True">
+                                    <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea" 
+                                        ShowFooter="True" OnRowDataBound="dgv1_RowDataBound">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.">
@@ -178,7 +179,15 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="QC">
                                                 <ItemTemplate>
-                                                    <asp:CheckBox ID="chkQC" runat="server" />
+                                                    <asp:CheckBox ID="chkQC" runat="server" Checked='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "isQC")) %>' />
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Left" />
+                                                <FooterStyle ForeColor="Black" />
+                                                <FooterStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Customer Care">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkCC" runat="server" Checked='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "isCC")) %>' />
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Left" />
                                                 <FooterStyle ForeColor="Black" />
