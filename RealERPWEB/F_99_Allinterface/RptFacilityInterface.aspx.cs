@@ -485,6 +485,7 @@ namespace RealERPWEB.F_99_Allinterface
             pnlApproval.Visible = false;
             pnlMatReq.Visible = false;
             getComplainList();
+            RadioButtonList1_SelectedIndexChanged(null, null);
         }
 
         protected void gvDiagnosis_RowCommand(object sender, GridViewCommandEventArgs e)
