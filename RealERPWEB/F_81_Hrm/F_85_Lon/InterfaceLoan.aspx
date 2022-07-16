@@ -588,6 +588,9 @@
                                             <asp:ListItem Value="6"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>
                                         </asp:RadioButtonList>
+
+                                        <asp:RadioButtonList ID="loanSteps" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="loanSteps_SelectedIndexChanged"></asp:RadioButtonList>
+
                                     </div>
                                 </div>
                             </fieldset>

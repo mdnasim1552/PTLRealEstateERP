@@ -42,7 +42,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
                 this.GetEmplist();
-
+                //this.GetLoanSteps();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
                 string empid = hst["empid"].ToString() ?? "";
@@ -60,6 +60,26 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 LoantState_SelectedIndexChanged(null,null);
 
             }
+        }
+
+        private void GetLoanSteps()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            string fDate = this.txtfrmdate.Text;
+            string tDate = this.txttodate.Text;
+            string lType = (this.ddlLoanTypeSearch.SelectedValue.Trim().ToString() == "") ? "%%" : this.ddlLoanTypeSearch.SelectedValue.ToString();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANSTEPS", fDate, tDate, usrid, lType, "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+            DataTable dt = ds1.Tables[0];
+
+            loanSteps.DataSource = dt;
+            loanSteps.DataTextField = "stepname";
+            loanSteps.DataValueField = "id";
+            loanSteps.DataBind(); 
         }
 
 
@@ -1182,6 +1202,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 }
 
             }
+        }
+
+        protected void loanSteps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
