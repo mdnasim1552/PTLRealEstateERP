@@ -231,6 +231,24 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView gvQC;
 
         /// <summary>
+        /// pnlCustomerCare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCustomerCare;
+
+        /// <summary>
+        /// gvCustomerCare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCustomerCare;
+
+        /// <summary>
         /// lblprintstkl control.
         /// </summary>
         /// <remarks>

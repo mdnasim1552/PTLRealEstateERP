@@ -44,8 +44,7 @@ namespace RealERPWEB.F_30_Facility
             List<EClass_Complain_List> obj = ds.Tables[0].DataTableToList<EClass_Complain_List>();
             Bind_Grid(obj);
             ddlProject.Enabled = false;
-            ddlCustomer.Enabled = false;
-            ddlIssueType.Enabled = false;
+            ddlCustomer.Enabled = false;           
             pnlComplain.Visible = true;
             btnOKClick.Enabled = false;
             DataTable dt = ds.Tables[1];
@@ -55,7 +54,7 @@ namespace RealERPWEB.F_30_Facility
                 ddlCommunicationType.SelectedValue = dt.Rows[0]["communicationtype"].ToString();
                 txtEstimatedDate.Text = dt.Rows[0]["estimateddate"].ToString();
                 txtNarration.Text = dt.Rows[0]["addremarks"].ToString();
-                ddlIssueType.SelectedValue = dt.Rows[0]["issuetype"].ToString();
+               //ddlIssueType.SelectedValue = dt.Rows[0]["issuetype"].ToString();
                 ddlProject.SelectedValue = dt.Rows[0]["pactcode"].ToString();
                 ddlCustomer.SelectedValue = dt.Rows[0]["custcode"].ToString();
                 getHandOverAndUnit();
@@ -156,8 +155,9 @@ namespace RealERPWEB.F_30_Facility
                 {
                     //Error Message Show
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Data Found Regarding Hand Over Date." + "');", true);
-                    lblHandOverDateText.Text = "None Found";
-                    lblWarrantyRemainText.Text = "None";
+                    lblHandOverDateText.Text = "Before Hand Over";
+                    lblWarrantyRemainText.Text = "N/A";
+                    ddlWarranty.SelectedValue = "43003";
                 }
                 else
                 {
@@ -232,19 +232,20 @@ namespace RealERPWEB.F_30_Facility
             if (btnOKClick.Text == "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK")
             {
                 ddlProject.Enabled = false;
-                ddlCustomer.Enabled = false;
-                ddlIssueType.Enabled = false;
+                ddlCustomer.Enabled = false;                
                 pnlComplain.Visible = true;
                 getHandOverAndUnit();
 
+                
                 btnOKClick.Text = "<span class='fa fa-arrow-circle-left' style='color: white;' aria-hidden='true'></span> New";
             }
             else
             {
                 ddlProject.Enabled = true;
-                ddlCustomer.Enabled = true;
-                ddlIssueType.Enabled = true;
+                ddlCustomer.Enabled = true;                
                 pnlComplain.Visible = false;
+                var obj = new List<EClass_Complain_List>();
+                Bind_Grid(obj);
                 btnOKClick.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
             }
         }
@@ -266,10 +267,13 @@ namespace RealERPWEB.F_30_Facility
                 }
                 string complainDesc = txtComplainDesc.Text;
                 string remarks = txtComplainRemarks.Text;
+                string issueType = ddlIssueType.SelectedItem.Text.ToString();
+                string issueId = ddlIssueType.SelectedValue.ToString();
                 if (complainDesc != "")
                 {
-                    obj.Add(new EClass_Complain_List { complainId = complainId, complainDesc = complainDesc, remarks = remarks });
-                    Bind_Grid(obj);
+                    obj.Add(new EClass_Complain_List { complainId = complainId, complainDesc = complainDesc, remarks = remarks, issueType=issueType, issueId=issueId });
+                    var objOrdered=obj.OrderBy(x => x.issueId).ToList();
+                    Bind_Grid(objOrdered);
                     txtComplainDesc.Text = "";
                     txtComplainRemarks.Text = "";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Added to the Table" + "');", true);
@@ -285,9 +289,28 @@ namespace RealERPWEB.F_30_Facility
             }
 
         }
+
+        private void HiddenSameValues(List<EClass_Complain_List> obj)
+        {
+            if (obj.Count > 0 && obj!=null)
+            {
+                string issueId = obj[0].issueId;
+                for (int i = 1; i < obj.Count; i++)
+                {
+                    if (obj[i].issueId == issueId)
+                    {
+                        obj[i].issueType = "";
+                    }
+                    issueId = obj[i].issueId;
+                }
+            }
+            ViewState["ComplainList"] = obj;
+
+        }
         private void Bind_Grid(List<EClass_Complain_List> obj)
         {
             ViewState["ComplainList"] = obj;
+            HiddenSameValues(obj);
             dgv1.DataSource = obj;
             dgv1.DataBind();
         }
@@ -298,8 +321,14 @@ namespace RealERPWEB.F_30_Facility
             {
                 GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int RowIndex = gvr.RowIndex;
+                
                 EClass_Complain_List obj = ((List<EClass_Complain_List>)ViewState["ComplainList"])[RowIndex];
                 List<EClass_Complain_List> list = (List<EClass_Complain_List>)ViewState["ComplainList"];
+                var obj1=list.Where(x => x.issueId==obj.issueId).ToList();
+                if (obj1.Count > 1)
+                {
+                    list[RowIndex + 1].issueType = obj.issueType;
+                }
                 list.Remove(obj);
                 Bind_Grid(list);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{obj.complainDesc} is removed from the table" + "');", true);
@@ -314,8 +343,8 @@ namespace RealERPWEB.F_30_Facility
         {
             GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
             int RowIndex = gvr.RowIndex;
-
-            string id = ((List<EClass_Complain_List>)ViewState["ComplainList"])[RowIndex].complainId.ToString();
+            List<EClass_Complain_List> obj = (List<EClass_Complain_List>)ViewState["ComplainList"];
+            string id = obj[RowIndex].complainId.ToString();
             string complainDesc = ((List<EClass_Complain_List>)ViewState["ComplainList"])[RowIndex].complainDesc.ToString();
             string remarks = ((List<EClass_Complain_List>)ViewState["ComplainList"])[RowIndex].remarks.ToString();
             lblId.Text = id;
@@ -364,9 +393,10 @@ namespace RealERPWEB.F_30_Facility
                     string estimateddate = txtEstimatedDate.Text;
                     string addremarks = txtNarration.Text;
                     string userId = hst["usrid"].ToString();
-                    string issuetype = ddlIssueType.SelectedValue.ToString();
+                    //string issuetype = ddlIssueType.SelectedValue.ToString();
 
-                    DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINB", null, null, null, complno, pactcode, custcode, unit, warranty, compldate, comunicationtype, estimateddate, addremarks, issuetype, "", "", "",
+                    DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINB", null, null, null, complno, pactcode, custcode, unit, 
+                        warranty, compldate, comunicationtype, estimateddate, addremarks, "", "", "", "",
                         "", "", "", "", "", "", userId);
                     DataTable dt = ds.Tables[0];
                     if (dt != null || dt.Rows.Count > 0)
@@ -380,7 +410,8 @@ namespace RealERPWEB.F_30_Facility
 
                             foreach (var item in list)
                             {
-                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINA", dt.Rows[0]["complno"].ToString(), item.complainDesc, item.remarks, i.ToString(), "", "", "", "", "", "", "", "",
+                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINA", dt.Rows[0]["complno"].ToString(), 
+                                    item.complainDesc, item.remarks, i.ToString(), item.issueId.ToString(), "", "", "", "", "", "", "",
                                         "", "", "", "", "", "", "", "", "", "", userId);
                                 resultCompA.Add(resultA);
 

@@ -109,6 +109,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
                     pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
                     getComplainList();
                     break;
                 case "1":
@@ -119,6 +120,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
                     pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
                     getDiagnosisList();
                     break;
                 case "2":
@@ -129,6 +131,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
                     pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
                     getBudget();
                     break;
                 case "3":
@@ -139,6 +142,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
                     pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
                     getBudgetApproval();
                     break;
                 case "4":
@@ -149,6 +153,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlApproval.Visible = true;
                     pnlMatReq.Visible = false;
                     pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
                     getQuotList();
                     break;
                 case "5":
@@ -159,6 +164,7 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = true;
                     pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
                     getMATREQ();
                     break;
                 case "7":
@@ -169,7 +175,19 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
                     pnlQC.Visible = true;
+                    pnlCustomerCare.Visible = false;
                     getQC();
+                    break;
+                case "8":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
+                    pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = true;
+                    getCustomerCare();
                     break;
             }
         }
@@ -238,6 +256,16 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETQCLIST", date1, date2, "", "", "", "", "", "", "", "", "");
             gvQC.DataSource = ds.Tables[0];
             gvQC.DataBind();
+        }
+
+        private void getCustomerCare()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETCUSTOMERCARE", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvCustomerCare.DataSource = ds.Tables[0];
+            gvCustomerCare.DataBind();
         }
 
         protected void lnkEdit_Click(object sender, EventArgs e)
@@ -485,6 +513,7 @@ namespace RealERPWEB.F_99_Allinterface
             pnlApproval.Visible = false;
             pnlMatReq.Visible = false;
             getComplainList();
+            RadioButtonList1_SelectedIndexChanged(null, null);
         }
 
         protected void gvDiagnosis_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -580,8 +609,17 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkdg");
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
 
-                hlink.NavigateUrl = "~/F_30_Facility/ComplainQC.aspx?DgNo=" + dgno;
+                hlink.NavigateUrl = "~/F_30_Facility/ComplainQC.aspx?Type=QC&DgNo=" + dgno;
                
+            }
+        }
+        protected void gvCustomerCare_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkdg");
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                hlink.NavigateUrl = "~/F_30_Facility/ComplainQC.aspx?Type=CustomerCare&DgNo=" + dgno;
             }
         }
     }

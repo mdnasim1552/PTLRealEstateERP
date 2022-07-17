@@ -20,10 +20,11 @@ namespace RealERPWEB.F_30_Facility
             if (!IsPostBack)
             {
                 txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                getProjUnitddl();                
+                getProjUnitddl();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Engineer Check/Diagnosis";
                 txtSiteVisisted.Text = System.DateTime.Now.AddDays(2).ToString("dd-MMM-yyyy");
                 txtwdtime.Text = System.DateTime.Now.AddDays(3).ToString("dd-MMM-yyyy");
+                loadWork();
                 if (Request.QueryString["Dgno"] != null && Request.QueryString["ComplNo"] != null)
                 {
                     EditFunctionality();
@@ -61,7 +62,7 @@ namespace RealERPWEB.F_30_Facility
                 txtEntryDate.Text = Convert.ToDateTime(row["dgdate"].ToString()).ToString("dd-MMM-yyyy");
             }
             DataSet ds01 = getComplainForm();
-            if(ds01 == null)
+            if (ds01 == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                 return;
@@ -101,13 +102,31 @@ namespace RealERPWEB.F_30_Facility
             string comcod = GetComCode();
             string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCOMPLAINUSER", complno, "", "", "", "", "", "", "", "", "", "");
-            DataTable dt01 = ds.Tables[0];
+            DataTable dt01 = ds.Tables[0];           
             dgvUser.DataSource = dt01;
-            dgvUser.DataBind();            
+            dgvUser.DataBind();
             return ds;
         }
 
+        private void loadWork()
+        {
+            try
+            {
+                string comcod = GetComCode();
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETWORKTYPEDDL", "", "", "", "", "", "", "", "", "", "", "");
+                if (ds == null)
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                ddlIssueType.DataSource = ds.Tables[0];
+                ddlIssueType.DataTextField = "sirdesc";
+                ddlIssueType.DataValueField = "sircode";
+                ddlIssueType.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
 
+        }
 
 
         private void getComplainUser()
@@ -119,7 +138,7 @@ namespace RealERPWEB.F_30_Facility
                     ddlComplain.SelectedValue = Request.QueryString["ComplNo"].ToString();
                     ddlComplain.Enabled = false;
                 }
-                DataSet ds=getComplainForm();
+                DataSet ds = getComplainForm();
                 if (ds == null)
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                 DataTable dt01 = ds.Tables[0];
@@ -134,7 +153,7 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
                 ViewState["ComplainList"] = obj;
                 Bind_Grid(obj);
-                
+
             }
             catch (Exception ex)
             {
@@ -153,10 +172,13 @@ namespace RealERPWEB.F_30_Facility
                 }
                 string complainDesc = txtComplainDesc.Text;
                 string remarks = txtComplainRemarks.Text;
+                string issueType = ddlIssueType.SelectedItem.Text.ToString();
+                string issueId = ddlIssueType.SelectedValue.ToString();
                 if (complainDesc != "")
                 {
-                    obj.Add(new EClass_Complain_List { complainId = complainId, complainDesc = complainDesc, remarks = remarks });
-                    Bind_Grid(obj);
+                    obj.Add(new EClass_Complain_List { complainId = complainId, complainDesc = complainDesc, remarks = remarks, issueType = issueType, issueId = issueId });
+                    var objOrdered = obj.OrderBy(x => x.issueId).ToList();
+                    Bind_Grid(objOrdered);
                     txtComplainDesc.Text = "";
                     txtComplainRemarks.Text = "";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Added to the Table" + "');", true);
@@ -174,11 +196,29 @@ namespace RealERPWEB.F_30_Facility
             }
 
         }
+        private void HiddenSameValues(List<EClass_Complain_List> obj)
+        {
+            if (obj.Count > 0 && obj != null)
+            {
+                string issueId = obj[0].issueId;
+                for (int i = 1; i < obj.Count; i++)
+                {
+                    if (obj[i].issueId == issueId)
+                    {
+                        obj[i].issueType = "";
+                    }
+                    issueId = obj[i].issueId;
+                }
+            }
+            ViewState["ComplainList"] = obj;
+
+        }
         private void Bind_Grid(List<EClass_Complain_List> obj)
         {
             try
             {
                 ViewState["ComplainList"] = obj;
+                HiddenSameValues(obj);
                 dgv1.DataSource = obj;
                 dgv1.DataBind();
             }
@@ -194,8 +234,14 @@ namespace RealERPWEB.F_30_Facility
             {
                 GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int RowIndex = gvr.RowIndex;
+
                 EClass_Complain_List obj = ((List<EClass_Complain_List>)ViewState["ComplainList"])[RowIndex];
                 List<EClass_Complain_List> list = (List<EClass_Complain_List>)ViewState["ComplainList"];
+                var obj1 = list.Where(x => x.issueId == obj.issueId).ToList();
+                if (obj1.Count > 1)
+                {
+                    list[RowIndex + 1].issueType = obj.issueType;
+                }
                 list.Remove(obj);
                 Bind_Grid(list);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{obj.complainDesc} is removed from the table" + "');", true);
@@ -303,7 +349,8 @@ namespace RealERPWEB.F_30_Facility
                     string addremarks = txtNarration.Text;
 
 
-                    DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISB", null, null, null, dgno, complno, dgdate, sitevisiteddate, estimatedwddate, addremarks,
+                    DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISB", null, null, null, dgno, complno, dgdate, 
+                        sitevisiteddate, estimatedwddate, addremarks,
                         "", "", "", "", "", "", "", "", "", "", "", "", "", userId);
                     if (ds == null)
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
@@ -319,7 +366,8 @@ namespace RealERPWEB.F_30_Facility
 
                             foreach (var item in list)
                             {
-                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISA", dt.Rows[0]["dgno"].ToString(), item.complainDesc, item.remarks, i.ToString(), "", "", "", "", "", "", "", "",
+                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISA", dt.Rows[0]["dgno"].ToString(), 
+                                    item.complainDesc, item.remarks, i.ToString(), item.issueId.ToString(), "", "", "", "", "", "", "",
                                         "", "", "", "", "", "", "", "", "", "", userId);
                                 resultCompA.Add(resultA);
                                 i++;
@@ -331,6 +379,7 @@ namespace RealERPWEB.F_30_Facility
                             else
                             {
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dt.Rows[0]["dgno"].ToString()} - Updated Successful" + "');", true);
+                                Response.Redirect("~/F_30_Facility/EngrCheck.aspx?Type=Edit&ComplNo=" + complno + "&Dgno=" + dt.Rows[0]["dgno"].ToString());
                                 if (dgno == "0")
                                 {
                                     ClearPage();
