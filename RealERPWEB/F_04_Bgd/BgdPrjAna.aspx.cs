@@ -2908,22 +2908,14 @@ namespace RealERPWEB.F_04_Bgd
 
         protected void gvResInfo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
-
-
             bool rlock = Convert.ToBoolean(((DataTable)Session["tblActRes1"]).Rows[0]["lock"]);
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
-
                 if (rlock == true)
                 {
                     ((TextBox)e.Row.FindControl("txtgvResRat")).ReadOnly = true;
 
                 }
-
-
-
             }
 
         }
@@ -2982,6 +2974,38 @@ namespace RealERPWEB.F_04_Bgd
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
+        protected void lbtnDelWork_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblActAna1"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string comcod = hst["comcod"].ToString();
+            string Prjcode = this.ddlProject.SelectedValue.ToString();
+            string Itemcode = ((Label)this.gvAnalysis.Rows[rowIndex].FindControl("lblgvItmCod")).Text.Trim();
+            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "DELETEITEME", Prjcode, Itemcode,
+                            "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (result == true)
+            {
+                int rowindex = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + rowIndex;
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            this.gvAnalysis.DataSource = dv.ToTable();
+            this.gvAnalysis.DataBind();
+            Session.Remove("tblActAna1");
+            Session["tblActAna1"] = dv.ToTable();
+            this.ShowScheduledItemList();
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Constraction Budget(Indevidual Floor)";
+                string eventdesc = "Floor Delete";
+                string eventdesc2 = Itemcode;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
     }
