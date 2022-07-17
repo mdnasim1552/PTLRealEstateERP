@@ -91,6 +91,8 @@ namespace RealERPWEB.F_17_Acc
                     this.txttorange.Visible = true;
                     this.txttorange.Visible = true;
                     this.chkPdc.Visible = true;
+                    this.chkhonour.Visible = true;
+
 
 
 
@@ -361,7 +363,9 @@ namespace RealERPWEB.F_17_Acc
                 double torange = Convert.ToDouble("0" + this.txttorange.Text.ToString()) == 0 ? 2000000000000 : Convert.ToDouble(txttorange.Text);
                 string BankName = ((this.ddlBankName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlBankName.SelectedValue.ToString()) + "%";
                 string onlypdc = chkPdc.Checked ? "Pdc" : "";
-                DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", "REPORTCHEQUEISSUEWISE", frmdate, todate, voutype, "", "", "", BankName, frmrange.ToString(), torange.ToString(), onlypdc);
+                string honoured = chkhonour.Checked ? "Honoured" : "";
+
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", "REPORTCHEQUEISSUEWISE", frmdate, todate, voutype, "", "", "", BankName, frmrange.ToString(), torange.ToString(), onlypdc, honoured);
                 if (ds1 == null)
                 {
                     this.dgv2.DataSource = null;
@@ -894,6 +898,26 @@ namespace RealERPWEB.F_17_Acc
 
 
 
+
+        }
+
+        protected void chkhonour_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkhonour.Checked)
+            {
+                chkPdc.Checked = false;
+            }
+
+        }
+
+        protected void chkPdc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPdc.Checked)
+            {
+                chkhonour.Checked = false;
+            }
+
+            
 
         }
     }

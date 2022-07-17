@@ -29,6 +29,8 @@
             });
         }
 
+    
+
     </script>
 
 
@@ -109,7 +111,8 @@
                                         
                                         <asp:Label ID="lbltorange" runat="server" CssClass="smLbl_to" Visible="false">To </asp:Label>
                                         <asp:TextBox ID="txttorange" runat="server" CssClass="inputTxt inputName inpPixedWidth" Width="100px" Visible="false"></asp:TextBox> 
-                                         <asp:CheckBox ID="chkPdc" runat="server"  TabIndex="10" Text="Only PDC " CssClass="btn btn-primary checkBox" AutoPostBack="True" Visible="false"/>
+                                         <asp:CheckBox ID="chkPdc" runat="server"   TabIndex="10" Text="Only PDC " CssClass="btn btn-primary checkBox" AutoPostBack="True" Visible="false" OnCheckedChanged="chkPdc_CheckedChanged"/>
+                                         <asp:CheckBox ID="chkhonour" runat="server"   TabIndex="11" Text="Honoured" CssClass="btn btn-primary checkBox" AutoPostBack="True" Visible="false" OnCheckedChanged="chkhonour_CheckedChanged"/>
                                                        
                                                 
                                        <asp:Label ID="lblPage" runat="server" CssClass=" smLbl_to" Visible="false">Page Size</asp:Label>
