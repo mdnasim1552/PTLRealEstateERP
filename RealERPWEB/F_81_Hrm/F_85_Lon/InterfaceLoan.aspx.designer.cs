@@ -204,6 +204,24 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.GridView gvProcess;
 
         /// <summary>
+        /// pnlStep8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlStep8;
+
+        /// <summary>
+        /// gvStep8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvStep8;
+
+        /// <summary>
         /// pnlLoanAppr control.
         /// </summary>
         /// <remarks>
