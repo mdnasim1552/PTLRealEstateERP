@@ -186,6 +186,24 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.DropDownList ddlRpName;
 
         /// <summary>
+        /// lblsegment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblsegment;
+
+        /// <summary>
+        /// ddlRange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRange;
+
+        /// <summary>
         /// AssenCheque control.
         /// </summary>
         /// <remarks>
