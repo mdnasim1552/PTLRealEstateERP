@@ -504,7 +504,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (result)
             {
                 //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
-                string Messaged = "Approved Request Forward  successfully";
+                string Messaged = "Approved Request Forward successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentl('" + Messaged + "');", true);
 
                 int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
@@ -556,8 +556,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (ConstantInfo.LogStatus == true)
                 {
-                    string eventtype = "Leave Requset Delete";
-                    string eventdesc = "Leave Requset Delete, Employe id" + empid;
+                    string eventtype = "Request Requset Delete";
+                    string eventdesc = "Request Requset Delete, Employe id" + empid;
                     string eventdesc2 = leavid;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
@@ -598,8 +598,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (ConstantInfo.LogStatus == true)
                 {
-                    string eventtype = "Requset Canceld";
-                    string eventdesc = "Requset Cancel, Employe id" + empid;
+                    string eventtype = "Request Canceled";
+                    string eventdesc = "Request Cancel, Employe id" + empid;
                     string eventdesc2 = leavid;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }

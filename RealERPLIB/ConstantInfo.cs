@@ -141,7 +141,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0201000", "0201180", "F_02_Fea", "FeaPrjGenInformation", "", "Project Gen. Information", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0202000", "0202190", "F_02_Fea", "FeaProjectCost", "", "Project Feasibility", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0202000", "0202191", "F_02_Fea", "EntryProjectFesibility05", "", "Trading Feasibility 02 ", "Feasibility", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0202000", "0102192", "F_02_Fes", "RptEstProfitloss", "", "RPL Product Costing (RTL)", "Land Proposal", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0202000", "0202192", "F_02_Fes", "RptEstProfitloss", "", " Product Costing (RPL)", "Feasibility", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "0202000", "0202193", "F_02_Fea", "RptProductCost", "", " Product Cost Analysis", "Feasibility", "False", "False", "False", "False" });
+
+
+
+
 
             tblObj.Rows.Add(new Object[] { "0203000", "0203200", "F_02_Fea", "RptPrjFeasibility04?", "Type=SoldUSold", "Sales Statement", "Feasibility", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0203000", "0203201", "F_02_Fea", "RptPrjFeasibility04?", "Type=GPNPALLPRO", "Feasibility Top Sheet", "Feasibility", "False", "False", "False", "False" }); ;
@@ -1241,6 +1247,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2303000", "2303120", "F_23_CR", "RptCustomerDues?", "Type=Report", "Customer Dues Information", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303121", "F_23_CR", "RptDuesReportAll", "", "Dues Report ALL", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303122", "F_23_CR", "RptOtherCollHistory", "", "Other's Collection History", "Credit Realization", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2303000", "2303130", "F_23_CR", "CustChDishoner", "", "List of Return Cheque -01", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303140", "F_23_CR", "RptTransactionSt?", "Type=TransDateWise", "Daily Collection(Date Wise)", "Credit Realization", "False", "False", "False", "False" });
@@ -1749,14 +1756,15 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "5103000", "5103003", "F_14_Pro", "RptPaymetDueAllPrj", "", "Land Owner Payment Dues", "Budget-Land", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "5151000", "5151001", "F_99_Allinterface", "BudgetInterface", "", "Budget", "Budget-Interface", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "5151000", "5151002", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
 
             #endregion
 
             //30. Facility Management
 
             #region Facility Management
-            
-            tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
+
+           // tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
 
 
             #endregion
@@ -3440,6 +3448,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             //mnuTbl1.Rows.Add(new Object[] { "0304000000", "01. Land Proposal Report", "F_01_LPA/PriLandProposal?Type=Report&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Project Feasibility Report", "F_02_Fea/RptProjectFeasibility?Type=Report&prjcode=", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0303000002", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000003", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000004", "", "", "", true, "" });
@@ -3630,11 +3639,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000004", "05. Cost Details - 02", "F_02_Fea/RptProjectFeasibility03?Type=Cost", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000005", "06. Revenue Details - 02", "F_02_Fea/RptProjectFeasibility03?Type=Revenue", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000006", "07. Revised Feasibility", "F_02_Fea/RptRevsiFeasibility?Type=RevFeaCL", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000006", "08. Product Costing (RTL)", "F_02_Fea/RptEstProfitloss", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000006", "08. Product Costing (RPL)", "F_02_Fea/RptEstProfitloss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Provisional Budget Report", "F_02_Fea/RptProjectFeasibility?Type=Report&prjcode=", "", true, "" });
 
-
+            mnuTbl1.Rows.Add(new Object[] { "0302000002", "02. Product Cost Analysis", "F_02_Fea/RptProductCost", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0302000002", "", "", "", true, "" });//"01. Project Feasibility 01", "F_02_Fea/ProjectFeasibility?Type=FeaEntry", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0302000003", "", "", "", true, "" });//"02. Project Feasibility 02", "F_02_Fea/ProjectFeasibility03?Type=FeaEntry", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0302000004", "", "", "", true, "" });//"03. Feasibility - Trading", "F_02_Fea/FeaProjectCost", "", true, "" });
@@ -7556,6 +7565,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "25. Dues Collection Statment", "F_23_CR/RptReceivedList02?Type=DuesCollect&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "26. Dues Collection Statment 02", "F_23_CR/RptReceivedList02?Type=DuesCollCR&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "26. Dues Report ALL", "F_23_CR/RptDuesReportAll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000008", "27. Other's Collection History", "F_23_CR/RptOtherCollHistory", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "27. Project Wise Clieint Status", "F_23_CR/RptReceivedList02?Type=ProClientst&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000010", "27. Project Wise Clieint Status 02", "F_23_CR/RptPrjWiseClientStatus02", "", true, "" });

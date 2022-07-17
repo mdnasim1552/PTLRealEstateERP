@@ -561,7 +561,7 @@
 
                             <asp:Panel ID="Panel2" runat="server" Visible="False">
                                 <asp:Label ID="lblReqNarr" runat="server" Text="Narration:" CssClass="lblName lblTxt"></asp:Label>
-                                <asp:TextBox ID="txtMSRNarr" runat="server" Width="322px" CssClass="inputtextbox"></asp:TextBox>
+                                <asp:TextBox ID="txtMSRNarr" runat="server" Width="322px" CssClass="inputtextbox" TextMode="MultiLine" Rows="3"></asp:TextBox>
                             </asp:Panel>
                         </div>
                     </div>

@@ -1052,6 +1052,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3356":
                 case "3366":
                 case "3367":
+                case "3368": //finlay
 
                     narration = "";
                     break;

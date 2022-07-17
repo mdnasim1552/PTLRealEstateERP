@@ -1,4 +1,5 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,9 +30,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 GetRemaningTime();
                 this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
                 this.txtToTime.Text = System.DateTime.Now.ToString("HH:mm");
-
-
             }
+        }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+
         }
 
         private string GetCompCode()
@@ -58,13 +63,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, frmdate, tdate, "", "", "", "", "", "");
             if (ds1 == null)
+            {
+                this.gvLvReq.DataSource = null;
+                this.gvLvReq.DataBind();
                 return;
+
+            }
             DateTime useTime = ds1.Tables[2].Rows.Count == 0 ? DateTime.Parse("06:00") : DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
             if (ds1.Tables[0].Rows.Count != 0)
             {
 
                 DateTime maxTime = DateTime.Parse("06:00");
+
+                Session["tblleavhistory"] = ds1.Tables[0];
 
                 this.gvLvReq.DataSource = (ds1.Tables[0]);
                 this.gvLvReq.DataBind();
@@ -273,7 +285,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
 
             string comcod = this.GetCompCode();
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.[SP_REPORT_HR_MGT_INTERFACE]", "GETATTAPPID", empid, "", "", "", "", "", "", "", "");
+            string applydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("yyyyMMdd");
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.[SP_REPORT_HR_MGT_INTERFACE]", "GET_TLV_APPLY_ID", empid, applydat, "", "", "", "", "", "", "");
             string lstid = ds5.Tables[0].Rows[0]["ltrnid"].ToString().Trim();
             return lstid;
         }
@@ -287,6 +300,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DateTime fodate = Convert.ToDateTime(this.txtaplydate.Text.ToString() + " " + txtFromTime.Text.ToString());
             DateTime Offic_end = Convert.ToDateTime(cdate + " 05:30 PM");
             DateTime Offic_ST = Convert.ToDateTime(cdate + " 09:00 AM");
+            string addMin = Convert.ToDateTime(txtFromTime.Text).ToString("HH:mm");
+            this.txtToTime.Text = Convert.ToDateTime(addMin).AddMinutes(30).ToString("HH:mm");
+
+
+
             if (Offic_ST > fodate || Offic_end < fodate)
             {
                 this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
@@ -441,14 +459,55 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             }
 
+            GetRemaningTime();
 
             string Messagesd = "Deleted Success";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
-            GetRemaningTime();
+      
 
             string eventdesc2 = "Leave Request deleted, Request ID by:  " + trnid;
             bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "Delete Time Of Leave Request", eventdesc2, "");
+
+        }
+
+        private void lnkPrint_Click(object sender, EventArgs e)
+        {
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string comsnam = hst["comsnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            //string session = hst["session"].ToString();
+            //string username = hst["username"].ToString();
+            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            //DataTable dt = (DataTable)Session["tblleavhistory"];
+            //var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.applytimeoff>();
+            //LocalReport Rpt1 = new LocalReport();
+
+
+            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptTimeOff", list, null, null);
+            //Rpt1.EnableExternalImages = true;
+
+            //Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            //Rpt1.SetParameters(new ReportParameter("RptTitle", "Civil Construction BOQ"));
+            //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            //Rpt1.SetParameters(new ReportParameter("EmpName", username));
+            //Rpt1.SetParameters(new ReportParameter("Desig", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("IdCard", ComLogo));
+
+
+            //Session["Report1"] = Rpt1;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
         }
     }
+
 }

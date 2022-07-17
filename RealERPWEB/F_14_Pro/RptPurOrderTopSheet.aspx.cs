@@ -33,7 +33,7 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-            private string GetCompCode()
+        private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());

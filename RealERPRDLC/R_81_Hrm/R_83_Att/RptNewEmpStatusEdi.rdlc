@@ -1948,7 +1948,25 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Daily Late Time</Value>
+                                  <Value>Late</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value> Time</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
@@ -1989,7 +2007,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Daily Early Leave Time</Value>
+                                  <Value>Early Leave Time</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
@@ -2587,7 +2605,6 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2599,16 +2616,18 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(CDbl(Fields!dlathour.Value))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
-                                    <FontWeight>=iif(TimeValue(Fields!stdtimeout.Value)&gt;TimeValue(Fields!actualout.Value), "Bold","Default")</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <Color>=iif(TimeValue(Fields!stdtimeout.Value)&gt;TimeValue(Fields!actualout.Value), "Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox58</rd:DefaultName>
@@ -2623,6 +2642,7 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2634,16 +2654,18 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(CDbl(Fields!derlevtimehour.Value))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
-                                    <FontWeight>=iif(TimeValue(Fields!stdtimeout.Value)&gt;TimeValue(Fields!actualout.Value), "Bold","Default")</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <Color>=iif(TimeValue(Fields!stdtimeout.Value)&gt;TimeValue(Fields!actualout.Value), "Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox59</rd:DefaultName>

@@ -251,7 +251,6 @@
                 </div>
             </div>
 
-
             <%--  <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
 
@@ -306,9 +305,6 @@
                                     </div>
                                 </div>
                         </fieldset>--%>
-
-
-
             <div class="row">
                 <asp:Panel ID="PnlProRemarks" runat="server" Visible="False">
                 </asp:Panel>
