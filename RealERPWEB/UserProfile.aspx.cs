@@ -239,7 +239,7 @@ namespace RealERPWEB
 
             this.longTermTitle.InnerText = "EMPLOYEE LONG TERM SERVICE-"+curr_year;
             DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "LONGTERMSERVICE", "","", "", "", "", "", "");
-            if (ds == null)
+            if (ds == null || ds.Tables[0].Rows.Count==0)
             {
                 return;
             }
@@ -1260,6 +1260,45 @@ namespace RealERPWEB
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNoticeModal();", true);
             
+        }
+
+        //protected void view_emp_click(object sender, EventArgs e)
+        //{
+        //    GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //    int RowIndx = row.RowIndex;
+
+        //    int columnIndex = gvServiceInfo.CurrentCell.ColumnIndex;
+        //    int rowIndex = gvServiceInfo.CurrentCell.RowIndex;
+
+
+
+
+
+        //}
+
+        protected void gvServiceInfo_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow gvr = (GridViewRow)((Button)e.CommandSource).NamingContainer;
+
+            int RowIndex = gvr.RowIndex;
+            string year = "";
+            string month = ((Label)this.gvServiceInfo.Rows[RowIndex].FindControl("lblserviceMonth")).Text.ToString();
+            year = Convert.ToString(e.CommandArgument.ToString());
+            this.empdettitle.InnerText = "EMPLOYEE LONG TERM SERVICE("+year+" Years)";
+            string comcod = this.GetCompCode();
+    
+
+
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "LONGTERMSERVICEDET", month,year, "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+            {
+                return;
+            }
+            DataTable dt = ds.Tables[0];
+
+            this.gvEmpDet.DataSource = dt;
+            this.gvEmpDet.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openEmpModal();", true);
         }
     }
 

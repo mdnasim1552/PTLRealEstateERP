@@ -534,6 +534,8 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string reqstatus { get; set; }
             public string useTimeMin { get; set; }
             public string remaintime { get; set; }
+            public string dptuser { get; set; }
+            public string supname { get; set; }
             public applytimeoff() { }
         }
     }
