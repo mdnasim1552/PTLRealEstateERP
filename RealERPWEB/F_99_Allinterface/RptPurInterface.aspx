@@ -745,10 +745,10 @@
                         break;
 
 
-                    case 3367:  //Epic                   
-
+                    case 3367:  //Epic  
+                                             
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
+                        //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();

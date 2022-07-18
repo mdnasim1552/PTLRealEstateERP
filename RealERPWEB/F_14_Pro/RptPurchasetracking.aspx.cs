@@ -336,6 +336,8 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 case "3348": //Credence
+                case "3367": //Epic
+
                     comprecom = "firstasecapp";
                     break;
 
