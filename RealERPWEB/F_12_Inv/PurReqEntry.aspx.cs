@@ -1589,7 +1589,7 @@ namespace RealERPWEB.F_12_Inv
                     switch (comcod)
                     {
                         //case "3338": //ACME
-                        case "3367": //EPic
+                       // case "3367": //EPic
                         case "3368": //Finlay
                        // case "3101": //Model
 
