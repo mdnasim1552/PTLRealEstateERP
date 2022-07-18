@@ -70,7 +70,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3339":
-                case "3101":
+               // case "3101":
                     mrprint = "MRPrint5";
                     break;
 
@@ -89,8 +89,8 @@ namespace RealERPWEB.F_17_Acc
                     mrprint = "MRPrintIntech";
                     break;
 
-                //Finlay
-                //case "3101":
+                
+                case "3101": //Finlay
                 case "3368":
                     mrprint = "MRPrintFinlay";
                     break;
@@ -174,6 +174,7 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
                 case "3101":
+                case "3368":                   
                 case "3356":
                 case "3325":
                 case "2325":
@@ -508,10 +509,13 @@ namespace RealERPWEB.F_17_Acc
 
                 string paytype1 = "";
                 string amt22 = amt1t.Replace("(", "").Replace("Taka", "").Replace(")", "").Trim();
+
+                string pertype = ((Installment == "") ? rectype : Installment);
                 if (paytype == "CHEQUE" || paytype == "P.O")
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptFinlay", list, null, null);
                     paytype1 = "CHEQUE/" + "\n" + "PO";
+                    //Rpt1.SetParameters(new ReportParameter("takainword1", pertype));
                 }
                 else
                 {
@@ -539,6 +543,9 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("amount1", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
                 Rpt1.SetParameters(new ReportParameter("takainword",  amt22));
                 Rpt1.SetParameters(new ReportParameter("takainword1", amt22));
+                Rpt1.SetParameters(new ReportParameter("txtperpose", pertype));
+
+
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("paytype", paytype1));
 

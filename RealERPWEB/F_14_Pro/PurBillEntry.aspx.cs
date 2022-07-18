@@ -176,7 +176,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
                 // case "3336":
-                //case "3101":
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill04";
 
@@ -206,7 +206,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
                               
-                case "3101":
+                //case "3101":
                 case "3366":// Lanco
                     PrintReq = "PrintBill09";
 

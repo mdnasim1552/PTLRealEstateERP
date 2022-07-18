@@ -1080,7 +1080,9 @@ namespace RealERPWEB.F_14_Pro
                     comprecom = "comprecom";
                     break;
 
+                case "3367": //Epic
                 case "3348": //Credence
+
                     comprecom = "firstasecapp";
                     break;
 
