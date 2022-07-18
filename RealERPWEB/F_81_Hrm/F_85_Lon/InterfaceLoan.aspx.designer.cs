@@ -204,22 +204,40 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.GridView gvProcess;
 
         /// <summary>
-        /// pnlStep8 control.
+        /// pnlStep3HOHR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStep8;
+        protected global::System.Web.UI.WebControls.Panel pnlStep3HOHR;
 
         /// <summary>
-        /// gvStep8 control.
+        /// gvStep3HOHR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvStep8;
+        protected global::System.Web.UI.WebControls.GridView gvStep3HOHR;
+
+        /// <summary>
+        /// pnlStepHOF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlStepHOF;
+
+        /// <summary>
+        /// gridViewHOFinance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridViewHOFinance;
 
         /// <summary>
         /// pnlLoanAppr control.
@@ -690,6 +708,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.TextBox txtLoanDescc;
 
         /// <summary>
+        /// gvLoanApprovalLog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvLoanApprovalLog;
+
+        /// <summary>
         /// lnkCancel control.
         /// </summary>
         /// <remarks>
@@ -733,6 +760,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkApprov;
+
+        /// <summary>
+        /// stepIDNEXT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField stepIDNEXT;
 
         /// <summary>
         /// loanID control.

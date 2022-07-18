@@ -42,7 +42,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
                 this.GetEmplist();
-                this.GetLoanSteps();
+               
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
                 string empid = hst["empid"].ToString() ?? "";
@@ -51,7 +51,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
                     ddlEmpList.Items.FindByValue(empid).Selected = true;
                 }
-
+                this.GetLoanSteps();
                 //this.getAllData();
                 this.GetLoanType();
                 this.GetGross();
@@ -72,209 +72,222 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string lType = (this.ddlLoanTypeSearch.SelectedValue.Trim().ToString() == "") ? "%%" : this.ddlLoanTypeSearch.SelectedValue.ToString();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANSTEPS", fDate, tDate, usrid, lType, "", "", "", "", "");
-           
-            DataTable dtstep = ds1.Tables[1];
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+
+            DataTable dtstep = ds1.Tables[0];
 
             loanSteps.DataSource = dtstep;
             loanSteps.DataTextField = "stepname";
             loanSteps.DataValueField = "id";
             loanSteps.DataBind();
 
-            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
-                return;
+            ViewState["tblauthuser"]= ds1.Tables[2];
 
             DataTable dt = new DataTable();
             DataView dv = new DataView();
 
+
+
+
+
             //pending
-            dt = ((DataTable)ds1.Tables[0]).Copy();
+            dt = ((DataTable)ds1.Tables[1]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("stepid <> 6 and stepid <> 7");
+            dv.RowFilter = ("stepid <> 8 and stepid <> 7");
             this.Data_Bind("gvPending", dv.ToTable());
 
             //Process (HOD)
-            dt = ((DataTable)ds1.Tables[0]).Copy();
+            dt = ((DataTable)ds1.Tables[1]).Copy();
             dv = dt.DefaultView;
             dv.RowFilter = ("stepid=2");
             this.Data_Bind("gvProcess", dv.ToTable());
 
             //// Approv (HOHR)
-            dt = ((DataTable)ds1.Tables[0]).Copy();
+            dt = ((DataTable)ds1.Tables[1]).Copy();
             dv = dt.DefaultView; 
-            dv.RowFilter = ("stepid=8");
-            this.Data_Bind("gvStep8", dv.ToTable());
+            dv.RowFilter = ("stepid=3");
+            this.Data_Bind("gvStep3HOHR", dv.ToTable());
 
 
-            //// Approved
-            //dt = ((DataTable)ds1.Tables[0]).Copy();
-            //dv = dt.DefaultView;//("digstatus = 'Diagnosis' and approved= '' ");
-            //dv.RowFilter = ("lnstatus=1 and isaproved=0 and iscancelled=0 ");
-            //this.Data_Bind("gvApproved", dv.ToTable());
+            //// Approv (HOHR)
+            dt = ((DataTable)ds1.Tables[1]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("stepid=4");
+            this.Data_Bind("gridViewHOFinance", dv.ToTable());
 
-            ////Generate
-            //dt = ((DataTable)ds1.Tables[0]).Copy();
-            //dv = dt.DefaultView;
-            //dv.RowFilter = ("isaproved=1 and lnno='' ");
-            //this.Data_Bind("gvGen", dv.ToTable());
+            // Approved
+            dt = ((DataTable)ds1.Tables[1]).Copy();
+            dv = dt.DefaultView;//("digstatus = 'Diagnosis' and approved= '' ");
+            dv.RowFilter = ("stepid=5");
+            this.Data_Bind("gvApproved", dv.ToTable());
 
-            ////Completed
-            //dt = ((DataTable)ds1.Tables[0]).Copy();
-            //dv = dt.DefaultView;
-            //dv.RowFilter = ("lnno <> ''");
-            //this.Data_Bind("gvCompleted", dv.ToTable());
+            //Generate
+            dt = ((DataTable)ds1.Tables[1]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("stepid=6");
+            this.Data_Bind("gvGen", dv.ToTable());
+
+            //Completed
+            dt = ((DataTable)ds1.Tables[1]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("lnno <> ''");
+            this.Data_Bind("gvCompleted", dv.ToTable());
 
 
-            //dt = ((DataTable)ds1.Tables[0]).Copy();
-            //dv = dt.DefaultView;
-            //dv.RowFilter = ("iscancelled=1 and isaproved=0 ");
+            dt = ((DataTable)ds1.Tables[1]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("iscancelled=1 and isaproved=0 and stepid=8 ");
             this.Data_Bind("gvCanc", dv.ToTable());
         }
 
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-          
-            this.getAllData();
-            this.LoantState_SelectedIndexChanged(null, null);
+                this.GetLoanSteps();
+            this.loanSteps.SelectedIndex = 0;
+
+            // this.getAllData();
+            this.loanSteps_SelectedIndexChanged(null, null);
         }
 
 
         private void getAllData()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string usrid = hst["usrid"].ToString();
-            string comcod = this.GetCompCode();
-            string fDate = this.txtfrmdate.Text;
-            string tDate = this.txttodate.Text;
-            string lType = (this.ddlLoanTypeSearch.SelectedValue.Trim().ToString()=="")?"%%":this.ddlLoanTypeSearch.SelectedValue.ToString();
+           // Hashtable hst = (Hashtable)Session["tblLogin"];
+           // string usrid = hst["usrid"].ToString();
+           // string comcod = this.GetCompCode();
+           // string fDate = this.txtfrmdate.Text;
+           // string tDate = this.txttodate.Text;
+           // string lType = (this.ddlLoanTypeSearch.SelectedValue.Trim().ToString()=="")?"%%":this.ddlLoanTypeSearch.SelectedValue.ToString();
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOAN", fDate, tDate, usrid, lType, "", "", "", "", "");
-            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
-              return;
+           // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOAN", fDate, tDate, usrid, lType, "", "", "", "", "");
+           // if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+           //   return;
 
-            this.LoantState.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["tloan"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Loan Queue</div></div></div>";
-            this.LoantState.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lpros"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description txt-white'>Loan Process <small>(HOD)</small></div></div></div>";
-            this.LoantState.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Loan eligibility <small>(HOHR)</small></div></div></div>";
-            this.LoantState.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'>Ready To Fund <small>(HO Finance)</small></div></div></div>";
-            this.LoantState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lgen"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description txt-white'>Loan Approval</div></div></div>";
-            this.LoantState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lgen"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'>Loan Generate <small>(HOHR)</small></div></div></div>";
-            this.LoantState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-green counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lcomp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content green'><div class='circle-tile-description txt-white'>Loan Completed</div></div></div>";
-            this.LoantState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading danger counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lcancel"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content danger'><div class='circle-tile-description txt-white'>Loan Cancelled</div></div></div>";
+           // this.LoantState.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["tloan"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Loan Queue</div></div></div>";
+           // this.LoantState.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lpros"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description txt-white'>Loan Process <small>(HOD)</small></div></div></div>";
+           // this.LoantState.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Loan eligibility <small>(HOHR)</small></div></div></div>";
+           // this.LoantState.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'>Ready To Fund <small>(HO Finance)</small></div></div></div>";
+           // this.LoantState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lgen"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description txt-white'>Loan Approval</div></div></div>";
+           // this.LoantState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lgen"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'>Loan Generate <small>(HOHR)</small></div></div></div>";
+           // this.LoantState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-green counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lcomp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content green'><div class='circle-tile-description txt-white'>Loan Completed</div></div></div>";
+           // this.LoantState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading danger counter'>" + Convert.ToDouble(ds1.Tables[1].Rows[0]["lcancel"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content danger'><div class='circle-tile-description txt-white'>Loan Cancelled</div></div></div>";
             
 
 
-            DataTable dt = new DataTable();
-            DataView dv = new DataView();
+           // DataTable dt = new DataTable();
+           // DataView dv = new DataView();
 
-            //pending
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            //dv.RowFilter = ("lnstatus=0");
-            this.Data_Bind("gvPending", dv.ToTable());
+           // //pending
+           // dt = ((DataTable)ds1.Tables[0]).Copy();
+           // dv = dt.DefaultView;
+           // //dv.RowFilter = ("lnstatus=0");
+           // this.Data_Bind("gvPending", dv.ToTable());
 
-            //Process
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("lnstatus=0");
-            this.Data_Bind("gvProcess", dv.ToTable());
+           // //Process
+           // dt = ((DataTable)ds1.Tables[0]).Copy();
+           // dv = dt.DefaultView;
+           // dv.RowFilter = ("lnstatus=0");
+           // this.Data_Bind("gvProcess", dv.ToTable());
             
-           // Approved
-           dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;//("digstatus = 'Diagnosis' and approved= '' ");
-            dv.RowFilter = ("lnstatus=1 and isaproved=0 and iscancelled=0 ");
-            this.Data_Bind("gvApproved", dv.ToTable());
+           //// Approved
+           //dt = ((DataTable)ds1.Tables[0]).Copy();
+           // dv = dt.DefaultView;//("digstatus = 'Diagnosis' and approved= '' ");
+           // dv.RowFilter = ("lnstatus=1 and isaproved=0 and iscancelled=0 ");
+           // this.Data_Bind("gvApproved", dv.ToTable());
 
-            //Generate
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("isaproved=1 and lnno='' ");
-            this.Data_Bind("gvGen", dv.ToTable());
+           // //Generate
+           // dt = ((DataTable)ds1.Tables[0]).Copy();
+           // dv = dt.DefaultView;
+           // dv.RowFilter = ("isaproved=1 and lnno='' ");
+           // this.Data_Bind("gvGen", dv.ToTable());
 
-            //Completed
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("lnno <> ''");
-            this.Data_Bind("gvCompleted", dv.ToTable());
+           // //Completed
+           // dt = ((DataTable)ds1.Tables[0]).Copy();
+           // dv = dt.DefaultView;
+           // dv.RowFilter = ("lnno <> ''");
+           // this.Data_Bind("gvCompleted", dv.ToTable());
 
 
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("iscancelled=1 and isaproved=0 ");
-            this.Data_Bind("gvCanc", dv.ToTable());
+           // dt = ((DataTable)ds1.Tables[0]).Copy();
+           // dv = dt.DefaultView;
+           // dv.RowFilter = ("iscancelled=1 and isaproved=0 ");
+           // this.Data_Bind("gvCanc", dv.ToTable());
         }
         protected void LoantState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = this.LoantState.SelectedIndex; //hiddenSeletedIndex.Value!="" ? Convert.ToInt32(hiddenSeletedIndex.Value): this.LoantState.SelectedIndex;
-            switch (index)
-            {
-                case 0:
-                    this.pnlQue.Visible = true;
-                    this.pnlLoanProc.Visible = false;
-                    this.pnlLoanAppr.Visible = false;
-                    this.pnlLoangen.Visible = false;
-                    this.pnlLoanComp.Visible = false;
-                    this.LoantState.Items[0].Attributes["class"] = "lblactive blink_me";
-                    hiddenSeletedIndex.Value = index.ToString();
+            //int index = this.LoantState.SelectedIndex; //hiddenSeletedIndex.Value!="" ? Convert.ToInt32(hiddenSeletedIndex.Value): this.LoantState.SelectedIndex;
+            //switch (index)
+            //{
+            //    case 0:
+            //        this.pnlQue.Visible = true;
+            //        this.pnlLoanProc.Visible = false;
+            //        this.pnlLoanAppr.Visible = false;
+            //        this.pnlLoangen.Visible = false;
+            //        this.pnlLoanComp.Visible = false;
+            //        this.LoantState.Items[0].Attributes["class"] = "lblactive blink_me";
+            //        hiddenSeletedIndex.Value = index.ToString();
 
-                    break;
+            //        break;
 
-                case 1:
-                    this.pnlQue.Visible = false;
-                    this.pnlLoanProc.Visible = true;
-                    this.pnlLoanAppr.Visible = false;
-                    this.pnlLoangen.Visible = false;
-                    this.pnlLoanComp.Visible = false;
-                    this.LoantState.Items[1].Attributes["class"] = "lblactive blink_me";
-                    hiddenSeletedIndex.Value = index.ToString();
+            //    case 1:
+            //        this.pnlQue.Visible = false;
+            //        this.pnlLoanProc.Visible = true;
+            //        this.pnlLoanAppr.Visible = false;
+            //        this.pnlLoangen.Visible = false;
+            //        this.pnlLoanComp.Visible = false;
+            //        this.LoantState.Items[1].Attributes["class"] = "lblactive blink_me";
+            //        hiddenSeletedIndex.Value = index.ToString();
 
-                    break;
+            //        break;
 
 
-                case 2:
-                    this.pnlQue.Visible = false;
-                    this.pnlLoanProc.Visible = false;
-                    this.pnlLoanAppr.Visible = true;
-                    this.pnlLoangen.Visible = false;
-                    this.pnlLoanComp.Visible = false;
-                    this.LoantState.Items[2].Attributes["class"] = "lblactive blink_me";
-                    hiddenSeletedIndex.Value = index.ToString();
+            //    case 2:
+            //        this.pnlQue.Visible = false;
+            //        this.pnlLoanProc.Visible = false;
+            //        this.pnlLoanAppr.Visible = true;
+            //        this.pnlLoangen.Visible = false;
+            //        this.pnlLoanComp.Visible = false;
+            //        this.LoantState.Items[2].Attributes["class"] = "lblactive blink_me";
+            //        hiddenSeletedIndex.Value = index.ToString();
 
-                    break;
+            //        break;
 
-                case 3:
-                    this.pnlQue.Visible = false;
-                    this.pnlLoanProc.Visible = false;
-                    this.pnlLoanAppr.Visible = false;
-                    this.pnlLoangen.Visible = true;
-                    this.pnlLoanComp.Visible = false;
-                    this.LoantState.Items[3].Attributes["class"] = "lblactive blink_me";
-                    hiddenSeletedIndex.Value = index.ToString();
+            //    case 3:
+            //        this.pnlQue.Visible = false;
+            //        this.pnlLoanProc.Visible = false;
+            //        this.pnlLoanAppr.Visible = false;
+            //        this.pnlLoangen.Visible = true;
+            //        this.pnlLoanComp.Visible = false;
+            //        this.LoantState.Items[3].Attributes["class"] = "lblactive blink_me";
+            //        hiddenSeletedIndex.Value = index.ToString();
 
-                    break;
+            //        break;
 
-                case 4:
-                    this.pnlQue.Visible = false;
-                    this.pnlLoanProc.Visible = false;
-                    this.pnlLoanAppr.Visible = false;
-                    this.pnlLoangen.Visible = false;
-                    this.pnlLoanComp.Visible = true;
-                    this.LoantState.Items[4].Attributes["class"] = "lblactive blink_me";
-                    hiddenSeletedIndex.Value = index.ToString();
+            //    case 4:
+            //        this.pnlQue.Visible = false;
+            //        this.pnlLoanProc.Visible = false;
+            //        this.pnlLoanAppr.Visible = false;
+            //        this.pnlLoangen.Visible = false;
+            //        this.pnlLoanComp.Visible = true;
+            //        this.LoantState.Items[4].Attributes["class"] = "lblactive blink_me";
+            //        hiddenSeletedIndex.Value = index.ToString();
 
-                    break;
+            //        break;
 
-                case 5:
-                    this.pnlQue.Visible = false;
-                    this.pnlLoanProc.Visible = false;
-                    this.pnlLoanAppr.Visible = false;
-                    this.pnlLoangen.Visible = false;
-                    this.pnlLoanComp.Visible = false;
-                    this.pnlCanc.Visible = false;
-                    this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
-                    hiddenSeletedIndex.Value = index.ToString();
+            //    case 5:
+            //        this.pnlQue.Visible = false;
+            //        this.pnlLoanProc.Visible = false;
+            //        this.pnlLoanAppr.Visible = false;
+            //        this.pnlLoangen.Visible = false;
+            //        this.pnlLoanComp.Visible = false;
+            //        this.pnlCanc.Visible = false;
+            //        this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
+            //        hiddenSeletedIndex.Value = index.ToString();
 
-                    break;
-            }
+            //        break;
+            //}
 
         }
 
@@ -297,15 +310,21 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                         return;
                     break;
 
-                case "gvStep8":
-                    this.gvStep8.DataSource = (dt);
-                    this.gvStep8.DataBind();
+                case "gvStep3HOHR":
+                    this.gvStep3HOHR.DataSource = (dt);
+                    this.gvStep3HOHR.DataBind();
 
                     if (dt.Rows.Count == 0)
                         return;
                     break;
                     
-
+                  case "gridViewHOFinance":
+                    this.gridViewHOFinance.DataSource = (dt);
+                    this.gridViewHOFinance.DataBind();
+                    if (dt.Rows.Count == 0)
+                        return;
+                    break;
+                    
 
                 case "gvApproved":
                     this.gvApproved.DataSource = (dt);
@@ -396,6 +415,20 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.txtTax.Text = dt3.Rows[0]["inctax"].ToString()??"";
 
         }
+
+        private void GetApprovalLog(string loanid)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string empid = this.ddlEmpList.SelectedValue.ToString() ?? "";
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANAPPROVEDLOG", loanid, "", "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables.Count == 0)
+                return;
+            
+            this.gvLoanApprovalLog.DataSource = ds.Tables[0];
+            this.gvLoanApprovalLog.DataBind();
+        }
+
         private void GetEmplist()
         {
             string comcod = this.GetCompCode();
@@ -436,15 +469,16 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.GetPrevLoan();
 
             this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-            this.txtLoanAmt.Text = "";
-            this.txtInstNum.Text = "";
-            this.txtStd.Text = "";
-            this.txtOI.Text = "";
-            this.txtOD.Text = "";
-            this.txtrt.Text = "";
+            this.txtLoanAmt.Text = "0";
+            this.txtInstNum.Text = "1";
+            this.txtStd.Text = "0";
+            this.txtOI.Text = "0";
+            this.txtOD.Text = "0";
+            this.txtrt.Text = "0";
             this.txtEffDate.Text = "";
             this.txtLoanDescc.Text = "";
             this.txtAmtPerIns.Text = "";
+            this.txtnote.Text = "";
 
             this.lnkAdd.Visible = true;
             this.ddlEmpList.Enabled = true;
@@ -492,7 +526,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string id = "0";
             string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
             string loanamt = "0" + this.txtLoanAmt.Text.ToString();
-            string instlnum = this.txtInstNum.Text.ToString() ?? "0";
+            string instlnum = this.txtInstNum.Text.ToString() ?? "1";
             string perinstlamt = "0" + this.txtAmtPerIns.Text.ToString() ?? "0";
             string loandesc = this.txtLoanDescc.Text.ToString();
             string rate = "0" + this.txtrt.Text.ToString() ?? "0";
@@ -570,11 +604,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             //string empid = hst["empid"].ToString() ?? "";
             string id = this.txtLoanId.Text.ToString().Remove(0,3);
             string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
-            string loanamt = "0" + this.txtLoanAmt.Text.ToString();
-            string instlnum = this.txtInstNum.Text.ToString() ?? "0";
-            string perinstlamt = "0" + this.txtAmtPerIns.Text.ToString() ?? "0";
-            
-            string rate = "0" + this.txtrt.Text.ToString() ?? "0";
+
+         
+            string loanamt = Convert.ToDouble("0" + (this.txtLoanAmt.Text.Trim())).ToString();
+            string perinstlamt = Convert.ToDouble("0" + (this.txtAmtPerIns.Text.Trim())).ToString();
+            string rate = Convert.ToDouble("0" + (this.txtrt.Text.Trim())).ToString();
+            string instlnum = Convert.ToInt32("0" + (this.txtInstNum.Text.Trim())).ToString();
+
+            string othincm = Convert.ToDouble("0" + (this.txtOI.Text.Trim())).ToString();
+            string othdeduct = Convert.ToDouble("0" + (this.txtOD.Text.Trim())).ToString();
+            string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString();
+          
+           
+
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
             string pstdusredt = hst["usrid"].ToString();
             string pstdssnedt = hst["session"].ToString();
@@ -583,14 +625,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string lnstatus = "1";
 
             string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
-            string othincm = "0" + this.txtOI.Text.ToString() ?? "0";
-            string othdeduct = "0" + this.txtOD.Text.ToString();
-            string stddeduct = "0" + this.txtStd.Text.ToString();
+           
 
             string loantypeDesc = ddlLoanType.SelectedItem.ToString() ?? "";
-            string stepid = "8";
             string note = this.txtnote.Text.ToString() ?? "";
             string loandesc = this.txtLoanDescc.Text.ToString() ?? "";
+
+            string stepid = this.stepIDNEXT.Value;
+
 
             //maincode = (editedid != "") ? editedid : maincode;
             bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, id, loantype, loanamt, instlnum, perinstlamt, rate, effedat, 
@@ -636,27 +678,29 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         //loan process approval
         protected void lnkApprov_Click(object sender, EventArgs e)
         {
+            string stepid = this.stepIDNEXT.Value;
+
             string empid = this.ddlEmpList.SelectedValue.ToString();
             string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
             string lnstatus = "1";
             string lsApproved = "1";
             string lsCancelled= "0";
-            this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, lsCancelled);
+            this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, lsCancelled, stepid);
         }
         //loan cancellation
         protected void lnkCancel_Click(object sender, EventArgs e)
         {
-            string empid = this.ddlEmpList.SelectedValue.ToString();
-            string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
-            string lnstatus = "0";
-            string lsApproved = "0";
-            string IsCancelled = "1";
-            this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, IsCancelled);
+            //string empid = this.ddlEmpList.SelectedValue.ToString();
+            //string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
+            //string lnstatus = "0";
+            //string lsApproved = "0";
+            //string IsCancelled = "1";
+            //this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, IsCancelled);
         }
 
 
         //change  loan status
-        private void ChangeloanStatus(string empid,string loanid, string lnstatus, string lsApproved, string lsCancelled)
+        private void ChangeloanStatus(string empid,string loanid, string lnstatus, string lsApproved, string lsCancelled, string stepid)
         {
             string note = this.txtnote.Text.ToString() ?? "";
             if (note == "" && lsCancelled=="1")
@@ -677,25 +721,35 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string comcod = this.GetCompCode();
             string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
             string loantypeDesc = ddlLoanType.SelectedItem.ToString() ?? "";
-            string loanamt = "0" + this.txtLoanAmt.Text.ToString();
-            string instlnum = this.txtInstNum.Text.ToString() ?? "0";
-            string perinstlamt = "0" + this.txtAmtPerIns.Text.ToString() ?? "0";
+
+            string loanamt = Convert.ToDouble("0" + (this.txtLoanAmt.Text.Trim())).ToString();
+            string perinstlamt = Convert.ToDouble("0" + (this.txtAmtPerIns.Text.Trim())).ToString();
+            string rate = Convert.ToDouble("0" + (this.txtrt.Text.Trim())).ToString();
+          
+            string instlnum = Convert.ToInt32("0" + (this.txtInstNum.Text.Trim())).ToString();
+
+            string othincm = Convert.ToDouble("0" + (this.txtOI.Text.Trim())).ToString();
+            string othdeduct = Convert.ToDouble("0" + (this.txtOD.Text.Trim())).ToString();
+            string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString();
+
+
+         
             string loandesc = this.txtLoanDescc.Text.ToString();
-            string rate = "0" + this.txtrt.Text.ToString() ?? "0";
+        
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
             string pstdusredt = hst["usrid"].ToString();
             string pstdssnedt = hst["session"].ToString();
             string pstdtrmnledt = hst["compname"].ToString();
             string postdateedited = System.DateTime.Now.ToString("dd-MMM-yyy") ?? "";
             string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
-            string othincm = "0" + this.txtOI.Text.ToString() ?? "0";
-            string othdeduct = "0" + this.txtOD.Text.ToString();
-            string stddeduct = "0" + this.txtStd.Text.ToString();
+           
 
 
+            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, loanid, loantype, loanamt, instlnum, perinstlamt, rate, effedat,
+               stddeduct, othincm, othdeduct, stepid, note, pstdusredt, pstdtrmnledt, pstdssnedt, postdateedited, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
-            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, loanid, loantype, loanamt, instlnum, perinstlamt, loandesc,
-                rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, lsApproved, lsCancelled, note, "", "", "", "", "", "", "");
+            //bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, loanid, loantype, loanamt, instlnum, perinstlamt, loandesc,
+            //    rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, lsApproved, lsCancelled, note, "", "", "", "", "", "", "");
             if (result == true)
             {
 
@@ -716,7 +770,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
-                getAllData();
+                GetLoanSteps();
 
             }
             else
@@ -725,13 +779,16 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
-                getAllData();
+                GetLoanSteps();
 
 
             }
+            this.loanSteps.SelectedIndex = Convert.ToInt32(hiddenSeletedIndex.Value);
+
+            loanSteps_SelectedIndexChanged(null, null);
 
         }
-       //edit view  
+        //edit view  
         protected void pendlnEdit_Click(object sender, EventArgs e)
         {
             this.txtcreateDate.Enabled = true;
@@ -830,16 +887,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
         }
-       
-        //process loan view
-        protected void proslnView_Click(object sender, EventArgs e)
+
+        private void ComponentVisibale()
         {
-
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
-            string lnid = ((Label)this.gvProcess.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
-            string empid = ((Label)this.gvProcess.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
-
             this.txtcreateDate.Enabled = false;
             this.txtLoanAmt.Enabled = false;
             this.txtInstNum.Enabled = false;
@@ -856,12 +906,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkApprov.Visible = false;
             this.lnkCancel.Visible = false;
             this.dibNote.Visible = false;
-
-
-            this.AllVie_Data(empid, lnid);
-            this.GetGross();
-
         }
+       
+       
 
         //approval  for loan process
         protected void AprvProcsView(object sender, EventArgs e)
@@ -878,8 +925,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkApprov.Visible = false;
             lnkCancel.Visible = true;
             this.dibNote.Visible =  true;
-
-            this.txtcreateDate.Enabled = true;
+            this.txtcreateDate.Enabled = false;
+            
             this.txtLoanAmt.Enabled = true;
             this.txtInstNum.Enabled = true;
             this.txtStd.Enabled = true;
@@ -892,8 +939,81 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.ddlEmpList.Enabled = true;
             this.AllVie_Data(empid, lnid);
             this.GetGross();
+            this.stepIDNEXT.Value = "3";
         }
-  
+
+        //approval  for loan  HOHR
+
+        protected void AprvProcsView_Step3(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gvStep3HOHR.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gvStep3HOHR.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.stepIDNEXT.Value = "4";
+            this.ddlEmpList.Enabled = false;
+            this.lnkEdited.Visible = false;
+            this.lnkUpdate.Visible = true;
+            this.lnkAdd.Visible = false;
+            this.lnkApprov.Visible = false;
+            lnkCancel.Visible = true;
+            this.txtcreateDate.Enabled = false;
+
+            this.dibNote.Visible = true;
+            this.txtnote.Text = "";
+            
+            this.txtLoanAmt.Enabled = true;
+            this.txtInstNum.Enabled = true;
+            this.txtStd.Enabled = true;
+            this.txtOI.Enabled = true;
+            this.txtOD.Enabled = true;
+            this.txtrt.Enabled = true;
+            this.txtEffDate.Enabled = true;
+            this.ddlLoanType.Enabled = true;
+            this.txtLoanDescc.Enabled = false;
+            this.ddlEmpList.Enabled = true;
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+            
+            GetApprovalLog(lnid);
+        }
+
+        //approval  for loan  HOFINANCE
+
+        protected void AprvProcsView_Step4(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gridViewHOFinance.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gridViewHOFinance.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.stepIDNEXT.Value = "5";
+            this.ddlEmpList.Enabled = false;
+            this.lnkEdited.Visible = false;
+            this.lnkUpdate.Visible = true;
+            this.lnkAdd.Visible = false;
+            this.lnkApprov.Visible = false;
+            lnkCancel.Visible = true;
+            this.dibNote.Visible = true;
+            this.txtnote.Text = "";
+            this.txtcreateDate.Enabled = false;
+
+            
+            this.txtLoanAmt.Enabled = true;
+            this.txtInstNum.Enabled = true;
+            this.txtStd.Enabled = true;
+            this.txtOI.Enabled = true;
+            this.txtOD.Enabled = true;
+            this.txtrt.Enabled = true;
+            this.txtEffDate.Enabled = true;
+            this.ddlLoanType.Enabled = true;
+            this.txtLoanDescc.Enabled = false;
+            this.ddlEmpList.Enabled = true;
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+
+            GetApprovalLog(lnid);
+        }
+
         //approve loan view
         protected void AprlnView_Click(object sender, EventArgs e)
         {
@@ -904,6 +1024,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             int index = row.RowIndex;
             string lnid = ((Label)this.gvApproved.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
             string empid = ((Label)this.gvApproved.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.stepIDNEXT.Value = "6";
 
 
             this.lnkUpdate.Visible = false;
@@ -921,7 +1042,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             /// 
 
 
-            this.txtcreateDate.Enabled = true;
+            this.txtcreateDate.Enabled = false;
             this.txtLoanAmt.Enabled = true;
             this.txtInstNum.Enabled = true;
             this.txtStd.Enabled = true;
@@ -934,37 +1055,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.ddlEmpList.Enabled = true;
             this.AllVie_Data(empid, lnid);
             this.GetGross();
+            GetApprovalLog(lnid);
+
 
         }
-        //generate loan view
-        protected void LoGenlnView_Click(object sender, EventArgs e)
-        {
-
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
-            string lnid = ((Label)this.gvGen.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
-            string empid = ((Label)this.gvGen.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
-
-            this.txtcreateDate.Enabled = false;
-            this.txtLoanAmt.Enabled = false;
-            this.txtInstNum.Enabled = false;
-            this.txtStd.Enabled = false;
-            this.txtOI.Enabled = false;
-            this.txtOD.Enabled = false;
-            this.txtrt.Enabled = false;
-            this.txtEffDate.Enabled = false;
-            this.ddlLoanType.Enabled = false;
-            this.txtLoanDescc.Enabled = false;
-            this.ddlEmpList.Enabled = false;
-            this.lnkUpdate.Visible = false;
-            this.lnkAdd.Visible = false;
-            this.lnkApprov.Visible = false;
-            this.lnkCancel.Visible = false;
-            this.dibNote.Visible = false;
-
-            this.AllVie_Data(empid, lnid);
-            this.GetGross();
-        }
+      
 
         //all view
         private void AllVie_Data(string empid, string lnid) {
@@ -980,13 +1075,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             this.txtLoanId.Text = "Ln-" + dt.Rows[0]["id"].ToString();
             this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
-            this.txtLoanAmt.Text = dt.Rows[0]["loanamt"].ToString() ?? "";
-            this.txtInstNum.Text = dt.Rows[0]["instlnum"].ToString() ?? "";
-            this.txtAmtPerIns.Text = dt.Rows[0]["perinstlamt"].ToString() ?? "";
-            this.txtStd.Text = dt.Rows[0]["statdeduction"].ToString() ?? "";
-            this.txtOI.Text = dt.Rows[0]["othincome"].ToString() ?? "";
-            this.txtOD.Text = dt.Rows[0]["othdeduction"].ToString() ?? "";
-            this.txtrt.Text = dt.Rows[0]["rate"].ToString() ?? "";
+           
+            this.txtLoanAmt.Text = Convert.ToDouble(dt.Rows[0]["loanamt"]).ToString("#,##0.00;(#,##0.00); ");
+            this.txtInstNum.Text = Convert.ToInt32(dt.Rows[0]["instlnum"]).ToString("#,##0;(#,##0); "); 
+            this.txtAmtPerIns.Text = Convert.ToDouble(dt.Rows[0]["perinstlamt"]).ToString("#,##0.00;(#,##0.00); "); 
+            this.txtStd.Text = Convert.ToDouble(dt.Rows[0]["statdeduction"]).ToString("#,##0.00;(#,##0.00); "); 
+            this.txtOI.Text = Convert.ToDouble(dt.Rows[0]["othincome"]).ToString("#,##0.00;(#,##0.00); ");
+            this.txtOD.Text = Convert.ToDouble(dt.Rows[0]["othdeduction"]).ToString("#,##0.00;(#,##0.00); ");
+            this.txtrt.Text = Convert.ToDouble(dt.Rows[0]["rate"]).ToString("#,##0.00;(#,##0.00); ");
+             
             this.txtEffDate.Text = Convert.ToDateTime(dt.Rows[0]["effdate"]).ToString("dd-MMM-yyyy");
             ddlLoanType.ClearSelection();
             string loantype = dt.Rows[0]["loantype"].ToString().Trim();
@@ -1044,23 +1141,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             
         }
 
-        //loan generate gridview
-        protected void gvGen_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-               
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnInd");
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string genno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString();
-
-
-                hlink2.NavigateUrl = "~/F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry&genno="+ genno;
-
-            }
-        }
+      
         //loan pending gridview
         protected void gvPending_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -1149,7 +1230,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
                     string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
                     string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_85_Lon/";
-                    string currentptah = "InterfaceLoan?Type=&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
+                    string currentptah = "LoanApproval?Type=&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
                     string totalpath = uhostname + currentptah;
 
 
@@ -1170,12 +1251,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     }
                     if (compmail == "True")
                     {
-                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
-                        if (Result_email == false)
-                        {
-                            string Messagesd = "Loan Applied  but Notification has not been sent, Email or SMTP info Empty";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-                        }
+                       // bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
+                        //if (Result_email == false)
+                        //{
+                        //    string Messagesd = "Loan Applied  but Notification has not been sent, Email or SMTP info Empty";
+                        //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        //}
                     }
                     #endregion
                 }
@@ -1199,11 +1280,21 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             //string empid = hst["empid"].ToString() ?? "";
             string id = this.txtLoanId.Text.ToString().Remove(0,3);
             string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
-            string loanamt = "0" + this.txtLoanAmt.Text.ToString();
-            string instlnum = this.txtInstNum.Text.ToString() ?? "0";
-            string perinstlamt = "0" + this.txtAmtPerIns.Text.ToString() ?? "0";
+
+            string loanamt = Convert.ToDouble("0" + (this.txtLoanAmt.Text.Trim())).ToString();
+            string perinstlamt = Convert.ToDouble("0" + (this.txtAmtPerIns.Text.Trim())).ToString();
+            string rate = Convert.ToDouble("0" + (this.txtrt.Text.Trim())).ToString();
+            string instlnum = Convert.ToInt32("0" + (this.txtInstNum.Text.Trim())).ToString();
+
+            string othincm = Convert.ToDouble("0" + (this.txtOI.Text.Trim())).ToString();
+            string othdeduct = Convert.ToDouble("0" + (this.txtOD.Text.Trim())).ToString();
+            string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString();
+
+
+
+           
             string loandesc = this.txtLoanDescc.Text.ToString();
-            string rate = "0" + this.txtrt.Text.ToString() ?? "0";
+           
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
             string pstdusredt = hst["usrid"].ToString();
             string pstdssnedt = hst["session"].ToString();
@@ -1212,10 +1303,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string lnstatus ="0";
 
             string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
-            string othincm = "0" + this.txtOI.Text.ToString() ?? "0";
-            string othdeduct = "0" + this.txtOD.Text.ToString();
-            string stddeduct = "0" + this.txtStd.Text.ToString();
-
+           
 
 
             //maincode = (editedid != "") ? editedid : maincode;
@@ -1242,39 +1330,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             LoantState_SelectedIndexChanged(null, null);
         }
 
-        protected void gvProcess_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lnkEdit = (LinkButton)e.Row.FindControl("pendlnEdit");
-                LinkButton lnkApp = (LinkButton)e.Row.FindControl("pendlnAproved");
-                LinkButton lnkview = (LinkButton)e.Row.FindControl("proslnView");
-                
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string userid = hst["usrid"].ToString();
-                string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
-                string dptusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString().Trim();
-                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();                
-                string mgtusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mgtusid")).ToString().Trim();
-                string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptid")).ToString();        
-                string id = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString();
-
-                if ((userid == dptusrid) || (userid == mgtusid))
-                {
-                    lnkApp.Visible = true; 
-                }
-                if (userid == empusrid)
-                {
-                    lnkEdit.Visible = true;
-                }
-                if ((userid == dptusrid) || (userid == mgtusid) || (userid == empusrid))
-                {
-                    lnkview.Visible = true;
-                }
-
-            }
-        }
+       
 
         protected void loanSteps_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1288,6 +1344,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanAppr.Visible = false;
                     this.pnlLoangen.Visible = false;
                     this.pnlLoanComp.Visible = false;
+                    this.pnlCanc.Visible = false;
+                    this.pnlStep3HOHR.Visible = false;
+                    this.pnlStepHOF.Visible = false;
+
                     this.LoantState.Items[0].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
@@ -1299,30 +1359,40 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanAppr.Visible = false;
                     this.pnlLoangen.Visible = false;
                     this.pnlLoanComp.Visible = false;
+                    this.pnlCanc.Visible = false;
+                    this.pnlStep3HOHR.Visible = false;
+                    this.pnlStepHOF.Visible = false;
+
                     this.LoantState.Items[1].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
 
-
                 case 3:
                     this.pnlQue.Visible = false;
                     this.pnlLoanProc.Visible = false;
-                    this.pnlLoanAppr.Visible = true;
+                    this.pnlStep3HOHR.Visible = true;
+                    this.pnlStepHOF.Visible = false;
+                    this.pnlLoanAppr.Visible = false;
                     this.pnlLoangen.Visible = false;
                     this.pnlLoanComp.Visible = false;
-                    this.LoantState.Items[2].Attributes["class"] = "lblactive blink_me";
+                    this.pnlCanc.Visible = false; 
+
+                    this.LoantState.Items[1].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
-
                 case 4:
                     this.pnlQue.Visible = false;
                     this.pnlLoanProc.Visible = false;
+                    this.pnlStep3HOHR.Visible = false;
+                    this.pnlStepHOF.Visible = true;
                     this.pnlLoanAppr.Visible = false;
-                    this.pnlLoangen.Visible = true;
+                    this.pnlLoangen.Visible = false;
                     this.pnlLoanComp.Visible = false;
-                    this.LoantState.Items[3].Attributes["class"] = "lblactive blink_me";
+                    this.pnlCanc.Visible = false;
+
+                    this.LoantState.Items[2].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1330,10 +1400,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 case 5:
                     this.pnlQue.Visible = false;
                     this.pnlLoanProc.Visible = false;
-                    this.pnlLoanAppr.Visible = false;
+                    this.pnlStep3HOHR.Visible = false;
+                    this.pnlStepHOF.Visible = false;
+                    this.pnlLoanAppr.Visible = true;
                     this.pnlLoangen.Visible = false;
-                    this.pnlLoanComp.Visible = true;
-                    this.LoantState.Items[4].Attributes["class"] = "lblactive blink_me";
+                    this.pnlLoanComp.Visible = false;
+                    this.pnlCanc.Visible = false;
+
+                    this.LoantState.Items[3].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1341,38 +1415,247 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 case 6:
                     this.pnlQue.Visible = false;
                     this.pnlLoanProc.Visible = false;
+                    this.pnlStep3HOHR.Visible = false;
+                    this.pnlStepHOF.Visible = false;
                     this.pnlLoanAppr.Visible = false;
-                    this.pnlLoangen.Visible = false;
+                    this.pnlLoangen.Visible = true;
                     this.pnlLoanComp.Visible = false;
                     this.pnlCanc.Visible = false;
-                    this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
+
+                    this.LoantState.Items[4].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
+
                 case 7:
                     this.pnlQue.Visible = false;
                     this.pnlLoanProc.Visible = false;
+                    this.pnlStep3HOHR.Visible = false;
+                    this.pnlStepHOF.Visible = false;
                     this.pnlLoanAppr.Visible = false;
                     this.pnlLoangen.Visible = false;
-                    this.pnlLoanComp.Visible = false;
+                    this.pnlLoanComp.Visible = true;
                     this.pnlCanc.Visible = false;
+
                     this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
                 case 8:
                     this.pnlQue.Visible = false;
-                    this.pnlStep8.Visible = true;
                     this.pnlLoanProc.Visible = false;
+                    this.pnlStep3HOHR.Visible = false;
+                    this.pnlStepHOF.Visible = false;
                     this.pnlLoanAppr.Visible = false;
                     this.pnlLoangen.Visible = false;
                     this.pnlLoanComp.Visible = false;
-                    this.LoantState.Items[1].Attributes["class"] = "lblactive blink_me";
+                    this.pnlCanc.Visible = true;
+
+                    this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
+              
                 
             }
+        }
+
+
+        protected void gvProcess_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkEdit = (LinkButton)e.Row.FindControl("pendlnEdit");
+                LinkButton lnkApp = (LinkButton)e.Row.FindControl("pendlnAproved");
+                LinkButton lnkview = (LinkButton)e.Row.FindControl("proslnView");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
+                string dptusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString().Trim();
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
+                string mgtusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mgtusid")).ToString().Trim();
+                string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptid")).ToString();
+                string id = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString();
+
+                if ((userid == dptusrid) || (userid == mgtusid))
+                {
+                    lnkApp.Visible = true;
+                }
+                if (userid == empusrid)
+                {
+                    lnkEdit.Visible = true;
+                }
+                if ((userid == dptusrid) || (userid == mgtusid) || (userid == empusrid))
+                {
+                    lnkview.Visible = true;
+                }
+
+            }
+        }
+
+        protected void gvStep3HOHR_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblauthuser"];
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkStep3 = (LinkButton)e.Row.FindControl("pendlnAproved_Step3");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
+               
+
+                string lnstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lnstatus")).ToString();
+
+                DataRow[] dr1 = dt.Select("authuserid='" + userid + "' and stepid=3");
+                if (dr1.Length != 0)
+                {
+                    lnkStep3.Visible = true;
+                } 
+            }
+        }
+
+        protected void gridViewHOFinance_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblauthuser"];
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkStep4 = (LinkButton)e.Row.FindControl("pendlnAproved_Step4");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
+
+
+                string lnstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lnstatus")).ToString();
+                DataRow[] dr1 = dt.Select("authuserid='" + userid + "' and stepid=4");
+                if (dr1.Length != 0)
+                {
+                    lnkStep4.Visible = true;
+                }
+
+            }
+        }
+
+        protected void gvApproved_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblauthuser"];
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkStep4 = (LinkButton)e.Row.FindControl("AprlnView");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
+
+
+                string lnstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lnstatus")).ToString();
+                DataRow[] dr1 = dt.Select("authuserid='" + userid + "' and stepid=5");
+                if (dr1.Length != 0)
+                {
+                    lnkStep4.Visible = true;
+                }
+
+            }
+        }
+
+        //loan generate gridview
+        protected void gvGen_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblauthuser"];
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnInd");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+
+                string genno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString();
+
+                DataRow[] dr1 = dt.Select("authuserid='" + userid + "' and stepid=6");
+                if (dr1.Length != 0)
+                {
+                    hlink2.Visible = true;
+                }
+
+
+                hlink2.NavigateUrl = "~/F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry&genno=" + genno;
+
+            }
+        }
+
+        //process loan view
+        protected void proslnView_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gvProcess.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gvProcess.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.ComponentVisibale();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+            GetApprovalLog(lnid);
+
+        }
+        protected void Step3HOHRView_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gvStep3HOHR.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gvStep3HOHR.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.ComponentVisibale();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+            GetApprovalLog(lnid);
+
+        }
+
+        protected void ViewHOFinance_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gridViewHOFinance.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gridViewHOFinance.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.ComponentVisibale();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+            GetApprovalLog(lnid);
+
+        }
+
+        protected void ViewApproved_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gvApproved.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gvApproved.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.ComponentVisibale();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+            GetApprovalLog(lnid);
+
+        }
+        //generate loan view
+        protected void LoGenlnView_Click(object sender, EventArgs e)
+        {
+            this.stepIDNEXT.Value = "7";
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gvGen.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gvGen.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.ComponentVisibale();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+            GetApprovalLog(lnid);
+
         }
     }
 }
