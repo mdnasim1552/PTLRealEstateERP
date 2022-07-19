@@ -77,6 +77,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 DateTime maxTime = DateTime.Parse("06:00");
 
                 Session["tblleavhistory"] = ds1.Tables[0];
+                Session["empbinfo"] = ds1.Tables[3];
 
                 this.gvLvReq.DataSource = (ds1.Tables[0]);
                 this.gvLvReq.DataBind();
@@ -473,39 +474,50 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void lnkPrint_Click(object sender, EventArgs e)
         {
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string comsnam = hst["comsnam"].ToString();
-            //string comadd = hst["comadd1"].ToString();
-            //string session = hst["session"].ToString();
-            //string username = hst["username"].ToString();
-            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            //DataTable dt = (DataTable)Session["tblleavhistory"];
-            //var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.applytimeoff>();
-            //LocalReport Rpt1 = new LocalReport();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string curdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            DataTable dt = (DataTable)Session["tblleavhistory"];
+            DataTable dt2 = (DataTable)Session["empbinfo"];
+
+            string empname = dt2.Rows[0]["name"].ToString()??"";
+            string idcard = dt2.Rows[0]["idcard"].ToString()?? "";
+            string desig = hst["usrdesig"].ToString()??"";
+            string dept= hst["dptdesc"].ToString()??"";
 
 
-            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptTimeOff", list, null, null);
-            //Rpt1.EnableExternalImages = true;
-
-            //Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            //Rpt1.SetParameters(new ReportParameter("RptTitle", "Civil Construction BOQ"));
-            //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-            //Rpt1.SetParameters(new ReportParameter("EmpName", username));
-            //Rpt1.SetParameters(new ReportParameter("Desig", ComLogo));
-            //Rpt1.SetParameters(new ReportParameter("IdCard", ComLogo));
 
 
-            //Session["Report1"] = Rpt1;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-            //  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.applytimeoff>();
+            LocalReport Rpt1 = new LocalReport();
+
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptTimeOff", list, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Time Off Leave Report("+ curdate+")"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("EmpName", empname));
+            Rpt1.SetParameters(new ReportParameter("Desig", desig));
+            Rpt1.SetParameters(new ReportParameter("IdCard", idcard));
+            Rpt1.SetParameters(new ReportParameter("dept", dept));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
     }

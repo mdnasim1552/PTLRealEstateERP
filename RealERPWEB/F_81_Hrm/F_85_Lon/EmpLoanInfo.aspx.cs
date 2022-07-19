@@ -593,7 +593,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 string genno = this.Request.QueryString["genno"] ?? "";
                 if (genno.Length > 0)
                 {
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPDATEAPRLOAN", genno, lnno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANGENEREATEDUPODATE", genno, lnno, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
                 }
                 string Msg = "Updated Successfully";
