@@ -243,7 +243,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lblspecification" runat="server" CssClass="lblTxt lblName" Visible="false">Specification</asp:Label>
+                                            <asp:Label ID="lblspecification" runat="server" CssClass="lblTxt lblName" >Specification</asp:Label>
                                             <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass="inputtextbox " ></asp:TextBox>
                                             <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="btn btn-primary  srearchBtn"   OnClick="lnkSpecification_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
@@ -252,7 +252,7 @@
                                         </div>
                                         <div class="col-md-5 pading5px asitCol5">
                                             <asp:DropDownList ID="ddlSpclinf"  runat="server" CssClass="form-control inputTxt chzn-select"
-                                                  Visible="false">
+                                                  >
                                             </asp:DropDownList>
 
                                         </div>
@@ -285,10 +285,10 @@
                                                 Enabled="True" TargetControlID="txtChequeDate" PopupButtonID="Image3"
                                                 Format="dd.MM.yyyy"></cc1:CalendarExtender>
 
-                                            <asp:Label ID="lblremarks" runat="server" CssClass="smLbl_to" Width="100">Remarks</asp:Label>
+                                            <asp:Label ID="lblremarks" runat="server" CssClass="smLbl_to" >Remarks</asp:Label>
 
-                                            <asp:TextBox ID="txtremarks" runat="server" CssClass=" inputtextbox"  ></asp:TextBox>
-                                            <asp:LinkButton ID="lbtnAdd" runat="server" TabIndex="5" CssClass="btn btn-primary primaryBtn" OnClick="lbtnAdd_Click">Add Table</asp:LinkButton>
+                                            <asp:TextBox ID="txtremarks" runat="server" CssClass=" inputtextbox" style="width:80px;" ></asp:TextBox>
+                                            <asp:LinkButton ID="lbtnAdd" runat="server" TabIndex="5" CssClass="btn btn-primary primaryBtn" OnClick="lbtnAdd_Click" Style="margin-left:5px;">Add Table</asp:LinkButton>
 
                                         </div>
 
@@ -313,7 +313,7 @@
                                         <div class="col-md-4 pading5px asitCol4">
                                             <asp:Label ID="lblPayto" runat="server" CssClass="smLbl_to">Pay To</asp:Label>
 
-                                            <asp:TextBox ID="txtRecAndPayto" runat="server" CssClass=" inputtextbox" Width="193"></asp:TextBox>
+                                            <asp:TextBox ID="txtRecAndPayto" runat="server" CssClass=" inputtextbox" Width="215"></asp:TextBox>
 
                                             <cc1:AutoCompleteExtender ID="txtRecAndPayto_AutoCompleteExtender"
                                                 runat="server" CompletionListCssClass="AutoExtender"
@@ -442,6 +442,17 @@
                                 <FooterStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Left" />
                             </asp:TemplateField>
+
+                              <asp:TemplateField HeaderText="Bank/Cash">
+
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvbocash" runat="server" BackColor="Transparent"
+                                        BorderColor="Transparent" BorderStyle="None"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'
+                                        Width="120px" Font-Size="12px" ForeColor="Black"  ></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="Issue No">
 
