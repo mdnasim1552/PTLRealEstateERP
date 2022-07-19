@@ -360,6 +360,7 @@
                                                     Width="50px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        
                                         <asp:TemplateField HeaderText="AppNo" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPAPNo" runat="server"
@@ -656,20 +657,12 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-
-
-
-
-
-
-
-
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvApprovsRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprovsrate")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                                    Width="75px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
 
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
@@ -692,7 +685,7 @@
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvOrderRate" runat="server" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprovrate")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                                    Width="75px" BorderStyle="None"></asp:TextBox>
+                                                    Width="70px" BorderStyle="None"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
@@ -716,6 +709,17 @@
                                                 <asp:Label ID="lblgvPayType" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paytype")) %>'
                                                     Width="50px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Brand" Visible="false">
+                                            <ItemTemplate>
+                                                 <asp:TextBox ID="txtgvrmrks" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                    Style="text-align: left; background-color: Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmrks")) %>'                                                    
+                                                    Width="80px"></asp:TextBox>
+                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

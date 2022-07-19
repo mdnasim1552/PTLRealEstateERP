@@ -989,6 +989,10 @@ namespace RealERPWEB.F_14_Pro
             {
                 this.gvOrderInfo.Columns[1].Visible = true;
             }
+            if(comcod == "3354" || comcod == "3101")
+            {
+                this.gvOrderInfo.Columns[20].Visible = true;
+            }
 
             if (tbl1.Rows.Count == 0)
                 return;
@@ -1024,7 +1028,6 @@ namespace RealERPWEB.F_14_Pro
             dt1 = dv.ToTable();
 
             string rsircode = dt1.Rows[0]["rsircode"].ToString();
-
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
                 if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
@@ -1032,14 +1035,11 @@ namespace RealERPWEB.F_14_Pro
 
                     dt1.Rows[j]["rsirdesc1"] = "";
                 }
-
                 else
                 {
                     rsircode = dt1.Rows[j]["rsircode"].ToString();
                 }
-
             }
-
             return dt1;
         }
 
@@ -1100,7 +1100,6 @@ namespace RealERPWEB.F_14_Pro
             for (int j = 0; j < this.gvOrderInfo.Rows.Count; j++)
             {
 
-
                 string rsircode = ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvResCod")).Text.Trim();
                 double dgvorderQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderQty")).Text.Trim()));
 
@@ -1108,6 +1107,9 @@ namespace RealERPWEB.F_14_Pro
                 double dispercnt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvdispercnt")).Text.Trim().Replace("%", "")));
                 double aprovrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderRate")).Text.Trim()));
                 double dgvAppAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderAmt")).Text.Trim()));
+                
+                string rmrks = ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvrmrks")).Text.Trim();
+
                 TblRowIndex2 = (this.gvOrderInfo.PageIndex) * this.gvOrderInfo.PageSize + j;
 
                 if (aprovsrate < aprovrate)
@@ -1116,20 +1118,15 @@ namespace RealERPWEB.F_14_Pro
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier rate must be greater then Actual Rate";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
-
                 }
 
                 if (rsircode.Substring(0, 7) == "0199999")
                 {
-
-
                     double dgvMRRRate = (dgvorderQty > 0) ? dgvAppAmt / dgvorderQty : 00;
-
                     tbl1.Rows[TblRowIndex2]["ordrqty"] = dgvorderQty;
                     tbl1.Rows[TblRowIndex2]["aprovrate"] = dgvMRRRate;
                     tbl1.Rows[TblRowIndex2]["ordramt"] = dgvAppAmt;
                 }
-
                 else
                 {
                     dispercnt = (aprovrate > 0) ? ((aprovsrate - aprovrate) * 100) / aprovsrate : dispercnt;
@@ -1140,12 +1137,8 @@ namespace RealERPWEB.F_14_Pro
                     tbl1.Rows[TblRowIndex2]["dispercnt"] = dispercnt;
                     tbl1.Rows[TblRowIndex2]["aprovrate"] = aprovrate;
                     tbl1.Rows[TblRowIndex2]["ordramt"] = dgvAppAmt;
+                    tbl1.Rows[TblRowIndex2]["rmrks"] = rmrks;
                 }
-
-
-
-
-
 
             }
             ViewState["tblOrder"] = tbl1;
@@ -1894,6 +1887,8 @@ namespace RealERPWEB.F_14_Pro
                 double mAprovqty = Convert.ToDouble(tbl1.Rows[i]["aprovqty"]);
                 double mORDRQTY = Convert.ToDouble(tbl1.Rows[i]["ordrqty"]);
                 string dispercnt = Convert.ToDouble(tbl1.Rows[i]["dispercnt"]).ToString();
+                string rmrks = tbl1.Rows[i]["rmrks"].ToString();
+
 
 
                 // string mORDRQTY = tbl1.Rows[i]["ordrqty"].ToString();
@@ -1908,7 +1903,7 @@ namespace RealERPWEB.F_14_Pro
 
                 if (mREQNO != "")
                     result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERA",
-                             mORDERNO, mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, mORDRQTY.ToString(), dispercnt, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                             mORDERNO, mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, mORDRQTY.ToString(), dispercnt, rmrks, "", "", "", "", "", "", "", "", "", "", "", "");
 
                 else
                 {
@@ -2248,8 +2243,6 @@ namespace RealERPWEB.F_14_Pro
                 case "1301":
                 case "2301":
                 case "3301":
-
-
                     for (i = 0; i < dtResP.Rows.Count; i++)
                     {
 
@@ -2303,7 +2296,6 @@ namespace RealERPWEB.F_14_Pro
                 case "3316":
                 case "3317":
 
-
                     for (i = 0; i < dtResP.Rows.Count; i++)
                     {
 
@@ -2350,6 +2342,50 @@ namespace RealERPWEB.F_14_Pro
                     this.txtOrderNarr.Text = Narration.Substring(0, (Narration.Length) - 2);
                     break;
 
+                case "3101":
+                case "3354":
+                    for (i = 0; i < dtResP.Rows.Count; i++)
+                    {
+                        string aprovno = dtResP.Rows[i]["aprovno"].ToString();
+                        string chkitem = dtResP.Rows[i]["chk"].ToString();
+                        if (chkitem == "1")
+                        {
+                            DataRow dr1 = dt1.NewRow();
+                            dr1["aprovno"] = dtResP.Rows[i]["aprovno"];
+                            dr1["reqno"] = dtResP.Rows[i]["reqno"];
+                            dr1["rsircode"] = dtResP.Rows[i]["rsircode"];
+                            dr1["ssircode"] = dtResP.Rows[i]["ssircode"];
+                            dr1["spcfcod"] = dtResP.Rows[i]["spcfcod"];
+                            dr1["aprovno1"] = dtResP.Rows[i]["aprovno1"];
+                            dr1["aprovdat"] = dtResP.Rows[i]["aprovdat"];
+                            dr1["reqno1"] = dtResP.Rows[i]["reqno1"];
+                            dr1["mrfno"] = dtResP.Rows[i]["mrfno"];
+                            dr1["pactcode"] = dtResP.Rows[i]["pactcode"];
+                            dr1["projdesc1"] = dtResP.Rows[i]["projdesc1"];
+                            dr1["rsirdesc1"] = dtResP.Rows[i]["rsirdesc1"];
+                            dr1["ssirdesc1"] = dtResP.Rows[i]["ssirdesc1"];
+                            dr1["spcfdesc"] = dtResP.Rows[i]["spcfdesc"];
+                            dr1["rsirunit"] = dtResP.Rows[i]["rsirunit"];
+                            dr1["aprovqty"] = dtResP.Rows[i]["aprovqty"];
+                            dr1["ordrqty"] = dtResP.Rows[i]["aprovqty"];
+                            dr1["aprovsrate"] = dtResP.Rows[i]["aprovsrate"];
+                            dr1["dispercnt"] = dtResP.Rows[i]["dispercnt"]; ;
+                            dr1["aprovrate"] = dtResP.Rows[i]["aprovrate"];
+                            dr1["ordramt"] = Convert.ToDouble(dtResP.Rows[i]["aprovqty"]) * Convert.ToDouble(dtResP.Rows[i]["aprovrate"]);
+                            dr1["paytype"] = dtResP.Rows[i]["paytype"];
+                            dr1["rowid"] = dtResP.Rows[i]["rowid"];
+                            dr1["rmrks"] = dtResP.Rows[i]["rmrks"]; // todo add brand
+                            dt1.Rows.Add(dr1);
+                            if (aprovno1 != aprovno)
+                            {
+                                Narration = Narration + dtResP.Rows[i]["reqnar"] + ", ";
+                            }
+                            aprovno1 = aprovno;
+                        }
+                    }
+
+                    this.lblreqnaration.Text = "Req Naration : " + Narration.Substring(0, (Narration.Length) - 2);
+                    break;
                 default:
                     for (i = 0; i < dtResP.Rows.Count; i++)
                     {
