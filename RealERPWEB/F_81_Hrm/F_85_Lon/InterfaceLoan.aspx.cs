@@ -14,6 +14,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_81_Hrm.F_85_Lon
 {
     public partial class InterfaceLoan : System.Web.UI.Page
@@ -1644,6 +1647,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             int index = row.RowIndex;
             string lnid = ((Label)this.gvProcess.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
             string empid = ((Label)this.gvProcess.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            this.PrintLoan.Visible = true;
             this.ComponentVisibale();
             this.AllVie_Data(empid, lnid);
             this.GetGross();
@@ -1761,6 +1765,99 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
             }
+        }
+
+        protected void PrintLoan_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dddd");
+
+            string curdate = System.DateTime.Now.ToString("yyyy");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+
+            string empid = this.ddlEmpList.SelectedValue.ToString();
+
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP ", "GETEMPINFO",empid);
+            if (ds == null)
+            {
+                return;
+            }
+
+            DataTable dt = ds.Tables[0];
+            string desig= dt.Rows[0]["desig"].ToString();
+            string dept = dt.Rows[0]["dept"].ToString();
+            string cdate = dt.Rows[0]["cdate"].ToString();
+            string doj = dt.Rows[0]["doj"].ToString();
+            string empname = this.ddlEmpList.SelectedItem.Text.ToString();
+            string loanid = this.txtLoanId.Text.ToString();
+            string createDate = this.txtcreateDate.Text.ToString();
+            string loanAmt = this.txtLoanAmt.Text.ToString();
+            string instNo = this.txtInstNum.Text.ToString();
+            string amtPerInst = this.txtAmtPerIns.Text.ToString();
+            string stdeduct = this.txtStd.Text.ToString();
+            string prevloan = this.txtPloanAmt.Text.ToString();
+            string grossMonth = this.txtGMS.Text.ToString();
+            string othincome = this.txtOI.Text.ToString();
+            string intrest = this.txtrt.Text.ToString();
+            string pf = this.txtPFAmt.Text.ToString();
+            string incmtx = this.txtTax.Text.ToString();
+            string othdeduc = this.txtOD.Text.ToString();
+            string effecdate = this.txtEffDate.Text.ToString();
+            string loantype = this.ddlLoanType.SelectedItem.Text.ToString();
+            string purpseloan = this.txtLoanDescc.ToString();
+            string inword = "";
+
+
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_85_Lon.rptLoanApp", null, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Apply for" ));
+            Rpt1.SetParameters(new ReportParameter("ComNam", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("ComAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("PrintDate", ASTUtility.Concat(compname, username, printdate)));
+
+            Rpt1.SetParameters(new ReportParameter("ComAdd", comadd));
+
+            Rpt1.SetParameters(new ReportParameter("AppDate", createDate)); 
+            Rpt1.SetParameters(new ReportParameter("LoanType", loantype));
+            Rpt1.SetParameters(new ReportParameter("LoanAmt", loanAmt));
+            Rpt1.SetParameters(new ReportParameter("Inword", inword));
+            Rpt1.SetParameters(new ReportParameter("instnum", instNo));
+            Rpt1.SetParameters(new ReportParameter("LoanPurpose", purpseloan));
+            Rpt1.SetParameters(new ReportParameter("PrevLoan", prevloan));
+            Rpt1.SetParameters(new ReportParameter("Doj", doj));
+            Rpt1.SetParameters(new ReportParameter("Dept", dept));
+            Rpt1.SetParameters(new ReportParameter("UserName", empname));
+            Rpt1.SetParameters(new ReportParameter("Desig", desig));
+
+            Rpt1.SetParameters(new ReportParameter("ConfirmDate", cdate));
+            Rpt1.SetParameters(new ReportParameter("GrosSal", grossMonth)); 
+            Rpt1.SetParameters(new ReportParameter("StDeduct", stdeduct));
+            Rpt1.SetParameters(new ReportParameter("PF", pf));
+            Rpt1.SetParameters(new ReportParameter("Others", othincome));
+            Rpt1.SetParameters(new ReportParameter("IntrestRate", intrest));
+
+            Rpt1.SetParameters(new ReportParameter("AmtPerInst", amtPerInst));
+            Rpt1.SetParameters(new ReportParameter("EffectDate", effecdate));
+            Rpt1.SetParameters(new ReportParameter("LoanId", loanid));
+
+            Rpt1.SetParameters(new ReportParameter("Tax", incmtx));
+            Rpt1.SetParameters(new ReportParameter("LoanId", loanid));
+
+
+            Session["Report1"] = Rpt1;
+
+            string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
         }
     }
 }

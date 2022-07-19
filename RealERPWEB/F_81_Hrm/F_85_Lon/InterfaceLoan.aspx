@@ -505,6 +505,10 @@
         function OpenDeleteModal() {
             $('#deleteModal').modal('toggle');
         }
+
+        function PrintRpt() {
+            window.open('<%= ResolveUrl("../../RDLCViewerWin.aspx?PrintOpt=PDF") %>', '_blank');
+      }
     </script>
 
     <%--    <script>
@@ -1611,6 +1615,7 @@
                                     <asp:LinkButton ID="lnkForwardStep" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkForwardStep_Click" Visible="false" ValidationGroup="one">Forward Back</asp:LinkButton>
                                     <asp:LinkButton ID="lnkCancel" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkCancel_Click" Visible="false" ValidationGroup="one">Request Cancel</asp:LinkButton>
 
+                                       <asp:LinkButton ID="PrintLoan" CssClass="btn btn-primary btn-sm m-2 p2  bw-100" runat="server" OnClick="PrintLoan_Click" ValidationGroup="one" Visible="true">Print</asp:LinkButton>
                                     <asp:LinkButton ID="lnkAdd" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkAdd_Click" ValidationGroup="one" Visible="false">Save</asp:LinkButton>
                                     <asp:LinkButton ID="lnkEdited" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkEdited_Click" ValidationGroup="one" Visible="false">Update</asp:LinkButton>
                                     <asp:LinkButton ID="lnkUpdate" CssClass="btn btn-primary btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkUpdate_Click" ValidationGroup="one" Visible="false">Loan Process</asp:LinkButton>
