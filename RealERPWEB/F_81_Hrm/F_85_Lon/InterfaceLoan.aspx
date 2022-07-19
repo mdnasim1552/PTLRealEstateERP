@@ -681,7 +681,7 @@
                                                         <ItemTemplate>
                                                             <div class="btn-group">
                                                                 <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" CssClass="" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "" :"d-none" %>'><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" Visible="false" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "" :"d-none" %>'><i class="fa fa-trash"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -1053,7 +1053,7 @@
                                                             <div class="btn-group">
                                                                 <asp:LinkButton ID="ViewApproved" OnClick="ViewApproved_Click" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
 
-                                                                <asp:LinkButton ID="AprlnView" OnClick="AprlnView_Click" runat="server" ToolTip="Aprove Loan"><i class="fa fa-check"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="AprlnView" OnClick="AprlnView_Click" runat="server" Visible="false" ToolTip="Aprove Loan"><i class="fa fa-check"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -1291,7 +1291,7 @@
                                 <asp:Panel ID="pnlCanc" runat="server" Visible="false">
                                     <div class="row mt-3">
                                         <div class="table table-sm table-responsive">
-                                            <asp:GridView CssClass="table-striped table-hover table-bordered grvContentarea" ID="gvCanc" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvPending_RowDataBound">
+                                            <asp:GridView CssClass="table-striped table-hover table-bordered grvContentarea" ID="gvCanc" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvCanc_RowDataBound">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SL#">
                                                         <ItemTemplate>
@@ -1355,12 +1355,7 @@
                                                         </ItemTemplate>
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="Right" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Status">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblstatus" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "badge badge-danger" :"badge badge-success" %>' Text=' <%#Convert.ToBoolean(Eval("isaproved"))==false? "Pending" :"Approved" %>'> 
-                                                            </asp:Label>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                               
                                                     <asp:TemplateField HeaderText="Effective</br> Date">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblapplydatPend" runat="server" Text='<%# Convert.ToDateTime( Eval("effdate")).ToString("dd-MMM-yyyy")%>' Width="70px"></asp:Label>
@@ -1369,7 +1364,7 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="CancelpendlnView" OnClick="CancelpendlnView_Click" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -1385,7 +1380,7 @@
                                                     <asp:TemplateField HeaderText="">
                                                         <ItemTemplate>
                                                             <div class="btn-group">
-                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "" :"d-none" %>'><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" Visible="false" runat="server" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "" :"d-none" %>'><i class="fa fa-trash"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -1613,6 +1608,7 @@
 
                             <div class="rowmt-2">
                                 <div class="d-flex justify-content-center">
+                                    <asp:LinkButton ID="lnkForwardStep" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkForwardStep_Click" Visible="false" ValidationGroup="one">Forward Back</asp:LinkButton>
                                     <asp:LinkButton ID="lnkCancel" CssClass="btn btn-danger btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkCancel_Click" Visible="false" ValidationGroup="one">Request Cancel</asp:LinkButton>
 
                                     <asp:LinkButton ID="lnkAdd" CssClass="btn btn-success btn-sm m-2 p2  bw-100" runat="server" OnClick="lnkAdd_Click" ValidationGroup="one" Visible="false">Save</asp:LinkButton>

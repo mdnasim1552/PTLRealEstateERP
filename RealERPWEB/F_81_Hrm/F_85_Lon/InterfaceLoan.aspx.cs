@@ -137,7 +137,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             dt = ((DataTable)ds1.Tables[1]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("iscancelled=1 and isaproved=0 and stepid=8 ");
+            dv.RowFilter = ("iscancelled=1 and isaproved=0 and stepid=8");
             this.Data_Bind("gvCanc", dv.ToTable());
         }
 
@@ -479,8 +479,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.txtLoanDescc.Text = "";
             this.txtAmtPerIns.Text = "";
             this.txtnote.Text = "";
-
-            this.lnkAdd.Visible = true;
+            
             this.ddlEmpList.Enabled = true;
             this.txtcreateDate.Enabled = true;
             this.txtLoanAmt.Enabled = true;
@@ -492,9 +491,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.txtEffDate.Enabled = true;
             this.ddlLoanType.Enabled = true;
             this.txtLoanDescc.Enabled = true;
+
+            this.lnkAdd.Visible = true;
             this.lnkUpdate.Visible = false;
             this.lnkApprov.Visible = false;
             this.lnkEdited.Visible = false;
+            this.lnkForwardStep.Visible = false;
 
             this.lnkCancel.Visible = false;
             this.dibNote.Visible = false;
@@ -525,11 +527,20 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
             string id = "0";
             string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
-            string loanamt = "0" + this.txtLoanAmt.Text.ToString();
-            string instlnum = this.txtInstNum.Text.ToString() ?? "1";
-            string perinstlamt = "0" + this.txtAmtPerIns.Text.ToString() ?? "0";
-            string loandesc = this.txtLoanDescc.Text.ToString();
-            string rate = "0" + this.txtrt.Text.ToString() ?? "0";
+
+            string loanamt = Convert.ToDouble("0" + (this.txtLoanAmt.Text.Trim())).ToString();
+            string perinstlamt = Convert.ToDouble("0" + (this.txtAmtPerIns.Text.Trim())).ToString();
+            string rate = Convert.ToDouble("0" + (this.txtrt.Text.Trim())).ToString();
+            string instlnum = Convert.ToInt32("0" + (this.txtInstNum.Text.Trim())).ToString();
+
+            string othincm = Convert.ToDouble("0" + (this.txtOI.Text.Trim())).ToString();
+            string othdeduct = Convert.ToDouble("0" + (this.txtOD.Text.Trim())).ToString();
+            string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString();
+
+
+
+ 
+            string loandesc = this.txtLoanDescc.Text.ToString();   
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? System.DateTime.Now.ToString("dd-MMM-yyy");
             string posteddate = System.DateTime.Now.ToString("dd-MMM-yyy");
             string pstdusrid = hst["usrid"].ToString();
@@ -542,9 +553,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string lnstatus = "0";
 
             string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? System.DateTime.Now.ToString("dd-MMM-yyy");
-            string othincm = "0" + this.txtOI.Text.ToString() ?? "0";
-            string othdeduct = "0" + this.txtOD.Text.ToString() ?? "0";
-            string stddeduct = "0" + this.txtStd.Text.ToString() ?? "0";
+        
 
             string loantypeDesc = ddlLoanType.SelectedItem.ToString() ?? "";
 
@@ -561,7 +570,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             if (result == true)
             {
-
+                 string loanid=  this.GetLastLoanID(comcod,empid);
                 this.GetLoanSteps();
                 this.loanSteps.SelectedIndex = Convert.ToInt32(hiddenSeletedIndex.Value);
                 Message = "Successfully Updated";
@@ -569,8 +578,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
                 string subj = "New Leave Request";
-                string htmbody = "Loan Type: " + loantypeDesc + ", Loan Amount: " + loanamt + ", Purpose  of Loan" + loandesc;
-                this.SendNotificaion(createDate, effedat, id, deptcode, compsms, compmail, ssl, compName, htmbody, subj, lnstatus);
+                string htmbody = "Loan Type: " + loantypeDesc + ", Loan Amount: " + loanamt + ", Purpose  of Loan: " + loandesc;
+                this.SendNotificaion(createDate, effedat, loanid, deptcode, compsms, compmail, ssl, compName, htmbody, subj, stepid);
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
 
 
@@ -586,6 +595,23 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
         }
+
+             
+        private string GetLastLoanID(string comcod, string empid)
+        {
+           
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETLOANIDLAST", empid, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return "";
+            }
+                
+            string loanID = ds1.Tables[0].Rows[0]["lastloanid"].ToString();
+            return loanID;
+        }
+
+
+
         //update loan
         protected void lnkUpdate_Click(object sender, EventArgs e)
         {
@@ -653,7 +679,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 string subj =  "Loan Process Approved";
 
                 string htmbody = "Loan Type: " + loantypeDesc + ", Loan Amount: " + loanamt + ", Purpose  of Loan" + loandesc;
-                this.SendNotificaion(createDate, effedat, id, deptcode, compsms, compmail, ssl, compName, htmbody, subj, lnstatus);
+                this.SendNotificaion(createDate, effedat, id, deptcode, compsms, compmail, ssl, compName, htmbody, subj, stepid);
 
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
@@ -690,13 +716,30 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         //loan cancellation
         protected void lnkCancel_Click(object sender, EventArgs e)
         {
-            //string empid = this.ddlEmpList.SelectedValue.ToString();
-            //string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
-            //string lnstatus = "0";
-            //string lsApproved = "0";
-            //string IsCancelled = "1";
-            //this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, IsCancelled);
+             
+            string empid = this.ddlEmpList.SelectedValue.ToString();
+            string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
+            string lnstatus = "0";
+            string lsApproved = "0";
+            string IsCancelled = "1";
+            string stepid = "8";
+            this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, IsCancelled, stepid);
         }
+
+        protected void lnkForwardStep_Click(object sender, EventArgs e)
+        {
+            int steps = Convert.ToInt32(this.stepIDNEXT.Value);
+            string stepid = Convert.ToInt32(steps - 2).ToString();
+
+            string empid = this.ddlEmpList.SelectedValue.ToString();
+            string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
+            string lnstatus = "0";
+            string lsApproved = "0";
+            string IsCancelled = "0";
+           
+            this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, IsCancelled, stepid);
+        }
+      
 
 
         //change  loan status
@@ -746,7 +789,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
             bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, loanid, loantype, loanamt, instlnum, perinstlamt, rate, effedat,
-               stddeduct, othincm, othdeduct, stepid, note, pstdusredt, pstdtrmnledt, pstdssnedt, postdateedited, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+               stddeduct, othincm, othdeduct, stepid, note, pstdusredt, pstdtrmnledt, pstdssnedt, postdateedited, lsApproved, lsCancelled, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             //bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, loanid, loantype, loanamt, instlnum, perinstlamt, loandesc,
             //    rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, lsApproved, lsCancelled, note, "", "", "", "", "", "", "");
@@ -757,11 +800,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 //if (qtype != "MGT")
                 //{
                 string subj = lsCancelled=="1"? "Loan Request Cancel" : lsApproved == "1" ? "Loan Request Approved":"New Loan Request";
-
-
-
                 string htmbody = "Loan Type: "+ loantypeDesc+", Loan Amount: "+ loanamt + ", Purpose  of Loan"+loandesc;
-                this.SendNotificaion(createDate, effedat, loanid, deptcode, compsms, compmail, ssl, compName, htmbody, subj, lnstatus);
+                this.SendNotificaion(createDate, effedat, loanid, deptcode, compsms, compmail, ssl, compName, htmbody, subj, stepid);
 
                 // }
 
@@ -784,7 +824,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             }
             this.loanSteps.SelectedIndex = Convert.ToInt32(hiddenSeletedIndex.Value);
-
             loanSteps_SelectedIndexChanged(null, null);
 
         }
@@ -810,9 +849,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkUpdate.Visible = false;
             this.lnkApprov.Visible = false;
             this.lnkCancel.Visible = false;
+            this.lnkAdd.Visible = false;
+            this.lnkForwardStep.Visible = false;
+
             /// 
-            
-                
+
+
 
             string comcod = this.GetCompCode();
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
@@ -880,6 +922,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkUpdate.Visible = false;
             this.lnkApprov.Visible = false;
             this.lnkCancel.Visible = false;
+            this.lnkForwardStep.Visible = false;
+
             /// 
 
             this.AllVie_Data(empid, lnid);
@@ -906,9 +950,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkApprov.Visible = false;
             this.lnkCancel.Visible = false;
             this.dibNote.Visible = false;
+            this.lnkForwardStep.Visible = false;
+
         }
-       
-       
+
+
 
         //approval  for loan process
         protected void AprvProcsView(object sender, EventArgs e)
@@ -924,6 +970,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkAdd.Visible = false;
             this.lnkApprov.Visible = false;
             lnkCancel.Visible = true;
+            this.lnkForwardStep.Visible = false;
+
             this.dibNote.Visible =  true;
             this.txtcreateDate.Enabled = false;
             
@@ -958,6 +1006,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkApprov.Visible = false;
             lnkCancel.Visible = true;
             this.txtcreateDate.Enabled = false;
+            this.lnkForwardStep.Visible = true;
 
             this.dibNote.Visible = true;
             this.txtnote.Text = "";
@@ -996,8 +1045,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.dibNote.Visible = true;
             this.txtnote.Text = "";
             this.txtcreateDate.Enabled = false;
+            this.lnkForwardStep.Visible = true;
 
-            
+
             this.txtLoanAmt.Enabled = true;
             this.txtInstNum.Enabled = true;
             this.txtStd.Enabled = true;
@@ -1038,7 +1088,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lnkAdd.Visible = false;
             this.lnkEdited.Visible = false;
             this.lnkUpdate.Visible = false;
-            
+            this.lnkForwardStep.Visible = true;
+
             /// 
 
 
@@ -1069,8 +1120,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANBYID", empid, lnid, "", "", "", "", "", "", "", "");
             if (ds == null || ds.Tables.Count == 0)
                 return;
-            DataTable dt = ds.Tables[0];
-             
+            DataTable dt = ds.Tables[0];           
 
 
             this.txtLoanId.Text = "Ln-" + dt.Rows[0]["id"].ToString();
@@ -1137,7 +1187,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = ((Label)this.gvPending.Rows[index].FindControl("lblpendempid")).Text.ToString();
             this.delid.Value = lnid;
             this.delempid.Value = empid.ToString();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDeleteModal();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "confirmDelete_click();", true);
             
         }
 
@@ -1153,8 +1203,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 string userid = hst["usrid"].ToString();
                 string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
 
-                string lnstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lnstatus")).ToString();
-                if ((lnstatus == "False") && (userid == empusrid))
+                string stepid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "stepid")).ToString();
+                if ((stepid == "2") && (userid == empusrid))
                 {
                     lnkDel.Visible = true;
                 }
@@ -1179,7 +1229,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
         //notification process
-        private void SendNotificaion(string frmdate, string todate, string ltrnid, string deptcode, string compsms, string compmail, string ssl, string compName, string htmtableboyd, string subj, string lnstatus)
+        private void SendNotificaion(string frmdate, string todate, string ltrnid, string deptcode, string compsms, string compmail, string ssl, string compName, string htmtableboyd, string subj, string stepid)
         {
             try
             {
@@ -1205,15 +1255,20 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
                 #endregion
                 #region
-                string callType = "GETDPTMGTHEADDATA";
-                if (lnstatus == "1")
+                string callType = "GETMGTHEADDATA";
+                if (stepid == "2")
                 {
-                    callType = "GETMGTHEADDATA";
+                    callType = "GETDPTMGTHEADDATA";                  
 
                 }
-                
+                else
+                {
+                    callType = "GETINTERFACESTEPUSERINFO";
 
-                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", callType, empid, "", ltrnid, "", "", "", "", "", "");
+                }
+
+
+                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", callType, empid, "", ltrnid, stepid, "", "", "", "", "");
 
                 if (ds1 == null)
                     return;
@@ -1230,12 +1285,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
                     string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
                     string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_85_Lon/";
-                    string currentptah = "LoanApproval?Type=&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
+                    string currentptah = "LoanApproval?Type=&comcod=" + comcod + "&refno=" + empid + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + stepid;
                     string totalpath = uhostname + currentptah;
 
 
                     string maildescription = "Dear Sir, Please Approve loan Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                         "Department Name : " + deptname + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                         "Department Name : " + deptname + "," + "<br>" + "Loan Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
                     maildescription += htmtableboyd;
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Loan Interface</div>" + "<br/>";
 
@@ -1251,12 +1306,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     }
                     if (compmail == "True")
                     {
-                       // bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
-                        //if (Result_email == false)
-                        //{
-                        //    string Messagesd = "Loan Applied  but Notification has not been sent, Email or SMTP info Empty";
-                        //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-                        //}
+                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
+                        if (Result_email == false)
+                        {
+                            string Messagesd = "Loan Applied  but Notification has not been sent, Email or SMTP info Empty";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        }
                     }
                     #endregion
                 }
@@ -1288,11 +1343,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             string othincm = Convert.ToDouble("0" + (this.txtOI.Text.Trim())).ToString();
             string othdeduct = Convert.ToDouble("0" + (this.txtOD.Text.Trim())).ToString();
-            string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString();
-
-
-
-           
+            string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString(); 
             string loandesc = this.txtLoanDescc.Text.ToString();
            
             string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
@@ -1303,30 +1354,27 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string lnstatus ="0";
 
             string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
-           
 
+            string stepid = "2"; 
 
             //maincode = (editedid != "") ? editedid : maincode;
-            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, id, loantype, loanamt, instlnum, perinstlamt, loandesc, rate, effedat, "", "", "", "", pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus,"", "", "", "", "", "", "", "", "", "");
+            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOAN", empid, id, loantype, loanamt, instlnum, perinstlamt, loandesc, rate, effedat, "", "", "", "", 
+                pstdusredt, pstdssnedt, pstdtrmnledt, postdateedited, createDate, stddeduct, othincm, othdeduct, lnstatus, stepid, "", "", "", "", "", "");
             if (result == true)
             {
-                this.getAllData();
-                this.LoantState.SelectedIndex = Convert.ToInt32(hiddenSeletedIndex.Value);
+                  
                 Message = "Successfully Updated";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);              
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
-
-
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true); 
             }
             else
-            {
-                this.getAllData();
-                this.LoantState.SelectedIndex = Convert.ToInt32(hiddenSeletedIndex.Value);
+            { 
                 Message = "Update Fail";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ModalLoanClose();", true);
             }
-
+            GetLoanSteps();
+            this.LoantState.SelectedIndex = Convert.ToInt32(hiddenSeletedIndex.Value);
             LoantState_SelectedIndexChanged(null, null);
         }
 
@@ -1378,7 +1426,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanComp.Visible = false;
                     this.pnlCanc.Visible = false; 
 
-                    this.LoantState.Items[1].Attributes["class"] = "lblactive blink_me";
+                    this.LoantState.Items[2].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1392,7 +1440,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanComp.Visible = false;
                     this.pnlCanc.Visible = false;
 
-                    this.LoantState.Items[2].Attributes["class"] = "lblactive blink_me";
+                    this.LoantState.Items[3].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1407,7 +1455,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanComp.Visible = false;
                     this.pnlCanc.Visible = false;
 
-                    this.LoantState.Items[3].Attributes["class"] = "lblactive blink_me";
+                    this.LoantState.Items[4].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1422,7 +1470,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanComp.Visible = false;
                     this.pnlCanc.Visible = false;
 
-                    this.LoantState.Items[4].Attributes["class"] = "lblactive blink_me";
+                    this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1437,7 +1485,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanComp.Visible = true;
                     this.pnlCanc.Visible = false;
 
-                    this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.LoantState.Items[6].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1451,7 +1499,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlLoanComp.Visible = false;
                     this.pnlCanc.Visible = true;
 
-                    this.LoantState.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.LoantState.Items[7].Attributes["class"] = "lblactive blink_me";
                     hiddenSeletedIndex.Value = index.ToString();
 
                     break;
@@ -1656,6 +1704,65 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.GetGross();
             GetApprovalLog(lnid);
 
+        }
+
+        protected void CancelpendlnView_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gvCanc.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gvCanc.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+
+            this.txtcreateDate.Enabled = false;
+            this.txtLoanAmt.Enabled = false;
+            this.txtInstNum.Enabled = false;
+            this.txtStd.Enabled = false;
+            this.txtOI.Enabled = false;
+            this.txtOD.Enabled = false;
+            this.txtrt.Enabled = false;
+            this.txtEffDate.Enabled = false;
+            this.ddlLoanType.Enabled = false;
+            this.txtLoanDescc.Enabled = false;
+            this.ddlEmpList.Enabled = false;
+            this.lnkUpdate.Visible = false;
+            this.lnkAdd.Visible = false;
+            this.lnkApprov.Visible = false;
+            lnkCancel.Visible = false;
+            this.dibNote.Visible = false;
+
+            /// false section 
+            this.lnkAdd.Visible = false;
+            this.lnkEdited.Visible = false;
+            this.lnkUpdate.Visible = false;
+            this.lnkApprov.Visible = false;
+            this.lnkCancel.Visible = false;
+            this.lnkForwardStep.Visible = false;
+
+            /// 
+
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+
+        }
+
+        protected void gvCanc_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //LinkButton lnkDel = (LinkButton)e.Row.FindControl("confmDelModal");
+                //Hashtable hst = (Hashtable)Session["tblLogin"];gvApproved
+                //string comcod = hst["comcod"].ToString();
+                //string userid = hst["usrid"].ToString();
+                //string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
+
+                //string stepid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "stepid")).ToString();
+                //if ((stepid == "2") && (userid == empusrid))
+                //{
+                //    lnkDel.Visible = true;
+                //}
+
+
+            }
         }
     }
 }

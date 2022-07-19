@@ -57,6 +57,7 @@ namespace RealERPWEB.F_17_Acc
                 this.txtEntryDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtChequeDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.Visibility();
+                this.GetComGridColVisible();
                 this.TxtnameChange();
                 this.Accpayee();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
@@ -72,6 +73,25 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
+        }
+
+        private void GetComGridColVisible()
+        {
+
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3367":// Epic
+                    break;
+
+                default:
+                    this.dgv1.Columns[6].Visible = false;
+                    break;
+
+
+            }
+        
         }
 
 
@@ -211,9 +231,11 @@ namespace RealERPWEB.F_17_Acc
         private void TableCreate()
         {
             DataTable tblt01 = new DataTable();
-            tblt01.Columns.Add("actcode", Type.GetType("System.String"));
+            tblt01.Columns.Add("cactcode", Type.GetType("System.String"));
+            tblt01.Columns.Add("actcode", Type.GetType("System.String"));            
             tblt01.Columns.Add("subcode", Type.GetType("System.String"));
             tblt01.Columns.Add("spclcode", Type.GetType("System.String"));
+            tblt01.Columns.Add("cactdesc", Type.GetType("System.String"));
             tblt01.Columns.Add("actdesc", Type.GetType("System.String"));
             tblt01.Columns.Add("subdesc", Type.GetType("System.String"));
             tblt01.Columns.Add("spcldesc", Type.GetType("System.String"));
@@ -758,6 +780,8 @@ namespace RealERPWEB.F_17_Acc
                 string comcod = this.GetCompCode();
                 string isunum = "";
                 this.Panel4.Visible = true;
+                string cactcode = this.ddlConAccHead.SelectedValue.ToString();
+                string cactdesc = this.ddlConAccHead.SelectedItem.Text.Trim().Substring(13);
                 string AccCode = this.ddlacccode.SelectedValue.ToString();
                 string ResCode = this.ddlresuorcecode.SelectedValue.ToString();
                 string spclcode = this.ddlSpclinf.SelectedValue.ToString();
@@ -848,11 +872,13 @@ namespace RealERPWEB.F_17_Acc
                 }
 
                 DataRow dr1 = dt.NewRow();
+                dr1["cactcode"] = cactcode;
                 dr1["actcode"] = AccCode;
                 dr1["subcode"] = ResCode;
                 dr1["spclcode"] = spclcode;
                 dr1["chequeno"] = Chequeno;
                 dr1["isunum"] = isunum;
+                dr1["cactdesc"] = cactdesc;
                 dr1["actdesc"] = AccDesc;
                 dr1["subdesc"] = ResDesc;
                 dr1["spcldesc"] = spcldesc;
@@ -1228,7 +1254,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-
+                    string gcactcode= dr1["cactcode"].ToString();
                     string actcode = dr1["actcode"].ToString();
                     string rescode = dr1["subcode"].ToString();
                     string spclcode = dr1["spclcode"].ToString();
@@ -1253,7 +1279,7 @@ namespace RealERPWEB.F_17_Acc
 
                     }
 
-                    bool resulta = accData.UpdateTransInfo3(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "INOFUPACPMNTA", vounum, actcode, rescode, chequeno, cactcode,
+                    bool resulta = accData.UpdateTransInfo3(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "INOFUPACPMNTA", vounum, actcode, rescode, chequeno, gcactcode,
                                    voudat, Dramt, chequedate, trnremarks, vtcode, payto, isunum, acvounum, billno, insofissueno, spclcode, "", "", "", "", "", "");
                     if (!resulta)
                     {
