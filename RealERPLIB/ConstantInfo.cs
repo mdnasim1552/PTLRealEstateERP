@@ -2017,7 +2017,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8102043", "F_81_Hrm/F_85_Lon", "RptIndLoanStatus", "", "Employee Loan Installment Details", "Loan", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102041", "F_81_Hrm/F_85_Lon", "EmpDeducOther", "", "Employee Deduction other", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102042", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Overtime", "Overtime Allowance", "Allowances", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102240", "F_81_Hrm/F_85_Lon", "LoanApproval?", "Type=", "Loan Approval", "Loan", "False", "False", "False", "False" });
 
+             
             // tblObj.Rows.Add(new Object[] { "8102000", "8102043", "EmpOvertime?", "Type=Holiday", "Holiday Allowance 01", "Allowances", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8102000", "8102044", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Mobile", "Mobile Bill", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102045", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Lencashment", "Leave Encashment", "Allowances", "False", "False", "False", "False" }); ;
