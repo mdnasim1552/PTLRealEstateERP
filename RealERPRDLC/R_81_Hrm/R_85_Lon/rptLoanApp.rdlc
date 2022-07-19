@@ -108,7 +108,15 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Loan ID </Value>
+                    <Value>Loan ID</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -453,7 +461,6 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>0.24653in</Top>
-            <Left>0in</Left>
             <Height>2.84375in</Height>
             <Width>7.55208in</Width>
             <Style>
@@ -1255,7 +1262,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <Top>3.48833in</Top>
-            <Left>0in</Left>
             <Height>1.25in</Height>
             <Width>7.55208in</Width>
             <ZIndex>1</ZIndex>
@@ -1431,7 +1437,6 @@
             </PageBreak>
             <KeepTogether>true</KeepTogether>
             <Top>5.14458in</Top>
-            <Left>0in</Left>
             <Height>1.90104in</Height>
             <Width>7.66667in</Width>
             <ZIndex>2</ZIndex>
@@ -1860,7 +1865,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <Top>7.54042in</Top>
-            <Left>0in</Left>
             <Height>0.89583in</Height>
             <Width>7.55208in</Width>
             <ZIndex>3</ZIndex>
@@ -2644,7 +2648,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <Top>10.08208in</Top>
-            <Left>0in</Left>
             <Height>0.34375in</Height>
             <Width>7.55208in</Width>
             <ZIndex>5</ZIndex>
@@ -3018,8 +3021,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <Top>11.29042in</Top>
-            <Left>0in</Left>
-            <Height>1.47917in</Height>
+            <Height>1.47915in</Height>
             <Width>7.55208in</Width>
             <ZIndex>6</ZIndex>
             <Style>
@@ -3043,7 +3045,6 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0in</Left>
               <Height>0.51389in</Height>
               <Width>1.125in</Width>
               <Style>
