@@ -232,7 +232,7 @@ namespace RealERPWEB.F_30_Facility
             string pactcode = "156100010001";
             string flrcod = "000";
             string requsrid = "";
-            string mrfno = Request.QueryString["DgNo"].ToString();
+            string mrfno = "Dg-"+Request.QueryString["DgNo"].ToString();
             string reqnar = txtNarration.Text;
             string CRMPostedByid = userid;
             string CRMPosttrmid = Terminal;
@@ -243,7 +243,7 @@ namespace RealERPWEB.F_30_Facility
 
 
             bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQB", reqno, reqdate, pactcode, flrcod, requsrid, mrfno, reqnar,
-                PostedByid, Posttrmid, PostSession, PostedDat, CRMPostedByid, CRMPosttrmid, CRMPostSession, CRMPostedDat, checkbyid, "","","","","");
+                PostedByid, Posttrmid, PostSession, PostedDat, CRMPostedByid, CRMPosttrmid, CRMPostSession, CRMPostedDat, "", "","","","","");
             
             if (result)
             {
@@ -259,8 +259,8 @@ namespace RealERPWEB.F_30_Facility
                     double mPREQTY = Convert.ToDouble(item.quantity);
                     double mAREQTY = Convert.ToDouble("0.00");
                     double mBgdBalQty = Convert.ToDouble("0.00");
-                    string mREQRAT = item.rate.ToString();
-                    string mREQSRAT = item.rate.ToString();
+                    string mREQRAT = "0.00";      //item.rate.ToString();
+                    string mREQSRAT = "0.00";     //item.rate.ToString();
                     string mPSTKQTY ="0.00";
                     string mEXPUSEDT = "";
                     string mREQNOTE = "";
@@ -305,6 +305,15 @@ namespace RealERPWEB.F_30_Facility
                             return;
                         }
                     }
+                    bool resultReqNo = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEREQNODIAGNOSIS", Request.QueryString["DgNo"].ToString(),
+                                        reqno, "", "", "", "", "", "", "", "",
+                                        "", "", "", "", "");
+                    if (!resultReqNo)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                        return;
+                    }
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{reqno} is Updated Successful" + "');", true);
                 }
             }
