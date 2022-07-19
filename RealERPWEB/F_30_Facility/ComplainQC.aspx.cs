@@ -188,89 +188,94 @@ namespace RealERPWEB.F_30_Facility
             string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
             string qcdate = txtEntryDate.Text;
             string Narration = txtNarration.Text;
-            if (obj.Where(x => x.isQC == true).ToList().Count == 0)
+
+
+            bool result = false;
+            bool result01 = false;
+            if (Request.QueryString["Type"].ToString() == "CustomerCare")
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must have atleast one Checked to procceed" + "');", true);
+                result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCB", dgno, qcdate, Narration, "", "", "", "", "", "", "", "", "", "",
+                  "", "", "", "", "", "", "", "", "", userId);
+                result01 = true;
+                //result01 = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCCHECKFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "", "",
+                //       "", "", "", "", "", "", "", "", "", userId);
             }
             else
             {
-                bool result = false;
-                bool result01 = false;
-                if (Request.QueryString["Type"].ToString() == "CustomerCare")
+                if (obj.Where(x => x.isQC == true).ToList().Count == 0)
                 {
-                    result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCB", dgno, qcdate, Narration, "", "", "", "", "", "", "", "", "", "",
-                      "", "", "", "", "", "", "", "", "", userId);
-                    result01 = true;
-                    //result01 = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCCHECKFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "", "",
-                    //       "", "", "", "", "", "", "", "", "", userId);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must have atleast one Checked to procceed" + "');", true);
+                    return;
                 }
                 else
                 {
+
                     result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dgno, qcdate, Narration, "", "", "", "", "", "", "", "", "", "",
                        "", "", "", "", "", "", "", "", "", userId);
                     result01 = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCCHECKFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "", "",
                            "", "", "", "", "", "", "", "", "", userId);
                 }
+            }
 
 
 
-                if (result && result01)
+            if (result && result01)
+            {
+                List<bool> resultCompA = new List<bool>();
+                foreach (var item in obj)
                 {
-                    List<bool> resultCompA = new List<bool>();
-                    foreach (var item in obj)
+                    if (Request.QueryString["Type"].ToString() == "CustomerCare")
                     {
-                        if (Request.QueryString["Type"].ToString() == "CustomerCare")
+                        if (item.isCC)
                         {
-                            if (item.isCC)
-                            {
-                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCA", dgno, item.complainDesc, "", "", "", "", "", "", "", "", "", "",
-                                   "", "", "", "", "", "", "", "", "", "", userId);
-                                resultCompA.Add(resultA);
-                            }
+                            bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCA", dgno, item.complainDesc, "", "", "", "", "", "", "", "", "", "",
+                               "", "", "", "", "", "", "", "", "", "", userId);
+                            resultCompA.Add(resultA);
                         }
-                        else
-                        {
-                            if (item.isQC)
-                            {
-                                bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCA", dgno, item.complainDesc, "", "", "", "", "", "", "", "", "", "",
-                                   "", "", "", "", "", "", "", "", "", "", userId);
-                                resultCompA.Add(resultA);
-                            }
-                        }
-
-
-                    }
-                    if (resultCompA.Contains(false))
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"QC Updated" + "');", true);
+                        if (item.isQC)
+                        {
+                            bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCA", dgno, item.complainDesc, "", "", "", "", "", "", "", "", "", "",
+                               "", "", "", "", "", "", "", "", "", "", userId);
+                            resultCompA.Add(resultA);
+                        }
                     }
+
+
                 }
-                else
+                if (resultCompA.Contains(false))
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                 }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"QC Updated" + "');", true);
+                }
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+            }
+
         }
 
         protected void dgv1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (Request.QueryString["Type"].ToString() == "CustomerCare")
-            {
-                int i = 0;
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    bool isQC = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isQC"));
-                    if (!isQC)
-                    {
-                        ((CheckBox)this.dgv1.Rows[i].FindControl("chkCC")).Enabled = false;
-                    }
-                    i++;
-                }
-            }
+            //if (Request.QueryString["Type"].ToString() == "CustomerCare")
+            //{
+            //    int i = 0;
+            //    if (e.Row.RowType == DataControlRowType.DataRow)
+            //    {
+            //        bool isQC = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isQC"));
+            //        if (!isQC)
+            //        {
+            //            ((CheckBox)this.dgv1.Rows[i].FindControl("chkCC")).Enabled = false;
+            //        }
+            //        i++;
+            //    }
+            //}
         }
     }
 }
