@@ -44,19 +44,13 @@
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-=======
-
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
->>>>>>> 743652376d258cf466b3de157d8ca9f98edbbce3
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -166,6 +160,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+LeaveRule.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+prevtLeaveInfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+RptEmpInfoData.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+yearlyholiday.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+YearlyLeaveRecord.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.datasource" />
@@ -949,6 +944,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptYearlyLeaveRecord.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_85_Lon\rptEmpLoanInsDetails.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_85_Lon\rptEmpLoanStatus.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_85_Lon\rptLoanApp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_86_All\rptMobileAllowAcme.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_86_All\rptMobileAllowAlli.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_86_All\rptMobileAllowance.rdlc" />
