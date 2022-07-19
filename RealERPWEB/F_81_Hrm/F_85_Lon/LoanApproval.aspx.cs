@@ -15,12 +15,21 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-            //    Response.Redirect("../../AcceessError.aspx");
+            ////if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+            ////    Response.Redirect("../../AcceessError.aspx");
             //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             //if (dr1.Length == 0)
-            //    Response.Redirect("../AcceessError.aspx");
-            //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
+            //{
+            //    this.warning.Visible = true;
+            //    this.CardBody.Visible = false;
+            //    return;
+            //}
+
+            ((Label)this.Master.FindControl("lblTitle")).Text = "Loan Approval";// dr1[0]["dscrption"].ToString();
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
 
             this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
             DateTime now = DateTime.Now;
@@ -32,8 +41,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.stepIDNEXT.Value = this.Request.QueryString["RoleType"].ToString() ?? "";
             this.GetEmplist();
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
+           
 
             this.GetLoanType();
             this.GetGross();
@@ -191,73 +199,76 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected void lnkUpdate_Click(object sender, EventArgs e)
         {
 
-            string Message;
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string compsms = hst["compsms"].ToString();
-            string compmail = hst["compmail"].ToString();
-            string ssl = hst["ssl"].ToString();
-            string compName = hst["comnam"].ToString();
-            string usrid = hst["usrid"].ToString();
-            string deptcode = hst["deptcode"].ToString();
+            //string Message;
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string compsms = hst["compsms"].ToString();
+            //string compmail = hst["compmail"].ToString();
+            //string ssl = hst["ssl"].ToString();
+            //string compName = hst["comnam"].ToString();
+            //string usrid = hst["usrid"].ToString();
+            //string deptcode = hst["deptcode"].ToString();
 
-            string comcod = this.GetCompCode();
-            string empid = this.ddlEmpList.SelectedValue.ToString();
-            //string empid = hst["empid"].ToString() ?? "";
-            string id = this.txtLoanId.Text.ToString().Remove(0, 3);
-            string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
-
-
-            string loanamt = Convert.ToDouble("0" + (this.txtLoanAmt.Text.Trim())).ToString();
-            string perinstlamt = Convert.ToDouble("0" + (this.txtAmtPerIns.Text.Trim())).ToString();
-            string rate = Convert.ToDouble("0" + (this.txtrt.Text.Trim())).ToString();
-            string instlnum = Convert.ToInt32("0" + (this.txtInstNum.Text.Trim())).ToString();
-
-            string othincm = Convert.ToDouble("0" + (this.txtOI.Text.Trim())).ToString();
-            string othdeduct = Convert.ToDouble("0" + (this.txtOD.Text.Trim())).ToString();
-            string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString();
+            //string comcod = this.GetCompCode();
+            //string empid = this.ddlEmpList.SelectedValue.ToString();
+            ////string empid = hst["empid"].ToString() ?? "";
+            //string id = this.txtLoanId.Text.ToString().Remove(0, 3);
+            //string loantype = ddlLoanType.SelectedValue.ToString() ?? "";
 
 
+            //string loanamt = Convert.ToDouble("0" + (this.txtLoanAmt.Text.Trim())).ToString();
+            //string perinstlamt = Convert.ToDouble("0" + (this.txtAmtPerIns.Text.Trim())).ToString();
+            //string rate = Convert.ToDouble("0" + (this.txtrt.Text.Trim())).ToString();
+            //string instlnum = Convert.ToInt32("0" + (this.txtInstNum.Text.Trim())).ToString();
 
-            string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
-            string pstdusredt = hst["usrid"].ToString();
-            string pstdssnedt = hst["session"].ToString();
-            string pstdtrmnledt = hst["compname"].ToString();
-            string postdateedited = System.DateTime.Now.ToString("dd-MMM-yyy") ?? "";
+            //string othincm = Convert.ToDouble("0" + (this.txtOI.Text.Trim())).ToString();
+            //string othdeduct = Convert.ToDouble("0" + (this.txtOD.Text.Trim())).ToString();
+            //string stddeduct = Convert.ToDouble("0" + (this.txtStd.Text.Trim())).ToString();
+
+
+
+            //string effedat = Convert.ToDateTime(this.txtEffDate.Text).ToString("dd-MMM-yyyy") ?? "";
+            //string pstdusredt = hst["usrid"].ToString();
+            //string pstdssnedt = hst["session"].ToString();
+            //string pstdtrmnledt = hst["compname"].ToString();
+            //string postdateedited = System.DateTime.Now.ToString("dd-MMM-yyy") ?? "";
             
-            string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
+            //string createDate = Convert.ToDateTime(this.txtcreateDate.Text).ToString("dd-MMM-yyyy") ?? "";
 
 
-            string loantypeDesc = ddlLoanType.SelectedItem.ToString() ?? "";
-            string note = this.txtnote.Text.ToString() ?? "";
-            string loandesc = this.txtLoanDescc.Text.ToString() ?? "";
+            //string loantypeDesc = ddlLoanType.SelectedItem.ToString() ?? "";
+            //string note = this.txtnote.Text.ToString() ?? "";
+            //string loandesc = this.txtLoanDescc.Text.ToString() ?? "";
 
-            string stepid = this.stepIDNEXT.Value+1;
+            //string stepid = this.stepIDNEXT.Value+1;
 
 
-            //maincode = (editedid != "") ? editedid : maincode;
-            bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, id, loantype, loanamt, instlnum, perinstlamt, rate, effedat,
-                stddeduct, othincm, othdeduct, stepid, note, pstdusredt, pstdtrmnledt, pstdssnedt, postdateedited, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            ////maincode = (editedid != "") ? editedid : maincode;
+            //bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, id, loantype, loanamt, instlnum, perinstlamt, rate, effedat,
+            //    stddeduct, othincm, othdeduct, stepid, note, pstdusredt, pstdtrmnledt, pstdssnedt, postdateedited, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+           
+            //bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANUPDATEPROCESS", empid, loanid, loantype, loanamt, instlnum, perinstlamt, rate, effedat,
+            //   stddeduct, othincm, othdeduct, stepid, note, pstdusredt, pstdtrmnledt, pstdssnedt, postdateedited, lsApproved, lsCancelled, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
              
 
-            if (result == true)
-            {
+            //if (result == true)
+            //{
                 
-                Message = "Successfully Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
-                string subj = "Loan Process Approved";
-                string htmbody = "Loan Type: " + loantypeDesc + ", Loan Amount: " + loanamt + ", Purpose  of Loan: " + loandesc;
-                this.SendNotificaion(createDate, effedat, id, deptcode, compsms, compmail, ssl, compName, htmbody, subj, stepid);
+            //    Message = "Successfully Updated";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+            //    string subj = "Loan Process Approved";
+            //    string htmbody = "Loan Type: " + loantypeDesc + ", Loan Amount: " + loanamt + ", Purpose  of Loan: " + loandesc;
+            //    this.SendNotificaion(createDate, effedat, id, deptcode, compsms, compmail, ssl, compName, htmbody, subj, stepid);
 
  
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 
-                Message = "Update Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+            //    Message = "Update Fail";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
           
-            }
+            //}
 
            
 
@@ -279,12 +290,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         //loan process approval
         protected void lnkApprov_Click(object sender, EventArgs e)
         {
-            string stepid = this.stepIDNEXT.Value+1;
+            int steps = Convert.ToInt32(this.stepIDNEXT.Value);
+            string stepid = Convert.ToInt32(steps + 1).ToString(); 
+            string stepidMD = this.stepIDNEXT.Value;
 
             string empid = this.ddlEmpList.SelectedValue.ToString();
             string loanid = this.txtLoanId.Text.ToString().Remove(0, 3);
             string lnstatus = "1";
-            string lsApproved = "1";
+            string lsApproved = stepidMD=="5"?"1":"0";
             string lsCancelled = "0";
             this.ChangeloanStatus(empid, loanid, lnstatus, lsApproved, lsCancelled, stepid);
         }
@@ -294,8 +307,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string note = this.txtnote.Text.ToString() ?? "";
             if (note == "" && lsCancelled == "1")
             {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
-
+                 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "checkEmptyNote();", true);
                 return;
             }
@@ -353,21 +365,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
                 string eventdesc2 = "Details: " + "Loan Process Approval";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", "", "");
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);               
 
             }
             else
             {
                 Message = "Applied Fail";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#ApplyLoan", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#ApplyLoan').hide();", true);
-
-
-
+              
             }
 
 
@@ -471,9 +476,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
         }
 
-        protected void lnkUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
+         
     }
 }
