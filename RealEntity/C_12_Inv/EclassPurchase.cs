@@ -59,6 +59,7 @@ namespace RealEntity.C_12_Inv
             public double aprovsrate { get; set; }
             public double dispercnt { get; set; }
             public string expusedt { get; set; }  
+            public string rmrks { get; set; }   
 
 
         }
