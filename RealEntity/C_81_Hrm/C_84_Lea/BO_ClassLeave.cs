@@ -538,5 +538,18 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string supname { get; set; }
             public applytimeoff() { }
         }
+
+
+        [Serializable]
+        public class EmpBasicInf
+        {
+            public string desig { get; set; }
+            public string dept { get; set; }
+            public string cdate { get; set; }
+            public string doj { get; set; }
+
+            public EmpBasicInf() { }
+        }
+
     }
 }
