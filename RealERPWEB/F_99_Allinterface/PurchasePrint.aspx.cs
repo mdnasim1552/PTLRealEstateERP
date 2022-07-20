@@ -5972,10 +5972,12 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3354":
                     PrintReq = "PrintBillEdisonErp";
                     break;
-
-                case "3101":
                 case "3357":
                     PrintReq = "PrintBillIntech";
+                    break;     
+                // bill finaly
+                case "3368":
+                    PrintReq = "PrintBillFinlay";
                     break;
 
                 default:
@@ -6275,6 +6277,15 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
             }
 
+            else if(pCompanyBill == "PrintBillFinlay")
+            {
+
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillFinaly", lst, null, null);
+                rptbill.EnableExternalImages = true;
+                rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
+                rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            }
             else
             {
 
