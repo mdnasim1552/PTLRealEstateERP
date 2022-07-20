@@ -1144,6 +1144,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202030", "F_22_Sal", "MktDummySalsPayment02?Type=Sales", "", "Dummy Payment Schedule-02", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202035", "F_22_Sal", "MktDummySalsPayment03?Type=Sales", "", "Dummy Payment Schedule(User Wise)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202036", "F_22_Sal", "EntryClientNameTransfer?Type=Mgt", "", "Client Info Transfer (Name Trans)", "Sales & Recovery", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2201000", "2201040", "F_22_Sal", "SalesCodeBook?Type=Sales", "", "Sales Code Book ", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -9602,7 +9603,8 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0311000000", "Sales", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0311000001", "07. Sales Register", "F_22_Sal/SalesRegister?Type=Management", "", true, "" });
-
+            mnuTbl1.Rows.Add(new Object[] { "0311000002", "07. Client Info Transfer (Name Trans)", "F_22_Sal/EntryClientNameTransfer?Type=Mgt", "", true, "" });
+            
             mnuTbl1.Rows.Add(new Object[] { "0312000000", "Credit Realization(CR)", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0312000001", "01. Money Receipt Transfer", "F_34_Mgt/CodeDataTransMR?Type=MoneyReceipt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0312000002", "01. Money Receipt (Segregation)", "F_34_Mgt/CodeDataTransMR?Type=MRSegregation", "", true, "" });
