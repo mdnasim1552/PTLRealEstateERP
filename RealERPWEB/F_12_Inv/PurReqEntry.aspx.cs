@@ -610,14 +610,15 @@ namespace RealERPWEB.F_12_Inv
                 this.ddlPrjForUse.DataValueField = "upactcode";
                 this.ddlPrjForUse.DataSource = ds1.Tables[1];
                 this.ddlPrjForUse.DataBind();
-
+                //todo for select department
+                if (ASTUtility.Left(ds1.Tables[1].Rows[0]["pactcode"].ToString(), 8) == "11020099")
+                {
+                    this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
+                }
                 //this.Load_Project_To_Combo();
                 //this.ddlPrjForUse.SelectedValue = ds1.Tables[1].Rows[0]["upactcode"].ToString();
             }
-            else if (ASTUtility.Left(ds1.Tables[1].Rows[0]["pactcode"].ToString(), 8) == "11020099")
-            {
-                this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
-            }
+            
             else
             {
                 this.uPrj.Visible = false; ;
