@@ -557,6 +557,9 @@
                                 <li>
                                     <asp:HyperLink ID="HyperLink13" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/MktEntryUnit">Unit Fixation</asp:HyperLink>
                                 </li>
+                                 <li>
+                                    <asp:HyperLink ID="HyperLink22" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/MktEntryUnit?Type=LandOwner">Unit Fixation(Land Owner)</asp:HyperLink>
+                                </li>
                                 <li>
                                     <asp:HyperLink ID="hlnkSalsPaymen" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/MktDummySalsPayment?Type=Sales">Dummy Payment Schedule</asp:HyperLink>
                                 </li>
@@ -569,7 +572,9 @@
                                 <li>
                                     <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/MktSalsPayment?Type=Sales">Sales Payment Schedule</asp:HyperLink>
                                 </li>
-
+                                 <li>
+                                    <asp:HyperLink ID="HyperLink23" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/MktSalsLOPayment?Type=Sales">Sales(LO) Payment Schedule</asp:HyperLink>
+                                </li>
                                 <li>
                                     <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_23_CR/MktMoneyReceipt?Type=CustCare">Money Receipt Create</asp:HyperLink>
 

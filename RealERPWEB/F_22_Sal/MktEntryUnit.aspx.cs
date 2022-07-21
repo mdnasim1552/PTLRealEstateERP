@@ -30,8 +30,15 @@ namespace RealERPWEB.F_22_Sal
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.gvUnit.Columns[1].Visible = (Convert.ToBoolean(dr1[0]["entry"]));
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Budget-Sales ";
+                if (Request.QueryString["Type"] != null)
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Budget-Sales(Land Owner) ";
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Budget-Sales ";
+                }
+                
                 this.GetProjectName();
                 this.GetUnitType();
                 this.ChangeName();
@@ -135,7 +142,6 @@ namespace RealERPWEB.F_22_Sal
                     this.gvUnit.Columns[11].HeaderText = "Association Fee";
                     break;
                 default:
-
                     break;
 
 
@@ -381,12 +387,12 @@ namespace RealERPWEB.F_22_Sal
                 string cooprative = dt.Rows[i]["cooperative"].ToString();
                 string chkper = dt.Rows[i]["mgtbook"].ToString().Trim();
                 string fcode = dt.Rows[i]["fcode"].ToString().Trim();
-
+                string isLO = (Request.QueryString["Type"] == null) ? "0" : "1";
 
                 if (dUsize > 0)
                 {
                     bool result = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
-                        bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, "", "");
+                        bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, "");
 
                     if (!result)
                     {
@@ -429,7 +435,8 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetCompCode();
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string group = (this.ddlFloor.SelectedValue.ToString() == "000000000") ? this.ddlGroup.SelectedValue.ToString() + "%" : this.ddlFloor.SelectedValue.ToString() + "%";
-            DataSet ds4 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFORMATION", PactCode, group, "", "", "", "", "", "", "");
+            string isLO = (Request.QueryString["Type"] == null) ? "0" : "1";            
+            DataSet ds4 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFORMATION", PactCode, group, isLO, "", "", "", "", "", "");
             if (ds4 == null)
                 return;
             ViewState["tblUnit"] = ds4.Tables[0];
@@ -671,7 +678,10 @@ namespace RealERPWEB.F_22_Sal
                 string group = (this.ddlFloor.SelectedValue.ToString() == "000000000") ? this.ddlGroup.SelectedValue.ToString() + "%" : this.ddlFloor.SelectedValue.ToString() + "%";
 
                 string totno = (this.ddlFloor.SelectedValue.ToString() == "000000000") ? "" : (this.txttotalno.Text.Trim() == "") ? "" : this.txttotalno.Text.Trim();
-                DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFANDUNITINFO", PactCode, group, totno, "", "", "", "", "", "");
+                string isLO = (Request.QueryString["Type"] == null) ? "0" : "1";
+
+
+                DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFANDUNITINFO", PactCode, group, totno, isLO, "", "", "", "", "");
                 if (ds3 == null)
                     return;
                 this.gvUnit.Columns[1].Visible = false;

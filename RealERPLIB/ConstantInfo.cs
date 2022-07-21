@@ -175,6 +175,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0402000", "0402001", "F_22_Sal", "MktEntryUnit", "", "Budget-Sales", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0402000", "0402002", "F_04_Bgd", "BgdPrjAna?", "InputType=BgdMain", "Budget-Engineering", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0402000", "0402003", "F_04_Bgd", "BgdMaster?", "InputType=BgdMain", "Budget-General", "Budget", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0402000", "0402005", "F_22_Sal", "MktEntryUnit?", "Type=LandOwner", "Budget-Sales(Land Owner)", "Budget", "False", "False", "False", "False" }); ;
+
+
             tblObj.Rows.Add(new Object[] { "0402000", "0402020", "F_04_Bgd", "BgdLevelRate?", "Type=Rate", "Subcontractor Rate", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0402000", "0402030", "F_04_Bgd", "PrjInformation?", "Type=Report", "Project Information", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0402000", "0402040", "F_04_Bgd", "BgdStdAna", "", "Standard Analysis", "Budget", "False", "False", "False", "False" }); ;
@@ -1138,6 +1141,10 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202015", "F_22_Sal", "MktBookigApp?Type=Entry", "", "Booking Application", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202020", "F_22_Sal", "MktSalsPayment?Type=Sales", "", "Sales With Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "2202000", "2202022", "F_22_Sal", "MktSalsLOPayment?Type=Sales", "", "Sales(LO) With Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
+
+
             tblObj.Rows.Add(new Object[] { "2202000", "2202023", "F_22_Sal", "MktRentPaymentSchdule?Type=Sales", "", "Rent Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202025", "F_22_Sal", "EntryDuesFProject", "", "Dues Input - Finishing Project", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2202000", "2202027", "F_22_Sal", "MktDummySalsPayment?Type=Sales", "", "Dummy Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
