@@ -2542,6 +2542,15 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
+                                                 <asp:TemplateField HeaderText="Phone/Mobile">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvcphone" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cphone"))%>'></asp:Label>
+
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
 
 
 
