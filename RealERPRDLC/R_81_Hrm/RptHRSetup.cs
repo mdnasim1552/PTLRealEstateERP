@@ -82,8 +82,13 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_90_PF.RptMonthWisePFAlliance": Rpt1a = SetRptPFAlliance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_90_PF.RptProvidedFund": Rpt1a = SetRptProvidedFund(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_93_AnnInc.RptIncrementStatus": Rpt1a = SetRptIncrementStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                  
+
                     #endregion
+
+                    /// test 
+                case "R_81_Hrm.Rnd": Rpt1a = SetupRND(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    /// 
+
             }
             Rpt1a.Refresh();
             return Rpt1a;
@@ -343,5 +348,15 @@ namespace RealERPRDLC
             return rpt1a;
         }
 
+        private static LocalReport SetupRND(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.IndvPf.Empinfo>)rptDataSet));
+
+            return rpt1a;
+        }
+
+
+        
     }
 }
