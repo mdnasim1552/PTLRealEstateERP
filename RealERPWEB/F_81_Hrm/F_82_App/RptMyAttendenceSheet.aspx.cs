@@ -372,6 +372,49 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
                         break;
                 }
+
+
+
+
+
+
+                string sysdate = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).ToString("dd-MM-yyyy");
+                string sysdated = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).ToString("dd");
+                string sysdatem = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).ToString("MM");
+
+                string sysdatemprev = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).AddMonths(-1).ToString("MM");
+                string sysdatedprev = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).AddMonths(-1).ToString("dd");
+
+
+                string curdatd =  DateTime.Today.ToString("dd");
+                string curdatm = DateTime.Today.ToString("MM");
+                string curdaty = DateTime.Today.ToString("yyyy");
+
+
+                string prevmon = DateTime.Today.AddMonths(-1).ToString("MM");
+
+                string nextd = DateTime.Today.AddMonths(-1).ToString("dd");
+                string nextm = DateTime.Today.AddMonths(-1).ToString("MM");
+                string nexty = DateTime.Today.AddMonths(-1).ToString("yyyy");
+
+                if (Convert.ToInt32(sysdated) <= 25 && (sysdatem== curdatm || prevmon== sysdatemprev) && Convert.ToInt32(sysdatedprev)>25)
+                {
+                    ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
+                    ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = true;
+                }
+                else if(Convert.ToInt32(sysdated) > 25 &&  (sysdatem== curdatm || sysdatem ==nextm) && Convert.ToInt32(sysdatedprev) < 26)
+                {
+                    ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
+                    ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = true;
+                }
+                else
+                {
+                    ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
+                    ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = false;
+                }
+
+
+       
             }
             if (e.Item.ItemType == ListItemType.Footer)
             {

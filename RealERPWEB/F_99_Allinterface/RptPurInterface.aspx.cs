@@ -567,7 +567,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             string reqcheck = "Checked";
             string chkSecondApp = "";
-            string reqcheckapp = "Checked App.";
+            string reqcheckapp = "";
             string reqapproval = "Req. App";
             string reqforward = "";
             string OrderfApproved = "";
@@ -609,26 +609,24 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-
                 case "3354"://  Edison Real Estate 
                     OrderfApproved = "Ord. 1st App";
-                    Order2ndAprv = "Ord. Final App";
-                    
+                    Order2ndAprv = "Ord. Final App";                    
                     break;
 
                 case "3367": //Epic
                     chkSecondApp = "Mgt App.";
                     break;
-                case "3368"://  Finlay
-              //  case "3101"://  Edison Real Estate 
 
+                //  case "3101":  
+                case "3368"://  Finlay
                     reqcheck = "Checked";
+                    reqcheckapp = "Checked App.";
                     reqforward = "Forward";
                     reqapproval = "Req. App.";
                    // OrderfApproved = "Ord. 1st App";
                     Order2ndAprv = "Ord. Final App";
                     break;
-
 
 
                 default:
