@@ -84,6 +84,7 @@
                             <div class="col-md-1">
                                 <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
                             </div>
+                             <asp:Label ID="lblcustomerid" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
                             
                         </div>
 
@@ -158,7 +159,7 @@
                                     <asp:TemplateField>
                                         <FooterTemplate>
 
-                                            <asp:LinkButton ID="lUpdatPerInfo" runat="server" CssClass="btn btn-warning primaryBtn">Update Personal Info</asp:LinkButton>
+                                            <asp:LinkButton ID="lUpdatPerInfo" runat="server" CssClass="btn btn-warning primaryBtn" OnClick="lUpdatPerInfo_Click">Update Personal Info</asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" AutoCompleteType="Disabled"
