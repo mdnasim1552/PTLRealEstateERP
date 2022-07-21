@@ -855,7 +855,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                 dt.Rows[rowindex]["leaveadj"] = lvadj;
                                 dt.Rows[rowindex]["dedday"] = (absday - (aprday + lvadj));
                                 dt.Rows[rowindex]["reason"] = reason;
-                                dt.Rows[rowindex]["balance"] = (absday - (aprday + lvadj + dedday)); ;
+                                dt.Rows[rowindex]["balance"] = (absday - (aprday + lvadj + dedday));
 
                             }
                             break;
