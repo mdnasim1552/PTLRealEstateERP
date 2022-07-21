@@ -3876,7 +3876,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "";
-                string dat1 = "", dat2 = "", dat3 = "", dat4 = "";
+                string dat1 = "", dat2 = "", dat3 = "", dat4 = "", dat5 = "", dat6 = ""; 
 
                 /// signature       // appnam - PURAPROVB and ordnam - purorder     
                 switch (comcod)
@@ -4313,7 +4313,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
 
-                    case "3101": //pintech                    
+                    //case "3101": //pintech                    
                     case "3354": //Edison Real Estate                        
                         Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
                         break;
@@ -4421,6 +4421,8 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("dat2", dat2));
                     Rpt1.SetParameters(new ReportParameter("dat3", dat3));
                     Rpt1.SetParameters(new ReportParameter("dat4", dat4));
+                    Rpt1.SetParameters(new ReportParameter("dat5", dat5));
+                    Rpt1.SetParameters(new ReportParameter("dat6", dat6));
                 }
                 if (comcod == "3354" || comcod == "3101") // edison
                 {
