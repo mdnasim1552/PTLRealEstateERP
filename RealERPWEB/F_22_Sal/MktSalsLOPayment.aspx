@@ -482,7 +482,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-9">
 
                                     <asp:GridView ID="gvCost" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True">
@@ -661,7 +661,7 @@
 
                                     <asp:Label ID="lblInword" runat="server" CssClass="lblTxt lblName" Style="width: 600px; color: blue; text-align: left;"></asp:Label>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <asp:Panel ID="Panel2" runat="server">
 
