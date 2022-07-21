@@ -454,6 +454,13 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Source Remarks" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblsourcremarkst" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sourcremarks")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
