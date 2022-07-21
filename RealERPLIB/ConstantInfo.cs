@@ -1144,6 +1144,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202030", "F_22_Sal", "MktDummySalsPayment02?Type=Sales", "", "Dummy Payment Schedule-02", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202035", "F_22_Sal", "MktDummySalsPayment03?Type=Sales", "", "Dummy Payment Schedule(User Wise)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202036", "F_22_Sal", "EntryClientNameTransfer?Type=Mgt", "", "Client Info Transfer (Name Trans)", "Sales & Recovery", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2201000", "2201040", "F_22_Sal", "SalesCodeBook?Type=Sales", "", "Sales Code Book ", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -1756,15 +1757,14 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "5103000", "5103003", "F_14_Pro", "RptPaymetDueAllPrj", "", "Land Owner Payment Dues", "Budget-Land", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "5151000", "5151001", "F_99_Allinterface", "BudgetInterface", "", "Budget", "Budget-Interface", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "5151000", "5151002", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
-
+            
             #endregion
 
             //30. Facility Management
 
             #region Facility Management
 
-           // tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
+           tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" }); ;
 
 
             #endregion
@@ -2018,7 +2018,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8102043", "F_81_Hrm/F_85_Lon", "RptIndLoanStatus", "", "Employee Loan Installment Details", "Loan", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102041", "F_81_Hrm/F_85_Lon", "EmpDeducOther", "", "Employee Deduction other", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102042", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Overtime", "Overtime Allowance", "Allowances", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102240", "F_81_Hrm/F_85_Lon", "LoanApproval?", "Type=", "Loan Approval", "Loan", "False", "False", "False", "False" });
 
+             
             // tblObj.Rows.Add(new Object[] { "8102000", "8102043", "EmpOvertime?", "Type=Holiday", "Holiday Allowance 01", "Allowances", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8102000", "8102044", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Mobile", "Mobile Bill", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102045", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Lencashment", "Leave Encashment", "Allowances", "False", "False", "False", "False" }); ;
@@ -9601,7 +9603,8 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0311000000", "Sales", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0311000001", "07. Sales Register", "F_22_Sal/SalesRegister?Type=Management", "", true, "" });
-
+            mnuTbl1.Rows.Add(new Object[] { "0311000002", "07. Client Info Transfer (Name Trans)", "F_22_Sal/EntryClientNameTransfer?Type=Mgt", "", true, "" });
+            
             mnuTbl1.Rows.Add(new Object[] { "0312000000", "Credit Realization(CR)", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0312000001", "01. Money Receipt Transfer", "F_34_Mgt/CodeDataTransMR?Type=MoneyReceipt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0312000002", "01. Money Receipt (Segregation)", "F_34_Mgt/CodeDataTransMR?Type=MRSegregation", "", true, "" });

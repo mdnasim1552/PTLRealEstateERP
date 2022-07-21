@@ -1178,6 +1178,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
@@ -1206,7 +1207,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             
           
-            var ds = HRData.GetTransInfo("3365", "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid,curr_date);
+            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid,curr_date);
             if (ds == null)
             {
                 return;

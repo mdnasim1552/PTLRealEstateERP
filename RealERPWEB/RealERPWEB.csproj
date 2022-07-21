@@ -2273,6 +2273,7 @@
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
@@ -3999,6 +4000,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\EntryClientNameTransfer.aspx.cs">
+      <DependentUpon>EntryClientNameTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\EntryClientNameTransfer.aspx.designer.cs">
+      <DependentUpon>EntryClientNameTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptDuesReportAll.aspx.cs">
       <DependentUpon>RptDuesReportAll.aspx</DependentUpon>
@@ -12365,8 +12373,8 @@
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
-    <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>

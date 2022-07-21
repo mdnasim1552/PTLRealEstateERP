@@ -4102,7 +4102,6 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3368": // Finlay
-                    //case "3101": // Cube 
                     case "3357": // Cube 
                         terms1 = terms.ToString();
                         pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", " + _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
@@ -4157,7 +4156,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    //case "3101": // Pintech
+
                     case "3364": //JBS
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4166,7 +4165,7 @@ namespace RealERPWEB.F_99_Allinterface
                         pperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-
+                    case "3101": // Pintech
                     case "3354": // Edison Real estate                     
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
@@ -4306,7 +4305,6 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-                    //case "3101": //pintech                      
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
@@ -4315,6 +4313,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
 
+                    case "3101": //pintech                    
                     case "3354": //Edison Real Estate                        
                         Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
                         break;
@@ -4397,12 +4396,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cperson2", cperson2));
 
                 }
-
-                //Final Order Approval
-                if (comcod == "3354")
-                {
-                    Rpt1.SetParameters(new ReportParameter("sign7", sign7));
-                }
+         
                 if (comcod == "3357")
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
@@ -4428,8 +4422,9 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("dat3", dat3));
                     Rpt1.SetParameters(new ReportParameter("dat4", dat4));
                 }
-                if (comcod == "3354") // edison
+                if (comcod == "3354" || comcod == "3101") // edison
                 {
+                    Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                     Rpt1.SetParameters(new ReportParameter("costa", costa));
                     Rpt1.SetParameters(new ReportParameter("costb", costb));
                     Rpt1.SetParameters(new ReportParameter("costc", costc));
@@ -4608,6 +4603,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                 case "3368":
                 case "3354":
+                case "3101":
                     isDynamic = true;
                     break;
                 default:
@@ -5976,10 +5972,12 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3354":
                     PrintReq = "PrintBillEdisonErp";
                     break;
-
-                case "3101":
                 case "3357":
                     PrintReq = "PrintBillIntech";
+                    break;     
+                // bill finaly
+                case "3368":
+                    PrintReq = "PrintBillFinlay";
                     break;
 
                 default:
@@ -6279,6 +6277,15 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
             }
 
+            else if(pCompanyBill == "PrintBillFinlay")
+            {
+
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillFinaly", lst, null, null);
+                rptbill.EnableExternalImages = true;
+                rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
+                rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            }
             else
             {
 

@@ -239,7 +239,7 @@ namespace RealERPWEB
 
             this.longTermTitle.InnerText = "EMPLOYEE LONG TERM SERVICE-"+curr_year;
             DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "LONGTERMSERVICE", "","", "", "", "", "", "");
-            if (ds == null)
+            if (ds == null || ds.Tables[0].Rows.Count==0)
             {
                 return;
             }
@@ -767,9 +767,6 @@ namespace RealERPWEB
                     this.EventBirthday.Visible = false;
                     this.pnlUpcmBD.Visible = false;
                     this.pnlUpcmBDT.Visible = true;
-                  
-
-                    this.pnlUpcmBDT.Visible = true;
                     this.EventBirthday.Visible = false;
 
                     DataSet ds2 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
@@ -784,8 +781,6 @@ namespace RealERPWEB
                 default:
                     this.pnlUpcmBD.Visible = true;
                     this.pnlUpcmBDT.Visible = false;
-                   
-                    this.pnlUpcmBDT.Visible = true;
                     this.EventBirthday.Visible = false;
 
                     DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
@@ -1050,12 +1045,14 @@ namespace RealERPWEB
             //string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") ?? "";
             //string todate = this.txttodate.Text.ToString() ?? "";
             //string type = this.ddlholidayType.SelectedValue.ToString();
+            string diff = "1";
             string curdate = System.DateTime.Now.ToString("yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dtx = (DataTable)Session["tblHolidays"];
             DataView dv1 = dtx.DefaultView;
             dv1.RowFilter = ("dstatus ='H'");
             DataTable dt = dv1.ToTable();
+
 
             if (dt == null)
             {
@@ -1065,22 +1062,16 @@ namespace RealERPWEB
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.yearlyholiday>();
             LocalReport Rpt1 = new LocalReport();
-
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptYearlyHolidayGov", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("rptTitle", curdate));
-
-
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", "test"));
-
+            Rpt1.SetParameters(new ReportParameter("diff", diff));
             Session["Report1"] = Rpt1;
-
             string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
-
-
         }
 
         protected void spholidayprint_Click(object sender, EventArgs e)
@@ -1260,6 +1251,62 @@ namespace RealERPWEB
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNoticeModal();", true);
             
+        }
+
+        //protected void view_emp_click(object sender, EventArgs e)
+        //{
+        //    GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //    int RowIndx = row.RowIndex;
+
+        //    int columnIndex = gvServiceInfo.CurrentCell.ColumnIndex;
+        //    int rowIndex = gvServiceInfo.CurrentCell.RowIndex;
+
+
+
+
+
+        //}
+
+        protected void gvServiceInfo_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow gvr = (GridViewRow)((Button)e.CommandSource).NamingContainer;
+
+            int RowIndex = gvr.RowIndex;
+            string year = "";
+            string month = ((Label)this.gvServiceInfo.Rows[RowIndex].FindControl("lblserviceMonth")).Text.ToString();
+            year = Convert.ToString(e.CommandArgument.ToString());
+            this.empdettitle.InnerText = "EMPLOYEE LONG TERM SERVICE("+year+" Years)";
+            string comcod = this.GetCompCode();
+    
+
+
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "LONGTERMSERVICEDET", month,year, "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+            {
+                return;
+            }
+            DataTable dt = ds.Tables[0];
+
+            this.gvEmpDet.DataSource = dt;
+            this.gvEmpDet.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openEmpModal();", true);
+        }
+
+        protected void gvUpcmBDT_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            string month = Convert.ToString(e.CommandArgument.ToString());
+            this.empbdtitle.InnerText = "Employee Birth Day(" + month + " )";
+            string comcod = this.GetCompCode();
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "UPCOMMINGBDETAILS", month, "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+            {
+                return;
+            }
+            DataTable dt = ds.Tables[0];
+            this.gvBirthDayDet.DataSource = dt;
+            this.gvBirthDayDet.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenBirthDayDetModal();", true);
         }
     }
 

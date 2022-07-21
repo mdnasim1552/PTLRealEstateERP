@@ -135,9 +135,20 @@
                                         </asp:DropDownList>
 
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-5">
+                                      <asp:Label ID="lblsegment" runat="server" CssClass=" smLbl_to">Slap </asp:Label>
+                                        <asp:DropDownList ID="ddlRange" runat="server" AutoPostBack="True" CssClass="ddlPage" Width="120px">
+                                        <asp:ListItem Value="rang1" Selected="True">Slab = 1-5000</asp:ListItem>
+                                        <asp:ListItem Value="rang2">Slab = 5001-50000</asp:ListItem>
+                                        <asp:ListItem Value="rang3" >Slab = 50001-100000</asp:ListItem>
+                                        <asp:ListItem Value="rang4">Slab = 100001-Above</asp:ListItem>                                       
+                                        </asp:DropDownList>  
                                         <asp:CheckBox ID="AssenCheque" runat="server" CssClass="chkBoxControl margin5px" Text="Assending (Issue Number)" />
                                     </div>
+
+                                    <%--<div class="col-md-2">
+                                        <asp:CheckBox ID="AssenCheque" runat="server" CssClass="chkBoxControl margin5px" Text="Assending (Issue Number)" />
+                                    </div>--%>
 
                                 </div>
                             </div>
