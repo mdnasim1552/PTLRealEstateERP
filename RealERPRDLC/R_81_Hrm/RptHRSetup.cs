@@ -206,7 +206,7 @@ namespace RealERPRDLC
         }
         private static LocalReport SetRptLoanApp(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
-            //rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpAttnIdWise>)rptDataSet));
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpBasicInf>)rptDataSet));
             return rpt1a;
         }
         
