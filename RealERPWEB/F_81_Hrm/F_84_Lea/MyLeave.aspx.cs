@@ -81,7 +81,51 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     GetCalCulateDay();
                 }
                 GetEmpLoyeeAltDutys();
+
+                Hashtable hst2 = (Hashtable)Session["tblLogin"];
+                string usrRole= hst2["userrole"].ToString();
+
+                if (this.GetComeCode() == "3365" && usrRole=="3")
+                {
+                    this.chkBoxSkippWH.Enabled = false;
+                    DisabledCalender();
+                }
+
             }
+        }
+
+        private void DisabledCalender()
+        {
+
+            
+
+            string curDay = System.DateTime.Now.ToString("dd");
+
+            string curMonth = System.DateTime.Now.ToString("MM");
+            string curYear = System.DateTime.Now.ToString("yyyy");
+
+            string prevMonth = System.DateTime.Now.AddMonths(-1).ToString("MM");
+            string prevYear = System.DateTime.Now.AddMonths(-1).ToString("yyyy");
+
+            string nextMonth = System.DateTime.Now.AddMonths(1).ToString("MM");
+            string nextYear = System.DateTime.Now.AddMonths(1).ToString("yyyy");
+
+
+            if (Convert.ToInt32(curDay) < 25)
+            {
+                //temporary static date 
+                this.txtgvenjoydt1_CalendarExtender.StartDate = Convert.ToDateTime(prevMonth+"/26/" +prevYear);
+
+                this.txtgvenjoydt1_CalendarExtender.EndDate = Convert.ToDateTime(curMonth+ "/25/" + curYear);
+
+            }
+            else
+            {
+                this.txtgvenjoydt1_CalendarExtender.StartDate = Convert.ToDateTime(curMonth + "/26/" +curYear);
+
+                this.txtgvenjoydt1_CalendarExtender.EndDate = Convert.ToDateTime(nextMonth + "/25/"+ nextYear);
+            }
+            
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -1275,6 +1319,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-         
+ 
     }
 }
