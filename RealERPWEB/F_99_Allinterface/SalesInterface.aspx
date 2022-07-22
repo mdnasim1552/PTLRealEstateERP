@@ -580,6 +580,10 @@
 
                                 </li>
                                 <li>
+                                    <asp:HyperLink ID="HyperLink24" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_23_CR/MktLOMoneyReceipt?Type=CustCare">Money Receipt Create(LO)</asp:HyperLink>
+
+                                </li>
+                                <li>
                                     <asp:HyperLink ID="HyperLink16" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_17_Acc/MoneyRecptApprov">Money Receipt Approval</asp:HyperLink>
 
                                 </li>

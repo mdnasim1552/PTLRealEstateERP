@@ -1227,6 +1227,8 @@ namespace RealERPLIB
 
             //23. Credit Realization
             #region Credit Realization
+            tblObj.Rows.Add(new Object[] { "2302000", "2302004", "F_23_CR", "MktLOMoneyReceipt?", "Type=CustCare", "Collection Sales(LO)", "Credit Realization", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "2302000", "2302007", "F_23_CR", "MktMoneyReceipt?", "Type=CustCare", "Collection Sales", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2302009", "F_23_CR", "CustOthMoneyReceipt?", "Type=CustCare", "Collection  Other's", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2302010", "F_23_CR", "CustRentMoneyReceipt?", "Type=CustCare", "Rental MRR", "Credit Realization", "False", "False", "False", "False" });
