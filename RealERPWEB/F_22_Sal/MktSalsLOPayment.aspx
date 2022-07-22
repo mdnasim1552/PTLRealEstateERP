@@ -152,7 +152,7 @@
                             <Columns>
                                 <asp:CommandField ShowEditButton="True" HeaderStyle-Width="80px" CancelText="&lt;span class='glyphicon glyphicon-remove pull-left'&gt;&lt;/span&gt;" DeleteText="&lt;span class='glyphicon glyphicon-remove'&gt;&lt;/span&gt;" EditText="&lt;span class='glyphicon glyphicon-pencil'&gt;&lt;/span&gt;" UpdateText="&lt;span class='glyphicon glyphicon-ok'&gt;&lt;/span&gt;" />
 
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -421,7 +421,7 @@
                                 ShowFooter="True" Width="831px" Visible="false">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                 Style="text-align: right"
@@ -488,7 +488,7 @@
                                         ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                                         Style="text-align: right"
@@ -745,7 +745,7 @@
                                             ShowFooter="True" OnRowDeleting="gvPayment_RowDeleting" OnRowDataBound="gvPayment_RowDataBound">
                                             <RowStyle />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                <asp:TemplateField HeaderText="Sl">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
                                                             Style="text-align: right"
@@ -1089,7 +1089,7 @@
                                     ShowFooter="True" Width="831px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo6" runat="server" Font-Bold="True" ForeColor="Black"
                                                     Height="16px" Style="text-align: right"
@@ -1155,7 +1155,7 @@
                                     Style="margin-right: 0px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo7" runat="server" Font-Bold="True" ForeColor="Black"
                                                     Height="16px" Style="text-align: right"
