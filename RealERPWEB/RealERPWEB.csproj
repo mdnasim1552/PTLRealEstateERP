@@ -2192,6 +2192,7 @@
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
+    <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
@@ -3933,6 +3934,13 @@
     </Compile>
     <Compile Include="F_22_Sal\MktSalsLOPayment.aspx.designer.cs">
       <DependentUpon>MktSalsLOPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.cs">
+      <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.designer.cs">
+      <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptDuesReportAll.aspx.cs">
       <DependentUpon>RptDuesReportAll.aspx</DependentUpon>

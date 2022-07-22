@@ -150,6 +150,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.HyperLink HyperLink7;
 
         /// <summary>
+        /// HyperLink24 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink24;
+
+        /// <summary>
         /// HyperLink16 control.
         /// </summary>
         /// <remarks>
