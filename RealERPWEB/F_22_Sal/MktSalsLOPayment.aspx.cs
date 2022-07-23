@@ -20,7 +20,7 @@ using RealERPRDLC;
 
 namespace RealERPWEB.F_22_Sal
 {
-    public partial class MktSalsPayment : System.Web.UI.Page
+    public partial class MktSalsLOPayment : System.Web.UI.Page
     {
         ProcessAccess MktData = new ProcessAccess();
         Common objcom = new Common();
@@ -34,10 +34,10 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
-                
-                
-                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES WITH PAYMENT " : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " : 
-                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : (TypeDesc=="SalesLO"?"": "SALES(LAND OWNER) WITH PAYMENT"))))) + " INFORMATIOIN ";
+
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES(LO) WITH PAYMENT" : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
+                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : "")))) + " INFORMATIOIN ";
 
                 Session.Remove("Unit");
                 this.chkVisible.Checked = false;
@@ -224,7 +224,7 @@ namespace RealERPWEB.F_22_Sal
                 //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string ddldesc = hst["ddldesc"].ToString();
-                this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : 
+                this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() :
                     this.ddlProjectName.SelectedItem.Text.Substring(13));
 
                 // this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
@@ -273,7 +273,7 @@ namespace RealERPWEB.F_22_Sal
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string srchunit = "%" + this.txtsrchunit.Text.Trim() + "%";
             string musircode = "51";
-            string isLO = "0";
+            string isLO = "1";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSIRINFINFORMATION", PactCode, srchunit, musircode, isLO, "", "", "", "", "");
             //DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFORMATION", PactCode, srchunit, musircode, "", "", "", "", "", "");
             if (ds1 == null)
@@ -417,7 +417,7 @@ namespace RealERPWEB.F_22_Sal
                     rpt.SetParameters(new ReportParameter("salesteam", salesteam));
                     rpt.SetParameters(new ReportParameter("bkdate", bkdate));
                     rpt.SetParameters(new ReportParameter("agdate", agdate));
-                    rpt.SetParameters(new ReportParameter("hodate", hodate));                  
+                    rpt.SetParameters(new ReportParameter("hodate", hodate));
 
                     break;
 
@@ -797,6 +797,8 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvCost.FooterRow.FindControl("lgvFAmt")).Text = tocost.ToString("#,##0;(#,##0); ");
             ((Label)this.gvPayment.FooterRow.FindControl("lfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dtpay.Compute("sum(schamt)", "")) ? 0.00 :
                  dtpay.Compute("sum(schamt)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvPayment.FooterRow.FindControl("lfLOAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dtpay.Compute("sum(schloamt)", "")) ? 0.00 :
+                 dtpay.Compute("sum(schloamt)", ""))).ToString("#,##0;(#,##0); ");
             //tocost = Convert.ToDouble(((Label)this.gvCost.FooterRow.FindControl("lgvFAmt")).Text);
             //addwork = Convert.ToDouble(((Label)this.gvAddWork.FooterRow.FindControl("lgvFAmtw")).Text);
             //dedwork = Convert.ToDouble(((Label)this.gvDedWork.FooterRow.FindControl("lgvFAmtdw")).Text);
@@ -862,38 +864,49 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnTotalCost_Click(object sender, EventArgs e)
         {
             double Amount = 0;
+            double ttlAmount = 0;
+            double LOAmount = 0;
             // double Usize = 0;
             // double PaidAmt = 0;
             double iamount, irate, disamt;
             foreach (GridViewRow gv1 in gvCost.Rows)
             {
+                double loamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvlouamt")).Text.Trim()));
+                double uamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvuamt")).Text.Trim()));
+                ((TextBox)gv1.FindControl("txtgvttluamt")).Text = (loamt + uamt).ToString("#,##0; -#,##0; ");
+
                 double dUsize = Convert.ToDouble('0' + ((TextBox)gv1.FindControl("txtgvUSize")).Text.Trim());
                 //double dRate = Convert.ToDouble('0' + ((TextBox)gv1.FindControl("lgvRate")).Text.Trim()); //Sourav
                 //double dRate = Convert.ToDouble('0' + ((TextBox)gv1.FindControl("lgvRate")).Text.Trim()); //Sourav
                 double dRate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("lgvRate")).Text.Trim()));
                 disamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvdiscount")).Text.Trim()));
-                double dAmt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvuamt")).Text.Trim()));
+                double dAmt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvttluamt")).Text.Trim()));
                 // Amount += dAmt;
                 //Usize += dUsize;
                 //iamount = dAmt > 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? (dUsize * dRate) : 0.00);
                 iamount = dAmt != 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? ((dUsize * dRate) - disamt) : 0.00);
                 irate = dRate > 0 ? dRate : ((dUsize > 0 & iamount > 0) ? (iamount / dUsize) : 0.00);
+
                 ((TextBox)gv1.FindControl("lgvRate")).Text = irate.ToString("#,##0.00;(#,##0.00); ");
-                ((TextBox)gv1.FindControl("txtgvuamt")).Text = iamount.ToString("#,##0; -#,##0; ");
+                //((TextBox)gv1.FindControl("txtgvttluamt")).Text = iamount.ToString("#,##0; -#,##0; ");
+
                 ((TextBox)gv1.FindControl("txtgvdiscount")).Text = disamt.ToString("#,##0; -#,##0; ");
-                Amount += iamount;
+                Amount += uamt;
+                ttlAmount += (loamt + uamt);
+                LOAmount += loamt;
 
             }
-
-
             ((Label)this.gvCost.FooterRow.FindControl("lgvFAmt")).Text = Amount.ToString("#,##0;(#,##0); ");
+            ((Label)this.gvCost.FooterRow.FindControl("lgvFttlAmt")).Text = ttlAmount.ToString("#,##0;(#,##0); ");
+            ((Label)this.gvCost.FooterRow.FindControl("lgvFloAmt")).Text = LOAmount.ToString("#,##0;(#,##0); ");
+
 
             double AcAmt = Convert.ToDouble("0" + this.lblAcAmt.Text);
             if (Amount > 0)
             {
-                double discount = (AcAmt - Amount);
-                double discountp = (discount * 100) / Amount;
-                this.ldiscountt.Text = Math.Round((AcAmt - Amount), 0).ToString("#,##0;(#,##0);");
+                double discount = (AcAmt - ttlAmount);
+                double discountp = (discount * 100) / ttlAmount;
+                this.ldiscountt.Text = Math.Round((AcAmt - ttlAmount), 0).ToString("#,##0;(#,##0);");
                 this.ldiscountp.Text = discountp.ToString("#,##0;(#,##0);") + '%';
                 if (discountp >= 0)
                 {
@@ -905,6 +918,7 @@ namespace RealERPWEB.F_22_Sal
                 }
             }
             Session["amt"] = Amount;
+            Session["loamt"] = LOAmount;
 
             this.lblInword.Text = Amount == 0 ? "" : ASTUtility.Trans(Amount, 2);
         }
@@ -929,9 +943,11 @@ namespace RealERPWEB.F_22_Sal
                 string Usize = Convert.ToDouble('0' + ((TextBox)this.gvCost.Rows[i].FindControl("txtgvUSize")).Text.Trim()).ToString();
                 double disamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvCost.Rows[i].FindControl("txtgvdiscount")).Text.Trim()));
                 double Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvCost.Rows[i].FindControl("txtgvuamt")).Text.Trim()));
+                double LOAmt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvCost.Rows[i].FindControl("txtgvlouamt")).Text.Trim()));
                 string Remarks = ((TextBox)this.gvCost.Rows[i].FindControl("txtgvRemarks")).Text.Trim();
                 //if (Amt!=0)
-                MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALGINF1", PactCode, Usircode, Gcode, UNumber, Usize, Amt.ToString(), Remarks, disamt.ToString(), "", "", "", "", "", "", "");
+                MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALGINF1", PactCode, Usircode, Gcode, UNumber, Usize, Amt.ToString(), Remarks,
+                    disamt.ToString(), LOAmt.ToString(), "", "", "", "", "", "");
 
             }
             // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
@@ -1120,7 +1136,11 @@ namespace RealERPWEB.F_22_Sal
 
             double a = Convert.ToDouble(Session["amt"]);
             double b = Convert.ToDouble(Session["Amt11"]);
-            if (a == b)
+
+            double c = Convert.ToDouble(Session["loamt"]);
+            double d = Convert.ToDouble(Session["LOAmt11"]);
+
+            if (a == b && c == d)
             {
                 string PactCode = this.ddlProjectName.SelectedValue.ToString();
                 string Usircode = this.lblCode.Text.Trim();
@@ -1137,11 +1157,12 @@ namespace RealERPWEB.F_22_Sal
                     string jobdesc = ((Label)this.gvPayment.Rows[i].FindControl("lblgvjobdesc")).Text.Trim();
                     string rmrks = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvrmrks")).Text.Trim();
 
-
+                    double schloamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvLOAmt")).Text.Trim()));
 
                     //if (Amount != 0)
                     //{
-                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), rmrks, Gdesc, percent.ToString(), jobcode, jobdesc,"", PostedByid, Posteddat, Posttrmid, PostSession);
+                    bool result=MktData.UpdateTransInfo2(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), rmrks, Gdesc,
+                        percent.ToString(), jobcode, jobdesc, "", PostedByid, Posteddat, Posttrmid, PostSession, schloamt.ToString(), "", "", "", "", "");
                     //}
 
                 }
@@ -1182,7 +1203,7 @@ namespace RealERPWEB.F_22_Sal
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
             }
-            else if (a < b)
+            else if (a < b || c > d)
             {
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Plz Check... Amount is Overflow !!!!!!');", true);
@@ -1203,6 +1224,7 @@ namespace RealERPWEB.F_22_Sal
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             double Amount = 0;
+            double LOAmount = 0;
             DataTable dt = ((DataTable)Session["tblPay"]).Copy();
 
 
@@ -1218,21 +1240,24 @@ namespace RealERPWEB.F_22_Sal
                     dv.RowFilter = ("gcod<8100301");
                     DataTable dtbd = dv.ToTable();
                     double ipecnt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[0].FindControl("txtgvtPercent")).Text.Trim()));
-                    double Tamt = Convert.ToDouble(((Label)this.gvCost.FooterRow.FindControl("lgvFAmt")).Text.Trim());
-                    double bodown = Convert.ToDouble((Convert.IsDBNull(dtbd.Compute("Sum(schamt)", "")) ? 0.00 : dtbd.Compute("Sum(schamt)", "")));
+                    double Tamt = Convert.ToDouble(((Label)this.gvCost.FooterRow.FindControl("lgvFloAmt")).Text.Trim());
+                    double bodown = Convert.ToDouble((Convert.IsDBNull(dtbd.Compute("Sum(schloamt)", "")) ? 0.00 : dtbd.Compute("Sum(schloamt)", "")));
                     double rbalamt = ipecnt > 0 ? Tamt : Tamt - bodown;
                     foreach (GridViewRow gv1 in gvPayment.Rows)
                     {
 
                         double percnt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvtPercent")).Text.Trim()));
                         double Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvAmt")).Text.Trim()));
+                        double LOAmt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvLOAmt")).Text.Trim()));
                         Amt = percnt > 0 ? rbalamt * percnt * 0.01 : Amt;
 
                         string date = Convert.ToDateTime(((TextBox)gv1.FindControl("txtgvDate")).Text).ToString("dd-MMM-yyyy");
                         dt.Rows[i]["percnt"] = percnt;
                         dt.Rows[i]["schamt"] = Amt;
                         dt.Rows[i]["schdate"] = date;
+                        dt.Rows[i]["schloamt"] = LOAmt;
                         ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text = Amt.ToString("#,##0;-#,##0; ");
+                        ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvLOAmt")).Text = LOAmt.ToString("#,##0;-#,##0; ");
                         i++;
 
                     }
@@ -1244,11 +1269,14 @@ namespace RealERPWEB.F_22_Sal
                     foreach (GridViewRow gv1 in gvPayment.Rows)
                     {
 
+                        double LOAmt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvLOAmt")).Text.Trim()));
                         double Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvAmt")).Text.Trim()));
                         string date = Convert.ToDateTime(((TextBox)gv1.FindControl("txtgvDate")).Text).ToString("dd-MMM-yyyy");
                         dt.Rows[i]["schamt"] = Amt;
+                        dt.Rows[i]["schloamt"] = LOAmt;
                         dt.Rows[i]["schdate"] = date;
                         ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text = Amt.ToString("#,##0;-#,##0; ");
+                        ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvLOAmt")).Text = LOAmt.ToString("#,##0;-#,##0; ");
                         i++;
 
                     }
@@ -1279,13 +1307,17 @@ namespace RealERPWEB.F_22_Sal
 
             Session["tblPay"] = dt;
             Amount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(schamt)", "")) ? 0.00 : dt.Compute("sum(schamt)", "")));
-
+            LOAmount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(schloamt)", "")) ? 0.00 : dt.Compute("sum(schloamt)", "")));
             if (Amount > 0)
             {
                 ((Label)this.gvPayment.FooterRow.FindControl("lfAmt")).Text = Amount.ToString("#,##0;(#,##0); ");
             }
+            if (LOAmount > 0)
+            {
+                ((Label)this.gvPayment.FooterRow.FindControl("lfLOAmt")).Text = LOAmount.ToString("#,##0;(#,##0); ");
+            }
             Session["Amt11"] = Amount;
-
+            Session["LOAmt11"] = LOAmount;
 
             //((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
@@ -1352,14 +1384,14 @@ namespace RealERPWEB.F_22_Sal
 
 
                         dr[0]["schdate"] = schDate;
-                        dr[0]["schamt"] = Amount;
+                        dr[0]["schloamt"] = Amount;
                     }
                 }
                 else
                 {
 
                     dt.Rows[k]["schdate"] = schDate;
-                    dt.Rows[k]["schamt"] = Amount;
+                    dt.Rows[k]["schloamt"] = Amount;
                     k++;
 
                 }
@@ -1367,7 +1399,7 @@ namespace RealERPWEB.F_22_Sal
 
             }
             DataTable dt2 = dt;
-            double Tamt = Convert.ToDouble(((Label)this.gvCost.FooterRow.FindControl("lgvFAmt")).Text.Trim());
+            double Tamt = Convert.ToDouble(((Label)this.gvCost.FooterRow.FindControl("lgvFloAmt")).Text.Trim());
             double ramt = Tamt - bandpamt;
             int tin = Convert.ToInt32("0" + this.txtTInstall.Text);
             int dur = Convert.ToInt32(this.ddlMonth.SelectedValue.ToString());
@@ -1378,15 +1410,15 @@ namespace RealERPWEB.F_22_Sal
             for (int j = k; j < tin + k; j++)
             {
                 string schdate2 = (j == k) ? schDate1 : Convert.ToDateTime(schDate1).AddMonths(dur).ToString("dd-MMM-yyyy");
-                double schamt = insamt;
+                double schloamt = insamt;
                 dt.Rows[j]["schdate"] = schdate2;
-                dt.Rows[j]["schamt"] = schamt;
+                dt.Rows[j]["schloamt"] = schloamt;
                 schDate1 = schdate2;
             }
 
 
             DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = ("schamt>0");
+            dv1.RowFilter = ("schloamt>0");
             dv1.Sort = "gcod";
             Session["tblPay"] = dv1.ToTable();
             this.gvPayment.DataSource = dv1.ToTable();
@@ -1554,7 +1586,7 @@ namespace RealERPWEB.F_22_Sal
                 dr1["usircode"] = this.lblCode.Text.Trim();
                 dr1["schdate"] = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 dr1["schamt"] = 0;
-
+                dr1["schloamt"] = 0;
                 //Added By Nime 
                 dr1["percnt"] = 0.00;
                 dt.Rows.Add(dr1);
@@ -1633,7 +1665,7 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void gvSpayment_RowEditing(object sender, GridViewEditEventArgs e)
         {
-           
+
             var indx = e.NewEditIndex;
             string usircode = ((Label)this.gvSpayment.Rows[e.NewEditIndex].FindControl("lblgvItmCod")).Text.Trim();
 
