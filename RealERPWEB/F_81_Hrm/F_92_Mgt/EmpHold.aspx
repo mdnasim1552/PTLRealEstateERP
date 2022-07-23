@@ -192,7 +192,7 @@
                                  ></asp:Label>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger btn-sm primaryBtn" OnClick="lnkupdate_Click">Final Update</asp:LinkButton>
+                            <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-success btn-sm primaryBtn" OnClick="lnkupdate_Click">Final Update</asp:LinkButton>
                         </FooterTemplate>
 
                     </asp:TemplateField>
