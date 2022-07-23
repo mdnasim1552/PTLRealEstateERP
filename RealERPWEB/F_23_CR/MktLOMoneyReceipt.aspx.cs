@@ -20,7 +20,7 @@ using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
 namespace RealERPWEB.F_23_CR
 {
-    public partial class MktMoneyReceipt : System.Web.UI.Page
+    public partial class MktLOMoneyReceipt : System.Web.UI.Page
     {
         ProcessAccess MktData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -375,7 +375,7 @@ namespace RealERPWEB.F_23_CR
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string qusirCode = this.Request.QueryString["usircode"] ?? "";
             string srchunit = qusirCode.Length > 0 ? qusirCode : "%" + this.txtsrchunit.Text.Trim() + "%";
-            string isLO = "0";
+            string isLO = "1";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSUSERINFINFO", PactCode, srchunit, isLO, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -848,13 +848,22 @@ namespace RealERPWEB.F_23_CR
 
             DataTable dt = (DataTable)Session["status"];
             double SAmount = 0;
-            double PAmount = 0, BalAmt = 0;
+            double PAmount = 0, BalAmt = 0, SLOAmount = 0, SCompAmount=0, PLOAmount = 0, PCompAmount = 0;
             SAmount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", "")));
+            SLOAmount= Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schloamt)", "")) ? 0.00 : dt.Compute("Sum(schloamt)", "")));
+            SCompAmount= Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schcompamt)", "")) ? 0.00 : dt.Compute("Sum(schcompamt)", "")));
             PAmount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ? 0.00 : dt.Compute("Sum(paidamt)", "")));
+            PLOAmount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(loamt)", "")) ? 0.00 : dt.Compute("Sum(loamt)", "")));
+            PCompAmount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(compamt)", "")) ? 0.00 : dt.Compute("Sum(compamt)", "")));
+
             BalAmt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balamt)", "")) ? 0.00 : dt.Compute("Sum(balamt)", "")));
 
             ((Label)this.gvPayment.FooterRow.FindControl("lfAmt")).Text = SAmount.ToString("#,##0;(#,##0); -");
+            ((Label)this.gvPayment.FooterRow.FindControl("lfLoAmt")).Text = SLOAmount.ToString("#,##0;(#,##0); -");
+            ((Label)this.gvPayment.FooterRow.FindControl("lfCompAmt")).Text = SCompAmount.ToString("#,##0;(#,##0); -");
             ((Label)this.gvPayment.FooterRow.FindControl("lgvfpayamt")).Text = PAmount.ToString("#,##0;(#,##0); ");
+            ((Label)this.gvPayment.FooterRow.FindControl("lgvfpayloamt")).Text = PLOAmount.ToString("#,##0;(#,##0); ");
+            ((Label)this.gvPayment.FooterRow.FindControl("lgvfpaycompamt")).Text = PCompAmount.ToString("#,##0;(#,##0); ");
             ((Label)this.gvPayment.FooterRow.FindControl("lgvFbalanceAmt")).Text = BalAmt.ToString("#,##0;(#,##0); -");
 
 
@@ -1047,7 +1056,7 @@ namespace RealERPWEB.F_23_CR
                     //string PactCode = (comcod == "3325" || comcod == "2325") ? this.ddlProjectName.SelectedValue.ToString() :
                     //    (RecType == "54004" || RecType == "54006" || RecType == "54008" || RecType == "54009" || RecType == "54012" || RecType == "54015" || RecType == "54020") ? ("25" + this.ddlProjectName.SelectedValue.ToString().Substring(2)) : this.ddlProjectName.SelectedValue.ToString();
                     string type = dt1.Rows[i]["paytypecod"].ToString(); // this.ddlpaytype.SelectedValue.ToString();repchqno
-                    double paidamt = Convert.ToDouble(dt1.Rows[i]["paidamount"]);
+                    double paidamt = Convert.ToDouble(dt1.Rows[i]["companyamount"]);
                     string chqno = dt1.Rows[i]["chequeno"].ToString();
                     string bname = dt1.Rows[i]["bankname"].ToString();
                     string branchname = dt1.Rows[i]["branchname"].ToString();
@@ -1057,7 +1066,7 @@ namespace RealERPWEB.F_23_CR
                     string remrks = dt1.Rows[i]["remarks"].ToString();//
                     string Collfrm = dt1.Rows[i]["collfrm"].ToString();
                     string bookno = dt1.Rows[i]["bookno"].ToString();
-
+                    double louamt = Convert.ToDouble(dt1.Rows[i]["loamount"]);
                     paidamt = (RecType == "54097") ? paidamt * -1 : paidamt;
                     double disamt = Convert.ToDouble(dt1.Rows[i]["disamt"]);
 
@@ -1066,8 +1075,9 @@ namespace RealERPWEB.F_23_CR
 
                     //schamt = schamt + paidamt;
                     if (paidamt != 0 || disamt != 0)
-                        result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(), chqno,
-                                                          bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno);
+                        result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(), 
+                            chqno, bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, 
+                                                          SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno,"", louamt.ToString());
 
                     if (result == false)
                     {
@@ -1445,6 +1455,8 @@ namespace RealERPWEB.F_23_CR
             DataTable dttemp = new DataTable();
             dttemp.Columns.Add("mrno", Type.GetType("System.String"));
             dttemp.Columns.Add("paidamount", Type.GetType("System.Double"));
+            dttemp.Columns.Add("loamount", Type.GetType("System.Double"));
+            dttemp.Columns.Add("companyamount", Type.GetType("System.Double"));
             dttemp.Columns.Add("paytype", Type.GetType("System.String"));
             dttemp.Columns.Add("instype", Type.GetType("System.String"));
             dttemp.Columns.Add("insdesc", Type.GetType("System.String"));
@@ -1623,6 +1635,8 @@ namespace RealERPWEB.F_23_CR
                     drforgrid["instype"] = this.ddlType.SelectedValue.ToString();
                     drforgrid["insdesc"] = this.ddlType.SelectedItem.Text;
                     drforgrid["paidamount"] = ASTUtility.StrPosOrNagative(this.txtPaidamt.Text.Trim());
+                    drforgrid["loamount"] = 0.00;
+                    drforgrid["companyamount"] = 0.00;
                     drforgrid["paytype"] = this.ddlpaytype.SelectedItem.Text.Trim();
                     drforgrid["paytypecod"] = this.ddlpaytype.SelectedValue.ToString();
                     //string comcod = this.GetComCode();
@@ -1719,10 +1733,12 @@ namespace RealERPWEB.F_23_CR
             if (tbl1.Rows.Count > 0)
             {
                 ((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(paidamount)", "")) ? 0.00 : tbl1.Compute("Sum(paidamount)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.grvacc.FooterRow.FindControl("txtFLoTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(loamount)", "")) ? 0.00 :
+                    tbl1.Compute("Sum(loamount)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.grvacc.FooterRow.FindControl("txtFCompTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(companyamount)", "")) ? 0.00 :
+                    tbl1.Compute("Sum(companyamount)", ""))).ToString("#,##0;(#,##0); ");
+
                 ((Label)this.grvacc.FooterRow.FindControl("lblgvFdisamt")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(disamt)", "")) ? 0.00 : tbl1.Compute("Sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
-
-
-
                 this.lbtnUpdate.Visible = true;
             }
 
@@ -1760,27 +1776,25 @@ namespace RealERPWEB.F_23_CR
             DataTable tbl1 = (DataTable)Session["sessionforgrid"];
             for (int i = 0; i < grvacc.Rows.Count; i++)
             {
+                double paidamt = ASTUtility.StrPosOrNagative(((TextBox)this.grvacc.Rows[i].FindControl("txtgvpaidamount")).Text.Trim());
+                double companyamt = ASTUtility.StrPosOrNagative(((TextBox)this.grvacc.Rows[i].FindControl("txtgvpaidCompamount")).Text.Trim());
                 tbl1.Rows[i]["chequeno"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvCheckno")).Text.Trim();
                 tbl1.Rows[i]["bankname"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvbankna")).Text.Trim();
                 tbl1.Rows[i]["branchname"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvBrance")).Text.Trim();
                 tbl1.Rows[i]["paydate"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvpaydate")).Text.Trim();
                 tbl1.Rows[i]["refid"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvrefid")).Text.Trim();
 
-                tbl1.Rows[i]["paidamount"] = ASTUtility.StrPosOrNagative(((TextBox)this.grvacc.Rows[i].FindControl("txtgvpaidamount")).Text.Trim()).ToString();
+                tbl1.Rows[i]["paidamount"] = paidamt;
                 tbl1.Rows[i]["disamt"] = ASTUtility.StrPosOrNagative(((TextBox)this.grvacc.Rows[i].FindControl("txtgvdisamt")).Text.Trim()).ToString();
                 //tbl1.Rows[i]["paidamount"] = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtgvpaidamount")).Text.Trim()).ToString();
                 tbl1.Rows[i]["repchqno"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvrRpChq")).Text.Trim();
                 tbl1.Rows[i]["remarks"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvremarks")).Text.Trim();
-
-
-
-
+                tbl1.Rows[i]["loamount"] = paidamt-companyamt;
+                tbl1.Rows[i]["companyamount"] = companyamt;
                 //tbl1.Rows[i]["collfrm"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvColl")).Text.Trim();
                 //tbl1.Rows[i]["recType"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvRecType")).Text.Trim();
             }
             Session["sessionforgrid"] = tbl1;
-
-
         }
         protected void lbTotal_Click(object sender, EventArgs e)
         {

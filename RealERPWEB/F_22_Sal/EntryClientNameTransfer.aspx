@@ -84,7 +84,10 @@
                             <div class="col-md-1">
                                 <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px" Style="margin-top: 20px;"></asp:LinkButton>
                             </div>
-                            
+                             <asp:Label ID="lblcustomerid" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
+                             <asp:TextBox ID="Label1" runat="server" CssClass="form-control inputTxt" TextMode="Number"  ></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="Label1"
+                ErrorMessage="Field is blank">*</asp:RequiredFieldValidator>  
                         </div>
 
                        <%-- <asp:Panel ID="PanelItem" runat="server">
@@ -158,7 +161,7 @@
                                     <asp:TemplateField>
                                         <FooterTemplate>
 
-                                            <asp:LinkButton ID="lUpdatPerInfo" runat="server" CssClass="btn btn-warning primaryBtn">Update Personal Info</asp:LinkButton>
+                                            <asp:LinkButton ID="lUpdatPerInfo" runat="server" CssClass="btn btn-warning primaryBtn" OnClick="lUpdatPerInfo_Click">Update Personal Info</asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" AutoCompleteType="Disabled"
@@ -167,7 +170,7 @@
                                                 Height="20px" Font-Size="12px"></asp:TextBox>
 
                                             <asp:TextBox
-                                                ID="txtgvdVal" runat="server" BackColor="Transparent" BorderStyle="None" AutoCompleteType="Disabled"
+                                                ID="txtgvdVal" runat="server" BackColor="Transparent" BorderStyle="None" AutoCompleteType="Disabled" 
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                                 Width="130px" Font-Size="12px"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtender_txtgvdVal" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
@@ -185,7 +188,7 @@
                                             <asp:TextBox ID="txtgvValbn" runat="server" BackColor="Transparent"
                                                 Width="130px" BorderStyle="None"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc2")) %>'
-                                                Height="20px" Font-Size="12px"></asp:TextBox>
+                                                Height="20px" Font-Size="12px" ></asp:TextBox>
 
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
