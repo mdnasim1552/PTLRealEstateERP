@@ -32,7 +32,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.GetCompName();
                 this.GetMonth();
-                this.SelectDate();                
+                this.SelectDate();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE HOLD LIST";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             }
@@ -50,16 +50,26 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             string comcod = this.GetCompCode();
             DataSet datSetup = compUtility.GetCompUtility();
+            string monthid = ASTUtility.Right(this.ddlMonth.SelectedValue, 2).ToString();
+            string yearID = ASTUtility.Left(this.ddlMonth.SelectedValue, 4).ToString();
+
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = startdate + ASTUtility.Month3digit(Convert.ToInt32(monthid)) + "-" + yearID;
+
             if (datSetup == null)
                 return;
             switch (comcod)
             {
                 case "3365":
                 case "3101":
-                    this.txtfrmDate.Text= System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
-                    this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                case "3368":
+                     
+
+                    string frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"); 
+
+                    this.txtfrmDate.Text = frmdate;
+                    this.txttoDate.Text = todate;
                     break;
 
                 default:
@@ -146,9 +156,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string compcode = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
             string deptcode = (this.ddlDepartment.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 7) + "%";
             string Section = (this.ddlSection.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlSection.SelectedValue.ToString() + "%"; //"%"; 
-            //string txtSProject = "%" + this.ddlEmployee.Text + "%";
-                        string txtSProject = "%%";
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETEMPNAME", compcode, deptcode, Section, txtSProject,"", "", "", "", "");
+                                                                                                                                                        //string txtSProject = "%" + this.ddlEmployee.Text + "%";
+            string txtSProject = "%%";
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETEMPNAMELIST", compcode, deptcode, Section, txtSProject, "", "", "", "", "");
+            if(ds3==null)
+            {
+                return;
+            }
             Session["tblempdsg"] = ds3.Tables[0];
             this.ddlEmployee.DataTextField = "empname";
             this.ddlEmployee.DataValueField = "empid";
@@ -189,12 +203,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (this.lbtnOk.Text == "Ok")
             {
-                this.ddlCompanyName.Enabled = false;  
+                this.ddlCompanyName.Enabled = false;
                 this.ddlDepartment.Enabled = false;
                 this.ddlSection.Enabled = false;
                 this.ddlMonth.Enabled = false;
                 this.lbtnOk.Text = "New";
                 this.PnlSub.Visible = true;
+                this.SelectDate();
                 this.GetEmployeeName();
                 this.ShowEmpHold();
 
@@ -202,11 +217,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 return;
             }
             this.ddlCompanyName.Enabled = true;
-            
+
             this.ddlDepartment.Enabled = true;
-         
+
             this.ddlSection.Enabled = true;
-   
+
             this.ddlMonth.Enabled = true;
 
             this.lbtnOk.Text = "Ok";
@@ -327,7 +342,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string comcod = this.GetCompCode();
                 DataTable dt = (DataTable)Session["tblemphold"];
                 string Month = this.ddlMonth.SelectedValue.ToString();
-              
+
 
 
 
@@ -341,11 +356,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (!result)
                         return;
+                    string eventdesc2 = "Salary hold Monthid : "+ Month + ",Empid " + empid;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "EMPLOYEE HOLD", eventdesc2, "");
+
                 }
 
                 msg = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-      
+
 
 
             }
@@ -376,6 +394,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
 
                 dt.Rows[rowindex].Delete();
+                string eventdesc2 = "Salary hold Removed Monthid : " + Month + ",Empid " + empid;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "EMPLOYEE HOLD REMOVED", eventdesc2, "");
+
             }
 
             DataView dv = dt.DefaultView;
@@ -387,3 +408,4 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
     }
 }
+ 
