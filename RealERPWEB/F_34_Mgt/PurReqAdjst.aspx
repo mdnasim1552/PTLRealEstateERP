@@ -218,7 +218,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Adjustment">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px" OnTextChanged="txtgvadjqty_TextChanged"
+                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px" OnTextChanged="txtgvadjqty_TextChanged"  
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adjstqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="65px" BackColor="White"
                                                         BorderStyle="None" Style="text-align: right" AutoPostBack="true"></asp:TextBox>
