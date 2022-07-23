@@ -29,6 +29,8 @@ namespace RealEntity.C_30_Facility
             public double rate { get; set; }
             public double amount { get; set; }
             public int seq { get; set; }
+            public double percnt { get; set; }
+            public string type { get; set; }
             
 
         }
