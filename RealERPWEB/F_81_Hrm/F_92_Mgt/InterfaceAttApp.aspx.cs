@@ -63,9 +63,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlfilterby.DataSource = ds.Tables[0];
             this.ddlfilterby.DataBind();
             this.ddlfilterby.Items.Insert(0, new ListItem("All", "%%"));
-
-
-
         }
         private void SelectDate()
         {
@@ -147,20 +144,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string type = "";//(this.Request.QueryString["Type"]) == "Ind" || (this.Request.QueryString["Type"] == "DeptHead") ? "" : "Management";
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
             string reqtyp = this.ddlfilterby.SelectedValue.ToString();
+            string searchkey = "%" + this.txtSearch.Text.Trim() + "%";
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead,"", reqtyp, "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead,"", reqtyp, searchkey, "", "");
             if (ds1 == null)
                 return;
 
-            this.RadioButtonList1.Items[0].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</span></h4>" + "<span class='lbldata2'>" + "Request" + "</span>";
-            this.RadioButtonList1.Items[1].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Process" + "</span>";
-            this.RadioButtonList1.Items[2].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Approval" + "</span>";
-            this.RadioButtonList1.Items[3].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Confirmed" + "</span>";
-            this.RadioButtonList1.Items[4].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcancel"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Canceled" + "</span>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Request</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description txt-white'>Process</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'> Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description txt-white'>Confirmed</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-green counter'>" + ds1.Tables[1].Rows[0]["tcancel"].ToString() + "</div></a><div class='circle-tile-content deep-green'><div class='circle-tile-description txt-white'>Canceled</div></div></div>";
 
             // All Order
             DataTable dt = new DataTable();
-
             DataView dv = new DataView();
             dt = ((DataTable)ds1.Tables[0]).Copy();
             ViewState["tbltotalleav"] = dt;
@@ -172,18 +169,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //dv.RowFilter = ("sostatus = 'In-process' or  sostatus = 'Request' ");
             dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' and lvstatus <> 'Canceled'");
            
-
             this.Data_Bind("gvInprocess", dv.ToTable());
-
             //Approved
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
             dv.RowFilter = ("dptstatus = '' and  supstatus<>''  and lvstatus <> 'Approved'");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvApproved", dv.ToTable());
-
-          
-
+        
             //Confirm
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
@@ -191,14 +184,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvConfirm", dv.ToTable());
 
-
             //Canceled Data
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
             dv.RowFilter = ("lvstatus = 'Canceled'");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvfiApproved", dv.ToTable());
-
         }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -213,16 +204,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[0].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
                     break;
-
                 case "1":
                     this.pnlallReq.Visible = false;
                     this.PnlProcess.Visible = true;
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[1].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "2":
                     this.pnlallReq.Visible = false;
@@ -230,7 +220,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = true;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[2].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "3":
                     this.pnlallReq.Visible = false;
@@ -238,16 +228,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = false;
                     this.PnlConfrm.Visible = true;
-                    this.RadioButtonList1.Items[3].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
-
                 case "4":
                     this.pnlallReq.Visible = false;
                     this.PnlProcess.Visible = false;
                     this.PnlApp.Visible = false;
                     this.pnlFApp.Visible = true;
                     this.PnlConfrm.Visible = false;
-                    this.RadioButtonList1.Items[4].Attributes["style"] = "background: #189697; display:block; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;";
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
             }
         }
@@ -280,7 +269,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvfiApproved.DataSource = (dt);
                     this.gvfiApproved.DataBind();
                     break;
-
                 case "gvConfirm":
                     this.gvConfirm.DataSource = (dt);
                     this.gvConfirm.DataBind();
@@ -318,9 +306,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     hlink3.Visible = false;
                     lnkbtnDptApp.Visible = true;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT"+"&Reqtype="+ reqtyp;
-
-                    
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/EmpAttApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + strtdat + "&RoleType=DPT"+"&Reqtype="+ reqtyp;                   
                 }
                 if (userid == suserid)
                 {
@@ -342,7 +328,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 //hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="; ;
                 //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid + "&Reqtype="+ reqtyp;
-
             }
         }
         protected void gvApproved_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -391,8 +376,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //hlnEdit.Visible = ((usrid == empusrid) && (lvstatus != "Approved")) ? true : false;
                 //hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
                 //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-
-
             }
         }
 
@@ -402,7 +385,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyOrderPrint");
                 LinkButton hlinkForward = (LinkButton)e.Row.FindControl("lnkRemoveForward");
-
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -421,7 +403,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
                 //hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-
             }
         }
         protected void gvfiApproved_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -447,20 +428,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     case "3348": //Credence
                         break;
-
                     default:
                         //DataRow[] dr1 = dt.Select("usrid='" + usrid + "' and centrid='" + refno + "'");
                         //DataRow[] dre = dte.Select("usrid='" + usrid + "'");
                         //hlink3.Enabled = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
                         //hlink3.Visible = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
-
                         break;
                 }
                 hlink1.Visible = ((usrid == dptusid) && (lvstatus == "Canceled")) ? true : false;
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=MGT";
-
-
-
             }
         }
 
@@ -528,7 +504,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (result)
             {
                 //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
-                string Messaged = "Approved Request Forward  successfully";
+                string Messaged = "Approved Request Forward successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentl('" + Messaged + "');", true);
 
                 int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
@@ -580,8 +556,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (ConstantInfo.LogStatus == true)
                 {
-                    string eventtype = "Leave Requset Delete";
-                    string eventdesc = "Leave Requset Delete, Employe id" + empid;
+                    string eventtype = "Request Requset Delete";
+                    string eventdesc = "Request Requset Delete, Employe id" + empid;
                     string eventdesc2 = leavid;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
@@ -622,8 +598,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 if (ConstantInfo.LogStatus == true)
                 {
-                    string eventtype = "Requset Canceld";
-                    string eventdesc = "Requset Cancel, Employe id" + empid;
+                    string eventtype = "Request Canceled";
+                    string eventdesc = "Request Cancel, Employe id" + empid;
                     string eventdesc2 = leavid;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }

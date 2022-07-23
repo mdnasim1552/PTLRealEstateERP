@@ -959,10 +959,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         
         
-        
-        private void FooterCalculation(DataTable dt, string GvName)
-        
-        
+        private void FooterCalculation(DataTable dt, string GvName) 
         {
             if (dt.Rows.Count == 0)
                 return;
@@ -1103,22 +1100,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     //        ((Label)this.gvSalSub.FooterRow.FindControl("lgvFSalSub")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gval)", "")) ? 0 : dt.Compute("sum(gval)", ""))).ToString("#,##0;(#,##0); ");
                     //        break;
                     //}
-            
-
-
-
-
                     break;
 
                         
             }
-
-
-
-
         }
-
-
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.chkEdit.Checked)
@@ -1138,14 +1124,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.GetComASecSelected();
 
         }
-
-
         protected void ddlPEmpName_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetComASecSelected();
         }
-
-
         private void GetComASecSelected()
         {
             string empid = this.ddlPEmpName.SelectedValue.ToString().Trim();
@@ -1156,8 +1138,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.ddlCompanyAgg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
                 this.ddldepartmentagg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["deptcode"].ToString();
                 this.ddlProjectName.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
-
-
             }
         }
 

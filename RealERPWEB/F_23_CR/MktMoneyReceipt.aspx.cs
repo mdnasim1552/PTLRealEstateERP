@@ -375,8 +375,8 @@ namespace RealERPWEB.F_23_CR
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string qusirCode = this.Request.QueryString["usircode"] ?? "";
             string srchunit = qusirCode.Length > 0 ? qusirCode : "%" + this.txtsrchunit.Text.Trim() + "%";
-
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSUSERINFINFO", PactCode, srchunit, "", "", "", "", "", "", "");
+            string isLO = "0";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSUSERINFINFO", PactCode, srchunit, isLO, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.gvSpayment.DataSource = ds1.Tables[0];

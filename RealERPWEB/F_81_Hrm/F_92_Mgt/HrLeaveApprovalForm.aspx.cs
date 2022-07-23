@@ -36,7 +36,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.GetDepartment();
-                //this.GetEmployeeName();
+                this.viewType.SelectedIndex = 0;
+
+                if (this.viewType.SelectedIndex == 0)
+                {
+                    this.pnlLeave.Visible = true;
+                    this.pnlLoan.Visible = false;
+                }
+                else
+                {
+                    this.pnlLeave.Visible = false;
+                    this.pnlLoan.Visible = true;
+                }
+                getAllLoanPerm();
+                pnlLoanUser();
+                getLoanStep();
+                //this.GetEmployeeName();\
+                this.viewType_SelectedIndexChanged(null, null);
 
             }
 
@@ -52,8 +68,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         public void LoadOrderDapp()
         {
             string comcod = GetCompCode();
-            string dptName = (this.ddldpt.SelectedValue.ToString() == "000000000000") ? "%%" : this.ddldpt.SelectedValue.ToString(); 
-            
+            string dptName = (this.ddldpt.SelectedValue.ToString() == "000000000000") ? "%%" : this.ddldpt.SelectedValue.ToString();
+
             string typrole = this.ddlTypeRole.SelectedValue.ToString();
 
 
@@ -149,7 +165,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 DataTable dt = (DataTable)ViewState["tblAllDpt"];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                     centrid = dt.Rows[i]["actcode"].ToString();
+                    centrid = dt.Rows[i]["actcode"].ToString();
 
                     DataRow[] dr = UserInfoTable.Select("usrid='" + usrid + "' and centrid='" + centrid + "'");
                     if (dr.Length == 0)
@@ -281,7 +297,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             else
             {
                 bool result = false;
-               // result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", dpt, typrole, "", "", "", "", "", "", "", "", "", "", "");
+                // result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", dpt, typrole, "", "", "", "", "", "", "", "", "", "", "");
 
                 for (int i = 0; i < UserInfoTable.Rows.Count; i++)
                 {
@@ -377,14 +393,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 gvProLinkInfo_DataBind();
             }
             BindGrid();
-
-
         }
         protected void lbtnDeleteAll_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["UserInfoTable"];
-            string centrid = this.ddldpt.SelectedValue.ToString() == "000000000000" ? "94%" : this.ddldpt.SelectedValue.ToString();  
+            string centrid = this.ddldpt.SelectedValue.ToString() == "000000000000" ? "94%" : this.ddldpt.SelectedValue.ToString();
             string typrole = this.ddlTypeRole.SelectedValue.ToString();
 
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", centrid, typrole, "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -427,10 +441,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     //ddlEmploye.Enabled = true;
                     this.Panel2.Visible = false;
                 }
-
                 return;
             }
-
             if (lbtnOkOrNew.Text == "New")
             {
                 ddldpt.Enabled = true;
@@ -441,9 +453,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 lbtnOkOrNew.Text = "Ok";
                 this.Panel2.Visible = false;
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
             }
-
         }
         protected void BindGrid()
         {
@@ -454,5 +464,127 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
 
+        //panel loan 
+        private void getAllLoanPerm()
+        {
+            string comcod = GetCompCode();
+
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETPERMISSIONSTEP", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+                this.gvLoanStep.DataSource = null;
+                this.gvLoanStep.DataBind();
+                this.DataBind();
+                return;
+            }
+            else
+            {
+                this.gvLoanStep.DataSource = ds1.Tables[0];
+                this.gvLoanStep.DataBind();
+                this.DataBind();
+                return;
+            }
+                
+    
+        }
+
+
+
+        protected void saveBtnLn_Click(object sender, EventArgs e)
+        {
+            string comcod = GetCompCode();
+            string stepid= this.ddlLoanStep.SelectedValue.ToString();
+           string userid = this.ddlLoanUser.SelectedValue.ToString();
+            string Messaged = "";
+            bool result = purData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "INSERTLOANSTEP", stepid, userid, "", "", "", "", "", "", "", "", "", "", "", "");
+            if (result)
+            {
+                Messaged = "Data Inserted successfully  !!";
+                this.getAllLoanPerm();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
+            }
+            else
+            {
+                Messaged = "Failed !!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+            }
+
+
+        }
+
+        private void pnlLoanUser()
+        {
+
+            string comcod = GetCompCode();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETUSERNAMELIST", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+
+            this.ddlLoanUser.DataTextField = "usrsname";
+            this.ddlLoanUser.DataValueField = "usrid";
+            this.ddlLoanUser.DataSource = ds1.Tables[0];
+            this.ddlLoanUser.DataBind();
+            ds1.Dispose();
+        }
+
+
+        private void getLoanStep()
+        {
+            string comcod = GetCompCode();
+            DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANSTEP", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+                return;
+
+            this.ddlLoanStep.DataTextField = "stepname";
+            this.ddlLoanStep.DataValueField = "id";
+            this.ddlLoanStep.DataSource = ds1.Tables[0];
+            this.ddlLoanStep.DataBind();
+            ds1.Dispose();
+        }
+
+        protected void viewType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          int index=  this.viewType.SelectedIndex;
+        
+            switch (index)
+            {
+                case 0:
+                    this.pnlLeave.Visible = true;
+                    this.pnlLoan.Visible = false;
+                    break;
+                case 1:
+                    this.pnlLeave.Visible = false;
+                    this.pnlLoan.Visible = true;
+                    break;
+
+            }
+           
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int index = row.RowIndex;
+
+            string pid = ((Label)this.gvLoanStep.Rows[index].FindControl("lblLid")).Text.ToString();
+            string comcod = GetCompCode();
+            string Messaged = "";
+
+            bool result = purData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "DELETELOANSTEP", pid, "", "", "", "", "", "", "", "", "", "", "", "");
+            if (result)
+            {
+                Messaged = "Data Deleted successfully  !!";
+                this.getAllLoanPerm();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
+            }
+            else
+            {
+                Messaged = "Failed !!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+            }
+        }
     }
 }

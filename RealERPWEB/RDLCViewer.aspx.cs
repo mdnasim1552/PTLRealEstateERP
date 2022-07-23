@@ -16,6 +16,8 @@ using System.IO;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
+using System.Drawing;
+
 namespace RealERPWEB
 {
     public partial class RDLCViewer : System.Web.UI.Page
@@ -28,6 +30,19 @@ namespace RealERPWEB
                 return;
 
             string PrtOpt = Request.QueryString["PrintOpt"].ToString();
+            string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            string rptTitle = this.Request.QueryString["rptTitle"] ?? "Export_Data_"+ date1;
+            if (string.IsNullOrEmpty(Page.Title))
+            {
+                Page.Title = rptTitle;
+            }
+            else
+            {
+                Page.Title = rptTitle;
+
+            }
+
             switch (PrtOpt)
             {
 
@@ -35,17 +50,22 @@ namespace RealERPWEB
                 //    this.RptHtml();
                 //    break;
                 case "PDF":
-                    this.RptRDLCPDF();
+                    this.RptRDLCPDF(rptTitle);
                     break;
                 case "WORD":
                     this.RptMSWord();
                     break;
                 case "EXCEL":
-                    this.RptMSExcel();
+                    this.RptMSExcel(rptTitle);
                     break;
 
                 case "GRIDTOEXCEL":
                     this.ExportGridToExcel();
+                   
+                    break;
+                case "GRIDTOEXCELNEW":
+                   
+                    this.ExportGridToExcel2();
                     break;
             }
         }
@@ -66,7 +86,7 @@ namespace RealERPWEB
         }
 
 
-        protected void RptRDLCPDF()
+        protected void RptRDLCPDF(string rptTitle)
         {
             LoadReportSceleton();
             string reportType = "PDF";
@@ -80,12 +100,12 @@ namespace RealERPWEB
             string mimeType;
             string encoding;
             string filenameExtension = string.Empty;
-
-
             byte[] bytes = rt.Render(reportType, deviceInfo, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
             Response.Clear();
             Response.Buffer = true;
             Response.ContentType = "Application/pdf";
+            Response.AddHeader("content-disposition", "filename=" + rptTitle + "." + filenameExtension);
+
             Response.BinaryWrite(bytes);
         }
         //protected void RptHtml()
@@ -134,12 +154,12 @@ namespace RealERPWEB
 
         }
 
-        protected void RptMSExcel()
+        protected void RptMSExcel(string rptTitle)
         {
-            LoadReportSceleton();
+            LoadReportSceleton();           
+
             string reportType = "Excel";
             string deviceInfo =
-
                    "<DeviceInfo>" +
                    "  <OutputFormat>" + reportType + "</OutputFormat>" +
                    "</DeviceInfo>";
@@ -152,7 +172,10 @@ namespace RealERPWEB
             Response.Clear();
             Response.Buffer = true;
             Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("content-disposition", "attachment; filename=" + rptTitle + "." + filenameExtension);
             Response.BinaryWrite(bytes);
+
+           
 
             //FileStream fs = new FileStream("d:\\report1.xls", FileMode.Create);
             ////create Excel file
@@ -180,11 +203,13 @@ namespace RealERPWEB
         {
             try
             {
+                string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string fileName = "ExportTable_" + date1; 
                 //this.form1.Controls.Remove(this.CRViewer1);
                 GridView GridView1 = (GridView)Session["Report1"];
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=DataTable.xls");
+                Response.AddHeader("content-disposition", "attachment;filename="+ fileName + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
 
@@ -205,6 +230,97 @@ namespace RealERPWEB
                 return;
             }
         }
+
+        protected void ExportGridToExcel2()
+        {
+            string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string fileName = "ExportTable_" + date1;
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename="+ fileName + ".xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                GridView GridView1 = (GridView)Session["Report1"];
+
+                //To Export all pages
+                GridView1.AllowPaging = false;
+                
+
+                GridView1.HeaderRow.BackColor = Color.White;
+                foreach (TableCell cell in GridView1.HeaderRow.Cells)
+                {
+                    cell.BackColor = GridView1.HeaderStyle.BackColor;
+                }
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    row.BackColor = Color.White;
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        if (row.RowIndex % 2 == 0)
+                        {
+                            cell.BackColor = GridView1.AlternatingRowStyle.BackColor;
+                        }
+                        else
+                        {
+                            cell.BackColor = GridView1.RowStyle.BackColor;
+                        }
+                        cell.CssClass = "textmode";
+                        List<Control> controls = new List<Control>();
+
+                        //Add controls to be removed to Generic List
+                        foreach (Control control in cell.Controls)
+                        {
+                            controls.Add(control);
+                        }
+
+                        //Loop through the controls to be removed and replace then with Literal
+                        foreach (Control control in controls)
+                        {
+                            switch (control.GetType().Name)
+                            {
+                                case "HyperLink":
+                                    cell.Controls.Add(new Literal { Text = (control as HyperLink).Text });
+                                    break;
+                                case "TextBox":
+                                    cell.Controls.Add(new Literal { Text = (control as TextBox).Text });
+                                    break;
+                                case "LinkButton":
+                                    cell.Controls.Add(new Literal { Text = (control as LinkButton).Text });
+                                    break;
+                                case "CheckBox":
+                                    cell.Controls.Add(new Literal { Text = (control as CheckBox).Text }) ;
+                                    break;
+                                case "RadioButton":
+                                    cell.Controls.Add(new Literal { Text = (control as RadioButton).Text });
+                                    break;
+                                case "Label":
+                                    cell.Controls.Add(new Literal { Text = (control as Label).Text });
+                                    break;
+                                case "DropDownList":
+                                    cell.Controls.Add(new Literal { Text = (control as DropDownList).SelectedItem.Text.ToString() });
+                                    break;
+                                 
+
+                            }
+                            cell.Controls.Remove(control);
+                        }
+                    }
+                }
+
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+            }
+        }
+
 
 
 

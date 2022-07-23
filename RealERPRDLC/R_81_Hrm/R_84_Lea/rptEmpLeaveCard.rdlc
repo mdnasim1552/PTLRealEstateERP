@@ -437,10 +437,10 @@
                   <Width>0.39554in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89555in</Width>
+                  <Width>0.85388in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.77886in</Width>
+                  <Width>0.83094in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.63542in</Width>
@@ -1448,7 +1448,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Parameters!lvname3.Value, "#,##0.0;(#,##0.0); ")</Value>
+                                  <Value>=Parameters!lvname3.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2117,7 +2117,7 @@
             <DataSetName>DataSet2</DataSetName>
             <Top>1.08209in</Top>
             <Height>1.01041in</Height>
-            <Width>7.68622in</Width>
+            <Width>7.69664in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>

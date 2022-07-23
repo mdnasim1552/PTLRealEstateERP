@@ -231,15 +231,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink EmpDirectory;
 
         /// <summary>
-        /// hyplPreviewCv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton hyplPreviewCv;
-
-        /// <summary>
         /// modalPayslipBti control.
         /// </summary>
         /// <remarks>
@@ -247,6 +238,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalPayslipBti;
+
+        /// <summary>
+        /// hyplPreviewCv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton hyplPreviewCv;
 
         /// <summary>
         /// fileuploaddropzone control.
@@ -357,6 +357,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.GridView gvAllNotice;
 
         /// <summary>
+        /// pnlUpcmBD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUpcmBD;
+
+        /// <summary>
         /// birthday control.
         /// </summary>
         /// <remarks>
@@ -373,6 +382,51 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventBirthday;
+
+        /// <summary>
+        /// pnlUpcmBDT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUpcmBDT;
+
+        /// <summary>
+        /// gvUpcmBDT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvUpcmBDT;
+
+        /// <summary>
+        /// longTermTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl longTermTitle;
+
+        /// <summary>
+        /// LongTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LongTerm;
+
+        /// <summary>
+        /// gvServiceInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvServiceInfo;
 
         /// <summary>
         /// gvholidayprint control.
@@ -445,6 +499,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl BtiPolicy;
+
+        /// <summary>
+        /// accordionTwoLeft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl accordionTwoLeft;
 
         /// <summary>
         /// edidisonPolicy control.
@@ -744,6 +807,51 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InWords;
 
         /// <summary>
+        /// modalNoticeTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalNoticeTitle;
+
+        /// <summary>
+        /// modalNoticeDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalNoticeDet;
+
+        /// <summary>
+        /// publishDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl publishDate;
+
+        /// <summary>
+        /// noticeStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noticeStartDate;
+
+        /// <summary>
+        /// noticeEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noticeEndDate;
+
+        /// <summary>
         /// PaySlipPart control.
         /// </summary>
         /// <remarks>
@@ -760,5 +868,41 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPaySlip;
+
+        /// <summary>
+        /// empdettitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl empdettitle;
+
+        /// <summary>
+        /// gvEmpDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvEmpDet;
+
+        /// <summary>
+        /// empbdtitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl empbdtitle;
+
+        /// <summary>
+        /// gvBirthDayDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvBirthDayDet;
     }
 }

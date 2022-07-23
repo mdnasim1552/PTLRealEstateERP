@@ -49,6 +49,7 @@ namespace RealERPWEB.F_12_Inv
                 this.chkneBudget.Checked = true;
                 //this.DupMRR();
                 this.Load_Project_Combo();
+                this.GetDeparment();
 
                 this.VisibleGrid();
                 this.lblmrfno.Text = ReadCookie();
@@ -67,6 +68,8 @@ namespace RealERPWEB.F_12_Inv
                 string title = (Request.QueryString["InputType"].ToString() == "Entry") ? "Materials Requisition"
                      : (Request.QueryString["InputType"].ToString() == "Approval") ? "Materials Requisition Approval Screen"
                      : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Store Requisition"
+                     : (Request.QueryString["InputType"].ToString() == "IndentEntry") ? "Indent Requisition"
+
                       : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Materials Requisition Information Input/Edit Screen"
                        : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? reqcheckorApproved
                        : (Request.QueryString["InputType"].ToString() == "ReqcRMCheck") ? "Req CRM Check"
@@ -211,6 +214,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3325":
                 case "3364":// Jbs
                 case "3353":
+                case "3366":
                     this.lblmrfno.Text = "MPR No: ";
 
                     break;
@@ -253,6 +257,27 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
+
+
+        protected void GetDeparment()
+        {
+            string comcod = this.GetCompCode();
+            //string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "FXTASSTGETDEPARTMENT", "%%", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ds1.Tables[0].Rows.Add(comcod, "000000000000", "Department");
+            ds1.Tables[0].Rows.Add(comcod, "AAAAAAAAAAAA", "-------Select-----------");
+
+
+            this.ddlDeptCode.DataTextField = "fxtgdesc";
+            this.ddlDeptCode.DataValueField = "fxtgcod";
+            this.ddlDeptCode.DataSource = ds1.Tables[0];
+            this.ddlDeptCode.DataBind();
+            this.ddlDeptCode.SelectedValue = "AAAAAAAAAAAA";
+        }
+
+
         private string GetCompCode()
         {
 
@@ -269,7 +294,12 @@ namespace RealERPWEB.F_12_Inv
             string fxtast = (this.Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "ReqEdit") ? "ReqEdit"
-                        : (this.Request.QueryString["InputType"].ToString() == "HeadUsed") ? "HeadUsed" : "";
+                        : (this.Request.QueryString["InputType"].ToString() == "HeadUsed") ? "HeadUsed" 
+                        : (this.Request.QueryString["InputType"].ToString() == "IndentEntry") ? "ReqIndent" : "";
+
+
+
+
 
 
             string Aproval = (this.Request.QueryString["InputType"].ToString() == "Approval") ? "Aproval" : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "Aproval" : "";
@@ -358,7 +388,10 @@ namespace RealERPWEB.F_12_Inv
                 this.gvReqInfo.DataBind();
                 this.Panel1.Visible = false;
                 this.Panel2.Visible = false;
-                this.PnlDesc.Visible = false;
+                
+                    this.PnlDesc.Visible = false;
+               
+                
                 this.lbtnOk.Text = "Ok";
                 // this.ImgbtnSpecification_Click(null, null);
 
@@ -431,7 +464,47 @@ namespace RealERPWEB.F_12_Inv
             this.txtCurReqNo2.ReadOnly = true;
             this.Panel1.Visible = true;
             this.Panel2.Visible = true;
-            this.PnlDesc.Visible = true;
+
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "1205":
+                case "3351":
+                case "3352":
+                case "3368":
+                    if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+                    {
+
+                        this.PnlDesc.Visible = false;
+                        this.uPrj.Visible = false;
+                    }
+                    else
+                    {
+                        this.PnlDesc.Visible = true;
+                    }
+
+                    break;
+
+
+                default:
+                    this.PnlDesc.Visible = true;
+                    break;
+            }
+
+
+
+            //if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+            //{
+                
+            //    this.PnlDesc.Visible = false;
+            //    this.uPrj.Visible = false;
+            //}
+            //else
+            //{
+            //    this.PnlDesc.Visible = true;
+            //}
+            
+            
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();
@@ -527,6 +600,7 @@ namespace RealERPWEB.F_12_Inv
             this.txtCurReqNo2.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(6, 5);
             this.txtCurReqDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["reqdat"]).ToString("dd.MM.yyyy");
 
+            
 
             this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
             if (ASTUtility.Left(ds1.Tables[1].Rows[0]["pactcode"].ToString(), 4) == "1102")
@@ -536,10 +610,15 @@ namespace RealERPWEB.F_12_Inv
                 this.ddlPrjForUse.DataValueField = "upactcode";
                 this.ddlPrjForUse.DataSource = ds1.Tables[1];
                 this.ddlPrjForUse.DataBind();
-
+                //todo for select department
+                if (ASTUtility.Left(ds1.Tables[1].Rows[0]["pactcode"].ToString(), 8) == "11020099")
+                {
+                    this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
+                }
                 //this.Load_Project_To_Combo();
                 //this.ddlPrjForUse.SelectedValue = ds1.Tables[1].Rows[0]["upactcode"].ToString();
             }
+            
             else
             {
                 this.uPrj.Visible = false; ;
@@ -1091,6 +1170,9 @@ namespace RealERPWEB.F_12_Inv
             string mAPPBYDES = this.txtApprovedBy.Text.Trim();
             string reqtype = "";
             string uFP = this.ddlPrjForUse.SelectedValue.ToString();
+
+            string deptcode  = this.ddlDeptCode.SelectedValue.ToString();
+
             if (this.Request.QueryString["InputType"] == "LcEntry")
             {
                 reqtype = "LC";
@@ -1172,14 +1254,18 @@ namespace RealERPWEB.F_12_Inv
 
             //}
 
-
+            string indentType = "";
+            if (this.Request.QueryString["InputType"] == "IndentEntry")
+            {
+                indentType = "Indent";
+            }
 
 
             string mREQNAR = this.txtReqNarr.Text.Trim();
             //string ptype = this.ddlptype.SelectedValue.ToString();
             bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURREQINFO", "PURREQB", mREQNO, mREQDAT, mPACTCODE, mFLRCOD, mREQUSRID,
                 mAPPRUSRID, mAPPRDAT, mEDDAT, mREQBYDES, mAPPBYDES, mMRFNO, mREQNAR, PostedByid, Posttrmid, PostSession, EditByid, Edittrmid, EditSession,
-                EditDat, PostedDat, reqtype, uFP, crmchekd, crmcheckbyid, crnPosttrmid, crmPostSession, crmcPostedDat);
+                EditDat, PostedDat, reqtype, uFP, crmchekd, crmcheckbyid, crnPosttrmid, crmPostSession, crmcPostedDat , indentType ,  deptcode);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1432,6 +1518,8 @@ namespace RealERPWEB.F_12_Inv
 
 
             string type = this.Request.QueryString["InputType"];
+            string pactcode =ASTUtility.Left(this.Request.QueryString["prjcode"].ToString().Trim(),8);
+
             string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
@@ -1452,11 +1540,65 @@ namespace RealERPWEB.F_12_Inv
                         // case "3101":
                         // case "3338": //ACME
                         case "3348": //Credence
+                        case "3367": //EPic
+                        //case "3368": //Finlay
+                      //  case "3101": //Model
                             break;
 
                         default:
+
+                            if (comcod == "3368" & pactcode != "11020099")//Finlay
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                if (approval == "")
+                                {
+                                    this.CreateDataTable();
+                                    DataTable dt = (DataTable)ViewState["tblapproval"];
+                                    DataRow dr1 = dt.NewRow();
+                                    dr1["fappid"] = usrid;
+                                    dr1["fappdat"] = Date;
+                                    dr1["fapptrmid"] = trmnid;
+                                    dr1["fappseson"] = session;
+                                    dr1["sappid"] = usrid;
+                                    dr1["sappdat"] = Date;
+                                    dr1["sapptrmid"] = trmnid;
+                                    dr1["sappseson"] = session;
+                                    dt.Rows.Add(dr1);
+                                    ds1.Merge(dt);
+                                    ds1.Tables[0].TableName = "tbl1";
+                                    approval = ds1.GetXml();
+
+                                }
+
+                            }
+                           
+
+
+
+
+                            break;
+
+                    }
+
+                    break;
+
+
+                case "ReqFirstApproved":
+                    switch (comcod)
+                    {
+                        //case "3338": //ACME
+                       // case "3367": //EPic
+                        case "3368": //Finlay
+                       // case "3101": //Model
+
+
                             if (approval == "")
                             {
+
+
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -1475,116 +1617,73 @@ namespace RealERPWEB.F_12_Inv
 
                             }
 
+                            else
+                            {
 
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
 
+                                ds1.Tables[0].Rows[0]["sappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["sappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["sapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["sappseson"] = session;
+                                approval = ds1.GetXml();
 
+                            }
                             break;
 
-                    }
 
+                           
+                        default:
+                            if (approval == "")                    
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["sappid"] = "";
+                                dr1["sappdat"] = "";
+                                dr1["sapptrmid"] = "";
+                                dr1["sappseson"] = "";
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+                            }
+
+                            else
+                            {
+
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+                                ds1.Tables[0].Rows[0]["sappid"] = "";
+                                ds1.Tables[0].Rows[0]["sappdat"] = "";
+                                ds1.Tables[0].Rows[0]["sapptrmid"] = "";
+                                ds1.Tables[0].Rows[0]["sappseson"] = "";
+                                approval = ds1.GetXml();
+
+                            }
+                        break;
+
+
+
+
+                    }              
                     break;
-
-
-                case "ReqFirstApproved":
-                    //switch (comcod) 
-                    //{ 
-                    //case "3338": //ACME
-                    //    if (approval == "")
-                    //    {
-
-
-                    //        this.CreateDataTable();
-                    //        DataTable dt = (DataTable)ViewState["tblapproval"];
-                    //        DataRow dr1 = dt.NewRow();
-
-                    //        dr1["fappid"] = usrid;
-                    //        dr1["fappdat"] = Date;
-                    //        dr1["fapptrmid"] = trmnid;
-                    //        dr1["fappseson"] = session;
-                    //        dr1["sappid"] = usrid;
-                    //        dr1["sappdat"] = Date;
-                    //        dr1["sapptrmid"] = trmnid;
-                    //        dr1["sappseson"] = session;
-                    //        dt.Rows.Add(dr1);
-                    //        ds1.Merge(dt);
-                    //        ds1.Tables[0].TableName = "tbl1";
-                    //        approval = ds1.GetXml();
-
-                    //    }
-
-                    //    else
-                    //    {
-
-                    //        xmlSR = new System.IO.StringReader(approval);
-                    //        ds1.ReadXml(xmlSR);
-                    //        ds1.Tables[0].TableName = "tbl1";
-                    //        ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                    //        ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                    //        ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                    //        ds1.Tables[0].Rows[0]["fappseson"] = session;
-
-                    //        ds1.Tables[0].Rows[0]["sappid"] = usrid;
-                    //        ds1.Tables[0].Rows[0]["sappdat"] = Date;
-                    //        ds1.Tables[0].Rows[0]["sapptrmid"] = trmnid;
-                    //        ds1.Tables[0].Rows[0]["sappseson"] = session;
-                    //        approval = ds1.GetXml();
-
-                    //    }
-                    //    break;
-
-
-                    //default:
-                    if (approval == "")
-                    {
-
-
-                        this.CreateDataTable();
-                        DataTable dt = (DataTable)ViewState["tblapproval"];
-                        DataRow dr1 = dt.NewRow();
-
-                        dr1["fappid"] = usrid;
-                        dr1["fappdat"] = Date;
-                        dr1["fapptrmid"] = trmnid;
-                        dr1["fappseson"] = session;
-                        dr1["sappid"] = "";
-                        dr1["sappdat"] = "";
-                        dr1["sapptrmid"] = "";
-                        dr1["sappseson"] = "";
-                        dt.Rows.Add(dr1);
-                        ds1.Merge(dt);
-                        ds1.Tables[0].TableName = "tbl1";
-                        approval = ds1.GetXml();
-
-                    }
-
-                    else
-                    {
-
-                        xmlSR = new System.IO.StringReader(approval);
-                        ds1.ReadXml(xmlSR);
-                        ds1.Tables[0].TableName = "tbl1";
-                        ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                        ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                        ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                        ds1.Tables[0].Rows[0]["fappseson"] = session;
-                        ds1.Tables[0].Rows[0]["sappid"] = "";
-                        ds1.Tables[0].Rows[0]["sappdat"] = "";
-                        ds1.Tables[0].Rows[0]["sapptrmid"] = "";
-                        ds1.Tables[0].Rows[0]["sappseson"] = "";
-                        approval = ds1.GetXml();
-
-                    }
-                    break;
-
-
-
-
-                // }
-
-
-
-
-                //        break;
 
 
 
@@ -1675,6 +1774,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "1102":
                 case "1101":
+                case "1561":
 
                     break;
 
@@ -1720,12 +1820,21 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
+            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
+
+            string indent = "";
+            if (deptcode != "AAAAAAAAAAAA")
+            {
+                indent = "Indent"; 
+            }
+           
+
             //string reqapproval = this.GetReqApproval();
             //bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEREQCHECKED", mREQNO, Approval, "", "", "", "", "", "",
             //    "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEREQCHECKED", mREQNO, checkusrid, checkTerminal, checkSessionid, checkDate, Approval, crmData, crmNarr,
-                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                indent, deptcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -2187,9 +2296,30 @@ namespace RealERPWEB.F_12_Inv
             if (ds1 == null)
                 return;
 
+     
+
             ViewState["tblMat"] = ds1.Tables[0];
             ViewState["tblSpcf"] = ds1.Tables[1];
             ViewState["tblcat"] = ds1.Tables[2];
+
+            //if (Request.QueryString["InputType"].ToString() == "IndentEntry")
+            //{
+            //    DataTable dt1 = ds1.Tables[0].Copy();
+
+            //    DataView dv = dt1.DefaultView;
+
+            //    dv.RowFilter = "rsircode like '2298%' ";
+
+            //    DataTable dt2 = new DataTable();
+
+            //    dt2 = dv.ToTable();
+
+            //    ViewState["tblMat"] = dt2;
+                
+
+            //}
+
+
 
 
             // Catagory
@@ -2345,13 +2475,19 @@ namespace RealERPWEB.F_12_Inv
             if (ASTUtility.Left(actcode, 4) == "1102")
             {
                 this.uPrj.Visible = true;
+               
                 this.Load_Project_To_Combo();
             }
             else
             {
                 this.uPrj.Visible = false;
+               
                 this.ddlPrjForUse.Items.Clear();
             }
+
+           
+
+
 
 
 

@@ -912,11 +912,7 @@ namespace RealERPWEB.F_04_Bgd
                 dt.DefaultView.Sort = "isircode Asc";
                 dt = dt.DefaultView.ToTable();
             }
-
-
             Session["tblActAna1"] = dt;
-
-
 
             this.gvAnalysis.PageSize = Convert.ToInt32(this.ddlpagesizeen.SelectedValue.ToString());
             this.gvAnalysis.DataSource = dt;
@@ -927,7 +923,6 @@ namespace RealERPWEB.F_04_Bgd
             Session["Report1"] = gvAnalysis;
             this.ddlItemColor();
             if (dt.Rows.Count > 0)
-
                 ((HyperLink)this.gvAnalysis.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
@@ -959,8 +954,11 @@ namespace RealERPWEB.F_04_Bgd
 
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
-            dv.Sort = ("cattype,flrcod");
-            dt = dv.ToTable();
+            dv.Sort = ("cattype,flrslno");
+            dt = dv.ToTable();            
+            //dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
+            //dv.Sort = ("cattype,flrcod");
+            //dt = dv.ToTable();
 
 
             if (sender != null)
@@ -1069,16 +1067,7 @@ namespace RealERPWEB.F_04_Bgd
                     Description.Attributes["style"] = "color:red;";
 
                 }
-
-
             }
-
-
-
-
-
-
-
         }
         protected void gvAnalysis_RowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -1679,6 +1668,11 @@ namespace RealERPWEB.F_04_Bgd
             this.UpdateSessionResource01();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
+            string postedbyid = hst["usrid"].ToString();
+            string postrmid = hst["compname"].ToString();
+            string postseson = hst["session"].ToString();
+
+            //postedbyid,posteddat,postrmid,postseson,
             string PrjCod = this.ddlProject.SelectedValue.ToString().Trim();
             DataTable tbl1 = (DataTable)Session["tblActRes1"];
             string Permission = (((CheckBox)this.gvResInfo.FooterRow.FindControl("chklkrate")).Checked) ? "1" : "0";
@@ -1704,6 +1698,9 @@ namespace RealERPWEB.F_04_Bgd
             dt1.Columns.Remove("rsirdesc");
             dt1.Columns.Remove("rsirdesc1");
             dt1.Columns.Remove("rsirunit");
+
+            dt1.Columns.Add("postedbyid", typeof(String), postedbyid.ToString());
+            dt1.Columns.Add("postseson", typeof(String), postseson.ToString());
 
             ds1.DataSetName = "ds1";
             ds1.Tables.Add(dt1);
@@ -2911,22 +2908,14 @@ namespace RealERPWEB.F_04_Bgd
 
         protected void gvResInfo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
-
-
             bool rlock = Convert.ToBoolean(((DataTable)Session["tblActRes1"]).Rows[0]["lock"]);
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
-
                 if (rlock == true)
                 {
                     ((TextBox)e.Row.FindControl("txtgvResRat")).ReadOnly = true;
 
                 }
-
-
-
             }
 
         }
@@ -2985,6 +2974,38 @@ namespace RealERPWEB.F_04_Bgd
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
+        protected void lbtnDelWork_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblActAna1"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string comcod = hst["comcod"].ToString();
+            string Prjcode = this.ddlProject.SelectedValue.ToString();
+            string Itemcode = ((Label)this.gvAnalysis.Rows[rowIndex].FindControl("lblgvItmCod")).Text.Trim();
+            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "DELETEITEME", Prjcode, Itemcode,
+                            "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (result == true)
+            {
+                int rowindex = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + rowIndex;
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            this.gvAnalysis.DataSource = dv.ToTable();
+            this.gvAnalysis.DataBind();
+            Session.Remove("tblActAna1");
+            Session["tblActAna1"] = dv.ToTable();
+            this.ShowScheduledItemList();
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Constraction Budget(Indevidual Floor)";
+                string eventdesc = "Floor Delete";
+                string eventdesc2 = Itemcode;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
     }

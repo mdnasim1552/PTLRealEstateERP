@@ -331,7 +331,7 @@
                                         <asp:ListItem>20</asp:ListItem>
                                         <asp:ListItem>30</asp:ListItem>
                                         <asp:ListItem>50</asp:ListItem>
-                                        <asp:ListItem>100</asp:ListItem>
+                                        <asp:ListItem Selected="True">100</asp:ListItem>
                                         <asp:ListItem>150</asp:ListItem>
                                         <asp:ListItem>200</asp:ListItem>
                                         <asp:ListItem>300</asp:ListItem>
@@ -428,7 +428,12 @@
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" />
+                                        <%--<asp:CommandField ShowDeleteButton="True" />--%>
+                                        <asp:TemplateField ShowHeader="true">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lbtnDelWork" runat="server" OnClick="lbtnDelWork_Click" ToolTip="Delete Work" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-trash" style="color:red"> </span> </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Item Code" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvItmCod" runat="server" Height="16px"
@@ -566,7 +571,7 @@
 
                                         <asp:TemplateField ShowHeader="true">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" OnClick="lbtnDelete_Click" ToolTip="Zero Qty" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-remove"> </span> </asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" OnClick="lbtnDelete_Click" ToolTip="Budget Qty Zero" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-remove"> </span> </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -578,7 +583,7 @@
                                                     Width="100px" CssClass="style101"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>                                       
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>
@@ -587,7 +592,7 @@
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
-                                        </asp:TemplateField>                                       
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="DateTime">
                                             <ItemTemplate>
@@ -613,7 +618,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Notes">
+                                        <asp:TemplateField HeaderText="Notes">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvNotes" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "notes")) %>'
@@ -1773,10 +1778,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label class="control-label" style="font-size:large;">Details:</label>
+                                <label class="control-label" style="font-size: large;">Details:</label>
                                 <asp:TextBox ID="txtpactcode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
                                 <asp:TextBox ID="txtisircode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
-                                <asp:TextBox ID="txtNoteDetails" runat="server" TextMode="MultiLine" Rows="5"  CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtNoteDetails" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -1787,7 +1792,6 @@
                 </div>
             </div>
             <%--Notes Modal End--%>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 

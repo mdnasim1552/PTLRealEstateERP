@@ -28,8 +28,7 @@
 
         });
 
-        function pageLoaded()
-        {
+        function pageLoaded() {
 
 
 
@@ -38,8 +37,7 @@
                 var gvSummary = $('#<%=this.gvSummary.ClientID %>');
                 gvSummary.Scrollable();
             }
-            catch (e)
-            {
+            catch (e) {
                 alert(e.message);
             }
         }
@@ -210,9 +208,9 @@
                                 <Columns>
                                     <asp:TemplateField>
                                         <HeaderTemplate>
-                                           
+
                                             <asp:LinkButton ID="lnkgvHeader" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Edit Header" OnClick="lnkgvHeader_Click"><i class="fa fa-th-large" aria-hidden="true"></i></asp:LinkButton>
-  <%--                                          <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                            <%--                                          <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
                                             </asp:HyperLink>--%>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -299,7 +297,7 @@
                                     <asp:TemplateField HeaderText="Team Head">
                                         <HeaderTemplate>
                                             <asp:Label ID="txtsrcE" runat="server" Width="100px">Team Head</asp:Label>
-                                            <%--<asp:TextBox ID="txtsrcE" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Team Head" onkeyup="Search_Gridview(this,6)" Font-Size="12px"></asp:TextBox>--%>
+
                                             <a id="head" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -309,6 +307,18 @@
 
 
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Previous Status">
+                                        <HeaderTemplate>
+                                            <asp:Label ID="txtsrcps" runat="server" Width="60px">Previous Status</asp:Label>
+
+                                            <a id="psstatus" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllpsstatus" runat="server" Width="80px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "preleadst")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Status">
                                         <HeaderTemplate>
                                             <asp:Label ID="txtsrcF" runat="server" Width="60px">Status</asp:Label>
@@ -320,6 +330,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstatus")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Type">
                                         <HeaderTemplate>
                                             <asp:Label ID="txtsrcH" runat="server" Width="40px">Type</asp:Label>
@@ -330,26 +341,61 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadType")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Sold On  <br> Date/Win Date" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllnfollowupdateSold" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "solddate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "solddate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Last Follow <br> Up date" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lastlbllnfollowupdate" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "ldiscussdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "ldiscussdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Next Follow <br> Up date" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllnfollowupdate" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
+
                                     <asp:TemplateField HeaderText="Lead Source" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lLSrc" runat="server" Width="100px" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Mobile" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblmobile" runat="server" Width="80px" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "phone")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                         <%--This is Initial start Project (pactdesc) --%>
 
-                                    <asp:TemplateField HeaderText="Project" Visible="false">
+                                    <asp:TemplateField HeaderText="Interest Project" Visible="false">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblproject" runat="server" Width="120px" Font-Size="12px"
+                                            <asp:Label ID="lblIntproject" runat="server" Width="120px" Font-Size="12px" 
+                                                class='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sameprjclass")) %>'                                                
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
+                                    <%--This is Main Last Lead Project--%>
+                                    <asp:TemplateField HeaderText="Project" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblproject" runat="server" Width="120px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstprjdiscussion")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                               
 
                                     <asp:TemplateField HeaderText="Approve Date" Visible="false">
                                         <ItemTemplate>
@@ -376,7 +422,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                     
+
                                     <asp:TemplateField HeaderText="App. Floor" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblAppfl" runat="server" Width="60px" Font-Size="12px"
@@ -401,10 +447,17 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Interest Project	" Visible="false">
+                                    <asp:TemplateField HeaderText="Budget desc" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblInterest" runat="server" Width="60px" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "bgddesc")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Source Remarks" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblsourcremarkst" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sourcremarks")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

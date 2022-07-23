@@ -569,17 +569,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                     case "01997": // Grade
-                        if (comcod == "3354")
-                        {
-                            dv1 = dt1.DefaultView;
-                            dv1.RowFilter = ("gcod like '03%'");
-                        }
-                        else
-                        {
-                            dv1 = dt1.DefaultView;
-                            dv1.RowFilter = ("gcod like '86%'");
-                        }
-                      
+                        //if (comcod == "3354")
+                        //{
+                        //    dv1 = dt1.DefaultView;
+                        //    dv1.RowFilter = ("gcod like '03%'");
+                        //}
+                        //else
+                        //{
+                        //    dv1 = dt1.DefaultView;
+                        //    dv1.RowFilter = ("gcod like '86%'");
+                        //}
+                        dv1 = dt1.DefaultView;
+                        dv1.RowFilter = ("gcod like '86%'");
 
 
                         ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -718,7 +719,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //Passing Year
                 int year = (dt.Rows[i]["pyear"].ToString() == "") ? Convert.ToInt32(System.DateTime.Today.ToString("yyyy")) : Convert.ToInt32("0" + dt.Rows[i]["pyear"].ToString());
 
-                List<string> passyear = ASITUtility02.pasyear(year - 54, year + 20);
+                List<string> passyear = ASITUtility02.pasyear(year - 75, year + 20);
                 ddlpyear = ((DropDownList)this.gvDegree.Rows[i].FindControl("ddlPassingYear"));
                 foreach (string pass in passyear)
                     ddlpyear.Items.Add(pass);

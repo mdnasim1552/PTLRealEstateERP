@@ -131,9 +131,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.hlnktoEmployee.Text = (ds4.Tables[0].Rows.Count == 0) ? "" : "Total Employee:" + "<span style=color:red>" + (ds4.Tables[0].Rows.Count).ToString("#,##0;(#,##); ") + "</span>";
 
 
-
-
-
             DataTable dt2 = ds4.Tables[1];
             if (dt2.Rows.Count == 0)
                 return;
@@ -163,12 +160,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.txtTtlStaff.Text = nosec.ToString("#,##0;(#,##0.00);");
 
             ds4.Dispose();
-
-
-
-
-
-
         }
 
         //protected void ListViewEmpAll_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -288,9 +279,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                                                     "<h4>ID #: " + dr["idcardno"] + "</h4>" +
                                                     "<p>Department: " + dr["section"] + "</p>" +
                                                     "<p>Designation: " + dr["desig"] + "</p>" +
-                                                    "<p>offi. E-mail: " + dr["offcemail"] + "</p>" +
+                                                    "<p>Offi. E-mail: " + dr["offcemail"] + "</p>" +
                                                     "<p>Contact No: " + dr["mobile"] + "</p>" +
                                                     "<p>Offi. Cell: " + dr["offcmobile"] + "</p>" +
+                                                     "<p>PABX: " + dr["pabx"] + "</p>" +
                                                     "<p><i class='fa fa-calander'></i> DOJ: " + dr["joindate"] + "</p>"+
                                                     "</div></div></div></div></div>";
 

@@ -111,6 +111,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlBranch.DataSource = ds1.Tables[0];
             this.ddlBranch.DataBind();
             ds1.Dispose();
+            ddlBranch_SelectedIndexChanged(null,null);
 
         }
         public void LoadOrderDapp()
@@ -151,13 +152,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         }
 
-
-
-
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
             if (this.lbtnOk.Text == "New")
             {
+                
+                ViewState.Remove("tblPayPer");
+
 
                 this.ddlUserList.Enabled = true;
                 this.ddlCompany.Enabled = true;
@@ -253,8 +254,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //   ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
             //    return;
             //}
-
-
             string comcod = this.GetCompCode();
             string msg = "";
             this.Session_tbltbPreLink_Update();
@@ -277,8 +276,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             msg = "Data Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
-
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
@@ -288,14 +285,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
         }
 
-
-
         protected void ImgbtnFindUser1_Click(object sender, EventArgs e)
         {
             this.Getuser();
         }
-
-
         protected void ImgbtnFindComp_Click(object sender, EventArgs e)
         {
             this.GetCompany();
@@ -304,16 +297,35 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            DataTable dt = (DataTable)Session["tblPayPer"];
+            DataTable dt = (DataTable)ViewState["tblPayPer"];
             string actcode = ((Label)this.gvPayrollLinkInfo.Rows[e.RowIndex].FindControl("lblgvCompCod")).Text.Trim();
             string usrid = ((Label)this.gvPayrollLinkInfo.Rows[e.RowIndex].FindControl("lblgvCompusrid")).Text.Trim();
+
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "DELETEPAYLINK", actcode, usrid, "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (!result)
-                return;
+          
+            if (result == true)
+            {
+                int rowindex = (this.gvPayrollLinkInfo.PageSize) * (this.gvPayrollLinkInfo.PageIndex) + e.RowIndex;
+                dt.Rows[rowindex].Delete();
+                ViewState["tblPayPer"] = dt;
+                ///gvProLinkInfo_DataBind();
+            }    
+            //string Messagesd = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+            this.Data_Bind();
+        }
+        protected void lbtnDeleteAll_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string usrid = this.ddlUserList.SelectedValue.ToString();
 
-            string Messagesd = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
-
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "DELETEPAYLINK", "", usrid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (result == true)
+            {
+                string Messagesd = "Delete Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+            }
             this.ShowPayLink();
         }
 
@@ -333,9 +345,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string userName = ddlUserList.SelectedItem.Text;
             string usrid = ddlUserList.SelectedItem.Value;
             string comcod = GetCompCode();
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
 
-
-            string company = this.ddlCompany.SelectedValue.ToString();
+           
             string brnch = this.ddlBranch.SelectedValue.ToString();
             string dptlist = this.ddlDptList.SelectedValue.ToString();
             string actcode = this.ddlSectionList.SelectedValue.ToString();
@@ -346,11 +359,77 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             string section = "";
 
-            //Methode 1
-            if (actcode != "000000000000" && dptlist != "000000000000" && brnch != "000000000000" && company == "940000000000")
+            ////Methode 1 Emdad bhai
+            //if (actcode != "000000000000" && dptlist != "000000000000" && brnch != "000000000000")
+            //{
+
+            //    DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
+            //    if (dr2.Length == 0)
+            //    {
+            //        DataRow dr1 = tbl1.NewRow();
+            //        dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
+            //        dr1["actcode"] = this.ddlSectionList.SelectedValue.ToString();
+            //        dr1["actdesc"] = this.ddlSectionList.SelectedItem.Text.Trim();
+            //        dr1["remarks"] = "";
+            //        tbl1.Rows.Add(dr1);
+            //    }
+            //    ViewState["tblPayPer"] = tbl1;
+            //}
+            //else if (actcode == "000000000000" && dptlist != "000000000000" && brnch != "000000000000")
+            //{
+
+            //    section = this.ddlDptList.SelectedValue.ToString();
+            //    DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
+            //    if (dr2.Length == 0)
+            //    {
+            //        DataRow dr1 = tbl1.NewRow();
+            //        dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
+            //        dr1["actcode"] = this.ddlDptList.SelectedValue.ToString();
+            //        dr1["actdesc"] = this.ddlDptList.SelectedItem.Text.Trim();
+            //        dr1["remarks"] = "";
+            //        tbl1.Rows.Add(dr1);
+            //    }
+            //    ViewState["tblPayPer"] = tbl1;
+            //}
+            //else  if (actcode == "000000000000" && dptlist == "000000000000" && brnch != "000000000000")
+            //{
+
+            //    section = this.ddlBranch.SelectedValue.ToString();
+            //    DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
+            //    if (dr2.Length == 0)
+            //    {
+            //        DataRow dr1 = tbl1.NewRow();
+            //        dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
+            //        dr1["actcode"] = this.ddlBranch.SelectedValue.ToString();
+            //        dr1["actdesc"] = this.ddlBranch.SelectedItem.Text.Trim();
+            //        dr1["remarks"] = "";
+            //        tbl1.Rows.Add(dr1);
+            //    }
+            //    ViewState["tblPayPer"] = tbl1;
+            //}
+            //else if (actcode == "000000000000" && dptlist == "000000000000" && brnch == "000000000000")
+            //{
+
+            //    section = this.ddlCompany.SelectedValue.ToString();
+            //    DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
+            //    if (dr2.Length == 0)
+            //    {
+            //        DataRow dr1 = tbl1.NewRow();
+            //        dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
+            //        dr1["actcode"] = this.ddlCompany.SelectedValue.ToString();
+            //        dr1["actdesc"] = this.ddlCompany.SelectedItem.Text.Trim();
+            //        dr1["remarks"] = "";
+            //        tbl1.Rows.Add(dr1);
+            //    }
+            //    ViewState["tblPayPer"] = tbl1;
+            //}
+
+            // Method Thinking all section added
+            //Nahid
+            if (actcode != "000000000000" && dptlist == "000000000000" && brnch == "000000000000") // for single section add
             {
 
-                section = this.ddlSectionList.SelectedValue.ToString();
+                
                 DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
                 if (dr2.Length == 0)
                 {
@@ -363,153 +442,125 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 }
                 ViewState["tblPayPer"] = tbl1;
             }
-            else if (actcode == "000000000000" && dptlist != "000000000000" && brnch != "000000000000" && company == "940000000000")
+           else if (actcode != "000000000000" && dptlist == "000000000000" && brnch != "000000000000") // for single section add
             {
 
-                section = this.ddlDptList.SelectedValue.ToString();
+
                 DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
                 if (dr2.Length == 0)
                 {
                     DataRow dr1 = tbl1.NewRow();
                     dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
-                    dr1["actcode"] = this.ddlDptList.SelectedValue.ToString();
-                    dr1["actdesc"] = this.ddlDptList.SelectedItem.Text.Trim();
+                    dr1["actcode"] = this.ddlSectionList.SelectedValue.ToString();
+                    dr1["actdesc"] = this.ddlSectionList.SelectedItem.Text.Trim();
                     dr1["remarks"] = "";
                     tbl1.Rows.Add(dr1);
                 }
                 ViewState["tblPayPer"] = tbl1;
             }
-            else  if (actcode == "000000000000" && dptlist == "000000000000" && brnch != "000000000000" && company == "940000000000")
+            else if (actcode != "000000000000" && dptlist != "000000000000" && brnch == "000000000000") // for single section add
             {
 
-                section = this.ddlBranch.SelectedValue.ToString();
+
                 DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
                 if (dr2.Length == 0)
                 {
                     DataRow dr1 = tbl1.NewRow();
                     dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
-                    dr1["actcode"] = this.ddlBranch.SelectedValue.ToString();
-                    dr1["actdesc"] = this.ddlBranch.SelectedItem.Text.Trim();
+                    dr1["actcode"] = this.ddlSectionList.SelectedValue.ToString();
+                    dr1["actdesc"] = this.ddlSectionList.SelectedItem.Text.Trim();
                     dr1["remarks"] = "";
                     tbl1.Rows.Add(dr1);
                 }
                 ViewState["tblPayPer"] = tbl1;
             }
-            else if (actcode == "000000000000" && dptlist == "000000000000" && brnch == "000000000000" && company == "940000000000")
+            else if (actcode != "000000000000" && dptlist != "000000000000" && brnch != "000000000000") // for single section add
             {
 
-                section = this.ddlCompany.SelectedValue.ToString();
+
                 DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
                 if (dr2.Length == 0)
                 {
                     DataRow dr1 = tbl1.NewRow();
                     dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
-                    dr1["actcode"] = this.ddlCompany.SelectedValue.ToString();
-                    dr1["actdesc"] = this.ddlCompany.SelectedItem.Text.Trim();
+                    dr1["actcode"] = this.ddlSectionList.SelectedValue.ToString();
+                    dr1["actdesc"] = this.ddlSectionList.SelectedItem.Text.Trim();
                     dr1["remarks"] = "";
                     tbl1.Rows.Add(dr1);
                 }
                 ViewState["tblPayPer"] = tbl1;
             }
+            else if (actcode == "000000000000" && dptlist != "000000000000" && brnch != "000000000000") // for single branch all dpt
+            {
+
+                for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
+                {
+                    section = this.ddlSectionList.Items[i].Value;
+                    if (section != "000000000000")
+                    {
+                        string sectionDEsc = this.ddlSectionList.Items[i].Text;
+                        DataRow[] dr2 = tbl1.Select("actcode = '" + section + "'");
+                        if (dr2.Length == 0)
+                        {
+                            DataRow dr1 = tbl1.NewRow();
+                            dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
+                            dr1["actcode"] = section;
+                            dr1["actdesc"] = sectionDEsc;
+                            dr1["remarks"] = "";
+                            tbl1.Rows.Add(dr1);
+                        }
+                        ViewState["tblPayPer"] = tbl1;
+                    }
 
 
-            //  if (actcode != "000000000000" && dptlist != "000000000000" && brnch != "000000000000") // for single section add
-            //  {
+                }
 
-            //      section = this.ddlSectionList.SelectedValue.ToString();
-            //      DataRow[] dr2 = tbl1.Select("actcode = '" + actcode + "'");
-            //      if (dr2.Length == 0)
-            //      {
-            //          DataRow dr1 = tbl1.NewRow();
-            //          dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
-            //          dr1["actcode"] = this.ddlSectionList.SelectedValue.ToString();
-            //          dr1["actdesc"] = this.ddlSectionList.SelectedItem.Text.Trim();
-            //          dr1["remarks"] = "";
-            //          tbl1.Rows.Add(dr1);
-            //      }
-            //      ViewState["tblPayPer"] = tbl1;
-            //  }
-            //else  if (actcode == "000000000000" && dptlist != "000000000000" && brnch != "000000000000") // for single branch all dpt
-            //  {
+            }
 
-            //      for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
-            //      {
-            //          section = this.ddlSectionList.Items[i].Value;
-            //          if (section != "000000000000")
-            //          {
-            //              string sectionDEsc = this.ddlSectionList.Items[i].Text;
-            //              DataRow[] dr2 = tbl1.Select("actcode = '" + section + "'");
-            //              if (dr2.Length == 0)
-            //              {
-            //                  DataRow dr1 = tbl1.NewRow();
-            //                  dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
-            //                  dr1["actcode"] = section;
-            //                  dr1["actdesc"] = sectionDEsc;
-            //                  dr1["remarks"] = "";
-            //                  tbl1.Rows.Add(dr1);
-            //              }
-            //              ViewState["tblPayPer"] = tbl1;
-            //          }
-
-
-            //      }
-
-            //  }
-            //  else if (actcode == "000000000000" && dptlist == "000000000000" && brnch == "000000000000") // for all branch 
-            //  {
-
-            //      for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
-            //      {
-            //          section = this.ddlSectionList.Items[i].Value;
-            //          if (section != "000000000000")
-            //          {
-            //              string sectionDEsc = this.ddlSectionList.Items[i].Text;
-            //              DataRow[] dr2 = tbl1.Select("actcode = '" + section + "'");
-            //              if (dr2.Length == 0)
-            //              {
-            //                  DataRow dr1 = tbl1.NewRow();
-            //                  dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
-            //                  dr1["actcode"] = section;
-            //                  dr1["actdesc"] = sectionDEsc;
-            //                  dr1["remarks"] = "";
-            //                  tbl1.Rows.Add(dr1);
-            //              }
-            //              ViewState["tblPayPer"] = tbl1;
-            //          }
-
-            //      }
-            //  }
-            //  else
-            //  {
-
-
-            //      for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
-            //      {
-            //          section = this.ddlSectionList.Items[i].Value;
-            //          if (section != "000000000000")
-            //          {
-            //              string sectionDEsc = this.ddlSectionList.Items[i].Text;
-            //              DataRow[] dr2 = tbl1.Select("actcode = '" + section + "'");
-            //              if (dr2.Length == 0)
-            //              {
-            //                  DataRow dr1 = tbl1.NewRow();
-            //                  dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
-            //                  dr1["actcode"] = section;
-            //                  dr1["actdesc"] = sectionDEsc;
-            //                  dr1["remarks"] = "";
-            //                  tbl1.Rows.Add(dr1);
-            //              }
-            //              ViewState["tblPayPer"] = tbl1;
-            //          }
-
-            //      }
-
-
-
-            //  }
-
-
-
+            else if (actcode == "000000000000" && dptlist == "000000000000" && brnch == "000000000000") // for all branch 
+            {
+                for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
+                {
+                    section = this.ddlSectionList.Items[i].Value;
+                    if (section != "000000000000")
+                    {
+                        string sectionDEsc = this.ddlSectionList.Items[i].Text;
+                        DataRow[] dr2 = tbl1.Select("actcode = '" + section + "'");
+                        if (dr2.Length == 0)
+                        {
+                            DataRow dr1 = tbl1.NewRow();
+                            dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
+                            dr1["actcode"] = section;
+                            dr1["actdesc"] = sectionDEsc;
+                            dr1["remarks"] = "";
+                            tbl1.Rows.Add(dr1);
+                        }
+                        ViewState["tblPayPer"] = tbl1;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < this.ddlSectionList.Items.Count; i++)
+                {
+                    section = this.ddlSectionList.Items[i].Value;
+                    if (section != "000000000000")
+                    {
+                        string sectionDEsc = this.ddlSectionList.Items[i].Text;
+                        DataRow[] dr2 = tbl1.Select("actcode = '" + section + "'");
+                        if (dr2.Length == 0)
+                        {
+                            DataRow dr1 = tbl1.NewRow();
+                            dr1["userid"] = this.ddlUserList.SelectedValue.ToString();
+                            dr1["actcode"] = section;
+                            dr1["actdesc"] = sectionDEsc;
+                            dr1["remarks"] = "";
+                            tbl1.Rows.Add(dr1);
+                        }
+                        ViewState["tblPayPer"] = tbl1;
+                    }
+                }
+            }
             this.Data_Bind();
         }
 

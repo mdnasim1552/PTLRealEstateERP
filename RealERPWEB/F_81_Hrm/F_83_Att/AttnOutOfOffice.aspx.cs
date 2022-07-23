@@ -25,11 +25,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string userrole = hst["userrole"].ToString();
-                if(userrole != "3")
+                string comcod = GetCompCode();
+                if (userrole != "3")
                 {
                     this.GetCompany();
                     this.topPanle.Visible = true;
-                    string comcod = GetCompCode();
+                   
                     if (comcod == "3365")
                     {
                         this.GetEmpName();
@@ -39,7 +40,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }
                 else
                 {
-                    string comcod = GetCompCode();
+                    
                     if (comcod == "3365")
                     {
                         this.GetEmpName();
@@ -55,7 +56,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }               
                 this.txtfromdate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 this.GetEmpAttandance();
-            }
+            }    
         }
 
         private void GetEmpAttandance()
@@ -65,7 +66,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string userrole = hst["userrole"].ToString();
             string deptcod = this.ddlDpt.SelectedValue.ToString();
             string empid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "GETATTANDANCEINFOINDIVIDUAL", empid, "", "", "", "", "", "", "", "");
+            string cudate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "GETATTANDANCEINFOINDIVIDUAL", empid, cudate, "", "", "", "", "", "", "");
             if (ds5 == null)
             {
                 return;
@@ -83,7 +85,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 //}
                 //else
                 //{
-                    if (this.btnSaveAttn.Text == "" || this.btnSaveAttn.Text == "Punch Out")
+
+                //}
+                if (comcod == "3354")
+                {
+                    string rcount = ds5.Tables[1].Rows[0]["trow"].ToString();
+
+                    if ((rcount == "0"))
                     {
                         this.btnSaveAttn.Text = "Punch In";
                     }
@@ -91,9 +99,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     {
                         this.btnSaveAttn.Text = "Punch Out";
                     }
-                //}
-                
-                
+                }
+
             }
         }
 
@@ -120,7 +127,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetCompCode();
             if (this.ddlCompany.Items.Count == 0)
                 return;
-
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
@@ -194,7 +200,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
 
                 default:
-
                     this.InsertUpdateOutofoffice();
                     break;
             }         
@@ -210,8 +215,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string dayid = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
             //result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEOFFTIME", dayid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-
             //string absent = dt.Rows[i]["absnt"].ToString().Trim();
             //string leave = dt.Rows[i]["leave"].ToString().Trim();
             //if ((absent != "A") && (leave != "L"))
@@ -221,9 +224,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                  if(empid== "000000000000")
                  {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Please Enter Idcard No." + "');", true);
-                return;
-                 }
-                
+                    return;
+                 }              
                 string hrempid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
                 string machid = "01";
                 string idcardno =this.ddlEmpNameAllInfo.SelectedItem.Text.ToString().Substring(0,5);
@@ -243,11 +245,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Save Successfully" + "');", true);
                 }
-
-
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
+              //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
         }
-
         private void InsertUpdateOutofoffice()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -259,10 +258,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string userrole = hst["userrole"].ToString();
             string empid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
             string reason = this.ddlReson.SelectedValue.ToString();
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUTOFOFFICEATTENDANCE", usrid, Sessionid, Date, empid, reason, "", "", "", "", "", "", "", "", "", "");
+            string machinid = "online";
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUTOFOFFICEATTENDANCE", usrid, Sessionid, Date, empid, reason, machinid, "", "", "", "", "", "", "", "", "");
             if (result == true)
             {
-
                 string eventtype = "999";
                 string eventdesc = this.txtNote.Text.Trim();
                 string eventdesc2 = empid;
@@ -271,22 +270,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             this.GetEmpAttandance();
         }
-
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetDptName();
         }
-
         protected void ddlDpt_SelectedIndexChanged(object sender, EventArgs e)
         {
             SectionName();
         }
-
         protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
-
         protected void ddlEmpNameAllInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetEmpAttandance();

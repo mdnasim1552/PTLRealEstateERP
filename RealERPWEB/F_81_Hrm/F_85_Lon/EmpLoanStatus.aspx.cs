@@ -194,6 +194,16 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 case "3365":
                 case "3101":
                     this.gvEmpLoanStatus.Columns[7].Visible = true;
+                    this.gvEmpLoanStatus.Columns[8].Visible = true;
+                    this.gvEmpLoanStatus.Columns[9].Visible = true;
+                    this.gvEmpLoanStatus.Columns[10].Visible = true;
+                    this.gvEmpLoanStatus.Columns[11].Visible = true;
+                    this.gvEmpLoanStatus.Columns[14].Visible = true;
+                    this.gvEmpLoanStatus.Columns[15].Visible = true;
+                    this.gvEmpLoanStatus.Columns[17].Visible = true;
+                    this.gvEmpLoanStatus.Columns[18].Visible = true;
+
+
                     break;
             }             
         }
@@ -208,8 +218,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                    : dt.Compute("sum(paidamt)", ""))).ToString("#,##0;(#,##0); ");
             ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFbalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(balamt)", "")) ? 0.00
                     : dt.Compute("sum(balamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvMonlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(monlon)", "")) ? 0.00
+
+            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblTgvMonlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(monlon)", "")) ? 0.00
                 : dt.Compute("sum(monlon)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvMonlon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(monloanemp)", "")) ? 0.00
+                : dt.Compute("sum(monloanemp)", ""))).ToString("#,##0;(#,##0); ");
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {

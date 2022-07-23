@@ -79,7 +79,7 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                         <button onclick="printPage()">prin`enter code here`t</button>
+                         <button onclick="printPage()" style="display:none;"></button>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="Label1" runat="server">Company</asp:Label>
@@ -251,7 +251,6 @@
                 </div>
             </div>
 
-
             <%--  <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
 
@@ -306,9 +305,6 @@
                                     </div>
                                 </div>
                         </fieldset>--%>
-
-
-
             <div class="row">
                 <asp:Panel ID="PnlProRemarks" runat="server" Visible="False">
                 </asp:Panel>

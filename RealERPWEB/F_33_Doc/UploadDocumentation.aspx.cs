@@ -37,6 +37,7 @@ namespace RealERPWEB.F_33_Doc
                 this.getDept();
                 this.GetYearMonth();
                 this.getAllData();
+                this.datatype.SelectedIndex = 0;
 
             }
         }
@@ -44,6 +45,7 @@ namespace RealERPWEB.F_33_Doc
 
         private void getAllData()
         {
+            Session.Remove("alldata");
             string comcod = this.GetCompCode();
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETALLDATA", "", "", "", "", "", "", "", "", "");
             if (ds == null || ds.Tables[0].Rows.Count == 0)
@@ -52,11 +54,57 @@ namespace RealERPWEB.F_33_Doc
                 this.gvdoc.DataBind();
                 return;
             }
-
+            Session["alldata"] = ds.Tables[0];
             this.gvdoc.DataSource = ds.Tables[0];
-
             this.gvdoc.DataBind();
         }
+
+        protected void datatype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+            int index = this.datatype.SelectedIndex;
+
+            DataView dv = new DataView();
+            DataTable dt = (DataTable)Session["alldata"];
+            if (dt.Rows.Count == 0)
+            {
+                return;
+            }
+            switch (index)
+            {
+                case 0:
+                    dv = dt.DefaultView;
+                    this.gvdoc.DataSource = dv;
+                    this.gvdoc.DataBind();
+                    break;
+                case 1:
+                    dv = dt.DefaultView;
+                    dv.RowFilter = "gcod='99901'";
+                    this.gvdoc.DataSource = dv;
+                    this.gvdoc.DataBind();
+                    break;
+                case 2:
+                    dv = dt.DefaultView;
+                    dv.RowFilter = "gcod='99902'";
+                    this.gvdoc.DataSource = dv;
+                    this.gvdoc.DataBind();
+                    break;
+                case 3:
+                    dv = dt.DefaultView;
+                    dv.RowFilter = "gcod='99903'";
+                    this.gvdoc.DataSource = dv;
+                    this.gvdoc.DataBind();
+                    break;
+                case 4:
+                    dv = dt.DefaultView;
+                    dv.RowFilter = "gcod='99904'";
+                    this.gvdoc.DataSource = dv;
+                    this.gvdoc.DataBind();
+                    break;
+            }
+
+        }
+
 
         private void getType()
         {
@@ -64,7 +112,6 @@ namespace RealERPWEB.F_33_Doc
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETTYPE", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-
             this.ddlType.DataTextField = "dtype";
             this.ddlType.DataValueField = "gcod";
             this.ddlType.DataSource = ds1.Tables[0];
@@ -90,6 +137,8 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
                     this.pnlTxt.Visible = true;
+                    this.lblimg.Visible = true;
+                    this.imgFileUpload.Visible = true;
                     break;
 
                 case "99902":
@@ -98,9 +147,9 @@ namespace RealERPWEB.F_33_Doc
                     this.txtsName.Enabled = true;
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
-
-
                     this.pnlTxt.Visible = true;
+                    this.lblimg.Visible = true;
+                    this.imgFileUpload.Visible = true;
                     break;
 
                 case "99903":
@@ -109,6 +158,21 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = true;
                     this.pnlTxt.Visible = false;
+                    this.lblimg.Visible = true;
+                    this.imgFileUpload.Visible = true;
+                    break;
+
+
+
+                case "99904":
+                    this.lbltitle.Text = "Title";
+                    this.txtsName.Text = "";
+                    this.txtsName.Enabled = true;
+                    this.pnlTxt.Visible = true;
+                    this.pnlDept.Visible = false;
+                    this.pnlMonth.Visible = false;
+                    this.lblimg.Visible = false;
+                    this.imgFileUpload.Visible = false;
                     break;
             }
 
@@ -157,14 +221,28 @@ namespace RealERPWEB.F_33_Doc
 
 
             //validates the posted file before saving  
-            if (imgFileUpload.PostedFile != null && imgFileUpload.PostedFile.FileName != "")
-
+            if (imgFileUpload.HasFile)
             {
-                string imgName = Guid.NewGuid() + imgFileUpload.PostedFile.FileName;
-                //sets the image path           
-                imgPath = "~/Upload/HRM/Doc/" + imgName;
-                //then save it to the Folder  
-                imgFileUpload.SaveAs(Server.MapPath(imgPath));
+               
+                string filePath = imgFileUpload.PostedFile.FileName;
+                string filename1 = Path.GetFileName(filePath); // getting the file name of uploaded file  
+                string ext = Path.GetExtension(filename1);
+
+                if (ext == ".pdf")
+                {
+
+                    string imgName = Guid.NewGuid() + ext;
+                    //sets the image path           
+                    imgPath = "~/Upload/HRM/Doc/" + imgName;
+                    //then save it to the Folder  
+                    imgFileUpload.SaveAs(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    string msgfail = "Please select pdf file only";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgfail + "');", true);
+                    return;
+                }
             }
 
             if (title.Length == 0)
@@ -298,6 +376,7 @@ namespace RealERPWEB.F_33_Doc
 
                 msg = "Deleted Successfully";
                 this.getAllData();
+                this.datatype_SelectedIndexChanged(null, null);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 

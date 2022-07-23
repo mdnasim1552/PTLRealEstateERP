@@ -101,6 +101,8 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string cashamta { get; set; }
             public DateTime joindate { get; set; }
             public double duration { get; set; }
+            public double spbonamt { get; set; }
+            public double tbamt { get; set; }
             public string refdesc { get; set; }
             public string sectionname { get; set; }
             public string slength { get; set; }
@@ -157,7 +159,11 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public double balleave { get; set; }
             public string lstrtdat { get; set; }
             public string descrip { get; set; }
-       
+            public string unit { get; set; }
+            public string deptid { get; set; }
+            public string deptdesc { get; set; }
+
+
             public EmpLeaveStatus() { }
         }
 
@@ -511,5 +517,39 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
 
             public birthdayDate() { }
         }
+
+
+        [Serializable]
+        public class applytimeoff
+        {
+            public string comcod { get; set; }
+            public string empid { get; set; }
+            public string dayid { get; set; }
+            public DateTime reqdate { get; set; }
+            public string outtime { get; set; }
+            public string intime { get; set; }
+            public string usetime { get; set; }
+            public string remarks { get; set; }
+            public string reqtype { get; set; }
+            public string reqstatus { get; set; }
+            public string useTimeMin { get; set; }
+            public string remaintime { get; set; }
+            public string dptuser { get; set; }
+            public string supname { get; set; }
+            public applytimeoff() { }
+        }
+
+
+        [Serializable]
+        public class EmpBasicInf
+        {
+            public string desig { get; set; }
+            public string dept { get; set; }
+            public string cdate { get; set; }
+            public string doj { get; set; }
+
+            public EmpBasicInf() { }
+        }
+
     }
 }

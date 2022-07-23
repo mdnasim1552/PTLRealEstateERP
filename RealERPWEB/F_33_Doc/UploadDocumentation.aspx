@@ -4,6 +4,8 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+
     <style>
         .mt20 {
             margin-top: 20px;
@@ -31,9 +33,8 @@
         }
     </style>
 
+
     <script type="text/javascript">
-
-
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -42,9 +43,7 @@
         });
         function pageLoaded() {
             try {
-
                 $('.chzn-select').chosen({ search_contains: true });
-
             }
             catch (e) {
                 alert(e);
@@ -80,7 +79,7 @@
                 <div class="card-body">
                     <div class="row">
        
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                                           <form>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -122,16 +121,16 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <asp:Label ID="Label19" runat="server" Text="Details:"></asp:Label>
-
+                                        <div id="summernote"></div>
                                         <asp:TextBox ID="txtDetails1" runat="server" Rows="5" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <asp:Label ID="Label11" runat="server" Text="Documents:"></asp:Label>
-                                        <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" />
-                                        <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />
+                                        <asp:Label ID="lblimg" runat="server" Text="Documents:"></asp:Label>
+                                        <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" accept=".pdf"/>
+  <%--                                      <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />--%>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -145,8 +144,26 @@
                             </form>
                         </div>
 
-                        <div class="col-lg-8">
-                            <div class="table table-sm table-responsive">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                                              <div>
+                                        <asp:RadioButtonList ID="datatype" runat="server" AutoPostBack="True"
+                                            CssClass="custom-control custom-control-inline custom-checkbox rbt p-0"
+                                            Font-Bold="True" Font-Size="12px" ForeColor="Black"
+                                            OnSelectedIndexChanged="datatype_SelectedIndexChanged"
+                                            RepeatDirection="Horizontal">
+                                          <asp:ListItem>All</asp:ListItem>
+                                            <asp:ListItem>Code of conduct</asp:ListItem>
+                                            <asp:ListItem>Organogram</asp:ListItem>
+                                             <asp:ListItem>Winner List</asp:ListItem>
+                                             <asp:ListItem>HR Policy</asp:ListItem>
+
+                                        </asp:RadioButtonList>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                             <div class="table table-sm table-responsive">
                                 <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvdoc" runat="server" AutoGenerateColumns="false">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Title">
@@ -179,6 +196,9 @@
                                     </Columns>
                                 </asp:GridView>
                             </div>
+                                </div>
+                            </div>
+                   
                         </div>
                     </div>
                 </div>
@@ -190,6 +210,14 @@
             <asp:PostBackTrigger ControlID="lnk_save" />
         </Triggers>
     </asp:UpdatePanel>
+
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#txtDetails1'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
 
 </asp:Content>
 

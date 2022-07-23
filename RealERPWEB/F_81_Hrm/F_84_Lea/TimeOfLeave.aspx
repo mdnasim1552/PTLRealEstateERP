@@ -150,7 +150,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="leaveId" Visible="False">
+                                                            <asp:TemplateField HeaderText="leaveIdd" Visible="False">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbllevid" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'

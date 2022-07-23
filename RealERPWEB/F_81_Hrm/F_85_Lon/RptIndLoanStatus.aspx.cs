@@ -102,7 +102,26 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = this.ddlEmpList.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string loantype = this.ddlLoantype.SelectedValue.ToString() == "" ? "%%" : this.ddlLoantype.SelectedValue.ToString();
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "RPTEMPLOANIND", date, empid, loantype, "", "", "", "", "", "");
+
+            string calltype = "";
+            string procedure = "";
+
+            switch (comcod)
+            {
+                case "3365":
+
+                    calltype = "RPTLOANINDBTI";
+                    procedure = "dbo_hrm.SP_REPORT_PAYROLL";
+                    break;
+                default:
+                    calltype = "RPTEMPLOANIND";
+                    procedure = "dbo_hrm.SP_REPORT_PAYROLL";
+                    break;
+            }
+            
+
+            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "RPTEMPLOANIND", date, empid, loantype, "", "", "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, procedure, calltype , date, empid, loantype, "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpLoanStatus.DataSource = null;
@@ -115,10 +134,33 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         }
         private void Data_Bind()
         {
+            string comcod = this.GetComeCode();
             DataTable dt = (DataTable)Session["tbloan"];
             this.gvEmpLoanStatus.DataSource = dt;
             this.gvEmpLoanStatus.DataBind();
             this.FooterCalculation();
+
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    this.gvEmpLoanStatus.Columns[4].Visible = true;
+                    this.gvEmpLoanStatus.Columns[7].Visible = true;
+                    this.gvEmpLoanStatus.Columns[9].Visible = true;
+                    
+                    break;
+                default:
+                    this.gvEmpLoanStatus.Columns[3].HeaderText = "Loan Amt";
+                    this.gvEmpLoanStatus.Columns[6].HeaderText = "Paid Amt";
+                    this.gvEmpLoanStatus.Columns[8].HeaderText = "Bal Amt";
+                    break;
+
+
+
+            }
+
+
+
         }
         private void FooterCalculation()
         {
@@ -133,6 +175,17 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                    : dt.Compute("sum(paidamt)", ""))).ToString("#,##0;(#,##0); ");
             ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFbalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(balamt)", "")) ? 0.00
                     : dt.Compute("sum(balamt)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFPaidamtCom")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(paidamtcom)", "")) ? 0.00
+           : dt.Compute("sum(paidamtcom)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFbalamtCom")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(balamtcom)", "")) ? 0.00
+                   : dt.Compute("sum(balamtcom)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFLoanamtcom")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamtcom)", "")) ? 0.00
+                    : dt.Compute("sum(lnamtcom)", ""))).ToString("#,##0;(#,##0); ");
+
+
+
+
 
         }
         protected void ibtnEmpList_Click(object sender, EventArgs e)

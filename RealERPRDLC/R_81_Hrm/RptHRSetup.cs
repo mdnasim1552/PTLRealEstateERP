@@ -40,8 +40,8 @@ namespace RealERPRDLC
                 #endregion
                 case "R_81_Hrm.R_83_Att.RptNewEmpStatus": Rpt1a = SetRptEmpStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptNewEmpStatusEdi": Rpt1a = SetRptEmpStatusEdi(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-               // case "R_81_Hrm.R_83_Att.RptMonAttendance": Rpt1a = SetRptMonAttendance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                    
+                // case "R_81_Hrm.R_83_Att.RptMonAttendance": Rpt1a = SetRptMonAttendance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_85_Lon.rptLoanApp": Rpt1a = SetRptLoanApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #region RD_89_Pay
                 case "R_81_Hrm.R_89_Pay.RptSalarySheet": Rpt1a = SetRptSalarySheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBankFordLetter": Rpt1a = SetRptBankFord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -82,8 +82,13 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_90_PF.RptMonthWisePFAlliance": Rpt1a = SetRptPFAlliance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_90_PF.RptProvidedFund": Rpt1a = SetRptProvidedFund(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_93_AnnInc.RptIncrementStatus": Rpt1a = SetRptIncrementStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                  
+
                     #endregion
+
+                    /// test 
+                case "R_81_Hrm.Rnd": Rpt1a = SetupRND(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    /// 
+
             }
             Rpt1a.Refresh();
             return Rpt1a;
@@ -199,6 +204,12 @@ namespace RealERPRDLC
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpAttnIdWise>)rptDataSet));
             return rpt1a;
         }
+        private static LocalReport SetRptLoanApp(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpBasicInf>)rptDataSet));
+            return rpt1a;
+        }
+        
         private static LocalReport SetRptEmpStatus(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpAttnIdWise>)rptDataSet));
@@ -337,5 +348,15 @@ namespace RealERPRDLC
             return rpt1a;
         }
 
+        private static LocalReport SetupRND(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.IndvPf.Empinfo>)rptDataSet));
+
+            return rpt1a;
+        }
+
+
+        
     }
 }

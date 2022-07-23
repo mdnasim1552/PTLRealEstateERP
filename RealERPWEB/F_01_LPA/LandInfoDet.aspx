@@ -2542,6 +2542,15 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
+                                                 <asp:TemplateField HeaderText="Phone/Mobile">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvcphone" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cphone"))%>'></asp:Label>
+
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
 
 
 
@@ -3309,7 +3318,7 @@
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=LND" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="hyplnkProspectTransfer" Target="_blank" NavigateUrl="~/F_21_MKT/LandProspectTransfer" runat="server">Prospect Transfer</asp:HyperLink>
+                                                <asp:HyperLink ID="hyplnkProspectTransfer" Target="_blank" NavigateUrl="~/F_21_MKT/LandProspectTransfer" runat="server">Land Transfer</asp:HyperLink>
                                             </li>
 
                                             <li>

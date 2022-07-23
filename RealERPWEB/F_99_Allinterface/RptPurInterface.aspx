@@ -730,10 +730,10 @@
                         break;
 
                     case 3368:  //Finlay
-                    case 3101:  //PTL
+                  
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                      //  $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide()
@@ -741,6 +741,20 @@
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
+                        break;
+
+
+                    case 3367:  //Epic  
+                                             
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
+                        //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 

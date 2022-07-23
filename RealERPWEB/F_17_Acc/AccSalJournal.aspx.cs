@@ -45,12 +45,12 @@ namespace RealERPWEB.F_17_Acc
 
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Details" ? "SALES JOURNAL Details" : "SALES JOURNA";
+                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Details" ? "SALES JOURNAL Details" : (type=="Complaint" ?"Complaint Journal Details": "SALES JOURNA");
                 this.Master.Page.Title = "SALES JOURNAL INFORMATION";
                 this.CreateTable();
 
 
-                this.txtdate.Text = ((this.Request.QueryString["Date1"].ToString()).Length == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.Request.QueryString["Date1"].ToString();
+                this.txtdate.Text = ((this.Request.QueryString["Date1"].ToString()).Length == 0 || type== "Complaint") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.Request.QueryString["Date1"].ToString();
 
 
 
@@ -579,19 +579,29 @@ namespace RealERPWEB.F_17_Acc
         protected void lbtnSelec_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
-            string Pactcode = this.ddlProject.SelectedValue.ToString();
-            string UnitCode = this.ddlUnitName.SelectedValue.ToString();
-            string Type = this.Request.QueryString["Type"].ToString().Trim();
+           
+            DataSet ds1 = new DataSet();
 
-            string CallType = (Type == "Consolidate") ? "GETACCSALESJOURNAL" : this.ComSalesJournal();
-            string schcode = "";
-            if (this.Request.QueryString["Type"].ToString() == "Details")
+
+            if(this.Request.QueryString["Type"].ToString() == "Complaint")
             {
-                schcode = this.Request.QueryString.AllKeys.Contains("schcode") ? this.Request.QueryString["schcode"].ToString() : "";
+                string dgno = this.Request.QueryString["DgNo"].ToString();
+                ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETRECEIVABLEINFO", dgno, "", "", "", "", "", "", "", "");
             }
+            else
+            {
+                string Pactcode = this.ddlProject.SelectedValue.ToString();
+                string UnitCode = this.ddlUnitName.SelectedValue.ToString();
+                string Type = this.Request.QueryString["Type"].ToString().Trim();
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, Pactcode, UnitCode, schcode, "", "", "", "", "", "");
-
+                string CallType = (Type == "Consolidate") ? "GETACCSALESJOURNAL" : this.ComSalesJournal();
+                string schcode = "";
+                if (this.Request.QueryString["Type"].ToString() == "Details")
+                {
+                    schcode = this.Request.QueryString.AllKeys.Contains("schcode") ? this.Request.QueryString["schcode"].ToString() : "";
+                }
+                ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, Pactcode, UnitCode, schcode, "", "", "", "", "", "");
+            }
             DataTable dt1 = ds1.Tables[0];
             DataTable tblt01 = (DataTable)Session["tblt01"];
 

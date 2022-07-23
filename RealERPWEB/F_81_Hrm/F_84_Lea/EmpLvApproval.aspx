@@ -108,8 +108,6 @@
                 <div class="row" id="warning" runat="server" visible="false">
                     <div class="col-12 col-lg-12 col-xl-12">
                         <div class="section-block">
-
-
                             <div class="alert alert-danger has-icon" role="alert">
                                 <div class="alert-icon">
                                     <span class="fa fa-bullhorn"></span>
@@ -118,9 +116,18 @@
                                 <br />
                                 Please Contact you HR Department 
                             </div>
-
-
-
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divApproval" runat="server" visible="false">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="section-block">
+                            <div class="alert alert-danger has-icon" role="alert">
+                                <div class="alert-icon">
+                                    <span class="fa fa-bullhorn"></span>
+                                </div>
+                                The leave already has been approved!.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,7 +155,7 @@
                                     </asp:DropDownList>
                                 </div>
 
-                                <asp:Panel ID="Panel2" runat="server">
+                                <asp:Panel ID="Panel2" runat="server" Visible="false">
                                     <div class="form-group">
                                         <asp:ListBox ID="lstOrderNo" runat="server" AutoPostBack="True" CssClass="form-control"
                                             BackColor="#DFF0D8" Font-Bold="True" Font-Size="12px" Height="50px"
@@ -317,6 +324,8 @@
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
+
+
                                                         <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
 
                                                     </FooterTemplate>
@@ -389,9 +398,41 @@
                                             <AlternatingRowStyle />
                                         </asp:GridView>
                                     </div>
+                                         <div class="col-3">
+                                                  <asp:panel runat="server" ID="pnlFinly" Visible="false">
+                      
+                                        <p class="m-0 badge text-white bg-primary">Current Leave Status</p>
+                                        <table class="table-striped table-hover table-bordered text-center">
+                                            <tr class="bg-primary text-white">
+                                                <td>Leave</td>
+                                                <td>Allowed</td>
+                                                <td>Enjoy</td>
+                                                <td>Balance</td>
+                                            </tr>
+                                            <tr>
+                                                <td>EARNED LEAVE</td>
+                                                <td> <asp:Label ID="elvallow" runat="server">0</asp:Label></td>
+                                                <td><asp:Label ID="elvenjoy" runat="server"></asp:Label> </td>
+                                                <td> <asp:Label ID="elvbalanc" runat="server">0</asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>CASUAL LEAVE</td>
+                                                <td> <asp:Label ID="clvallow" runat="server">0</asp:Label></td>
+                                                <td><asp:Label ID="clvenjoy" runat="server"></asp:Label> </td>
+                                                <td> <asp:Label ID="clvbalanc" runat="server">0</asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>SICK LEAVE</td>
+                                               <td> <asp:Label ID="slvallow" runat="server">0</asp:Label></td>
+                                                <td><asp:Label ID="slvenjoy" runat="server"></asp:Label> </td>
+                                                <td> <asp:Label ID="slvbalanc" runat="server">0</asp:Label></td>
+                                            </tr>
+                                        </table>
 
-
-                                    <div class="col-3">
+                              
+                                    </asp:panel>
+                                    <asp:panel runat="server" ID="pnlCommon">
+                                      
                                         <p class="m-0 badge text-white bg-primary">Current Leave Status</p>
                                         <table class="table-striped table-hover table-bordered text-center">
                                             <tr>
@@ -422,12 +463,17 @@
                                             </tr>
                                         </table>
 
-                                    </div>
+                                
+                                    </asp:panel>
+                                         </div>
+                               
+                                    
+                           
                                 </div>
                                 <div class="row">
                                     <div class="card-body">
-                                             
-                                            <asp:Label ID="lblDutesInfo" CssClass="d-block text-info" Font-Bold="true" runat="server"></asp:Label>
+
+                                        <asp:Label ID="lblDutesInfo" CssClass="d-block text-info" Font-Bold="true" runat="server"></asp:Label>
 
                                     </div>
                                 </div>

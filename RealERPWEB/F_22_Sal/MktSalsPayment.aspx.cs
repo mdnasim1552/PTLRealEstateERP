@@ -34,7 +34,10 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES WITH PAYMENT " : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " : (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : "")))) + " INFORMATIOIN ";
+                
+                
+                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES WITH PAYMENT " : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " : 
+                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : (TypeDesc=="SalesLO"?"": "SALES(LAND OWNER) WITH PAYMENT"))))) + " INFORMATIOIN ";
 
                 Session.Remove("Unit");
                 this.chkVisible.Checked = false;
@@ -221,7 +224,8 @@ namespace RealERPWEB.F_22_Sal
                 //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string ddldesc = hst["ddldesc"].ToString();
-                this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
+                this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : 
+                    this.ddlProjectName.SelectedItem.Text.Substring(13));
 
                 // this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
 
@@ -269,7 +273,8 @@ namespace RealERPWEB.F_22_Sal
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string srchunit = "%" + this.txtsrchunit.Text.Trim() + "%";
             string musircode = "51";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSIRINFINFORMATION", PactCode, srchunit, musircode, "", "", "", "", "", "");
+            string isLO = "0";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSIRINFINFORMATION", PactCode, srchunit, musircode, isLO, "", "", "", "", "");
             //DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFORMATION", PactCode, srchunit, musircode, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -1100,13 +1105,23 @@ namespace RealERPWEB.F_22_Sal
 
 
             /////////
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+
+            DataTable dtuser = (DataTable)Session["UserLog"];
+            string PostedByid = (dtuser.Rows.Count == 0) ? userid : dtuser.Rows[0]["postedbyid"].ToString();
+            string Posttrmid = (dtuser.Rows.Count == 0) ? Terminal : dtuser.Rows[0]["postrmid"].ToString();
+            string PostSession = (dtuser.Rows.Count == 0) ? Sessionid : dtuser.Rows[0]["postseson"].ToString();
+            string Posteddat = (dtuser.Rows.Count == 0) ? System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt") : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+
 
             double a = Convert.ToDouble(Session["amt"]);
             double b = Convert.ToDouble(Session["Amt11"]);
             if (a == b)
             {
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
                 string PactCode = this.ddlProjectName.SelectedValue.ToString();
                 string Usircode = this.lblCode.Text.Trim();
                 for (int i = 0; i < this.gvPayment.Rows.Count; i++)
@@ -1126,7 +1141,7 @@ namespace RealERPWEB.F_22_Sal
 
                     //if (Amount != 0)
                     //{
-                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), rmrks, Gdesc, percent.ToString(), jobcode, jobdesc, "", "", "", "", "");
+                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), rmrks, Gdesc, percent.ToString(), jobcode, jobdesc,"", PostedByid, Posteddat, Posttrmid, PostSession);
                     //}
 
                 }
@@ -1136,16 +1151,6 @@ namespace RealERPWEB.F_22_Sal
 
 
                 //Log Entry
-                DataTable dtuser = (DataTable)Session["UserLog"];
-
-                string userid = hst["usrid"].ToString();
-                string Terminal = hst["compname"].ToString();
-                string Sessionid = hst["session"].ToString();
-
-                string PostedByid = (dtuser.Rows.Count == 0) ? userid : dtuser.Rows[0]["postedbyid"].ToString();
-                string Posttrmid = (dtuser.Rows.Count == 0) ? Terminal : dtuser.Rows[0]["postrmid"].ToString();
-                string PostSession = (dtuser.Rows.Count == 0) ? Sessionid : dtuser.Rows[0]["postseson"].ToString();
-                string Posteddat = (dtuser.Rows.Count == 0) ? System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt") : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
                 string tblEditByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["editbyid"].ToString();
                 string tblEditSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["editseson"].ToString();
                 string tblEdittrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["edittrmid"].ToString();
@@ -1155,8 +1160,6 @@ namespace RealERPWEB.F_22_Sal
                 string EditSession = (dtuser.Rows.Count == 0) ? "" : (tblEditSession == "") ? Sessionid : (tblEditSession != "") ? Sessionid : tblEditSession;
                 string EditTrmid = (dtuser.Rows.Count == 0) ? "" : (tblEdittrmid == "") ? Terminal : (tblEdittrmid == "") ? Terminal : tblEdittrmid;
                 string Editdat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : (tblEditDat == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : (tblEditDat != "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : tblEditDat;
-
-
                 double tAmt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(schamt)", "")) ?
                                        0 : dt.Compute("sum(schamt)", "")));
 
@@ -1630,6 +1633,7 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void gvSpayment_RowEditing(object sender, GridViewEditEventArgs e)
         {
+           
             var indx = e.NewEditIndex;
             string usircode = ((Label)this.gvSpayment.Rows[e.NewEditIndex].FindControl("lblgvItmCod")).Text.Trim();
 

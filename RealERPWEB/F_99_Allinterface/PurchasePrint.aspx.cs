@@ -20,6 +20,9 @@ using RealERPLIB;
 using RealERPRPT;
 using System.Reflection;
 using RealERPRDLC;
+using EASendMail;
+using System.Net.Mail;
+
 namespace RealERPWEB.F_99_Allinterface
 {
     public partial class PurchasePrint : System.Web.UI.Page
@@ -188,25 +191,40 @@ namespace RealERPWEB.F_99_Allinterface
             string mMRRNo = this.Request.QueryString["mrno"].ToString();
             string ssircode = this.Request.QueryString["sircode"].ToString();
 
-            string suppliername = this.Request.QueryString["supname"].ToString();
-            string prjname = this.Request.QueryString["prjname"].ToString();
+            //string suppliername = this.Request.QueryString["supname"].ToString();
+            //string prjname = this.Request.QueryString["prjname"].ToString();
 
             string CurDate1 = System.DateTime.Now.ToString("dd-MMM-yyyy");
             //string CurDate1 = this.GetStdDate(this.txtCurMRRDate.Text.Trim());
             // string mMRRNo = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURMRRINFO", mMRRNo, CurDate1,
-                         "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURMRRINFO", mMRRNo, CurDate1, "", "", "", "", "", "", "");
+
             if (ds1 == null)
                 return;
+
             DataTable dt = this.HiddenSameDataMRRReceipt(ds1.Tables[0]);
 
             string mrrno1 = ds1.Tables[1].Rows[0]["mrrno1"].ToString();
             string porno = ds1.Tables[1].Rows[0]["orderno1"].ToString();
+            string prjname = ds1.Tables[1].Rows[0]["pactdesc1"].ToString();
+            string suppliername = ds1.Tables[1].Rows[0]["ssirdesc1"].ToString();
+
             // DataTable dt = ds1.Tables[0];
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntry", lst, null, null);
-            Rpt1.EnableExternalImages = true;
+
+            switch (comcod)
+            {
+                case "3368":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryFinlay", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntry", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    break;
+            }
+
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("txtprjname", "Project Name : " + prjname));
             Rpt1.SetParameters(new ReportParameter("txtSubName", "Supplier Name : " + suppliername));
@@ -2690,19 +2708,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
 
 
-
-
-
-
-
-
-
                 // For Acme
-
-
-
-
-
                 //      
                 string trmcperson = ((dtterm.Rows.Count == 0) ? "" : dtterm.Select("termsid='010'").Length > 0 ? "* " + (dtterm.Select("termsid='010'")[0]["termssubj"]).ToString() + " : " : "");
                 string cperson = ((dtterm.Rows.Count == 0) ? "" : dtterm.Select("termsid='010'").Length > 0 ? (dtterm.Select("termsid='010'")[0]["termsdesc"]).ToString() : ""); ;
@@ -3824,8 +3830,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
-
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3368")
+                // return from switch case 
+                if (IsCarryingDynamic())
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -3852,7 +3858,6 @@ namespace RealERPWEB.F_99_Allinterface
                         coste = dt4.Rows[4]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[4]["rsirdesc1"].ToString();
                         cost5 = dt4.Rows[4]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[4]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
                     }
-
                 }
 
                 string discountdesc = dtorder1.Select("rsircode like '019999902003%'").Length == 0 ? "Discount" : dtorder1.Select("rsircode like '019999902003%'")[0]["rsirdesc1"].ToString();
@@ -3871,6 +3876,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "";
+                string dat1 = "", dat2 = "", dat3 = "", dat4 = "", dat5 = "", dat6 = ""; 
 
                 /// signature       // appnam - PURAPROVB and ordnam - purorder     
                 switch (comcod)
@@ -3968,19 +3974,27 @@ namespace RealERPWEB.F_99_Allinterface
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
                         sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();                       
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         sign6 = "Approved By";
                         break;
 
-                        // finlay 
+                    // finlay 
                     case "3368":
-                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
-                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
-                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
-                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
-                        sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy"))=="01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString();
+                        dat1 = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString();
+                        dat2 = _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString();
+                        dat3 = _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString();
+                        dat4 = _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
+                        sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString();
                         sign6 = "Approved By";
+
+
+
+
                         break;
 
                     default:
@@ -4088,7 +4102,6 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3368": // Finlay
-                    //case "3101": // Cube 
                     case "3357": // Cube 
                         terms1 = terms.ToString();
                         pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString() + ", " + _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
@@ -4143,7 +4156,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    //case "3101": // Pintech
+
                     case "3364": //JBS
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4152,7 +4165,7 @@ namespace RealERPWEB.F_99_Allinterface
                         pperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-
+                    case "3101": // Pintech
                     case "3354": // Edison Real estate                     
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
@@ -4184,8 +4197,8 @@ namespace RealERPWEB.F_99_Allinterface
                         terms9 = termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
-                                            
-                    
+
+
                     case "3358":
                     case "3359":
                     case "3360":
@@ -4292,7 +4305,6 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-                    //case "3101": //pintech                      
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
@@ -4301,6 +4313,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
 
+                    //case "3101": //pintech                    
                     case "3354": //Edison Real Estate                        
                         Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
                         break;
@@ -4308,8 +4321,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101": //pintech                      
                     case "3368": //Finlay Properties Ltd                        
                         Reportpath = "~/Report/RptPurchaseOrderFinlay.rdlc";
-                        break;                    
-                    
+                        break;
+
                     case "3358": //Entrust Ltd                        
                     case "3359": //Entrust Ltd                        
                     case "3360": //Entrust Ltd                        
@@ -4383,12 +4396,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cperson2", cperson2));
 
                 }
-
-                //Final Order Approval
-                if (comcod == "3354")
-                {
-                    Rpt1.SetParameters(new ReportParameter("sign7", sign7));
-                }
+         
                 if (comcod == "3357")
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
@@ -4409,6 +4417,27 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cost5", cost5));
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                     Rpt1.SetParameters(new ReportParameter("supemail", supemail));
+                    Rpt1.SetParameters(new ReportParameter("dat1", dat1));
+                    Rpt1.SetParameters(new ReportParameter("dat2", dat2));
+                    Rpt1.SetParameters(new ReportParameter("dat3", dat3));
+                    Rpt1.SetParameters(new ReportParameter("dat4", dat4));
+                    Rpt1.SetParameters(new ReportParameter("dat5", dat5));
+                    Rpt1.SetParameters(new ReportParameter("dat6", dat6));
+                }
+                if (comcod == "3354" || comcod == "3101") // edison
+                {
+                    Rpt1.SetParameters(new ReportParameter("sign7", sign7));
+                    Rpt1.SetParameters(new ReportParameter("costa", costa));
+                    Rpt1.SetParameters(new ReportParameter("costb", costb));
+                    Rpt1.SetParameters(new ReportParameter("costc", costc));
+                    Rpt1.SetParameters(new ReportParameter("costd", costd));
+                    Rpt1.SetParameters(new ReportParameter("coste", coste));
+
+                    Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                    Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                    Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                    Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                    Rpt1.SetParameters(new ReportParameter("cost5", cost5));
                 }
 
 
@@ -4484,15 +4513,73 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3361":
                     case "3368": // finlay
                     case "3357": // cube
+                    case "3354": // edison
                         break;
                     default:
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
                         break;
                 }
-
                 Session["Report1"] = Rpt1;
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                string qtype = this.Request.QueryString["Orderstatus"] ?? "";
+
+                if (qtype == "Download")
+                {
+
+                    string deviceInfo = "<DeviceInfo>" +
+                    "  <OutputFormat>PDF</OutputFormat>" +
+
+                    "  <EmbedFonts>None</EmbedFonts>" +
+                    "</DeviceInfo>";
+                    string mimeType;
+                    string encoding;
+                    string fileNameExtension;
+                    Warning[] warnings;
+                    string[] streams;
+                    byte[] renderedBytes = Rpt1.Render("PDF", deviceInfo, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+                    //return File(renderedBytes, mimeType);
+
+
+                    //Warning[] warnings;
+                    //string[] streamids;
+                    //string mimeType;
+                    //string encoding;
+                    //string extension;
+                    //byte[] bytes = Rpt1.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+                    // string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
+                    //  CODE TO SAVE THE REPORT FILE ON SERVER
+                    if (File.Exists(Server.MapPath("~/SupWorkOreder/" + orderno + ".pdf")))
+                    {
+                        File.Delete(Server.MapPath("~/SupWorkOreder/" + orderno + ".pdf"));
+                    }
+
+                    FileStream fileStream = new FileStream(Server.MapPath("~/SupWorkOreder/" + orderno + ".pdf"), FileMode.Create);
+
+                    for (int i = 0; i < renderedBytes.Length; i++)
+                    {
+                        fileStream.WriteByte(renderedBytes[i]);
+                    }
+                    fileStream.Close();
+
+                    bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
+                    switch (ssl)
+                    {
+                        case true:
+                            this.SendSSLMail(orderno, supemail);
+
+                            break;
+
+                        case false:
+                            this.SendNormalMail(orderno, supemail);
+                            break;
+                    }
+                }
+
+                else
+                {
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                }
+
 
             }
             catch (Exception ex)
@@ -4503,6 +4590,164 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        private bool IsCarryingDynamic()
+        {
+            bool isDynamic = false;
+            string comcod = GetCompCode();
+            switch (comcod)
+            {
+                case "1205":
+                case "3351":
+                case "3352":
+                case "1108":
+                case "1109":
+                case "3315":
+                case "3316":
+                case "3368":
+                case "3354":
+                case "3101":
+                    isDynamic = true;
+                    break;
+                default:
+                    isDynamic = false;
+                    break;                     
+            }
+            return isDynamic;
+        }
+
+        private void SendNormalMail(string orderno, string supemail)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string comcod = this.GetCompCode();
+            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+
+
+            string mORDERNO = orderno;
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+
+            string subject = "Work Order";
+            //SMTP
+            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+
+            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(hostname, portnumber);
+            //SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //client.EnableSsl = true;
+            client.EnableSsl = false;
+            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
+            client.UseDefaultCredentials = false;
+            client.Credentials = credentials;
+
+            ///////////////////////
+            ///
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.From = new System.Net.Mail.MailAddress(frmemail);
+
+            //msg.To.Add(new System.Net.Mail.MailAddress(ds1.Tables[0].Rows[0]["mailid"].ToString()));
+            msg.To.Add(supemail);
+            msg.Subject = subject;
+            msg.IsBodyHtml = true;
+
+            System.Net.Mail.Attachment attachment;
+
+            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
+
+            attachment = new System.Net.Mail.Attachment(apppath);
+            msg.Attachments.Add(attachment);
+
+
+
+            msg.Body = string.Format("<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>");
+            try
+            {
+                client.Send(msg);
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+                //string savelocation = Server.MapPath("~") + "\\SupWorkOreder";
+                //string[] filePaths = Directory.GetFiles(savelocation);
+                //foreach (string filePath in filePaths)
+                //    File.Delete(filePath);
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+        private void SendSSLMail(string orderno, string supemail)
+        {
+
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string comcod = this.GetCompCode();
+            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+
+
+            string mORDERNO = orderno;
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+
+            string subject = "Work Order";
+            //SMTP
+            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+            string mailtousr = supemail;// ds1.Tables[0].Rows[0]["mailid"].ToString();
+            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
+
+
+            EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+
+            //Connection Details 
+            SmtpServer oServer = new SmtpServer(hostname);
+            oServer.User = frmemail;
+            oServer.Password = psssword;
+            oServer.Port = portnumber;
+            oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+            //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+            EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
+            oMail.From = frmemail;
+            oMail.To = mailtousr;
+            oMail.Cc = frmemail;
+            oMail.Subject = subject;
+
+
+            oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
+            oMail.AddAttachment(apppath);
+
+
+            //System.Net.Mail.Attachment attachment;
+
+            //attachment = new System.Net.Mail.Attachment(apppath);
+            //oMail.AddAttachment(attachment);
+
+            try
+            {
+
+                oSmtp.SendMail(oServer, oMail);
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+            }
+
+        }
         private void MktReqPrint()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -4986,7 +5231,6 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-
         private void PurBill_Print()
         {
 
@@ -5011,7 +5255,6 @@ namespace RealERPWEB.F_99_Allinterface
                 this.PrintBill02();
 
         }
-
 
         private void PrintBill06()
         {
@@ -5647,9 +5890,6 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-
-
-
         private string CompanyBillCon()
         {
             string comcod = this.GetCompCode();
@@ -5734,10 +5974,12 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3354":
                     PrintReq = "PrintBillEdisonErp";
                     break;
-
-                case "3101":
                 case "3357":
                     PrintReq = "PrintBillIntech";
+                    break;     
+                // bill finaly
+                case "3368":
+                    PrintReq = "PrintBillFinlay";
                     break;
 
                 default:
@@ -5748,8 +5990,6 @@ namespace RealERPWEB.F_99_Allinterface
             return PrintReq;
 
         }
-
-
 
         private void PurConBill_Print()
         {
@@ -6039,6 +6279,15 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
             }
 
+            else if(pCompanyBill == "PrintBillFinlay")
+            {
+
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillFinaly", lst, null, null);
+                rptbill.EnableExternalImages = true;
+                rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
+                rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            }
             else
             {
 
@@ -6326,7 +6575,6 @@ namespace RealERPWEB.F_99_Allinterface
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
 
-
         //private void PrintLabIssue02()
         //{
 
@@ -6374,7 +6622,6 @@ namespace RealERPWEB.F_99_Allinterface
         //                       ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_Self');</script>";
 
         //}
-
 
         private void PrintLabIssueAssure()
         {
@@ -6455,8 +6702,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
-
-
         private void PrintLabIssueSubCon()
         {
             DataTable dt1 = (DataTable)ViewState["tblbillinfo"];
@@ -6499,7 +6744,6 @@ namespace RealERPWEB.F_99_Allinterface
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
-
         private void PrintLabIssue()
         {
             DataTable dt1 = (DataTable)ViewState["tblbillinfo"];
@@ -6638,7 +6882,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
-
         private DataTable HiddenSameDataConBil(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -6705,8 +6948,6 @@ namespace RealERPWEB.F_99_Allinterface
 
             return dt1;
         }
-
-
         private DataTable HiddenSameDataMRRReceipt(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)

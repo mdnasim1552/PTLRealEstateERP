@@ -33,7 +33,7 @@
                 k1.textBoxHandler(event);
             });
 
-             $('.chzn-select').chosen({ search_contains: true });
+            $('.chzn-select').chosen({ search_contains: true });
 
         }
 
@@ -147,10 +147,8 @@
             <div class="card card-fluid">
                 <div class="card-body" style="min-height: 500px;">
                     <div class="card card-fluid mb-2">
-                        <div class="card-header">
+                        <div class="card-body mb-2" style="min-height: 200px;">
                             <asp:Label ID="lbltitel2" runat="server" CssClass="lblHead" Visible="false"><h4> B. Best Selection</h4> </asp:Label>
-                        </div>
-                        <div class="card-body" style="min-height: 200px;">
                             <div class="table-responsive">
                                 <asp:GridView ID="gvBestSelect" runat="server" AllowPaging="False" AutoGenerateColumns="False" CssClass="table-striped table-bordered grvContentarea"
                                     ShowFooter="True" Width="1009px">
@@ -195,15 +193,23 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvRptRes1" runat="server" Font-Bold="False" Font-Size="12px"
                                                     Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) + "</B>"%>'
-                                                    Width="500px"></asp:Label>
-                                                <asp:TextBox ID="txtgvRSirDetDesc" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                    Width="400px"></asp:Label>
+                                                <asp:TextBox ID="txtgvRSirDetDesc" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" TextMode="MultiLine" Rows="5"
                                                     BorderWidth="0px" Font-Size="12px" Style="background-color: Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdetdesc")) %>'
-                                                    Width="500px"></asp:TextBox>
+                                                    Width="400px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="true" Font-Size="14px" />
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Description">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvPRDesc" runat="server" Font-Bold="False" Font-Size="12px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prdesc")) %>'
+                                                    Width="150px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterStyle Font-Bold="true" Font-Size="14px" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Unit">
                                             <ItemTemplate>
@@ -275,7 +281,7 @@
                                                 <asp:Label ID="lblFcsreqqty" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                     Font-Bold="True" Font-Size="10px"
-                                                    Width="80px" ForeColor="#000"></asp:Label>
+                                                    Width="70px" ForeColor="#000"></asp:Label>
 
 
                                             </FooterTemplate>
@@ -283,7 +289,7 @@
                                                 <asp:Label ID="lblgvcsreqqty" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="10px" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "csreqqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" />
@@ -295,7 +301,7 @@
                                                 <asp:TextBox ID="txtgvRateBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="10px" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="80px"></asp:TextBox>
+                                                    Width="70px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" />
@@ -303,7 +309,6 @@
 
                                         <asp:TemplateField HeaderText="Amount">
                                             <FooterTemplate>
-
                                                 <asp:Label ID="lblFAmountbs" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                     Font-Bold="True" Font-Size="10px"
@@ -436,14 +441,11 @@
                                     <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                             </div>
-
                         </div>
                     </div>
                     <div class="card card-fluid mb-2">
-                        <div class="card-header">
+                        <div class="card-body mb-2" style="min-height: 200px;">
                             <asp:Label ID="lbltitel1" runat="server" CssClass="lblHead" Visible="false"><h4> A. Comparative Statement</h4> </asp:Label>
-                        </div>
-                        <div class="card-body" style="min-height: 200px;">
                             <div class="table-responsive">
                                 <asp:GridView ID="gvResInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-bordered grvContentarea"
                                     ShowFooter="True" Width="1009px" OnRowDataBound="gvResInfo_RowDataBound">

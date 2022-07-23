@@ -21,7 +21,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         ProcessAccess HRData = new ProcessAccess();
         SendNotifyForUsers UserNotify = new SendNotifyForUsers();
         Common compUtility = new Common();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -49,19 +48,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.mgtCard.Visible = false;
                     this.empMgt.Visible = false;
                     this.getMyAttData();
-
                 }
-
             }
         }
-
         private void GetLeaveType()
         {
             string comcod = this.GetComeCode();
             switch (comcod)
             {
-                case "3354":
-                case "3101":
+                case "3354":                
                    // ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
                     // ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
                     // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
@@ -73,12 +68,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                    // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
                     break;
-                case "3365":
+                case "3365":               
                     ddlReqType.Items.Add(new ListItem("Late Approval Request(if Finger 9:04:59 to 9:59:59)", "LA"));
                     ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
                     ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
                     break;
+                case "3101":
+                    ddlReqType.Items.Add(new ListItem("Late Approval Request(if Finger 9:04:59 to 9:59:59)", "LA"));
+                    ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
+                    ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
+                    ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
+                    break;
+
                 default:
                     break;
             }
@@ -117,9 +119,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
         }
         private string GetComeCode()
         {
@@ -288,6 +288,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 switch (comcod)
                 {
                     case "3365":
+                    case "3101":
                     case "3366":
                     
                         if (ahleave == "A" && iscancel == "False")
@@ -334,7 +335,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
                         break;
                     case "3354":
-                    case "3101":
+              
                         if (ahleave == "A" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
@@ -372,10 +373,49 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         break;
                 }
 
+
+
+
+
+
+                string sysdate = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).ToString("dd-MM-yyyy");
+                string sysdated = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).ToString("dd");
+                string sysdatem = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).ToString("MM");
+
+                string sysdatemprev = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).AddMonths(-1).ToString("MM");
+                string sysdatedprev = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "wintime")).AddMonths(-1).ToString("dd");
+
+
+                string curdatd =  DateTime.Today.ToString("dd");
+                string curdatm = DateTime.Today.ToString("MM");
+                string curdaty = DateTime.Today.ToString("yyyy");
+
+
+                string prevmon = DateTime.Today.AddMonths(-1).ToString("MM");
+
+                string nextd = DateTime.Today.AddMonths(-1).ToString("dd");
+                string nextm = DateTime.Today.AddMonths(-1).ToString("MM");
+                string nexty = DateTime.Today.AddMonths(-1).ToString("yyyy");
+
+                if (Convert.ToInt32(sysdated) <= 25 && (sysdatem== curdatm || prevmon== sysdatemprev) && Convert.ToInt32(sysdatedprev)>25)
+                {
+                    ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
+                    ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = true;
+                }
+                else if(Convert.ToInt32(sysdated) > 25 &&  (sysdatem== curdatm || sysdatem ==nextm) && Convert.ToInt32(sysdatedprev) < 26)
+                {
+                    ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
+                    ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = true;
+                }
+                else
+                {
+                    ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
+                    ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = false;
+                }
+
+
+       
             }
-
-
-
             if (e.Item.ItemType == ListItemType.Footer)
             {
                 double AcTime = 0.00;
@@ -389,10 +429,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 //Double actTimehour =Convert.ToDouble(dt3.Rows[0]["actTimehour"]);
                 //((Label)e.Item.FindControl("lblTotalHour")).Text = Convert.ToDouble((Convert.IsDBNull(Convert.ToDouble(dt3.Compute("Sum(actTimehour)", ""))))).ToString("#,##0.00;(#,##0.00);"); //? 0.00 : dt3.Compute("Sum(actTimehour)", ""))).ToString("#,##0.00;(#,##0.00);");
-
             }
         }
-
         protected void lnkRequstApply_Click(object sender, EventArgs e)
         {
             this.ddlReqType.Items.Clear();
@@ -714,7 +752,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (qtype == "MGT")
             {
                 Empid = this.ddlEmpName.SelectedValue.ToString();
-
             }
             else
             {
@@ -723,7 +760,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
             return (Empid);
-
         }
 
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
@@ -732,10 +768,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
 
         protected void hyplnkApplyLv_Click(object sender, EventArgs e)
-        {
-            
+        {      
         }
-
         protected void lnkbtnRefresh_Click(object sender, EventArgs e)
         {
             getMyAttData();

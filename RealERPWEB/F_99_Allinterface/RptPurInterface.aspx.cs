@@ -210,6 +210,8 @@ namespace RealERPWEB.F_99_Allinterface
             hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
             hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
             hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+            hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+            hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
 
             Session["tblLogin"] = hst;
             dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
@@ -350,24 +352,24 @@ namespace RealERPWEB.F_99_Allinterface
 
             switch (comcod)
             {
-                case "3101":
-                case "1101":
-
-                case "3340": //Urban 
+                
+                case "1101":                
                 case "3333"://Alliance
-                case "3354": // Edison  
                 case "3353"://Manama
                 case "3355"://Green Wood
+                case "3368"://finlay
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
-
                     break;
 
+                case "3101":
                 case "1108":
                 case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
+                case "3354": // Edison  
+
                     this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-3).ToString("dd-MMM-yyyy");
                     break;
 
@@ -564,6 +566,8 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             string reqcheck = "Checked";
+            string chkSecondApp = "";
+            string reqcheckapp = "";
             string reqapproval = "Req. App";
             string reqforward = "";
             string OrderfApproved = "";
@@ -605,22 +609,24 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-
                 case "3354"://  Edison Real Estate 
                     OrderfApproved = "Ord. 1st App";
-                    Order2ndAprv = "Ord. Final App";
-                    
+                    Order2ndAprv = "Ord. Final App";                    
                     break;
-                case "3368"://  Finlay
-              //  case "3101"://  Edison Real Estate 
 
+                case "3367": //Epic
+                    chkSecondApp = "Mgt App.";
+                    break;
+
+                //  case "3101":  
+                case "3368"://  Finlay
                     reqcheck = "Checked";
+                    reqcheckapp = "Checked App.";
                     reqforward = "Forward";
                     reqapproval = "Req. App.";
                    // OrderfApproved = "Ord. 1st App";
                     Order2ndAprv = "Ord. Final App";
                     break;
-
 
 
                 default:
@@ -629,6 +635,8 @@ namespace RealERPWEB.F_99_Allinterface
                     reqapproval = "Req. App.";
                     OrderfApproved = "Ord. 1st App";
                     Order2ndAprv = "Ord. 2nd App";
+                    chkSecondApp = "2nd App.";
+                    reqcheckapp = "1st App.";
                     break;
 
 
@@ -640,9 +648,10 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["iscrchecked"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>CRM Check</div></div></div>";
 
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["chqqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + reqcheck + "</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["faprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>1st App.</div></div></div>";
+           
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["faprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>"+ reqcheckapp + "</div></div></div>";
 
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["saprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>2nd App.</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["saprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>"+ chkSecondApp + "</div></div></div>"; //2nd App.
 
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["raproqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Rate Prop.</div></div></div>";
 
@@ -2724,7 +2733,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
 
-
+                case "3367": // Epic
                 case "3348": // Credence
                              //  case "3101":
                     firstapporreccheck = "FirstaSecond";

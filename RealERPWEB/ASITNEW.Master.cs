@@ -148,7 +148,19 @@ namespace RealERPWEB
                 case "3348":
                 case "3364":
                 case "3366": //lanco
+                    this.HypLinkReqInterFace.Visible = true;
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
                 case "3368": //finlay
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
+
+                case "3353":
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
+
+
                 case "3367": //epic
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
@@ -173,6 +185,16 @@ namespace RealERPWEB
                     this.HypLinkReqInterFace.Visible = false;
 
                     break;
+                case "3354":
+                    
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;                   
+                    this.HypLinkReqInterFace.Visible = true;
+                   
+                    break;
+
                 case "3365":
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
@@ -314,6 +336,24 @@ namespace RealERPWEB
             hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
             hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
             hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+            if (ds5.Tables[0].Columns.Contains("comunpost"))
+            {
+                hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+            }
+            else
+            {
+                hst["comunpost"] = "0";
+            }
+
+            if (ds5.Tables[0].Columns.Contains("homeurl"))
+            {
+                hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+            }
+            else
+            {
+                hst["homeurl"] = "UserProfile";
+            }
+
 
             Session["tblLogin"] = hst;
             dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
@@ -395,25 +435,27 @@ namespace RealERPWEB
 
             string usrid = hst["usrid"].ToString();
             string userrole = hst["userrole"].ToString();
+            string homelink = hst["homeurl"].ToString();
             // string usrperm = "1";
+            this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/"+ homelink));
 
-            if (comcod == "3365" || comcod == "3347")
+            //if (comcod == "3365" || comcod == "3347")
 
-            {
-                string urlnorm = (userrole == "3" ? "~/UserProfile" : "~/Index?pid=");
-                this.LogoBar.Attributes.Add("href", this.ResolveUrl(urlnorm));
+            //{
+            //    string urlnorm = (userrole == "3" ? "~/UserProfile" : "~/Index?pid=");
+            //    this.LogoBar.Attributes.Add("href", this.ResolveUrl(urlnorm));
 
-            }
-            else if (comcod.Substring(0, 1) == "8")
-            {
+            //}
+            //else if (comcod.Substring(0, 1) == "8")
+            //{
 
-                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod="));
+            //    this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod="));
 
-            }
-            else
-            {
-                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
-            }
+            //}
+            //else
+            //{
+            //    this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+            //}
 
 
             this.CompanyHome();
@@ -806,6 +848,8 @@ namespace RealERPWEB
             }
             return sb;
         }
+
+       
     }
 
 }
