@@ -841,6 +841,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         case "4101":
                         case "4315":
                         case "3365": //BTI
+                        case "3101": //BTI
                             for (int i = 0; i < this.gvmapsapp.Rows.Count; i++)
                             {
 
@@ -853,7 +854,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                 rowindex = (this.gvmapsapp.PageSize) * (this.gvmapsapp.PageIndex) + i;
                                 dt.Rows[rowindex]["aprday"] = aprday;
                                 dt.Rows[rowindex]["leaveadj"] = lvadj;
-                                dt.Rows[rowindex]["dedday"] = (absday - (aprday + lvadj));
+                                dt.Rows[rowindex]["dedday"] = dedday;// (absday - (aprday + lvadj));
                                 dt.Rows[rowindex]["reason"] = reason;
                                 dt.Rows[rowindex]["balance"] = (absday - (aprday + lvadj + dedday));
 

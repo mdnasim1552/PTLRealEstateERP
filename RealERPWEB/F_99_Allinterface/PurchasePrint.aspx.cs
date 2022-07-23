@@ -278,7 +278,7 @@ namespace RealERPWEB.F_99_Allinterface
             string checkby = dt3.Rows[0]["reqchkname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["checkdat"].ToString()).ToString("dd-MMM-yyyy");
             string rateproposal = dt3.Rows[0]["reqratename"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["rateidate"].ToString()).ToString("dd-MMM-yyyy"); ;
             string approveby = dt3.Rows[0]["reqaprname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["aprvdat"].ToString()).ToString("dd-MMM-yyyy"); ;
-            string finalapproveby = dt3.Rows[0]["reqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
+            string finalapproveby = dt3.Rows[0]["reqreqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
             if (comcod == "3335")
             {
 
@@ -390,7 +390,7 @@ namespace RealERPWEB.F_99_Allinterface
             //string checkby = dt3.Rows[0]["reqchkname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["checkdat"].ToString()).ToString("dd-MMM-yyyy");
             //string rateproposal = dt3.Rows[0]["reqratename"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["rateidate"].ToString()).ToString("dd-MMM-yyyy"); ;
             //string approveby = dt3.Rows[0]["reqaprname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["aprvdat"].ToString()).ToString("dd-MMM-yyyy"); ;
-            //string finalapproveby = dt3.Rows[0]["reqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
+            //string finalapproveby = dt3.Rows[0]["reqreqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
 
             //LocalReport Rpt1 = new LocalReport();
             //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurAprovEntry", lst, null, null);
@@ -2883,8 +2883,8 @@ namespace RealERPWEB.F_99_Allinterface
                         rpttxtWordAcme.Text = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         TextObject rpttxtcheckAcme = rptwork.ReportDefinition.ReportObjects["check"] as TextObject;
 
-                        TextObject txtfaprname = rptwork.ReportDefinition.ReportObjects["txtfaprname"] as TextObject;
-                        txtfaprname.Text = _ReportDataSet.Tables[3].Rows[0]["faprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["faprdat"].ToString();
+                        TextObject txtreqfaprname = rptwork.ReportDefinition.ReportObjects["txtreqfaprname"] as TextObject;
+                        txtreqfaprname.Text = _ReportDataSet.Tables[3].Rows[0]["reqfaprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
 
                         rpttxtcheckAcme.Text = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         TextObject txtAdvancedAcme = rptwork.ReportDefinition.ReportObjects["txtAdvanced"] as TextObject;
@@ -2985,8 +2985,8 @@ namespace RealERPWEB.F_99_Allinterface
                         rpttxtWordp2p.Text = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
 
 
-                        //TextObject txtfaprnamep2p = rptwork.ReportDefinition.ReportObjects["txtfaprname"] as TextObject;
-                        //txtfaprnamep2p.Text = _ReportDataSet.Tables[3].Rows[0]["faprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["faprdat"].ToString();
+                        //TextObject txtreqfaprnamep2p = rptwork.ReportDefinition.ReportObjects["txtreqfaprname"] as TextObject;
+                        //txtreqfaprnamep2p.Text = _ReportDataSet.Tables[3].Rows[0]["reqfaprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
 
                         TextObject rpttxtcheckp2p = rptwork.ReportDefinition.ReportObjects["check"] as TextObject;
                         rpttxtcheckp2p.Text = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -3896,7 +3896,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
-                        sign3 = _ReportDataSet.Tables[3].Rows[0]["faprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["faprdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqfaprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
                         sign4 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
@@ -3906,7 +3906,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3338": // Acme Technologies
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
-                        sign3 = _ReportDataSet.Tables[3].Rows[0]["faprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["faprdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqfaprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
                         sign4 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
@@ -3934,8 +3934,8 @@ namespace RealERPWEB.F_99_Allinterface
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
-                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
                         break;
 
@@ -3982,14 +3982,19 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3368":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString();
                         dat1 = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
-                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString();
-                        dat2 = _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        //sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString();
+                        //dat2 = _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();                        
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["reqfaprname"].ToString();
+                        dat2 = _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString();
                         dat3 = _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
                         sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString();
                         dat4 = _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
+                        dat5 = _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
                         sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString();
+                        dat6 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
+
                         sign6 = "Approved By";
 
 
