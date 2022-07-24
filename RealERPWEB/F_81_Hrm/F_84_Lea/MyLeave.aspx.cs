@@ -85,11 +85,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 Hashtable hst2 = (Hashtable)Session["tblLogin"];
                 string usrRole= hst2["userrole"].ToString();
 
-                if (this.GetComeCode() == "3365" && usrRole=="3")
-                {
-                    this.chkBoxSkippWH.Enabled = false;
+              if (this.GetComeCode() == "3365" && usrRole=="3")
+               {
+                  
                     DisabledCalender();
-                }
+              }
 
             }
         }
@@ -1170,6 +1170,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 frmdate.InnerText = "From Date";
                 todate.InnerText = "To Date";
                 //this.divDurStatus.Visible = true;
+                GetCalCulateDay();
 
             }
             string reqdate = this.Request.QueryString["LevDay"] ?? "";
@@ -1185,6 +1186,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
             }
+         
         }
 
 

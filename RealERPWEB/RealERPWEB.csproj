@@ -198,7 +198,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -2991,6 +2991,7 @@
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\LoanApproval.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptLoanEmpwise.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpFoodAllow.aspx" />
@@ -4670,6 +4671,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx.designer.cs">
       <DependentUpon>EmpLoanStatusOpn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\LoanApproval.aspx.cs">
+      <DependentUpon>LoanApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\LoanApproval.aspx.designer.cs">
+      <DependentUpon>LoanApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\RptLoanEmpwise.aspx.cs">
       <DependentUpon>RptLoanEmpwise.aspx</DependentUpon>
