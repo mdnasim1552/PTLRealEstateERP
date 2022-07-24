@@ -145,7 +145,7 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Material_List> obj = new List<EClass_Material_List>();
                 string comcod = GetComCode();
                 string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETBUDGETINFO", dgno, "", "", "", "", "", "", "", "", "", "");
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETBUDGETINFOMATREQ", dgno, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
@@ -175,6 +175,9 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
                 gvMaterials.DataSource = obj;
                 gvMaterials.DataBind();
+
+                ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
+
             }
             catch (Exception ex)
             {

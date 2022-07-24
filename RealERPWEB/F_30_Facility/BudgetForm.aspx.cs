@@ -29,13 +29,16 @@ namespace RealERPWEB.F_30_Facility
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Budget";
                 if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Edit")
                 {
+                    lblDgNo.Text = Request.QueryString["Dgno"].ToString();
                     EditFunctionality();
                 }
                 if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
                 {
+                    lblDgNo.Text = Request.QueryString["Dgno"].ToString();
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Approval";
                     pnlApproval.Visible = true;
                     txtEntryDate.Enabled = false;
+                    lnkProceed.Visible = false;
                 }
             }
         }
@@ -227,7 +230,7 @@ namespace RealERPWEB.F_30_Facility
                 string materialdesc = ddlMaterial.SelectedItem.Text;
                 string unit = lblUnit.Text;
                 double sirval = Convert.ToDouble(lblsirval.Text == "" ? "0.00" : lblsirval.Text);
-                List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];                
+                List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
                 SessionMaterialList();
                 var value = obj.Where(x => x.materialId == material).Any();
                 if (!value)
@@ -243,7 +246,7 @@ namespace RealERPWEB.F_30_Facility
                         percnt = 0,
                         type = material == "049700101001" ? "Z" : "A"
                     });
-                    ViewState["MaterialList"] = obj;                    
+                    ViewState["MaterialList"] = obj;
                     lbtnTotal_Click(null, null);
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Added to the Table" + "');", true);
                 }
@@ -297,7 +300,29 @@ namespace RealERPWEB.F_30_Facility
 
         protected void lnkProceed_Click(object sender, EventArgs e)
         {
+            string dgno = lblDgNo.Text;
+            if (dgno == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Please Save to Proceed to Next Step" + "');", true);
+            }
+            else
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComCode();
+                string userId = hst["usrid"].ToString();
 
+                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEAPPRBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                     "", "", "", "", "", "", "", "", "", "", userId);
+                if (resultflag)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Budget" + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
+
+            }
         }
 
 
@@ -391,13 +416,13 @@ namespace RealERPWEB.F_30_Facility
                 double sumValue = obj.Where(x => x.type == "A").Sum(x => x.amount);
                 if (obj.Where(x => x.type == "Z").ToList().Count == 1)
                 {
-                    
+
                     double percnt = obj.Where(x => x.type == "Z").FirstOrDefault().percnt;
                     double percntamt = 0.00;
                     if (percnt == 0.00)
                     {
-                        percntamt= obj.Where(x => x.type == "Z").FirstOrDefault().amount;
-                        percnt = sumValue==0.00?0.00:((percntamt / sumValue) * 100);
+                        percntamt = obj.Where(x => x.type == "Z").FirstOrDefault().amount;
+                        percnt = sumValue == 0.00 ? 0.00 : ((percntamt / sumValue) * 100);
                     }
                     else
                     {
@@ -435,7 +460,7 @@ namespace RealERPWEB.F_30_Facility
                     double amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtAmount")).Text.Trim()));
                     obj[rowindex].quantity = quantity;
                     obj[rowindex].rate = rate;
-                    obj[rowindex].amount = materialId== "049700101001"? amount:  quantity * rate;
+                    obj[rowindex].amount = materialId == "049700101001" ? amount : quantity * rate;
                     obj[rowindex].percnt = percnt;
 
                 }
@@ -512,6 +537,7 @@ namespace RealERPWEB.F_30_Facility
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Budget of Dg-{dgno} - Updated Successful" + "');", true);
 
                         }
+                        lblDgNo.Text = dgno;
                     }
                 }
                 else
