@@ -305,7 +305,7 @@
                         <div class="row ">
 
                             <asp:GridView ID="gvMaterials" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea ml-2"
-                                ShowFooter="True">
+                                ShowFooter="True" OnRowDataBound="gvMaterials_RowDataBound">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.">
@@ -370,6 +370,17 @@
                                         <FooterStyle ForeColor="Black" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvPercnt" runat="server" BackColor="Transparent"
+                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percnt")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                        <FooterStyle ForeColor="Black" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQuantity" runat="server" BackColor="Transparent"
@@ -395,7 +406,7 @@
                                     <asp:TemplateField HeaderText="Amount">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtAmount" runat="server" BackColor="Transparent"
-                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Enabled="false"
+                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" 
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="140px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
