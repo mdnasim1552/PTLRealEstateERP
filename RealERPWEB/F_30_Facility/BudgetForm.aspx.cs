@@ -191,7 +191,7 @@ namespace RealERPWEB.F_30_Facility
                 }
                 obj = ds.Tables[0].DataTableToList<EClass_Material_List>();
                 ViewState["MaterialList"] = obj;
-                Bind_Grid_Material();
+                lbtnTotal_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -227,7 +227,8 @@ namespace RealERPWEB.F_30_Facility
                 string materialdesc = ddlMaterial.SelectedItem.Text;
                 string unit = lblUnit.Text;
                 double sirval = Convert.ToDouble(lblsirval.Text == "" ? "0.00" : lblsirval.Text);
-                List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
+                List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];                
+                SessionMaterialList();
                 var value = obj.Where(x => x.materialId == material).Any();
                 if (!value)
                 {
@@ -238,18 +239,19 @@ namespace RealERPWEB.F_30_Facility
                         unit = unit,
                         rate = sirval,
                         quantity = 0,
-                        amount = 0
+                        amount = 0,
+                        percnt = 0,
+                        type = material == "049700101001" ? "Z" : "A"
                     });
-
-                    ViewState["MaterialList"] = obj;
-                    Bind_Grid_Material();
+                    ViewState["MaterialList"] = obj;                    
+                    lbtnTotal_Click(null, null);
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Added to the Table" + "');", true);
                 }
                 else
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Already Added-{materialdesc}" + "');", true);
                 }
-                lbtnTotal_Click(null, null);
+
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
 
             }
@@ -266,7 +268,9 @@ namespace RealERPWEB.F_30_Facility
             try
             {
                 List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
-                gvMaterials.DataSource = obj;
+                var obj1 = obj.OrderBy(x => x.type).ToList();
+                ViewState["MaterialList"] = obj1;
+                gvMaterials.DataSource = obj1;
                 gvMaterials.DataBind();
             }
             catch (Exception ex)
@@ -367,7 +371,6 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
                 obj.RemoveAt(index);
                 ViewState["MaterialList"] = obj;
-                Bind_Grid_Material();
                 lbtnTotal_Click(null, null);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Removed from the table" + "');", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
@@ -384,8 +387,30 @@ namespace RealERPWEB.F_30_Facility
             {
                 List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
                 SessionMaterialList();
+
+                double sumValue = obj.Where(x => x.type == "A").Sum(x => x.amount);
+                if (obj.Where(x => x.type == "Z").ToList().Count == 1)
+                {
+                    
+                    double percnt = obj.Where(x => x.type == "Z").FirstOrDefault().percnt;
+                    double percntamt = 0.00;
+                    if (percnt == 0.00)
+                    {
+                        percntamt= obj.Where(x => x.type == "Z").FirstOrDefault().amount;
+                        percnt = sumValue==0.00?0.00:((percntamt / sumValue) * 100);
+                    }
+                    else
+                    {
+                        percntamt = sumValue * (percnt / 100);
+                    }
+                    obj.Where(x => x.type == "Z").FirstOrDefault().amount = percntamt;
+                    obj.Where(x => x.type == "Z").FirstOrDefault().percnt = percnt;
+                }
                 Bind_Grid_Material();
-                ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
+                if (obj.Count > 0)
+                {
+                    ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
+                }
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
             }
             catch (Exception ex)
@@ -403,12 +428,16 @@ namespace RealERPWEB.F_30_Facility
                 for (int i = 0; i < gvMaterials.Rows.Count; i++)
                 {
                     rowindex = (gvMaterials.PageIndex) * gvMaterials.PageSize + i;
+                    string materialId = ((Label)this.gvMaterials.Rows[rowindex].FindControl("lblgvconcatcode")).Text.Trim();
+                    double percnt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvPercnt")).Text.Trim()));
                     double quantity = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvQuantity")).Text.Trim()));
                     double rate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvRate")).Text.Trim()));
                     double amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtAmount")).Text.Trim()));
                     obj[rowindex].quantity = quantity;
                     obj[rowindex].rate = rate;
-                    obj[rowindex].amount = quantity * rate;
+                    obj[rowindex].amount = materialId== "049700101001"? amount:  quantity * rate;
+                    obj[rowindex].percnt = percnt;
+
                 }
             }
             catch (Exception ex)
@@ -438,7 +467,7 @@ namespace RealERPWEB.F_30_Facility
                     foreach (var item in obj)
                     {
                         bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(),
-                            bgddate, i.ToString(), "", "", "", "", "",
+                            bgddate, i.ToString(), item.percnt.ToString(), "", "", "", "",
                                  "", "", "", "", "", "", "", "", "", "", userId);
                         resultCompA.Add(resultA);
                         i++;
@@ -458,7 +487,7 @@ namespace RealERPWEB.F_30_Facility
                                     "", "", "", "", "", "", "", "", "", "", userId);
                             if (resultR)
                             {
-                                if(warrantyCode!= "43002")
+                                if (warrantyCode != "43002")
                                 {
                                     bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATREQFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
                                                              "", "", "", "", "", "", "", "", "", "", userId);
@@ -498,6 +527,32 @@ namespace RealERPWEB.F_30_Facility
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
 
+        }
+
+        protected void gvMaterials_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string materialId = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "materialId")).ToString();
+                TextBox amt = (TextBox)e.Row.FindControl("txtAmount");
+                TextBox qty = (TextBox)e.Row.FindControl("txtgvQuantity");
+                TextBox rate = (TextBox)e.Row.FindControl("txtgvRate");
+                TextBox percnt = (TextBox)e.Row.FindControl("txtgvPercnt");
+                if (materialId == "049700101001")
+                {
+                    qty.Enabled = false;
+                    amt.Enabled = true;
+                    rate.Enabled = false;
+                    percnt.Enabled = true;
+                }
+                else
+                {
+                    rate.Enabled = true;
+                    qty.Enabled = true;
+                    amt.Enabled = false;
+                    percnt.Enabled = false;
+                }
+            }
         }
     }
 }
