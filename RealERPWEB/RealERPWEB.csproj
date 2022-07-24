@@ -208,7 +208,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:\Users\HP\Downloads\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\Doc\Lib\bin\RealERPRPT.dll</HintPath>
@@ -2995,6 +2995,7 @@
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\LoanApproval.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptLoanEmpwise.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpFoodAllow.aspx" />
@@ -4674,6 +4675,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx.designer.cs">
       <DependentUpon>EmpLoanStatusOpn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\LoanApproval.aspx.cs">
+      <DependentUpon>LoanApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\LoanApproval.aspx.designer.cs">
+      <DependentUpon>LoanApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\RptLoanEmpwise.aspx.cs">
       <DependentUpon>RptLoanEmpwise.aspx</DependentUpon>
