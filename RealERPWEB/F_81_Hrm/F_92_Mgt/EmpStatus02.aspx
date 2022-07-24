@@ -1462,6 +1462,17 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                             </asp:TemplateField>
 
+                                            
+                                            <asp:TemplateField HeaderText="Resign Type">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblrestype" runat="server"
+                                                        Text='<%# DataBinder.Eval(Container.DataItem, "septype") %>'
+                                                    ></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                            </asp:TemplateField>
+
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />
