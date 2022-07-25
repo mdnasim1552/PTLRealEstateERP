@@ -1328,15 +1328,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     {
                         double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
                         double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
+                        double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
+                        //avable leave
                         double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
                         double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
-                        double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
 
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
-                        double redelay = Aprvday== 0 ? delayday : Aprvday; //delayday - Aprvday;
+                        double redelay = delayday; //Aprvday== 0 ? delayday : Aprvday; //delayday - Aprvday;
+
+
+
                         double adjLev = 0.00;
                         double adjElLev = 0.00;
                         double ttllv = 0.00;
+
+
+
                                               
                         dedday = delayday - redelay; // after infrom dues late day
                       
@@ -1363,12 +1370,19 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             adjLev = balclv;
 
                         }
+
+                        // LWP Dedctiaon
+                        if (adjLev == 0 && adjElLev == 0)
+                        {
+                            dedday = ToAdjustLeaveDayBTI((double)redelay, (double)balclv); 
+                        }
+
                         double ttdelv = adjLev + adjElLev+ dedday;
                         dt.Rows[rowindex]["delday"] = delayday;
                         dt.Rows[rowindex]["aprday"] = Aprvday;
-                        dt.Rows[rowindex]["dedday"] = Aprvday==0? adjLev + adjElLev : dedday ;
-                        dt.Rows[rowindex]["leaveadj"] = Aprvday == 0? 0: adjLev;
-                        dt.Rows[rowindex]["leaveadjel"] = Aprvday == 0 ? 0 : adjElLev;
+                        dt.Rows[rowindex]["dedday"] =  dedday ;
+                        dt.Rows[rowindex]["leaveadj"] = adjLev;//Aprvday == 0? 0: adjLev;
+                        dt.Rows[rowindex]["leaveadjel"] = adjElLev;// Aprvday == 0 ? 0 : adjElLev;
                         dt.Rows[rowindex]["ttdelv"] = ttdelv;
 
                     }
