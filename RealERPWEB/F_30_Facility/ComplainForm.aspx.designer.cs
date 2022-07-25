@@ -51,6 +51,15 @@ namespace RealERPWEB.F_30_Facility
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
 
         /// <summary>
+        /// lblcomplno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcomplno;
+
+        /// <summary>
         /// lblProject control.
         /// </summary>
         /// <remarks>
