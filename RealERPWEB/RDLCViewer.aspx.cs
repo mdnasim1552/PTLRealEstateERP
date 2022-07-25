@@ -321,9 +321,31 @@ namespace RealERPWEB
             }
         }
 
-
-
-
+        protected void ExportRepeaterToExcel(Repeater name) 
+        {
+            try
+            {
+                string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string fileName = "ExportTable_" + date1;
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=" + fileName + ".xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                Repeater rp = name;
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                rp.RenderControl(hw);
+                Response.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+            }
+            catch (Exception Ex)
+            {
+                //Label1.Text = Ex.Message;
+                return;
+            }
+        }
 
     }
 }

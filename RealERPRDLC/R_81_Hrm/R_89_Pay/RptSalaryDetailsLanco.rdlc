@@ -3431,7 +3431,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>ct </Value>
+                                  <Value xml:space="preserve"> </Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3490,7 +3490,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
