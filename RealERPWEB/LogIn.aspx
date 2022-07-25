@@ -439,7 +439,7 @@ border-top-right-radius: 25px;
                                     <div class="asituloginnerIn">
                                         <div style="margin-bottom: 1px" class="input-group">
                                             <span class="input-group-addon" id="lblNewPass" runat="server" visible="false"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <asp:TextBox ID="txtuserNewrpass" runat="server" AutoCompleteType="Disabled" class="form-control" Visible="False" name="txtuserpass" TextMode="Password" placeholder="New Password" TabIndex="7"></asp:TextBox>
+                                            <asp:TextBox ID="txtuserNewrpass" runat="server" AutoCompleteType="Disabled" class="form-control" Visible="False" name="txtuserpass" TextMode="Password" placeholder="Type New Password, Use Min 6 Digit" TabIndex="7"></asp:TextBox>
 
                                         </div>
 
