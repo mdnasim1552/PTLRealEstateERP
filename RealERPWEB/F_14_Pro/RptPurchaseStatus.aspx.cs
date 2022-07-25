@@ -593,13 +593,14 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable dt = (DataTable)Session["tblpurchase"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd MMMM, yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd MMMM, yyyy");
-
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.RptDayWisePurchase>();
 
@@ -608,9 +609,11 @@ namespace RealERPWEB.F_14_Pro
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptPurchaseStatus1", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("date", "From " + fromdate + " To " + todate));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Day Wise Purchase Report"));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+            Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
 
 
             Session["Report1"] = Rpt1;
