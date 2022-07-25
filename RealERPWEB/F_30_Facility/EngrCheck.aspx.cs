@@ -27,6 +27,7 @@ namespace RealERPWEB.F_30_Facility
                 loadWork();
                 if (Request.QueryString["Dgno"] != null && Request.QueryString["ComplNo"] != null)
                 {
+                    lblDgNo.Text = Request.QueryString["Dgno"].ToString();
                     EditFunctionality();
                 }
                 else
@@ -301,7 +302,28 @@ namespace RealERPWEB.F_30_Facility
 
         protected void lnkProceed_Click(object sender, EventArgs e)
         {
-
+            string dgno = lblDgNo.Text;
+            if (dgno == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Please Save to Proceed to Next Step" + "');", true);
+            }
+            else
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComCode();
+                string userId = hst["usrid"].ToString();
+                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                         "", "", "", "", "", "", "", "", "", "", userId);
+                if (resultflag)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Budget" + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
+            }
+            
         }
 
 
@@ -380,10 +402,7 @@ namespace RealERPWEB.F_30_Facility
                             {
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dt.Rows[0]["dgno"].ToString()} - Updated Successful" + "');", true);
                                 Response.Redirect("~/F_30_Facility/EngrCheck.aspx?Type=Edit&ComplNo=" + complno + "&Dgno=" + dt.Rows[0]["dgno"].ToString());
-                                if (dgno == "0")
-                                {
-                                    ClearPage();
-                                }
+                                
                             }
                         }
                         else

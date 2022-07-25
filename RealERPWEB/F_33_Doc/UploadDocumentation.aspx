@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="UploadDocumentation.aspx.cs" Inherits="RealERPWEB.F_33_Doc.UploadDocumentation" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="UploadDocumentation.aspx.cs" Inherits="RealERPWEB.F_33_Doc.UploadDocumentation" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -34,7 +34,7 @@
     </style>
 
 
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -51,10 +51,23 @@
 
         };
         $('.chzn-select').chosen({ search_contains: true });
-    </script>
+    </script>--%>
 
+<%--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
-
+    <script>
+        tinymce.init({
+            selector: '#txtDetails1',
+            plugins: [
+                'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+                'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+                'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+                'alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+        });
+    </script>--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -118,19 +131,21 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <asp:Label ID="Label19" runat="server" Text="Details:"></asp:Label>
-                                        <div id="summernote"></div>
-                                        <asp:TextBox ID="txtDetails1" runat="server" Rows="5" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                    </div>
-                                </div>
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <asp:Label ID="lblimg" runat="server" Text="Documents:"></asp:Label>
                                         <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" accept=".pdf"/>
   <%--                                      <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />--%>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label19" runat="server" Text="Details:"></asp:Label>
+                                        <div id="summernote"></div>
+                                        <asp:TextBox ID="txtDetails1" runat="server" Rows="5" CssClass="form-control " TextMode="MultiLine"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -210,17 +225,13 @@
             <asp:PostBackTrigger ControlID="lnk_save" />
         </Triggers>
     </asp:UpdatePanel>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 
-        <script>
-            ClassicEditor
-                .create(document.querySelector('#txtDetails1'))
-                .catch(error => {
-                    console.error(error);
-                });
-        </script>
+<script type="text/javascript">
+    tinymce.init({ selector: 'textarea' });
+</script>
 
 </asp:Content>
-
 
 
 

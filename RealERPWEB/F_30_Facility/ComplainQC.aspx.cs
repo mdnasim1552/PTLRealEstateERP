@@ -21,6 +21,7 @@ namespace RealERPWEB.F_30_Facility
                 getProjUnitddl();
                 txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 btnOKClick.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
+                lnkProceed.Visible = false;
                 if (Request.QueryString["Type"] == "CustomerCare")
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Customer Care";
@@ -263,19 +264,20 @@ namespace RealERPWEB.F_30_Facility
 
         protected void dgv1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (Request.QueryString["Type"].ToString() == "CustomerCare")
-            //{
-            //    int i = 0;
-            //    if (e.Row.RowType == DataControlRowType.DataRow)
-            //    {
-            //        bool isQC = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isQC"));
-            //        if (!isQC)
-            //        {
-            //            ((CheckBox)this.dgv1.Rows[i].FindControl("chkCC")).Enabled = false;
-            //        }
-            //        i++;
-            //    }
-            //}
+            if (Request.QueryString["Type"].ToString() == "CustomerCare")
+            {
+               
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                   CheckBox chk= (CheckBox)e.Row.FindControl("chkCC");
+
+                    string isQC = DataBinder.Eval(e.Row.DataItem, "isQC").ToString();
+                    if (isQC=="False")
+                    {
+                        chk.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }

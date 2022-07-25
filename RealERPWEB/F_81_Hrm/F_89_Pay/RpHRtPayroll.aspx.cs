@@ -1451,6 +1451,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
+
             string type = this.Request.QueryString["Type"].ToString().Trim();
             switch (type)
             {

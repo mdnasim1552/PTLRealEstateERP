@@ -78,6 +78,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
+                                <asp:Label runat="server" ID="lblDgNo" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="Label5" class="form-label">Select</asp:Label>
                                 <asp:DropDownList ID="ddlDgNo" CssClass="chzn-select form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                             </div>
