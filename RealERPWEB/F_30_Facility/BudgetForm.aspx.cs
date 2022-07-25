@@ -36,6 +36,7 @@ namespace RealERPWEB.F_30_Facility
                 {
                     lblDgNo.Text = Request.QueryString["Dgno"].ToString();
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Approval";
+                    lnkSave.Text = "Approve";
                     pnlApproval.Visible = true;
                     txtEntryDate.Enabled = false;
                     lnkProceed.Visible = false;
@@ -255,7 +256,7 @@ namespace RealERPWEB.F_30_Facility
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Already Added-{materialdesc}" + "');", true);
                 }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
 
             }
 
@@ -289,7 +290,7 @@ namespace RealERPWEB.F_30_Facility
                 ViewState["ComplainList"] = obj;
                 dgv1.DataSource = obj;
                 dgv1.DataBind();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -350,7 +351,7 @@ namespace RealERPWEB.F_30_Facility
             {
                 getComplainUser();
                 createMaterialList();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -365,7 +366,7 @@ namespace RealERPWEB.F_30_Facility
             {
                 getMaterial();
                 getUnit();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -378,7 +379,7 @@ namespace RealERPWEB.F_30_Facility
             try
             {
                 getUnit();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -398,7 +399,7 @@ namespace RealERPWEB.F_30_Facility
                 ViewState["MaterialList"] = obj;
                 lbtnTotal_Click(null, null);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Removed from the table" + "');", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -436,7 +437,7 @@ namespace RealERPWEB.F_30_Facility
                 {
                     ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
                 }
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -489,6 +490,7 @@ namespace RealERPWEB.F_30_Facility
                              "", "", "", "", "", "", "", "", "", "", userId);
                 if (resultDelete)
                 {
+                   
                     foreach (var item in obj)
                     {
                         bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(),
@@ -504,8 +506,10 @@ namespace RealERPWEB.F_30_Facility
                     }
                     else
                     {
+                        
                         if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
                         {
+                            
                             string notes = txtNarration.Text;
                             string warrantyCode = lblWarrantyCode.Text;
                             bool resultR = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTAPPROVAL", dgno, notes, warrantyCode, "", "", "", "", "", "", "", "", "",
@@ -530,6 +534,15 @@ namespace RealERPWEB.F_30_Facility
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
                                 return;
                             }
+                            if (obj.Where(x => x.materialId.StartsWith("01")).ToList().Count == 0)
+                            {
+                                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                                         "", "", "", "", "", "", "", "", "", "", userId);
+                                if (!resultflag)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                                }
+                            }
 
                         }
                         else
@@ -546,7 +559,7 @@ namespace RealERPWEB.F_30_Facility
                     return;
                 }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
