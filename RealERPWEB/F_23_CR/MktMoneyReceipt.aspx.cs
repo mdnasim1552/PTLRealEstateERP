@@ -1093,6 +1093,10 @@ namespace RealERPWEB.F_23_CR
                     switch (comcod)
                     {
                         case "3339": //Tropical
+                        case "3367": //epic
+                        //case "3101": //ptl
+
+
                             break;
 
                         default:
