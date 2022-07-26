@@ -4664,7 +4664,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Order Approval</Value>
+                      <Value>Checked By</Value>
                       <Style>
                         <FontFamily>times New Roman</FontFamily>
                         <FontSize>9pt</FontSize>

@@ -24,41 +24,7 @@
                 padding: 0 10px;
             }
     </style>
-    <script type="text/javascript">              
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-        });
-        function pageLoaded() {
-
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
-            $('.chzn-select').chosen({ search_contains: true });
-        }
-        let tabStatus = 0;
-        function TabState() {
-            if (tabStatus == 1) {
-                $("#collapseExample").addClass("show");
-            }
-            else {
-                $("#collapseExample").removeClass("show");
-            }
-        }
-
-        function TabChange() {
-
-            if ($("#collapseExample").hasClass("show")) {
-                $("#collapseExample").removeClass("show");
-                tabStatus = 0;
-            }
-            else {
-                $("#collapseExample").addClass("show");
-                tabStatus = 1;
-            }
-
-        }
-    </script>
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -91,13 +57,7 @@
                                 </asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-lg-2 justify-content-end">
-                            <div class="form-group">
-                                <br />
-                                <a class="btn btn-primary text-white" id="btnProblem" role="button" onclick="TabChange()">View
-                                </a>
-                            </div>
-                        </div>
+                       
                     </div>
 
                     <asp:Panel runat="server" ID="pnlComplain">
@@ -139,7 +99,7 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="w-100 collapse" id="collapseExample">
+                            <div class="row w-100">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <p><span>Engineer Diagnosis</span></p>
@@ -471,6 +431,18 @@
 
         </ContentTemplate>
     </asp:UpdatePanel>
-
+     <script type="text/javascript">              
+         $(document).ready(function () {
+             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+         });
+         function pageLoaded() {
+            
+             $("input, select").bind("keydown", function (event) {
+                 var k1 = new KeyPress();
+                 k1.textBoxHandler(event);
+             });
+             $('.chzn-select').chosen({ search_contains: true });
+         }
+     </script>
 
 </asp:Content>
