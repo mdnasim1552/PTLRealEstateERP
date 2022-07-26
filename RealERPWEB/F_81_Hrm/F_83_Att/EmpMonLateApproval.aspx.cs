@@ -850,13 +850,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                 double dedday = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsAdj")).Text.Trim());
                                 double lvadj = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabslvadj")).Text.Trim());
                                 string reason = ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsreason")).Text.Trim();
-
+                                double balanceadj = (absday - (aprday + lvadj + dedday));
                                 rowindex = (this.gvmapsapp.PageSize) * (this.gvmapsapp.PageIndex) + i;
                                 dt.Rows[rowindex]["aprday"] = aprday;
                                 dt.Rows[rowindex]["leaveadj"] = lvadj;
-                                dt.Rows[rowindex]["dedday"] = dedday;// (absday - (aprday + lvadj));
+                                dt.Rows[rowindex]["dedday"] =  dedday;// (absday - (aprday + lvadj));
                                 dt.Rows[rowindex]["reason"] = reason;
-                                dt.Rows[rowindex]["balance"] = (absday - (aprday + lvadj + dedday));
+                                dt.Rows[rowindex]["balance"] = balanceadj;
 
                             }
                             break;

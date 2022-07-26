@@ -389,6 +389,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!sirdesc.Value</Value>
+                                  <MarkupType>HTML</MarkupType>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                   </Style>
