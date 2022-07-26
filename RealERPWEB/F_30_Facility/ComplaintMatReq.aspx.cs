@@ -175,8 +175,10 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
                 gvMaterials.DataSource = obj;
                 gvMaterials.DataBind();
-
-                ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
+                if (obj.Count > 0)
+                {
+                    ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
+                }
 
             }
             catch (Exception ex)
