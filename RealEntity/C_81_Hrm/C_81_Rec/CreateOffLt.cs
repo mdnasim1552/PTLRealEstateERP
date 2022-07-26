@@ -105,6 +105,7 @@ namespace RealEntity.C_81_Hrm.C_81_Rec
         public string hrgcod { get; set; }
         public string hrgdesc { get; set; }
         public string sircode { get; set; }
+        //public image sirdesc_img { get; set; }
         public string sirdesc { get; set; }
         public string sirdescbn { get; set; }
         public string sirunit { get; set; }

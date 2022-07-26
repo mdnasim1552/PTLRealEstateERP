@@ -278,7 +278,7 @@ namespace RealERPWEB.F_99_Allinterface
             string checkby = dt3.Rows[0]["reqchkname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["checkdat"].ToString()).ToString("dd-MMM-yyyy");
             string rateproposal = dt3.Rows[0]["reqratename"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["rateidate"].ToString()).ToString("dd-MMM-yyyy"); ;
             string approveby = dt3.Rows[0]["reqaprname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["aprvdat"].ToString()).ToString("dd-MMM-yyyy"); ;
-            string finalapproveby = dt3.Rows[0]["reqreqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
+            string finalapproveby = dt3.Rows[0]["reqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
             if (comcod == "3335")
             {
 
