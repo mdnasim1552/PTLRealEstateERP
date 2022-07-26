@@ -399,6 +399,14 @@
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Name">
+
+                                                     <HeaderTemplate>
+                                                    <asp:Label ID="lblexle" runat="server" Font-Bold="True" Width="100px"
+                                                        Text="Section">
+                                                        <asp:HyperLink ID="hlbtntbCdataExelSP" runat="server"
+                                                            CssClass="btn btn-success ml-2 btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
+                                                    </asp:Label>
+                                                </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvName" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empnam")) %>'
                                                     Width="120px"></asp:Label>
@@ -408,6 +416,11 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Department">
+
+                                      
+
+
+
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdept" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
                                                     Width="120px"></asp:Label>
@@ -787,6 +800,14 @@
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Name">
+                                                         <HeaderTemplate>
+                                                    <asp:Label ID="lblexle2" runat="server" Font-Bold="True" Width="100px"
+                                                        Text="Section">
+                                                        <asp:HyperLink ID="hlbtntbCdataExelSP2" runat="server"
+                                                            CssClass="btn btn-success ml-2 btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
+                                                    </asp:Label>
+                                                </HeaderTemplate>
+
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvNameSumm" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empnam")) %>'
                                                     Width="120px"></asp:Label>
