@@ -127,7 +127,9 @@ namespace RealERPWEB.F_33_Doc
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "initextedit();", true);
             string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5) ?? "";
+
             switch (gcod)
             {
                 case "99901":

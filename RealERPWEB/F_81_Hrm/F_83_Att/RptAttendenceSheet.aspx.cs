@@ -666,11 +666,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                         this.gvMonthlyattSummary.DataSource = dt;
                         this.gvMonthlyattSummary.DataBind();
-
-                        Session["Report1"] = gvMonthlyattSummary;
-                        string frmdate = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM");
-                        Session["ReportName"] = "Attendance _Sheet_" + frmdate;
-                        ((HyperLink)this.gvMonthlyattSummary.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                        if (dt.Rows.Count == 0)
+                            return;
+                            Session["Report1"] = gvMonthlyattSummary;
+                            ((HyperLink)this.gvMonthlyattSummary.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";                     
                     }
                     else
                     {                       
@@ -711,6 +710,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             this.gvMonthlyAtt.DataSource = dt;
                             this.gvMonthlyAtt.DataBind();
                         }
+
+                        if (dt.Rows.Count == 0)
+                            return;
+                        Session["Report1"] = gvMonthlyAtt;
+                        ((HyperLink)this.gvMonthlyAtt.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
                     }
                     break;
 
