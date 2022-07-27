@@ -665,7 +665,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         this.SummaryAttinfo.Visible = true;
 
                         this.gvMonthlyattSummary.DataSource = dt;
-                        this.gvMonthlyattSummary.DataBind();              
+                        this.gvMonthlyattSummary.DataBind();
+
+                        Session["Report1"] = gvMonthlyattSummary;
+                        string frmdate = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM");
+                        Session["ReportName"] = "Attendance _Sheet_" + frmdate;
+                        ((HyperLink)this.gvMonthlyattSummary.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                     }
                     else
                     {                       
