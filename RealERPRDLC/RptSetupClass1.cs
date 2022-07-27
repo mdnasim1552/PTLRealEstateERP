@@ -533,6 +533,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptPrintVocherIntech01": Rpt1a = SetrptPrintVocherIntech01(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherIntech02": Rpt1a = SetrptPrintVocherIntech02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherIntech03": Rpt1a = SetrptPrintVocherIntech03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherGreenwood01": Rpt1a = SetrptPrintVocherGreenwood01(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherGreenwood02": Rpt1a = SetrptPrintVocherGreenwood02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherGreenwood03": Rpt1a = SetrptPrintVocherGreenwood03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -1591,8 +1594,23 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
         }
-
+         
         private static LocalReport SetrptPrintVocherIntech03(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a;
+        }  
+        private static LocalReport SetrptPrintVocherGreenwood01(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        { 
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a;
+        }  
+        private static LocalReport SetrptPrintVocherGreenwood02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        { 
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a;
+        } 
+        private static LocalReport SetrptPrintVocherGreenwood03(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;

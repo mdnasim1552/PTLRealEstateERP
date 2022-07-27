@@ -520,8 +520,10 @@ namespace RealERPWEB.F_17_Acc
 
             //for (int i = 0; i < dt.Rows.Count; i++)
             //{
-            //    dt.Rows[i]["sirdesc"] = Convert_Text_to_Image(dt.Rows[i]["sirdesc"].ToString(), "Bookman Old Style", 20); // Passing appropriate value to Convert_Text_to_Image method 
-            //                                                                                     //picbox.SizeMode = PictureBoxSizeMode.StretchImage;
+            //    string sirdesc = dt.Rows[i]["sirdesc"].ToString();
+            //    //dt.Rows[i]["sirdesc"] = Convert_Text_to_Image(dt.Rows[i]["sirdesc"].ToString(), "Bookman Old Style", 20); // Passing appropriate value to Convert_Text_to_Image method 
+            //    dt.Rows[i]["sirdesc"] = Encoding.UTF8.GetBytes(sirdesc);
+            
             //}
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>();
@@ -535,6 +537,7 @@ namespace RealERPWEB.F_17_Acc
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+
 
 
 
