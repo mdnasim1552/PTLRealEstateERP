@@ -624,7 +624,7 @@ namespace RealERPWEB.F_99_Allinterface
                     reqcheckapp = "Checked App.";
                     reqforward = "Forward";
                     reqapproval = "Req. App.";
-                   // OrderfApproved = "Ord. 1st App";
+                    OrderfApproved = "Ord. 1st App";
                     Order2ndAprv = "Ord. Final App";
                     break;
 
