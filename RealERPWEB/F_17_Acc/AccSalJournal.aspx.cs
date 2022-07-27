@@ -110,7 +110,8 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             string Project = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? "%" + this.txtSrchProject.Text.Trim() + "%" : this.Request.QueryString["prjcode"].ToString() + "%";
             //  string Project = this.txtSrchProject.Text.Trim() + "%";
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETPROJECTNAME", Project, "", "", "", "", "", "", "", "");
+            string Type = this.Request.QueryString["Type"].ToString()== "Complaint"? "Complaint":"";
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETPROJECTNAME", Project, Type, "", "", "", "", "", "", "");
             this.ddlProject.DataTextField = "actdesc";
             this.ddlProject.DataValueField = "actcode";
             this.ddlProject.DataSource = ds1.Tables[0];
