@@ -70,7 +70,8 @@
                             <div class="col-lg-2">
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
-                                    <asp:Label runat="server" ID="lblProjectText" class="form-control"></asp:Label>
+                                    <asp:HiddenField runat="server" ID="lblpactcode" />
+                                     <asp:Label runat="server" ID="lblProjectText" class="form-control"></asp:Label>
                                 </div>
                             </div>
                             <div class="col-lg-2">
