@@ -23,6 +23,7 @@ namespace RealERPWEB.F_12_Inv
     {
         ProcessAccess purData = new ProcessAccess();
         UserManGenAccount objuserman = new UserManGenAccount();
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -1262,6 +1263,23 @@ namespace RealERPWEB.F_12_Inv
 
 
             string mREQNAR = this.txtReqNarr.Text.Trim();
+
+
+
+
+            string compsms = hst["compsms"].ToString();
+            string compmail = hst["compmail"].ToString();
+            string ssl = hst["ssl"].ToString();
+            string compName = hst["comnam"].ToString();
+            string usrid = hst["usrid"].ToString();
+            string depcod = this.ddlDeptCode.SelectedItem.Value.ToString();
+            string subj = "New Indent Requisition";
+            string depname = this.ddlDeptCode.SelectedItem.Text.ToString();
+            string projname = this.ddlProject.SelectedItem.Text.ToString();
+            string reqno= this.lblCurReqNo1.Text.ToString()+ this.txtCurReqNo2.Text.ToString();
+            string createDat =Convert.ToDateTime(System.DateTime.Now).ToString("dd-MMM-yyyy");
+            string createBy= hst["userfname"].ToString();
+
             //string ptype = this.ddlptype.SelectedValue.ToString();
             bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURREQINFO", "PURREQB", mREQNO, mREQDAT, mPACTCODE, mFLRCOD, mREQUSRID,
                 mAPPRUSRID, mAPPRDAT, mEDDAT, mREQBYDES, mAPPBYDES, mMRFNO, mREQNAR, PostedByid, Posttrmid, PostSession, EditByid, Edittrmid, EditSession,
@@ -1271,6 +1289,10 @@ namespace RealERPWEB.F_12_Inv
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
+            }
+            else
+            {
+                this.SendNotificaion( depcod, depname, compsms, compmail, ssl, compName,  subj, projname.Remove(0,14), reqno, createDat, createBy);
             }
 
 
@@ -1438,6 +1460,70 @@ namespace RealERPWEB.F_12_Inv
 
 
         }
+
+        private void SendNotificaion( string deptcode, string depname, string compsms, string compmail, string ssl, string compName,  string subj,string projname,string reqno,string createDat,string createBy)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                DataTable dt = (DataTable)ViewState["tblempinfo"];
+
+                ///GET SMTP AND SMS API INFORMATION
+                #region
+                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+                DataSet dssmtpandmail = purData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                if (dssmtpandmail == null)
+                    return;
+                //SMTP
+                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
+                #endregion
+           
+                var ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETDPTHEAD", deptcode);
+                if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+                    return;
+
+                for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
+                {
+                    string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
+                    string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
+                   
+                    string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
+                    string maildescription = "Dear Sir,<br>Indent Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno+"<br>Created by : "+createBy+"<br>Created Date : "+createDat;
+                    string msgbody = maildescription;
+                    bool result2 = UserNotify.SendNotification(subj, msgbody, suserid);
+                    //if (compsms == "True")
+                    //{
+                    //    SendSmsProcess sms = new SendSmsProcess();
+                    //    string SMSText = "New Loan Request Create Date : " + frmdate + " Effective Date " + todate;//  110200990001 - INDENT ISSUE
+
+                    //}
+                    if (compmail == "True")
+                    {
+                        bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, "", "", depname, compName, tomail, msgbody, isSSL);
+                        if (Result_email == false)
+                        {
+                            string Messagesd = "Indent Requisition updated but ,Email not sent";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        }
+                    }
+         
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string Messagesd = "Requisition has been Fail  " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+            }
+
+        }
+
 
         //private void sendSmsFromAPI(string SMSText, string userid, string frmname)
         //{

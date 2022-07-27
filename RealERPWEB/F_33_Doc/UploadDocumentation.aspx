@@ -34,19 +34,36 @@
     </style>
 
 
+                   
+    <script src="../assets/js/ckeditor/ckeditor.js"></script>
 
-
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script type="text/javascript">
 
-        function initextedit() {
-            tinymce.init({ selector: 'textarea' });
+
+
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $(function () {
+                CKEDITOR.replace('<%=txtDetails1.ClientID %>');
+            });
+            $(function () {
+                 // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                // CKEDITOR.replace('<%=txtDetails1.ClientID%>');  //Nahiod comments 021020019
+                //bootstrap WYSIHTML5 - text editor
+                //$('.textarea').wysihtml5()
+            })
         }
+
+     
     </script>
 
-<script type="text/javascript">
-    tinymce.init({ selector: 'textarea' });
-</script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -204,7 +221,18 @@
             <asp:PostBackTrigger ControlID="lnk_save" />
         </Triggers>
     </asp:UpdatePanel>
-
+     <script>
+         $(function () {
+             CKEDITOR.replace('<%=txtDetails1.ClientID %>');
+            });
+            $(function () {
+                 // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                // CKEDITOR.replace('<%=txtDetails1.ClientID%>');  //Nahiod comments 021020019
+                //bootstrap WYSIHTML5 - text editor
+                //$('.textarea').wysihtml5()
+            })
+     </script>
 
 </asp:Content>
 

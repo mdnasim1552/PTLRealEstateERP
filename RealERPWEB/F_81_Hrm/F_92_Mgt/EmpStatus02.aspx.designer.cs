@@ -123,6 +123,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
 
         /// <summary>
+        /// pnlDesig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlDesig;
+
+        /// <summary>
         /// lblfrmdate control.
         /// </summary>
         /// <remarks>
