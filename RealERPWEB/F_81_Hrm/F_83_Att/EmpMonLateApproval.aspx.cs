@@ -362,9 +362,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     calltype = "EMPDAYADJUSTMENTMAN";
                     break;
 
+                
                 case "3365":
+                case "3368":
                     calltype = "EMPDAYADJUSTMENTBTI";
                     break;
+
+               
+
                 default:
                     calltype = "EMPDAYADJUSTMENT";
                     break;
@@ -491,7 +496,19 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             switch (comcod)
             {
+                //finlay
+                case "3368":
+                    this.grvAdjDay.Columns[6].Visible = false;
+                    this.grvAdjDay.Columns[7].Visible = true;
+                    this.grvAdjDay.Columns[11].Visible = false;
+                    this.grvAdjDay.Columns[12].Visible = true;
+                    this.grvAdjDay.Columns[13].Visible = true;
+                    this.grvAdjDay.Columns[14].Visible = true;
+                    this.grvAdjDay.FooterRow.FindControl("lbtnTotalDay").Visible = false;
+                    break;
                 case "3365":
+                case "3101":
+                
                     this.grvAdjDay.Columns[6].Visible = true;
                     this.grvAdjDay.Columns[7].Visible = true;
                     this.grvAdjDay.Columns[11].Visible = true;
@@ -994,7 +1011,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.gvabsapp02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvabsapp02.DataSource = dt;
                     this.gvabsapp02.DataBind();
-                    Session["Report1"] = gvabsapp02;                  
+                    Session["Report1"] = gvabsapp02; 
+                    
                     ((HyperLink)this.gvabsapp02.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                     break;
 
@@ -1387,6 +1405,56 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     }
                     break;
+
+                case "3368":// Finlay
+                    for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
+                    {
+                        double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
+                        double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
+                        double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
+                        //avable leave
+                      //  double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
+                        double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
+
+                        rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
+                         
+                        double redelay = delayday - Aprvday;
+                        double adjElLev = 0.00;
+                        double calculateday = Convert.ToDouble(Convert.ToInt32(redelay) / 3);
+                        double ttllv = 0.00;
+                         
+
+
+                        if (balernlv < calculateday)
+                        {
+                            dedday = calculateday;
+                            adjElLev = 0;
+                        }
+                        else
+                        {
+                            adjElLev = calculateday;
+                            dedday = 0;
+
+                        }
+
+                        // LWP Dedctiaon
+                        //if (adjElLev == 0)
+                        //{
+                        //    dedday = adjElLev;
+                        //}
+
+                        double ttdelv = adjElLev + dedday;
+                        dt.Rows[rowindex]["delday"] = delayday;
+                        dt.Rows[rowindex]["aprday"] = Aprvday;
+                        dt.Rows[rowindex]["dedday"] = dedday;
+                        dt.Rows[rowindex]["leaveadj"] = 0;//Aprvday == 0? 0: adjLev;
+                        dt.Rows[rowindex]["leaveadjel"] = adjElLev;// Aprvday == 0 ? 0 : adjElLev;
+                        dt.Rows[rowindex]["ttdelv"] = ttdelv;
+
+                    }
+                    break;
+
+
 
                 default:
                     for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
