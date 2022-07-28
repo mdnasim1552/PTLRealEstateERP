@@ -8,8 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <style>
-    </style>
+    
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -961,7 +960,7 @@
                                             <asp:TemplateField HeaderText="Card #">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvCardnoearnabs" runat="server" Height="16px"
+                                                    <asp:Label ID="lblgvCardnoearnabss" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                         Width="50px"></asp:Label>
                                                 </ItemTemplate>
