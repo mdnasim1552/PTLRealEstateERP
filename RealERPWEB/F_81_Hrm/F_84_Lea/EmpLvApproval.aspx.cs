@@ -1517,6 +1517,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
                     string phone = ds.Tables[0].Rows[i]["phone"].ToString();
                     string tomail = ds.Tables[0].Rows[i]["mail"].ToString();
+                    //string tomail = "inforakib831@gmail.com";
                     string isrole = (roletype == "SUP" ? "DPT" :
                                     roletype == "DPT" ? "MGT" : "MGT");
 
@@ -1525,7 +1526,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string totalpath = uhostname + currentptah;
 
                     string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>"+ htmtableboyd;
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
 
