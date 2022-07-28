@@ -124,6 +124,7 @@ namespace RealERPWEB.F_30_Facility
                     lblSiteVisisted.Text = row["sitevisiteddate"].ToString();
                     lblWarranty.Text = row["warrantydesc"].ToString();
                     lblWarrantyCode.Text = row["warranty"].ToString();
+                    this.lblpactcode.Value= row["pactcode"].ToString();
                 }
                 List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
                 List<EClass_Complain_List> obj1 = dt03.DataTableToList<EClass_Complain_List>();
@@ -145,7 +146,7 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Material_List> obj = new List<EClass_Material_List>();
                 string comcod = GetComCode();
                 string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETBUDGETINFO", dgno, "", "", "", "", "", "", "", "", "", "");
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETBUDGETINFOMATREQ", dgno, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
@@ -175,6 +176,11 @@ namespace RealERPWEB.F_30_Facility
                 List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
                 gvMaterials.DataSource = obj;
                 gvMaterials.DataBind();
+                if (obj.Count > 0)
+                {
+                    ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
+                }
+
             }
             catch (Exception ex)
             {
@@ -229,7 +235,7 @@ namespace RealERPWEB.F_30_Facility
             string Posttrmid = Terminal;
             string PostSession = Sessionid ;
             string PostedDat = Date;
-            string pactcode = "156100010001";
+            string pactcode = "1561"+ASTUtility.Right(this.lblpactcode.Value,8);
             string flrcod = "000";
             string requsrid = "";
             string mrfno = "Dg-"+Request.QueryString["DgNo"].ToString();

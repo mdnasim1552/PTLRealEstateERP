@@ -59,11 +59,28 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETREQUESTTYPE", "", "");
             if (ds == null)
                 return;
-            this.ddlReqType.DataTextField = "hrgdesc";
-            this.ddlReqType.DataValueField = "unit";
-            this.ddlReqType.DataSource = ds.Tables[0];
-            this.ddlReqType.DataBind();
-   
+
+
+
+            if (comcod == "3365")
+            {
+                DataView dv = new DataView();
+                dv.Table = ds.Tables[0];
+                dv.RowFilter = "hrgcod = '94803' or hrgcod = '94804' or hrgcod = '94805'";
+                this.ddlReqType.DataTextField = "hrgdesc";
+                this.ddlReqType.DataValueField = "unit";
+                this.ddlReqType.DataSource = dv;
+                this.ddlReqType.DataBind();
+            }
+            else
+            {
+                this.ddlReqType.DataTextField = "hrgdesc";
+                this.ddlReqType.DataValueField = "unit";
+                this.ddlReqType.DataSource = ds.Tables[0];
+                this.ddlReqType.DataBind();
+
+            }
+
         }
         private void data_Bind()
         {

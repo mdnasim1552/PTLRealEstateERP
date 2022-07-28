@@ -194,6 +194,9 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay03.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay02.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay05.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti.rdlc" />
@@ -205,6 +208,9 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherIntech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood01.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />

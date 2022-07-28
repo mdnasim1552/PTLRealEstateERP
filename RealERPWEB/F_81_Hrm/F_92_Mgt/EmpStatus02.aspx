@@ -166,7 +166,7 @@
 
                     <div class="row">
 
-                        <%-- <div id="pnlDesig" runat="server">--%>
+                         <div id="pnlDesig" runat="server">
 
                        <div class="col-md-2">
                             <div class="form-group">
@@ -202,7 +202,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <%--   </div>--%>
+                           </div>
 
 
                     </div>
@@ -1457,6 +1457,17 @@
                                                     <asp:Label ID="lblgvreinsign" runat="server"
                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "resdat")).ToString("dd-MMM-yyyy") %>'
                                                         Width="140px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                            </asp:TemplateField>
+
+                                            
+                                            <asp:TemplateField HeaderText="Resign Type">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblrestype" runat="server"
+                                                        Text='<%# DataBinder.Eval(Container.DataItem, "septype") %>'
+                                                    ></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />

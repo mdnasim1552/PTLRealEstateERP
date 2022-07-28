@@ -30,6 +30,7 @@ namespace RealERPWEB.F_30_Facility
                 btnOKClick.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
                 if (Request.QueryString["ComplNo"] != null)
                 {
+                    lblcomplno.Text = Request.QueryString["ComplNo"].ToString();
                     EditFunctionality();
                 }
             }
@@ -94,6 +95,7 @@ namespace RealERPWEB.F_30_Facility
         {
             try
             {
+                ViewState.Remove("tblproject");
                 string comcod = GetComCode();
                 DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETPROJECTDDL", "", "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
@@ -102,6 +104,8 @@ namespace RealERPWEB.F_30_Facility
                 ddlProject.DataTextField = "actdesc";
                 ddlProject.DataValueField = "actcode";
                 ddlProject.DataBind();
+                ViewState["tblproject"] = ds.Tables[0];
+                ds.Dispose();
             }
             catch (Exception ex)
             {
@@ -110,15 +114,19 @@ namespace RealERPWEB.F_30_Facility
         }
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string projectcode = ddlProject.SelectedValue.ToString();
-            loadCustomer(projectcode);
+           //string projectcode = ddlProject.SelectedValue.ToString();
+            loadCustomer();
         }
-        private void loadCustomer(string projectcode)
+        private void loadCustomer()
         {
             try
             {
+                string actcode = this.ddlProject.SelectedValue.ToString();
+                DataTable dt = (DataTable)ViewState["tblproject"];
+                string mapactcode = (dt.Select("actcode='" + actcode + "'"))[0]["mapactcode"].ToString();
+
                 string comcod = GetComCode();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCUSTOMERDDL", projectcode, "", "", "", "", "", "", "", "", "", "");
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCUSTOMERDDL", mapactcode, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
                 ddlCustomer.DataSource = ds.Tables[0];
@@ -370,7 +378,28 @@ namespace RealERPWEB.F_30_Facility
 
         protected void lnkProceed_Click(object sender, EventArgs e)
         {
-
+            string complno = lblcomplno.Text;
+            if (complno == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Please Save to Proceed to Next Step" + "');", true);
+            }
+            else
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComCode();
+                string userId = hst["usrid"].ToString();
+                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEENGRFLAG", complno, "", "", "", "", "", "", "", "", "", "", "",
+                                         "", "", "", "", "", "", "", "", "", "", userId);
+                if (resultflag)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"C-{complno} proceeded to Engr. Check" + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
+            }
+           
 
         }
 
@@ -424,10 +453,7 @@ namespace RealERPWEB.F_30_Facility
                             else
                             {
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"C-{dt.Rows[0]["complno"].ToString()} - Updated Successful" + "');", true);
-                            }
-                            if (complno == "0")
-                            {
-                                ClearPage();
+                                lblcomplno.Text = dt.Rows[0]["complno"].ToString();
                             }
                         }
                         else

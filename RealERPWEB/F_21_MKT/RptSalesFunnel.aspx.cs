@@ -273,9 +273,7 @@ namespace RealERPWEB.F_21_MKT
             this.ddlSource.SelectedValue = "000000000000";
 
 
-            //Lead Status
-
-           
+            //Lead Status           
             dv.RowFilter = ("gcod like '95%'");
             this.ddlleadstatus.DataTextField = "gdesc";
             this.ddlleadstatus.DataValueField = "gcod";
@@ -546,6 +544,9 @@ namespace RealERPWEB.F_21_MKT
             public decimal win { get; set; }
         }
 
-       
+        protected void ddlPrefLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
