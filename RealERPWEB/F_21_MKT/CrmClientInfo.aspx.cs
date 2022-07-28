@@ -4558,8 +4558,19 @@ namespace RealERPWEB.F_21_MKT
                 this.gvSummary.Columns[24].Visible = true;
 
             }
+            if (rtype == "tdt")
+            {
+                this.gvSummary.Columns[26].Visible = true;
+                this.gvSummary.Columns[26].HeaderText = "Today's <br> Followup";
+                this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
+                this.gvSummary.Columns[17].Visible = true;
+
+
+            }
             else
             {
+                this.gvSummary.Columns[26].HeaderText = "Followup";
+                this.gvSummary.Columns[8].HeaderText = "Next Followup <br> Date";
                 this.gvSummary.Columns[24].Visible = false;
             }
             this.Data_Bind();
