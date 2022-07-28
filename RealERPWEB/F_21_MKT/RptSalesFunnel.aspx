@@ -69,7 +69,7 @@
         $('.chzn-container').css('width', '250px');
 
 
-        function pageLoaded() {             
+        function pageLoaded() {
             //$('.datepicker').datepicker({
             //    format: 'mm/dd/yyyy',
             //});
@@ -129,7 +129,7 @@
                 // alert(gtype); 
 
                 //var rbtn = $("input[name='ctl00$ContentPlaceHolder1$rbtnlst']:checked").val();;
-               
+
 
 
                 var saldata = JSON.parse(data);
@@ -148,7 +148,7 @@
                 var leadlist = JSON.parse(data12);// Source TEam wise leads deatails
 
 
-               
+
                 var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
                 var leadstatus = $('#<%=this.ddlleadstatus.ClientID%>').val();
 
@@ -1625,10 +1625,20 @@
                                 </div>
                                 <asp:DropDownList ID="ddlleadstatus" data-placeholder="Choose Lead Status.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlleadstatus_SelectedIndexChanged">
                                 </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-0 mt-2">
+                            <div class="input-group input-group-alt profession-slect srDiv">
                                 <div class="input-group-prepend">
-                                    <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
-
+                                    <button class="btn btn-secondary" type="button">Pref. Location</button>
                                 </div>
+                                <asp:DropDownList ID="ddlPrefLocation" data-placeholder="Choose Pref. Location.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPrefLocation_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm" Style="margin-top:10px;">Ok</asp:LinkButton>
                             </div>
                         </div>
                         <div class="col-md-1 p-0 mt-2 pading5px">
@@ -1804,7 +1814,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        
+
                                         <asp:TemplateField HeaderText="Source">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSource" runat="server" Height="16px"

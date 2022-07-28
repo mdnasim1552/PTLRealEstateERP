@@ -388,11 +388,13 @@ namespace RealERPWEB.F_14_Pro
                 string qutdate = drr["qutdate"].ToString();
                 string worktime = drr["worktime"].ToString();
                 string notes = drr["notes"].ToString();
+                string goodwill = drr["goodwill"].ToString();
+                string matavailable = drr["matavailable"].ToString();
+                string delcon = drr["delcon"].ToString();
+                string ait = drr["ait"].ToString();
 
 
-
-
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "INSERTORUPDATEMSURVEY02", mMSRNO, ssircode, discount, ccharge, payterm, qutdate, worktime, notes, "", "", "", "", "", "");
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "INSERTORUPDATEMSURVEY02", mMSRNO, ssircode, discount, ccharge, payterm, qutdate, worktime, notes, goodwill, matavailable, delcon, ait, "", "");
             }
 
 
@@ -512,6 +514,10 @@ namespace RealERPWEB.F_14_Pro
                 string payterm = ((TextBox)this.gvterm.Rows[j].FindControl("txtgvpayterm")).Text.Trim();
                 string worktime = ((TextBox)this.gvterm.Rows[j].FindControl("txtworkline")).Text.Trim();
                 string notes = ((TextBox)this.gvterm.Rows[j].FindControl("txtNotes")).Text.Trim();
+                string goodwill = ((TextBox)this.gvterm.Rows[j].FindControl("txtgoodwill")).Text.Trim();
+                string matavailable = ((TextBox)this.gvterm.Rows[j].FindControl("txtmatavailable")).Text.Trim();
+                string delcon = ((TextBox)this.gvterm.Rows[j].FindControl("txtdelcon")).Text.Trim();
+                string ait = ((TextBox)this.gvterm.Rows[j].FindControl("txtait")).Text.Trim();
 
                 string qtdate = Convert.ToDateTime(((TextBox)this.gvterm.Rows[j].FindControl("txtCurQuTDate")).Text).ToString("dd-MMM-yyyy");
 
@@ -521,10 +527,11 @@ namespace RealERPWEB.F_14_Pro
                 tbl1.Rows[j]["qutdate"] = qtdate;
                 tbl1.Rows[j]["worktime"] = worktime;
                 tbl1.Rows[j]["notes"] = notes;
-
-
+                tbl1.Rows[j]["goodwill"] = goodwill;
+                tbl1.Rows[j]["matavailable"] = matavailable;
+                tbl1.Rows[j]["delcon"] = delcon;
+                tbl1.Rows[j]["ait"] = ait;
             }
-
 
             Session["tblterm"] = tbl1;
 
@@ -636,6 +643,10 @@ namespace RealERPWEB.F_14_Pro
                     drt["qutdate"] = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     drt["worktime"] = "";
                     drt["notes"] = "";
+                    drt["goodwill"] = "";
+                    drt["matavailable"] = "";
+                    drt["delcon"] = "";
+                    drt["ait"] = "";
                     tblt.Rows.Add(drt);
 
                 }
@@ -645,12 +656,7 @@ namespace RealERPWEB.F_14_Pro
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 }
-
             }
-
-
-
-
             Session["tblt01"] = (DataTable)tbl1;
             Session["tblterm"] = (DataTable)tblt;
             this.Payterm_DataBind();
@@ -1454,9 +1460,8 @@ namespace RealERPWEB.F_14_Pro
             //   string Specification = this.ddlSpecificationms.SelectedItem.Text.Trim().ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
             LocalReport Rpt1 = new LocalReport();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEY02", mMSRNo, "", "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEY02FNL", mMSRNo, "", "", "", "", "", "", "", "");
             string narration = this.txtMSRNarr.Text.Trim();
             string surveyNo = this.lblCurMSRNo1.Text + this.txtCurMSRNo2.Text;
             /// SP_ENTRY_PURCHASE_01 '3101','RPTMARKETSURVEY02','MSR20180200003', '',''
@@ -1480,7 +1485,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
                 Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement & Supplier Selection Form"));
                 Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
@@ -1503,7 +1508,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
                 Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement & Supplier Selection Form"));
                 Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
@@ -1526,7 +1531,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
                 Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement & Supplier Selection Form"));
                 Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
                 Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
 
