@@ -141,6 +141,15 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList ddlleadstatus;
 
         /// <summary>
+        /// ddlPrefLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrefLocation;
+
+        /// <summary>
         /// LinkButton1 control.
         /// </summary>
         /// <remarks>
