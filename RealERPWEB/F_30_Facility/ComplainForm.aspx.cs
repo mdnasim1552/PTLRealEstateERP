@@ -123,7 +123,7 @@ namespace RealERPWEB.F_30_Facility
             {
                 string actcode = this.ddlProject.SelectedValue.ToString();
                 DataTable dt = (DataTable)ViewState["tblproject"];
-                string mapactcode = (dt.Select("actcode='" + actcode + "'"))[0]["mapactocde"].ToString();
+                string mapactcode = (dt.Select("actcode='" + actcode + "'"))[0]["mapactcode"].ToString();
 
                 string comcod = GetComCode();
                 DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCUSTOMERDDL", mapactcode, "", "", "", "", "", "", "", "", "", "");

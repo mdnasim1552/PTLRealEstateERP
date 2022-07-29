@@ -166,7 +166,7 @@
 
                     <div class="row">
 
-                        <%-- <div id="pnlDesig" runat="server">--%>
+                         <div id="pnlDesig" runat="server">
 
                        <div class="col-md-2">
                             <div class="form-group">
@@ -202,7 +202,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <%--   </div>--%>
+                           </div>
 
 
                     </div>

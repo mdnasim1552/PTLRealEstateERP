@@ -738,7 +738,7 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide()
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
+                       //$(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();

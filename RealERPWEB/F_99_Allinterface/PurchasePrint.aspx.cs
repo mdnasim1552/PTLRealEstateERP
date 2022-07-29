@@ -3988,10 +3988,10 @@ namespace RealERPWEB.F_99_Allinterface
                         dat2 = _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString();
                         dat3 = _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
-                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString();
-                        dat4 = _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
-                        dat5 = _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString();
+                        dat4 = _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign5 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordfappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString(); //_ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
+                        dat5 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordfappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString(); 
                         sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString();
                         dat6 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
 
