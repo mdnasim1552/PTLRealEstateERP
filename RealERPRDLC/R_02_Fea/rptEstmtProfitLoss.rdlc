@@ -718,6 +718,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -748,7 +749,6 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.90208in</Top>
-            <Left>0in</Left>
             <Height>0.44791in</Height>
             <Width>7.84299in</Width>
             <Style>
@@ -1057,8 +1057,8 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox63</rd:DefaultName>
-            <Top>1.57084in</Top>
-            <Left>4.78545in</Left>
+            <Top>1.39166in</Top>
+            <Left>4.44941in</Left>
             <Height>0.2in</Height>
             <Width>3.05754in</Width>
             <ZIndex>2</ZIndex>
@@ -1982,8 +1982,8 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.09549in</Top>
-            <Height>0.74166in</Height>
-            <Width>7.84506in</Width>
+            <Height>0.74167in</Height>
+            <Width>7.84507in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -2032,7 +2032,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
         <Height>2.28472in</Height>
         <Style />
       </Body>
-      <Width>7.85549in</Width>
+      <Width>7.84507in</Width>
       <Page>
         <PageHeader>
           <Height>0.69667in</Height>
