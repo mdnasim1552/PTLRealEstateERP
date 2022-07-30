@@ -267,7 +267,15 @@ namespace RealERPWEB.F_02_Fea
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-            DataTable dt = (DataTable)Session["tblfeaprj"];
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string fdate = this.txtCurDate.Text;
+            // string Code = (this.rbtnList1.SelectedIndex == 1) ? "infcod like '51%'" : (this.rbtnList1.SelectedIndex == 2) ? "infcod like '5[2-5]%'" : "infcod like '5[67]%'";
+            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "PRINTGETESTREPORT", pactcode, fdate, "", "", "", "", "", "", "");
+
+            if (ds3 == null)
+                return;
+
+            DataTable dt = ds3.Tables[0];
             DataTable dt2 = (DataTable)Session["tblagin"];
 
             var list = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
