@@ -748,7 +748,6 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.90208in</Top>
-            <Left>0in</Left>
             <Height>0.44791in</Height>
             <Width>7.84299in</Width>
             <Style>
@@ -1026,53 +1025,6 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="Textbox63">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Break even Sale Price : </Value>
-                    <Style>
-                      <FontFamily>cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>Brown</Color>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Parameters!salprice.Value</Value>
-                    <Style>
-                      <FontFamily>cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <Color>Brown</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox63</rd:DefaultName>
-            <Top>1.57084in</Top>
-            <Left>4.78545in</Left>
-            <Height>0.2in</Height>
-            <Width>3.05754in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Color>LightGrey</Color>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Tablix Name="Tablix6">
             <TablixBody>
               <TablixColumns>
@@ -1982,9 +1934,9 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.09549in</Top>
-            <Height>0.74166in</Height>
-            <Width>7.84506in</Width>
-            <ZIndex>3</ZIndex>
+            <Height>0.74167in</Height>
+            <Width>7.84507in</Width>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2017,7 +1969,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
             <Left>0.01389in</Left>
             <Height>0.19167in</Height>
             <Width>3.67311in</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2032,7 +1984,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
         <Height>2.28472in</Height>
         <Style />
       </Body>
-      <Width>7.85549in</Width>
+      <Width>7.84507in</Width>
       <Page>
         <PageHeader>
           <Height>0.69667in</Height>
