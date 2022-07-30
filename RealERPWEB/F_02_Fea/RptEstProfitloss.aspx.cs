@@ -276,10 +276,13 @@ namespace RealERPWEB.F_02_Fea
                 return;
 
             DataTable dt = ds3.Tables[0];
+            DataTable dt3= ds3.Tables[1];
+            DataTable dt4= ds3.Tables[2];
             DataTable dt2 = (DataTable)Session["tblagin"];
 
             var list = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
             var list2 = dt2.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>();
+            var list3 = dt3.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
 
             string unit = lblUnitName.Text.ToString();
             string udesc = lblunitsizeval.Text.ToString();
@@ -295,9 +298,16 @@ namespace RealERPWEB.F_02_Fea
             string salprice =this.lblsalecore.Text.ToString();
 
 
+            string days1 = "", days2 = "", amt1 = "", amt2 = "";
+            days1 = dt4.Rows[0]["days1"].ToString();
+            amt1 = Convert.ToDouble(dt4.Rows[0]["breakest"]).ToString("#,##0.00;(#,##0.00); ");
+            days2 = dt4.Rows[0]["days2"].ToString();
+            amt2 = Convert.ToDouble(dt4.Rows[0]["breakactual"]).ToString("#,##0.00;(#,##0.00); ");
+
+
             LocalReport Rpt1 = new LocalReport();
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, list2, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, list2, list3);
             Rpt1.EnableExternalImages = true;
 
             Rpt1.SetParameters(new ReportParameter("unit", unit));
@@ -310,14 +320,16 @@ namespace RealERPWEB.F_02_Fea
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("actualsal", actualsal));
 
-
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Estimated Profit & Loss A/c"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Forcusted / Estimated Profit & Loss Account"));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("salprice", salprice));
-
+            Rpt1.SetParameters(new ReportParameter("days1", days1));
+            Rpt1.SetParameters(new ReportParameter("amt1", amt1));
+            Rpt1.SetParameters(new ReportParameter("days2", days2));
+            Rpt1.SetParameters(new ReportParameter("amt2", amt2));
 
 
             Session["Report1"] = Rpt1;
