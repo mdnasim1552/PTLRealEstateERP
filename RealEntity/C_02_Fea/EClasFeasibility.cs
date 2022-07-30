@@ -181,6 +181,7 @@ namespace RealEntity.C_02_Fea
 
         public class ProfitAndLoss
         {
+            public string grp { get; set; }
             public string comcod { get; set; }
             public string pactcode { get; set; }
             public string estgcod { get; set; }
