@@ -135,7 +135,23 @@ namespace RealERPWEB.F_17_Acc
             string callType = "";
             if (schdesc.Trim().Length == 0)
             {
-                callType = "GETUNITNAME";
+               
+
+                string Type = this.Request.QueryString["Type"].ToString() == "Complaint" ? "Complaint" : "";
+                switch (Type)
+                {
+                    case "Complaint":
+                        callType = "GETUNITNAMECOM";
+                        break;
+
+                    default:
+                        callType = "GETUNITNAME";
+                        break;
+
+
+
+
+                }
             }
             else
             {
@@ -254,13 +270,170 @@ namespace RealERPWEB.F_17_Acc
         {
             this.GetUnitName();
         }
-
+       
 
         protected void lnkFinalUpdate_Click(object sender, EventArgs e)
         {
+
+            string Type = this.Request.QueryString["Type"].ToString();
+            switch (Type)
+            {
+                case "Complaint":
+                    this.UpdateComService();
+                    break;
+
+                default:
+                    this.UpdateSale();
+                    break;
+
+
+
+            }
+
+          
+
+        }
+
+
+
+        private void UpdateComService()
+        {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
+            // DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
 
 
+
+            if (accData.ToDramt != accData.ToCramt)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Debit Amount must be Equal Credit Amount";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+
+            }
+
+
+            string dgno = this.Request.QueryString["DgNo"].ToString();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["trmid"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Postdat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            //string vounum = this.txtcurrentvou.Text.Trim() + this.txtCurrntlast6.Text.Trim();
+
+            string voudat = this.txtdate.Text.Substring(0, 11);
+            this.ibtnvounu_Click(null, null);
+            string vounum = this.txtcurrentvou.Text.Trim().Substring(0, 2) + voudat.Substring(7, 4) +
+                                   this.txtcurrentvou.Text.Trim().Substring(2, 2) + this.txtCurrntlast6.Text.Trim();
+            string refnum = this.txtRefNum.Text.Trim();
+            string srinfo = this.txtSrinfo.Text;
+            string vounarration1 = this.txtNarration.Text.Trim();
+            string vounarration2 = (vounarration1.Length > 200 ? vounarration1.Substring(200) : "");
+            vounarration1 = (vounarration1.Length > 200 ? vounarration1.Substring(0, 200) : vounarration1);
+            string voutype = "Journal Voucher";
+            string cactcode = "000000000000";
+            string vtcode = "98";
+            string edit = "";
+
+
+
+            //Existing   Purchase No              
+
+             DataSet   ds4 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "EXISTINGCOMSERVOUCHER", dgno, "", "", "", "", "", "", "", "");
+            if (ds4.Tables[0].Rows.Count > 0)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Voucher No already Existing in Sale Journal";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+
+            }
+              
+           
+
+            try
+            {
+                //-----------Update Transaction B Table-----------------//
+                bool resultb = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE", vounum, voudat, refnum, srinfo,
+                        vounarration1, vounarration2, voutype, vtcode, edit, userid, Terminal, Sessionid, Postdat, "", "");
+
+
+
+
+                if (!resultb)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                //-----------Update Transaction A Table-----------------//
+
+
+                for (int i = 0; i < dgv2.Rows.Count; i++)
+                {
+                    string actcode = ((Label)this.dgv2.Rows[i].FindControl("lblAccCod")).Text.Trim();
+                    string rescode = ((Label)this.dgv2.Rows[i].FindControl("lblResCod")).Text.Trim();
+                    string spclcode = ((Label)this.dgv2.Rows[i].FindControl("lblSpclCod")).Text.Trim();
+                    string trnqty = "0";
+                    double Dramt = Convert.ToDouble("0" + ((Label)this.dgv2.Rows[i].FindControl("lblgvDrAmt")).Text.Trim());
+                    double Cramt = Convert.ToDouble("0" + ((Label)this.dgv2.Rows[i].FindControl("lblgvCrAmt")).Text.Trim());
+                    string trnamt = Convert.ToString(Dramt - Cramt);
+                    string trnremarks = "";
+                    bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE", vounum,
+                            actcode, rescode, cactcode, voudat, trnqty, trnremarks, vtcode, trnamt, spclcode, "", "", "", "", "");
+                    if (!resulta)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+                    }
+
+                    if (ASTUtility.Left(actcode, 2) == "18")
+                    {
+                        resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATESERVICEJOURNAL", dgno, vounum, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                        if (!resulta)
+                        {
+                            ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            return;
+                        }
+
+                    }
+                }
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Sales Journal";
+                    string eventdesc = "Update Journal";
+                    string eventdesc2 = vounum;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+                //this.lblmsg.Text=@"<SCRIPT language= "JavaScript"  > window.open('RptViewer.aspx');</script>";
+                this.lnkFinalUpdate.Enabled = false;
+                //this.txtcurrentvou.Enabled = false;
+                //this.txtCurrntlast6.Enabled = false;
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+
+        }
+        private void UpdateSale()
+        {
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
@@ -342,10 +515,10 @@ namespace RealERPWEB.F_17_Acc
                 //-----------Update Transaction B Table-----------------//
                 bool resultb = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE", vounum, voudat, refnum, srinfo,
                         vounarration1, vounarration2, voutype, vtcode, edit, userid, Terminal, Sessionid, Postdat, "", "");
-               
-                
-                
-                
+
+
+
+
                 if (!resultb)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
@@ -375,7 +548,7 @@ namespace RealERPWEB.F_17_Acc
                     }
 
                     if (ASTUtility.Left(actcode, 2) == "18")
-                    {                   
+                    {
                         resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "INORUPSALJOURNAL", actcode, rescode, vounum, schcode, "", "", "", "", "", "", "", "", "", "", "");
                         if (!resulta)
                         {
