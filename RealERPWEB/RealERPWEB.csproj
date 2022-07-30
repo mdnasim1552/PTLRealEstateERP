@@ -3664,18 +3664,6 @@
     <Content Include="SearchMenu.aspx" />
     <Content Include="Service\UserService.asmx" />
     <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="StepofOperation.aspx" />
     <Content Include="StepofOperationNew.aspx" />
     <Content Include="S_05_MyPage\RptEmpMonthWiseEva03.asmx" />
@@ -12128,6 +12116,8 @@
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />
+    <Folder Include="SqlServerTypes\x64\" />
+    <Folder Include="SqlServerTypes\x86\" />
     <Folder Include="SupWorkOreder\" />
     <Folder Include="tinymce\" />
     <Folder Include="Upload\NewFolder1\" />
