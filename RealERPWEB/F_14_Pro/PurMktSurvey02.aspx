@@ -550,6 +550,54 @@
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Good WIll">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgoodwill" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "goodwill").ToString() %>'
+                                                Style="text-align: left; background-color: Transparent"
+                                                Width="80px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Material Availability">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtmatavailable" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "matavailable").ToString() %>'
+                                                Style="text-align: left; background-color: Transparent"
+                                                Width="80px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Delivery Condition">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtdelcon" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "delcon").ToString() %>'
+                                                Style="text-align: left; background-color: Transparent"
+                                                Width="80px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="AIT">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtait" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "ait").ToString() %>'
+                                                Style="text-align: left; background-color: Transparent"
+                                                Width="80px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
