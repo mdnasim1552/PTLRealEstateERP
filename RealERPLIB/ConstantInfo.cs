@@ -1763,14 +1763,16 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "5103000", "5103003", "F_14_Pro", "RptPaymetDueAllPrj", "", "Land Owner Payment Dues", "Budget-Land", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "5151000", "5151001", "F_99_Allinterface", "BudgetInterface", "", "Budget", "Budget-Interface", "False", "False", "False", "False" }); ;
-            
+
             #endregion
 
             //30. Facility Management
 
             #region Facility Management
 
-           tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", "Complaint Management", "Complaint-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3002000", "3002001", "F_23_CR", "CustOthMoneyReceipt?", "Type=Service", "Collection  Other's", "Complaince Management", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", " Complaint-Interface", "Complaince Management", "False", "False", "False", "False" });
 
 
             #endregion
@@ -8731,7 +8733,8 @@ namespace RealERPLIB
 
 
             mnuTbl1.Rows.Add(new Object[] { "0300000000", "Entry Level", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000000", "01. Complaint-Interface", "F_99_Allinterface/RptFacilityInterface", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "030100000", "03. Collection ", "F_23_CR/CustOthMoneyReceipt?Type=Service", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000000", "", "", "", true, "" });
