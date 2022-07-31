@@ -193,7 +193,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lblLeave.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tlvday"]).ToString("#, ##0;(#, ##0);");
             this.lblAbsent.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tabsday"]).ToString("#, ##0;(#, ##0);");
             this.lblHoliday.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["thday"]).ToString("#, ##0;(#, ##0);");
-            if (comcod == "3366")
+           if (comcod == "3366") 
             {
                 if (ds1.Tables[3].Rows.Count != 0)
                 {
