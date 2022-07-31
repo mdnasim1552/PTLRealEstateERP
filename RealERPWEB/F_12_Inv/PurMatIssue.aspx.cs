@@ -142,7 +142,8 @@ namespace RealERPWEB.F_12_Inv
             string comcod = this.GetCompCode();
             this.txtCurISSDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string srchproject = "%" + this.txtsrchproject.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", srchproject, "", "", "", "", "", "", "", "");
+            string isComplain = Request.QueryString["Type"].ToString()=="ComplainMgt" ? "Complain" : "";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", srchproject, isComplain, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlprjlist.DataTextField = "actdesc1";
@@ -345,7 +346,8 @@ namespace RealERPWEB.F_12_Inv
             string qgenno = this.Request.QueryString["genno"] ?? "";
             string genno = (qgenno.Length == 0 ? "%" : this.Request.QueryString["genno"].ToString()) + "%";
             string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPREVMISSUELIST", CurDate1, genno, "", "", "", "", "", "", "");
+            string pactcodetype = Request.QueryString["Type"].ToString()=="ComplainMgt"?"1561":"16";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPREVMISSUELIST", CurDate1, genno, pactcodetype, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
