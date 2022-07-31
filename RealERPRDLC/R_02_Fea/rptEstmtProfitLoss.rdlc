@@ -207,10 +207,10 @@
                   <Width>1.08432in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.15723in</Width>
+                  <Width>1.12121in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.02182in</Width>
+                  <Width>1.05784in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.86532in</Width>
@@ -565,7 +565,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.75416in</Height>
+                  <Height>0.67083in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -821,10 +821,25 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>If we are completed sales today ,than our Saving/(Excess) (5-6)</Value>
+                                  <Value>If we are completed sales today ,than our Saving/(Excess)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value> (5-6)</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1081,7 +1096,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!estcost.Value,"#,##0.00;(#,##0.00);  ")</Value>
+                                  <Value>=Format(Fields!estcost.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1122,7 +1137,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!actual.Value,"#,##0.00;(#,##0.00);  ")</Value>
+                                  <Value>=Format(Fields!actual.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1163,7 +1178,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!balamt.Value,"#,##0.00;(#,##0.00);  ")</Value>
+                                  <Value>=Format(Fields!balamt.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1261,10 +1276,10 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.95208in</Top>
+            <Top>0.92708in</Top>
             <Left>0.025in</Left>
-            <Height>1.16458in</Height>
-            <Width>8.06857in</Width>
+            <Height>1.08125in</Height>
+            <Width>8.0686in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1576,7 +1591,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>3.18334in</Top>
+            <Top>3.02084in</Top>
             <Left>0.0375in</Left>
             <Height>0.6625in</Height>
             <Width>3.9353in</Width>
@@ -2643,10 +2658,10 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.09549in</Top>
+            <Top>0.12049in</Top>
             <Left>0.025in</Left>
             <Height>0.74167in</Height>
-            <Width>8.03257in</Width>
+            <Width>8.03258in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -2676,7 +2691,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox314</rd:DefaultName>
-            <Top>4.19514in</Top>
+            <Top>3.83264in</Top>
             <Height>0.19167in</Height>
             <Width>3.9381in</Width>
             <ZIndex>3</ZIndex>
@@ -2709,7 +2724,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                   <Width>1.14375in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.13542in</Width>
+                  <Width>1.08859in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -3112,7 +3127,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!estcost.Value,"#,##0.00;(#,##0.00);  ")</Value>
+                                  <Value>=Format(Fields!estcost.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3153,7 +3168,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!actual.Value,"#,##0.00;(#,##0.00);  ")</Value>
+                                  <Value>=Format(Fields!actual.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3194,7 +3209,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!balamt.Value,"#,##0.00;(#,##0.00);  ")</Value>
+                                  <Value>=Format(Fields!balamt.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3254,10 +3269,10 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet3</DataSetName>
-            <Top>2.2125in</Top>
+            <Top>2.0875in</Top>
             <Left>0.03889in</Left>
             <Height>0.84167in</Height>
-            <Width>6.17838in</Width>
+            <Width>6.13155in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -3677,10 +3692,10 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet3</DataSetName>
-            <Top>3.18334in</Top>
+            <Top>3.02084in</Top>
             <Left>5.11021in</Left>
             <Height>0.87083in</Height>
-            <Width>2.58518in</Width>
+            <Width>2.58519in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -3689,13 +3704,13 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.41181in</Height>
+        <Height>4.04514in</Height>
         <Style />
       </Body>
-      <Width>8.09357in</Width>
+      <Width>8.0936in</Width>
       <Page>
         <PageHeader>
-          <Height>0.76334in</Height>
+          <Height>0.805in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3789,7 +3804,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!RptTitle.Value</Value>
+                      <Value>Forcusted / Estimated Profit &amp; Loss Account</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>12pt</FontSize>
@@ -3803,11 +3818,47 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.43889in</Top>
-              <Left>1.02153in</Left>
+              <Top>0.47639in</Top>
+              <Left>2.05486in</Left>
               <Height>0.2375in</Height>
-              <Width>6.78604in</Width>
+              <Width>4.37771in</Width>
               <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox4">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!date1.Value</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <Top>0.55639in</Top>
+              <Left>6.48257in</Left>
+              <Height>0.19583in</Height>
+              <Width>1.575in</Width>
+              <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -4034,11 +4085,17 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="date1">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>5</NumberOfRows>
+      <NumberOfRows>6</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -4139,6 +4196,11 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>amt2</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>date1</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
