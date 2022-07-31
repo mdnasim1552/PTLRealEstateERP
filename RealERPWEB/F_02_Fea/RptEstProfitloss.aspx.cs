@@ -296,6 +296,7 @@ namespace RealERPWEB.F_02_Fea
             string projectName = this.ddlProjectName.SelectedItem.Text.ToString() ?? "";
             string actualsal = this.lblactualsal1.Text.ToString();
             string salprice =this.lblsalecore.Text.ToString();
+            string date1 = this.txtCurDate.Text.ToString();
 
 
             string days1 = "", days2 = "", amt1 = "", amt2 = "";
@@ -322,7 +323,7 @@ namespace RealERPWEB.F_02_Fea
 
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Forcusted / Estimated Profit & Loss Account"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", ""));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("salprice", salprice));
@@ -330,6 +331,7 @@ namespace RealERPWEB.F_02_Fea
             Rpt1.SetParameters(new ReportParameter("amt1", amt1));
             Rpt1.SetParameters(new ReportParameter("days2", days2));
             Rpt1.SetParameters(new ReportParameter("amt2", amt2));
+            Rpt1.SetParameters(new ReportParameter("date1","Date : "+date1));
 
 
             Session["Report1"] = Rpt1;
