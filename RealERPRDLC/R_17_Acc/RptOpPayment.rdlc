@@ -45,6 +45,10 @@
           <DataField>payam4</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="payam5">
+          <DataField>payam5</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="rpcode">
           <DataField>rpcode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -77,27 +81,30 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.27778in</Width>
+                  <Width>1.7376in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.05903in</Width>
+                  <Width>0.84177in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.08333in</Width>
+                  <Width>0.95982in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.0625in</Width>
+                  <Width>1.0873in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.06399in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.15625in</Width>
+                  <Width>0.87649in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.03274in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.4375in</Height>
+                  <Height>0.57812in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -112,6 +119,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
@@ -137,7 +145,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -146,24 +153,27 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>1.04722in</Width>
+                                <Width>0.84177in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.07847in</Width>
+                                <Width>0.95982in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.07917in</Width>
+                                <Width>1.0873in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1in</Width>
+                                <Width>1.06399in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.15625in</Width>
+                                <Width>0.87649in</Width>
+                              </TablixColumn>
+                              <TablixColumn>
+                                <Width>1.03274in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.21875in</Height>
+                                <Height>0.28906in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -178,6 +188,7 @@
                                                 <Style>
                                                   <FontStyle>Normal</FontStyle>
                                                   <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>9pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                   <TextDecoration>None</TextDecoration>
                                                   <Color>#000000</Color>
@@ -202,9 +213,10 @@
                                           <PaddingBottom>2pt</PaddingBottom>
                                         </Style>
                                       </Textbox>
-                                      <ColSpan>5</ColSpan>
+                                      <ColSpan>6</ColSpan>
                                     </CellContents>
                                   </TablixCell>
+                                  <TablixCell />
                                   <TablixCell />
                                   <TablixCell />
                                   <TablixCell />
@@ -212,7 +224,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.21875in</Height>
+                                <Height>0.28906in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -223,9 +235,10 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Parameters!txtupto5or10T.Value</Value>
+                                                <Value>Up To 5000</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>9pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -259,9 +272,10 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Parameters!txtb5t1or10t1.Value</Value>
+                                                <Value>5001-50,000</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>9pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -295,10 +309,11 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Above 50,000</Value>
+                                                <Value>50,001-100000</Value>
                                                 <Style>
                                                   <FontStyle>Normal</FontStyle>
                                                   <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>9pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                   <TextDecoration>None</TextDecoration>
                                                   <Color>#000000</Color>
@@ -334,10 +349,11 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Adjustment</Value>
+                                                <Value>100001-Above</Value>
                                                 <Style>
                                                   <FontStyle>Normal</FontStyle>
                                                   <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>9pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                   <TextDecoration>None</TextDecoration>
                                                   <Color>#000000</Color>
@@ -373,10 +389,11 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Total</Value>
+                                                <Value>Adjustment</Value>
                                                 <Style>
                                                   <FontStyle>Normal</FontStyle>
                                                   <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>9pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                   <TextDecoration>None</TextDecoration>
                                                   <Color>#000000</Color>
@@ -403,12 +420,53 @@
                                       </Textbox>
                                     </CellContents>
                                   </TablixCell>
+                                  <TablixCell>
+                                    <CellContents>
+                                      <Textbox Name="Textbox19">
+                                        <CanGrow>true</CanGrow>
+                                        <KeepTogether>true</KeepTogether>
+                                        <Paragraphs>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Total</Value>
+                                                <Style>
+                                                  <FontStyle>Normal</FontStyle>
+                                                  <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>9pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                  <TextDecoration>None</TextDecoration>
+                                                  <Color>#000000</Color>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                        </Paragraphs>
+                                        <rd:DefaultName>Textbox19</rd:DefaultName>
+                                        <Style>
+                                          <Border>
+                                            <Color>LightGrey</Color>
+                                            <Style>Solid</Style>
+                                          </Border>
+                                          <VerticalAlign>Middle</VerticalAlign>
+                                          <PaddingLeft>2pt</PaddingLeft>
+                                          <PaddingRight>2pt</PaddingRight>
+                                          <PaddingTop>2pt</PaddingTop>
+                                          <PaddingBottom>2pt</PaddingBottom>
+                                        </Style>
+                                      </Textbox>
+                                    </CellContents>
+                                  </TablixCell>
                                 </TablixCells>
                               </TablixRow>
                             </TablixRows>
                           </TablixBody>
                           <TablixColumnHierarchy>
                             <TablixMembers>
+                              <TablixMember />
                               <TablixMember />
                               <TablixMember />
                               <TablixMember />
@@ -430,9 +488,10 @@
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Tablix>
-                        <ColSpan>5</ColSpan>
+                        <ColSpan>6</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -440,7 +499,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.24479in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -641,6 +700,42 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox17">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!payam5.Value,"#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>=iif(Right(Fields!rpcode.Value,3)="AAA","Bold","Default")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox14">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -687,6 +782,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -719,8 +815,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Left>0.00695in</Left>
-            <Height>0.6875in</Height>
-            <Width>7.63889in</Width>
+            <Height>0.82292in</Height>
+            <Width>7.5997in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -728,10 +824,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.71875in</Height>
+        <Height>2.32292in</Height>
         <Style />
       </Body>
-      <Width>7.65278in</Width>
+      <Width>7.6632in</Width>
       <Page>
         <PageHeader>
           <Height>0.92021in</Height>
@@ -889,7 +985,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>printFooter</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.25in</Height>
               <Width>5.50695in</Width>
               <Style>
@@ -923,7 +1018,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
               <Left>5.52084in</Left>
               <Height>0.25in</Height>
               <Width>2.125in</Width>
