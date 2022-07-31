@@ -222,6 +222,7 @@
         .grvContentarea tr td:last-child {
             width: 120px;
         }
+        .grvContentarea {}
     </style>
 
 
@@ -427,8 +428,15 @@
                         tblData = document.getElementById("<%=this.gvAccUnPostedtrn.ClientID %>");
                         break;
 
+
+                    case '15':
+                        tblData = document.getElementById("<%=this.gvIndAp.ClientID %>");
+                        break;
+
+
+
                     default:
-                        tblData = document.getElementById("<%=gvSalesUpdate.ClientID %>");
+                        tblData = document.getElementById("<%=this.gvMatIssue.ClientID %>");
                         break;
                 }
 
@@ -644,6 +652,7 @@
                                                 <asp:ListItem Value="13"></asp:ListItem>
                                                 <asp:ListItem Value="14"></asp:ListItem>
                                                 <asp:ListItem Value="15"></asp:ListItem>
+                                                <asp:ListItem Value="16"></asp:ListItem>
 
                                             </asp:RadioButtonList>
 
@@ -2891,7 +2900,124 @@
                                             </div>
                                         </asp:Panel>
 
+                                     <asp:Panel ID="pnlMatIssue" runat="server" Visible="false">
+                                         <div class="row">
+                                              <div class="table-responsive col-lg-12">
+                                                       <asp:GridView ID="gvMatIssue" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                                        ShowFooter="True" OnRowDataBound="gvMatIssue_RowDataBound" Width="785px">
+                                                        <RowStyle />
+                                                        <Columns>
 
+
+                                                            <asp:TemplateField HeaderText="Sl">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvDSlNomissue" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="reqno#" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvreqnomissue" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueno1"))%>' Width="15px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Store Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvpatcdescmissue" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                                                        Width="180px" Font-Bold="true"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                           
+                                                            <asp:TemplateField HeaderText="Issue <br>  Date">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lnkgvissuedatmissue" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issuedat1")) %>'
+                                                                        Width="70px"></asp:Label>
+                                                                    <%--<asp:Label ID="lnkgvreqrat1" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat1")) %>'
+                                                                        Width="70px"></asp:Label>--%>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Issue. No">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvreqno1missue" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueno1"))%>' Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+
+                                                            <asp:TemplateField HeaderText="pactcode" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvpactcodemissue" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
+                                                                        Width="120px"></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Resource</br> Count">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblrsirdescmissue" runat="server" Font-Bold="True"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemcount"))%>' Width="40px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                                <ItemStyle HorizontalAlign="Right" />
+                                                            </asp:TemplateField>
+
+
+                                                              <asp:TemplateField HeaderText="Issue Amount">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvIssueAmt" runat="server" Font-Bold="True"
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuamt"))%>' Width="70px"></asp:Label>
+                                                                </ItemTemplate>
+
+                                                                   <FooterTemplate>
+                                                                <asp:Label ID="lblgvFIssueAmt" runat="server" Style="text-align: right"></asp:Label>
+                                                            </FooterTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                                <ItemStyle HorizontalAlign="Right" />
+                                                                  <FooterStyle  HorizontalAlign="Right"/>
+                                                            </asp:TemplateField>
+                                                            
+
+                                                           
+
+
+
+
+
+
+                                                            <asp:TemplateField HeaderText="">
+                                                                <ItemTemplate>
+                                                                    <asp:HyperLink ID="hlnkMiasue" runat="server" Target="_blank"  Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
+                                                                    </asp:HyperLink>
+
+                                                                  
+
+                                                                </ItemTemplate>
+                                                                <ItemStyle Width="50px" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+
+                                                        </Columns>
+                                                        <FooterStyle CssClass="grvFooter" />
+                                                        <EditRowStyle />
+                                                        <AlternatingRowStyle />
+                                                        <PagerStyle CssClass="gvPagination" />
+                                                        <HeaderStyle CssClass="grvHeader" />
+                                                        <RowStyle CssClass="grvRows" />
+                                                    </asp:GridView>
+                                                  </div>
+                                             </div>
+                                         </asp:Panel>
 
 
                                 </div>
