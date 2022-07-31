@@ -292,7 +292,7 @@
                                         <asp:Label ID="lblgvAmt" runat="server" BackColor="Transparent" Font-Size="11px"
                                             BorderColor="#660033" BorderStyle="Solid" BorderWidth="0px"
                                             Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
                                             Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />

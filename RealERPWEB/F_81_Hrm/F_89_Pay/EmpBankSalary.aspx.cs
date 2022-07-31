@@ -414,7 +414,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
                 ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
-                 : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
             }
 
         }
