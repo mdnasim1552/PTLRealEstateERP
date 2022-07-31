@@ -1088,7 +1088,7 @@
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>=IIf(Format(Fields!rsircode.Value)="AAAAAAAABBBB","Bold",
 IIf(Format(Fields!rsircode.Value)="AAAAAAAAAAAA","Bold",
-IIf(Format(Fields!rsircode.Value)="AAAAAAAACCCC","Bold",
+IIf(Format(Fields!rsircode.Value)="AAAAAAAADDAA","Bold",
 IIf(Format(Fields!rsircode.Value)="AAAAAAAADDDD","Default",
 IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWeight>
                                   </Style>
@@ -1111,6 +1111,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
