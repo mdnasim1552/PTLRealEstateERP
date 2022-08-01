@@ -1690,6 +1690,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502240", "F_34_Mgt", "ProjectLink", "", "Project Link", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502241", "F_34_Mgt", "CACodeLink", "", "Chart of Accounts Permission", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502242", "F_34_Mgt", "WorkCodeLink", "", "Work Code Permission", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3502000", "3502243", "F_34_Mgt", "ConWrkOrderEdit?", "Type=Mgt", "Contractor Order Edit-MGT", "Management", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502245", "F_34_Mgt", "PayTypCodeBook", "", "Signature Margin", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502250", "F_34_Mgt", "AccUserCash", "", "Cash & Bank Permission", "Management", "False", "False", "False", "False" }); ;
@@ -9777,6 +9778,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0305000003", "02. Sub-Contractor Bill-Work Wise Edit", "F_09_PImp/PurLabIssue2?Type=Edit&prjcode=&genno=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000004", "03. Bill Finalization- Edit", "F_09_PImp/PurSubConBillFinal?Type=BillEdit&prjcode=&genno=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000005", "04. Sub-Contractor Code Transfer", "F_34_Mgt/CodeTransSupSub?Type=SubCon", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000006", "05. Contractor Order Edit-MGT", "F_34_Mgt/ConWrkOrderEdit?Type=Mgt", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0306000000", "Inventory Control", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0306000001", "01. Requisition Checked", "F_12_Inv/PurReqEntry?InputType=ReqCheck&prjcode=&genno=", "", true, "" });
