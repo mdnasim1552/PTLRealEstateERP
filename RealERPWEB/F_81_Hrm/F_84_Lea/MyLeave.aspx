@@ -96,9 +96,9 @@
                                             <asp:CheckBox ID="chkBoxSkippWH" AutoPostBack="true" ToolTip="If you want to skip weekend/holiday/special day, please click the checkbox and click individual date click" OnCheckedChanged="chkBoxSkippWH_CheckedChanged" Text=" Skip W,H, SP Day " runat="server" Checked="false" />
                                         </span>
                                     </label>
-                                    <asp:TextBox ID="txtaplydate" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
-                                    <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy"
-                                        TargetControlID="txtaplydate"></cc1:CalendarExtender>
+                                    <asp:TextBox ID="txtaplydate" runat="server" AutoPostBack="true" ReadOnly="true" class="form-control disabled"></asp:TextBox>
+                                    <%--<cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy"
+                                        TargetControlID="txtaplydate"></cc1:CalendarExtender>--%>
                                 </div>
 
                                 <div class="form-group">

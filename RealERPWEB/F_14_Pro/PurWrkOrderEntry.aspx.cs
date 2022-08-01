@@ -47,7 +47,15 @@ namespace RealERPWEB.F_14_Pro
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled =  (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Order";
+
+                string title = (Request.QueryString["InputType"].ToString() == "OrderEntry") ? "Purchase Order"
+                   : (Request.QueryString["InputType"].ToString() == "FirstApp") ? "Purchase Order 1st Approval"
+                   : (Request.QueryString["InputType"].ToString() == "SecondApp") ? "Purchase Order Final Approval"
+                   : "Purchase Order";
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+                this.Master.Page.Title = title;
+
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtLETDES.Text = comnam + this.CompanySubject();
@@ -64,6 +72,7 @@ namespace RealERPWEB.F_14_Pro
                         case "3335": //Edison
                         //case "3101": // ptl
                         case "3355": // greenwood
+                        case "3368": // finlay
                             this.GetOrderRange();
                             this.btnSendmail.Visible = false;
                             break;
@@ -1221,11 +1230,11 @@ namespace RealERPWEB.F_14_Pro
                         case "3351":  //wecon Properties
                         case "3352":  //p2p360
                                       //case "3101": // ASIT
-
                             break;
                             
                         //case "3101":
                         case "3368"://finlay
+                            /*
                             if (comcod == "3368" & pactcode != "11020099")//Finlay
                             {
                                 if (approval == "")
@@ -1247,11 +1256,8 @@ namespace RealERPWEB.F_14_Pro
                                     ds1.Tables[0].TableName = "tbl1";
                                     approval = ds1.GetXml();
                                 }
-
-
-                                
-                            }
-                            else if (comcod == "3368" & pactcode == "11020099")//Finlay
+                            }*/
+                            if (comcod == "3368" & pactcode == "11020099")//Finlay
                             {
                                 if (approval == "")
                                 {
@@ -1272,13 +1278,11 @@ namespace RealERPWEB.F_14_Pro
                                     ds1.Tables[0].TableName = "tbl1";
                                     approval = ds1.GetXml();
                                 }
-
-
-
                             }
                             else
                             {
-
+                                break;
+                                /*
                                 xmlSR = new System.IO.StringReader(approval);
                                 ds1.ReadXml(xmlSR);
                                 ds1.Tables[0].TableName = "tbl1";
@@ -1292,50 +1296,8 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Tables[0].Rows[0]["secappseson"] = "";
 
                                 approval = ds1.GetXml();
-
-                            }
-
-
-                            //if (approval == "")
-                            //{
-                            //    this.CreateDataTable();
-                            //    DataTable dt = (DataTable)ViewState["tblapproval"];
-                            //    DataRow dr1 = dt.NewRow();
-                            //    dr1["fappid"] = usrid;
-                            //    dr1["fappdat"] = Date;
-                            //    dr1["fapptrmid"] = trmnid;
-                            //    dr1["fappseson"] = session;
-                            //    dr1["secappid"] = "";
-                            //    dr1["secappdat"] = "";
-                            //    dr1["secapptrmid"] = "";
-                            //    dr1["secappseson"] = "";
-
-                            //    dt.Rows.Add(dr1);
-                            //    ds1.Merge(dt);
-                            //    ds1.Tables[0].TableName = "tbl1";
-                            //    approval = ds1.GetXml();
-
-                            //}
-
-
-                            //else
-                            //{
-
-                            //    xmlSR = new System.IO.StringReader(approval);
-                            //    ds1.ReadXml(xmlSR);
-                            //    ds1.Tables[0].TableName = "tbl1";
-                            //    ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                            //    ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                            //    ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                            //    ds1.Tables[0].Rows[0]["fappseson"] = session;
-                            //    ds1.Tables[0].Rows[0]["secappid"] = "";
-                            //    ds1.Tables[0].Rows[0]["secappdat"] = "";
-                            //    ds1.Tables[0].Rows[0]["secapptrmid"] = "";
-                            //    ds1.Tables[0].Rows[0]["secappseson"] = "";
-
-                            //    approval = ds1.GetXml();
-
-                            //}
+                                */
+                            }                           
 
                             break;
 
@@ -1353,18 +1315,13 @@ namespace RealERPWEB.F_14_Pro
                                 dr1["secappdat"] = Date;
                                 dr1["secapptrmid"] = trmnid;
                                 dr1["secappseson"] = session;
-
                                 dt.Rows.Add(dr1);
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
-
                             else
                             {
-
                                 xmlSR = new System.IO.StringReader(approval);
                                 ds1.ReadXml(xmlSR);
                                 ds1.Tables[0].TableName = "tbl1";
@@ -1376,22 +1333,14 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Tables[0].Rows[0]["secappdat"] = Date;
                                 ds1.Tables[0].Rows[0]["secapptrmid"] = trmnid;
                                 ds1.Tables[0].Rows[0]["secappseson"] = session;
-
                                 approval = ds1.GetXml();
 
                             }
-
-
-
                             break;
-
                     }
-
                     break;
 
-
                 case "FirstApp":
-
                     switch (comcod)
                     {
                         //case "3101": // ptl
@@ -1408,7 +1357,6 @@ namespace RealERPWEB.F_14_Pro
                             string sslnumg = "";
                             foreach (RealEntity.C_14_Pro.EClassPur.EClassOrderRange lst1 in lst2)
                             {
-
                                 string slnumg = lst1.slnum;
                                 double minamtg = lst1.minamt;
                                 double maxamtg = lst1.maxamt;
@@ -1422,7 +1370,6 @@ namespace RealERPWEB.F_14_Pro
                             // First Approval
                             if (sslnumg == fslnumg)
                             {
-
                                 if (forardg == true)
                                     ;
                                 else
@@ -1434,7 +1381,6 @@ namespace RealERPWEB.F_14_Pro
                                     sappDateg = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                                 }
                             }
-
                             if (approval == "")
                             {
                                 this.CreateDataTable();
@@ -1454,12 +1400,9 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
                             else
                             {
-
                                 xmlSR = new System.IO.StringReader(approval);
                                 ds1.ReadXml(xmlSR);
                                 ds1.Tables[0].TableName = "tbl1";
@@ -1472,10 +1415,8 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Tables[0].Rows[0]["secapptrmid"] = "";
                                 ds1.Tables[0].Rows[0]["secappseson"] = "";
                                 approval = ds1.GetXml();
-
                             }
                             break;
-
 
                         case "3335":
                         case "3354":// Edison Real Estate
@@ -1483,57 +1424,38 @@ namespace RealERPWEB.F_14_Pro
                             string sapptrmnid = "";
                             string sappsession = "";
                             string sappDate = "";
-                            List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange> lst = (List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange>)Session["tblordrange"];
-
-                            bool forard = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;
-
-                            double toamt = Convert.ToDouble(((Label)this.gvOrderInfo.FooterRow.FindControl("lblgvFooterTOrderAmt")).Text.ToString());
                             string sslnum = "";
+                            List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange> lst = (List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange>)Session["tblordrange"];
+                            bool forard = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;
+                            double toamt = Convert.ToDouble(((Label)this.gvOrderInfo.FooterRow.FindControl("lblgvFooterTOrderAmt")).Text.ToString());
                             foreach (RealEntity.C_14_Pro.EClassPur.EClassOrderRange lst1 in lst)
                             {
-
                                 string slnum = lst1.slnum;
                                 double minamt = lst1.minamt;
                                 double maxamt = lst1.maxamt;
 
                                 if (toamt > minamt && toamt <= maxamt)
                                 {
-
                                     sslnum = slnum;
-
                                 }
-
                             }
-
-
                             string fslnum = lst[0].slnum.ToString();
 
                             // First Approval
                             if (sslnum == fslnum)
                             {
-
                                 if (forard == true)
                                     ;
                                 else
                                 {
-
                                     sappusrid = hst["usrid"].ToString();
                                     sapptrmnid = hst["compname"].ToString();
                                     sappsession = hst["session"].ToString();
                                     sappDate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                                 }
                             }
-
-
-
-
-
                             if (approval == "")
                             {
-
-
-
-
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -1551,12 +1473,9 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
                             else
                             {
-
                                 xmlSR = new System.IO.StringReader(approval);
                                 ds1.ReadXml(xmlSR);
                                 ds1.Tables[0].TableName = "tbl1";
@@ -1569,25 +1488,85 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Tables[0].Rows[0]["secapptrmid"] = sapptrmnid;
                                 ds1.Tables[0].Rows[0]["secappseson"] = sappsession;
                                 approval = ds1.GetXml();
-
-
-
-
-
-
                             }
+                            break;
 
+                        case "3368":// Finaly Properties Ltd
+                            string sappusridf = "";
+                            string sapptrmnidf = "";
+                            string sappsessionf = "";
+                            string sappDatef = "";
+                            List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange> lstf = (List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange>)Session["tblordrange"];
+                            bool forardf = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;
+                            double toamtf = Convert.ToDouble(((Label)this.gvOrderInfo.FooterRow.FindControl("lblgvFooterTOrderAmt")).Text.ToString());
+                            string sslnumf = "";
+                            foreach (RealEntity.C_14_Pro.EClassPur.EClassOrderRange lst1 in lstf)
+                            {
+                                string slnum = lst1.slnum;
+                                double minamt = lst1.minamt;
+                                double maxamt = lst1.maxamt;
 
+                                if (toamtf > minamt && toamtf <= maxamt)
+                                {
+                                    sslnum = slnum;
+                                }
+                            }
+                            string fslnumf = lstf[0].slnum.ToString();
+
+                            // First Approval
+                            if (sslnumf == fslnumf)
+                            {
+                                if (forardf == true)
+                                    ;
+                                else
+                                {
+                                    sappusridf = hst["usrid"].ToString();
+                                    sapptrmnidf = hst["compname"].ToString();
+                                    sappsessionf = hst["session"].ToString();
+                                    sappDatef = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                                }
+                            }
+                            if (approval == "")
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["secappid"] = sappusridf;
+                                dr1["secappdat"] = sappDatef;
+                                dr1["secapptrmid"] = sapptrmnidf;
+                                dr1["secappseson"] = sappsessionf;
+
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+                            }
+                            else
+                            {
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
+                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
+                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["fappseson"] = session;
+                                ds1.Tables[0].Rows[0]["secappid"] = sappusridf;
+                                ds1.Tables[0].Rows[0]["secappdat"] = sappDatef;
+                                ds1.Tables[0].Rows[0]["secapptrmid"] = sapptrmnidf;
+                                ds1.Tables[0].Rows[0]["secappseson"] = sappsessionf;
+                                approval = ds1.GetXml();
+                            }
                             break;
 
                         default:
 
                             if (approval == "")
                             {
-
-
-
-
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -1605,12 +1584,9 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
                             else
                             {
-
                                 xmlSR = new System.IO.StringReader(approval);
                                 ds1.ReadXml(xmlSR);
                                 ds1.Tables[0].TableName = "tbl1";
@@ -1624,19 +1600,10 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Tables[0].Rows[0]["secappseson"] = session;
                                 approval = ds1.GetXml();
                             }
-
-
                             break;
 
                     }
-
-
-
                     break;
-
-
-
-
                 case "SecondApp":
                     xmlSR = new System.IO.StringReader(approval);
                     ds1.ReadXml(xmlSR);
@@ -1646,16 +1613,8 @@ namespace RealERPWEB.F_14_Pro
                     ds1.Tables[0].Rows[0]["secapptrmid"] = trmnid;
                     ds1.Tables[0].Rows[0]["secappseson"] = session;
                     approval = ds1.GetXml();
-
                     break;
-
-
-
-
-
             }
-
-
             return approval;
 
         }

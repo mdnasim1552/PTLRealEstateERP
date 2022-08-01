@@ -558,11 +558,11 @@
                                         <asp:Label ID="txtFLoTotal" runat="server" ForeColor="#000"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="txtgvpaidLoamount" runat="server" BorderColor="#99CCFF"
+                                        <asp:TextBox ID="txtgvpaidLoamount" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "loamount")).ToString("#,##0;-#,##0; ") %>'
-                                            Width="80px"></asp:Label>
+                                            Width="80px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
                                         VerticalAlign="Middle" />

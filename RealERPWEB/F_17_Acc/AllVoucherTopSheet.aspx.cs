@@ -281,7 +281,15 @@ namespace RealERPWEB.F_17_Acc
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("hlnkVoucherEdit");
                 HyperLink hlnkPrintVoucher = (HyperLink)e.Row.FindControl("hlnkVoucherPrint");
                 HyperLink hlnkChequePrint = (HyperLink)e.Row.FindControl("hlnkChequePrint");
+
+                Label lblvounum = (Label)e.Row.FindControl("lblvounum");
+                Label lblgvvouamt = (Label)e.Row.FindControl("lblgvvouamt");
+
+
+
                 string vounum = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "vounum")).ToString();
+                string voutype = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "voutype")).ToString().Trim();
+
                 string vounum1 = vounum.Substring(0, 2);
 
                 string paytype = this.ChboxPayee.Checked ? "0" : "1";
@@ -289,6 +297,13 @@ namespace RealERPWEB.F_17_Acc
                 string cquepbl = (this.checkpb.Checked) == false ? "0" : "1";
                 string woutchqdat = (this.withoutchqdate.Checked) ? "1" : "0";
 
+                if(voutype=="U")
+                {
+                    lblvounum.Attributes["style"] = "font-weight:bold; color:magenta;";
+                    lblgvvouamt.Attributes["style"] = "font-weight:bold; color:magenta;";
+
+
+                }
 
 
                 if (this.checkpb.Checked == true)

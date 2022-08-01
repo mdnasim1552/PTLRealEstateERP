@@ -252,10 +252,10 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox204</rd:DefaultName>
-                              <Top>0.00625in</Top>
-                              <Left>1.82167in</Left>
+                              <Top>0.01875in</Top>
+                              <Left>1.48417in</Left>
                               <Height>0.19792in</Height>
-                              <Width>4.07417in</Width>
+                              <Width>4.83403in</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -3498,40 +3498,6 @@
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="compname">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!compname.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>compname</rd:DefaultName>
-              <Left>1.12375in</Left>
-              <Height>0.22917in</Height>
-              <Width>5.73959in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
             <Textbox Name="comadd">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
@@ -3556,7 +3522,6 @@
               <Left>1.13417in</Left>
               <Height>0.15625in</Height>
               <Width>5.70833in</Width>
-              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3572,16 +3537,51 @@
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.0125in</Top>
-              <Left>0.18334in</Left>
+              <Left>0.05834in</Left>
               <Height>0.40625in</Height>
-              <Width>0.83333in</Width>
-              <ZIndex>2</ZIndex>
+              <Width>0.90833in</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
               </Style>
             </Image>
+            <Textbox Name="compname">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!compname.Value</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>compname</rd:DefaultName>
+              <Left>1.13417in</Left>
+              <Height>0.19792in</Height>
+              <Width>5.70271in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>

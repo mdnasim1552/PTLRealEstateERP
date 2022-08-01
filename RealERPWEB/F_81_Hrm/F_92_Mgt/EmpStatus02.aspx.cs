@@ -407,9 +407,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string DesigTo = this.ddlToDesig.SelectedValue.ToString();           
             switch (comcod)
             {
-                case "3365":                    
+                case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -446,8 +451,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -484,8 +494,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -560,8 +575,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -593,8 +613,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -631,8 +656,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -669,8 +699,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -725,8 +760,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
@@ -766,8 +806,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3365":
+                case "3348":
+                case "3368":
+                case "3366":
+                case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
+                    pnlDesig.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;

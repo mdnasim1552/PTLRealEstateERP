@@ -1060,14 +1060,16 @@ namespace RealERPWEB.F_23_CR
 
                     paidamt = (RecType == "54097") ? paidamt * -1 : paidamt;
                     double disamt = Convert.ToDouble(dt1.Rows[i]["disamt"]);
-
+                    string isLO = "0";
                     //string type1 = this.Request.QueryString["Type"];
                     //string management = (type1 == "Management" ? "management" : ""); // mr edit 
 
                     //schamt = schamt + paidamt;
                     if (paidamt != 0 || disamt != 0)
+                       
                         result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(), chqno,
-                                                          bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno);
+                                                          bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, 
+                                                          Editdat, SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno,"","0.00", isLO);
 
                     if (result == false)
                     {
@@ -1091,6 +1093,10 @@ namespace RealERPWEB.F_23_CR
                     switch (comcod)
                     {
                         case "3339": //Tropical
+                        case "3367": //epic
+                        //case "3101": //ptl
+
+
                             break;
 
                         default:

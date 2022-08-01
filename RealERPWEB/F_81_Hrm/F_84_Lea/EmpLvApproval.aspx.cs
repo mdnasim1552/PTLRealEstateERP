@@ -1341,6 +1341,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 //    return;
                 //}
 
+
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+                int index = row.RowIndex+1;
+
+                string lvtype = ((Label)this.gvLvReq.Rows[index].FindControl("lglvtype")).Text.ToString();
+                string aplydat = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvaplydat")).Text.ToString();
+                string duration = ((TextBox)this.gvLvReq.Rows[index].FindControl("txtgvlapplied")).Text.ToString();
+
+                string strtdat = ((TextBox)this.gvLvReq.Rows[index].FindControl("txtgvlstdate")).Text.ToString();
+                string endat = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvenddat")).Text.ToString();
+
+
+
                 //this.CheckValue();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string compsms = hst["compsms"].ToString();
@@ -1368,6 +1382,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Orderno = this.lstOrderNo.SelectedValue.ToString();
                 bool result = false;
                 string apDate = this.txtdate.Text.ToString();
+                string htmtableboyd = "";
+
                 DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "GETCEHCKAPPROVALBYID", Orderno, roletype, Centrid, "", "", "", "", "", "");
                 if (ds4.Tables[0].Rows.Count != 0)
                 {
@@ -1391,7 +1407,24 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     else
                     {
-                        this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName);
+
+
+                        htmtableboyd = "<table style='border: 1px solid black;border-collapse: collapse;'>" +
+                           "<tr>" +
+                            "<th style='border-collapse: collapse;border: 1px solid black;'>From Date</th>" +
+                            "<th style='border-collapse: collapse;border: 1px solid black;'>To Date</th>" +
+                            "<th style='border-collapse: collapse;border: 1px solid black;'>Days</th>" +
+                           "</tr>";
+
+                      
+                        htmtableboyd += "<tr>" +
+                            "<td style='border: 1px solid black;border-collapse: collapse;'>" + strtdat + "</td>" +
+                            "<td style='border: 1px solid black;border-collapse: collapse;'>" + endat + "</td>" +
+                            "<td style='border: 1px solid black;border-collapse: collapse;'>(" + duration.Remove(1,3) + ") day</td>" +
+                            "</tr>";
+                        htmtableboyd += "</table>";
+
+                        this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName, htmtableboyd);
                         string Messagesd = "Leave Approved";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
@@ -1417,7 +1450,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
         }
 
-        private void SendNotificaion(string ltrnid, string deptcode, string roletype, string isForward, string compsms, string compmail, string ssl, string sendUsername, string sendDptdesc, string sendUsrdesig, string compName)
+        private void SendNotificaion(string ltrnid, string deptcode, string roletype, string isForward, string compsms, string compmail, string ssl, string sendUsername, string sendDptdesc, string sendUsrdesig, string compName, string htmtableboyd)
         {
             try
             {
@@ -1431,6 +1464,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 string empUsrID = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empuserid"].ToString();
                 string empEmail = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empEmail"].ToString();
+                //string  empEmail = "inforakib831@gmail.com";
                 string idcard = dt.Rows.Count == 0 ? "" : dt.Rows[0]["idcard"].ToString();
                 string deptName = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deptanme"].ToString();
                 string empdesig = dt.Rows.Count == 0 ? "" : dt.Rows[0]["desig"].ToString();
@@ -1458,7 +1492,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 string roletypeCHk = (roletype == "SUP") ? "DPT" : "DPT";// MGT now Removed, Pls discused wiht nahid
                 var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETAPPRVPMAIL", deptcode, roletypeCHk, "", "", "", "", "", "", "");
-                if(ds==null)
+                if (ds == null)
                 {
                     string Messagesd = "Leave Approved";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
@@ -1483,6 +1517,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
                     string phone = ds.Tables[0].Rows[i]["phone"].ToString();
                     string tomail = ds.Tables[0].Rows[i]["mail"].ToString();
+                    //string tomail = "inforakib831@gmail.com";
                     string isrole = (roletype == "SUP" ? "DPT" :
                                     roletype == "DPT" ? "MGT" : "MGT");
 
@@ -1491,7 +1526,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string totalpath = uhostname + currentptah;
 
                     string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>"+ htmtableboyd;
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
 
@@ -1522,9 +1557,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                                     roletype == "DPT" ? dptapp : "Your leave request has been approved");
 
 
-                 toMSgBody = "Hi !! ,"+ toMSgBody + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                    "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
-               
+                toMSgBody = "Hi !! ," + toMSgBody + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                   "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>"+ htmtableboyd;
+
 
                 string toEmpsub = "Leave Request Approved";
                 bool result3 = UserNotify.SendNotification(toEmpsub, toMSgBody, empUsrID);
@@ -1552,7 +1587,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
                 #endregion
 
-               
+
             }
             catch (Exception ex)
             {
@@ -1562,7 +1597,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-
+  
 
         private void GetComNameAAdd()
         {

@@ -55,9 +55,22 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -194,6 +207,9 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay03.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay02.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay05.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti.rdlc" />
@@ -205,6 +221,9 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherIntech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood01.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />

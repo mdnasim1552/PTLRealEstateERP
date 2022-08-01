@@ -70,6 +70,7 @@
 
                         <div class="col-lg-2">
                             <div class="form-group">
+                                 <asp:Label runat="server" ID="lblcomplno" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
                                 <asp:DropDownList ID="ddlProject" CssClass="form-control chzn-select" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged"></asp:DropDownList>
 

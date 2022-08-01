@@ -267,11 +267,22 @@ namespace RealERPWEB.F_02_Fea
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-            DataTable dt = (DataTable)Session["tblfeaprj"];
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string fdate = this.txtCurDate.Text;
+            // string Code = (this.rbtnList1.SelectedIndex == 1) ? "infcod like '51%'" : (this.rbtnList1.SelectedIndex == 2) ? "infcod like '5[2-5]%'" : "infcod like '5[67]%'";
+            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "PRINTGETESTREPORT", pactcode, fdate, "", "", "", "", "", "", "");
+
+            if (ds3 == null)
+                return;
+
+            DataTable dt = ds3.Tables[0];
+            DataTable dt3= ds3.Tables[1];
+            DataTable dt4= ds3.Tables[2];
             DataTable dt2 = (DataTable)Session["tblagin"];
 
             var list = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
             var list2 = dt2.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>();
+            var list3 = dt3.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
 
             string unit = lblUnitName.Text.ToString();
             string udesc = lblunitsizeval.Text.ToString();
@@ -285,11 +296,19 @@ namespace RealERPWEB.F_02_Fea
             string projectName = this.ddlProjectName.SelectedItem.Text.ToString() ?? "";
             string actualsal = this.lblactualsal1.Text.ToString();
             string salprice =this.lblsalecore.Text.ToString();
+            string date1 = this.txtCurDate.Text.ToString();
+
+
+            string days1 = "", days2 = "", amt1 = "", amt2 = "";
+            days1 = dt4.Rows[0]["days1"].ToString();
+            amt1 = Convert.ToDouble(dt4.Rows[0]["breakest"]).ToString("#,##0.00;(#,##0.00); ");
+            days2 = dt4.Rows[0]["days2"].ToString();
+            amt2 = Convert.ToDouble(dt4.Rows[0]["breakactual"]).ToString("#,##0.00;(#,##0.00); ");
 
 
             LocalReport Rpt1 = new LocalReport();
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, list2, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, list2, list3);
             Rpt1.EnableExternalImages = true;
 
             Rpt1.SetParameters(new ReportParameter("unit", unit));
@@ -302,14 +321,17 @@ namespace RealERPWEB.F_02_Fea
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("actualsal", actualsal));
 
-
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Estimated Profit & Loss A/c"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", ""));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("salprice", salprice));
-
+            Rpt1.SetParameters(new ReportParameter("days1", days1));
+            Rpt1.SetParameters(new ReportParameter("amt1", amt1));
+            Rpt1.SetParameters(new ReportParameter("days2", days2));
+            Rpt1.SetParameters(new ReportParameter("amt2", amt2));
+            Rpt1.SetParameters(new ReportParameter("date1","Date : "+date1));
 
 
             Session["Report1"] = Rpt1;
@@ -439,7 +461,13 @@ namespace RealERPWEB.F_02_Fea
                   , costoffundest = 0.00, costoffundactual = 0.00, purvalue = 0.00, comitedval = 0.00, taginday = 0.00,
                   lossest = 0.00, lossactual = 0.00, comitedval2 = 0.00, lossest2 = 0.00,
             costest2 = 0.00, costoffundest5 = 0.00, costoffundest2 = 0.00,
-            costacutal2 = 0.00, costoffundactual5 = 0.00, costoffundactual2 = 0.00, costoffundest6 = 0.00, costoffundactual6 = 0.00, actualsalvalue=0.00;
+            costacutal2 = 0.00, costoffundactual5 = 0.00, costoffundactual2 = 0.00, 
+            
+            costoffundest6 = 0.00, costoffundactual6 = 0.00, actualsalvalue=0.00,
+              purincenspcialest = 0.00 , purincenspcialactual = 0.00 , totalpurinspecialest =0.00, totalpurinspecialactual = 0.00,
+               grpcotributionest = 0.00, grpcotributionactual = 0.00, spsalincest = 0.00, spsalincacutal = 0.00, 
+               totalovcostest = 0.00, totalovcostactual = 0.00, fixtsalinvest=0.00, fixtsalinvactual = 0.00;
+        
 
             TimeSpan tday;
             double NrOfDays = 0.00;
@@ -478,29 +506,87 @@ namespace RealERPWEB.F_02_Fea
 
 
 
-                        dt.Select("estgcod='02005'")[0]["estcost"] = cost;
-                        dt.Select("estgcod='02005'")[0]["actual"] = actual;
-                        dt.Select("estgcod='02005'")[0]["balamt"] = cost - actual;
+                        dt.Select("estgcod='02000'")[0]["estcost"] = cost;//02005 change
+                        dt.Select("estgcod='02000'")[0]["actual"] = actual;
+                        dt.Select("estgcod='02000'")[0]["balamt"] = cost - actual;
 
                         break;
+
+                    //case "02006":
+                    //    purincest = cost * percnt * .01;
+                    //    purincactual = actual * percnt * .01;
+
+                    //    //purincest = cost + txtestcost;
+                    //    //purincactual = actual + txtactual;
+
+                    //    dt.Select("estgcod='02006'")[0]["estcost"] = purincest;
+                    //    dt.Select("estgcod='02006'")[0]["actual"] = purincactual;
+                    //    dt.Select("estgcod='02006'")[0]["balamt"] = purincest - purincactual;
+
+                    //    break;
 
                     case "02006":
-                        purincest = cost * percnt * .01;
-                        purincactual = actual * percnt * .01;
+                    case "02008":
 
-                        //purincest = cost + txtestcost;
-                        //purincactual = actual + txtactual;
+                        //double purincest1 = 0.00, purincactual1 = 0.00;
 
-                        dt.Select("estgcod='02006'")[0]["estcost"] = purincest;
-                        dt.Select("estgcod='02006'")[0]["actual"] = purincactual;
-                        dt.Select("estgcod='02006'")[0]["balamt"] = purincest - purincactual;
+                         if(Gcode == "02006")
+                        {
+                            purincest = cost * percnt * .01;
+                            purincactual =  actual * percnt * .01;
+                            
+
+                            //purincest = cost + txtestcost;
+                            //purincactual = actual + txtactual;
+
+                            dt.Select("estgcod='02006'")[0]["estcost"] = purincest;
+                            dt.Select("estgcod='02006'")[0]["actual"] = purincactual;
+                            dt.Select("estgcod='02006'")[0]["balamt"] = purincest - purincactual;
+
+                        }
+
+                         
+                      if(Gcode == "02008")
+                        {
+                            purincenspcialest = txtestcost;
+                            purincenspcialactual = txtactual;
+                            dt.Select("estgcod='02008'")[0]["estcost"] = purincenspcialest;
+                            dt.Select("estgcod='02008'")[0]["actual"] = purincenspcialactual;
+                            dt.Select("estgcod='02008'")[0]["balamt"] = purincenspcialest - purincenspcialest;
+
+                        }
+
+
+                    
+
+
+                        totalpurinspecialest = purincest + purincenspcialest;
+                        totalpurinspecialactual = purincactual + purincenspcialactual;
+
+                        dt.Select("estgcod='02005'")[0]["estcost"] = totalpurinspecialest;
+                        dt.Select("estgcod='02005'")[0]["actual"] = totalpurinspecialactual;
+                        dt.Select("estgcod='02005'")[0]["balamt"] = totalpurinspecialest - totalpurinspecialactual;
 
                         break;
+
+                    //case "02005": // Total Part incentiva+ special incentive
+
+                    //    totalpurinspecialest = purincest + purincenspcialest;
+                    //    totalpurinspecialactual = purincactual + purincenspcialactual;
+
+                    //    dt.Select("estgcod='02005'")[0]["estcost"] = totalpurinspecialest;
+                    //    dt.Select("estgcod='02005'")[0]["actual"] = totalpurinspecialactual;
+                    //    dt.Select("estgcod='02005'")[0]["balamt"] = totalpurinspecialest - totalpurinspecialactual;
+
+
+                    //    break;
 
 
                     case "03000":
-                        costofpurest = cost + purincest;
-                        costofpuractual = actual + purincactual;
+                        costofpurest = cost + purincest + purincenspcialest;
+                        costofpuractual = actual + purincactual + purincenspcialactual;
+                        //costofpurest =purincest + totalpurinspecialest;
+                        //costofpuractual =purincactual + totalpurinspecialactual;
 
 
                         dt.Select("estgcod='03000'")[0]["estcost"] = costofpurest;
@@ -509,43 +595,154 @@ namespace RealERPWEB.F_02_Fea
 
                         break;
 
+                    //  case marge 04001,04002,04003,04004
+
 
                     case "04001":
-                        //saleincentest = 0.00, saleincentactula = 0.00
-                        comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
-                        actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
-                        saleincentest = comitedval * percnt * .01;
-                        saleincentactula = actualsalvalue * percnt * .01;
-                        //costofpuractual = actual + purincactual;
-
-
-                        dt.Select("estgcod='04001'")[0]["estcost"] = saleincentest;
-                        dt.Select("estgcod='04001'")[0]["actual"] = saleincentactula;
-                        dt.Select("estgcod='04001'")[0]["balamt"] = saleincentest - saleincentactula;
-
-                        break;
-
                     case "04002":
-
-                        comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
-                        actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
-
-                        //adminohest = 500000;
-                        adminohest = comitedval * percnt * .01;
-                        adminohactual = actualsalvalue * percnt * .01;
-                        //costofpuractual = actual + purincactual;
+                    case "04003":
+                    case "04004":
 
 
-                        dt.Select("estgcod='04002'")[0]["estcost"] = adminohest;
-                        dt.Select("estgcod='04002'")[0]["actual"] = adminohactual;
-                        dt.Select("estgcod='04002'")[0]["balamt"] = adminohest - adminohactual;
+
+                        if (Gcode == "04001")
+                        {
+                            //saleincentest = 0.00, saleincentactula = 0.00
+                            comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                            actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+                            saleincentest = comitedval * percnt * .01;
+                            saleincentactula = actualsalvalue * percnt * .01;
+                            //costofpuractual = actual + purincactual;
+
+
+                            dt.Select("estgcod='04001'")[0]["estcost"] = saleincentest;
+                            dt.Select("estgcod='04001'")[0]["actual"] = saleincentactula;
+                            dt.Select("estgcod='04001'")[0]["balamt"] = saleincentest - saleincentactula;
+
+                        }
+
+                        else if (Gcode == "04002")
+                        {
+
+                            spsalincest = txtestcost;
+                            spsalincacutal = txtactual;
+                            dt.Select("estgcod='04002'")[0]["estcost"] = spsalincest;
+                            dt.Select("estgcod='04002'")[0]["actual"] = spsalincacutal;
+                            dt.Select("estgcod='04002'")[0]["balamt"] = spsalincest - spsalincacutal;
+
+
+                        }
+
+                        else if (Gcode == "04003")
+                        {
+                            comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                            actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+
+                            //adminohest = 500000;
+                            adminohest = comitedval * percnt * .01;
+                            adminohactual = actualsalvalue * percnt * .01;
+                            //costofpuractual = actual + purincactual;
+
+
+                            dt.Select("estgcod='04003'")[0]["estcost"] = adminohest;
+                            dt.Select("estgcod='04003'")[0]["actual"] = adminohactual;
+                            dt.Select("estgcod='04003'")[0]["balamt"] = adminohest - adminohactual;
+
+
+                        
+
+
+                        }
+
+
+                        else if(Gcode == "04004")
+                        {
+                            grpcotributionest = txtestcost;
+                            grpcotributionactual = txtactual;
+                            dt.Select("estgcod='04002'")[0]["estcost"] = grpcotributionest;
+                            dt.Select("estgcod='04002'")[0]["actual"] = grpcotributionactual;
+                            dt.Select("estgcod='04002'")[0]["balamt"] = grpcotributionest - grpcotributionactual;
+
+                        }
+
+
+                        totalovcostest = saleincentest + spsalincest + adminohest + grpcotributionest;
+                        totalovcostactual = saleincentactula + spsalincacutal + adminohactual + grpcotributionest;
+
+
+                        dt.Select("estgcod='04000'")[0]["estcost"] = totalovcostest;
+                        dt.Select("estgcod='04000'")[0]["actual"] = totalovcostactual;
+                        dt.Select("estgcod='04000'")[0]["balamt"] = totalovcostest - totalovcostactual;
 
                         break;
+
+
+                    //case "04002":
+
+                    //    //04002
+                    //    spsalincest = txtestcost; 
+                    //    spsalincacutal = txtactual;
+                    //    dt.Select("estgcod='04002'")[0]["estcost"] = spsalincest;
+                    //    dt.Select("estgcod='04002'")[0]["actual"] = spsalincacutal;
+                    //    dt.Select("estgcod='04002'")[0]["balamt"] = spsalincest - spsalincacutal;
+
+                    //    break;
+
+
+
+                    //case "04003": //change 04002
+                    //    //04003
+                    //    comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                    //    actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+
+                    //    //adminohest = 500000;
+                    //    adminohest = comitedval * percnt * .01;
+                    //    adminohactual = actualsalvalue * percnt * .01;
+                    //    //costofpuractual = actual + purincactual;
+
+
+                    //    dt.Select("estgcod='04003'")[0]["estcost"] = adminohest;
+                    //    dt.Select("estgcod='04003'")[0]["actual"] = adminohactual;
+                    //    dt.Select("estgcod='04003'")[0]["balamt"] = adminohest - adminohactual;
+
+                    //    break;
+
+
+                    //case "04004":
+
+                    //    //04004
+                    //    grpcotributionest = txtestcost;
+                    //    grpcotributionactual = txtactual;
+                    //    dt.Select("estgcod='04002'")[0]["estcost"] = grpcotributionest;
+                    //    dt.Select("estgcod='04002'")[0]["actual"] = grpcotributionactual;
+                    //    dt.Select("estgcod='04002'")[0]["balamt"] = grpcotributionest - grpcotributionactual;
+
+                    //    break;
+
+
+                    //case "04000":
+
+                       
+                    //    totalovcostest = saleincentest+ spsalincest + adminohest+ grpcotributionest;
+                    //    totalovcostactual = saleincentactula+ spsalincacutal+adminohactual + grpcotributionest;
+                       
+                        
+                    //    dt.Select("estgcod='04000'")[0]["estcost"] = totalovcostest;
+                    //    dt.Select("estgcod='04000'")[0]["actual"] = totalovcostactual;
+                    //    dt.Select("estgcod='04000'")[0]["balamt"] = totalovcostest - totalovcostactual;
+
+                    //    break;
+
+
+
 
                     case "04005":
 
-                        texpendamtest = costofpurest + saleincentest + adminohest;
-                        texpendamtactual = costofpuractual + saleincentactula + adminohactual;
+                        texpendamtest = costofpurest + totalovcostest;
+                        texpendamtactual = costofpuractual + totalovcostactual;
+
+                        //texpendamtest = costofpurest + saleincentest + adminohest;
+                        //texpendamtactual = costofpuractual + saleincentactula + adminohactual;
                         //costofpuractual = actual + purincactual;
                         dt.Select("estgcod='04005'")[0]["estcost"] = texpendamtest;
                         dt.Select("estgcod='04005'")[0]["actual"] = texpendamtactual;
@@ -554,67 +751,127 @@ namespace RealERPWEB.F_02_Fea
                         break;
 
                     case "05001":
-                        mktexpest = txtestcost;
-                        mktexpactual = txtactual;
-                        dt.Select("estgcod='05001'")[0]["estcost"] = mktexpest;
-                        dt.Select("estgcod='05001'")[0]["actual"] = mktexpactual;
-                        dt.Select("estgcod='05001'")[0]["balamt"] = mktexpest - mktexpactual;
-
-                        break;
-
                     case "05002":
-
-                        comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
-                        actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
-
-                        //otherest = 500000;
-                        otherest = comitedval * percnt * .01;
-                        otheractual = actualsalvalue * percnt * .01;
-
-                        dt.Select("estgcod='05002'")[0]["estcost"] = otherest;
-                        dt.Select("estgcod='05002'")[0]["actual"] = otheractual;
-                        dt.Select("estgcod='05002'")[0]["balamt"] = otherest - otheractual;
-
-                        break;
                     case "05003":
-                        costpest = txtestcost;
-                        costpactual = txtactual;
-
-
-                        dt.Select("estgcod='05003'")[0]["estcost"] = costpest;
-                        dt.Select("estgcod='05003'")[0]["actual"] = costpactual;
-                        dt.Select("estgcod='05003'")[0]["balamt"] = costpest - costpactual;
-
-                        break;
-
                     case "05004":
 
-                        comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
-                        actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
-                  
-                        riskest = comitedval * percnt * .01;
-                        riskactual = actualsalvalue * percnt * .01;
 
-                        dt.Select("estgcod='05004'")[0]["estcost"] = riskest;
-                        dt.Select("estgcod='05004'")[0]["actual"] = riskactual;
-                        dt.Select("estgcod='05004'")[0]["balamt"] = riskest - riskactual;
-
-                        break;
-
-                    case "05006":
+                        if (Gcode == "05001")
+                        {
+                            mktexpest = txtestcost;
+                            mktexpactual = txtactual;
+                            dt.Select("estgcod='05001'")[0]["estcost"] = mktexpest;
+                            dt.Select("estgcod='05001'")[0]["actual"] = mktexpactual;
+                            dt.Select("estgcod='05001'")[0]["balamt"] = mktexpest - mktexpactual;
 
 
-                        //riskest = 500000;
-                        //riskest = 500000 * percnt * .01;
-                        //riskactual = 0.00;
+                        }
+
+                        else if (Gcode == "05002")
+                        {
+                            comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                            actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+
+                            //otherest = 500000;
+                            otherest = comitedval * percnt * .01;
+                            otheractual = actualsalvalue * percnt * .01;
+
+                            dt.Select("estgcod='05002'")[0]["estcost"] = otherest;
+                            dt.Select("estgcod='05002'")[0]["actual"] = otheractual;
+                            dt.Select("estgcod='05002'")[0]["balamt"] = otherest - otheractual;
+
+                        }
+
+                        else if (Gcode == "05003")
+                        {
+                            costpest = txtestcost;
+                            costpactual = txtactual;
+                            dt.Select("estgcod='05003'")[0]["estcost"] = costpest;
+                            dt.Select("estgcod='05003'")[0]["actual"] = costpactual;
+                            dt.Select("estgcod='05003'")[0]["balamt"] = costpest - costpactual;
+
+                        }
+
+                        else if (Gcode == "05004")
+                        {
+                            comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                            actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+
+                            riskest = comitedval * percnt * .01;
+                            riskactual = actualsalvalue * percnt * .01;
+
+                            dt.Select("estgcod='05004'")[0]["estcost"] = riskest;
+                            dt.Select("estgcod='05004'")[0]["actual"] = riskactual;
+                            dt.Select("estgcod='05004'")[0]["balamt"] = riskest - riskactual;
+
+                        }
 
                         totherest = mktexpest + otherest + costpest + riskest;
                         totheractual = mktexpactual + otheractual + costpactual + riskactual;
-                        dt.Select("estgcod='05006'")[0]["estcost"] = totherest;
-                        dt.Select("estgcod='05006'")[0]["actual"] = totheractual;
-                        dt.Select("estgcod='05006'")[0]["balamt"] = totherest - totheractual;
-
+                        dt.Select("estgcod='05000'")[0]["estcost"] = totherest;
+                        dt.Select("estgcod='05000'")[0]["actual"] = totheractual;
+                        dt.Select("estgcod='05000'")[0]["balamt"] = totherest - totheractual;
+                       
                         break;
+
+
+                   
+
+                    //case "05002":
+
+                    //    comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                    //    actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+
+                    //    //otherest = 500000;
+                    //    otherest = comitedval * percnt * .01;
+                    //    otheractual = actualsalvalue * percnt * .01;
+
+                    //    dt.Select("estgcod='05002'")[0]["estcost"] = otherest;
+                    //    dt.Select("estgcod='05002'")[0]["actual"] = otheractual;
+                    //    dt.Select("estgcod='05002'")[0]["balamt"] = otherest - otheractual;
+
+                    //    break;
+                    //case "05003":
+                    //    costpest = txtestcost;
+                    //    costpactual = txtactual;
+
+
+                    //    dt.Select("estgcod='05003'")[0]["estcost"] = costpest;
+                    //    dt.Select("estgcod='05003'")[0]["actual"] = costpactual;
+                    //    dt.Select("estgcod='05003'")[0]["balamt"] = costpest - costpactual;
+
+                    //    break;
+
+                    //case "05004":
+
+                    //    comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                    //    actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+                  
+                    //    riskest = comitedval * percnt * .01;
+                    //    riskactual = actualsalvalue * percnt * .01;
+
+                    //    dt.Select("estgcod='05004'")[0]["estcost"] = riskest;
+                    //    dt.Select("estgcod='05004'")[0]["actual"] = riskactual;
+                    //    dt.Select("estgcod='05004'")[0]["balamt"] = riskest - riskactual;
+
+                    //    break;
+
+                    //case "05006":                     
+                    //    totherest = mktexpest + otherest + costpest + riskest;
+                    //    totheractual = mktexpactual + otheractual + costpactual + riskactual;
+                    //    dt.Select("estgcod='05006'")[0]["estcost"] = totherest;
+                    //    dt.Select("estgcod='05006'")[0]["actual"] = totheractual;
+                    //    dt.Select("estgcod='05006'")[0]["balamt"] = totherest - totheractual;
+
+                    //    break;
+
+                    //case "05000": // change 05006
+                    //    totherest = mktexpest + otherest + costpest + riskest;
+                    //    totheractual = mktexpactual + otheractual + costpactual + riskactual;
+                    //    dt.Select("estgcod='05000'")[0]["estcost"] = totherest;
+                    //    dt.Select("estgcod='05000'")[0]["actual"] = totheractual;
+                    //    dt.Select("estgcod='05000'")[0]["balamt"] = totherest - totheractual;
+                    //    break;
 
                     case "05008":
 
@@ -625,121 +882,227 @@ namespace RealERPWEB.F_02_Fea
                         dt.Select("estgcod='05008'")[0]["balamt"] = totalcostest - totalcostactual;
 
                         break;
+
+                    
                     case "06001":
-                        mktexpenforest = 500000 * percnt * .01;
-                        mktexpenforest = 0.00;
-
-
-                        dt.Select("estgcod='06001'")[0]["estcost"] = mktexpenforest;
-                        dt.Select("estgcod='06001'")[0]["actual"] = mktexpenforest;
-                        dt.Select("estgcod='06001'")[0]["balamt"] = mktexpenforest - mktexpenforest;
-
-                        break;
-
                     case "06002":
 
-                        //Convert.ToDouble("0" + ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtestcost")).Text.Trim())
-                        purvalue = Convert.ToDouble("0" + (lblPurValuse1.Text));
 
-                        // taginday= Convert.ToDouble("0" + (agingday));
-                        mktexpenmonest = (purvalue * percnt * .01 * vality) / (30);
-                        mktexpenmonactaul = (purvalue * percnt * .01 * aging) / (30);
+                        if (Gcode == "06001")
+                        {
 
-                        dt.Select("estgcod='06002'")[0]["estcost"] = mktexpenmonest;
-                        dt.Select("estgcod='06002'")[0]["actual"] = mktexpenmonactaul;
-                        dt.Select("estgcod='06002'")[0]["balamt"] = mktexpenmonest - mktexpenmonactaul;
+                            mktexpenforest = 500000 * percnt * .01;
+                            mktexpenforest = 0.00;
 
-                        break;
 
-                    case "06004":
+                            dt.Select("estgcod='06001'")[0]["estcost"] = mktexpenforest;
+                            dt.Select("estgcod='06001'")[0]["actual"] = mktexpenforest;
+                            dt.Select("estgcod='06001'")[0]["balamt"] = mktexpenforest - mktexpenforest;
+
+                        }
+
+                        else if(Gcode == "06002")
+                        {
+
+                            purvalue = Convert.ToDouble("0" + (lblPurValuse1.Text));
+
+                            // taginday= Convert.ToDouble("0" + (agingday));
+                            mktexpenmonest = (purvalue * percnt * .01 * vality) / (30);
+                            mktexpenmonactaul = (purvalue * percnt * .01 * aging) / (30);
+
+                            dt.Select("estgcod='06002'")[0]["estcost"] = mktexpenmonest;
+                            dt.Select("estgcod='06002'")[0]["actual"] = mktexpenmonactaul;
+                            dt.Select("estgcod='06002'")[0]["balamt"] = mktexpenmonest - mktexpenmonactaul;
+
+
+                        }
+
                         tmktexpenmonest = mktexpenforest + mktexpenmonest;
                         tmktexpenmonactaul = mktexpenforest + mktexpenmonactaul;
 
-                        dt.Select("estgcod='06004'")[0]["estcost"] = tmktexpenmonest;
-                        dt.Select("estgcod='06004'")[0]["actual"] = tmktexpenmonactaul;
-                        dt.Select("estgcod='06004'")[0]["balamt"] = tmktexpenmonest - tmktexpenmonactaul;
+                        dt.Select("estgcod='06000'")[0]["estcost"] = tmktexpenmonest;
+                        dt.Select("estgcod='06000'")[0]["actual"] = tmktexpenmonactaul;
+                        dt.Select("estgcod='06000'")[0]["balamt"] = tmktexpenmonest - tmktexpenmonactaul;
+
+
+
 
                         break;
+
+                    //case "06002":
+
+                        
+                    //    purvalue = Convert.ToDouble("0" + (lblPurValuse1.Text));
+
+                    //    // taginday= Convert.ToDouble("0" + (agingday));
+                    //    mktexpenmonest = (purvalue * percnt * .01 * vality) / (30);
+                    //    mktexpenmonactaul = (purvalue * percnt * .01 * aging) / (30);
+
+                    //    dt.Select("estgcod='06002'")[0]["estcost"] = mktexpenmonest;
+                    //    dt.Select("estgcod='06002'")[0]["actual"] = mktexpenmonactaul;
+                    //    dt.Select("estgcod='06002'")[0]["balamt"] = mktexpenmonest - mktexpenmonactaul;
+
+                    //    break;
+
+                    //case "06004":
+                    //    tmktexpenmonest = mktexpenforest + mktexpenmonest;
+                    //    tmktexpenmonactaul = mktexpenforest + mktexpenmonactaul;
+
+                    //    dt.Select("estgcod='06004'")[0]["estcost"] = tmktexpenmonest;
+                    //    dt.Select("estgcod='06004'")[0]["actual"] = tmktexpenmonactaul;
+                    //    dt.Select("estgcod='06004'")[0]["balamt"] = tmktexpenmonest - tmktexpenmonactaul;
+
+                    //    break;
+
+
+                    //case "06000": //change 06004
+                    //    tmktexpenmonest = mktexpenforest + mktexpenmonest;
+                    //    tmktexpenmonactaul = mktexpenforest + mktexpenmonactaul;
+
+                    //    dt.Select("estgcod='06000'")[0]["estcost"] = tmktexpenmonest;
+                    //    dt.Select("estgcod='06000'")[0]["actual"] = tmktexpenmonactaul;
+                    //    dt.Select("estgcod='06000'")[0]["balamt"] = tmktexpenmonest - tmktexpenmonactaul;
+
+                    //    break;
+
+                        //auto calculate
+
 
                     case "07001":
-
-                        DateTime datefrm = Convert.ToDateTime(this.txtCurDate.Text.Trim());
-                        DateTime dateto = Convert.ToDateTime(paymentdate.Trim());
-                        //DateTime p1;
-
-                        //DateTime dateTime10 = Convert.ToDateTime(txtCurDate);
-                        //DateTime dateTime12 = Convert.ToDateTime(paymentdate);
-
-                        //d1 = Convert.ToDateTime (txtCurDate.Text);
-                        //p1=Convert.dat
-                        //d2 Convert.ToDateTime(paymentdate) ;
-
-                        tday = datefrm - dateto;
-                        NrOfDays = tday.TotalDays;
-
-
-                        costoffundest = (costoffund * percnt * .01 * vality) / (360);
-                        costoffundactual = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
-
-                        dt.Select("estgcod='07001'")[0]["fundamt"] = costoffund;
-                        dt.Select("estgcod='07001'")[0]["estcost"] = costoffundest;
-                        dt.Select("estgcod='07001'")[0]["actual"] = costoffundactual;
-                        dt.Select("estgcod='07001'")[0]["balamt"] = costoffundest - costoffundactual;
-
-                        break;
-
-
                     case "07002":
-
-                        DateTime datefrm1 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
-                        DateTime dateto2 = Convert.ToDateTime(paymentdate.Trim());
-
-                        tday = datefrm1 - dateto2;
-                        NrOfDays = tday.TotalDays;
-
-
-                        costoffundest5 = (costoffund * percnt * .01 * vality) / (360);
-                        costoffundactual5 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
-
-                        dt.Select("estgcod='07002'")[0]["fundamt"] = costoffund;
-                        dt.Select("estgcod='07002'")[0]["estcost"] = costoffundest5;
-                        dt.Select("estgcod='07002'")[0]["actual"] = costoffundactual5;
-                        dt.Select("estgcod='07002'")[0]["balamt"] = costoffundest5 - costoffundactual5;
-
-                        break;
                     case "07003":
 
 
-                        DateTime datefrm3 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
-                        DateTime dateto4 = Convert.ToDateTime(paymentdate.Trim());
+                        if (Gcode == "07001")
+                        {
+                            DateTime datefrm = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                            DateTime dateto = Convert.ToDateTime(paymentdate.Trim());
+                            //DateTime p1;
 
-                        tday = datefrm3 - dateto4;
-                        NrOfDays = tday.TotalDays;
+                            //DateTime dateTime10 = Convert.ToDateTime(txtCurDate);
+                            //DateTime dateTime12 = Convert.ToDateTime(paymentdate);
+
+                            //d1 = Convert.ToDateTime (txtCurDate.Text);
+                            //p1=Convert.dat
+                            //d2 Convert.ToDateTime(paymentdate) ;
+
+                            tday = datefrm - dateto;
+                            NrOfDays = tday.TotalDays;
 
 
-                        costoffundest6 = (costoffund * percnt * .01 * vality) / (360);
-                        costoffundactual6 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+                            costoffundest = (costoffund * percnt * .01 * vality) / (360);
+                            costoffundactual = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
 
-                        dt.Select("estgcod='07003'")[0]["fundamt"] = costoffund;
-                        dt.Select("estgcod='07003'")[0]["estcost"] = costoffundest6;
-                        dt.Select("estgcod='07003'")[0]["actual"] = costoffundactual6;
-                        dt.Select("estgcod='07003'")[0]["balamt"] = costoffundest6 - costoffundactual6;
+                            dt.Select("estgcod='07001'")[0]["fundamt"] = costoffund;
+                            dt.Select("estgcod='07001'")[0]["estcost"] = costoffundest;
+                            dt.Select("estgcod='07001'")[0]["actual"] = costoffundactual;
+                            dt.Select("estgcod='07001'")[0]["balamt"] = costoffundest - costoffundactual;
 
-                        break;
+                        }
+
+                          else if(Gcode == "07002")
+                        {
+                            DateTime datefrm1 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                            DateTime dateto2 = Convert.ToDateTime(paymentdate.Trim());
+
+                            tday = datefrm1 - dateto2;
+                            NrOfDays = tday.TotalDays;
 
 
-                    case "07004":
+                            costoffundest5 = (costoffund * percnt * .01 * vality) / (360);
+                            costoffundactual5 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+
+                            dt.Select("estgcod='07002'")[0]["fundamt"] = costoffund;
+                            dt.Select("estgcod='07002'")[0]["estcost"] = costoffundest5;
+                            dt.Select("estgcod='07002'")[0]["actual"] = costoffundactual5;
+                            dt.Select("estgcod='07002'")[0]["balamt"] = costoffundest5 - costoffundactual5;
+
+
+                        }
+
+                        else if (Gcode == "07003")
+                        {
+
+                            DateTime datefrm3 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                            DateTime dateto4 = Convert.ToDateTime(paymentdate.Trim());
+
+                            tday = datefrm3 - dateto4;
+                            NrOfDays = tday.TotalDays;
+
+
+                            costoffundest6 = (costoffund * percnt * .01 * vality) / (360);
+                            costoffundactual6 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+
+                            dt.Select("estgcod='07003'")[0]["fundamt"] = costoffund;
+                            dt.Select("estgcod='07003'")[0]["estcost"] = costoffundest6;
+                            dt.Select("estgcod='07003'")[0]["actual"] = costoffundactual6;
+                            dt.Select("estgcod='07003'")[0]["balamt"] = costoffundest6 - costoffundactual6;
+
+                        }
 
                         costest2 = costoffundest + costoffundest5 + costoffundest6;
                         costacutal2 = costoffundactual + costoffundactual5 + costoffundactual6;
 
 
-                        dt.Select("estgcod='07004'")[0]["fundamt"] = 0.00;
-                        dt.Select("estgcod='07004'")[0]["estcost"] = costest2;
-                        dt.Select("estgcod='07004'")[0]["actual"] = costacutal2;
-                        dt.Select("estgcod='07004'")[0]["balamt"] = costest2 - costacutal2;
+                        dt.Select("estgcod='07000'")[0]["fundamt"] = 0.00;
+                        dt.Select("estgcod='07000'")[0]["estcost"] = costest2;
+                        dt.Select("estgcod='07000'")[0]["actual"] = costacutal2;
+                        dt.Select("estgcod='07000'")[0]["balamt"] = costest2 - costacutal2;
 
                         break;
+
+
+                    //case "07002":
+
+                    //    DateTime datefrm1 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                    //    DateTime dateto2 = Convert.ToDateTime(paymentdate.Trim());
+
+                    //    tday = datefrm1 - dateto2;
+                    //    NrOfDays = tday.TotalDays;
+
+
+                    //    costoffundest5 = (costoffund * percnt * .01 * vality) / (360);
+                    //    costoffundactual5 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+
+                    //    dt.Select("estgcod='07002'")[0]["fundamt"] = costoffund;
+                    //    dt.Select("estgcod='07002'")[0]["estcost"] = costoffundest5;
+                    //    dt.Select("estgcod='07002'")[0]["actual"] = costoffundactual5;
+                    //    dt.Select("estgcod='07002'")[0]["balamt"] = costoffundest5 - costoffundactual5;
+
+                    //    break;
+                    //case "07003":
+
+
+                    //    DateTime datefrm3 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                    //    DateTime dateto4 = Convert.ToDateTime(paymentdate.Trim());
+
+                    //    tday = datefrm3 - dateto4;
+                    //    NrOfDays = tday.TotalDays;
+
+
+                    //    costoffundest6 = (costoffund * percnt * .01 * vality) / (360);
+                    //    costoffundactual6 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+
+                    //    dt.Select("estgcod='07003'")[0]["fundamt"] = costoffund;
+                    //    dt.Select("estgcod='07003'")[0]["estcost"] = costoffundest6;
+                    //    dt.Select("estgcod='07003'")[0]["actual"] = costoffundactual6;
+                    //    dt.Select("estgcod='07003'")[0]["balamt"] = costoffundest6 - costoffundactual6;
+
+                    //    break;
+
+
+                    //case "07004":
+
+                    //    costest2 = costoffundest + costoffundest5 + costoffundest6;
+                    //    costacutal2 = costoffundactual + costoffundactual5 + costoffundactual6;
+
+
+                    //    dt.Select("estgcod='07004'")[0]["fundamt"] = 0.00;
+                    //    dt.Select("estgcod='07004'")[0]["estcost"] = costest2;
+                    //    dt.Select("estgcod='07004'")[0]["actual"] = costacutal2;
+                    //    dt.Select("estgcod='07004'")[0]["balamt"] = costest2 - costacutal2;
+
+                    //    break;
 
                     case "08000":
 
@@ -766,6 +1129,17 @@ namespace RealERPWEB.F_02_Fea
 
                         break;
 
+                    //case "09000":
+                    //    lossest2 = Convert.ToDouble("0" + (lblcommitedval.Text));
+                    //    double lossest6 = Convert.ToDouble("0" + (lblactualsal1.Text));
+                    //    // lossactual = Convert.ToDouble("0" + (lblcommitedval.Text));
+                    //    lossest = lossest2 - totalcostest;
+                    //    lossactual = lossest6 - totalcostactual;
+                    //    dt.Select("estgcod='09000'")[0]["estcost"] = lossest;
+                    //    dt.Select("estgcod='09000'")[0]["actual"] = lossactual;
+                    //    dt.Select("estgcod='09000'")[0]["balamt"] = lossactual == 0 ? 0 : lossactual * 100 / lossest6;
+
+                    //    dt.Select("estgcod='09000'")[0]["percnt"] = lossest == 0 ? 0 : lossest * 100 / lossest2;
 
                     case "09000":
                         lossest2 = Convert.ToDouble("0" + (lblcommitedval.Text));
@@ -775,9 +1149,9 @@ namespace RealERPWEB.F_02_Fea
                         lossactual = lossest6 - totalcostactual;
                         dt.Select("estgcod='09000'")[0]["estcost"] = lossest;
                         dt.Select("estgcod='09000'")[0]["actual"] = lossactual;
-                        dt.Select("estgcod='09000'")[0]["balamt"] = lossactual == 0 ? 0 : lossactual * 100 / lossest6;
+                        dt.Select("estgcod='09000'")[0]["balamt"] = lossest- lossactual;
 
-                        dt.Select("estgcod='09000'")[0]["percnt"] = lossest == 0 ? 0 : lossest * 100 / lossest2;
+                      //  dt.Select("estgcod='09000'")[0]["percnt"] = lossest == 0 ? 0 : lossest * 100 / lossest2;
 
                         // dt.Select("estgcod='09000'")[0]["balamt"] = 0.00;
 
@@ -902,8 +1276,12 @@ namespace RealERPWEB.F_02_Fea
             this.gvProjectInfo.DataSource = dt;
             this.gvProjectInfo.DataBind();
 
-            double salprice = dt.Select("estgcod='05008'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='05008'")[0]["estcost"]) : 0.00;
-            this.lblsalecore.Text = Convert.ToDouble(salprice / 10000000).ToString("#,##0.00;(#,##0.00); ") + " Crore";
+            double salpriceest = dt.Select("estgcod='05008'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='05008'")[0]["estcost"]) : 0.00;
+            double salpriceactual = dt.Select("estgcod='05008'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='05008'")[0]["actual"]) : 0.00;
+
+            this.lblsalecore.Text = Convert.ToDouble(salpriceest / 10000000).ToString("#,##0.00;(#,##0.00); ") + " Crore";
+            this.lblsalecoreactual.Text = Convert.ToDouble(salpriceactual / 10000000).ToString("#,##0.00;(#,##0.00); ") + " Crore";
+
 
 
             this.FooterCal();

@@ -1074,10 +1074,20 @@ namespace RealERPWEB.F_23_CR
                     //string management = (type1 == "Management" ? "management" : ""); // mr edit 
 
                     //schamt = schamt + paidamt;
-                    if (paidamt != 0 || disamt != 0)
-                        result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(), 
-                            chqno, bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, 
-                                                          SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno,"", louamt.ToString());
+                    if ((paidamt == 0 && louamt == 0))
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Must have atleast LO Amount or Company Amount.";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+                    }
+                    else
+                    {
+                        string isLO = "1";
+                        result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(),
+                           chqno, bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat,
+                                                         SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno, "", louamt.ToString(), isLO);
+
+                    }
 
                     if (result == false)
                     {
@@ -1789,7 +1799,7 @@ namespace RealERPWEB.F_23_CR
                 //tbl1.Rows[i]["paidamount"] = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtgvpaidamount")).Text.Trim()).ToString();
                 tbl1.Rows[i]["repchqno"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvrRpChq")).Text.Trim();
                 tbl1.Rows[i]["remarks"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvremarks")).Text.Trim();
-                tbl1.Rows[i]["loamount"] = paidamt-companyamt;
+                tbl1.Rows[i]["loamount"] = ASTUtility.StrPosOrNagative(((TextBox)this.grvacc.Rows[i].FindControl("txtgvpaidLoamount")).Text.Trim());
                 tbl1.Rows[i]["companyamount"] = companyamt;
                 //tbl1.Rows[i]["collfrm"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvColl")).Text.Trim();
                 //tbl1.Rows[i]["recType"] = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvRecType")).Text.Trim();

@@ -324,6 +324,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.gvMonthlyattSummary.DataSource = dt;
             this.gvMonthlyattSummary.DataBind();
 
+            if (dt.Rows.Count == 0)
+                return;
+            Session["Report1"] = gvMonthlyattSummary;
+            ((HyperLink)this.gvMonthlyattSummary.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
             //}
             //else
             //{
@@ -362,18 +368,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             //    this.gvMonthlyAtt.DataSource = dt;
             //    this.gvMonthlyAtt.DataBind();
-                //}
-                //else
-                //{
+            //}
+            //else
+            //{
 
-                //    this.DelaisAttinfo.Visible = true;
+            //    this.DelaisAttinfo.Visible = true;
 
-                //    this.SummaryAttinfo.Visible = false;
+            //    this.SummaryAttinfo.Visible = false;
 
-                //    this.gvMonthlyAtt.DataSource = dt;
-                //    this.gvMonthlyAtt.DataBind();
+            //    this.gvMonthlyAtt.DataSource = dt;
+            //    this.gvMonthlyAtt.DataBind();
 
-                //}
+            //}
 
             //}
         }

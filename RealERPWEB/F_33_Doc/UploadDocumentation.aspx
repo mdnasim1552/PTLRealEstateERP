@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="UploadDocumentation.aspx.cs" Inherits="RealERPWEB.F_33_Doc.UploadDocumentation" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="UploadDocumentation.aspx.cs" Inherits="RealERPWEB.F_33_Doc.UploadDocumentation" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -34,25 +34,34 @@
     </style>
 
 
+                   
+    <script src="../assets/js/ckeditor/ckeditor.js"></script>
+
     <script type="text/javascript">
+
+
+
         $(document).ready(function () {
-            //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
 
         });
         function pageLoaded() {
-            try {
-                $('.chzn-select').chosen({ search_contains: true });
-            }
-            catch (e) {
-                alert(e);
-            }
 
-        };
-        $('.chzn-select').chosen({ search_contains: true });
+            $(function () {
+                CKEDITOR.replace('<%=txtDetails1.ClientID %>');
+            });
+            $(function () {
+                 // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                // CKEDITOR.replace('<%=txtDetails1.ClientID%>');  //Nahiod comments 021020019
+                //bootstrap WYSIHTML5 - text editor
+                //$('.textarea').wysihtml5()
+            })
+        }
+
+     
     </script>
-
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -118,19 +127,21 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <asp:Label ID="Label19" runat="server" Text="Details:"></asp:Label>
-                                        <div id="summernote"></div>
-                                        <asp:TextBox ID="txtDetails1" runat="server" Rows="5" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                    </div>
-                                </div>
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <asp:Label ID="lblimg" runat="server" Text="Documents:"></asp:Label>
                                         <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" accept=".pdf"/>
   <%--                                      <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />--%>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label19" runat="server" Text="Details:"></asp:Label>
+                                        <div id="summernote"></div>
+                                        <asp:TextBox ID="txtDetails1" runat="server" Rows="5" CssClass="form-control " TextMode="MultiLine"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -210,17 +221,20 @@
             <asp:PostBackTrigger ControlID="lnk_save" />
         </Triggers>
     </asp:UpdatePanel>
-
-        <script>
-            ClassicEditor
-                .create(document.querySelector('#txtDetails1'))
-                .catch(error => {
-                    console.error(error);
-                });
-        </script>
+     <script>
+         $(function () {
+             CKEDITOR.replace('<%=txtDetails1.ClientID %>');
+            });
+            $(function () {
+                 // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                // CKEDITOR.replace('<%=txtDetails1.ClientID%>');  //Nahiod comments 021020019
+                //bootstrap WYSIHTML5 - text editor
+                //$('.textarea').wysihtml5()
+            })
+     </script>
 
 </asp:Content>
-
 
 
 

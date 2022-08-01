@@ -278,7 +278,7 @@ namespace RealERPWEB.F_99_Allinterface
             string checkby = dt3.Rows[0]["reqchkname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["checkdat"].ToString()).ToString("dd-MMM-yyyy");
             string rateproposal = dt3.Rows[0]["reqratename"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["rateidate"].ToString()).ToString("dd-MMM-yyyy"); ;
             string approveby = dt3.Rows[0]["reqaprname"].ToString() + "\n" + Convert.ToDateTime(dt3.Rows[0]["aprvdat"].ToString()).ToString("dd-MMM-yyyy"); ;
-            string finalapproveby = dt3.Rows[0]["reqreqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
+            string finalapproveby = dt3.Rows[0]["reqfaprname"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprovdat"].ToString()).ToString("dd-MMM-yyyy"); ;
             if (comcod == "3335")
             {
 
@@ -3988,10 +3988,10 @@ namespace RealERPWEB.F_99_Allinterface
                         dat2 = _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString();
                         dat3 = _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
-                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString();
-                        dat4 = _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
-                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
-                        dat5 = _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString();
+                        dat4 = _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign5 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordfappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString(); //_ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
+                        dat5 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordfappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString(); 
                         sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString();
                         dat6 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
 
@@ -4170,7 +4170,7 @@ namespace RealERPWEB.F_99_Allinterface
                         pperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // Pintech
+                    //case "3101": // Pintech
                     case "3354": // Edison Real estate                     
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
@@ -4429,7 +4429,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("dat5", dat5));
                     Rpt1.SetParameters(new ReportParameter("dat6", dat6));
                 }
-                if (comcod == "3354" || comcod == "3101") // edison
+                if (comcod == "3354") // edison
                 {
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                     Rpt1.SetParameters(new ReportParameter("costa", costa));

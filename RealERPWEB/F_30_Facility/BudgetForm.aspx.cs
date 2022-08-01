@@ -21,7 +21,7 @@ namespace RealERPWEB.F_30_Facility
             {
                 txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 getProjUnitddl();
-                getComplainUser();
+              //  getComplainUser();
                 createMaterialList();
                 getMatCategory();
                 getMaterial();
@@ -29,13 +29,17 @@ namespace RealERPWEB.F_30_Facility
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Budget";
                 if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Edit")
                 {
+                    lblDgNo.Text = Request.QueryString["Dgno"].ToString();
                     EditFunctionality();
                 }
                 if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
                 {
+                    lblDgNo.Text = Request.QueryString["Dgno"].ToString();
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Approval";
+                    lnkSave.Text = "Approve";
                     pnlApproval.Visible = true;
                     txtEntryDate.Enabled = false;
+                    lnkProceed.Visible = false;
                 }
             }
         }
@@ -227,7 +231,7 @@ namespace RealERPWEB.F_30_Facility
                 string materialdesc = ddlMaterial.SelectedItem.Text;
                 string unit = lblUnit.Text;
                 double sirval = Convert.ToDouble(lblsirval.Text == "" ? "0.00" : lblsirval.Text);
-                List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];                
+                List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
                 SessionMaterialList();
                 var value = obj.Where(x => x.materialId == material).Any();
                 if (!value)
@@ -243,7 +247,7 @@ namespace RealERPWEB.F_30_Facility
                         percnt = 0,
                         type = material == "049700101001" ? "Z" : "A"
                     });
-                    ViewState["MaterialList"] = obj;                    
+                    ViewState["MaterialList"] = obj;
                     lbtnTotal_Click(null, null);
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Added to the Table" + "');", true);
                 }
@@ -252,7 +256,7 @@ namespace RealERPWEB.F_30_Facility
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Already Added-{materialdesc}" + "');", true);
                 }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
 
             }
 
@@ -286,7 +290,7 @@ namespace RealERPWEB.F_30_Facility
                 ViewState["ComplainList"] = obj;
                 dgv1.DataSource = obj;
                 dgv1.DataBind();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -297,7 +301,29 @@ namespace RealERPWEB.F_30_Facility
 
         protected void lnkProceed_Click(object sender, EventArgs e)
         {
+            string dgno = lblDgNo.Text;
+            if (dgno == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Please Save to Proceed to Next Step" + "');", true);
+            }
+            else
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComCode();
+                string userId = hst["usrid"].ToString();
 
+                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEAPPRBGDFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                     "", "", "", "", "", "", "", "", "", "", userId);
+                if (resultflag)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to Budget" + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
+
+            }
         }
 
 
@@ -325,7 +351,7 @@ namespace RealERPWEB.F_30_Facility
             {
                 getComplainUser();
                 createMaterialList();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -340,7 +366,7 @@ namespace RealERPWEB.F_30_Facility
             {
                 getMaterial();
                 getUnit();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -353,7 +379,7 @@ namespace RealERPWEB.F_30_Facility
             try
             {
                 getUnit();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -373,7 +399,7 @@ namespace RealERPWEB.F_30_Facility
                 ViewState["MaterialList"] = obj;
                 lbtnTotal_Click(null, null);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Removed from the table" + "');", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -391,13 +417,13 @@ namespace RealERPWEB.F_30_Facility
                 double sumValue = obj.Where(x => x.type == "A").Sum(x => x.amount);
                 if (obj.Where(x => x.type == "Z").ToList().Count == 1)
                 {
-                    
+
                     double percnt = obj.Where(x => x.type == "Z").FirstOrDefault().percnt;
                     double percntamt = 0.00;
                     if (percnt == 0.00)
                     {
-                        percntamt= obj.Where(x => x.type == "Z").FirstOrDefault().amount;
-                        percnt = sumValue==0.00?0.00:((percntamt / sumValue) * 100);
+                        percntamt = obj.Where(x => x.type == "Z").FirstOrDefault().amount;
+                        percnt = sumValue == 0.00 ? 0.00 : ((percntamt / sumValue) * 100);
                     }
                     else
                     {
@@ -411,7 +437,7 @@ namespace RealERPWEB.F_30_Facility
                 {
                     ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.amount).ToString("#,##0.00;-#,##0.00;");
                 }
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {
@@ -435,7 +461,7 @@ namespace RealERPWEB.F_30_Facility
                     double amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtAmount")).Text.Trim()));
                     obj[rowindex].quantity = quantity;
                     obj[rowindex].rate = rate;
-                    obj[rowindex].amount = materialId== "049700101001"? amount:  quantity * rate;
+                    obj[rowindex].amount = materialId == "049700101001" ? amount : quantity * rate;
                     obj[rowindex].percnt = percnt;
 
                 }
@@ -464,6 +490,7 @@ namespace RealERPWEB.F_30_Facility
                              "", "", "", "", "", "", "", "", "", "", userId);
                 if (resultDelete)
                 {
+                   
                     foreach (var item in obj)
                     {
                         bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTBGD", dgno, item.materialId, item.unit, item.quantity.ToString(), item.amount.ToString(),
@@ -479,8 +506,10 @@ namespace RealERPWEB.F_30_Facility
                     }
                     else
                     {
+                        
                         if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Approval")
                         {
+                            
                             string notes = txtNarration.Text;
                             string warrantyCode = lblWarrantyCode.Text;
                             bool resultR = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTAPPROVAL", dgno, notes, warrantyCode, "", "", "", "", "", "", "", "", "",
@@ -505,6 +534,15 @@ namespace RealERPWEB.F_30_Facility
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ _process.ErrorObject["Msg"].ToString()}" + "');", true);
                                 return;
                             }
+                            if (obj.Where(x => x.materialId.StartsWith("01")).ToList().Count == 0)
+                            {
+                                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                                         "", "", "", "", "", "", "", "", "", "", userId);
+                                if (!resultflag)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                                }
+                            }
 
                         }
                         else
@@ -512,6 +550,7 @@ namespace RealERPWEB.F_30_Facility
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Budget of Dg-{dgno} - Updated Successful" + "');", true);
 
                         }
+                        lblDgNo.Text = dgno;
                     }
                 }
                 else
@@ -520,7 +559,7 @@ namespace RealERPWEB.F_30_Facility
                     return;
                 }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TabState();", true);
+                
             }
             catch (Exception ex)
             {

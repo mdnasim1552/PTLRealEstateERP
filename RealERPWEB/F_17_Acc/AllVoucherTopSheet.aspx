@@ -449,6 +449,17 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        
+                                        <asp:TemplateField HeaderText="Voutype" Visible="False">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblvoutype" runat="server" BackColor="Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voutype")) %>'
+                                                    Width="20px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
 
 
 

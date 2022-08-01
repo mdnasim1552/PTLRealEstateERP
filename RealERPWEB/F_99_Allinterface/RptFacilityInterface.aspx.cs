@@ -30,6 +30,7 @@ namespace RealERPWEB.F_99_Allinterface
                 txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 ModuleName();
                 getComplainList();
+                txtRejectDesc.Text = "";
             }
         }
         private string GetComCode()
@@ -46,7 +47,7 @@ namespace RealERPWEB.F_99_Allinterface
             string date1 = txtfrmdate.Text;
             string date2 = txttoDate.Text;
             DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETTOPNUMBER", date1, date2, "", "", "", "", "", "", "", "", "");
-            string item1, item2, item3, item4, item5, item6, item7, item8, item9, item10;
+            string item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11;
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 DataTable dt = ds.Tables[0];
@@ -60,6 +61,7 @@ namespace RealERPWEB.F_99_Allinterface
                 item8 = dt.Rows[0][8].ToString();
                 item9 = dt.Rows[0][9].ToString();
                 item10 = dt.Rows[0][10].ToString();
+                item11= dt.Rows[0][11].ToString();
             }
             else
             {
@@ -73,6 +75,7 @@ namespace RealERPWEB.F_99_Allinterface
                 item8 = "0";
                 item9 = "0";
                 item10 = "0";
+                item11 = "0";
             }
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item1 + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complaints</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item2 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Engr. Check</div></div></div>";
@@ -88,6 +91,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + item8 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QC Pending</div></div></div>";
             this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item9 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Customer Care" + "</div></div></div>";
             this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item10 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + "Work Done" + "</div></div></div>";
+            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item11 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>" + "Reject" + "</div></div></div>";
 
 
 
@@ -108,8 +112,11 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = false;
                     pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getComplainList();
                     break;
                 case "1":
@@ -119,8 +126,11 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = false;
                     pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getDiagnosisList();
                     break;
                 case "2":
@@ -130,8 +140,11 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = false;
                     pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getBudget();
                     break;
                 case "3":
@@ -141,8 +154,11 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = true;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = false;
                     pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getBudgetApproval();
                     break;
                 case "4":
@@ -152,8 +168,11 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = true;
                     pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = false;
                     pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getQuotList();
                     break;
                 case "5":
@@ -163,9 +182,26 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = true;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = false;
                     pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getMATREQ();
+                    break;
+                case "6":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
+                    pnlStatus.Visible = true;
+                    pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
+                    getStatus();
                     break;
                 case "7":
                     pnlComplainCount.Visible = false;
@@ -174,8 +210,11 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = true;
                     pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getQC();
                     break;
                 case "8":
@@ -185,11 +224,61 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlBudget.Visible = false;
                     pnlApproval.Visible = false;
                     pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
                     pnlQC.Visible = false;
                     pnlCustomerCare.Visible = true;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = false;
                     getCustomerCare();
                     break;
+                case "9":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
+                    pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = true;
+                    pnlReject.Visible = false;
+                    getWorkDone();
+                    break;
+                case "10":
+                    pnlComplainCount.Visible = false;
+                    pnlComplainToDiagnosis.Visible = false;
+                    pnlDiagnosis.Visible = false;
+                    pnlBudget.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlMatReq.Visible = false;
+                    pnlStatus.Visible = false;
+                    pnlQC.Visible = false;
+                    pnlCustomerCare.Visible = false;
+                    pnlWorkDone.Visible = false;
+                    pnlReject.Visible = true;
+                    GetReject();
+                    break;
             }
+        }
+
+        private void getStatus()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETSTATUSLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvStatus.DataSource = ds.Tables[0];
+            gvStatus.DataBind();
+        }
+        private void getWorkDone()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETWORKDONE", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvWO.DataSource = ds.Tables[0];
+            gvWO.DataBind();
         }
 
         private void getComplainList()
@@ -268,6 +357,17 @@ namespace RealERPWEB.F_99_Allinterface
             gvCustomerCare.DataBind();
         }
 
+
+        private void GetReject()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds = _process.GetTransInfo(comcod, "SP_INTERFACE_FACILITYMGT", "GETREJECTLIST", date1, date2, "", "", "", "", "", "", "", "", "");
+            gvReject.DataSource = ds.Tables[0];
+            gvReject.DataBind();
+        }
+
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
 
@@ -326,11 +426,11 @@ namespace RealERPWEB.F_99_Allinterface
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
-            
+
         }
 
         protected void gvDiagnosis_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -342,7 +442,7 @@ namespace RealERPWEB.F_99_Allinterface
                 LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
                 bool isApproval = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isApproval"));
-                bool isbudget= Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isbudgetVal"));
+                bool isbudget = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isbudgetVal"));
                 hlink.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?Type=Edit&Dgno=" + dgno;
                 hlink.ToolTip = "Edit";
                 hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?DgNo=" + dgno;
@@ -354,7 +454,7 @@ namespace RealERPWEB.F_99_Allinterface
                     llink.Visible = false;
                     hlink1.Visible = true;
                 }
-                else if(isApproval==true && isbudget==true)
+                else if (isApproval == true && isbudget == true)
                 {
                     hlink.Visible = false;
                     llink.Visible = false;
@@ -374,23 +474,23 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");   
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
                 hlink1.NavigateUrl = "~/F_30_Facility/BudgetForm.aspx?Type=Approval&DgNo=" + dgno;
                 hlink1.ToolTip = "Approval";
-            } 
+            }
         }
 
         protected void gvApproval_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
+
                 HyperLink hlink = (HyperLink)e.Row.FindControl("hnkCollection");
                 LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
                 LinkButton llink01 = (LinkButton)e.Row.FindControl("lnkMatReq");
-                
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lblDgNo1");                
+                LinkButton llink02 = (LinkButton)e.Row.FindControl("lnkReject");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lblDgNo1");
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
                 string isMatReq = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "isMatReq")).ToString();
                 bool isquoted = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isquoted"));
@@ -407,16 +507,18 @@ namespace RealERPWEB.F_99_Allinterface
                 if (isquoted)
                 {
                     llink.Visible = false;
-                   
+                    llink02.Visible = false;
                 }
                 else
                 {
                     llink.Attributes["onclick"] = "if(!confirm('Do you want to Accept Quotation of: Dg-" + dgno + "? ')){ return false; };";
                     llink.ToolTip = "Accept Quotation";
+                    llink02.ToolTip = "Reject Quotation";
                     llink01.Visible = false;
+                    llink02.Visible = true;
                 }
-               
-                
+
+
 
             }
         }
@@ -428,32 +530,35 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkdg");
                 LinkButton llink = (LinkButton)e.Row.FindControl("lnkProceed");
+                LinkButton llink1 = (LinkButton)e.Row.FindControl("lnkReject");
                 string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
-                bool lblisBudget = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isbudget"));                
+                bool lblisBudget = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isbudget"));
                 hlink1.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?ComplNo=" + complno;
                 hlink1.ToolTip = "Engr. Check";
-                if (dgno == "0" && lblisBudget==true)
+                if (dgno == "0" && lblisBudget == true)
                 {
                     hlink.Visible = false;
                     llink.Visible = false;
-                    hlink1.Visible = true;
+                    hlink1.Visible = true;                    
                 }
-                else if(lblisBudget==false && dgno!="0")
+                else if (lblisBudget == false && dgno != "0")
                 {
                     hlink1.Visible = false;
-                    hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&ComplNo="+ complno + "&Dgno=" + dgno;
+                    hlink.NavigateUrl = "~/F_30_Facility/EngrCheck.aspx?Type=Edit&ComplNo=" + complno + "&Dgno=" + dgno;
                     hlink.ToolTip = "Edit";
                     llink.Attributes["onclick"] = "if(!confirm('Do you want to Proceed: Dg-" + dgno + " to Budget? ')){ return false; };";
                     hlink.Visible = true;
                     llink.Visible = true;
-                  
+                   
+
                 }
                 else
                 {
                     hlink.Visible = false;
                     llink.Visible = false;
                     hlink1.Visible = false;
+
                 }
             }
         }
@@ -461,11 +566,12 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvCmpltoDg.Rows[rowIndex];
+                string dgno = (row.FindControl("lbldgno") as Label).Text;
+                string complain = (row.FindControl("lblComplain") as Label).Text;
                 if (e.CommandName == "Select")
                 {
-                    int rowIndex = Convert.ToInt32(e.CommandArgument);
-                    GridViewRow row = gvCmpltoDg.Rows[rowIndex];
-                    string dgno = (row.FindControl("lbldgno") as Label).Text;
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     string comcod = GetComCode();
                     string userId = hst["usrid"].ToString();
@@ -481,6 +587,14 @@ namespace RealERPWEB.F_99_Allinterface
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
+                }
+                if (e.CommandName == "Reject")
+                {
+                    lblComplainReject.Text = complain;
+                    lblDgNoReject.Text = dgno;
+                    lblProcess.Text = dgno == "0" ? "R":"R1";
+                    txtRejectDesc.Text = "";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalReject();", true);
                 }
             }
             catch (Exception ex)
@@ -520,11 +634,13 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvDiagnosis.Rows[rowIndex];
+                string dgno = (row.FindControl("lbldgno") as Label).Text;
+                string complain = (row.FindControl("lblComplain") as Label).Text;
                 if (e.CommandName == "Select")
                 {
-                    int rowIndex = Convert.ToInt32(e.CommandArgument);
-                    GridViewRow row = gvDiagnosis.Rows[rowIndex];
-                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     string comcod = GetComCode();
                     string userId = hst["usrid"].ToString();
@@ -541,13 +657,36 @@ namespace RealERPWEB.F_99_Allinterface
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
                 }
+                if (e.CommandName == "Reject")
+                {
+                    lblComplainReject.Text = complain;
+                    lblDgNoReject.Text = dgno;
+                    lblProcess.Text = "R2";
+                    txtRejectDesc.Text = "";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalReject();", true);
+                }
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
+        protected void gvBudget_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
 
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvBudget.Rows[rowIndex];
+            string dgno = (row.FindControl("lbldgno") as Label).Text;
+            string complain = (row.FindControl("lblComplain") as Label).Text;
+            if (e.CommandName == "Reject")
+            {
+                lblComplainReject.Text = complain;
+                lblDgNoReject.Text = dgno;
+                lblProcess.Text = "R3";
+                txtRejectDesc.Text = "";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalReject();", true);
+            }
+        }
         protected void gvApproval_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -573,7 +712,7 @@ namespace RealERPWEB.F_99_Allinterface
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
                 }
-                else if(e.CommandName == "Proceed")
+                else if (e.CommandName == "Proceed")
                 {
                     int rowIndex = Convert.ToInt32(e.CommandArgument);
                     GridViewRow row = gvApproval.Rows[rowIndex];
@@ -594,6 +733,18 @@ namespace RealERPWEB.F_99_Allinterface
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     }
                 }
+                else if (e.CommandName == "Reject")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvApproval.Rows[rowIndex];
+                    string dgno = (row.FindControl("lbldgno") as Label).Text;
+                    string complain = (row.FindControl("lblComplain") as Label).Text;
+                    lblComplainReject.Text = complain;
+                    lblDgNoReject.Text = dgno;
+                    lblProcess.Text = "R4";
+                    txtRejectDesc.Text = "";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalReject();", true);
+                }
             }
             catch (Exception ex)
             {
@@ -605,12 +756,12 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
+
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkdg");
                 string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
 
                 hlink.NavigateUrl = "~/F_30_Facility/ComplainQC.aspx?Type=QC&DgNo=" + dgno;
-               
+
             }
         }
         protected void gvCustomerCare_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -622,5 +773,116 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink.NavigateUrl = "~/F_30_Facility/ComplainQC.aspx?Type=CustomerCare&DgNo=" + dgno;
             }
         }
+
+        protected void gvStatus_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton llink = (LinkButton)e.Row.FindControl("lnkStatusProceed");
+                string complno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "complno")).ToString();
+                string dgno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dgno")).ToString();
+                string lblisQC =DataBinder.Eval(e.Row.DataItem, "isQC").ToString();
+                if (lblisQC=="1")
+                {
+                    llink.Visible = true;
+                }
+                else
+                {
+                    llink.Visible = false;
+                }
+            }
+        }
+
+        protected void gvStatus_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Proceed")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvStatus.Rows[rowIndex];
+                string dgno = (row.FindControl("lbldgno") as Label).Text;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComCode();
+                string userId = hst["usrid"].ToString();
+                bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEQCFLAG", dgno, "", "", "", "", "", "", "", "", "", "", "",
+                                         "", "", "", "", "", "", "", "", "", "", userId);
+                if (resultflag)
+                {
+                    ModuleName();
+                    getStatus();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} proceeded to QC Pending" + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
+            }
+        }
+
+        protected void lnkUpdateReject_Click(object sender, EventArgs e)
+        {
+            string comcod = GetComCode();
+            string dgno = lblDgNoReject.Text;
+            string compno = lblComplainReject.Text;
+            string rejectdesc = txtRejectDesc.Text;
+            string type = lblProcess.Text;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userId = hst["usrid"].ToString();
+            bool resultflag = false;
+            if (dgno == "0")
+            {
+                resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEREJECTCOMP", compno, type, rejectdesc, userId, "", "", "", "", "", "", "", "",
+                                        "", "", "", "", "", "", "", "", "", "", "");
+            }
+            else
+            {
+                if (type == "R4")
+                {
+                    resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEREJECTBGDAPPR", dgno, type, rejectdesc, userId, compno, "", "", "", "", "", "", "",
+                                        "", "", "", "", "", "", "", "", "", "", "");
+                }
+                else
+                {
+                    resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEREJECTDG", dgno, type, rejectdesc, userId, compno, "", "", "", "", "", "", "",
+                                        "", "", "", "", "", "", "", "", "", "", "");
+                }
+                
+            }
+            if (resultflag)
+            {
+                ModuleName();
+                if (type == "R1" || type == "R")
+                {
+                    getDiagnosisList();
+                }
+                if (type == "R2")
+                {
+                    getBudget();
+                }
+                if (type == "R3")
+                {
+                    getBudgetApproval();
+                }
+                if (type == "R4")
+                {
+                    getQuotList();
+                }
+                if (dgno == "0")
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Compl-{compno} rejected." + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dgno} rejected." + "');", true);
+                }
+                txtRejectDesc.Text = "";
+                
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+            }
+        }
+
+        
     }
 }

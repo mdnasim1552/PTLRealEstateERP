@@ -850,7 +850,7 @@ namespace RealERPWEB.F_12_Inv
                 double getpqty = Convert.ToDouble(dr1["getpqty"]);
                 string getpamt = Convert.ToDouble(dr1["getpamt"]).ToString();
                 double mtrfqty = Convert.ToDouble(dr1["mtrfqty"]);
-
+            
 
                 // comcod, getpno,mtreqno, rsircode, spcfcod,  qty, amt
 

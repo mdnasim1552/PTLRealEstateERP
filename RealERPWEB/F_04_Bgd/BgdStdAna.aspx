@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="BgdStdAna.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.BgdStdAna" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -10,8 +11,8 @@
         }
     </style>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+  <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>--%>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -100,7 +101,7 @@
 
                                         </div>
                                         <div class="col-md-1 pading5px">
-                                            <asp:LinkButton ID="lbtnOk2" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk2_Click">Select Res</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnOk2" runat="server" CssClass="btn btn-primary primaryBtn" AutoPostBack="True" OnClick="lbtnOk2_Click">Select Res</asp:LinkButton>
                                             <asp:HyperLink ID="hlbtAddnew2" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=MatLab" CssClass="btn btn-xs btn-success" ToolTip="Add New Resource" BackColor="transparent" Style="margin-left: 10px"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
 
                                         </div>
@@ -635,8 +636,8 @@
 
                     </div>
                 </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+   <%--     </ContentTemplate>
+    </asp:UpdatePanel>--%>
 
 
     <script type="text/javascript" language="javascript">

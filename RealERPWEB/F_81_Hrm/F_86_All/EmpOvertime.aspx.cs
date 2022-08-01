@@ -2098,7 +2098,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 string cashded = dt.Rows[i]["cashded"].ToString();
                 string transded = dt.Rows[i]["transded"].ToString();
 
-
+            
 
                 double toamt = Convert.ToDouble(dt.Rows[i]["toamt"]);
                 double fineday = Convert.ToDouble(dt.Rows[i]["finedays"]);

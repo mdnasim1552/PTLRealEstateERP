@@ -127,7 +127,9 @@ namespace RealERPWEB.F_33_Doc
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "initextedit();", true);
             string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5) ?? "";
+
             switch (gcod)
             {
                 case "99901":
@@ -208,6 +210,8 @@ namespace RealERPWEB.F_33_Doc
 
             ds1.Dispose();
         }
+
+
         protected void lnk_save_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();

@@ -69,8 +69,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
                     break;
                 case "3365":               
-                    ddlReqType.Items.Add(new ListItem("Late Approval Request(if Finger 9:04:59 to 9:59:59)", "LA"));
-                    ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
+
                     ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
                     break;
@@ -188,13 +187,26 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lbldesg.Text = ds1.Tables[0].Rows[0]["empdsg"].ToString();
             this.lblcard.Text = ds1.Tables[0].Rows[0]["idcardno"].ToString();
             this.empdeptid.Value = ds1.Tables[0].Rows[0]["empdeptid"].ToString();
-            this.lblIntime.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["offintime1"]).ToString("hh:mm tt");
-            this.lblout.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["stdtimeout"]).ToString("hh:mm tt");
+
             this.lblwork.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["twrkday"]).ToString("#, ##0;(#, ##0);");
             this.lblLate.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tlday"]).ToString("#, ##0;(#, ##0);");
             this.lblLeave.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tlvday"]).ToString("#, ##0;(#, ##0);");
             this.lblAbsent.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tabsday"]).ToString("#, ##0;(#, ##0);");
             this.lblHoliday.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["thday"]).ToString("#, ##0;(#, ##0);");
+           if (comcod == "3366") 
+            {
+                if (ds1.Tables[3].Rows.Count != 0)
+                {
+                    this.lblIntime.Text = ds1.Tables[3].Rows[0]["intime"].ToString();
+                    this.lblout.Text = ds1.Tables[3].Rows[0]["outtime"].ToString();
+                }
+            }
+            else
+            {
+                this.lblIntime.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["offintime1"]).ToString("hh:mm tt");
+                this.lblout.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["stdtimeout"]).ToString("hh:mm tt");
+            }
+
 
 
             Session["tblempdatewise"] = ds1.Tables[0];
