@@ -30,6 +30,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 GetRemaningTime();
                 this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
                 this.txtToTime.Text = System.DateTime.Now.ToString("HH:mm");
+                GetAllTimeOff();
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -37,6 +38,29 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
             // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
 
+        }
+
+        private void GetAllTimeOff()
+        {
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORYALL", empid, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+            {
+                this.gvLvReqAll.DataSource = null;
+                this.gvLvReqAll.DataBind();
+                return;
+
+            }
+            Session["tblleavhistoryAll"] = ds1.Tables[0];
+            Session["empbinfo2"] = ds1.Tables[1];
+            
+
+
+                this.gvLvReqAll.DataSource = (ds1.Tables[0]);
+                this.gvLvReqAll.DataBind();
+       
         }
 
         private string GetCompCode()
@@ -486,8 +510,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string curdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            DataTable dt = (DataTable)Session["tblleavhistory"];
-            DataTable dt2 = (DataTable)Session["empbinfo"];
+            DataTable dt = (DataTable)Session["tblleavhistoryAll"];
+            if( dt == null)
+            {
+                string msg = "You have no data!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+            DataTable dt2 = (DataTable)Session["empbinfo2"];
 
             string empname = dt2.Rows[0]["name"].ToString()??"";
             string idcard = dt2.Rows[0]["idcard"].ToString()?? "";
