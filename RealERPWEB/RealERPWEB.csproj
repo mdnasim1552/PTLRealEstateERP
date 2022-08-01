@@ -139,7 +139,7 @@
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework">
-      <HintPath>..\..\..\..\..\bin\Microsoft.Build.Framework.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.Build.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -240,7 +240,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Newton json\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
@@ -2237,6 +2237,7 @@
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
+    <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
@@ -3945,6 +3946,13 @@
     </Compile>
     <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.designer.cs">
       <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\AccIssueUpdate.aspx.cs">
+      <DependentUpon>AccIssueUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\AccIssueUpdate.aspx.designer.cs">
+      <DependentUpon>AccIssueUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_17_Acc\AccIndentUpdate.aspx.cs">
       <DependentUpon>AccIndentUpdate.aspx</DependentUpon>
