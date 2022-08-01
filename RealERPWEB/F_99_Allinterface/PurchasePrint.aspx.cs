@@ -4002,6 +4002,17 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
+                    // Epic ratepbyid	ratepname	ratepdate
+                    case "3101":
+                    case "3367":
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["ratepname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ratepdate"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign6 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        break;
+
                     default:
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4333,6 +4344,11 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3360": //Entrust Ltd                        
                     case "3361": //Entrust Ltd                        
                         Reportpath = "~/Report/RptPurchaseOrderEntrust.rdlc";
+                        break;
+
+                    case "3101": //Pintech                        
+                    case "3367": //Epic                        
+                        Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
 
                     default:
