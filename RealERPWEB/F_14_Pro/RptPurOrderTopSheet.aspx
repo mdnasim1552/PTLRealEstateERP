@@ -6,6 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+  
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
           <div class="RealProgressbar">
@@ -29,7 +30,7 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-1 col-md-1 col-sm-6">
+                        <div class="col-md-2">
                             <asp:Label ID="lblfrmdate" runat="server">Date</asp:Label>
                             <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control" AutoComplete="off"></asp:TextBox>
                         
@@ -39,13 +40,21 @@
 
 
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-6">
+                        <div class="col-md-2">
                             <asp:Label ID="lbltodate" runat="server">To</asp:Label>
                             <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control" AutoComplete="off"></asp:TextBox>
                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
 
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-6">
+
+                        <div class="col-md-3">
+                                 <asp:Label ID="Label1" runat="server">Project Name</asp:Label>                              
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True"></asp:DropDownList>
+                            
+                        </div>
+
+
+                        <div class="col-md-1">
                             <asp:Label ID="Label14" runat="server">Page Size</asp:Label>
                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                 <asp:ListItem>10</asp:ListItem>
@@ -86,7 +95,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                                         Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -105,29 +114,29 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
                                                 </ItemTemplate>
 
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="180px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="180px" />
                                             </asp:TemplateField>
 
 
                                             
                                             <asp:TemplateField HeaderText="Supplier Name" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgSupplierName" runat="server" Width="150px" CssClass="WrpTxt"
+                                                    <asp:Label ID="lgSupplierName" runat="server" Width="250px" CssClass="WrpTxt"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'></asp:Label>
                                                 </ItemTemplate>
 
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="250px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="250px" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Item Name" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgItemName" runat="server" Width="100px" CssClass="WrpTxt"
+                                                    <asp:Label ID="lgItemName" runat="server" Width="150px" CssClass="WrpTxt"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'></asp:Label>
                                                 </ItemTemplate>
 
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="180px" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                                             </asp:TemplateField>
 
@@ -157,8 +166,12 @@
                                                     <asp:Label ID="lgvOrderNoManual" runat="server" Width="120px" CssClass="WrpTxt"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "oissueno")) %>'></asp:Label>
                                                 </ItemTemplate>
-
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
+                                                  <FooterTemplate>                                             
+                                                      
+                                                      <asp:Label ID="lgpomnaual" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right"> Total :</asp:Label>
+                                                      </FooterTemplate>  
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" Width="100px" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                                             </asp:TemplateField>
 
@@ -166,23 +179,34 @@
 
                                               <asp:TemplateField HeaderText="Amount" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgAmount" runat="server" Width="100px" CssClass="WrpTxt"
+                                                    <asp:Label ID="lgAmount" runat="server" Width="100px" CssClass="WrpTxt"  Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                 </ItemTemplate>
+
                                                 <FooterTemplate>
                                                    <asp:Label ID="lgAmountFb" runat="server" Font-Bold="True" Font-Size="12px"
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
 
 
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" Width="100px" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                                             </asp:TemplateField>
                                           
                                              <asp:TemplateField HeaderText="Delivery Date" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgDelDate" runat="server" Width="100px" CssClass="WrpTxt"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "deldate")).ToString("dd-MMM-yyyy") %>'></asp:Label>
+                                                    <asp:Label ID="lgDelDate" runat="server" Width="150px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deldate")) %>'></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Chalan" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgchalan" runat="server" Width="150px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chlnno")) %>'></asp:Label>
                                                 </ItemTemplate>
 
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
