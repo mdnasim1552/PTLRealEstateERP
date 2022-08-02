@@ -473,12 +473,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label lblapremarks = (Label)Rptitem.FindControl("lblapremarks");
 
             string attstatus = lblstatus.Text.Trim();
-            ddlReqType.SelectedValue = (attstatus == "" && comcod=="3365"?"TC": attstatus == "A" ? "AB" : "LA");
+            ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "A" ? "AB" : "LA");
             ddlReqType.Enabled = (attstatus == "A" ? false : true);
-           
+
             if (attstatus == "A")
             {
-                              
+
                 this.InfoApply.Visible = true;
             }
 
@@ -489,7 +489,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //TimeSpan maxTime = TimeSpan.Parse("10:00");
                 //if (userrole == "3")
                 //{
-                     
+
                 //    //ddlReqType.Items.Remove("Late Present Approval Request (if Finger 10:00 to 5:30)");
                 //    this.ddlReqType.Items.RemoveAt(1);
 
@@ -522,9 +522,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lbldadteOuttime.Text = lblIntime.Text;
             this.txtAreaReson.Text = lblisremarks.Text;
             this.ReqID.Value = lblRequid.Text;
-            
-        }
 
+        }
         protected void lbntnAbsentApproval_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];

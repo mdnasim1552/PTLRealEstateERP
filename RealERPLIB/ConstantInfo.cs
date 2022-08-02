@@ -2041,8 +2041,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102041", "F_81_Hrm/F_85_Lon", "EmpDeducOther", "", "Employee Deduction other", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102042", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Overtime", "Overtime Allowance", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102240", "F_81_Hrm/F_85_Lon", "LoanApproval?", "Type=", "Loan Approval", "Loan", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102241", "F_81_Hrm/F_84_Lea", "TimeOfLeave?", "Type=MGT", "Apply Time off (MGT)", "Leave", "False", "False", "False", "False" }); ;
+           
 
-             
+
+
             // tblObj.Rows.Add(new Object[] { "8102000", "8102043", "EmpOvertime?", "Type=Holiday", "Holiday Allowance 01", "Allowances", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8102000", "8102044", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Mobile", "Mobile Bill", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102045", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Lencashment", "Leave Encashment", "Allowances", "False", "False", "False", "False" }); ;
@@ -15268,6 +15271,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0304000007", "07. HR Leave Interface(Individual)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000008", "08. HR Leave Approval(Mgt)", "F_81_Hrm/F_84_Lea/EmpLvApproval?Type=App", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000009", "09. HR Leave Approval(Individual)", "F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000011", "10. Apply Time off (MGT)", "F_81_Hrm/F_84_Lea/TimeOfLeave?Type=MGT", "", true, "" });
 
 
 
