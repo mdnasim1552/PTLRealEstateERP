@@ -110,6 +110,8 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
                 case "3339"://Tropical
+                case "3101"://Tropical
+                case "3368"://finlay
 
                     //this.grvissue.Columns[7].Visible = false;
                     //this.grvissue.Columns[8].Visible = false;
@@ -149,7 +151,7 @@ namespace RealERPWEB.F_09_PImp
                     //this.ddlgroup.Visible = true;
                     //this.lblgrp.Visible = true;se
                     break;
-
+                
                 default:
 
                     this.grvissue.Columns[7].Visible = false;

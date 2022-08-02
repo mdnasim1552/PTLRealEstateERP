@@ -82,9 +82,6 @@ namespace RealERPWEB.F_09_PImp
 
                 case "3315":// Assure
                 case "3316":// Assure
-
-
-
                     this.txtRefno.Enabled = false;
                     this.grvissue.Columns[7].Visible = false;
                     this.grvissue.Columns[8].Visible = false;
@@ -130,9 +127,10 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
 
-
                 case "3339": // Tropical
-                //case "3101": // ASIT
+                case "3101": // ASIT
+                case "3368": // finaly
+
                     this.chkCharging.Visible = true;
                     this.grvissue.Columns[7].Visible = false;
                     this.grvissue.Columns[8].Visible = false;
@@ -152,8 +150,6 @@ namespace RealERPWEB.F_09_PImp
                     this.divgrp.Attributes["style"] = "width: 750px;float: left;";
                     this.ddlgroup.Visible = true;
                     this.lblgrp.Visible = true;
-
-
                     break;
 
 
@@ -166,12 +162,11 @@ namespace RealERPWEB.F_09_PImp
                     this.grvissue.Columns[13].Visible = false;
                     this.grvissue.Columns[14].Visible = false;
                     this.grvissue.Columns[15].Visible = false;
-
                     this.grvissue.Columns[16].Visible = false;
                     this.grvissue.Columns[17].Visible = true;
                     this.grvissue.Columns[19].Visible = true;
                     this.divgrp.Attributes["style"] = "width: 548px;float: left;";
-                    break;
+                    break;             
 
 
                 default:
