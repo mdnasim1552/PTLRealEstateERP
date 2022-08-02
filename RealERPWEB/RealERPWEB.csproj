@@ -2239,6 +2239,7 @@
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
+    <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
@@ -2811,6 +2812,7 @@
     <Content Include="F_34_Mgt\VehicleTrackEntry.aspx" />
     <Content Include="F_34_Mgt\ViewAllTemplate.aspx" />
     <Content Include="F_34_Mgt\WorkCodeLink.aspx" />
+    <Content Include="F_34_Mgt\ConWrkOrderEdit.aspx" />
     <Content Include="F_34_Mgt\WrkOrderEdit.aspx" />
     <Content Include="F_35_MgtAct\RptMisDailyActiviteis.aspx" />
     <Content Include="F_35_MgtAct\RptMisOverall.aspx" />
@@ -3961,6 +3963,13 @@
     <Compile Include="F_17_Acc\AccIndentUpdate.aspx.designer.cs">
       <DependentUpon>AccIndentUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.cs">
+      <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.designer.cs">
+      <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4366,6 +4375,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\ConWrkOrderEdit.aspx.cs">
+      <DependentUpon>ConWrkOrderEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\ConWrkOrderEdit.aspx.designer.cs">
+      <DependentUpon>ConWrkOrderEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_36_Vehcl\interfaceVchl.aspx.cs">
       <DependentUpon>interfaceVchl.aspx</DependentUpon>
@@ -12377,6 +12393,7 @@
     <Content Include="Report\RptPaymentScheduleAssure.rdlc" />
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
+    <Content Include="Report\RptPurchaseOrderEpic.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />

@@ -928,6 +928,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703042", "F_17_Acc", "RptDailyTransCashBank", "", "Daily Payment Reports", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1703000", "1703047", "F_17_Acc", "RptOPPayment?", "Type=HonourBasis", "Operational Payment- Summary", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703048", "F_17_Acc", "RptOPPayment?", "Type=PostDated", "Operational Payment- Summary(Post Dated)", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703049", "F_17_Acc", "RptOPPaymentTopSheet?", "Type=TopSheet", "Operational Payment- Summary (All Trans.)", "Accounts", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "1703000", "1703050", "F_17_Acc", "AccTrialBalance?", "Type=BalConfirmation", "Balance Confirmation", "Accounts", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "1703000", "1703051", "F_17_Acc", "AccTrialBalance?", "Type=Mains", "Trial Balance", "Accounts", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "1703000", "1703052", "F_17_Acc", "AccTrialBalance?", "Type=TBConsolidated", "Trial Balance (Consolidated)", "Accounts", "False", "False", "False", "False" }); ;
@@ -1688,6 +1690,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502240", "F_34_Mgt", "ProjectLink", "", "Project Link", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502241", "F_34_Mgt", "CACodeLink", "", "Chart of Accounts Permission", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502242", "F_34_Mgt", "WorkCodeLink", "", "Work Code Permission", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3502000", "3502243", "F_34_Mgt", "ConWrkOrderEdit?", "Type=Mgt", "Contractor Order Edit-MGT", "Management", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502245", "F_34_Mgt", "PayTypCodeBook", "", "Signature Margin", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502250", "F_34_Mgt", "AccUserCash", "", "Cash & Bank Permission", "Management", "False", "False", "False", "False" }); ;
@@ -6273,6 +6276,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000016", "13. Cheque Clearance Report", "F_17_Acc/RptNetTransCashBank", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000017", "14. Operational Payment  Details", "F_17_Acc/RptPostNetTrnsCashBank", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000018", "15. Operational Payment - Summary", "F_17_Acc/RptOPPayment?Type=HonourBasis", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000018", "15. Operational Payment - Summary (All Trans.)", "F_17_Acc/RptOPPaymentTopSheet?Type=TopSheet", "", true, "" });           
             mnuTbl1.Rows.Add(new Object[] { "0401000019", "16. Operational Payment - Summary(Post Dated)", "F_17_Acc/RptOPPayment?Type=PostDated", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000020", "17.Sub Contractor Payment Bill", "F_17_Acc/AccSubconBillPay?aspx?tcode=99&tname=Payment Voucher&Mod=Accounts", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "General Report", "", "", false, "b" });
@@ -9774,6 +9778,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0305000003", "02. Sub-Contractor Bill-Work Wise Edit", "F_09_PImp/PurLabIssue2?Type=Edit&prjcode=&genno=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000004", "03. Bill Finalization- Edit", "F_09_PImp/PurSubConBillFinal?Type=BillEdit&prjcode=&genno=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000005", "04. Sub-Contractor Code Transfer", "F_34_Mgt/CodeTransSupSub?Type=SubCon", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000006", "05. Contractor Order Edit-MGT", "F_34_Mgt/ConWrkOrderEdit?Type=Mgt", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0306000000", "Inventory Control", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0306000001", "01. Requisition Checked", "F_12_Inv/PurReqEntry?InputType=ReqCheck&prjcode=&genno=", "", true, "" });
