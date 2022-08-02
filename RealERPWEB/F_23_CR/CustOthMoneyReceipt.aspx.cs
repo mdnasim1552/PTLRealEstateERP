@@ -104,6 +104,19 @@ namespace RealERPWEB.F_23_CR
             ViewState["tblproject"] = ds1.Tables[0];
             ds1.Dispose();
 
+            if(Request.QueryString["Type"]==null)
+            {
+
+            }
+            else
+            {
+                if(Request.QueryString["Type"].ToString() == "Service")
+                {
+                    DataTable dt = ds1.Tables[0].Select("actcode like '1861%'").CopyToDataTable();
+                    ddlProjectName.SelectedValue = dt.Rows[0]["actcode"].ToString();
+                }
+                
+            }
 
             //----Show Resource code and Specification Code------------// 
 
