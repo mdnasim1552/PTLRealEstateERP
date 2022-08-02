@@ -387,8 +387,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 this.FooterCalculation();
                 Session["Report1"] = gvBankPayment;
-                ((HyperLink)this.gvBankPayment.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-              //  ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                ((HyperLink)this.gvBankPayment.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                //  ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             }
             if (Request.QueryString["Type"].ToString() == "Entry")
             {
@@ -414,7 +414,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
                 ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
-                 : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
             }
 
         }

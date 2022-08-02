@@ -1070,6 +1070,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
+
         private void InsertUpdateDataBTI()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];

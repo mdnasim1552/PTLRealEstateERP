@@ -312,6 +312,33 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.GridView gvLeaveStatus;
 
         /// <summary>
+        /// pnlApplyLeavBTI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlApplyLeavBTI;
+
+        /// <summary>
+        /// lnkapplyleave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkapplyleave;
+
+        /// <summary>
+        /// gvLvReqAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvLvReqAll;
+
+        /// <summary>
         /// grvJobRespo control.
         /// </summary>
         /// <remarks>
@@ -400,6 +427,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvUpcmBDT;
+
+        /// <summary>
+        /// pnlServiceInfoBTI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlServiceInfoBTI;
 
         /// <summary>
         /// longTermTitle control.

@@ -413,7 +413,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!amt.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Fields!amt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -592,7 +592,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!amt.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Sum(Fields!amt.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -647,7 +647,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.56395in</Top>
             <Left>0.0375in</Left>
-            <Height>0.78125in</Height>
+            <Height>0.78126in</Height>
             <Width>7.20056in</Width>
             <Style>
               <Border>

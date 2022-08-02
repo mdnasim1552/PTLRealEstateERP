@@ -994,6 +994,7 @@ namespace RealEntity.C_17_Acc
             public double payam2 { get; set; }
             public double payam3 { get; set; }
             public double payam4 { get; set; }
+            public double payam5 { get; set; }
             public double tpay { get; set; }
             public string section { get; set; }
             public OppPayment1() { }

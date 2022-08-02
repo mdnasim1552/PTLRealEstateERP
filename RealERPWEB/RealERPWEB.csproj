@@ -129,17 +129,17 @@
       <HintPath>..\..\..\..\..\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\..\..\..\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework">
-      <HintPath>..\..\..\..\..\bin\Microsoft.Build.Framework.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.Build.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -179,7 +179,10 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -2234,7 +2237,9 @@
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
+    <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
+    <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
@@ -2807,6 +2812,7 @@
     <Content Include="F_34_Mgt\VehicleTrackEntry.aspx" />
     <Content Include="F_34_Mgt\ViewAllTemplate.aspx" />
     <Content Include="F_34_Mgt\WorkCodeLink.aspx" />
+    <Content Include="F_34_Mgt\ConWrkOrderEdit.aspx" />
     <Content Include="F_34_Mgt\WrkOrderEdit.aspx" />
     <Content Include="F_35_MgtAct\RptMisDailyActiviteis.aspx" />
     <Content Include="F_35_MgtAct\RptMisOverall.aspx" />
@@ -3943,12 +3949,26 @@
     <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.designer.cs">
       <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_17_Acc\AccIssueUpdate.aspx.cs">
+      <DependentUpon>AccIssueUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\AccIssueUpdate.aspx.designer.cs">
+      <DependentUpon>AccIssueUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_17_Acc\AccIndentUpdate.aspx.cs">
       <DependentUpon>AccIndentUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\AccIndentUpdate.aspx.designer.cs">
       <DependentUpon>AccIndentUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.cs">
+      <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.designer.cs">
+      <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
@@ -4355,6 +4375,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\ConWrkOrderEdit.aspx.cs">
+      <DependentUpon>ConWrkOrderEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\ConWrkOrderEdit.aspx.designer.cs">
+      <DependentUpon>ConWrkOrderEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_36_Vehcl\interfaceVchl.aspx.cs">
       <DependentUpon>interfaceVchl.aspx</DependentUpon>
@@ -12366,6 +12393,7 @@
     <Content Include="Report\RptPaymentScheduleAssure.rdlc" />
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
+    <Content Include="Report\RptPurchaseOrderEpic.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
