@@ -497,7 +497,7 @@
                         <li class="nav-item" id="List_EmpDirectory" runat="server">
                             <asp:HyperLink ID="EmpDirectory" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Employee directory</asp:HyperLink>
                         </li>
-                        <li class="nav-item d-none" runat="server" id="modalPayslipBti">
+                        <li class="nav-item" runat="server" id="modalPayslipBti">
                             <a data-toggle="modal" data-target="#payslipmodal" class="nav-link smooth-scrol">Pay Slip</a></li>
 
                         <li class="nav-item">
