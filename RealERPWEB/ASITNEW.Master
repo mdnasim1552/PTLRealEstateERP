@@ -485,7 +485,7 @@
 
                  
                                     <asp:HyperLink class="dropdown-item" ID="HypLinkReqInterFace" Visible="false" target="_blank"  runat="server" Text="Request Interface"></asp:HyperLink>
-
+                                       <asp:HyperLink class="dropdown-item" ID="hypTimeOfleaveMgt" Visible="false" runat="server" target="_blank" Text="Apply Time off (MGT)"></asp:HyperLink>
                                     <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" target="_blank" Text="Apply Time off"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
 
