@@ -113,18 +113,18 @@ namespace RealERPWEB.F_22_Sal
                     this.chkwithoutrep.Visible = true;
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
-                case "BankRecon":
 
+                case "BankRecon":
                     this.MultiView1.ActiveViewIndex = 5;
                     break;
 
                 case "CollVsHonoured":
-
                     this.MultiView1.ActiveViewIndex = 6;
+                    break;  
+                
+                case "mSalesTarget":
+                    this.MultiView1.ActiveViewIndex = 7;
                     break;
-
-
-
 
 
 
@@ -282,6 +282,12 @@ namespace RealERPWEB.F_22_Sal
                 case "CollVsHonoured":
                     this.ShowCollVsHonoured();
                     break;
+
+                //case "mSalesTarget":
+                //    this.ShowmSalesTarget();
+                //    break;
+
+
             }
         }
 
@@ -377,21 +383,34 @@ namespace RealERPWEB.F_22_Sal
                 Session["tblsalsum"] = ds1.Tables[0];
                 this.gvSalVsColl.DataSource = this.HiddenSameData(ds1.Tables[0]);
                 this.gvSalVsColl.DataBind();
-
-
-
             }
-
-
-
             catch (Exception ex)
             {
-
-
             }
-
-
-
+        }        
+        private void ShowmSalesTarget()
+        {
+            try
+            {
+                Session.Remove("tblsalsum");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComeCode();
+                string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_SUM", "RPTDWISESALVSCOLTAR", frmdate, todate, "", "", "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.gvSalVsColl.DataSource = null;
+                    this.gvSalVsColl.DataBind();
+                    return;
+                }
+                Session["tblsalsum"] = ds1.Tables[0];
+                this.gvSalVsColl.DataSource = this.HiddenSameData(ds1.Tables[0]);
+                this.gvSalVsColl.DataBind();
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
 
@@ -1097,6 +1116,12 @@ namespace RealERPWEB.F_22_Sal
 
             }
         }
+
+        protected void gvmSalesTarget_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
         protected void gvCollvsHonoured_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

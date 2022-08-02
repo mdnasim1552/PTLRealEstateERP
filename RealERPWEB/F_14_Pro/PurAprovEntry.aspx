@@ -33,17 +33,9 @@
         function CloseModal() {
             $('#detialsinfo').modal('hide');
 
-
         }
 
     </script>
-
-
-
-
-
-
-
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
