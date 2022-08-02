@@ -6,19 +6,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
     <script type="text/javascript">
-
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
         });
         function pageLoaded() {
 
-
             var gvSalVsColl = $('#<%=this.gvSalVsColl.ClientID %>');
-
             gvSalVsColl.gridviewScroll({
                 width: 1160,
                 height: 420,
@@ -31,7 +25,6 @@
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 6
             });
-
         }
     </script>
 
@@ -61,7 +54,6 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-4 pading5px asitCol4">
-
                                 <asp:Label ID="Label5" runat="server" Font-Bold="True"
                                     Text="From.:" CssClass="lblTxt lblName"></asp:Label>
 
@@ -79,7 +71,6 @@
                                     CssClass="btn btn-primary primaryBtn">Ok</asp:LinkButton>
                             </div>
                             <div class="col-md4 asitCol4 pading5px">
-
                                 <asp:CheckBox ID="chkwithoutrep" runat="server" BackColor="#000066"
                                     BorderColor="Yellow" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
                                     Font-Size="12px" ForeColor="Yellow" Text="Without Replacement" Visible="False"
@@ -91,7 +82,6 @@
                         </div>
 
                     </div>
-
                 </fieldset>
 
                 <asp:MultiView ID="MultiView1" runat="server">
@@ -1210,7 +1200,7 @@
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="amt16">
+                                    <asp:TemplateField HeaderText="amt16">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvamt16" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt16")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -1221,7 +1211,7 @@
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
-                                <asp:TemplateField HeaderText="amt17">
+                                    <asp:TemplateField HeaderText="amt17">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvamt17" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt17")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -1350,7 +1340,7 @@
                                                 Width="100px" Target="_blank">
                                             </asp:HyperLink>
 
-                                           <%-- <asp:Label ID="lgvtocollection" runat="server" BorderColor="#99CCFF"
+                                            <%-- <asp:Label ID="lgvtocollection" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acamt")).ToString("#,##0;-#,##0; ") %>'
@@ -1559,33 +1549,33 @@
                                     </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Bank Name">
-                                                    <HeaderTemplate>
+                                    <asp:TemplateField HeaderText="Bank Name">
+                                        <HeaderTemplate>
 
-                                                         <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                        Text="Bank Name" Width="220px"></asp:Label>
+                                            <asp:Label ID="Label4" runat="server" Font-Bold="True"
+                                                Text="Bank Name" Width="220px"></asp:Label>
 
 
-                                                        <asp:HyperLink ID="hlbbanknameExcel" runat="server"
-                                                                        CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
-                                                     
-                                                    </HeaderTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:HyperLink ID="HLgvcollvsbankName" runat="server"
-                                                            Font-Size="12px" Font-Underline="False" Target="_blank"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "bankname")) %>'
-                                                            Width="300px"></asp:HyperLink>
-                                                    </ItemTemplate>
-                                            <FooterTemplate>
+                                            <asp:HyperLink ID="hlbbanknameExcel" runat="server"
+                                                CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:HyperLink ID="HLgvcollvsbankName" runat="server"
+                                                Font-Size="12px" Font-Underline="False" Target="_blank"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "bankname")) %>'
+                                                Width="300px"></asp:HyperLink>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
                                             <asp:Label ID="lgvFgvcollvsbankName" runat="server" Font-Size="11px" ForeColor="Black"
                                                 Style="text-align: right" Width="300px">Total :</asp:Label>
-                                             </FooterTemplate>
-                                                    <HeaderStyle HorizontalAlign="Left" />
-                                                    <ItemStyle HorizontalAlign="left" />
-                                                    <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
-                                                </asp:TemplateField>
+                                        </FooterTemplate>
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                        <ItemStyle HorizontalAlign="left" />
+                                        <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
+                                    </asp:TemplateField>
 
-                                  
+
 
                                     <asp:TemplateField HeaderText="Cash Amount">
                                         <ItemTemplate>
@@ -1595,13 +1585,13 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashamt")).ToString("#,##0;-#,##0; ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
-                                          <FooterTemplate>
+                                        <FooterTemplate>
                                             <asp:Label ID="lgvFcollvshonourCash" runat="server" Font-Size="11px" ForeColor="Black"
                                                 Style="text-align: right" Width="80px"></asp:Label>
-                                             </FooterTemplate>
+                                        </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
-                                                       
-                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -1620,10 +1610,36 @@
                                             <asp:Label ID="lgvFcollvshonourBankamt" runat="server" Font-Size="11px" ForeColor="Black"
                                                 Style="text-align: right" Width="80px"></asp:Label>
                                         </FooterTemplate>
-                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
+
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+                            </asp:GridView>
+
+                        </div>
+                    </asp:View>
+
+                    <asp:View ID="mSalesTarget" runat="server">
+                        <div class="table table-responsive">
+                            <asp:GridView ID="gvmSalesTarget" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                OnRowDataBound="gvmSalesTarget_RowDataBound" ShowFooter="True">
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="SL">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvslcollvshonour" runat="server" Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" />
+                                    </asp:TemplateField>
+                                   
 
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />

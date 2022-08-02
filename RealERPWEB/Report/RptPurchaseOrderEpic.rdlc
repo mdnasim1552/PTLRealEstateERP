@@ -1094,7 +1094,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Parameters!pcperson.Value</Value>
+                                                    <Value>=Parameters!cperson.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                     </Style>
