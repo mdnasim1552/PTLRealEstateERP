@@ -4002,6 +4002,17 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
+                    // Epic ratepbyid	ratepname	ratepdate
+                    case "3101":
+                    case "3367":
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["ratepname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ratepdate"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign6 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        break;
+
                     default:
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4170,7 +4181,7 @@ namespace RealERPWEB.F_99_Allinterface
                         pperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // Pintech
+                    //case "3101": // Pintech
                     case "3354": // Edison Real estate                     
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
@@ -4335,6 +4346,11 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEntrust.rdlc";
                         break;
 
+                    case "3101": //Pintech                        
+                    case "3367": //Epic                        
+                        Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
+                        break;
+
                     default:
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
                         break;
@@ -4429,7 +4445,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("dat5", dat5));
                     Rpt1.SetParameters(new ReportParameter("dat6", dat6));
                 }
-                if (comcod == "3354" || comcod == "3101") // edison
+                if (comcod == "3354") // edison
                 {
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                     Rpt1.SetParameters(new ReportParameter("costa", costa));

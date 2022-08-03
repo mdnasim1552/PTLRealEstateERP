@@ -47,7 +47,15 @@ namespace RealERPWEB.F_14_Pro
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled =  (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Order";
+
+                string title = (Request.QueryString["InputType"].ToString() == "OrderEntry") ? "Purchase Order"
+                   : (Request.QueryString["InputType"].ToString() == "FirstApp") ? "Purchase Order 1st Approval"
+                   : (Request.QueryString["InputType"].ToString() == "SecondApp") ? "Purchase Order Final Approval"
+                   : "Purchase Order";
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+                this.Master.Page.Title = title;
+
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtLETDES.Text = comnam + this.CompanySubject();

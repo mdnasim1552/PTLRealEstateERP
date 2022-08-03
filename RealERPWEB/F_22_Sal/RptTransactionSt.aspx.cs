@@ -861,7 +861,7 @@ namespace RealERPWEB.F_22_Sal
                 return;
             }
             Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 4) ? HiddenSameData(ds1.Tables[0]): CollectCurDate(HiddenSameData(ds1.Tables[0]));
-
+            //DataTable dt = (DataTable)Session["DailyTrns"];
             this.Data_Bind();
 
         }

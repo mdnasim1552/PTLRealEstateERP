@@ -289,6 +289,7 @@ namespace RealERPWEB.F_14_Pro
             bool result;
             string comcod = this.GetCompCode();
             this.Session_tblMSR_Update();
+            this.SaveTermValue();
             string mMSRNO = "NEWMSR";
             if (this.ddlPrevMSRList.Items.Count > 0)
                 mMSRNO = this.ddlPrevMSRList.SelectedValue.ToString();
@@ -665,6 +666,30 @@ namespace RealERPWEB.F_14_Pro
         private void Payterm_DataBind()
         {
             this.gvterm.DataSource = (DataTable)Session["tblterm"];
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                //case "3101":
+                case "3368":
+                    this.gvterm.Columns[4].Visible = false;
+                    this.gvterm.Columns[5].Visible = false;
+                    this.gvterm.Columns[7].Visible = true;
+                    this.gvterm.Columns[9].Visible = true;
+                    this.gvterm.Columns[10].Visible = true;
+                    this.gvterm.Columns[11].Visible = true;
+
+                    break;
+
+                default:
+                    this.gvterm.Columns[4].Visible = true;
+                    this.gvterm.Columns[5].Visible = true;
+                    this.gvterm.Columns[7].Visible = false;
+                    this.gvterm.Columns[9].Visible = false;
+                    this.gvterm.Columns[10].Visible = false;
+                    this.gvterm.Columns[11].Visible = false;
+                    break;
+            }
+
             this.gvterm.DataBind();
 
         }

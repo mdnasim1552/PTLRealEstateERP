@@ -117,6 +117,36 @@ namespace RealERPWEB
 
 
             }
+
+            if (GetCompCode() == "3365")
+            {
+                this.pnlApplyLeavBTI.Visible = true;
+                GetAllTimeOff();
+            }
+            else
+            {
+                this.pnlApplyLeavBTI.Visible = false;
+            }
+       
+
+
+        }
+        private void GetAllTimeOff()
+        {
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORYALL", empid, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+                this.gvLvReqAll.DataSource = null;
+                this.gvLvReqAll.DataBind();
+                return;
+
+            }
+            this.gvLvReqAll.DataSource = (ds1.Tables[0]);
+            this.gvLvReqAll.DataBind();
+
         }
         private void getLink()
         {
@@ -761,12 +791,19 @@ namespace RealERPWEB
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
+            string userrole = hst["userrole"].ToString();
             switch (comcod)
             {
                case "3365":
                     this.EventBirthday.Visible = false;
                     this.pnlUpcmBD.Visible = false;
-                    this.pnlUpcmBDT.Visible = true;
+                    if (userrole != "3")
+                    {
+                        this.pnlUpcmBDT.Visible = true;
+                        this.pnlServiceInfoBTI.Visible = true;
+
+                    }
+                    this.pnlApplyLeavBTI.Visible = true;
                     this.EventBirthday.Visible = false;
 
                     DataSet ds2 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
@@ -781,7 +818,9 @@ namespace RealERPWEB
                 default:
                     this.pnlUpcmBD.Visible = true;
                     this.pnlUpcmBDT.Visible = false;
+                    this.pnlServiceInfoBTI.Visible = false;
                     this.EventBirthday.Visible = false;
+                    this.pnlApplyLeavBTI.Visible = false;
 
                     DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
                     if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
