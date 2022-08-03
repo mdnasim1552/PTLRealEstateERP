@@ -1618,21 +1618,39 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 p-0 mt-2">
+                        <div class="col-md-2 p-0 mt-2">
                             <div class="input-group input-group-alt profession-slect srDiv">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Lead Status</button>
+                                    <button class="btn btn-secondary  pl-0 pr-0" type="button">Lead Status</button>
                                 </div>
                                 <asp:DropDownList ID="ddlleadstatus" data-placeholder="Choose Lead Status.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlleadstatus_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-3 p-0 mt-2">
-                            <div class="input-group input-group-alt profession-slect srDiv">
+                        <div class="col-md-2 p-0 mt-2">
+                            <div class="input-group input-group-alt srDiv">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Pref. Location</button>
+                                    <button class="btn btn-secondary pl-0 pr-0" type="button">Pref. Loc.</button>
                                 </div>
                                 <asp:DropDownList ID="ddlPrefLocation" data-placeholder="Choose Pref. Location.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPrefLocation_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                         <div class="col-md-3 p-0 mt-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">Apartment Size</button>
+                                </div>
+                                <asp:DropDownList ID="ddlAptSize" data-placeholder="Choose Apt. Size.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlAptSize_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                         <div class="col-md-3 p-0 mt-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">Budget</button>
+                                </div>
+                                <asp:DropDownList ID="ddlBudget" data-placeholder="Choose Budget.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlBudget_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -1641,7 +1659,7 @@
                                 <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm" Style="margin-top:10px;">Ok</asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-md-1 p-0 mt-2 pading5px">
+                        <div class="col-md-1 p-0 mt-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Page</button>

@@ -288,6 +288,27 @@ namespace RealERPWEB.F_21_MKT
             this.ddlPrefLocation.DataBind();
             this.ddlPrefLocation.SelectedValue = "000000000000";
 
+            //Apartment Size
+            DataTable dtaptmnt = new DataTable();
+            dv.RowFilter = "gcod like '33%'";
+            dtaptmnt = dv.ToTable();
+            dtaptmnt.Rows.Add("000000000000", "Choose Apt. Size..", "");
+            this.ddlAptSize.DataTextField = "gdesc";
+            this.ddlAptSize.DataValueField = "gcod";
+            this.ddlAptSize.DataSource = dtaptmnt;
+            this.ddlAptSize.DataBind();
+            this.ddlAptSize.SelectedValue = "000000000000";
+
+            //Budget
+            DataTable dtbudget = new DataTable();
+            dv.RowFilter = "gcod like '37%'";
+            dtbudget = dv.ToTable();
+            dtbudget.Rows.Add("000000000000", "Choose Budget..", "");
+            this.ddlBudget.DataTextField = "gdesc";
+            this.ddlBudget.DataValueField = "gcod";
+            this.ddlBudget.DataSource = dtbudget;
+            this.ddlBudget.DataBind();
+            this.ddlBudget.SelectedValue = "000000000000";
 
         }
 
@@ -318,11 +339,13 @@ namespace RealERPWEB.F_21_MKT
             string leadstatus = (this.ddlleadstatus.SelectedValue.ToString().Trim() == "" ? "95" : this.ddlleadstatus.SelectedValue.ToString()) + "%";
             string sourch = ((this.ddlSource.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSource.SelectedValue.ToString()) + "%";
             string prefLocation = ((this.ddlPrefLocation.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlPrefLocation.SelectedValue.ToString()) + "%";
+            string aptSizeCode = ((this.ddlAptSize.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlAptSize.SelectedValue.ToString()) + "%";
+            string budgetCode = ((this.ddlBudget.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlBudget.SelectedValue.ToString()) + "%";
             string condate =this.txtcondate.Text;
             string type = this.rbtnlst.SelectedValue.ToString();
             string calltype = (type == "Stand By" ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION");
 
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus, prefLocation);
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus, prefLocation, aptSizeCode, budgetCode);
             if (ds1 == null)
             {
                 this.grpBox.Visible = false;
@@ -550,7 +573,17 @@ namespace RealERPWEB.F_21_MKT
 
         protected void ddlPrefLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.lbtnOk_Click(null, null);
+        }
 
+        protected void ddlAptSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+        }
+
+        protected void ddlBudget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
         }
     }
 }
