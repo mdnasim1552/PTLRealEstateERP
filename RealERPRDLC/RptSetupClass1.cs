@@ -624,6 +624,9 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalRegisClearence02": Rpt1a = SetRptSalRegisClearence02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptUnsoldUnit": Rpt1a = SetRptUnsoldUnit(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptEnvelopNew": Rpt1a = SetRptEnvelopPrintNew(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptEnvelopOffice": Rpt1a = SetRptEnvelopOffice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                    
                 case "R_22_Sal.RptSalSummeryDetails": Rpt1a = RptSalSummeryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptDummyPaySchidule02": Rpt1a = RptRptDummyPaySchidule02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptDummyPaywithoutDiscount02": Rpt1a = SetRptDummyPaywithoutDiscount02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1380,7 +1383,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptEnvelopOffice(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
+            return Rpt1a;
+        }
+        
         private static LocalReport SetRptWorkOrder2(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
