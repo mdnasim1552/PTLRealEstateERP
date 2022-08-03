@@ -4,6 +4,33 @@
 
  
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <style>
+                .chzn-drop {
+            width: 100% !important;
+        }
+        .chzn-container{
+            width: 100% !important;
+        }
+
+    </style>
+        <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+        </script>
   
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -78,6 +105,15 @@
                     <section class="card card-fluid" style="min-height: 650px">
                         <header class="card-header">Application for Time Of Leave</header>
                         <div class="card-body" id="ApplicFrm" runat="server">
+
+
+                                      <div class="form-group" id="empMgt" runat="server" visible="false">
+                                    <label for="Employee">Employee </label> 
+                                    <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
+                                        CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
+                                    </asp:DropDownList>
+
+                                </div>
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     Date   
