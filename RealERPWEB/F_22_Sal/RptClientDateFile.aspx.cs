@@ -35,7 +35,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
 
-
+                GetEnvType();
             }
 
         }
@@ -67,10 +67,21 @@ namespace RealERPWEB.F_22_Sal
             this.ddlProjectName.DataValueField = "pactcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
-
-
         }
 
+        private void GetEnvType()
+        {
+
+            string comcod = this.GetCompCode();
+          
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETENVTYPE", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+                return;
+            this.ddlTypeHeader.DataTextField = "title";
+            this.ddlTypeHeader.DataValueField = "gcod";
+            this.ddlTypeHeader.DataSource = ds1.Tables[0];
+            this.ddlTypeHeader.DataBind();
+        }
 
 
         protected void ibtnFindProject_Click(object sender, EventArgs e)
@@ -209,6 +220,7 @@ namespace RealERPWEB.F_22_Sal
 
                 string session = hst["session"].ToString();
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+                string envtype = this.ddlTypeHeader.SelectedValue.ToString();
 
                 var list = new List<RealEntity.C_22_Sal.EnvelopModel>();
                 var obj = new RealEntity.C_22_Sal.EnvelopModel()
@@ -222,7 +234,37 @@ namespace RealERPWEB.F_22_Sal
                 };
                 list.Add(obj);
                 LocalReport Rpt1 = new LocalReport();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopNew", list, null, null);
+
+                if (comcod == "3368")
+                {
+                    switch (envtype)
+                    {
+                        case "7200001":
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            break;
+                        case "7200002":
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            break;
+                        case "7200003":
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            break;
+                        case "7200004":
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            break;
+                        case "7200005":
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            break;
+                        default:
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            break;
+                    }
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopNew", list, null, null);
+               
+                }
+               
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("toheader", typeheader));
