@@ -99,10 +99,10 @@
 
                                         <asp:Label ID="lblTypeHeader" runat="server" CssClass="lblTxt lblName" Text="Type"></asp:Label>
                                         <asp:DropDownList ID="ddlTypeHeader" runat="server" CssClass="ddlPage chzn-select" Width="200px" Font-Bold="true">
-                                            <asp:ListItem Value="1">BY HAND</asp:ListItem>
+             <%--                               <asp:ListItem Value="1">BY HAND</asp:ListItem>
                                             <asp:ListItem Value="2">REGISTER MAIL </asp:ListItem>
                                             <asp:ListItem Value="3">BY COURIER </asp:ListItem>
-                                            <asp:ListItem Value="4">REGISTER MAIL WITH A/D</asp:ListItem>
+                                            <asp:ListItem Value="4">REGISTER MAIL WITH A/D</asp:ListItem>--%>
                                         </asp:DropDownList>
                                     </div>
 
