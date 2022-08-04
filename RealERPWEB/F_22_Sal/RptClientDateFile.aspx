@@ -233,6 +233,7 @@
                                         <asp:Label ID="lgvAddress3" runat="server" Style="text-align: left"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "address3"))%>'
                                             Width="100px"></asp:Label>
+                                        <asp:Label ID="lblperadd" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paradd"))%>' Visible="false"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvFAddress3" runat="server" Font-Bold="True" Font-Size="12px"
