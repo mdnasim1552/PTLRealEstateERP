@@ -180,6 +180,21 @@ namespace RealERPWEB.F_17_Acc
                     this.MultiView1.ActiveViewIndex = 10;
                     break;
 
+                case "MonSalPerTarWise":
+                    DateTime nowmkt = DateTime.Now;
+                    DateTime mktFday = new DateTime(nowmkt.Year, 1, 1);
+                    DateTime mkttDay = new DateTime(nowmkt.Year, 12, 31);
+
+
+                    string mktfirstdate = mktFday.ToString("dd-MMM-yyyy");
+                    string mktenddate = mkttDay.ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = mktfirstdate;
+                    this.txttodate.Text = mktenddate;
+
+                    this.chkSal.Visible = true;
+                    this.MultiView1.ActiveViewIndex = 11;
+                    break;
+
             }
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
@@ -251,6 +266,11 @@ namespace RealERPWEB.F_17_Acc
                     break;
                 case "CollBuyer":
                     this.ShowMonthCollectionBuyer();
+                    break;
+
+                case "MonSalPerTarWise":
+        
+                    this.ShowSalMktPerWise();
                     break;
 
             }
@@ -558,6 +578,31 @@ namespace RealERPWEB.F_17_Acc
         }
 
 
+        private void ShowSalMktPerWise()
+        {
+
+            ViewState.Remove("tblcollvscl");
+            string comcod = this.GetCompCode();
+
+           
+
+            string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string proj = (this.chkSal.Checked) ? "project" : "";
+
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_SUM", "RPTDWISEMSALESTARGET", txtdatefrm, txtdateto, proj, "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                this.gvSalPerWise.DataSource = null;
+                this.gvSalPerWise.DataBind();
+                return;
+            }
+
+
+            ViewState["tblcollvscl"] = this.HiddenSameData(ds1.Tables[0]);
+            this.Data_Bind();
+
+        }
 
         private void ShowSalPerWise()
         {
@@ -701,7 +746,24 @@ namespace RealERPWEB.F_17_Acc
 
                     break;
 
+                //case "MonSalPerTarWise":
+
+                //    string salesper = dt1.Rows[0]["salesperson"].ToString();
+                //    for (int j = 1; j < dt1.Rows.Count; j++)
+                //    {
+                //        if (dt1.Rows[j]["salesperson"].ToString() == salesper)
+                //        {
+                //            salesper = dt1.Rows[j]["salesperson"].ToString();
+                //            dt1.Rows[j]["salesperson"] = "";
+                //        }
+
+                //        else
+                //            salesper = dt1.Rows[j]["salesperson"].ToString();
+                //    }
+                //    break;
+
                 case "MonSalPerWise":
+
                     string salesperson = dt1.Rows[0]["salesperson"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
@@ -1020,6 +1082,16 @@ namespace RealERPWEB.F_17_Acc
                     this.gvCollBuyer.DataBind();
                     this.FooterCalculation();
                     break;
+
+                case "MonSalPerTarWise":
+                    dt = (DataTable)ViewState["tblcollvscl"];
+                    this.gvmsaletarget.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvmsaletarget.DataSource = dt;
+                    this.gvmsaletarget.DataBind();
+                    //this.FooterCalculation();
+                    break;
+
+                    
             }
 
         }

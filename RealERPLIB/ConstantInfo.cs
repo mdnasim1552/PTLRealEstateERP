@@ -1212,6 +1212,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202263", "F_22_Sal", "RptPriceList?", "Type=PriceList02", "Price List 02", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2202264", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSales", "Month Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202265", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSalPerWise", "Month Wise Sales (Marketing Person)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202274", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSalPerTarWise", "Month Report (Monthly Sales Target)", "Sales & Recovery", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "2203000", "2202266", "F_22_Sal", "ProjectGroup", "", "Project Group", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202267", "F_22_Sal", "RptSalesRegister2", "", "Sales Register 2", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202268", "F_22_Sal", "RptCollectionDetailInfo", "", "Collection Details Information ", "Sales & Recovery", "False", "False", "False", "False" });
@@ -7394,6 +7396,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "13. Price List 01", "F_02_Fea/RptPriceList?Type=PriceList01", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "14. Price List 02", "F_02_Fea/RptPrjFeasibility04?Type=PriceList02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "16. Month Wise Sales (Marketing Person)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerWise&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000003", "17. Month Report (Monthly Sales Target)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerTarWise&comcod=", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0426000000", "", "", "", true, "" });
