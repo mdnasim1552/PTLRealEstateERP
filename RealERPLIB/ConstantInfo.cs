@@ -2148,6 +2148,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102165", "F_81_Hrm/F_83_Att", "HREmpMonthlyAttenSys", "", "New Joining Employee Attendance - System", "Attendance", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "8102000", "8102166", "F_81_Hrm/F_92_Mgt", "HRSupervisorTransfer", "", "Supervisor Transfer", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102167", "F_33_Doc", "SimCardMange", "", "SIM Card Manage", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102168", "F_34_Mgt", "ResetPassword", "", "User Reset Password", "Management", "False", "False", "False", "False" });
 
 
 
@@ -15173,6 +15174,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000022", "06. Others Department Setup", "F_81_Hrm/F_89_Pay/ModeofPaymentDept", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000023", "07. Supervisor Transfer", "F_81_Hrm/F_92_Mgt/HRSupervisorTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000024", "08. SIM Card Manage", "F_33_Doc/SimCardMange", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000025", "19. User Reset Password", "F_34_Mgt/ResetPassword", "", true, "" });
 
 
 

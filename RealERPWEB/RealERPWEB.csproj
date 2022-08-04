@@ -2791,6 +2791,7 @@
     <Content Include="F_34_Mgt\PayTypCodeBook.aspx" />
     <Content Include="F_34_Mgt\ProjectClosing.aspx" />
     <Content Include="F_34_Mgt\PurReqAdjst.aspx" />
+    <Content Include="F_34_Mgt\ResetPassword.aspx" />
     <Content Include="F_34_Mgt\RptAllDashboard.aspx" />
     <Content Include="F_34_Mgt\RptUserLogDetails.aspx" />
     <Content Include="F_34_Mgt\RptUserLogStatus.aspx" />
@@ -4354,6 +4355,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\CreateTagSetup.aspx.designer.cs">
       <DependentUpon>CreateTagSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\SMSTypeEntry.aspx.cs">
       <DependentUpon>SMSTypeEntry.aspx</DependentUpon>
