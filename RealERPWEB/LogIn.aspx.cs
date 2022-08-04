@@ -237,11 +237,11 @@ namespace RealERPWEB
 
             else
             {
-                this.lblmsg.Text = "Successfully Updated";
+                this.lblmsg.CssClass = "alert alert-success col-sm-12";
+                this.lblmsg.Text = "Successfully Updated, Please try to login using new password";
                 this.ChkChangePass.Checked = false;
-                this.pwdDiv.Visible = this.ChkChangePass.Checked == true ? false : true;
-
-               // this.loginBtn.Text = "Sign In";
+                this.pwdDiv.Visible = this.ChkChangePass.Checked == true ? false : true;                 
+                // this.loginBtn.Text = "Sign In";
                 this.ChkChangePass_CheckedChanged(null, null);
             }
 
@@ -328,7 +328,7 @@ namespace RealERPWEB
                     return;
 
                 }
-                if (comcod == "3365" && deafltPass == "123")
+                if ((comcod == "3365" || comcod=="3101") && deafltPass == "123")
                 {
                     this.lblmsg.Visible = true;
                     this.lblmsg.Text = "Please reset your default password";
