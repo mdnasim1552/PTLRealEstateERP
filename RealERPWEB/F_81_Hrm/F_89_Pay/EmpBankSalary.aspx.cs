@@ -491,7 +491,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
             string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
-
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("saltrn='True'");
             dt = dv.ToTable();
@@ -499,7 +499,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBankStatementFinlay", lst, null, null);
+
+            if (printtype == "EXCEL")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBankStatementFinlayExcel", lst, null, null);
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBankStatementFinlay", lst, null, null);
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));

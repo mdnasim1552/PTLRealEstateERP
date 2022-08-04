@@ -985,6 +985,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptAllBankSummary.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankFordLetter.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementBridge.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlayExcel.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Finlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlay.rdlc" />
