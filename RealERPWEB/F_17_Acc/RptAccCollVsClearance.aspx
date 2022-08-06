@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <div class="col-md-4 pading5px asitCol4">
                                         <asp:Label ID="lblFdate" runat="server" CssClass="lblTxt lblName" Text="Date"></asp:Label>
-                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
+                                        <asp:TextBox ID="txtfromdate" runat="server" autocomplete="off"  CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="csefdate" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
 
@@ -1544,7 +1544,7 @@
                                         <asp:TemplateField HeaderText="Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvCuName" runat="server"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptname")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "salesperson")) %>'
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
@@ -2395,26 +2395,29 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
-                                        <asp:TemplateField HeaderText="Project">
-                                            <ItemTemplate>
-                                                <asp:HyperLink ID="HlnkmktResDesc" runat="server" Font-Underline="false" ForeColor="Black" Target="_blank"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
-                                                    Width="170px"></asp:HyperLink>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>
+                                        
 
                                         <asp:TemplateField HeaderText="Employee Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblemplpyeename" runat="server" Font-Underline="false" ForeColor="Black" Target="_blank"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptname")) %>'
-                                                    Width="150px"></asp:Label>
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "salesperson")) %>'
+                                                    Width="250px"></asp:Label>
                                             </ItemTemplate>
                                            
                                             <ItemStyle HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Project Name">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HlnkmktResDesc" runat="server" Font-Underline="false" ForeColor="Black" Target="_blank"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                                    Width="200px"></asp:HyperLink>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Budgeted </br>Sales Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvmktbgdsalqty" runat="server" Style="text-align: right"

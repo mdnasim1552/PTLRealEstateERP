@@ -746,21 +746,21 @@ namespace RealERPWEB.F_17_Acc
 
                     break;
 
-                //case "MonSalPerTarWise":
+                case "MonSalPerTarWise":
 
-                //    string salesper = dt1.Rows[0]["salesperson"].ToString();
-                //    for (int j = 1; j < dt1.Rows.Count; j++)
-                //    {
-                //        if (dt1.Rows[j]["salesperson"].ToString() == salesper)
-                //        {
-                //            salesper = dt1.Rows[j]["salesperson"].ToString();
-                //            dt1.Rows[j]["salesperson"] = "";
-                //        }
+                    string salesper = dt1.Rows[0]["salesperson"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["salesperson"].ToString() == salesper)
+                        {
+                            salesper = dt1.Rows[j]["salesperson"].ToString();
+                            dt1.Rows[j]["salesperson"] = "";
+                        }
 
-                //        else
-                //            salesper = dt1.Rows[j]["salesperson"].ToString();
-                //    }
-                //    break;
+                        else
+                            salesper = dt1.Rows[j]["salesperson"].ToString();
+                    }
+                    break;
 
                 case "MonSalPerWise":
 
