@@ -140,14 +140,14 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                                             </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="PO No" >
+                                             <asp:TemplateField HeaderText="Order No" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgPONo" runat="server" Width="120px" CssClass="WrpTxt"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")).Substring(0,3) +  Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")).Substring(7,2) + " - " +  Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")).Substring(9)  %>'></asp:Label>
+                                                    <asp:Label ID="lgPONo" runat="server" Width="80px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno"))  %>'></asp:Label>
                                                 </ItemTemplate>
 
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="80px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="80px" />
                                             </asp:TemplateField>
 
 
@@ -157,8 +157,8 @@
                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "orderdat")).ToString("dd-MMM-yyyy") %>'></asp:Label>
                                                 </ItemTemplate>
 
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="80px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="80px" />
                                             </asp:TemplateField>
 
                                               <asp:TemplateField HeaderText="PO No(Manual)" >
@@ -197,6 +197,16 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgDelDate" runat="server" Width="150px" CssClass="WrpTxt"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deldate")) %>'></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Received Date" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgreceivedate" runat="server" Width="150px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrdat")) %>'></asp:Label>
                                                 </ItemTemplate>
 
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
