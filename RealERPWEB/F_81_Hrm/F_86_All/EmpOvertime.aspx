@@ -1193,6 +1193,19 @@
                                                                                         OnCheckedChanged="chkAllfrm_CheckedChanged" Text="Cash Salary" Width="60px" />
                                                                                 </HeaderTemplate>
                                                                             </asp:TemplateField>--%>
+
+
+                                
+                                <asp:TemplateField HeaderText="Gross Salary" >
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgssal" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Style="text-align: right" BorderColor="#660033" BorderWidth="1px"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "gssal")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="65px" Font-Size="11px"></asp:Label>
+                                    </ItemTemplate>
+                                
+                                </asp:TemplateField>
+
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
@@ -1824,6 +1837,16 @@
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderText="Gross Salary">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgssal" runat="server" BackColor="Transparent"
+                                                BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "gssal")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                    
                                     </asp:TemplateField>
 
 
