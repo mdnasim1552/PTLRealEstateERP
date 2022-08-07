@@ -714,11 +714,11 @@
 
                                         <asp:TemplateField HeaderText="Brand" Visible="false">
                                             <ItemTemplate>
-                                                 <%--<asp:TextBox ID="txtgvrmrks" runat="server" BorderColor="#99CCFF"
+                                                 <asp:TextBox ID="txtgvrmrks" runat="server" BorderColor="#99CCFF"
                                                     BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                     Style="text-align: left; background-color: Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmrks")) %>'                                                    
-                                                    Width="80px"></asp:TextBox>--%>
+                                                    Width="80px"></asp:TextBox>
                                                 
                                             </ItemTemplate>
                                         </asp:TemplateField>
