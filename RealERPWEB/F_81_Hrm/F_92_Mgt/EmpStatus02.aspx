@@ -427,7 +427,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <ItemStyle HorizontalAlign="right" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Remarks">
+                                            <asp:TemplateField HeaderText=" Replace/New">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvdesignation" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'
