@@ -14,10 +14,10 @@
         });
         function pageLoaded() {
 
-            $('.chzn-select').chosen({
-                search_contains: true,
-                enable_escape_special_char: false
-            });
+            //$('.chzn-select').chosen({
+            //    search_contains: true,
+            //    enable_escape_special_char: false
+            //});
        };
     </script>
 
@@ -80,7 +80,7 @@
 
                                 </div>
                             </fieldset>
-                         <asp:Panel ID="pnlBill" runat="server" Visible="False">
+                         <asp:Panel ID="pnlBill" runat="server" >
                            <fieldset class="scheduler-border fieldset_A">
                                 <div class="form-horizontal">
                                    
@@ -226,12 +226,13 @@
                                 <HeaderStyle CssClass="grvHeader" />
                                 <FooterStyle CssClass="grvFooter" />
                             </asp:GridView>
+                        
 
                             <fieldset class="scheduler-border fieldset_Nar">
                                 <div class="form-horizontal">
 
                                     <div class="form-group">
-                                        <div class="col-md-2 pading5px asitCol2 ">
+                                        <div class="col-md-3 pading5px asitCol3 ">
                                             <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Ref. No"></asp:Label>
                                             <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"></asp:TextBox>
 
@@ -277,6 +278,9 @@
                             </fieldset>
 
                         </asp:Panel>
+
+
+                            
                            
                     </div>
 
