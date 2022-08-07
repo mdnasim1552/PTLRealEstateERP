@@ -145,9 +145,11 @@ namespace RealERPWEB.F_30_Facility
             try
             {
                 string comcod = GetComCode();
-                string projectcode = ddlProject.SelectedValue.ToString();
+                DataTable dt = (DataTable)ViewState["tblproject"];
+                string actcode = ddlProject.SelectedValue.ToString();
+                string mapactcode = (dt.Select("actcode='" + actcode + "'"))[0]["mapactcode"].ToString();
                 string customercode = ddlCustomer.SelectedValue.ToString();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETHANDOVERANDUNIT", projectcode, customercode, "", "", "", "", "", "", "", "", "");
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETHANDOVERANDUNIT", mapactcode, customercode, "", "", "", "", "", "", "", "", "");
                 DataTable unitdesc = ds.Tables[0];
                 DataTable handover = ds.Tables[1];
                 if (unitdesc == null || unitdesc.Rows.Count == 0)

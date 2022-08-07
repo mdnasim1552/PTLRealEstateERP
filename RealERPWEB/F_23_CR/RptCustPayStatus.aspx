@@ -284,8 +284,8 @@
                                 <div class="row">
 
                                     <asp:Label ID="lblchqdishonour" runat="server" BorderStyle="None"
-                                        Font-Bold="True" Font-Size="14px" ForeColor="Yellow"
-                                        Style="border-top: 1px solid yellow; border-bottom: 1px solid yellow"
+                                        Font-Bold="True" Font-Size="14px" ForeColor="blue"
+                                        Style="border-top: 1px solid maroon; border-bottom: 1px solid maroon"
                                         Text="List of Dishonour Cheque :" Visible="False"></asp:Label>
 
                                 </div>

@@ -128,7 +128,7 @@ namespace RealERPWEB.F_17_Acc
             Session.Remove("tblt01");
             this.CreateTable();
             this.LoadBillCombo();
-            this.lblmsg.Text = "";
+            
             this.txtRefNum.Text = "";
             this.txtSrinfo.Text = "";
             this.txtNarration.Text = "";
@@ -137,7 +137,7 @@ namespace RealERPWEB.F_17_Acc
             this.txtcurrentvou.Text = "";
             this.txtCurrntlast6.Text = "";
             this.lnkFinalUpdate.Enabled = true;
-            // this.Panel1.Visible = false;
+           // this.Panel1.Visible = false;
         }
 
 
@@ -148,71 +148,82 @@ namespace RealERPWEB.F_17_Acc
         
         protected void lbtnSelectTrns_Click(object sender, EventArgs e)
         {
+            try
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
-            string issurno = this.ddlBillList.SelectedValue.ToString();
-            string date = this.txtdate.Text.Trim();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETMATISSUEINFO", issurno,
-                         date, "", "", "", "", "", "", "");
-            DataTable dt1 = ds1.Tables[0];
-            DataTable tblt01 = (DataTable)Session["tblt01"];
-
-  //          a.comcod, actcode = a.pactcode, a.rescode, a.billqty, a.dr, a.cr, a.billid, b.actdesc, 
-		//resdesc = c.sirdesc, billnar = ''
-
-            for (int i = 0; i < dt1.Rows.Count; i++)
             {
-                string dgAccCode = dt1.Rows[i]["actcode"].ToString();
-                string dgResdesc = dt1.Rows[i]["rsirdesc"].ToString();
-                string dgResCode = dt1.Rows[i]["rsircode"].ToString();
-                string dgAccDesc = dt1.Rows[i]["actdesc"].ToString();
-                string dgSpclCode = dt1.Rows[i]["spclcode"].ToString();
-                string dgSpclDesc = dt1.Rows[i]["spcldesc"].ToString();
-                double dgTrnQty = Convert.ToDouble(dt1.Rows[i]["trnqty"]);
-                //if (Convert.ToDouble(dt1.Rows[i]["trnqty"]) > 0)
-                //{
-                //    dgTrnrate = Convert.ToDouble(dt1.Rows[i]["trndram"]) / Convert.ToDouble(dt1.Rows[i]["trnqty"]);
-                //}
 
-                double dgTrnDrAmt = Convert.ToDouble(dt1.Rows[i]["trndram"]);
-                double dgTrnCrAmt = Convert.ToDouble(dt1.Rows[i]["trncram"]);
-                string dgMemono = dt1.Rows[i]["billid"].ToString();
-                string dgmrnar = dt1.Rows[i]["billnar"].ToString();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                string issurno = this.ddlBillList.SelectedValue.ToString();
+                string date = this.txtdate.Text.Trim();
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETMATISSUEINFO", issurno,
+                             date, "", "", "", "", "", "", "");
+                DataTable dt1 = ds1.Tables[0];
+                DataTable tblt01 = (DataTable)Session["tblt01"];
 
-                DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
-                if (dr2.Length > 0)
+                //          a.comcod, actcode = a.pactcode, a.rescode, a.billqty, a.dr, a.cr, a.billid, b.actdesc, 
+                //resdesc = c.sirdesc, billnar = ''
+
+                for (int i = 0; i < dt1.Rows.Count; i++)
                 {
+                    string dgAccCode = dt1.Rows[i]["actcode"].ToString();
+                    string dgResdesc = dt1.Rows[i]["rsirdesc"].ToString();
+                    string dgResCode = dt1.Rows[i]["rsircode"].ToString();
+                    string dgAccDesc = dt1.Rows[i]["actdesc"].ToString();
+                    string dgSpclCode = dt1.Rows[i]["spclcode"].ToString();
+                    string dgSpclDesc = dt1.Rows[i]["spcldesc"].ToString();
+                    double dgTrnQty = Convert.ToDouble(dt1.Rows[i]["trnqty"]);
+                    //if (Convert.ToDouble(dt1.Rows[i]["trnqty"]) > 0)
+                    //{
+                    //    dgTrnrate = Convert.ToDouble(dt1.Rows[i]["trndram"]) / Convert.ToDouble(dt1.Rows[i]["trnqty"]);
+                    //}
 
-                    return;
+                    double dgTrnDrAmt = Convert.ToDouble(dt1.Rows[i]["trndram"]);
+                    double dgTrnCrAmt = Convert.ToDouble(dt1.Rows[i]["trncram"]);
+                    string dgMemono = dt1.Rows[i]["billid"].ToString();
+                    string dgmrnar = dt1.Rows[i]["billnar"].ToString();
 
+                    DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
+                    if (dr2.Length > 0)
+                    {
+
+                        return;
+
+                    }
+
+                    DataRow dr1 = tblt01.NewRow();
+                    dr1["actcode"] = dgAccCode;
+                    dr1["rsircode"] = dgResCode;
+                    dr1["actdesc"] = dgAccDesc;
+                    dr1["rsirdesc"] = dgResdesc;
+                    dr1["spclcode"] = dgSpclCode;
+                    dr1["spcldesc"] = dgSpclDesc;
+                    dr1["trnqty"] = dgTrnQty;
+                    dr1["trndram"] = dgTrnDrAmt;
+                    dr1["trncram"] = dgTrnCrAmt;
+                    dr1["billid"] = dgMemono;
+                    dr1["billar"] = dgmrnar;
+                    tblt01.Rows.Add(dr1);
                 }
+                //if (tblt01.Rows.Count == 0)
+                //    return;
+                Session["tblt01"] = HiddenSameData(tblt01);
+                dgv2.DataSource = (DataTable)Session["tblt01"];
+                dgv2.DataBind();
+                calculation();
 
-                DataRow dr1 = tblt01.NewRow();
-                dr1["actcode"] = dgAccCode;
-                dr1["rsircode"] = dgResCode;
-                dr1["actdesc"] = dgAccDesc;
-                dr1["rsirdesc"] = dgResdesc;
-                dr1["spclcode"] = dgSpclCode;
-                dr1["spcldesc"] = dgSpclDesc;
-                dr1["trnqty"] = dgTrnQty;
-                dr1["trndram"] = dgTrnDrAmt;
-                dr1["trncram"] = dgTrnCrAmt;
-                dr1["billid"] = dgMemono;
-                dr1["billar"] = dgmrnar;
-                tblt01.Rows.Add(dr1);
+                this.txtCurrntlast6.ReadOnly = false;
+                //this.Panel1.Visible = true;
+               // this.txtRefNum.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
+                //this.txtNarration.Text = ds1.Tables[1].Rows[0]["remarks"].ToString();
             }
-            //if (tblt01.Rows.Count == 0)
-            //    return;
-            Session["tblt01"] = HiddenSameData(tblt01);
-            dgv2.DataSource = (DataTable)Session["tblt01"];
-            dgv2.DataBind();
-            calculation();
 
-            this.txtCurrntlast6.ReadOnly = false;
-            //this.Panel1.Visible = true;
-            this.txtRefNum.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
-            this.txtNarration.Text = ds1.Tables[1].Rows[0]["remarks"].ToString();
+            catch (Exception ex)
+            { 
+            
+            
+            }
+
         }
 
 
@@ -264,9 +275,10 @@ namespace RealERPWEB.F_17_Acc
 
             if (txtopndate >= Convert.ToDateTime(this.txtdate.Text.Trim().Substring(0, 11)))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Voucher Date Must  Be Greater then Opening Date";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+               
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Voucher Date Must  Be Greater then Opening Dat');", true);
+
                 return;
 
             }
@@ -299,7 +311,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void lnkFinalUpdate_Click(object sender, EventArgs e)
         {
-            this.lblmsg.Visible = true;
+            
 
             //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
@@ -307,11 +319,6 @@ namespace RealERPWEB.F_17_Acc
             //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
         
-            //if (!Convert.ToBoolean(dr1[0]["entry"]))
-            //{
-            //    this.lblmsg.Text = "You have no permission";
-            //    return;
-            //}
             string voudat = this.txtdate.Text.Substring(0, 11);
             DateTime Bdate = this.GetBackDate();
             bool dcon = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(voudat));
@@ -322,7 +329,10 @@ namespace RealERPWEB.F_17_Acc
             }
             if (Math.Round(accData.ToDramt) != Math.Round(accData.ToCramt))
             {
-                this.lblmsg.Text = "Debit Amount must be Equal Credit Amount";
+              
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Debit Amount must be Equal Credit Amount');", true);
+               
                 return;
             }
 
@@ -356,7 +366,9 @@ namespace RealERPWEB.F_17_Acc
                         vounarration1, vounarration2, voutype, vtcode, edit, userid, Terminal, Sessionid, Postdat, "", "");
                 if (!resultb)
                 {
-                    this.lblmsg.Text = accData.ErrorObject["Msg"].ToString();
+                  
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
                 //-----------Update Transaction A Table-----------------//
@@ -378,7 +390,9 @@ namespace RealERPWEB.F_17_Acc
                             actcode, rescode, cactcode, voudat, trnqty, memono, vtcode, trnamt, spclcode, "", "", "", "", "");
                     if (!resulta)
                     {
-                        this.lblmsg.Text = accData.ErrorObject["Msg"].ToString();
+                       
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString() + "');", true);
+                       
                         return;
                     }
 
@@ -387,14 +401,20 @@ namespace RealERPWEB.F_17_Acc
                         resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEMISSUEVOUNUM", memono, vounum, "", "", "", "", "", "", "", "", "", "", "", "");
                         if (!resulta)
                         {
-                            this.lblmsg.Text = accData.ErrorObject["Msg"].ToString();
+                           
+                           
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + accData.ErrorObject["Msg"].ToString()+ "');", true);
                             return;
                         }
                         memono2 = memono;
                     }
                 }
-                this.lblmsg.Text = "Update Successfully.";
-                //this.lblmsg.Text=@"<SCRIPT language= "JavaScript"  > window.open('RptViewer.aspx');</script>";
+                string msg= "Update Successfully.";
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+
+               
                 this.lnkFinalUpdate.Enabled = false;
                 this.txtcurrentvou.Enabled = false;
                 this.txtCurrntlast6.Enabled = false;
@@ -409,7 +429,9 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                this.lblmsg.Text = "Error:" + ex.Message;
+                
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
 
         }
