@@ -54,7 +54,8 @@ namespace RealERPWEB.F_36_Vehcl
             try
             {
                 string comcod = GetComCode();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_VEHICLE_MANAGEMENT", "GETVEHICLEINFOTYP", "", "", "", "", "", "", "", "", "", "", "");
+                string vehicleId = lblVehicleId.Text;
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_VEHICLE_MANAGEMENT", "GETVEHICLEINFOTYP", vehicleId, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
 
@@ -85,18 +86,21 @@ namespace RealERPWEB.F_36_Vehcl
                             break;
                         case "50003":
                         case "50004":
+                            gvalue = dt.Rows[i]["value"].ToString();
                             ((TextBox)this.gvVehicleEntry.Rows[i].FindControl("txtgvVal")).Visible = false;
                             ((TextBox)this.gvVehicleEntry.Rows[i].FindControl("txtgvdVal")).Visible = true;
                             ((Panel)this.gvVehicleEntry.Rows[i].FindControl("Panegrd")).Visible = false;
                             ((DropDownList)this.gvVehicleEntry.Rows[i].FindControl("ddlval")).Items.Clear();
                             ((DropDownList)this.gvVehicleEntry.Rows[i].FindControl("ddlval")).Visible = false;
-                            ((TextBox)this.gvVehicleEntry.Rows[i].FindControl("txtgvdVal")).Text = System.DateTime.Now.ToString("hh:mm");
+                            ((TextBox)this.gvVehicleEntry.Rows[i].FindControl("txtgvdVal")).Text = gvalue;
                             break;
                         default:
+                            gvalue = dt.Rows[i]["value"].ToString();
                             ((TextBox)this.gvVehicleEntry.Rows[i].FindControl("txtgvdVal")).Visible = false;
                             ((Panel)this.gvVehicleEntry.Rows[i].FindControl("Panegrd")).Visible = false;
                             ((DropDownList)this.gvVehicleEntry.Rows[i].FindControl("ddlval")).Items.Clear();
                             ((DropDownList)this.gvVehicleEntry.Rows[i].FindControl("ddlval")).Visible = false;
+                            ((TextBox)this.gvVehicleEntry.Rows[i].FindControl("txtgvVal")).Text = gvalue;
                             break;
 
                     }
@@ -108,17 +112,6 @@ namespace RealERPWEB.F_36_Vehcl
             }
         }
 
-
-
-        protected void LnkbtnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LnkbtnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
@@ -198,6 +191,26 @@ namespace RealERPWEB.F_36_Vehcl
                    
                 }
             }
+        }
+
+        protected void gvVehicleInfo_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Edit")
+                {
+                    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = gvVehicleInfo.Rows[rowIndex];
+                    string vehicleId = (row.FindControl("lblvehicleId") as Label).Text;
+                    lblVehicleId.Text = vehicleId;
+                    getVehicleEntryInfo();
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+
         }
     }
 }
