@@ -616,6 +616,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 case "3367": //Epic
                     chkSecondApp = "Mgt App.";
+                    reqcheckapp = "Checked App.";
                     break;
 
                 //  case "3101":  
