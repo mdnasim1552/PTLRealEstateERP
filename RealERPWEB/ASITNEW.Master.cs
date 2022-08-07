@@ -146,6 +146,10 @@ namespace RealERPWEB
                 case "1108":
                 case "1109":
                 case "3315":
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    this.HypLinkReqInterFace.Visible = true;
+                    this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    break;
                 case "3316":
                 case "3348":
                 case "3364":
