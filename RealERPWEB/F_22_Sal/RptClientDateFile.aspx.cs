@@ -212,6 +212,7 @@ namespace RealERPWEB.F_22_Sal
                 string address3 = ((Label)row.FindControl("lgvAddress3")).Text.ToString();
                 string address4 = ((Label)row.FindControl("lgvAddress4")).Text.ToString();
                 string address5 = ((Label)row.FindControl("lgvAddress5")).Text.ToString();
+                string peradd = ((Label)row.FindControl("lblperadd")).Text.ToString();
 
                 string typeheader = ddlTypeHeader.SelectedItem.Text.ToString();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -223,16 +224,32 @@ namespace RealERPWEB.F_22_Sal
                 string envtype = this.ddlTypeHeader.SelectedValue.ToString();
 
                 var list = new List<RealEntity.C_22_Sal.EnvelopModel>();
-                var obj = new RealEntity.C_22_Sal.EnvelopModel()
+                var obj = new RealEntity.C_22_Sal.EnvelopModel();
+                if (comcod == "3368")
                 {
-                    Name = name,
-                    Address1 = address1,
-                    Address2 = address2,
-                    Address3 = address3,
-                    Address4 = address4,
-                    Address5 = address5
-                };
-                list.Add(obj);
+                     obj = new RealEntity.C_22_Sal.EnvelopModel()
+                    {
+                        Name = name,
+                        Address1 = peradd,
+                        Address2 = address2,
+                        Address3 = address3,
+                        Address4 = address4,
+                        Address5 = address5
+                    };
+                }
+                else
+                {
+                     obj = new RealEntity.C_22_Sal.EnvelopModel()
+                    {
+                        Name = name,
+                        Address1 = address1,
+                        Address2 = address2,
+                        Address3 = address3,
+                        Address4 = address4,
+                        Address5 = address5
+                    };
+                }
+                    list.Add(obj);
                 LocalReport Rpt1 = new LocalReport();
 
                 if (comcod == "3368")
