@@ -49,6 +49,24 @@ namespace RealERPLIB
             ii = Config1.AppSettings.Settings["DBConnstr"].Value.ToString().Trim();
             return ii;
         }
+        public DataSet GetDataSetTicket(SqlCommand Cmd)
+        {
+            try
+            {
+                SqlDataAdapter adp = new SqlDataAdapter();
+                adp.SelectCommand = Cmd;
+
+                Cmd.CommandTimeout = 120;
+                DataSet ds = new DataSet();
+                adp.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                this.SetError(ex);
+                return null;
+            }
+        }
         public Hashtable ErrorObject
         {
             get

@@ -60,15 +60,6 @@ namespace RealERPWEB.Tickets
         protected global::System.Web.UI.WebControls.TextBox txtTdate;
 
         /// <summary>
-        /// txtTdate_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtTdate_CalendarExtender;
-
-        /// <summary>
         /// tsklbl control.
         /// </summary>
         /// <remarks>
@@ -87,13 +78,31 @@ namespace RealERPWEB.Tickets
         protected global::System.Web.UI.WebControls.TextBox txtTicketDesc;
 
         /// <summary>
-        /// imageUpload control.
+        /// ddlPriority control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload imageUpload;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPriority;
+
+        /// <summary>
+        /// ChkSendMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkSendMail;
+
+        /// <summary>
+        /// AsyncFileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AsyncFileUpload AsyncFileUpload1;
 
         /// <summary>
         /// imageShow control.
@@ -103,15 +112,6 @@ namespace RealERPWEB.Tickets
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imageShow;
-
-        /// <summary>
-        /// ddlPriority control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPriority;
 
         /// <summary>
         /// btnSave control.
