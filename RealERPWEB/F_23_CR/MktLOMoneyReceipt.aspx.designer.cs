@@ -447,6 +447,15 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.Label Label21;
 
         /// <summary>
+        /// chkLOAmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkLOAmt;
+
+        /// <summary>
         /// txtPaidamt control.
         /// </summary>
         /// <remarks>
@@ -591,6 +600,42 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.TextBox txtbookno;
 
         /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
+        /// ddlBeneficiary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBeneficiary;
+
+        /// <summary>
+        /// lbtnBefAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnBefAdd;
+
+        /// <summary>
+        /// lbtnBefEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnBefEdit;
+
+        /// <summary>
         /// lblAddToTable control.
         /// </summary>
         /// <remarks>
@@ -706,5 +751,41 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvCDHonour;
+
+        /// <summary>
+        /// modalHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label modalHeader;
+
+        /// <summary>
+        /// lblbefid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbefid;
+
+        /// <summary>
+        /// txtbefname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbefname;
+
+        /// <summary>
+        /// lbtnAddCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAddCode;
     }
 }
