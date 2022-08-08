@@ -232,8 +232,6 @@ namespace RealERPWEB.F_36_Vehcl
 
         protected void LnkbtnEdit_Click(object sender, EventArgs e)
         {
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "GetEmployeeform();", true);
             LinkButton btn = (LinkButton)sender;
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
