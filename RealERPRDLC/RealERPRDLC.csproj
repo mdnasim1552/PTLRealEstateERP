@@ -136,6 +136,7 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+PurOrderTopSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+AccOpening.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
@@ -149,6 +150,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+MonSalPerTarWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDues.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
@@ -210,6 +212,8 @@
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay05.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurOrderTopSheet.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti.rdlc" />
@@ -221,6 +225,7 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherIntech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptMonSalPerTarWise.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood02.rdlc" />

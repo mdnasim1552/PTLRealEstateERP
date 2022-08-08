@@ -620,6 +620,10 @@ namespace RealERPWEB
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
 
+
+
+
+
         }
         protected void lnkbtnNew_Click(object sender, EventArgs e)
         {
