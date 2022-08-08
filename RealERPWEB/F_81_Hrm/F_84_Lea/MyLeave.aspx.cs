@@ -678,7 +678,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     //below code for if apply without date range 
                     if (chkBoxSkippWH.Checked == true)
                     {
-                        htmtableboyd = "<p><br>Applied Leave:<p><table class='courses-table'><tr class='green'><th>Date</th><th>Days<th></tr>";
+                        htmtableboyd = "<p><br>Applied Leave:<p><table class='courses-table'><tr class='green'><th>Date</th><th>Days</th></tr>";
                         for (int j = 0; j < dt1.Rows.Count; j++)
                         {
                             frmdate = Convert.ToDateTime(dt1.Rows[j]["leavday"]).ToString("dd-MMM-yyyy");
@@ -888,13 +888,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         <table class=""courses-table"">
 			<thead>
 				<tr>
-					<th class=""green"">Sl.No</th>					 
-					<th class=""green"">ID Card </th>
+					<th class=""green"">Sl#</th>					 
+					<th class=""green"">Card# </th>
 					<th class=""green"">Employee Name</th>					
 					<th class=""green"">Designation </th>
 					<th class=""green"">Department Name</th>
 					<th class=""green"">Leave Type</th>
-					<th class=""green"">Request id</th>                  		 
+					<th class=""green"">Request Id</th>                  		 
 				</tr>
 			</thead>
 			<tbody><tr><td>1</td><td>"

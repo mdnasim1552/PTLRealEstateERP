@@ -2142,11 +2142,11 @@ namespace RealERPWEB.F_14_Pro
                 case "3330":
                     //case "3101":
                     this.txtSubject.Text = "Purchase Order For ";
-                    this.txtLETDES.Text = comnam + " "+ "requests you to arrange supply of following materials from your organization.";
+                    this.txtLETDES.Text = comnam + " "+ "Requests you to arrange supply of following materials from your organization.";
                     break;
                 default:
                     this.txtSubject.Text = "Purchase Order For ";
-                    this.txtLETDES.Text = " requests you to arrange supply of following materials from your organization.";
+                    this.txtLETDES.Text = " Requests you to arrange supply of following materials from your organization.";
                     break;
 
 

@@ -49,6 +49,7 @@ namespace RealERPWEB.F_23_CR
                 }
                 this.InforInitialize();
                 this.GetProjectName();
+                GetBeneficiary();
                 this.GetInsType();
                 string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
                 if (qPrjCode.Length > 0)
@@ -242,6 +243,18 @@ namespace RealERPWEB.F_23_CR
         }
 
 
+        private void GetBeneficiary()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETBENEFICIARYNAME", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ddlBeneficiary.DataSource = ds1.Tables[0];
+            ddlBeneficiary.DataTextField = "gdesc";
+            ddlBeneficiary.DataValueField = "gcod";
+            ddlBeneficiary.DataBind();
+        }
 
 
         private void GetProjectName()
@@ -1069,7 +1082,7 @@ namespace RealERPWEB.F_23_CR
                     double louamt = Convert.ToDouble(dt1.Rows[i]["loamount"]);
                     paidamt = (RecType == "54097") ? paidamt * -1 : paidamt;
                     double disamt = Convert.ToDouble(dt1.Rows[i]["disamt"]);
-
+                    string benefId = ddlBeneficiary.SelectedValue.ToString();
                     //string type1 = this.Request.QueryString["Type"];
                     //string management = (type1 == "Management" ? "management" : ""); // mr edit 
 
@@ -1085,7 +1098,7 @@ namespace RealERPWEB.F_23_CR
                         string isLO = "1";
                         result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(),
                            chqno, bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat,
-                                                         SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno, "", louamt.ToString(), isLO);
+                                                         SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno, "", louamt.ToString(), isLO, benefId);
 
                     }
 
@@ -1645,8 +1658,8 @@ namespace RealERPWEB.F_23_CR
                     drforgrid["instype"] = this.ddlType.SelectedValue.ToString();
                     drforgrid["insdesc"] = this.ddlType.SelectedItem.Text;
                     drforgrid["paidamount"] = ASTUtility.StrPosOrNagative(this.txtPaidamt.Text.Trim());
-                    drforgrid["loamount"] = 0.00;
-                    drforgrid["companyamount"] = 0.00;
+                    drforgrid["loamount"] = (chkLOAmt.Checked)? ASTUtility.StrPosOrNagative(this.txtPaidamt.Text.Trim()) : 0.00;
+                    drforgrid["companyamount"] = (chkLOAmt.Checked) ? 0.00: ASTUtility.StrPosOrNagative(this.txtPaidamt.Text.Trim());
                     drforgrid["paytype"] = this.ddlpaytype.SelectedItem.Text.Trim();
                     drforgrid["paytypecod"] = this.ddlpaytype.SelectedValue.ToString();
                     //string comcod = this.GetComCode();
@@ -1717,8 +1730,6 @@ namespace RealERPWEB.F_23_CR
                 }
 
                 Session["sessionforgrid"] = dt;
-
-
 
 
                 this.grvacc_DataBind();
@@ -2114,6 +2125,49 @@ namespace RealERPWEB.F_23_CR
             // this.Money_DataBind();
 
             //this.panelexcel.Visible = false;
+        }
+
+        protected void lbtnBefAdd_Click(object sender, EventArgs e)
+        {
+            lblbefid.Text = "0";
+            txtbefname.Text = "";
+            modalHeader.Text = "Add Beneficiary";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+        }
+
+        protected void lbtnBefEdit_Click(object sender, EventArgs e)
+        {
+            if (ddlBeneficiary.SelectedValue.ToString() == "00000")
+            {
+                return;
+            }
+            else
+            {
+                lblbefid.Text = ddlBeneficiary.SelectedValue.ToString();
+                txtbefname.Text = ddlBeneficiary.SelectedItem.Text;
+                modalHeader.Text = "Edit Beneficiary";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+            }
+            
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string id = lblbefid.Text;
+            string name = txtbefname.Text;
+            DataSet ds = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "UPSERTBENEFICIARY", id, name, "", "", "", "", "","","","","");
+            if (ds == null)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            GetBeneficiary();
+            ddlBeneficiary.SelectedValue = ds.Tables[0].Rows[0][0].ToString();
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
         }
     }
 }

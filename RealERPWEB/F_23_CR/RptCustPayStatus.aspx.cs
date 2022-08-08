@@ -519,6 +519,33 @@ namespace RealERPWEB.F_23_CR
 
         }
 
+        private string CompanyDelSerial()
+        {
+
+            string comcod = this.GetComeCode();
+            string delserial ;
+            switch (comcod)
+            {
+                case "3354": //Edison Real Estate
+                case "3101":
+
+                    delserial = "delayserial";
+                    break;
+
+                default:
+                    delserial = "";
+                    break;
+
+
+            }
+
+            return delserial;
+
+
+
+
+        }
+
         private void ShowCustPayment()
         {
 
@@ -531,8 +558,8 @@ namespace RealERPWEB.F_23_CR
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string calltype = this.calltype();
             string procedure = this.procedure();
-
-            DataSet ds2 = purData.GetTransInfo(comcod, procedure, calltype, pactcode, custid, Date, "", "", "", "", "", "");
+            string delserial = this.CompanyDelSerial();
+            DataSet ds2 = purData.GetTransInfo(comcod, procedure, calltype, pactcode, custid, Date, delserial, "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvCustPayment.DataSource = null;
