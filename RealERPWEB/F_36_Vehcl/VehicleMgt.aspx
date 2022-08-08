@@ -13,7 +13,6 @@
         .mt20 {
             margin-top: 20px;
         }
-
         .chzn-container {
             width: 100% !important;
         }
