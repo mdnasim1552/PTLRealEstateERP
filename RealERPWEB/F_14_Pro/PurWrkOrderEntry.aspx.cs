@@ -14,16 +14,17 @@ using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using System.IO;
-using System.Net.Mail;
 using System.Web.Mail;
 using RealERPLIB;
 using RealERPRPT;
 using System.Net;
-using EASendMail;
-using System.IO;
 using System.Drawing;
 using AjaxControlToolkit;
 using RealEntity;
+using RealERPRDLC;
+using Microsoft.Reporting.WinForms;
+using System.Net.Mail;
+
 namespace RealERPWEB.F_14_Pro
 {
     public partial class PurWrkOrderEntry : System.Web.UI.Page
@@ -31,6 +32,7 @@ namespace RealERPWEB.F_14_Pro
         ProcessAccess purData = new ProcessAccess();
         UserManPurchase objUserMan = new UserManPurchase();
         SendNotifyForUsers UserNotify = new SendNotifyForUsers();
+        private Hashtable _errObj;
 
         public static string Url = "";
         protected void Page_Load(object sender, EventArgs e)
@@ -4324,23 +4326,42 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void btnSendmail_Click(object sender, EventArgs e)
         {
-
-            this.AutoSavePDF();
-            bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
-
-
-            switch (ssl)
+            try
             {
-                case true:
-                    this.SendSSLMail();
+                this.AutoSavePDF();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string compsms = hst["compsms"].ToString();
+                string compmail = hst["compmail"].ToString();
+                string ssl = hst["ssl"].ToString();
+                string comcod = hst["comcod"].ToString();
+                string sendUsername = hst["userfname"].ToString();
 
-                    break;
+                string sendDptdesc = hst["dptdesc"].ToString();
+                string sendUsrdesig = hst["usrdesig"].ToString();
+                string compName = hst["comnam"].ToString();
 
-                case false:
-                    this.SendNormalMail();
-                    break;
-
+                string usrid = hst["usrid"].ToString();
+                string deptcode = hst["deptcode"].ToString();
+                this.SendNotificaion(compsms, compmail, ssl, compName);
             }
+            catch (Exception ex)
+            {
+              
+                string Messagesd =  "Error occured while sending your message." + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+            }
+            //switch (ssl)
+            //{
+            //    case true:
+            //        this.SendSSLMail();
+
+            //        break;
+
+            //    case false:
+            //        this.SendNormalMail();
+            //        break;
+
+            //}
 
 
 
@@ -4415,152 +4436,336 @@ namespace RealERPWEB.F_14_Pro
             //}
 
         }
-        private void SendNormalMail()
+
+
+        private void SendNotificaion(string compsms, string compmail, string ssl, string compName)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            string comcod = this.GetCompCode();
-            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
-
-            string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
-
-            string subject = "Work Order";
-            //SMTP
-            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-
-            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(hostname, portnumber);
-            //SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //client.EnableSsl = true;
-            client.EnableSsl = false;
-            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
-            client.UseDefaultCredentials = false;
-            client.Credentials = credentials;
-
-            ///////////////////////
-            ///
-            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-            msg.From = new System.Net.Mail.MailAddress(frmemail);
-
-            msg.To.Add(new System.Net.Mail.MailAddress(ds1.Tables[0].Rows[0]["mailid"].ToString()));
-            msg.Subject = subject;
-            msg.IsBodyHtml = true;
-
-            System.Net.Mail.Attachment attachment;
-
-            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
-
-            attachment = new System.Net.Mail.Attachment(apppath);
-            msg.Attachments.Add(attachment);
-
-
-
-            msg.Body = string.Format("<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>");
             try
             {
-                client.Send(msg);
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
-
-                //string savelocation = Server.MapPath("~") + "\\SupWorkOreder";
-                //string[] filePaths = Directory.GetFiles(savelocation);
-                //foreach (string filePath in filePaths)
-                //    File.Delete(filePath);
-
-            }
-            catch (Exception ex)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            }
-        }
-        private void SendSSLMail()
-        {
-
-            try
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 string comcod = this.GetCompCode();
-                string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-                DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
 
 
+                ///GET SMTP AND SMS API INFORMATION
+                #region
+                Hashtable hst = (Hashtable)Session["tblLogin"];              
+                string sendUsername = hst["userfname"].ToString();
+                string sendDptdesc = hst["dptdesc"].ToString();
+                string sendUsrdesig = hst["usrdesig"].ToString();                
+                string usrid = hst["usrid"].ToString();
+                string deptcode = hst["deptcode"].ToString();
+
+ 
+                DataSet dssmtpandmail = purData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                if (dssmtpandmail == null)
+                    return;
+                //SMTP
+                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
+                #endregion
+
+                #region
+                // get data
                 string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
 
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
                 if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 {
                     string Messagesd = "Purchase order didn't save";
-                    ((Label)this.Master.FindControl("lblmsg")).Text = Messagesd;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+
                     return;
                 }
-                string subject = "Work Order";
-                //SMTP
-                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-                string mailtousr = ds1.Tables[0].Rows[0]["mailid"].ToString();
+                string subj = "Purchase Order";
+                string tomail = ds1.Tables[0].Rows[0]["mailid"].ToString();
                 string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
 
+                string msgbody = @"
+<html lang=""en"">
+	<head>	
+		<meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+		<title>
+			Work Order
+		</title>
+		<style type=""text/css"">
+			HTML{background-color: #e8e8e8;}
+			.courses-table{font-size: 12px; padding: 3px; border-collapse: collapse; border-spacing: 0;}
+			.courses-table .description{color: #505050;}
+			.courses-table td{border: 1px solid #D1D1D1; background-color: #F3F3F3; padding: 0 10px;}
+			.courses-table th{border: 1px solid #424242; color: #FFFFFF;text-align: left; padding: 0 10px;}
+			.green{background-color: #6B9852;}
+.badge-success {
+    color: #fff;
+    background-color: #44cf9c;
+}
+.badge-pink {
+    color: #fff;
+    background-color: #f672a7;
+}
+.badge-warning {
+    color: #fff;
+    background-color: #fcc015;
+}
+.badge-info {
+    color: #fff;
+    background-color: #43bee1;
+}
+.text-danger {
+    color:red;
+    font-weight:bold;
+}
+.badge-danger {
+    color: #fff;
+    background-color: #f672a7;
+}
+.badge-success {
+    color: #fff;
+    background-color: #44cf9c;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+		</style>
+	</head>
+	<body>
+<p>Dear Sir/ Madam,</p>
+<p>Hope you are having a good day. Please check the attached file for your kind consideration.</p>
 
-                EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+<p></br>It is a pleasure to do business with an esteemed company such as yours and we hope to continue working together in the future.</p>
+<p></br></p>
+<p>Best Regards,</p>
+<p>"+ sendUsername + "</p><p> "+ sendUsrdesig + " </p><p> " + compName + " </p></body></html>";
+                #endregion
 
-                //Connection Details 
-                SmtpServer oServer = new SmtpServer(hostname);
-                oServer.User = frmemail;
-                oServer.Password = psssword;
-                oServer.Port = portnumber;
-                oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+              
 
-                //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-
-                EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
-                oMail.From = frmemail;
-                oMail.To = mailtousr;
-                oMail.Cc = frmemail;
-                oMail.Subject = subject;
-
-
-                oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
-                oMail.AddAttachment(apppath);
-
-
-                //System.Net.Mail.Attachment attachment;
-
-                //attachment = new System.Net.Mail.Attachment(apppath);
-                //oMail.AddAttachment(attachment);
-
-
-
-
-
-                try
+                if (compmail == "True")
                 {
-
-                    oSmtp.SendMail(oServer, oMail);
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
-
-                }
-                catch (Exception ex)
-                {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                    bool Result_email = this.SendEmailPTLSUP(hostname, portnumber, frmemail, psssword, subj, sendUsername, sendUsrdesig, sendDptdesc, compName, tomail, msgbody, isSSL, apppath);
+                    if (Result_email == false)
+                    {
+                        string Messagesd = "Email has not been sent, Email or SMTP info Empty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                string Messagesd = "Email has not been sent " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
+
+        }
+
+        public bool SendEmailPTLSUP(string hostname, int portnumber, string frmemail, string psssword, string subj, string sendUsername, string sendUsrdesig, string sendDptdesc, string compName, string tomail, string msgbody, bool isSSL, string apppath)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+
+                SmtpClient client = new SmtpClient(hostname, portnumber);
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.EnableSsl = isSSL;
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
+                client.UseDefaultCredentials = false;
+                client.Credentials = credentials;
+                System.Net.Mail.Attachment attachment;
+                attachment = new System.Net.Mail.Attachment(apppath);
+                System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+                msg.From = new MailAddress(frmemail);
+                string body = string.Empty;
+                msg.To.Add(new MailAddress(tomail));
+                /// msg.CC.Add(new MailAddress("ibrahim.diu26@gmail.com"));
+                //msg.Bcc.Add(new MailAddress("nahid@pintechltd.com"));
+                msg.Subject = subj;
+                body += msgbody;
+                // body += "<br />Thanks & Regards<br/>" + sendUsername + "<br>" + sendUsrdesig + "<br>" + sendDptdesc + "<br>" + compName;
+                msg.Body = body;
+                msg.Attachments.Add(attachment);
+                msg.IsBodyHtml = true;
+                try
+                {
+                    client.Send(msg);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    this.SetError(ex);
+                    return false;
+
+                }
+
+            }
+            catch (Exception exp)
+            {
+                this.SetError(exp);
+                return false;
+            }
+
+
+        }
+
+
+        private void SendNormalMail()
+        {
+            //((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //string comcod = this.GetCompCode();
+            //string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+            //DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+
+
+            //string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+
+            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+
+            //string subject = "Work Order";
+            ////SMTP
+            //string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+            //int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+
+            //System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(hostname, portnumber);
+            ////SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            ////client.EnableSsl = true;
+            //client.EnableSsl = false;
+            //string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+            //string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+            //System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
+            //client.UseDefaultCredentials = false;
+            //client.Credentials = credentials;
+
+            /////////////////////////
+            /////
+            //System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            //msg.From = new System.Net.Mail.MailAddress(frmemail);
+
+            //msg.To.Add(new System.Net.Mail.MailAddress(ds1.Tables[0].Rows[0]["mailid"].ToString()));
+            //msg.Subject = subject;
+            //msg.IsBodyHtml = true;
+
+            //System.Net.Mail.Attachment attachment;
+
+            //string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
+
+            //attachment = new System.Net.Mail.Attachment(apppath);
+            //msg.Attachments.Add(attachment);
+
+
+
+            //msg.Body = string.Format("<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>");
+            //try
+            //{
+            //    client.Send(msg);
+
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+            //    //string savelocation = Server.MapPath("~") + "\\SupWorkOreder";
+            //    //string[] filePaths = Directory.GetFiles(savelocation);
+            //    //foreach (string filePath in filePaths)
+            //    //    File.Delete(filePath);
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //}
+        }
+        private void SendSSLMail()
+        {
+
+            //try
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //    string comcod = this.GetCompCode();
+            //    string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
+            //    DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+
+
+            //    string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+
+            //    DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
+            //    if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            //    {
+            //        string Messagesd = "Purchase order didn't save";
+            //        ((Label)this.Master.FindControl("lblmsg")).Text = Messagesd;
+            //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //        return;
+            //    }
+            //    string subject = "Work Order";
+            //    //SMTP
+            //    string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+            //    int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+            //    string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+            //    string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+            //    string mailtousr = ds1.Tables[0].Rows[0]["mailid"].ToString();
+            //    string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
+
+
+            //    EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+
+            //    //Connection Details 
+            //    SmtpServer oServer = new SmtpServer(hostname);
+            //    oServer.User = frmemail;
+            //    oServer.Password = psssword;
+            //    oServer.Port = portnumber;
+            //    oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+            //    //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+            //    EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
+            //    oMail.From = frmemail;
+            //    oMail.To = mailtousr;
+            //    oMail.Cc = frmemail;
+            //    oMail.Subject = subject;
+
+
+            //    oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
+            //    oMail.AddAttachment(apppath);
+
+
+            //    //System.Net.Mail.Attachment attachment;
+
+            //    //attachment = new System.Net.Mail.Attachment(apppath);
+            //    //oMail.AddAttachment(attachment);
+
+
+
+
+
+            //    try
+            //    {
+
+            //        oSmtp.SendMail(oServer, oMail);
+            //        ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+            //}
            
 
         }
@@ -4868,7 +5073,12 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
+        private void SetError(Exception exp)
+        {
+            this._errObj["Src"] = exp.Source;
+            this._errObj["Msg"] = exp.Message;
+            this._errObj["Location"] = exp.StackTrace;
+        }
 
-       
     }
 }

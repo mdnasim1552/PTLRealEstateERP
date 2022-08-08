@@ -95,6 +95,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string userid = hst["usrid"].ToString();
             string txtCompany = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
+            if (ds5 == null)
+                return;
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds5.Tables[0];
