@@ -469,12 +469,12 @@
 
                                     <asp:TemplateField HeaderText=" Description">
                                         <ItemTemplate>
-                                            <asp:Label ID="lgcActDesc" runat="server" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc1")) + "</B>"+
+        <%--                                    <asp:Label ID="lgcActDesc" runat="server" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc1")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "actdesc2").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc1")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc2")).Trim(): "")  %>'
-                                                Width="350px"></asp:Label>
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc2").Trim(): "")  %>'
+                                                Width="350px"></asp:Label>--%>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Left" />
 
