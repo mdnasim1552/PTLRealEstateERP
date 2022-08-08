@@ -183,7 +183,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.RadioButtonList1.Items[14].Text = "Transfer Unit" + "<span class='lbldata counter'>" + ds1.Tables[18].Rows[0]["trnunit"].ToString() + "</span>";
             this.RadioButtonList1.Items[15].Text = "Indent Update" + "<span class='lbldata counter'>" + ds1.Tables[18].Rows[0]["indup"].ToString() + "</span>";
-            this.RadioButtonList1.Items[16].Text = "Material Issue" + "<span class='lbldata counter'>" + ds1.Tables[18].Rows[0]["indup"].ToString() + "</span>";
+            this.RadioButtonList1.Items[16].Text = "Material Issue" + "<span class='lbldata counter'>" + ds1.Tables[18].Rows[0]["issue"].ToString() + "</span>";
 
             ////Update Sales
             //DataTable dt = new DataTable();
