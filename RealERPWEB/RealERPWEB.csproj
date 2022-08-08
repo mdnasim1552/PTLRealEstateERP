@@ -2975,6 +2975,7 @@
     <Content Include="F_81_Hrm\F_81_Rec\RptEmpAssessment.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\RptRecruitment.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\RptShortListing.aspx" />
+    <Content Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ShortListing.aspx" />
     <Content Include="F_81_Hrm\F_82_App\AccCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_82_App\AccSubCodeBook.aspx" />
@@ -4497,6 +4498,13 @@
     </Compile>
     <Compile Include="F_36_Vehcl\VehicleMgt.aspx.designer.cs">
       <DependentUpon>VehicleMgt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx.cs">
+      <DependentUpon>NewRecruitment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx.designer.cs">
+      <DependentUpon>NewRecruitment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntry.aspx.cs">
       <DependentUpon>EmpEntry.aspx</DependentUpon>

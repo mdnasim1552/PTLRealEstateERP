@@ -2120,6 +2120,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102107", "F_81_Hrm/F_86_All", "EntryOvertimeExelUpload", " ", "Overtime Upload", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102108", "F_81_Hrm/F_86_All", "EntryDeduction02", " ", "Entry Deduction 02", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102109", "F_81_Hrm/F_89_Pay", "ModeofPaymentDept", "", "Others Department Setup", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102102", "F_81_Hrm/F_81_Rec", "NewRecruitment", "", "New Recruitment", "Recruitment", "False", "False", "False", "False" });
+
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102113", "F_81_Hrm/F_83_Att", "AttnOutOfOffice", "", "Online Attendance", "Attendance", "False", "False", "False", "False" }); ;
 
@@ -15228,6 +15230,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000007", "06. Offer Letter Create", "F_81_Hrm/F_81_Rec/CreateOfferLt?Type=OLCreate", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "07. Employee Assessment", "F_81_Hrm/F_81_Rec/EmpAssessment?Type=AssCreate", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000009", "08. Confirmation Letter", "F_81_Hrm/F_81_Rec/ConfirmLetter?Type=Confmletter", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000011", "08. New Recruitment", "F_81_Hrm/F_81_Rec/NewRecruitment", "", true, "" });
 
             // B. Appointment
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "Appointment", "", "", false, "mb" });
