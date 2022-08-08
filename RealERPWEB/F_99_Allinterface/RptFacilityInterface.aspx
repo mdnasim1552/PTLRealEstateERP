@@ -479,6 +479,7 @@
 
     <script type="text/javascript">
 
+
         function loadModalReject() {
             $('#modalReject').modal('toggle', {
                 backdrop: 'static',

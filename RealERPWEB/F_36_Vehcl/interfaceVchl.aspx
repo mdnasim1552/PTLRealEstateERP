@@ -460,7 +460,6 @@
                         <fieldset class="tabMenu">
                             <div class="form-horizontal">
                                 <div class="tbMenuWrp nav nav-tabs rptPurInt">
-
                                     <asp:RadioButtonList ID="radiobtnv" runat="server" AutoPostBack="true" RepeatDirection="Horizontal">
                                         <asp:ListItem Value="0"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white"> Queue</div></div></div></asp:ListItem>
                                         <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white"> Process</div></div></div></asp:ListItem>

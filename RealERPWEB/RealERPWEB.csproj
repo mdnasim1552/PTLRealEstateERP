@@ -3169,6 +3169,7 @@
     <Content Include="F_99_Allinterface\RptAuditInterface.aspx" />
     <Content Include="F_99_Allinterface\RptCashPurInterface.aspx" />
     <Content Include="F_99_Allinterface\RptEngInterface.aspx" />
+    <Content Include="F_99_Allinterface\RptVehicleMgt.aspx" />
     <Content Include="F_99_Allinterface\RptFacilityInterface.aspx" />
     <Content Include="F_99_Allinterface\RptIndentPurInterface.aspx" />
     <Content Include="F_99_Allinterface\RptLCInterface.aspx" />
@@ -5073,6 +5074,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\MKTProInterface.aspx.designer.cs">
       <DependentUpon>MKTProInterface.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptVehicleMgt.aspx.cs">
+      <DependentUpon>RptVehicleMgt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptVehicleMgt.aspx.designer.cs">
+      <DependentUpon>RptVehicleMgt.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\RptFacilityInterface.aspx.cs">
       <DependentUpon>RptFacilityInterface.aspx</DependentUpon>
