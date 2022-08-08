@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .page-title{
+        .page-title {
             font-size: 1.30rem;
         }
     </style>
@@ -28,6 +28,22 @@
                         </ProgressTemplate>
                     </asp:UpdateProgress>
                 </div>
+
+                <header class="page-title-bar mt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active">
+                                <a href="../../Tickets/Index"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Task List</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <a href="#">Task Details Ticket ID <span id="tickteID" class="badge badge-success" runat="server"></span></a>
+                            </li>
+                        </ol>
+                    </nav>
+                 
+                </header>
+
+
                 <div class="row">
                     <div class="col-md-12">
                         <h4 class="page-title">Ticket Details</h4>
@@ -50,6 +66,10 @@
                                         <p class="mt-3 mb-1">Creation Date</p>
                                         <h6 id="creatDate" runat="server"></h6>
                                     </div>
+                                    <div class="col-md-4 font-weight-bold">
+                                        <p class="mt-3 mb-1">Creation by</p>
+                                        <h7 id="creatBy" runat="server"></h7>
+                                    </div>
                                 </div>
                                 <h6 class="mt-4">Ticket Details:</h6>
                                 <p id="ticketDesc" class="mb-4" runat="server"></p>
@@ -60,7 +80,17 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title mb-3">Attachments</div>
-                                <div class="card-text">This is card text</div>
+
+                                <asp:Panel ID="Panel2" runat="server">
+
+                                    <asp:Image ID="BindImg" runat="server" CssClass="img img-thumbnail" />
+
+                                </asp:Panel>
+
+
+                                <asp:Panel ID="Panel1" runat="server">
+                                    <asp:Literal ID="embedPdf" runat="server" />
+                                </asp:Panel>
                             </div>
                         </div>
                     </div>

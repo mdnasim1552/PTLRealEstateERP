@@ -10,8 +10,10 @@ using System.Web.Script.Serialization;
 using CrystalDecisions.CrystalReports.Engine;
 using Microsoft.Reporting.WinForms;
 using RealERPLIB;
-using RealERPRDLC;
+
 using Label = System.Web.UI.WebControls.Label;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_17_Acc
 {
     public partial class RptAccCollVsClearance : System.Web.UI.Page
@@ -1467,10 +1469,12 @@ namespace RealERPWEB.F_17_Acc
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)ViewState["tblcollvscl"];
+            if(dt==null || dt.Rows.Count==0)
+                return;
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonSalPerTarWise>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptMonSalPerTarWise", lst, null, null);
+            Rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptMonSalPerTarWise", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
