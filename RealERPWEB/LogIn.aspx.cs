@@ -237,11 +237,11 @@ namespace RealERPWEB
 
             else
             {
-                this.lblmsg.Text = "Successfully Updated";
+                this.lblmsg.CssClass = "alert alert-success col-sm-12";
+                this.lblmsg.Text = "Successfully Updated, Please try to login using new password";
                 this.ChkChangePass.Checked = false;
-                this.pwdDiv.Visible = this.ChkChangePass.Checked == true ? false : true;
-
-               // this.loginBtn.Text = "Sign In";
+                this.pwdDiv.Visible = this.ChkChangePass.Checked == true ? false : true;                 
+                // this.loginBtn.Text = "Sign In";
                 this.ChkChangePass_CheckedChanged(null, null);
             }
 
@@ -319,7 +319,7 @@ namespace RealERPWEB
                 Session.Remove("tblusrlog");
                 Session.Remove("tbllog1");
                 string username = this.txtuserid.Text.Trim();
-                // string pass =this.txtuserpass.Text.Trim();
+                 string deafltPass =this.txtuserpass.Text.Trim();
                 string pass = ASTUtility.EncodePassword(this.txtuserpass.Text.Trim());
                 string HostAddress = Request.UserHostAddress.ToString();
                 if (this.ChkChangePass.Checked)
@@ -327,6 +327,15 @@ namespace RealERPWEB
                     this.CheangePassword();
                     return;
 
+                }
+                if ((comcod == "3365" || comcod=="3101") && deafltPass == "123")
+                {
+                    this.lblmsg.Visible = true;
+                    this.lblmsg.Text = "Please reset your default password";
+                    this.ChkChangePass.Checked = true;
+                    this.ChkChangePass_CheckedChanged(null, null);
+                    //this.CheangePassword();
+                    return;
                 }
                 string modulid = this.ListModulename.SelectedValue.ToString();
                 string modulename = this.ListModulename.SelectedItem.Text.Trim();

@@ -300,19 +300,19 @@
 
 
                                 </div>
-                                <div class="col-sm-6 col-md-2 col-lg-2 d-none">
-                                    <div class="row" id="UploadCV" runat="server" visible="false">
+                                <div class="col-sm-6 col-md-2 col-lg-2">
+                                    <div class="row" id="UploadCV" runat="server" >
 
                                         <div class="col-md-12 ">
-                                            <asp:Label ID="lblUploadCV" runat="server" Visible="false">Upload CV</asp:Label>
-
-                                        </div>
-                                        <div class="col-md-12 ">
-                                            <asp:FileUpload ID="FileUploadControl" CssClass="form-control" runat="server" Visible="false" />
+                                            <asp:Label ID="lblUploadCV" runat="server" >Upload CV</asp:Label>
 
                                         </div>
                                         <div class="col-md-12 ">
-                                            <asp:Button runat="server" ID="btnUpload" Text="Upload CV" CssClass="btn btn-sm btn-warning" OnClick="btnUpload_Click" Visible="false" />
+                                            <asp:FileUpload ID="FileUploadControl" CssClass="form-control" runat="server" />
+
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <asp:Button runat="server" ID="btnUpload" Text="Upload CV" CssClass="btn btn-sm btn-warning" OnClick="btnUpload_Click"  />
                                         </div>
                                     </div>
                                 </div>
@@ -1291,5 +1291,12 @@
             </div>
 
         </ContentTemplate>
+
+
+                <Triggers>
+            <asp:PostBackTrigger ControlID="btnUpload" />
+        </Triggers>
+
+
     </asp:UpdatePanel>
 </asp:Content>

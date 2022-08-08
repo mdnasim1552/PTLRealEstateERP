@@ -675,7 +675,6 @@ namespace RealERPWEB.F_12_Inv
                 ((LinkButton)this.gvMRRInfo.FooterRow.FindControl("lbtnDelMRR")).Visible = false;
                 if (this.ddlPrevMRRList.Items.Count > 0)
                 {
-
                     ((LinkButton)this.gvMRRInfo.FooterRow.FindControl("lbtnUpdateMRR")).Visible = false;
                     ((LinkButton)this.gvMRRInfo.FooterRow.FindControl("lbtnResFooterTotal")).Visible = false;
                 }

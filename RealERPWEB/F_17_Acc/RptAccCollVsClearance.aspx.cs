@@ -180,6 +180,21 @@ namespace RealERPWEB.F_17_Acc
                     this.MultiView1.ActiveViewIndex = 10;
                     break;
 
+                case "MonSalPerTarWise":
+                    DateTime nowmkt = DateTime.Now;
+                    DateTime mktFday = new DateTime(nowmkt.Year, 1, 1);
+                    DateTime mkttDay = new DateTime(nowmkt.Year, 12, 31);
+
+
+                    string mktfirstdate = mktFday.ToString("dd-MMM-yyyy");
+                    string mktenddate = mkttDay.ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = mktfirstdate;
+                    this.txttodate.Text = mktenddate;
+
+                    this.chkSal.Visible = true;
+                    this.MultiView1.ActiveViewIndex = 11;
+                    break;
+
             }
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
@@ -251,6 +266,11 @@ namespace RealERPWEB.F_17_Acc
                     break;
                 case "CollBuyer":
                     this.ShowMonthCollectionBuyer();
+                    break;
+
+                case "MonSalPerTarWise":
+        
+                    this.ShowSalMktPerWise();
                     break;
 
             }
@@ -558,6 +578,31 @@ namespace RealERPWEB.F_17_Acc
         }
 
 
+        private void ShowSalMktPerWise()
+        {
+
+            ViewState.Remove("tblcollvscl");
+            string comcod = this.GetCompCode();
+
+           
+
+            string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string proj = (this.chkSal.Checked) ? "project" : "";
+
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_SUM", "RPTDWISEMSALESTARGET", txtdatefrm, txtdateto, proj, "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                this.gvSalPerWise.DataSource = null;
+                this.gvSalPerWise.DataBind();
+                return;
+            }
+
+
+            ViewState["tblcollvscl"] = this.HiddenSameData(ds1.Tables[0]);
+            this.Data_Bind();
+
+        }
 
         private void ShowSalPerWise()
         {
@@ -701,7 +746,24 @@ namespace RealERPWEB.F_17_Acc
 
                     break;
 
+                case "MonSalPerTarWise":
+
+                    string salesper = dt1.Rows[0]["salesperson"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["salesperson"].ToString() == salesper)
+                        {
+                            salesper = dt1.Rows[j]["salesperson"].ToString();
+                            dt1.Rows[j]["salesperson"] = "";
+                        }
+
+                        else
+                            salesper = dt1.Rows[j]["salesperson"].ToString();
+                    }
+                    break;
+
                 case "MonSalPerWise":
+
                     string salesperson = dt1.Rows[0]["salesperson"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
@@ -1020,6 +1082,16 @@ namespace RealERPWEB.F_17_Acc
                     this.gvCollBuyer.DataBind();
                     this.FooterCalculation();
                     break;
+
+                case "MonSalPerTarWise":
+                    dt = (DataTable)ViewState["tblcollvscl"];
+                    this.gvmsaletarget.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvmsaletarget.DataSource = dt;
+                    this.gvmsaletarget.DataBind();
+                    //this.FooterCalculation();
+                    break;
+
+                    
             }
 
         }
@@ -1376,9 +1448,42 @@ namespace RealERPWEB.F_17_Acc
                 case "CollBuyer":
                     this.PrintMonWiseColBuyer();
                     break;
+                case "MonSalPerTarWise":
+                    this.PrintMonSalPerTarWise();
+                    break;
             }
         }
+        private void PrintMonSalPerTarWise()
+        {
+ 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)ViewState["tblcollvscl"];
 
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonSalPerTarWise>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptMonSalPerTarWise", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Target Sales"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
 
         private void PrintMonCollection()
         {

@@ -134,10 +134,12 @@ namespace RealERPWEB
                     //sidebar nav off for bti general user                    
                     //this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+
                     this.hypGroupChat.Visible = false;
                     this.HypOldModules.Visible = false;
                     this.lnkFormLink.Visible = true;
                     this.hypTimeOfleave.Visible = true;
+                   
                     this.HypLinkReqInterFace.Visible = true; 
                     break; 
                 case "3338":
@@ -168,6 +170,7 @@ namespace RealERPWEB
                     this.HypOldModules.Visible = false;
                     this.lnkFormLink.Visible = false;
                     this.hypTimeOfleave.Visible = false;
+                
                     this.hypOnlineAttendance.Visible = false;
                     this.HypLinkReqInterFace.Visible = false;
                     break;
@@ -181,6 +184,7 @@ namespace RealERPWEB
                     this.HypOldModules.Visible = false;
                     this.lnkFormLink.Visible = false;
                     this.hypTimeOfleave.Visible = false;
+                  
                     this.hypOnlineAttendance.Visible = false;
                     this.HypLinkReqInterFace.Visible = false;
 
@@ -200,10 +204,12 @@ namespace RealERPWEB
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyReqCommon.Visible = (userrole == "3" ? false : true);
+                    this.hypTimeOfleaveMgt.Visible = (userrole == "3" ? false : true);
                     this.hypGroupChat.Visible = false;
                     this.HypOldModules.Visible = false;
                     this.lnkFormLink.Visible = true;
                     this.hypTimeOfleave.Visible = true;
+                
                     this.HypLinkReqInterFace.Visible = true;
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
                     break; 
@@ -212,6 +218,7 @@ namespace RealERPWEB
                     this.lnkFormLink.Visible = true;
                     this.HypLinkApplyLvCommon.Visible = false;
                     this.hypTimeOfleave.Visible = false;
+                   
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd"; 
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.HypLinkReqInterFace.Visible = false;
@@ -223,6 +230,7 @@ namespace RealERPWEB
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";       
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
             this.hypTimeOfleave.NavigateUrl = "~/F_81_Hrm/F_84_Lea/TimeOfLeave?Type=Ind";
+            this.hypTimeOfleaveMgt.NavigateUrl = "~/F_81_Hrm/F_84_Lea/TimeOfLeave?Type=MGT";
             this.HypLinkReqInterFace.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/InterfaceAttApp?Type=Ind";            
             // Attendance Request MGT /F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=&frmdate=26-Feb-2022&todate=25-Mar-2022
             this.HypLinkApplyReqCommon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet?Type=MGT&empid=&frmdate=&todate=";
@@ -607,6 +615,10 @@ namespace RealERPWEB
         }
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
+
+
+
+
 
         }
         protected void lnkbtnNew_Click(object sender, EventArgs e)

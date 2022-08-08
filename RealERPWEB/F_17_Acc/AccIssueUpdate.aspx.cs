@@ -39,7 +39,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Indent Update";
-                this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy ddd");
+                this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.LoadBillCombo();
                 CreateTable();
 
@@ -63,8 +63,8 @@ namespace RealERPWEB.F_17_Acc
             tblt01.Columns.Add("trndram", Type.GetType("System.Double"));
             tblt01.Columns.Add("trncram", Type.GetType("System.Double"));
             tblt01.Columns.Add("trnrmrk", Type.GetType("System.String"));
-            tblt01.Columns.Add("memono", Type.GetType("System.String"));
-            tblt01.Columns.Add("mrnar", Type.GetType("System.String"));
+            tblt01.Columns.Add("billid", Type.GetType("System.String"));
+            tblt01.Columns.Add("billar", Type.GetType("System.String"));
             Session["tblt01"] = tblt01;
         }
 
@@ -81,19 +81,20 @@ namespace RealERPWEB.F_17_Acc
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
-            string Serchlsdno = "%" + this.txtSrclsdno.Text.Trim() + "%";
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETINDENTISSUELIST", Serchlsdno, "", "", "", "", "", "", "", "");
+            string qgenno= this.Request.QueryString["genno"] ?? "";
+            string Serchissueno = (qgenno.Length>0? qgenno: this.txtSrclsdno.Text.Trim()) + "%";
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETMATISSUENO", Serchissueno, "", "", "", "", "", "", "", "");
             this.ddlBillList.Items.Clear();
             this.ddlBillList.DataTextField = "textfield";
             this.ddlBillList.DataValueField = "issuno";
             this.ddlBillList.DataSource = ds1.Tables[0];
             this.ddlBillList.DataBind();
-            string genno = this.Request.QueryString["genno"].ToString();
-            if (genno.Length > 0)
-            {
-                this.ddlBillList.SelectedValue = genno;
-                this.txtdate.Text = this.Request.QueryString["date"].ToString();
-            }
+            //string genno = this.Request.QueryString["genno"].ToString();
+            //if (genno.Length > 0)
+            //{
+            //    this.ddlBillList.SelectedValue = genno;
+            //    this.txtdate.Text = this.Request.QueryString["date"].ToString();
+            //}
         }
       
        
@@ -150,13 +151,15 @@ namespace RealERPWEB.F_17_Acc
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
-           // string actcode = this.ddlActCode.SelectedValue.ToString();
             string issurno = this.ddlBillList.SelectedValue.ToString();
-           // string rescode = (this.ddlresuorcecode.SelectedValue.Length == 0) ? "000000000000" : this.ddlresuorcecode.SelectedValue.ToString();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETINDENTISSUE", issurno,
-                          "", "", "", "", "", "", "", "");
+            string date = this.txtdate.Text.Trim();
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETMATISSUEINFO", issurno,
+                         date, "", "", "", "", "", "", "");
             DataTable dt1 = ds1.Tables[0];
             DataTable tblt01 = (DataTable)Session["tblt01"];
+
+  //          a.comcod, actcode = a.pactcode, a.rescode, a.billqty, a.dr, a.cr, a.billid, b.actdesc, 
+		//resdesc = c.sirdesc, billnar = ''
 
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
@@ -174,8 +177,8 @@ namespace RealERPWEB.F_17_Acc
 
                 double dgTrnDrAmt = Convert.ToDouble(dt1.Rows[i]["trndram"]);
                 double dgTrnCrAmt = Convert.ToDouble(dt1.Rows[i]["trncram"]);
-                string dgMemono = dt1.Rows[i]["memono"].ToString();
-                string dgmrnar = dt1.Rows[i]["mrnar"].ToString();
+                string dgMemono = dt1.Rows[i]["billid"].ToString();
+                string dgmrnar = dt1.Rows[i]["billnar"].ToString();
 
                 DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
                 if (dr2.Length > 0)
@@ -195,8 +198,8 @@ namespace RealERPWEB.F_17_Acc
                 dr1["trnqty"] = dgTrnQty;
                 dr1["trndram"] = dgTrnDrAmt;
                 dr1["trncram"] = dgTrnCrAmt;
-                dr1["memono"] = dgMemono;
-                dr1["mrnar"] = dgmrnar;
+                dr1["billid"] = dgMemono;
+                dr1["billar"] = dgmrnar;
                 tblt01.Rows.Add(dr1);
             }
             //if (tblt01.Rows.Count == 0)
@@ -381,7 +384,7 @@ namespace RealERPWEB.F_17_Acc
 
                     if (memono2 != memono)
                     {
-                        resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEINDENTISS", actcode, memono, vounum, "", "", "", "", "", "", "", "", "", "", "", "");
+                        resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEMISSUEVOUNUM", memono, vounum, "", "", "", "", "", "", "", "", "", "", "", "");
                         if (!resulta)
                         {
                             this.lblmsg.Text = accData.ErrorObject["Msg"].ToString();
