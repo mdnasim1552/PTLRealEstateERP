@@ -494,8 +494,40 @@
             $('#modalReject').modal('hide');
 
         }
+        function loadModalAssign() {
+            $('#modalAssign').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+        function CloseModalAssign() {
+            $('#modalAssign').modal('hide');
+
+        }
+        function loadModalStatus() {
+            $('#modalStatus').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+        function CloseModalStatus() {
+            $('#modalStatus').modal('hide');
+
+        }
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
 
+        });
+        function pageLoaded() {
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true }); var today = new Date().toISOString().slice(0, 16);
+            //document.getElementsByClassName("datetimemin")[0].min = today;
+            //document.getElementsByClassName("datetimemin")[1].min = today;
+        }
 
     </script>
 
@@ -594,7 +626,7 @@
 
                                                         <asp:ListItem Value="2"></asp:ListItem>
                                                         <asp:ListItem Value="3"></asp:ListItem>
-                                                         <asp:ListItem Value="4"></asp:ListItem>
+                                                        <asp:ListItem Value="4"></asp:ListItem>
                                                     </asp:RadioButtonList>
                                                 </div>
                                             </div>
@@ -694,6 +726,14 @@
                                                                 <HeaderStyle HorizontalAlign="Left" />
 
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Process">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblpurpose" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "seq")) %>'
+                                                                        Width="100px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
                                                         </Columns>
 
 
@@ -707,7 +747,7 @@
 
                                         <asp:Panel ID="pnlHOApprov" runat="server" Visible="false">
                                             <div class="row">
-                                                <h6 class="mx-4">Total</h6>
+                                                <h6 class="mx-4">HO Approval</h6>
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvHO" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" ShowFooter="True"
@@ -800,14 +840,14 @@
 
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>   
-                                                                     <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-default btn-xs" CommandName="Approve" OnClientClick="return confirm('Are You Sure?')"
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-default btn-xs" CommandName="Approve" OnClientClick="return confirm('Are You Sure?')"
                                                                         CommandArgument="<%# Container.DataItemIndex %>"><span class="fa fa-check"
                                                                             ></span></asp:LinkButton>
                                                                     <asp:LinkButton ID="lnkReject" runat="server" CssClass="btn btn-default btn-xs" CommandName="Reject" OnClientClick="return confirm('Are You Sure?')"
                                                                         CommandArgument="<%# Container.DataItemIndex %>"><span class=" fa fa-times"
                                                                             ></span></asp:LinkButton>
-                                                                   
+
 
 
                                                                 </ItemTemplate>
@@ -822,6 +862,263 @@
                                                 </div>
                                             </div>
                                         </asp:Panel>
+                                        <asp:Panel ID="pnlVehicleAssign" runat="server" Visible="false">
+                                            <div class="row">
+                                                <h6 class="mx-4">Vehicle Assign</h6>
+                                                <div class="table-responsive col-lg-12">
+
+                                                    <asp:GridView ID="gvVehicleAssign" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" ShowFooter="True"
+                                                        OnRowDataBound="gvVehicleAssign_RowDataBound" OnRowCommand="gvVehicleAssign_RowCommand">
+                                                        <RowStyle />
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="Sl.">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="serialnoid" runat="server"
+                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" />
+                                                                <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Transport Id">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblvehicleId" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trpid")) %>'
+                                                                        Width="150px"></asp:Label>
+                                                                    <asp:Label ID="lblvehicleId1" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trpid1")) %>'
+                                                                        Width="60px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Applicant Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblVehicleGrp" runat="server"
+                                                                        Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "aplname")) + "</B>"+ "<br>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")).Trim()+ "<br>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "deptname")).Trim() %>'
+                                                                        Width="300px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+
+
+
+                                                            <asp:TemplateField HeaderText="Preferred">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblName" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vehtypedesc")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Destination">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblDestination" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "destination")) %>'
+                                                                        Width="100px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Date and Time">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldatetime" runat="server"
+                                                                        Text='<%# "<b>FROM:</b>&nbsp;&nbsp;"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "fdate"))+"<br>"+
+                                                "<b>TO:</b>&nbsp;&nbsp;" +Convert.ToString(DataBinder.Eval(Container.DataItem, "tdate")) %>'
+                                                                        Width="220px"></asp:Label>
+
+
+                                                                    <asp:Label ID="lblFDate" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fdate")) %>'
+                                                                        Width="150px"></asp:Label>
+                                                                    <asp:Label ID="lblTDate" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tdate")) %>'
+                                                                        Width="150px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Purpose">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblpurpose" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apppurpose")) %>'
+                                                                        Width="200px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-default btn-xs" CommandName="Approve" OnClientClick="return confirm('Are You Sure?')"
+                                                                        CommandArgument="<%# Container.DataItemIndex %>"><span class="fa fa-check"
+                                                                            ></span></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lnkReject" runat="server" CssClass="btn btn-default btn-xs" CommandName="Reject" OnClientClick="return confirm('Are You Sure?')"
+                                                                        CommandArgument="<%# Container.DataItemIndex %>"><span class=" fa fa-times"
+                                                                            ></span></asp:LinkButton>
+
+
+
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+
+
+                                                        <FooterStyle CssClass="gvPagination" />
+                                                        <PagerStyle CssClass="gvPagination" />
+                                                        <HeaderStyle CssClass="grvHeader" />
+                                                    </asp:GridView>
+                                                </div>
+                                            </div>
+                                        </asp:Panel>
+
+                                        <asp:Panel ID="pnlStatus" runat="server" Visible="false">
+                                            <div class="row">
+                                                <h6 class="mx-4">Status</h6>
+                                                <div class="table-responsive col-lg-12">
+
+                                                    <asp:GridView ID="gvStatus" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                                        ShowFooter="True">
+                                                        <RowStyle />
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="Sl.">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="serialnoid" runat="server"
+                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle Font-Bold="True" />
+                                                                <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Transport Id">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblvehicleId" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trpid")) %>'
+                                                                        Width="150px"></asp:Label>
+                                                                    <asp:Label ID="lblvehicleId1" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trpid1")) %>'
+                                                                        Width="60px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Applicant Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblVehicleGrp" runat="server"
+                                                                        Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "aplname")) + "</B>"+ "<br>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")).Trim()+ "<br>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "deptname")).Trim() %>'
+                                                                        Width="300px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Destination">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblDestination" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "destination")) %>'
+                                                                        Width="100px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                             <asp:TemplateField HeaderText="Vehicle">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblvehicle" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vehicle")) %>'
+                                                                        Width="100px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Driver">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblvehicle" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "driver")) %>'
+                                                                        Width="180px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Approved Date and Time">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldatetime" runat="server"
+                                                                        Text='<%# "<b>FROM:</b>&nbsp;&nbsp;"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "fdate"))+"<br>"+
+                                                "<b>TO:</b>&nbsp;&nbsp;" +Convert.ToString(DataBinder.Eval(Container.DataItem, "tdate")) %>'
+                                                                        Width="220px"></asp:Label>
+
+
+                                                                    <asp:Label ID="lblFDate" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fdate")) %>'
+                                                                        Width="150px"></asp:Label>
+                                                                    <asp:Label ID="lblTDate" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tdate")) %>'
+                                                                        Width="150px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Purpose">
+
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblpurpose" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apppurpose")) %>'
+                                                                        Width="200px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-default btn-xs" CommandName="Approve" OnClientClick="return confirm('Are You Sure?')"
+                                                                        CommandArgument="<%# Container.DataItemIndex %>"><span class="fa fa-check"
+                                                                            ></span></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+
+
+                                                        <FooterStyle CssClass="gvPagination" />
+                                                        <PagerStyle CssClass="gvPagination" />
+                                                        <HeaderStyle CssClass="grvHeader" />
+                                                    </asp:GridView>
+                                                </div>
+                                            </div>
+                                        </asp:Panel>
+
 
                                     </div>
                                 </div>
@@ -864,7 +1161,7 @@
                             <div class="modal-body form-horizontal">
                                 <div class="row-fluid">
 
-                                    <div class="form-group" runat="server">                                      
+                                    <div class="form-group" runat="server">
                                         <asp:Label ID="lblDgNoReject" runat="server" Visible="false"></asp:Label>
                                         <asp:Label ID="lblProcess" runat="server" Visible="false"></asp:Label>
                                         <asp:Label runat="server" ID="lbltype" class="col-md-4">Reject Details</asp:Label>
@@ -886,6 +1183,103 @@
                 </div>
 
 
+            <div id="modalAssign" class="modal animated slideInLeft" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: block;">
+
+                            <button type="button" class="close btn btn-xs bg-danger" data-dismiss="modal">
+                                <span class="fa fa-close"></span>
+
+                            </button>
+                            <h4 class="modal-title">
+                                <span class="fa fa-sm fa-table pr-2" runat="server" id="Span1">Assign Vehicle</span></h4>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row-fluid">
+
+                                <div class="form-group" runat="server">
+                                    <asp:Label ID="lblTRPID" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="Label3">Transport Id</asp:Label>
+                                    <asp:TextBox ID="txtTrpId" runat="server" CssClass="form-control"
+                                        Enabled="false"></asp:TextBox>
+                                </div>
+                                <div class="form-group" runat="server">
+                                    <asp:Label runat="server" ID="Label2" class="col-md-4">Start DateTime</asp:Label>
+                                    <asp:TextBox ID="txtSDate" runat="server" CssClass="form-control datetimemin" TextMode="DateTimeLocal"></asp:TextBox>
+                                </div>
+                                <div class="form-group" runat="server">
+                                    <asp:Label runat="server" ID="Label1" class="col-md-4">End DateTime</asp:Label>
+                                    <asp:TextBox ID="txtTDate" runat="server" CssClass="form-control datetimemin" TextMode="DateTimeLocal"></asp:TextBox>
+                                </div>
+                                <div class="form-group" runat="server">
+                                    <asp:Label runat="server" ID="Label4" class="col-md-4">Vehicle</asp:Label>
+                                    <asp:DropDownList ID="ddlVehicle" CssClass="chzn-select form-control" runat="server">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="form-group" runat="server">
+                                    <asp:Label runat="server" ID="Label5" class="col-md-4">Driver</asp:Label>
+                                    <asp:DropDownList ID="ddlDriver" CssClass="chzn-select form-control" runat="server">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="form-group" runat="server">
+                                    <asp:Label runat="server" ID="Label8" class="col-md-4">Remarks</asp:Label>
+
+                                    <asp:TextBox ID="txtAssignRemarks" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lnkUpdateAssign" runat="server" CssClass="btn btn-sm btn-success"
+                                OnClientClick="CloseModalAssign();" OnClick="lnkUpdateAssign_Click"><span class="glyphicon glyphicon-save"></span>Update</asp:LinkButton>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalStatus" class="modal animated slideInLeft" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: block;">
+
+                            <button type="button" class="close btn btn-xs bg-danger" data-dismiss="modal">
+                                <span class="fa fa-close"></span>
+
+                            </button>
+                            <h4 class="modal-title">
+                                <span class="fa fa-sm fa-table pr-2" runat="server" id="Span2">Assign Vehicle</span></h4>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row-fluid">
+
+                                <div class="form-group" runat="server">
+                                    <asp:Label ID="lblACTtrpid" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="Label7">Transport Id</asp:Label>
+                                    <asp:TextBox ID="txtacttrpid" runat="server" CssClass="form-control"
+                                        Enabled="false"></asp:TextBox>
+                                </div>
+                                <div class="form-group" runat="server">
+                                    <asp:Label runat="server" ID="Label9" class="col-md-4">Start DateTime</asp:Label>
+                                    <asp:TextBox ID="txtActSDate" runat="server" CssClass="form-control datetimemin" TextMode="DateTimeLocal"></asp:TextBox>
+                                </div>
+                                <div class="form-group" runat="server">
+                                    <asp:Label runat="server" ID="Label10" class="col-md-4">End DateTime</asp:Label>
+                                    <asp:TextBox ID="txtActEDate" runat="server" CssClass="form-control datetimemin" TextMode="DateTimeLocal"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lnkUpdateStatus" runat="server" CssClass="btn btn-sm btn-success"
+                                OnClientClick="CloseModalStatus();" OnClick="lnkUpdateStatus_Click"><span class="glyphicon glyphicon-save"></span>Update</asp:LinkButton>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </ContentTemplate>
 

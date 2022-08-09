@@ -155,6 +155,7 @@ namespace RealERPWEB.F_36_Vehcl
             txtToDatetime.Text = Convert.ToDateTime(dt.Rows[0]["tdate"].ToString()).ToString("yyyy-MM-dd HH:mm").Replace(' ', 'T');
             txtPurpose.Text= dt.Rows[0]["apppurpose"].ToString();
             ddlApplicantName.Enabled = false;
+            txtDestination.Text= dt.Rows[0]["destination"].ToString();
         }
     }
 }

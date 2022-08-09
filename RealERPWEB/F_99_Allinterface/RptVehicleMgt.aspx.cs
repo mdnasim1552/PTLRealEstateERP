@@ -66,9 +66,8 @@ namespace RealERPWEB.F_99_Allinterface
             }
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item1 + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Total</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item2 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "HO Approval" + "</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item3 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Final Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item4 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
-
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item3 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Assign Vehicle</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item4 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item5 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Reject</div></div></div>";
 
 
@@ -83,12 +82,30 @@ namespace RealERPWEB.F_99_Allinterface
                 case "0":
                     pnlTotalCount.Visible = true;
                     pnlHOApprov.Visible = false;
+                    pnlVehicleAssign.Visible = false;
+                    pnlStatus.Visible = false;
                     GetTransportInf();
                     break;
                 case "1":
                     pnlTotalCount.Visible = false;
                     pnlHOApprov.Visible = true;
+                    pnlVehicleAssign.Visible = false;
+                    pnlStatus.Visible = false;
                     GetTransportInfHO();
+                    break;
+                case "2":
+                    pnlTotalCount.Visible = false;
+                    pnlHOApprov.Visible = false;
+                    pnlVehicleAssign.Visible = true;
+                    pnlStatus.Visible = false;
+                    GetTransportVehicleAssign();
+                    break;
+                case "3":
+                    pnlTotalCount.Visible = false;
+                    pnlHOApprov.Visible = false;
+                    pnlVehicleAssign.Visible = false;
+                    pnlStatus.Visible = true;
+                    GetTransportStatus();
                     break;
 
             }
@@ -107,7 +124,6 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetTransportInfHO()
         {
             string comcod = GetComCode();
-            string trpid = "%";
             string date1 = txtfrmdate.Text;
             string date2 = txttoDate.Text;
             DataSet ds1 = _process.GetTransInfo(comcod, "SP_INTERFACE_VEHICLE_MANAGEMENT", "GETHO", date1, date2, "", "", "", "", "", "", "");
@@ -115,11 +131,28 @@ namespace RealERPWEB.F_99_Allinterface
             gvHO.DataBind();
 
         }
-
-        protected void lnkEdit_Click(object sender, EventArgs e)
+        private void GetTransportVehicleAssign()
         {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds1 = _process.GetTransInfo(comcod, "SP_INTERFACE_VEHICLE_MANAGEMENT", "GETASSIGNVEHICLE", date1, date2, "", "", "", "", "", "", "");
+            gvVehicleAssign.DataSource = ds1.Tables[0];
+            gvVehicleAssign.DataBind();
 
         }
+        private void GetTransportStatus()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds1 = _process.GetTransInfo(comcod, "SP_INTERFACE_VEHICLE_MANAGEMENT", "GETASSIGNVEHICLESTATUS", date1, date2, "", "", "", "", "", "", "");
+            gvStatus.DataSource = ds1.Tables[0];
+            gvStatus.DataBind();
+
+        }
+
+
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             ModuleName();
@@ -186,6 +219,111 @@ namespace RealERPWEB.F_99_Allinterface
                 ModuleName();
                 GetTransportInfHO();
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"TRP-{vehicleno} HOD Approval" + "');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+            }
+        }
+
+        protected void gvVehicleAssign_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkAssign");
+            }
+        }
+
+        private void getVehicleAndDriver()
+        {
+            string comcod = GetComCode();            
+            DataSet ds1 = _process.GetTransInfo(comcod, "SP_ENTRY_VEHICLE_MANAGEMENT", "GETVEHICLEANDDRIVER", "", "", "", "", "", "", "", "", "");
+            ddlVehicle.DataSource = ds1.Tables[0];
+            ddlVehicle.DataTextField = "sirdesc";
+            ddlVehicle.DataValueField = "sircode";
+            ddlVehicle.DataBind();
+
+            ddlDriver.DataSource = ds1.Tables[1];
+            ddlDriver.DataTextField = "sirdesc1";
+            ddlDriver.DataValueField = "sircode";
+            ddlDriver.DataBind();
+
+        }
+
+        protected void gvVehicleAssign_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvVehicleAssign.Rows[rowIndex];
+            string vehicleno = (row.FindControl("lblvehicleId") as Label).Text;
+            string fdate= (row.FindControl("lblFDate") as Label).Text;
+            string tdate = (row.FindControl("lblTDate") as Label).Text;
+
+            if (e.CommandName == "Approve")
+            {
+                lblTRPID.Text = vehicleno;
+                txtTrpId.Text = "TRP-" + vehicleno;
+                txtSDate.Text= Convert.ToDateTime(fdate).ToString("yyyy-MM-dd HH:mm").Replace(' ', 'T');
+                txtTDate.Text = Convert.ToDateTime(tdate).ToString("yyyy-MM-dd HH:mm").Replace(' ', 'T');
+                txtAssignRemarks.Text = "";
+                getVehicleAndDriver();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAssign();", true);
+            }
+            else
+            {
+                lblDgNoReject.Text = vehicleno;
+                lblProcess.Text = "R2";
+                txtRejectDesc.Text = "";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalReject();", true);
+            }
+        }
+
+        protected void lnkUpdateAssign_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComCode();
+            string userId = hst["usrid"].ToString();
+            string seq = "3";
+            string trpid = lblTRPID.Text;
+            string sdatetime = txtSDate.Text.ToString().Replace('T', ' ').Replace(',',' ');
+            string edatetime = txtTDate.Text.ToString().Replace('T', ' ').Replace(',', ' ');
+            string vehicle = ddlVehicle.SelectedValue.ToString();
+            string driver = ddlDriver.SelectedValue.ToString();
+            string REMARKS = txtAssignRemarks.Text;
+
+            bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_VEHICLE_MANAGEMENT", "UPSERTVEHICLEASSIGN", trpid, seq,  sdatetime, edatetime, vehicle, driver, REMARKS, "", "", "", "", "",
+                                     "", "", "", "", "", "", "", "", "", "", userId);
+            if (resultflag)
+            {
+                ModuleName();
+                GetTransportVehicleAssign();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"TRP-{trpid} Assigned" + "');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+            }
+
+        }
+
+        
+        protected void lnkUpdateStatus_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComCode();
+            string userId = hst["usrid"].ToString();
+            string seq = "3";
+            string trpid = lblACTtrpid.Text;
+            string sdatetime = txtActSDate.Text.ToString().Replace('T', ' ').Replace(',', ' ');
+            string edatetime = txtActEDate.Text.ToString().Replace('T', ' ').Replace(',', ' ');          
+            string REMARKS = txtAssignRemarks.Text;
+
+            bool resultflag = _process.UpdateTransInfo3(comcod, "SP_ENTRY_VEHICLE_MANAGEMENT", "UPSERTVEHICLEACT", trpid, seq, sdatetime, edatetime, "", "", "", "", "", "", "", "",
+                                     "", "", "", "", "", "", "", "", "", "", userId);
+            if (resultflag)
+            {
+                ModuleName();
+                GetTransportVehicleAssign();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"TRP-{trpid} Assigned" + "');", true);
             }
             else
             {
