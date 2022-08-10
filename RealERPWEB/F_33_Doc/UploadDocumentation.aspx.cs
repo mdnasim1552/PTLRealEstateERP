@@ -222,6 +222,7 @@ namespace RealERPWEB.F_33_Doc
             string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5) ?? "";
             string imgPath = "";
             string msg = "";
+            string id = "";
 
 
             //validates the posted file before saving  
@@ -394,5 +395,9 @@ namespace RealERPWEB.F_33_Doc
 
         }
 
+        protected void btn_edit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
