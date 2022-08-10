@@ -1396,6 +1396,15 @@ namespace RealEntity.C_14_Pro
             public string chlnno { get; set; }
             public string pactcode { get; set; }
 
+            public string mrfno { get; set; }
+            public string reqdat { get; set; }
+
+            public string checkdat { get; set; }
+
+            public string crmcheckdat { get; set; }
+
+            public string expusedt { get; set; }
+
             public PurOrderTopSheet()
             {
 
@@ -1422,6 +1431,25 @@ namespace RealEntity.C_14_Pro
             public string rmrks { get; set; }
 
             public RptSupAdvanceDetails()
+            {
+
+            }
+        }
+        [Serializable]
+
+        public class OtherCollHistory
+        {
+            public string pactcode { get; set; }
+            public string refno { get; set; }
+            public  DateTime mrdate { get; set; }
+            public string chqno { get; set; }
+
+            public DateTime paydate { get; set; }
+            public string bankname { get; set; }
+            public double paidamt { get; set; }
+            public DateTime recondate { get; set; }
+
+            public OtherCollHistory()
             {
 
             }
