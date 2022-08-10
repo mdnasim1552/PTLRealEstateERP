@@ -26,7 +26,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             if (!IsPostBack)
             {
                 this.getDesig();
-                this.getDept();
+                //this.getDept();
             }
 
         }
@@ -37,17 +37,33 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         }
 
 
+       private void GetData()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GEETCODE", "%%", "%%", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+                return;
+            DataTable dt = ds.Tables[0];
+            DataTable dt1 = (DataTable)ViewState["dtDesig"];
+
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string gcod = dt.Rows[i]["gcod"].ToString();
+            }
+        }
+
         private void getDept()
         {
            string comcod = this.GetComeCode();
             DataSet ds3  = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETDEPTNAME",  "%%", "%%", "", "", "", "", "", "");
             if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
                 return;
-            this.ddldept.DataTextField = "deptdesc";
+            //this.ddldept.DataTextField = "deptdesc";
    
-            this.ddldept.DataValueField = "deptcode";
-            this.ddldept.DataSource = ds3.Tables[0];
-            this.ddldept.DataBind();
+            //this.ddldept.DataValueField = "deptcode";
+            //this.ddldept.DataSource = ds3.Tables[0];
+            //this.ddldept.DataBind();
         }
 
         private void getDesig()
@@ -56,26 +72,27 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             DataSet ds3 = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETDESIG", "", "", "", "", "", "");
             if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
                 return;
-            this.ddldesig.DataTextField = "hrgdesc";
-            this.ddldesig.DataValueField = "hrgcod";
-            this.ddldesig.DataSource = ds3.Tables[0];
-            this.ddldesig.DataBind();
+            ViewState["dtDesig"] = ds3.Tables[0];
+            //this.ddldesig.DataTextField = "hrgdesc";
+            //this.ddldesig.DataValueField = "hrgcod";
+            //this.ddldesig.DataSource = ds3.Tables[0];
+            //this.ddldesig.DataBind();
         }
 
-        protected void lnkSave_Click(object sender, EventArgs e)
-        {
-            string comcod = this.GetComeCode();
-            string name = this.txtname.Text ?? "";
-            string desig = this.ddldesig.SelectedValue.ToString() ?? "";
-            string mobile = this.txtmobile.Text ?? "";
-            string email = this.txtemail.Text ?? "";
-            string peradd = this.txtPerAdd.Text ?? "";
-            string preadd = this.txtPreAdd.Text ?? "";
-            string filename = "docfile";
-            string dept = this.ddldept.SelectedValue.ToString() ?? "";
+        //protected void lnkSave_Click(object sender, EventArgs e)
+        //{
+        //    string comcod = this.GetComeCode();
+        //    string name = this.txtname.Text ?? "";
+        //    string desig = this.ddldesig.SelectedValue.ToString() ?? "";
+        //    string mobile = this.txtmobile.Text ?? "";
+        //    string email = this.txtemail.Text ?? "";
+        //    string peradd = this.txtPerAdd.Text ?? "";
+        //    string preadd = this.txtPreAdd.Text ?? "";
+        //    string filename = "docfile";
+        //    string dept = this.ddldept.SelectedValue.ToString() ?? "";
 
 
-            bool result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTUPDATE", name, desig, mobile, email, peradd, peradd, filename, dept, "", "", "", "", "", "", "");
+        //    bool result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTUPDATE", name, desig, mobile, email, peradd, peradd, filename, dept, "", "", "", "", "", "", "");
 
         }
     }
