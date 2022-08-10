@@ -128,17 +128,12 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Code" ControlStyle-CssClass="classhidden" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvItmCodeper" ClientIDMode="Static" runat="server"
+                                        <asp:Label ID="lblgcode" ClientIDMode="Static" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Type" Visible="False">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lgvgval" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                  
                                 <asp:TemplateField HeaderText="Description">
                                     <ItemTemplate>
                                         <asp:Label ID="lgcResDesc1" runat="server" Width="130px"
