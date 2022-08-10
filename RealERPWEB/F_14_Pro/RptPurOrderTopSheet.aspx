@@ -85,6 +85,7 @@
                 </div>
 
                 <div class="card-body">
+                     <div class="table-responsive">
                
                      <asp:GridView ID="gvPurOrderTopSheet" runat="server" ClientIDMode="Static" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False" ShowFooter="True"  AllowPaging="True"   OnPageIndexChanging="gvPurOrderTopSheet_PageIndexChanging" OnRowDataBound="gvPurOrderTopSheet_RowDataBound">
@@ -130,7 +131,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="250px" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Item Name" >
+                                            <asp:TemplateField HeaderText="Items Name" >
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgItemName" runat="server" Width="150px" CssClass="WrpTxt"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'></asp:Label>
@@ -138,6 +139,57 @@
 
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="180px" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Mrf No" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgmrfno" runat="server" Width="80px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno")) %>'></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="80px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="80px" />
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Mrf Entry </br> Date" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgmrfdate" runat="server" Width="80px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat")) %>'></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="80px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="80px" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Site Required </br> Date" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgrequeidate" runat="server" Width="80px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "expusedt")) %>'></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="80px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="80px" />
+                                            </asp:TemplateField>
+
+                                            
+                                            <asp:TemplateField HeaderText="CRM Checked" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgcrmchekeddate" runat="server" Width="80px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "crmcheckdat")) %>'></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="80px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="80px" />
+                                            </asp:TemplateField>
+
+                                                     <asp:TemplateField HeaderText="Estimated Checked </br>Date" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgcrecked" runat="server" Width="80px" CssClass="WrpTxt"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "checkdat")) %>'></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="80px" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="80px" />
                                             </asp:TemplateField>
 
                                              <asp:TemplateField HeaderText="Order No" >
@@ -235,6 +287,7 @@
                     
 
                 </div>
+                    </div>
 
 
 
