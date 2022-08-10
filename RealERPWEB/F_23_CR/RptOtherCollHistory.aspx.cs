@@ -44,7 +44,7 @@ namespace RealERPWEB.F_23_CR
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
