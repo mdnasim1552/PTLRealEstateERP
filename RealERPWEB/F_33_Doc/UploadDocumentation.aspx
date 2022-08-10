@@ -183,9 +183,9 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Remarks">
+                                        <asp:TemplateField HeaderText="Details">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks")%>' Width="150px"></asp:Label>
+                                                <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks").ToString().Substring(1,30)%>' Width="150px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="File">
@@ -194,13 +194,15 @@
                                                 <asp:Label ID="lblid" runat="server" Text='<%#Eval("id")%>' Visible="false"></asp:Label>
 
 
-                                                <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank">View</asp:HyperLink>
+                                                <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm text-white" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">
                                                <ItemTemplate>
-                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
+                                                  <asp:LinkButton ID="btn_edit" runat="server" CssClass="btn-sm text-info" OnClick="btn_edit_Click" > <i class="fa fa-edit"></i> 
+                                                </asp:LinkButton>
+                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
