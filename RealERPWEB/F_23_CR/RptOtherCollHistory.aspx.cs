@@ -134,48 +134,34 @@ namespace RealERPWEB.F_23_CR
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
-            /*
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
+            string comcod = GetComeCode();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            
+            string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string date1 = "From "+fromdate + " To " +todate; 
+            DataTable dt = (DataTable)Session["tblmrhistory"];
 
-            DataTable dt = (DataTable)Session["tblstatus"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.OtherCollHistory>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptOtherCollHistory", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Other's Collection History"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
-            DataView dv1 = dt.Copy().DefaultView;
-            dv1.RowFilter = ("checkdat1<>'1/1/1900 12:00:00 AM'");
-            DataTable dt01 = dv1.ToTable();
-
-            if (dt.Rows.Count == 0)
-                return;
-            string totalnreqQty = Convert.ToDouble((Convert.IsDBNull(dt01.Compute("sum(nreqQty)", "")) ? 0.00 :
-                 dt01.Compute("sum(nreqQty)", ""))).ToString("#,##0;(#,##0); ");
-
-
-            var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.DateWiseReqCheckHistory>();
-            LocalReport rpt = new LocalReport();
-
-            rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptDateWiseReqCheckHistory", list, null, null);
-            rpt.EnableExternalImages = true;
-            rpt.SetParameters(new ReportParameter("comName", comnam));
-            rpt.SetParameters(new ReportParameter("txtTitle", "Date Wise Requisition Check History"));
-            rpt.SetParameters(new ReportParameter("date1", date1));
-            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-            rpt.SetParameters(new ReportParameter("comLogo", ComLogo));
-            rpt.SetParameters(new ReportParameter("totalnreqQty", totalnreqQty));
-
-            Session["Report1"] = rpt;
+            Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-             */
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
       
