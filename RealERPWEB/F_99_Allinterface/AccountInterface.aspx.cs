@@ -55,11 +55,6 @@ namespace RealERPWEB.F_99_Allinterface
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.SaleRequRpt();
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
-
-
-
-
-
             }
         }
 

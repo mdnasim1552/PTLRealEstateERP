@@ -55,7 +55,7 @@
         <ContentTemplate>
             <div class="mt-5 card">
                 <div class="row">
-                    <div class="col-md-4 mt-2">
+                    <div class="col-md-3 mt-2">
                         <asp:Label runat="server" ID="lblVehicleId" Visible="false"></asp:Label>
                         <asp:GridView ID="gvVehicleEntry" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
@@ -76,7 +76,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgcResDesc1" runat="server" Width="170px"
+                                        <asp:Label ID="lgcResDesc1" runat="server" Width="130px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -120,13 +120,15 @@
                         </asp:GridView>
 
                         <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
-                            OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span>Save</asp:LinkButton>
+                            OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span>&nbsp; Save</asp:LinkButton>
 
+                        <asp:LinkButton ID="lnkClear" runat="server" CssClass="btn btn-sm btn-warning mx-2 my-2" OnClick="lnkClear_Click" Width="100px"
+                            OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-redo" style="color:white;" aria-hidden="true"  ></span> &nbsp; Clear</asp:LinkButton>
 
                     </div>
-                    <div class="col-md-8 table-responsive">
-                        <asp:GridView ID="gvVehicleInfo" runat="server" AutoGenerateColumns="False" CssClass=" table table-striped table-hover table-bordered grvContentarea" ShowFooter="True"
-                                OnRowCommand="gvVehicleInfo_RowCommand">
+                    <div class="col-md-9 table-responsive">
+                        <asp:GridView ID="gvVehicleInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" ShowFooter="True"
+                               >
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.">
@@ -143,8 +145,8 @@
                                             ToolTip="Delete Item" Width="25px">
                                                 <span class="fa fa-sm fa-trash " style="color:red;" aria-hidden="true"  ></span>&nbsp;
                                         </asp:LinkButton>
-                                        <asp:LinkButton ID="LnkbtnEdit" runat="server" CssClass="btn btn-default btn-xs" CommandName="Edit"  ToolTip="Edit Item"
-                                            CommandArgument="<%# Container.DataItemIndex %>"><span class="fas fa-edit fa-sm" style="color:blue;" aria-hidden="true" Width="25px" ></span></asp:LinkButton>
+                                        <asp:LinkButton ID="LnkbtnEdit" runat="server" CssClass="btn btn-default btn-xs"  ToolTip="Edit Item"
+                                             OnClick="LnkbtnEdit_Click" ><span class="fas fa-edit fa-sm" style="color:blue;" aria-hidden="true" Width="25px" ></span></asp:LinkButton>
 
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
@@ -161,6 +163,22 @@
                                     <HeaderStyle HorizontalAlign="Left" />
 
                                 </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Group">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblVehicleGrp" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vehicelGrp")) %>'
+                                            Width="150px"></asp:Label>
+
+                                    </ItemTemplate>
+
+
+                                    <HeaderStyle HorizontalAlign="Left" />
+
+                                </asp:TemplateField>
+
+                                
+
                                 <asp:TemplateField HeaderText="Vehicle Name">
 
                                     <ItemTemplate>

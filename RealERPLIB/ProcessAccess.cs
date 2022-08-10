@@ -1292,6 +1292,103 @@ namespace RealERPLIB
                 return false;
             }
         }
+        public DataSet InsertTicketSP(string comcod, string txtTicketDesc, string ticketType, string taskProgress, string priority, string createTask, string username, string txtRemarks, string proposedUser, string compUser)
+        {
+            try
+            {
+                string connectionString = @"Server=123.200.23.58\MSSQL2K14;Database=DB_PINBOARD;uid=sa;pwd=@*asit1qaz`123#;";
+
+                try
+                {
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand();
+                        command.CommandText = "SP_TASK_MANAGMENT";
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@Comp1", comcod));
+                        command.Parameters.Add(new SqlParameter("@CallType", "INSERTTICKETS"));
+                        command.Parameters.Add(new SqlParameter("@Desc1", txtTicketDesc));
+                        command.Parameters.Add(new SqlParameter("@Desc2", ticketType));
+                        command.Parameters.Add(new SqlParameter("@Desc3", taskProgress));
+                        command.Parameters.Add(new SqlParameter("@Desc4", priority));
+                        command.Parameters.Add(new SqlParameter("@Desc5", createTask));
+                        command.Parameters.Add(new SqlParameter("@Desc6", username));
+                        command.Parameters.Add(new SqlParameter("@Desc7", txtRemarks));
+                        command.Parameters.Add(new SqlParameter("@Desc8", proposedUser));
+                        command.Parameters.Add(new SqlParameter("@Desc9", compUser));
+
+                        command.Connection = connection;
+                        try
+                        {
+                            DataSet result = _dataAccess.GetDataSetTicket(command);
+                            if (result == null)  //_result==false
+                            {
+                                this.SetError(_dataAccess.ErrorObject);
+                            }
+                            return result;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                        finally
+                        {
+                            connection.Close();
+                            connection.Dispose();
+                        }
+
+                    }
+
+
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public bool InsertTicketAttach(string comcod, string ticketId, string attachPath, string postedDate, string userId, string terminal, string refId)
+        {
+            try
+            {
+
+                string connectionString = @"Server=123.200.23.58\MSSQL2K14;Database=DB_PINBOARD;uid=sa;pwd=@*asit1qaz`123#;";
+
+                try
+                {
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(" insert into tbl_tasks_attach (comcod,ticketId,attachPath, postedDate, userId ,terminal, refId) " +
+                            "values ('" + comcod.Trim() + "', '" + ticketId.Trim() + "', '" + attachPath.Trim() + "', '" + postedDate.Trim() + "', '" + userId.Trim() + "', '" + terminal.Trim() + "', '" + refId.Trim() + "')", connection);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public DataSet GetTicketData(string comCod)
         {
             try
