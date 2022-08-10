@@ -26,12 +26,42 @@ namespace RealERPWEB.F_99_Allinterface
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
 
-                txtfrmdate.Text = System.DateTime.Now.AddDays(-30).ToString("dd-MMM-yyyy");
+                txtfrmdate.Text = this.GetFromDate(); 
                 txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 ModuleName();
                 getComplainList();
                 txtRejectDesc.Text = "";
             }
+        }
+
+
+        private void GetFromDate()
+        {
+
+            string comcod = this.GetComCode();
+
+            switch (comcod)
+            {
+                case "3101": //own 
+                case "3367"://Epic
+                case "3368"://Finlay
+
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
+
+                    break;
+
+                default:
+                    this.txtfrmdate.Text = System.DateTime.Now.AddDays(-30).ToString("dd-MMM-yyyy");
+                    break;
+
+
+
+            }
+
+
+
+
         }
         private string GetComCode()
         {
