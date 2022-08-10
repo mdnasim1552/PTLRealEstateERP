@@ -48,7 +48,7 @@ namespace RealEntity.C_22_Sal
             public double cinsam { get; set; }
             public double tocollam { get; set; }
             public double balance { get; set; }
-            
+
 
         }
 
@@ -145,7 +145,7 @@ namespace RealEntity.C_22_Sal
 
         [Serializable]
         public class ProductList
-        {   public string comcod { get; set; }
+        { public string comcod { get; set; }
             public string actcode { set; get; }
             public string prcod { set; get; }
             public string prdesc { set; get; }
@@ -544,7 +544,7 @@ namespace RealEntity.C_22_Sal
 
 
             public EClassGetAllInv(string centrid, string centrdesc, string custid, string custdesc, string memono, string memono1, string vounum1, string memodat,
-                double itmamt, double vat, double invdis, double vatper, double invdisper, string payvounum, string teamcode, string teamdesc, string tercode, 
+                double itmamt, double vat, double invdis, double vatper, double invdisper, string payvounum, string teamcode, string teamdesc, string tercode,
                 string territory)
             {
                 this.centrid = centrid;
@@ -796,7 +796,7 @@ namespace RealEntity.C_22_Sal
                 this.circle = circle;
                 this.region = region;
                 this.area = area;
-                
+
                 this.teritory = teritory;
                 this.joindate = joindate;
                 this.desg = desg;
@@ -1078,7 +1078,7 @@ namespace RealEntity.C_22_Sal
 
         }
 
-       // [Serializable]
+        // [Serializable]
         //public class ShowInvItem01
         //{
         //    public string centrid { set; get; }
@@ -1148,9 +1148,9 @@ namespace RealEntity.C_22_Sal
             public double freeqty { set; get; }
 
 
-          
+
         }
-      
+
         [Serializable]
         public class PaymentScheduleN
         {
@@ -1169,7 +1169,7 @@ namespace RealEntity.C_22_Sal
             public PaymentScheduleN() { }
         }
 
-  
+
         [Serializable]
         public class SalesSumaryR
         {
@@ -1244,7 +1244,7 @@ namespace RealEntity.C_22_Sal
             public double trecvam { get; set; }
             public SalasSumaryA() { }
         }
-     
+
         [Serializable]
         public class SoldUnsold
         {
@@ -1275,7 +1275,7 @@ namespace RealEntity.C_22_Sal
             public SoldUnsold() { }
         }
 
-  
+
         [Serializable]
         public class DaywiseSale
         {
@@ -1300,9 +1300,9 @@ namespace RealEntity.C_22_Sal
             public string cudate { get; set; }
             public DaywiseSale() { }
         }
-    //      select a.comcod, a.deptcode, 
-    //deptname=(case when a.deptcode='53059' then 'Total MKT:' when a.deptcode='53AAA' then 'Total:' when  a.deptcode='53BAA' then 'Net Total:'  else b.deptname end),
-    // a.acamt, a.inhfchq, a.inhrchq, a.depchq, a.reconamt, a.inhpchq, a.repchq, a.ncollamt 
+        //      select a.comcod, a.deptcode, 
+        //deptname=(case when a.deptcode='53059' then 'Total MKT:' when a.deptcode='53AAA' then 'Total:' when  a.deptcode='53BAA' then 'Net Total:'  else b.deptname end),
+        // a.acamt, a.inhfchq, a.inhrchq, a.depchq, a.reconamt, a.inhpchq, a.repchq, a.ncollamt 
 
         [Serializable]
         public class SaleSummarySum
@@ -1323,7 +1323,7 @@ namespace RealEntity.C_22_Sal
         }
 
         [Serializable]
-        public class  PostDCheck
+        public class PostDCheck
         {
             public string grpdesc { get; set; }
             public string vounum { get; set; }
@@ -1340,15 +1340,15 @@ namespace RealEntity.C_22_Sal
         [Serializable]
         public class ApprrovBill
         {
-           public string pactcode { get; set; }
-           public string pasircodectdesc { get; set; }
-           public string billno1 { get; set; }
-           public string billno { get; set; }
-           public string pactdesc { get; set; }
-           public string sirdesc1 { get; set; }
-           public string paydat { get; set; }
-           public string revdat { get; set; }
-           public double camt { get; set; }
+            public string pactcode { get; set; }
+            public string pasircodectdesc { get; set; }
+            public string billno1 { get; set; }
+            public string billno { get; set; }
+            public string pactdesc { get; set; }
+            public string sirdesc1 { get; set; }
+            public string paydat { get; set; }
+            public string revdat { get; set; }
+            public double camt { get; set; }
         }
         [Serializable]
         public class ChqInPro
@@ -1405,7 +1405,7 @@ namespace RealEntity.C_22_Sal
             public string comcod { get; set; }
             public string pactcode { get; set; }
             public string usircode { get; set; }
-            public string custname { get; set; } 
+            public string custname { get; set; }
             public string custadd { get; set; }
             public string steam { get; set; }
             public string cteam { get; set; }
@@ -1556,6 +1556,29 @@ namespace RealEntity.C_22_Sal
             public string urmrks { get; set; }
             public BudgetnSales() { }
         }
+
+
+
+        [Serializable]
+
+        public class MonSalPerTarWise
+        {
+            public string salesperson { get; set; }
+            public string pactdesc { get; set; }
+            public double bdgsalqty { get; set; }
+            public double acsalqty { get; set; }
+            public double bgdsalamt { get; set; }
+            public double acsalamt { get; set; }
+            public double tcollamt { get; set; }
+
+            public MonSalPerTarWise()
+            {
+
+            }
+
+        }
+
+        
 
     }
 }

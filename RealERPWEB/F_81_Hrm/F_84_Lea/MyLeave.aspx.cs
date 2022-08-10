@@ -678,7 +678,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     //below code for if apply without date range 
                     if (chkBoxSkippWH.Checked == true)
                     {
-                        htmtableboyd = "<table><tr><th>Date</th><th>Days<th></tr>";
+                        htmtableboyd = "<p><br>Applied Leave:<p><table class='courses-table'><tr class='green'><th>Date</th><th>Days</th></tr>";
                         for (int j = 0; j < dt1.Rows.Count; j++)
                         {
                             frmdate = Convert.ToDateTime(dt1.Rows[j]["leavday"]).ToString("dd-MMM-yyyy");
@@ -697,7 +697,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     else
                     {
-                        htmtableboyd = "<table><tr><th>From Date<th><th>To Date<th><th>Days<th></tr>";
+                        htmtableboyd = "<table><tr><th>From Date</th><th>To Date</th><th>Days</th></tr>";
 
                         result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays.ToString(), isHalfday, usrid, qtype, delegationEMPID, "", "", "", "", "");
                         htmtableboyd += "<tr><td>" + frmdate + "<td><td>" + todate + "</td><td>(" + ttdays.ToString() + ") day</td></tr>";
@@ -811,10 +811,110 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string totalpath = uhostname + currentptah;
 
 
-                    string maildescription = "Dear Sir, Please Approve My Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                         "Department Name : " + deptname + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
-                    maildescription += htmtableboyd;
-                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+                    //string maildescription = "Dear Sir, Please Approve My Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                    //     "Department Name : " + deptname + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                    //maildescription += htmtableboyd;
+                    //maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    string maildescription = @"
+<html lang=""en"">
+	<head>	
+		<meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+		<title>
+			Today Work Details
+		</title>
+		<style type=""text/css"">
+			HTML{background-color: #e8e8e8;}
+			.courses-table{font-size: 12px; padding: 3px; border-collapse: collapse; border-spacing: 0;}
+			.courses-table .description{color: #505050;}
+			.courses-table td{border: 1px solid #D1D1D1; background-color: #F3F3F3; padding: 0 10px;}
+			.courses-table th{border: 1px solid #424242; color: #FFFFFF;text-align: left; padding: 0 10px;}
+			.green{background-color: #6B9852;}
+.badge-success {
+    color: #fff;
+    background-color: #44cf9c;
+}
+.badge-pink {
+    color: #fff;
+    background-color: #f672a7;
+}
+.badge-warning {
+    color: #fff;
+    background-color: #fcc015;
+}
+.badge-info {
+    color: #fff;
+    background-color: #43bee1;
+}
+.text-danger {
+    color:red;
+    font-weight:bold;
+}
+.badge-danger {
+    color: #fff;
+    background-color: #f672a7;
+}
+.badge-success {
+    color: #fff;
+    background-color: #44cf9c;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+		</style>
+	</head>
+	<body><p>Dear Sir, Please Approve My Leave Request.</p>
+        <table class=""courses-table"">
+			<thead>
+				<tr>
+					<th class=""green"">Sl#</th>					 
+					<th class=""green"">Card# </th>
+					<th class=""green"">Employee Name</th>					
+					<th class=""green"">Designation </th>
+					<th class=""green"">Department Name</th>
+					<th class=""green"">Leave Type</th>
+					<th class=""green"">Request Id</th>                  		 
+				</tr>
+			</thead>
+			<tbody><tr><td>1</td><td>"
+         + idcard
+         + "</td><td>"
+         + empname
+         + "</td><td>"
+         + empdesig
+         + "</td><td>"
+         + deptname
+         + "</td><td>"
+         + leavedesc
+         + "</td><td>"
+         + ltrnid
+         + "</td><tr>"
+         + "</tbody></table>" +
+         "" + htmtableboyd +
+         "<div style='color:red'><br><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>" +
+        "</body></html>";
+
 
                     #region
                     string subj = "New Leave Request";
