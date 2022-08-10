@@ -94,6 +94,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
         //    bool result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTUPDATE", name, desig, mobile, email, peradd, peradd, filename, dept, "", "", "", "", "", "", "");
 
-        }
+        //}
     }
 }
