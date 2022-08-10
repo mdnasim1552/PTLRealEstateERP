@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Newtonsoft.Json;
 using RealERPLIB;
-using System.Configuration;
 using System.Data;
-using System.Web.Script.Services;
 
 
 namespace RealERPWEB.F_81_Hrm.F_83_Att
