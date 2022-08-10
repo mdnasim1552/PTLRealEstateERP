@@ -1440,7 +1440,9 @@ namespace RealEntity.C_14_Pro
         public class OtherCollHistory
         {
             public string pactcode { get; set; }
+            public string pactdesc { get; set; }
             public string refno { get; set; }
+            public string mrno { get; set; }
             public  DateTime mrdate { get; set; }
             public string chqno { get; set; }
 
