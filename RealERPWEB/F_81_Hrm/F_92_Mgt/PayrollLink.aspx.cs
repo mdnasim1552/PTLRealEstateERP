@@ -120,10 +120,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string branch = ((this.ddlBranch.SelectedValue.ToString() == "000000000000") ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000") ? Company :( this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
 
             string txtSProject = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", branch, txtSProject, "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETPROJECTNAMEPERMISSION", branch, txtSProject, "", "", "", "", "", "", "");
             this.ddlDptList.DataTextField = "actdesc";
             this.ddlDptList.DataValueField = "actcode";
             this.ddlDptList.DataSource = ds1.Tables[0];
@@ -144,7 +144,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Department = (this.ddlDptList.SelectedValue.ToString() == "000000000000") ? branch : this.ddlDptList.SelectedValue.ToString().Substring(0, 9) + "%";
 
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETSECTIONNAME", Department, "", "", "", "", "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETSECTIONNAMEPERMISSION", Department, "", "", "", "", "", "", "", "");
             this.ddlSectionList.DataTextField = "actdesc";
             this.ddlSectionList.DataValueField = "actcode";
             this.ddlSectionList.DataSource = ds2.Tables[0];
