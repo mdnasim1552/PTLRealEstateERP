@@ -191,6 +191,7 @@
                                         <asp:TemplateField HeaderText="File">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblgcod" runat="server" Text='<%#Eval("gcod")%>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblid" runat="server" Text='<%#Eval("id")%>' Visible="false"></asp:Label>
 
 

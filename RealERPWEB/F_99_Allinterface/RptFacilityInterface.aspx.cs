@@ -25,9 +25,9 @@ namespace RealERPWEB.F_99_Allinterface
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
-
-                txtfrmdate.Text = this.GetFromDate(); 
-                txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                this.GetFromDate();
+                //  txtfrmdate.Text = this.GetFromDate(); 
+                //txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 ModuleName();
                 getComplainList();
                 txtRejectDesc.Text = "";
