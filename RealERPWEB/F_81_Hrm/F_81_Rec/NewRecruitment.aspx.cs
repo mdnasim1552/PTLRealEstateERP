@@ -27,6 +27,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             {
                 this.getDesig();
                 //this.getDept();
+                GetData();
             }
 
         }
@@ -45,11 +46,27 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 return;
             DataTable dt = ds.Tables[0];
             DataTable dt1 = (DataTable)ViewState["dtDesig"];
-
+            DropDownList ddlgval;
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string gcod = dt.Rows[i]["gcod"].ToString();
+                switch (gcod)
+                {
+                    case "97007":
+
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
+
+                        ddlgval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig"));
+                        ddlgval.DataTextField = "hrgdesc";
+                        ddlgval.DataValueField = "hrgcod";
+                        ddlgval.DataSource = dt1;
+                        ddlgval.DataBind();
+                        ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
+                     
+                        break;
+
+                }
             }
         }
 
@@ -73,10 +90,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
                 return;
             ViewState["dtDesig"] = ds3.Tables[0];
-            //this.ddldesig.DataTextField = "hrgdesc";
-            //this.ddldesig.DataValueField = "hrgcod";
-            //this.ddldesig.DataSource = ds3.Tables[0];
-            //this.ddldesig.DataBind();
+
         }
 
         //protected void lnkSave_Click(object sender, EventArgs e)

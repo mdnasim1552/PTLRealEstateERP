@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-5">
 
-                       <%-- <div class="form-group row">
+                            <%-- <div class="form-group row">
                             <asp:Label ID="lblname" runat="server" CssClass="col-4">Name</asp:Label>
                             <asp:TextBox ID="txtname" runat="server" CssClass="form-control form-control-sm pd4 col-8"></asp:TextBox>
                         </div>
@@ -122,70 +122,63 @@
                         </div>--%>
 
 
-                                    <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False"
-                            ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
-                            <RowStyle />
-                            <Columns>
-                                <asp:TemplateField HeaderText="Code" ControlStyle-CssClass="classhidden" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgcode" ClientIDMode="Static" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
-                  
-                                <asp:TemplateField HeaderText="Description">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lgcResDesc1" runat="server" Width="130px"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
-                                    </ItemTemplate>
-                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgvgph" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
-                                            Width="20px"></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                    <ItemStyle Font-Bold="True" />
-                                </asp:TemplateField>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
-                                            BorderColor="#660033" BorderStyle="None" BorderWidth="1px" AutoPostBack="true"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+                            <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False"
+                                ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Code" ControlStyle-CssClass="classhidden" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgcode" ClientIDMode="Static" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
 
-                                        <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent"
+                                    <asp:TemplateField HeaderText="Description">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgdesc" runat="server" Width="130px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <%-- <asp:Panel runat="server" ID="pnlTexval">--%>
+                                            <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px" AutoPostBack="true"
+                                                ></asp:TextBox>
+
+                                            <%--           </asp:Panel>--%>
+
+                                            <%--                    <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent"
                                             BorderColor="#660033" BorderStyle="None" BorderWidth="1px" TextMode="Time"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>--%>
 
 
-                                        <asp:Panel ID="Panegrd" runat="server">
-                                            <div class="form-group">
-                                                <asp:DropDownList ID="ddlval" runat="server" Width="300px" CssClass="custom-select chzn-select">
-                                                </asp:DropDownList>
-                                            </div>
-                                        </asp:Panel>
-                                    </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
-                            </Columns>
-                            <FooterStyle CssClass="grvFooter" />
-                            <EditRowStyle />
-                            <AlternatingRowStyle />
-                            <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
-                        </asp:GridView>
+                                        <%--    <asp:Panel ID="pnlDesig" runat="server">--%>
+                                                <div class="form-group">
+                                                    <asp:DropDownList ID="ddldesig" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                    </asp:DropDownList>
+                                                </div>
+                              <%--              </asp:Panel>--%>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+                            </asp:GridView>
 
 
 
-                            </div>
+                        </div>
                         <div class="col-7">
-
-
-                         </div>
+                        </div>
                     </div>
 
                 </div>
@@ -195,10 +188,9 @@
 
 
         </ContentTemplate>
-        <Triggers>
+        <%--        <Triggers>
             <asp:PostBackTrigger ControlID="lnkSave" />
-        </Triggers>
-
+        </Triggers>--%>
     </asp:UpdatePanel>
 </asp:Content>
 
