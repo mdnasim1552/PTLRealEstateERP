@@ -99,6 +99,16 @@ namespace RealEntity.C_81_Hrm.C_81_Rec
         public EmpAllInformation() { }
     }
 
+
+    
+
+
+
+
+
+
+
+
     [Serializable]
     public class CodeBookInfo
     {

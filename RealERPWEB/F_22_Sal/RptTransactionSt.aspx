@@ -121,7 +121,7 @@
                                             <asp:ListItem>Actual Dated</asp:ListItem>
                                             <asp:ListItem>Reconcile Dated</asp:ListItem>
                                             <asp:ListItem>Entry Date </asp:ListItem>
-                                            <asp:ListItem>Deposted Cheque </asp:ListItem>
+                                            <asp:ListItem>Cheque In Hand </asp:ListItem>
 
 
                                         </asp:RadioButtonList>

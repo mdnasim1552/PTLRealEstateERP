@@ -140,6 +140,7 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+PurOrderTopSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+AccOpening.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+ChequeDepositPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment1.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ReceptPayment.datasource" />
@@ -164,6 +165,7 @@
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmployeeAllInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpAttnIdWise.datasource" />
@@ -931,6 +933,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptCreateOffLt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptEmpAss.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpAllInformationENG.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmployeeAllInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptHRCodeBookInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptAttendanceSummary.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptAttendenceSheetEarly.rdlc" />

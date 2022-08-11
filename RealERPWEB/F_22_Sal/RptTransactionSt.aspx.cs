@@ -193,9 +193,9 @@ namespace RealERPWEB.F_22_Sal
             switch (type)
             {
 
-                case "TransPrjWise":
-                    this.RptPrjWise();
-                    break;
+                //case "TransPrjWise":
+                //    this.RptPrjWise();
+                //    break;
                 case "TransDateWise":
                     this.RptPrjWise();
                     break;
@@ -287,18 +287,23 @@ namespace RealERPWEB.F_22_Sal
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)Session["DailyTrns"];
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
             Rpt1.EnableExternalImages = true;
+            
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Date Wise Collection"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
 
             if (ConstantInfo.LogStatus == true)
