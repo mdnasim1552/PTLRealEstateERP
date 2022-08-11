@@ -433,6 +433,16 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
+
+            if (Request.QueryString["InputType"].ToString() == "Entry")
+            {
+                if (IscheckDuplicateMPR())
+                {
+                    this.lbtnOk.Text = "New";
+                    return;
+                }
+            }
+
             if (Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "ReqEdit" || Request.QueryString["InputType"].ToString() == "HeadUsed")
             {
                 this.lblfloor.Visible = false;
@@ -509,6 +519,7 @@ namespace RealERPWEB.F_12_Inv
 
 
             this.lbtnOk.Text = "New";
+           
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();
             //this.ImgbtnFindReq_Click(null, null);
@@ -698,7 +709,10 @@ namespace RealERPWEB.F_12_Inv
         {
             //this.Panel2.Visible = true;
             this.Session_tblReq_Update();
-
+            if (IscheckDuplicateMPR())
+            {
+                return;
+            }
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string ddldesc = hst["ddldesc"].ToString();
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
@@ -774,6 +788,44 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblReq"] = this.HiddenSameData(tbl1);
             this.gvResInfo_DataBind();
 
+        }
+
+        private bool IscheckDuplicateMPR()
+        {
+            string mMRFNO = this.txtMRFNo.Text.Trim().ToString();
+            string comcod = this.GetCompCode();
+            string mREQNO = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
+
+            if (this.chkdupMRF.Checked)
+            {
+                if (mMRFNO.Length == 0)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "M.R.F No. Should Not Be Empty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return true;
+                }
+                string pactcode = this.ddlProject.SelectedValue.ToString();
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, "", "", "", "", "", "", "", "");
+                if (ds2.Tables[0].Rows.Count == 0)
+                    return false;
+
+                else
+                {
+                    DataView dv1 = ds2.Tables[0].DefaultView;
+                    dv1.RowFilter = ("reqno <>'" + mREQNO + "'");
+                    DataTable dt = dv1.ToTable();
+                    if (dt.Rows.Count == 0)
+                        return false;
+                    else
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate M.R.F No";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                       
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private string CompanyRequisition()
@@ -2235,10 +2287,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     if (this.chkneBudget.Checked)
                     {
-
                         string comcod = this.GetCompCode();
-
-
                         switch (comcod)
                         {
                             case "3336":
@@ -2300,18 +2349,8 @@ namespace RealERPWEB.F_12_Inv
                                     chkqty = dgvBgdQty - dgvReqQty;
                                 }
                                 Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
-
                                 break;
-
-
-
-
                         }
-
-
-
-
-
                     }
                 }
 
@@ -2912,6 +2951,14 @@ namespace RealERPWEB.F_12_Inv
             //    string eventdesc2 = Itemcode;
             //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             //}
+        }
+
+        protected void txtMRFNo_TextChanged(object sender, EventArgs e)
+        {
+            if (IscheckDuplicateMPR())
+            {
+                return;
+            }
         }
     }
 
