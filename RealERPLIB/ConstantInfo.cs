@@ -1735,6 +1735,15 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502391", "F_34_Mgt", "VehicleTrack?", "Type=TopSheet", "Vehicle Tracking", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502400", "F_34_Mgt", "Trigger", "", "Trigger Information", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502410", "Notices", "Notice", "", "Notice Information", "Management", "False", "False", "False", "False" });
+            
+            tblObj.Rows.Add(new Object[] { "3502000", "3502411", "F_81_Hrm/F_92_Mgt", "HrLeaveApprovalForm", "", "HR Leave Approval Setup ", "Management", "False", "False", "False", "False" }); ;
+
+
+ 
+
+
+
+
 
             tblObj.Rows.Add(new Object[] { "3503000", "3503998", "F_34_Mgt", "UserLoginfrm", "", "User Permission", "Admin", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3503000", "3503999", "F_34_Mgt", "UserLoginfrmasit", "", "Company Page Permission ", "Admin", "False", "False", "False", "False" }); ;

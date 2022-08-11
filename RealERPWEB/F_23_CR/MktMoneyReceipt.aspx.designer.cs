@@ -528,13 +528,13 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.DropDownList ddlCollType;
 
         /// <summary>
-        /// Label22 control.
+        /// lblpaydate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label22;
+        protected global::System.Web.UI.WebControls.Label lblpaydate;
 
         /// <summary>
         /// txtpaydate control.

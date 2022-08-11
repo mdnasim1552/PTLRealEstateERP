@@ -382,7 +382,7 @@
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-3 pading5px ">
-                                        <asp:Label ID="Label22" runat="server" CssClass="lblTxt lblName" Text="Pay Date"></asp:Label>
+                                        <asp:Label ID="lblpaydate" runat="server" CssClass="lblTxt lblName"></asp:Label>
                                         <asp:TextBox ID="txtpaydate" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox_s inputtextbox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtpaydate_CalendarExtender" runat="server" Enabled="True"
                                             Format="dd-MMM-yyyy" TargetControlID="txtpaydate"></cc1:CalendarExtender>
