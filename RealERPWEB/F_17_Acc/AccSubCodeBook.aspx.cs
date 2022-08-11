@@ -518,13 +518,13 @@ namespace RealERPWEB.F_17_Acc
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)Session["storedata"];
 
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-            //    string sirdesc = dt.Rows[i]["sirdesc"].ToString();
-            //    //dt.Rows[i]["sirdesc"] = Convert_Text_to_Image(dt.Rows[i]["sirdesc"].ToString(), "Bookman Old Style", 20); // Passing appropriate value to Convert_Text_to_Image method 
-            //    dt.Rows[i]["sirdesc"] = Encoding.UTF8.GetBytes(sirdesc);
-            
-            //}
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string sirdesc = dt.Rows[i]["sirdesc"].ToString();
+              //  dt.Rows[i]["sirdesc"] = Convert_Text_to_Image(dt.Rows[i]["sirdesc"].ToString(), "Bookman Old Style", 20); // Passing appropriate value to Convert_Text_to_Image method 
+                      
+
+            }
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>();
             LocalReport Rpt1 = new LocalReport();
@@ -535,7 +535,7 @@ namespace RealERPWEB.F_17_Acc
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&embedded=true', target='_blank');</script>";
         }
 
 

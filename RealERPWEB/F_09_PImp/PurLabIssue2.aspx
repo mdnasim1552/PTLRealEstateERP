@@ -280,7 +280,7 @@
                                 OnRowDeleting="grvissue_RowDeleting" OnPageIndexChanging="grvissue_PageIndexChanging">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl#">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvMSRSlNo" runat="server" Height="16px"
                                                 Style="text-align: right"
