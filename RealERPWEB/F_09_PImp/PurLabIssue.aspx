@@ -301,6 +301,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblitemcode" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
+                                            
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Fl" Visible="false">
@@ -326,6 +327,8 @@
                                     <asp:TemplateField HeaderText="Description">
 
                                         <ItemTemplate>
+                                            <asp:Label ID="gvlblgrp" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grp")) %>'></asp:Label>
                                             <asp:Label ID="lbllabdesc" runat="server"
                                                 Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) + "</B>" +
                                                                          (DataBinder.Eval(Container.DataItem, "rsirdesc").ToString().Trim().Length>0 ? 

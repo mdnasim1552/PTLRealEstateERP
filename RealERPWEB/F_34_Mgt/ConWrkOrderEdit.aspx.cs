@@ -106,10 +106,9 @@ namespace RealERPWEB.F_34_Mgt
 
             Session.Remove("tblreq");
             string comcod = this.GetCompCode();
-            string pactcode = "000000000000";
             string date = this.txtCurReqDate.Text;
-            string Mrfno = "%" + this.txtSrcRequisition01.Text.Trim() + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETREQNO", pactcode, date, Mrfno, "", "", "", "", "", "");
+            string mrfno = "%" + this.txtSrcRequisition01.Text.Trim() + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETCONWORKORDER", mrfno, date, "", "", "", "", "", "", "");
             this.ddlReqNo01.DataTextField = "reqno1";
             this.ddlReqNo01.DataValueField = "reqno";
             this.ddlReqNo01.DataSource = ds1.Tables[0];

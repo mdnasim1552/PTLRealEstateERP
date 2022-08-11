@@ -136,26 +136,17 @@
                                                 </div>
                                                 <div class="col-md-4 pading5px asitCol4">
                                                     <asp:Label ID="lblCurReqNo1" runat="server" CssClass="smLbl" Text="REQ00"></asp:Label>
-
                                                     <asp:TextBox ID="txtCurReqNo2" runat="server" CssClass="xsDropDow inputTxt disabled readonlyValue" ReadOnly="True" TabIndex="8">00000</asp:TextBox>
                                                     <asp:Label ID="lblmrfno" runat="server" CssClass=" smLbl_to" Text="M.R.F. No."></asp:Label>
-                                                    <asp:TextBox ID="txtMRFNo" runat="server" TabIndex="7" CssClass="inputtextbox" Style="width: 120px;"></asp:TextBox>
+                                                    <asp:TextBox ID="txtMRFNo" runat="server" TabIndex="7" CssClass="inputtextbox" Style="width: 120px;"  AutoPostBack="true" OnTextChanged="txtMRFNo_TextChanged"></asp:TextBox>
                                                 </div>
 
-
-
-
-
                                                 <div class="col-md-3 pading5px">
-
                                                     <asp:CheckBox ID="chkdupMRF" runat="server" Text="Dup.M.R.F" CssClass="btn btn-primary checkBox" Visible="false"
                                                         TabIndex="9" />
                                                     <asp:CheckBox ID="chkneBudget" runat="server" Text="Not Exceed Budget" CssClass="btn btn-primary checkBox" Visible="false"
                                                         TabIndex="10" />
-
                                                 </div>
-
-
                                             </div>
                                         </div>
 
