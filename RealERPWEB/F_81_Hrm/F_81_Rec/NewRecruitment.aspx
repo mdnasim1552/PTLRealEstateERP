@@ -19,8 +19,8 @@
         }
 
         .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -29,6 +29,19 @@
 
         .pd4 {
             padding: 4px !important;
+        }
+
+        table {
+            border: 1px solid #CCC;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: none;
+        }
+
+        .grvHeader {
+            background: none !important;
         }
     </style>
 
@@ -78,52 +91,12 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-5">
-
-                            <%-- <div class="form-group row">
-                            <asp:Label ID="lblname" runat="server" CssClass="col-4">Name</asp:Label>
-                            <asp:TextBox ID="txtname" runat="server" CssClass="form-control form-control-sm pd4 col-8"></asp:TextBox>
-                        </div>
-
-                        <div class="form-group row">
-                            <asp:Label ID="lbldept" runat="server" CssClass="col-4">Department</asp:Label>
-                             <asp:DropDownList ID="ddldept" runat="server"  CssClass="form-control form-control-sm pd4 col-8"  AutoPostBack="True" ></asp:DropDownList>
-                        </div>
-
-                                    <div class="form-group row">
-                            <asp:Label ID="lbldesig" runat="server" CssClass="col-4">Designation</asp:Label>
-                             <asp:DropDownList ID="ddldesig" runat="server"  CssClass="form-control form-control-sm pd4 col-8"  AutoPostBack="True" ></asp:DropDownList>
-                        </div>
-                        <div class="form-group row">
-                            <asp:Label ID="lblmobile" runat="server" CssClass="col-4">Mobile No</asp:Label>
-                            <asp:TextBox ID="txtmobile" runat="server" CssClass="form-control form-control-sm pd4 col-8"></asp:TextBox>
-                        </div>
-                        <div class="form-group row">
-                            <asp:Label ID="lblemail" runat="server" CssClass="col-4">Email Address</asp:Label>
-                            <asp:TextBox ID="txtemail" runat="server" CssClass="form-control form-control-sm pd4 col-8"></asp:TextBox>
-                        </div>
-                        <div class="form-group row">
-                            <asp:Label ID="lblpreAdd" runat="server" CssClass="col-4">Present Address</asp:Label>
-                            <asp:TextBox ID="txtPreAdd" runat="server" CssClass="form-control form-control-sm pd4 col-8"></asp:TextBox>
-                        </div>
-                        <div class="form-group row">
-                            <asp:Label ID="lblPerAdd" runat="server" CssClass="col-4">Permanent Address</asp:Label>
-                            <asp:TextBox ID="txtPerAdd" runat="server" CssClass="form-control form-control-sm pd4 col-8"></asp:TextBox>
-                        </div>
-
-                        <div class="form-group row">
-                            <asp:Label ID="lblfile" runat="server" Text="Attach File:" CssClass="col-4"></asp:Label>
-                            <asp:FileUpload ID="imgFileUpload" CssClass="form-control col-8" runat="server" AllowMultiple="true" accept=".pdf" />
-                            <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />
-                        </div>
-                                   <div class="form-group row">
-                        <asp:LinkButton ID="lnkSave" ValidationGroup="group1" CssClass="btn btn-success btn-sm mt20" runat="server" OnClick="lnkSave_Click">Save</asp:LinkButton>
-           
-                        </div>--%>
+                        <div class="col-4">
 
 
-                            <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False"
-                                ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+
+                            <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False" BorderStyle="None" Width="100%"
+                                CssClass="">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Code" ControlStyle-CssClass="classhidden" Visible="false">
@@ -134,10 +107,10 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Description">
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgdesc" runat="server" Width="130px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -145,24 +118,26 @@
 
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <%-- <asp:Panel runat="server" ID="pnlTexval">--%>
-                                            <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
-                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px" AutoPostBack="true"
-                                                ></asp:TextBox>
 
-                                            <%--           </asp:Panel>--%>
+                                            <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control form-control-sm"
+                                                AutoPostBack="true"></asp:TextBox>
 
-                                            <%--                    <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent"
-                                            BorderColor="#660033" BorderStyle="None" BorderWidth="1px" TextMode="Time"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>--%>
+                                            <asp:TextBox ID="txtarea" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control " TextMode="MultiLine"
+                                                AutoPostBack="true"></asp:TextBox>
 
 
-                                        <%--    <asp:Panel ID="pnlDesig" runat="server">--%>
-                                                <div class="form-group">
-                                                    <asp:DropDownList ID="ddldesig" runat="server" Width="300px" CssClass="custom-select chzn-select">
-                                                    </asp:DropDownList>
-                                                </div>
-                              <%--              </asp:Panel>--%>
+                                            <div class="form-group">
+                                                <asp:DropDownList ID="ddldesig" runat="server" CssClass="custom-select chzn-select ">
+                                                </asp:DropDownList>
+                                            </div>
+
+
+
+                                            <div class="form-group">
+
+                                                <asp:FileUpload ID="imgFileUpload" CssClass="form-control form-control-sm" runat="server" accept=".pdf" />
+                                                <%--                                      <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />--%>
+                                            </div>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -173,11 +148,72 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
-
+                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
+                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span>&nbsp; Save</asp:LinkButton>
 
 
                         </div>
-                        <div class="col-7">
+                        <div class="col-8">
+                            <div class="card-body">
+                                <div class="table table-sm table-responsive">
+                                    <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvAllRec" runat="server" AutoGenerateColumns="false">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="ADVNO">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbladvno" runat="server" Text='<%#Eval("advno")%>' Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblname" runat="server" Text='<%#Eval("name").ToString()%>' Width="150px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Designation">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbldesig" runat="server" Text='<%#Eval("desig").ToString()%>' Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Mobile">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblmobile" runat="server" Text='<%#Eval("mobile").ToString()%>' Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Email">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblemail" runat="server" Text='<%#Eval("email").ToString()%>' Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                                                 <asp:TemplateField HeaderText="Permanent Address">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblpreadd" runat="server" Text='<%#Eval("peradd").ToString()%>' Width="200px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                                                 <asp:TemplateField HeaderText="Present Address">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblperadd" runat="server" Text='<%#Eval("peradd").ToString()%>' Width="200px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+
+
+<%--                                            <asp:TemplateField HeaderText="Action">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="btn_edit" runat="server" CssClass="btn-sm text-info" OnClick="btn_edit_Click"> <i class="fa fa-edit"></i> 
+                                                    </asp:LinkButton>
+                                                    <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
+                                                    </asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>--%>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -188,9 +224,9 @@
 
 
         </ContentTemplate>
-        <%--        <Triggers>
+        <Triggers>
             <asp:PostBackTrigger ControlID="lnkSave" />
-        </Triggers>--%>
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
 
