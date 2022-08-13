@@ -1807,6 +1807,14 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Phone">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvPhone" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"phone")) %>'
+                                                    Width="90px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Profession Name">
                                             <ItemTemplate>
