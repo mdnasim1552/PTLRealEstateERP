@@ -612,7 +612,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!orderdat.Value</Value>
+                                  <Value>=CDate(Fields!orderdat.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -678,7 +678,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!mrrdat.Value</Value>
+                                  <Value>=CDate(Fields!mrrdat.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -814,7 +814,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!voudat.Value</Value>
+                                  <Value>=CDate(Fields!voudat.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -934,7 +934,7 @@
         <Height>0.84027in</Height>
         <Style />
       </Body>
-      <Width>7.70833in</Width>
+      <Width>7.70834in</Width>
       <Page>
         <PageHeader>
           <Height>0.88542in</Height>

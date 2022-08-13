@@ -86,7 +86,6 @@
     <Compile Include="R_81_Hrm\RptHRSetup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Report\" />
     <Folder Include="R_03_Fin\" />
     <Folder Include="R_09_LCM\" />
     <Folder Include="R_13_Cen\" />
@@ -195,6 +194,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
+    <EmbeddedResource Include="Reports\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillFinaly.rdlc" />
