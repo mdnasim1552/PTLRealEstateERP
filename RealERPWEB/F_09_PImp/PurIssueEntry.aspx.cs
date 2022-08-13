@@ -599,6 +599,30 @@ namespace RealERPWEB.F_09_PImp
             this.grvissue_DataBind();
         }
 
+        protected void grvissue_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //HyperLink hlink = (HyperLink)e.Row.FindControl("lblVOUNUM1");
 
+                //Label lblREFNO = (Label)e.Row.FindControl("lblREFNO");
+                //Label lblgvDetailsHead = (Label)e.Row.FindControl("lblgvDetailsHead");
+                //string voucher = ((HyperLink)e.Row.FindControl("lblVOUNUM")).Text.ToString();
+
+                //string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
+                //if (grp == "B")
+                //{
+                //    lblREFNO.Font.Bold = true;
+                //    lblgvDetailsHead.Font.Bold = true;
+                //    e.Row.Attributes["style"] = "background:DarkSeaGreen;";
+                //    //lblREFNO.Attributes["style"]="color:blue;";
+                //    //lblgvDetailsHead.Attributes["style"] = "color:blue;";
+                //}
+
+                //hlink.NavigateUrl = "RptAccVouher.aspx?vounum=" + voucher;
+
+
+            }
+        }
     }
 }
