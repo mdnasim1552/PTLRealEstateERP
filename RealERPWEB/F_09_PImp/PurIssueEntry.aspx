@@ -149,7 +149,7 @@
                         </div>
                         <div class="row">
                             <asp:GridView ID="grvissue" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" Width="599px"
+                                AutoGenerateColumns="False" ShowFooter="True" Width="599px" OnRowDataBound="grvissue_RowDataBound"
                                 OnRowDeleting="grvissue_RowDeleting" OnPageIndexChanging="grvissue_PageIndexChanging">
                                 <PagerSettings Position="TopAndBottom" />
                                 <RowStyle />

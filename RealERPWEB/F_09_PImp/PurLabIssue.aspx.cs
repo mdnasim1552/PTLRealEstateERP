@@ -1976,5 +1976,23 @@ namespace RealERPWEB.F_09_PImp
             }
 
         }
+
+        protected void grvissue_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+
+                TextBox txtisuqty = (TextBox)e.Row.FindControl("txtisuqty");
+
+                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
+                if (grp.Substring(0,1) == "2")
+                {
+                    txtisuqty.Attributes["style"] = "background:#f9f9a1";
+                    txtisuqty.Attributes["placeholder"] = "use - (minus qty)";
+                }
+                  
+            }
+        }
     }
 }
