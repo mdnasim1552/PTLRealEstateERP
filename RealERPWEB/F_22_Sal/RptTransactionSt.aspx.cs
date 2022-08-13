@@ -277,7 +277,15 @@ namespace RealERPWEB.F_22_Sal
             return Rpt1;
 
         }
+        //private DataTable DataRowfiltter(DataTable dt)
+        //{
+           
+        //    DataView dv = dt.DefaultView;
+        //    dv.RowFilter = ("pactcode != '' ");
+        //    dt = dv.ToTable();
+        //    return dt;
 
+        //}
 
 
         private void RptPrjWise()
@@ -293,6 +301,10 @@ namespace RealERPWEB.F_22_Sal
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)Session["DailyTrns"];
+
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("pactcode <> ' ' ");
+            dt = dv.ToTable();
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>();
@@ -1117,6 +1129,9 @@ namespace RealERPWEB.F_22_Sal
                     this.FooterCalculation();
                     break;
                 case "TransDateWise":
+
+
+
                     this.grvTrnDatWise.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.grvTrnDatWise.DataSource = (DataTable)Session["DailyTrns"];
                     this.grvTrnDatWise.DataBind();

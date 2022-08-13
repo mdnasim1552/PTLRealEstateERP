@@ -285,7 +285,7 @@
 
                             <asp:GridView ID="grvissue" runat="server" AllowPaging="True"
                                 CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" Width="649px" PageSize="20"
+                                AutoGenerateColumns="False" ShowFooter="True" Width="649px" PageSize="20" OnRowDataBound="grvissue_RowDataBound"
                                 OnRowDeleting="grvissue_RowDeleting" OnPageIndexChanging="grvissue_PageIndexChanging">
                                 <RowStyle />
                                 <Columns>
