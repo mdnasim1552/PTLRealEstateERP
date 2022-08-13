@@ -1316,7 +1316,6 @@
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>9pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
                       <TextDecoration>None</TextDecoration>
                       <Color>#000000</Color>
                     </Style>
