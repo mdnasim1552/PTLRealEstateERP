@@ -6,30 +6,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <script type="text/javascript">
-
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
         });
         function pageLoaded() {
-
             var gv1 = $('#<%=this.gvpurorder.ClientID %>');
             gv1.Scrollable();
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
-
-
             });
-
             $('.chzn-select').chosen({ search_contains: true });
-
-
-
-
         };
-
-
         function Confirmation() {
             if (confirm('Are you sure you want to save?')) {
                 return;
@@ -37,10 +25,7 @@
                 return false;
             }
         }
-
     </script>
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -127,7 +112,7 @@
                         <PagerSettings Position="Top" />
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl">
+                            <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
@@ -141,16 +126,13 @@
                                         Width="30px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
+
                             <asp:TemplateField HeaderText="Reqno" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvRqno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
                                         Width="30px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
-
                             <asp:TemplateField HeaderText="Res Code" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvResCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
@@ -162,7 +144,7 @@
                                     <asp:Label ID="lblgvResCod1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssircode")) %>'
                                         Width="60px"></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>                         
+                            </asp:TemplateField>
 
 
                             <asp:TemplateField HeaderText="No">
@@ -182,7 +164,7 @@
 
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnDelMat" OnClick="btnDelMat_Click" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>
+                                    <asp:LinkButton ID="btnDelMat" OnClick="btnDelMat_Click" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="glyphicon glyphicon-trash"></span></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -291,10 +273,6 @@
                         <PagerStyle CssClass="gvPagination" />
                         <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                     </asp:GridView>
-
-
-
-
                 </div>
 
             </div>
