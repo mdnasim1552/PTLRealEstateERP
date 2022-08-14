@@ -511,7 +511,7 @@
                                                 Width="60px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-success btn-sm successBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
                                         </FooterTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                     </asp:TemplateField>

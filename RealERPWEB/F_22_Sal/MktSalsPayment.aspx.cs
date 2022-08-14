@@ -324,9 +324,9 @@ namespace RealERPWEB.F_22_Sal
             string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string ddldesc = hst["ddldesc"].ToString();
 
-            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
+            DataTable basicinfo = (DataTable)ViewState["tblData"];
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string UsirCode = this.lblCode.Text;
+            string UsirCode = basicinfo.Rows[0]["usircode"].ToString(); /*this.lblCode.Text;*/
             string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
             string aprtno = basicinfo.Rows[0]["udesc"].ToString();
             string floorno = "";
@@ -342,18 +342,21 @@ namespace RealERPWEB.F_22_Sal
             string appatn = basicinfo.Rows[0]["custname"].ToString();
             //direct cost
             string txtdisamt = this.ldiscountt.Text.ToString();
-            double disamt = Convert.ToDouble(txtdisamt);
+           // double disamt = Convert.ToDouble(txtdisamt);
             string ldiscountpP = this.ldiscountp.Text.ToString();
             string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
 
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
 
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+                return;
+
             string cname = ds1.Tables[1].Rows[0]["cname"].ToString();
             string cphone = ds1.Tables[1].Rows[0]["cphone"].ToString();
             string caddress = ds1.Tables[1].Rows[0]["caddress"].ToString();
             string paddress = ds1.Tables[1].Rows[0]["paddress"].ToString();
-            string salesteam = this.ddlSalesTeam.SelectedItem.Text.ToString();
+            string salesteam ="" /*this.ddlSalesTeam.SelectedItem.Text.ToString()*/;
             string bkdate = Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
             string agdate = Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy");
             string hodate = Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy");
@@ -437,7 +440,7 @@ namespace RealERPWEB.F_22_Sal
             rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
             rpt.SetParameters(new ReportParameter("appatn", appatn));
             rpt.SetParameters(new ReportParameter("lbldisamt", lbldisamt));
-            rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
+           // rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
             rpt.SetParameters(new ReportParameter("lblunitamt", ""));
             rpt.SetParameters(new ReportParameter("txtunitamt", txtunitamt));
             rpt.SetParameters(new ReportParameter("txtgntamt", actuamt.ToString("#,##0.00;(#,##0.00); ")));
@@ -465,7 +468,9 @@ namespace RealERPWEB.F_22_Sal
             string TextField = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             //item info
-            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
+            DataTable basicinfo = (DataTable)ViewState["tblData"];
+
+
             string UsirCode = this.lblCode.Text;
             string ItemName = basicinfo.Rows[0]["udesc"].ToString();
             string size = Convert.ToDouble(basicinfo.Rows[0]["usize"]).ToString("#,##0.00;(#,##0.00); ");
