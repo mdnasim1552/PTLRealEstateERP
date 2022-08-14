@@ -3794,7 +3794,8 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = _ReportDataSet.Tables[0].Rows[0]["pactcode"].ToString();
                 string prjaddress = _ReportDataSet.Tables[0].Rows[0]["proadd"].ToString();
                 string pactdesc = _ReportDataSet.Tables[0].Rows[0]["pactdesc"].ToString();
-
+                string deptdesc = _ReportDataSet.Tables[0].Rows[0]["deptdesc"].ToString(); 
+                 
 
                 string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
 
@@ -3876,7 +3877,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "";
-                string dat1 = "", dat2 = "", dat3 = "", dat4 = "", dat5 = "", dat6 = ""; 
+                string dat1 = "", dat2 = "", dat3 = "", dat4 = "", dat5 = "", dat6 = "";
 
                 /// signature       // appnam - PURAPROVB and ordnam - purorder     
                 switch (comcod)
@@ -3991,7 +3992,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign4 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString();
                         dat4 = _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         sign5 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordfappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString(); //_ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString();
-                        dat5 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordfappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString(); 
+                        dat5 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordfappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
                         sign7 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString();
                         dat6 = (Convert.ToDateTime(_ReportDataSet.Tables[3].Rows[0]["ordappdat"]).ToString("dd-MMM-yyyy")) == "01-Jan-1900" ? "" : _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
 
@@ -4335,8 +4336,15 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     //case "3101": //pintech                      
-                    case "3368": //Finlay Properties Ltd                        
-                        Reportpath = "~/Report/RptPurchaseOrderFinlay.rdlc";
+                    case "3368": //Finlay Properties Ltd
+                        if (pactcode == "110200990001")
+                        {
+                            Reportpath = "~/Report/RptPurchaseOrderFinlayInd.rdlc";
+                        }
+                        else
+                        {
+                            Reportpath = "~/Report/RptPurchaseOrderFinlay.rdlc";
+                        }
                         break;
 
                     case "3358": //Entrust Ltd                        
@@ -4417,13 +4425,17 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cperson2", cperson2));
 
                 }
-         
+
                 if (comcod == "3357")
                 {
                     Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                 }
                 if (comcod == "3368") // finlay
                 {
+                    if (pactcode == "110200990001")
+                    {
+                        Rpt1.SetParameters(new ReportParameter("deptdesc", deptdesc)); 
+                    }
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                     Rpt1.SetParameters(new ReportParameter("costa", costa));
                     Rpt1.SetParameters(new ReportParameter("costb", costb));
@@ -4631,7 +4643,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
                 default:
                     isDynamic = false;
-                    break;                     
+                    break;
             }
             return isDynamic;
         }
@@ -5997,7 +6009,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
                 case "3357":
                     PrintReq = "PrintBillIntech";
-                    break;     
+                    break;
                 // bill finaly
                 case "3368":
                     PrintReq = "PrintBillFinlay";
@@ -6300,7 +6312,7 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
             }
 
-            else if(pCompanyBill == "PrintBillFinlay")
+            else if (pCompanyBill == "PrintBillFinlay")
             {
 
                 rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillFinaly", lst, null, null);

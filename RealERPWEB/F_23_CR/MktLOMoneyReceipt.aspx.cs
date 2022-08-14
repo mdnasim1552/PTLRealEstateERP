@@ -2157,7 +2157,7 @@ namespace RealERPWEB.F_23_CR
             string comcod = hst["comcod"].ToString();
             string id = lblbefid.Text;
             string name = txtbefname.Text;
-            DataSet ds = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "UPSERTBENEFICIARY", id, name, "", "", "", "", "","","","","");
+            DataSet ds = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSUPSERTBENEFICIARY", id, name, "", "", "", "", "","","","","");
             if (ds == null)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
@@ -2165,7 +2165,7 @@ namespace RealERPWEB.F_23_CR
                 return;
             }
             GetBeneficiary();
-            ddlBeneficiary.SelectedValue = ds.Tables[0].Rows[0][0].ToString();
+            ddlBeneficiary.SelectedValue = ds.Tables[0].Rows[0]["gcod"].ToString();
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
         }

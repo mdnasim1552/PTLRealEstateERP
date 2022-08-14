@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="col-md-6 pl-0">
                                         <div class="form-group">
-                                            <asp:LinkButton ID="ApprovedBtn" runat="server" CssClass="btn btn-success btn-sm ApprovedBtn d-none" BorderStyle="None">Approved</asp:LinkButton>
+                                            <asp:LinkButton ID="ApprovedBtn" runat="server" CssClass="btn btn-primary btn-sm ApprovedBtn d-none" BorderStyle="None">Approved</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>

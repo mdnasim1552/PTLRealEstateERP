@@ -300,9 +300,9 @@ namespace RealERPWEB.F_22_Sal
             switch (comcod)
             {
                 // format for cube holdings
-                case "3101":
-                case "3356":
-                case "3366":
+                //case "3101":
+                case "3356"://
+                case "3366"://Lanco
                     this.payscheduleRDLC();
                     break;
 
@@ -343,7 +343,7 @@ namespace RealERPWEB.F_22_Sal
             string appatn = basicinfo.Rows[0]["custname"].ToString();
             //direct cost
             string txtdisamt = this.ldiscounttprint.Text.ToString();
-            double disamt = Convert.ToDouble(txtdisamt);
+            double disamt =0.00;
             string ldiscountpP = this.ldiscountp.Text.ToString();
             string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
 
@@ -476,8 +476,8 @@ namespace RealERPWEB.F_22_Sal
             string concat1 = ItemName + " , " + "Unit Size: " + size + " " + unit;
 
             //direct cost
-            string ldiscounttT = this.ldiscountt.Text;
-            string ldiscountpP = this.ldiscountp.Text;
+            string ldiscounttT = "";
+            string ldiscountpP = "";
 
             string salesteams = ddlSalesTeam.SelectedItem.Text;
             DataSet dss = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
@@ -489,7 +489,7 @@ namespace RealERPWEB.F_22_Sal
             //CompName.Text = comname;
 
             TextObject txtPrjName = rpcp.ReportDefinition.ReportObjects["txtPrjName"] as TextObject;
-            txtPrjName.Text = "Project Name: " + TextField;
+            txtPrjName.Text = "Project Name: " + TextField+"(L/O Part)";
 
 
             TextObject txtItemName = rpcp.ReportDefinition.ReportObjects["txtItemName"] as TextObject;
@@ -497,10 +497,10 @@ namespace RealERPWEB.F_22_Sal
 
 
             TextObject txtdist = rpcp.ReportDefinition.ReportObjects["txtdist"] as TextObject;
-            txtdist.Text = "Discount in Tk. " + ldiscounttT;
+            txtdist.Text =  ldiscounttT;
 
             TextObject txtdisp = rpcp.ReportDefinition.ReportObjects["txtdisp"] as TextObject;
-            txtdisp.Text = "Discount in (%) " + ldiscountpP;
+            txtdisp.Text =  ldiscountpP;
 
             TextObject txtsalest = rpcp.ReportDefinition.ReportObjects["txtsalest"] as TextObject;
             txtsalest.Text = "Sales Team: " + salesteams;

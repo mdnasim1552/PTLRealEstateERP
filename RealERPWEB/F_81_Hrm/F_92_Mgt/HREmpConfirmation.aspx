@@ -137,7 +137,7 @@
                         ShowFooter="True" Style="text-align: left" Width="635px">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                         Style="text-align: right"
@@ -145,7 +145,7 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Card #">
+                            <asp:TemplateField HeaderText="Card ">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvIDCard" runat="server" Font-Size="12px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ID Card")) %>'

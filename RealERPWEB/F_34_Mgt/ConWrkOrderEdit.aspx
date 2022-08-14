@@ -6,30 +6,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <script type="text/javascript">
-
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
         });
         function pageLoaded() {
-
             var gv1 = $('#<%=this.gvpurorder.ClientID %>');
             gv1.Scrollable();
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
-
-
             });
-
             $('.chzn-select').chosen({ search_contains: true });
-
-
-
-
         };
-
-
         function Confirmation() {
             if (confirm('Are you sure you want to save?')) {
                 return;
@@ -37,10 +25,7 @@
                 return false;
             }
         }
-
     </script>
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -127,7 +112,7 @@
                         <PagerSettings Position="Top" />
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl">
+                            <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
@@ -141,16 +126,13 @@
                                         Width="30px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
+
                             <asp:TemplateField HeaderText="Reqno" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvRqno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
                                         Width="30px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
-
                             <asp:TemplateField HeaderText="Res Code" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvResCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
@@ -160,13 +142,6 @@
                             <asp:TemplateField HeaderText="Supl Code" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvResCod1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssircode")) %>'
-                                        Width="60px"></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Spcf Code" Visible="False">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblgvSpcfCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'
                                         Width="60px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -189,15 +164,9 @@
 
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnDelMat" OnClick="btnDelMat_Click" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>
-
-
+                                    <asp:LinkButton ID="btnDelMat" OnClick="btnDelMat_Click" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="glyphicon glyphicon-trash"></span></asp:LinkButton>
                                 </ItemTemplate>
-
-
                             </asp:TemplateField>
-
-
 
 
                             <asp:TemplateField HeaderText="Date">
@@ -246,23 +215,6 @@
 
                             <asp:CommandField CancelText="Can" ShowEditButton="True" />
 
-                            <asp:TemplateField HeaderText="Specification">
-                                <ItemTemplate>
-                                    <asp:Label ID="lgvSpecification" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
-                                        Width="120px"></asp:Label>
-                                </ItemTemplate>
-
-
-                                <EditItemTemplate>
-                                    <asp:DropDownList ID="ddlspecification" runat="server" Width="120px" CssClass="chzn-select">
-                                    </asp:DropDownList>
-                                </EditItemTemplate>
-
-
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
-
-
                             <asp:TemplateField HeaderText="Supplier Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvSupplier01" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
@@ -284,15 +236,6 @@
                                         Width="60px" BorderStyle="none" OnTextChanged="txtgvreqty01_TextChanged" AutoPostBack="true"></asp:TextBox>
                                 </ItemTemplate>
                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                <ItemStyle HorizontalAlign="Right" />
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Supplier Rate">
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txtgvsuprate" runat="server" Style="text-align: right; border-style: none;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "srate")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                        Width="60px"></asp:TextBox>
-                                </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
@@ -330,10 +273,6 @@
                         <PagerStyle CssClass="gvPagination" />
                         <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                     </asp:GridView>
-
-
-
-
                 </div>
 
             </div>

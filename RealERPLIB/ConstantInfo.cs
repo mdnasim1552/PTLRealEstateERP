@@ -1800,8 +1800,8 @@ namespace RealERPLIB
             #region Landowner Management
             
             tblObj.Rows.Add(new Object[] { "3702000", "3702001", "F_22_Sal", "MktEntryUnit?", "Type=LandOwner", "Budget-Sales(Land Owner)", "Budget", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "3702000", "3702003", "F_22_Sal", "MktSalsLOPayment?Type=Sales", "", "Sales(LO) With Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "3702000", "3702005", "F_23_CR", "MktLOMoneyReceipt?", "Type=CustCare", "Collection Sales(LO)", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3702000", "3702003", "F_22_Sal", "MktSalsLOPayment?Type=Sales", "", "SalesWith Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3702000", "3702005", "F_23_CR", "MktLOMoneyReceipt?", "Type=CustCare", "Collection Sales", "Credit Realization", "False", "False", "False", "False" });
 
             #endregion
 
@@ -9941,9 +9941,9 @@ namespace RealERPLIB
 
            
 
-            mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Unit Fixation(LO)", "F_22_Sal/MktEntryUnit?Type=LandOwner", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Sales(LO) Payment Schedule", "F_22_Sal/MktSalsLOPayment?Type=Sales", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0203000000", "03. Money Receipt Create(LO)", "F_23_CR/MktLOMoneyReceipt?Type=CustCare", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Unit Fixation", "F_22_Sal/MktEntryUnit?Type=LandOwner", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Sales Payment Schedule", "F_22_Sal/MktSalsLOPayment?Type=Sales", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000000", "03. Money Receipt Create", "F_23_CR/MktLOMoneyReceipt?Type=CustCare", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0204000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "", "", "", true, "" });
