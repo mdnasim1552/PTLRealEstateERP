@@ -131,6 +131,12 @@
                                                 </asp:DropDownList>
                                             </div>
 
+                                            
+                                 <%--           <div class="form-group">
+                                                <asp:DropDownList ID="ddldept" runat="server" CssClass="custom-select chzn-select ">
+                                                </asp:DropDownList>
+                                            </div>--%>
+
 
 
                                             <div class="form-group">
@@ -158,11 +164,7 @@
                                 <div class="table table-sm table-responsive">
                                     <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvAllRec" runat="server" AutoGenerateColumns="false">
                                         <Columns>
-                                            <asp:TemplateField HeaderText="ADVNO">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lbladvno" runat="server" Text='<%#Eval("advno")%>' Width="100px"></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                            
 
                                             <asp:TemplateField HeaderText="Name">
                                                 <ItemTemplate>
