@@ -3794,7 +3794,8 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = _ReportDataSet.Tables[0].Rows[0]["pactcode"].ToString();
                 string prjaddress = _ReportDataSet.Tables[0].Rows[0]["proadd"].ToString();
                 string pactdesc = _ReportDataSet.Tables[0].Rows[0]["pactdesc"].ToString();
-
+                string deptdesc = _ReportDataSet.Tables[0].Rows[0]["deptdesc"].ToString(); 
+                 
 
                 string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
 
@@ -4431,6 +4432,10 @@ namespace RealERPWEB.F_99_Allinterface
                 }
                 if (comcod == "3368") // finlay
                 {
+                    if (pactcode == "110200990001")
+                    {
+                        Rpt1.SetParameters(new ReportParameter("deptdesc", deptdesc)); 
+                    }
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                     Rpt1.SetParameters(new ReportParameter("costa", costa));
                     Rpt1.SetParameters(new ReportParameter("costb", costb));
