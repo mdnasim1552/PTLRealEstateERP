@@ -1125,7 +1125,7 @@ namespace RealERPWEB.F_12_Inv
                                 case "3308":
                                 case "3310":
                                 case "3311":
-                                case "3101":
+                                //case "3101":
                                 case "3315":
                                 case "3316":
                                 case "3325":
@@ -1327,7 +1327,7 @@ namespace RealERPWEB.F_12_Inv
             string compName = hst["comnam"].ToString();
             string usrid = hst["usrid"].ToString();
             string depcod = this.ddlDeptCode.SelectedItem.Value.ToString();
-            string subj = "New Indent Requisition";
+            string subj = "New Requisition";
             string depname = this.ddlDeptCode.SelectedItem.Text.ToString();
             string projname = this.ddlProject.SelectedItem.Text.ToString();
             string reqno = this.lblCurReqNo1.Text.ToString() + this.txtCurReqNo2.Text.ToString();
@@ -1346,7 +1346,15 @@ namespace RealERPWEB.F_12_Inv
             }
             else
             {
-                this.SendNotificaion(depcod, depname, compsms, compmail, ssl, compName, subj, projname.Remove(0, 14), reqno, createDat, createBy);
+                if (compmail == "True")
+                {
+
+                    string apprlink = "";// "<div style='color:red'><br><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+                    string msgbody = "Dear Sir,<br> Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat+ "<br>"+ apprlink;
+
+                    this.SendNotificaion(depcod, depname, compsms, compmail, ssl, compName, subj, projname.Remove(0, 14), reqno, createDat, createBy, msgbody);
+
+                }
             }
 
 
@@ -1515,7 +1523,8 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
-        private void SendNotificaion(string deptcode, string depname, string compsms, string compmail, string ssl, string compName, string subj, string projname, string reqno, string createDat, string createBy)
+        private void SendNotificaion(string deptcode, string depname, string compsms, string compmail, string ssl, string compName, string subj, string projname, string reqno, string createDat, 
+            string createBy, string msgbody)
         {
             try
             {
@@ -1538,18 +1547,29 @@ namespace RealERPWEB.F_12_Inv
                 bool isSSL = Convert.ToBoolean(dssmtpandmail.Tables[0].Rows[0]["issl"].ToString());
                 #endregion
 
-                var ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETDPTHEAD", deptcode);
+                string qstring = this.Request.QueryString["InputType"].ToString();
+                string calltype = "GETDPTHEAD";
+                if ((comcod=="3101" || comcod=="3367") && qstring == "ReqFirstApproved")
+                {
+                    calltype = "GETMGTHEADDATA";
+                }
+
+
+                DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", calltype, deptcode);
                 if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                     return;
 
+               
+               
+
                 for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
                 {
-                    string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
-                    string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
+                    string suserid = ds1.Tables[0].Rows[j]["suserid"].ToString();
+                    string tomail = ds1.Tables[0].Rows[j]["mail"].ToString();
 
-                    string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
-                    string maildescription = "Dear Sir,<br>Indent Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat;
-                    string msgbody = maildescription;
+                   // string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
+                    //string maildescription = "Dear Sir,<br>Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat;
+                    //string msgbody = maildescription;
                     bool result2 = UserNotify.SendNotification(subj, msgbody, suserid);
                     //if (compsms == "True")
                     //{
@@ -1562,7 +1582,7 @@ namespace RealERPWEB.F_12_Inv
                         bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, "", "", depname, compName, tomail, msgbody, isSSL);
                         if (Result_email == false)
                         {
-                            string Messagesd = "Indent Requisition updated but ,Email not sent";
+                            string Messagesd = "Requisition updated but ,Email not sent";
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                         }
                     }
@@ -1681,6 +1701,7 @@ namespace RealERPWEB.F_12_Inv
                         // case "3338": //ACME
                         case "3348": //Credence
                         case "3367": //EPic
+                        case "3101": //EPic
                                      //case "3368": //Finlay
                                      //  case "3101": //Model
                             break;
@@ -2022,8 +2043,23 @@ namespace RealERPWEB.F_12_Inv
         protected void lbtnFirstApproval_Click(object sender, EventArgs e)
         {
 
+            string reqtype = this.Request.QueryString["InputType"].ToString();
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string compsms = hst["compsms"].ToString();
+            string compmail = hst["compmail"].ToString();
+            string ssl = hst["ssl"].ToString();
+            string compName = hst["comnam"].ToString();
+            string usrid = hst["usrid"].ToString();
+            string depcod = this.ddlDeptCode.SelectedItem.Value.ToString();
+            string subj = "New Requisition";
+            string depname = this.ddlDeptCode.SelectedItem.Text.ToString();
+            string projname = this.ddlProject.SelectedItem.Text.ToString();
+            string prjcode = this.ddlProject.SelectedValue.ToString();
+            string reqno = this.lblCurReqNo1.Text.ToString() + this.txtCurReqNo2.Text.ToString();
+            string createDat = Convert.ToDateTime(System.DateTime.Now).ToString("dd-MMM-yyyy");
+            string createBy = hst["userfname"].ToString();
+
             string comcod = this.GetCompCode();
             string faprvusrid = hst["usrid"].ToString();
             string faprvTerminal = hst["compname"].ToString();
@@ -2072,8 +2108,21 @@ namespace RealERPWEB.F_12_Inv
                         break;
                 }
             }
+            if (hst["compmail"].ToString() == "True")
+            {
+                //F_12_Inv/PurReqEntry?InputType=ReqSecondApproved&prjcode=110200010003&genno=REQ20220700015&comcod=3101
 
-            lbtnUpdateResReq_Click(null, null);
+                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_12_Inv/F_84_Lea/";
+                string currentptah = "PurReqEntry?InputType=ReqSecondApproved&prjcode=" + prjcode + "&genno=" + txtMRFNo.Text + "&comcod=" + comcod;
+                string apprlink = uhostname + currentptah;
+               
+                string msgbody = "Dear Sir,<br>Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat + "br>" + apprlink;
+
+
+                this.SendNotificaion(depcod, depname, compsms, compmail, ssl, compName, subj, projname.Remove(0, 14), reqno, createDat, createBy, msgbody);
+
+            }
+                lbtnUpdateResReq_Click(null, null);
         }
 
         private void SaveReqDesc()
