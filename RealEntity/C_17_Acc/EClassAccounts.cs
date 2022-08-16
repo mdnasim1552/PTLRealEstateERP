@@ -1185,5 +1185,30 @@ namespace RealEntity.C_17_Acc
             public AccOpening() { }
         }
 
+
+        [Serializable]
+
+
+        public class RptMonthlyProbCollection
+        {
+            public string pactcode { get; set; }
+
+            public string pactdesc { get; set; }
+
+            public string custname { get; set; }
+            public string udesc { get; set; }
+            public string mobileno { get; set; }
+            public DateTime schdate { get; set; }
+
+            public double cdueamt { get; set; }
+
+            public string steam { get; set; }
+
+             public RptMonthlyProbCollection()
+            {
+
+            }
+        }
+
     }
 }

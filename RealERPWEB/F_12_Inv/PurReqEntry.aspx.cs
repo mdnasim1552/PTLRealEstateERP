@@ -77,7 +77,7 @@ namespace RealERPWEB.F_12_Inv
                      : (Request.QueryString["InputType"].ToString() == "HeadUsed") ? "Material Requisition (H/O Used)"
                      : (Request.QueryString["InputType"].ToString() == "LcEntry") ? "Lc Requisition"
                      : (Request.QueryString["InputType"].ToString() == "LcApproval") ? "Lc Requisition Approval"
-                     : (Request.QueryString["InputType"].ToString() == "ReqFirstApproved") ? req1stApproval 
+                     : (Request.QueryString["InputType"].ToString() == "ReqFirstApproved") ? req1stApproval
                      : "Fixed Assets Requisition Approval Screen";
 
                 this.txtCurReqDate_CalendarExtender.EndDate = System.DateTime.Today;
@@ -519,7 +519,7 @@ namespace RealERPWEB.F_12_Inv
 
 
             this.lbtnOk.Text = "New";
-           
+
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();
             //this.ImgbtnFindReq_Click(null, null);
@@ -820,7 +820,7 @@ namespace RealERPWEB.F_12_Inv
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate M.R.F No";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                       
+
                         return true;
                     }
                 }
@@ -1350,7 +1350,7 @@ namespace RealERPWEB.F_12_Inv
                 {
 
                     string apprlink = "";// "<div style='color:red'><br><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
-                    string msgbody = "Dear Sir,<br> Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat+ "<br>"+ apprlink;
+                    string msgbody = "Dear Sir,<br> Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat + "<br>" + apprlink;
 
                     this.SendNotificaion(depcod, depname, compsms, compmail, ssl, compName, subj, projname.Remove(0, 14), reqno, createDat, createBy, msgbody);
 
@@ -1523,7 +1523,7 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
-        private void SendNotificaion(string deptcode, string depname, string compsms, string compmail, string ssl, string compName, string subj, string projname, string reqno, string createDat, 
+        private void SendNotificaion(string deptcode, string depname, string compsms, string compmail, string ssl, string compName, string subj, string projname, string reqno, string createDat,
             string createBy, string msgbody)
         {
             try
@@ -1549,9 +1549,9 @@ namespace RealERPWEB.F_12_Inv
 
                 string qstring = this.Request.QueryString["InputType"].ToString();
                 string calltype = "GETDPTHEAD";
-                if ((comcod=="3101" || comcod=="3367") && qstring == "ReqFirstApproved")
+                if ((comcod == "3101" || comcod == "3367") && qstring == "ReqFirstApproved")
                 {
-                    calltype = "GETMGTHEADDATA";
+                    calltype = "GET_MGT_HEAD_DATA_EPIC";
                 }
 
 
@@ -1559,15 +1559,15 @@ namespace RealERPWEB.F_12_Inv
                 if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                     return;
 
-               
-               
+
+
 
                 for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
                 {
                     string suserid = ds1.Tables[0].Rows[j]["suserid"].ToString();
                     string tomail = ds1.Tables[0].Rows[j]["mail"].ToString();
 
-                   // string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
+                    // string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
                     //string maildescription = "Dear Sir,<br>Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat;
                     //string msgbody = maildescription;
                     bool result2 = UserNotify.SendNotification(subj, msgbody, suserid);
@@ -2115,14 +2115,73 @@ namespace RealERPWEB.F_12_Inv
                 string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_12_Inv/F_84_Lea/";
                 string currentptah = "PurReqEntry?InputType=ReqSecondApproved&prjcode=" + prjcode + "&genno=" + txtMRFNo.Text + "&comcod=" + comcod;
                 string apprlink = uhostname + currentptah;
-               
-                string msgbody = "Dear Sir,<br>Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat + "br>" + apprlink;
+
+                string msgbodyText = "Dear Sir,<br>Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat + "<br>";
 
 
+                string msgbody = @"
+<html lang=""en"">
+	<head>	
+		<meta content=""text/html; charset=utf-8"" http-equiv=""Content-Type"">
+		<title>
+			Today Work Details
+		</title>
+		<style type=""text/css"">
+			HTML{background-color: #f3f7f9;}
+			.courses-table{font-size: 12px; padding: 3px; border-collapse: collapse; border-spacing: 0;}
+			.courses-table .description{color: #505050;}
+			.courses-table td{border: 1px solid #D1D1D1; background-color: #F3F3F3; padding: 0 10px;}
+			.courses-table th{border: 1px solid #424242; color: #FFFFFF;text-align: left; padding: 0 10px;}
+			.green{background-color: #6B9852;}
+.badge-success {
+    color: #fff;
+    background-color: #44cf9c;
+}
+.badge-pink {
+    color: #fff;
+    background-color: #f672a7;
+}
+.badge-warning {
+    color: #fff;
+    background-color: #fcc015;
+}
+.badge-info {
+    color: #fff;
+    background-color: #43bee1;
+}
+.text-danger {
+    color:red;
+    font-weight:bold;
+}
+.badge-danger {
+    color: #fff;
+    background-color: #f672a7;
+}
+.badge-success {
+    color: #fff;
+    background-color: #44cf9c;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+		</style>
+	</head>
+	<body><p>Dear Sir, Please Approve New Request.</p>" + msgbodyText + "" +
+   "<div style='color:red'><br><a style='color:blue; text-decoration:underline' href = '" + apprlink + "'>Click for Approved</a> or Login ERP Software and check Interface</div>" + "<br/>" +
+    "</body></html>";
                 this.SendNotificaion(depcod, depname, compsms, compmail, ssl, compName, subj, projname.Remove(0, 14), reqno, createDat, createBy, msgbody);
 
             }
-                lbtnUpdateResReq_Click(null, null);
+            lbtnUpdateResReq_Click(null, null);
         }
 
         private void SaveReqDesc()
