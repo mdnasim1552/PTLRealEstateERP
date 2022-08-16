@@ -11,7 +11,8 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);<a href="RptSalInterest.aspx">RptSalInterest.aspx</a>
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            //<a href="RptSalInterest.aspx">RptSalInterest.aspx</a>
 
 
         });
@@ -57,6 +58,9 @@
                     <div class="form-horizontal">
 
                         <div class="form-group">
+
+
+                           
                             <div class="col-md-3 pading5px asitCol3">
                                 <asp:Label ID="lblProName" runat="server" CssClass="lblTxt lblName" Text="Project Name:"></asp:Label>
 
@@ -67,7 +71,8 @@
                             </div>
 
                             <div class="col-md-3 pading5px asitCol3">
-                                <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" CssClass="form-control inputTxt chzn-select" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged"
+
+                                <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged"
                                     TabIndex="5">
                                 </asp:DropDownList>
 
@@ -88,7 +93,7 @@
                             </div>
 
                             <div class="col-md-3 pading5px asitCol3">
-                                <asp:DropDownList ID="ddlCustName" runat="server" CssClass="form-control inputTxt"
+                                <asp:DropDownList ID="ddlCustName" runat="server" CssClass="form-control chzn-select"
                                     TabIndex="5">
                                 </asp:DropDownList>
 

@@ -277,5 +277,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             this.grvacc_DataBind();
         }
+
+        protected void grvacc_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvacc.PageIndex = e.NewPageIndex;
+            this.grvacc_DataBind();
+
+        }
     }
 }
