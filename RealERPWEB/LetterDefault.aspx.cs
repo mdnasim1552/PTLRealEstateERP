@@ -138,6 +138,21 @@ namespace RealERPWEB
             string peradd = ds.Tables[0].Rows[0]["peradd"].ToString()??"";
             string sec = ds.Tables[0].Rows[0]["sec"].ToString() ?? "";
 
+            string bsal = ds.Tables[0].Rows[0]["bsal"].ToString() ?? "";
+            string hrent = ds.Tables[0].Rows[0]["hrent"].ToString() ?? "";
+            string cven = ds.Tables[0].Rows[0]["conven"].ToString() ?? "";
+            string mallow = ds.Tables[0].Rows[0]["mallow"].ToString() ?? "";
+            string total = ds.Tables[0].Rows[0]["total"].ToString() ?? "";
+            string grade = ds.Tables[0].Rows[0]["grade"].ToString() ?? "";
+            string doj = ds.Tables[0].Rows[0]["doj"].ToString() ?? "";
+            string cur_year = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy");
+            string incmtax = "";
+            string payablesal = "";
+            string idcard = "";
+            string inwords2 = "";
+            double inwrd = 0;
+            string temptable = ""; 
+
             string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
 
             string lbody = string.Empty;
@@ -152,14 +167,14 @@ namespace RealERPWEB
                     {
                         lbody =
                            "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
-                           "<p style='margin-bottom:-11px'><strong>Ref:ERE/HR/CL/2022/027</strong></p>" +
+                           "<p style='margin-bottom:-11px'><strong>Ref:ERE/HR/CL/"+ cur_year + "/027</strong></p>" +
                            "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
                             "<p style='margin-bottom:-11px'>Employee ID : " + adv + "</p>" +
                             "<p style='margin-bottom:-11px'>" + desig + "</p>" +
                             "<p style='margin-bottom:-11px'>" + dept + "</p>" +
                             "<p style='margin-bottom:-11px'>" + sec + "</p>" +
                             "<p>Subject:<strong>Confirmation Letter.</strong> </p>" +
-                            "<p>Dear " + name + "</p>" +
+                            "<p>Dear Mr " + name + "</p>" +
                             "<p><strong>Congratulations!</strong></p>" +
                             "<p>We would like to congratulate you on your successful completion of the probation period in our organization. We are glad to have received satisfactory reports from your superior regarding your performance during the said period. </p>" +
                             "<p>You have good product knowledge & inventory accuracy; are good at execution of tasks; able to maintain transparency in documentation; are punctual and disciplined at work; respond positively to other assigned tasks and we appreciate you for that. We are expecting an increase in work knowledge and an improvement in warehouse capacity management from you which will foster your performance in the future.</p>" +
@@ -184,6 +199,109 @@ namespace RealERPWEB
                     }
 
                     break;
+
+                    //appoinment letter
+                case "10002":
+                    if (this.GetCompCode() == "3101")
+                    {
+
+                        lbody =
+                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:EREL/AL2022/027</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
+                        "<p><strong>Subject:</strong> Appointment Letter - <strong>" + desig + "</strong></p>" +
+                        "<p>Dear Mr " + name + ",</p>" +
+                        //body
+                        "<p style='margin-bottom:-11px'>We are delighted to appoint you as a  <strong>" + desig + "</strong> of the <strong>" + dept + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
+                        "<p> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
+                        "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
+
+                        //position info
+                        "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + date + "</span></p>" +
+
+                        //salary break down table
+                        "<p><strong>Salary Breakdown :</strong></p>" +
+                        "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:center'>" + bsal + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + hrent + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + mallow + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:center'>" + cven + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong>" + total + "</strong></td></tr></table>" +
+
+                        "<p style='margin-bottom:-11px'><strong>Mobile Allowance</strong><span>: As per company policy.</span></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Festival Bonus</strong><span>: You will be entitled for two festival bonuses yearly.</span></p>" +
+
+                        //leave allocation
+                        "<p><strong>Leave Allocation :</strong></p>" +
+                        "<table style='width:70%;margin-left:20px;border-style:solid;border:1px solid black;'><tr style='border-style:solid;border:1px solid black;'><th style='width:50px;border-style:solid;border:1px solid black;'>SL</th><th style='border-style:solid;border:1px solid black;'>Types of Leave</th><th style='border-style:solid;border: 1px solid black;'>Total Leave in a Year</th></tr>" + temptable + "</table>" +
+
+
+                        "<ul><li style='margin-top:100px;'>You will be able to avail earned leave after completion of 1 (one) year employment with Edison Real Estate Limited. Casual leave and sick leave shall be allocated as pro rata basis calculated from your date of joining. </li>" +
+                        "<li style='margin-top:10px;'>During probation period, you will be able to avail maximum 2 (two) days leave in a month from your casual/sick leave. Any other absent will be counted as leave without pay.</li></ul>" +
+
+                        //probation
+                        "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a three-month probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
+                        "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
+
+                        //termination
+                        "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                        "<p></p>" +
+                        "<p></p>" +
+
+                        //footer
+                        "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>Ahmed Pasha</strong></p></span></p>" +
+                        "<br>" +
+                        "<p style='display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Business Officer</strong></p></span></p>" +
+                        "<p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p>" +
+                        "<p></p>" +
+                        "<p></p>" +
+                        "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p>";
+                    }
+                    break;
+
+                    //offer letter
+                case "10003":
+                    if (this.GetCompCode() == "3101")
+                    {
+                        lbody =
+                       "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
+                       "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
+                       "<p><strong>Subject:</strong> Offer Letter-<strong>" + desig + "</strong></p>" +
+                       "<p>Dear Mr " + name + ",</p>" +
+
+                       "<p style='margin-bottom:-11px'>We are delighted to offer you the position of <strong>" + desig + "</strong> of the <strong>" + sec + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
+                       "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
+                       "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
+                        "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + date + "</span></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
+                       "<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>" +
+
+                       "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a three-month probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
+                       "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                       "<p style='margin-bottom:-11px'>We look forward to the opportunity to work with you in an atmosphere that is successful and mutually challenging and rewarding.If you don’t accept this letter, please let us know within " + date + ".</p>" +
+
+                           "<p></p>" +
+
+                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>Ahmed Pasha</strong></p></span></p>" +
+                  "<br>" +
+                           "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Business Officer</strong></p></span></p>" +
+
+
+                       "<p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p>" +
+
+
+                       "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p>";
+
+                    }
+                    break;
+
+            
             }
             this.txtml.Text = lbody;
 

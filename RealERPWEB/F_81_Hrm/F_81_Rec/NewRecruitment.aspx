@@ -217,7 +217,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-
+                                            <asp:TemplateField HeaderText="Present Address" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpereadd" runat="server" Text='<%#Eval("peradd").ToString()%>' Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Present Address" Visible="false">
                                             <ItemTemplate>
@@ -239,12 +243,27 @@
                                                         
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-righ">
+
+                                                                     <li class="mt-2">
+                                                            <asp:HyperLink ID="lnkOfferLetter" Target="_blank"
+                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=NewRec &Entry=offer Letter &advno="+Eval("advno") %>'
+                                                                CssClass="dropdown-item " runat="server">Offer Letter</asp:HyperLink>
+                                                        </li>
+                                                        <li class="mt-2">
+                                                            <asp:HyperLink ID="lnkAppoint" Target="_blank"
+                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10002 &Page=NewRec &Entry=appoinment Letter &advno="+Eval("advno") %>'
+                                                                CssClass="dropdown-item"  runat="server">Appoinment Letter</asp:HyperLink>
+                                                        </li>
+                                                        </li>
+
                                                                    <li class="mt-2">
                                                             <asp:HyperLink ID="lnkConfirmation" Target="_blank"
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
                                                                 CssClass="dropdown-item"  runat="server">Confirmation Letter</asp:HyperLink>
                                                         
                                                         </li>
+
+                                                  
 
 
                                                     </ul>
