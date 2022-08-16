@@ -505,7 +505,9 @@
                         <li class="nav-item d-none"><a href="#" class="nav-link smooth-scroll" data-toggle="modal" data-target="#fdollowingModal">Change Pasword</a></li>
                         <li class="nav-item">
                             <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
-                        <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
+                       
+                        
+                        <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light">My Shortcut</a></li>
 
                     </ul>
                 </div>
