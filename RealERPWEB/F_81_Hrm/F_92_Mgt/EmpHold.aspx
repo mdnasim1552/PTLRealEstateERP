@@ -167,7 +167,7 @@
                 ShowFooter="True"   OnRowDeleting="gvemphold_RowDeleting">
                 <RowStyle />
                 <Columns>
-                    <asp:TemplateField HeaderText="Sl.No.">
+                    <asp:TemplateField HeaderText="Sl.">
                         <ItemTemplate>
                             <asp:Label ID="SLNO" runat="server" Style="text-align: right"
                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -177,7 +177,7 @@
 
                     <asp:CommandField ShowDeleteButton="True" />
 
-                    <asp:TemplateField HeaderText="Card #">
+                    <asp:TemplateField HeaderText="Card">
                         <ItemTemplate>
                             <asp:Label ID="lgvidcardno" runat="server" Font-Size="11PX"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
