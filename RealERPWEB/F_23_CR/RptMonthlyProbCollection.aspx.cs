@@ -138,36 +138,41 @@ namespace RealERPWEB.F_23_CR
             private void lbtnPrint_Click(object sender, EventArgs e)
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = GetComeCode();
+                //string comcod = this.GetComeCode();
+                string comcod = hst["comcod"].ToString();
                 string comnam = hst["comnam"].ToString();
                 string compname = hst["compname"].ToString();
-                string comsnam = hst["comsnam"].ToString();
-                string comadd = hst["comadd1"].ToString();
-
-                string session = hst["session"].ToString();
                 string username = hst["username"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                string fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-                DataTable dt = (DataTable)Session["tblmrhistory"];
+                DataTable dt = (DataTable)Session["tblpcollection"];
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("pactcode <> ' ' ");
+                dt = dv.ToTable();
 
                 LocalReport Rpt1 = new LocalReport();
-                var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.OtherCollHistory>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptOtherCollHistory", lst, null, null);
+                var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptMonthlyProbCollection>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptMonthlyProbCollection", list, null, null);
+                
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Other's Collection History"));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Probable Collection Report"));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+                Rpt1.SetParameters(new ReportParameter("date", "( From " + fromdate + " To " + todate + ") "));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-            }
-
 
         }
 
-    }
+
+     }
+
+  }

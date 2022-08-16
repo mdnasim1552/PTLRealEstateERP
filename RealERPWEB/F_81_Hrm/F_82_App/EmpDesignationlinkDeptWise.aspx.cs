@@ -266,7 +266,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         }
 
-
-
+        protected void gvEmpListslno_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvEmpListslno.PageIndex = e.NewPageIndex;
+            this.ShowAllEmp();
+        }
     }
 }

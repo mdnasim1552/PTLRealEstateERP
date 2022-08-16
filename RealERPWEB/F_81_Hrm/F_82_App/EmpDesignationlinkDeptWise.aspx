@@ -118,17 +118,17 @@
                 </div>
                 <div class="card-body">
             <asp:GridView ID="gvEmpListslno" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                AutoGenerateColumns="False"
+                AutoGenerateColumns="False" OnPageIndexChanging="gvEmpListslno_PageIndexChanging" AllowPaging="true"  PageSize="3000"
                 ShowFooter="True" Width="420px">
                 <RowStyle />
                 <Columns>
-                    <asp:TemplateField HeaderText="Sl.No.">
+                    <asp:TemplateField HeaderText="Sl.">
                         <ItemTemplate>
-                            <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                            <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="12px"
                                 Style="text-align: right"
                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                         </ItemTemplate>
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px" />
                     </asp:TemplateField>
 
 
@@ -151,13 +151,13 @@
                                 Width="200px"></asp:Label>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:Label ID="lgvTotalnagad" runat="server" Font-Bold="True" Font-Size="12px"
+                            <asp:Label ID="lgvTotalnagad" runat="server" 
                                 ForeColor="#000" Style="text-align: right"></asp:Label>
                         </FooterTemplate>
 
 
                         <ItemStyle HorizontalAlign="left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px" />
                     </asp:TemplateField>
                     <%--<asp:TemplateField HeaderText="Company Name">
 
@@ -181,7 +181,7 @@
                                 Width="130px"></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px" />
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Section Name">
@@ -191,17 +191,17 @@
                                 Width="150px"></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px"/>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Card #">
+                    <asp:TemplateField HeaderText="Card ">
                         <ItemTemplate>
                             <asp:Label ID="lblgvcardnoemp" runat="server"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                 Width="80px"></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px" />
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Employee Name">
@@ -212,10 +212,10 @@
                         </ItemTemplate>
 
                         <FooterTemplate>
-                            <asp:LinkButton ID="lbntUpdateSl" runat="server" OnClick="lbntUpdateSl_Click" CssClass="btn btn-danger btn-sm">Update</asp:LinkButton>
+                            <asp:LinkButton ID="lbntUpdateSl" runat="server" OnClick="lbntUpdateSl_Click" CssClass="btn btn-success btn-sm">Update</asp:LinkButton>
                         </FooterTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px" />
                     </asp:TemplateField>
 
 
@@ -226,7 +226,7 @@
                                 Width="150px"></asp:Label>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px" />
                     </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Sl No">
@@ -236,7 +236,7 @@
                                 Width="40px" BorderColor="blue" BorderWidth="1px" BackColor="White" BorderStyle="Solid" Style="text-align: center" Font-Bold="true"></asp:TextBox>
                         </ItemTemplate>
                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                        <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-size="16px" />
                     </asp:TemplateField>
 
 

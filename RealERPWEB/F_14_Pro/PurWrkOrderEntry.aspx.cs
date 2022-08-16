@@ -3626,13 +3626,12 @@ namespace RealERPWEB.F_14_Pro
 
             try
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                //((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 if (this.lbtnOk.Text == "Ok")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Plese Select Order No";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    string Messagesd = "Plese Select Order No";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     return;
-
                 }
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -4084,16 +4083,15 @@ namespace RealERPWEB.F_14_Pro
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Messagesd = "Error:" + ex.Message;             
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                //return;
             }
 
 
             try
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-
+                 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
                 string comnam = hst["comnam"].ToString();
@@ -4183,8 +4181,8 @@ namespace RealERPWEB.F_14_Pro
                 Supadd.Text = Address;
                 TextObject txtPhoneNumber = rptwork.ReportDefinition.ReportObjects["txtPhoneNumber"] as TextObject;
                 txtPhoneNumber.Text = Phone;
-                TextObject Fax = rptwork.ReportDefinition.ReportObjects["txtfax"] as TextObject;
-                Fax.Text = fax;
+                //TextObject Fax = rptwork.ReportDefinition.ReportObjects["txtfax"] as TextObject;
+                //Fax.Text = fax;
                 TextObject rptpurdate = rptwork.ReportDefinition.ReportObjects["txtOrderDate"] as TextObject;
                 rptpurdate.Text = Orderdate;
                 TextObject rptPara1 = rptwork.ReportDefinition.ReportObjects["TxtLETERDES"] as TextObject;
@@ -4311,8 +4309,10 @@ namespace RealERPWEB.F_14_Pro
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                 
+                string Messagesd = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                //return;
             }
 
 
@@ -4328,7 +4328,7 @@ namespace RealERPWEB.F_14_Pro
         {
             try
             {
-                this.AutoSavePDF();
+               
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string compsms = hst["compsms"].ToString();
                 string compmail = hst["compmail"].ToString();
@@ -4442,7 +4442,7 @@ namespace RealERPWEB.F_14_Pro
         {
             try
             {
-
+                this.AutoSavePDF();
                 string comcod = this.GetCompCode();
 
 
@@ -4474,10 +4474,8 @@ namespace RealERPWEB.F_14_Pro
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
                 if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 {
-                    string Messagesd = "Purchase order didn't save";
-                    
+                    string Messagesd = "Purchase order didn't save";                    
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-
                     return;
                 }
                 string subj = "Purchase Order";
@@ -4559,6 +4557,7 @@ namespace RealERPWEB.F_14_Pro
                     {
                         string Messagesd = "Email has not been sent, Email or SMTP info Empty";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        return;
                     }
                 }
             }
@@ -4566,6 +4565,8 @@ namespace RealERPWEB.F_14_Pro
             {
                 string Messagesd = "Email has not been sent " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                return;
+
             }
 
         }
