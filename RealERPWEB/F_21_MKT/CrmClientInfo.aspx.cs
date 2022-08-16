@@ -123,6 +123,8 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[22].Visible = true;
                     this.gvSummary.Columns[23].Visible = true;
 
+                    //Checkbox Permanent Delete
+                    this.divPermntDel.Visible = false;
 
                     break;
 
@@ -4889,6 +4891,7 @@ namespace RealERPWEB.F_21_MKT
 
                 this.rpclientinfo.DataSource = ds1.Tables[0];
                 this.rpclientinfo.DataBind();
+                this.lblPID.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["pid"].ToString() : ds1.Tables[0].Rows[0]["pid"].ToString();
                 this.lblprosname.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["prosdesc"].ToString() : ds1.Tables[0].Rows[0]["prosdesc"].ToString();
                 this.lblContactPerson.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["conperson"].ToString() : ds1.Tables[0].Rows[0]["conperson"].ToString();
                 this.lblprosphone.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["phone"].ToString() : ds1.Tables[0].Rows[0]["phone"].ToString();
