@@ -171,6 +171,21 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[22].Visible = true;
                     this.gvSummary.Columns[26].Visible = true;
                     break;
+
+                case "3367"://Epic
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[9].Visible = true;
+                    this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[15].Visible = false;
+                    this.gvSummary.Columns[16].Visible = false;
+                    this.gvSummary.Columns[17].Visible = false;
+                    this.gvSummary.Columns[18].Visible = false;
+                    this.gvSummary.Columns[19].Visible = true;
+                    this.gvSummary.Columns[20].Visible = true;
+                    this.gvSummary.Columns[22].Visible = true;
+                    break;
+
                 default:
                     this.gvSummary.Columns[13].Visible = false;
                     this.gvSummary.Columns[12].Visible = false;
@@ -184,15 +199,6 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[20].Visible = false;
                     this.gvSummary.Columns[22].Visible = true;
                     break;
-
-
-
-
-
-
-
-
-
 
 
             }
@@ -4872,8 +4878,6 @@ namespace RealERPWEB.F_21_MKT
             try
             {
 
-
-
                 string comcod = this.GetComeCode();
                 int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
@@ -4894,14 +4898,13 @@ namespace RealERPWEB.F_21_MKT
                 this.lblaptsize.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["aptsize"].ToString() : ds1.Tables[0].Rows[0]["aptsize"].ToString();
                 this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                 //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
-                this.lbleditempid.Value = gempid;
-
-                
+                this.lbleditempid.Value = gempid;                
                 this.lblgeneratedate.Value= ds1.Tables[1].Rows.Count == 0 ? "01-Jan-1900" : Convert.ToDateTime(ds1.Tables[1].Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
-
                 this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
                 this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
+                this.lblProfession.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["profession"].ToString() : ds1.Tables[0].Rows[0]["profession"].ToString();
+                this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["sourcetxt"].ToString() : ds1.Tables[0].Rows[0]["sourcetxt"].ToString();
 
                 ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);

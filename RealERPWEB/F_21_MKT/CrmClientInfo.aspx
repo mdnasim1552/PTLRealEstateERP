@@ -2783,7 +2783,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             <RowStyle Font-Size="12px" Height="25px" Font-Names="Century Gothic" />
                                             <Columns>
 
-
+                                                <%--0--%>
                                                 <asp:TemplateField HeaderText="Sl">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
@@ -2792,7 +2792,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
-                                                <%--0--%>
+                                                <%--1--%>
 
                                                 <asp:TemplateField>
                                                     <HeaderTemplate>
@@ -2811,7 +2811,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                <%--1--%>
+                                                <%--2--%>
 
 
                                                 <asp:TemplateField HeaderText="">
@@ -2824,7 +2824,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                <%--2--%>
+                                                <%--3--%>
 
                                                 <asp:TemplateField HeaderText="">
 
@@ -2844,7 +2844,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
 
                                                 </asp:TemplateField>
-                                                <%--3--%>
+                                                <%--4--%>
 
                                                 <asp:TemplateField HeaderText="Code" Visible="false">
                                                     <ItemTemplate>
@@ -2856,7 +2856,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                <%--4--%>
+                                                <%--5--%>
                                                 <asp:TemplateField HeaderText="P-ID">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lsircode1" runat="server" Width="40px"
@@ -2865,7 +2865,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                <%--5--%>
+                                                <%--6--%>
                                                 <asp:TemplateField HeaderText="Generated">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgenerated" runat="server" Font-Size="11px" Width="70px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy") %>'></asp:Label>
@@ -2873,7 +2873,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                <%--6--%>
+                                                <%--7--%>
 
                                                 <asp:TemplateField HeaderText="Prospect Details">
                                                     <ItemTemplate>
@@ -2896,7 +2896,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                 </asp:TemplateField>
 
 
-                                                <%--7--%>
+                                                <%--8--%>
                                                 <asp:TemplateField HeaderText="Followup">
                                                     <ItemTemplate>
 
@@ -2921,7 +2921,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                 </asp:TemplateField>
 
 
-                                                <%--8--%>
+                                                <%--9--%>
 
                                                 <asp:TemplateField HeaderText="Lead Status" Visible="false">
                                                     <ItemTemplate>
@@ -2929,7 +2929,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leadsta")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--9--%>
+                                                <%--10--%>
 
                                                 <asp:TemplateField HeaderText="Associate">
                                                     <ItemTemplate>
@@ -2940,7 +2940,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <ItemStyle HorizontalAlign="Left" />
 
                                                 </asp:TemplateField>
-                                                <%--10--%>
+                                                <%--11--%>
 
                                                 <asp:TemplateField HeaderText="Team Leader">
                                                     <ItemTemplate>
@@ -2951,7 +2951,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <ItemStyle HorizontalAlign="Left" />
 
                                                 </asp:TemplateField>
-                                                <%--11--%>
+                                                <%--12--%>
 
                                                 <asp:TemplateField HeaderText="Status">
                                                     <ItemTemplate>
@@ -2959,7 +2959,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstatus")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--12--%>
+                                                <%--13--%>
 
                                                 <asp:TemplateField HeaderText="Type">
                                                     <ItemTemplate>
@@ -2967,7 +2967,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadType")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--13--%>
+                                               
                                                 <%-- <asp:TemplateField HeaderText="Approve Date" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lappdat" runat="server" Width="60px" Font-Size="10px"
@@ -2981,7 +2981,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-
+                                                 <%--14--%>
                                                 <asp:TemplateField HeaderText="Active" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkAct" ClientIDMode="Static" Width="12" ToolTip="" runat="server" OnClick="lnkAct_Click"><span class="fa fa-edit"></span></asp:LinkButton>
@@ -2989,7 +2989,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <ItemStyle HorizontalAlign="left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                <%--14--%>
+                                                <%--15--%>
 
 
 
@@ -2999,14 +2999,14 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "phone")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--15--%>
+                                                <%--16--%>
                                                 <asp:TemplateField HeaderText="Email">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvemail" runat="server" Width="60px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--16--%>
+                                                <%--17--%>
 
 
                                                 <asp:TemplateField HeaderText="Occupation">
@@ -3015,7 +3015,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "profession")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--17--%>
+                                                <%--18--%>
 
 
                                                 <asp:TemplateField HeaderText="Residence">
@@ -3024,7 +3024,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "caddress")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--18--%>
+                                                <%--19--%>
 
 
 
@@ -3034,7 +3034,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--19--%>
+                                                <%--20--%>
 
 
                                                 <asp:TemplateField HeaderText="Source">
@@ -3043,7 +3043,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--20--%>
+                                                <%--21--%>
 
 
                                                 <asp:TemplateField HeaderText="Last discussion">
@@ -3052,7 +3052,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>   
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                 <%--21--%>
+                                                 <%--22--%>
 
 
                                                 <asp:TemplateField HeaderText="Notes">
@@ -3062,7 +3062,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <%--22--%>
+                                                <%--23--%>
 
                                                 <asp:TemplateField HeaderText="Prefered Location" Visible="false">
                                                     <ItemTemplate>
@@ -3073,7 +3073,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
 
 
-                                                <%--23--%>
+                                                <%--24--%>
 
                                                 <asp:TemplateField HeaderText="Code" Visible="false">
                                                     <ItemTemplate>
@@ -3084,7 +3084,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
-                                                <%--24--%>
+                                                <%--25--%>
 
                                                 <asp:TemplateField HeaderText="Retreive" Visible="false">
                                                     <ItemTemplate>
@@ -3093,7 +3093,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     <ItemStyle HorizontalAlign="center" />
                                                 </asp:TemplateField>
-                                                 <%--25--%>
+                                                 <%--26--%>
                                                  <asp:TemplateField HeaderText="Next Followup" Visible="false">
                                                     <ItemTemplate> 
                                                              <asp:Label ID="lbllfollowuplinkkpisum" Width="90px" runat="server" 
@@ -3104,7 +3104,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                 <%--26--%>
+                                                 <%--27--%>
 
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
@@ -4167,6 +4167,10 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                         <strong>Prefered Area: </strong><span id="lblpreferloc" runat="server"></span>
                                         <br>
                                         <strong>Appartment Size: </strong><span id="lblaptsize" runat="server"></span>
+                                         <br>
+                                        <strong>Profession: </strong><span id="lblProfession" runat="server"></span>
+                                         <br>
+                                        <strong>Source: </strong><span id="lblSource" runat="server"></span>
 
                                         <asp:HiddenField ID="lblproscod" runat="server" />
                                         <asp:HiddenField ID="lbleditempid" runat="server" />
