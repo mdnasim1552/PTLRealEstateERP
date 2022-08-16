@@ -68,6 +68,11 @@ namespace RealERPWEB.F_34_Mgt
                 case "1108":
                 case "1109":
                 case "3101":
+                case "3367":
+                case "3368":
+
+
+
 
 
 

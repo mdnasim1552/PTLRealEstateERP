@@ -303,6 +303,7 @@ namespace RealERPWEB.F_22_Sal
                 //case "3101":
                 case "3356"://
                 case "3366"://Lanco
+                case "3101":
                     this.payscheduleRDLC();
                     break;
 
@@ -325,7 +326,7 @@ namespace RealERPWEB.F_22_Sal
             string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string ddldesc = hst["ddldesc"].ToString();
 
-            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
+            DataTable basicinfo = (DataTable)ViewState["tblData"];
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string UsirCode = this.lblCode.Text;
             string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));

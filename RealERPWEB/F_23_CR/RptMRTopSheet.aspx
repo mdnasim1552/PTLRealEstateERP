@@ -181,7 +181,7 @@
                                     ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl">
+                                        <asp:TemplateField HeaderText="SL">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvINSlNo0" runat="server" Font-Bold="True"
                                                     Style="text-align: center"
@@ -236,15 +236,40 @@
 
                                         <asp:TemplateField HeaderText="Project Name">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchproj" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Project Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchproj" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Project Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPactdesc" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
-                                                    Width="150px"></asp:Label>
+                                                    Width="180px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Unit Name">
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchunit" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Unit Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvunitdesc" runat="server" BackColor="Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unitdesc")) %>'
+                                                    Width="180px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Cust Name">
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchcust" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Cust Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvcustdesc" runat="server" BackColor="Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custdesc")) %>'
+                                                    Width="180px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
                                                 <asp:TextBox ID="txtSearchamt" BackColor="Transparent" BorderStyle="None" runat="server" Width="75px" placeholder="Amount" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
