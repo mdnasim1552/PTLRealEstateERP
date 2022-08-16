@@ -94,6 +94,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "PaymentSchedule":
+                case "LO":
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -102,6 +103,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
                     break;
+
                 case "DueCollAll":
                     this.MultiView1.ActiveViewIndex = 2;
                     this.chkInvoicePrint.Visible = true;
