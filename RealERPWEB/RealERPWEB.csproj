@@ -179,7 +179,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2245,6 +2245,7 @@
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
+    <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
@@ -4107,6 +4108,13 @@
     </Compile>
     <Compile Include="F_23_CR\RptDuesReportAll.aspx.designer.cs">
       <DependentUpon>RptDuesReportAll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptMonthlyProbCollection.aspx.cs">
+      <DependentUpon>RptMonthlyProbCollection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptMonthlyProbCollection.aspx.designer.cs">
+      <DependentUpon>RptMonthlyProbCollection.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptOtherCollHistory.aspx.cs">
       <DependentUpon>RptOtherCollHistory.aspx</DependentUpon>

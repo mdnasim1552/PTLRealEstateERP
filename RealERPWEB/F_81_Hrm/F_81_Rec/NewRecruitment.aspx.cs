@@ -26,13 +26,38 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             if (!IsPostBack)
             {
                 this.getDesig();
-                //this.getDept();
-                GetData();
+                this.getDept();
+                GetInputEntry();
                 getAllData();
             }
 
         }
 
+
+        //all department(rakib)
+        private void getDept()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds3 = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETDEPTNAME", "%%", "%%", "", "", "", "", "", "");
+            if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
+                return;
+            ViewState["tbldept"] = ds3.Tables[0];
+        }
+
+
+        //all designation(rakib)
+
+        private void getDesig()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds3 = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETDESIG", "", "", "", "", "", "");
+            if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
+                return;
+            ViewState["dtDesig"] = ds3.Tables[0];
+
+        }
+
+        //all new recruit emp(rakib)
         private void getAllData()
         {
             Session.Remove("alldata");
@@ -44,7 +69,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 this.gvAllRec.DataBind();
                 return;
             }
-   
+
             this.gvAllRec.DataSource = ds.Tables[0];
             this.gvAllRec.DataBind();
         }
@@ -55,25 +80,46 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         }
 
 
-        private void GetData()
+        //set label and input(rakib)
+        private void GetInputEntry()
         {
             string comcod = this.GetComeCode();
-            DataSet ds = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GEETCODE", "%%", "%%", "", "", "", "", "", "");
+          string advno=  this.lbladvnoo.Text;
+            DataSet ds = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GEETCODE", advno, "", "", "", "", "", "");
             if (ds == null || ds.Tables[0].Rows.Count == 0)
                 return;
             DataTable dt = ds.Tables[0];
             DataTable dt1 = (DataTable)ViewState["dtDesig"];
+            DataTable dt2 = (DataTable)ViewState["tbldept"];
             DropDownList ddlgval;
             gvNewRec.DataSource = ds.Tables[0];
             gvNewRec.DataBind();
+
+
+            string gvalue = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string gcod = dt.Rows[i]["gcod"].ToString();
                 switch (gcod)
                 {
+
+                    //dept
+                    case "97005":
+                        gvalue = dt.Rows[i]["value"].ToString();
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
+                        ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+
+                        ddlgval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig"));
+                        ddlgval.DataTextField = "deptdesc";
+                        ddlgval.DataValueField = "deptcode";
+                        ddlgval.DataSource = dt2;
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = gvalue;
+                        break;
                     //designation
                     case "97007":
-
+                        gvalue = dt.Rows[i]["value"].ToString();
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
@@ -83,10 +129,12 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ddlgval.DataValueField = "hrgcod";
                         ddlgval.DataSource = dt1;
                         ddlgval.DataBind();
-                        ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
+                        ddlgval.SelectedValue = gvalue;
                         break;
                     //present address
                     case "97103":
+                        gvalue = dt.Rows[i]["value"].ToString();
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Text = gvalue;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = true;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
@@ -94,6 +142,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         break;
                     //permanent address
                     case "97104":
+                        gvalue = dt.Rows[i]["value"].ToString();
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Text = gvalue;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = true;
 
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -108,6 +158,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
                         break;
                     default:
+                        gvalue = dt.Rows[i]["value"].ToString();
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text = gvalue;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = true;
                         ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
@@ -121,29 +173,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             }
         }
 
-        private void getDept()
-        {
-            string comcod = this.GetComeCode();
-            DataSet ds3 = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETDEPTNAME", "%%", "%%", "", "", "", "", "", "");
-            if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
-                return;
-            //this.ddldept.DataTextField = "deptdesc";
 
-            //this.ddldept.DataValueField = "deptcode";
-            //this.ddldept.DataSource = ds3.Tables[0];
-            //this.ddldept.DataBind();
-        }
-
-        private void getDesig()
-        {
-            string comcod = this.GetComeCode();
-            DataSet ds3 = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETDESIG", "", "", "", "", "", "");
-            if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
-                return;
-            ViewState["dtDesig"] = ds3.Tables[0];
-
-        }
-
+        //save data by gcod(rakib)
         protected void lnkSave_Click(object sender, EventArgs e)
         {
             DataTable dt1 = new DataTable();
@@ -164,6 +195,19 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    if (gval.Length == 0)
+                    {
+                        string Message = "Select Type to continue";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                        return;
+                    }
+                }
+                //dept
+                else if (gcode == "97005")
+                {
+                    gval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).SelectedItem.Text.ToString();
+                    dr["gcod"] = gcode;
+                    dr["gval"] = gval.Substring(0, 12);
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -280,18 +324,23 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             if (dt1.Rows.Count == 0 || dt1 == null)
                 return;
             string curdate = System.DateTime.Now.ToString();
+            string lbladvno = this.lbladvnoo.Text;
+            string advno = "";
+            if (lbladvno == "")
+            {
 
-            DataSet dt = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTSHORTLISTB", "02001", "96001", curdate, curdate, "", "", "");
-            string advno = dt.Tables[0].Rows[0]["advno"].ToString();
+                DataSet dt = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTSHORTLISTB", "02001", "96001", curdate, curdate, "", "", "");
+                 advno = dt.Tables[0].Rows[0]["advno"].ToString();
+            }
+            else
+            {
+                 advno = lbladvno;
+
+            }
+
             List<bool> resultCompA = new List<bool>();
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
-
-
-                //bool result = RecData.UpdateTransInfo3(comcod, "SP_ENTRY_VEHICLE_MANAGEMENT", "UPSERTVEHICLEINF", vehicleId,
-                //               dt1.Rows[i]["gcod"].ToString(), dt1.Rows[i]["gvalue"].ToString(), dt1.Rows[i]["gval"].ToString(), remarks, "", "", "", "", "", "", "",
-                //                   "", "", "", "", "", "", "", "", "", "", userId);
-
                 bool result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTUPDATE", advno, dt1.Rows[i]["gcod"].ToString(), dt1.Rows[i]["gval"].ToString(), "", "", "", "", "", "", "");
                 resultCompA.Add(result);
             }
@@ -303,11 +352,14 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successful" + "');", true);
+                ViewState.Remove("lbladvno");
                 getAllData();
                 this.resetinput();
             }
         }
 
+
+        //reset input fields(rakib)
         private void resetinput()
         {
             for (int i = 0; i < this.gvNewRec.Rows.Count; i++)
@@ -318,6 +370,37 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             }
         }
 
-       
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+
+            string comcod = this.GetComeCode();
+            string msg = "";
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.gvAllRec.Rows[index].FindControl("lbladvno")).Text.ToString();
+
+            bool result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "REMOVE_REC_EMP", id, "", "", "", "", "", "");
+            if (result)
+            {
+                msg = "Deleted Successfully";
+                this.getAllData();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+            }
+            else
+            {
+                msg = "Delete Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            }
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            ViewState.Remove("lbladvno");
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lbladvno = ((Label)this.gvAllRec.Rows[index].FindControl("lbladvno")).Text.ToString();
+            this.lbladvnoo.Text= lbladvno;
+            this.GetInputEntry();
+        }
     }
 }

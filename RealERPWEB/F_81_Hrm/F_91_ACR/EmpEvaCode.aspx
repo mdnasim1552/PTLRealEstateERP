@@ -61,7 +61,7 @@
                                 Visible="False" />
                             <FooterStyle/>
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -87,7 +87,7 @@
                                         <asp:TextBox ID="txtgrcode" runat="server" Font-Size="12px" Height="16px"
                                             MaxLength="3"
                                             Style="border-style: none; border-color: midnightblue; font-size: 12px; text-align: left;"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod3")) %>'
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod3"))  %>'
                                             Width="50px"></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
