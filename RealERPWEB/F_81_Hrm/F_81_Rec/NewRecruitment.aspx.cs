@@ -25,15 +25,23 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         {
             if (!IsPostBack)
             {
-                this.getDesig();
                 this.getDept();
-                GetInputEntry();
+                this.getSection();
+                this.getDesig();
+                 GetInputEntry();
                 getAllData();
             }
 
         }
 
-
+        private void getSection()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds3 = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETSECTION", "", "", "", "", "", "");
+            if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
+                return;
+            ViewState["tblsec"] = ds3.Tables[0];
+        }
         //all department(rakib)
         private void getDept()
         {
@@ -91,6 +99,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             DataTable dt = ds.Tables[0];
             DataTable dt1 = (DataTable)ViewState["dtDesig"];
             DataTable dt2 = (DataTable)ViewState["tbldept"];
+            DataTable dt3 = (DataTable)ViewState["tblsec"];
             DropDownList ddlgval;
             gvNewRec.DataSource = ds.Tables[0];
             gvNewRec.DataBind();
@@ -114,6 +123,21 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ddlgval.DataTextField = "deptdesc";
                         ddlgval.DataValueField = "deptcode";
                         ddlgval.DataSource = dt2;
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = gvalue;
+                        break;
+
+                    //section
+                    case "97008":
+                        gvalue = dt.Rows[i]["value"].ToString();
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
+                        ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+
+                        ddlgval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig"));
+                        ddlgval.DataTextField = "sirdesc";
+                        ddlgval.DataValueField = "sircode";
+                        ddlgval.DataSource = dt3;
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = gvalue;
                         break;
@@ -204,6 +228,19 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 }
                 //dept
                 else if (gcode == "97005")
+                {
+                    gval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).SelectedItem.Text.ToString();
+                    dr["gcod"] = gcode;
+                    dr["gval"] = gval.Substring(0, 12);
+                    if (gval.Length == 0)
+                    {
+                        string Message = "Select Type to continue";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                        return;
+                    }
+                }
+
+                else if (gcode == "97008")
                 {
                     gval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).SelectedItem.Text.ToString();
                     dr["gcod"] = gcode;
@@ -402,5 +439,38 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             this.lbladvnoo.Text= lbladvno;
             this.GetInputEntry();
         }
+
+
+        protected void lnkReset_Click(object sender, EventArgs e)
+        {
+            this.lbladvnoo.Text = "";
+            this.resetinput();
+        }
+        protected void lnkView_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string advno = ((Label)this.gvAllRec.Rows[index].FindControl("lbladvno")).Text.ToString();
+            string name = ((Label)this.gvAllRec.Rows[index].FindControl("lblname")).Text.ToString();
+            string desig = ((Label)this.gvAllRec.Rows[index].FindControl("lbldesig")).Text.ToString();
+            string mobile = ((Label)this.gvAllRec.Rows[index].FindControl("lblmobile")).Text.ToString();
+            string email = ((Label)this.gvAllRec.Rows[index].FindControl("lblemail")).Text.ToString();
+            string preadd = ((Label)this.gvAllRec.Rows[index].FindControl("lblpreadd")).Text.ToString();
+            string peradd = ((Label)this.gvAllRec.Rows[index].FindControl("lblpereadd")).Text.ToString();
+            string dept = ((Label)this.gvAllRec.Rows[index].FindControl("lbldept")).Text.ToString();
+
+            this.name.InnerText = name;
+            this.desig.InnerText = desig;
+            this.dept.InnerText = dept;
+            this.mobile.InnerText = mobile;
+            this.email.InnerText = email;
+            this.preadd.InnerText = preadd;
+            this.peradd.InnerText = peradd;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ViewEmpModal();", true);
+        }
+
+
+
     }
 }

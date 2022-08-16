@@ -21,6 +21,14 @@ namespace RealERPWEB
         {
             if (!IsPostBack)
             {
+                string pageType = this.Request.QueryString["Page"].ToString().Trim();
+                if(pageType== "NewRec") {
+
+                    getLetter();
+                
+                } else
+                {
+
                 // this.CommonButton();
                 var type = this.Request.QueryString["Entry"].ToString().Trim();
                 if (type == "Apprv" || type == "HR")
@@ -108,10 +116,78 @@ namespace RealERPWEB
                 this.lbtnOk_Click(null, null);
 
             }
-
+            }
 
         }
+        private void getLetter()
+        {
+            string comcod = this.GetCompCode();
+            string advno = this.Request.QueryString["advno"].ToString().Trim();
 
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETRECEMP", advno, "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+                return;
+
+            string adv = ds.Tables[0].Rows[0]["advno"].ToString()??"";
+            string name = ds.Tables[0].Rows[0]["name"].ToString()??"";
+            string desig = ds.Tables[0].Rows[0]["desig"].ToString();
+            string dept = ds.Tables[0].Rows[0]["dept"].ToString()??"";
+            string mobile = ds.Tables[0].Rows[0]["mobile"].ToString()??"";
+            string email = ds.Tables[0].Rows[0]["email"].ToString()??"";
+            string preadd = ds.Tables[0].Rows[0]["preadd"].ToString()??"";
+            string peradd = ds.Tables[0].Rows[0]["peradd"].ToString()??"";
+            string sec = ds.Tables[0].Rows[0]["sec"].ToString() ?? "";
+
+            string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
+
+            string lbody = string.Empty;
+            string letterType = this.Request.QueryString["Type"].ToString().Trim();
+
+
+            switch (letterType)
+            {
+                case "10025":
+
+                    if (comcod == "3101")
+                    {
+                        lbody =
+                           "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
+                           "<p style='margin-bottom:-11px'><strong>Ref:ERE/HR/CL/2022/027</strong></p>" +
+                           "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                            "<p style='margin-bottom:-11px'>Employee ID : " + adv + "</p>" +
+                            "<p style='margin-bottom:-11px'>" + desig + "</p>" +
+                            "<p style='margin-bottom:-11px'>" + dept + "</p>" +
+                            "<p style='margin-bottom:-11px'>" + sec + "</p>" +
+                            "<p>Subject:<strong>Confirmation Letter.</strong> </p>" +
+                            "<p>Dear " + name + "</p>" +
+                            "<p><strong>Congratulations!</strong></p>" +
+                            "<p>We would like to congratulate you on your successful completion of the probation period in our organization. We are glad to have received satisfactory reports from your superior regarding your performance during the said period. </p>" +
+                            "<p>You have good product knowledge & inventory accuracy; are good at execution of tasks; able to maintain transparency in documentation; are punctual and disciplined at work; respond positively to other assigned tasks and we appreciate you for that. We are expecting an increase in work knowledge and an improvement in warehouse capacity management from you which will foster your performance in the future.</p>" +
+                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT 17,000 (Seventeen Thousand Only).     </p>" +
+                            "<p>Now that you are going to be even an integral part of the organization, we would expect greater efforts from you to strive to do better at work for ultimately setting the organization on the growth path.  We have complete faith in you. </p>" +
+                                  "<p></p>" +
+                            "<p>Wishing you all the very best</p>" +
+                             "<p></p>" +
+                            "Regards," +
+                            "<p></p>" +
+                          "<p></p>" +
+                              "<p></p>" +
+
+                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>S. M. Sahedul Karim Munna </strong></p></span></p>" +
+                             "<br>" +
+                           "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Operating Officer</strong></p></span></p>" +
+                           "<p></p>" +
+                           "<p style='display:inline-block;border-bottom:1px solid;margin-bottom:-11px;'>CC:</p>" +
+                           "<p style='margin-left:10px;margin-bottom:-11px;'>1.Personal file</p>" +
+                           "<p style='margin-left:10px;margin-bottom:-11px;'>2.Office file</p>";
+
+                    }
+
+                    break;
+            }
+            this.txtml.Text = lbody;
+
+        }
         private void ShowLetter()
         {
 
@@ -547,10 +623,9 @@ namespace RealERPWEB
 
             string date = "Date:" + System.DateTime.Now.ToString("MMM dd,yyyy");
             string year = System.DateTime.Now.ToString("yyyy");
-            //string empid = this.ddlEmployee.SelectedValue.ToString();
-            // var empname = this.ddlEmployee.SelectedItem.ToString();
+
             string lbody = string.Empty;
-            // string empid=hst["empid"].ToString();
+
 
             string section = this.ddlProjectName.SelectedItem.ToString();
             string companme = this.ddlCompany.SelectedItem.Text.ToString();
