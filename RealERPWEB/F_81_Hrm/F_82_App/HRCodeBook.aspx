@@ -85,7 +85,7 @@
                             
 
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -178,7 +178,7 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>'
                                             Width="50px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center"  Font-Size="16px" />
                                 </asp:TemplateField>
 
 
@@ -194,7 +194,7 @@
                                             Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
-                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center"  Font-Size="16px" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Type">
@@ -208,7 +208,7 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgval")) %>'
                                             Width="50px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center"  Font-Size="16px" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="%">
                                     <EditItemTemplate>
@@ -221,7 +221,7 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percnt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="50px" Style="text-align: right"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center"  Font-Size="16px" />
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
@@ -236,7 +236,8 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slno")) %>'
                                             Width="30px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center"  Font-Size="16px" />
+                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
 

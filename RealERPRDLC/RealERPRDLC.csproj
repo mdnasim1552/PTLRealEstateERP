@@ -141,6 +141,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+AccOpening.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+ChequeDepositPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptMonthlyProbCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment1.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ReceptPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
@@ -759,6 +760,7 @@
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptSuvastu.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptTro.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptWecon.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMonthlyProbCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthWiseNewSales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptOSalesSummary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptReceivedList.rdlc" />

@@ -116,15 +116,15 @@
                 </div>
                 <div class="card-body">
                     <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
-                        AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                        OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                        OnRowUpdating="grvacc_RowUpdating" ShowFooter="True" Width="600px"
+                        AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" 
+                        OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing" 
+                        OnRowUpdating="grvacc_RowUpdating" ShowFooter="True" Width="600px" OnPageIndexChanging="grvacc_PageIndexChanging"
                         PageSize="15">
                         <PagerSettings NextPageText="Next" PreviousPageText="Previous"
                             Visible="False" />
                         <%-- <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="White" />--%>
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -219,7 +219,7 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgval")) %>'
                                         Width="50px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center"  Font-Size="16px" />
                             </asp:TemplateField>
 
 
@@ -245,6 +245,7 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rankdesc")) %>'
                                         Width="150px"></asp:Label>
                                 </ItemTemplate>
+                                 <HeaderStyle HorizontalAlign="Center"  Font-Size="16px" />
                             </asp:TemplateField>
 
                         </Columns>
