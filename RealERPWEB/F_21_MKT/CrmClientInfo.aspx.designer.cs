@@ -384,6 +384,15 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.LinkButton lnkOk;
 
         /// <summary>
+        /// divPermntDel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPermntDel;
+
+        /// <summary>
         /// Chkpdelete control.
         /// </summary>
         /// <remarks>
@@ -1093,6 +1102,15 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkgvListShow;
+
+        /// <summary>
+        /// lblPID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPID;
 
         /// <summary>
         /// lblprosname control.
