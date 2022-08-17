@@ -308,7 +308,12 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+            int index = rbtnList1.SelectedIndex;
+            if (index == 5)
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+            }
+           
             Rpt1.EnableExternalImages = true;
             
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
