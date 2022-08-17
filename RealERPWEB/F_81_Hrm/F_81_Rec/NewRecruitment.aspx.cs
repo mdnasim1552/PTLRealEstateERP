@@ -435,7 +435,18 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         return;
                     }
                 }
-
+                else if (gcode == "97098")
+                {
+                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    dr["gcod"] = gcode;
+                    dr["gval"] = gval;
+                    if (gval.Length == 0)
+                    {
+                        string Message = "Select Type to continue";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                        return;
+                    }
+                }
                 else if (gcode == "97999")
                 {
                     if (((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).HasFile)
