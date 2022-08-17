@@ -332,6 +332,7 @@ namespace RealERPRDLC
                 case "R_14_Pro.RptPurOrderTopSheet": Rpt1a = SetRptPurOrderTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptSupAdvanceDetails": Rpt1a = SetRptSupAdvanceDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMonthlyProbCollection": Rpt1a = SetRptMonthlyProbCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptDuesAllReports": Rpt1a = SetRptDuesAllReports(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #region General Accounts 17
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -633,6 +634,9 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptUnsoldUnit": Rpt1a = SetRptUnsoldUnit(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptEnvelopNew": Rpt1a = SetRptEnvelopPrintNew(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptEnvelopOffice": Rpt1a = SetRptEnvelopOffice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptEnvelopBirthday": Rpt1a = SetRptEnvelopBirthday(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptEnvelopAniversary": Rpt1a = SetRptEnvelopAniversary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptEnvelopCongratulation": Rpt1a = SetRptEnvelopCongratulation(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_22_Sal.RptSalSummeryDetails": Rpt1a = RptSalSummeryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -643,6 +647,7 @@ namespace RealERPRDLC
 
                 case "R_22_Sal.RptCustomerBillInfo": Rpt1a = SetRptCustomerBillInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptTransStatement02": Rpt1a = SetRptTransStatement02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptTransStatement02Finlay": Rpt1a = SetRptTransStatement02Finlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_22_Sal.RptDetailMoneyRecept": Rpt1a = SetRptDetailMoneyRecept(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMoneyReceipt1": Rpt1a = SetRptMoneyReceipt1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1399,6 +1404,22 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptEnvelopBirthday(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEnvelopAniversary(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEnvelopCongratulation(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
+            return Rpt1a;
+        }
+
 
         private static LocalReport SetRptWorkOrder2(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -4171,6 +4192,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptTransStatement02Finlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptGrpWiseBill(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -6234,6 +6260,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptMonthlyProbCollection(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptMonthlyProbCollection>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptDuesAllReports(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptDuesReportAll>)RptDataSet));
             return Rpt1a;
         }
     }
