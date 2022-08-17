@@ -318,7 +318,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvdispercnt" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt")).ToString("#,##0.00;(#,##0.00); ") +(Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt"))>0?"%":"")%>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt")).ToString("#,##0.00;-#,##0.00; ")+(Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt"))==0?"":"%")%>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
@@ -673,7 +673,7 @@
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvdispercnt" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt")).ToString("#,##0.00;(#,##0.00); ")+(Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt"))>0?"%":"") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt")).ToString("#,##0.00;-#,##0.00; ")+(Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dispercnt"))==0?"":"%") %>'
                                                     Width="60px"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />

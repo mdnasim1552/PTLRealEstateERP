@@ -776,6 +776,7 @@
     <EmbeddedResource Include="R_22_Sal\RptSalSumAmtBasis.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalSumary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalSummeryDetails.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptTransStatement02Finlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\rptUnitFxInf.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptUnitWiseCost.rdlc" />
