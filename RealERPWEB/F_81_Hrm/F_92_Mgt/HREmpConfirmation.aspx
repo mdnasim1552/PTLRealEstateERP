@@ -148,7 +148,7 @@
                             <asp:TemplateField HeaderText="Card ">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvIDCard" runat="server" Font-Size="12px"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ID Card")) %>'
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cardno")) %>'
                                         Width="50px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
