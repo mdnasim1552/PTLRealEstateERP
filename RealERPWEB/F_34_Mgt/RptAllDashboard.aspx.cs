@@ -102,7 +102,10 @@ namespace RealERPWEB.F_34_Mgt
 
             string comcod = this.GetCompCode();
             string dates = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");//"10-Apr-2018"
-            DataSet ds2 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_DASH_BOARD_INFO_ALL", "SALESANALYSIS_DASHBOARD", "%", dates, "", "", "", "", "", "");
+
+            string typedata = this.rbtList.SelectedValue.ToString();
+
+            DataSet ds2 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_DASH_BOARD_INFO_ALL", "SALESANALYSIS_DASHBOARD", "%", dates, typedata, "", "", "", "", "");
             if (ds2 == null)
                 return;
             List<double> singldata = new List<double>();

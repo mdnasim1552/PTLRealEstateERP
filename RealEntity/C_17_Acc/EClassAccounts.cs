@@ -1129,6 +1129,9 @@ namespace RealEntity.C_17_Acc
             public string bank { get; set; }
             public double cashamt { get; set; }
             public double chqamt { get; set; }
+            public double returnval { get; set; } 
+            public double payamt { get; set; } 
+            public double recvamt { get; set; } 
 
             public ChequeDepositPrint() { }
 
