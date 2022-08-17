@@ -265,16 +265,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         innHTML += @"<div class='col-xs-12 col-sm-6 col-md-3' style='padding: 0 5px; '>" +
                                    "<div id = 'EmpAll' runat = 'server'>" +
                                    topview +
-                                        "<div class='well well-sm p-0' style='height: 180px; margin-bottom: 2px;'>" +
+                                        "<div class='well well-sm p-0 text-center' style='height: 270px; margin-bottom: 2px;'>" +
 
                                             "<div class='row'>" +
-                                                "<div class='col-sm-6 col-md-4'>" +
+                                                "<div class='col-sm-12 col-md-12'>" +
                                                     "<a href ='../F_82_App/RptMyInterface.aspx?Type=Report&empid=" + dr["empid"] + "' target='_blank'>" +
-                                                       "<img src='" + url + "' Height='70' Width='80' CssClass='img-thumbnail img-responsive' />" +
+                                                       "<img src='" + url + "' Height='80' Width='80' CssClass='rounded-circle img-responsive' />" +
 
                                                    " </a></div>" +
 
-                                                "<div class='col-sm-6 col-md-8 p-0'>" +
+                                                "<div class='col-sm-12 col-md-12 p-0'>" +
                                                     "<h4>" + dr["empname"] + "</h4>" +
                                                     "<h4>ID #: " + dr["idcardno"] + "</h4>" +
                                                     "<p>Department: " + dr["section"] + "</p>" +

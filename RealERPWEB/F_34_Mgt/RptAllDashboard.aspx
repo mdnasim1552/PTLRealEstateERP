@@ -2718,6 +2718,13 @@
                             </div>
 
                         </div>
+                        <div class="col-md-2">
+                            <asp:RadioButtonList ID="rbtList" runat="server">
+                                <asp:ListItem Value="0">Actual</asp:ListItem>
+                                <asp:ListItem Value="1">Reconcile</asp:ListItem>
+                            </asp:RadioButtonList>
+                            </div>
+
 
                         <div class="col-md-1">
                             <div class="form-group">

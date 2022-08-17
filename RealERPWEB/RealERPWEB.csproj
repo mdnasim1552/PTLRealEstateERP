@@ -3119,6 +3119,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PayrollLink.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PrintLeaveInterface.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RetiredEmpFinalSett.aspx" />
@@ -5039,6 +5040,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.designer.cs">
       <DependentUpon>InterfaceHR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx.cs">
+      <DependentUpon>LetterInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx.designer.cs">
+      <DependentUpon>LetterInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
