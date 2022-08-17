@@ -257,7 +257,7 @@ namespace RealERPWEB.F_22_Sal
                     switch (envtype)
                     {
                         case "7200001":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopCongratulation", list, null, null);
                             break;
                         case "7200002":
                             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
@@ -266,10 +266,10 @@ namespace RealERPWEB.F_22_Sal
                             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
                             break;
                         case "7200004":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopAniversary", list, null, null);
                             break;
                         case "7200005":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopBirthday", list, null, null); 
                             break;
                         default:
                             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
@@ -289,8 +289,8 @@ namespace RealERPWEB.F_22_Sal
                 Session["Report1"] = Rpt1;
                 string type = "PDF";
                 ScriptManager.RegisterStartupScript(this, GetType(), "target", "printEnvelop('" + type + "');", true);
-                //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
-                //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+               //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                            //((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
             catch (Exception ex)
             {

@@ -1136,6 +1136,13 @@ namespace RealEntity.C_17_Acc
             public ChequeDepositPrint() { }
 
         }
+
+        
+
+
+
+
+
         [Serializable]
 
         public class RptCashBank
