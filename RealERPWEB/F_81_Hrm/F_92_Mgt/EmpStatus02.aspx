@@ -164,11 +164,11 @@
                     </div>
              
 
-                    <div class="row">
+                    <div class="row col-md-12">
 
                          <div id="pnlDesig" runat="server">
 
-                       <div class="col-md-2">
+                       <div class="col-md-3">
                             <div class="form-group">
                                 <asp:Label ID="lblfrmdate" CssClass="mb-2 d-block" runat="server">From</asp:Label>
 
@@ -177,7 +177,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <asp:Label ID="lbltodate" CssClass="mb-2 d-block" runat="server">To</asp:Label>
 
@@ -185,7 +185,7 @@
                                 <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-md-2" id="desFrom" runat="server" >
+                        <div class="col-md-3" id="desFrom" runat="server" >
                             <div class="form-group">
                                 <asp:Label ID="lblfrmd" CssClass="mb-2 d-block" runat="server">Form</asp:Label>
 
@@ -194,7 +194,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2" id="desTo" runat="server">
+                        <div class="col-md-3" id="desTo" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lbltdeg" CssClass="mb-2 d-block" runat="server">To</asp:Label>
 
@@ -244,7 +244,7 @@
                                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Company Name">
                                                 <ItemTemplate>
@@ -252,7 +252,7 @@
                                                         Width="140px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Department Name">
                                                 <ItemTemplate>
@@ -427,7 +427,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <ItemStyle HorizontalAlign="right" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Remarks">
+                                            <asp:TemplateField HeaderText=" Replace/New">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvdesignation" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'
@@ -452,13 +452,13 @@
                                             ShowFooter="True" PageSize="300">
                                             <RowStyle />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                <asp:TemplateField HeaderText="Sl.">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                                             Style="text-align: right"
                                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true" />
                                                 </asp:TemplateField>
 
 
@@ -475,14 +475,11 @@
                                                             Text='<%# "<B>" +Convert.ToString(DataBinder.Eval(Container.DataItem, "companyname"))+"<B>" %>'
                                                             Width="180px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <asp:Label ID="lgvTotalnagad" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            ForeColor="#000" Style="text-align: right" Text="Total"></asp:Label>
-                                                    </FooterTemplate>
+                                                   
 
 
                                                     <ItemStyle HorizontalAlign="left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true" />
                                                 </asp:TemplateField>
                                                 <%--<asp:TemplateField HeaderText="Company Name">
 
@@ -506,7 +503,7 @@
                                                             Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true"  />
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Employee Name">
@@ -520,16 +517,16 @@
                                                         </asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" font-size="16px" Font-Bold="true" />
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="ID #">
+                                                <asp:TemplateField HeaderText="ID">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvcardnoemp" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                             Width="60px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true"  />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Designation">
                                                     <ItemTemplate>
@@ -538,7 +535,7 @@
                                                             Width="120px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  font-size="16px" Font-Bold="true" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Joining Date">
                                                     <ItemTemplate>
@@ -547,7 +544,7 @@
                                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "joindate")).ToString("dd-MMM-yyyy") %>'
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
 
@@ -559,7 +556,7 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "blood")) %>'
                                                             Width="60px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  font-size="16px" Font-Bold="true" />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
 
@@ -570,7 +567,7 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobile")) %>'
                                                             Width="100px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
 
@@ -581,19 +578,23 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'
                                                             Width="100px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
 
 
-                                                <asp:TemplateField HeaderText="#Extention">
+                                                <asp:TemplateField HeaderText="Extention">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblExtion" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" 
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "extention")) %>'
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                     <FooterTemplate>
+                                                        <asp:Label ID="lgvTotalnagad" runat="server" Font-Bold="True" Font-Size="12px"
+                                                            ForeColor="#000" Style="text-align: left" Text="Total"></asp:Label>
+                                                    </FooterTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
 
@@ -604,7 +605,7 @@
                                                             Width="140px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  font-size="16px" Font-Bold="true" />
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Gross Salary">
@@ -619,7 +620,7 @@
                                                         <asp:Label ID="lgvFlblgvemplist2" runat="server" Font-Bold="True" Font-Size="12px"
                                                             ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
                                                     </FooterTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" Font-Bold="true"  />
                                                     <ItemStyle HorizontalAlign="Right" />
                                                 </asp:TemplateField>
 
@@ -638,7 +639,7 @@
                                         ShowFooter="True" Width="420px" PageSize="300">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                                         Style="text-align: right"
@@ -648,7 +649,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Employee Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvEmpname" runat="server"
+                                                    <asp:Label ID="lblgvEmpname" runat="server" Font-Bold="True" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))  %>'
                                                         Width="150px"> 
                                                     </asp:Label>
@@ -658,7 +659,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Transfer From &lt;br&gt; Organisation Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvFCompanyna" runat="server"
+                                                    <asp:Label ID="lblgvFCompanyna" runat="server" Font-Bold="True" Height="16px"
                                                         Text='<%# "<B>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "fcompname"))  +"<B>"  %>'
                                                         Width="150px"> 
                                                     </asp:Label>
@@ -750,13 +751,13 @@
                                         ShowFooter="True" Width="420px" PageSize="300">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
                                                         Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Company &amp; Employee Name">
@@ -773,7 +774,7 @@
                                                     </asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="ID Card #">
                                                 <ItemTemplate>
@@ -782,7 +783,7 @@
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Designation">
                                                 <ItemTemplate>
@@ -791,7 +792,7 @@
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
 
 
@@ -802,7 +803,7 @@
                                                         Width="250px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Confirmation Date">
@@ -812,7 +813,7 @@
                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "condate")).ToString("dd-MMM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
 
                                             <%--<asp:TemplateField HeaderText="Gross Salary">
@@ -840,13 +841,13 @@
                                         ShowFooter="True" Width="420px" OnRowDataBound="grvManPwr_RowDataBound" PageSize="300">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                                    <asp:Label ID="lblgvSlNo0" runat="server"  
                                                         Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Company Name">
@@ -856,8 +857,8 @@
                                               
                                                     </asp:Label>
                                                 </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                                <FooterStyle  HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
 
 
@@ -868,7 +869,7 @@
                                               
                                                     </asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Designation">
                                                 <ItemTemplate>
@@ -877,7 +878,7 @@
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Opening Strength">
@@ -886,7 +887,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opqty")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Joining">
                                                 <ItemTemplate>
@@ -894,7 +895,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "noj")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Transfer In">
                                                 <ItemTemplate>
@@ -902,7 +903,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "notrin")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Transfer Out">
                                                 <ItemTemplate>
@@ -910,7 +911,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "notrout")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Departure">
                                                 <ItemTemplate>
@@ -918,7 +919,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "departure")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Total">
                                                 <ItemTemplate>
@@ -926,7 +927,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
 
                                         </Columns>
@@ -1163,23 +1164,23 @@
                                         ShowFooter="True" PageSize="300">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo4" runat="server" Font-Bold="True" Height="16px"
+                                                    <asp:Label ID="lblgvSlNo4" runat="server" 
                                                         Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Campany Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvCompName" runat="server"
+                                                    <asp:Label ID="lblgvCompName" runat="server" 
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "companyname")) %>'
                                                         Width="200px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Grade">
                                                 <ItemTemplate>
@@ -1188,7 +1189,7 @@
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Designation">
                                                 <ItemTemplate>
@@ -1197,7 +1198,7 @@
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="# of Employees">
                                                 <ItemTemplate>
@@ -1205,7 +1206,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "nofemp")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="50px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Lowest Salary">
                                                 <ItemTemplate>
@@ -1214,7 +1215,7 @@
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  Font-Size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Highest Salary">
                                                 <ItemTemplate>
@@ -1223,7 +1224,7 @@
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Total Salary">
                                                 <ItemTemplate>
@@ -1236,7 +1237,7 @@
                                                         ForeColor="White" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                             </asp:TemplateField>
 
 
@@ -1501,7 +1502,7 @@
                                                         Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" font-size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Company Name">
 
@@ -1515,7 +1516,7 @@
                                                     </asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" font-size="16px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Department &amp; Employee Name">
                                                 <ItemTemplate>
@@ -1585,7 +1586,7 @@
 
                                 <asp:View ID="ViewPabx" runat="server">
                                     <div class="table table-responsive">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
 
                                             <div class="input-group input-group-alt">
                                                 <div class="input-group-prepend ">
@@ -1608,7 +1609,7 @@
                                                             Style="text-align: right"
                                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="ID Card #">
@@ -1618,7 +1619,7 @@
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Employee Name">
                                                     <ItemTemplate>
@@ -1629,7 +1630,7 @@
                                                         </asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px" />
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Designation">
@@ -1639,7 +1640,7 @@
                                                             Width="250px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                                 </asp:TemplateField>
 
 
@@ -1653,7 +1654,7 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "extention")) %>'
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Mobile">
@@ -1663,7 +1664,7 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobile")) %>'
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px"  />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
 
@@ -1674,7 +1675,7 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'
                                                             Width="200px"></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  Font-Size="16px" />
                                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"  />
                                                 </asp:TemplateField>
 

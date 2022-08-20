@@ -24,12 +24,39 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
-                ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY TIME OFF";
+
                 string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtaplydate.Text = nextday;
-                GetRemaningTime();
                 this.txtFromTime.Text = System.DateTime.Now.ToString("HH:mm");
                 this.txtToTime.Text = System.DateTime.Now.ToString("HH:mm");
+                string qtype = this.Request.QueryString["Type"] ?? "";
+                if (qtype == "MGT")
+                {
+                    int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                            (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("~/AcceessError.aspx");
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY TIME OFF (MGT)";
+                    this.empMgt.Visible = true;
+                    GetEmpLoyee();
+                    // GetSupvisorCheck();
+                    this.ddlEmpName_SelectedIndexChanged(null, null);
+                }
+                else
+                {
+                    this.empMgt.Visible = false;
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY TIME OFF";
+                }
+
+
+
+               
+
+
+                GetRemaningTime();
+
+                GetAllTimeOff();
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -39,6 +66,65 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
+        private void GetAllTimeOff()
+        {
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = "";
+            string qtype = this.Request.QueryString["Type"] ?? "";
+            if (qtype == "MGT")
+            {
+               
+                empid = this.ddlEmpName.SelectedValue.ToString() ?? "";
+            }
+            else
+            {
+                this.empMgt.Visible = false;
+
+                empid = hst["empid"].ToString();
+            }
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORYALL", empid, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+            {
+                this.gvLvReqAll.DataSource = null;
+                this.gvLvReqAll.DataBind();
+                return;
+
+            }
+            Session["tblleavhistoryAll"] = ds1.Tables[0];
+            Session["empbinfo2"] = ds1.Tables[1];
+            
+
+
+                this.gvLvReqAll.DataSource = (ds1.Tables[0]);
+                this.gvLvReqAll.DataBind();
+       
+        }
+        private void GetEmpLoyee()
+        {
+            //ddlEmpName.ClearSelection();
+            //this.ddlEmpName.SelectedValue = string.Empty;
+            //ddlEmpName.SelectedIndex = -1;
+            //ddlEmpName.Items.Insert(0, new ListItem("", ""));
+            string comcod = this.GetCompCode();
+   
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlEmpName.DataTextField = "empname";
+            this.ddlEmpName.DataValueField = "empid";
+            this.ddlEmpName.DataSource = ds1.Tables[0];
+            this.ddlEmpName.DataBind();
+
+       
+        }
+        protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetAllTimeOff();
+            GetRemaningTime();
+        }
+
+
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -47,7 +133,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void GetRemaningTime()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
+
+            //string empid = hst["empid"].ToString();
+            string empid = "";
+            string qtype = this.Request.QueryString["Type"] ?? "";
+            if (qtype == "MGT")
+            {
+          
+                empid = this.ddlEmpName.SelectedValue.ToString() ?? "";
+            }
+            else
+            {
+                
+
+                empid = hst["empid"].ToString();
+            }
             string comcod = this.GetCompCode();
             DateTime date = Convert.ToDateTime(txtaplydate.Text);
 
@@ -108,7 +208,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string qtype = this.Request.QueryString["Type"] ?? "";
             if (qtype == "MGT")
             {
-                Empid = this.Request.QueryString["empid"] ?? "";//this.ddlEmpName.SelectedValue.ToString();
+                Empid=this.ddlEmpName.SelectedValue.ToString();//Empid
 
             }
             else
@@ -486,8 +586,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string curdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            DataTable dt = (DataTable)Session["tblleavhistory"];
-            DataTable dt2 = (DataTable)Session["empbinfo"];
+            DataTable dt = (DataTable)Session["tblleavhistoryAll"];
+            if( dt == null)
+            {
+                string msg = "You have no data!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+            DataTable dt2 = (DataTable)Session["empbinfo2"];
 
             string empname = dt2.Rows[0]["name"].ToString()??"";
             string idcard = dt2.Rows[0]["idcard"].ToString()?? "";

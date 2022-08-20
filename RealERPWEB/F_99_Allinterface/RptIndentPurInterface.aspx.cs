@@ -362,6 +362,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3354": // Edison  
                 case "3353"://Manama
                 case "3355"://Green Wood
+                case "3368"://finlay
+                case "3367"://epic
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
 
@@ -1898,6 +1900,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint"); // crystal print link
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
+                HyperLink hlinkPO = (HyperLink)e.Row.FindControl("lnkbtnPOEdit");
 
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyperLink2");
 
@@ -1948,6 +1951,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
                 hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
+                hlinkPO.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=OrderEdit&genno=" + orderno;
+
                 if (orderno.Substring(0, 3) == "POR")
                     hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                 else

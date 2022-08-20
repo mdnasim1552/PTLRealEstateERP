@@ -151,6 +151,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCredence";
                     break;
 
+                //case "3101":
                 case "3351":
                 case "3352":
                 case "1205":
@@ -185,6 +186,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
+                case "3101":
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
@@ -198,7 +200,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintIntech";
                     break;
                     
-                case "3101":
+                //case "3101":
                 case "3367":
                     vouprint = "VocherPrintEpic";
                     break;
@@ -474,6 +476,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtPayto", (payto == "") ? "" : payto));
                     Rpt1.SetParameters(new ReportParameter("refnum", chequeno));
                     Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("username", postuser));
 
                 }
 
@@ -576,7 +579,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
-                if (comcod == "2325" || comcod == "3325" || comcod == "3101" || comcod == "3355")
+                if (comcod == "2325" || comcod == "3325" || comcod == "3355")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, "", Posteddat, compname, username, printdate, "")));
                     Rpt1.SetParameters(new ReportParameter("voutype", "PDC " + VouType));

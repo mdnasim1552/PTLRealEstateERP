@@ -14,10 +14,10 @@
         });
         function pageLoaded() {
 
-            $('.chzn-select').chosen({
-                search_contains: true,
-                enable_escape_special_char: false
-            });
+            //$('.chzn-select').chosen({
+            //    search_contains: true,
+            //    enable_escape_special_char: false
+            //});
        };
     </script>
 
@@ -63,7 +63,7 @@
                                             <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName"> Voucher Date</asp:Label>
                                             <asp:TextBox ID="txtdate" runat="server" CssClass="inputDateBox"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy ddd" TargetControlID="txtdate"></cc1:CalendarExtender>
+                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                             <div class="colMdbtn pading5px">
                                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
@@ -80,7 +80,7 @@
 
                                 </div>
                             </fieldset>
-                         <asp:Panel ID="pnlBill" runat="server" Visible="False">
+                         <asp:Panel ID="pnlBill" runat="server" >
                            <fieldset class="scheduler-border fieldset_A">
                                 <div class="form-horizontal">
                                    
@@ -215,7 +215,7 @@
                                     <asp:TemplateField HeaderText="Memono" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblMemono" runat="server" CssClass="GridLebelL" ForeColor="Black"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "memono")) %>'></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billid")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                    
@@ -226,12 +226,13 @@
                                 <HeaderStyle CssClass="grvHeader" />
                                 <FooterStyle CssClass="grvFooter" />
                             </asp:GridView>
+                        
 
                             <fieldset class="scheduler-border fieldset_Nar">
                                 <div class="form-horizontal">
 
                                     <div class="form-group">
-                                        <div class="col-md-2 pading5px asitCol2 ">
+                                        <div class="col-md-3 pading5px asitCol3 ">
                                             <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Ref. No"></asp:Label>
                                             <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"></asp:TextBox>
 
@@ -277,6 +278,9 @@
                             </fieldset>
 
                         </asp:Panel>
+
+
+                            
                            
                     </div>
 

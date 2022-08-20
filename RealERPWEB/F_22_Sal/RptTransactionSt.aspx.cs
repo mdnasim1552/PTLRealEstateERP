@@ -54,7 +54,8 @@ namespace RealERPWEB.F_22_Sal
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "TransPrjWise") ? "Daily Transaction(Project Wise) Report" : (type == "ClientStat") ? "Client Status Report"
+                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "TransPrjWise") ? "Daily Transaction(Project Wise) Report"
+                    : (type == "ClientStat") ? "Client Status Report"
                     : (type == "RepChq") ? "Replacement Cheque Report"
                     : (type == "TransSummary") ? "Day wise Collection Summary"
                     : (type == "RectypeWise") ? "Client Details Information"
@@ -65,10 +66,6 @@ namespace RealERPWEB.F_22_Sal
                     : (type == "ServiceCollection") ? "Service Charge Collection Details "
                     : (type == "Modification") ? " Modification Service Charge  "
                     : "Daily Transaction(Date Wise) Report";
-
-
-
-
 
             }
 
@@ -193,9 +190,9 @@ namespace RealERPWEB.F_22_Sal
             switch (type)
             {
 
-                case "TransPrjWise":
-                    this.RptPrjWise();
-                    break;
+                //case "TransPrjWise":
+                //    this.RptPrjWise();
+                //    break;
                 case "TransDateWise":
                     this.RptPrjWise();
                     break;
@@ -277,28 +274,71 @@ namespace RealERPWEB.F_22_Sal
             return Rpt1;
 
         }
+        //private DataTable DataRowfiltter(DataTable dt)
+        //{
 
+        //    DataView dv = dt.DefaultView;
+        //    dv.RowFilter = ("pactcode != '' ");
+        //    dt = dv.ToTable();
+        //    return dt;
+
+        //}
 
 
         private void RptPrjWise()
         {
+
+            int index = rbtnList1.SelectedIndex;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)Session["DailyTrns"];
+
+            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+            {
+                DataRow dr = dt.Rows[i];
+                if (dr["pactcode"].ToString().Trim() == "" || dr["pactcode"].ToString() == "1899AAAAAAAA")
+                    dr.Delete();
+            }
+            dt.AcceptChanges();
+
+            //DataView dv = dt.DefaultView;
+            //dv.RowFilter = ("pactcode <> '' or pactcode <> '1899AAAAAAAA'");
+            //dt = dv.ToTable();
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
-            Rpt1.EnableExternalImages = true;
+
+            if (rbtnList1.SelectedIndex == 3)
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02Finlay", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement (Received)"));
+            }
+            else if (rbtnList1.SelectedIndex == 5)
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
+            }
+            else
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
+            }
+
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Date Wise Collection"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
 
             if (ConstantInfo.LogStatus == true)
@@ -308,17 +348,11 @@ namespace RealERPWEB.F_22_Sal
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
-
-
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
-
-
-
-
 
         private void RptClientStat()
         {
@@ -849,7 +883,7 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             string actual = (this.rbtnList1.SelectedIndex == 2) ? "Actualdate"
-                     :(this.rbtnList1.SelectedIndex == 3)?"Reconcliedate" : (this.rbtnList1.SelectedIndex == 4) ? "EntryDate" : "";
+                     : (this.rbtnList1.SelectedIndex == 3) ? "Reconcliedate" : (this.rbtnList1.SelectedIndex == 4) ? "EntryDate" : (this.rbtnList1.SelectedIndex == 5) ? "Depositeddate" : "";
 
             string coltype = this.companytype();
 
@@ -860,8 +894,8 @@ namespace RealERPWEB.F_22_Sal
                 this.grvTrnDatWise.DataBind();
                 return;
             }
-            Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 4) ? HiddenSameData(ds1.Tables[0]): CollectCurDate(HiddenSameData(ds1.Tables[0]));
-
+            Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 3) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 4) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 5) ? HiddenSameData(ds1.Tables[0]) : CollectCurDate(HiddenSameData(ds1.Tables[0]));
+            DataTable dt = (DataTable)Session["DailyTrns"];
             this.Data_Bind();
 
         }
@@ -1112,6 +1146,9 @@ namespace RealERPWEB.F_22_Sal
                     this.FooterCalculation();
                     break;
                 case "TransDateWise":
+
+
+
                     this.grvTrnDatWise.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.grvTrnDatWise.DataSource = (DataTable)Session["DailyTrns"];
                     this.grvTrnDatWise.DataBind();
@@ -1579,7 +1616,7 @@ namespace RealERPWEB.F_22_Sal
 
                     Session["Report1"] = gvRectypeWise02;
                     ((HyperLink)this.gvRectypeWise02.HeaderRow.FindControl("hlbotherCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                   
+
                     break;
 
 
@@ -1672,8 +1709,8 @@ namespace RealERPWEB.F_22_Sal
             {
                 if (comcod == "2305" || comcod == "3305" || comcod == "3306" || comcod == "3310" || comcod == "3311" || comcod == "3101")
 
-            
-                   ((Label)e.Item.FindControl("lblrputility")).Text = "Solar Panel ";
+
+                    ((Label)e.Item.FindControl("lblrputility")).Text = "Solar Panel ";
                 ((Label)e.Item.FindControl("lblassocialtion")).Text = "Transfer Fee";
 
 

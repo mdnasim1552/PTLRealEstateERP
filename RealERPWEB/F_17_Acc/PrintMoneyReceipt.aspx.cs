@@ -219,7 +219,8 @@ namespace RealERPWEB.F_17_Acc
             string rectype = dtrpt.Rows[0]["rectype"].ToString();
             string rectcode = dtrpt.Rows[0]["rectcode"].ToString();
             string parking = dtrpt.Rows[0]["parking"].ToString();
-
+            string benefname = dtrpt.Rows[0]["benefname"].ToString().Length==0?"":("Beneficiary:  "+ dtrpt.Rows[0]["benefname"].ToString());
+             
 
 
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
@@ -525,6 +526,10 @@ namespace RealERPWEB.F_17_Acc
                 }
 
                 Rpt1.EnableExternalImages = true;
+
+                
+                Rpt1.SetParameters(new ReportParameter("txtbenefname", benefname));
+                Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate1", curDate));
                 Rpt1.SetParameters(new ReportParameter("mrno", "MR" + mrno));

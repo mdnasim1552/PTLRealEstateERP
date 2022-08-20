@@ -222,6 +222,7 @@ namespace RealERPWEB.F_33_Doc
             string gcod = this.ddlType.SelectedValue.ToString().Substring(0, 5) ?? "";
             string imgPath = "";
             string msg = "";
+            string id = "";
 
 
             //validates the posted file before saving  
@@ -394,5 +395,21 @@ namespace RealERPWEB.F_33_Doc
 
         }
 
+        protected void btn_edit_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.gvdoc.Rows[index].FindControl("lblid")).Text.ToString();
+            string refno = ((Label)this.gvdoc.Rows[index].FindControl("lblgcod")).Text.ToString();
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETDOCBYID", id, refno, "", "", "", "", "");
+            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+            {               
+                return;
+            }
+            this.ddlType.SelectedValue = ds2.Tables[0].Rows[0]["gcod"].ToString();
+            this.txtsName.Text = ds2.Tables[0].Rows[0]["title"].ToString();
+            this.txtDetails1.Text = ds2.Tables[0].Rows[0]["remarks"].ToString();
+        }
     }
 }

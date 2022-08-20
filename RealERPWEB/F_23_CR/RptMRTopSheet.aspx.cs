@@ -50,21 +50,19 @@ namespace RealERPWEB.F_23_CR
 
 
         private string GetCompCode()
-
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
         }
 
-        protected void lbtnOk_Click(object sender, EventArgs e)
+        protected void lbtnOk_Click(object sender, EventArgs e) 
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string refnum = "%" + this.txtrefno.Text.Trim() + "%";
-
             DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTMONEYRECEIPTTOPSHEET", frmdate, todate, refnum, "", "", "", "", "", "");
             if (ds1 == null)
             {
@@ -72,7 +70,6 @@ namespace RealERPWEB.F_23_CR
                 this.gvAccMR.DataBind();
                 return;
             }
-
             Session["tblMRInfo"] = ds1.Tables[0];
             this.Data_Bind();
         }

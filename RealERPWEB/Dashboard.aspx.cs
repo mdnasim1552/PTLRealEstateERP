@@ -601,8 +601,7 @@ namespace RealERPWEB
             }
 
         }
-
-
+      
 
         protected void ddlGraphtype_SelectedIndexChanged(object sender, EventArgs e)
         {

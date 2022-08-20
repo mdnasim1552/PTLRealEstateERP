@@ -1618,30 +1618,48 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 p-0 mt-2">
+                        <div class="col-md-2 p-0 mt-2">
                             <div class="input-group input-group-alt profession-slect srDiv">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Lead Status</button>
+                                    <button class="btn btn-secondary  pl-0 pr-0" type="button">Lead Status</button>
                                 </div>
                                 <asp:DropDownList ID="ddlleadstatus" data-placeholder="Choose Lead Status.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlleadstatus_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-3 p-0 mt-2">
-                            <div class="input-group input-group-alt profession-slect srDiv">
+                        <div class="col-md-2 p-0 mt-2">
+                            <div class="input-group input-group-alt srDiv">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Pref. Location</button>
+                                    <button class="btn btn-secondary pl-0 pr-0" type="button">Pref. Loc.</button>
                                 </div>
                                 <asp:DropDownList ID="ddlPrefLocation" data-placeholder="Choose Pref. Location.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPrefLocation_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-sm-1 col-md-1 col-lg-1">
-                            <div class="form-group">
-                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm" Style="margin-top:10px;">Ok</asp:LinkButton>
+                        <div class="col-md-3 p-0 mt-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">Apartment Size</button>
+                                </div>
+                                <asp:DropDownList ID="ddlAptSize" data-placeholder="Choose Apt. Size.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlAptSize_SelectedIndexChanged">
+                                </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1 p-0 mt-2 pading5px">
+                        <div class="col-md-3 p-0 mt-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">Budget</button>
+                                </div>
+                                <asp:DropDownList ID="ddlBudget" data-placeholder="Choose Budget.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlBudget_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm" Style="margin-top: 10px;">Ok</asp:LinkButton>
+                            </div>
+                        </div>
+                        <div class="col-md-1 p-0 mt-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Page</button>
@@ -1776,19 +1794,27 @@
                                                     Width="150px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                     
+
                                         <asp:TemplateField HeaderText="Client Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvempid" runat="server" Width="320px" Visible="false"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamcode")) %>'></asp:Label>
                                                 <asp:Label ID="lsircode" runat="server" Width="350px" Visible="false"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "proscod")) %>'></asp:Label>
-                                                <asp:LinkButton ID="lnkEditfollowup" ForeColor="Chocolate" ClientIDMode="Static" runat="server" Width="250px" OnClick="lnkEditfollowup_Click" 
+                                                <asp:LinkButton ID="lnkEditfollowup" ForeColor="Chocolate" ClientIDMode="Static" runat="server" Width="250px" OnClick="lnkEditfollowup_Click"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clientname")) %>'> </asp:LinkButton>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Phone">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvPhone" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"phone")) %>'
+                                                    Width="90px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Profession Name">
                                             <ItemTemplate>
@@ -1799,11 +1825,39 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Preferred Location">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvPrefLoc" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"prflocation")) %>'
+                                                    Width="80px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Apt. Size">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvAptSize" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"aptsize")) %>'
+                                                    Width="70px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Budget Amt.">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvBgdAmt" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"bgdtamt")) %>'
+                                                    Width="70px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Source">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSource" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sourtxt")) %>'
-                                                    Width="50px" ForeColor="Black"></asp:Label>
+                                                    Width="70px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>

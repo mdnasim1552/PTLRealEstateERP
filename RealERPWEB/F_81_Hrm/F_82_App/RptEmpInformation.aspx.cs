@@ -317,8 +317,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
             rptempservices.SetParameterValue("ComLogo", ComLogo);
             Session["Report1"] = rptempservices;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
 
 
@@ -329,9 +329,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             switch (comcod)
             {
                 case "3340":
-                case "3101":
-
                     this.PrintEmpAllInfoUrban();
+                    break;
+                case "3101":
+                    this.EmployeeAllInfo();
+                  
                     break;
                 default:
                     this.PrintAllInfo();
@@ -341,6 +343,47 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             //this.ShowName();
         }
+
+        private void EmployeeAllInfo()
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTEMPINFORMATION", empid, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();//txtcomaddress
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string empName = this.ddlEmpNameAllInfo.SelectedItem.Text.Trim();
+            string deptName = (ds1.Tables[2].Rows.Count == 0) ? "Department Name: " : "DEPARTMENT NAME: " + ds1.Tables[2].Rows[0]["empdeptdesc"].ToString();
+            string netSal = Convert.ToDouble(ds1.Tables[1].Rows[0]["netsal"]).ToString("#,##0; (#,##0); ");
+
+           // DataTable dt = (DataTable) ds1;
+             LocalReport Rpt1 = new LocalReport();
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.EmployeeAllInfo>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_82_App.RptEmployeeAllInfo", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("empName", empName));
+            Rpt1.SetParameters(new ReportParameter("deptName", deptName));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Employee Information"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+        }
+
 
         private void PrintEmpAllInfoUrban()
         {

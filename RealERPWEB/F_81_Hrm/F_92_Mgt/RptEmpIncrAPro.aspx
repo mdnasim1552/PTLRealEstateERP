@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptEmpIncrAPro.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.RptEmpIncrAPro" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEmpIncrAPro.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.RptEmpIncrAPro" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -77,7 +77,7 @@
    </script>
   
  
- 
+ <br />
  
  <table style="width: 100%;">
         <tr>
@@ -128,7 +128,7 @@
             <table style="width:100%;">
                 <tr>
                     <td>
-                        <asp:Panel ID="Panel4" runat="server" BorderColor="Yellow" BorderStyle="Solid" 
+                        <asp:Panel ID="Panel4" runat="server" BorderColor="black" BorderStyle="Solid" 
                             BorderWidth="1px">
                             <table style="width: 100%;">
                                 <tr>
@@ -136,7 +136,7 @@
                                         &nbsp;</td>
                                     <td class="style15">
                                         <asp:Label ID="Label14" runat="server" Font-Bold="True" Font-Size="12px" 
-                                            ForeColor="White" style="text-align: left" Text="Company:" Width="80px"></asp:Label>
+                                            ForeColor="black" style="text-align: left" Text="Company:" Width="80px"></asp:Label>
                                     </td>
                                     <td class="style44">
                                         <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="txtboxformat" 
@@ -154,14 +154,14 @@
                                             Width="300px">
                                         </asp:DropDownList>
                                         <asp:LinkButton ID="lnkbtnShow" runat="server" BackColor="#003366" 
-                                            BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True" 
+                                            BorderColor="black" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True" 
                                             Font-Size="12px" ForeColor="White" Height="16px" onclick="lnkbtnShow_Click" 
                                             style="text-align: center; " Width="50px" TabIndex="12">Ok</asp:LinkButton>
                                     </td>
                                     <td>
                                         <asp:UpdateProgress ID="UpdateProgress2" runat="server">
                                             <ProgressTemplate>
-                                                <asp:Label ID="Label3" runat="server" BackColor="Blue" BorderColor="White" 
+                                                <asp:Label ID="Label3" runat="server" BackColor="Blue" BorderColor="black" 
                                                     BorderStyle="Solid" BorderWidth="1px" Font-Bold="True" Font-Size="12px" 
                                                     ForeColor="Yellow" style="text-align: left" Text="Please wait . . . . . . ." 
                                                     Width="120px"></asp:Label>
@@ -182,7 +182,7 @@
                                         &nbsp;</td>
                                     <td class="style15">
                                         <asp:Label ID="Label12" runat="server" Font-Bold="True" Font-Size="12px" 
-                                            ForeColor="White" style="text-align: left" Text="Department:" Width="80px"></asp:Label>
+                                            ForeColor="black" style="text-align: left" Text="Department:" Width="80px"></asp:Label>
                                     </td>
                                     <td class="style44">
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="txtboxformat" TabIndex="6" 
@@ -219,7 +219,7 @@
                                         </td>
                                     <td class="style15">
                                         <asp:Label ID="Label13" runat="server" Font-Bold="True" Font-Size="12px" 
-                                            ForeColor="White" style="text-align: left" Text="Section:" Width="80px"></asp:Label>
+                                            ForeColor="black" style="text-align: left" Text="Section:" Width="80px"></asp:Label>
                                     </td>
                                     <td class="style44">
                                         <asp:TextBox ID="txtSrcSec" runat="server" CssClass="txtboxformat" TabIndex="9" 
@@ -257,7 +257,7 @@
                                         &nbsp;</td>
                                     <td class="style15">
                                         <asp:Label ID="lblfrmdate" runat="server" Font-Bold="True" Font-Size="12px" 
-                                            ForeColor="White"  Text="From:" Width="80px"></asp:Label>
+                                            ForeColor="black"  Text="From:" Width="80px"></asp:Label>
                                     </td>
                                     <td align="left" class="style44">
                                         <asp:TextBox ID="txtfromdate" runat="server" CssClass="txtboxformat" 
@@ -268,7 +268,7 @@
                                     </td>
                                     <td class="style24">
                                         <asp:Label ID="lbltodate" runat="server" Font-Bold="True" Font-Size="12px" 
-                                            ForeColor="White" style="text-align: right" Text="To:"></asp:Label>
+                                            ForeColor="black" style="text-align: right" Text="To:"></asp:Label>
                                     </td>
                                     <td class="style43">
                                         <asp:TextBox ID="txttodate" runat="server" BorderStyle="None" Width="100px"></asp:TextBox>

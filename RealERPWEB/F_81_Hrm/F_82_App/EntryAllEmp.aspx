@@ -60,33 +60,33 @@
                             <asp:GridView ID="gvEmpSal" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="850px">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvSlNo5" runat="server" Font-Bold="True"
+                                            <asp:Label ID="lblgvSlNo5" runat="server" 
                                                 Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
                                             <asp:LinkButton runat="server" ID="btndelete" Width="35px" OnClick="btndelete_OnClick" OnClientClick="return confirm('Are you want to delete?')">Delete</asp:LinkButton>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center"  />
                                     </asp:TemplateField>
                                     <%-- <asp:CommandField ShowDeleteButton="True" />--%>
 
                                     <asp:TemplateField HeaderText="Employee Name">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblempid" runat="server" Font-Bold="true" Font-Size="11px" Visible="False"
+                                            <asp:Label ID="lblempid" runat="server"  Visible="False"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                 Width="160px"></asp:Label>
-                                            <asp:Label ID="lblgvempname" runat="server" Font-Bold="true" Font-Size="11px"
+                                            <asp:Label ID="lblgvempname" runat="server" 
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                                 Width="160px"></asp:Label>
                                         </ItemTemplate>
 
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Designation">
                                         <ItemTemplate>
@@ -97,16 +97,16 @@
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbntUpdateOtherDed_OnClick">Update</asp:LinkButton>
                                         </FooterTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Section">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvSection" runat="server" Font-Bold="true" Font-Size="11px"
+                                            <asp:Label ID="lblgvSection" runat="server" 
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
                                                 Width="150px"></asp:Label>
                                         </ItemTemplate>
 
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Card No">
 
@@ -115,7 +115,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
 
                                 </Columns>
@@ -147,13 +147,13 @@
                             <asp:GridView ID="gvEmpPlan" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="850px">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvSlNop" runat="server" Font-Bold="True"
+                                            <asp:Label ID="lblgvSlNop" runat="server" 
                                                 Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px"  />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
@@ -173,7 +173,7 @@
                                                 Width="160px"></asp:Label>
                                         </ItemTemplate>
 
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Designation">
                                         <ItemTemplate>
@@ -184,7 +184,7 @@
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbntUpdateOtherDedp" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbntUpdateOtherDedp_Click">Update</asp:LinkButton>
                                         </FooterTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Section">
                                         <ItemTemplate>
@@ -193,7 +193,7 @@
                                                 Width="150px"></asp:Label>
                                         </ItemTemplate>
 
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Card No">
 
@@ -202,7 +202,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
 
                                 </Columns>

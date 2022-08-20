@@ -538,32 +538,35 @@ namespace RealERPWEB.F_04_Bgd
 
             }
             dtstd = ((DataTable)Session["tblirstdana"]).Clone();
+            bool result = false;
             foreach (DataRow dr1 in tbl1.Rows)
             {
 
                 flr = 0;
-                string ResCod = dr1["rsircode"].ToString();
-                //  int grpst= (ASTUtility.Left(comcod, 1) == "2") ? 51 : 1;
+                string rsircode = dr1["rsircode"].ToString();
+                //  int grpst= (ASTUtility.Left(comcod, 1) == "2") ? 51 : 1; 
 
                 for (int j = 1; j <= tocount; j++)
                 {
                     string flrcod = dt.Rows[flr++]["flrcod"].ToString();
-                    string ResQtyF = "0" + dr1["qty" + ASTUtility.Right("00" + j.ToString(), 3)];
-                    DataRow drstd = dtstd.NewRow();
-                    drstd["rsircode"] = ResCod;
-                    drstd["flrcod"] = flrcod;
-                    drstd["rstdqty"] = ResQtyF;
-                    dtstd.Rows.Add(drstd);
+                    string rstdqty = "0" + dr1["qty" + ASTUtility.Right("00" + j.ToString(), 3)];
+                    //DataRow drstd = dtstd.NewRow();
+                    //drstd["rsircode"] = ResCod;
+                    //drstd["flrcod"] = flrcod;
+                    //drstd["rstdqty"] = ResQtyF;
+                    //dtstd.Rows.Add(drstd);
+
+                    result = bgdData.UpdateXmlTransInfo(comcod, "SP_ENTRY_IRSTDANA", "UPDATEANASHT", null, null, null, ItmCod, rsircode, flrcod, rstdqty, usrid, PostedDat, trmid, sessionid, "","");
+
 
                 }
-
             }
-            DataSet ds1 = new DataSet("ds1");
-            ds1.Merge(dtstd);
-            ds1.Tables[0].TableName = "tbl1";
 
 
-            bool result = bgdData.UpdateXmlTransInfo(comcod, "SP_ENTRY_IRSTDANA", "UPDATEANASHT", ds1, null, null, ItmCod, usrid, PostedDat, trmid, sessionid);
+            //DataSet ds1 = new DataSet("ds1");
+            //ds1.Merge(dtstd);
+            //ds1.Tables[0].TableName = "tbl1";
+            //bool result = bgdData.UpdateXmlTransInfo(comcod, "SP_ENTRY_IRSTDANA", "UPDATEANASHT", ds1, null, null, ItmCod, usrid, PostedDat, trmid, sessionid);
 
             if (!result)
             {
@@ -751,8 +754,9 @@ namespace RealERPWEB.F_04_Bgd
                            Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
 
-            if (result == true)
+            if (result)
             {
+                bool result2 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE02", Itemcode,Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
                 int rowindex = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + e.RowIndex;
                 dt.Rows[rowindex].Delete();
             }

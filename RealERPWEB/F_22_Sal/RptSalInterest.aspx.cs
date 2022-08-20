@@ -94,6 +94,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "PaymentSchedule":
+                case "LO":
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -102,6 +103,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
                     break;
+
                 case "DueCollAll":
                     this.MultiView1.ActiveViewIndex = 2;
                     this.chkInvoicePrint.Visible = true;
@@ -160,10 +162,17 @@ namespace RealERPWEB.F_22_Sal
 
         private void GetCustomerName()
         {
+            string custotype = this.Request.QueryString["Type"].ToString();
+            string calltype = "GETCUSTOMERNAME";
+
+            if (custotype == "LO") {
+
+                calltype = "GETCUSTOMERNAMELANDOWNER";
+            }
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, "", "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", calltype, pactcode, txtSProject, custotype, "", "", "", "", "", "");
             this.ddlCustName.DataTextField = "custnam";
             this.ddlCustName.DataValueField = "custid";
             this.ddlCustName.DataSource = ds2.Tables[0];
@@ -738,6 +747,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "PaymentSchedule":
+                case "LO":
                     PrintPaymentSchedule();
                     break;
                 case "DueCollAll":
@@ -1646,17 +1656,20 @@ namespace RealERPWEB.F_22_Sal
 
             string address = "";
             string sign1 = "", sign2 = "", sign3 = "", sign4 = "";
+            //Land Owner
+            string projectname = this.Request.QueryString["Type"].ToString()=="LO"? ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3)+" (LO PART)": ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3);
+
 
             switch (comcod)
             {
-                //case "3101": // finlay 
+                case "3101": // finlay 
                 case "3368": 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["presentadd"].ToString();
                     break;
                     
-                case "3101": // epic 
+                //case "3101": // epic 
                 case "3367":
                     sign1 = ds2.Tables[0].Rows[0]["name"].ToString() + "\n"+ "Customer";
                     sign2 = ds2.Tables[0].Rows[0]["usrname"].ToString() + "\n" + ds2.Tables[0].Rows[0]["usrdesig"].ToString();
@@ -1679,15 +1692,17 @@ namespace RealERPWEB.F_22_Sal
             }           
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("custnam", this.ddlCustName.SelectedItem.Text.Trim()));
+           
+            Rpt1.SetParameters(new ReportParameter("custnam", ds2.Tables[0].Rows[0]["name"].ToString()));
             Rpt1.SetParameters(new ReportParameter("Address", address));
             Rpt1.SetParameters(new ReportParameter("Telephone", ds2.Tables[0].Rows[0]["telephone"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("ProjectNam", ds2.Tables[0].Rows[0]["projectname"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("ProjectNam", projectname));
             Rpt1.SetParameters(new ReportParameter("FloorType", ds2.Tables[0].Rows[0]["aptname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("Mobile", ds2.Tables[0].Rows[0]["mobile"].ToString()));
             Rpt1.SetParameters(new ReportParameter("Size", ds2.Tables[0].Rows[0]["aptsize"].ToString()));
             Rpt1.SetParameters(new ReportParameter("InWord", "Taka In Word: " + ASTUtility.Trans(directcost, 2)));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Payment Schedule"));
+            Rpt1.SetParameters(new ReportParameter("AppNo", ds2.Tables[0].Rows[0]["aptname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Session["Report1"] = Rpt1;
@@ -2301,6 +2316,12 @@ namespace RealERPWEB.F_22_Sal
                 throw;
             }
 
+        }
+
+        protected void ibtnFindProject_Click(object sender, EventArgs e)
+        {
+            if (this.lbtnOk.Text == "Ok")
+                this.GetProjectName();
         }
     }
 }

@@ -1073,7 +1073,7 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
                 case "3330": // Bridge
-                case "3101":
+                //case "3101":
                     advadj = "advancedadj";
                     break;
 

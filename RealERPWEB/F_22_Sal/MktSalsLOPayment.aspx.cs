@@ -242,6 +242,7 @@ namespace RealERPWEB.F_22_Sal
                 ((Label)this.Master.FindControl("lblmsg")).Text = "";
                 this.ldiscountt.Text = "";
                 this.ldiscountp.Text = "";
+                this.ldiscounttprint.Text = "";
                 this.lbtnBack.Visible = false;
                 this.ClearScreen();
             }
@@ -299,9 +300,10 @@ namespace RealERPWEB.F_22_Sal
             switch (comcod)
             {
                 // format for cube holdings
+                //case "3101":
+                case "3356"://
+                case "3366"://Lanco
                 case "3101":
-                case "3356":
-                case "3366":
                     this.payscheduleRDLC();
                     break;
 
@@ -324,7 +326,7 @@ namespace RealERPWEB.F_22_Sal
             string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string ddldesc = hst["ddldesc"].ToString();
 
-            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
+            DataTable basicinfo = (DataTable)ViewState["tblData"];
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string UsirCode = this.lblCode.Text;
             string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
@@ -341,8 +343,8 @@ namespace RealERPWEB.F_22_Sal
             string aprtsize = size + " " + unit;
             string appatn = basicinfo.Rows[0]["custname"].ToString();
             //direct cost
-            string txtdisamt = this.ldiscountt.Text.ToString();
-            double disamt = Convert.ToDouble(txtdisamt);
+            string txtdisamt = this.ldiscounttprint.Text.ToString();
+            double disamt =0.00;
             string ldiscountpP = this.ldiscountp.Text.ToString();
             string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
 
@@ -475,8 +477,8 @@ namespace RealERPWEB.F_22_Sal
             string concat1 = ItemName + " , " + "Unit Size: " + size + " " + unit;
 
             //direct cost
-            string ldiscounttT = this.ldiscountt.Text;
-            string ldiscountpP = this.ldiscountp.Text;
+            string ldiscounttT = "";
+            string ldiscountpP = "";
 
             string salesteams = ddlSalesTeam.SelectedItem.Text;
             DataSet dss = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
@@ -488,7 +490,7 @@ namespace RealERPWEB.F_22_Sal
             //CompName.Text = comname;
 
             TextObject txtPrjName = rpcp.ReportDefinition.ReportObjects["txtPrjName"] as TextObject;
-            txtPrjName.Text = "Project Name: " + TextField;
+            txtPrjName.Text = "Project Name: " + TextField+"(L/O Part)";
 
 
             TextObject txtItemName = rpcp.ReportDefinition.ReportObjects["txtItemName"] as TextObject;
@@ -496,10 +498,10 @@ namespace RealERPWEB.F_22_Sal
 
 
             TextObject txtdist = rpcp.ReportDefinition.ReportObjects["txtdist"] as TextObject;
-            txtdist.Text = "Discount in Tk. " + ldiscounttT;
+            txtdist.Text =  ldiscounttT;
 
             TextObject txtdisp = rpcp.ReportDefinition.ReportObjects["txtdisp"] as TextObject;
-            txtdisp.Text = "Discount in (%) " + ldiscountpP;
+            txtdisp.Text =  ldiscountpP;
 
             TextObject txtsalest = rpcp.ReportDefinition.ReportObjects["txtsalest"] as TextObject;
             txtsalest.Text = "Sales Team: " + salesteams;
@@ -641,6 +643,7 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
             this.ldiscountt.Text = "";
             this.ldiscountp.Text = "";
+            this.ldiscounttprint.Text =
             this.lblvoucher.Text = "";
             this.LoadGrid();
 
@@ -907,6 +910,7 @@ namespace RealERPWEB.F_22_Sal
                 double discount = (AcAmt - ttlAmount);
                 double discountp = (discount * 100) / ttlAmount;
                 this.ldiscountt.Text = Math.Round((AcAmt - ttlAmount), 0).ToString("#,##0;(#,##0);");
+                ldiscounttprint.Text = Math.Round((AcAmt - ttlAmount), 0).ToString();
                 this.ldiscountp.Text = discountp.ToString("#,##0;(#,##0);") + '%';
                 if (discountp >= 0)
                 {
@@ -1373,8 +1377,11 @@ namespace RealERPWEB.F_22_Sal
                 string gcode = ((Label)this.gvPayment.Rows[i].FindControl("lblgvItmCode3")).Text.Trim();
                 string schDate = Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
                 double Amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text.Trim()));
+
+
+                double LOAmount= Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvLOAmt")).Text.Trim())); 
                 //  Amount = (Amount>0)?Amount:0;
-                bandpamt += Amount;
+                bandpamt += LOAmount;
 
                 if (ASTUtility.Left(gcode, 5) == "81985")
                 {
@@ -1382,16 +1389,16 @@ namespace RealERPWEB.F_22_Sal
                     if (dr.Length > 0)
                     {
 
-
+                        dr[0]["schamt"] = Amount;
                         dr[0]["schdate"] = schDate;
-                        dr[0]["schloamt"] = Amount;
+                        dr[0]["schloamt"] = LOAmount;
                     }
                 }
                 else
                 {
-
+                    dt.Rows[k]["schamt"] = Amount;
                     dt.Rows[k]["schdate"] = schDate;
-                    dt.Rows[k]["schloamt"] = Amount;
+                    dt.Rows[k]["schloamt"] = LOAmount;
                     k++;
 
                 }
@@ -1439,7 +1446,7 @@ namespace RealERPWEB.F_22_Sal
             endins = endins > drowcount ? drowcount : endins;
             for (int i = strins - 1; i < endins; i++)
             {
-                dt.Rows[i]["schamt"] = insamt;
+                dt.Rows[i]["schloamt"] = insamt;
 
             }
             Session["tblPay"] = dt;

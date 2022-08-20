@@ -82,9 +82,6 @@ namespace RealERPWEB.F_09_PImp
 
                 case "3315":// Assure
                 case "3316":// Assure
-
-
-
                     this.txtRefno.Enabled = false;
                     this.grvissue.Columns[7].Visible = false;
                     this.grvissue.Columns[8].Visible = false;
@@ -130,9 +127,10 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
 
-
                 case "3339": // Tropical
-                //case "3101": // ASIT
+                case "3101": // ASIT
+                case "3368": // finaly
+
                     this.chkCharging.Visible = true;
                     this.grvissue.Columns[7].Visible = false;
                     this.grvissue.Columns[8].Visible = false;
@@ -152,8 +150,6 @@ namespace RealERPWEB.F_09_PImp
                     this.divgrp.Attributes["style"] = "width: 750px;float: left;";
                     this.ddlgroup.Visible = true;
                     this.lblgrp.Visible = true;
-
-
                     break;
 
 
@@ -166,12 +162,11 @@ namespace RealERPWEB.F_09_PImp
                     this.grvissue.Columns[13].Visible = false;
                     this.grvissue.Columns[14].Visible = false;
                     this.grvissue.Columns[15].Visible = false;
-
                     this.grvissue.Columns[16].Visible = false;
                     this.grvissue.Columns[17].Visible = true;
                     this.grvissue.Columns[19].Visible = true;
                     this.divgrp.Attributes["style"] = "width: 548px;float: left;";
-                    break;
+                    break;             
 
 
                 default:
@@ -1533,6 +1528,8 @@ namespace RealERPWEB.F_09_PImp
                 double balamt = Convert.ToDouble(dr["balamt"].ToString().Trim());
 
 
+                //Isuqty = ASTUtility.Left(grp, 1) == "2" ? Isuqty * -1 : Isuqty;
+                //Isuamt = ASTUtility.Left(grp, 1) == "2" ? Isuamt * -1 : Isuamt;
 
 
 
@@ -1662,16 +1659,18 @@ namespace RealERPWEB.F_09_PImp
             for (int i = 0; i < this.grvissue.Rows.Count; i++)
             {
 
+             
 
-
+                string grp = ((Label)this.grvissue.Rows[i].FindControl("gvlblgrp")).Text.Trim();
                 string rsircode = ((Label)this.grvissue.Rows[i].FindControl("lblitemcode")).Text.Trim();
                 double wrkqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtwrkqty")).Text.Trim()));
                 double balqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalqty")).Text.Trim()));
                 double preqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblpreqty")).Text.Trim()));
                 double dgvQty = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtisuqty")).Text.Trim());
                 double percent = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtpercentge")).Text.Trim());
+                  
                 double labrate = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtlabrate")).Text.Trim());
-                // double balamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalamt")).Text.Trim()));
+                //// double balamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalamt")).Text.Trim()));
                 double dedqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedqty")).Text.Trim()));
                 string dedunit = ((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedunit")).Text.Trim();
                 double dedrate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedrate")).Text.Trim()));
@@ -1680,6 +1679,12 @@ namespace RealERPWEB.F_09_PImp
                 double above = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvabove")).Text.Trim());
                 double issueamt = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtissueamt")).Text.Trim());
                 string mbbook = (((TextBox)this.grvissue.Rows[i].FindControl("txtmbbook")).Text.Trim());
+
+
+               // dgvQty = ASTUtility.Left(grp, 1) == "2" ? dgvQty * -1 : dgvQty;
+               // amount = ASTUtility.Left(grp, 1) == "2" ? amount * -1 : amount;
+
+
 
                 double toqty = preqty + dgvQty;
                 string comcod = this.GetCompCode();
@@ -1747,6 +1752,10 @@ namespace RealERPWEB.F_09_PImp
                         idedamt = idedamt > 0 ? idedamt : dedqty * dedrate;
 
                         amount = amount > 0 ? amount : isuqty * labrate;
+
+                        //amount = ASTUtility.Left(grp, 1) == "2" ? amount * -1 : 0;
+
+
                         labrate = amount > 0 ? amount / isuqty : labrate;
                         adedamt = amount - idedamt;
                         issueamt = (rsircode.Substring(0, 7) == "0499999") ? issueamt : adedamt + (adedamt * 0.01 * above);
@@ -1966,6 +1975,24 @@ namespace RealERPWEB.F_09_PImp
                 this.GetMaterials();
             }
 
+        }
+
+        protected void grvissue_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+
+                TextBox txtisuqty = (TextBox)e.Row.FindControl("txtisuqty");
+
+                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
+                if (grp.Substring(0,1) == "2")
+                {
+                    txtisuqty.Attributes["style"] = "background:#f9f9a1";
+                    txtisuqty.Attributes["placeholder"] = "use - (minus qty)";
+                }
+                  
+            }
         }
     }
 }

@@ -3,30 +3,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">       
-        function loadModalComplain() {
-            $('#modalEditComplain').modal('toggle', {
-                backdrop: 'static',
-                keyboard: false
-            });
-        }
-        function CloseModalComplain() {
-            $('#modalEditComplain').modal('hide');
-        }
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
-        });
-        function pageLoaded() {
-
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
-            $('.chzn-select').chosen({ search_contains: true });
-        }
-    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         body {
             font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
@@ -49,8 +27,29 @@
                 padding: 0 10px;
             }
     </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">       
+        function loadModalComplain() {
+            $('#modalEditComplain').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+        function CloseModalComplain() {
+            $('#modalEditComplain').modal('hide');
+        }
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -70,7 +69,7 @@
 
                         <div class="col-lg-2">
                             <div class="form-group">
-                                 <asp:Label runat="server" ID="lblcomplno" class="form-label" Visible="false"></asp:Label>
+                                <asp:Label runat="server" ID="lblcomplno" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
                                 <asp:DropDownList ID="ddlProject" CssClass="form-control chzn-select" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged"></asp:DropDownList>
 

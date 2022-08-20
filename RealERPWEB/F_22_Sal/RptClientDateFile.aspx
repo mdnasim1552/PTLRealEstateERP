@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptClientDateFile.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptClientDateFile" %>
+﻿<%@  Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptClientDateFile.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptClientDateFile" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -99,10 +99,10 @@
 
                                         <asp:Label ID="lblTypeHeader" runat="server" CssClass="lblTxt lblName" Text="Type"></asp:Label>
                                         <asp:DropDownList ID="ddlTypeHeader" runat="server" CssClass="ddlPage chzn-select" Width="200px" Font-Bold="true">
-                                            <asp:ListItem Value="1">BY HAND</asp:ListItem>
+             <%--                               <asp:ListItem Value="1">BY HAND</asp:ListItem>
                                             <asp:ListItem Value="2">REGISTER MAIL </asp:ListItem>
                                             <asp:ListItem Value="3">BY COURIER </asp:ListItem>
-                                            <asp:ListItem Value="4">REGISTER MAIL WITH A/D</asp:ListItem>
+                                            <asp:ListItem Value="4">REGISTER MAIL WITH A/D</asp:ListItem>--%>
                                         </asp:DropDownList>
                                     </div>
 
@@ -233,6 +233,7 @@
                                         <asp:Label ID="lgvAddress3" runat="server" Style="text-align: left"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "address3"))%>'
                                             Width="100px"></asp:Label>
+                                        <asp:Label ID="lblperadd" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paradd"))%>' Visible="false"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvFAddress3" runat="server" Font-Bold="True" Font-Size="12px"
