@@ -633,7 +633,7 @@ namespace RealERPWEB
             }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LETTER", callType, qtype, empid, "", "", "", "", "", "", "");
-            if (ds1 == null)
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
                 return;
 
             this.ddlEmployee.Items.Clear();
