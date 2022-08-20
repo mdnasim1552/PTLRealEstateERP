@@ -2932,6 +2932,9 @@
                                                 <div class="row">
                                                     <div class="col-md-5 col-sm-12 col-lg-5">
                                                         <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
+                                                        <center>
+                                                        <asp:LinkButton ID="ToAtten" runat="server"><a Class="btn btn-primary btn-sm" href="F_81_Hrm/F_83_Att/TodayAttendanceSheet.aspx">Attendance</a></asp:LinkButton>
+                                                         </center>
                                                     </div>
                                                     
                                                     <div class="col-md-7 col-sm-12 col-lg-7 ">

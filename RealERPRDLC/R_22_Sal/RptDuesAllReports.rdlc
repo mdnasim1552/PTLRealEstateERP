@@ -77,42 +77,42 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.34375in</Width>
+                  <Width>0.35417in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.30208in</Width>
+                  <Width>1.47in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.19917in</Width>
+                  <Width>1.15624in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.86333in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.0325in</Width>
+                  <Width>1.08459in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.94542in</Width>
+                  <Width>0.82042in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.1575in</Width>
+                  <Width>1.04166in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.02083in</Width>
+                  <Width>1.0625in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.86458in</Width>
+                  <Width>0.96875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.01042in</Width>
+                  <Width>1.02209in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.03125in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.36458in</Height>
+                  <Height>0.29166in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -376,8 +376,7 @@ Booking Dues</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Prev.
-CR Dues</Value>
+                                  <Value>Prev. CR Dues</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -450,8 +449,7 @@ Booking Dues</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Current.
-CR Dues</Value>
+                                  <Value>Current.CR Dues</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -517,7 +515,7 @@ CR Dues</Value>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.32292in</Height>
+                  <Height>0.30209in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -726,7 +724,7 @@ CR Dues</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!pbookam.Value,"#,##0.00;(#,##0.00);")</Value>
+                                  <Value>=Format(Fields!pbookam.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -761,7 +759,7 @@ CR Dues</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!pinsam.Value,"#,##0.00;(#,##0.00);")</Value>
+                                  <Value>=Format(Fields!pinsam.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -796,7 +794,7 @@ CR Dues</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!cbookam.Value,"#,##0.00;(#,##0.00);")</Value>
+                                  <Value>=Format(Fields!cbookam.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -831,7 +829,7 @@ CR Dues</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!cinsam.Value,"#,##0.00;(#,##0.00);")</Value>
+                                  <Value>=Format(Fields!cinsam.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -866,7 +864,7 @@ CR Dues</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!todues.Value,"#,##0.00;(#,##0.00);")</Value>
+                                  <Value>=Format(Fields!todues.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1248,9 +1246,9 @@ CR Dues</Value>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.06944in</Top>
-            <Left>0.01042in</Left>
-            <Height>0.96875in</Height>
-            <Width>10.73958in</Width>
+            <Left>0.04167in</Left>
+            <Height>0.875in</Height>
+            <Width>10.875in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1261,7 +1259,7 @@ CR Dues</Value>
         <Height>1.0625in</Height>
         <Style />
       </Body>
-      <Width>10.75in</Width>
+      <Width>10.92708in</Width>
       <Page>
         <PageHeader>
           <Height>0.75917in</Height>
@@ -1378,9 +1376,9 @@ CR Dues</Value>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.03125in</Top>
-              <Left>0.01042in</Left>
+              <Left>0.05209in</Left>
               <Height>0.655in</Height>
-              <Width>3.25222in</Width>
+              <Width>3.40847in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -1420,7 +1418,7 @@ CR Dues</Value>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.05208in</Top>
               <Height>0.25in</Height>
-              <Width>6.73833in</Width>
+              <Width>6.79041in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1454,7 +1452,7 @@ CR Dues</Value>
               <Top>0.02083in</Top>
               <Left>6.84375in</Left>
               <Height>0.25in</Height>
-              <Width>3.89583in</Width>
+              <Width>4.05208in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
