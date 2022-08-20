@@ -28,6 +28,8 @@ namespace RealERPWEB
                     string pageType = this.Request.QueryString["Page"].ToString().Trim();
                     if (pageType == "NewRec")
                     {
+                        this.panl1.Visible = false;
+                        this.pnl2.Visible = true;
 
                         getLetter();
 
@@ -633,7 +635,7 @@ namespace RealERPWEB
             }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LETTER", callType, qtype, empid, "", "", "", "", "", "", "");
-            if (ds1 == null)
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
                 return;
 
             this.ddlEmployee.Items.Clear();
@@ -1607,5 +1609,43 @@ namespace RealERPWEB
         }
 
 
+
+        protected void btnSendLetter_Click(object sender, EventArgs e)
+        {
+            string letterType = this.Request.QueryString["Type"].ToString().Trim();
+            string advno = this.Request.QueryString["advno"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string msg = "";
+            if (letterType == "10003")
+            {
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "UPDTLETSTATUS", "true", "false", "false", advno, "", "");
+                if (result)
+                {
+                    msg = "Updated success";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                }
+            }
+            else if (letterType == "10002")
+            {
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "UPDTLETSTATUS", "true", "true", "false", advno, "", "");
+                if (result)
+                {
+                    msg = "Updated success";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                }
+            }
+            else if (letterType == "10025")
+            {
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "UPDTLETSTATUS", "true", "true", "true", advno, "", "");
+                if (result)
+                {
+                    msg = "Updated success";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                }
+            }
+        }
     }
 }
