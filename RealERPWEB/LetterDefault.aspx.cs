@@ -21,104 +21,112 @@ namespace RealERPWEB
         {
             if (!IsPostBack)
             {
-                string pageType = this.Request.QueryString["Page"].ToString().Trim();
-                if(pageType== "NewRec") {
+                if (Request.QueryString["Page"] != null)
+                {
 
-                    getLetter();
+
+                    string pageType = this.Request.QueryString["Page"].ToString().Trim();
+                    if (pageType == "NewRec")
+                    {
+
+                        getLetter();
+
+                    }
+                }
+                else { 
                 
-                } else
-                {
 
-                // this.CommonButton();
-                var type = this.Request.QueryString["Entry"].ToString().Trim();
-                if (type == "Apprv" || type == "HR")
-                {
-                    this.panl1.Visible = false;
-                    this.btnsave.Visible = false;
-                    this.btnapprv.Visible = false;
-                    this.ShowLetter();
+                    // this.CommonButton();
+                    var type = this.Request.QueryString["Entry"].ToString().Trim();
+                    if (type == "Apprv" || type == "HR")
+                    {
+                        this.panl1.Visible = false;
+                        this.btnsave.Visible = false;
+                        this.btnapprv.Visible = false;
+                        this.ShowLetter();
+                    }
+
+
+                    // this.txtml.Text = "<h1><span style=" + "text-decoration:" + "underline;" + "><strong>sabid hossain</strong></span></h1>";
+                    string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    // this.txtfromdate.Text = "01" + date.Substring(2);
+                    this.txttodate.Text = date;
+                    // this.ShowView();
+
+
+                    string type1 = this.Request.QueryString["Type"].ToString().Trim();
+                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023")
+                    {
+                        this.GetSelected();
+                        this.GetCompany();
+                    }
+                    else
+                    {
+                        this.GetEmployee();
+                    }
+
+
+                    //  this.GetLettPattern();
+                    string title = this.Request.QueryString["Type"].ToString().Trim();
+
+                    switch (title)
+                    {
+                        case "10002":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Appoinment Letter";
+                            break;
+                        case "10003":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Offer Letter";
+                            break;
+                        case "10004":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation With Promotion Letter";
+                            break;
+                        case "10005":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
+                            break;
+
+                        case "10006":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Probation Extension Letter";
+                            break;
+                        case "10007":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
+                            break;
+                        case "10008":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Certificate Letter";
+                            break;
+                        default:
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Name of Letter";
+                            break;
+                    }
+
+
+                    // ddlEmployee_SelectedIndexChanged(null, null);
+
+                    string Apprv = this.Request.QueryString["Entry"].ToString();
+                    if (Apprv == "Apprv")
+                    {
+
+                        ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = true;
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = true;
+
+                    }
+                    if (Apprv == "HR")
+                    {
+                        //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
+                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
+                    }
+                    else
+                    {
+                        //((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
+                        //((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
+                    }
+                    this.lbtnOk_Click(null, null);
+
                 }
-
-
-                // this.txtml.Text = "<h1><span style=" + "text-decoration:" + "underline;" + "><strong>sabid hossain</strong></span></h1>";
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                // this.txtfromdate.Text = "01" + date.Substring(2);
-                this.txttodate.Text = date;
-                // this.ShowView();
-
-
-                string type1 = this.Request.QueryString["Type"].ToString().Trim();
-                if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1=="10028" || type1=="10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023")
-                {
-                    this.GetSelected();
-                    this.GetCompany();
-                }
-                else
-                {
-                    this.GetEmployee();
-                }
-
-
-                //  this.GetLettPattern();
-                string title = this.Request.QueryString["Type"].ToString().Trim();
-
-                switch (title)
-                {
-                    case "10002":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Appoinment Letter";
-                        break;
-                    case "10003":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Offer Letter";
-                        break;
-                    case "10004":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation With Promotion Letter";
-                        break;
-                    case "10005":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
-                        break;
-
-                    case "10006":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Probation Extension Letter";
-                        break;
-                    case "10007":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
-                        break;
-                    case "10008":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Certificate Letter";
-                        break;
-                    default:
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Name of Letter";
-                        break;
-                }
-
-
-                // ddlEmployee_SelectedIndexChanged(null, null);
-
-                string Apprv = this.Request.QueryString["Entry"].ToString();
-                if (Apprv == "Apprv")
-                {
-
-                    ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = true;
-                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = true;
-
-                }
-                if (Apprv == "HR")
-                {
-                    //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-
-                }
-                else
-                {
-                    //((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
-                    //((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
-                }
-                this.lbtnOk_Click(null, null);
-
             }
-            }
-
         }
+
+        
         private void getLetter()
         {
             string comcod = this.GetCompCode();
@@ -128,14 +136,14 @@ namespace RealERPWEB
             if (ds == null || ds.Tables[0].Rows.Count == 0)
                 return;
 
-            string adv = ds.Tables[0].Rows[0]["advno"].ToString()??"";
-            string name = ds.Tables[0].Rows[0]["name"].ToString()??"";
+            string adv = ds.Tables[0].Rows[0]["advno"].ToString() ?? "";
+            string name = ds.Tables[0].Rows[0]["name"].ToString() ?? "";
             string desig = ds.Tables[0].Rows[0]["desig"].ToString();
-            string dept = ds.Tables[0].Rows[0]["dept"].ToString()??"";
-            string mobile = ds.Tables[0].Rows[0]["mobile"].ToString()??"";
-            string email = ds.Tables[0].Rows[0]["email"].ToString()??"";
-            string preadd = ds.Tables[0].Rows[0]["preadd"].ToString()??"";
-            string peradd = ds.Tables[0].Rows[0]["peradd"].ToString()??"";
+            string dept = ds.Tables[0].Rows[0]["dept"].ToString() ?? "";
+            string mobile = ds.Tables[0].Rows[0]["mobile"].ToString() ?? "";
+            string email = ds.Tables[0].Rows[0]["email"].ToString() ?? "";
+            string preadd = ds.Tables[0].Rows[0]["preadd"].ToString() ?? "";
+            string peradd = ds.Tables[0].Rows[0]["peradd"].ToString() ?? "";
             string sec = ds.Tables[0].Rows[0]["sec"].ToString() ?? "";
 
             string bsal = ds.Tables[0].Rows[0]["bsal"].ToString() ?? "";
@@ -145,14 +153,31 @@ namespace RealERPWEB
             string total = ds.Tables[0].Rows[0]["total"].ToString() ?? "";
             string grade = ds.Tables[0].Rows[0]["grade"].ToString() ?? "";
             string doj = ds.Tables[0].Rows[0]["doj"].ToString() ?? "";
+            string refno = ds.Tables[0].Rows[0]["refno"].ToString() ?? "";
             string cur_year = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy");
             string incmtax = "";
             string payablesal = "";
             string idcard = "";
             string inwords2 = "";
             double inwrd = 0;
-            string temptable = ""; 
+            string temptable = "";
+            int count = 1;
 
+            if (ds.Tables[1].Rows.Count != 0)
+            {
+
+                DataTable dtemplv = ds.Tables[1];
+
+                if (dtemplv.Rows.Count > 0)
+                {
+                    foreach (DataRow drlv in dtemplv.Rows)
+                    {
+
+                        temptable = temptable + "<tr style='border-style:solid;border: 1px solid black;'><td style='border-style:solid;border: 1px solid black;text-align:center'>" + count + "</td><td style='border-style:solid;border: 1px solid black;'>" + drlv["lvname"].ToString() + "</td><td style='border-style:solid;border:1px solid black;text-align:center'>" + drlv["leave"].ToString() + " </td></tr>";
+                        count++;
+                    }
+                }
+            }
             string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
 
             string lbody = string.Empty;
@@ -161,15 +186,15 @@ namespace RealERPWEB
 
             switch (letterType)
             {
+                //confirmation letter
                 case "10025":
 
-                    if (comcod == "3101")
+                    if ( this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
                     {
                         lbody =
                            "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
-                           "<p style='margin-bottom:-11px'><strong>Ref:ERE/HR/CL/"+ cur_year + "/027</strong></p>" +
-                           "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
-                            "<p style='margin-bottom:-11px'>Employee ID : " + adv + "</p>" +
+                           "<p style='margin-bottom:-11px'><strong>Ref:"+refno+"</strong></p>" +
+                           "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
                             "<p style='margin-bottom:-11px'>" + desig + "</p>" +
                             "<p style='margin-bottom:-11px'>" + dept + "</p>" +
                             "<p style='margin-bottom:-11px'>" + sec + "</p>" +
@@ -202,12 +227,12 @@ namespace RealERPWEB
 
                     //appoinment letter
                 case "10002":
-                    if (this.GetCompCode() == "3101")
+                    if (this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
                     {
 
                         lbody =
-                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:EREL/AL2022/027</strong></p>" +
-                        "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:"+refno+"</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong> Mr " + name + "</strong></p>" +
                         "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
                         "<p><strong>Subject:</strong> Appointment Letter - <strong>" + desig + "</strong></p>" +
                         "<p>Dear Mr " + name + ",</p>" +
@@ -219,7 +244,7 @@ namespace RealERPWEB
                         //position info
                         "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
                         "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
-                        "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + date + "</span></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + doj + "</span></p>" +
 
                         //salary break down table
                         "<p><strong>Salary Breakdown :</strong></p>" +
@@ -263,11 +288,11 @@ namespace RealERPWEB
 
                     //offer letter
                 case "10003":
-                    if (this.GetCompCode() == "3101")
+                    if ( this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
                     {
                         lbody =
                        "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
-                       "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
                        "<p><strong>Subject:</strong> Offer Letter-<strong>" + desig + "</strong></p>" +
                        "<p>Dear Mr " + name + ",</p>" +
@@ -287,6 +312,7 @@ namespace RealERPWEB
                        "<p style='margin-bottom:-11px'>We look forward to the opportunity to work with you in an atmosphere that is successful and mutually challenging and rewarding.If you don’t accept this letter, please let us know within " + date + ".</p>" +
 
                            "<p></p>" +
+                            "<p></p>" +
 
                            "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>Ahmed Pasha</strong></p></span></p>" +
                   "<br>" +
@@ -297,6 +323,17 @@ namespace RealERPWEB
 
 
                        "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p>";
+
+                    }
+                    else if (this.GetCompCode() == "3365")
+                    {
+                        lbody = "<p style='margin-bottom:0'><br/><br/>Ref: "+refno+"</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
+       "<p style='margin-bottom:-11px'>Address: "+peradd+" </p>" +
+       "<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : "+ mobile + "</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>Mr " + name + "," + "</strong></p>" +
+       "<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + desig + ", " + sec + ",</strong> in " + dept + ", which shall commence on or before <strong> " + doj + " </strong>." +
+       "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
+       "<li style='margin-top:5px'>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li style='margin-top:5px'>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li style='margin-top:5px'>Photocopy of National ID card/ Passport (employee and nominee).</li><li style='margin-top:5px'>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
+       "</li><li style='margin-top:5px'>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director" + "</p><p>" + "Head of HR,Admin,Security and Fire Safety Department" + "</p>";
 
                     }
                     break;
@@ -580,9 +617,10 @@ namespace RealERPWEB
             {
                 callType = "GETCANDIDATELIST";
             }
-            else if (qtype == "10013" || qtype == "10020" || qtype == "10021" || qtype == "10022" || qtype == "10023")
+            else if (qtype == "10013" || qtype == "10020" || qtype == "10021" || qtype == "10022" || qtype == "10023" || qtype=="10028")
             {
-                callType = "GETCONFIRMEMP";
+               // callType = "GETCONFIRMEMP";
+                callType = "CONFIRMEMPINFO";
             }
 
 
@@ -1389,7 +1427,7 @@ namespace RealERPWEB
                     break;
                 //salary certificate
                 case "10028":
-                    if (this.GetCompCode() == "3354")
+                    if (this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
                     {
                         lbody = "<p style='text-align:right;margin-bottom:-11px'>" + date + "</p>" +
 

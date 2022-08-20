@@ -287,8 +287,15 @@ namespace RealERPWEB.F_22_Sal
 
         private void RptPrjWise()
         {
+
+            int index = rbtnList1.SelectedIndex;
+            if (index == 5)
+            {
+               
+
            
             Hashtable hst = (Hashtable)Session["tblLogin"];
+
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
@@ -314,6 +321,15 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>();
+
+           
+           
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+           
+           
+            Rpt1.EnableExternalImages = true;
+            
+
             if (rbtnList1.SelectedIndex == 3)
             {
                 Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02Finlay", list, null, null);
@@ -326,6 +342,7 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
             }
+
 
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -345,6 +362,9 @@ namespace RealERPWEB.F_22_Sal
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+
 
         }
 

@@ -119,7 +119,7 @@
                                             <asp:ListItem>With Post Dated</asp:ListItem>
                                             <asp:ListItem>Current Dated</asp:ListItem>
                                             <asp:ListItem>Actual Dated</asp:ListItem>
-                                            <asp:ListItem>Reconcile Dated</asp:ListItem>
+                                            <asp:ListItem>Collection Statement</asp:ListItem>
                                             <asp:ListItem>Entry Date </asp:ListItem>
                                             <asp:ListItem>Cheque In Hand </asp:ListItem>
 
