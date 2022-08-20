@@ -140,12 +140,11 @@
 
             <div class=" card card-fluid" style="min-height: 600px">
                 <div class=" card-body">
-
                     <div class="row">
                         <div class="col-md-2">
                           <div class="  form-group">
                                 <label for="Label5" runat="server" class=" control-label  lblmargin-top9px ">From</label>
-                                <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputDateBox" ToolTip="(dd.mmm.yyyy)"></asp:TextBox>
+                                <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputDateBox" ToolTip="(dd.mmm.yyyy)" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
 
