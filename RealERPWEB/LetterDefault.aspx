@@ -243,6 +243,11 @@ ol.ollist{
                         </div>
 
                     </asp:Panel>
+                    <asp:Panel runat="server" ID="pnl2" Visible="false">
+                        <div class="row">
+                           <asp:Button ID="btnSendLetter" runat="server" CssClass="btn btn-success btn-sm" Text="Submit Letter" OnClick="btnSendLetter_Click" />
+                        </div>
+                    </asp:Panel>
 
 
                     <asp:Button ID="btnsave" runat="server" OnClick="btnsave_Click" Text="Save" Visible="false" ValidationGroup="postValid" OnClientClick="tinyMCE.triggerSave(false,true);" />
