@@ -112,12 +112,25 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 switch (gcod)
                 {
 
+                    //joindat
+                    case "97003":
+                        gvalue = dt.Rows[i]["value"].ToString();
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text = gvalue;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
+                        ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = true;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Text = Convert.ToDateTime(System.DateTime.Now).ToString("dd-MMM-yyyy");
+                        break;
+
                     //dept
                     case "97005":
                         gvalue = dt.Rows[i]["value"].ToString();
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
 
                         ddlgval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig"));
                         ddlgval.DataTextField = "deptdesc";
@@ -133,6 +146,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
 
                         ddlgval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig"));
                         ddlgval.DataTextField = "sirdesc";
@@ -147,6 +161,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
 
                         ddlgval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig"));
                         ddlgval.DataTextField = "hrgdesc";
@@ -163,6 +178,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
+
                         break;
                     //permanent address
                     case "97104":
@@ -173,6 +190,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
+
                         break;
                     //attach file
                     case "97999":
@@ -180,6 +199,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
+
                         break;
                     default:
                         gvalue = dt.Rows[i]["value"].ToString();
@@ -190,6 +211,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
 
+                        ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
 
                         break;
 
@@ -334,7 +356,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 }
                 else if (gcode == "97003")
                 {
-                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
                     if (gval.Length == 0)
@@ -350,12 +372,12 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                    //if (gval.Length == 0)
+                    //{
+                    //    string Message = "Select Type to continue";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    //    return;
+                    //}
                 }
 
                 else if (gcode == "51002")
@@ -363,12 +385,12 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                    //if (gval.Length == 0)
+                    //{
+                    //    string Message = "Select Type to continue";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    //    return;
+                    //}
                 }
 
                 else if (gcode == "51003")
@@ -376,64 +398,68 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                    //if (gval.Length == 0)
+                    //{
+                    //    string Message = "Select Type to continue";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    //    return;
+                    //}
                 }
 
                 else if (gcode == "04001")
                 {
-                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text == "" ? "0" : ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text;
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                    //if (gval.Length == 0)
+                    //{
+                    //    string Message = "Select Type to continue";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    //    return;
+                    //}
                 }
 
                 else if (gcode == "04002")
                 {
-                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text == "" ? "0" : ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text;
+
+                   
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                    //if (gval.Length == 0)
+                    //{
+                    //    string Message = "Select Type to continue";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    //    return;
+                    //}
                 }
 
                 else if (gcode == "04003")
                 {
-                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text == "" ? "0" : ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text;
+
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                    //if (gval.Length == 0)
+                    //{
+                    //    string Message = "Select Type to continue";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    //    return;
+                    //}
                 }
 
                 else if (gcode == "04004")
                 {
-                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text == "" ? "0" : ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text;
+
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                    //if (gval.Length == 0)
+                    //{
+                    //    string Message = "Select Type to continue";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    //    return;
+                    //}
                 }
                 else if (gcode == "97098")
                 {
@@ -447,6 +473,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                         return;
                     }
                 }
+        
                 else if (gcode == "97999")
                 {
                     if (((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).HasFile)

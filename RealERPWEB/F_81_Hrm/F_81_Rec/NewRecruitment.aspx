@@ -146,12 +146,11 @@
                                                 </asp:DropDownList>
                                             </div>
 
-
-                                            <%--           <div class="form-group">
-                                                <asp:DropDownList ID="ddldept" runat="server" CssClass="custom-select chzn-select ">
-                                                </asp:DropDownList>
-                                            </div>--%>
-
+                       <div class="form-group">
+                               
+                                <asp:TextBox ID="txtjoindat" runat="server" CssClass="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtjoindat_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtjoindat"></cc1:CalendarExtender>
+                            </div>
 
 
                                             <div class="form-group">
@@ -179,8 +178,15 @@
                 </div>
                 <div class="col-8">
                     <div class="card">
-                        <div class="card-header">
-                            <span class="card-title text-muted"><strong>All list </strong></span>
+                        <div class="card-header d-flex">
+                      
+                            <div class="mr-auto p-2">
+                                      <span class="card-title text-muted mr-auto"><strong>All list </strong></span>
+                            </div>
+                            <div class="ml-auto p-2">
+                            <asp:HyperLink ID="lnkLetIntrfc" runat="server" NavigateUrl="~/F_81_Hrm/F_92_Mgt/LetterInterface.aspx" CssClass="btn btn-info btn-sm" Target="_blank">Letter Interface</asp:HyperLink>
+
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table table-sm table-responsive">
@@ -235,7 +241,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Operation">
+                                        <asp:TemplateField HeaderText="Operation" Visible="false">
                                             <ItemTemplate>
                                                 <div class="dropdown">
                                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
