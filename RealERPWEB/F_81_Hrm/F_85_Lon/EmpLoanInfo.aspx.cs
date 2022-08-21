@@ -43,6 +43,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 {
                     this.GetAprLoanist();
                 }
+                VisibleSection();
                 this.GetEmplist();
                 this.GetLoanType();
                 this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -62,6 +63,32 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
+
+        private void VisibleSection()
+        {
+            string qstring = this.Request.QueryString["Type"].ToString();
+            if (qstring == "Refund")
+            {
+                this.lnkSearcEMP.Enabled = false;
+                this.ddlEmpList.Enabled = false;
+                this.lbldate.Text = "Refund Date";
+                this.ddlLoantype.Enabled = false;
+                this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtToamt.Enabled = false;
+                this.txtinsamt.Enabled = false;
+                this.txtstrdate.Enabled = false;
+                this.ddlMonth.Enabled = false;
+                this.txtPaidAmt.Enabled = false;
+                this.txtUptoDate.Enabled = false;
+                this.lbtnGenerate.Visible = false;                 
+                this.chkVisible.Visible = false;
+                this.rfuBox.Visible = true;
+                this.refunNotes.Visible = true;
+                
+            }
+        }
+
+
         private void GetAprLoanist()
         {
             string comcod = this.GetComeCode();
@@ -186,11 +213,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     this.pnlloan.Visible = true;
                     lbtnTotal_Click(null, null);
                 }
+                VisibleSection();
+
                 return;
             }
             this.lbtnOk.Text = "Ok";
             //this.lblEmpName.Text = "";
             this.txtPaidAmt.Text = "0";
+
             this.ddlEmpList.Enabled = true;
 
             this.ddlPrevLoanList.Items.Clear();
@@ -204,9 +234,10 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.chkVisible.Visible = false;
             this.pnlloan.Visible = false;
             this.ddlLoantype.Enabled = true;
-
+            VisibleSection();
             this.gvloan.DataSource = null;
             this.gvloan.DataBind();
+
         }
 
 
@@ -305,10 +336,30 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.gvloan.DataBind();
             this.FooterCalculation((DataTable)ViewState["tblln"]);
 
+
+            string qstring = this.Request.QueryString["Type"].ToString();
+            if (qstring == "Refund")
+            {
+                this.gvloan.Columns[7].Visible = false;
+                this.gvloan.Columns[8].Visible = true;
+                ((LinkButton)this.gvloan.FooterRow.FindControl("lnkbtnRefund")).Visible = true;
+                ((LinkButton)this.gvloan.FooterRow.FindControl("lbtnTotal")).Visible = false;
+                ((LinkButton)this.gvloan.FooterRow.FindControl("lbtnFinalUpdate")).Visible = false;
+                
+            }
+            else
+            {
+                this.gvloan.Columns[8].Visible = false;
+                ((LinkButton)this.gvloan.FooterRow.FindControl("lnkbtnRefund")).Visible = false;
+            }
+
             // for bti formula column hide
             this.gvloan.Columns[2].Visible = (dt.Rows.Count > 0 && dt.Rows[0]["isformula"].ToString().Trim() != "") ? true : false;
             this.gvloan.Columns[4].Visible = (dt.Rows.Count > 0 && dt.Rows[0]["isformula"].ToString().Trim() != "") ? true : false;
             this.gvloan.Columns[6].Visible = (dt.Rows.Count > 0 && dt.Rows[0]["isformula"].ToString().Trim() != "") ? true : false;
+            
+
+
 
         }
         private void FooterCalculation(DataTable dt)
@@ -802,19 +853,26 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
         protected void gvloan_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    LinkButton lnkbtn = (LinkButton)e.Row.FindControl("lnkDel");
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkbtn = (LinkButton)e.Row.FindControl("lnkDel");
+                CheckBox rfnTxt = (CheckBox)e.Row.FindControl("chkRefund");
 
-            //    string paidamt = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paidamt")).ToString();
-            //    if (paidamt == "False")
-            //    {
-            //        e.Row.ToolTip = "Already Paid";
-            //        lnkbtn.Visible = false;
-            //        e.Row.Enabled = false;
-            //    }
+                string paidamt = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paidamt")).ToString();
+                //if (paidamt == "False")
+                //{
+                //    e.Row.ToolTip = "Already Paid";
+                //    lnkbtn.Visible = false;
+                //    e.Row.Enabled = false;
+                //}
+                if (paidamt == "False")
+                {
+                    e.Row.ToolTip = "Already Paid";
+                    rfnTxt.Visible = false;
+                    e.Row.Enabled = false;
+                }
 
-            //}
+            }
         }
 
         protected void isFormulaChekcbox_CheckedChanged(object sender, EventArgs e)
@@ -879,6 +937,74 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected void lnkSearcEMP_Click(object sender, EventArgs e)
         {
             GetEmplist();
+        }
+
+        protected void lnkbtnRefund_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool result;
+                string comcod = this.GetComeCode();
+
+                DataTable dt = (DataTable)ViewState["tblln"];
+                string textamt = this.txtRefunAmt.Text == "" ? "0" : this.txtRefunAmt.Text;
+                double loanamt = Convert.ToDouble(textamt);
+                string lnno = this.ddlPrevLoanList.SelectedValue.ToString();
+                string curdate = this.txtCurDate.Text; ;
+                string refnotes = this.txtRefunds.Text.ToString().Trim();
+                string empid = this.ddlEmpList.SelectedValue.ToString();
+
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANREFUND", "LNINFB", lnno, curdate, loanamt.ToString(), refnotes, "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    return;
+                }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string lndate = Convert.ToDateTime(dt.Rows[i]["lndate"]).ToString("dd-MMM-yyyy");
+                    string lnamt = Convert.ToDouble(dt.Rows[i]["lnamt"]).ToString();
+                    string comppay = Convert.ToDouble(dt.Rows[i]["comppay"]).ToString();
+                    string isrefund = Convert.ToDouble(dt.Rows[i]["isrefund"]).ToString();
+
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANREFUND", "LNINFA", lnno, empid, isrefund, "", "",
+                        "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                        return;
+                }
+               
+    
+                string Msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+                lbtnOk_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+            }
+        }
+
+        protected void lnkCalculation_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblln"];
+            double refundamt = 0.00;
+            for (int i = 0; i < this.gvloan.Rows.Count; i++)
+            {
+
+                CheckBox chkRefund = ((CheckBox)this.gvloan.Rows[i].FindControl("chkRefund"));
+
+                if (chkRefund.Checked)
+                {
+                    string InsAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvloan.Rows[i].FindControl("gvtxtamt")).Text.Trim())).ToString();
+
+                    dt.Rows[i]["isrefund"] = "True";
+                    refundamt += Convert.ToDouble(InsAmt);
+
+                }
+
+            }
+            this.txtRefunAmt.Text = refundamt.ToString();
         }
     }
 }
