@@ -1,11 +1,59 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccOpening.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_90_PF.AccOpening" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccOpening.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_90_PF.AccOpening" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <style>
+        div#ContentPlaceHolder1_ddlCompany_chzn {
+            width: 100% !important;
+        }
 
+        div#ContentPlaceHolder1_ddlProjectName_chzn {
+            width: 100% !important;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+
+        .pd4 {
+            padding: 4px !important;
+        }
+    </style>
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+
+    </script>
     
    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -27,64 +75,58 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
+            <div class="card mt-5">
                 <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
 
-                            <div class="form-horizontal">
+                    <div class="card-header">
 
+                        <div class="row">
+                            <div class="col-lg-4">
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="col-lg-6 ">
                                         <asp:Label ID="lblopndate" runat="server" CssClass="lblTxt lblName">Opening Date</asp:Label>
-                                        <asp:TextBox ID="txtdate" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="txtdate" runat="server" CssClass="form-control inputtextbox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
-                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate">
-                                        </cc1:CalendarExtender>
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                     </div>
-
-                                    <div class="col-md-3 pading5px pull-right">
+                                     <div class="col-lg-6 ">
                                         <div class="msgHandSt">
                                             <asp:Label ID="lblmsg" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
                                         </div>
 
 
                                     </div>
+                                </div>
+                                
+                                   
 
-
-
-
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <div class="col-lg-6 ">
+                                        <asp:Label ID="lblacccode1" runat="server" CssClass="lblTxt lblName">Accounts Code</asp:Label>
+                                        <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control inputtextbox"></asp:TextBox>
+                                        </div>
+                                   
 
                                 </div>
+                                
 
-
-
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblacccode1" runat="server" CssClass="lblTxt lblName">Accounts Code</asp:Label>
-                                        <asp:TextBox ID="txtFilter" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-
-
-
+                            </div>
+                             <div class="col-lg-2">
                                         <div class="colMdbtn">
-                                            <asp:LinkButton ID="ImageButton1" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImageButton1_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                            <asp:LinkButton ID="ImageButton1" runat="server" CssClass="btn btn-primary srearchBtn mt20" Text="OK" OnClick="ImageButton1_Click"></asp:LinkButton>
 
                                         </div>
 
                                     </div>
+                        </div>
 
 
-                                </div>
-
-                            </div>
-
-
-
-
-                        </fieldset>
 
                     </div>
-
+                </div>
+              <div class="body">
                     <div class="row">
 
                         <asp:GridView ID="dgv2" runat="server" AllowPaging="True"
@@ -96,7 +138,7 @@
                             <PagerSettings Visible="False" />
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -281,7 +323,7 @@
                                 <RowStyle />
 
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -396,8 +438,7 @@
 
 
 
-                        </div>
-
+</div>
 
 
 
@@ -406,11 +447,11 @@
 
 
 
-                </div>
+           
                 <!-- End of contentpart-->
             </div>
             <!-- End of Container-->
-
+            </div>
 
 
         </ContentTemplate>

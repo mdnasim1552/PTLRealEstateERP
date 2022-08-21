@@ -1,4 +1,7 @@
-﻿using RealERPLIB;
+﻿
+using Microsoft.Reporting.WinForms;
+using RealERPLIB;
+using RealERPRDLC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,8 +20,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void Page_Load(object sender, EventArgs e)
         {
             this.txtdate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("dd-MMM-yyyy");
+            ((Label)this.Master.FindControl("lblTitle")).Text = "Letter Interface";
             getLetterCount();
             getAllData();
+        }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
 
         private void getAllData()
@@ -136,6 +147,86 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 }
 
             }
+        }
+
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+
+            string btnvalue = this.RadioButtonList1.SelectedValue.ToString();
+
+            switch (btnvalue)
+            {
+                case "10003":
+                    this.PrintEmpOfferLetter();
+                    break;
+
+                case "10002":
+                    this.PrintEmpApointmentLetter();
+                    break;
+
+            }
+
+
+        }
+
+        private void PrintEmpOfferLetter()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["tbldata"];
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EmpOfferLetter>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpOfferLetter", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Ready To Send Offer Letter"));
+            //Rpt1.SetParameters(new ReportParameter("txtProjName", "Project Name: " + this.ddlProjectName.SelectedItem.Text.ToString()));
+            //Rpt1.SetParameters(new ReportParameter("txtDate", "From: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + "  To:  " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        private void PrintEmpApointmentLetter()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["tbldata"];
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EmpOfferLetter>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpApointmentLetter", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Ready To Send Apointment Letter"));
+            //Rpt1.SetParameters(new ReportParameter("txtProjName", "Project Name: " + this.ddlProjectName.SelectedItem.Text.ToString()));
+            //Rpt1.SetParameters(new ReportParameter("txtDate", "From: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + "  To:  " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
     }
 }

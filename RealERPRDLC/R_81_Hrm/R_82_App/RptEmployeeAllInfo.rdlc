@@ -379,7 +379,7 @@
       <Width>7.47917in</Width>
       <Page>
         <PageHeader>
-          <Height>1.125in</Height>
+          <Height>1.15625in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -546,7 +546,7 @@
               <rd:DefaultName>Textbox5</rd:DefaultName>
               <Top>0.85417in</Top>
               <Left>1.75917in</Left>
-              <Height>0.23264in</Height>
+              <Height>0.19791in</Height>
               <Width>4.15625in</Width>
               <ZIndex>4</ZIndex>
               <Style>
