@@ -2056,7 +2056,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102042", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Overtime", "Overtime Allowance", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102240", "F_81_Hrm/F_85_Lon", "LoanApproval?", "Type=", "Loan Approval", "Loan", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102241", "F_81_Hrm/F_84_Lea", "TimeOfLeave?", "Type=MGT", "Apply Time off (MGT)", "Leave", "False", "False", "False", "False" }); ;
-           
+            tblObj.Rows.Add(new Object[] { "8102000", "8102242", "F_81_Hrm/F_85_Lon", "EmpLoanInfo?", "Type=Refund", "Loan Installment Refund", "Loan", "False", "False", "False", "False" }); ;
+
 
 
 
@@ -15303,7 +15304,9 @@ namespace RealERPLIB
             // E. Loan Monitoring  //"", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "Loan Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0305000001", "01. Loan Installment", "F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0305000002", "", "", "", true, "" });// "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000002", "02. Loan Installment Refund", "F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Refund", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0305000002", "", "", "", true, "" });// "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });          
+
             mnuTbl1.Rows.Add(new Object[] { "0305000003", "03. Deduction Other", "F_81_Hrm/F_85_Lon/EmpDeducOther", "", true, "" });
 
 

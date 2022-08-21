@@ -1,25 +1,92 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="EmpEvaCode.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_91_ACR.EmpEvaCode" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EmpEvaCode.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_91_ACR.EmpEvaCode" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
+
+      <style>
+
+
+
+                .mt20 {
+            margin-top: 20px;
+        }
+
+            .chzn-container{
+             width: 100% !important;
+        }
+
+        .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 35px !important;
+            line-height: 35px !important;
+        }
+
+        .card-body {
+            min-height: 400px !important;
+        }
+                  .pd4{
+                    padding:4px!important;
+                }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+        $('#<%=this.gvAcrCBook.ClientID %>').tblScrollable();
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+    </script>
+
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+             <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
 
-
-            <div class="container moduleItemWrpper">
+            <div class="card mt-5">
                 <div class="contentPart">
+                     <div class="card-header">
                     <div class="row">
+                        <div class="col-lg-4">
+                       
+                       <%-- <fieldset class="scheduler-border">--%>
 
-
-                        <fieldset class="scheduler-border">
-
-                            <div class="form-horizontal">
+                            <%--<div class="form-horizontal">--%>
                                 <div class="form-group">
-
-                                    <asp:Label ID="LblBookName1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Select Code Book:"></asp:Label>
-                                    <div class="col-md-4 pading5px">
+                                    
+                                     
+                                          <asp:Label ID="LblBookName1" runat="server" CssClass="control-label lblTxt" Text="Select Code Book:"></asp:Label>
                                         <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control inputTxt">
                                         </asp:DropDownList>
 
@@ -27,31 +94,38 @@
                                         <%--                                                <cc1:ListSearchExtender ID="ddlCodeBook_ListSearchExtender" runat="server"
                                                     Enabled="True" QueryPattern="Contains" TargetControlID="ddlCodeBook">
                                                 </cc1:ListSearchExtender>--%>
+                                
                                     </div>
-                                    <div class="col-md-2 pading5px">
+                            </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                         <asp:Label ID="LblDetails" runat="server" CssClass="control-label lblTxt" Text="Details Code:"></asp:Label>
                                         <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control inputTxt" runat="server">
                                             <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
                                             <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
                                         </asp:DropDownList>
                                         <asp:Label ID="lbalterofddl0" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
                                     </div>
-                                    <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn"></asp:LinkButton>
                                     </div>
-                                    <div class="col-md-4 pading5px">
+                                    <div class="col-lg-1 ">
+                                        <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary  mt20"></asp:LinkButton>
+                                    </div>
+                                    <div class="col-md-3 ">
                                         <div class="msgHandSt">
-                                            <asp:Label ID="ConfirmMessage" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
+                                            <asp:Label ID="ConfirmMessage" CssClass="btn-danger  " runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                     
                                 </div>
 
                            
-
                             </div>
-                        </fieldset>
+                          <%--  </div>--%>
+                     <%--   </fieldset>--%>
+                            </div>
 
-
+                <div class="card-body">
 
                         <asp:GridView ID="gvAcrCBook" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" 
@@ -162,7 +236,7 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
-                    </div>
+                 </div>
                 </div>
                 <!-- End of contentpart-->
             </div>
