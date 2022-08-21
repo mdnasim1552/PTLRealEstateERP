@@ -5,7 +5,8 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated. 
 // </auto-generated>
-//------------------------------------------------------------------------------ System.Web.UI.WebControls
+//------------------------------------------------------------------------------
+
 namespace RealERPWEB.F_22_Sal
 {
 
@@ -20,7 +21,7 @@ namespace RealERPWEB.F_22_Sal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        //protected global::System.Web.UI.WebControls.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// UpdateProgress2 control.
@@ -29,7 +30,7 @@ namespace RealERPWEB.F_22_Sal
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        //protected global::System.Web.UI.WebControls.UpdateProgress UpdateProgress2;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
         /// rbtnList1 control.
