@@ -90,7 +90,7 @@
 
             ul.tbMenuWrp li {
                 height: 50px;
-                width: 155px;
+                width: 100%;
                 padding: 0px 0;
                 float: left;
                 list-style: none;
@@ -182,7 +182,7 @@
 
         .tbMenuWrp table tr td label {
             cursor: pointer;
-            /*width: 130px;*/
+            width: 100%!important;
             /*background: whitesmoke;*/
             border-radius: 25px;
             color: #000;
@@ -330,7 +330,7 @@
                          <div class="col-10">
                              
                  
-                        <div class="card-body">
+           
                             <div class="table table-sm table-responsive">
                                 <asp:Label runat="server" ID="lbladvnoo" Visible="false"></asp:Label>
                                 <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvAllRec" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvAllRec_RowDataBound">
@@ -480,7 +480,7 @@
                                     </Columns>
                                 </asp:GridView>
                             </div>
-                       </div>
+            
                  
                          </div>
                          </div>

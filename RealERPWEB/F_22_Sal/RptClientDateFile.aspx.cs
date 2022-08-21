@@ -30,12 +30,11 @@ namespace RealERPWEB.F_22_Sal
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Supplier Budget";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Client Data File";
 
 
                 this.GetProjectName();
-
-                GetEnvType();
+                this.GetEnvType();
             }
 
         }
@@ -138,7 +137,28 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblfiledetails"];
             this.gvFileData.DataSource = dt;
             this.gvFileData.DataBind();
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3348": // credence
+                case "3349":
+                //case "3368":
+                    this.gvFileData.Columns[3].Visible = true;
+                    this.gvFileData.Columns[8].Visible = true;
+                    this.gvFileData.Columns[9].Visible = true;
+                    this.gvFileData.Columns[10].Visible = true;
+                    this.gvFileData.Columns[11].Visible = true;
+                    break;
 
+                default:
+                    this.gvFileData.Columns[3].Visible = false;
+                    this.gvFileData.Columns[8].Visible = false;
+                    this.gvFileData.Columns[9].Visible = false;
+                    this.gvFileData.Columns[10].Visible = false;
+                    this.gvFileData.Columns[11].Visible = false;
+                    break;
+            }
             Session["Report1"] = gvFileData;
             ((HyperLink)this.gvFileData.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
