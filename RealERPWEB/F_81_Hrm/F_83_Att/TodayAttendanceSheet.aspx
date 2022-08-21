@@ -255,7 +255,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Early <br/> Leave">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvearlylv" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "eleave")) %>'
+                                                <asp:Label ID="lgvearlylv" runat="server"  Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "eleave")) %>'
                                                     Width="33px" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
@@ -271,17 +271,7 @@
                                             <ItemStyle HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="01" HeaderStyle-Wrap="true">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lgv01summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="A"?"bg-yellow d-block":
-                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="LP"?"bg-danger d-block":""%>'
-                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))
-                                             %>'
-                                                    Font-Size="11px"></asp:Label>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                        </asp:TemplateField>
+                                       
 
 
                                     </Columns>
