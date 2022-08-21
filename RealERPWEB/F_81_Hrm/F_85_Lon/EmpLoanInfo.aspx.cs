@@ -142,6 +142,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
             string comcod = this.GetComeCode();
             string curdate = this.txtCurDate.Text.Trim();
+            string lonatype = this.ddlLoantype.SelectedValue.ToString();
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GetPrevLN", curdate, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
