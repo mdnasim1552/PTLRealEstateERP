@@ -140,12 +140,11 @@
 
             <div class=" card card-fluid" style="min-height: 600px">
                 <div class=" card-body">
-
                     <div class="row">
                         <div class="col-md-2">
-                          <div class="  form-group">
+                            <div class="  form-group">
                                 <label for="Label5" runat="server" class=" control-label  lblmargin-top9px ">From</label>
-                                <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputDateBox" ToolTip="(dd.mmm.yyyy)"></asp:TextBox>
+                                <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputDateBox" ToolTip="(dd.mmm.yyyy)" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
 
@@ -257,7 +256,7 @@
                                     ShowFooter="True" AllowSorting="True" OnSorting="gvAccVoucher_Sorting">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl">
+                                        <asp:TemplateField HeaderText="SL">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvINSlNo0" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
@@ -428,7 +427,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,12)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,13)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblogvusrname" runat="server" BackColor="Transparent"
@@ -449,7 +448,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        
+
                                         <asp:TemplateField HeaderText="Voutype" Visible="False">
 
                                             <ItemTemplate>
