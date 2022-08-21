@@ -29,6 +29,7 @@ namespace RealERPWEB
                     if (pageType == "NewRec")
                     {
                         this.panl1.Visible = false;
+                        this.dnone.Visible = false;
                         this.pnl2.Visible = true;
 
                         getLetter();
@@ -205,7 +206,7 @@ namespace RealERPWEB
                             "<p><strong>Congratulations!</strong></p>" +
                             "<p>We would like to congratulate you on your successful completion of the probation period in our organization. We are glad to have received satisfactory reports from your superior regarding your performance during the said period. </p>" +
                             "<p>You have good product knowledge & inventory accuracy; are good at execution of tasks; able to maintain transparency in documentation; are punctual and disciplined at work; respond positively to other assigned tasks and we appreciate you for that. We are expecting an increase in work knowledge and an improvement in warehouse capacity management from you which will foster your performance in the future.</p>" +
-                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT 17,000 (Seventeen Thousand Only).     </p>" +
+                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT "+total+".     </p>" +
                             "<p>Now that you are going to be even an integral part of the organization, we would expect greater efforts from you to strive to do better at work for ultimately setting the organization on the growth path.  We have complete faith in you. </p>" +
                                   "<p></p>" +
                             "<p>Wishing you all the very best</p>" +
