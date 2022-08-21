@@ -151,18 +151,24 @@ ol.ollist{
 
             <div class="card mt-5">
                 <div class="card-header">
-                    <div class="row">
+                    <div class="row d-flex">
 
-                        <div class="form-horizontal">
-                            <div class="form-group">
+               
+                            <div class="form-group mr-auto p-2">
                                 <asp:Label ID="lblmsg1" runat="server" CssClass=" btn  btn-success primaryBtn pull-right" Visible="false"></asp:Label>
                             </div>
+                  
+
+                      <asp:Panel runat="server" ID="pnl2" Visible="false">
+                        <div class=" ml-auto p-2">
+                           <asp:Button ID="btnSendLetter" runat="server" CssClass="btn btn-success btn-sm" Text="Submit Letter" OnClick="btnSendLetter_Click" />
                         </div>
+                    </asp:Panel>
 
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" runat="server" id="dnone">
 
 
                     <asp:Panel runat="server" ID="panl1">
@@ -243,11 +249,7 @@ ol.ollist{
                         </div>
 
                     </asp:Panel>
-                    <asp:Panel runat="server" ID="pnl2" Visible="false">
-                        <div class="row">
-                           <asp:Button ID="btnSendLetter" runat="server" CssClass="btn btn-success btn-sm" Text="Submit Letter" OnClick="btnSendLetter_Click" />
-                        </div>
-                    </asp:Panel>
+           
 
 
                     <asp:Button ID="btnsave" runat="server" OnClick="btnsave_Click" Text="Save" Visible="false" ValidationGroup="postValid" OnClientClick="tinyMCE.triggerSave(false,true);" />
