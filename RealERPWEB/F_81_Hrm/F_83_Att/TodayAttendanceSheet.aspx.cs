@@ -189,12 +189,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comcod = this.GetComCode();         
 
-            string comcod = this.GetComCode();
-            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            // string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";            
             string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
@@ -202,9 +199,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Actime = this.GetComLateAccTime();
 
             string section = "";
-            if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+             if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
             {
-
                 string gp = this.DropCheck1.SelectedValue.Trim();
                 if (gp.Length > 0)
                 {
@@ -221,7 +217,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }
             }
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN", frmdate, deptCode, Company, section,"", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN", frmdate, deptCode, Company, section, Actime, "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblallData"] = ds1.Tables[0];

@@ -92,5 +92,42 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
         }
         
 
+        [Serializable]
+
+
+        public class EmpOfferLetter
+        {
+
+//           
+            public string advno { get; set; }
+
+            public string comcod { get; set; }
+            public string name { get; set; }
+            public string desig { get; set; }
+            public string mobile { get; set; }
+            public string email { get; set; }
+            public string preadd { get; set; }
+            //public string peradd { get; set; }
+            public string dept { get; set; }
+            public string sec { get; set; }
+            //public string bsal { get; set; }
+            //public string hrent { get; set; }
+            //public string conven { get; set; }
+            //public string mallow { get; set; }
+            //public string eleave { get; set; }
+            //public string cleave { get; set; }
+            //public string sleave { get; set; }
+            //public string doj { get; set; }
+            //public string grade { get; set; }
+            //public string refno { get; set; }
+           
+
+            public EmpOfferLetter()
+            {
+
+            }
+
+        }
+
     }
 }

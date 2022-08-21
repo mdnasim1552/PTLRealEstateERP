@@ -176,16 +176,8 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Emp Id">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lgvempid" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
-                                                    Width="80px"></asp:Label>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
-
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Card No">
+                                      
+                                        <asp:TemplateField HeaderText="Card #">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvcardno" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                     Width="50px"></asp:Label>
@@ -215,7 +207,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="In">
+                                        <asp:TemplateField HeaderText="Office In">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvoffin" runat="server" Font-Size="11px" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offintime")).ToString("hh:mm tt") %>'
                                                     Width="45px"></asp:Label>
@@ -225,7 +217,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Out">
+                                        <asp:TemplateField HeaderText=" Office Out">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvoffout" runat="server" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offouttime")).ToString("hh:mm tt") %>'
                                                     Width="45px" Font-Size="11px"></asp:Label>
@@ -234,7 +226,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="In">
+                                        <asp:TemplateField HeaderText="Punce In">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvactin" runat="server" Font-Size="11px" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intime")).ToString("hh:mm tt") %>'
                                                     Width="45px"></asp:Label>
@@ -244,7 +236,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Out">
+                                        <asp:TemplateField HeaderText="Punce Out">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvactout" runat="server" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offintime")).ToString("hh:mm tt") %>'
                                                     Width="45px" Font-Size="11px"></asp:Label>
@@ -272,10 +264,22 @@
 
                                         <asp:TemplateField HeaderText="Leave <br/>/ Absent">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvabs" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "status")) %>'
+                                                <asp:Label ID="lgvabs" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "status"))=="A"?"bg-red d-block":
+                                                     ""%>'  Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "status")) %>'
                                                     Width="33px" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="01" HeaderStyle-Wrap="true">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgv01summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="A"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))
+                                             %>'
+                                                    Font-Size="11px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
