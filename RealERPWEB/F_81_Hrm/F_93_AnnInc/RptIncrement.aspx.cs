@@ -41,7 +41,9 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 GetDate();
                 this.GetCompany();
                 this.GetIncreNo();
-
+                this.RadioButtonList1.SelectedIndex = 0;
+                RadioButtonList1_SelectedIndexChanged(null, null);
+               
             }
 
         }
@@ -203,6 +205,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
         private void ShowInc()
         {
+            Session.Remove("tblAnnInc");
             string comcod = this.GetComeCode();
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string DeptCode = ((this.ddlDept.SelectedValue.ToString() == "000000000000") ? "" : this.ddlDept.SelectedValue.ToString().Substring(0, 9)) + "%";
@@ -217,7 +220,27 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 this.gvAnnIncre.DataBind();
                 return;
             }
-            DataTable dt = HiddenSameData(ds2.Tables[0]);
+
+            DataTable dt1 = new DataTable();
+            DataView view = new DataView();
+
+            view.Table = ds2.Tables[0];
+            string type = this.RadioButtonList1.SelectedValue.ToString();
+
+            if (type == "approved")
+            {
+                view.RowFilter = "ack='OK'";
+                dt1 = view.ToTable();
+            }
+            else
+            {
+                view.RowFilter = "ack=''";
+                dt1 = view.ToTable();
+            }
+            DataTable dt = HiddenSameData(dt1);
+
+
+
             Session["tblAnnInc"] = dt;
             this.LoadGrid();
         }
@@ -391,6 +414,11 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetSection();
+        }
+
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowInc();
         }
     }
 }
