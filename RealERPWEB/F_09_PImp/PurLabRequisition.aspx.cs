@@ -200,7 +200,7 @@ namespace RealERPWEB.F_09_PImp
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
             //lnkbtnPrint.NavigateUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode;
-            
+
             /*
             string currentptah = this.ResolveUrl("~/F_99_Allinterface/PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode);
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + currentptah + "', target='_blank');</script>";
@@ -461,7 +461,7 @@ namespace RealERPWEB.F_09_PImp
             }
 
 
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim()==null ? "" : this.ddlprjlist.SelectedItem.Text.Trim() == "" ? "" : this.ddlprjlist.SelectedItem.Text.Trim();
+            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim() == null ? "" : this.ddlprjlist.SelectedItem.Text.Trim() == "" ? "" : this.ddlprjlist.SelectedItem.Text.Trim();
 
             this.ddlprjlist.Visible = false;
             this.lblddlProject.Visible = true;
@@ -573,10 +573,10 @@ namespace RealERPWEB.F_09_PImp
                 //this.grvissue_DataBind();
                 return;
             }
-            if (this.Request.QueryString["Type"]== "CSApproval")
+            if (this.Request.QueryString["Type"] == "CSApproval")
             {
                 DataTable dt = (DataTable)ViewState["tblbillreq"];
-                foreach(DataRow dr1 in dt.Rows)
+                foreach (DataRow dr1 in dt.Rows)
                 {
                     dr1["csircode"] = this.Request.QueryString["recomsup"].ToString();
                 }
@@ -619,7 +619,7 @@ namespace RealERPWEB.F_09_PImp
 
         private string RecomSup()
         {
-            string recom = "";            
+            string recom = "";
             string comcod = this.GetCompCode();
             switch (comcod)
             {
@@ -629,7 +629,7 @@ namespace RealERPWEB.F_09_PImp
                 case "8306":
                     if (this.Request.QueryString["Type"] == "CSApproval")
                     {
-                        recom = this.Request.QueryString["recomsup"].ToString();                        
+                        recom = this.Request.QueryString["recomsup"].ToString();
                     }
                     break;
 
@@ -971,7 +971,7 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-            if(Request.QueryString["Type"]== "Entry")
+            if (Request.QueryString["Type"] == "Entry")
             {
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "CHECK_DUPLICATE_BILL_REF", Refno, "", "", "", "", "", "", "", "");
                 if (ds2.Tables[0].Rows.Count > 0)
@@ -983,7 +983,7 @@ namespace RealERPWEB.F_09_PImp
             }
 
 
-          
+
             //string appxml = tbl2.Rows[0]["approval"].ToString();
 
 
@@ -1029,7 +1029,7 @@ namespace RealERPWEB.F_09_PImp
                 // if (Isuqty > 0)
             }
 
-            if(Request.QueryString["Type"] == "CSApproval" && result)
+            if (Request.QueryString["Type"] == "CSApproval" && result)
             {
                 string msrno = Request.QueryString["msrno"].ToString() == "" ? "" : Request.QueryString["msrno"].ToString();
                 string prjcode = Request.QueryString["prjcode"].ToString() == "" ? "" : Request.QueryString["prjcode"].ToString();
@@ -1083,7 +1083,7 @@ namespace RealERPWEB.F_09_PImp
 
                 double amount = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvamount")).Text.Trim());
                 string csircode = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedValue.ToString();
-                CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("gvCheckBoxAppve");
+                CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("chkapproved");
 
                 bool aprvstatus = false;
                 if (approve.Checked)
@@ -1238,7 +1238,7 @@ namespace RealERPWEB.F_09_PImp
 
 
                 bool aprovestatus = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "approve"));
-                CheckBox approve = (CheckBox)e.Row.FindControl("gvCheckBoxAppve");
+                CheckBox approve = (CheckBox)e.Row.FindControl("chkapproved");
 
                 if (aprovestatus == true)
                 {
@@ -1465,11 +1465,11 @@ namespace RealERPWEB.F_09_PImp
 
             DataTable dt = (DataTable)ViewState["tblbillreq"]; /// gridview main 
             DataTable dt2 = (DataTable)Session["tblcsirdesc"]; // cs 
-         
+
             int rowindex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
             string csircode = ((DropDownList)this.grvissue.Rows[rowindex].FindControl("DdlContractor")).SelectedValue.ToString();
             string rsircode = dt.Rows[rowindex]["rsircode"].ToString();
-            if(csircode== "000000000000")
+            if (csircode == "000000000000")
             {
                 dt.Rows[rowindex]["reqrat"] = 0.00;
             }
@@ -1477,10 +1477,10 @@ namespace RealERPWEB.F_09_PImp
             {
                 dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
             }
-            
+
             dt.Rows[rowindex]["csircode"] = csircode;
 
-            double qty =Convert.ToDouble(dt.Rows[rowindex]["reqqty"]);
+            double qty = Convert.ToDouble(dt.Rows[rowindex]["reqqty"]);
             double rate = Convert.ToDouble(dt.Rows[rowindex]["reqrat"]);
             dt.Rows[rowindex]["reqamt"] = qty * rate;
 
@@ -1489,6 +1489,31 @@ namespace RealERPWEB.F_09_PImp
             Session["tblbillreq"] = dt;
             this.grvissue_DataBind();
 
+        }
+
+        protected void chkAllapproved_CheckedChanged(object sender, EventArgs e) 
+        {
+            DataTable dt = (DataTable)ViewState["tblbillreq"];
+            int i, index;
+            if (((CheckBox)this.grvissue.HeaderRow.FindControl("chkAllapproved")).Checked)
+            {
+                for (i = 0; i < this.grvissue.Rows.Count; i++)
+                {
+                    ((CheckBox)this.grvissue.Rows[i].FindControl("chkapproved")).Checked = true;
+                    index = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + i;
+                    dt.Rows[index]["approve"] = "True";
+                }
+            }
+            else
+            {
+                for (i = 0; i < this.grvissue.Rows.Count; i++)
+                {
+                    ((CheckBox)this.grvissue.Rows[i].FindControl("chkapproved")).Checked = false;
+                    index = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + i;
+                    dt.Rows[index]["approve"] = "False";
+                }
+            }
+            Session["tblbillreq"] = dt;
         }
     }
 }
