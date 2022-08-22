@@ -178,7 +178,7 @@
                         </div>
                         <div class="col-md-2 col-lg-2 col-xs-12" id="refunNotes" runat="server" visible="false">
                             <asp:Label ID="Label12" ForeColor="Red" runat="server">Refund Notes</asp:Label>
-                            <asp:TextBox ID="TextBox1" runat="server"   CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtRefunds" runat="server"   CssClass="form-control"></asp:TextBox>
                         </div>
 
                         <div class="col-md-1 col-lg-1 col-xs-12">
@@ -206,7 +206,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl" FooterText="Total ">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkCalculation" runat="server" CssClass="btn btn-info btn-sm" OnClick="lnkCalculation_Click">Calculation</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkCalculation" runat="server" Visible="false" CssClass="btn btn-info btn-sm" OnClick="lnkCalculation_Click">Calculation</asp:LinkButton>
                                         <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-info btn-sm" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -304,7 +304,7 @@
                                             
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                           <asp:LinkButton ID="lnkbtnRefund" runat="server" Font-Bold="True"
+                                           <asp:LinkButton ID="lnkbtnRefund" runat="server" Font-Bold="True" Visible="false"
                                             CssClass="btn btn-success btn-sm ml-1" OnClick="lnkbtnRefund_Click">Update</asp:LinkButton>
 
                                     </FooterTemplate>
