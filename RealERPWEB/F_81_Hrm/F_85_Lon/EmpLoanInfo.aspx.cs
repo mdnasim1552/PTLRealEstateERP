@@ -345,6 +345,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 ((LinkButton)this.gvloan.FooterRow.FindControl("lnkbtnRefund")).Visible = true;
                 ((LinkButton)this.gvloan.FooterRow.FindControl("lbtnTotal")).Visible = false;
                 ((LinkButton)this.gvloan.FooterRow.FindControl("lbtnFinalUpdate")).Visible = false;
+                ((LinkButton)this.gvloan.FooterRow.FindControl("lnkCalculation")).Visible = true;
                 
             }
             else
@@ -945,12 +946,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 bool result;
                 string comcod = this.GetComeCode();
-
+                this.lnkCalculation_Click(null,null);
                 DataTable dt = (DataTable)ViewState["tblln"];
                 string textamt = this.txtRefunAmt.Text == "" ? "0" : this.txtRefunAmt.Text;
                 double loanamt = Convert.ToDouble(textamt);
                 string lnno = this.ddlPrevLoanList.SelectedValue.ToString();
-                string curdate = this.txtCurDate.Text; ;
+                string curdate = this.txtCurDate.Text.ToString() ;
                 string refnotes = this.txtRefunds.Text.ToString().Trim();
                 string empid = this.ddlEmpList.SelectedValue.ToString();
 
@@ -962,15 +963,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 }
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    string lndate = Convert.ToDateTime(dt.Rows[i]["lndate"]).ToString("dd-MMM-yyyy");
-                    string lnamt = Convert.ToDouble(dt.Rows[i]["lnamt"]).ToString();
-                    string comppay = Convert.ToDouble(dt.Rows[i]["comppay"]).ToString();
-                    string isrefund = Convert.ToDouble(dt.Rows[i]["isrefund"]).ToString();
+                    string isrefund = dt.Rows[i]["isrefund"].ToString();
+                   
+                         
+                        string lnamt = Convert.ToDouble(dt.Rows[i]["lnamt"]).ToString();
+                        string comppay = Convert.ToDouble(dt.Rows[i]["comppay"]).ToString();
+                        string id = dt.Rows[i]["id"].ToString();
 
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANREFUND", "LNINFA", lnno, empid, isrefund, "", "",
-                        "", "", "", "", "", "", "", "", "");
-                    if (!result)
-                        return;
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANREFUND", "LNINFA", lnno, empid, isrefund, id, "",
+                            "", "", "", "", "", "", "", "", "");
+                        if (!result)
+                            return;
+                   
+                   
                 }
                
     
@@ -996,15 +1001,24 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
                 if (chkRefund.Checked)
                 {
+
                     string InsAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvloan.Rows[i].FindControl("gvtxtamt")).Text.Trim())).ToString();
 
                     dt.Rows[i]["isrefund"] = "True";
                     refundamt += Convert.ToDouble(InsAmt);
 
                 }
+                else
+                {
+                    dt.Rows[i]["isrefund"] = "False";
+
+                }
 
             }
+            ViewState["tblln"] = dt;
             this.txtRefunAmt.Text = refundamt.ToString();
+            this.Data_DataBind();
+
         }
     }
 }
