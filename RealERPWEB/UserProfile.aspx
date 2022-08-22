@@ -318,7 +318,7 @@
             padding: 3px;
         }
     </style>
-    <div class="page ">
+    
         <!-- .page-cover -->
         <header class="Xpage-cover mt-4">
             <div class="row">
@@ -1361,7 +1361,7 @@
                                                         <ItemTemplate>
 
 
-                                                            <asp:Button ID="view_emp10" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year10")) %>' CommandName="view_emp_click10" CommandArgument="10" />
+                                                            <asp:Button ID="view_emp10" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year10")) %>' CommandName="view_emp_click10" CommandArgument="10" Width="50px"/>
 
 
 
@@ -1375,7 +1375,7 @@
 
                                                     <asp:TemplateField HeaderText="15 Years">
                                                         <ItemTemplate>
-                                                            <asp:Button ID="view_emp15" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year15")) %>' CommandName="view_emp_click15" CommandArgument="15" />
+                                                            <asp:Button ID="view_emp15" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year15")) %>' CommandName="view_emp_click15" CommandArgument="15" Width="50px"/>
 
                                                         </ItemTemplate>
                                                          <ItemStyle Width=" 100px"/>
@@ -1385,7 +1385,7 @@
 
                                                     <asp:TemplateField HeaderText="20 Years">
                                                         <ItemTemplate>
-                                                            <asp:Button ID="view_emp20" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year20")) %>' CommandName="view_emp_click20" CommandArgument="20" />
+                                                            <asp:Button ID="view_emp20" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year20")) %>' CommandName="view_emp_click20" CommandArgument="20" Width="50px"/>
 
                                                         </ItemTemplate>
                                                          <ItemStyle Width=" 100px"/>
@@ -1395,20 +1395,23 @@
 
                                                     <asp:TemplateField HeaderText="25 Years">
                                                         <ItemTemplate>
-                                                            <asp:Button ID="view_emp25" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year25")) %>' CommandName="view_emp_click25" CommandArgument="25" />
+                                                            <asp:Button ID="view_emp25" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year25")) %>' CommandName="view_emp_click25" CommandArgument="25" Width="50px"/>
                                                         </ItemTemplate>
                                                          <ItemStyle Width=" 100px"/>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
 
 
-                                                    <%--                                                    <asp:TemplateField HeaderText="Total">
+                                                        <asp:TemplateField HeaderText="Total">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="year30" runat="server" Font-Bold="True"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "year30")) %>' Width="80px"></asp:Label>
+                                                           <%-- <asp:Label ID="year30" runat="server" Font-Bold="True"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "total")) %>' Width="80px"></asp:Label>--%>
+                                                            <asp:Button ID="btntotal" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "total")) %>' CommandName="view_emp_clickall_total"  CommandArgument="" Width="50px"  />
+
                                                         </ItemTemplate>
+
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    </asp:TemplateField>--%>
+                                                    </asp:TemplateField>
                                                 </Columns>
 
                                             </asp:GridView>
@@ -2203,6 +2206,7 @@
                 </div>
             </div>
         </div>
+   
         <script>
             $(document).ready(function () {
                 $(".set > a").on("click", function () {

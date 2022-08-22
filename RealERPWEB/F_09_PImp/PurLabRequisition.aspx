@@ -248,7 +248,6 @@
                         </div>
 
                         <div class="row">
-
                             <asp:GridView ID="grvissue" runat="server" AllowPaging="True"
                                 CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True" Width="669px" PageSize="20" OnRowDataBound="grvissue_RowDataBound"
@@ -504,17 +503,15 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Approve" Visible="false">
+                                    <asp:TemplateField Visible="false">
+                                        <HeaderTemplate>
+                                            <asp:CheckBox ID="chkAllapproved" runat="server"  TabIndex="10" Text="Approved" CssClass="btn checkBox" AutoPostBack="True" OnCheckedChanged="chkAllapproved_CheckedChanged" Width="20px" />
+                                        </HeaderTemplate>
                                         <ItemTemplate>
-
-                                            <asp:CheckBox ID="gvCheckBoxAppve" runat="server" />
+                                            <asp:CheckBox ID="chkapproved" runat="server" width="80px" />
                                         </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-
-
-
-
-
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
@@ -624,7 +621,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                      <asp:TemplateField HeaderText="Floor" Visible="false">
+                                    <asp:TemplateField HeaderText="Floor" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvMSRFlrcod" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
