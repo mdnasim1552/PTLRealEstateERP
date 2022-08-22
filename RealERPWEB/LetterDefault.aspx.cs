@@ -29,6 +29,7 @@ namespace RealERPWEB
                     if (pageType == "NewRec")
                     {
                         this.panl1.Visible = false;
+                        this.dnone.Visible = false;
                         this.pnl2.Visible = true;
 
                         getLetter();
@@ -205,7 +206,7 @@ namespace RealERPWEB
                             "<p><strong>Congratulations!</strong></p>" +
                             "<p>We would like to congratulate you on your successful completion of the probation period in our organization. We are glad to have received satisfactory reports from your superior regarding your performance during the said period. </p>" +
                             "<p>You have good product knowledge & inventory accuracy; are good at execution of tasks; able to maintain transparency in documentation; are punctual and disciplined at work; respond positively to other assigned tasks and we appreciate you for that. We are expecting an increase in work knowledge and an improvement in warehouse capacity management from you which will foster your performance in the future.</p>" +
-                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT 17,000 (Seventeen Thousand Only).     </p>" +
+                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT "+total+".     </p>" +
                             "<p>Now that you are going to be even an integral part of the organization, we would expect greater efforts from you to strive to do better at work for ultimately setting the organization on the growth path.  We have complete faith in you. </p>" +
                                   "<p></p>" +
                             "<p>Wishing you all the very best</p>" +
@@ -303,7 +304,7 @@ namespace RealERPWEB
                        "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
                        "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
                         "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: "+grade+"</span></p>" +
                        "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + date + "</span></p>" +
                        "<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
                        "<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>" +
@@ -315,16 +316,27 @@ namespace RealERPWEB
 
                            "<p></p>" +
                             "<p></p>" +
+                            
+                            "<div style='float:left;width:50%;'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>Md. Mizanur Rahman Khan</strong></p>"+
+                           "<p style='margin-bottom:-11px;'><strong>Senior Manager – HR</strong></p>" +
+                             "</div>" +
 
-                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>Ahmed Pasha</strong></p></span></p>" +
-                  "<br>" +
-                           "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Business Officer</strong></p></span></p>" +
+                            "<div style='float:right;width:50%;'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>Ahmed Pasha</strong></p>" +
+                           "<p style='margin-bottom:-11px;'><strong>Chief Business Officer</strong></p>" +
+                             "</div>" +
+
+                         
+                  //         "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Md. Mizanur Rahman Khan</strong></span>  <span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;text-align:left;'><strong>Ahmed Pasha</strong></p></span></p>" +
+                  //"<br>" +
+                  //         "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Senior Manager – HR</strong></span>                           <span style='display:inline-block;margin-bottom:-11px;margin-left:250px;text-align:left;'><strong>Chief Business Officer</strong></p></span></p>" +
 
 
-                       "<p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p>" +
+                       "<div style='margin-top:40px'><p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p></div>" +
 
 
-                       "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p>";
+                       "<div><p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p></div>";
 
                     }
                     else if (this.GetCompCode() == "3365")

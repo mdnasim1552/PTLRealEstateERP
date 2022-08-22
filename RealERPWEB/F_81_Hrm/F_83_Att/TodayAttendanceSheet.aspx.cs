@@ -1,4 +1,6 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
+using RealERPRDLC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,7 +35,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-           // ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
         private void SelectDate()
@@ -189,12 +191,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comcod = this.GetComCode();         
 
-            string comcod = this.GetComCode();
-            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            // string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";            
             string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
@@ -202,9 +201,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Actime = this.GetComLateAccTime();
 
             string section = "";
-            if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+             if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
             {
-
                 string gp = this.DropCheck1.SelectedValue.Trim();
                 if (gp.Length > 0)
                 {
@@ -221,7 +219,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }
             }
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN", frmdate, deptCode, Company, section,"", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN", frmdate, deptCode, Company, section, Actime, "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblallData"] = ds1.Tables[0];
@@ -237,101 +235,55 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
-        //protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
-        //{
+        private void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comcod = this.GetComCode();
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string deptCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+            string Actime = this.GetComLateAccTime();
+            string section = "";
+            if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+            {
+                string gp = this.DropCheck1.SelectedValue.Trim();
+                if (gp.Length > 0)
+                {
+                    if (gp.Substring(0, 3).Trim() == "000" || gp.Trim() == "")
+                        section = "";
+                    else
+                        foreach (ListItem s1 in DropCheck1.Items)
+                        {
+                            if (s1.Selected)
+                            {
+                                section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
+                            }
+                        }
+                }
+            }
 
-        //}
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN", frmdate, deptCode, Company, section, Actime, "", "", "", "");
+            if (ds1 == null)
+                return;
 
-        //protected void gvdailyatt_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    GridViewRow gvRow = e.Row;
-        //    if (gvRow.RowType == DataControlRowType.Header)
-        //    {
+            var list = ds1.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.DailyAttenCHLGroupWize>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptDailyAllEmpAttn", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", PCompany));
+            Rpt1.SetParameters(new ReportParameter("txtDate", Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd MMMM,yyyy")));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Daily Employee Attendance"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
 
-        //        GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
 
-        //        TableCell cell01 = new TableCell();
-        //        cell01.Text = "Sl";
-        //        cell01.HorizontalAlign = HorizontalAlign.Center;
-        //        cell01.RowSpan = 2;
-        //        gvrow.Cells.Add(cell01);
-
-
-        //        TableCell cell02 = new TableCell();
-        //        cell02.Text = "Emp ID";
-        //        cell02.HorizontalAlign = HorizontalAlign.Center;
-        //        cell02.RowSpan = 2;
-        //        gvrow.Cells.Add(cell02);
-
-        //        TableCell cell03 = new TableCell();
-        //        cell03.Text = "Card No";
-        //        cell03.HorizontalAlign = HorizontalAlign.Center;
-        //        cell03.RowSpan = 2;
-        //        gvrow.Cells.Add(cell03);
-
-
-        //        TableCell cell04 = new TableCell();
-        //        cell04.Text = "Name";
-        //        cell04.HorizontalAlign = HorizontalAlign.Center;
-        //        cell04.RowSpan = 2;
-        //        gvrow.Cells.Add(cell04);
-
-
-        //        TableCell cell05 = new TableCell();
-        //        cell05.Text = "Designation";
-        //        cell05.HorizontalAlign = HorizontalAlign.Center;
-        //        cell05.RowSpan = 2;
-        //        gvrow.Cells.Add(cell05);
-
-        //        TableCell cell06 = new TableCell();
-        //        cell06.Text = "Office Time";
-        //        cell06.HorizontalAlign = HorizontalAlign.Center;
-        //        cell06.Attributes["style"] = "font-weight:bold;";
-        //        cell06.ColumnSpan = 2;
-        //        gvrow.Cells.Add(cell06);
-
-
-        //        TableCell cell07 = new TableCell();
-        //        cell07.Text = "Actual Time";
-        //        cell07.HorizontalAlign = HorizontalAlign.Center;
-        //        cell07.Attributes["style"] = "font-weight:bold;";
-        //        cell07.ColumnSpan = 2;
-        //        gvrow.Cells.Add(cell07);
-
-        //        TableCell cell08 = new TableCell();
-        //        cell08.Text = "Late";
-        //        cell08.HorizontalAlign = HorizontalAlign.Center;
-        //        cell08.RowSpan = 2;
-        //        gvrow.Cells.Add(cell08);
-
-
-        //        TableCell cell09 = new TableCell();
-        //        cell09.Text = "Early Leave";
-        //        cell09.HorizontalAlign = HorizontalAlign.Center;
-        //        cell09.RowSpan = 2;
-        //        gvrow.Cells.Add(cell09);
-
-        //        TableCell cell10 = new TableCell();
-        //        cell10.Text = "Absent";
-        //        cell10.HorizontalAlign = HorizontalAlign.Center;
-        //        cell10.RowSpan = 2;
-        //        gvrow.Cells.Add(cell10);
-
-        //        gvdailyatt.Controls[0].Controls.AddAt(0, gvrow);
-        //    }
-
-        //    if (e.Row.RowType == DataControlRowType.Header)
-        //    {
-        //        e.Row.Cells[0].Visible = false;
-        //        e.Row.Cells[1].Visible = false;
-        //        e.Row.Cells[2].Visible = false;
-        //        e.Row.Cells[3].Visible = false;
-        //        e.Row.Cells[4].Visible = false;
-        //        e.Row.Cells[09].Visible = false;
-        //        e.Row.Cells[10].Visible = false;
-        //        e.Row.Cells[11].Visible = false;
-
-        //    }
-        //}
+       
     }
 }

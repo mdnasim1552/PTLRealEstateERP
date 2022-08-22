@@ -29,7 +29,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     Response.Redirect("../../AcceessError.aspx");
                 this.ShowView();
                 this.GetCompany();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "COMPANY LEAVE INFORMATION";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "COMPANY LEAVE RULE";
                 this.GetProjectName();
                 Create_table();
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
