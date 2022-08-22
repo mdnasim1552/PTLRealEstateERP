@@ -29,6 +29,9 @@
 
             $('.chzn-select').chosen({ search_contains: true });
         }
+            function TimeOffModal() {
+                $('#TimeOffModal').modal('toggle');
+            }
 
         </script>
   
@@ -316,6 +319,17 @@
 
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
+
+                                                            
+                                                            <asp:TemplateField HeaderText="Action">
+                                                                <ItemTemplate>
+                                          <asp:LinkButton ID="lnkTimeEdit" OnClick="lnkTimeEdit_Click" CssClass="text-info" runat="server" ToolTip="Edit Time"><i class="fa fa-edit"></i></asp:LinkButton>
+                                                  
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Center" />
+
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                            </asp:TemplateField>
                                                         </Columns>
                                                         
                                                         <EditRowStyle />
@@ -462,7 +476,46 @@
                 </div>
             </div>
 
-           
+                   <!-- Modal -->
+        <div class="modal fade" id="TimeOffModal" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header order-bottom">
+                        <h6 class="modal-title font-weight-bold" id="">Edit Time Off</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-header bg-info ">
+                                <h6 class="font-weight-bold text-white" id="modalNoticeTitle" runat="server"></h6>
+                            </div>
+                            <div class="card-body bg-light">
+                                <span runat="server" id="timeOfId" visible="false"></span>
+                                   <span runat="server" id="applydatmodal" visible="false"></span>
+                           
+                                             <div class="form-group">
+                                        <label for="txtmodalouttime" id="lblmodalouttime" runat="server">Out Time <span class="text-danger">*</span></label>
+                                        <asp:TextBox ID="txtmodalouttime" runat="server" TextMode="Time"  class="form-control" ></asp:TextBox>
+                                    </div>
+
+                                      <div class="form-group">
+                                        <label for="txtmodalintime" id="lblmodalintime" runat="server">In Time <span class="text-danger">*</span></label>
+                                        <asp:TextBox ID="txtmodalintime" runat="server" TextMode="Time"  class="form-control" ></asp:TextBox>
+                                    </div>
+
+                                <asp:LinkButton runat="server" ID="lnkTimeUpdate_Click" OnClick="lnkTimeUpdate_Click_Click" CssClass="btn btn-primary btn-sm">Update</asp:LinkButton>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         </ContentTemplate>
 

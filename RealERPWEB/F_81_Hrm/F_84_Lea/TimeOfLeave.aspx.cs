@@ -139,12 +139,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string qtype = this.Request.QueryString["Type"] ?? "";
             if (qtype == "MGT")
             {
-          
+            this.gvLvReq.Columns[11].Visible = true;
+
                 empid = this.ddlEmpName.SelectedValue.ToString() ?? "";
             }
             else
             {
-                
+            this.gvLvReq.Columns[11].Visible = false;
+
 
                 empid = hst["empid"].ToString();
             }
@@ -160,7 +162,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             frmdate = startdate + frmdate.Substring(2);
 
             string tdate = date.ToString("dd-MMM-yyyy");
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, frmdate, tdate, "", "", "", "", "", "");
             if (ds1 == null)
             {
@@ -169,6 +170,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
 
             }
+
+
             DateTime useTime = ds1.Tables[2].Rows.Count == 0 ? DateTime.Parse("06:00") : DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
             if (ds1.Tables[0].Rows.Count != 0)
@@ -625,6 +628,63 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
+        }
+
+
+
+        protected void lnkTimeEdit_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string id = ((Label)this.gvLvReq.Rows[index].FindControl("lbllevid")).Text.ToString().Trim();
+            string outtime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvstrtdat")).Text.ToString().Trim();
+            string intime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvenddat")).Text.ToString().Trim();
+
+
+            string applydat= ((Label)this.gvLvReq.Rows[index].FindControl("lblgvaplydat")).Text.ToString().Trim(); 
+            this.txtmodalintime.Text = intime;
+            this.txtmodalouttime.Text = outtime;
+            this.timeOfId.InnerText = id;
+            this.applydatmodal.InnerText = applydat;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
+
+
+
+
+        }
+
+        protected void lnkTimeUpdate_Click_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string id = this.timeOfId.InnerText ?? "";
+            string intime = this.txtmodalintime.Text;
+            string outtime = this.txtmodalouttime.Text;
+            string msg = "";
+            string type = "TLV";
+
+
+            DateTime d1 = DateTime.Parse(txtmodalintime.Text.ToString());
+            DateTime d2 = DateTime.Parse(txtmodalouttime.Text.ToString());
+            TimeSpan timeDiff = d1.Subtract(d2);
+            
+
+
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "UPDATETIMEOFF", id, intime, type, timeDiff.ToString(), outtime ,"", "", "");
+            if (result)
+            {
+                msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                msg = "Update Failed!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+            }
         }
     }
 

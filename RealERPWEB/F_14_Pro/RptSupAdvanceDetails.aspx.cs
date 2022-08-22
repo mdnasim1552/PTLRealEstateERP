@@ -49,7 +49,7 @@ namespace RealERPWEB.F_14_Pro
             //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
         }
 
-       
+
         private string GetComeCode()
         {
 
@@ -80,31 +80,54 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetComeCode();
 
-            string frmdate = txtfrmdate.Text.ToString();
-            string todate = txttodate.Text.ToString();
-            string supcode= this.ddlSuplist.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "SUPPLIERWISEWRKORDERDETAIL", frmdate, todate, supcode, "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
+            try
+            {
+                Session.Remove("tblsupinfo");
+                string comcod = this.GetComeCode();
 
-            Session["tblsupinfo"] = ds1.Tables[0];
-            this.DataBindGrid();
+                string frmdate = txtfrmdate.Text.ToString();
+                string todate = txttodate.Text.ToString();
+                string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+                string supcode = this.ddlSuplist.SelectedValue.ToString();
+
+                string calltype = (stindex == "0" ? "SUPPLIERWISEWRKORDERDETAIL" : "SUPPLIERWISEWRKORDERBILLDETAIL");
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", calltype, frmdate, todate, supcode, "", "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.gvsupstatus.DataSource = null;
+                    this.gvsupstatus.DataBind();
+                    return;
+                }
+                Session["tblsupinfo"] = ds1.Tables[0];
+                this.DataBindGrid();
+            }
+            catch(Exception ex)
+            {
+
+            }
+           
         }
 
         private void DataBindGrid()
         {
-            this.MultiView1.ActiveViewIndex = 0;
-            this.gvsupstatus.DataSource = (DataTable)Session["tblsupinfo"];
-            this.gvsupstatus.DataBind();
+            // this.MultiView1.ActiveViewIndex = 0;
+            try
+            {
+                this.gvsupstatus.DataSource = (DataTable)Session["tblsupinfo"];
+                this.gvsupstatus.DataBind();
+            }
+            catch(Exception ex)
+            {
 
-            Session["Report1"] = gvsupstatus;
-            ((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+            //Session["Report1"] = gvsupstatus;
+            //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 
-       
+
         private void lnkPrint_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -120,10 +143,10 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt = (DataTable)Session["tblsupinfo"];
 
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSupAdvanceDetails> ();
+            var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSupAdvanceDetails>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSupAdvanceDetails", lst, null, null);
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("comnam",comnam));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Supplier Advance Details"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
