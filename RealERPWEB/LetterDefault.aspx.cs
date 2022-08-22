@@ -161,11 +161,12 @@ namespace RealERPWEB
             string incmtax = "";
             string payablesal = "";
             string idcard = "";
-            string inwords2 = "";
+            string inwords = ASTUtility.Trans(Convert.ToDouble(total), 2);
             double inwrd = 0;
             string temptable = "";
             int count = 1;
-
+             //double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
+            //string Inword =  ASTUtility.Trans(netamt, 2);
             if (ds.Tables[1].Rows.Count != 0)
             {
 
@@ -236,35 +237,44 @@ namespace RealERPWEB
                         lbody =
                         "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:"+refno+"</strong></p>" +
                         "<p style='margin-bottom:-11px'><strong> Mr " + name + "</strong></p>" +
-                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
+                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
                         "<p><strong>Subject:</strong> Appointment Letter - <strong>" + desig + "</strong></p>" +
                         "<p>Dear Mr " + name + ",</p>" +
                         //body
-                        "<p style='margin-bottom:-11px'>We are delighted to appoint you as a  <strong>" + desig + "</strong> of the <strong>" + dept + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
+                        "<p>We are delighted to appoint you as a  <strong>" + desig + "</strong> of the <strong>" + dept + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
                         "<p> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
                         "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
 
                         //position info
-                        "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
-                        "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
-                        "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + doj + "</span></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + doj + "</span></p>" +
+                       "<table style='border:none'> <tr style='border:none'><td style='border:none'><strong>Designation</strong></td><td style='border:none'>: " + desig + "</td> </tr><tr style='border:none'><td style='border:none'> <strong>Employee Grade</strong></td><td style='border:none'>: " + grade + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Probable Job Start Date</strong></td><td style='border:none'>: " + date + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Salary Breakdown</strong></td><td style='border:none'>:</td></tr></table>" +
+
 
                         //salary break down table
-                        "<p><strong>Salary Breakdown :</strong></p>" +
-                        "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
+         
+                        "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;margin-top:7px'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:center'>" + bsal + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + hrent + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + mallow + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:center'>" + cven + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong>" + total + "</strong></td></tr></table>" +
+                         "<p style='margin-left:30px;'>In words : " + inwords+"</p>" +
 
-                        "<p style='margin-bottom:-11px'><strong>Mobile Allowance</strong><span>: As per company policy.</span></p>" +
-                        "<p style='margin-bottom:-11px'><strong>Festival Bonus</strong><span>: You will be entitled for two festival bonuses yearly.</span></p>" +
+                        "<p></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Mobile Allowance</strong><span>: As per company policy.</span></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Festival Bonus</strong><span>: You will be entitled for two festival bonuses yearly.</span></p>" +
+
+                       "<table style='border:none'> <tr style='border:none'><td style='border:none'><strong>Mobile Allowance</strong></td><td style='border:none'>:  As per company policy.</td> </tr><tr style='border:none'><td style='border:none'> <strong>Festival Bonus</strong></td><td style='border:none'>: You will be entitled for two festival bonuses yearly.</td></tr><tr style='border:none'><td style='border:none'> <strong>Leave Allocation </strong></td><td style='border:none'>:</td></tr></table>" +
+
 
                         //leave allocation
-                        "<p><strong>Leave Allocation :</strong></p>" +
-                        "<table style='width:70%;margin-left:20px;border-style:solid;border:1px solid black;'><tr style='border-style:solid;border:1px solid black;'><th style='width:50px;border-style:solid;border:1px solid black;'>SL</th><th style='border-style:solid;border:1px solid black;'>Types of Leave</th><th style='border-style:solid;border: 1px solid black;'>Total Leave in a Year</th></tr>" + temptable + "</table>" +
 
+                        "<table style='width:70%;margin-left:20px;border-style:solid;border:1px solid black;margin-top:7px'><tr style='border-style:solid;border:1px solid black;'><th style='width:50px;border-style:solid;border:1px solid black;'>SL</th><th style='border-style:solid;border:1px solid black;'>Types of Leave</th><th style='border-style:solid;border: 1px solid black;'>Total Leave in a Year</th></tr>" + temptable + "</table>" +
+
+                             "<p></p>" +
+                             "<p></p>" +
 
                         "<ul><li style='margin-top:100px;'>You will be able to avail earned leave after completion of 1 (one) year employment with Edison Real Estate Limited. Casual leave and sick leave shall be allocated as pro rata basis calculated from your date of joining. </li>" +
                         "<li style='margin-top:10px;'>During probation period, you will be able to avail maximum 2 (two) days leave in a month from your casual/sick leave. Any other absent will be counted as leave without pay.</li></ul>" +
@@ -275,17 +285,29 @@ namespace RealERPWEB
 
                         //termination
                         "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
-                        "<p></p>" +
-                        "<p></p>" +
+                               "<p></p>" +
+                            "<p></p>" +
 
-                        //footer
-                        "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>Ahmed Pasha</strong></p></span></p>" +
-                        "<br>" +
-                        "<p style='display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Business Officer</strong></p></span></p>" +
-                        "<p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p>" +
-                        "<p></p>" +
-                        "<p></p>" +
-                        "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p>";
+                            "<div style='float:left;width:50%;margin-bottom:-11px'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px'><strong>Md. Mizanur Rahman Khan</strong></p>" +
+                           "<p style='margin-bottom:-11px;'><strong>Senior Manager – HR</strong></p>" +
+                             "</div>" +
+
+                            "<div style='float:left;width:50%;margin-bottom:40px;'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px;'><strong>Ahmed Pasha</strong></p>" +
+                           "<p style='margin-bottom:-11px;'><strong>Chief Business Officer</strong></p>" +
+                             "</div>" +
+
+
+                       //         "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Md. Mizanur Rahman Khan</strong></span>  <span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;text-align:left;'><strong>Ahmed Pasha</strong></p></span></p>" +
+                       //"<br>" +
+                       //         "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Senior Manager – HR</strong></span>                           <span style='display:inline-block;margin-bottom:-11px;margin-left:250px;text-align:left;'><strong>Chief Business Officer</strong></p></span></p>" +
+
+
+                       "<div style='margin-top:45px'><p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p></div>" +
+
+                       "<p></p>" +
+                       "<div><p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:120px;'><strong>" + name + "</strong></p></div>";
                     }
                     break;
 
@@ -296,34 +318,35 @@ namespace RealERPWEB
                         lbody =
                        "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
                        "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> House: 271, Tejgaon I/A</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
                        "<p><strong>Subject:</strong> Offer Letter-<strong>" + desig + "</strong></p>" +
                        "<p>Dear Mr " + name + ",</p>" +
 
                        "<p style='margin-bottom:-11px'>We are delighted to offer you the position of <strong>" + desig + "</strong> of the <strong>" + sec + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
                        "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
                        "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
-                        "<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: "+grade+"</span></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + date + "</span></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
-                       "<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>" +
+                       "<table style='border:none'> <tr style='border:none'><td style='border:none'><strong>Designation</strong></td><td style='border:none'>: " + desig + "</td> </tr><tr style='border:none'><td style='border:none'> <strong>Employee Grade</strong></td><td style='border:none'>: " + grade + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Probable Job Start Date</strong></td><td style='border:none'>: " + date + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Salary</strong> </td><td style='border:none'>: As negotiated and agreed upon by both parties</td></tr><tr style='border:none'><td style='border:none'><strong>Mobile Allowance</strong></td><td style='border:none'>: As per company policy</td></tr></table>" +
+                       //"<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
+                       //"<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: "+grade+"</span></p>" +
+                       //"<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + date + "</span></p>" +
+                       //"<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
+                       //"<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>" +
 
                        "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a three-month probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
                        "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
-                       "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                       "<p style='margin-bottom:-11px'><strong>Termination of Employment:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
                        "<p style='margin-bottom:-11px'>We look forward to the opportunity to work with you in an atmosphere that is successful and mutually challenging and rewarding.If you don’t accept this letter, please let us know within " + date + ".</p>" +
 
                            "<p></p>" +
                             "<p></p>" +
-                            
-                            "<div style='float:left;width:50%;'>" +
-                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>Md. Mizanur Rahman Khan</strong></p>"+
+
+                            "<div style='float:left;width:50%;margin-bottom:-11px'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px'><strong>Md. Mizanur Rahman Khan</strong></p>"+
                            "<p style='margin-bottom:-11px;'><strong>Senior Manager – HR</strong></p>" +
                              "</div>" +
 
-                            "<div style='float:right;width:50%;'>" +
-                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>Ahmed Pasha</strong></p>" +
+                            "<div style='float:left;width:50%;margin-bottom:40px;'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px;'><strong>Ahmed Pasha</strong></p>" +
                            "<p style='margin-bottom:-11px;'><strong>Chief Business Officer</strong></p>" +
                              "</div>" +
 
@@ -333,10 +356,10 @@ namespace RealERPWEB
                   //         "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Senior Manager – HR</strong></span>                           <span style='display:inline-block;margin-bottom:-11px;margin-left:250px;text-align:left;'><strong>Chief Business Officer</strong></p></span></p>" +
 
 
-                       "<div style='margin-top:40px'><p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p></div>" +
+                       "<div style='margin-top:45px'><p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p></div>" +
 
 
-                       "<div><p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;'><strong>" + name + "</strong></p></div>";
+                       "<div><p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:120px;'><strong>" + name + "</strong></p></div>";
 
                     }
                     else if (this.GetCompCode() == "3365")
