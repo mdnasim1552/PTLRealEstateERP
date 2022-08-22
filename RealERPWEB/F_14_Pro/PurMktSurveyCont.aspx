@@ -2,25 +2,61 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-    <link href="../CSS/PageInformation.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/Style.css" rel="stylesheet" type="text/css" />
-
+    <link href="../CSS/PageInformation.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
     <script src="../Scripts/jquery.keynavigation.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript" src="../Scripts/KeyPress.js"></script>
+    <style type="text/css">
+        .modalcss {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            overflow: scroll;
+        }
 
+        .multiselect {
+            width: 322px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }
+
+        .multiselect-text {
+            width: 300px !important;
+        }
+
+        .multiselect-container {
+            height: 350px !important;
+            width: 350px !important;
+            overflow-y: scroll !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 300px !important;
+        }
+
+        .form-control {
+            height: 34px;
+        }
+    </style>
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
-
+            $(function () {
+                $('[id*=chkMSRRes]').multiselect({
+                    includeSelectAllOption: true,
+                    enableCaseInsensitiveFiltering: true,
+                    //enableFiltering: true,
+                });
+            });
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
@@ -31,10 +67,6 @@
             $.keynavigation(gridview);
         }
     </script>
-
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -119,58 +151,38 @@
 
                                 </asp:Panel>
                                 <asp:Panel ID="pnlSupMat" runat="server" Visible="False">
-
-
-
                                     <div class="form-group">
                                         <div class="col-md-1  pading5px">
-
                                             <asp:Label ID="Label10" runat="server" CssClass=" lblName lblTxt" Text="Supplier List:"></asp:Label>
-
                                             <asp:TextBox ID="txtMSRSupSearch" runat="server" CssClass="inputtextbox hidden" Style="width: 63px;"></asp:TextBox>
-
-
                                             <asp:LinkButton ID="ImgbtnFindSup" runat="server" CssClass="btn btn-primary primaryBtn hidden" OnClick="ImgbtnFindSup_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
                                         </div>
-
-                                        <div class="col-md-4 pading5px asitCol4 ">
+                                        <div class="col-md-4 pading5px asitCol4">
                                             <asp:DropDownList ID="ddlMSRSupl" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
                                         </div>
-
                                         <div class="col-md-2 pading5px">
-                                            <asp:LinkButton ID="lbtnMSRSup" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnMSRSup_Click">Select Supplier</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnMSRSup" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnMSRSup_Click">Select Suppliers</asp:LinkButton>
                                         </div>
-
-
-
-
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-md-1 pading5px">
-
                                             <asp:Label ID="Label9" runat="server" CssClass=" lblName lblTxt" Text="Materials List:"></asp:Label>
-
                                             <asp:TextBox ID="txtMSRResSearch" runat="server" CssClass="inputtextbox hidden" Style="width: 63px;"></asp:TextBox>
-
-
                                             <asp:LinkButton ID="ImgbtnFindMat" runat="server" CssClass="btn btn-primary primaryBtn hidden" OnClick="ImgbtnFindMat_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
-
                                         </div>
+                                        <div class="col-md-4 pading5px asitCol4">
+                                                <asp:ListBox ID="chkMSRRes" runat="server" CssClass="form-control" SelectionMode="Multiple"></asp:ListBox>
 
-                                        <div class="col-md-4 pading5px asitCol4 ">
-                                            <asp:DropDownList ID="ddlMSRRes" runat="server" AutoPostBack="True" Width="322px" OnSelectedIndexChanged="ddlMSRRes_SelectedIndexChanged" CssClass="ddlPage chzn-select"></asp:DropDownList>
-
+                                            <%--<asp:DropDownList ID="ddlMSRRes" runat="server" AutoPostBack="True" Width="322px" OnSelectedIndexChanged="ddlMSRRes_SelectedIndexChanged" CssClass="ddlPage chzn-select" Visible="false"></asp:DropDownList>--%>
                                         </div>
-
                                         <div class="col-md-2 pading5px">
                                             <asp:LinkButton ID="lbtnMSRSelect" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnMSRSelect_Click">Select Materials</asp:LinkButton>
-
                                         </div>
                                     </div>
 
 
-                                    <div class="form-group">
+                                    <%--                                    <div class="form-group">
                                         <div class="col-md-1 pading5px">
                                             <asp:Label ID="lblspecificationms" runat="server" CssClass="lblTxt lblName" Text="Specification:"></asp:Label>
                                             <asp:TextBox ID="txtsrchSpecification3" runat="server" CssClass="inputTxt inpPixedWidth hidden" TabIndex="4"></asp:TextBox>
@@ -182,18 +194,8 @@
                                         <div class="col-md-4 pading5px  asitCol4">
                                             <asp:DropDownList ID="ddlSpecificationms" runat="server" Width="322px" CssClass=" chzn-select  form-control inputTxt" TabIndex="6">
                                             </asp:DropDownList>
-
                                         </div>
-
-
-
-
-
-                                    </div>
-
-
-
-
+                                    </div>--%>
                                 </asp:Panel>
                             </div>
                         </fieldset>
@@ -529,7 +531,7 @@
 
                                     <asp:TemplateField HeaderText="Discount (Amt)">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvDiscount" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"  TextMode="Number" min="0"
+                                            <asp:TextBox ID="txtgvDiscount" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" TextMode="Number" min="0"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "discount")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:TextBox>

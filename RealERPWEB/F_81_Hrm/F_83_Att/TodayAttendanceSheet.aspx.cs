@@ -28,6 +28,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetCompany();
                 //this.GetProjectName();
                 this.SelectDate();
+                this.lnkbtnShow_Click(null,null);
               //  this.GetEmpName();
             }
 
