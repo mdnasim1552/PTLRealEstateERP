@@ -268,7 +268,7 @@
                                                      ""%>'  Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "status")) %>'
                                                     Width="33px" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                        
