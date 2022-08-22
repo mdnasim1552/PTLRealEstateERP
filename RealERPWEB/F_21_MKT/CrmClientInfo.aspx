@@ -2158,7 +2158,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             </h4>
                                         </div>
                                         <div class="panel-body">
-                                            <asp:GridView ID="gvpinfo" runat="server" AutoGenerateColumns="False"
+                                            <asp:GridView ID="gvpinfo" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvpinfo_RowDataBound"
                                                 ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
                                                 <RowStyle />
                                                 <Columns>
