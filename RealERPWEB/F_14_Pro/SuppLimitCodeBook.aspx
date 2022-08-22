@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="SuppLimitCodeBook.aspx.cs" Inherits="RealERPWEB.F_14_Pro.SuppLimitCodeBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
     <link href="../CSS/Style.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -217,7 +216,7 @@
                             <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
                             <asp:Label ID="lblmSupCode" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
                         </div>
-                        <div class="modal-body " style="min-height:400px">
+                        <div class="modal-body " style="min-height: 400px">
                             <div class="container">
                                 <div class="form-group">
                                     <div class="row">
