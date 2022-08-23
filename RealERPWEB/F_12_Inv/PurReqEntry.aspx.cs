@@ -1346,7 +1346,8 @@ namespace RealERPWEB.F_12_Inv
             }
             else
             {
-                if (compmail == "True")
+                string qtype = this.Request.QueryString["InputType"].ToString() ?? "";
+                if (compmail == "True" && qtype!= "ReqFirstApproved")
                 {
 
                     string apprlink = "";// "<div style='color:red'><br><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
