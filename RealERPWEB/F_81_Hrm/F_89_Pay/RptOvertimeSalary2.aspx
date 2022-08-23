@@ -61,12 +61,12 @@
                 </asp:UpdateProgress>
             </div>
             <div class="card mt-5">
-                <div class="contentPart">
+               
                      <div class="card-header">
                     <div class="row mt-1">
-                        <div class="col-lg-2 col-md-2 col-sm-6 ml-3">
-                             <asp:Label ID="Label2" runat="server" CssClass="form-label ">Company</asp:Label>
-                                        <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="form-control" style="display:none"></asp:TextBox>
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+                             <asp:Label ID="Label2" runat="server" CssClass="form-label">Company</asp:Label>
+                                        <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="form-control d-none"></asp:TextBox>
                                        <asp:LinkButton ID="imgbtnCompany" runat="server" OnClick="imgbtnCompany_Click"><i class="fas fa-search"></i></asp:LinkButton>
                             <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control  inputTxt pull-left chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                         </asp:DropDownList>
@@ -78,9 +78,9 @@
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6 ml-3" id="divBracnhLsit" runat="server">
+                        <div class="col-lg-2 col-md-2 col-sm-6" id="divBracnhLsit" runat="server">
                            <asp:Label ID="lblDept" runat="server" CssClass="form-label">Department</asp:Label>
-                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control"  style="display:none"></asp:TextBox>
+                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control d-none"></asp:TextBox>
                                        <asp:LinkButton ID="imgbtnProSrch" runat="server"  OnClick="imgbtnProSrch_Click"><i class="fas fa-search"></i> </span></asp:LinkButton>
                              <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True" runat="server"  CssClass="form-control inputTxt chzn-select" TabIndex="6">
                                         </asp:DropDownList>
@@ -90,9 +90,9 @@
                                         </cc1:ListSearchExtender>
                                         <asp:Label ID="lblComSalLock" runat="server" CssClass="form-control inputTxt" Visible="False" Width="233"></asp:Label>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 ml-3">
+                        <div class="col-lg-2 col-md-2 col-sm-6">
                              <asp:Label ID="Label3" runat="server" CssClass="form-label">Section</asp:Label>
-                                        <asp:TextBox ID="txtSrcSec" runat="server" CssClass="form-control"  style="display:none"></asp:TextBox>
+                                        <asp:TextBox ID="txtSrcSec" runat="server" CssClass="form-control d-none" ></asp:TextBox>
                                                  <asp:LinkButton ID="imgbtnSecSrch" runat="server"  OnClick="imgbtnSecSrch_Click"><i class="fas fa-search"></i></asp:LinkButton>
                              <asp:DropDownList ID="ddlSection" runat="server"  CssClass="form-control inputTxt chzn-select" TabIndex="6">
                                         </asp:DropDownList>
@@ -102,25 +102,27 @@
                                         </cc1:ListSearchExtender>
                      
                            </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <div>
                        <asp:Label ID="lblfrmdate" runat="server" >Date</asp:Label>
                             </div>
                               
-                            <asp:TextBox ID="txtfromdate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
+                            <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
-
+                            </div>
+                        
+                        <div class="col-lg-1 col-md-1 col-sm-6 mr-3">
 
                                         <asp:Label ID="lbltodate" runat="server">To</asp:Label>
-                                        <asp:TextBox ID="txttodate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
+                                        <asp:TextBox ID="txttodate" runat="server" CssClass="form-control"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                         </div>
                                
                                     <div class="col-lg-1 col-md-1 col-sm-6">
                                         <asp:Label ID="lblPage" runat="server" CssClass="form-label">Page Size</asp:Label>
                                              
-                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control ddlPage" Width="76" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" Width="76" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>                                           
                                             <asp:ListItem>20</asp:ListItem>
                                             <asp:ListItem>30</asp:ListItem>
@@ -131,8 +133,8 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-6 mt-3 mr-3">
-                             <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
+                        <div class="col-lg-1 col-md-1 col-sm-6">
+                             <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm pull-left mt-4" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
                                         </div>
                                
                                       
@@ -151,7 +153,7 @@
 
 
 
-                    <div class="row mt-2 ">
+                    <div class="row mt-4 ">
                                
                                 <asp:GridView ID="gvovertime" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvovertime_PageIndexChanging"
@@ -159,13 +161,13 @@
                                     <PagerSettings Position="Top" />
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl">
+                                        <asp:TemplateField HeaderText="Sl #">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                             </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Department">
                                             <ItemTemplate>
@@ -174,9 +176,9 @@
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="ID CARD">
+                                        <asp:TemplateField HeaderText="CARD #">
 
                                        <%--     <FooterTemplate>
                                                 <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn  btn-primary primarygrdBtn" OnClick="lnkTotal_Click">Total</asp:LinkButton>
@@ -188,7 +190,7 @@
                                                     Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Section">
@@ -200,7 +202,7 @@
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Name &amp; Designation">
@@ -217,7 +219,7 @@
                                                     ForeColor="#000" Style="text-align: right">Total :</asp:Label>
                                             </FooterTemplate>
                                             <ItemStyle HorizontalAlign="left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Gross Salary">
                                             <ItemTemplate>
@@ -230,7 +232,7 @@
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Basic">
@@ -244,7 +246,7 @@
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="House Rent">
                                             <ItemTemplate>
@@ -257,7 +259,7 @@
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                            <asp:TemplateField HeaderText="Daily Allowance">
@@ -271,7 +273,7 @@
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Convence">
                                             <ItemTemplate>
@@ -284,7 +286,7 @@
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Medical">
                                             <ItemTemplate>
@@ -297,7 +299,7 @@
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                         
@@ -314,7 +316,7 @@
                                                     ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                         
@@ -326,7 +328,7 @@
                                             </ItemTemplate>
                                             
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         
                                         
@@ -343,7 +345,7 @@
 
 
                                             <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                                                                 
                                     </Columns>
@@ -357,33 +359,29 @@
 
                     </div>
                 </div>
-                    </div>
+                    
             </div>
 
 
+             <div id="overtimeinfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content col-md-12 col-sm-12 ">
+                <div class="modal-header hedcon">
 
-
-
-
-        <div id="overtimeinfo" class="modal col-md-8 col-md-offset-2 animated zoomIn" role="dialog">
-                <div class="modal-dialog   modal-lg">
-                    <div class="modal-content  ">
-                        <div class="modal-header bg-primary">
-
-                            <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                    
+                            <button type="button" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
                             <h4 class="modal-title">
                                 <span class="glyphicon glyphicon-hand-right"></span>
-                                <asp:Label ID="lbmodalheading" runat="server"></asp:Label>
+                                <asp:Label ID="lbmodalheading" runat="server" CssClass="justify-content-start"></asp:Label>
                             </h4>
-                        </div>
-                        <div class="modal-body">
 
-                            <div class="row-fluid form-horizontal forgotform" id="">
-                            </div>
-                            <div class="row">
-                                <asp:GridView ID="mgvbreakdown" runat="server"
+                </div>
+                <div class="modal-body">
+
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                         <asp:GridView ID="mgvbreakdown" runat="server"
                                     AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" Width="430px">
+                                    ShowFooter="True" >
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -392,7 +390,7 @@
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                             </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                             <ItemTemplate>
@@ -401,7 +399,7 @@
                                                     Width="180px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Type">
@@ -494,21 +492,21 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
-                            </div>
-
-
-
-
-                        </div>
-                        <div class="modal-footer">
+                    </div>
+                </div>
+                 <div class="modal-footer">
 
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 
 
                         </div>
-                    </div>
-                </div>
             </div>
+        </div>
+    </div>
+
+
+
+        
 
 
            

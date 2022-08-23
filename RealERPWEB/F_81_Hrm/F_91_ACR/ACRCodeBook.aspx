@@ -1,9 +1,42 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="ACRCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_91_ACR.ACRCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ACRCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_91_ACR.ACRCodeBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
+     <script src="../../Scripts/gridviewScrollHaVertworow.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+   
+   <script language="javascript" type="text/javascript">
+      
+       $(document).ready(function () {
+           $(".select2").select2();
+           Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+       });
+       function pageLoaded() {
+
+           $("input, select").bind("keydown", function (event) {
+               var k1 = new KeyPress();
+               k1.textBoxHandler(event);
+           });
+           $('.select2').each(function () {
+               var select = $(this);
+               select.select2({
+                   placeholder: 'Select an option',
+                   width: '100%',
+                   allowClear: !select.prop('required'),
+                   language: {
+                       noResults: function () {
+                           return "{{ __('No results found') }}";
+                       }
+                   }
+               });
+           });
+          
+       };
+   </script>
 
 
 
@@ -27,48 +60,38 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row mt-1">
 
 
-                        <fieldset class="scheduler-border">
-
-                            <div class="form-horizontal">
-                                <div class="form-group">
-
-                                    <asp:Label ID="LblBookName1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Select Code Book:"></asp:Label>
-                                    <div class="col-md-4 pading5px">
-                                        <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control inputTxt">
+                                   
+                                    <div class="col-lg-4 col-md-4 col-sm-6">
+                                         <asp:Label ID="LblBookName1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Select Code Book:"></asp:Label>
+                                        <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control select2">
                                         </asp:DropDownList>
 
-                                          <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
+                                          <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control select2"></asp:Label>
                                         <%--                                                <cc1:ListSearchExtender ID="ddlCodeBook_ListSearchExtender" runat="server"
                                                     Enabled="True" QueryPattern="Contains" TargetControlID="ddlCodeBook">
                                                 </cc1:ListSearchExtender>--%>
                                     </div>
-                                    <div class="col-md-2 pading5px">
-                                        <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control inputTxt" runat="server">
+                                    <div class="col-lg-2 col-md-2 col-sm-6 mt-4">
+                                        <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control select2" runat="server">
                                             <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
                                             <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
                                         </asp:DropDownList>
-                                        <asp:Label ID="lbalterofddl0" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
+                                        <asp:Label ID="lbalterofddl0" runat="server" Visible="False" CssClass="form-control select2"></asp:Label>
                                     </div>
-                                    <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn"></asp:LinkButton>
+                                    <div class="col-lg-1 col-md-1 col-sm-6 mt-3">
+                                        <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm"></asp:LinkButton>
                                     </div>
-                                    <div class="col-md-4 pading5px">
-                                        <div class="msgHandSt">
-                                            <asp:Label ID="ConfirmMessage" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
+                                  
+                            
 
                            
 
-                            </div>
-                        </fieldset>
+                       
 
 
 
