@@ -145,7 +145,7 @@
                                 </div>
                             </div>
                              <div class="col-md-1 col-sm-1 col-lg-1 col-xs-12">
-                                 <asp:LinkButton ID="linkAddEmp" runat="server"  CssClass="btn btn-success btn-sm d-none" Style="margin-top: 20px;" ><i class="fas fa-plus "></i> Select</asp:LinkButton>
+                                 <asp:LinkButton ID="linkAddEmp" runat="server"  CssClass="btn btn-success btn-sm " Style="margin-top: 20px;" OnClick="linkAddEmp_Click" ><i class="fas fa-plus "></i> Add</asp:LinkButton>
                                 
                             </div>
                             
