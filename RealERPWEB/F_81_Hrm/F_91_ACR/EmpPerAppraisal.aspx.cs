@@ -198,8 +198,12 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
+            string sectionid = this.ddlProjectName.SelectedValue.ToString();
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            string empid1 = sectionid == "000000000000" ? "%%" : "%" + empid + "%";
+
             string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GETPREPERNO", curdate, "", "", "", "", "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GETPREPERNO", curdate, empid1, "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count > 0)
             {
                 this.lbtnshow.Visible = true;
