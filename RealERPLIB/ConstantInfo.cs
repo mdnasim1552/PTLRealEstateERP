@@ -7336,6 +7336,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000007", "09. Client Information", "F_23_CR/ClientInfo", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "10. Budgeted Sales", "F_22_Sal/RptBgdSales?Type=Report&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000009", "11. Sold Information", "F_22_Sal/RptCalTotalAvgValue", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000010", "12. Customer Note Sheet", "F_22_Sal/RptSalInterest?Type=CustNoteSheet", "", true, "" });
+           // mnuTbl1.Rows.Add(new Object[] { "0301000009", "11. Sold Information", "F_22_Sal/RptCalTotalAvgValue", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
 
