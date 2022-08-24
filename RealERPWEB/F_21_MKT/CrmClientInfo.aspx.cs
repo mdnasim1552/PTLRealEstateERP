@@ -55,6 +55,7 @@ namespace RealERPWEB.F_21_MKT
                 this.GetParcipants();
                 this.ShowDiscussion();
                 this.IsTeamLeader();
+               
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "Initializescroll();", true);
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -86,6 +87,7 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+      
         private void lnkPrint_Click(object sender, EventArgs e)
         {
             this.CRMClientInformation();
@@ -141,6 +143,12 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[12].Visible = false;
                     this.gvSummary.Columns[12].Visible = false;
                     this.gvSummary.Columns[22].Visible = false;
+
+                    this.lnkBtnPotentialPros.Visible = false;
+                    this.lnkBtnComments.Visible = false;
+                    this.lnkBtnDaypassed.Visible = false;
+                    this.lnkbtnTODayTask.Visible = false;
+                    this.tdaswhtxt.InnerText = "Today Schedules Work";
                     break;
 
 
@@ -4672,7 +4680,7 @@ namespace RealERPWEB.F_21_MKT
             else
             {
                 this.gvSummary.Columns[26].HeaderText = "Followup";
-                this.gvSummary.Columns[8].HeaderText = "Next Followup <br> Date";
+                this.gvSummary.Columns[8].HeaderText = "Followup <br> Date";
                 this.gvSummary.Columns[24].Visible = false;
             }
             this.Data_Bind();
