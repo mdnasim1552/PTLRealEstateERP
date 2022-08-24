@@ -2983,6 +2983,7 @@
     <Content Include="F_81_Hrm\F_82_App\EmpBirthDeath.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpEntry02.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx" />
@@ -4530,6 +4531,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntry.aspx.designer.cs">
       <DependentUpon>EmpEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry02.aspx.cs">
+      <DependentUpon>EmpEntry02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry02.aspx.designer.cs">
+      <DependentUpon>EmpEntry02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
       <DependentUpon>EmpEntry01.aspx</DependentUpon>

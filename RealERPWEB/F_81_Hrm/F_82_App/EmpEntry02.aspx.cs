@@ -41,7 +41,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ////if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 ////    Response.Redirect("../../AcceessError.aspx");
                 this.GetInformation();
-                this.GetEmployeeName();
+    
 
                 //this.GetEmployeeName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE PERSONAL INFORMATION";
