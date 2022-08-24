@@ -255,7 +255,7 @@
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Project 2013\TFS Interior\ASITInteriorERP\InteriorWEB\Bin\RealERPRPT.dll</HintPath>
+      <HintPath>H:\Compnay Database\Interior project 13\ASITInteriorERP 220816\InteriorWEB\Bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -332,6 +332,7 @@
     <Content Include="assets\css\reset.css" />
     <Content Include="assets\css\responsiveslides.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\images\delete.png" />
     <Content Include="assets\images\2.jpg" />
     <Content Include="assets\images\3.jpg" />
     <Content Include="assets\images\4.jpg" />
