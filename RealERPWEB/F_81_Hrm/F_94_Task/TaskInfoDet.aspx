@@ -163,7 +163,7 @@
                             </asp:DropDownList>
                         </div>
                                  <div class="col-lg-1 col-md-1 col-sm-6">
-                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkSelect_Click" TabIndex="11">Refresh</asp:LinkButton>
+                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkSelect_Click" TabIndex="11" Text="Show"></asp:LinkButton>
 
                         </div>
                                  <div class="col-lg-2 col-md-2 col-sm-6">
