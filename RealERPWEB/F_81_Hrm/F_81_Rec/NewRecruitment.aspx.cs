@@ -625,7 +625,28 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ViewEmpModal();", true);
         }
 
+        protected void ApplyJoinning_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string comcod = this.GetComeCode();
+            string empname = ((Label)this.gvAllRec.Rows[index].FindControl("lblname")).Text.ToString().Trim();
+            string empdept = "9301";//this.ddlDept.SelectedValue.ToString().Trim().Substring(0, 9);
+            string Message;
 
+          bool  result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
+            if (result)
+            {
+                Message = "Successfully Added Employee : " + empname;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+            }
+            else
+            {
+                Message = "Sorry, Data Updated Fail : " + empname;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+            }
+            getAllData();
+        }
     }
 }

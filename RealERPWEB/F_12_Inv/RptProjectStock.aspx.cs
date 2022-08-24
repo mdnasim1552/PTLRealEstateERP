@@ -62,13 +62,13 @@ namespace RealERPWEB.F_12_Inv
             string Complength = "";
             switch (comcod)
             {
-               // case "3101":
+                // case "3101":
                 case "3348":
                     Complength = "Length";
                     break;
 
                 default:
-                     Complength = "";
+                    Complength = "";
 
                     break;
             }
@@ -77,6 +77,25 @@ namespace RealERPWEB.F_12_Inv
 
 
         }
+
+        private string CompCallType()
+        {
+            string comcod = this.GetCompCode();
+            string ctype = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "2325":
+                case "3325":
+                    ctype = "GETPURPROJECTNAMELEISURE";
+                    break;
+                default:
+                    ctype = "GETPURPROJECTNAME";
+                    break;
+            }
+            return ctype;
+        }
+
 
         private string GetCompCode()
         {
@@ -93,7 +112,8 @@ namespace RealERPWEB.F_12_Inv
             string serch1 = "%" + this.txtSrcPro.Text.Trim() + "%";
             string length = this.Complength();
             string userid = hst["usrid"].ToString();
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "GETPURPROJECTNAME", serch1, length, userid, "", "", "", "", "", "");
+            string ctype = this.CompCallType();
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", ctype, serch1, length, userid, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlProName.DataTextField = "pactdesc";
@@ -138,7 +158,7 @@ namespace RealERPWEB.F_12_Inv
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string pactcode = this.ddlProName.SelectedValue.ToString();
+            string pactcode = this.ddlProName.SelectedValue.ToString() == "000000000000" ? "%%" : "%" + this.ddlProName.SelectedValue.ToString() + "%";
             string txtfindMat = this.txtsrchresource.Text.Trim() + "%";
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS02", "GETMATERIAL", pactcode, txtfindMat, "", "", "", "", "", "", "");
             this.chkResourcelist.DataTextField = "rsirdesc";
@@ -171,14 +191,34 @@ namespace RealERPWEB.F_12_Inv
             Session.Remove("UserLog");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string pactcode = this.ddlProName.SelectedValue.ToString();
+
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
             string chalan = this.chln.Checked ? "chalan" : "";
             string mRptGroup = Convert.ToString(this.ddlRptGroup.SelectedIndex);
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
-            string calltype = (this.Request.QueryString["Type"].ToString() == "acc") ? "RPTPROJECTSTOCK" : (this.Request.QueryString["Type"].ToString() == "invWithSpec") ? "RPTPROSTOCKINVSPC" : "RPTPROSTOCKINV";
-
+            string calltype = (this.Request.QueryString["Type"].ToString() == "acc") ? "RPTPROJECTSTOCK"
+                                : (this.Request.QueryString["Type"].ToString() == "invWithSpec") ? "RPTPROSTOCKINVSPC"
+                                : "RPTPROSTOCKINV";
+            string pactcode = "";
+            switch (comcod)
+            {
+                case "2305":
+                case "3325":
+                case "3101":
+                    if (calltype == "RPTPROSTOCKINV")
+                    {
+                        pactcode = this.ddlProName.SelectedValue.ToString() == "000000000000" ? "%%" : "%" + this.ddlProName.SelectedValue.ToString() + "%";
+                    }
+                    else
+                    {
+                        pactcode = this.ddlProName.SelectedValue.ToString();
+                    }
+                    break;
+                default:
+                    pactcode = this.ddlProName.SelectedValue.ToString();
+                    break;
+            }
 
             //    //string grpcode = "";
 
@@ -298,7 +338,7 @@ namespace RealERPWEB.F_12_Inv
                         {
                             this.gvMatStock.Columns[3].Visible = true;
                             this.gvMatStock.Columns[12].Visible = true;
-                        }                      
+                        }
                     }
 
                     this.FooterCalculation();
@@ -444,7 +484,7 @@ namespace RealERPWEB.F_12_Inv
 
             DataTable dt1 = (DataTable)Session["tbMatStc"];
 
-            if (comcod == "3315" || comcod == "3316" || comcod=="3101")
+            if (comcod == "3315" || comcod == "3316" || comcod == "3101")
             {
                 DataView dv = dt1.DefaultView; //only Assure
                 dv.RowFilter = ("tqty<>0 or opqty<>0 or rcvqty<>0 or trninqty<>0 or trnoutqty<>0");
