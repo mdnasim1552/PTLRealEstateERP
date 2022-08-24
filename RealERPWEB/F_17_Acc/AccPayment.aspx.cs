@@ -57,7 +57,7 @@ namespace RealERPWEB.F_17_Acc
                 this.txtEntryDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtChequeDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.Visibility();
-                this.GetComGridColVisible();
+                //this.GetComGridColVisible();
                 this.TxtnameChange();
                 this.Accpayee();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
@@ -2325,14 +2325,18 @@ namespace RealERPWEB.F_17_Acc
         {
             this.dgv1.EditIndex = e.NewEditIndex;
             this.Data_Bind();
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];            
+            string ttsrch = "%%";
+            string UserId = hst["usrid"].ToString();
 
             string comcod = this.GetCompCode();
             int rowindex = (dgv1.PageSize) * (this.dgv1.PageIndex) + e.NewEditIndex;
             string accconhead = this.ddlConAccHead.SelectedValue.ToString();
             string actcode = ((DataTable)Session["tblt01"]).Rows[rowindex]["actcode"].ToString();
             string subcode = ((DataTable)Session["tblt01"]).Rows[rowindex]["subcode"].ToString();
+            string cactcodeRow = ((DataTable)Session["tblt01"]).Rows[rowindex]["cactcode"].ToString();
             DropDownList ddlgrdacccode = (DropDownList)this.dgv1.Rows[e.NewEditIndex].FindControl("ddlgrdacccode");
+            DropDownList ddlBanklist = (DropDownList)this.dgv1.Rows[e.NewEditIndex].FindControl("ddlBanklist");
 
             ViewState["gindex"] = e.NewEditIndex;
             string SearchProject = "%" + ((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserceacc")).Text.Trim() + "%";
@@ -2349,6 +2353,16 @@ namespace RealERPWEB.F_17_Acc
             ddlgrdacccode.SelectedValue = actcode;
 
 
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "GETCONACCHEAD", ttsrch, UserId, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            DataTable dt1 = ds1.Tables[0];
+            
+            ddlBanklist.DataSource = dt1;
+            ddlBanklist.DataTextField = "actdesc";
+            ddlBanklist.DataValueField = "actcode";
+            ddlBanklist.DataBind(); 
+            ddlBanklist.SelectedValue = cactcodeRow;
 
 
             //ddlgrdresouce.SelectedValue = actcode; 
@@ -2498,6 +2512,9 @@ namespace RealERPWEB.F_17_Acc
             string ResCode = "";
             if (dr2.Length > 0)
             {
+                
+                dr2[0]["cactdesc"] = ((DropDownList)this.dgv1.Rows[rowindex].FindControl("ddlBanklist")).SelectedItem.ToString();
+                dr2[0]["cactcode"] = ((DropDownList)this.dgv1.Rows[rowindex].FindControl("ddlBanklist")).SelectedValue.ToString();
                 dr2[0]["actcode"] = ((DropDownList)this.dgv1.Rows[rowindex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
                 ResCode = ((DropDownList)this.dgv1.Rows[rowindex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
                 ResCode = (ResCode.Length < 12 ? "000000000000" : ResCode);
@@ -2513,19 +2530,14 @@ namespace RealERPWEB.F_17_Acc
                 dr2[0]["payto"] = ((TextBox)this.dgv1.Rows[rowindex].FindControl("txtgvPayto")).Text;
                 dr2[0]["billno"] = ((TextBox)this.dgv1.Rows[rowindex].FindControl("txtgvBillno")).Text;
                 dr2[0]["insofissue"] = ((TextBox)this.dgv1.Rows[rowindex].FindControl("txtgvinsissueno")).Text;
-
             }
-
-
-
-
 
 
             string voudat = ASTUtility.DateFormat(this.txtEntryDate.Text);
             string vounum = this.txtcurrentvou.Text.Trim().Substring(0, 2) + voudat.Substring(6, 4) +
                                this.txtcurrentvou.Text.Trim().Substring(2, 2) + this.txtCurrntlast6.Text.Trim();
             string vtcode = Request.QueryString["tcode"];
-            string cactcode = this.ddlConAccHead.SelectedValue.ToString();
+            string cactcode = ((DropDownList)this.dgv1.Rows[rowindex].FindControl("ddlBanklist")).SelectedValue.ToString();
 
             string actcode1 = ((DropDownList)this.dgv1.Rows[rowindex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
             string subcode1 = ResCode;
@@ -2540,8 +2552,6 @@ namespace RealERPWEB.F_17_Acc
 
 
             bool resulta = false;
-
-
             resulta = accData.UpdateTransInfo3(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "UPDATEPAYMENTA", vounum, actcode1, subcode1, cheqno1, cactcode,
                                     voudat, dramt1, chequedate1, rmrks1, vtcode, payto1, isunum, acvounum, billno1, insofissueno1, spclcode);
 

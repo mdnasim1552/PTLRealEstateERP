@@ -69,15 +69,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
 
         /// <summary>
-        /// lnkbtnShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
-
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -150,15 +141,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
 
         /// <summary>
-        /// lblSection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSection;
-
-        /// <summary>
         /// txtSrcSec control.
         /// </summary>
         /// <remarks>
@@ -166,6 +148,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSrcSec;
+
+        /// <summary>
+        /// lblSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSection;
 
         /// <summary>
         /// imgbtnSecSrch control.
@@ -183,7 +174,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::xMilk.DropCheck DropCheck1;
+        protected global::System.Web.UI.WebControls.ListBox DropCheck1;
 
         /// <summary>
         /// lblPage control.
@@ -204,13 +195,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// lblmsg control.
+        /// lnkbtnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
 
         /// <summary>
         /// gvEmpList control.
