@@ -332,6 +332,7 @@
     <Content Include="assets\css\reset.css" />
     <Content Include="assets\css\responsiveslides.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\images\delete.png" />
     <Content Include="assets\images\2.jpg" />
     <Content Include="assets\images\3.jpg" />
     <Content Include="assets\images\4.jpg" />
