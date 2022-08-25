@@ -373,7 +373,7 @@ namespace RealERPWEB.F_30_Facility
 
                     DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISB", null, null, null, dgno, complno, dgdate, 
                         sitevisiteddate, estimatedwddate, addremarks,
-                        "", "", "", "", "", "", "", "", "", "", "", "", "", userId);
+                        "", "", "", "", "", "", "", "", "", "", "", "", "", "", userId);
                     if (ds == null)
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                     DataTable dt = ds.Tables[0];

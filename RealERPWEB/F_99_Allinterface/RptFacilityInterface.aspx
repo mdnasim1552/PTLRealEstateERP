@@ -629,6 +629,8 @@
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "engrcheck"))%>' Width="50px"></asp:Label>
                                                                     <asp:Label ID="lblgvcomplno" runat="server" Style="text-align: center"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "complno1"))%>' Width="50px"></asp:Label>
+                                                                    <asp:Label ID="lbluserid" runat="server" Font-Bold="True" Style="text-align: center" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entryuser"))%>' Width="50px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -690,10 +692,10 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Issue Type">
+                                                            <asp:TemplateField HeaderText="Entry User">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblgvApamt" runat="server"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issuedesc"))%>'
+                                                                    <asp:Label ID="lblgvEntryUserDesc" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entrydesc"))%>'
                                                                         Width="80px"></asp:Label>
                                                                 </ItemTemplate>
 
@@ -811,11 +813,11 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Issue Type">
+                                                            <asp:TemplateField HeaderText="Entry User">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblgvApamt" runat="server"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issuedesc"))%>'
-                                                                        Width="90px"></asp:Label>
+                                                                    <asp:Label ID="lblgvEntryUserDesc" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entrydesc"))%>'
+                                                                        Width="80px"></asp:Label>
                                                                 </ItemTemplate>
 
 
@@ -931,8 +933,6 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
-
-
                                                             <asp:TemplateField HeaderText="Warranty">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblwarranty" runat="server"
@@ -974,6 +974,15 @@
                                                                     <asp:Label ID="lblAdditionalNotes" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "addremarks"))%>'
                                                                         Width="200px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Entry User">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvEntryUserDesc" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entrydesc"))%>'
+                                                                        Width="80px"></asp:Label>
                                                                 </ItemTemplate>
 
 
@@ -1125,6 +1134,15 @@
 
 
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Entry User">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvEntryUserDesc" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entrydesc"))%>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="lnkdg" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
@@ -1268,6 +1286,15 @@
                                                                     <asp:Label ID="lbladdnotes" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "notes"))%>'
                                                                         Width="180px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Entry User">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvEntryUserDesc" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entrydesc"))%>'
+                                                                        Width="80px"></asp:Label>
                                                                 </ItemTemplate>
 
 

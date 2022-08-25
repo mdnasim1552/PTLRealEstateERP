@@ -419,7 +419,7 @@ namespace RealERPWEB.F_30_Facility
 
                     DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINB", null, null, null, complno, pactcode, custcode, unit, 
                         warranty, compldate, comunicationtype, estimateddate, addremarks, "", "", "", "",
-                        "", "", "", "", "", "", userId);
+                        "", "", "", "","","","", userId);
                     DataTable dt = ds.Tables[0];
                     if (dt != null || dt.Rows.Count > 0)
                     {
@@ -434,7 +434,7 @@ namespace RealERPWEB.F_30_Facility
                             {
                                 bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCOMPLAINA", dt.Rows[0]["complno"].ToString(), 
                                     item.complainDesc, item.remarks, i.ToString(), item.issueId.ToString(), "", "", "", "", "", "", "",
-                                        "", "", "", "", "", "", "", "", "", "", userId);
+                                        "", "","", "", "", "", "", "", "", "", userId);
                                 resultCompA.Add(resultA);
 
                                 i++;
