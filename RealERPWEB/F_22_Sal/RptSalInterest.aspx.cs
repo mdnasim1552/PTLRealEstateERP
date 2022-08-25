@@ -1657,7 +1657,7 @@ namespace RealERPWEB.F_22_Sal
             string address = "";
             string sign1 = "", sign2 = "", sign3 = "", sign4 = "";
             //Land Owner
-            string projectname = this.Request.QueryString["Type"].ToString()=="LO"? ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3)+" (LO PART)": ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3);
+            string projectname = this.Request.QueryString["Type"].ToString()=="LO"? ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3)+" (L/O PART)": ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3);
 
 
             switch (comcod)
