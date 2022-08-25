@@ -178,6 +178,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             // this.lblcompname.Text = ds1.Tables[2].Rows[0]["companyname"].ToString();
             this.lblname.Text = ds1.Tables[0].Rows[0]["empnam"].ToString();
             this.lblattype.Text = ds1.Tables[0].Rows[0]["attype"].ToString();
+            this.tbldept.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
             this.lbljoindate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["joindate"]).ToString("dd/MMM/yyyy");
 
             this.lblconfirmdate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["confirmdate"]).ToString("dd/MMM/yyyy");

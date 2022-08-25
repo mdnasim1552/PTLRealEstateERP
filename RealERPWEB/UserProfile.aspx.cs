@@ -118,7 +118,7 @@ namespace RealERPWEB
 
             }
 
-            if (GetCompCode() == "3365")
+            if (GetCompCode() == "3365" || GetCompCode()=="3102")
             {
                 this.pnlApplyLeavBTI.Visible = true;
                 GetAllTimeOff();
@@ -156,7 +156,8 @@ namespace RealERPWEB
             switch (comcod)
             {
                 case "3365":
-                
+                case "3102":
+
                     string userrole = hst["userrole"].ToString();
                     this.winsList.Visible = true;
                     this.lnkOrintation.Visible = true;
@@ -443,6 +444,7 @@ namespace RealERPWEB
             {
                 // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
                 case "3365":
+                case "3102":
                     calltype = "RPTMYSERVICESBTI";
                     break;
 
@@ -519,7 +521,8 @@ namespace RealERPWEB
                 switch (comcod)
                 {
                     case "3365":
-                    
+                    case "3102":
+
                         date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
                         frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
                         //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -795,6 +798,7 @@ namespace RealERPWEB
             switch (comcod)
             {
                case "3365":
+               case "3102":
                     this.EventBirthday.Visible = false;
                     this.pnlUpcmBD.Visible = false;
                     if (userrole != "3")
@@ -973,7 +977,7 @@ namespace RealERPWEB
             string comcod = this.GetCompCode();
 
             string monName;
-            if (comcod == "3365" || comcod == "3101")
+            if (comcod == "3365" || comcod=="3102" || comcod == "3101")
             {
                 monName = "-Dec-";
             }
@@ -1164,10 +1168,10 @@ namespace RealERPWEB
                 LinkButton HyplnkModal = (LinkButton)e.Row.FindControl("HyplnkModal");
                 string monthid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "monthid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
-                hlnkPrintPaySlipx.Visible = (comcod == "3365" ? false : true);
+                hlnkPrintPaySlipx.Visible = ((comcod == "3365" || comcod == "3102") ? false : true);
                 hlnkPrintPaySlipx.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
 
-               HyplnkModal.Visible = (comcod != "3365" ? false : true);
+               HyplnkModal.Visible = ((comcod != "3365" || comcod == "3102") ? false : true);
 
 
 
