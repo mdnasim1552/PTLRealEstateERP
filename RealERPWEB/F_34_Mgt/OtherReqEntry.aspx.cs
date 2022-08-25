@@ -1066,7 +1066,7 @@ namespace RealERPWEB.F_34_Mgt
             switch (comcod)
             {
 
-                //case "3101":
+                case "3101":
                 case "3336":
                 case "3337":
                     otherreq = "otherreqsuv";
@@ -1172,12 +1172,13 @@ namespace RealERPWEB.F_34_Mgt
 
             switch (comcod)
             {
+                case "3101":
                 case "3336":
                 case "3337":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, null, null);
                     break;
 
-                case "3101":
+
                 case "1102":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatusISBL", lst, null, null);
                     Rpt1.EnableExternalImages = true;
@@ -1300,23 +1301,23 @@ namespace RealERPWEB.F_34_Mgt
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETGENBILLREQ", mReqNo, "", "", "", "", "", "", "", "");
+            
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.GenBillReq>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_34_Mgt.GenBillSupdesc>();
-
             LocalReport Rpt1 = new LocalReport();
 
-            if (comcod == "3336" || comcod == "3337")
+            if (comcod == "3336" || comcod == "3337" || comcod == "3101")
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, lst1, null);
             }
             else
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrint", lst, lst1, null);
+                
             }
-
+            string firmnam = lst1[0].firmname.ToString();
             string Address = lst1[0].conadd.ToString();
             string Attn = lst1[0].conperson.ToString();
-            string firmnam = lst1[0].firmname.ToString();
             string worknam = lst1[0].natureofwork.ToString();
             string MobileNo = lst1[0].mobile.ToString();
             string prejadd = lst[0].projadds.ToString();
@@ -1372,6 +1373,7 @@ namespace RealERPWEB.F_34_Mgt
             string comcod = this.GetCompCode();
             switch (comcod)
             {
+                case "3101":
                 case "3336":
                 case "3337":
                     CallType = "INSERTOTHERREQOMITSTEEP";

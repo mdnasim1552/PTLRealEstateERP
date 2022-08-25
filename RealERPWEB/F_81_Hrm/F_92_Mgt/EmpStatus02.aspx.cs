@@ -176,10 +176,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "Manpower":
                     this.lblDept.Visible = false;
 
-                    this.ddlProjectName.Visible = false;
+                    this.divSection.Visible = false;
                     this.lblfrmd.Visible = false;
-                    this.ddlfrmDesig.Visible = false;
-                    this.lbltdeg.Visible = false;
+
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
+
                     this.ddlToDesig.Visible = false;
                     this.MultiView1.ActiveViewIndex = 5;
                     break;
@@ -413,11 +415,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3366":
                 case "3367":
                     DesigFrom = "0399999";
-                    DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                    DesigTo = "0300001";                   
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
 
@@ -457,10 +462,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                  
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
-                    //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
 
@@ -500,10 +508,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                    
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
-                    //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
             //emd nahid
@@ -581,10 +592,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                    
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
-                    //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
             //emd nahid
@@ -619,10 +633,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                   
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
                     //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
             //emd nahid
@@ -662,10 +680,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
-                    //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
             //emd nahid
@@ -705,10 +725,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
-                    //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
             //emd nahid
@@ -766,10 +788,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
-                    //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
             //emd nahid
@@ -812,10 +836,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "3367":
                     DesigFrom = "0399999";
                     DesigTo = "0300001";
-                    pnlDesig.Visible = false;
+                    this.desFrom.Visible = false;
+                    this.desTo.Visible = false;
                     break;
                 default:
-                    //pnlDesig.Visible = false;
+                    this.desFrom.Visible = true;
+                    this.desTo.Visible = true;
                     break;
             }
             //emd nahid
