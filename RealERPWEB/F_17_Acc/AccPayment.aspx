@@ -340,7 +340,7 @@
                         <RowStyle />
 
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl">
+                            <asp:TemplateField HeaderText="Sl#">
                                 <ItemTemplate>
                                     <asp:Label ID="serialnoid" runat="server"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="10px"></asp:Label>
@@ -371,19 +371,18 @@
 
                                             <div class="form-group">
 
-                                                <div class="col-md-3 pading5px asitCol3">
-                                                    <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Accounts Head</asp:Label>
-                                                    <asp:TextBox ID="txtgrdserceacc" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                                <div class="col-md-4 pading5px">
+                                                    <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Acc. Head
 
-
-                                                    <div class="colMdbtn">
-                                                        <asp:LinkButton ID="ibtngrdFindAccCode" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtngrdFindAccCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                                    </div>
+                                                        <asp:LinkButton ID="ibtngrdFindAccCode" runat="server"   OnClick="ibtngrdFindAccCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                    </asp:Label>
+                                                    <asp:TextBox ID="txtgrdserceacc" runat="server" CssClass="inputtextbox hidden"></asp:TextBox> 
+                                                    
+                                                         
 
                                                 </div>
 
-                                                <div class="col-md-3 pading5px">
+                                                <div class="col-md-8 pading5px">
                                                     <asp:DropDownList ID="ddlgrdacccode" runat="server" CssClass="form-control inputTxt chzn-select"
                                                         OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged" Style="width: 213px;" AutoPostBack="True">
                                                     </asp:DropDownList>
@@ -393,19 +392,16 @@
 
                                             <div class="form-group">
 
-                                                <div class="col-md-3 pading5px asitCol3">
-                                                    <asp:Label ID="lblcontrolAccHead0" runat="server" CssClass="lblTxt lblName">Details Head</asp:Label>
-                                                    <asp:TextBox ID="txtgrdserresource" runat="server" CssClass="inputtextbox" ></asp:TextBox>
+                                                <div class="col-md-4 pading5px">
+                                                    <asp:Label ID="lblcontrolAccHead0" runat="server" CssClass="lblTxt lblName">Details Head
+                                                        <asp:LinkButton ID="ibtngrdFindResource" runat="server"  OnClick="ibtngrdFindResource_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-
-                                                    <div class="colMdbtn">
-                                                        <asp:LinkButton ID="ibtngrdFindResource" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtngrdFindResource_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                                    </div>
-
+                                                    </asp:Label>
+                                                    <asp:TextBox ID="txtgrdserresource" runat="server" CssClass="inputtextbox hidden" ></asp:TextBox>
+                                                     
                                                 </div>
 
-                                                <div class="col-md-3 pading5px">
+                                                <div class="col-md-8 pading5px">
                                                     <asp:DropDownList ID="ddlrgrdesuorcecode" runat="server" CssClass="form-control inputTxt chzn-select"
                                                          Style="width: 213px;">
                                                     </asp:DropDownList>
@@ -444,13 +440,17 @@
                             </asp:TemplateField>
 
                               <asp:TemplateField HeaderText="Bank/Cash">
-
+                                  <EditItemTemplate>
+                                    <asp:DropDownList ID="ddlBanklist" runat="server" CssClass="form-control chzn-select">
+                                                    </asp:DropDownList>
+                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvbocash" runat="server" BackColor="Transparent"
                                         BorderColor="Transparent" BorderStyle="None"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'
-                                        Width="120px" Font-Size="12px" ForeColor="Black"  ></asp:Label>
+                                        Width="180px" Font-Size="12px" ForeColor="Black"  ></asp:Label>
                                 </ItemTemplate>
+                                  <HeaderStyle Width="180px" />
                             </asp:TemplateField>
 
 
