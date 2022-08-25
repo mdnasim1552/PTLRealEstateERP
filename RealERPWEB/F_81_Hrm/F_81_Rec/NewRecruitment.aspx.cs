@@ -241,6 +241,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -254,6 +256,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).SelectedItem.Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval.Substring(0, 12);
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -267,6 +271,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).SelectedItem.Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval.Substring(0, 12);
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -280,6 +286,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).SelectedItem.Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -293,6 +301,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -307,6 +317,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -321,6 +333,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -334,6 +348,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -347,6 +363,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -359,6 +377,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -372,6 +392,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     //if (gval.Length == 0)
                     //{
                     //    string Message = "Select Type to continue";
@@ -385,6 +407,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     //if (gval.Length == 0)
                     //{
                     //    string Message = "Select Type to continue";
@@ -398,6 +422,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     //if (gval.Length == 0)
                     //{
                     //    string Message = "Select Type to continue";
@@ -411,6 +437,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text == "" ? "0" : ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text;
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     //if (gval.Length == 0)
                     //{
                     //    string Message = "Select Type to continue";
@@ -426,6 +454,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                    
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     //if (gval.Length == 0)
                     //{
                     //    string Message = "Select Type to continue";
@@ -440,6 +470,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     //if (gval.Length == 0)
                     //{
                     //    string Message = "Select Type to continue";
@@ -454,6 +486,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     //if (gval.Length == 0)
                     //{
                     //    string Message = "Select Type to continue";
@@ -466,6 +500,8 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
                     if (gval.Length == 0)
                     {
                         string Message = "Select Type to continue";
@@ -503,10 +539,18 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     gval = imgPath;
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+
 
 
                 }
-                dt1.Rows.Add(dr);
+                else
+                {
+                    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    dr["gcod"] = gcode;
+                    dr["gval"] = gval;
+                    dt1.Rows.Add(dr);
+                }
 
 
 

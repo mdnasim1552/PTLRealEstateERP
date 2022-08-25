@@ -1630,6 +1630,8 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             //Rpt1.SetParameters(new ReportParameter("paytoorecived", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+                            Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+
 
                         }
                         else

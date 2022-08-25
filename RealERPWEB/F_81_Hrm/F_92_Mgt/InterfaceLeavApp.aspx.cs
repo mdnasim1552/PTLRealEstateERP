@@ -39,9 +39,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
                 this.SelectDate();
+                this.GetLeaveType();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
-                GetStep();
+                this.GetStep();
                 this.SaleRequRpt();
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
             }
@@ -83,6 +84,19 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //sup_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_SUPERVISOR"]);
             //dpthead_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_DPTHEAD"]);
             //mgt_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_MGTHEAD"]);
+        }
+
+        private void GetLeaveType()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETGENLEAVETYPE", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddleavetype.DataTextField = "hrgdesc";
+            this.ddleavetype.DataValueField = "hrgcod";
+            this.ddleavetype.DataSource = ds1.Tables[0];
+            this.ddleavetype.DataBind();
+            this.ddleavetype.Items.Insert(0, new ListItem("--Select Leave Type--", ""));
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
@@ -247,6 +261,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                    Session["Report1"] = gvLvReq;
+                    ((HyperLink)this.gvLvReq.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
                 case "gvInprocess":
                     this.gvInprocess.DataSource = (dt);
@@ -254,6 +270,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                 
                     break;
                 case "gvApproved":
                     this.gvApproved.DataSource = (dt);
@@ -261,17 +278,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                  
                     break;
                 case "gvfiApproved":
                     this.gvfiApproved.DataSource = (dt);
                     this.gvfiApproved.DataBind();
+                  
                     break;
                 case "gvConfirm":
                     this.gvConfirm.DataSource = (dt);
                     this.gvConfirm.DataBind();
 
                     if (dt.Rows.Count == 0)
-                        return;
+                        return;                   
+
                     break;
             }
         }

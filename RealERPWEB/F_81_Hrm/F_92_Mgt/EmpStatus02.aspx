@@ -32,10 +32,48 @@
             padding: 4px !important;
         }
     </style>
-
+    
 
     <script language="javascript" type="text/javascript">
+
+        function Search_Gridview(strKey, cellNr) {
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("<%=gvinacEmplist.ClientID %>");
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+                rowData = tblData.rows[i].cells[cellNr].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }
+        function Search_GridviewEc(strKey, cellNr) {
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("<%=gvEmpCon.ClientID %>");
+             var rowData;
+             for (var i = 1; i < tblData.rows.length; i++) {
+                 rowData = tblData.rows[i].cells[cellNr].innerHTML;
+                 var styleDisplay = 'none';
+                 for (var j = 0; j < strData.length; j++) {
+                     if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                         styleDisplay = '';
+                     else {
+                         styleDisplay = 'none';
+                         break;
+                     }
+                 }
+                 tblData.rows[i].style.display = styleDisplay;
+             }
+         }
         $(document).ready(function () {
+            //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
@@ -53,26 +91,7 @@
             $('.chzn-select').chosen({ search_contains: true });
 
         };
-        function Search_Gridview(strKey) {
 
-            var strData = strKey.value.toLowerCase().split(" ");
-            var tblData = document.getElementById("<%=gvPabxInfo.ClientID %>");
-            var rowData;
-            for (var i = 1; i < tblData.rows.length; i++) {
-
-                rowData = tblData.rows[i].innerHTML;
-                var styleDisplay = 'none';
-                for (var j = 0; j < strData.length; j++) {
-                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                        styleDisplay = '';
-                    else {
-                        styleDisplay = 'none';
-                        break;
-                    }
-                }
-                tblData.rows[i].style.display = styleDisplay;
-            }
-        }
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -119,6 +138,15 @@
                             </div>
                         </div>
 
+                        <div class="col-md-3" id="divSection" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="lblDept" CssClass="mb-2 d-block" runat="server">Section</asp:Label>
+
+
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
 
                         <div class="col-md-1">
                             <div class="form-group">
@@ -150,15 +178,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <asp:Label ID="lblDept" CssClass="mb-2 d-block" runat="server">Section</asp:Label>
 
-
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select">
-                                </asp:DropDownList>
-                            </div>
-                        </div>
 
 
                     </div>
@@ -166,25 +186,8 @@
 
 
 
-                    <div id="pnlDesig" runat="server">
-                        <div class="row col-md-12">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <asp:Label ID="lblfrmdate" CssClass="mb-2 d-block" runat="server">From</asp:Label>
-
-                                    <asp:TextBox ID="txtFdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                                    <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <asp:Label ID="lbltodate" CssClass="mb-2 d-block" runat="server">To</asp:Label>
-
-                                    <asp:TextBox ID="txtTdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                                    <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
-                                </div>
-                            </div>
+                    <div runat="server">
+                        <div class="row">
                             <div class="col-md-3" id="desFrom" runat="server">
                                 <div class="form-group">
                                     <asp:Label ID="lblfrmd" CssClass="mb-2 d-block" runat="server">Form</asp:Label>
@@ -202,6 +205,24 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <asp:Label ID="lblfrmdate" CssClass="mb-2 d-block" runat="server">From</asp:Label>
+
+                                    <asp:TextBox ID="txtFdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <asp:Label ID="lbltodate" CssClass="mb-2 d-block" runat="server">To</asp:Label>
+
+                                    <asp:TextBox ID="txtTdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -774,7 +795,10 @@
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="ID Card #">
+                                        <asp:TemplateField HeaderText="Card #">
+                                              <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchid" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Card #" onkeyup="Search_GridviewEc(this,2)"></asp:TextBox><br />
+                                            </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvcardnocon" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
@@ -1351,7 +1375,7 @@
 
                             <asp:View ID="View2" runat="server">
                                 <asp:GridView ID="gvinacEmplist" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    AutoGenerateColumns="False" OnPageIndexChanging="gvinacEmplist_PageIndexChanging"
+                                    AutoGenerateColumns="False" OnPageIndexChanging="gvinacEmplist_PageIndexChanging" AllowSorting="True"
                                     ShowFooter="True" Width="420px" PageSize="300">
 
                                     <RowStyle />
@@ -1361,7 +1385,7 @@
                                     <Columns>
 
 
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo15" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"
@@ -1373,7 +1397,9 @@
 
                                         <asp:TemplateField HeaderText="Company Name">
 
-
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchcpName" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="CompanyName" onkeyup="Search_Gridview(this,1)"></asp:TextBox><br />
+                                            </HeaderTemplate>
 
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvCompanynameinemp" runat="server"
@@ -1407,7 +1433,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvdeptandemployeeinemp2" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                    Width="250px"> 
+                                                    Width="230px"> 
 
                                                     
                                                    <%-- Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) + "</B>"+
@@ -1423,6 +1449,9 @@
 
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ID #">
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearcid" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Card #" onkeyup="Search_Gridview(this,4)"></asp:TextBox><br />
+                                            </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvcardnoinemp" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
@@ -1465,7 +1494,7 @@
                                         <asp:TemplateField HeaderText="Resign Type">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblrestype" runat="server"
-                                                    Text='<%# DataBinder.Eval(Container.DataItem, "septype") %>'></asp:Label>
+                                                    Text='<%# DataBinder.Eval(Container.DataItem, "septype") %>' Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" />
@@ -1493,7 +1522,7 @@
 
 
 
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo20" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"

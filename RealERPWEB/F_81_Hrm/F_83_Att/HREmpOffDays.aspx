@@ -28,6 +28,13 @@
         .mt20 {
             margin-top: 20px;
         }
+        
+
+        table tr td:nth-child(2n+1){
+            background:#4791ed;
+            padding:0 15px;
+            color:#000000;
+        }
 
     </style>
     <script type="text/javascript" language="javascript">
@@ -192,11 +199,11 @@
                     <div class="row" id="chkdatediv" runat="server" visible="false">
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <asp:CheckBoxList ID="chkDate" runat="server" CssClass="btn checkBox" 
+                            
+                                <asp:CheckBoxList ID="chkDate" runat="server" CssClass="btn checkBox form-control mr-5" 
                                     RepeatColumns="7" RepeatDirection="Horizontal">
                                 </asp:CheckBoxList>
-                            </div>
+                            
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -237,7 +244,7 @@
                         <RowStyle />
                         <Columns>
 
-                            <asp:TemplateField HeaderText="SL">
+                            <asp:TemplateField HeaderText="SL #">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server"  Height="16px"
                                         Style="text-align: right"
@@ -266,7 +273,7 @@
                             </asp:TemplateField>
 
 
-                            <asp:TemplateField HeaderText="ID Card">
+                            <asp:TemplateField HeaderText="Card #">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvidcard" runat="server" Height="16px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
