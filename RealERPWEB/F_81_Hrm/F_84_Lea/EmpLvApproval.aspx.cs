@@ -65,7 +65,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.PnlNarration.Visible = true;
                 this.ShowData();
                 stepForward();
-                if (GetCompCode() == "3365")
+                if (GetCompCode() == "3365" || GetCompCode() == "3102")
                 {
                     this.pnlCommon.Visible = true;
                     this.pnlFinly.Visible = false;
@@ -199,6 +199,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 case "3367":
                 case "3368":
                 case "3365":
+                case "3102":
                     this.chkbod.Visible = false;
                     this.lblforward.Visible = false;
                     break;
