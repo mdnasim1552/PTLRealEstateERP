@@ -127,7 +127,7 @@
                             OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
@@ -135,6 +135,13 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Section">
+                                      <HeaderTemplate>
+                                                    <asp:Label ID="lblexle2" runat="server" Font-Bold="True" Width="100px"
+                                                        Text="Section">
+                                                        <asp:HyperLink ID="hlbtntbCdataExelSP2" runat="server"
+                                                            CssClass="btn btn-success ml-2 btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
+                                                    </asp:Label>
+                                                </HeaderTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSection" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "secname")) %>'
                                             Width="180px"></asp:Label>
@@ -142,15 +149,15 @@
                                     <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Emp. ID">
+                                <asp:TemplateField HeaderText="Emp. ID" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvempid" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
+                                        <asp:Label ID="lblgvempid" runat="server" Visible="false" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                            ></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ID CARD">
+                                <asp:TemplateField HeaderText="CARD #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvidcard" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                             Width="50px"></asp:Label>
@@ -164,7 +171,7 @@
                                             Width="150px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkbtnFUpLeave" runat="server" CssClass="btn  btn-danger btn-xs" OnClick="lnkbtnFUpLeave_Click">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnFUpLeave" runat="server" CssClass="btn  btn-success btn-sm" OnClick="lnkbtnFUpLeave_Click">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="left" />
