@@ -128,6 +128,40 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
             }
 
         }
+        [Serializable]
+
+        public class EmptaskDesk
+        {
+            public string comcod { get; set; }
+            public double bankemp { get; set; }
+            public double cashemp { get; set; }
+            public double toemp { get; set; }
+            public double bankamt { get; set; }
+            public double cashamt { get; set; }
+            public double toamt { get; set; }
+            public string fdate { get; set; }
+            public string empdesc { get; set; }
+            public string ftime  { get; set; }
+            public string ttime { get; set; }
+            public string durtime { get; set; } 
+            public string taskdesc { get; set; }
+            public string tdesc { get; set; }
+            public string taskcode { get; set; }
+            public string rowid { get; set; }
+            public string floctn { get; set; }
+            public string tloctn { get; set; }
+            public string tloctndesc { get; set; }
+            public string empcode { get; set; }
+            public string floctndesc { get; set; }
+            public string rmk { get; set; }
+
+            public string sectionname { get; set; }
+            public EmptaskDesk()
+            {
+
+            }
+
+        }
 
     }
 }

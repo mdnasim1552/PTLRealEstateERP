@@ -33,6 +33,9 @@
                 $('#TimeOffModal').modal('toggle');
             }
 
+            function CloseModal() {
+                $('#TimeOffModal').modal('hide')
+            }
         </script>
   
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -492,6 +495,8 @@
                                 <h6 class="font-weight-bold text-white" id="modalNoticeTitle" runat="server"></h6>
                             </div>
                             <div class="card-body bg-light">
+                                <span runat="server" id="useTime" visible="false"></span>
+
                                 <span runat="server" id="timeOfId" visible="false"></span>
                                    <span runat="server" id="applydatmodal" visible="false"></span>
                            

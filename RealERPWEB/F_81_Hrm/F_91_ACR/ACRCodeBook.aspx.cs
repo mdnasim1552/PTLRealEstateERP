@@ -27,10 +27,10 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Bill Confirmation";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Load_CodeBooList();
             }
 
@@ -46,7 +46,7 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
 
             try
             {
-                this.ConfirmMessage.Visible = true;
+             
                 string comcod = this.GetCompCode();
                 DataSet dsone = this.da.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "OACCOUNTACRCODE", "", "", "", "", "", "", "", "", "");
                 this.ddlOthersBook.DataTextField = "acrgdesc";
@@ -56,8 +56,11 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+                string Msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                
             }
 
         }
@@ -179,7 +182,7 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         protected void gvAcrCBook_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
-            this.ConfirmMessage.Visible = true;
+           
             string comcod = this.GetCompCode();
             string gcode1 = ((Label)gvAcrCBook.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
             string gcode2 = ((TextBox)gvAcrCBook.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim();
@@ -199,14 +202,15 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
 
             if (result == true)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                string Msg = " Successfully Updated ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+
             }
 
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Msg = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);               
             }
             this.gvAcrCBook.EditIndex = -1;
             this.ShowInformation();
@@ -234,8 +238,9 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Information not found!!!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Message = "Information not found!!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+ 
             }
         }
     }

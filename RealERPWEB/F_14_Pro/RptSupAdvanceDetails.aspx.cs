@@ -141,6 +141,7 @@ namespace RealERPWEB.F_14_Pro
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)Session["tblsupinfo"];
+            string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSupAdvanceDetails>();
@@ -148,7 +149,7 @@ namespace RealERPWEB.F_14_Pro
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Supplier Advance Details"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", stindex=="0"? "Supplier Advance Details": "Supplier Bill Details"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));

@@ -199,12 +199,13 @@ namespace RealERPWEB.F_17_Acc
             DataSet ds4 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", pactCode, usirCode, mrno, "", "", "", "", "", "");
             if (ds4 == null || ds4.Tables[0].Rows.Count == 0)
                 return;
+            //islandowner
             DataTable dtrpt = ds4.Tables[0];
             string custname = dtrpt.Rows[0]["custname"].ToString();
             string custadd = dtrpt.Rows[0]["custadd"].ToString();
             string custmob = dtrpt.Rows[0]["custmob"].ToString();
             string udesc = dtrpt.Rows[0]["udesc"].ToString();
-            string project = dtrpt.Rows[0]["pactdesc"].ToString();
+            string project = dtrpt.Rows[0]["islandowner"].ToString()=="True" ? dtrpt.Rows[0]["pactdesc"].ToString() + " (L/O Part)" : dtrpt.Rows[0]["pactdesc"].ToString() ;
             string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
             string munit = dtrpt.Rows[0]["munit"].ToString();
             string paytype = dtrpt.Rows[0]["paytype"].ToString();
