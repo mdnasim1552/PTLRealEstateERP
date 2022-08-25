@@ -224,6 +224,7 @@
                                 </asp:TemplateField>
                               
                                 <asp:TemplateField HeaderText="Card #">
+                                   
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvcardnoemp" runat="server" 
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>' 
