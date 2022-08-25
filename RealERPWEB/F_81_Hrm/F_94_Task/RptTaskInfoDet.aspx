@@ -193,7 +193,7 @@
 
 
                         <div class="col-md-1">
-                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkSelect_Click" TabIndex="11">Refresh</asp:LinkButton>
+                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkSelect_Click" TabIndex="11">Show</asp:LinkButton>
                         </div>
                     </div>
                     <div class="row">

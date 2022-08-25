@@ -145,8 +145,7 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             string comname = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-          
+            string username = hst["username"].ToString();          
             //string bankname = this.ddlBankName.SelectedItem.Text.Trim();
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
@@ -154,15 +153,9 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             // string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
             // string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             DataTable dt = (DataTable)Session["allView"];
-
-
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EmptaskDesk>();
-
             LocalReport Rpt1 = new LocalReport();
-
-
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_94_Task.RptTaskInfoDet", lst, null, null);
-
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
