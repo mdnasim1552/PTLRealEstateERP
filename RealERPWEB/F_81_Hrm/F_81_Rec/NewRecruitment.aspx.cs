@@ -634,7 +634,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             string empdept = "9301";//this.ddlDept.SelectedValue.ToString().Trim().Substring(0, 9);
             string Message;
 
-          bool  result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool  result = RecData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result)
             {
