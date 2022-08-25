@@ -305,10 +305,9 @@
                                         <asp:TemplateField HeaderText="Action">
 
                                             <ItemTemplate>
-                                                                    <asp:HyperLink ID="HyperLink2" Target="_blank"
+                                                                    <asp:HyperLink ID="lblJoinnig" Target="_blank"
                                                                            NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry02?Type=10025 &Page=NewRec &advno="+Eval("advno") %>'
                                                                            CssClass="btn btn-primary btn-sm" runat="server">Apply Joinning</asp:HyperLink>
-                                                <%--<asp:LinkButton ID="ApplyJoinning" runat="server" CssClass="btn btn-primary btn-sm" OnClick="ApplyJoinning_Click">Apply Joinning</asp:LinkButton>--%>
 
                                                 <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
 
