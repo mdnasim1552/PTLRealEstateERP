@@ -723,8 +723,8 @@
             </Filters>
             <Top>0.97025in</Top>
             <Left>0.00084in</Left>
-            <Height>0.7in</Height>
-            <Width>7.64791in</Width>
+            <Height>0.69999in</Height>
+            <Width>7.6479in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1179,8 +1179,8 @@
             </Filters>
             <Top>2.23484in</Top>
             <Left>0.00084in</Left>
-            <Height>0.7in</Height>
-            <Width>7.64791in</Width>
+            <Height>0.69999in</Height>
+            <Width>7.6479in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1865,7 +1865,7 @@
             </TablixRowHierarchy>
             <Top>0.11111in</Top>
             <Height>0.6375in</Height>
-            <Width>7.64875in</Width>
+            <Width>7.64874in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1909,7 +1909,7 @@
               <Top>0.00522in</Top>
               <Left>1.27272in</Left>
               <Height>0.26389in</Height>
-              <Width>5.85in</Width>
+              <Width>5.21458in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
