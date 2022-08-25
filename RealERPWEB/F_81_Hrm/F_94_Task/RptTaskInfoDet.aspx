@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptTaskInfoDet.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_94_Task.RptTaskInfoDet" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptTaskInfoDet.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_94_Task.RptTaskInfoDet" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -193,7 +193,7 @@
 
 
                         <div class="col-md-1">
-                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary mt-4" OnClick="lnkSelect_Click" TabIndex="11">Refresh</asp:LinkButton>
+                            <asp:LinkButton ID="lnkSelect" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkSelect_Click" TabIndex="11">Show</asp:LinkButton>
                         </div>
                     </div>
                     <div class="row">

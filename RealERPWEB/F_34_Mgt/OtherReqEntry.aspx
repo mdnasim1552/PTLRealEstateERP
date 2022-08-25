@@ -25,9 +25,9 @@
             background-color: #006699;
             cursor: pointer;
         }
-    
 
-        
+
+
         .switch {
             position: relative;
             display: inline-block;
@@ -79,7 +79,7 @@
             transform: translateX(18px);
         }
 
-       
+
         .slider.round {
             border-radius: 20px;
         }
@@ -167,12 +167,12 @@
                                         </asp:RadioButtonList>
                                     </div>
 
-                                     <div class="col-md-1 pading5px">
+                                    <div class="col-md-1 pading5px">
                                         <label id="chkbod" runat="server" visible="false" class="switch">
-                                    <asp:CheckBox ID="chkAdvanced" runat="server" visible="false"  OnCheckedChanged="chkAdvanced_CheckedChanged" AutoPostBack="true" />
-                                    <span class="btn btn-xs slider round"></span>
-                                </label>
-                                <asp:Label runat="server" ID="lbladvanced" visible="false" Text="Adjusted" CssClass="btn btn-xs"></asp:Label>
+                                            <asp:CheckBox ID="chkAdvanced" runat="server" Visible="false" OnCheckedChanged="chkAdvanced_CheckedChanged" AutoPostBack="true" />
+                                            <span class="btn btn-xs slider round"></span>
+                                        </label>
+                                        <asp:Label runat="server" ID="lbladvanced" Visible="false" Text="Adjusted" CssClass="btn btn-xs"></asp:Label>
                                     </div>
 
 
@@ -271,7 +271,7 @@
 
                                     <asp:CommandField ShowEditButton="True" />
 
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server" Height="16px"
                                                 Style="text-align: right"
@@ -583,34 +583,34 @@
 
                                         </div>
 
-                                        <asp:Panel ID="pnlbank"  runat="server"  Visible="false">
-                                        <div class="form-group">
-                                            <div class="col-md-3 pading5px ">
-                                                <asp:Label ID="lblBankCode" runat="server" CssClass="lblTxt lblName" Text="Bank Name"></asp:Label>
-                                                <asp:TextBox ID="txtserchBankName" Visible="false" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
+                                        <asp:Panel ID="pnlbank" runat="server" Visible="false">
+                                            <div class="form-group">
+                                                <div class="col-md-3 pading5px ">
+                                                    <asp:Label ID="lblBankCode" runat="server" CssClass="lblTxt lblName" Text="Bank Name"></asp:Label>
+                                                    <asp:TextBox ID="txtserchBankName" Visible="false" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
-                                                <asp:LinkButton ID="imgbtnSrchBank" Visible="false" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnSrchBank_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                    <asp:LinkButton ID="imgbtnSrchBank" Visible="false" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnSrchBank_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                                <asp:DropDownList ID="ddlBankName" runat="server" AutoPostBack="True" Width="190px" CssClass="inputTxt chzn-select"
-                                                    TabIndex="11" OnSelectedIndexChanged="ddlBankName_SelectedIndexChanged">
-                                                </asp:DropDownList>
+                                                    <asp:DropDownList ID="ddlBankName" runat="server" AutoPostBack="True" Width="190px" CssClass="inputTxt chzn-select"
+                                                        TabIndex="11" OnSelectedIndexChanged="ddlBankName_SelectedIndexChanged">
+                                                    </asp:DropDownList>
+                                                </div>
+
+                                                <div class="col-md-2 pading5px  ">
+                                                    <asp:Label ID="lblchelist" runat="server" CssClass="lblTxt lblName" Text="Cheque List"></asp:Label>
+
+                                                    <asp:DropDownList ID="ddlcheque" runat="server" CssClass=" ddlPage chzn-select" Style="width: 90px; margin-left: 4px;" AutoPostBack="True" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged">
+                                                    </asp:DropDownList>
+
+                                                </div>
+                                                <div class="col-md-2 pading5px">
+                                                    <asp:Label ID="lblRefNum" runat="server" CssClass=" smLbl_to" Text="Cheque No"></asp:Label>
+                                                    <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"></asp:TextBox>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
                                             </div>
-
-                                            <div class="col-md-2 pading5px  ">
-                                                <asp:Label ID="lblchelist" runat="server" CssClass="lblTxt lblName" Text="Cheque List"></asp:Label>
-
-                                                <asp:DropDownList ID="ddlcheque" runat="server" CssClass=" ddlPage chzn-select"   Style="width: 90px;margin-left:4px;" AutoPostBack="True" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged">
-                                                </asp:DropDownList>
-                                               
-                                            </div>
-                                            <div class="col-md-2 pading5px">
-                                                  <asp:Label ID="lblRefNum" runat="server" CssClass=" smLbl_to" Text="Cheque No"></asp:Label>
-                                                <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"></asp:TextBox>
-
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                        </div>
                                         </asp:Panel>
 
 
@@ -620,7 +620,7 @@
                                                     <span class="input-group-addon glypingraddon">
                                                         <asp:Label ID="lblReqNarr" runat="server" CssClass="lblTxt lblName" Text="Narration:" Width="120"></asp:Label>
                                                     </span>
-                                                    <asp:TextBox ID="txtReqNarr" runat="server" class="form-control"  Rows="6" TextMode="MultiLine"></asp:TextBox>
+                                                    <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" Rows="6" TextMode="MultiLine"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <asp:LinkButton ID="lbtnUpdateResReq" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn"

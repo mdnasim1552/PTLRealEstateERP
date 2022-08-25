@@ -112,6 +112,18 @@ namespace RealERPWEB.F_23_CR
                 case "Payment":
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
                     this.MultiView1.ActiveViewIndex = 0;
+                    switch (comcod)
+                    {
+                        case "3368":
+                        case "3101":
+                            this.chkConsolidate.Checked = true;
+                            this.chkConsolidate.Visible = true;
+                            break;
+                        default:
+                            this.chkConsolidate.Checked = false;
+                            this.chkConsolidate.Visible = false;
+                            break;
+                    }
                     break;
 
                 case "ClLedger":
@@ -132,7 +144,6 @@ namespace RealERPWEB.F_23_CR
                         case "3306":
                         case "3311":
                         case "3310": //RCU
-
                         case "3349":
                         case "3364":
                             this.chkConsolidate.Checked = false;
@@ -485,6 +496,11 @@ namespace RealERPWEB.F_23_CR
                     calltype = "RPTCLIENTPAYMENTSTATUS";
                     break;
 
+                case "3368":
+                case "3101":
+                    calltype = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
+                    break;
+
                 default:
                     calltype = "INSTALLMANTWITHMRR";
                     break;
@@ -506,6 +522,11 @@ namespace RealERPWEB.F_23_CR
                 case "3330":
                     // case "3101":
                     procedure = "SP_REPORT_SALSMGT03";
+                    break;               
+                
+                case "3368":
+                case "3101":
+                    procedure = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
                     break;
 
                 default:

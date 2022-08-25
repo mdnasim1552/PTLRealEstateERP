@@ -108,7 +108,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
                             <asp:Label ID="Label4" runat="server">Type of Employee</asp:Label>
 
-                            <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
+                            <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="form-control"
                                 Font-Size="14px" Height="16px" RepeatColumns="14" RepeatDirection="Horizontal"
                                 Visible="false">
                             </asp:RadioButtonList>
