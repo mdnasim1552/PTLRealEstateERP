@@ -192,7 +192,7 @@
                     <div class="row" id="chkdatediv" runat="server" visible="false">
 
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group d-inline">
                                 <asp:CheckBoxList ID="chkDate" runat="server" CssClass="btn checkBox form-control" 
                                     RepeatColumns="7" RepeatDirection="Horizontal">
                                 </asp:CheckBoxList>
