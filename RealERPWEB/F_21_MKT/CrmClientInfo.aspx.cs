@@ -4666,22 +4666,28 @@ namespace RealERPWEB.F_21_MKT
             if (rtype == "databank")
             {
                 this.gvSummary.Columns[24].Visible = true;
-
             }
+            if (rtype == "DWS" && (comcod=="3315" || comcod=="3316"))
+            {
+                this.gvSummary.Columns[26].HeaderText = "Today's <br> Followup";
+                this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
+                this.gvSummary.Columns[26].Visible = true;                
+                this.gvSummary.Columns[17].Visible = true;
+            }
+
             if (rtype == "tdt")
             {
                 this.gvSummary.Columns[26].Visible = true;
                 this.gvSummary.Columns[26].HeaderText = "Today's <br> Followup";
                 this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
                 this.gvSummary.Columns[17].Visible = true;
-
-
             }
             else
             {
-                this.gvSummary.Columns[26].HeaderText = "Followup";
+                this.gvSummary.Columns[26].HeaderText = "Next Followup Date";
                 this.gvSummary.Columns[8].HeaderText = "Followup <br> Date";
                 this.gvSummary.Columns[24].Visible = false;
+                this.gvSummary.Columns[26].Visible = false;
             }
             this.Data_Bind();
 
