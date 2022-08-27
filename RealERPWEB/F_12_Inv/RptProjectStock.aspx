@@ -71,7 +71,7 @@
             //        includeSelectAllOption: true
             //    })
             //});
-          
+
 
 
 
@@ -170,10 +170,10 @@
                                             <asp:LinkButton ID="lbtnresource" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="lbtnresource_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                     </div>
-                                    <div  class="col-md-5 pading5px">
+                                    <div class="col-md-5 pading5px">
                                         <asp:ListBox ID="chkResourcelist" runat="server" CssClass="form-control" Style="min-width: 200px !important;" SelectionMode="Multiple"></asp:ListBox>
-                                    
-                                     
+
+
 
 
 
@@ -245,7 +245,7 @@
                         OnPageIndexChanging="gvMatStock_PageIndexChanging" OnRowDataBound="gvMatStock_RowDataBound">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                         Style="text-align: right"
@@ -254,38 +254,41 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Project Description" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgcPactdesc" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                        Width="180px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Resource Description">
-
-
                                 <HeaderTemplate>
                                     <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Resource Description" Width="100px"></asp:Label>
 
                                     <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i>
                                     </asp:HyperLink>
                                 </HeaderTemplate>
-
-
                                 <ItemTemplate>
-
-
                                     <asp:HyperLink ID="hlnkgcResDesc" runat="server" BorderColor="#99CCFF" BorderStyle="none"
                                         Font-Size="11px" Style="background-color: Transparent; color: Black;" Font-Underline="false" Target="_blank"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rptdesc1")) %>'
                                         Width="150px">
                                     </asp:HyperLink>
-
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Unit">
                                 <ItemTemplate>
                                     <asp:Label ID="lgcUnit" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rptunit")) %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                  <FooterTemplate>
-                                            <asp:Label ID="lgcUnitF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"> Total :</asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgcUnitF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"> Total :</asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
 
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -298,8 +301,8 @@
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                            <asp:Label ID="lgvFbudgetqty" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                    <asp:Label ID="lgvFbudgetqty" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -312,8 +315,8 @@
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                            <asp:Label ID="lgvOpF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                    <asp:Label ID="lgvOpF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -324,9 +327,9 @@
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rcvqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                    <FooterTemplate>
-                                            <asp:Label ID="lgvRecamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvRecamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -337,9 +340,9 @@
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trninqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                   <FooterTemplate>
-                                            <asp:Label ID="lgvTraninqtyF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvTraninqtyF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -352,11 +355,11 @@
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
 
-                                  <FooterTemplate>
-                                            <asp:Label ID="lgvTranoutqtyF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvTranoutqtyF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
-                           
+
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
@@ -368,9 +371,9 @@
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
 
-                                  <FooterTemplate>
-                                            <asp:Label ID="lgvDamageF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvDamageF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -381,9 +384,9 @@
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                    <FooterTemplate>
-                                            <asp:Label ID="lgvTamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvTamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -394,9 +397,9 @@
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                   <FooterTemplate>
-                                            <asp:Label ID="lgvIsuamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvIsuamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
 
                                 <ItemStyle HorizontalAlign="Right" />
@@ -408,24 +411,24 @@
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acstock")).ToString("#,##0.0000;(#,##0.0000); ")%>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                      <FooterTemplate>
-                                            <asp:Label ID="lgvAcSamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvAcSamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <FooterStyle HorizontalAlign="Right" />
 
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="Diviation" Visible="false">
+                            <asp:TemplateField HeaderText="Diviation" Visible="false">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvdiviation" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "diviation")).ToString("#,##0.0000;(#,##0.0000); ")%>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                 <FooterTemplate>
-                                            <asp:Label ID="lgvFdiviation" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
-                                   </FooterTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvFdiviation" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                </FooterTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
@@ -558,10 +561,10 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                           
 
 
-                            
+
+
                         </Columns>
 
                         <FooterStyle CssClass="grvFooter" />
