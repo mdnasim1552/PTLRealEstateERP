@@ -386,6 +386,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903312", "F_09_PImp", "PurLabRequisition?", "Type=Edit", "Sub-Contractor Bill Requisition Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903313", "F_09_PImp", "PurLabRequisition?", "Type=CSApproval", "Sub-Contractor Bill CS Approval", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903314", "F_09_PImp", "SubContracBillTracking?", "Type=billtrack", "Sub-Contractor Bill Tracking -01", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903315", "F_09_PImp", "RptSubConTopsheetTypeWise?", "Type=TypeWise", "Sub-Contractor Top Sheet (Type Wise)", "Project Implementation", "False", "False", "False", "False" });
 
             //tblObj.Rows.Add(new Object[] { "0901000", "0901020", "EmpAssesmentCode?", "Type=AssessmntCode", "Assessment Code", "Project Implementation", "False", "False", "False", "False" }); rihan/emdad
             //tblObj.Rows.Add(new Object[] { "0902000", "0902033", "PurFinProIssueEntry", "", "Work Execution-Finishing Project", "Project Implementation", "False", "False", "False", "False" });;
@@ -5012,6 +5013,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000005", "20. Sub Contractor Budget", "F_09_PImp/RptSubConOverall02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "21. Sub-Contractor Bill (All)-Work Wise", "F_09_PImp/RptConTractorBillAll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "22. Sub-Contractor Top Sheet ", "F_09_PImp/RptSubContractorTopSheet", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000007", "22. Sub-Contractor Top Sheet (Type Wise)", "F_09_PImp/RptSubConTopsheetTypeWise?Type=TypeWise", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "13.  Bill Approval Sheet", "F_17_Acc/BillApprovalSheet?Type=BillApp", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0402000000", "	Other Related Report", "", "", false, "mb" });
