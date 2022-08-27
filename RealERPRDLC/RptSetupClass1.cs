@@ -256,6 +256,7 @@ namespace RealERPRDLC
                 #region Inventory
                 case "R_12_Inv.rptProMatStock": Rpt1a = GetrptProMatStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptProMatStock2": Rpt1a = GetrptProMatStock2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.rptProMatStock2Leisure": Rpt1a = GetrptProMatStock2Leisure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntry": Rpt1a = GetrptPurMrrEntry(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntryFinlay": Rpt1a = GetrptPurMrrEntryFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEdison": Rpt1a = GetrptPurMrrEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4391,6 +4392,12 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.ErptStock>)RptDataSet));
             return Rpt1a;
+
+        }
+        private static LocalReport GetrptProMatStock2Leisure(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.ErptStock>)RptDataSet));
+            return Rpt1a; 
 
         }
         private static LocalReport GetrptProMatStock(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
