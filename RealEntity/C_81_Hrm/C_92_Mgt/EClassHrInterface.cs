@@ -162,6 +162,40 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
             }
 
         }
+        [Serializable]
+        public class EInterfaceLeave
+        {
+            public string comcod { get; set; }
+            public double bankemp { get; set; }
+            public double cashemp { get; set; }
+            public double toemp { get; set; }
+            public double bankamt { get; set; }
+            public double cashamt { get; set; }
+            public double toamt { get; set; }
+            public string ltrnid { get; set; }
+            public string empid { get; set; }
+            public string empname { get; set; }
+            public string aplydat { get; set; }
+            public string strtdat { get; set; }
+            public string enddat { get; set; }
+            public string duration { get; set; }
+            public string idcard { get; set; }
+            public string deptanme { get; set; }
+            public string desig { get; set; }
+            public string lvtype { get; set; }
+            public string lreason { get; set; }
+            public string denameadesig { get; set; }
+            public string lvstatus { get; set; }
+            public string lvstatus1 { get; set; }
+            
+
+            public string sectionname { get; set; }
+            public EInterfaceLeave()
+            {
+
+            }
+        }
+
 
     }
 }
