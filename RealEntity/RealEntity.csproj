@@ -127,6 +127,7 @@
     <Compile Include="C_47_Kpi\EClassKPI.cs" />
     <Compile Include="C_47_Kpi\UserManagerKPI.cs" />
     <Compile Include="C_62_Mis\EClassSales_02.cs" />
+    <Compile Include="C_70_Services\EClass_Quotation.cs" />
     <Compile Include="C_81_Hrm\BankFor.cs" />
     <Compile Include="C_81_Hrm\C_81_Rec\BL_ClassManPower.cs" />
     <Compile Include="C_81_Hrm\C_81_Rec\BO_ClassManPower.cs" />
