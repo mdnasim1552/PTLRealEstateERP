@@ -318,7 +318,8 @@
                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
                                         <asp:ListItem Value="10003"></asp:ListItem>
                                         <asp:ListItem Value="10002"></asp:ListItem>
-                                        <asp:ListItem Value="10025"></asp:ListItem>
+                                        <asp:ListItem Value="19999"></asp:ListItem>
+                                      <%--   <asp:ListItem Value="10025"></asp:ListItem>--%>
                                       <%--  <asp:ListItem Value="10003"></asp:ListItem>--%>
                       
                                     </asp:RadioButtonList>
@@ -385,6 +386,7 @@
 
                                         <asp:TemplateField HeaderText="Operation">
                                             <ItemTemplate>
+                                                <asp:LinkButton runat="server" ID="RejectLetter" CssClass="btn btn-danger btn-sm" OnClick="RejectLetter_Click">Reject</asp:LinkButton>
                                                 <asp:HyperLink  runat="server"  ID="lnkOfferLetter" Target="_blank" CssClass="btn btn-info btn-sm"
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=NewRec &Entry=offer Letter &advno="+Eval("advno") %>'
                                                                 >Offer Letter</asp:HyperLink>
