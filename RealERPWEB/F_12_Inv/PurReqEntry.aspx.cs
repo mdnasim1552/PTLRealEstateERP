@@ -434,11 +434,11 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
-            if (Request.QueryString["InputType"].ToString() == "Entry")
+            if (Request.QueryString["InputType"].ToString() == "Entry" && this.ddlPrevReqList.Items.Count == 0)
             {
                 if (IscheckDuplicateMPR())
                 {
-                    this.lbtnOk.Text = "OK";
+                    this.lbtnOk.Text = "OK"; 
                     return;
                 }
             }

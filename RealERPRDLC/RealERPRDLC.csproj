@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -123,6 +123,8 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PaymentOtherCost.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurchaseOrderInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurOrderTermsCondition.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.ErptStock.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+PurMatReq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ComparativeStatementCreate.datasource" />
@@ -205,6 +207,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryFinlay.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
@@ -248,6 +251,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptMonthlySalaryTaxFinlay.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+SalSummary2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceLeave.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmpOfferLetter.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
@@ -1138,6 +1142,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpEvaluation.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpperformance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\EmpFinalSettmnt.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceLeave.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptDateWiseEmpHold.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpApointmentLetter.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpListBirthDateWise.rdlc" />
