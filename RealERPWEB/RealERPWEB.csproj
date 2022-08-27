@@ -251,11 +251,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
+
       <HintPath>..\..\..\..\..\Newton json\Newtonsoft.Json.dll</HintPath>
-=======
-      <HintPath>..\..\..\..\..\bin\Newtonsoft.Json.dll</HintPath>
->>>>>>> deb36bba32d618c453ad2341e41cd6765ff1315e
+
+
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

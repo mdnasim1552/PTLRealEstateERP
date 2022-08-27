@@ -1,51 +1,9 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="ShortListing.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.ShortListing" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ShortListing.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.ShortListing" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script type="text/javascript" language="javascript">
-
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
-
-        function pageLoaded() {
-
-
-            var gvSListInfo = $('#<%=this.gvSListInfo.ClientID %>');
-
-
-            gvSListInfo.gridviewScroll({
-                width: 1160,
-                height: 420,
-                arrowsize: 30,
-                railsize: 16,
-                barsize: 8,
-                varrowtopimg: "../../Image/arrowvt.png",
-                varrowbottomimg: "../../Image/arrowvb.png",
-                harrowleftimg: "../../Image/arrowhl.png",
-                harrowrightimg: "../../Image/arrowhr.png",
-                freezesize: 10
-            });
-
-           
-
-            function calendarShown(sender, args) {
-                sender._popupBehavior._element.style.zIndex = 1000;
-            }
-
-            //$('.chzn-select').chosen({ search_contains: true });
-
-        }
-
-    </script>
 
     <style>
         .ddllbl {
@@ -79,16 +37,15 @@
             /*height: 190px !important;*/
             position: absolute;
             z-index: 500;
-            overflow:initial;
-            overflow:visible !important;
+            overflow: initial;
+            overflow: visible !important;
         }
 
         /*Calendar Control CSS*/
         .cal_Theme1 .ajax__calendar_container {
             background-color: #DEF1F4;
             border: solid 1px #77D5F7;
-            z-index:9999 !important;
-           
+            z-index: 9999 !important;
         }
 
         .cal_Theme1 .ajax__calendar_header {
@@ -140,7 +97,136 @@
         .cal_Theme1 .ajax__calendar_hover .ajax__calendar_title {
             color: #bbbbbb;
         }
+        .GridViewScrollHeader TH, .GridViewScrollHeader TD {
+            font-weight: normal;
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #999999;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .GridViewScrollItem TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FFFFFF;
+            color: #444444;
+        }
+
+        .GridViewScrollItemFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FAFAFA;
+            color: #444444;
+        }
+
+        .GridViewScrollFooterFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #444444;
+        }
+
+        .grvHeader {
+            height: 58px !important;
+        }
+
+        .WrpTxt {
+            white-space: normal !important;
+            word-break: break-word !important;
+        }
     </style>
+     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+          
+
+          <%--  var gvSListInfo = $('#<%=this.gvSListInfo.ClientID %>');
+
+
+            gvSListInfo.gridviewScroll({
+                width: 1160,
+                height: 420,
+                arrowsize: 30,
+                railsize: 16,
+                barsize: 8,
+                varrowtopimg: "../../Image/arrowvt.png",
+                varrowbottomimg: "../../Image/arrowvb.png",
+                harrowleftimg: "../../Image/arrowhl.png",
+                harrowrightimg: "../../Image/arrowhr.png",
+                freezesize: 10
+            });--%>
+            try {
+
+                //var gridViewScroll = new GridViewScroll({
+                //    elementID: "gvSListInfo",
+                //    width: 1400,
+                //    height: 500,
+                //    freezeColumn: true,
+                //    freezeFooter: true,
+                //    freezeColumnCssClass: "GridViewScrollItemFreeze",
+                //    freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                //    freezeHeaderRowCount: 1,
+                //    freezeColumnCount: 8,
+
+                //});
+
+                //var gridViewScroll = new GridViewScroll({
+                //    elementID: "gvBonus",
+                //    width: 1000,
+                //    height: 500,
+                //    freezeColumn: true,
+                //    freezeFooter: true,
+                //    freezeColumnCssClass: "GridViewScrollItemFreeze",
+                //    freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                //    freezeHeaderRowCount: 1,
+                //    freezeColumnCount: 8,
+
+                //});
+                gvSListInfo.gridviewScroll({
+                    width: 1160,
+                    height: 420,
+                    arrowsize: 30,
+                    railsize: 16,
+                    barsize: 8,
+                    varrowtopimg: "../../Image/arrowvt.png",
+                    varrowbottomimg: "../../Image/arrowvb.png",
+                    harrowleftimg: "../../Image/arrowhl.png",
+                    harrowrightimg: "../../Image/arrowhr.png",
+                    freezesize: 10
+                });
+                gridViewScroll.enhance();
+                $('.chzn-select').chosen({ search_contains: true });
+            }
+
+            catch (e) {
+              
+            }
+
+
+            function calendarShown(sender, args) {
+                sender._popupBehavior._element.style.zIndex = 1000;
+            }
+
+            //$('.chzn-select').chosen({ search_contains: true });
+
+        }
+
+    </script>
+
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -161,103 +247,124 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-5">
+                <div class="card-header">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-9 col-sm-9 col-lg-9 pading5px">
 
-                                        <asp:Label ID="lblpreAdv" runat="server" CssClass="lblTxt lblName">ADV List</asp:Label>
-                                        <asp:TextBox ID="txtSrchPre" runat="server" CssClass="inputTxt inputName inpPixedWidth" Style="display: none;"></asp:TextBox>
-                                        <asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindReq_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                        <asp:DropDownList ID="ddlPrevAdvList" runat="server" Width="233" CssClass="form-control inputTxt pull-left" TabIndex="2" AutoPostBack="True" OnSelectedIndexChanged="ddlPrevAdvList_SelectedIndexChanged"></asp:DropDownList>
-                                        <asp:Label ID="lblPreAdvlist" runat="server" CssClass="dataLblview ddllbl" Visible="False"></asp:Label>
-
-                                        <asp:Label ID="lblCurDate" runat="server" CssClass=" smLbl_to">Date</asp:Label>
-                                        <asp:TextBox ID="txtCurAdvDate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
-                                        <ajaxToolkit:CalendarExtender ID="txtCurAdvDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtCurAdvDate"></ajaxToolkit:CalendarExtender>
-                                        <asp:Label ID="lblLastReqNo5" runat="server" Font-Bold="True" CssClass="lblTxt lblName" Style="display: none;"></asp:Label>
-
-                                        <asp:Label ID="lblResList" runat="server" CssClass="smLbl_to">Post List</asp:Label>
-                                        <asp:TextBox ID="txtPostSearch" runat="server" CssClass="inputTxt inputName inpPixedWidth" Style="display: none;"></asp:TextBox>
-                                        <asp:LinkButton ID="ImgbtnFindPost" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindPost_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                        <asp:DropDownList ID="ddlPOSTList" runat="server" Width="180px" CssClass="form-control inputTxt pull-left" TabIndex="2"></asp:DropDownList>
-                                        <asp:Label ID="lblPostList" runat="server" CssClass="dataLblview ddllbl" Visible="False" Width="200px"></asp:Label>
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click">ok</asp:LinkButton>
-
-
-
-
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-lg-3 pading5px">
-                                        <asp:Panel ID="PanelAddCan" runat="server">
-                                            <asp:LinkButton ID="lbtnAddList0" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lbtnAddList_Click">Add Row</asp:LinkButton>
-                                            <asp:Label ID="lblslnum" runat="server" Visible="False"></asp:Label>
-                                        </asp:Panel>
-
-                                        <asp:Label ID="Label7" runat="server" Visible="false" CssClass="smLbl_to">Prev</asp:Label>
-
-                                        <asp:LinkButton ID="lbkButtonPrev" Visible="false" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lbkButtonPrev_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                        <asp:DropDownList ID="ddlPrevlist" Visible="false" runat="server" AutoPostBack="true" Width="160px" CssClass="form-control inputTxt pull-left" TabIndex="2" OnSelectedIndexChanged="ddlPrevlist_SelectedIndexChanged"></asp:DropDownList>
-
-
-
-
-                                        <asp:Label ID="lblmsg1" runat="server" Visible="false" CssClass="btn btn-success primaryBtn pull-right"></asp:Label>
-                                    </div>
-                                </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 ">
+                            <div class="form-group">
+                                <asp:Label ID="lblpreAdv" runat="server">ADV List
+                                   <asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="fas fa-search" OnClick="ImgbtnFindReq_Click"></asp:LinkButton></asp:Label>
+                                <asp:TextBox ID="txtSrchPre" runat="server" CssClass="form-control chzn-select d-none"></asp:TextBox>
+                                <%--<asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="fas fa-search" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>--%>
+                                <asp:DropDownList ID="ddlPrevAdvList" runat="server" CssClass="form-control chzn-select" TabIndex="2" AutoPostBack="true" OnSelectedIndexChanged="ddlPrevAdvList_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:Label ID="lblPreAdvlist" runat="server" Visible="False"></asp:Label>
                             </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 ">
+                            <div class="form-group">
+                                <asp:Label ID="Label10" runat="server">Date</asp:Label>
+                                <asp:TextBox ID="txtCurAdvDate" runat="server" CssClass=" form-control "></asp:TextBox>
+                                <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtCurAdvDate"></ajaxToolkit:CalendarExtender>
+                                <asp:Label ID="Label12" runat="server" Font-Bold="True" CssClass="d-none"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <asp:Label ID="lblResList" runat="server">Post List</asp:Label>
+                                <asp:TextBox ID="txtPostSearch" runat="server" CssClass="form-control d-none"></asp:TextBox>
+                                <asp:LinkButton ID="ImgbtnFindPost" runat="server" CssClass="fas fa-search" OnClick="ImgbtnFindPost_Click"></asp:LinkButton>
 
-                        </fieldset>
-                        <%-- <..........................................................>--%>
-                        <fieldset class="scheduler-border fieldset_A" style="background: #f9f99c">
-                            <div class="form-horizontal">
-                                <asp:Panel ID="Pnladv" runat="server">
-                                    <div class="form-group">
-
-                                        <div class="col-md-12 pading2px">
-                                            <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName"><strong>Department: </strong></asp:Label>
-                                            <asp:Label ID="lblDpt" runat="server" CssClass="smLbl_to lblsmll"></asp:Label>
-
-                                            <asp:Label ID="Label11" runat="server" CssClass="smLbl_to">Post :</asp:Label>
-                                            <asp:Label ID="lblPost" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
-
-                                            <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Qualification:</asp:Label>
-                                            <asp:Label ID="lblQua" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
-
-
-                                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Experience :</asp:Label>
-                                            <asp:Label ID="lblexp" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
-
-
-
-                                            <asp:Label ID="Label2" runat="server" CssClass="smLbl_to">Salary Range :</asp:Label>
-                                            <asp:Label ID="lblsal" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
-
-                                            <asp:Label ID="Label9" runat="server" CssClass="lblTxt lblName">Num.of Position :</asp:Label>
-                                            <asp:Label ID="lblnpos" runat="server" CssClass=" smLbl_to lblsmll">""</asp:Label>
-
-                                            <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Approve By :</asp:Label>
-                                            <asp:Label ID="lblapp" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
+                                <asp:DropDownList ID="ddlPOSTList" runat="server" Width="180px" CssClass="form-control chzn-select " TabIndex="2"></asp:DropDownList>
+                                <asp:Label ID="lblPostList" runat="server" Visible="False"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 mt-3 col-md-2 col-sm-6 ">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary" OnClick="lbtnOk_Click">ok</asp:LinkButton>
+                            </div>
+                        </div>
 
 
-                                        </div>
-
-
-
-
-                                    </div>
+                       <%-- <div class="col-lg-1">
+                            <div class="form-group">
+                                <asp:Panel ID="PanelAddCan" runat="server">
+                                    <asp:LinkButton ID="lbtnAddList0" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lbtnAddList_Click">Add Row</asp:LinkButton>
+                                    <asp:Label ID="lblslnum" runat="server" Visible="False"></asp:Label>
                                 </asp:Panel>
                             </div>
-                        </fieldset>
-                        <%-- <..........................................................>--%>
+                        </div>--%>
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+                            <div class="form-group">
+                                <asp:Label ID="Label7" runat="server" Visible="false" CssClass="smLbl_to">Prev</asp:Label>
+
+                                <asp:LinkButton ID="lbkButtonPrev" Visible="false" runat="server" CssClass="fas fa-search" OnClick="lbkButtonPrev_Click"></asp:LinkButton>
+
+                                <asp:DropDownList ID="ddlPrevlist" Visible="false" runat="server" Width="160px" CssClass="form-control chzn-select" TabIndex="2" OnSelectedIndexChanged="ddlPrevlist_SelectedIndexChanged"></asp:DropDownList>
+
+
+                                <asp:Label ID="lblmsg1" runat="server" Visible="false" CssClass="btn btn-success primaryBtn pull-right"></asp:Label>
+                            </div>
+                        </div>
+
+                         <div class="col-lg-1 mt-3">
+                            <div class="form-group">
+                                <asp:Panel ID="PanelAddCan" runat="server">
+                                    <asp:LinkButton ID="lbtnAddList0" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lbtnAddList_Click">Add Row</asp:LinkButton>
+                                    <asp:Label ID="lblslnum" runat="server" Visible="False"></asp:Label>
+                                </asp:Panel>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
+                </div>
+
+
+                <%-- <..........................................................>--%>
+                <fieldset class="scheduler-border fieldset_A" style="background: #f9f99c">
+                    <div class="form-horizontal">
+                        <asp:Panel ID="Pnladv" runat="server">
+                            <div class="form-group">
+
+                                <div class="col-md-12 pading2px">
+                                    <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName"><strong>Department: </strong></asp:Label>
+                                    <asp:Label ID="lblDpt" runat="server" CssClass="smLbl_to lblsmll"></asp:Label>
+
+                                    <asp:Label ID="Label11" runat="server" CssClass="smLbl_to">Post :</asp:Label>
+                                    <asp:Label ID="lblPost" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
+
+                                    <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Qualification:</asp:Label>
+                                    <asp:Label ID="lblQua" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
+
+
+                                    <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Experience :</asp:Label>
+                                    <asp:Label ID="lblexp" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
+
+
+
+                                    <asp:Label ID="Label2" runat="server" CssClass="smLbl_to">Salary Range :</asp:Label>
+                                    <asp:Label ID="lblsal" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
+
+                                    <asp:Label ID="Label9" runat="server" CssClass="lblTxt lblName">Num.of Position :</asp:Label>
+                                    <asp:Label ID="lblnpos" runat="server" CssClass=" smLbl_to lblsmll">""</asp:Label>
+
+                                    <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Approve By :</asp:Label>
+                                    <asp:Label ID="lblapp" runat="server" CssClass="smLbl_to lblsmll">""</asp:Label>
+
+
+                                </div>
+
+
+
+
+                            </div>
+                        </asp:Panel>
+                    </div>
+                </fieldset>
+                <%-- <..........................................................>--%>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
                     <asp:Panel ID="Panel2" runat="server">
 
 
@@ -376,27 +483,24 @@
                                         <%--  <asp:TextBox ID="txtgvCol9" type="date" dateformat="d M y" runat="server"
                                                 Text='<%# Bind("col9", "{0:dd-MMM-yyyy}") %>' CssClass="inputDateBox" Width="120px" Style="line-height: 12px;"></asp:TextBox>--%>
 
-                                       <%-- <asp:TextBox ID="txtgvCol9" runat="server" CssClass="txtboxformat" Width="110px"></asp:TextBox>
+                                        <%-- <asp:TextBox ID="txtgvCol9" runat="server" CssClass="txtboxformat" Width="110px"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtgvCol9_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtgvCol9"></cc1:CalendarExtender>--%>
 
-                             <%--            <asp:TextBox SkinID="txtboxCustomizedMfSkin" ID="txtgvCol9" Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "col9")).ToString("dd-MMM-yyyy")) %>'  runat="server" Width="80px" CausesValidation="true"  />
+                                        <%--            <asp:TextBox SkinID="txtboxCustomizedMfSkin" ID="txtgvCol9" Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "col9")).ToString("dd-MMM-yyyy")) %>'  runat="server" Width="80px" CausesValidation="true"  />
                                             
       
                                            <ajaxToolkit:CalendarExtender  Format="dd-MMM-yyyy" ID="CalendarExtender2" runat="server" TargetControlID="txtgvCol9" CssClass="cal_Theme1" />
---%>
-                                         <asp:TextBox ID="txtgvCol9" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                        --%>
+                                        <asp:TextBox ID="txtgvCol9" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Font-Size="11px" Style="text-align: left"
                                             Text='<%# DataBinder.Eval(Container.DataItem, "col9").ToString() %>' Width="70px"></asp:TextBox>
 
-                                  
 
-                                      <%--   <asp:TextBox SkinID="txtboxCustomizedMSkin" ID="txtgvCol9" Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "col9")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "col9")).ToString("dd-MMM-yyyy")) %>' runat="server" CausesValidation="true" ReadOnly="true" />
+
+                                        <%--   <asp:TextBox SkinID="txtboxCustomizedMSkin" ID="txtgvCol9" Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "col9")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "col9")).ToString("dd-MMM-yyyy")) %>' runat="server" CausesValidation="true" ReadOnly="true" />
                                                 <ajaxToolkit:CalendarExtender  Format="dd-MMM-yyyy" ID="CalendarExtender1" runat="server" TargetControlID="txtgvCol9" CssClass=" cal_Theme1" />
---%>
-
-
-
+                                        --%>
                                     </ItemTemplate>
                                     <HeaderStyle Width="80px" />
                                 </asp:TemplateField>
@@ -519,10 +623,10 @@
                                 <asp:TemplateField HeaderText="CV">
                                     <ItemTemplate>
                                         <%--<asp:HyperLink runat="server" ID="hyplink" CssClass="block" Text='<%# DataBinder.Eval(Container.DataItem, "col18").ToString() %>'></asp:HyperLink>--%>
-                                        <asp:HyperLink ID="hlnkcv" runat="server" Target="_blank"  NavigateUrl='<%# Eval("col20") %>'>
+                                        <asp:HyperLink ID="hlnkcv" runat="server" Target="_blank" NavigateUrl='<%# Eval("col20") %>'>
                                              <span><%# Eval("cvname") %></span>
                                         </asp:HyperLink>
-                                       
+
 
                                         <asp:Label ID="lblcv" runat="server" Height="16px" Style="display: none" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "col20")) %>'
                                             Width="40px"></asp:Label>
@@ -582,11 +686,11 @@
 
 
                                         <asp:Label ID="Label3" runat="server" Visible="false" CssClass=" lblTxt lblName">Select</asp:Label>
-                                        <asp:TextBox ID="txtIntList" runat="server" CssClass="inputTxt inputName inpPixedWidth" Style="display: none;"></asp:TextBox>
-                                        <asp:LinkButton ID="imgBtnInt" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgBtnInt_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        <asp:TextBox ID="txtIntList" runat="server" CssClass="form-control  chzn-select d-none"></asp:TextBox>
+                                        <asp:LinkButton ID="imgBtnInt" runat="server" CssClass="fas fa-search" OnClick="imgBtnInt_Click"></asp:LinkButton>
 
 
-                                        <asp:DropDownList ID="ddlInterviewer" runat="server" Width="233" CssClass="form-control inputTxt pull-left" TabIndex="2">
+                                        <asp:DropDownList ID="ddlInterviewer" runat="server" Width="233" CssClass="form-control  chzn-select" TabIndex="2" AutoPostBack="true">
                                         </asp:DropDownList>
 
                                         <asp:LinkButton ID="lbtnSelectRes" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnSelectRes_Click" Width="70">Select</asp:LinkButton>
@@ -601,7 +705,7 @@
                                     OnRowDeleting="gvIntInfo_RowDeleting">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo0" runat="server" Height="16px" Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
@@ -637,7 +741,7 @@
                                                 <asp:LinkButton ID="lbtnUpdateInt" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false" OnClick="lbtnUpdateInt_Click">Final Update</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                               <%-- <asp:TextBox ID="txtgvIntDat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" Visible="false"
+                                                <%-- <asp:TextBox ID="txtgvIntDat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" Visible="false"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
                                                     Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intdat")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intdat")).ToString("dd-MMM-yyyy")) %>' Width="80px"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="txtgvIntDat_CalendarExtender" runat="server"
@@ -648,8 +752,8 @@
                                                     Width="537px"></asp:TextBox>--%>
 
                                                 <asp:TextBox ID="txtgvIntDat" Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intdat")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "intdat")).ToString("dd-MMM-yyyy")) %>' runat="server" CausesValidation="true" BorderStyle="None" />
-                                               <%-- <ajaxToolkit:CalendarExtender  Format="dd-MMM-yyyy" ID="CalendarExtender1" runat="server" TargetControlID="txtgvIntDat" CssClass=" cal_Theme1" />--%>
-                                                    <cc1:CalendarExtender ID="txtgvIntDat_CalendarExtender" runat="server"
+                                                <%-- <ajaxToolkit:CalendarExtender  Format="dd-MMM-yyyy" ID="CalendarExtender1" runat="server" TargetControlID="txtgvIntDat" CssClass=" cal_Theme1" />--%>
+                                                <cc1:CalendarExtender ID="txtgvIntDat_CalendarExtender" runat="server"
                                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvIntDat" PopupPosition="TopRight"></cc1:CalendarExtender>
 
                                             </ItemTemplate>
@@ -737,8 +841,8 @@ YOU HAVE BEEN INVITED FOR A WRITTEN EXAM ON</textarea>
                         <div class="row">
                         </div>
                     </asp:Panel>
-                        </div>
                 </div>
+            </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

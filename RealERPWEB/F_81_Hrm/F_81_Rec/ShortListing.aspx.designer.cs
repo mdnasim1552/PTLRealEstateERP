@@ -42,15 +42,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         protected global::System.Web.UI.WebControls.Label lblpreAdv;
 
         /// <summary>
-        /// txtSrchPre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchPre;
-
-        /// <summary>
         /// ImgbtnFindReq control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindReq;
+
+        /// <summary>
+        /// txtSrchPre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrchPre;
 
         /// <summary>
         /// ddlPrevAdvList control.
@@ -78,13 +78,13 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         protected global::System.Web.UI.WebControls.Label lblPreAdvlist;
 
         /// <summary>
-        /// lblCurDate control.
+        /// Label10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurDate;
+        protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
         /// txtCurAdvDate control.
@@ -96,22 +96,22 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         protected global::System.Web.UI.WebControls.TextBox txtCurAdvDate;
 
         /// <summary>
-        /// txtCurAdvDate_CalendarExtender control.
+        /// CalendarExtender1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtCurAdvDate_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
-        /// lblLastReqNo5 control.
+        /// Label12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLastReqNo5;
+        protected global::System.Web.UI.WebControls.Label Label12;
 
         /// <summary>
         /// lblResList control.
@@ -168,33 +168,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// PanelAddCan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelAddCan;
-
-        /// <summary>
-        /// lbtnAddList0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnAddList0;
-
-        /// <summary>
-        /// lblslnum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblslnum;
-
-        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -229,6 +202,33 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsg1;
+
+        /// <summary>
+        /// PanelAddCan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelAddCan;
+
+        /// <summary>
+        /// lbtnAddList0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAddList0;
+
+        /// <summary>
+        /// lblslnum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblslnum;
 
         /// <summary>
         /// Pnladv control.
