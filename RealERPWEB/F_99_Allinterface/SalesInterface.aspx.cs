@@ -119,7 +119,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
+            string comcod = this.GetCompCode();
             string value = this.RadioButtonList1.SelectedValue.ToString();
 
 
@@ -132,7 +132,15 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PrintOverDues();
                     break;
                 case "5":
-                    this.PrintMonthlyColl();
+                    if (comcod == "3368")//finlay
+                    {
+                        this.PrintAllDues();
+                    }
+                    else
+                    {
+                        this.PrintMonthlyColl();
+                    }
+                   
                     break;
             }
         }
@@ -255,6 +263,47 @@ namespace RealERPWEB.F_99_Allinterface
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+
+
+
+        private void PrintAllDues()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            //string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
+            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string date = this.txtdate.Text.ToString(); // System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string frmdate = "01" + date.Substring(2);
+            string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            string DateFT = "(From : " + frmdate + " To: " + todate + ")";
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            
+            DataTable dt = (DataTable)Session["tblCustDues"];
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("pactcode <> '' ");
+            dt = dv.ToTable();
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_99_AllInterface.AllDues>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_99_AllInterface.RptAllDuesInfo", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("daterange", DateFT));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "All Dues Information"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
 
 
         protected void Timer1_Tick(object sender, EventArgs e)

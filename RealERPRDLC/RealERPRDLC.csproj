@@ -255,6 +255,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmpOfferLetter.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
@@ -1163,6 +1164,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptIncrementStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_94_Task\RptTaskInfoDet.rdlc" />
+    <EmbeddedResource Include="R_99_AllInterface\RptAllDuesInfo.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptBillCon.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCashRcv.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCkhDeposit.rdlc" />
