@@ -1,10 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="ConfirmLetter.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.ConfirmLetter" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true"  CodeBehind="ConfirmLetter.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.ConfirmLetter" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -24,51 +42,72 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-5">
+                <div class="card-header">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
 
-                                <div class="form-group">
-                                    <div class="col-md-7">
-                                        <asp:Label ID="lblconfmNo" runat="server" CssClass="lblTxt lblName">Confirm Let. No :</asp:Label>
-                                        <asp:Label ID="lblCurNo1" runat="server" CssClass="smLbl_to"></asp:Label>
-                                        <asp:Label ID="lblCurNo2" runat="server" CssClass="smLbl_to"></asp:Label>
-                                        <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
-                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
-                                        <asp:Label ID="lblRef" runat="server" CssClass="lblTxt lblName">Ref:</asp:Label>
-                                        <asp:TextBox ID="txtconfmRef" runat="server" CssClass=" inputDateBox "></asp:TextBox>
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_OnClick">Ok</asp:LinkButton>
-                                    </div>
+                        <div class="col-lg-2 mt-3">
 
-                                    <div class="col-md-5 pull-right">
-                                        <asp:LinkButton ID="lbtnPrevconfmltNo" runat="server" CssClass="smLbl_to" OnClick="lbtnPrevconfmltNo_OnClick">Prev. Confm Lt. No:</asp:LinkButton>
-                                        <asp:DropDownList ID="ddlPrevconfmlttNo" runat="server" Width="180" CssClass="form-control inputTxt pull-left" TabIndex="2">
-                                        </asp:DropDownList>
-                                    </div>
+                            <div class="form-group">
 
-                                </div>
+                                <asp:Label ID="lblconfmNo" runat="server" CssClass="lblTxt lblName">Confirm Let. No :</asp:Label>
+                                <asp:Label ID="lblCurNo1" runat="server" CssClass="smLbl_to"></asp:Label>
+                                <asp:Label ID="lblCurNo2" runat="server" CssClass="smLbl_to"></asp:Label>
                             </div>
-                        </fieldset>
-                        <asp:Panel ID="pnlEmp" runat="server">
-                            <fieldset class="scheduler-border fieldset_A">
-                                <div class="form-horizontal">
+                        </div>
+                        <div class="col-lg-2">
+
+                            <div class="form-group">
+                                <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
+                                <asp:TextBox ID="txtCurDate" runat="server" CssClass=" form-control "></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+
+                            <div class="form-group">
+                                <asp:Label ID="lblRef" runat="server" CssClass="lblTxt lblName">Ref:</asp:Label>
+                                <asp:TextBox ID="txtconfmRef" runat="server" CssClass=" form-control "></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 mt-3">
+
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_OnClick">Ok</asp:LinkButton>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 ">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnPrevconfmltNo" runat="server" CssClass="smLbl_to" OnClick="lbtnPrevconfmltNo_OnClick">Prev. Confm Lt. No:</asp:LinkButton>
+                                <asp:DropDownList ID="ddlPrevconfmlttNo" runat="server" Width="180" CssClass="form-control chzn-select" TabIndex="2">
+                                </asp:DropDownList>
+                            </div>
+
+                        </div>
+                          </div>
+                    <asp:Panel ID="pnlEmp" runat="server">
+                        <div class="row">
+                        
+                            <div class="col-lg-3">
+                              
                                     <div class="form-group">
-                                        <div class="col-md-4">
-                                            <asp:Label ID="Label1" runat="server" CssClass="smLbl_to">Employee List</asp:Label>
-                                            <asp:DropDownList ID="ddlEmpName" runat="server" Width="220" CssClass="form-control inputTxt pull-left" AutoPostBack="true">
+                                        
+                                            <asp:Label ID="Label1" runat="server">Employee List</asp:Label>
+                                            <asp:DropDownList ID="ddlEmpName" runat="server"  CssClass="form-control chzn-select" AutoPostBack="true">
                                             </asp:DropDownList>
                                         </div>
-                                        <div class="col-md-2">
+                                </div>
+                                        <div class="col-lg-2 mt-3">
                                             <asp:LinkButton ID="lbtnSelect" runat="server" CssClass="btn btn-primary primaryBtn pull-left" OnClick="lbtnSelect_OnClick">Select</asp:LinkButton>
                                         </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </asp:Panel>
-
+                                    
+                          
+                       
+                      </div>
+                   </asp:Panel>
+                </div>
+                    <div class="card-body">
                         <asp:GridView ID="gvConfmltr" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" ShowFooter="True" Width="599px" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnRowDeleting="gvConfmltr_OnRowDeleting">
@@ -120,7 +159,7 @@
 
                                 <asp:TemplateField HeaderText="Department">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_OnClick">Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkupdate_OnClick">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblsec" runat="server"
@@ -172,7 +211,7 @@
                             <PagerStyle CssClass="gvPagination" />
                             <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                         </asp:GridView>
-                    </div>
+                    
                 </div>
             </div>
         </ContentTemplate>
