@@ -67,7 +67,6 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlaudit.Visible = false;
                     this.pnlaccount.Visible = false;
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
-
                     this.pnlReqAprv.Visible = false;
                     //this.RadioButtonList1.Items[0].Attributes["style"] = "background: #430000; display:block; ";
                     break;
@@ -171,8 +170,13 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3352":
                     gatePass = "Trans/Gatepass";
                     approval = "Received By";
+                    break; 
+                
+                case "3101":
+                case "3367":
+                    gatePass = "Gate Pass";
+                    approval = "Received";
                     break;
-
                 // todo for skip mrtreq approval part
                 default:
                     gatePass = "Gate Pass";
@@ -180,26 +184,27 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
             }
 
-
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + gatePass + "</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + approval + "</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Accounts Update</div></div></div>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqchecked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Req Checked</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + gatePass + "</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + approval + "</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Accounts Update</div></div></div>";
 
             Session["tbladdwrk"] = ds2.Tables[0];
 
             DataTable dt = new DataTable();
-            DataView dv;
+
             //Status
 
             this.Data_Bind("gvstatus", ds2.Tables[0]);
-            this.Data_Bind("gvreqaprv", ds2.Tables[1]);
-            this.Data_Bind("gvgatepass", ds2.Tables[2]);
-            this.Data_Bind("gvapproval", ds2.Tables[3]);
-            this.Data_Bind("gvaudit", ds2.Tables[4]);
-            this.Data_Bind("gvaccount", ds2.Tables[5]);
+            this.Data_Bind("gvreqchk", ds2.Tables[1]);
+            this.Data_Bind("gvreqaprv", ds2.Tables[2]);
+            this.Data_Bind("gvgatepass", ds2.Tables[3]);
+            this.Data_Bind("gvapproval", ds2.Tables[4]);
+            this.Data_Bind("gvaudit", ds2.Tables[5]);
+            this.Data_Bind("gvaccount", ds2.Tables[6]);
 
         }
 
@@ -211,6 +216,13 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvstatus":
                     this.gvstatus.DataSource = dt;
                     this.gvstatus.DataBind();
+                    if (dt.Rows.Count == 0)
+                        return;
+                    break;
+
+                case "gvreqchk":
+                    this.gvreqchk.DataSource = dt;
+                    this.gvreqchk.DataBind();
                     if (dt.Rows.Count == 0)
                         return;
                     break;
@@ -590,6 +602,16 @@ namespace RealERPWEB.F_99_Allinterface
         }
 
         protected void gvMtrReInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void gvreqchk_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void lnkremovechk_Click(object sender, EventArgs e)
         {
 
         }

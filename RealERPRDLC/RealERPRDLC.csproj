@@ -50,18 +50,14 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
-
       <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
-
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -127,6 +123,8 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PaymentOtherCost.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurchaseOrderInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurOrderTermsCondition.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.ErptStock.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+PurMatReq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ComparativeStatementCreate.datasource" />
@@ -209,6 +207,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryFinlay.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
