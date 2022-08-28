@@ -464,7 +464,7 @@ namespace RealERPWEB.F_12_Inv
                     switch (comcod)
                     {
                         // todo for audit part
-                        case "3101":
+                        //case "3101":
                         case "3338":
                         case "1205":
                         case "3351":

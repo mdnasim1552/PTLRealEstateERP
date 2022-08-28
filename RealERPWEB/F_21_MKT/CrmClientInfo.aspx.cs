@@ -3262,7 +3262,7 @@ namespace RealERPWEB.F_21_MKT
             switch (comcod)
             {
                 case "3101":
-                case "3348":
+                case "3348"://Credence
                     this.ddlCountry.Visible = true;
                     this.ddlDist.Visible = true;
                     this.ddlZone.Visible = true;
@@ -3270,6 +3270,11 @@ namespace RealERPWEB.F_21_MKT
                     this.ddlBlock.Visible = true;
                     this.ddlArea.Visible = true;
                     break;
+
+                case "3316"://Assure Design & Dev.
+                    this.ddlPri.Visible = false;
+                    break;
+
                 default:
                     break;
             }

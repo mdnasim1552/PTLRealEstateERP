@@ -284,10 +284,44 @@ namespace RealERPWEB.F_22_Sal
 
         //}
 
-
-        private void RptPrjWise()
+        private void RptPrjWiseAll()
         {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            DataTable dt = (DataTable)Session["DailyTrns"];
+
+            LocalReport Rpt1 = new LocalReport();
+            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.ChequeDepositPrint>();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Date Wise Collection"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Transaction Statement";
+                string eventdesc = "Print Report";
+                string eventdesc2 = "";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void RptPrjWiseFinlay()
+        {
             int index = rbtnList1.SelectedIndex;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -324,13 +358,15 @@ namespace RealERPWEB.F_22_Sal
             }
             else if (rbtnList1.SelectedIndex == 5)
             {
-                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement03", list, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
             }
             else
             {
-                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement02", list, null, null);
+
+
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement03", list, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
             }
@@ -351,6 +387,37 @@ namespace RealERPWEB.F_22_Sal
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+
+
+
+
+        private void RptPrjWise()
+        {
+
+
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+               
+                case "3368":
+                    this.RptPrjWiseFinlay();
+
+
+                    break;
+                default:
+
+                    this.RptPrjWiseAll();
+
+                    break;
+            }
+
+
+
+           
 
         }
 
