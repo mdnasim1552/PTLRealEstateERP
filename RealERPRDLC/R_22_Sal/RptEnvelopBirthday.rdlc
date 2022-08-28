@@ -69,15 +69,15 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>5.36786cm</Top>
-            <Left>8.22537cm</Left>
-            <Height>0.65292cm</Height>
-            <Width>11.28417cm</Width>
+            <Top>4.20369cm</Top>
+            <Left>10.18329cm</Left>
+            <Height>0.44125cm</Height>
+            <Width>6.52167cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -98,20 +98,19 @@
                     <Value>=Fields!Address1.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>6.37329cm</Top>
-            <Left>8.11954cm</Left>
-            <Height>0.6cm</Height>
-            <Width>11.57521cm</Width>
+            <Top>4.82134cm</Top>
+            <Left>10.18329cm</Left>
+            <Height>0.57354cm</Height>
+            <Width>6.52167cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -124,10 +123,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>13.73188cm</Height>
+        <Height>8.20209cm</Height>
         <Style />
       </Body>
-      <Width>25.00312cm</Width>
+      <Width>22.46312cm</Width>
       <Page>
         <PageHeight>14.5cm</PageHeight>
         <PageWidth>18.5cm</PageWidth>
