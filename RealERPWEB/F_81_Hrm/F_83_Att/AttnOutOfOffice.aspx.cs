@@ -31,7 +31,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.GetCompany();
                     this.topPanle.Visible = true;
                    
-                    if (comcod == "3365")
+                    if (comcod == "3365" || comcod=="3102")
                     {
                         this.GetEmpName();
                         this.WorkComments.Visible = false;
@@ -41,7 +41,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 else
                 {
                     
-                    if (comcod == "3365")
+                    if (comcod == "3365" || comcod == "3102")
                     {
                         this.GetEmpName();
                         this.ShowEmp.Visible = true;
@@ -73,7 +73,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 return;
             }
 
-            if (comcod == "3365")
+            if (comcod == "3365" || comcod == "3102")
             { 
                 this.btnSaveAttn.Text = "Save";
             }
@@ -196,6 +196,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
               
                 case "3365":
+                case "3102":
                     this.InsertUpdateAttBti();
                     break;
 

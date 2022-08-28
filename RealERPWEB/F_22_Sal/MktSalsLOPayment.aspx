@@ -745,7 +745,7 @@
                                             ShowFooter="True" OnRowDeleting="gvPayment_RowDeleting" OnRowDataBound="gvPayment_RowDataBound">
                                             <RowStyle />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Sl">
+                                                <asp:TemplateField HeaderText="Sl#">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
                                                             Style="text-align: right"

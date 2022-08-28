@@ -196,6 +196,12 @@
                                 </div>
                             </div>
 
+                             <div class="form-row">
+                                <label for="input04" class="col-md-3  mb-0">Department</label>
+                                <div class="col-md-9 ">
+                                    <asp:Label ID="tbldept" runat="server" CssClass="control-label"> </asp:Label>
+                                </div>
+                            </div>
                             <div class="form-row">
                                 <label for="input04" class="col-md-3  mb-0">Att. Type</label>
                                 <div class="col-md-9 ">

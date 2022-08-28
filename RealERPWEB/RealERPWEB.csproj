@@ -251,7 +251,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
+
+      <HintPath>..\..\..\..\..\Newton json\Newtonsoft.Json.dll</HintPath>
+
+
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2214,6 +2217,7 @@
     <Content Include="F_09_PImp\RptSubConMonthlyBill.aspx" />
     <Content Include="F_09_PImp\RptSubConOverall02.aspx" />
     <Content Include="F_09_PImp\RptSubConStatus.aspx" />
+    <Content Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx" />
     <Content Include="F_09_PImp\RptSubContractorSd.aspx" />
     <Content Include="F_09_PImp\RptSubContractorTopSheet.aspx" />
     <Content Include="F_09_PImp\RptSubconWiseWrkOrder.aspx" />
@@ -2959,6 +2963,7 @@
     <Content Include="F_64_Mgt\TeamSeriCode.aspx" />
     <Content Include="F_64_Mgt\UserImage.aspx" />
     <Content Include="F_64_Mgt\UserLoginfrm.aspx" />
+    <Content Include="F_70_Services\QuotationEntry.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\AppLetCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ApplicantInfo.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ConfirmLetter.aspx" />
@@ -4016,6 +4021,13 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
+      <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.designer.cs">
+      <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4519,6 +4531,13 @@
     </Compile>
     <Compile Include="F_36_Vehcl\VehicleMgt.aspx.designer.cs">
       <DependentUpon>VehicleMgt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.designer.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx.cs">
       <DependentUpon>NewRecruitment.aspx</DependentUpon>

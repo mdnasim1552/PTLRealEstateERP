@@ -60,13 +60,13 @@
                                </div>
 
                         
-                              <div class="col-md-2">
+                            <%--  <div class="col-md-2">
                                 <div class="form-group">
                                     <asp:Label ID="lblAddWorkNo" runat="server" class="control-label  lblmargin-top9px" Text="Trans. No."></asp:Label>
                                     <asp:Label ID="lblCurNo1" runat="server" class="control-label  lblmargin-top9px"></asp:Label>
                                     <asp:TextBox ID="lblCurNo2" runat="server" CssClass="form-control form-control-sm" ReadOnly="true">00000</asp:TextBox>
                                 </div>
-                            </div>
+                            </div>--%>
                                                                              
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -86,8 +86,8 @@
                             </div>
                              <asp:Label ID="lblcustomerid" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
                              <asp:TextBox ID="Label1" runat="server" CssClass="form-control inputTxt" TextMode="Number"  ></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="Label1"
-                ErrorMessage="Field is blank">*</asp:RequiredFieldValidator>  
+                          <%--  <asp:RequiredFieldValidator ID="rfvCat" runat="server" ControlToValidate="Label1"
+                ErrorMessage="Field is blank">*</asp:RequiredFieldValidator> --%> 
                         </div>
 
                        <%-- <asp:Panel ID="PanelItem" runat="server">

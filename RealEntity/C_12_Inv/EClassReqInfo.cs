@@ -195,6 +195,7 @@ namespace RealEntity.C_12_Inv
     public class ErptStock
     {
         public string bldcod { get; set; }
+        public string pactdesc { get; set; } 
         public string rptcod { get; set; }
         public decimal issueqty { get; set; }        
         public decimal opqty { get; set; }
@@ -210,7 +211,6 @@ namespace RealEntity.C_12_Inv
         public string rptdesc1 { get; set; }
         public string rptunit { get; set; }
         public decimal avgrate { get; set; }
-
         public double bgdqty { get; set; }
         public double diviation { get; set; }
 

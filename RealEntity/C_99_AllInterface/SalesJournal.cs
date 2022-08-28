@@ -170,6 +170,29 @@ namespace RealEntity.C_99_AllInterface
         public Netdues01() { }
     }
 
+    [Serializable]
+    public class AllDues
+    {
+        // robi
+        public string comcod { get; set; }
+        public string pactcode { get; set; }
+        public string usircode { get; set; }
+        public string custname { get; set; }
+        public string forwordby { get; set; }
+        public string udesc { get; set; }
+        public double predues { get; set; }
+        public double curdues { get; set; }
+        public double receivable { get; set; }
+        public double dueins { get; set; }
+        public string mrno { get; set; }
+        public string pactdesc { get; set; }
+        public string recdate { get; set; }
+        public string recndt { get; set; }
+        public double recamt { get; set; }
+        public double netdues { get; set; }
+        public AllDues() { }
+    }
+
     //comcod, reqno, reqno1, pactcode, rsircode,mrfno, reqdat, reqdat1,rescount,reqamt, appamt, paidamt,balamt, pactdesc,sirdesc,supdesc,  userid,  suserid, 
     //aprvbyid, frecid, secrecid, threcid, faprvbyid,faprvdat, rusername, supcode,aprvname,faprvname,cstatus, bundno
     public class GbFinalApproval

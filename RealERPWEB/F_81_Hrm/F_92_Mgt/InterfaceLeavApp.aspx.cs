@@ -19,6 +19,8 @@ using RealERPLIB;
 using RealERPRPT;
 using RealEntity;
 using RealEntity.C_22_Sal;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 {
     public partial class InterfaceLeavApp : System.Web.UI.Page
@@ -39,14 +41,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
                 this.SelectDate();
+                this.GetLeaveType();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
-                GetStep();
+                this.GetStep();
                 this.SaleRequRpt();
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
             }
         }
-
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        }
         private void SelectDate()
         {
             string comcod = this.GetCompCode();
@@ -83,6 +91,19 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //sup_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_SUPERVISOR"]);
             //dpthead_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_DPTHEAD"]);
             //mgt_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_MGTHEAD"]);
+        }
+
+        private void GetLeaveType()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETGENLEAVETYPE", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddleavetype.DataTextField = "hrgdesc";
+            this.ddleavetype.DataValueField = "hrgcod";
+            this.ddleavetype.DataSource = ds1.Tables[0];
+            this.ddleavetype.DataBind();
+            this.ddleavetype.Items.Insert(0, new ListItem("--Select Leave Type--", ""));
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
@@ -247,6 +268,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                    Session["Report1"] = gvLvReq;
+                    ((HyperLink)this.gvLvReq.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
                 case "gvInprocess":
                     this.gvInprocess.DataSource = (dt);
@@ -254,6 +277,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                 
                     break;
                 case "gvApproved":
                     this.gvApproved.DataSource = (dt);
@@ -261,17 +285,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                  
                     break;
                 case "gvfiApproved":
                     this.gvfiApproved.DataSource = (dt);
                     this.gvfiApproved.DataBind();
+                  
                     break;
                 case "gvConfirm":
                     this.gvConfirm.DataSource = (dt);
                     this.gvConfirm.DataBind();
 
                     if (dt.Rows.Count == 0)
-                        return;
+                        return;                   
+
                     break;
             }
         }
@@ -626,6 +653,31 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string Messagesd = "Updated Fail";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
+        }
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)ViewState["tbltotalleav"];
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EInterfaceLeave>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptInterfaceLeave", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comname));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Task Info Dept"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
     }
 }
