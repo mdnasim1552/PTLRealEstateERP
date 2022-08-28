@@ -453,7 +453,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-
+            $('.chzn-select').chosen({ search_contains: true });
+      
 
 
             comcod = <%=this.GetCompCode()%>;
@@ -569,6 +570,47 @@
 
             <div class="card card-fluid">
                 <div class="card-body mt-2">
+                     <div class="row">
+
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+                            <asp:Label ID="Label8" runat="server">Company</asp:Label>
+                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select "  OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged"  AutoPostBack="true" TabIndex="2">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6" id="divBracnhLsit" runat="server">
+                            <asp:Label ID="Label9" runat="server">Branch</asp:Label>
+                            <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlBranch_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+                            <asp:Label ID="Label10" runat="server">Department</asp:Label>
+                            <asp:DropDownList ID="ddlProjectName" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="form-control chzn-select" TabIndex="6">
+                            </asp:DropDownList>
+
+                            <cc1:ListSearchExtender ID="ddlProjectName_ListSearchExtender" runat="server"
+                                QueryPattern="Contains" TargetControlID="ddlProjectName">
+                            </cc1:ListSearchExtender>
+                            <asp:Label ID="lblComBonLock" runat="server" CssClass="form-control inputTxt" Visible="False" Width="233"></asp:Label>
+                            <asp:Label ID="lblComSalLock" runat="server" CssClass="form-control inputTxt" Visible="False" Width="233"></asp:Label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <asp:Label ID="Label11" runat="server">Section</asp:Label>
+                            <asp:DropDownList ID="ddlSection" runat="server"   CssClass="form-control chzn-select" TabIndex="6" AutoPostBack="true">
+                            </asp:DropDownList>
+
+                            <cc1:ListSearchExtender ID="ddlSection_ListSearchExtender" runat="server"
+                                QueryPattern="Contains" TargetControlID="ddlSection">
+                            </cc1:ListSearchExtender>
+                        </div>
+
+                        
+
+
+
+
+
+                    </div>
                     <div class="row mb-2">
                         <div class="col-md-2 col-lg-2 col-sm-6">
                             <label for="From">
@@ -591,7 +633,7 @@
 
                         <div class="col-md-2 col-lg-2 col-sm-6">
                             <label for="Employee">
-                                ID #  
+                                Card #  
                             </label>
                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Type ID CARD..."></asp:TextBox>
                         </div>
