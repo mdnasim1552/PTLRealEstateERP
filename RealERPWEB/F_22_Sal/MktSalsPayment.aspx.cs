@@ -468,7 +468,7 @@ namespace RealERPWEB.F_22_Sal
             string TextField = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             //item info
-            DataTable basicinfo = (DataTable)ViewState["tblData"];
+            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
 
 
             string UsirCode = this.lblCode.Text;
