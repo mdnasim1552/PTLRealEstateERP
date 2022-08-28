@@ -143,11 +143,11 @@ namespace RealERPWEB
             string surname = "";
             if(gendercode== "99001")
             {
-                surname = "Mr";
+                surname = "Mr.";
             }
             else
             {
-                surname = "Ms";
+                surname = "Ms.";
             }
             int gradecode = 0;
              gradecode =Convert.ToInt32( ds.Tables[0].Rows[0]["gradecode"]);
@@ -260,7 +260,7 @@ namespace RealERPWEB
 
                         lbody =
                         "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:"+refno+"</strong></p>" +
-                        "<p style='margin-bottom:-11px'><strong> Mr " + name + "</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong> "+surname+" " + name + "</strong></p>" +
                         "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
                         "<p><strong>Subject:</strong> Appointment Letter - <strong>" + desig + "</strong></p>" +
                         "<p>Dear "+ surname + " " + name + ",</p>" +
@@ -341,7 +341,7 @@ namespace RealERPWEB
                     {
                         lbody =
                        "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
-                       "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>"+surname+" " + name + "</strong></p>" +
                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
                        "<p><strong>Subject:</strong> Offer Letter-<strong>" + desig + "</strong></p>" +
                        "<p>Dear "+surname+" " + name + ",</p>" +
