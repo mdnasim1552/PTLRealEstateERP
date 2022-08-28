@@ -433,6 +433,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1202120", "F_12_Inv", "PurMTReqEntry?", "Type=Entry", "Transfer Requisition", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1202122", "F_12_Inv", "PurMTReqEntry?", "Type=ReqEdit", "MTR Requisition Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1202121", "F_12_Inv", "PurMTReqEntry?", "Type=ReqApproval", "Transfer Requisition Approval", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1202123", "F_12_Inv", "PurMTReqEntry?", "Type=ReqChecked", "Transfer Requisition Checked", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203130", "F_12_Inv", "PurMTReqGatePass?", "Type=Entry", "Gate Pass", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203131", "F_12_Inv", "PurMTReqGatePass?", "Type=GpaEdit", "MTR Gate Pass Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203140", "F_12_Inv", "RptMaterialStock?", "Type=inv", "Materials Stock Information(Project Wise)", "Inventory", "False", "False", "False", "False" }); ;
