@@ -2296,7 +2296,9 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103120", "F_81_Hrm/F_94_Task", "RptTaskInfoDet", "", "Daily Activities Report", "MIS", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103150", "F_81_Hrm/F_97_MIS", "EnvelopeTemplate?", "Type=Print", "Envelope Template - HR", "MIS", "False", "False", "False", "False" }); ;
 
+            //HR All Interface 
             // tblObj.Rows.Add(new Object[] { "8103000", "8103032", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "My Interface", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103043", "F_81_Hrm/F_97_MIS", "RptMgtInterface", "", "Management Interface (HR)", "MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8151000", "8151001", "F_99_Allinterface", "HRInterfaceTopSheet", "", "Salary  360 <sup>0</span>", "Accounts", "False", "False", "False", "False" });
@@ -15525,6 +15527,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0412000000", "Daily Activities Report", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0412000001", "01.  Daily Work Report", "F_81_Hrm/F_94_Task/RptTaskInfoDet", "", true, "" });
 
+            mnuTbl1.Rows.Add(new Object[] { "0413000000", "Envelope Template", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0413000001", "01. Envelope Template - HR", "F_81_Hrm/F_97_MIS/EnvelopeTemplate?Type=Print", "", true, "" });
 
 
         }

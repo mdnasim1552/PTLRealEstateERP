@@ -3140,6 +3140,7 @@
     <Content Include="F_81_Hrm\F_94_Task\RptTaskInfoDet.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskInfoDet.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
@@ -5088,6 +5089,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.designer.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.designer.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
