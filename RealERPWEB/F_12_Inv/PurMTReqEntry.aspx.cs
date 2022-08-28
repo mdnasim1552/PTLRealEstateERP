@@ -661,7 +661,12 @@ namespace RealERPWEB.F_12_Inv
                 case "3351":
                 case "3352":
                 case "8306":
-                    ptype = "reqApprobed";
+                    ptype = "Approved";
+                    break;                
+                
+                case "3101":
+                case "3367":
+                    ptype = "Checked";
                     break;
 
                 default:

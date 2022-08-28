@@ -251,7 +251,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\BAckup_DWLd\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2960,6 +2960,7 @@
     <Content Include="F_64_Mgt\TeamSeriCode.aspx" />
     <Content Include="F_64_Mgt\UserImage.aspx" />
     <Content Include="F_64_Mgt\UserLoginfrm.aspx" />
+    <Content Include="F_70_Services\QuotationEntry.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\AppLetCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ApplicantInfo.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ConfirmLetter.aspx" />
@@ -4528,6 +4529,13 @@
     </Compile>
     <Compile Include="F_36_Vehcl\VehicleMgt.aspx.designer.cs">
       <DependentUpon>VehicleMgt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.designer.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx.cs">
       <DependentUpon>NewRecruitment.aspx</DependentUpon>

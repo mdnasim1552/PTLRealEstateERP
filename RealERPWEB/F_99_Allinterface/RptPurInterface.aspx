@@ -941,7 +941,7 @@
 
                         <div class="col-md-1">
                             <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-danger">Operations</button>
+                                <button type="button" class="btn btn-danger">Opera</button>
                                 <div class="btn-group" role="group">
                                     <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
