@@ -386,7 +386,11 @@
 
                                         <asp:TemplateField HeaderText="Operation">
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" ID="RejectLetter" CssClass="btn btn-danger btn-sm" OnClick="RejectLetter_Click">Reject</asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="RejectLetter" OnClick="RejectLetter_Click"
+                                                     CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False") ? " btn btn-danger btn-sm btn-text active ": "btn btn-sm btn-danger  disabled " %>'>  
+                                                
+                                                             <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False")?"Reject":"Rejected "%></span>
+                                                </asp:LinkButton>
                                                 <asp:HyperLink  runat="server"  ID="lnkOfferLetter" Target="_blank" CssClass="btn btn-info btn-sm"
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=NewRec &Entry=offer Letter &advno="+Eval("advno") %>'
                                                                 >Offer Letter</asp:HyperLink>
