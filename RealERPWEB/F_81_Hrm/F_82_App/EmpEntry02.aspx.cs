@@ -195,39 +195,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
 
-            //for (int i = 0; i < dt2.Rows.Count; i++)
-            //{
-
-            //    string Gcode = dt2.Rows[i]["gcod"].ToString();
-
-            //    switch (Gcode)
-            //    {
-
-
-
-
-            //        case "01999":
-            //            ((Panel)this.gvPersonalInfo2.Rows[i].FindControl("Panegrd")).Visible = false;
-            //            ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Items.Clear();
-            //            ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Visible = false;
-            //            ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Visible = false;
-            //            ((LinkButton)this.gvPersonalInfo2.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
-
-            //            break;
-
-
-            //        default:
-            //            ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Visible = false;
-            //            ((Panel)this.gvPersonalInfo2.Rows[i].FindControl("Panegrd")).Visible = false;
-            //            ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Items.Clear();
-            //            ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval")).Visible = false;
-            //            ((LinkButton)this.gvPersonalInfo2.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
-
-            //            break;
-
-            //    }
-
-            //}
 
 
 
@@ -237,21 +204,32 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lnkbtnSave_Click(object sender, EventArgs e)
         {
+            string comcod = GetComeCode();
+            string advno = this.Request.QueryString["advno"].ToString().Trim();
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETRECEMP", advno, "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+                return;
+
+     
+            string newempid = ds.Tables[0].Rows[0]["empid"].ToString().Trim();
+           if(newempid != "")
+            {
+                string Message = "Already linked!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                return;
+            }
+
+
             DataTable dt1 = new DataTable();
             dt1.Clear();
             dt1.Columns.Add("gcod");
             dt1.Columns.Add("gval");
-            string comcod = GetComeCode();
             string gval = "";
             string empid = "";
             string empdept = "9301";
             string empname = this.txtname.InnerText;
 
 
-            DataSet dt = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "");
-            if (dt == null || dt.Tables[0].Rows.Count == 0)
-                return;
-            empid = dt.Tables[0].Rows[0]["empid"].ToString();
 
 
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
@@ -369,13 +347,36 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             if (dt1.Rows.Count == 0 || dt1 == null)
                 return;
-  
-            List<bool> resultCompA = new List<bool>();
-            for (int i = 0; i < dt1.Rows.Count; i++)
+
+
+            DataSet dt = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "");
+            if (dt == null || dt.Tables[0].Rows.Count == 0)
+                return;
+            empid = dt.Tables[0].Rows[0]["empid"].ToString();
+            bool res = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "SETEMPIDINNEWREC", advno, empid, "", "");
+            if (res)
             {
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTHRDINF", empid, dt1.Rows[i]["gcod"].ToString(), dt1.Rows[i]["gval"].ToString(), "", "", "", "", "", "", "");
-                resultCompA.Add(result);
+                List<bool> resultCompA = new List<bool>();
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "INSERTHRDINF", empid, dt1.Rows[i]["gcod"].ToString(), dt1.Rows[i]["gval"].ToString(), "", "", "", "", "", "", "");
+                    resultCompA.Add(result);
+                }
+                if (resultCompA.Contains(true))
+                {
+                               string Message = "Successfully updated!";
+                               ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showConten('" + Message + "');", true);
+                }
+                Response.Redirect("~/F_81_Hrm/F_81_Rec/NewRecruitment");
             }
+            else
+            {
+                string Message = "Update Failed!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContenFail('" + Message + "');", true);
+                return;
+            }
+
+      
 
       
 

@@ -101,7 +101,6 @@
     <Folder Include="R_62_Mis\" />
     <Folder Include="R_64_Mgt\" />
     <Folder Include="R_81_Hrm\R_88_Res\" />
-    <Folder Include="R_81_Hrm\R_97_MIS\" />
     <Folder Include="R_81_Hrm\R_99_MgtAct\" />
     <Folder Include="R_98_Purchase\" />
   </ItemGroup>
@@ -256,6 +255,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
+    <None Include="Properties\DataSources\RealERPEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
@@ -785,8 +785,9 @@
     <EmbeddedResource Include="R_22_Sal\RptSalSumAmtBasis.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalSumary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalSummeryDetails.rdlc" />
-    <EmbeddedResource Include="R_22_Sal\RptTransStatement02Finlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptTransStatement02Finlay.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptTransStatement03.rdlc" />
     <EmbeddedResource Include="R_22_Sal\rptUnitFxInf.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptUnitWiseCost.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptUnsoldUnit.rdlc" />
@@ -1164,6 +1165,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptIncrementStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_94_Task\RptTaskInfoDet.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_97_MIS\RptHrmPaySlipEnvelop.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptAllDuesInfo.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptBillCon.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCashRcv.rdlc" />
