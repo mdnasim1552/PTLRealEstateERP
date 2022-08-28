@@ -139,6 +139,16 @@ namespace RealERPWEB
             if (ds == null || ds.Tables[0].Rows.Count == 0)
                 return;
 
+            string gendercode = ds.Tables[0].Rows[0]["gendercode"].ToString()??"";
+            string surname = "";
+            if(gendercode== "99001")
+            {
+                surname = "Mr";
+            }
+            else
+            {
+                surname = "Ms";
+            }
             int gradecode = 0;
              gradecode =Convert.ToInt32( ds.Tables[0].Rows[0]["gradecode"]);
             string probduration = ds.Tables[0].Rows[0]["probation"].ToString();
@@ -253,7 +263,7 @@ namespace RealERPWEB
                         "<p style='margin-bottom:-11px'><strong> Mr " + name + "</strong></p>" +
                         "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
                         "<p><strong>Subject:</strong> Appointment Letter - <strong>" + desig + "</strong></p>" +
-                        "<p>Dear Mr " + name + ",</p>" +
+                        "<p>Dear "+ surname + " " + name + ",</p>" +
                         //body
                         "<p>We are delighted to appoint you as a  <strong>" + desig + "</strong> of the <strong>" + dept + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
                         "<p> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
@@ -334,7 +344,7 @@ namespace RealERPWEB
                        "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
                        "<p><strong>Subject:</strong> Offer Letter-<strong>" + desig + "</strong></p>" +
-                       "<p>Dear Mr " + name + ",</p>" +
+                       "<p>Dear "+surname+" " + name + ",</p>" +
 
                        "<p style='margin-bottom:-11px'>We are delighted to offer you the position of <strong>" + desig + "</strong> of the <strong>" + sec + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
                        "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
