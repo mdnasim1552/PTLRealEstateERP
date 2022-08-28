@@ -27,6 +27,22 @@
                 padding: 0 10px;
             }
     </style>
+    <script>
+        function OpenModal() {
+            $('#addModal').modal('toggle');
+        }
+        function CloseModal() {
+
+            $('#addModal').modal('toggle');
+        }
+        function OpenModalResource() {
+            $('#addModalResource').modal('toggle');
+        }
+        function CloseModalResource() {
+
+            $('#addModalResource').modal('toggle');
+        }
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -55,7 +71,7 @@
                                 <div class="d-flex">
                                     <asp:DropDownList ID="ddlCustomer" runat="server" CssClass="form-control chzn-select">
                                     </asp:DropDownList>
-                                    <asp:LinkButton ID="btnaddcustomer" runat="server" CssClass="btn">
+                                    <asp:LinkButton ID="btnaddcustomer" runat="server" CssClass="btn" OnClick="btnaddcustomer_Click">
                                                 <span class="fa fa-plus-circle " aria-hidden="true"></span>
                                     </asp:LinkButton>
                                 </div>
@@ -88,10 +104,9 @@
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="Label4" class="form-label">Resource</asp:Label>
                                     <div class="d-flex">
-                                        <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control chzn-select" AutoPostBack="true"
-                                            OnSelectedIndexChanged="ddlResource_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control chzn-select">
                                         </asp:DropDownList>
-                                        <asp:LinkButton ID="btnAddResource" runat="server" CssClass="btn" >
+                                        <asp:LinkButton ID="btnAddResource" runat="server" CssClass="btn" OnClick="btnAddResource_Click">
                                                 <span class="fa fa-plus-circle " aria-hidden="true"></span>
                                         </asp:LinkButton>
                                     </div>
@@ -151,12 +166,12 @@
                                     <asp:TemplateField HeaderText="Work Type">
 
                                         <ItemTemplate>
-                                             <asp:Label ID="lblgvworktypecode" runat="server"
+                                            <asp:Label ID="lblgvworktypecode" runat="server" Visible="false"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "worktypecode")) %>'
                                                 Width="100px"></asp:Label>
                                             <asp:Label ID="lblgvworktypedesc" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "worktypedesc")) %>'
-                                                Width="100px"></asp:Label>
+                                                Width="200px"></asp:Label>
                                         </ItemTemplate>
 
 
@@ -286,7 +301,54 @@
 
                 </div>
             </div>
-
+            <div class="modal" id="addModal" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h6 class="modal-title">Add Customer</h6>
+                            <asp:LinkButton ID="CloseVehcl" runat="server" CssClass="close close_btn" OnClientClick="CloseModal();" data-dismiss="modal"> &times; </asp:LinkButton>
+                        </div>
+                        <div class="modal-body mt-3">
+                            <div class="form-group">
+                                <asp:Label ID="lblLoanId" runat="server">Customer Name</asp:Label>
+                                <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lnkUpdateModal" runat="server" CssClass="btn btn-sm btn-success" OnClick="lnkUpdateModal_Click"
+                                OnClientClick="CloseModal();"><span class="glyphicon glyphicon-save"></span>Update</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="modal" id="addModalResource" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h6 class="modal-title">Add Resources</h6>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="close close_btn" OnClientClick="CloseModalResource();" data-dismiss="modal"> &times; </asp:LinkButton>
+                        </div>
+                        <div class="modal-body mt-3">
+                            <div class="form-group">
+                                <asp:Label ID="Label3" runat="server">Resource</asp:Label>
+                                <asp:TextBox ID="txtResource" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="Label2" runat="server">Unit</asp:Label>
+                                <asp:TextBox ID="txtUnit" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="Label8" runat="server">Std. Rate</asp:Label>
+                                <asp:TextBox ID="txtRate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lnkUpdateResourceModal" runat="server" CssClass="btn btn-sm btn-success" OnClick="lnkUpdateResourceModal_Click"
+                                OnClientClick="CloseModalResource();"><span class="glyphicon glyphicon-save"></span>Update</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
