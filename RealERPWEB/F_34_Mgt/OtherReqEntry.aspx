@@ -559,17 +559,26 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-2 pading5px" runat="server" id="idattnper" visible="true">
+                                                <div class="input-group">
+                                                     <span class="input-group-addon glypingraddon">
+                                                        <asp:Label ID="Label2" runat="server" CssClass=" smLbl_to" Text="Attn :"></asp:Label>
+                                                    </span>
+                                                    <asp:TextBox ID="txtAttn" runat="server" class="form-control" placeholder="Enter Person" ></asp:TextBox>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-1 pading5px">
                                                 <asp:Label runat="server" ID="lblactcode" CssClass="smLbl_to" Text="Account Code(Adjust)"></asp:Label>
                                             </div>
-                                            <div class="col-md-3 pading5px">
+                                            <div class="col-md-2 pading5px">
                                                 <asp:DropDownList ID="ddlactcode" OnSelectedIndexChanged="ddlactcode_OnSelectedIndexChanged" runat="server" CssClass="form-control inputTxt  chzn-select" TabIndex="7" AutoPostBack="True"></asp:DropDownList>
 
                                             </div>
                                             <div class="col-md-1 pading5px">
                                                 <asp:Label runat="server" ID="lblrescodeadj" CssClass="smLbl_to" Text="Resource Code (Adjust)"></asp:Label>
                                             </div>
-                                            <div class="col-md-3 pading5px">
+                                            <div class="col-md-2 pading5px">
                                                 <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control inputTxt  chzn-select" TabIndex="7"></asp:DropDownList>
 
                                             </div>
