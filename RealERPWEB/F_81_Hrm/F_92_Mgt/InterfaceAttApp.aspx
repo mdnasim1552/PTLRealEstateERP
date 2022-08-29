@@ -568,11 +568,11 @@
                                 </div>
                                 <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control " AutoPostBack="True">
                                     <asp:ListItem Value="%%">All</asp:ListItem>
-                                    <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>
+                         <%--           <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>--%>
                                     <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
                                     <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
-                                    <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
-                                    <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>
+                        <%--            <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
+                                    <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>--%>
                                 </asp:DropDownList>
                             </div>
                         </div>                      
