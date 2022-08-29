@@ -73,7 +73,7 @@ namespace RealERPWEB.F_22_Sal
 
             string comcod = this.GetCompCode();
           
-            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETENVTYPE", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETENVTYPE", "7200%", "", "", "", "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count==0)
                 return;
             this.ddlTypeHeader.DataTextField = "title";

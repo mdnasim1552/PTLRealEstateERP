@@ -79,13 +79,15 @@ namespace RealERPWEB.F_34_Mgt
 
                 }
 
-                if (comcod == "3336" || comcod == "3337")
+                if (comcod == "3336" || comcod == "3337" || comcod == "3101")
                 {
                     this.pnltermmpay.Visible = true;
+                    this.idattnper.Visible = true;
                 }
                 else
                 {
                     this.pnltermmpay.Visible = false;
+                    this.idattnper.Visible = false;
                 }
                 this.GetRecAndPayto();
                 this.RbtnPrint.SelectedIndex = 0;
@@ -761,6 +763,8 @@ namespace RealERPWEB.F_34_Mgt
                 if (dt.Rows.Count > 0)
                 {
                     this.txtPayto.Text = dt.Rows[0]["payto"].ToString();
+                    this.txtAttn.Text = dt.Rows[0]["attnper"].ToString();
+
                     string paytype = dt.Rows[0]["paytype"].ToString();
                     //this.ddlSupplier.SelectedValue = dt.Rows[0]["supdesc"].ToString();
 
@@ -1301,20 +1305,9 @@ namespace RealERPWEB.F_34_Mgt
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETGENBILLREQ", mReqNo, "", "", "", "", "", "", "", "");
-            
+
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.GenBillReq>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_34_Mgt.GenBillSupdesc>();
-            LocalReport Rpt1 = new LocalReport();
-
-            if (comcod == "3336" || comcod == "3337" || comcod == "3101")
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, lst1, null);
-            }
-            else
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrint", lst, lst1, null);
-                
-            }
             string firmnam = lst1[0].firmname.ToString();
             string Address = lst1[0].conadd.ToString();
             string Attn = lst1[0].conperson.ToString();
@@ -1329,19 +1322,31 @@ namespace RealERPWEB.F_34_Mgt
             string reqnam = ds1.Tables[2].Rows[0]["reqnam"].ToString() + "\n" + ds1.Tables[2].Rows[0]["reqdat"].ToString();
             string reqanam = ds1.Tables[2].Rows[0]["reqanam"].ToString() + "\n" + ds1.Tables[2].Rows[0]["reqadat"].ToString();
             string faprovnam = ds1.Tables[2].Rows[0]["faprovnam"].ToString() + "\n" + ds1.Tables[2].Rows[0]["fapprvdat"].ToString();
-
+            string attnper = ds1.Tables[0].Rows[0]["attnper"].ToString();
             string naration = txtReqNarr.Text;
-
 
             double tAmt = lst.Select(p => p.proamt).Sum();
 
-            Rpt1.EnableExternalImages = true;
+            LocalReport Rpt1 = new LocalReport();
+            if (comcod == "3336" || comcod == "3337" || comcod == "3101")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + payto));
+                Rpt1.SetParameters(new ReportParameter("payto", attnper)); 
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrint", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + firmnam));
+                Rpt1.SetParameters(new ReportParameter("payto", payto));
+            }
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("Attn", "Attn: " + Attn));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             //  Rpt1.SetParameters(new ReportParameter("CurDate", "Order Date: " + CurDate));
             Rpt1.SetParameters(new ReportParameter("Address", "Address: " + Address));
-            Rpt1.SetParameters(new ReportParameter("Attn", "Attn: " + Attn));
-            Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + firmnam));
             Rpt1.SetParameters(new ReportParameter("trmcon", trmcon));
             Rpt1.SetParameters(new ReportParameter("payofm", payofm));
             Rpt1.SetParameters(new ReportParameter("MobileNo", MobileNo));
@@ -1358,7 +1363,6 @@ namespace RealERPWEB.F_34_Mgt
             Rpt1.SetParameters(new ReportParameter("reqanam", reqanam));
             Rpt1.SetParameters(new ReportParameter("faprovnam", faprovnam));
             Rpt1.SetParameters(new ReportParameter("naration", naration));
-            Rpt1.SetParameters(new ReportParameter("payto", payto));
             Rpt1.SetParameters(new ReportParameter("InWrd", (tAmt == 0 ? "" : "In Words Taka : " + ASTUtility.Trans(Math.Round(tAmt), 2))));
 
             Session["Report1"] = Rpt1;
@@ -1788,14 +1792,14 @@ namespace RealERPWEB.F_34_Mgt
                 string appxml = tbl1.Rows[i]["approval"].ToString();
                 string Approval = this.GetReqApproval(appxml);
                 string advanced = this.chkAdvanced.Checked ? "1" : "0";
-
+                string attnper = this.txtAttn.Text.ToString();
 
 
                 if (mProAMT > 0)
                 {
                     result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTOTHERREQ",
                              mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
-                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval, advanced);
+                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval, advanced , attnper);
                 }
                 if (!result)
                 {

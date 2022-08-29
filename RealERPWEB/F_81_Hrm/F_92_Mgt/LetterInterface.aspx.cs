@@ -255,6 +255,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                string Message = "Successfully Updated";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
                 getAllData();
+                getLetterCount();
             }
 
         }
