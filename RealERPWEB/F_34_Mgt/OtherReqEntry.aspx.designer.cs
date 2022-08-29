@@ -420,6 +420,33 @@ namespace RealERPWEB.F_34_Mgt
         protected global::AjaxControlToolkit.AutoCompleteExtender txtPayto_AutoCompleteExtender;
 
         /// <summary>
+        /// idattnper control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl idattnper;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// txtAttn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAttn;
+
+        /// <summary>
         /// lblactcode control.
         /// </summary>
         /// <remarks>
