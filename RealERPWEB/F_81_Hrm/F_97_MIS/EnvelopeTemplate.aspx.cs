@@ -40,6 +40,14 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
 
 
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -110,7 +118,7 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
 
             string comcod = this.GetCompCode();
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETENVTYPE", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETENVTYPE", "7201%", "", "", "", "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 return;
             this.ddlTypeHeader.DataTextField = "title";
@@ -294,7 +302,7 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
             if (dt1.Rows.Count == 0)
                 return dt1;
 
-           
+
             string company, secid;
 
             company = dt1.Rows[0]["company"].ToString();
@@ -314,7 +322,7 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
                 if (dt1.Rows[j]["depcod"].ToString() == depcod)
                 {
                     dt1.Rows[j]["deptname"] = "";
-                } 
+                }
 
                 company = dt1.Rows[j]["company"].ToString();
                 secid = dt1.Rows[j]["secid"].ToString();
@@ -328,7 +336,7 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
 
         private void LoadGrid()
         {
-           
+
             DataTable dt = (DataTable)Session["tblEmpstatus"];
             //this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpList.DataSource = dt;
@@ -348,111 +356,210 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
         }
         protected void gvEmpList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            this.gvEmpList.PageIndex = e.NewPageIndex;
+            this.LoadGrid();
+        }
+        protected   void lbtnPrint_Click(object sender, EventArgs e)
+        {             
+            GetChckedDataPrint();
+        }
+
+        private void GetChckedDataPrint()
+        {
+            string typeheader = ddlTypeHeader.SelectedItem.Text.ToString();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam =  hst["comnam"].ToString();
+            string session = hst["session"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string envtype = this.ddlTypeHeader.SelectedValue.ToString();
+            
+            // GET DATA FROM EMP STATUS
+            DataTable dt = (DataTable)Session["tblEmpstatus"]; 
+            int index;
+            for (int i = 0; i < this.gvEmpList.Rows.Count; i++)
+            {
+                string isPrint = (((CheckBox)gvEmpList.Rows[i].FindControl("isPrint")).Checked) ? "True" : "False";                 
+                index = (this.gvEmpList.PageSize) * (this.gvEmpList.PageIndex) + i;
+                dt.Rows[index]["isPrint"] = isPrint;
+            }
+            Session["tblEmpstatus"] = dt;
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = "isPrint = 'True'";
+            DataTable dt1 = dv.ToTable();
+
+
+            var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint>();
+            
+            LocalReport Rpt1 = new LocalReport();
+
+            if (comcod == "3368")
+            {
+                switch (envtype)
+                {
+                    case "7201001":
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop", list, null, null);
+                        break;
+                    case "7201002":
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptPromotionEnvelop", list, null, null);
+                        break;
+                }
+            }
+            else
+            {
+                switch (envtype)
+                {
+                    case "7201001":
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop", list, null, null);
+
+                        break;
+                    case "7201002":
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptPromotionEnvelop", list, null, null);
+                        break;
+                }
+            }
+
+
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("toheader", typeheader));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+
+
+            Session["Report1"] = Rpt1;
+            string type = "PDF";
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "printEnvelop('" + type + "');", true);
+
+
+
 
         }
 
-        protected void lnkbtnEnvelop_Click(object sender, EventArgs e)
+        //protected void lnkbtnEnvelop_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+        //        int index = row.RowIndex;
+        //       // bool isprint = ((CheckBox)row.FindControl("isPrint")).Checked;
+
+        //        string name = ((Label)row.FindControl("lblgvdeptandemployeeemp")).Text.ToString();
+        //        string card = ((Label)row.FindControl("lblgvcardnoemp")).Text.ToString();
+        //        string designation = ((Label)row.FindControl("lblgvdesignationemp")).Text.ToString();
+        //        string department = ((Label)row.FindControl("lblgvdepname")).Text.ToString();
+
+
+        //        string typeheader = ddlTypeHeader.SelectedItem.Text.ToString();
+        //        Hashtable hst = (Hashtable)Session["tblLogin"];
+        //        string comcod = hst["comcod"].ToString();
+        //        string comnam = comcod == "3101" ? hst["comnam"].ToString().Substring(4) : hst["comnam"].ToString();
+        //        string session = hst["session"].ToString();
+        //        string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+        //        string envtype = this.ddlTypeHeader.SelectedValue.ToString();
+
+        //        var list = new List<RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint>();
+        //        var obj = new RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint();
+        //        if (comcod == "3368")
+        //        {
+        //            obj = new RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint()
+        //            {
+        //                Name = name,
+        //                Card = card,
+        //                Designation = designation,
+        //                Department = department,
+
+        //            };
+        //        }
+        //        else if (comcod == "3101")
+        //        {
+
+        //            obj = new RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint()
+        //            {
+        //                Name = name,
+        //                Card = card,
+        //                Designation = designation,
+        //                Department = department,
+        //            };
+        //        }
+        //        list.Add(obj);
+        //        LocalReport Rpt1 = new LocalReport();
+
+        //        if (comcod == "3368")
+        //        {
+        //            switch (envtype)
+        //            {
+        //                case "7201001":
+        //                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop", list, null, null);
+        //                    break;
+        //                case "7201002":
+        //                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptPromotionEnvelop", list, null, null);
+        //                    break;
+        //            }
+        //        }
+        //        else 
+        //        {
+        //            switch (envtype)
+        //            {
+        //                case "7201001":
+        //                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop", list, null, null);
+
+        //                    break;
+        //                case "7201002":
+        //                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptPromotionEnvelop", list, null, null);
+        //                    break;
+        //            }
+        //        }
+             
+
+        //        Rpt1.EnableExternalImages = true;
+        //        Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+        //        Rpt1.SetParameters(new ReportParameter("toheader", typeheader));
+        //        Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+
+
+        //        Session["Report1"] = Rpt1;
+        //        string type = "PDF";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "target", "printEnvelop('" + type + "');", true);
+        //        //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+        //        //((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+        //    }
+
+        //}
+
+        protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
         {
-            try
+            DataTable dt = (DataTable)Session["tblEmpstatus"];
+            int i, index;
+            if (((CheckBox)this.gvEmpList.HeaderRow.FindControl("chkAllfrm")).Checked)
             {
-                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-
-                int index = row.RowIndex;
-                string name = ((Label)row.FindControl("lblgvdeptandemployeeemp")).Text.ToString();
-                string card = ((Label)row.FindControl("lblgvcardnoemp")).Text.ToString();
-                string designation = ((Label)row.FindControl("lblgvdesignationemp")).Text.ToString();
-                string department = ((Label)row.FindControl("lblgvdepname")).Text.ToString();
-               
-
-                string typeheader = ddlTypeHeader.SelectedItem.Text.ToString();
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string comnam = comcod=="3101" ? hst["comnam"].ToString().Substring(4): hst["comnam"].ToString();
-
-                string session = hst["session"].ToString();
-                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-                string envtype = this.ddlTypeHeader.SelectedValue.ToString();
-
-                var list = new List<RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint>();
-                var obj = new RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint();
-                if (comcod == "3368")
+                for (i = 0; i < this.gvEmpList.Rows.Count; i++)
                 {
-                    obj = new RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint()
-                    {
-                        Name = name,
-                        Card = card,
-                        Designation = designation,
-                        Department = department,
-                       
-                    };
+                    ((CheckBox)this.gvEmpList.Rows[i].FindControl("isPrint")).Checked = true;
+
+                    index = (this.gvEmpList.PageSize) * (this.gvEmpList.PageIndex) + i;
+                    dt.Rows[index]["isPrint"] = "True";
                 }
-                else if(comcod == "3101")
-                {
-                    
-                    obj = new RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint()
-                    {
-                        Name = name.ToString().Substring(2),
-                        Card = card,
-                        Designation = designation,
-                        Department = department,
-                    };
-                }
-                list.Add(obj);
-                LocalReport Rpt1 = new LocalReport();
-
-                if (comcod == "3368")
-                {
-                    switch (envtype)
-                    {
-                        case "7201001":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop", list, null, null);
-                            break;
-                        case "7201002":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptEnvelopOffice", list, null, null);
-                            break;
-                    }
-                }
-                else if(comcod == "3101")
-                {
-                    
-
-                    switch (envtype)
-                    {
-                        case "7201001":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop", list, null, null);
-                           
-                            break;
-                        case "7201002":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptEnvelopOffice", list, null, null);
-                            break;
-                       
-                    }
-                   
-                   
-
-                }
-                else
-                {
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptEnvelopNew", list, null, null);
-                }
-
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("toheader", typeheader));
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-
-
-                Session["Report1"] = Rpt1;
-                string type = "PDF";
-                ScriptManager.RegisterStartupScript(this, GetType(), "target", "printEnvelop('" + type + "');", true);
-                //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
-                //((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
-            catch (Exception ex)
+
+            else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                for (i = 0; i < this.gvEmpList.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvEmpList.Rows[i].FindControl("isPrint")).Checked = false;
+
+                    index = (this.gvEmpList.PageSize) * (this.gvEmpList.PageIndex) + i;
+                    dt.Rows[index]["isPrint"] = "False";
+                }
             }
+
+            Session["tblEmpstatus"] = dt;
+            // this.ShowPer();
 
         }
     }

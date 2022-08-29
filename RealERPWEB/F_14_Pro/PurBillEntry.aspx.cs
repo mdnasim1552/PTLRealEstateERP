@@ -176,7 +176,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
                 // case "3336":
-                case "3101":
+                //case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill04";
 
@@ -206,7 +206,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
                               
-                //case "3101":
+                case "3101":
                 case "3366":// Lanco
                     PrintReq = "PrintBill09";
 
@@ -1453,6 +1453,7 @@ namespace RealERPWEB.F_14_Pro
             td1 = dv1.ToTable();
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
+            string totalamt = Convert.ToDouble(amt1 - amt2).ToString("#,##0.00;(#,##0.00); "); 
             //
 
             string txtSupName, txtBillid, txtNarration, billref;
@@ -1516,6 +1517,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("rptReqChk", rptReqChk));
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
+            rpt.SetParameters(new ReportParameter("totalamt", totalamt)); 
 
             Session["Report1"] = rpt;
             if (isAccBill)

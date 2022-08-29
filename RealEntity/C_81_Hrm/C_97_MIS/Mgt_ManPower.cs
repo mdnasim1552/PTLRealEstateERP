@@ -11,10 +11,10 @@ namespace RealEntity.C_81_Hrm.C_97_MIS
     {
         [Serializable]
         public class HrmEnvelopPrint {
-            public string Name { get; set; }
-            public string Card { get; set; }
-            public string Designation { get; set; }
-            public string Department { get; set; }
+            public string empname { get; set; }
+            public string idcardno { get; set; }
+            public string desig { get; set; }
+            public string section { get; set; }
 
             public HrmEnvelopPrint()
             {

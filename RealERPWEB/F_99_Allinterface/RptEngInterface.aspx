@@ -631,7 +631,6 @@
                                 <asp:TextBox ID="txtdate" runat="server" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender_txtdate" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
-
                             </div>
 
                         </div>
