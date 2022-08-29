@@ -339,6 +339,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_94_Task.RptTaskInfoDet": Rpt1a = SetRptTaskInfoDet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_99_AllInterface.RptAllDuesInfo": Rpt1a = SetRptAllDuesInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptInterfaceLeave": Rpt1a = SetRptInterfaceLeave(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_92_Mgt.RptInterfaceAttApp": Rpt1a = SetRptInterfaceAttApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                
 
@@ -6320,6 +6321,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptInterfaceLeave(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EInterfaceLeave>)RptDataSet));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptInterfaceAttApp(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EInterfaceAttApp>)RptDataSet));
 
             return Rpt1a;
         }
