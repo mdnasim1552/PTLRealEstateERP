@@ -60,6 +60,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
+                               
                                 <asp:Label runat="server" ID="lblQuotation" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="Label5" class="form-label">Quotation No</asp:Label>
                                 <asp:TextBox ID="txtquotno" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
@@ -321,7 +322,7 @@
                     </div>
                 </div>
             </div>
-             <div class="modal" id="addModalResource" data-backdrop="static" data-keyboard="false">
+            <div class="modal" id="addModalResource" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-light">
@@ -329,6 +330,11 @@
                             <asp:LinkButton ID="LinkButton1" runat="server" CssClass="close close_btn" OnClientClick="CloseModalResource();" data-dismiss="modal"> &times; </asp:LinkButton>
                         </div>
                         <div class="modal-body mt-3">
+                            <div class="form-group">
+                                <asp:Label ID="Label9" runat="server">Resource Type</asp:Label>
+                                <asp:DropDownList ID="ddlResourceType" runat="server" CssClass="form-control chzn-select">
+                                </asp:DropDownList>
+                            </div>
                             <div class="form-group">
                                 <asp:Label ID="Label3" runat="server">Resource</asp:Label>
                                 <asp:TextBox ID="txtResource" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
