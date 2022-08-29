@@ -1092,11 +1092,7 @@ Fields!clsam.Value = 0,""
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Switch(
-Sum(Fields!opam.Value) &gt; 0,Math.Round(Sum(Fields!opam.Value),0,MidPointRounding.AwayFromZero),
-Sum(Fields!opam.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!opam.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
-Sum(Fields!opam.Value) = 0,""
-)</Value>
+                                  <Value>=Parameters!sumop.Value</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1132,11 +1128,7 @@ Sum(Fields!opam.Value) = 0,""
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Switch(
-Sum(Fields!dram.Value) &gt; 0,Math.Round(Sum(Fields!dram.Value),0,MidPointRounding.AwayFromZero),
-Sum(Fields!dram.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!dram.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
-Sum(Fields!dram.Value) = 0,""
-)</Value>
+                                  <Value>=Parameters!sumdr.Value</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1172,11 +1164,7 @@ Sum(Fields!dram.Value) = 0,""
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Switch(
-Sum(Fields!cram.Value) &gt; 0,Math.Round(Sum(Fields!cram.Value),0,MidPointRounding.AwayFromZero),
-Sum(Fields!cram.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!cram.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
-Sum(Fields!cram.Value) = 0,""
-)</Value>
+                                  <Value>=Parameters!sumcr.Value</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1212,11 +1200,7 @@ Sum(Fields!cram.Value) = 0,""
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Switch(
-Sum(Fields!clsam.Value) &gt; 0,Math.Round(Sum(Fields!clsam.Value),0,MidPointRounding.AwayFromZero),
-Sum(Fields!clsam.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!clsam.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
-Sum(Fields!clsam.Value) = 0,""
-)</Value>
+                                  <Value>=Parameters!sumclsm.Value</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1662,11 +1646,35 @@ Sum(Fields!clsam.Value) = 0,""
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="sumop">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="sumdr">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="sumcr">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="sumclsm">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>6</NumberOfRows>
+      <NumberOfRows>8</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -1727,6 +1735,26 @@ Sum(Fields!clsam.Value) = 0,""
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>suborconname</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>sumop</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>sumdr</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>sumcr</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>sumclsm</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
