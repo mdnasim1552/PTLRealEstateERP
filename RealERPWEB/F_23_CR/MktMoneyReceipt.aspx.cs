@@ -1040,6 +1040,8 @@ namespace RealERPWEB.F_23_CR
                         case "3310": // Rcu
                         case "3325":// Leisure
                         case "2325"://Liesure
+                        case "3101"://Liesure
+
                             PactCode = this.ddlProjectName.SelectedValue.ToString();
                             break;
 
