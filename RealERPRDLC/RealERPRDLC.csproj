@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -253,6 +253,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceLeave.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmpOfferLetter.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
     <None Include="Properties\DataSources\RealERPEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
@@ -1166,6 +1167,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptIncrementStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_94_Task\RptTaskInfoDet.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_97_MIS\RptHrmPaySlipEnvelop.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_97_MIS\RptPromotionEnvelop.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptAllDuesInfo.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptBillCon.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCashRcv.rdlc" />
