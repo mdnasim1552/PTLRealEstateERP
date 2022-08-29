@@ -763,6 +763,8 @@ namespace RealERPWEB.F_34_Mgt
                 if (dt.Rows.Count > 0)
                 {
                     this.txtPayto.Text = dt.Rows[0]["payto"].ToString();
+                    this.txtAttn.Text = dt.Rows[0]["attnper"].ToString();
+
                     string paytype = dt.Rows[0]["paytype"].ToString();
                     //this.ddlSupplier.SelectedValue = dt.Rows[0]["supdesc"].ToString();
 
@@ -1331,7 +1333,7 @@ namespace RealERPWEB.F_34_Mgt
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, lst1, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + payto));
-                Rpt1.SetParameters(new ReportParameter("payto", naration)); 
+                Rpt1.SetParameters(new ReportParameter("payto", attnper)); 
             }
             else
             {
