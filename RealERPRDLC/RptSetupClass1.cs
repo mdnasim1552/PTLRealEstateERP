@@ -337,16 +337,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_92_Mgt.RptEmpOfferLetter": Rpt1a = SetRptEmpOfferLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptEmpApointmentLetter": Rpt1a = SetRptEmpApointmentLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_94_Task.RptTaskInfoDet": Rpt1a = SetRptTaskInfoDet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-<<<<<<< HEAD
-
-                case "R_99_AllInterface.RptAllDuesInfo": Rpt1a = SetRptAllDuesInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
-                case "R_81_Hrm.R_92_Mgt.RptInterfaceLeave": Rpt1a = SetRptInterfaceLeave(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
-=======
                 case "R_99_AllInterface.RptAllDuesInfo": Rpt1a = SetRptAllDuesInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptInterfaceLeave": Rpt1a = SetRptInterfaceLeave(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
->>>>>>> 3de1d043a10f2accf9524a1c706697769dc362df
 
                 #region General Accounts 17
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6311,22 +6303,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EmptaskDesk>)RptDataSet));
             return Rpt1a;
         }
-<<<<<<< HEAD
-
-        private static LocalReport SetRptAllDuesInfo(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
-        {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_99_AllInterface.AllDues>)RptDataSet));
-
-            return Rpt1a;
-        }
-
-=======
         private static LocalReport SetRptAllDuesInfo(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_99_AllInterface.AllDues>)RptDataSet));
             return Rpt1a;
         }
->>>>>>> 3de1d043a10f2accf9524a1c706697769dc362df
+
         private static LocalReport SetRptInterfaceLeave(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EInterfaceLeave>)RptDataSet));
