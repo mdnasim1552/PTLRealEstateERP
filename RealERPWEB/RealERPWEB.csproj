@@ -3140,6 +3140,7 @@
     <Content Include="F_81_Hrm\F_94_Task\RptTaskInfoDet.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskInfoDet.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
@@ -3153,6 +3154,7 @@
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
+    <Content Include="F_99_Allinterface\AIinterface.aspx" />
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
@@ -5089,12 +5091,26 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.designer.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.designer.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.designer.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
       <DependentUpon>CRMDashboard02.aspx</DependentUpon>
@@ -12313,6 +12329,7 @@
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
+    <Folder Include="F_38_AI\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />

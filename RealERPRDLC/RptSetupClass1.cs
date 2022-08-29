@@ -340,6 +340,10 @@ namespace RealERPRDLC
                 case "R_99_AllInterface.RptAllDuesInfo": Rpt1a = SetRptAllDuesInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptInterfaceLeave": Rpt1a = SetRptInterfaceLeave(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+                    //hr envelop
+                case "R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop": Rpt1a = SetRptHrmPaySlipEnvelop(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
+
                 #region General Accounts 17
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptCheque": Rpt1a = SetRptCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6311,6 +6315,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptInterfaceLeave(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EInterfaceLeave>)RptDataSet));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptHrmPaySlipEnvelop(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower.HrmEnvelopPrint>)RptDataSet));
 
             return Rpt1a;
         }

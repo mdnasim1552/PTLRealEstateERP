@@ -63,20 +63,20 @@
                     <Value>=Fields!Address1.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>6.5585cm</Top>
-            <Left>10.95058cm</Left>
-            <Height>0.81167cm</Height>
-            <Width>9.40562cm</Width>
+            <Top>5.6239cm</Top>
+            <Left>14.36371cm</Left>
+            <Height>0.86459cm</Height>
+            <Width>6.97145cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -97,20 +97,21 @@
                     <Value>=Fields!Name.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>5.10328cm</Top>
-            <Left>10.95058cm</Left>
-            <Height>0.83812cm</Height>
-            <Width>9.40562cm</Width>
+            <Top>5.12092cm</Top>
+            <Left>14.36371cm</Left>
+            <Height>0.46771cm</Height>
+            <Width>6.97145cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -123,10 +124,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>13.4673cm</Height>
+        <Height>10.68918cm</Height>
         <Style />
       </Body>
-      <Width>24.52687cm</Width>
+      <Width>23.44208cm</Width>
       <Page>
         <PageHeight>12.5cm</PageHeight>
         <PageWidth>25.5cm</PageWidth>
