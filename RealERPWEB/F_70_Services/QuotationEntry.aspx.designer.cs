@@ -240,13 +240,13 @@ namespace RealERPWEB.F_70_Services
         protected global::System.Web.UI.WebControls.LinkButton lnkSave;
 
         /// <summary>
-        /// lnkProceed control.
+        /// lnkClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkProceed;
+        protected global::System.Web.UI.WebControls.LinkButton lnkClose;
 
         /// <summary>
         /// CloseVehcl control.
