@@ -253,7 +253,7 @@ namespace RealERPWEB.F_17_Acc
 
             // Project Link
 
-            if ((actcode.Trim().Substring(0, 2) == "19" || actcode.Trim().Substring(0, 2) == "29" || actcode.Trim().Substring(0, 2) == "21") && actcode.Trim().Substring(8) != "0000")
+            if ((actcode.Trim().Substring(0, 2) == "19" || actcode.Trim().Substring(0, 2) == "29" || actcode.Trim().Substring(0, 2) == "21" || actcode.Trim().Substring(0, 2) == "14") && actcode.Trim().Substring(8) != "0000")
             {
 
 

@@ -1193,14 +1193,14 @@ namespace RealERPWEB.F_14_Pro
                     {
                         DataRow dr1 = tbl1.NewRow();
                         dr1["rsircode"] = mResCode2;
-                        dr1["rsirdesc1"] = tblreq.Select("rsircode='" + mResCode2 + "'")[0]["rsirdesc1"];
+                        dr1["rsirdesc1"] = tblreq.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ")[0]["rsirdesc1"];
                         dr1["spcfcod"] = "";
                         dr1["spcfdesc"] = "";// this.ddlSpecificationms.SelectedItem.Text.Trim();
                         dr1["flrcod"] = flrcod;
-                        dr1["flrdesc"] = tblreq.Select("flrcod='" + flrcod + "'")[0]["flrdesc"];
+                        dr1["flrdesc"] = tblreq.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ")[0]["flrdesc"];
 
-                        dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["qty"];
-                        dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["bgdrat"];
+                        dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
+                        dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
                         dr1["resrate1"] = 0;
                         dr1["resrate2"] = 0;
                         dr1["resrate3"] = 0;
