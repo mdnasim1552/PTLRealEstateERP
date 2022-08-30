@@ -314,7 +314,7 @@
                                      </HeaderTemplate>
                                     <ItemTemplate>
                                         <asp:CheckBox ID="isPrint" runat="server" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isPrint"))=="True" %>' />
-                                        <asp:LinkButton ID="lnkbtnEnvelop" Visible="false" runat="server" ToolTip="Print Envelop" CssClass="btn btn-xs btn-success" Style="margin: 2px" > <span class="fas fa-sm fa-print"></span></asp:LinkButton>
+                                        
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true" Font-size="16px" />
