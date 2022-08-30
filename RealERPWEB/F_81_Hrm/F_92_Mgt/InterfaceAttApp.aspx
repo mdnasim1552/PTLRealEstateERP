@@ -608,15 +608,15 @@
 
                         </div>
 
-<<<<<<< HEAD
-                        <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
-=======
-                        <div class="col-md-2">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary ">Filter</asp:Label>
-                                </div>
-                                <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control " AutoPostBack="True">
+
+                        
+
+                        <div class="col-md-2 col-lg-2 col-sm-6 mt-2">
+                           
+                               
+                                    <asp:Label ID="Label3" runat="server" CssClass="form-label">Filter</asp:Label>
+                              
+                                <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control chzn-select" AutoPostBack="True">
                                     <asp:ListItem Value="%%">All</asp:ListItem>
                          <%--           <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>--%>
                                     <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
@@ -624,22 +624,19 @@
                         <%--            <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
                                     <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>--%>
                                 </asp:DropDownList>
-                            </div>
+                            
                         </div>                      
-                        <div class="col-md-3">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <asp:Label ID="Label4" runat="server" CssClass="btn btn-secondary">ID Card</asp:Label>
-                                </div>
-                                <asp:TextBox ID="txtSearch"  runat="server" CssClass="form-control" placeholder="Type ID CARD..." ></asp:TextBox>
-                                <div class="input-group-prepend ">
+                        <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
+                         
+                             
+                                
                                     <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
-                                </div>
-                            </div>
+                                
+                            
                         </div>
->>>>>>> c1d2de22e70da1b1fdf34275881676e887982451
 
-                            <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
+
+                           <%-- <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>--%>
 
                         </div>
                         <%--  <div class="col-md-2">

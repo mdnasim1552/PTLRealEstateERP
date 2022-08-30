@@ -290,9 +290,9 @@
 
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
-                                        </asp:TemplateField>  
-                                        
-                                       <asp:TemplateField HeaderText="Qty">
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvtrnqty" runat="server" CssClass="GridLebel"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:Label>
@@ -796,8 +796,8 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         
-                                         <asp:TemplateField HeaderText="Qty">
+
+                                        <asp:TemplateField HeaderText="Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvtrnqty02" runat="server" CssClass="GridLebel"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:Label>
@@ -838,7 +838,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                      
+
 
                                         <asp:TemplateField HeaderText="Paid Amount">
                                             <ItemTemplate>
