@@ -55,8 +55,9 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -104,7 +105,6 @@
     <Folder Include="R_98_Purchase\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+AgeingDays.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProdCostAnalysis.datasource" />
@@ -250,9 +250,11 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptMonthlySalaryTaxFinlay.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+SalSummary2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceAttApp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceLeave.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmpOfferLetter.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
     <None Include="Properties\DataSources\RealERPEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
@@ -1143,6 +1145,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpEvaluation.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpperformance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\EmpFinalSettmnt.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceAttApp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceLeave.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptDateWiseEmpHold.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpApointmentLetter.rdlc" />
@@ -1166,6 +1169,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptIncrementStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_94_Task\RptTaskInfoDet.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_97_MIS\RptHrmPaySlipEnvelop.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_97_MIS\RptPromotionEnvelop.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptAllDuesInfo.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptBillCon.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCashRcv.rdlc" />

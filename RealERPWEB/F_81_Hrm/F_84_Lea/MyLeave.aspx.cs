@@ -85,7 +85,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 Hashtable hst2 = (Hashtable)Session["tblLogin"];
                 string usrRole = hst2["userrole"].ToString();
 
-                if (this.GetComeCode() == "3365" && usrRole == "3")
+
+                if (this.GetComeCode() == "3365" && qtype!="MGT")
                 {
 
                     DisabledCalender();

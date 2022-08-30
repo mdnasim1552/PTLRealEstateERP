@@ -193,11 +193,11 @@
                             ShowFooter="True" PageSize="300">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl #">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
-                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="15px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
                                 </asp:TemplateField>
@@ -222,10 +222,8 @@
                                 <asp:TemplateField HeaderText="Employee Name">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvdeptandemployeeemp" runat="server"
-                                            Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "empname").ToString().Trim().Length>0 ? 
-                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).Trim()+". "+
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
-                                            Width="200px"> 
+                                            Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "empname").ToString().Trim().Length>0 ? Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
+                                            Width="150px"> 
                                               
                                         </asp:Label>
                                     </ItemTemplate>
@@ -236,7 +234,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvdesignationemp" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                            Width="120px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
@@ -245,7 +243,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvdepname" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                            Width="100px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
@@ -268,7 +266,7 @@
                                         <asp:Label ID="lblgvbloodgrp" runat="server" BackColor="Transparent"
                                             BorderStyle="None"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "blood")) %>'
-                                            Width="60px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle" />
@@ -279,7 +277,7 @@
                                         <asp:Label ID="lblgvmobile" runat="server" BackColor="Transparent"
                                             BorderStyle="None"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobile")) %>'
-                                            Width="100px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle" />
@@ -290,7 +288,7 @@
                                         <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
                                             BorderStyle="None"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'
-                                            Width="150px"></asp:Label>
+                                            Width="100px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
                                     <ItemStyle HorizontalAlign="left" VerticalAlign="Middle" />
@@ -299,7 +297,7 @@
 
 
 
-                                <asp:TemplateField HeaderText="Service Length">
+                                <asp:TemplateField HeaderText="Service Length" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvserlength" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slength")) %>'
@@ -309,9 +307,14 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Envelop">
+                                 <asp:TemplateField HeaderText="Action">
+                                     <HeaderTemplate>
+                                          <asp:CheckBox ID="chkAllfrm" runat="server" AutoPostBack="True"
+                                                            OnCheckedChanged="chkAllfrm_CheckedChanged" Text="ALL " />
+                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkbtnEnvelop" runat="server" ToolTip="Print Envelop" CssClass="btn btn-xs btn-success" Style="margin: 2px" OnClick="lnkbtnEnvelop_Click" > <span class="fas fa-print"></span></asp:LinkButton>
+                                        <asp:CheckBox ID="isPrint" runat="server" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isPrint"))=="True" %>' />
+                                        <asp:LinkButton ID="lnkbtnEnvelop" Visible="false" runat="server" ToolTip="Print Envelop" CssClass="btn btn-xs btn-success" Style="margin: 2px" > <span class="fas fa-sm fa-print"></span></asp:LinkButton>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true" Font-size="16px" />
