@@ -602,15 +602,13 @@
                             </asp:DropDownList>
 
                         </div>
-                        <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
+         <%--               <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
                             <asp:Label ID="Label7" runat="server" CssClass="form-label">Card #</asp:Label>
                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Type ID CARD..."></asp:TextBox>
 
-                        </div>
+                        </div>--%>
 
-<<<<<<< HEAD
-                        <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
-=======
+
                         <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
@@ -637,11 +635,7 @@
                                 </div>
                             </div>
                         </div>
->>>>>>> c1d2de22e70da1b1fdf34275881676e887982451
 
-                            <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
-
-                        </div>
                         <%--  <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
