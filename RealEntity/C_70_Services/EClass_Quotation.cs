@@ -21,10 +21,14 @@ namespace RealERPEntity.C_70_Services
             public double qqty { get; set; }
             public double qamt { get; set; }
             public double chkqty { get; set; }
+            public double chkrate { get; set; }
             public double chkamt { get; set; }
             public double aprqty { get; set; }
+            public double aprrate { get; set; }
             public double apramt { get; set; }
             public double percnt { get; set; }
+            public double chkpercnt { get; set; }
+            public double aprpercnt { get; set; }
             public string type { get; set; }
         }
     }

@@ -231,6 +231,9 @@
     <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonSalPerTarWise.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherBDTropical.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherCCTropical.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherJVTropical.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood02.rdlc" />
