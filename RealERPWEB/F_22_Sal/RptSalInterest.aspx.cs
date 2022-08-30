@@ -1667,6 +1667,7 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["presentadd"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("notice", "N:B.In case of default of any payment within due date, delay charge will be applicable as per company policy"));
                     break;
                     
                 //case "3101": // epic 

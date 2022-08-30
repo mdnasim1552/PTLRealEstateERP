@@ -75,7 +75,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>2.05083in</Top>
-            <Left>4.14459in</Left>
+            <Left>4.82167in</Left>
             <Height>0.17362in</Height>
             <Width>3.02084in</Width>
             <Style>
@@ -110,7 +110,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
             <Top>2.22444in</Top>
-            <Left>4.14459in</Left>
+            <Left>4.82167in</Left>
             <Height>0.46528in</Height>
             <Width>3.02084in</Width>
             <ZIndex>1</ZIndex>
