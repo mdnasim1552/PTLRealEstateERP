@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -231,6 +231,9 @@
     <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonSalPerTarWise.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherBDTropical.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherCCTropical.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherJVTropical.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherGreenwood02.rdlc" />
