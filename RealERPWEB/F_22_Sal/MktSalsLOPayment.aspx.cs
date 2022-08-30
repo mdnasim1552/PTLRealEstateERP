@@ -36,8 +36,8 @@ namespace RealERPWEB.F_22_Sal
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES(LO) WITH PAYMENT" : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
-                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : "")))) + " INFORMATIOIN ";
+                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES (LO) WITH PAYMENT" : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
+                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : "")))) + " INFORMATION ";
 
                 Session.Remove("Unit");
                 this.chkVisible.Checked = false;
@@ -1427,7 +1427,7 @@ namespace RealERPWEB.F_22_Sal
 
 
                 DataView dv1 = dt.DefaultView;
-                dv1.RowFilter = ("schloamt>0");
+                dv1.RowFilter = ("schloamt > 0 or  schamt > 0");
                 dv1.Sort = "gcod";
                 Session["tblPay"] = dv1.ToTable();
                 this.gvPayment.DataSource = dv1.ToTable();
