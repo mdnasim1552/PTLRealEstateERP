@@ -3683,14 +3683,16 @@
                                                             </asp:TemplateField>--%>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
+                                                                     <asp:HyperLink ID="lnkbtnPOEdit" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-edit"></span>
 
+                                                                    </asp:HyperLink>
                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
-
+                                                                   
 
                                                                     <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
@@ -3708,8 +3710,8 @@
 
                                                                     <asp:LinkButton ID="btnDelOrder" runat="server"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>--%>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="140px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="140px" VerticalAlign="Top" />
+                                                                <ItemStyle Width="180px" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="180px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
 

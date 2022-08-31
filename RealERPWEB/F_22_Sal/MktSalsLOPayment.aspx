@@ -274,7 +274,7 @@
 
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Co-oparative">
+                                <asp:TemplateField HeaderText="Co-Operative">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvmincbmoney" runat="server" Style="text-align: right" BackColor="Transparent"
                                             BorderStyle="None"
@@ -543,7 +543,7 @@
                                             <asp:TemplateField HeaderText="Rate">
 
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lFinalUpdateCost" runat="server" CssClass="btn  btn-danger primaryBtn" OnClick="lFinalUpdateCost_Click"> Update  </asp:LinkButton>
+                                                    <asp:LinkButton ID="lFinalUpdateCost" runat="server" CssClass="btn  btn-success primaryBtn" OnClick="lFinalUpdateCost_Click"> Update  </asp:LinkButton>
                                                 </FooterTemplate>
 
                                                 <ItemTemplate>
@@ -721,7 +721,7 @@
                                                     <asp:TextBox ID="txthandoverdate" runat="server" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="txthandoverdate_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txthandoverdate"></cc1:CalendarExtender>
-                                                    <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn  btn-danger primaryBtn" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn  btn-success primaryBtn" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>
 
                                                 </div>
                                             </div>
@@ -745,7 +745,7 @@
                                             ShowFooter="True" OnRowDeleting="gvPayment_RowDeleting" OnRowDataBound="gvPayment_RowDataBound">
                                             <RowStyle />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Sl">
+                                                <asp:TemplateField HeaderText="Sl#">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
                                                             Style="text-align: right"
@@ -771,7 +771,7 @@
                                                             Width="330px" ForeColor="Black"></asp:TextBox>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-                                                        <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>
+                                                        <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-success primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>
                                                     </FooterTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

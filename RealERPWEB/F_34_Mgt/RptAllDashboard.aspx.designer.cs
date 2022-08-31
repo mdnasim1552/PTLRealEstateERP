@@ -60,6 +60,15 @@ namespace RealERPWEB.F_34_Mgt
         protected global::AjaxControlToolkit.CalendarExtender txtCurTransDate_CalendarExtender;
 
         /// <summary>
+        /// rbtList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtList;
+
+        /// <summary>
         /// OkBtn control.
         /// </summary>
         /// <remarks>

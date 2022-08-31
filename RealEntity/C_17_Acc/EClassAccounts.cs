@@ -1129,10 +1129,20 @@ namespace RealEntity.C_17_Acc
             public string bank { get; set; }
             public double cashamt { get; set; }
             public double chqamt { get; set; }
+            public double returnval { get; set; } 
+            public double payamt { get; set; } 
+            public double recvamt { get; set; } 
 
             public ChequeDepositPrint() { }
 
         }
+
+        
+
+
+
+
+
         [Serializable]
 
         public class RptCashBank
@@ -1209,6 +1219,31 @@ namespace RealEntity.C_17_Acc
 
             }
         }
+
+        [Serializable]
+        public class RptDuesReportAll
+        {
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string custname { get; set; }
+            public string Unitname { get; set; }
+            public string gdesc { get; set; }
+            public string schdat { get; set; }
+
+            public double pbookam { get; set; }
+            public double pinsam { get; set; }
+            public double cbookam { get; set; }
+            public double cinsam { get; set; }
+            public double todues { get; set; }
+           
+            
+            public RptDuesReportAll()
+            {
+
+            }
+        }
+
+
 
     }
 }

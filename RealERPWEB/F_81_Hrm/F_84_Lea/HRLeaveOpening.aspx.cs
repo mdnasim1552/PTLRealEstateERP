@@ -153,6 +153,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.LoadGrid();
 
         }
+
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -182,6 +183,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.gvLeaveRule.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvLeaveRule.DataSource = dt;
             this.gvLeaveRule.DataBind();
+
+
+            Session["Report1"] = gvLeaveRule;
+            ((HyperLink)this.gvLeaveRule.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {

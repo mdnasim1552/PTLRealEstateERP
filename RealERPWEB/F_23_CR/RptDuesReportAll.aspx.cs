@@ -54,12 +54,13 @@ namespace RealERPWEB.F_23_CR
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-           // ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
 
+       
 
         private void GetPrjName()
         {
@@ -629,6 +630,42 @@ namespace RealERPWEB.F_23_CR
         protected void chknetbalance_CheckedChanged(object sender, EventArgs e)
         {
            // this.lblnetbalance.Text = (this.chknetbalance.Checked) ? "Net Balance" : "Gross Balance";
+        }
+
+
+
+        private void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt = (DataTable)Session["tbldues"];
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("pactcode <> '' ");
+            dt = dv.ToTable();
+
+            LocalReport Rpt1 = new LocalReport();
+            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptDuesReportAll>();
+
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptDuesAllReports", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "All Dues Report"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
         }
     }
 }

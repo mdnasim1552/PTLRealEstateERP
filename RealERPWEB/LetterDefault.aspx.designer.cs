@@ -42,6 +42,33 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.Label lblmsg1;
 
         /// <summary>
+        /// pnl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl2;
+
+        /// <summary>
+        /// btnSendLetter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSendLetter;
+
+        /// <summary>
+        /// dnone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dnone;
+
+        /// <summary>
         /// panl1 control.
         /// </summary>
         /// <remarks>

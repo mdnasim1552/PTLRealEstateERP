@@ -45,7 +45,7 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
                 case "3340":
-                case "3101":
+                //case "3101":
                     this.Checkdaywise.Checked = true;
                     break;
 
@@ -282,7 +282,6 @@ namespace RealERPWEB.F_17_Acc
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
             DataTable dt1 = (DataTable)Session["tblaitvatsd"];
-
             DataTable dt = (DataTable)Session["tblaitvatsd"];
             DataView dv = dt.DefaultView;
             dv.RowFilter = "head1='03CT'";
@@ -304,12 +303,24 @@ namespace RealERPWEB.F_17_Acc
             string suborconname = this.lblValSubDescription.Text;
 
             string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
-
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
+            DataView dv1 = dt1.Copy().DefaultView;
+            dv1.RowFilter = ("grp='ZZ'");
+            DataTable dt2 = dv1.ToTable();
+
+            string sumop = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(opam)", "")) ? 0 
+                    : dt2.Compute("sum(opam)", ""))).ToString("#,##0;(#,##0); ");
+            string sumdr = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(dram)", "")) ? 0 
+                    : dt2.Compute("sum(dram)", ""))).ToString("#,##0;(#,##0); ");
+            string sumcr = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(cram)", "")) ? 0 
+                    : dt2.Compute("sum(cram)", ""))).ToString("#,##0;(#,##0); ");
+            string sumclsm = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(clsam)", "")) ? 0
+                    : dt2.Compute("sum(clsam)", ""))).ToString("#,##0;(#,##0); "); 
+
+
+
             var lst = dt1.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptAitVatSdDeduction>();
-
-
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccAitVatSd", lst, null, null);
             Rpt1.EnableExternalImages = true;
@@ -324,7 +335,12 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("cram", cram));
             Rpt1.SetParameters(new ReportParameter("clsam", clsam));
             Rpt1.SetParameters(new ReportParameter("date", date));
+            Rpt1.SetParameters(new ReportParameter("sumop", sumop));
+            Rpt1.SetParameters(new ReportParameter("sumdr", sumdr));
+            Rpt1.SetParameters(new ReportParameter("sumcr", sumcr));
+            Rpt1.SetParameters(new ReportParameter("sumclsm", sumclsm));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

@@ -36,7 +36,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 this.txtdate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.GetCompany();
                 this.GetIncreNo();
-                
+                this.tableintosession();
             }
 
         }
@@ -274,6 +274,8 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 this.ddlDept.Enabled = true;
                 this.ddlSection.Enabled = true;
                 this.txtdate.Enabled = true;
+                Session.Remove("tblAnnInc");
+                tableintosession();
                 return;
             }
 
@@ -745,5 +747,107 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             this.LoadGrid();
         }
 
+        protected void linkAddEmp_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+            string DeptCode = ((this.ddlDept.SelectedValue.ToString() == "000000000000") ? "" : this.ddlDept.SelectedValue.ToString().Substring(0, 9)) + "%";
+            string SecCode = ((this.ddlSection.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
+            string empID = ((this.ddlEmployee.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmployee.SelectedValue.ToString()) + "%";
+
+            string txtDate = this.GetStdDate(this.txtdate.Text);
+            DataSet ds2;
+            if (ddlPrevIncList.Items.Count == 0)
+            {
+                this.GetIncreNo();
+                string calltype = this.CompanyCalltype();
+
+                ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", calltype, Company, DeptCode, SecCode, txtDate, empID, "", "", "", "");
+            }
+            else
+            {
+
+                string preincreno = this.ddlPrevIncList.SelectedValue.ToString();
+                ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETPREINCREMENT", preincreno, txtDate, "", "", "", "", "", "", "");
+        
+
+            }
+            string empid = ds2.Tables[0].Rows[0]["empid"].ToString();
+            DataTable dt = (DataTable)Session["tblAnnInc"];
+            DataRow[] projectrow2 = dt.Select("empid = '" + empid + "'");
+            if (projectrow2.Length > 0)
+            {
+                return;
+
+            }
+       
+            DataRow drforgrid = dt.NewRow();
+            drforgrid["comcod"] = ds2.Tables[0].Rows[0]["comcod"].ToString();
+            drforgrid["companycod"] = ds2.Tables[0].Rows[0]["companycod"].ToString();
+            drforgrid["deptcode"] = ds2.Tables[0].Rows[0]["deptcode"].ToString();
+            drforgrid["seccode"] = ds2.Tables[0].Rows[0]["seccode"].ToString();
+            drforgrid["desigid"] = ds2.Tables[0].Rows[0]["desigid"].ToString();
+
+            drforgrid["empid"] = ds2.Tables[0].Rows[0]["empid"].ToString();
+            drforgrid["idcardno"] = ds2.Tables[0].Rows[0]["idcardno"].ToString();
+            drforgrid["empname"] = ds2.Tables[0].Rows[0]["empname"].ToString();
+            drforgrid["joindate"] = ds2.Tables[0].Rows[0]["joindate"].ToString();
+
+            drforgrid["confirmdate"] = ds2.Tables[0].Rows[0]["confirmdate"].ToString();
+            drforgrid["years"] = ds2.Tables[0].Rows[0]["years"].ToString();
+            drforgrid["months"] = ds2.Tables[0].Rows[0]["months"].ToString();
+            drforgrid["companyname"] = ds2.Tables[0].Rows[0]["companyname"].ToString();
+            drforgrid["deptname"] = ds2.Tables[0].Rows[0]["deptname"].ToString();
+            drforgrid["section"] = ds2.Tables[0].Rows[0]["section"].ToString();
+            drforgrid["desig"] = ds2.Tables[0].Rows[0]["desig"].ToString();
+            drforgrid["grossal"] = ds2.Tables[0].Rows[0]["grossal"].ToString();
+            drforgrid["inpercnt"] = ds2.Tables[0].Rows[0]["inpercnt"].ToString();
+            drforgrid["incamt"] = ds2.Tables[0].Rows[0]["incamt"].ToString();
+            drforgrid["finincamt"] = ds2.Tables[0].Rows[0]["finincamt"].ToString();
+            drforgrid["revisesal"] = ds2.Tables[0].Rows[0]["revisesal"].ToString();
+
+
+            dt.Rows.Add(drforgrid);
+            Session["tblAnnInc"] = dt;
+            this.LoadGrid();
+
+
+
+
+
+
+
+
+        }
+
+        protected void tableintosession()
+        {
+            DataTable dttemp = new DataTable();
+            dttemp.Columns.Add("comcod", Type.GetType("System.String"));
+            dttemp.Columns.Add("companycod", Type.GetType("System.String"));
+            dttemp.Columns.Add("deptcode", Type.GetType("System.String"));
+            dttemp.Columns.Add("seccode", Type.GetType("System.String"));
+            dttemp.Columns.Add("desigid", Type.GetType("System.String"));
+            dttemp.Columns.Add("empid", Type.GetType("System.String"));
+            dttemp.Columns.Add("idcardno", Type.GetType("System.String"));
+            dttemp.Columns.Add("empname", Type.GetType("System.String"));
+            dttemp.Columns.Add("joindate", Type.GetType("System.DateTime"));
+
+            dttemp.Columns.Add("confirmdate", Type.GetType("System.DateTime"));
+            dttemp.Columns.Add("years", Type.GetType("System.String"));
+            dttemp.Columns.Add("months", Type.GetType("System.String"));
+            dttemp.Columns.Add("companyname", Type.GetType("System.String"));
+            dttemp.Columns.Add("deptname", Type.GetType("System.String"));
+            dttemp.Columns.Add("section", Type.GetType("System.String"));
+            dttemp.Columns.Add("desig", Type.GetType("System.String"));
+            dttemp.Columns.Add("grossal", Type.GetType("System.Double"));
+            dttemp.Columns.Add("inpercnt", Type.GetType("System.Double"));
+
+            dttemp.Columns.Add("incamt", Type.GetType("System.Double"));
+            dttemp.Columns.Add("finincamt", Type.GetType("System.Double"));
+            dttemp.Columns.Add("revisesal", Type.GetType("System.Double"));
+            Session["tblAnnInc"] = dttemp;
+        }
     }
 }

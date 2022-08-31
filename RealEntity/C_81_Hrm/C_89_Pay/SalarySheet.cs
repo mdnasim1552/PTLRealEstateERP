@@ -554,7 +554,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double carloan { get; set; }
             public double carallow { get; set; }
             public double refund { get; set; }
-            public double elencash { get; set; }
+            public double elencash { get; set; }  
             public string grpcode { get; set; }
             public string grpdesc { get; set; }
             public string sectionname1 { get; set; }

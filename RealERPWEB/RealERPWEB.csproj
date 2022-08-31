@@ -177,9 +177,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> d6ef90e713b306501552ab7fea778237aedc0450
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -238,10 +242,6 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll</HintPath>
@@ -253,9 +253,15 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+
+      <HintPath>..\..\..\..\..\Newton json\Newtonsoft.Json.dll</HintPath>
+
+    </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Project 2013\TFS Interior\ASITInteriorERP\InteriorWEB\Bin\RealERPRPT.dll</HintPath>
+      <HintPath>H:\Compnay Database\Interior project 13\ASITInteriorERP 220816\InteriorWEB\Bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -332,6 +338,7 @@
     <Content Include="assets\css\reset.css" />
     <Content Include="assets\css\responsiveslides.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\images\delete.png" />
     <Content Include="assets\images\2.jpg" />
     <Content Include="assets\images\3.jpg" />
     <Content Include="assets\images\4.jpg" />
@@ -2213,6 +2220,7 @@
     <Content Include="F_09_PImp\RptSubConMonthlyBill.aspx" />
     <Content Include="F_09_PImp\RptSubConOverall02.aspx" />
     <Content Include="F_09_PImp\RptSubConStatus.aspx" />
+    <Content Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx" />
     <Content Include="F_09_PImp\RptSubContractorSd.aspx" />
     <Content Include="F_09_PImp\RptSubContractorTopSheet.aspx" />
     <Content Include="F_09_PImp\RptSubconWiseWrkOrder.aspx" />
@@ -2958,6 +2966,7 @@
     <Content Include="F_64_Mgt\TeamSeriCode.aspx" />
     <Content Include="F_64_Mgt\UserImage.aspx" />
     <Content Include="F_64_Mgt\UserLoginfrm.aspx" />
+    <Content Include="F_70_Services\QuotationEntry.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\AppLetCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ApplicantInfo.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ConfirmLetter.aspx" />
@@ -2983,6 +2992,7 @@
     <Content Include="F_81_Hrm\F_82_App\EmpBirthDeath.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpEntry02.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx" />
@@ -3025,6 +3035,7 @@
     <Content Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\TodayAttendanceSheet.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\YearlyHoliday.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\MyLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx" />
@@ -3119,6 +3130,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PayrollLink.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PrintLeaveInterface.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RetiredEmpFinalSett.aspx" />
@@ -3134,6 +3146,7 @@
     <Content Include="F_81_Hrm\F_94_Task\RptTaskInfoDet.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskInfoDet.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
@@ -3147,6 +3160,7 @@
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
+    <Content Include="F_99_Allinterface\AIinterface.aspx" />
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
@@ -3558,6 +3572,7 @@
     <Content Include="LogIn.aspx" />
     <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="Microsoft.ReportViewer.WinForms.dll" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
     <Content Include="MyShortCutLink.aspx" />
@@ -4010,6 +4025,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
+      <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.designer.cs">
+      <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
@@ -4515,6 +4537,13 @@
     <Compile Include="F_36_Vehcl\VehicleMgt.aspx.designer.cs">
       <DependentUpon>VehicleMgt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.designer.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx.cs">
       <DependentUpon>NewRecruitment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4528,6 +4557,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntry.aspx.designer.cs">
       <DependentUpon>EmpEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry02.aspx.cs">
+      <DependentUpon>EmpEntry02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry02.aspx.designer.cs">
+      <DependentUpon>EmpEntry02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
       <DependentUpon>EmpEntry01.aspx</DependentUpon>
@@ -4717,6 +4753,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx.designer.cs">
       <DependentUpon>RptWeekPresence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\TodayAttendanceSheet.aspx.cs">
+      <DependentUpon>TodayAttendanceSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\TodayAttendanceSheet.aspx.designer.cs">
+      <DependentUpon>TodayAttendanceSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\YearlyHoliday.aspx.cs">
       <DependentUpon>YearlyHoliday.aspx</DependentUpon>
@@ -5040,6 +5083,13 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.designer.cs">
       <DependentUpon>InterfaceHR.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx.cs">
+      <DependentUpon>LetterInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx.designer.cs">
+      <DependentUpon>LetterInterface.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5047,12 +5097,26 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.designer.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.designer.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.designer.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
       <DependentUpon>CRMDashboard02.aspx</DependentUpon>
@@ -12271,6 +12335,7 @@
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
+    <Folder Include="F_38_AI\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />

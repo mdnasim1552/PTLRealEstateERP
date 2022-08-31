@@ -114,6 +114,19 @@
                                 <asp:DropDownList ID="ddlSuplist" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
+                         <div class="col-md-2" >
+                            
+                             <asp:Label ID="Label1" runat="server" Font-Size="16px">Status Type</asp:Label>
+                            <asp:RadioButtonList ID="rbtnAtStatus" runat="server" AutoPostBack="True"  Style="border-radius: 5px; padding: 0 5px;"
+                                CssClass="custom-control custom-control-inline custom-checkbox rbtnAtStatus d-block p-0 mt-3"
+                                Font-Bold="True" Font-Size="12px" ForeColor="Black" 
+                                RepeatDirection="Horizontal">
+                                <asp:ListItem Selected="True">&nbsp; Advanced &nbsp;&nbsp;</asp:ListItem>
+                                <asp:ListItem>&nbsp; Bill</asp:ListItem>
+
+                            </asp:RadioButtonList>
+
+                        </div>
 
                         <div class="col-md-1">
                             <div class="form-group">
@@ -129,9 +142,7 @@
 
             <div class="card card-fluid" style="min-height: 250px;">
                 <div class="card-body">
-                    <asp:MultiView ID="MultiView1" runat="server">
-                        <asp:View ID="ViewOtherCharge" runat="server">
-
+                   
                             <asp:GridView ID="gvsupstatus" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
@@ -267,9 +278,6 @@
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
 
-
-                        </asp:View>
-                    </asp:MultiView>
 
                 </div>
             </div>

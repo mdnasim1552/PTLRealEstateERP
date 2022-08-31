@@ -221,7 +221,7 @@ namespace RealERPWEB.F_23_CR
                     switch (comcod)
                     {
                         case "3336":
-                        case "3101":
+                       // case "3101":
                         case "3344":
                         case "3347":
                             this.PrintDuesTerranova();

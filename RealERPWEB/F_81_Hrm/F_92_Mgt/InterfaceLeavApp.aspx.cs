@@ -19,6 +19,8 @@ using RealERPLIB;
 using RealERPRPT;
 using RealEntity;
 using RealEntity.C_22_Sal;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 {
     public partial class InterfaceLeavApp : System.Web.UI.Page
@@ -38,12 +40,44 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
+                this.GetCompany();
+               
+
                 this.SelectDate();
+                this.GetLeaveType();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
-                GetStep();
+                this.visibilityBracnh();
+                this.GetBranch();
+            
+                this.GetStep();
                 this.SaleRequRpt();
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
+            }
+        }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        }
+
+        private void visibilityBracnh()
+        {
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3315":
+                case "3347":
+                case "3353":
+                case "3358":
+                    this.divBracnhLsit.Visible = false;
+                    this.ddlBranch.Items.Clear();
+                    break;
+                default:
+                    this.divBracnhLsit.Visible = true;
+                    break;
             }
         }
 
@@ -84,6 +118,19 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //dpthead_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_DPTHEAD"]);
             //mgt_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_MGTHEAD"]);
         }
+
+        private void GetLeaveType()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETGENLEAVETYPE", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddleavetype.DataTextField = "hrgdesc";
+            this.ddleavetype.DataValueField = "hrgcod";
+            this.ddleavetype.DataSource = ds1.Tables[0];
+            this.ddleavetype.DataBind();
+            this.ddleavetype.Items.Insert(0, new ListItem("--Select Leave Type--", ""));
+        }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
         }
@@ -102,6 +149,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             this.SaleRequRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+            //Comment
         }
         //protected void lnkOk_Click(object sender, EventArgs e)
         //{
@@ -139,7 +188,17 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
             string searchkey = "%"+this.txtSearch.Text.Trim()+"%";
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", fDate, tDate, usrid, type, DeptHead, searchkey, "", "", "");
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? branch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
+            string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
+
+            string leavtype = this.ddleavetype.SelectedValue.ToString()==""? "%%":this.ddleavetype.SelectedValue.ToString();
+
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", fDate, tDate, usrid, type, DeptHead, searchkey,
+                CompanyName, branch, projectcode, section, leavtype);
             if (ds1 == null)
                 return;
 
@@ -247,6 +306,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                    Session["Report1"] = gvLvReq;
+                    ((HyperLink)this.gvLvReq.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
                 case "gvInprocess":
                     this.gvInprocess.DataSource = (dt);
@@ -254,6 +315,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                 
                     break;
                 case "gvApproved":
                     this.gvApproved.DataSource = (dt);
@@ -261,17 +323,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     if (dt.Rows.Count == 0)
                         return;
+                  
                     break;
                 case "gvfiApproved":
                     this.gvfiApproved.DataSource = (dt);
                     this.gvfiApproved.DataBind();
+                  
                     break;
                 case "gvConfirm":
                     this.gvConfirm.DataSource = (dt);
                     this.gvConfirm.DataBind();
 
                     if (dt.Rows.Count == 0)
-                        return;
+                        return;                   
+
                     break;
             }
         }
@@ -627,5 +692,139 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
         }
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)ViewState["tbltotalleav"];
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EInterfaceLeave>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptInterfaceLeave", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comname));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Task Info Dept"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+        private void GetCompany()
+        {
+         
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            string txtCompany = "94%";
+            DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtCompany, userid, "", "", "", "", "", "", "");
+            // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
+
+
+            this.ddlCompany.DataTextField = "actdesc";
+            this.ddlCompany.DataValueField = "actcode";
+            this.ddlCompany.DataSource = ds1.Tables[0];
+            this.ddlCompany.DataBind();
+            Session["tblcompany"] = ds1.Tables[0];
+            //this.ddlCompany_SelectedIndexChanged(null, null);
+            ds1.Dispose();
+        }
+        private void GetBranch()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            if (this.ddlCompany.Items.Count == 0)
+                return;
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+            string txtSProject = "%";
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETBRANCH", Company, txtSProject, "", "", "", "", "", "", "");
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETBRANCH_NEW", Company, userid, "", "", "", "", "", "", "");
+
+            this.ddlBranch.DataTextField = "actdesc";
+            this.ddlBranch.DataValueField = "actcode";
+            this.ddlBranch.DataSource = ds1.Tables[0];
+            this.ddlBranch.DataBind();
+            this.ddlBranch_SelectedIndexChanged(null, null);
+        }
+       
+        private void GetProjectName()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            if (this.ddlCompany.Items.Count == 0)
+                return;
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            string txtSProject = "%%";
+            //  DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", branch, txtSProject, "", "", "", "", "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETDPTLIST_NEW", branch, userid, "", "", "", "", "", "", "");
+            this.ddlProjectName.DataTextField = "actdesc";
+            this.ddlProjectName.DataValueField = "actcode";
+            this.ddlProjectName.DataSource = ds1.Tables[0];
+            this.ddlProjectName.DataBind();
+            this.ddlProjectName_SelectedIndexChanged(null, null);
+            // this.SectionName();
+        }
+        private void SectionName()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            //  string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
+            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
+            string txtSSec = "%%";
+            // DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
+
+            DataSet ds2 = accData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETSECTION_LIST", projectcode, userid, "", "", "", "", "", "", "");
+
+            this.ddlSection.DataTextField = "sectionname";
+            this.ddlSection.DataValueField = "section";
+            this.ddlSection.DataSource = ds2.Tables[0];
+            this.ddlSection.DataBind();
+            // this.GetEmpName();
+            //ddlSection_SelectedIndexChanged(null, null);
+        }
+        protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3315":
+                case "3347":
+                case "3353":
+                case "3358":
+                    this.divBracnhLsit.Visible = false;
+                    this.ddlBranch.Items.Clear();
+                    this.GetProjectName();
+                    break;
+
+                default:
+                    this.GetBranch();
+                    break;
+
+            }
+            }
+            protected void ddlBranch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectName();
+        }
+        protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SectionName();
+        }
     }
+
 }

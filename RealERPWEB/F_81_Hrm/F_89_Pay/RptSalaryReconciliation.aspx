@@ -217,7 +217,7 @@
                                 <asp:TemplateField HeaderText="Prev. Amt.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvPrevAmt" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preamt")).ToString("#,##0;(#,##0); ") %>'
-                                            Font-Size="12px" Width="80px"></asp:Label>
+                                            Font-Size="12px" Width="100px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
 

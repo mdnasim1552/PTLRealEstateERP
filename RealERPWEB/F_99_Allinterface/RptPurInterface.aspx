@@ -575,13 +575,9 @@
         $(document).ready(function () {
 
             //For navigating using left and right arrow of the keyboard
+            pageLoaded();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
         });
-
-
-
         function pageLoaded() {
 
             try {
@@ -3610,12 +3606,16 @@
                                                                 <ItemTemplate>
 
                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
-
-                                                                    </asp:HyperLink>
-                                                                    <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
-
                                                                     </asp:HyperLink>
 
+                                                                    <asp:LinkButton ID="lnkRdlcPrint_Recived" OnClick="lnkRdlcPrint_Recived_Click" Visible="true" runat="server" ToolTip="Print RDLC" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:LinkButton>
+                                                                    
+                                                                    <%--<asp:Button ID="HyperLink2" runat="server" CssClass="btn btn-default btn-xs" Visible="true" OnClientClick="" ToolTip="Print RDLC"><span class="fa fa-print"></span> </asp:Button>--%>
+                                                                   <%-- <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank"   CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+
+                                                                    </asp:HyperLink>--%>
+                                                                     <%--<asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank"    CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+                                                                    </asp:HyperLink>--%>
 
                                                                     <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 

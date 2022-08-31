@@ -119,7 +119,7 @@
                                             <asp:ListItem>With Post Dated</asp:ListItem>
                                             <asp:ListItem>Current Dated</asp:ListItem>
                                             <asp:ListItem>Actual Dated</asp:ListItem>
-                                            <asp:ListItem>Reconcile Dated</asp:ListItem>
+                                            <asp:ListItem>Collection Statement</asp:ListItem>
                                             <asp:ListItem>Entry Date </asp:ListItem>
                                             <asp:ListItem>Cheque In Hand </asp:ListItem>
 
@@ -372,7 +372,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcGrpt" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="65px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -380,7 +380,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcMRNo" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -390,7 +390,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcMRDat" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrdate1")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="65px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -401,7 +401,7 @@
                                              <HeaderTemplate>
 
                                                          <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                        Text="Project Description" Width="150px"></asp:Label>
+                                                                        Text="Project Description" Width="180px"></asp:Label>
 
 
                                                         <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
@@ -412,7 +412,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgcProDesc" runat="server"
                                                     Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
-                                                    Width="200px"></asp:Label>
+                                                    Width="180px"></asp:Label>
                                             </ItemTemplate>
                                              <FooterTemplate>
                                                 <asp:Label ID="lgvTotalnagad" runat="server" Font-Bold="True" Font-Size="12px"
@@ -474,6 +474,15 @@
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Mobile No">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvmobileNo" runat="server" Style="text-align: left"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobileno")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
