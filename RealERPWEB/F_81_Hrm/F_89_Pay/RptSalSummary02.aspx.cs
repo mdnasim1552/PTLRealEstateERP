@@ -3235,6 +3235,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
         }
 
- 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
     }
 }

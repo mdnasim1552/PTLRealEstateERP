@@ -580,8 +580,6 @@
                             <asp:TextBox ID="txFdate" runat="server" CssClass="form-control"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Enabled="True"
                                 Format="dd-MMM-yyyy" TargetControlID="txFdate"></cc1:CalendarExtender>
-
-
                         </div>
 
 
@@ -602,56 +600,30 @@
                             </asp:DropDownList>
 
                         </div>
-         <%--               <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
+                                       <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
                             <asp:Label ID="Label7" runat="server" CssClass="form-label">Card #</asp:Label>
                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Type ID CARD..."></asp:TextBox>
 
-                        </div>--%>
+                        </div>
 
-
-<<<<<<< HEAD
                         <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary ">Filter</asp:Label>
                                 </div>
                                 <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control " AutoPostBack="True">
-=======
-
-                        
-
-                        <div class="col-md-2 col-lg-2 col-sm-6 mt-2">
-                           
-                               
-                                    <asp:Label ID="Label3" runat="server" CssClass="form-label">Filter</asp:Label>
-                              
-                                <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control chzn-select" AutoPostBack="True">
->>>>>>> e7ea36740000fa8aa9227a06a041439684814eb0
-                                    <asp:ListItem Value="%%">All</asp:ListItem>
-                         <%--           <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>--%>
-                                    <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
-                                    <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
-                        <%--            <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
-                                    <asp:ListItem Value="TLV">Time of Leave</asp:ListItem>--%>
                                 </asp:DropDownList>
-                            
-                        </div>                      
-                        <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
-                         
-                             
-                                
-                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
-                                
-                            
-                        </div>
 
-<<<<<<< HEAD
-=======
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
 
-                           <%-- <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>--%>
+
+                                <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
+                                
+                            
+                            </div>
 
                         </div>
->>>>>>> e7ea36740000fa8aa9227a06a041439684814eb0
                         <%--  <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
@@ -1630,8 +1602,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <asp:Panel ID="pnlReport" runat="server" Visible="False">
                 <asp:Panel ID="pnlTrade" runat="server" Visible="false">

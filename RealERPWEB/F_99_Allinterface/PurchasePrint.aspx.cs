@@ -3776,6 +3776,12 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string Calltype = this.PrintCallType();
                 string ordercopy = this.GetCompOrderCopy();
+                string PrintOpt = this.Request.QueryString["PrintOpt"].ToString()??"";
+
+                  PrintOpt = PrintOpt.Length>0? PrintOpt:((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+
+
+
                 DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", Calltype, wrkid, ordercopy, "", "", "", "", "", "", "");
 
 
@@ -4609,8 +4615,11 @@ namespace RealERPWEB.F_99_Allinterface
 
                 else
                 {
-                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
+
+                    //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                    //      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                    // ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=EXCEL', target='_self');</script>";
                 }
 
 
