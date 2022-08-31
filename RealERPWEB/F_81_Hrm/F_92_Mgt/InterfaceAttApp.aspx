@@ -602,21 +602,21 @@
                             </asp:DropDownList>
 
                         </div>
-         <%--               <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
+               <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
                             <asp:Label ID="Label7" runat="server" CssClass="form-label">Card #</asp:Label>
                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Type ID CARD..."></asp:TextBox>
 
-                        </div>--%>
+                        </div>
 
 
-<<<<<<< HEAD
-                        <div class="col-md-2">
+
+<%--                        <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary ">Filter</asp:Label>
                                 </div>
                                 <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control " AutoPostBack="True">
-=======
+--%>
 
                         
 
@@ -626,7 +626,7 @@
                                     <asp:Label ID="Label3" runat="server" CssClass="form-label">Filter</asp:Label>
                               
                                 <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control chzn-select" AutoPostBack="True">
->>>>>>> e7ea36740000fa8aa9227a06a041439684814eb0
+
                                     <asp:ListItem Value="%%">All</asp:ListItem>
                          <%--           <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>--%>
                                     <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
@@ -645,13 +645,12 @@
                             
                         </div>
 
-<<<<<<< HEAD
-=======
+
 
                            <%-- <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>--%>
 
                         </div>
->>>>>>> e7ea36740000fa8aa9227a06a041439684814eb0
+
                         <%--  <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
