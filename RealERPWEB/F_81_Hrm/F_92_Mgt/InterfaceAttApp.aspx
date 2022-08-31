@@ -600,11 +600,11 @@
                             </asp:DropDownList>
 
                         </div>
-                        <%--               <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
+                                       <div class="col-md-2 col-lg-2 col-sm-6  mt-2">
                             <asp:Label ID="Label7" runat="server" CssClass="form-label">Card #</asp:Label>
                             <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Type ID CARD..."></asp:TextBox>
 
-                        </div>--%>
+                        </div>
 
                         <div class="col-md-2">
                             <div class="input-group input-group-alt">
