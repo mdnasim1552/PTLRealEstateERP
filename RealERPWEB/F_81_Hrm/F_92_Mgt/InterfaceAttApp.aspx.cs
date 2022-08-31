@@ -179,7 +179,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string type = "";//(this.Request.QueryString["Type"]) == "Ind" || (this.Request.QueryString["Type"] == "DeptHead") ? "" : "Management";
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
             string reqtyp = this.ddrequesttype.SelectedValue.ToString();
-            string searchkey = "%" + this.txtSearch.Text.Trim() + "%";
+            //string searchkey = "%" + this.txtSearch.Text.Trim() + "%";
+            string searchkey = "%";
+            //+ this.txtSearch.Text.Trim() + "%";
+
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);

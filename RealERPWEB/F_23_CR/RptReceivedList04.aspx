@@ -1624,8 +1624,12 @@
                                             <asp:TemplateField HeaderText="Current Dues Date">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvcurduesdate" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "curduesdate"))%>'
-                                                        Width="65px"></asp:Label>
+
+                                                   <asp:Label ID="lgvcurduesdate" runat="server" 
+                                            Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "curduesdate")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "curduesdate")).ToString("dd-MMM-yyyy")) %>'
+                                            Width="65px" ></asp:Label>
+                                                    <%--<asp:Label ID="lgvcurduesdate" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "curduesdate"))%>'
+                                                        Width="65px"></asp:Label>--%>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="Left" />
