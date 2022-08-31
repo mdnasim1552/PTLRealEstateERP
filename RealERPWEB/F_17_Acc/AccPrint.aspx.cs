@@ -792,6 +792,10 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintGreenwood";
                     break;
 
+                case "3339":
+                    vouprint = "VocherPrintTropical";
+                    break;
+
                 default:
                     vouprint = "VocherPrintMod";
                     break;
@@ -1483,20 +1487,102 @@ namespace RealERPWEB.F_17_Acc
                     {
                         string vouno = vounum.Substring(0, 2);
                         string paytoorecived = (vouno == "BC" || vouno == "CC") ? "Recieved From" : "Pay To";
-                        string prjdesc = "";
-
-                        switch (comcod)
+                        string prjdesc = prjdesc = ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? "Project" : "Head Office";
+                        if (vouno == "BC" || vouno == "CC")
                         {
-                            case "3339":
+                            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherAlli02", list, null, null);
+                            Rpt1.EnableExternalImages = true;
+                            Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
+                            Rpt1.SetParameters(new ReportParameter("voudat", voudat));
+                            Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                            Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+                            Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto));
+                            Rpt1.SetParameters(new ReportParameter("txtProject", prjdesc));
+                            Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                            Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                            Rpt1.SetParameters(new ReportParameter("username", postuser));
+                            Rpt1.SetParameters(new ReportParameter("txtRecvby", (comcod == "3333") ? "" : "Received By"));
+                            Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                            Rpt1.SetParameters(new ReportParameter("txtcheckby", (comcod == "3333") ? "" : Checkby));
+                            Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
+                            Rpt1.SetParameters(new ReportParameter("txtaprvby2", aprvby2));
+                            Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
+                            Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
+                            //Rpt1.SetParameters(new ReportParameter("paytoorecived", paytoorecived));
+                            Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
 
-                                // || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1901") 
+                        }
+                        else
+                        {
 
-                                prjdesc = (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1301" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16"
-                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1901") || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1902") || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 2) == "29") || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "27"
-                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "39" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2201" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2301" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26") ?
+                            if (vouno == "BD" || vouno == "CD" || vouno == "CT")
+                            {
 
+                                var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+
+                                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherAlli03", list, null, null);
+                                Rpt1.EnableExternalImages = true;
+                                Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
+                                Rpt1.SetParameters(new ReportParameter("voudat", voudat));
+                                Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                                Rpt1.SetParameters(new ReportParameter("txtissuno", "Payment ID : " + dt1.Rows[0]["isunum"].ToString()));
+                                Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+                                Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto));
+                                Rpt1.SetParameters(new ReportParameter("txtProject", prjdesc));
+                                Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                                Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                                Rpt1.SetParameters(new ReportParameter("username", postuser));
+                                Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                                Rpt1.SetParameters(new ReportParameter("txtcheckby", (comcod == "3333") ? "" : Checkby));
+                                Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
+                                Rpt1.SetParameters(new ReportParameter("txtaprvby2", aprvby2));
+                                Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
+                                Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
+                                Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+
+                            }
+
+                        }
+                    }
+
+                } 
+               
+                else if (Type == "VocherPrintTropical")
+                {
+                    if (ASTUtility.Left(vounum, 2) == "JV")
+                    {                      
+                        var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherJVTropical", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+                        Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                        Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                        Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                        Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                        Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                        Rpt1.SetParameters(new ReportParameter("username", postuser));
+                        Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                        Rpt1.SetParameters(new ReportParameter("txtcheckby", Checkby));
+                        Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
+                        Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
+
+                    }
+                    else
+                    {
+                        string vouno = vounum.Substring(0, 2);
+                        string paytoorecived = (vouno == "BC" || vouno == "CC") ? "Recieved From" : "Pay To";
+                        string prjdesc = (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1301" 
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16"
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" 
+                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1901") 
+                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1902") 
+                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 2) == "29") 
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "27"
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "39" 
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2201" 
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2301" 
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26") ?
                                      (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1301" ? dt.Rows[0]["actdesc"].ToString().Replace("ADVANCE-", "")
-
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" ? dt.Rows[0]["actdesc"].ToString().Replace("WIP-", "")
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" ? dt.Rows[0]["actdesc"].ToString().Replace("AR-", "")
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "39" ? dt.Rows[0]["actdesc"].ToString().Replace("NOI-", "")
@@ -1507,24 +1593,14 @@ namespace RealERPWEB.F_17_Acc
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2201" ? dt.Rows[0]["actdesc"].ToString().Replace("LOAN-", "")
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2301" ? dt.Rows[0]["actdesc"].ToString().Replace("TVS-", "")
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? dt.Rows[0]["actdesc"].ToString().Replace("AP-", "") : "")
-                                    : (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "2303") ? dt1.Rows[0]["cactdesc"].ToString().Replace("CASH-", "") : "Head Office";
-                                break;
+                                    : (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "2303") ? dt1.Rows[0]["cactdesc"].ToString().Replace("CASH-", "")                                     
+                                    : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1401" ? dt.Rows[0]["pactdesc"].ToString()                                    
+                                    : "Head Office";
 
-
-
-
-                            default:
-
-                                prjdesc = ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? "Project" : "Head Office";
-                                break;
-
-                        }
                         if (vouno == "BC" || vouno == "CC")
                         {
-
-
                             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherAlli02", list, null, null);
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherCCTropical", list, null, null);
                             Rpt1.EnableExternalImages = true;
                             Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
                             Rpt1.SetParameters(new ReportParameter("voudat", voudat));
@@ -1556,7 +1632,7 @@ namespace RealERPWEB.F_17_Acc
 
                                 var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
 
-                                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherAlli03", list, null, null);
+                                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherBDTropical", list, null, null);
                                 Rpt1.EnableExternalImages = true;
                                 Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
                                 Rpt1.SetParameters(new ReportParameter("voudat", voudat));

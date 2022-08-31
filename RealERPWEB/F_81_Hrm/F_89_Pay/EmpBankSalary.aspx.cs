@@ -469,6 +469,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementFinlay();
                     break;
 
+                case "3365":
+                    this.PrintBankStatementFinlay();
+                    break;
+
                 default:
                     this.PrintrptBankStatement();
                     break;

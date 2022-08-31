@@ -575,13 +575,9 @@
         $(document).ready(function () {
 
             //For navigating using left and right arrow of the keyboard
+            pageLoaded();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
         });
-
-
-
         function pageLoaded() {
 
             try {
