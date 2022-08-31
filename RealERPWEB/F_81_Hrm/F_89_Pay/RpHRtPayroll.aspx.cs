@@ -86,7 +86,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
             string type = this.Request.QueryString["Type"].ToString().Trim();
-            if (type == "Salary" || type == "SalResign")
+            if (type == "Salary" || type == "SalResign") 
             {
                 ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkTotal_Click);
                 ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFiUpdate_Click);

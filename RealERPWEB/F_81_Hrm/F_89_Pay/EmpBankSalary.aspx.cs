@@ -387,7 +387,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 this.FooterCalculation();
                 Session["Report1"] = gvBankPayment;
-                ((HyperLink)this.gvBankPayment.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                ((HyperLink)this.gvBankPayment.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                 //  ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             }
             if (Request.QueryString["Type"].ToString() == "Entry")
@@ -1498,6 +1498,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)e.Row.FindControl("lblgvAmt")).Text = Convert.ToDouble(((Label)e.Row.FindControl("lblgvAmt")).Text).ToString("#,##0;(#,##0); ");
                 }
             }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
         }
     }
 }
