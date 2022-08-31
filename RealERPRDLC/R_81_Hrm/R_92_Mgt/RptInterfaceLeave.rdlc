@@ -26,7 +26,7 @@
       <Fields>
         <Field Name="aplydat">
           <DataField>aplydat</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="bankamt">
           <DataField>bankamt</DataField>
@@ -74,7 +74,7 @@
         </Field>
         <Field Name="enddat">
           <DataField>enddat</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="idcard">
           <DataField>idcard</DataField>
@@ -106,7 +106,7 @@
         </Field>
         <Field Name="strtdat">
           <DataField>strtdat</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="toamt">
           <DataField>toamt</DataField>
@@ -828,7 +828,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!aplydat.Value</Value>
+                                  <Value>=CDate(Fields!aplydat.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -863,7 +863,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!strtdat.Value</Value>
+                                  <Value>=CDate(Fields!strtdat.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -898,7 +898,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!enddat.Value</Value>
+                                  <Value>=CDate(Fields!enddat.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1133,7 +1133,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.23833in</Top>
+              <Top>0.22444in</Top>
               <Left>1.23958in</Left>
               <Height>0.1875in</Height>
               <Width>8.72792in</Width>

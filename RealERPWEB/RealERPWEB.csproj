@@ -179,7 +179,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
       <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> d6ef90e713b306501552ab7fea778237aedc0450
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -251,7 +255,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+
+      <HintPath>..\..\..\..\..\Newton json\Newtonsoft.Json.dll</HintPath>
+
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3140,6 +3146,7 @@
     <Content Include="F_81_Hrm\F_94_Task\RptTaskInfoDet.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskInfoDet.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
@@ -3153,6 +3160,7 @@
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
+    <Content Include="F_99_Allinterface\AIinterface.aspx" />
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
@@ -5089,12 +5097,26 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.designer.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.designer.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.designer.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
       <DependentUpon>CRMDashboard02.aspx</DependentUpon>
@@ -12309,10 +12331,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\images\AIimage\" />
     <Folder Include="bin\" />
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
+    <Folder Include="F_38_AI\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />

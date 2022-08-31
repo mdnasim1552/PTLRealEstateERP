@@ -19,10 +19,60 @@ namespace RealERPWEB.F_70_Services
             if (!IsPostBack)
             {
                 txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                Init();       
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Budget";               
+                Init();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Service Quotation";
+                string type = Request.QueryString["Type"] ?? "";
+                if (type != "")
+                {
+                    if (type != "Entry")
+                    {
+                        EditFunctionality();
+                    }
+                    if (type == "Approval" || type == "ApprovalEdit")
+                    {
+                        lnkSave.Text = "Approval";
+                    }
+                }
             }
         }
+        private void EditFunctionality()
+        {
+            string type = Request.QueryString["Type"] ?? "";
+            string comcod = GetComCode();
+            string quotid = Request.QueryString["QId"] == null ? "" : Request.QueryString["QId"].ToString();
+            string status = (type == "Edit" || type == "Check") ? "1" : (type == "CheckEdit" || type == "Approval") ? "2" : "3";
+            string isType = type;
+            if (quotid != "" || quotid.Length > 0)
+            {
+                DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "EDITINFOQUOT", quotid, status, isType, "", "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    return;
+                }
+                DataTable dt1 = ds.Tables[0];
+                List<EQuotation> dt2 = ds.Tables[1].DataTableToList<EQuotation>();
+                if (dt1.Rows.Count > 0)
+                {
+                    ddlCustomer.SelectedValue = dt1.Rows[0]["customerid"].ToString();
+                    txtEntryDate.Text = dt1.Rows[0]["quotdate"].ToString();
+                    txtNarration.Text = dt1.Rows[0]["remarks"].ToString();
+                    lblQuotation.Text = dt1.Rows[0]["quotid"].ToString();
+                    txtquotno.Text = dt1.Rows[0]["quotid1"].ToString();
+                    if (type != "Edit")
+                    {
+                        ddlCustomer.Enabled = false;
+                        txtEntryDate.Enabled = false;
+                        btnaddcustomer.Enabled = false;
+                        btnAddResource.Enabled = false;
+                    }
+                }
+                ViewState["MaterialList"] = dt2;
+                lbtnTotal_Click(null, null);
+            }
+
+        }
+
         private string GetComCode()
         {
             try
@@ -37,7 +87,7 @@ namespace RealERPWEB.F_70_Services
 
         }
 
-        
+
         private void getWorkType()
         {
             try
@@ -74,7 +124,7 @@ namespace RealERPWEB.F_70_Services
                     return;
                 }
                 ViewState["MaterialWithUnit"] = ds.Tables[0];
-                ddlResource.DataSource = ds.Tables[0];                
+                ddlResource.DataSource = ds.Tables[0];
                 ddlResource.DataTextField = "sirdesc";
                 ddlResource.DataValueField = "sircode";
                 ddlResource.DataBind();
@@ -109,7 +159,7 @@ namespace RealERPWEB.F_70_Services
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
                     return;
                 }
-                ddlCustomer.DataSource = ds.Tables[0];                
+                ddlCustomer.DataSource = ds.Tables[0];
                 ddlCustomer.DataTextField = "sirdesc";
                 ddlCustomer.DataValueField = "sircode";
                 ddlCustomer.DataBind();
@@ -158,6 +208,7 @@ namespace RealERPWEB.F_70_Services
         {
             try
             {
+                getUnit();
                 string worktype = ddlWorkType.SelectedValue.ToString();
                 string worktypedesc = ddlWorkType.SelectedItem.Text;
                 string material = ddlResource.SelectedValue.ToString();
@@ -165,20 +216,26 @@ namespace RealERPWEB.F_70_Services
                 string unit = lblUnit.Text;
                 double sirval = Convert.ToDouble(lblsirval.Text == "" ? "0.00" : lblsirval.Text);
                 List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-                //SessionMaterialList();
-                var value = obj.Where(x => x.resourcecode == material && x.worktypecode==worktype).Any();
+                SessionMaterialList();
+                var value = obj.Where(x => x.resourcecode == material && x.worktypecode == worktype).Any();
                 if (!value)
                 {
                     obj.Add(new EQuotation
                     {
-                        worktypecode=worktype,
-                        worktypedesc=worktypedesc,
+                        worktypecode = worktype,
+                        worktypedesc = worktypedesc,
                         resourcecode = material,
                         resourcedesc = materialdesc,
                         unit = unit,
                         qrate = sirval,
                         qqty = 0,
                         qamt = 0,
+                        chkamt = 0,
+                        chkrate = sirval,
+                        chkqty = 0,
+                        aprqty = 0,
+                        aprrate = sirval,
+                        apramt = 0,
                         percnt = 0,
                         type = material == "049700101001" ? "Z" : "A"
                     });
@@ -192,7 +249,7 @@ namespace RealERPWEB.F_70_Services
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Already Added-{materialdesc}" + "');", true);
                 }
 
-                
+
 
             }
 
@@ -201,53 +258,145 @@ namespace RealERPWEB.F_70_Services
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
+        private void SessionMaterialList()
+        {
+            try
+            {
+                string type = Request.QueryString["Type"] ?? "";
+                List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+                int rowindex = 0;
+                for (int i = 0; i < gvMaterials.Rows.Count; i++)
+                {
+                    rowindex = (gvMaterials.PageIndex) * gvMaterials.PageSize + i;
+                    string worktypecode = ((Label)this.gvMaterials.Rows[rowindex].FindControl("lblgvworktypecode")).Text.Trim();
+                    string materialId = ((Label)this.gvMaterials.Rows[rowindex].FindControl("lblgvconcatcode")).Text.Trim();
+                    double percnt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvPercnt")).Text.Trim()));
+                    double quantity = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvQuantity")).Text.Trim()));
+                    double rate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvRate")).Text.Trim()));
+                    double amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtAmount")).Text.Trim()));
+                    double chkpercnt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvChkPercnt")).Text.Trim()));
+                    double chkquantity = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvChkQuantity")).Text.Trim()));
+                    double chkrate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvChkRate")).Text.Trim()));
+                    double chkamount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtChkAmount")).Text.Trim()));
+                    double aprpercnt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvAprPercnt")).Text.Trim()));
+                    double aprquantity = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvAprQuantity")).Text.Trim()));
+                    double aprrate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvAprRate")).Text.Trim()));
+                    double apramount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtAprAmount")).Text.Trim()));
 
+
+                    switch (type)
+                    {
+                        case "Approval":
+                        case "ApprovalEdit":
+                            quantity = Convert.ToDouble("0" + obj[rowindex].qqty);
+                            rate = Convert.ToDouble("0" + obj[rowindex].qrate);
+                            amount = Convert.ToDouble("0" + obj[rowindex].qamt);
+                            percnt = Convert.ToDouble("0" + obj[rowindex].percnt);
+                            chkquantity = Convert.ToDouble("0" + obj[rowindex].chkqty);
+                            chkrate = Convert.ToDouble("0" + obj[rowindex].chkrate);
+                            chkamount = Convert.ToDouble("0" + obj[rowindex].chkamt);
+                            chkpercnt = Convert.ToDouble("0" + obj[rowindex].chkpercnt);
+                            break;
+                    }
+                    obj[rowindex].qqty = quantity;
+                    obj[rowindex].qrate = rate;
+                    obj[rowindex].qamt = materialId == "049700101001" ? amount : quantity * rate;
+                    obj[rowindex].percnt = percnt;
+                    obj[rowindex].chkqty = chkquantity;
+                    obj[rowindex].chkrate = chkrate;
+                    obj[rowindex].chkamt = materialId == "049700101001" ? chkamount : chkquantity * chkrate;
+                    obj[rowindex].chkpercnt = chkpercnt;
+                    obj[rowindex].aprqty = aprquantity;
+                    obj[rowindex].aprrate = aprrate;
+                    obj[rowindex].apramt = materialId == "049700101001" ? apramount : aprquantity * aprrate;
+                    obj[rowindex].aprpercnt = aprpercnt;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
 
         private void Bind_Grid_Material()
         {
             try
             {
+                string type = Request.QueryString["Type"] ?? "";
                 List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
                 var obj1 = obj.OrderBy(x => x.type).ToList();
                 ViewState["MaterialList"] = obj1;
                 gvMaterials.DataSource = obj1;
                 gvMaterials.DataBind();
+                if (gvMaterials.Rows.Count > 0)
+                {
+                    if (type == "Check" || type == "CheckEdit")
+                    {
+                        gvMaterials.HeaderRow.Cells[6].Visible = true;
+                        gvMaterials.Columns[6].Visible = true;
+                        gvMaterials.HeaderRow.Cells[7].Visible = true;
+                        gvMaterials.Columns[7].Visible = true;
+                        gvMaterials.HeaderRow.Cells[8].Visible = true;
+                        gvMaterials.Columns[8].Visible = true;
+                        gvMaterials.HeaderRow.Cells[9].Visible = true;
+                        gvMaterials.Columns[9].Visible = true;
+
+                        gvMaterials.HeaderRow.Cells[10].Visible = true;
+                        gvMaterials.Columns[10].Visible = true;
+                        gvMaterials.HeaderRow.Cells[11].Visible = true;
+                        gvMaterials.Columns[11].Visible = true;
+                        gvMaterials.HeaderRow.Cells[12].Visible = true;
+                        gvMaterials.Columns[12].Visible = true;
+                        gvMaterials.HeaderRow.Cells[13].Visible = true;
+                        gvMaterials.Columns[13].Visible = true;
+                    }
+                    if (type == "Approval" || type == "ApprovalEdit")
+                    {
+                        gvMaterials.HeaderRow.Cells[6].Visible = false;
+                        gvMaterials.Columns[6].Visible = false;
+                        gvMaterials.HeaderRow.Cells[7].Visible = false;
+                        gvMaterials.Columns[7].Visible = false;
+                        gvMaterials.HeaderRow.Cells[8].Visible = false;
+                        gvMaterials.Columns[8].Visible = false;
+                        gvMaterials.HeaderRow.Cells[9].Visible = false;
+                        gvMaterials.Columns[9].Visible = false;
+
+                        gvMaterials.HeaderRow.Cells[14].Visible = true;
+                        gvMaterials.Columns[14].Visible = true;
+                        gvMaterials.HeaderRow.Cells[15].Visible = true;
+                        gvMaterials.Columns[15].Visible = true;
+                        gvMaterials.HeaderRow.Cells[16].Visible = true;
+                        gvMaterials.Columns[16].Visible = true;
+                        gvMaterials.HeaderRow.Cells[17].Visible = true;
+                        gvMaterials.Columns[17].Visible = true;
+                    }
+                }
+
+
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
-
-       
-
-        protected void lnkProceed_Click(object sender, EventArgs e)
-        {
-           
-        }
         protected void lnkRefresh_Click(object sender, EventArgs e)
         {
-            if (Request.QueryString["ComplNo"] == null)
-            {
-                ClearPage();
-            }
-            else
-            {
-                Page.Response.Redirect(Page.Request.Url.ToString(), true);
-            }
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         private void ClearPage()
         {
-
+            Init();
+            Bind_Grid_Material();
+            txtNarration.Text = "";
         }
 
         protected void btnOKClick_Click(object sender, EventArgs e)
         {
             try
             {
-                
-                
+
+
             }
             catch (Exception ex)
             {
@@ -256,20 +405,21 @@ namespace RealERPWEB.F_70_Services
 
         }
 
-       
+
         protected void LnkbtnDelete_Click(object sender, EventArgs e)
         {
             try
             {
-                //LinkButton btn = (LinkButton)sender;
-                //GridViewRow row = (GridViewRow)btn.NamingContainer;
-                //int index = row.RowIndex;
-                //List<EClass_Material_List> obj = (List<EClass_Material_List>)ViewState["MaterialList"];
-                //obj.RemoveAt(index);
-                //ViewState["MaterialList"] = obj;
-                //lbtnTotal_Click(null, null);
-                //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Removed from the table" + "');", true);
-                
+                LinkButton btn = (LinkButton)sender;
+                GridViewRow row = (GridViewRow)btn.NamingContainer;
+                int index = row.RowIndex;
+                List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+                obj.RemoveAt(index);
+                ViewState["MaterialList"] = obj;
+                Bind_Grid_Material();
+                lbtnTotal_Click(null, null);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Removed from the table" + "');", true);
+
             }
             catch (Exception ex)
             {
@@ -281,21 +431,162 @@ namespace RealERPWEB.F_70_Services
         {
             try
             {
+                List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+
+                SessionMaterialList();
+                double sumValue = obj.Where(x => x.type == "A").Sum(x => x.qamt);
+                double sumValuechk = obj.Where(x => x.type == "A").Sum(x => x.chkamt);
+                double sumValueapr = obj.Where(x => x.type == "A").Sum(x => x.apramt);
+
+                if (obj.Where(x => x.type == "Z").ToList().Count == 1)
+                {
+
+                    double percnt = obj.Where(x => x.type == "Z").FirstOrDefault().percnt;
+                    double percntchk = obj.Where(x => x.type == "Z").FirstOrDefault().chkpercnt;
+                    double percntapr = obj.Where(x => x.type == "Z").FirstOrDefault().aprpercnt;
+                    double percntamt = 0.00;
+                    double percntamtchk = 0.00;
+                    double percntamtapr = 0.00;
+                    if (percnt == 0.00)
+                    {
+                        percntamt = obj.Where(x => x.type == "Z").FirstOrDefault().qamt;
+                        percnt = sumValue == 0.00 ? 0.00 : ((percntamt / sumValue) * 100);
+                    }
+                    else
+                    {
+                        percntamt = sumValue * (percnt / 100);
+                    }
+
+                    if (percntchk == 0.00)
+                    {
+                        percntamtchk = obj.Where(x => x.type == "Z").FirstOrDefault().chkamt;
+                        percntchk = sumValuechk == 0.00 ? 0.00 : ((percntamt / sumValue) * 100);
+                    }
+                    else
+                    {
+                        percntamtchk = sumValuechk * (percntchk / 100);
+                    }
+                    if (percntapr == 0.00)
+                    {
+                        percntamtapr = obj.Where(x => x.type == "Z").FirstOrDefault().apramt;
+                        percntapr = sumValueapr == 0.00 ? 0.00 : ((percntamt / sumValue) * 100);
+                    }
+                    else
+                    {
+                        percntamtapr = sumValueapr * (percntapr / 100);
+                    }
+
+                    obj.Where(x => x.type == "Z").FirstOrDefault().qamt = percntamt;
+                    obj.Where(x => x.type == "Z").FirstOrDefault().percnt = percnt;
+                    obj.Where(x => x.type == "Z").FirstOrDefault().chkamt = percntamtchk;
+                    obj.Where(x => x.type == "Z").FirstOrDefault().chkpercnt = percntchk;
+                    obj.Where(x => x.type == "Z").FirstOrDefault().apramt = percntamtapr;
+                    obj.Where(x => x.type == "Z").FirstOrDefault().aprpercnt = percntapr;
+                }
+                Bind_Grid_Material();
+                if (obj.Count > 0)
+                {
+                    ((Label)this.gvMaterials.FooterRow.FindControl("lblgvFAmt")).Text = obj.Sum(x => x.qamt).ToString("#,##0.00;-#,##0.00;");
+                    ((Label)this.gvMaterials.FooterRow.FindControl("lblgvChkFAmt")).Text = obj.Sum(x => x.chkamt).ToString("#,##0.00;-#,##0.00;");
+                    ((Label)this.gvMaterials.FooterRow.FindControl("lblgvAprFAmt")).Text = obj.Sum(x => x.apramt).ToString("#,##0.00;-#,##0.00;");
+                }
+
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
-       
+
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
             try
             {
-               
+                string type = Request.QueryString["Type"] ?? "";
+                //Quotinfb
+                if (Request.QueryString["Type"].ToString() == "Entry")
+                {
+                    getNewQuotationNo();
+                }
+                lbtnTotal_Click(null, null);
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComCode();
+                string userId = hst["usrid"].ToString();
+                string date = txtEntryDate.Text;
+                string quotid = lblQuotation.Text;
+                string customerid = ddlCustomer.SelectedValue.ToString();
+                string narration = txtNarration.Text;
+                string isCheck = (type == "Check" || type == "CheckEdit") ? "1" : "0";
+                string isAppr = "0";
+                string status = (type == "Check" || type == "CheckEdit") ? "2" : type == "Approval" ? "3" : "1";
+                List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+                bool result = false;
+                switch (type)
+                {
+                    case "Approval":
+                    case "ApprovalEdit":
+                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, "", "", "", "", "",
+                                    "", "", "", "", "", "", "", "", "", "", "", "", "");
+                        break;
+                    case "Check":
+                    case "CheckEdit":
+                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATECHECKQUOTINFB", quotid, status, userId, "", "", "", "", "",
+                                   "", "", "", "", "", "", "", "", "", "", "", "", "");
+                        break;
+                    default:
+                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFB", quotid, date, customerid, narration, isCheck, isAppr, status, userId,
+                                    "", "", "", "", "", "", "", "", "", "", "", "", "");
+                        break;
+                }
 
-                
+                if (result)
+                {
+                    bool resultdelete = _process.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "DELETEQUOTINFA", quotid);
+                    if (resultdelete)
+                    {
+                        List<bool> resultQuotArray = new List<bool>();
+
+                        foreach (var item in obj)
+                        {
+                            bool resultQuotA = false;
+                            if (item.qamt != 0.00 || item.chkamt != 0.00 || item.apramt != 0.00)
+                            {
+                                string worktype = item.worktypecode.ToString();
+                                string resource = item.resourcecode.ToString();
+                                string qqty = item.qqty.ToString();
+                                string qamt = item.qamt.ToString();
+                                string chkqty = item.chkqty.ToString();
+                                string chkamt = item.chkamt.ToString();
+                                string aprqty = item.aprqty.ToString();
+                                string apramt = item.apramt.ToString();
+                                string percnt = item.percnt.ToString();
+                                string percntchk = item.chkpercnt.ToString();
+                                string percntapr = item.aprpercnt.ToString();
+                                resultQuotA = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFA", quotid, worktype, resource, qqty, qamt,
+                                    chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
+                                resultQuotArray.Add(resultQuotA);
+
+                            }
+                        }
+                        if (resultQuotArray.Contains(false))
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{quotid} - Updated Successful" + "');", true);
+                            if (Request.QueryString["Type"].ToString() == "Entry")
+                            {
+                                ClearPage();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured." + "');", true);
+                }
             }
             catch (Exception ex)
             {
@@ -306,19 +597,29 @@ namespace RealERPWEB.F_70_Services
 
         protected void gvMaterials_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            string type = Request.QueryString["Type"] ?? "";
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string materialId = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "materialId")).ToString();
+                string materialId = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "resourcecode")).ToString();
                 TextBox amt = (TextBox)e.Row.FindControl("txtAmount");
                 TextBox qty = (TextBox)e.Row.FindControl("txtgvQuantity");
                 TextBox rate = (TextBox)e.Row.FindControl("txtgvRate");
                 TextBox percnt = (TextBox)e.Row.FindControl("txtgvPercnt");
+                TextBox chkamt = (TextBox)e.Row.FindControl("txtChkAmount");
+                TextBox chkqty = (TextBox)e.Row.FindControl("txtgvChkQuantity");
+                TextBox chkrate = (TextBox)e.Row.FindControl("txtgvChkRate");
+                TextBox chkpercnt = (TextBox)e.Row.FindControl("txtgvChkPercnt");
                 if (materialId == "049700101001")
                 {
                     qty.Enabled = false;
                     amt.Enabled = true;
                     rate.Enabled = false;
                     percnt.Enabled = true;
+
+                    chkqty.Enabled = false;
+                    chkamt.Enabled = true;
+                    chkrate.Enabled = false;
+                    chkpercnt.Enabled = true;
                 }
                 else
                 {
@@ -326,13 +627,141 @@ namespace RealERPWEB.F_70_Services
                     qty.Enabled = true;
                     amt.Enabled = false;
                     percnt.Enabled = false;
+
+                    chkrate.Enabled = true;
+                    chkqty.Enabled = true;
+                    chkamt.Enabled = false;
+                    chkpercnt.Enabled = false;
                 }
+                if (type == "Check")
+                {
+                    qty.Enabled = false;
+                    amt.Enabled = false;
+                    rate.Enabled = false;
+                    percnt.Enabled = false;
+                }
+
+
+
             }
         }
 
-        protected void ddlResource_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnaddcustomer_Click(object sender, EventArgs e)
         {
-            getUnit();
+            txtCustomerName.Text = "";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModal();", true);
+        }
+
+        private void getResourceType()
+        {
+            try
+            {
+                string comcod = GetComCode();
+                DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "SIRINFTYPE", "", "", "", "", "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    return;
+                }
+                ddlResourceType.DataSource = ds.Tables[0];
+                ddlResourceType.DataTextField = "sirdesc";
+                ddlResourceType.DataValueField = "sircode";
+                ddlResourceType.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+
+
+        protected void btnAddResource_Click(object sender, EventArgs e)
+        {
+            getResourceType();
+            txtResource.Text = "";
+            txtRate.Text = "";
+            txtUnit.Text = "";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalResource();", true);
+        }
+
+        protected void lnkUpdateModal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string customerName = txtCustomerName.Text;
+                if (customerName != "" || customerName.Length > 0)
+                {
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "INSERTSIRINF", "6101%", customerName, "", "0.00", userId, "", "", "", "", "", "");
+
+
+                    if (ds.Tables[0].Rows.Count == 1)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Updated Successful" + "');", true);
+                        getCustomer();
+                        ddlCustomer.SelectedValue = ds.Tables[0].Rows[0]["sircode"].ToString();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Updated Faileds" + "');", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Please Enter Information To Continue" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModal();", true);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+        protected void lnkUpdateResourceModal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string resourceName = txtResource.Text;
+                string unit = txtUnit.Text;
+                string rate = txtRate.Text == "" ? "0.00" : txtRate.Text;
+                string resourcetype = ASTUtility.Left(ddlResourceType.SelectedValue.ToString(), 9) + "%";
+                if (resourceName != "" || resourceName.Length > 0)
+                {
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    string userId = hst["usrid"].ToString();
+                    DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "INSERTSIRINF", resourcetype, resourceName, unit, rate, userId, "", "", "", "", "", "");
+
+
+                    if (ds.Tables[0].Rows.Count == 1)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Updated Successful" + "');", true);
+                        getResource();
+                        ddlResource.SelectedValue = ds.Tables[0].Rows[0]["sircode"].ToString();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Updated Failed" + "');", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Please Enter Information To Continue" + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModal();", true);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
         }
     }
 }

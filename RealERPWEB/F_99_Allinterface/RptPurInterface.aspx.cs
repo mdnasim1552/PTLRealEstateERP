@@ -360,6 +360,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3368"://finlay
                 case "3367"://Epic
                 case "3101":
+                case "3340":
 
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
@@ -371,7 +372,6 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                 case "3317":
                 case "3354": // Edison  
-
                     this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-3).ToString("dd-MMM-yyyy");
                     break;
 
@@ -433,7 +433,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.Timer1.Interval = 36000000;
                     break;
 
-                case "3101":// p2p
+               // case "3101":// p2p
                 case "1205":
                 case "3351":
                 case "3352":
@@ -1813,7 +1813,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint"); // crystal print link
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
 
-                HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyperLink2");
+                //HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyperLink2");
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -1861,7 +1861,7 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
-                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
+                //hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno+ "&PrintOpt="+ PrintOpt;
                 if (orderno.Substring(0, 3) == "POR")
                     hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                 else
@@ -5350,6 +5350,24 @@ namespace RealERPWEB.F_99_Allinterface
         {
            
 
+        }
+
+        protected void lnkRdlcPrint_Recived_Click(object sender, EventArgs e)
+        {
+            string PrintOpt = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();          
+            string comcod = this.GetCompCode();           
+            
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            LinkButton lnkRdlcPrint = ((LinkButton)this.grvMRec.Rows[RowIndex].FindControl("lnkRdlcPrint_Recived"));
+            string orderno = ((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvorderno")).Text.Trim(); 
+            //lnkRdlcPrint.PostBackUrl= "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
+
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            string currentptah = "PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
+            string totalpath = hostname + currentptah;
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
+
+            //hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno+ "&PrintOpt="+ PrintOpt;
         }
     }
 }
