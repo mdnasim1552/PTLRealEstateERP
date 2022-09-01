@@ -593,10 +593,8 @@
                                     <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
-                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_30_Facility/ComplainForm.aspx" CssClass="dropdown-item" Style="padding: 0 10px">Create Complaints</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="#" CssClass="dropdown-item" Style="padding: 0 10px">Mapping Code</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_23_CR/CustOthMoneyReceipt?Type=Service" CssClass="dropdown-item" Style="padding: 0 10px">Collection</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurMatIssue?Type=ComplainMgt" CssClass="dropdown-item" Style="padding: 0 10px">Material Issue</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_36_Vehcl/VehicleInfoEntry" CssClass="dropdown-item" Style="padding: 0 10px">Vehicle Entry</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_36_Vehcl/vehicleapply" CssClass="dropdown-item" Style="padding: 0 10px">Transport Apply</asp:HyperLink>
 
 
 
@@ -986,6 +984,105 @@
                                                         <HeaderStyle CssClass="grvHeader" />
                                                     </asp:GridView>
                                                 </div>
+                                                <asp:Panel ID="pnlVehicleAssignEntry" runat="server" Visible="false">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="row-fluid">
+
+                                                                <div class="form-group" runat="server">
+                                                                    <asp:Label ID="lblTRPID" runat="server" Visible="false"></asp:Label>
+                                                                    <asp:Label runat="server" ID="Label3">Transport Id</asp:Label>
+                                                                    <asp:TextBox ID="txtTrpId" runat="server" CssClass="form-control"
+                                                                        Enabled="false"></asp:TextBox>
+                                                                </div>
+                                                                <div class="form-group" runat="server">
+                                                                    <asp:Label runat="server" ID="Label2" class="col-md-4">Start DateTime</asp:Label>
+                                                                    <asp:TextBox ID="txtSDate" runat="server" CssClass="form-control datetimemin" TextMode="DateTimeLocal"></asp:TextBox>
+                                                                </div>
+                                                                <div class="form-group" runat="server">
+                                                                    <asp:Label runat="server" ID="Label1" class="col-md-4">End DateTime</asp:Label>
+                                                                    <asp:TextBox ID="txtTDate" runat="server" CssClass="form-control datetimemin" TextMode="DateTimeLocal"></asp:TextBox>
+                                                                </div>
+                                                                <div class="form-group" runat="server">
+                                                                    <asp:Label runat="server" ID="Label4" class="col-md-4">Vehicle</asp:Label>
+                                                                    <asp:DropDownList ID="ddlVehicle" CssClass="chzn-select form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlVehicle_SelectedIndexChanged">
+                                                                    </asp:DropDownList>
+                                                                </div>
+                                                                <div class="form-group" runat="server">
+                                                                    <asp:Label runat="server" ID="Label5" class="col-md-4">Driver</asp:Label>
+                                                                    <asp:DropDownList ID="ddlDriver" CssClass="chzn-select form-control" runat="server">
+                                                                    </asp:DropDownList>
+                                                                </div>
+                                                                <div class="form-group" runat="server">
+                                                                    <asp:Label runat="server" ID="Label8" class="col-md-4">Remarks</asp:Label>
+
+                                                                    <asp:TextBox ID="txtAssignRemarks" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <asp:GridView ID="gvAssignedVehicle" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" ShowFooter="True">
+                                                                <RowStyle />
+                                                                <Columns>
+                                                                    <asp:TemplateField HeaderText="Sl.">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="serialnoid" runat="server"
+                                                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <HeaderStyle Font-Bold="True" />
+                                                                        <ItemStyle HorizontalAlign="Center" />
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Vehicle Name">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblVehicleGrp" runat="server"
+                                                                                Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "vName")) + "</B>"+ "<br>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "vModel")).Trim()+ "<br>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "vReg")).Trim() %>'
+                                                                                Width="300px"></asp:Label>
+                                                                        </ItemTemplate>
+
+
+                                                                        <HeaderStyle HorizontalAlign="Left" />
+
+                                                                    </asp:TemplateField>
+
+
+
+                                                                    <asp:TemplateField HeaderText="Start Date & Time">
+
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblName" runat="server"
+                                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "aprsldate")) %>'
+                                                                                Width="80px"></asp:Label>
+                                                                        </ItemTemplate>
+
+
+                                                                        <HeaderStyle HorizontalAlign="Left" />
+
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="End Date & Time">
+
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblDestination" runat="server"
+                                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apreldate")) %>'
+                                                                                Width="100px"></asp:Label>
+                                                                        </ItemTemplate>
+
+
+                                                                        <HeaderStyle HorizontalAlign="Left" />
+
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+
+
+                                                                <FooterStyle CssClass="gvPagination" />
+                                                                <PagerStyle CssClass="gvPagination" />
+                                                                <HeaderStyle CssClass="grvHeader" />
+                                                            </asp:GridView>
+                                                        </div>
+                                                    </div>
+                                                </asp:Panel>
                                             </div>
                                         </asp:Panel>
 
@@ -1043,7 +1140,7 @@
                                                                 <HeaderStyle HorizontalAlign="Left" />
 
                                                             </asp:TemplateField>
-                                                             <asp:TemplateField HeaderText="Vehicle">
+                                                            <asp:TemplateField HeaderText="Vehicle">
 
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblvehicle" runat="server"
@@ -1183,7 +1280,7 @@
                 </div>
 
 
-            <div id="modalAssign" class="modal animated slideInLeft" role="dialog" data-keyboard="false" data-backdrop="static">
+            <%--<div id="modalAssign" class="modal animated slideInLeft" role="dialog" data-keyboard="false">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header" style="display: block;">
@@ -1214,7 +1311,7 @@
                                 </div>
                                 <div class="form-group" runat="server">
                                     <asp:Label runat="server" ID="Label4" class="col-md-4">Vehicle</asp:Label>
-                                    <asp:DropDownList ID="ddlVehicle" CssClass="chzn-select form-control" runat="server">
+                                    <asp:DropDownList ID="ddlVehicle" CssClass="chzn-select form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlVehicle_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group" runat="server">
@@ -1238,7 +1335,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
             <div id="modalStatus" class="modal animated slideInLeft" role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-lg">
