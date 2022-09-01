@@ -57,21 +57,31 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 view.Sort = "advno desc";
                 dt1 = view.ToTable();
             }
+            //appointment letter
             else if (type == "10002")
             {
-                view.RowFilter = "sendappflag='False' and sendconflag='False' and sendoffflag='True' and isreject='false' ";
+                view.RowFilter = "sendappflag='False' and sendconflag='False' and sendoffflag='True' and isreject='False'  ";
                 view.Sort = "advno desc";
                 dt1 = view.ToTable();
             }
+            //confirmation letter
             else if (type == "10025")
             {
-                view.RowFilter = "sendappflag='True' and sendconflag='False' and sendoffflag='True' and isreject='false'";
+                view.RowFilter = "sendappflag='True' and sendconflag='False' and sendoffflag='True'  and isreject='False'";
                 view.Sort = "advno desc";
                 dt1 = view.ToTable();
             }
-            else if (type == "19999")
+            //rejected letter
+            else if (type == "reject")
             {
                 view.RowFilter = "isreject='True'";
+                view.Sort = "advno desc";
+                dt1 = view.ToTable();
+            }
+            //accepted letter
+            else if (type == "accept")
+            {
+                view.RowFilter = "isaccept='True' and  isreject='False'";
                 view.Sort = "advno desc";
                 dt1 = view.ToTable();
             }
@@ -107,6 +117,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                                                                                                                                                                 
             // this.RadioButtonList1.Items[2].Text = "<a> Confirmation Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["confletter"] + "</span></a>";//
             this.RadioButtonList1.Items[2].Text = "<a> Rejected Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["rejectedLetter"] + "</span></a>";//
+            this.RadioButtonList1.Items[3].Text = "<a> Accepted Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["acceptedLetter"] + "</span></a>";//
 
 
         }
@@ -124,7 +135,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "10002":
                     getAllData();
                     break;
-                case "19999":
+                case "reject":
+                    getAllData();
+                    break;
+                case "accept":
                     getAllData();
                     break;
             }
@@ -153,11 +167,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     ((HyperLink)e.Row.FindControl("lnkAppoint")).Visible = true;
                     ((HyperLink)e.Row.FindControl("lnkConfirmation")).Visible = true;
                 }
-                else if (type == "19999")
+                else if (type == "reject")
                 {
                     ((HyperLink)e.Row.FindControl("lnkOfferLetter")).Visible = false;
                     ((HyperLink)e.Row.FindControl("lnkAppoint")).Visible = false;
                     ((HyperLink)e.Row.FindControl("lnkConfirmation")).Visible = false;
+                    ((HyperLink)e.Row.FindControl("lnlAccept")).Visible = true;
+                }
+                else if (type == "accept")
+                {
+                    ((HyperLink)e.Row.FindControl("lnkOfferLetter")).Visible = true;
+                    ((HyperLink)e.Row.FindControl("lnkAppoint")).Visible = true;
+                    ((HyperLink)e.Row.FindControl("lnkConfirmation")).Visible = false;
+                    ((LinkButton)e.Row.FindControl("lnkAccept")).Visible = false;
+
                 }
 
             }
@@ -249,7 +272,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
             string advno = ((Label)this.gvAllRec.Rows[index].FindControl("lbladvno")).Text.ToString();
-            bool result = accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "REJECTLETTER",advno, "", "", "", "", "", "", "", "");
+            bool result = accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "REJECTLETTER",advno, "reject", "", "", "", "", "", "", "");
             if (result)
             {
                string Message = "Successfully Updated";
@@ -258,6 +281,34 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 getLetterCount();
             }
 
+        }
+
+        protected void lnkAccept_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string advno = ((Label)this.gvAllRec.Rows[index].FindControl("lbladvno")).Text.ToString();
+            //string isofflsend = ((Label)this.gvAllRec.Rows[index].FindControl("sendoffflag")).Text.ToString();
+            //string isappsend = ((Label)this.gvAllRec.Rows[index].FindControl("lbladvno")).Text.ToString();
+            //int selectIndex = this.RadioButtonList1.SelectedIndex;
+            //if (selectIndex == 0 && isofflsend=="True")
+            //{
+
+            //}else if (selectIndex == 1)
+            //{
+
+            //}
+
+
+            bool result = accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "CHANGELETTERSTATUS", advno, "accept", "", "", "", "", "", "", "");
+            if (result)
+            {
+                string Message = "Successfully Updated";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+                getAllData();
+                getLetterCount();
+            }
         }
     }
 }
