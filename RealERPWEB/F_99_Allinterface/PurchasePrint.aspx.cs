@@ -3776,10 +3776,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string Calltype = this.PrintCallType();
                 string ordercopy = this.GetCompOrderCopy();
-                string PrintOpt = this.Request.QueryString["PrintOpt"].ToString()??"";
 
-                  PrintOpt = PrintOpt.Length>0? PrintOpt:((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
-
+                string PrintOpt = Request.QueryString.AllKeys.Contains("PrintOpt") ? this.Request.QueryString["PrintOpt"].ToString() : "";
+                PrintOpt = PrintOpt.Length>0? PrintOpt:((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
 
                 DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", Calltype, wrkid, ordercopy, "", "", "", "", "", "", "");

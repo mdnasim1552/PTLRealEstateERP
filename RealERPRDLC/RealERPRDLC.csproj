@@ -849,6 +849,7 @@
     <EmbeddedResource Include="R_23_CR\RptMonCollcScheduleSummaryENG.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptMonthlyCollReceiptType.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptNetADWork.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptPaymentStatusFinlay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPaymentStatus.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPaymentStatus02.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPrjclientStatus.rdlc" />
