@@ -78,9 +78,9 @@
 
 
                         <asp:GridView ID="grvacc" runat="server" CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" PageSize="15"
-                            OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True" BorderStyle="None" Width="724px">
-                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
+                            OnRowUpdating="grvacc_RowUpdating" PageSize="15" OnRowDataBound="grvacc_RowDataBound"
+                            OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True" BorderStyle="None" Width="724px" >
+                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top" 
                                 Mode="NumericFirstLast" />
 
                             <Columns>
@@ -140,7 +140,11 @@
                                         <asp:Label ID="lblgvcatdesc" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")) %>'
                                             Width="320px"></asp:Label>
+
+                                            <asp:Label ID="lblgvcatcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode")) %>' Visible="false"></asp:Label>
                                     </ItemTemplate>
+
+
                                     <HeaderStyle Width="150px" />
                                 </asp:TemplateField>
 
@@ -157,6 +161,7 @@
                                         
                                     </EditItemTemplate>
                                     <ItemTemplate>
+                                        <asp:Label ID="lblgvgpcatcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropcode")) %>' Visible="false"></asp:Label>
                                         <asp:Label ID="lblgvgpcatdesc" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
                                             Width="320px"></asp:Label>
@@ -174,6 +179,8 @@
                                         </asp:DropDownList>
                                     </EditItemTemplate>
                                     <ItemTemplate>
+                                        <asp:Label ID="lblgvgcatcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attgropcode")) %>' Visible="false"></asp:Label>
+
                                         <asp:Label ID="lblgvgcatdesc" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attgropdesc")) %>'
                                             Width="320px"></asp:Label>
