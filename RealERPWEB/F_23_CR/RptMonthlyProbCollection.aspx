@@ -117,12 +117,32 @@
                             </div>
                         </div>
 
-                         <div class="col-md-3">
+                         <div class="col-md-2">
                             <div class="from-group">
                                 <label class="control-label">Followed By</label>
-                                <asp:DropDownList ID="ddlSalesperson" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlSalesperson" runat="server" CssClass="chzn-select form-control  inputTxt" Width="200px" AutoPostBack="True"></asp:DropDownList>
+                            
+                              
+                         
+                       
+                         
                             </div>
                         </div>
+                     
+                         <div class="col-md-2" >
+                            
+                             <asp:Label ID="Label1" runat="server"> Type</asp:Label>
+                            <asp:RadioButtonList ID="rbtnAtStatus" runat="server" AutoPostBack="True"  Style="border-radius: 5px; padding: 0 5px;"
+                                CssClass="custom-control custom-control-inline custom-checkbox rbtnAtStatus d-block p-0 mt-3"
+                                Font-Bold="True" Font-Size="12px" ForeColor="Black" 
+                                RepeatDirection="Horizontal">
+                                <asp:ListItem Selected="True">&nbsp;Probable&nbsp;&nbsp;</asp:ListItem>
+                                <asp:ListItem>&nbsp; All Dues</asp:ListItem>
+
+                            </asp:RadioButtonList>
+
+                        </div>
+                           
 
 
                         
@@ -134,6 +154,7 @@
                                 <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
                             </div>
                         </div>
+
 
 
 
