@@ -292,7 +292,7 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
                 this.gvEmpList.DataBind();
                 return;
             }
-            Session["tblEmpstatus"] = HiddenSameData(ds4.Tables[0]);
+            Session["tblEmpstatus"] = ds4.Tables[0] ;
             this.LoadGrid();
 
         }

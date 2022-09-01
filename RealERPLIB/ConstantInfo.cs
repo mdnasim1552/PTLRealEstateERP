@@ -2009,10 +2009,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8101000", "8101013", "F_81_Hrm/F_82_App", "EmpDesignationlinkDeptWise", "", "Designation link Dept Wise", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8101000", "8101014", "F_81_Hrm/F_92_Mgt", "RptSettlementStatus", "", "Employee Settlement Top Sheet", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101015", "F_81_Hrm/F_92_Mgt", "EmpSettlement?", "Type=Entry", "Employee Settlement Entry", "Employee Settlement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink", "", "Department Code Link", "Appointment", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8101000", "8101017", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Employee Settlement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink?", "Type=Payroll", "Department Code Link - Payroll", "Appointment", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8101000", "8101017", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink?", "Type=HR", "Department Code Link - HR", "Appointment", "False", "False", "False", "False" });
 
 
+       
 
             //Entry option 
 
@@ -2176,7 +2177,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102166", "F_81_Hrm/F_92_Mgt", "HRSupervisorTransfer", "", "Supervisor Transfer", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102167", "F_33_Doc", "SimCardMange", "", "SIM Card Manage", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102168", "F_34_Mgt", "ResetPassword", "", "User Reset Password", "Management", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "8102000", "8102169", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Management", "False", "False", "False", "False" }); ;
 
 
 
@@ -15344,16 +15345,17 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000003", "03. Personal Information Code", "F_81_Hrm/F_82_App/HRCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Designation Code", "F_81_Hrm/F_82_App/HRDesigCode", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Designation Link Dept Wise", "F_81_Hrm/F_82_App/EmpDesignationlinkDeptWise", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Department Code Link", "F_81_Hrm/F_92_Mgt/DeparmentCodeLink", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Department Code Link - Payroll", "F_81_Hrm/F_92_Mgt/DeparmentCodeLink?Type=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000007", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000008", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpMarket", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000009", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000010", "09. Planning Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpPlan", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000011", "09. Department Wise Group Setup", "F_17_Acc/AccGenCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000012", "10. Department Code Link - HR", "F_81_Hrm/F_92_Mgt/DeparmentCodeLink?Type=HR", "", true, "" });
 
 
-         
+
             // D. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0203000001", "02. Earn Leave Opening", "F_81_Hrm/F_84_Lea/HRLeaveOpening", "", true, "" });
