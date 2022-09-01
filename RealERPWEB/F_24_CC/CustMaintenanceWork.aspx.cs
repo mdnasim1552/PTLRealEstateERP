@@ -147,6 +147,34 @@ namespace RealERPWEB.F_24_CC
             this.ddlInstallment.DataBind();
             ds1.Dispose();
         }
+
+        private void ShowInterest()
+        {
+
+            
+            string comcod = this.GetCompCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string custid = this.ddlUnitName.SelectedValue.ToString();
+            string frmdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
+            //  string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            // string frmdate = "01-" + ASTUtility.Right(date, 8);
+            string todate = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string permonth = "";//this.txtinpermonth.Text.Trim().Replace("%", "");
+
+            string ddlintslist = this.ddlInstallment.SelectedValue.ToString();
+
+
+            DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_DELAYCHARGE", "RPTINTEREST_SALESINCREASE", pactcode, custid, frmdate, todate, permonth, ddlintslist, "", "", "");
+            if (ds2 == null)
+            { 
+                return;
+            }
+
+            ViewState["tblDelayCharge"] = ds2.Tables[0];
+
+        }
+
+
         private void PreviousAddNumber()
         {
             string comcod = this.GetCompCode();
@@ -193,6 +221,7 @@ namespace RealERPWEB.F_24_CC
                 this.GetInstallment();
                 this.ShowAdWork();
                 this.ColumnVisible();
+               
                 return;
 
             }
@@ -592,11 +621,17 @@ namespace RealERPWEB.F_24_CC
         }
         protected void lbtnAddWork_Click(object sender, EventArgs e)
         {
+            ShowInterest();
             DataTable dt = (DataTable)Session["tbladwork"];
+
+
+            
             string gcod = this.ddlItemName.SelectedValue.ToString();
+            string inscod = this.ddlInstallment.SelectedValue.ToString();
             DataRow[] dr = dt.Select("gcod='" + gcod + "'");
             //if (dr.Length == 0)
             //{
+             
             DataRow dr1 = dt.NewRow();
             dr1["id"] = 0;
             dr1["gcod"] = gcod;
@@ -612,7 +647,7 @@ namespace RealERPWEB.F_24_CC
             dr1["comlrate"] = 0.00;
             dr1["clrate"] = 0.00;
             dr1["cllrate"] = 0.00;
-            dr1["amt"] = 0.00;
+            dr1["amt"] = ASTUtility.Left( gcod,2)=="13"? (((DataTable)ViewState["tblDelayCharge"]).Select("delschcode='" + inscod + "'"))[0]["delcharge"] : 0.00;
             dr1["disamt"] = 0.00;
             dr1["netamt"] = 0.00;
             dr1["comamt"] = 0.00;
