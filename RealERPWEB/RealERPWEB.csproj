@@ -2198,6 +2198,7 @@
     <Content Include="F_09_PImp\RptSubConMonthlyBill.aspx" />
     <Content Include="F_09_PImp\RptSubConOverall02.aspx" />
     <Content Include="F_09_PImp\RptSubConStatus.aspx" />
+    <Content Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx" />
     <Content Include="F_09_PImp\RptSubContractorSd.aspx" />
     <Content Include="F_09_PImp\RptSubContractorTopSheet.aspx" />
     <Content Include="F_09_PImp\RptSubconWiseWrkOrder.aspx" />
@@ -2943,6 +2944,7 @@
     <Content Include="F_64_Mgt\TeamSeriCode.aspx" />
     <Content Include="F_64_Mgt\UserImage.aspx" />
     <Content Include="F_64_Mgt\UserLoginfrm.aspx" />
+    <Content Include="F_70_Services\QuotationEntry.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\AppLetCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ApplicantInfo.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ConfirmLetter.aspx" />
@@ -3122,6 +3124,7 @@
     <Content Include="F_81_Hrm\F_94_Task\RptTaskInfoDet.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskInfoDet.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
@@ -3135,6 +3138,7 @@
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
+    <Content Include="F_99_Allinterface\AIinterface.aspx" />
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
@@ -4000,6 +4004,13 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
+      <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.designer.cs">
+      <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4503,6 +4514,13 @@
     </Compile>
     <Compile Include="F_36_Vehcl\VehicleMgt.aspx.designer.cs">
       <DependentUpon>VehicleMgt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_70_Services\QuotationEntry.aspx.designer.cs">
+      <DependentUpon>QuotationEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx.cs">
       <DependentUpon>NewRecruitment.aspx</DependentUpon>
@@ -5057,12 +5075,26 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.designer.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\EnvelopeTemplate.aspx.designer.cs">
+      <DependentUpon>EnvelopeTemplate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\AIinterface.aspx.designer.cs">
+      <DependentUpon>AIinterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
       <DependentUpon>CRMDashboard02.aspx</DependentUpon>
@@ -12277,10 +12309,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\images\AIimage\" />
     <Folder Include="bin\" />
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
+    <Folder Include="F_38_AI\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />

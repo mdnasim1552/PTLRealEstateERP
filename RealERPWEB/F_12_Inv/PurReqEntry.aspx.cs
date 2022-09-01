@@ -359,12 +359,9 @@ namespace RealERPWEB.F_12_Inv
         }
 
         protected void lbtnOk_Click(object sender, EventArgs e)
-        {
-
-
+        {            
             if (this.lbtnOk.Text == "New")
             {
-
                 this.txtSrchMrfNo.Visible = true;
                 this.lblpreReq.Visible = true;
                 this.ImgbtnFindReq.Visible = true;
@@ -391,10 +388,7 @@ namespace RealERPWEB.F_12_Inv
                 this.gvReqInfo.DataBind();
                 this.Panel1.Visible = false;
                 this.Panel2.Visible = false;
-
                 this.PnlDesc.Visible = false;
-
-
                 this.lbtnOk.Text = "Ok";
                 // this.ImgbtnSpecification_Click(null, null);
 
@@ -424,21 +418,22 @@ namespace RealERPWEB.F_12_Inv
                     this.txtReqText.Visible = false;
                     this.ImgbtnReqse.Visible = false;
                     this.lbtnSurVey.Visible = true;
+                    
 
                     // this.ImgbtnFindReq_Click(null, null);
 
                 }
-
-
+                this.checkMRFEnable();
                 return;
             }
 
+            this.checkMRFEnable();
 
-            if (Request.QueryString["InputType"].ToString() == "Entry")
+            if (Request.QueryString["InputType"].ToString() == "Entry" && this.ddlPrevReqList.Items.Count == 0)
             {
                 if (IscheckDuplicateMPR())
                 {
-                    this.lbtnOk.Text = "New";
+                    this.lbtnOk.Text = "OK"; 
                     return;
                 }
             }
@@ -523,11 +518,20 @@ namespace RealERPWEB.F_12_Inv
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();
             //this.ImgbtnFindReq_Click(null, null);
-            this.ImgbtnFindRes_Click(null, null);
+            this.ImgbtnFindRes_Click(null, null);           
 
+        }
 
-
-
+        private void checkMRFEnable()
+        {
+            if (this.ddlPrevReqList.Items.Count > 0)
+            {
+                txtMRFNo.ReadOnly = true;
+            }
+            else
+            {
+                txtMRFNo.ReadOnly = false;
+            }
         }
         protected string GetStdDate(string Date1)
         {
@@ -1207,12 +1211,6 @@ namespace RealERPWEB.F_12_Inv
 
 
             }
-
-
-
-
-
-
 
 
             string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();

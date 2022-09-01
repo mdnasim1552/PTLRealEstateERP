@@ -127,6 +127,7 @@
     <Compile Include="C_47_Kpi\EClassKPI.cs" />
     <Compile Include="C_47_Kpi\UserManagerKPI.cs" />
     <Compile Include="C_62_Mis\EClassSales_02.cs" />
+    <Compile Include="C_70_Services\EClass_Quotation.cs" />
     <Compile Include="C_81_Hrm\BankFor.cs" />
     <Compile Include="C_81_Hrm\C_81_Rec\BL_ClassManPower.cs" />
     <Compile Include="C_81_Hrm\C_81_Rec\BO_ClassManPower.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="C_81_Hrm\C_92_Mgt\EClassHrInterface.cs" />
     <Compile Include="C_81_Hrm\C_92_Mgt\EmpSettlmnt.cs" />
     <Compile Include="C_81_Hrm\C_93_AnnInc\AnnIncReport.cs" />
+    <Compile Include="C_81_Hrm\C_97_MIS\Mgt_ManPower.cs" />
     <Compile Include="C_81_Hrm\IndvPf.cs" />
     <Compile Include="C_99_AllInterface\SalesJournal.cs" />
     <Compile Include="EClassCommon.cs" />
@@ -193,7 +195,6 @@
     <Folder Include="C_81_Hrm\C_85_Lon\" />
     <Folder Include="C_81_Hrm\C_88_Res\" />
     <Folder Include="C_81_Hrm\C_94_Task\" />
-    <Folder Include="C_81_Hrm\C_97_MIS\" />
     <Folder Include="C_81_Hrm\C_99_MgtAct\" />
   </ItemGroup>
   <ItemGroup>

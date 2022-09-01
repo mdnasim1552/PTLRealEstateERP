@@ -954,7 +954,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1452,7 +1451,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Authorized By</Value>
+                    <Value>Forwarded By</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -1490,7 +1489,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>DMD</Value>
+                    <Value>Authorized By</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -1528,7 +1527,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Managing Director</Value>
+                    <Value>Approved By</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>

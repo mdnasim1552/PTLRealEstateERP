@@ -197,7 +197,7 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-        private bool XmlDataInsert(string Reqno, DataSet ds)
+        private bool XmlDataInsert(string pactcode ,string usircode, DataSet ds)
         {
             //Log Data
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -230,7 +230,7 @@ namespace RealERPWEB.F_22_Sal
             ds1.Tables[1].TableName = "tbl2";
             ds1.Tables[2].TableName = "tbl3";
 
-            bool resulta = MktData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATEXML01", ds1, null, null, Reqno);
+            bool resulta = MktData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATEXMLCLIENTNAMECHANGE", ds1, null, null, pactcode, usircode, Date);
 
             if (!resulta)
             {
@@ -266,7 +266,7 @@ namespace RealERPWEB.F_22_Sal
             string Usircode = this.ddlUnitName.SelectedValue.ToString();
             string msg = "";
 
-           // this.logdate();
+           this.LogStatus(); 
 
 
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
@@ -319,6 +319,7 @@ namespace RealERPWEB.F_22_Sal
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             this.LoadGrid();
+            
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -328,6 +329,21 @@ namespace RealERPWEB.F_22_Sal
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
+        }
+
+        private void LogStatus()
+        {
+            string comcod = this.GetCompCode();
+            string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            string UsirCode = this.ddlUnitName.SelectedValue.ToString();         
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, "", "", "", "", "", "", "");
+           // DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "SHOWREQINFORMATION", reqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            bool result = this.XmlDataInsert(PactCode, UsirCode, ds1);
         }
 
 
@@ -340,7 +356,7 @@ namespace RealERPWEB.F_22_Sal
 
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.GetUnitName();
+            this.GetUnitName();
         }
 
       
