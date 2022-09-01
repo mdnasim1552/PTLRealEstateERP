@@ -623,6 +623,8 @@ namespace RealERPWEB.F_24_CC
         {
             ShowInterest();
             DataTable dt = (DataTable)Session["tbladwork"];
+
+
             
             string gcod = this.ddlItemName.SelectedValue.ToString();
             string inscod = this.ddlInstallment.SelectedValue.ToString();
@@ -645,7 +647,7 @@ namespace RealERPWEB.F_24_CC
             dr1["comlrate"] = 0.00;
             dr1["clrate"] = 0.00;
             dr1["cllrate"] = 0.00;
-            dr1["amt"] = (((DataTable)ViewState["tblDelayCharge"]).Select("inscod='" + inscod + "'"))[0]["delcharge"];
+            dr1["amt"] = ASTUtility.Left( gcod,2)=="13"? (((DataTable)ViewState["tblDelayCharge"]).Select("delschcode='" + inscod + "'"))[0]["delcharge"] : 0.00;
             dr1["disamt"] = 0.00;
             dr1["netamt"] = 0.00;
             dr1["comamt"] = 0.00;
