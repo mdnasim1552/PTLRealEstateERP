@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptEmpInformation.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.RptEmpInformation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEmpInformation.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.RptEmpInformation" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -54,53 +54,55 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
+            <div class="card mt-5">
                 <div class="contentPart">
 
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewServices" runat="server">
 
                             <asp:Panel ID="Panel1" runat="server">
+                                <div class="card-header">
+                                <div class="row mt-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-6">
+                                        <div class="form-group">
 
-                                <div class="row">
-                                    <fieldset class="scheduler-border fieldset_A">
-                                        <div class="form-horizontal">
-
-                                            <div class="form-group">
-                                                <div class="col-md-3 pading5px asitCol3">
-                                                    <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Employee List:</asp:Label>
-                                                    <asp:TextBox ID="txtEmpSrc" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                                    <asp:LinkButton ID="ibtnEmpList" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ibtnEmpList_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                                </div>
-                                                <div class="col-md-3 pading5px asitCol3">
-                                                    <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control inputTxt" TabIndex="2">
-                                                    </asp:DropDownList>
-                                                </div>
-                                                <div class="col-md-5 pading5px asitCol5">
-                                                    <asp:Label ID="Label17" runat="server" CssClass=" smLbl_to"> Date</asp:Label>
-                                                    <asp:TextBox ID="txtDate" runat="server" CssClass="inputTxt inputName inPixedWidth120 " ToolTip="(dd.mm.yyyy)"></asp:TextBox>
-                                                    <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
-                                                        Enabled="True" Format="dd.MM.yyyy" TargetControlID="txtDate">
-                                                    </cc1:CalendarExtender>
-
-                                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
-                                                </div>
-
-                                            </div>
+                                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Employee List  <asp:LinkButton ID="ibtnEmpList" runat="server"  OnClick="ibtnEmpList_Click"><span class="fas fa-search"> </span></asp:LinkButton></asp:Label>
+                                            <asp:TextBox ID="txtEmpSrc" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <%--//<asp:LinkButton ID="" runat="server"  OnClick="ibtnEmpList_Click"><span class="fas fa-search"> </span></asp:LinkButton>--%>
                                         </div>
-                                    </fieldset>
+                                    </div>
+                                    <div class="col-lg-3 col-md-2 col-sm-6 mt-3">
+                                        <div class="form-group">
+                                            <asp:Label ID="Label7" runat="server" Visible="false" CssClass=" smLbl_to"> </asp:Label>
+                                            <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control chzn-select d-done" TabIndex="2">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1"></div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="Label17" runat="server" CssClass=" smLbl_to"> Date</asp:Label>
+                                            <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
+                                            <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
+                                                Enabled="True" Format="dd.MM.yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-2 col-sm-6 mt-3">
+                                        <div class="form-group">
+                                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                        </div>
+                                    </div>
                                 </div>
-
-
+                              </div>
                             </asp:Panel>
+                            <div class="card-body">
                             <div class="row table-responsive">
 
                                 <asp:GridView ID="gvempservices" runat="server" AutoGenerateColumns="False"
                                     ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" Width="678px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="serialno" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
@@ -183,6 +185,7 @@
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
                             </div>
+                                </div>
                         </asp:View>
 
                         <asp:View ID="ViewEmpInformation" runat="server">
