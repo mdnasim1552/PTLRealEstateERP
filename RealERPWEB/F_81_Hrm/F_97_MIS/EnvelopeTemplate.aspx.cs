@@ -402,6 +402,8 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
                         break;
                     case "7201002":
                         Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_97_MIS.RptPromotionEnvelop", list, null, null);
+                        Rpt1.SetParameters(new ReportParameter("HeadTitle", "Stricty Private & Confidential")); 
+                        Rpt1.SetParameters(new ReportParameter("Dpttitle", "Human Resources Department"));
                         break;
                 }
             }
