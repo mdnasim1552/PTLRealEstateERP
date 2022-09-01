@@ -103,11 +103,11 @@
 
 
 
-                                            <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Committed Sale Value:" Width="250px"></asp:Label>
+                                            <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Target Sales Value/Price:" Width="250px"></asp:Label>
 
                                             <asp:Label ID="lblcommitedval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
-                                    <asp:Label ID="lblactualsal" runat="server" CssClass="lblTxt lblName" Text="Actual Sale Value:" Width="250px"></asp:Label>
+                                    <asp:Label ID="lblactualsal" runat="server" CssClass="lblTxt lblName" Text="Today Sales Value/Price:" Width="250px"></asp:Label>
 
                                             <asp:Label ID="lblactualsal1" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
@@ -243,7 +243,7 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Estimated Cost">
+                                    <asp:TemplateField HeaderText="Estimated /</br>Forcusted Cost">
 
                                         <ItemTemplate>
                                             <asp:TextBox
@@ -259,7 +259,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Actual Cost">
+                                    <asp:TemplateField HeaderText="Actual Cost</br> as on today">
 
                                         <ItemTemplate>
                                             <asp:TextBox
@@ -374,9 +374,11 @@
                             </asp:GridView>
                         </div>
 
-                        <div class="col-md-3">
-                            <asp:Label ID="lblsaleprice" runat="server" Text="Break-even Sale Price :" Width="150px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false"></asp:Label>
+                        <div class="col-md-4">
+                            <asp:Label ID="lblsaleprice" runat="server" Text="Break even sales price on Aeging  :" Width="140px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false"></asp:Label>
                             <asp:Label ID="lblsalecore" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399" Visible="false"></asp:Label>
+                            <asp:Label ID="lblsalecoreactual" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399"></asp:Label>
+
 
 
                         </div>

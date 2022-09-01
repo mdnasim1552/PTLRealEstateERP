@@ -21,97 +21,365 @@ namespace RealERPWEB
         {
             if (!IsPostBack)
             {
-                // this.CommonButton();
-                var type = this.Request.QueryString["Entry"].ToString().Trim();
-                if (type == "Apprv" || type == "HR")
-                {
-                    this.panl1.Visible = false;
-                    this.btnsave.Visible = false;
-                    this.btnapprv.Visible = false;
-                    this.ShowLetter();
-                }
-
-
-                // this.txtml.Text = "<h1><span style=" + "text-decoration:" + "underline;" + "><strong>sabid hossain</strong></span></h1>";
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                // this.txtfromdate.Text = "01" + date.Substring(2);
-                this.txttodate.Text = date;
-                // this.ShowView();
-
-
-                string type1 = this.Request.QueryString["Type"].ToString().Trim();
-                if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1=="10028" || type1=="10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023")
-                {
-                    this.GetSelected();
-                    this.GetCompany();
-                }
-                else
-                {
-                    this.GetEmployee();
-                }
-
-
-                //  this.GetLettPattern();
-                string title = this.Request.QueryString["Type"].ToString().Trim();
-
-                switch (title)
-                {
-                    case "10002":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Appoinment Letter";
-                        break;
-                    case "10003":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Offer Letter";
-                        break;
-                    case "10004":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation With Promotion Letter";
-                        break;
-                    case "10005":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
-                        break;
-
-                    case "10006":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Probation Extension Letter";
-                        break;
-                    case "10007":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
-                        break;
-                    case "10008":
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Certificate Letter";
-                        break;
-                    default:
-                        ((Label)this.Master.FindControl("lblTitle")).Text = "Name of Letter";
-                        break;
-                }
-
-
-                // ddlEmployee_SelectedIndexChanged(null, null);
-
-                string Apprv = this.Request.QueryString["Entry"].ToString();
-                if (Apprv == "Apprv")
+                if (Request.QueryString["Page"] != null)
                 {
 
-                    ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = true;
-                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = true;
+
+                    string pageType = this.Request.QueryString["Page"].ToString().Trim();
+                    if (pageType == "NewRec")
+                    {
+                        this.panl1.Visible = false;
+                        this.dnone.Visible = false;
+                        this.pnl2.Visible = true;
+
+                        getLetter();
+
+                    }
+                }
+                else { 
+                
+
+                    // this.CommonButton();
+                    var type = this.Request.QueryString["Entry"].ToString().Trim();
+                    if (type == "Apprv" || type == "HR")
+                    {
+                        this.panl1.Visible = false;
+                        this.btnsave.Visible = false;
+                        this.btnapprv.Visible = false;
+                        this.ShowLetter();
+                    }
+
+
+                    // this.txtml.Text = "<h1><span style=" + "text-decoration:" + "underline;" + "><strong>sabid hossain</strong></span></h1>";
+                    string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    // this.txtfromdate.Text = "01" + date.Substring(2);
+                    this.txttodate.Text = date;
+                    // this.ShowView();
+
+
+                    string type1 = this.Request.QueryString["Type"].ToString().Trim();
+                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023")
+                    {
+                        this.GetSelected();
+                        this.GetCompany();
+                    }
+                    else
+                    {
+                        this.GetEmployee();
+                    }
+
+
+                    //  this.GetLettPattern();
+                    string title = this.Request.QueryString["Type"].ToString().Trim();
+
+                    switch (title)
+                    {
+                        case "10002":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Appoinment Letter";
+                            break;
+                        case "10003":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Offer Letter";
+                            break;
+                        case "10004":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation With Promotion Letter";
+                            break;
+                        case "10005":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
+                            break;
+
+                        case "10006":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Probation Extension Letter";
+                            break;
+                        case "10007":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
+                            break;
+                        case "10008":
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Certificate Letter";
+                            break;
+                        default:
+                            ((Label)this.Master.FindControl("lblTitle")).Text = "Name of Letter";
+                            break;
+                    }
+
+
+                    // ddlEmployee_SelectedIndexChanged(null, null);
+
+                    string Apprv = this.Request.QueryString["Entry"].ToString();
+                    if (Apprv == "Apprv")
+                    {
+
+                        ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = true;
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = true;
+
+                    }
+                    if (Apprv == "HR")
+                    {
+                        //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
+                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
+                    }
+                    else
+                    {
+                        //((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
+                        //((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
+                    }
+                    this.lbtnOk_Click(null, null);
 
                 }
-                if (Apprv == "HR")
-                {
-                    //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-
-                }
-                else
-                {
-                    //((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
-                    //((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
-                }
-                this.lbtnOk_Click(null, null);
-
             }
-
-
         }
 
+        
+        private void getLetter()
+        {
+            string comcod = this.GetCompCode();
+            string advno = this.Request.QueryString["advno"].ToString().Trim();
+
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GETRECEMP", advno, "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+                return;
+
+            string adv = ds.Tables[0].Rows[0]["advno"].ToString() ?? "";
+            string name = ds.Tables[0].Rows[0]["name"].ToString() ?? "";
+            string desig = ds.Tables[0].Rows[0]["desig"].ToString();
+            string dept = ds.Tables[0].Rows[0]["dept"].ToString() ?? "";
+            string mobile = ds.Tables[0].Rows[0]["mobile"].ToString() ?? "";
+            string email = ds.Tables[0].Rows[0]["email"].ToString() ?? "";
+            string preadd = ds.Tables[0].Rows[0]["preadd"].ToString() ?? "";
+            string peradd = ds.Tables[0].Rows[0]["peradd"].ToString() ?? "";
+            string sec = ds.Tables[0].Rows[0]["sec"].ToString() ?? "";
+
+            string bsal = ds.Tables[0].Rows[0]["bsal"].ToString() ?? "";
+            string hrent = ds.Tables[0].Rows[0]["hrent"].ToString() ?? "";
+            string cven = ds.Tables[0].Rows[0]["conven"].ToString() ?? "";
+            string mallow = ds.Tables[0].Rows[0]["mallow"].ToString() ?? "";
+            string total = ds.Tables[0].Rows[0]["total"].ToString() ?? "";
+            string grade = ds.Tables[0].Rows[0]["grade"].ToString() ?? "";
+            string doj = ds.Tables[0].Rows[0]["doj"].ToString() ?? "";
+            string refno = ds.Tables[0].Rows[0]["refno"].ToString() ?? "";
+            string cur_year = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy");
+            string incmtax = "";
+            string payablesal = "";
+            string idcard = "";
+            string inwords = ASTUtility.Trans(Convert.ToDouble(total), 2);
+            double inwrd = 0;
+            string temptable = "";
+            int count = 1;
+             //double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
+            //string Inword =  ASTUtility.Trans(netamt, 2);
+            if (ds.Tables[1].Rows.Count != 0)
+            {
+
+                DataTable dtemplv = ds.Tables[1];
+
+                if (dtemplv.Rows.Count > 0)
+                {
+                    foreach (DataRow drlv in dtemplv.Rows)
+                    {
+
+                        temptable = temptable + "<tr style='border-style:solid;border: 1px solid black;'><td style='border-style:solid;border: 1px solid black;text-align:center'>" + count + "</td><td style='border-style:solid;border: 1px solid black;'>" + drlv["lvname"].ToString() + "</td><td style='border-style:solid;border:1px solid black;text-align:center'>" + drlv["leave"].ToString() + " </td></tr>";
+                        count++;
+                    }
+                }
+            }
+            string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
+
+            string lbody = string.Empty;
+            string letterType = this.Request.QueryString["Type"].ToString().Trim();
+
+
+            switch (letterType)
+            {
+                //confirmation letter
+                case "10025":
+
+                    if ( this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
+                    {
+                        lbody =
+                           "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
+                           "<p style='margin-bottom:-11px'><strong>Ref:"+refno+"</strong></p>" +
+                           "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
+                            "<p style='margin-bottom:-11px'>" + desig + "</p>" +
+                            "<p style='margin-bottom:-11px'>" + dept + "</p>" +
+                            "<p style='margin-bottom:-11px'>" + sec + "</p>" +
+                            "<p>Subject:<strong>Confirmation Letter.</strong> </p>" +
+                            "<p>Dear Mr " + name + "</p>" +
+                            "<p><strong>Congratulations!</strong></p>" +
+                            "<p>We would like to congratulate you on your successful completion of the probation period in our organization. We are glad to have received satisfactory reports from your superior regarding your performance during the said period. </p>" +
+                            "<p>You have good product knowledge & inventory accuracy; are good at execution of tasks; able to maintain transparency in documentation; are punctual and disciplined at work; respond positively to other assigned tasks and we appreciate you for that. We are expecting an increase in work knowledge and an improvement in warehouse capacity management from you which will foster your performance in the future.</p>" +
+                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT "+total+".     </p>" +
+                            "<p>Now that you are going to be even an integral part of the organization, we would expect greater efforts from you to strive to do better at work for ultimately setting the organization on the growth path.  We have complete faith in you. </p>" +
+                                  "<p></p>" +
+                            "<p>Wishing you all the very best</p>" +
+                             "<p></p>" +
+                            "Regards," +
+                            "<p></p>" +
+                          "<p></p>" +
+                              "<p></p>" +
+
+                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>Md. Mizanur Rahman Khan</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>S. M. Sahedul Karim Munna </strong></p></span></p>" +
+                             "<br>" +
+                           "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Operating Officer</strong></p></span></p>" +
+                           "<p></p>" +
+                           "<p style='display:inline-block;border-bottom:1px solid;margin-bottom:-11px;'>CC:</p>" +
+                           "<p style='margin-left:10px;margin-bottom:-11px;'>1.Personal file</p>" +
+                           "<p style='margin-left:10px;margin-bottom:-11px;'>2.Office file</p>";
+
+                    }
+
+                    break;
+
+                    //appoinment letter
+                case "10002":
+                    if (this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
+                    {
+
+                        lbody =
+                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:"+refno+"</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong> Mr " + name + "</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
+                        "<p><strong>Subject:</strong> Appointment Letter - <strong>" + desig + "</strong></p>" +
+                        "<p>Dear Mr " + name + ",</p>" +
+                        //body
+                        "<p>We are delighted to appoint you as a  <strong>" + desig + "</strong> of the <strong>" + dept + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
+                        "<p> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
+                        "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
+
+                        //position info
+                        //"<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: M4</span></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + doj + "</span></p>" +
+                       "<table style='border:none'> <tr style='border:none'><td style='border:none'><strong>Designation</strong></td><td style='border:none'>: " + desig + "</td> </tr><tr style='border:none'><td style='border:none'> <strong>Employee Grade</strong></td><td style='border:none'>: " + grade + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Probable Job Start Date</strong></td><td style='border:none'>: " + date + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Salary Breakdown</strong></td><td style='border:none'>:</td></tr></table>" +
+
+
+                        //salary break down table
+         
+                        "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;margin-top:7px'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:center'>" + bsal + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + hrent + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + mallow + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:center'>" + cven + "</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong>" + total + "</strong></td></tr></table>" +
+                         "<p style='margin-left:30px;'>In words : " + inwords+"</p>" +
+
+                        "<p></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Mobile Allowance</strong><span>: As per company policy.</span></p>" +
+                        //"<p style='margin-bottom:-11px'><strong>Festival Bonus</strong><span>: You will be entitled for two festival bonuses yearly.</span></p>" +
+
+                       "<table style='border:none'> <tr style='border:none'><td style='border:none'><strong>Mobile Allowance</strong></td><td style='border:none'>:  As per company policy.</td> </tr><tr style='border:none'><td style='border:none'> <strong>Festival Bonus</strong></td><td style='border:none'>: You will be entitled for two festival bonuses yearly.</td></tr><tr style='border:none'><td style='border:none'> <strong>Leave Allocation </strong></td><td style='border:none'>:</td></tr></table>" +
+
+
+                        //leave allocation
+
+                        "<table style='width:70%;margin-left:20px;border-style:solid;border:1px solid black;margin-top:7px'><tr style='border-style:solid;border:1px solid black;'><th style='width:50px;border-style:solid;border:1px solid black;'>SL</th><th style='border-style:solid;border:1px solid black;'>Types of Leave</th><th style='border-style:solid;border: 1px solid black;'>Total Leave in a Year</th></tr>" + temptable + "</table>" +
+
+                             "<p></p>" +
+                             "<p></p>" +
+
+                        "<ul><li style='margin-top:100px;'>You will be able to avail earned leave after completion of 1 (one) year employment with Edison Real Estate Limited. Casual leave and sick leave shall be allocated as pro rata basis calculated from your date of joining. </li>" +
+                        "<li style='margin-top:10px;'>During probation period, you will be able to avail maximum 2 (two) days leave in a month from your casual/sick leave. Any other absent will be counted as leave without pay.</li></ul>" +
+
+                        //probation
+                        "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a three-month probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
+                        "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
+
+                        //termination
+                        "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                               "<p></p>" +
+                            "<p></p>" +
+
+                            "<div style='float:left;width:50%;margin-bottom:-11px'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px'><strong>Md. Mizanur Rahman Khan</strong></p>" +
+                           "<p style='margin-bottom:-11px;'><strong>Senior Manager – HR</strong></p>" +
+                             "</div>" +
+
+                            "<div style='float:left;width:50%;margin-bottom:40px;'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px;'><strong>Ahmed Pasha</strong></p>" +
+                           "<p style='margin-bottom:-11px;'><strong>Chief Business Officer</strong></p>" +
+                             "</div>" +
+
+
+                       //         "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Md. Mizanur Rahman Khan</strong></span>  <span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;text-align:left;'><strong>Ahmed Pasha</strong></p></span></p>" +
+                       //"<br>" +
+                       //         "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Senior Manager – HR</strong></span>                           <span style='display:inline-block;margin-bottom:-11px;margin-left:250px;text-align:left;'><strong>Chief Business Officer</strong></p></span></p>" +
+
+
+                       "<div style='margin-top:45px'><p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p></div>" +
+
+                       "<p></p>" +
+                       "<div><p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:120px;'><strong>" + name + "</strong></p></div>";
+                    }
+                    break;
+
+                    //offer letter
+                case "10003":
+                    if ( this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
+                    {
+                        lbody =
+                       "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
+                       "<p><strong>Subject:</strong> Offer Letter-<strong>" + desig + "</strong></p>" +
+                       "<p>Dear Mr " + name + ",</p>" +
+
+                       "<p style='margin-bottom:-11px'>We are delighted to offer you the position of <strong>" + desig + "</strong> of the <strong>" + sec + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
+                       "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
+                       "<p We are confident, you will f>We are confident, you will find this new opportunity both challenging and rewarding. The following points outline the terms and conditions we are proposing.</p>" +
+                       "<table style='border:none'> <tr style='border:none'><td style='border:none'><strong>Designation</strong></td><td style='border:none'>: " + desig + "</td> </tr><tr style='border:none'><td style='border:none'> <strong>Employee Grade</strong></td><td style='border:none'>: " + grade + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Probable Job Start Date</strong></td><td style='border:none'>: " + date + "</td></tr><tr style='border:none'><td style='border:none'> <strong>Salary</strong> </td><td style='border:none'>: As negotiated and agreed upon by both parties</td></tr><tr style='border:none'><td style='border:none'><strong>Mobile Allowance</strong></td><td style='border:none'>: As per company policy</td></tr></table>" +
+                       //"<p style='margin-bottom:-11px'><strong>Designation</strong><span>: " + desig + "</span></p>" +
+                       //"<p style='margin-bottom:-11px'><strong>Employee Grade</strong><span>: "+grade+"</span></p>" +
+                       //"<p style='margin-bottom:-11px'><strong>Probable Job Start Date</strong><span>: " + date + "</span></p>" +
+                       //"<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
+                       //"<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>" +
+
+                       "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a three-month probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
+                       "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Termination of Employment:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of 2 (Two) months. If an employee wants to leave the organization, must have to provide a notice to the company 2 (Two) months prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                       "<p style='margin-bottom:-11px'>We look forward to the opportunity to work with you in an atmosphere that is successful and mutually challenging and rewarding.If you don’t accept this letter, please let us know within " + date + ".</p>" +
+
+                           "<p></p>" +
+                            "<p></p>" +
+
+                            "<div style='float:left;width:50%;margin-bottom:-11px'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px'><strong>Md. Mizanur Rahman Khan</strong></p>"+
+                           "<p style='margin-bottom:-11px;'><strong>Senior Manager – HR</strong></p>" +
+                             "</div>" +
+
+                            "<div style='float:left;width:50%;margin-bottom:40px;'>" +
+                             "<p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:190px;'><strong>Ahmed Pasha</strong></p>" +
+                           "<p style='margin-bottom:-11px;'><strong>Chief Business Officer</strong></p>" +
+                             "</div>" +
+
+                         
+                  //         "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Md. Mizanur Rahman Khan</strong></span>  <span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;text-align:left;'><strong>Ahmed Pasha</strong></p></span></p>" +
+                  //"<br>" +
+                  //         "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Senior Manager – HR</strong></span>                           <span style='display:inline-block;margin-bottom:-11px;margin-left:250px;text-align:left;'><strong>Chief Business Officer</strong></p></span></p>" +
+
+
+                       "<div style='margin-top:45px'><p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p></div>" +
+
+
+                       "<div><p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:120px;'><strong>" + name + "</strong></p></div>";
+
+                    }
+                    else if (this.GetCompCode() == "3365")
+                    {
+                        lbody = "<p style='margin-bottom:0'><br/><br/>Ref: "+refno+"</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
+       "<p style='margin-bottom:-11px'>Address: "+peradd+" </p>" +
+       "<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : "+ mobile + "</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>Mr " + name + "," + "</strong></p>" +
+       "<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + desig + ", " + sec + ",</strong> in " + dept + ", which shall commence on or before <strong> " + doj + " </strong>." +
+       "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
+       "<li style='margin-top:5px'>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li style='margin-top:5px'>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li style='margin-top:5px'>Photocopy of National ID card/ Passport (employee and nominee).</li><li style='margin-top:5px'>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
+       "</li><li style='margin-top:5px'>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director" + "</p><p>" + "Head of HR,Admin,Security and Fire Safety Department" + "</p>";
+
+                    }
+                    break;
+
+            
+            }
+            this.txtml.Text = lbody;
+
+        }
         private void ShowLetter()
         {
 
@@ -386,9 +654,10 @@ namespace RealERPWEB
             {
                 callType = "GETCANDIDATELIST";
             }
-            else if (qtype == "10013" || qtype == "10020" || qtype == "10021" || qtype == "10022" || qtype == "10023")
+            else if (qtype == "10013" || qtype == "10020" || qtype == "10021" || qtype == "10022" || qtype == "10023" || qtype=="10028")
             {
-                callType = "GETCONFIRMEMP";
+               // callType = "GETCONFIRMEMP";
+                callType = "CONFIRMEMPINFO";
             }
 
 
@@ -401,7 +670,7 @@ namespace RealERPWEB
             }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LETTER", callType, qtype, empid, "", "", "", "", "", "", "");
-            if (ds1 == null)
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
                 return;
 
             this.ddlEmployee.Items.Clear();
@@ -547,10 +816,9 @@ namespace RealERPWEB
 
             string date = "Date:" + System.DateTime.Now.ToString("MMM dd,yyyy");
             string year = System.DateTime.Now.ToString("yyyy");
-            //string empid = this.ddlEmployee.SelectedValue.ToString();
-            // var empname = this.ddlEmployee.SelectedItem.ToString();
+
             string lbody = string.Empty;
-            // string empid=hst["empid"].ToString();
+
 
             string section = this.ddlProjectName.SelectedItem.ToString();
             string companme = this.ddlCompany.SelectedItem.Text.ToString();
@@ -1196,7 +1464,7 @@ namespace RealERPWEB
                     break;
                 //salary certificate
                 case "10028":
-                    if (this.GetCompCode() == "3354")
+                    if (this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
                     {
                         lbody = "<p style='text-align:right;margin-bottom:-11px'>" + date + "</p>" +
 
@@ -1376,5 +1644,43 @@ namespace RealERPWEB
         }
 
 
+
+        protected void btnSendLetter_Click(object sender, EventArgs e)
+        {
+            string letterType = this.Request.QueryString["Type"].ToString().Trim();
+            string advno = this.Request.QueryString["advno"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string msg = "";
+            if (letterType == "10003")
+            {
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "UPDTLETSTATUS", "true", "false", "false", advno, "", "");
+                if (result)
+                {
+                    msg = "Updated success";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                }
+            }
+            else if (letterType == "10002")
+            {
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "UPDTLETSTATUS", "true", "true", "false", advno, "", "");
+                if (result)
+                {
+                    msg = "Updated success";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                }
+            }
+            else if (letterType == "10025")
+            {
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "UPDTLETSTATUS", "true", "true", "true", advno, "", "");
+                if (result)
+                {
+                    msg = "Updated success";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+                }
+            }
+        }
     }
 }

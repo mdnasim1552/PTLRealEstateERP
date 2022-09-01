@@ -123,6 +123,15 @@ namespace RealERPWEB.F_30_Facility
         protected global::System.Web.UI.WebControls.Label lblProject;
 
         /// <summary>
+        /// lblpactcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblpactcode;
+
+        /// <summary>
         /// lblProjectText control.
         /// </summary>
         /// <remarks>

@@ -128,8 +128,8 @@ namespace RealERPWEB.F_17_Acc
             {
                 string eventtype = "Show Data " + ((Label)this.Master.FindControl("lblTitle")).Text;
                 string eventdesc = "Show Data " + ((Label)this.Master.FindControl("lblTitle")).Text;
-                string eventdesc2 = "Data Show Date Range : " + "From "+ frmdate + "To " + todate+ "Voucher Type " + voutype;
-               
+                string eventdesc2 = "Data Show Date Range : " + "From " + frmdate + "To " + todate + "Voucher Type " + voutype;
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -226,6 +226,18 @@ namespace RealERPWEB.F_17_Acc
             DataTable dt = (DataTable)Session["tblunposted"];
             DataTable dt2 = (DataTable)Session["tblusrvoucount"];
 
+            string txtusr = ((TextBox)this.gvAccVoucher.HeaderRow.FindControl("txtSearusrname")).Text.Trim().ToString();
+            if (txtusr.Length > 0)
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("usrname like '%" + txtusr + "%'");
+                dt = dv.ToTable();
+
+                DataView dv2 = dt2.DefaultView;
+                dv2.RowFilter = ("usrname like '%" + txtusr + "%'");
+                dt2 = dv2.ToTable();
+            }
+
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
             var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
             LocalReport Rpt1 = new LocalReport();
@@ -257,13 +269,13 @@ namespace RealERPWEB.F_17_Acc
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-          
+
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Print " + ((Label)this.Master.FindControl("lblTitle")).Text;
-                string eventdesc = "Print Datat  " + ((Label)this.Master.FindControl("lblTitle")).Text;                            
-                string eventdesc2 = "Data Show Date Range : " + "From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + 
+                string eventdesc = "Print Datat  " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc2 = "Data Show Date Range : " + "From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") +
                     " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy") + "Voucher Type :" + vouType;
 
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
@@ -281,7 +293,15 @@ namespace RealERPWEB.F_17_Acc
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("hlnkVoucherEdit");
                 HyperLink hlnkPrintVoucher = (HyperLink)e.Row.FindControl("hlnkVoucherPrint");
                 HyperLink hlnkChequePrint = (HyperLink)e.Row.FindControl("hlnkChequePrint");
+
+                Label lblvounum = (Label)e.Row.FindControl("lblvounum");
+                Label lblgvvouamt = (Label)e.Row.FindControl("lblgvvouamt");
+
+
+
                 string vounum = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "vounum")).ToString();
+                string voutype = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "voutype")).ToString().Trim();
+
                 string vounum1 = vounum.Substring(0, 2);
 
                 string paytype = this.ChboxPayee.Checked ? "0" : "1";
@@ -289,6 +309,13 @@ namespace RealERPWEB.F_17_Acc
                 string cquepbl = (this.checkpb.Checked) == false ? "0" : "1";
                 string woutchqdat = (this.withoutchqdate.Checked) ? "1" : "0";
 
+                if (voutype == "U")
+                {
+                    lblvounum.Attributes["style"] = "font-weight:bold; color:magenta;";
+                    lblgvvouamt.Attributes["style"] = "font-weight:bold; color:magenta;";
+
+
+                }
 
 
                 if (this.checkpb.Checked == true)

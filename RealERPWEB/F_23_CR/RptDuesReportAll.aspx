@@ -116,7 +116,7 @@
                                             CssClass=" table-striped table-hover table-bordered grvContentarea gvTopHeader"
                                             PageSize="20" ShowFooter="True">
                                             <Columns>
-                                    <asp:TemplateField HeaderText="Sl#">
+                                    <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblserialnoidas" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="33px"></asp:Label>

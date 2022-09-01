@@ -172,9 +172,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.lblLastCardNo.Visible = true;
                     this.addOcupation.Visible = false;
 
-                    this.UploadCV.Visible = false;
-                    this.FileUploadControl.Visible = false;
-                    this.lblUploadCV.Visible = false;
+                    this.UploadCV.Visible = true;
+                    this.FileUploadControl.Visible = true;
+                    this.lblUploadCV.Visible = true;
 
                     this.btnUpload.Visible = true;
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
@@ -1818,8 +1818,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             if (FileUploadControl.HasFile)
             {
-                try
-                {
+                //try
+                //{
                     string filename = Path.GetFileName(FileUploadControl.FileName);
                     String extension = System.IO.Path.GetExtension(filename);
                     switch (extension)
@@ -1849,13 +1849,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
 
                     //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
-                }
-                catch (Exception ex)
-                {
+                //}
+                //catch (Exception ex)
+                //{
 
-                    //write error handling code
+ 
 
-                }
+                //}
             }
         }
         protected void gvPersonalInfo2_RowDataBound(object sender, GridViewRowEventArgs e)

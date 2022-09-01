@@ -24,6 +24,15 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// UpdateProgress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+
+        /// <summary>
         /// LblBookName1 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbalterofddl;
+
+        /// <summary>
+        /// LblDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblDetails;
 
         /// <summary>
         /// ddlOthersBookSegment control.

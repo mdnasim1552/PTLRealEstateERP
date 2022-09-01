@@ -208,6 +208,41 @@ namespace RealEntity.C_81_Hrm.C_81_Rec
 
             public EmpAllInformationBn() { }
         }
+
+        [Serializable]
+
+
+        public class EmployeeAllInfo
+        {
+            public string grpid { get; set; }
+            public string empid { get; set; }
+            public string gcod { get; set; }
+            public string gdesc { get; set; }
+            public string gdescbn { get; set; }
+            public double amt { get; set; }
+            public string gdatat1 { get; set; }
+            public string gdatat2 { get; set; }
+            public string gdatat3 { get; set; }
+            public string gdatat4 { get; set; }
+            public double percnt { get; set; }
+            public string unit { get; set; }
+            public double qty { get; set; }
+            public double raate { get; set; }
+            public string grpdesc { get; set; }
+            public string grpdescbn { get; set; }
+            public string tdesc { get; set; }
+            public string tdescbn { get; set; }
+            public string empimg { get; set; }
+            public string empsign { get; set; }
+
+            public EmployeeAllInfo()
+            {
+
+            }
         }
+
+
+
+    }
 }
 

@@ -564,6 +564,15 @@
                                                 <asp:Label ID="lgvNameSumm" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empnam")) %>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
+
+                                                                              <HeaderTemplate>
+                                                    <asp:Label ID="lblexl" runat="server" Font-Bold="True" Width="100px"
+                                                        Text="Section">
+                                                        <asp:HyperLink ID="hlbtntbCdataExelSP2" runat="server"
+                                                            CssClass="btn btn-success ml-2 btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
+                                                    </asp:Label>
+                                                </HeaderTemplate>
+
                                             <ItemStyle HorizontalAlign="Center" />
 
                                             <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />

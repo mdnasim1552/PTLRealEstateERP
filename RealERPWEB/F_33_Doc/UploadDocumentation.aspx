@@ -34,40 +34,36 @@
     </style>
 
 
-<%--    <script type="text/javascript">
+                   
+    <script src="../assets/js/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+
+
+
         $(document).ready(function () {
-            //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
 
         });
         function pageLoaded() {
-            try {
-                $('.chzn-select').chosen({ search_contains: true });
-            }
-            catch (e) {
-                alert(e);
-            }
 
-        };
-        $('.chzn-select').chosen({ search_contains: true });
-    </script>--%>
+            $(function () {
+                CKEDITOR.replace('<%=txtDetails1.ClientID %>');
+            });
+            $(function () {
+                 // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                // CKEDITOR.replace('<%=txtDetails1.ClientID%>');  //Nahiod comments 021020019
+                //bootstrap WYSIHTML5 - text editor
+                //$('.textarea').wysihtml5()
+            })
+        }
 
-<%--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+     
+    </script>
 
-    <script>
-        tinymce.init({
-            selector: '#txtDetails1',
-            plugins: [
-                'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
-                'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
-                'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
-            ],
-            toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-                'alignleft aligncenter alignright alignjustify | ' +
-                'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
-        });
-    </script>--%>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -187,24 +183,27 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Remarks">
+                                        <asp:TemplateField HeaderText="Details">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks")%>' Width="150px"></asp:Label>
+                                                <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks").ToString().Substring(1,30)%>' Width="150px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="File">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblgcod" runat="server" Text='<%#Eval("gcod")%>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblid" runat="server" Text='<%#Eval("id")%>' Visible="false"></asp:Label>
 
 
-                                                <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank">View</asp:HyperLink>
+                                                <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm text-white" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">
                                                <ItemTemplate>
-                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn btn-danger btn-sm" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
+                                                  <asp:LinkButton ID="btn_edit" runat="server" CssClass="btn-sm text-info" OnClick="btn_edit_Click" > <i class="fa fa-edit"></i> 
+                                                </asp:LinkButton>
+                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -225,11 +224,18 @@
             <asp:PostBackTrigger ControlID="lnk_save" />
         </Triggers>
     </asp:UpdatePanel>
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-
-<script type="text/javascript">
-    tinymce.init({ selector: 'textarea' });
-</script>
+     <script>
+         $(function () {
+             CKEDITOR.replace('<%=txtDetails1.ClientID %>');
+            });
+            $(function () {
+                 // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                // CKEDITOR.replace('<%=txtDetails1.ClientID%>');  //Nahiod comments 021020019
+                //bootstrap WYSIHTML5 - text editor
+                //$('.textarea').wysihtml5()
+            })
+     </script>
 
 </asp:Content>
 

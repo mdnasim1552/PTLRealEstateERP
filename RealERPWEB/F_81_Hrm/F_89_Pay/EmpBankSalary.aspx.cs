@@ -38,7 +38,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Summary";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Transfer Statement Lock";
             }
         }
 
@@ -60,7 +60,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //    return;
 
 
-           // int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            // int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = "94" + "%";
 
             string txtSProject = "%";
@@ -69,7 +69,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlBranch.DataValueField = "actcode";
             this.ddlBranch.DataSource = ds1.Tables[0];
             this.ddlBranch.DataBind();
-           // this.ddlBranch_SelectedIndexChanged(null, null);
+            // this.ddlBranch_SelectedIndexChanged(null, null);
 
         }
         private void GetMonth()
@@ -117,8 +117,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3347":
                     this.rbtnlistsaltypeAddItem();
                     this.ChkAll.Visible = true;
-                    this.lblcompany.Visible = true;
-                    this.ddlCompany.Visible = true;
+                    this.divDDLComp.Visible = true;
+                    this.divDDLBranch.Visible = true;
                     this.GetCompany();
                     break;
                 default:
@@ -181,7 +181,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
-        
+
         private void GetBankName()
         {
             string comcod = this.GetComeCode();
@@ -298,12 +298,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string withoutresign = "";
             switch (comcod)
             {
-                
+
                 case "3365": //BTI
                     withoutresign = "withoutresign";
                     break;
 
-                
+
 
                 default:
                     withoutresign = "";
@@ -355,7 +355,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string company = comcod == "3347" ? ddlCompany.SelectedValue.ToString().Substring(0, 4) + "%" : "";
             string withoutresign = this.GetWithoutResign();
-            string branch = this.ddlBranch.SelectedValue.ToString().Substring(0, 4)=="0000"? "%%" : this.ddlBranch.SelectedValue.ToString().Substring(0, 4) + "%";
+            string branch = this.ddlBranch.SelectedValue.ToString().Substring(0, 4) == "0000" ? "%%" : this.ddlBranch.SelectedValue.ToString().Substring(0, 4) + "%";
             //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, "", "", "");
 
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, all, company, withoutresign, branch);
@@ -387,8 +387,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 this.FooterCalculation();
                 Session["Report1"] = gvBankPayment;
-                ((HyperLink)this.gvBankPayment.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-              //  ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                ((HyperLink)this.gvBankPayment.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                //  ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             }
             if (Request.QueryString["Type"].ToString() == "Entry")
             {
@@ -414,7 +414,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
                 ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
-                 : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
             }
 
         }
@@ -491,7 +491,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
             string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
-
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("saltrn='True'");
             dt = dv.ToTable();
@@ -499,12 +499,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBankStatementFinlay", lst, null, null);
+
+            if (printtype == "EXCEL")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBankStatementFinlayExcel", lst, null, null);
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBankStatementFinlay", lst, null, null);
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Bank Forwarding Report For " + bankname ));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Bank Forwarding Report For " + bankname));
             Rpt1.SetParameters(new ReportParameter("txtMonth", month));
             Rpt1.SetParameters(new ReportParameter("txtYear", year));
 
@@ -1127,8 +1135,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //branch = "Mirpur Branch";
                 //address = "Dhaka";
                 bank = bank1;
-                branch = add.Length > 0 ? add[0].ToString(): "";
-                var list = new List<string>(add);                
+                branch = add.Length > 0 ? add[0].ToString() : "";
+                var list = new List<string>(add);
                 list.RemoveAt(0);
                 foreach (var item in list)
                 {
@@ -1393,7 +1401,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected void lbtSalUpdate_Click(object sender, EventArgs e)
         {
 
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string msg;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             this.SaveValue();
@@ -1415,13 +1423,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 if (result == true)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    msg = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                    msg = "Updated Failed";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
                 }
 
                 //}
@@ -1434,12 +1444,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             bool result1 = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INORUPBANKLOCK", monthid, bankcode, Banklock, "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+             msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
         }
         protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)

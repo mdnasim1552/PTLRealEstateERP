@@ -738,7 +738,7 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide()
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
+                       //$(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
@@ -746,6 +746,7 @@
 
 
                     case 3367:  //Epic  
+                    case 3101:  //Epic
                                              
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
                         //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
@@ -940,7 +941,7 @@
 
                         <div class="col-md-1">
                             <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-danger">Opera</button>
+                                <button type="button" class="btn btn-danger">Operations</button>
                                 <div class="btn-group" role="group">
                                     <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">

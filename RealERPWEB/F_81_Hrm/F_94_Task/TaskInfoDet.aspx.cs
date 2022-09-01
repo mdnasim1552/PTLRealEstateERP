@@ -212,12 +212,13 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
                                                                                                 //+ ":" + ddlMminT.SelectedValue.ToString() + " " + ddlslbT.SelectedValue.ToString())).ToString("dd-MMM-yyyy HH:mm:ss");
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empcode = hst["empid"].ToString(); //this.ddlEmp.SelectedValue.ToString();  
-                                                      //if (this.btnOk.Text == "Update")
-                                                      //{
-                                                      //    empcode = hst["empid"].ToString();
-                                                      //}
+            //this.ddlEmp.SelectedValue.ToString();  
+            //if (this.btnOk.Text == "Update")
+            //{
+            //    empcode = hst["empid"].ToString();
+            //}
             string comcod = this.GetCompCode();
+            string empcode = hst["empid"].ToString();// this.ddlEmp.SelectedValue.ToString();
             string taskcode = this.ddltask.SelectedValue.ToString();
             string tdesc = this.txttaskdesc.Text;
             string floctn = ddlfloc.SelectedValue.ToString();
@@ -269,6 +270,12 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
             //ddlMmin.SelectedValue = "0";
             //ddlMminT.SelectedValue = "0";
             this.txtdateentry.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            if (this.ddlEmp.SelectedValue.ToString() == "000000000000")
+            {
+                string msg1 = "Please Select Employee..!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                return;
+            }
             getTask();
             getDDLoc();
             this.txttaskdesc.Text = "";

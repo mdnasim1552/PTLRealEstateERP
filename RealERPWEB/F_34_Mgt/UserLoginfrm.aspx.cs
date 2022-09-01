@@ -1272,7 +1272,7 @@ namespace RealERPWEB.F_34_Mgt
         {
             string comcod = this.GetComeCode();
             this.Bind_EmpId();
-            DataTable dt = (DataTable)ViewState["tblempleaveinfo"];
+          //  DataTable dt = (DataTable)ViewState["tblempleaveinfo"];
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
             string empcode = ((LinkButton)this.gvUseForm.Rows[RowIndex].FindControl("lbtnUserId")).Text.Trim();

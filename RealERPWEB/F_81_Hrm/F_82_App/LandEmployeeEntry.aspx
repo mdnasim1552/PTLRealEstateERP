@@ -54,13 +54,13 @@
                     <asp:GridView ID="gvEmpSalLand" runat="server" CssClass="table-striped table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="900px">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo5" runat="server" Font-Bold="True"
                                         Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
@@ -78,7 +78,7 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                         Width="160px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center"  Font-Bold="True" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Designation">
                                 <ItemTemplate>
@@ -87,9 +87,9 @@
                                         Width="190px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbntUpdateOtherDed_Click" >Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-success successBtn" OnClick="lbntUpdateOtherDed_Click" >Update</asp:LinkButton>
                                 </FooterTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center"  Font-Bold="True" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Section">
                                 <ItemTemplate>
@@ -97,7 +97,7 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
                                         Width="150px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center"  Font-Bold="True" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Card No">
                                 <ItemTemplate>
@@ -105,7 +105,7 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center"  Font-Bold="True" Font-Size="16px" />
                             </asp:TemplateField>
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />

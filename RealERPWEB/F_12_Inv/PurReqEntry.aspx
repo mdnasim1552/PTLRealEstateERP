@@ -136,26 +136,17 @@
                                                 </div>
                                                 <div class="col-md-4 pading5px asitCol4">
                                                     <asp:Label ID="lblCurReqNo1" runat="server" CssClass="smLbl" Text="REQ00"></asp:Label>
-
                                                     <asp:TextBox ID="txtCurReqNo2" runat="server" CssClass="xsDropDow inputTxt disabled readonlyValue" ReadOnly="True" TabIndex="8">00000</asp:TextBox>
                                                     <asp:Label ID="lblmrfno" runat="server" CssClass=" smLbl_to" Text="M.R.F. No."></asp:Label>
-                                                    <asp:TextBox ID="txtMRFNo" runat="server" TabIndex="7" CssClass="inputtextbox" Style="width: 120px;"></asp:TextBox>
+                                                    <asp:TextBox ID="txtMRFNo" runat="server" TabIndex="7" CssClass="inputtextbox" Style="width: 120px;"  AutoPostBack="true" OnTextChanged="txtMRFNo_TextChanged"></asp:TextBox>
                                                 </div>
 
-
-
-
-
                                                 <div class="col-md-3 pading5px">
-
                                                     <asp:CheckBox ID="chkdupMRF" runat="server" Text="Dup.M.R.F" CssClass="btn btn-primary checkBox" Visible="false"
                                                         TabIndex="9" />
                                                     <asp:CheckBox ID="chkneBudget" runat="server" Text="Not Exceed Budget" CssClass="btn btn-primary checkBox" Visible="false"
                                                         TabIndex="10" />
-
                                                 </div>
-
-
                                             </div>
                                         </div>
 
@@ -258,7 +249,13 @@
                                                 <asp:Label ID="lblgvSlNo0" runat="server" Height="16px" Style="text-align: right" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" />
+                                        <%--<asp:CommandField ShowDeleteButton="True" />--%>
+
+                                        <asp:TemplateField ShowHeader="true">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lbtnDelMat" runat="server" OnClick="lbtnDelMat_Click" ToolTip="Delete Material" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-trash" style="color:red"> </span> </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Res Code" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvResCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>' Width="80px"></asp:Label>
@@ -505,7 +502,7 @@
                                         </div>
 
 
-                                        <div class="col-md-4 pading5px" id="Dept" runat="server" >
+                                        <div class="col-md-4 pading5px" id="Dept" runat="server">
                                             <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="Department"></asp:Label>
                                             <div class="ddlListPart">
                                                 <asp:DropDownList ID="ddlDeptCode" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="3" Style="width: 313px;"></asp:DropDownList>
@@ -522,7 +519,7 @@
 
                                         </div>
 
-                                           
+
 
 
 
@@ -787,9 +784,9 @@
                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
-            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 

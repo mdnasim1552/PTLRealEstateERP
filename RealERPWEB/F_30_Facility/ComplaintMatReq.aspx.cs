@@ -124,6 +124,7 @@ namespace RealERPWEB.F_30_Facility
                     lblSiteVisisted.Text = row["sitevisiteddate"].ToString();
                     lblWarranty.Text = row["warrantydesc"].ToString();
                     lblWarrantyCode.Text = row["warranty"].ToString();
+                    this.lblpactcode.Value= row["pactcode"].ToString();
                 }
                 List<EClass_Complain_List> obj = dt01.DataTableToList<EClass_Complain_List>();
                 List<EClass_Complain_List> obj1 = dt03.DataTableToList<EClass_Complain_List>();
@@ -234,7 +235,7 @@ namespace RealERPWEB.F_30_Facility
             string Posttrmid = Terminal;
             string PostSession = Sessionid ;
             string PostedDat = Date;
-            string pactcode = "156100010001";
+            string pactcode = "1561"+ASTUtility.Right(this.lblpactcode.Value,8);
             string flrcod = "000";
             string requsrid = "";
             string mrfno = "Dg-"+Request.QueryString["DgNo"].ToString();

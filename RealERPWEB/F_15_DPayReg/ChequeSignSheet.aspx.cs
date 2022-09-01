@@ -2094,6 +2094,8 @@ namespace RealERPWEB.F_15_DPayReg
                 string chequedat = Convert.ToDateTime(dt1.Rows[0]["chqdate"]).ToString("dd-MMM-yyyy");
                 string userdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
+                string sameChqval = this.SameChqValue(chequeno.ToString().Trim().ToUpper());
+
                 //string voutype = "Online Payment Voucher";
                 string voutype = "";
 
@@ -2136,13 +2138,17 @@ namespace RealERPWEB.F_15_DPayReg
                                 }
                                 if (chequeno != "")
                                 {
-
-                                    DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "CHEQUENOCHECK", chequeno, "", "", "", "", "", "", "", "");
-                                    if (ds1.Tables[0].Rows.Count > 0)
+                                    // todo for rtgs 
+                                    string chkref = this.SameChqValue(chequeno);
+                                    if (chkref.ToString().Trim().ToUpper() != sameChqval)
                                     {
-                                        ((Label)this.Master.FindControl("lblmsg")).Text = "This Cheque no is already exist.";
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                                        return;
+                                        DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "CHEQUENOCHECK", chequeno, "", "", "", "", "", "", "", "");
+                                        if (ds1.Tables[0].Rows.Count > 0)
+                                        {
+                                            ((Label)this.Master.FindControl("lblmsg")).Text = "This Cheque no is already exist.";
+                                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                            return;
+                                        }
                                     }
                                 }
                             }
@@ -2400,6 +2406,34 @@ namespace RealERPWEB.F_15_DPayReg
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
+        }
+
+        //Same Cheque No
+        private string SameChqValue(string refno1)
+        {
+            string sameChqval = "";
+            switch (refno1)
+            {
+                case "BT":
+                    sameChqval = "BT";
+                    break;
+                case "RTGS":
+                    sameChqval = "RTGS";
+                    break;
+                case "BFTEN":
+                    sameChqval = "BFTEN";
+                    break;
+                case "N/A":
+                    sameChqval = "N/A";
+                    break;
+                case "ONLINEDEPOSIT":
+                    sameChqval = "ONLINEDEPOSIT";
+                    break;
+                default:
+                    sameChqval = "";
+                    break;
+            }
+            return sameChqval;
         }
         protected void ddlcheque_SelectedIndexChanged(object sender, EventArgs e)
         {

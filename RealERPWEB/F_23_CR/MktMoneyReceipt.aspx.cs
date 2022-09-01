@@ -48,6 +48,7 @@ namespace RealERPWEB.F_23_CR
                     this.chkConsolidate.Checked = true;
                 }
                 this.InforInitialize();
+                this.comHideLabel();
                 this.GetProjectName();
                 this.GetInsType();
                 string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
@@ -176,6 +177,22 @@ namespace RealERPWEB.F_23_CR
 
             }
 
+        }
+
+        private void comHideLabel()
+        {
+            string comcod = this.GetComCode();
+            switch (comcod)
+            {
+                //case "3101":
+                case "3368":
+                    this.lblpaydate.Text = "Cheque Date";
+
+                    break;
+                default:
+                    this.lblpaydate.Text = "Pay Date";
+                    break;
+            }
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -1093,6 +1110,10 @@ namespace RealERPWEB.F_23_CR
                     switch (comcod)
                     {
                         case "3339": //Tropical
+                        case "3367": //epic
+                        //case "3101": //ptl
+
+
                             break;
 
                         default:

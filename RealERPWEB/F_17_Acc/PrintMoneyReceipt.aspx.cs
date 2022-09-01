@@ -199,12 +199,13 @@ namespace RealERPWEB.F_17_Acc
             DataSet ds4 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", pactCode, usirCode, mrno, "", "", "", "", "", "");
             if (ds4 == null || ds4.Tables[0].Rows.Count == 0)
                 return;
+            //islandowner
             DataTable dtrpt = ds4.Tables[0];
             string custname = dtrpt.Rows[0]["custname"].ToString();
             string custadd = dtrpt.Rows[0]["custadd"].ToString();
             string custmob = dtrpt.Rows[0]["custmob"].ToString();
             string udesc = dtrpt.Rows[0]["udesc"].ToString();
-            string project = dtrpt.Rows[0]["pactdesc"].ToString();
+            string project = dtrpt.Rows[0]["islandowner"].ToString()=="True" ? dtrpt.Rows[0]["pactdesc"].ToString() + " (L/O Part)" : dtrpt.Rows[0]["pactdesc"].ToString() ;
             string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
             string munit = dtrpt.Rows[0]["munit"].ToString();
             string paytype = dtrpt.Rows[0]["paytype"].ToString();
@@ -219,7 +220,8 @@ namespace RealERPWEB.F_17_Acc
             string rectype = dtrpt.Rows[0]["rectype"].ToString();
             string rectcode = dtrpt.Rows[0]["rectcode"].ToString();
             string parking = dtrpt.Rows[0]["parking"].ToString();
-
+            string benefname = dtrpt.Rows[0]["benefname"].ToString().Length==0?"":("Beneficiary:  "+ dtrpt.Rows[0]["benefname"].ToString());
+             
 
 
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
@@ -525,6 +527,10 @@ namespace RealERPWEB.F_17_Acc
                 }
 
                 Rpt1.EnableExternalImages = true;
+
+                
+                Rpt1.SetParameters(new ReportParameter("txtbenefname", benefname));
+                Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate1", curDate));
                 Rpt1.SetParameters(new ReportParameter("mrno", "MR" + mrno));

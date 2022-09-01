@@ -84,7 +84,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3354"://ERL
-                case "3101":
+               // case "3101":
                     this.hlnkMktInterface.Visible = true;
                     break;
 
@@ -358,11 +358,13 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3353"://Manama
                 case "3355"://Green Wood
                 case "3368"://finlay
+                case "3367"://Epic
+                case "3101":
+
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
-                    break;
+                    break; 
 
-                case "3101":
                 case "1108":
                 case "1109":
                 case "3315":
@@ -615,7 +617,9 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3367": //Epic
+                case "3101": //Epic
                     chkSecondApp = "Mgt App.";
+                    reqcheckapp = "Checked App.";
                     break;
 
                 //  case "3101":  
@@ -624,7 +628,7 @@ namespace RealERPWEB.F_99_Allinterface
                     reqcheckapp = "Checked App.";
                     reqforward = "Forward";
                     reqapproval = "Req. App.";
-                   // OrderfApproved = "Ord. 1st App";
+                    OrderfApproved = "Ord. 1st App";
                     Order2ndAprv = "Ord. Final App";
                     break;
 
@@ -2733,6 +2737,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
 
+                case "3101": // Epic
                 case "3367": // Epic
                 case "3348": // Credence
                              //  case "3101":

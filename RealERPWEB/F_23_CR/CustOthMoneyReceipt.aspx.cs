@@ -54,6 +54,8 @@ namespace RealERPWEB.F_23_CR
             {
 
                 case "Billing":
+                case "Service":
+                    
                     this.lblbillno.Visible = true;
                     this.ddlbilno.Visible = true;
                     break;
@@ -102,6 +104,19 @@ namespace RealERPWEB.F_23_CR
             ViewState["tblproject"] = ds1.Tables[0];
             ds1.Dispose();
 
+            if(Request.QueryString["Type"]==null)
+            {
+
+            }
+            else
+            {
+                if(Request.QueryString["Type"].ToString() == "Service")
+                {
+                    DataTable dt = ds1.Tables[0].Select("actcode like '1861%'").CopyToDataTable();
+                    ddlProjectName.SelectedValue = dt.Rows[0]["actcode"].ToString();
+                }
+                
+            }
 
             //----Show Resource code and Specification Code------------// 
 
@@ -137,6 +152,10 @@ namespace RealERPWEB.F_23_CR
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
+
+            DataTable dt = (DataTable)ViewState["tblproject"];
+            DataRow []dr1 = dt.Select("actcode='" + pactcode + "'");
+            pactcode= dr1[0]["mapactcode"].ToString().Length>0? dr1[0]["mapactcode"].ToString():pactcode;
             string txtsrchCustomer = "%" + this.txtSrcCustomer.Text + "%";
             DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERNAME", pactcode, txtsrchCustomer, "", "", "", "", "", "", "");
             this.ddlCustomer.DataTextField = "sirdesc";
@@ -251,7 +270,12 @@ namespace RealERPWEB.F_23_CR
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue;
-            DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "BILLNOWITHBALANCE", pactcode, "", "", "", "", "", "", "", "");
+           //string Type = this.Request.QueryString["Type"].ToString();
+            string CallType = this.Request.QueryString["Type"].ToString() == "Service" ? "BILLNOWITHBALANCESER" : "BILLNOWITHBALANCE";
+            string usircode = this.ddlCustomer.Items.Count == 0 ? "000000000000" : this.ddlCustomer.SelectedValue.ToString();
+
+
+            DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", CallType, pactcode, usircode, "", "", "", "", "", "", "");
 
             this.ddlbilno.DataTextField = "billno1";
             this.ddlbilno.DataValueField = "billno";
@@ -833,6 +857,9 @@ namespace RealERPWEB.F_23_CR
                     if (paidamt != 0)
                         result = CustData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, usircode, mrno, type, mrdate, paidamt.ToString(), chqno,
                                                               bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, SchCode, repchqno, Collfrm, RecType, "0", "", billno);
+
+
+                 
 
                     if (result == false)
                     {

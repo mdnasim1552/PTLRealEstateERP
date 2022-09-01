@@ -653,7 +653,7 @@
                                                 <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName"></asp:Label>
                                                 <asp:Label ID="ldiscountp" runat="server" CssClass="lblTxt lblName"></asp:Label>
                                                 <asp:Label ID="ldiscountt" runat="server" CssClass="lblTxt lblName" Width="100px"></asp:Label>
-
+                                                <asp:Label ID="ldiscounttprint" runat="server" CssClass="lblTxt lblName" Width="100px" Visible="false"></asp:Label>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>

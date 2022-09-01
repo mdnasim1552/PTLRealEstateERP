@@ -171,6 +171,16 @@
                             <cc1:CalendarExtender ID="txtUptoDate_CalendarExtender1" runat="server"
                                 Format="dd-MMM-yyyy" TargetControlID="txtUptoDate"></cc1:CalendarExtender>
                         </div>
+
+                         <div class="col-md-2 col-lg-2 col-xs-12" id="rfuBox" visible="false" runat="server">
+                            <asp:Label ID="Label11" ForeColor="Red" runat="server">Refund Amount</asp:Label>
+                            <asp:TextBox ID="txtRefunAmt" runat="server" onkeypress="return isNumberKey(this, event);" ReadOnly="true" CssClass="form-control" Style="text-align: right;"></asp:TextBox>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-xs-12" id="refunNotes" runat="server" visible="false">
+                            <asp:Label ID="Label12" ForeColor="Red" runat="server">Refund Notes</asp:Label>
+                            <asp:TextBox ID="txtRefunds" runat="server"   CssClass="form-control"></asp:TextBox>
+                        </div>
+
                         <div class="col-md-1 col-lg-1 col-xs-12">
                             <asp:LinkButton ID="lbtnGenerate" runat="server" CssClass="btn btn-info" Style="margin-top: 20px;" OnClick="lbtnGenerate_Click">Generate</asp:LinkButton>
                         </div>
@@ -196,6 +206,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl" FooterText="Total ">
                                     <FooterTemplate>
+                                        <asp:LinkButton ID="lnkCalculation" runat="server" Visible="false" CssClass="btn btn-info btn-sm" OnClick="lnkCalculation_Click">Calculation</asp:LinkButton>
                                         <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-info btn-sm" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -215,6 +226,9 @@
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnFinalUpdate" runat="server" Font-Bold="True"
                                             CssClass="btn btn-success btn-sm ml-1" OnClick="lbtnFinalUpdate_Click">Update</asp:LinkButton>
+
+                                     
+
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
@@ -282,6 +296,21 @@
                                         <asp:LinkButton ID="lnkDel" runat="server"  OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkDel_Click" Text="Delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="IsRefund">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chkRefund" runat="server" 
+                                            Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isrefund"))=="True" %>' />
+                                            
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                           <asp:LinkButton ID="lnkbtnRefund" runat="server" Font-Bold="True" Visible="false"
+                                            CssClass="btn btn-success btn-sm ml-1" OnClick="lnkbtnRefund_Click">Update</asp:LinkButton>
+
+                                    </FooterTemplate>
+                                </asp:TemplateField>
+
+
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />

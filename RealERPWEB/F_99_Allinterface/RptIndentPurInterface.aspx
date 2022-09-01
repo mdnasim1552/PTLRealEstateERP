@@ -729,7 +729,8 @@
                         break;
 
                     case 3368:  //Finlay
-                    case 3101:  //PTL
+                    case 3101:
+                 
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
@@ -744,6 +745,23 @@
 
 
                         break;
+
+                    case 3366:
+                   
+
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
+                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(20)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(21)").hide();
+
 
                     default:
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
@@ -3665,14 +3683,16 @@
                                                             </asp:TemplateField>--%>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
+                                                                     <asp:HyperLink ID="lnkbtnPOEdit" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-edit"></span>
 
+                                                                    </asp:HyperLink>
                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>
-
+                                                                   
 
                                                                     <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
@@ -3690,8 +3710,8 @@
 
                                                                     <asp:LinkButton ID="btnDelOrder" runat="server"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>--%>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="140px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="140px" VerticalAlign="Top" />
+                                                                <ItemStyle Width="180px" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="180px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
 

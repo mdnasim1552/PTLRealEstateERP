@@ -95,6 +95,7 @@ namespace RealERPWEB.F_30_Facility
         {
             try
             {
+                ViewState.Remove("tblproject");
                 string comcod = GetComCode();
                 DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETPROJECTDDL", "", "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
@@ -103,6 +104,8 @@ namespace RealERPWEB.F_30_Facility
                 ddlProject.DataTextField = "actdesc";
                 ddlProject.DataValueField = "actcode";
                 ddlProject.DataBind();
+                ViewState["tblproject"] = ds.Tables[0];
+                ds.Dispose();
             }
             catch (Exception ex)
             {
@@ -111,15 +114,19 @@ namespace RealERPWEB.F_30_Facility
         }
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string projectcode = ddlProject.SelectedValue.ToString();
-            loadCustomer(projectcode);
+           //string projectcode = ddlProject.SelectedValue.ToString();
+            loadCustomer();
         }
-        private void loadCustomer(string projectcode)
+        private void loadCustomer()
         {
             try
             {
+                string actcode = this.ddlProject.SelectedValue.ToString();
+                DataTable dt = (DataTable)ViewState["tblproject"];
+                string mapactcode = (dt.Select("actcode='" + actcode + "'"))[0]["mapactcode"].ToString();
+
                 string comcod = GetComCode();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCUSTOMERDDL", projectcode, "", "", "", "", "", "", "", "", "", "");
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETCUSTOMERDDL", mapactcode, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
                 ddlCustomer.DataSource = ds.Tables[0];
@@ -138,9 +145,11 @@ namespace RealERPWEB.F_30_Facility
             try
             {
                 string comcod = GetComCode();
-                string projectcode = ddlProject.SelectedValue.ToString();
+                DataTable dt = (DataTable)ViewState["tblproject"];
+                string actcode = ddlProject.SelectedValue.ToString();
+                string mapactcode = (dt.Select("actcode='" + actcode + "'"))[0]["mapactcode"].ToString();
                 string customercode = ddlCustomer.SelectedValue.ToString();
-                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETHANDOVERANDUNIT", projectcode, customercode, "", "", "", "", "", "", "", "", "");
+                DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETHANDOVERANDUNIT", mapactcode, customercode, "", "", "", "", "", "", "", "", "");
                 DataTable unitdesc = ds.Tables[0];
                 DataTable handover = ds.Tables[1];
                 if (unitdesc == null || unitdesc.Rows.Count == 0)

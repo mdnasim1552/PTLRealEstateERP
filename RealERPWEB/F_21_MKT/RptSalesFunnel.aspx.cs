@@ -246,13 +246,10 @@ namespace RealERPWEB.F_21_MKT
 
 
             //profession
-
             DataTable dtprof = new DataTable();
             dv.RowFilter = ("gcod like '86%'");
-
             dtprof = dv.ToTable();
             dtprof.Rows.Add("000000000000", "Choose Peofession..", "");
-
             this.ddlProfession.DataTextField = "gdesc";
             this.ddlProfession.DataValueField = "gcod";
             this.ddlProfession.DataSource = dtprof;
@@ -262,10 +259,8 @@ namespace RealERPWEB.F_21_MKT
 
             DataTable dtsource = new DataTable();
             dv.RowFilter = ("gcod like '31%'");
-
             dtsource = dv.ToTable();
             dtsource.Rows.Add("000000000000", "Choose Source..", "");
-
             this.ddlSource.DataTextField = "gdesc";
             this.ddlSource.DataValueField = "gcod";
             this.ddlSource.DataSource = dtsource;
@@ -273,9 +268,7 @@ namespace RealERPWEB.F_21_MKT
             this.ddlSource.SelectedValue = "000000000000";
 
 
-            //Lead Status
-
-           
+            //Lead Status           
             dv.RowFilter = ("gcod like '95%'");
             this.ddlleadstatus.DataTextField = "gdesc";
             this.ddlleadstatus.DataValueField = "gcod";
@@ -283,7 +276,39 @@ namespace RealERPWEB.F_21_MKT
             this.ddlleadstatus.DataBind();
             this.ddlleadstatus.Items.Insert(0, new ListItem("Choose Status", ""));
 
-            
+
+            //Prefered Location
+            DataTable dtpreloc = new DataTable();
+            dv.RowFilter = ("gcod like '89%'");
+            dtpreloc = dv.ToTable();
+            dtpreloc.Rows.Add("000000000000", "Choose Pref Loc..", "");
+            this.ddlPrefLocation.DataTextField = "gdesc";
+            this.ddlPrefLocation.DataValueField = "gcod";
+            this.ddlPrefLocation.DataSource = dtpreloc;
+            this.ddlPrefLocation.DataBind();
+            this.ddlPrefLocation.SelectedValue = "000000000000";
+
+            //Apartment Size
+            DataTable dtaptmnt = new DataTable();
+            dv.RowFilter = "gcod like '33%'";
+            dtaptmnt = dv.ToTable();
+            dtaptmnt.Rows.Add("000000000000", "Choose Apt. Size..", "");
+            this.ddlAptSize.DataTextField = "gdesc";
+            this.ddlAptSize.DataValueField = "gcod";
+            this.ddlAptSize.DataSource = dtaptmnt;
+            this.ddlAptSize.DataBind();
+            this.ddlAptSize.SelectedValue = "000000000000";
+
+            //Budget
+            DataTable dtbudget = new DataTable();
+            dv.RowFilter = "gcod like '37%'";
+            dtbudget = dv.ToTable();
+            dtbudget.Rows.Add("000000000000", "Choose Budget..", "");
+            this.ddlBudget.DataTextField = "gdesc";
+            this.ddlBudget.DataValueField = "gcod";
+            this.ddlBudget.DataSource = dtbudget;
+            this.ddlBudget.DataBind();
+            this.ddlBudget.SelectedValue = "000000000000";
 
         }
 
@@ -313,14 +338,14 @@ namespace RealERPWEB.F_21_MKT
 
             string leadstatus = (this.ddlleadstatus.SelectedValue.ToString().Trim() == "" ? "95" : this.ddlleadstatus.SelectedValue.ToString()) + "%";
             string sourch = ((this.ddlSource.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSource.SelectedValue.ToString()) + "%";
+            string prefLocation = ((this.ddlPrefLocation.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlPrefLocation.SelectedValue.ToString()) + "%";
+            string aptSizeCode = ((this.ddlAptSize.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlAptSize.SelectedValue.ToString()) + "%";
+            string budgetCode = ((this.ddlBudget.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlBudget.SelectedValue.ToString()) + "%";
             string condate =this.txtcondate.Text;
-
             string type = this.rbtnlst.SelectedValue.ToString();
-
-
             string calltype = (type == "Stand By" ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION");
 
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus);
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus, prefLocation, aptSizeCode, budgetCode);
             if (ds1 == null)
             {
                 this.grpBox.Visible = false;
@@ -546,6 +571,19 @@ namespace RealERPWEB.F_21_MKT
             public decimal win { get; set; }
         }
 
-       
+        protected void ddlPrefLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+        }
+
+        protected void ddlAptSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+        }
+
+        protected void ddlBudget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+        }
     }
 }

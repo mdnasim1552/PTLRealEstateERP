@@ -1718,16 +1718,12 @@ namespace RealERPWEB.F_17_Acc
         //Same Cheque No
         private string SameChqValue(string refno1)
         {
-
-
             string sameChqval = "";
             switch (refno1)
             {
                 case "BT":
                     sameChqval = "BT";
-
                     break;
-
                 case "RTGS":
                     sameChqval = "RTGS";
                     break;
@@ -1740,13 +1736,10 @@ namespace RealERPWEB.F_17_Acc
                 case "ONLINEDEPOSIT":
                     sameChqval = "ONLINEDEPOSIT";
                     break;
-
                 default:
                     sameChqval = "";
                     break;
             }
-
-
             return sameChqval;
 
 

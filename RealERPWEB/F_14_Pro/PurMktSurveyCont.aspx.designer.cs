@@ -258,13 +258,13 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindMat;
 
         /// <summary>
-        /// ddlMSRRes control.
+        /// chkMSRRes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMSRRes;
+        protected global::System.Web.UI.WebControls.ListBox chkMSRRes;
 
         /// <summary>
         /// lbtnMSRSelect control.
@@ -274,42 +274,6 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnMSRSelect;
-
-        /// <summary>
-        /// lblspecificationms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblspecificationms;
-
-        /// <summary>
-        /// txtsrchSpecification3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchSpecification3;
-
-        /// <summary>
-        /// ImgbtnFindSpecificationms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindSpecificationms;
-
-        /// <summary>
-        /// ddlSpecificationms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSpecificationms;
 
         /// <summary>
         /// gvMSRInfo2 control.

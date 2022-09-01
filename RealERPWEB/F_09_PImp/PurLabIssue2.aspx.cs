@@ -110,6 +110,8 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
                 case "3339"://Tropical
+                case "3101"://Tropical
+                case "3368"://finlay
 
                     //this.grvissue.Columns[7].Visible = false;
                     //this.grvissue.Columns[8].Visible = false;
@@ -149,7 +151,7 @@ namespace RealERPWEB.F_09_PImp
                     //this.ddlgroup.Visible = true;
                     //this.lblgrp.Visible = true;se
                     break;
-
+                
                 default:
 
                     this.grvissue.Columns[7].Visible = false;
@@ -1797,6 +1799,20 @@ namespace RealERPWEB.F_09_PImp
 
         }
 
+        protected void grvissue_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
 
+                TextBox txtisuqty = (TextBox)e.Row.FindControl("txtisuqty");
+                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
+                if (grp.Substring(0, 1) == "2")
+                {
+                    txtisuqty.Attributes["style"] = "background:#f9f9a1";
+                    txtisuqty.Attributes["placeholder"] = "use - (minus qty)";
+                }
+
+            }
+        }
     }
 }

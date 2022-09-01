@@ -131,14 +131,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox10">
+                        <Textbox Name="Textbox6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Description of Sub. Code</Value>
+                                  <Value>sirdesc</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -150,7 +150,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -390,7 +390,7 @@
                                 <TextRun>
                                   <Value>=Fields!sirdesc.Value</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>SimSun</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -408,6 +408,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -608,7 +609,7 @@
         <Height>0.58333in</Height>
         <Style />
       </Body>
-      <Width>7.75in</Width>
+      <Width>9.25572in</Width>
       <Page>
         <PageHeader>
           <Height>0.65625in</Height>

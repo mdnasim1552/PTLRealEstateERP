@@ -326,6 +326,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string deptName = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["deptanme"].ToString();
                 string empdesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["desig"].ToString();
                 string empname = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empname"].ToString();
+                string servlength = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["servlen"].ToString();
                 string denameadesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["denameadesig"].ToString();
                 this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
@@ -356,7 +357,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 this.spEmpInfo.InnerText = "Employee ID: " + idcard + "," + "Employee Name : " + empname + "," + "Designation: " + empdesig + "," +
-                    "Department Name : " + deptName;
+                    "Department Name : " + deptName+","+"Service Length : "+servlength+" Years";
                 this.lblDutesInfo.Text = denameadesig;
                 //end head data
                 this.ShowEmppLeave(ds.Tables[0].Rows[0]["empid"].ToString());
@@ -1517,6 +1518,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
                     string phone = ds.Tables[0].Rows[i]["phone"].ToString();
                     string tomail = ds.Tables[0].Rows[i]["mail"].ToString();
+                    //string tomail = "inforakib831@gmail.com";
                     string isrole = (roletype == "SUP" ? "DPT" :
                                     roletype == "DPT" ? "MGT" : "MGT");
 
@@ -1525,7 +1527,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string totalpath = uhostname + currentptah;
 
                     string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>"+ htmtableboyd;
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
 

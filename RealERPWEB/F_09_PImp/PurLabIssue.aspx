@@ -285,7 +285,7 @@
 
                             <asp:GridView ID="grvissue" runat="server" AllowPaging="True"
                                 CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" Width="649px" PageSize="20"
+                                AutoGenerateColumns="False" ShowFooter="True" Width="649px" PageSize="20" OnRowDataBound="grvissue_RowDataBound"
                                 OnRowDeleting="grvissue_RowDeleting" OnPageIndexChanging="grvissue_PageIndexChanging">
                                 <RowStyle />
                                 <Columns>
@@ -301,6 +301,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblitemcode" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
+                                            
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Fl" Visible="false">
@@ -326,6 +327,8 @@
                                     <asp:TemplateField HeaderText="Description">
 
                                         <ItemTemplate>
+                                            <asp:Label ID="gvlblgrp" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grp")) %>'></asp:Label>
                                             <asp:Label ID="lbllabdesc" runat="server"
                                                 Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) + "</B>" +
                                                                          (DataBinder.Eval(Container.DataItem, "rsirdesc").ToString().Trim().Length>0 ? 

@@ -19,6 +19,8 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using dpant;
+using System.Drawing;
+
 namespace RealERPWEB.F_17_Acc
 {
     public partial class AccSubCodeBook : System.Web.UI.Page
@@ -516,6 +518,14 @@ namespace RealERPWEB.F_17_Acc
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)Session["storedata"];
 
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string sirdesc = dt.Rows[i]["sirdesc"].ToString();
+              //  dt.Rows[i]["sirdesc"] = Convert_Text_to_Image(dt.Rows[i]["sirdesc"].ToString(), "Bookman Old Style", 20); // Passing appropriate value to Convert_Text_to_Image method 
+                      
+
+            }
+
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptOthersAccCode", list, null, null);
@@ -525,8 +535,37 @@ namespace RealERPWEB.F_17_Acc
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&embedded=true', target='_blank');</script>";
         }
+
+
+
+
+        public static Bitmap Convert_Text_to_Image(string txt, string fontname, int fontsize)
+        {
+            //creating bitmap image
+            Bitmap bmp = new Bitmap(1, 1);
+
+            //FromImage method creates a new Graphics from the specified Image.
+            Graphics graphics = Graphics.FromImage(bmp);
+            // Create the Font object for the image text drawing.
+            Font font = new Font(fontname, fontsize);
+            // Instantiating object of Bitmap image again with the correct size for the text and font.
+            SizeF stringSize = graphics.MeasureString(txt, font);
+            bmp = new Bitmap(bmp, (int)stringSize.Width, (int)stringSize.Height);
+            graphics = Graphics.FromImage(bmp);
+
+            /* It can also be a way
+           bmp = new Bitmap(bmp, new Size((int)graphics.MeasureString(txt, font).Width, (int)graphics.MeasureString(txt, font).Height));*/
+
+            //Draw Specified text with specified format 
+            graphics.DrawString(txt, font, Brushes.Red, 0, 0);
+            font.Dispose();
+            graphics.Flush();
+            graphics.Dispose();
+            return bmp;     //return Bitmap Image 
+        }
+
 
         private void PrintResCodeAcme()
         {

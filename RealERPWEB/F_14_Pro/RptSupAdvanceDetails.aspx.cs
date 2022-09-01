@@ -21,6 +21,8 @@ namespace RealERPWEB.F_14_Pro
     public partial class RptSupAdvanceDetails : System.Web.UI.Page
     {
         ProcessAccess MktData = new ProcessAccess();
+        static string prevPage = String.Empty;
+        ProcessAccess purData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -40,17 +42,14 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
-
-
-
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            // Create an event handler for the master page's contentCallEvent event
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
         }
+
+
         private string GetComeCode()
         {
 
@@ -81,74 +80,84 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetComeCode();
 
-            string frmdate = txtfrmdate.Text.ToString();
-            string todate = txttodate.Text.ToString();
-            string supcode= this.ddlSuplist.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "SUPPLIERWISEWRKORDERDETAIL", frmdate, todate, supcode, "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
+            try
+            {
+                Session.Remove("tblsupinfo");
+                string comcod = this.GetComeCode();
 
-            Session["tblsupinfo"] = ds1.Tables[0];
-            this.DataBindGrid();
+                string frmdate = txtfrmdate.Text.ToString();
+                string todate = txttodate.Text.ToString();
+                string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+                string supcode = this.ddlSuplist.SelectedValue.ToString();
+
+                string calltype = (stindex == "0" ? "SUPPLIERWISEWRKORDERDETAIL" : "SUPPLIERWISEWRKORDERBILLDETAIL");
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", calltype, frmdate, todate, supcode, "", "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.gvsupstatus.DataSource = null;
+                    this.gvsupstatus.DataBind();
+                    return;
+                }
+                Session["tblsupinfo"] = ds1.Tables[0];
+                this.DataBindGrid();
+            }
+            catch(Exception ex)
+            {
+
+            }
+           
         }
 
         private void DataBindGrid()
         {
-            this.MultiView1.ActiveViewIndex = 0;
-            this.gvsupstatus.DataSource = (DataTable)Session["tblsupinfo"];
-            this.gvsupstatus.DataBind();
+            // this.MultiView1.ActiveViewIndex = 0;
+            try
+            {
+                this.gvsupstatus.DataSource = (DataTable)Session["tblsupinfo"];
+                this.gvsupstatus.DataBind();
+            }
+            catch(Exception ex)
+            {
 
-            Session["Report1"] = gvsupstatus;
-            ((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+            //Session["Report1"] = gvsupstatus;
+            //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 
-        private void lbtnPrint_Click(object sender, EventArgs e)
+
+        private void lnkPrint_Click(object sender, EventArgs e)
         {
-            /*
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
+            string comcod = this.GetComeCode();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string date1 = "From "+fromdate + " To " +todate; 
+            DataTable dt = (DataTable)Session["tblsupinfo"];
+            string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
 
-            DataTable dt = (DataTable)Session["tblstatus"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSupAdvanceDetails>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSupAdvanceDetails", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", stindex=="0"? "Supplier Advance Details": "Supplier Bill Details"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
-            DataView dv1 = dt.Copy().DefaultView;
-            dv1.RowFilter = ("checkdat1<>'1/1/1900 12:00:00 AM'");
-            DataTable dt01 = dv1.ToTable();
-
-            if (dt.Rows.Count == 0)
-                return;
-            string totalnreqQty = Convert.ToDouble((Convert.IsDBNull(dt01.Compute("sum(nreqQty)", "")) ? 0.00 :
-                 dt01.Compute("sum(nreqQty)", ""))).ToString("#,##0;(#,##0); ");
-
-
-            var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.DateWiseReqCheckHistory>();
-            LocalReport rpt = new LocalReport();
-
-            rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptDateWiseReqCheckHistory", list, null, null);
-            rpt.EnableExternalImages = true;
-            rpt.SetParameters(new ReportParameter("comName", comnam));
-            rpt.SetParameters(new ReportParameter("txtTitle", "Date Wise Requisition Check History"));
-            rpt.SetParameters(new ReportParameter("date1", date1));
-            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-            rpt.SetParameters(new ReportParameter("comLogo", ComLogo));
-            rpt.SetParameters(new ReportParameter("totalnreqQty", totalnreqQty));
-
-            Session["Report1"] = rpt;
+            Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-             */
         }
 
 
