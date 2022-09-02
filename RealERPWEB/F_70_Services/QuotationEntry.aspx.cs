@@ -668,88 +668,88 @@ namespace RealERPWEB.F_70_Services
                 return "";
             }
         }
-        private void UpdateMaterialRequisition()
-        {
+        //private void UpdateMaterialRequisition()
+        //{
 
-            DataTable dt = (DataTable)ViewState["ResourceToActcode"];
-            string worktype = ddlWorkType.SelectedValue.ToString();
+        //    DataTable dt = (DataTable)ViewState["ResourceToActcode"];
+        //    string worktype = ddlWorkType.SelectedValue.ToString();
 
-            DataTable dt01 = dt.Select($"acttdesc='{worktype}'").CopyToDataTable();
-            if (dt01.Rows.Count == 0)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+        //    DataTable dt01 = dt.Select($"acttdesc='{worktype}'").CopyToDataTable();
+        //    if (dt01.Rows.Count == 0)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
                 
-            }
-            else
-            {
-                string code = ASTUtility.Left(dt01.Rows[0]["actcode"].ToString(), 4);
-            }
+        //    }
+        //    else
+        //    {
+        //        string code = ASTUtility.Left(dt01.Rows[0]["actcode"].ToString(), 4);
+        //    }
 
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
 
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string comcod = GetComCode();
-            string reqno = getReqNo();
-            string reqdate = txtEntryDate.Text;
-            string PostedByid = userid;
-            string Posttrmid = Terminal;
-            string PostSession = Sessionid;
-            string PostedDat = Date;
-            string pactcode =  ;
-            string flrcod = "000";
-            string requsrid = "";
-            string mrfno = lblQuotation.Text;
-            string reqnar = txtNarration.Text;
-            string CRMPostedByid = userid;
-            string CRMPosttrmid = Terminal;
-            string CRMPostSession = Sessionid;
-            string CRMPostedDat = Date;
-            string checkbyid = userid;
-
-
-
-            bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQB", reqno, reqdate, pactcode, flrcod, requsrid, mrfno, reqnar,
-                PostedByid, Posttrmid, PostSession, PostedDat, CRMPostedByid, CRMPosttrmid, CRMPostSession, CRMPostedDat, "", "", "", "", "", "");
-
-            if (result)
-            {
-                List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-                int i = 1;
-                List<bool> resultCompA = new List<bool>();
-                foreach (var item in obj)
-                {
-                    string rowId = i.ToString();
-                    string mRSIRCODE = item.materialId.ToString();
-                    string mSPCFCOD = "000000000000";
-
-                    double mPREQTY = Convert.ToDouble(item.quantity);
-                    double mAREQTY = Convert.ToDouble("0.00");
-                    double mBgdBalQty = Convert.ToDouble("0.00");
-                    string mREQRAT = "0.00";      //item.rate.ToString();
-                    string mREQSRAT = "0.00";     //item.rate.ToString();
-                    string mPSTKQTY = "0.00";
-                    string mEXPUSEDT = "";
-                    string mREQNOTE = "";
-                    string PursDate = "";
-                    string Lpurrate = "0.00";
-                    string storecode = "";
-                    string ssircode = "";
-                    string orderno = "";
+        //    string userid = hst["usrid"].ToString();
+        //    string Terminal = hst["compname"].ToString();
+        //    string Sessionid = hst["session"].ToString();
+        //    string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+        //    string comcod = GetComCode();
+        //    string reqno = getReqNo();
+        //    string reqdate = txtEntryDate.Text;
+        //    string PostedByid = userid;
+        //    string Posttrmid = Terminal;
+        //    string PostSession = Sessionid;
+        //    string PostedDat = Date;
+        //    string pactcode =  "";
+        //    string flrcod = "000";
+        //    string requsrid = "";
+        //    string mrfno = lblQuotation.Text;
+        //    string reqnar = txtNarration.Text;
+        //    string CRMPostedByid = userid;
+        //    string CRMPosttrmid = Terminal;
+        //    string CRMPostSession = Sessionid;
+        //    string CRMPostedDat = Date;
+        //    string checkbyid = userid;
 
 
 
-                    bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQA", "",
-                              reqno, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mPSTKQTY, mEXPUSEDT, mREQNOTE,
-                              PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, rowId, "", "", "", "", "", "");
-                    resultCompA.Add(resultA);
-                    i++;
-                }
-            }
-        }
+        //    bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQB", reqno, reqdate, pactcode, flrcod, requsrid, mrfno, reqnar,
+        //        PostedByid, Posttrmid, PostSession, PostedDat, CRMPostedByid, CRMPosttrmid, CRMPostSession, CRMPostedDat, "", "", "", "", "", "");
+
+        //    if (result)
+        //    {
+        //        List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+        //        int i = 1;
+        //        List<bool> resultCompA = new List<bool>();
+        //        foreach (var item in obj)
+        //        {
+        //            string rowId = i.ToString();
+        //            string mRSIRCODE = item.materialId.ToString();
+        //            string mSPCFCOD = "000000000000";
+
+        //            double mPREQTY = Convert.ToDouble(item.quantity);
+        //            double mAREQTY = Convert.ToDouble("0.00");
+        //            double mBgdBalQty = Convert.ToDouble("0.00");
+        //            string mREQRAT = "0.00";      //item.rate.ToString();
+        //            string mREQSRAT = "0.00";     //item.rate.ToString();
+        //            string mPSTKQTY = "0.00";
+        //            string mEXPUSEDT = "";
+        //            string mREQNOTE = "";
+        //            string PursDate = "";
+        //            string Lpurrate = "0.00";
+        //            string storecode = "";
+        //            string ssircode = "";
+        //            string orderno = "";
+
+
+
+        //            bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQA", "",
+        //                      reqno, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mPSTKQTY, mEXPUSEDT, mREQNOTE,
+        //                      PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, rowId, "", "", "", "", "", "");
+        //            resultCompA.Add(resultA);
+        //            i++;
+        //        }
+        //    }
+        //}
 
 
 

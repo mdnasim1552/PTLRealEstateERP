@@ -1059,14 +1059,28 @@ namespace RealERPWEB.F_23_CR
 
             double SAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lfAmt")).Text);
             double PAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lgvfpayamt")).Text);
-
+            string title = "";
             LocalReport Rpt1 = new LocalReport();
             var lst = dtstatus.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.PaymentStatus>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatus", lst, null, null);
-            Rpt1.EnableExternalImages = true;
+            switch (comcod)
+            {
+                case "3368":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatusFinlay", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    title = "Payment Schedule & Payment Status";
+                    // need to add following parameter
+                    //Price, Utility, Parking, cooperative, txtMobile
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatus", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    title = "Client Payment Status";
+
+                    break;
+            }
             Rpt1.SetParameters(new ReportParameter("companyName", comnam));
             //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Client Payment Status"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", title));
             Rpt1.SetParameters(new ReportParameter("cusname", custname));
             Rpt1.SetParameters(new ReportParameter("cusadd", custadd));
             //Rpt1.SetParameters(new ReportParameter("cusmob", custmob));

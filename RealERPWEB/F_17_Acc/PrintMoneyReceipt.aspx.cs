@@ -530,8 +530,7 @@ namespace RealERPWEB.F_17_Acc
 
                 
                 Rpt1.SetParameters(new ReportParameter("txtbenefname", benefname));
-                Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
-                Rpt1.SetParameters(new ReportParameter("txtDate", curDate));
+                Rpt1.SetParameters(new ReportParameter("txtDate", mrDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate1", curDate));
                 Rpt1.SetParameters(new ReportParameter("mrno", "MR" + mrno));
                 Rpt1.SetParameters(new ReportParameter("mrno1", "MR" + mrno));
