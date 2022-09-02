@@ -103,6 +103,8 @@ namespace RealERPWEB.F_70_Services
                 ddlWorkType.DataTextField = "sirdesc";
                 ddlWorkType.DataValueField = "sircode";
                 ddlWorkType.DataBind();
+
+                ViewState["ResourceToActcode"] = ds.Tables[1];
             }
             catch (Exception ex)
             {
@@ -395,8 +397,7 @@ namespace RealERPWEB.F_70_Services
         {
             try
             {
-
-
+                //isMappedCodeDataUpdated();
             }
             catch (Exception ex)
             {
@@ -567,6 +568,21 @@ namespace RealERPWEB.F_70_Services
                                     chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
                                 resultQuotArray.Add(resultQuotA);
 
+                                if (type == "Approval")
+                                {
+                                    bool resultCodebook = isMappedCodeDataUpdated();
+                                    if (resultCodebook)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+
+                                    }
+
+                                }
+
                             }
                         }
                         if (resultQuotArray.Contains(false))
@@ -594,6 +610,150 @@ namespace RealERPWEB.F_70_Services
             }
 
         }
+        private bool isMappedCodeDataUpdated()
+        {
+            DataTable dt = (DataTable)ViewState["ResourceToActcode"];
+            string worktype = ddlWorkType.SelectedValue.ToString();
+
+            DataTable dt01 = dt.Select($"acttdesc='{worktype}'").CopyToDataTable();
+            if (dt01.Rows.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+                return false;
+            }
+            else
+            {
+                string code = ASTUtility.Left(dt01.Rows[0]["actcode"].ToString(), 4);
+
+                DataTable dt02 = dt.Select($"actcode like '{code}%'").CopyToDataTable();
+                if (dt02 == null || dt02.Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+                    return false;
+                }
+                else
+                {
+                    Int64 max = Convert.ToInt64(dt02.AsEnumerable()
+                        .Max(row => row["actcode"]));
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string userid = hst["usrid"].ToString();
+                    string comcod = this.GetComCode();
+                    string SubCode2 = max.ToString().Length < 8 ? "" : ASTUtility.Left(max.ToString(), 8);
+                    string ProjectName = ddlCustomer.SelectedItem.Text;
+                    string ProjectNameBN = "";
+                    string ShortName = ddlCustomer.SelectedItem.Text;
+                    bool result = false;
+
+                    result = _process.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "INSERTPROJECT", SubCode2, ProjectName, ShortName, userid,
+                        ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
+                    return result;
+                }
+
+            }
+
+        }
+        private string getReqNo()
+        {
+            string comcod = GetComCode();
+            string CurDate1 = txtEntryDate.Text;
+            DataSet ds1 = _process.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETLASTREQINFO", CurDate1, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return "";
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                return ds1.Tables[0].Rows[0]["maxreqno"].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        //private void UpdateMaterialRequisition()
+        //{
+
+        //    DataTable dt = (DataTable)ViewState["ResourceToActcode"];
+        //    string worktype = ddlWorkType.SelectedValue.ToString();
+
+        //    DataTable dt01 = dt.Select($"acttdesc='{worktype}'").CopyToDataTable();
+        //    if (dt01.Rows.Count == 0)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+                
+        //    }
+        //    else
+        //    {
+        //        string code = ASTUtility.Left(dt01.Rows[0]["actcode"].ToString(), 4);
+        //    }
+
+
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+
+        //    string userid = hst["usrid"].ToString();
+        //    string Terminal = hst["compname"].ToString();
+        //    string Sessionid = hst["session"].ToString();
+        //    string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+        //    string comcod = GetComCode();
+        //    string reqno = getReqNo();
+        //    string reqdate = txtEntryDate.Text;
+        //    string PostedByid = userid;
+        //    string Posttrmid = Terminal;
+        //    string PostSession = Sessionid;
+        //    string PostedDat = Date;
+        //    string pactcode =  "";
+        //    string flrcod = "000";
+        //    string requsrid = "";
+        //    string mrfno = lblQuotation.Text;
+        //    string reqnar = txtNarration.Text;
+        //    string CRMPostedByid = userid;
+        //    string CRMPosttrmid = Terminal;
+        //    string CRMPostSession = Sessionid;
+        //    string CRMPostedDat = Date;
+        //    string checkbyid = userid;
+
+
+
+        //    bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQB", reqno, reqdate, pactcode, flrcod, requsrid, mrfno, reqnar,
+        //        PostedByid, Posttrmid, PostSession, PostedDat, CRMPostedByid, CRMPosttrmid, CRMPostSession, CRMPostedDat, "", "", "", "", "", "");
+
+        //    if (result)
+        //    {
+        //        List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+        //        int i = 1;
+        //        List<bool> resultCompA = new List<bool>();
+        //        foreach (var item in obj)
+        //        {
+        //            string rowId = i.ToString();
+        //            string mRSIRCODE = item.materialId.ToString();
+        //            string mSPCFCOD = "000000000000";
+
+        //            double mPREQTY = Convert.ToDouble(item.quantity);
+        //            double mAREQTY = Convert.ToDouble("0.00");
+        //            double mBgdBalQty = Convert.ToDouble("0.00");
+        //            string mREQRAT = "0.00";      //item.rate.ToString();
+        //            string mREQSRAT = "0.00";     //item.rate.ToString();
+        //            string mPSTKQTY = "0.00";
+        //            string mEXPUSEDT = "";
+        //            string mREQNOTE = "";
+        //            string PursDate = "";
+        //            string Lpurrate = "0.00";
+        //            string storecode = "";
+        //            string ssircode = "";
+        //            string orderno = "";
+
+
+
+        //            bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQA", "",
+        //                      reqno, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mPSTKQTY, mEXPUSEDT, mREQNOTE,
+        //                      PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, rowId, "", "", "", "", "", "");
+        //            resultCompA.Add(resultA);
+        //            i++;
+        //        }
+        //    }
+        //}
+
+
+
+
 
         protected void gvMaterials_RowDataBound(object sender, GridViewRowEventArgs e)
         {
