@@ -389,6 +389,18 @@
                                 <span class="fa fa-redo " style="color:black;" aria-hidden="true"></span> Refresh</asp:LinkButton>
                             <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
                                 OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
+
+
+                            <asp:LinkButton ID="lnkMatReq" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" Visible="false" 
+                                OnClick="lnkMatReq_Click" Width="100px" 
+                                OnClientClick="return confirm('Are You Sure?')">
+                                Material Req.</asp:LinkButton>
+
+                            <asp:Label runat="server" ID="lblReqno" Visible="false" class="form-label mt-2"></asp:Label>
+                                   
+
+
+
                             <asp:LinkButton ID="lnkClose" runat="server" CssClass="btn btn-sm btn-info mx-2 my-2" Width="150px">
                                 <span class="fa fa-cross" style="color:white;" aria-hidden="true"></span>
                                 Close

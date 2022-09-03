@@ -59,6 +59,23 @@ namespace RealERPWEB.F_70_Services
                     txtNarration.Text = dt1.Rows[0]["remarks"].ToString();
                     lblQuotation.Text = dt1.Rows[0]["quotid"].ToString();
                     txtquotno.Text = dt1.Rows[0]["quotid1"].ToString();
+                    string reqno = dt1.Rows[0]["reqno"].ToString();
+                    if (reqno == "")
+                    {
+                        getReqNo();
+                    }
+                    else
+                    {
+                        lblReqno.Text = reqno;
+                    }
+                    if (type == "Approval" || type == "ApprovalEdit")
+                    {
+                        lnkMatReq.Visible = true;
+                    }
+                    else
+                    {
+                        lnkMatReq.Visible = false;
+                    }
                     if (type != "Edit")
                     {
                         ddlCustomer.Enabled = false;
@@ -103,6 +120,8 @@ namespace RealERPWEB.F_70_Services
                 ddlWorkType.DataTextField = "sirdesc";
                 ddlWorkType.DataValueField = "sircode";
                 ddlWorkType.DataBind();
+
+                ViewState["ResourceToActcode"] = ds.Tables[1];
             }
             catch (Exception ex)
             {
@@ -395,8 +414,7 @@ namespace RealERPWEB.F_70_Services
         {
             try
             {
-
-
+                //isMappedCodeDataUpdated();
             }
             catch (Exception ex)
             {
@@ -521,72 +539,97 @@ namespace RealERPWEB.F_70_Services
                 string isAppr = "0";
                 string status = (type == "Check" || type == "CheckEdit") ? "2" : type == "Approval" ? "3" : "1";
                 List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-                bool result = false;
-                switch (type)
+                if (obj.Count == 0)
                 {
-                    case "Approval":
-                    case "ApprovalEdit":
-                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, "", "", "", "", "",
-                                    "", "", "", "", "", "", "", "", "", "", "", "", "");
-                        break;
-                    case "Check":
-                    case "CheckEdit":
-                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATECHECKQUOTINFB", quotid, status, userId, "", "", "", "", "",
-                                   "", "", "", "", "", "", "", "", "", "", "", "", "");
-                        break;
-                    default:
-                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFB", quotid, date, customerid, narration, isCheck, isAppr, status, userId,
-                                    "", "", "", "", "", "", "", "", "", "", "", "", "");
-                        break;
-                }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Select atleast one Resource" + "');", true);
 
-                if (result)
-                {
-                    bool resultdelete = _process.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "DELETEQUOTINFA", quotid);
-                    if (resultdelete)
-                    {
-                        List<bool> resultQuotArray = new List<bool>();
-
-                        foreach (var item in obj)
-                        {
-                            bool resultQuotA = false;
-                            if (item.qamt != 0.00 || item.chkamt != 0.00 || item.apramt != 0.00)
-                            {
-                                string worktype = item.worktypecode.ToString();
-                                string resource = item.resourcecode.ToString();
-                                string qqty = item.qqty.ToString();
-                                string qamt = item.qamt.ToString();
-                                string chkqty = item.chkqty.ToString();
-                                string chkamt = item.chkamt.ToString();
-                                string aprqty = item.aprqty.ToString();
-                                string apramt = item.apramt.ToString();
-                                string percnt = item.percnt.ToString();
-                                string percntchk = item.chkpercnt.ToString();
-                                string percntapr = item.aprpercnt.ToString();
-                                resultQuotA = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFA", quotid, worktype, resource, qqty, qamt,
-                                    chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
-                                resultQuotArray.Add(resultQuotA);
-
-                            }
-                        }
-                        if (resultQuotArray.Contains(false))
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{quotid} - Updated Successful" + "');", true);
-                            if (Request.QueryString["Type"].ToString() == "Entry")
-                            {
-                                ClearPage();
-                            }
-                        }
-                    }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured." + "');", true);
+                    bool result = false;
+                    switch (type)
+                    {
+                        case "Approval":
+                        case "ApprovalEdit":
+                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, "", "", "", "", "",
+                                        "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            break;
+                        case "Check":
+                        case "CheckEdit":
+                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATECHECKQUOTINFB", quotid, status, userId, "", "", "", "", "",
+                                       "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            break;
+                        default:
+                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFB", quotid, date, customerid, narration, isCheck, isAppr, status, userId,
+                                        "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            break;
+                    }
+
+                    if (result)
+                    {
+                        bool resultdelete = _process.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "DELETEQUOTINFA", quotid);
+                        if (resultdelete)
+                        {
+                            List<bool> resultQuotArray = new List<bool>();
+
+                            foreach (var item in obj)
+                            {
+                                bool resultQuotA = false;
+                                if (item.qamt != 0.00 || item.chkamt != 0.00 || item.apramt != 0.00)
+                                {
+                                    string worktype = item.worktypecode.ToString();
+                                    string resource = item.resourcecode.ToString();
+                                    string qqty = item.qqty.ToString();
+                                    string qamt = item.qamt.ToString();
+                                    string chkqty = item.chkqty.ToString();
+                                    string chkamt = item.chkamt.ToString();
+                                    string aprqty = item.aprqty.ToString();
+                                    string apramt = item.apramt.ToString();
+                                    string percnt = item.percnt.ToString();
+                                    string percntchk = item.chkpercnt.ToString();
+                                    string percntapr = item.aprpercnt.ToString();
+                                    resultQuotA = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFA", quotid, worktype, resource, qqty, qamt,
+                                        chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
+                                    resultQuotArray.Add(resultQuotA);
+
+
+
+                                }
+                            }
+                            if (type == "Approval")
+                            {
+                                bool resultCodebook = isMappedCodeDataUpdated();
+                                if (resultCodebook)
+                                {
+
+                                }
+                                else
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+
+                                }
+
+                            }
+                            if (resultQuotArray.Contains(false))
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{quotid} - Updated Successful" + "');", true);
+                                if (Request.QueryString["Type"].ToString() == "Entry")
+                                {
+                                    ClearPage();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured." + "');", true);
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -594,6 +637,189 @@ namespace RealERPWEB.F_70_Services
             }
 
         }
+        private bool isMappedCodeDataUpdated()
+        {
+            DataTable dt = (DataTable)ViewState["ResourceToActcode"];
+            List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+            string worktype = "";
+            if (obj.Count > 0)
+            {
+                worktype = obj[0].worktypecode;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must have data to continue" + "');", true);
+                return false;
+            }
+
+
+            DataTable dt01 = dt.Select($"acttdesc='{worktype}'").CopyToDataTable();
+            if (dt01.Rows.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+                return false;
+            }
+            else
+            {
+                string code = ASTUtility.Left(dt01.Rows[0]["actcode"].ToString(), 4);
+
+                DataTable dt02 = dt.Select($"actcode like '{code}%'").CopyToDataTable();
+                if (dt02 == null || dt02.Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+                    return false;
+                }
+                else
+                {
+                    Int64 max = Convert.ToInt64(dt02.AsEnumerable()
+                        .Max(row => row["actcode"]));
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string userid = hst["usrid"].ToString();
+                    string comcod = this.GetComCode();
+                    string SubCode2 = max.ToString().Length < 8 ? "" : ASTUtility.Left(max.ToString(), 8);
+                    string ProjectName = ddlCustomer.SelectedItem.Text;
+                    string ProjectNameBN = "";
+                    string ShortName = ddlCustomer.SelectedItem.Text;
+                    bool result = false;
+
+                    result = _process.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "INSERTPROJECT", SubCode2, ProjectName, ShortName, userid,
+                        ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
+                    return result;
+                }
+
+            }
+
+        }
+        private void getReqNo()
+        {
+            string comcod = GetComCode();
+            string CurDate1 = txtEntryDate.Text;
+            DataSet ds1 = _process.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETLASTREQINFO", CurDate1, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                lblReqno.Text = ds1.Tables[0].Rows[0]["maxreqno"].ToString();
+            }
+            else
+            {
+                lblReqno.Text = "";
+            }
+        }
+        private void UpdateMaterialRequisition()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string comcod = GetComCode();
+            string reqno = lblReqno.Text;
+            string reqdate = txtEntryDate.Text;
+            string PostedByid = userid;
+            string Posttrmid = Terminal;
+            string PostSession = Sessionid;
+            string PostedDat = Date;
+            string pactcode = "";
+            string flrcod = "000";
+            string requsrid = "";
+            string mrfno = lblQuotation.Text;
+            string reqnar = txtNarration.Text;
+            string CRMPostedByid = userid;
+            string CRMPosttrmid = Terminal;
+            string CRMPostSession = Sessionid;
+            string CRMPostedDat = Date;
+            string checkbyid = userid;
+            string quotid = lblQuotation.Text;
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("01")).ToList();
+
+            DataTable dt = (DataTable)ViewState["ResourceToActcode"];
+            string worktype = "";
+            if (obj.Count > 0)
+            {
+                worktype = obj[0].worktypecode;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must have data to continue" + "');", true);
+                return;
+            }
+
+            DataTable dt01 = dt.Select($"acttdesc='{worktype}'").CopyToDataTable();
+            if (dt01.Rows.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+
+            }
+            else
+            {
+                string code = ASTUtility.Left(dt01.Rows[0]["actcode"].ToString(), 4);
+
+                DataSet ds1 = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETPROJECTCODE", code, "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                if (ds1.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Some Error Occured fetching Project Code. Contact PTL" + "');", true);
+                }
+                else
+                {
+                    pactcode = ds1.Tables[0].Rows[0]["actcode"].ToString();
+                }
+
+            }
+            bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQB", reqno, reqdate, pactcode, flrcod, requsrid, mrfno, reqnar,
+                PostedByid, Posttrmid, PostSession, PostedDat, CRMPostedByid, CRMPosttrmid, CRMPostSession, CRMPostedDat, "", "", "", "", "", "");
+
+            if (result)
+            {
+                int i = 1;
+                List<bool> resultCompA = new List<bool>();
+                foreach (var item in obj)
+                {
+                    string rowId = i.ToString();
+                    string mRSIRCODE = item.resourcecode.ToString();
+                    string mSPCFCOD = "000000000000";
+
+                    double mPREQTY = Convert.ToDouble(item.aprqty);
+                    double mAREQTY = Convert.ToDouble("0.00");
+                    double mBgdBalQty = Convert.ToDouble("0.00");
+                    string mREQRAT = "0.00";      //item.rate.ToString();
+                    string mREQSRAT = "0.00";     //item.rate.ToString();
+                    string mPSTKQTY = "0.00";
+                    string mEXPUSEDT = "";
+                    string mREQNOTE = "";
+                    string PursDate = "";
+                    string Lpurrate = "0.00";
+                    string storecode = "";
+                    string ssircode = "";
+                    string orderno = "";
+
+
+
+                    bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQA", "",
+                              reqno, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mPSTKQTY, mEXPUSEDT, mREQNOTE,
+                              PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, rowId, "", "", "", "", "", "");
+                    resultCompA.Add(resultA);
+                    i++;
+                }
+                if (resultCompA.Contains(false))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                }
+                else
+                {
+                    bool resultMatReq = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEMATREQNO", quotid, reqno, "", "", "", "", "", "",
+                                       "", "", "", "", "", "", "", "", "", "", "", "", "");
+                   
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Material Requisition Generated" + "');", true);
+                }
+            }
+        }
+
+
+
+
 
         protected void gvMaterials_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -761,6 +987,20 @@ namespace RealERPWEB.F_70_Services
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+        protected void lnkMatReq_Click(object sender, EventArgs e)
+        {
+            List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("01")).ToList().Count;
+            if (isContain == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Material for Material Requisition" + "');", true);
+            }
+            else
+            {
+                UpdateMaterialRequisition();
             }
         }
     }
