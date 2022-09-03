@@ -776,7 +776,7 @@
 
 
                                         </div>
-                                        <div class="row">
+                                       <%-- <div class="row">
                                             <div class="col-lg-3">
                                                 <asp:Label ID="tblName" Visible="false" runat="server"> Name</asp:Label>
                                                 <asp:TextBox ID="textName" Visible="false" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -798,10 +798,10 @@
                                                
                                             </div>
                                             <div class="col-lg-3">
-                                                <asp:LinkButton ID="tbnSave" runat="server" Visible="false" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="tbnSave_Click"><i class="fa fa-plus"></i>Add</asp:LinkButton>
+                                                <asp:LinkButton ID="tbnAdd" runat="server" Visible="false" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="tbnAdd_Click"><i class="fa fa-plus"></i>Add</asp:LinkButton>
                                                
                                             </div>
-                                        </div>
+                                        </div>--%>
                                         <div class="row">
                                             <div class="col-lg-3 mt20">
                                                 <asp:Label ID="Label10" runat="server">Project Type</asp:Label>
@@ -869,7 +869,7 @@
                                             <div class="d-flex justify-content-center">
 
                                                 <%-- <button type="button" class="btn btn-danger  ml-auto  btn-md mt20 mr-1" data-bs-dismiss="modal">Close</button>--%>
-                                                <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1">Save</asp:LinkButton>
+                                                <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1" OnClick="btnSave_Click">Save</asp:LinkButton>
 
                                             </div>
                                         </div>
@@ -892,6 +892,50 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
+                                        <div class="row">
+                                        <div class="col-lg-3 ">
+                                                <asp:Label ID="ltbProject" runat="server">Project Name</asp:Label>
+                                                <asp:TextBox ID="tblProjectName" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
+                                            </div>
+                                        <div class="col-lg-3">
+                                            <asp:Label ID="lbtCustName" runat="server">Customer Name</asp:Label>
+                                                <asp:TextBox ID="tblCustName" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                        </div>
+                                        <div class="col-lg-5">
+                                             <asp:Label ID="Label9" runat="server">Task Description</asp:Label>
+                                                <asp:TextBox ID="tblDescription" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" ></asp:TextBox>
+                                        </div>
+                                        
+                                    </div>
+                                        <div class="row mt-3">
+                                            <div class="col-lg-3">
+                                                <asp:Label ID="Label17" runat="server">Assign Team</asp:Label>
+                                                <asp:TextBox ID="tblAssginTeam" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <asp:Label ID="Label18" runat="server">Quantity</asp:Label>
+                                                <asp:TextBox ID="tblTaskQuantity" runat="server" CssClass="form-control form-control-sm" TextMode="Number" ></asp:TextBox>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                 <asp:Label ID="Label19" runat="server">DeadLine</asp:Label>
+                                                <asp:TextBox ID="tblEndDate" runat="server" CssClass="form-control form-control-sm" TextMode="DateTimeLocal" ></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-lg-5">
+                                                <asp:Label ID="Label20" runat="server">Remarks</asp:Label>
+                                                <asp:TextBox ID="tblTRemarks" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" ></asp:TextBox>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    <div class="modal-footer row">
+                                         <div class="d-flex justify-content-center float-right ">
+
+                                                <%-- <button type="button" class="btn btn-danger  ml-auto  btn-md mt20 mr-1" data-bs-dismiss="modal">Close</button>--%>
+                                                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1" >Task Save</asp:LinkButton>
+
+                                            </div>
                                     </div>
                                 </div>
                             </div>
