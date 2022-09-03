@@ -182,36 +182,47 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void tbnSave_Click(object sender, EventArgs e)
         {
-            if (this.btnClient.Text == "Add")
-            {
-                this.tblName.Visible = false;
-                this.textName.Visible = false;
-                this.tblNumber.Visible = false;
-                this.TextNumber.Visible = false;
-                this.tblEmail.Visible = false;
-                this.TextEmail.Visible = false;
-                this.textAddess.Visible = false;
-                this.TextAddress.Visible = false;
-                this.tbnSave.Visible = false;
-
-            }
+           
         }
 
         protected void btnClient_Click(object sender, EventArgs e)
         {
-            if (this.btnClient.Text == "+")
-            {
-                this.tblName.Visible = true;
-                this.textName.Visible = true;
-                this.tblNumber.Visible = true;
-                this.TextNumber.Visible = true;
-                this.tblEmail.Visible = true;
-                this.TextEmail.Visible = true;
-                this.textAddess.Visible = true;
-                this.TextAddress.Visible = true;
-                this.tbnSave.Visible = true;
+            //if (this.btnClient.Text == "+")
+            //{
+            //    this.tblName.Visible = true;
+            //    this.textName.Visible = true;
+            //    this.tblNumber.Visible = true;
+            //    this.TextNumber.Visible = true;
+            //    this.tblEmail.Visible = true;
+            //    this.TextEmail.Visible = true;
+            //    this.textAddess.Visible = true;
+            //    this.TextAddress.Visible = true;
+            //    this.tbnAdd.Visible = true;
 
-            }
+            //}
+            //else
+            //{
+            //    this.tblName.Visible = false;
+            //    this.textName.Visible = false;
+            //    this.tblNumber.Visible = false;
+            //    this.TextNumber.Visible = false;
+            //    this.tblEmail.Visible = false;
+            //    this.TextEmail.Visible = false;
+            //    this.textAddess.Visible = false;
+            //    this.TextAddress.Visible = false;
+            //    this.btnSave.Visible = false;
+
+            //}
+        }
+
+        protected void tbnAdd_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+           
         }
         //protected void AjaxFileUpload1_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
         //{
