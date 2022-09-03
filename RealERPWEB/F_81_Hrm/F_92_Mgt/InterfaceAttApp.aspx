@@ -606,7 +606,7 @@
 
                         </div>
 
-                        <div class="col-md-2 col-lg-2 col-sm-6 mt-4">
+                       <%-- <div class="col-md-2 col-lg-2 col-sm-6 mt-4"  Visible="false">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary ">Filter</asp:Label>
@@ -617,7 +617,7 @@
                             </div>
                           
 
-                        </div>
+                        </div>--%>
                           <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
 
 
