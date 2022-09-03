@@ -319,8 +319,12 @@
                                         <asp:ListItem Value="10003"></asp:ListItem>
                                         <asp:ListItem Value="10002"></asp:ListItem>
                              
+                                        <asp:ListItem Value="acceptoffletter"></asp:ListItem>
+                                        <asp:ListItem Value="acceptappletter"></asp:ListItem>
+
                                         <asp:ListItem Value="reject"></asp:ListItem>
-                                                   <asp:ListItem Value="accept"></asp:ListItem>
+
+
                                       <%--  <asp:ListItem Value="10003"></asp:ListItem>--%>
                       
                                     </asp:RadioButtonList>
@@ -347,6 +351,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblname" runat="server" Text='<%#Eval("name").ToString()%>' Width="150px"></asp:Label>
                                             </ItemTemplate>
+             
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Designation">
@@ -383,25 +388,30 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lbldept" runat="server" Text='<%#Eval("dept").ToString()%>' Width="100px"></asp:Label>
                                             </ItemTemplate>
+                                    
                                         </asp:TemplateField>
 
                                         
-                                        <asp:TemplateField HeaderText="Type" >
+                                <%--        <asp:TemplateField HeaderText="Type" >
                                             <ItemTemplate>  
-                                                <span class="badge badge-info"> <%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "sendoffflag"))=="True") && (Convert.ToString(DataBinder.Eval(Container.DataItem, "sendappflag"))=="False")?"Offer":"Appointment"%></span>
+                                                <span class="badge badge-info" runat="server" id="lbltype"></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                          <asp:TemplateField HeaderText="Status" >
+                                            <ItemTemplate>  
+                                                <%--<span class="badge badge-info" runat="server" id="lblstatus"> </span>--%>
+                                                  <asp:Label ID="lblstatus" runat="server" Text='<%#Eval("sendappflag").ToString()%>' Width="100px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Operation">
                                             <ItemTemplate>
 
-                                                       <asp:LinkButton runat="server" ID="lnkAccept" OnClick="lnkAccept_Click" ToolTip="Accept Letter"
-                                                     CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "isaccept"))=="False") ? " text-success active ": " disabled " %>'>  
+                                                       <asp:LinkButton runat="server" ID="lnkAccept" OnClick="lnkAccept_Click" ToolTip="Accept Letter" Visible="false">
                                                 <i class="fa fa-check"></i>
-                                                  <%--           <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False")?"Reject":"Rejected "%></span>--%>
-                                                
+                                        
                                                 </asp:LinkButton>
-                                                <asp:LinkButton runat="server" ID="RejectLetter" OnClick="RejectLetter_Click" ToolTip="Reject Letter"
+                                                <asp:LinkButton runat="server" ID="RejectLetter" OnClick="RejectLetter_Click" ToolTip="Reject Letter" Visible="false"
                                                      CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False") ? " text-danger active ": " disabled " %>'>  
                                                 
                                                   <%--           <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False")?"Reject":"Rejected "%></span>--%>
