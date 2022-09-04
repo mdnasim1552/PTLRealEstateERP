@@ -375,6 +375,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     case "01009": //Blood Group
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("gcod like '90%'");
+                        dv1.Sort = "slno desc";
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
@@ -457,8 +458,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((LinkButton)this.gvPersonalInfo.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;                       
-                          Joindate = (gdesc1 == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                        ((LinkButton)this.gvPersonalInfo.Rows[i].FindControl("ibtngrdEmpList")).Visible = false; 
+                        Joindate = (gdesc1 == "") ? "" : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = Joindate; 
                         break;
 
@@ -1013,12 +1014,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string gvalueBn = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvValBn")).Text.Trim();
                 string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
 
+           
 
-                if (Gcode == "01003" || Gcode == "01007" || Gcode == "01008")
+                    if (Gcode == "01003" || Gcode == "01007")
+                    {
+                
+                        Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    }
+
+                if (Gcode == "01008")
                 {
+                    Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
-                    Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                 }
+
 
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
