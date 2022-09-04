@@ -149,8 +149,9 @@ namespace RealERPWEB
             {
                 surname = "Ms.";
             }
+            string grdcde = ds.Tables[0].Rows[0]["gradecode"].ToString()== "" ?"0":ds.Tables[0].Rows[0]["gradecode"].ToString();
             int gradecode = 0;
-             gradecode =Convert.ToInt32( ds.Tables[0].Rows[0]["gradecode"]);
+            gradecode = Convert.ToInt32(grdcde);
             string probduration = ds.Tables[0].Rows[0]["probation"].ToString();
             string termiduration = "";
          
