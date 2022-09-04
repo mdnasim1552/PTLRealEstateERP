@@ -1505,7 +1505,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Checked By Accounts Dept </Value>
+                    <Value>Checked By </Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -1581,7 +1581,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>DMD</Value>
+                    <Value>Authorized By</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -1619,7 +1619,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Managing Director</Value>
+                    <Value>Approved By</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>

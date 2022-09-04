@@ -249,6 +249,16 @@ namespace RealERPWEB.F_99_Allinterface
             ddlDriver.DataBind();
 
         }
+        private void getVehicleStatus()
+        {
+            string comcod = GetComCode();
+            DataSet ds1 = _process.GetTransInfo(comcod, "SP_ENTRY_VEHICLE_MANAGEMENT", "GETVEHICLESTATUS", "", "", "", "", "", "", "", "", "");
+            gvAssignedVehicle.DataSource = ds1.Tables[0];            
+            gvAssignedVehicle.DataBind();
+
+
+        }
+
 
         protected void gvVehicleAssign_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -266,7 +276,9 @@ namespace RealERPWEB.F_99_Allinterface
                 txtTDate.Text = Convert.ToDateTime(tdate).ToString("yyyy-MM-dd HH:mm").Replace(' ', 'T');
                 txtAssignRemarks.Text = "";
                 getVehicleAndDriver();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAssign();", true);
+                getVehicleStatus();
+                pnlVehicleAssignEntry.Visible = true;
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAssign();", true);
             }
             else
             {
@@ -329,6 +341,11 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
             }
+        }
+
+        protected void ddlVehicle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "loadModalAssign();", true);
         }
     }
 }

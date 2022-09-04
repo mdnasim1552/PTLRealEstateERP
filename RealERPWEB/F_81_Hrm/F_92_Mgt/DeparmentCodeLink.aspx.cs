@@ -202,6 +202,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.grvacc.DataSource = (DataTable)Session["storedata"]; ;
             this.grvacc.DataBind();
+           
+
             //int rowindex = grvacc.CurrentCell.RowIndex;
 
             //int rowindex = (int)ViewState["gindex"];
@@ -297,5 +299,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         }
 
+        protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //string type = Request.QueryString["Type"].ToString();
+            //if (type == "Payroll")
+            //{
+            //    this.grvacc.Columns[6].Visible= false;
+               
+
+            //}
+            //else if (type == "HR")
+            //{
+            //    this.grvacc.Columns[4].Visible = false;
+            //    this.grvacc.Columns[5].Visible = false;
+            //}
+        }
     }
 }

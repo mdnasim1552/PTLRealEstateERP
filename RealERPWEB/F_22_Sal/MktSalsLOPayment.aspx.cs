@@ -36,8 +36,8 @@ namespace RealERPWEB.F_22_Sal
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES(LO) WITH PAYMENT" : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
-                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : "")))) + " INFORMATIOIN ";
+                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES (LO) WITH PAYMENT" : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
+                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : "")))) + " INFORMATION ";
 
                 Session.Remove("Unit");
                 this.chkVisible.Checked = false;
@@ -1366,72 +1366,81 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lbtnGenerate_Click(object sender, EventArgs e)
         {
-            int i, k = 0;
-            this.Panel3.Visible = false;
-            DataTable dt = (DataTable)Session["tblPay"];
-            double bandpamt = 0;
-            for (i = 0; i < this.gvPayment.Rows.Count; i++)
-            {
-                //Convert.ToDouble(ASTUtility.ExprToValue('0' + ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text.Trim()))
-
-                string gcode = ((Label)this.gvPayment.Rows[i].FindControl("lblgvItmCode3")).Text.Trim();
-                string schDate = Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
-                double Amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text.Trim()));
-
-
-                double LOAmount= Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvLOAmt")).Text.Trim())); 
-                //  Amount = (Amount>0)?Amount:0;
-                bandpamt += LOAmount;
-
-                if (ASTUtility.Left(gcode, 5) == "81985")
+            try {
+                int i, k = 0;
+                this.Panel3.Visible = false;
+                DataTable dt = (DataTable)Session["tblPay"];
+                double bandpamt = 0;
+                for (i = 0; i < this.gvPayment.Rows.Count; i++)
                 {
-                    DataRow[] dr = dt.Select("gcod='" + gcode + "'");
-                    if (dr.Length > 0)
+                    //Convert.ToDouble(ASTUtility.ExprToValue('0' + ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text.Trim()))
+
+                    string gcode = ((Label)this.gvPayment.Rows[i].FindControl("lblgvItmCode3")).Text.Trim();
+                    string schDate = Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    double Amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvAmt")).Text.Trim()));
+
+
+                    double LOAmount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvLOAmt")).Text.Trim()));
+                    //  Amount = (Amount>0)?Amount:0;
+                    bandpamt += LOAmount;
+
+                    if (ASTUtility.Left(gcode, 5) == "81985")
                     {
+                        DataRow[] dr = dt.Select("gcod='" + gcode + "'");
+                        if (dr.Length > 0)
+                        {
 
-                        dr[0]["schamt"] = Amount;
-                        dr[0]["schdate"] = schDate;
-                        dr[0]["schloamt"] = LOAmount;
+                            dr[0]["schamt"] = Amount;
+                            dr[0]["schdate"] = schDate;
+                            dr[0]["schloamt"] = LOAmount;
+                        }
                     }
+                    else
+                    {
+                        dt.Rows[k]["schamt"] = Amount;
+                        dt.Rows[k]["schdate"] = schDate;
+                        dt.Rows[k]["schloamt"] = LOAmount;
+                        k++;
+
+                    }
+                    //schloamt loamt
+                    //schamt  compamt
+
                 }
-                else
+                DataTable dt2 = dt;
+                double Tamt = Convert.ToDouble(((Label)this.gvCost.FooterRow.FindControl("lgvFloAmt")).Text.Trim());
+                double ramt = Tamt - bandpamt;
+                int tin = Convert.ToInt32("0" + this.txtTInstall.Text);
+                int dur = Convert.ToInt32(this.ddlMonth.SelectedValue.ToString());
+                double insamt = ramt / tin;
+
+                // string schDate1 = Convert.ToDateTime(dt.Rows[i-1]["schdate"]).ToString("dd-MMM-yyyy");
+                string schDate1 = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy"); // Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i-1].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
+                for (int j = k; j < tin + k; j++)
                 {
-                    dt.Rows[k]["schamt"] = Amount;
-                    dt.Rows[k]["schdate"] = schDate;
-                    dt.Rows[k]["schloamt"] = LOAmount;
-                    k++;
-
+                    string schdate2 = (j == k) ? schDate1 : Convert.ToDateTime(schDate1).AddMonths(dur).ToString("dd-MMM-yyyy");
+                    double schloamt = insamt;
+                    dt.Rows[j]["schdate"] = schdate2;
+                    dt.Rows[j]["schloamt"] = schloamt;
+                    schDate1 = schdate2;
                 }
 
 
+                DataView dv1 = dt.DefaultView;
+                dv1.RowFilter = ("schloamt > 0 or  schamt > 0");
+                dv1.Sort = "gcod";
+                Session["tblPay"] = dv1.ToTable();
+                this.gvPayment.DataSource = dv1.ToTable();
+                this.gvPayment.DataBind();
+                this.lTotalPayment_Click(null, null);
+                this.chkVisible.Checked = false;
+            
             }
-            DataTable dt2 = dt;
-            double Tamt = Convert.ToDouble(((Label)this.gvCost.FooterRow.FindControl("lgvFloAmt")).Text.Trim());
-            double ramt = Tamt - bandpamt;
-            int tin = Convert.ToInt32("0" + this.txtTInstall.Text);
-            int dur = Convert.ToInt32(this.ddlMonth.SelectedValue.ToString());
-            double insamt = ramt / tin;
-
-            // string schDate1 = Convert.ToDateTime(dt.Rows[i-1]["schdate"]).ToString("dd-MMM-yyyy");
-            string schDate1 = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy"); // Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i-1].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
-            for (int j = k; j < tin + k; j++)
+            catch(Exception ex)
             {
-                string schdate2 = (j == k) ? schDate1 : Convert.ToDateTime(schDate1).AddMonths(dur).ToString("dd-MMM-yyyy");
-                double schloamt = insamt;
-                dt.Rows[j]["schdate"] = schdate2;
-                dt.Rows[j]["schloamt"] = schloamt;
-                schDate1 = schdate2;
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: "+ ex.Message.ToString();
             }
-
-
-            DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = ("schloamt>0");
-            dv1.Sort = "gcod";
-            Session["tblPay"] = dv1.ToTable();
-            this.gvPayment.DataSource = dv1.ToTable();
-            this.gvPayment.DataBind();
-            this.lTotalPayment_Click(null, null);
-            this.chkVisible.Checked = false;
+           
 
         }
         protected void lbtnSlab_Click(object sender, EventArgs e)

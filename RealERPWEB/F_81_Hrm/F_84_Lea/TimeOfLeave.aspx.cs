@@ -139,12 +139,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string qtype = this.Request.QueryString["Type"] ?? "";
             if (qtype == "MGT")
             {
-          
+            this.gvLvReq.Columns[11].Visible = true;
+
                 empid = this.ddlEmpName.SelectedValue.ToString() ?? "";
             }
             else
             {
-                
+            this.gvLvReq.Columns[11].Visible = false;
+
 
                 empid = hst["empid"].ToString();
             }
@@ -160,7 +162,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             frmdate = startdate + frmdate.Substring(2);
 
             string tdate = date.ToString("dd-MMM-yyyy");
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETTIMEOFLEAVEHISTORY", empid, frmdate, tdate, "", "", "", "", "", "");
             if (ds1 == null)
             {
@@ -169,6 +170,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
 
             }
+
+
             DateTime useTime = ds1.Tables[2].Rows.Count == 0 ? DateTime.Parse("06:00") : DateTime.Parse(ds1.Tables[2].Rows[0]["USETIME"].ToString());
             this.txtTimeLVRem.Text = Convert.ToDateTime(useTime).ToString("HH:mm");
             if (ds1.Tables[0].Rows.Count != 0)
@@ -624,6 +627,179 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+
+
+        protected void lnkTimeEdit_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string id = ((Label)this.gvLvReq.Rows[index].FindControl("lbllevid")).Text.ToString().Trim();
+            string outtime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvstrtdat")).Text.ToString().Trim();
+            string intime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvenddat")).Text.ToString().Trim();
+
+            string usetime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvDuration")).Text.ToString().Trim(); 
+            string applydat= ((Label)this.gvLvReq.Rows[index].FindControl("lblgvaplydat")).Text.ToString().Trim(); 
+            this.txtmodalintime.Text = intime;
+            this.txtmodalouttime.Text = outtime;
+            this.timeOfId.InnerText = id;
+            this.applydatmodal.InnerText = applydat;
+            this.useTime.InnerText = usetime;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
+
+
+
+
+        }
+
+        protected void lnkTimeUpdate_Click_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string id = this.timeOfId.InnerText ?? "";
+            string intime = this.txtmodalintime.Text;
+            string outtime = this.txtmodalouttime.Text;
+            //string usetime = this.useTime.InnerText;
+            string msg = "";
+            string type = "TLV";
+
+
+            DateTime d11 = DateTime.Parse(txtmodalintime.Text.ToString());
+            DateTime d22 = DateTime.Parse(txtmodalouttime.Text.ToString());
+            TimeSpan timeDiff2 = d11.Subtract(d22);
+
+
+            DateTime frmdate, todate;
+            frmdate = Convert.ToDateTime(this.applydatmodal.InnerText.ToString() + " " + outtime);
+            todate = Convert.ToDateTime(this.applydatmodal.InnerText.ToString() + " " + intime);
+
+            DateTime remTime = DateTime.Parse(this.useTime.InnerText);
+            DateTime d1 = DateTime.Parse(outtime);
+            DateTime d2 = DateTime.Parse(intime);
+            string cdate = Convert.ToDateTime(this.applydatmodal.InnerText).ToString("dd-MMM-yyyy");
+            TimeSpan timeDiff;
+            DateTime luntime_st = Convert.ToDateTime(cdate + " 01:00 PM");
+            DateTime luntime_end = Convert.ToDateTime(cdate + " 01:59 PM");
+            DateTime Offic_end = Convert.ToDateTime(cdate + " 05:30 PM");
+
+
+            if (frmdate <= luntime_st && todate >= luntime_end)
+            {
+                TimeSpan timeFrom = TimeSpan.Parse(d1.ToString("HH:mm"));
+                TimeSpan timeTo = TimeSpan.Parse(d2.ToString("HH:mm"));
+                TimeSpan lunchddif = luntime_end.Subtract(luntime_st);
+                if (timeFrom.TotalSeconds > timeTo.TotalSeconds)
+                {
+                    d2 = d2.AddDays(1);
+                    timeDiff = d2.Subtract(d1);
+                }
+                else
+                {
+                    timeDiff = (d2.Subtract(d1)).Subtract(lunchddif);
+                }
+
+            }
+            else
+            {
+                TimeSpan timeFrom = TimeSpan.Parse(d1.ToString("HH:mm"));
+                TimeSpan timeTo = TimeSpan.Parse(d2.ToString("HH:mm"));
+
+                if (timeFrom.TotalSeconds > timeTo.TotalSeconds)
+                {
+                    d2 = d2.AddDays(1);
+                    timeDiff = d2.Subtract(d1);
+                }
+                else
+                {
+                    timeDiff = d2.Subtract(d1);
+                }
+            }
+
+
+            TimeSpan remTimeConvt = TimeSpan.Parse(remTime.ToString("HH:mm"));
+            TimeSpan time3 = timeDiff;
+            TimeSpan maxTime1 = TimeSpan.Parse("06:00");
+            TimeSpan enjtime = TimeSpan.Parse("0:00");
+
+            TimeSpan usetime = maxTime1 - remTimeConvt;
+
+            enjtime = time3;
+            TimeSpan mintime = TimeSpan.Parse("0:00");
+
+            if (usetime > maxTime1)
+            {
+
+                string Messaged = "Your time is exceed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#TimeOffModal", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
+            }
+            else if ((enjtime > maxTime1))
+            {
+       
+                string Messaged = "Your office Time exceed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#TimeOffModal", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
+                this.btnSave.Enabled = false;
+                this.txtUseTime.Text = "0";
+            }
+            else if ((enjtime > remTimeConvt))
+            {
+       
+                string Messaged = "Your remaning Time exceed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#TimeOffModal", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
+                this.btnSave.Enabled = false;
+                this.txtUseTime.Text = "0";
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal();", true);
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "UPDATETIMEOFF", id, intime, type, timeDiff.ToString(), outtime, "", "", "");
+                if (result)
+                {
+            
+                    msg = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#TimeOffModal", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal();", true);
+                    msg = "Update Failed!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#TimeOffModal", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
+
+                }
+
+            }
+
+
+
+            this.ddlEmpName_SelectedIndexChanged(null, null);
+            //Response.Redirect(Request.RawUrl);
+
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            //string qtype = this.Request.QueryString["Type"] ?? "";
+            //if (qtype == "MGT")
+            //{
+
+            //    this.ddlEmpName.SelectedValue = this.ddlEmpName.SelectedValue.ToString() ?? ""; ;
+            //}
+            //else
+            //{
+            //    this.ddlEmpName.SelectedValue = hst["empid"].ToString(); ;
+            //}
+            //GetAllTimeOff();
+            //GetRemaningTime();
 
         }
     }

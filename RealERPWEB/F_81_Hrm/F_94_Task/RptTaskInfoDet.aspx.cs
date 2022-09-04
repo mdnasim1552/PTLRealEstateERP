@@ -32,6 +32,8 @@ using System.Linq;
 
 //using Newtonsoft.Json;
 using ListBox = System.Web.UI.WebControls.ListBox;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_81_Hrm.F_94_Task
 {
 
@@ -137,7 +139,33 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
+           // DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();          
+            //string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            // string year = this.txtDate.Text.Substring(0, 4).ToString();
+            // string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
+            // string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            DataTable dt = (DataTable)Session["allView"];
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EmptaskDesk>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_94_Task.RptTaskInfoDet", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comname));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Task Info Dept" ));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
 

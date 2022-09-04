@@ -127,12 +127,14 @@
                             <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
-                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
+                                      > </asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
                             <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText=""
+
                                 SelectText="" ShowEditButton="True">
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                 <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" />
@@ -141,7 +143,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblgrcode" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod2"))+"-" %>'
-                                        Width="20px"></asp:Label>
+                                        Width="20px"   CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")).Remove(1,4)=="000") ? "bg-danger text-white": "" %>' ></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
@@ -155,8 +157,10 @@
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>'
-                                        Width="40px"></asp:Label>
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>' Width="40px"
+                                         CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")).Remove(1,4)=="000") ? "bg-danger text-white": "" %>' >
+
+                                    </asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                 <ItemStyle Font-Size="12px" />
@@ -179,6 +183,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Style="font-size: 12px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
+                                          CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")).Remove(1,4)=="000") ? "bg-danger text-white": "" %>'  
                                         Width="250px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />

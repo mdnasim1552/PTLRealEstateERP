@@ -63,20 +63,21 @@
                     <Value>=Fields!Name.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.11333in</Top>
-            <Left>3.86334in</Left>
-            <Height>0.25in</Height>
-            <Width>3.46875in</Width>
+            <Top>1.87722in</Top>
+            <Left>5.92584in</Left>
+            <Height>0.17362in</Height>
+            <Width>2.75001in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -97,21 +98,21 @@
                     <Value>=Fields!Address1.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>2.68625in</Top>
-            <Left>3.81125in</Left>
-            <Height>0.25in</Height>
-            <Width>3.51042in</Width>
+            <Top>2.05083in</Top>
+            <Left>5.92584in</Left>
+            <Height>0.46528in</Height>
+            <Width>2.75001in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -124,10 +125,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>13.81125cm</Height>
+        <Height>10.84792cm</Height>
         <Style />
       </Body>
-      <Width>24.95021cm</Width>
+      <Width>22.41021cm</Width>
       <Page>
         <PageHeight>14.4cm</PageHeight>
         <PageWidth>24.3cm</PageWidth>

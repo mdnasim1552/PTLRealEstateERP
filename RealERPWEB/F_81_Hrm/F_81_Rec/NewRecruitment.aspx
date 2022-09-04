@@ -191,7 +191,7 @@
                         <div class="card-body">
                             <div class="table table-sm table-responsive">
                                 <asp:Label runat="server" ID="lbladvnoo" Visible="false"></asp:Label>
-                                <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvAllRec" runat="server" AutoGenerateColumns="false">
+                                <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvAllRec" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvAllRec_RowDataBound" >
                                     <Columns>
                                         <asp:TemplateField HeaderText="Name" Visible="false">
                                             <ItemTemplate>
@@ -303,7 +303,21 @@
 
 
                                         <asp:TemplateField HeaderText="Action">
+
                                             <ItemTemplate>
+
+
+
+
+
+
+                                                                    <asp:HyperLink ID="lblJoinnig" runat="server" Target="_blank" Width="100px"
+                                                                           NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry02?Type=10025 &Page=NewRec &advno="+Eval("advno") %>'
+                                                                        CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="") ? " btn btn-primary btn-sm btn-text active ": "btn btn-sm btn-info  disabled " %>'>    
+                              <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="")?"Apply Joinning":"Joined "%></span>
+
+                                                                    </asp:HyperLink>
+
                                                 <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
 
                                                 <asp:LinkButton ID="btnRemove" runat="server" OnClientClick="return confirm('Are You Sure?')" OnClick="btnRemove_Click" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>

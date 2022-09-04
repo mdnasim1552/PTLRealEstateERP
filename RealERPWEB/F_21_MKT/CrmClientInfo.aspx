@@ -2158,7 +2158,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             </h4>
                                         </div>
                                         <div class="panel-body">
-                                            <asp:GridView ID="gvpinfo" runat="server" AutoGenerateColumns="False"
+                                            <asp:GridView ID="gvpinfo" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvpinfo_RowDataBound"
                                                 ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
                                                 <RowStyle />
                                                 <Columns>
@@ -3557,7 +3557,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             <div class="list-group-item-figure">
                                                 <div class="tile tile-circle bg-primary">SW </div>
                                             </div>
-                                            <div class="list-group-item-body">Schedules Work</div>
+                                            <div class="list-group-item-body" id="tdaswhtxt" runat="server">Schedules Work</div>
                                             <div class="list-group-item-figure">
                                                 <button class="btn btn-sm btn-light">
                                                     <span class="badge badge-pill badge-danger" id="lbldws" runat="server">0</span>

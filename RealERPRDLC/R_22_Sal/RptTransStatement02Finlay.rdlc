@@ -149,7 +149,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.64167in</Width>
+                  <Width>0.6625in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.53333in</Width>
@@ -167,7 +167,7 @@
                   <Width>0.94166in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.95in</Width>
+                  <Width>0.92917in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.91667in</Width>
@@ -646,14 +646,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="chqdate">
+                        <Textbox Name="recndt">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!chqdate.Value</Value>
+                                  <Value>=Fields!recndt.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -665,7 +665,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>chqdate</rd:DefaultName>
+                          <rd:DefaultName>recndt</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>

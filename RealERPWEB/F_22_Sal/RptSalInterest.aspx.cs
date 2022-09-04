@@ -1657,7 +1657,7 @@ namespace RealERPWEB.F_22_Sal
             string address = "";
             string sign1 = "", sign2 = "", sign3 = "", sign4 = "";
             //Land Owner
-            string projectname = this.Request.QueryString["Type"].ToString()=="LO"? ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3)+" (LO PART)": ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3);
+            string projectname = this.Request.QueryString["Type"].ToString()=="LO"? ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3)+" (L/O PART)": ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3);
 
 
             switch (comcod)
@@ -1667,6 +1667,7 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["presentadd"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("notice", "N:B.In case of default of any payment within due date, delay charge will be applicable as per company policy"));
                     break;
                     
                 //case "3101": // epic 

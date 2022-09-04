@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptUserLogDetails.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.RptUserLogDetails" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptUserLogDetails.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.RptUserLogDetails" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 

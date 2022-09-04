@@ -112,6 +112,18 @@ namespace RealERPWEB.F_23_CR
                 case "Payment":
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
                     this.MultiView1.ActiveViewIndex = 0;
+                    switch (comcod)
+                    {
+                        case "3368":
+                        case "3101":
+                            this.chkConsolidate.Checked = true;
+                            this.chkConsolidate.Visible = true;
+                            break;
+                        default:
+                            this.chkConsolidate.Checked = false;
+                            this.chkConsolidate.Visible = false;
+                            break;
+                    }
                     break;
 
                 case "ClLedger":
@@ -132,7 +144,6 @@ namespace RealERPWEB.F_23_CR
                         case "3306":
                         case "3311":
                         case "3310": //RCU
-
                         case "3349":
                         case "3364":
                             this.chkConsolidate.Checked = false;
@@ -485,6 +496,11 @@ namespace RealERPWEB.F_23_CR
                     calltype = "RPTCLIENTPAYMENTSTATUS";
                     break;
 
+                case "3368":
+                case "3101":
+                    calltype = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
+                    break;
+
                 default:
                     calltype = "INSTALLMANTWITHMRR";
                     break;
@@ -506,6 +522,11 @@ namespace RealERPWEB.F_23_CR
                 case "3330":
                     // case "3101":
                     procedure = "SP_REPORT_SALSMGT03";
+                    break;               
+                
+                case "3368":
+                case "3101":
+                    procedure = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
                     break;
 
                 default:
@@ -1038,14 +1059,28 @@ namespace RealERPWEB.F_23_CR
 
             double SAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lfAmt")).Text);
             double PAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lgvfpayamt")).Text);
-
+            string title = "";
             LocalReport Rpt1 = new LocalReport();
             var lst = dtstatus.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.PaymentStatus>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatus", lst, null, null);
-            Rpt1.EnableExternalImages = true;
+            switch (comcod)
+            {
+                case "3368":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatusFinlay", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    title = "Payment Schedule & Payment Status";
+                    // need to add following parameter
+                    //Price, Utility, Parking, cooperative, txtMobile
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatus", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    title = "Client Payment Status";
+
+                    break;
+            }
             Rpt1.SetParameters(new ReportParameter("companyName", comnam));
             //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Client Payment Status"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", title));
             Rpt1.SetParameters(new ReportParameter("cusname", custname));
             Rpt1.SetParameters(new ReportParameter("cusadd", custadd));
             //Rpt1.SetParameters(new ReportParameter("cusmob", custmob));
@@ -1964,7 +1999,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("ComLogo", comlogo));
             Rpt1.SetParameters(new ReportParameter("CompName", comnam));
             Rpt1.SetParameters(new ReportParameter("Compadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("title", "Client Ledger"));
+            Rpt1.SetParameters(new ReportParameter("title", "Payment Schedule & Payment Status"));
             Rpt1.SetParameters(new ReportParameter("txtDate", txtdate));
 
             Rpt1.SetParameters(new ReportParameter("rptcustname", rptcustname));

@@ -230,7 +230,7 @@
                                     <asp:TemplateField HeaderText="Discussion">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvDiscussion" runat="server" Height="16px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "discussion")) %>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'
                                                 Width="320px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
