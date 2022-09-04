@@ -76,7 +76,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Request"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Request Interface"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
             Session["Report1"] = Rpt1;
