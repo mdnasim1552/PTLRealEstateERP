@@ -1,11 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="EmpOvertime.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_86_All.EmpOvertime" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<script runat="server">
 
-
-
-</script>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -900,7 +896,48 @@
                     <hr />
                     
                     <asp:View ID="ViewOtherDeduction" runat="server">
-                       
+                        <fieldset class="scheduler-border fieldset_A">
+                            <div class="form-horizontal">
+                                <asp:Panel ID="Pnlother" runat="server" Visible="false" Style="border: 1px solid blue;">
+
+                                    <div class="form-group">
+                                        <div class="col-md-5 pading5px ">
+                                            <asp:Label ID="Label5" runat="server" CssClass=" smLbl_to" Text="Month:"></asp:Label>
+                                            <asp:DropDownList ID="ddlpreyearmonoth" runat="server" 
+                                                TabIndex="11" CssClass=" ddlPage">
+
+
+                                            </asp:DropDownList>
+
+                                                  <asp:Label ID="lbltype" runat="server" CssClass=" smLbl_to" Text="Field"></asp:Label>
+                                            
+                                            
+                                            <asp:CheckBoxList ID="chkfield" runat="server"  BackColor="#0B88C5" ForeColor="White" CssClass="btn rbtnList1 margin5px  primaryBtn " 
+                                            RepeatColumns="7" RepeatDirection="Horizontal">
+                                             <asp:ListItem Value="000">All</asp:ListItem>  
+                                            <asp:ListItem Value="001">Mobile Bill</asp:ListItem>                                          
+                                            <asp:ListItem Value="005">Others</asp:ListItem>
+                                           
+                                           
+                                        </asp:CheckBoxList>
+
+
+                                            <div class="colMdbtn pading5px">
+                                                <asp:LinkButton ID="lblbtncopyoth" runat="server" Text="Copy" OnClick="lblbtncopyoth_Click" CssClass="btn btn-primary okBtn" TabIndex="9"></asp:LinkButton>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </asp:Panel>
+
+                                <div class="form-group">
+                                    <div class="col-md-1 pading5px ">
+                                        <asp:CheckBox ID="Chkother" runat="server" TabIndex="10" Text="Copy " CssClass="btn btn-primary checkBox" AutoPostBack="True" OnCheckedChanged="Chkother_CheckedChanged" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
                         <asp:GridView ID="gvEmpOtherded" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             AutoGenerateColumns="False" OnPageIndexChanging=" gvEmpOtherded_PageIndexChanging"
                             ShowFooter="True" Width="685px" OnRowDeleting="gvEmpOtherded_RowDeleting" OnRowDataBound="gvEmpOtherded_RowDataBound">
