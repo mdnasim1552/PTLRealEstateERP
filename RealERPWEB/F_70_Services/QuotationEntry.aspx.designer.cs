@@ -24,6 +24,15 @@ namespace RealERPWEB.F_70_Services
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// UpdateProgress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+
+        /// <summary>
         /// lbldate control.
         /// </summary>
         /// <remarks>
@@ -240,6 +249,15 @@ namespace RealERPWEB.F_70_Services
         protected global::System.Web.UI.WebControls.LinkButton lnkSave;
 
         /// <summary>
+        /// pnlAccept control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAccept;
+
+        /// <summary>
         /// lnkMatReq control.
         /// </summary>
         /// <remarks>
@@ -249,6 +267,15 @@ namespace RealERPWEB.F_70_Services
         protected global::System.Web.UI.WebControls.LinkButton lnkMatReq;
 
         /// <summary>
+        /// lnkReceivable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkReceivable;
+
+        /// <summary>
         /// lblReqno control.
         /// </summary>
         /// <remarks>
@@ -256,6 +283,15 @@ namespace RealERPWEB.F_70_Services
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblReqno;
+
+        /// <summary>
+        /// lblActcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActcode;
 
         /// <summary>
         /// lnkClose control.

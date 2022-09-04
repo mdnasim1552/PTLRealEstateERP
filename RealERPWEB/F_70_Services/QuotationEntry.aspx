@@ -45,7 +45,23 @@
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
             <div class="card card-fluid container-data">
 
                 <div class="card-body" style="min-height: 600px;">
@@ -390,14 +406,20 @@
                             <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
                                 OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
 
-
-                            <asp:LinkButton ID="lnkMatReq" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" Visible="false" 
-                                OnClick="lnkMatReq_Click" Width="100px" 
-                                OnClientClick="return confirm('Are You Sure?')">
+                            <asp:Panel runat="server" ID="pnlAccept" Visible="false">
+                                <asp:LinkButton ID="lnkMatReq" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2"
+                                    OnClick="lnkMatReq_Click" Width="100px"
+                                    OnClientClick="return confirm('Are You Sure?')">
                                 Material Req.</asp:LinkButton>
+                                <asp:LinkButton ID="lnkReceivable" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2"
+                                    OnClick="lnkReceivable_Click" Width="100px"
+                                    OnClientClick="return confirm('Are You Sure?')">
+                                Receivable </asp:LinkButton>
+                            </asp:Panel>
+
 
                             <asp:Label runat="server" ID="lblReqno" Visible="false" class="form-label mt-2"></asp:Label>
-                                   
+                            <asp:Label runat="server" ID="lblActcode" Visible="false" class="form-label mt-2"></asp:Label>
 
 
 

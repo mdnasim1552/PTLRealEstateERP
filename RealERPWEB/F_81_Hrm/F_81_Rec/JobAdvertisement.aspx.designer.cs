@@ -294,15 +294,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// txtDepList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDepList;
-
-        /// <summary>
         /// imgBtnDept control.
         /// </summary>
         /// <remarks>
@@ -310,6 +301,15 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton imgBtnDept;
+
+        /// <summary>
+        /// txtDepList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDepList;
 
         /// <summary>
         /// ddlDept control.
@@ -339,15 +339,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         protected global::System.Web.UI.WebControls.Label lblResList;
 
         /// <summary>
-        /// txtPostSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPostSearch;
-
-        /// <summary>
         /// ImgbtnFindPost control.
         /// </summary>
         /// <remarks>
@@ -355,6 +346,15 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindPost;
+
+        /// <summary>
+        /// txtPostSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPostSearch;
 
         /// <summary>
         /// ddlPOSTList control.
