@@ -193,12 +193,16 @@ namespace RealERPWEB.F_09_PImp
 
         private void GetProjectName()
         {
-
+            string status = "";
+            if (Request.QueryString["status"] != null)
+            {
+                status = Request.QueryString["status"].ToString();
+            }
+            string type = Request.QueryString["Type"].ToString();
             string comcod = this.GetCompCode();
-            //  string serch1 = "%" + this.txtSrcPro.Text.Trim() + "%";
 
             string serch1 = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? ("%" + this.txtSrcPro.Text.Trim() + "%") : (this.Request.QueryString["prjcode"].ToString() + "%");
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURPROJECTNAME", serch1, "", "", "", "", "", "", "", "");
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURPROJECTNAME", serch1, status, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlProjectName.DataTextField = "pactdesc";
@@ -1025,7 +1029,7 @@ namespace RealERPWEB.F_09_PImp
                 this.GetNarration();
             }
 
-            ((LinkButton)this.gvSubBill.FooterRow.FindControl("lbtnUpdate")).Visible = (this.lblVounum.Text.Trim() == "00000000000000" || this.lblVounum.Text.Trim() == "") && (this.Request.QueryString["Type"].ToString().Trim() == "BillEntry" || this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" || this.Request.QueryString["Type"].ToString().Trim() == "FirstRecom" || this.Request.QueryString["Type"].ToString().Trim() == "SecRecom" || this.Request.QueryString["Type"].ToString().Trim() == "ThirdRecom");
+            ((LinkButton)this.gvSubBill.FooterRow.FindControl("lbtnUpdate")).Visible = (this.lblVounum.Text.Trim() == "00000000000000" || this.lblVounum.Text.Trim() == "") && (this.Request.QueryString["Type"].ToString().Trim() == "BillEntry" || this.Request.QueryString["Type"].ToString().Trim() == "BillServiceEntry" || this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" || this.Request.QueryString["Type"].ToString().Trim() == "FirstRecom" || this.Request.QueryString["Type"].ToString().Trim() == "SecRecom" || this.Request.QueryString["Type"].ToString().Trim() == "ThirdRecom");
             ((LinkButton)this.gvSubBill.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblVounum.Text.Trim() == "00000000000000");
             ((LinkButton)this.gvSubBill.FooterRow.FindControl("lbtnConfirmed")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillConfirmed" && this.lblVounum.Text.Trim() == "00000000000000");
 
@@ -1146,6 +1150,7 @@ namespace RealERPWEB.F_09_PImp
             switch (type)
             {
                 case "BillEntry":
+                case "BillServiceEntry":
                     switch (comcod)
                     {
                         //case "3101":
@@ -1207,7 +1212,7 @@ namespace RealERPWEB.F_09_PImp
                     {
 
 
-                        if(comcod=="3368")
+                        if (comcod == "3368")
                         {
 
                             this.CreateDataTable();
@@ -1262,7 +1267,7 @@ namespace RealERPWEB.F_09_PImp
                         }
 
 
-                        
+
 
                     }
 
@@ -1399,7 +1404,7 @@ namespace RealERPWEB.F_09_PImp
 
 
                 DataTable dt = (DataTable)Session["tblbill"];
-               
+
                 if (this.txtCBillRefNo.Text.Trim() == "")
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Ref. No";
@@ -1451,7 +1456,7 @@ namespace RealERPWEB.F_09_PImp
                     this.GetSubConBiFin();
 
 
-            
+
 
                 string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string billno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
@@ -1475,9 +1480,16 @@ namespace RealERPWEB.F_09_PImp
 
                 string appxml = dt.Rows[0]["approval"].ToString();
                 string Approval = this.GetReqApproval(appxml);
+                string type = Request.QueryString["Type"].ToString();
+
 
                 result = PurData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
                       Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid, Approval);
+
+                if (type == "BillServiceEntry")
+                {
+                    result = PurData.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEPURCBILLB", billno);
+                }
 
                 if (!result)
                 {

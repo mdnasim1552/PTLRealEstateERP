@@ -2013,7 +2013,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("ComLogo", comlogo));
             Rpt1.SetParameters(new ReportParameter("CompName", comnam));
             Rpt1.SetParameters(new ReportParameter("Compadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("title", "Payment Schedule & Payment Status"));
+            Rpt1.SetParameters(new ReportParameter("title", "Client Ledger"));
             Rpt1.SetParameters(new ReportParameter("txtDate", txtdate));
 
             Rpt1.SetParameters(new ReportParameter("rptcustname", rptcustname));
