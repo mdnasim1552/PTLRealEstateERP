@@ -23,7 +23,7 @@ namespace RealERPLIB
         /// ///////////
         /// Strt Menu
         /// <returns></returns>
-
+        //Main Permission 
         #region General Menu
         public static DataTable WebObjTable()
         {
@@ -340,6 +340,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902071", "F_09_PImp", "PurSubConBillFinal?", "Type=FirstRecom", "Bill Finalization-First Recommendation", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902072", "F_09_PImp", "PurSubConBillFinal?", "Type=SecRecom", "Bill Finalization-Second Recommendation", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902073", "F_09_PImp", "PurSubConBillFinal?", "Type=ThirdRecom", "Bill Finalization-Third Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902074", "F_09_PImp", "PurSubConBillFinal?", "Type=BillServiceEntry", "Bill Finalization(Service)", "Project Implementation", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "0902000", "0902076", "F_09_PImp", "ConAssessment?", "Type=ConcAss", "Contractor Assessment", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0902000", "0902077", "F_09_PImp", "RptMonthConAss?", "Type=MnthAss", "Contractor Monthly Assessment", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementation", "False", "False", "False", "False" });
@@ -1794,15 +1796,26 @@ namespace RealERPLIB
             #region Facility Management
 
             tblObj.Rows.Add(new Object[] { "3002000", "3002001", "F_23_CR", "CustOthMoneyReceipt?", "Type=Service", "Collection  Other's", "Complaince Management", "False", "False", "False", "False" });
-
             tblObj.Rows.Add(new Object[] { "3051000", "3051001", "F_99_Allinterface", "RptFacilityInterface", "", " Complaint-Interface", "Complaince Management", "False", "False", "False", "False" });
 
 
             #endregion
 
+
+            //F_36_Vehcl
+
+            #region Vehicle Management
+
+            tblObj.Rows.Add(new Object[] { "3602000", "3602001", "F_36_Vehcl", "VehicleInfoEntry", "", "Vehicle Entry", "Vehicle Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3602000", "3602005", "F_36_Vehcl", "vehicleapply", "", "Transport Apply", "Vehicle Management", "False", "False", "False", "False" });
+                
+            tblObj.Rows.Add(new Object[] { "3651000", "3651001", "F_99_Allinterface", "RptVehicleMgt", "", " Vehicle-Interface", "Vehicle Management", "False", "False", "False", "False" });
+            #endregion
+
+
             //37. Land Owner Management
             #region Landowner Management
-            
+
             tblObj.Rows.Add(new Object[] { "3702000", "3702001", "F_22_Sal", "MktEntryUnit?", "Type=LandOwner", "Budget-Sales(Land Owner)", "Landowner Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3702000", "3702003", "F_22_Sal", "MktSalsLOPayment?Type=Sales", "", "SalesWith Payment Schedule", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3702000", "3702005", "F_23_CR", "MktLOMoneyReceipt?", "Type=CustCare", "Collection Sales", "Landowner Management", "False", "False", "False", "False" });
@@ -2009,10 +2022,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8101000", "8101013", "F_81_Hrm/F_82_App", "EmpDesignationlinkDeptWise", "", "Designation link Dept Wise", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8101000", "8101014", "F_81_Hrm/F_92_Mgt", "RptSettlementStatus", "", "Employee Settlement Top Sheet", "Employee Settlement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101015", "F_81_Hrm/F_92_Mgt", "EmpSettlement?", "Type=Entry", "Employee Settlement Entry", "Employee Settlement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink", "", "Department Code Link", "Appointment", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8101000", "8101017", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Employee Settlement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8101000", "8101016", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink?", "Type=Payroll", "Department Code Link - Payroll", "Appointment", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8101000", "8101017", "F_81_Hrm/F_92_Mgt", "DeparmentCodeLink?", "Type=HR", "Department Code Link - HR", "Appointment", "False", "False", "False", "False" });
 
 
+       
 
             //Entry option 
 
@@ -2176,7 +2190,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102166", "F_81_Hrm/F_92_Mgt", "HRSupervisorTransfer", "", "Supervisor Transfer", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102167", "F_33_Doc", "SimCardMange", "", "SIM Card Manage", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102168", "F_34_Mgt", "ResetPassword", "", "User Reset Password", "Management", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "8102000", "8102169", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Management", "False", "False", "False", "False" }); ;
 
 
 
@@ -3309,6 +3323,10 @@ namespace RealERPLIB
                 case "35":   // Management
                     MenuMGT(mnuTbl1);
                     break;
+                case "36":   // Management
+                    MenuVehicleMgt(mnuTbl1);
+                    break;
+
                 case "37": // Land OWner Management
                     MenuLO(mnuTbl1);
                     break;
@@ -9954,6 +9972,199 @@ namespace RealERPLIB
 
         }
 
+        private static void MenuVehicleMgt(DataTable mnuTbl1)
+        {
+
+            mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Vehicle Entry", "F_36_Vehcl/VehicleInfoEntry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Transport Apply", "F_36_Vehcl/vehicleapply", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0204000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0210000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0211000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0215000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0216000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0217000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0218000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0219000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0220000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0221000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0222000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0223000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0224000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0225000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0226000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0227000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0228000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0229000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0230000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0231000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0232000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0233000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0234000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0235000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0236000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0237000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0238000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0239000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0240000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0241000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0242000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0243000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0244000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0245000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0246000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0247000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0248000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0249000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0250000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0251000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0252000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0253000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0254000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0255000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0256000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0257000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0258000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0259000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0260000000", "", "", "", true, "" });
+
+
+
+            mnuTbl1.Rows.Add(new Object[] { "0301000000", "01. Customer Payment Schedule (LO)", "F_22_Sal/RptSalInterest?Type=LO", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0307000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0310000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0313000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0314000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0315000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0316000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0317000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0318000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0319000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0320000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0321000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0322000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0323000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0324000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0325000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0326000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0327000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0328000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0329000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0330000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0331000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0332000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0333000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0334000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0335000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0336000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0337000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0338000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0339000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0340000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0341000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0342000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0343000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0344000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0345000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0346000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0347000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0348000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0349000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0350000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0351000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0352000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0353000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0354000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0355000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0356000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0357000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0358000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0359000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0360000000", "", "", "", true, "" });
+
+
+
+            mnuTbl1.Rows.Add(new Object[] { "0401000001", "", "", "", true, "" });
+
+            mnuTbl1.Rows.Add(new Object[] { "0401000002", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000003", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000004", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000005", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000006", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000007", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000008", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000009", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000010", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000011", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000012", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000013", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000014", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000015", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000016", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0418000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0419000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0420000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0421000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0422000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0423000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0424000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0425000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0426000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0427000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0428000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0429000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0430000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0431000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0432000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0433000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0434000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0435000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0436000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0437000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0438000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0439000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0440000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0441000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0442000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0443000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0444000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0445000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0446000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0447000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0448000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0449000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0450000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0451000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0452000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0453000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0454000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0455000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0456000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0457000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0458000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0459000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0460000000", "", "", "", true, "" });
+
+        }
+
 
         private static void MenuLO(DataTable mnuTbl1)
         {
@@ -15344,16 +15555,17 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000003", "03. Personal Information Code", "F_81_Hrm/F_82_App/HRCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Designation Code", "F_81_Hrm/F_82_App/HRDesigCode", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Designation Link Dept Wise", "F_81_Hrm/F_82_App/EmpDesignationlinkDeptWise", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Department Code Link", "F_81_Hrm/F_92_Mgt/DeparmentCodeLink", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Department Code Link - Payroll", "F_81_Hrm/F_92_Mgt/DeparmentCodeLink?Type=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000007", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000008", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpMarket", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000009", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000010", "09. Planning Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpPlan", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000011", "09. Department Wise Group Setup", "F_17_Acc/AccGenCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000012", "10. Department Code Link - HR", "F_81_Hrm/F_92_Mgt/DeparmentCodeLink?Type=HR", "", true, "" });
 
 
-         
+
             // D. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0203000001", "02. Earn Leave Opening", "F_81_Hrm/F_84_Lea/HRLeaveOpening", "", true, "" });

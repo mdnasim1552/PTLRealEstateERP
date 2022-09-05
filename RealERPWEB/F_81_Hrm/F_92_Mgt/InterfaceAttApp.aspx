@@ -606,7 +606,7 @@
 
                         </div>
 
-                        <div class="col-md-2">
+                       <%-- <div class="col-md-2 col-lg-2 col-sm-6 mt-4"  Visible="false">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary ">Filter</asp:Label>
@@ -615,15 +615,16 @@
                                 </asp:DropDownList>
 
                             </div>
-                            <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
+                          
+
+                        </div>--%>
+                          <div class="col-md-1 col-lg-1 col-sm-6 mt-4">
 
 
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
                                 
                             
                             </div>
-
-                        </div>
                         <%--  <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">

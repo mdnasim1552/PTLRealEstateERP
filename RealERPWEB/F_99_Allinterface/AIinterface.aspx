@@ -595,7 +595,7 @@
                         <div class="row">
                             <div class="col-md-6">
 
-                                <asp:LinkButton ID="tblAddCustomerModal" runat="server" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="AddCustomerModal_Click"><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
+                                <asp:LinkButton ID="tblAddCustomerModal" runat="server" Visible="false" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="AddCustomerModal_Click"><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
 
 
                                 <asp:LinkButton ID="tblAddProjectModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblAddProjectModal_Click"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
@@ -633,7 +633,7 @@
                         </fieldset>
                         <hr />
                         <div class="row">
-                            <table class="table table-hover table-bordered table-responsive-md">
+                            <table class="table table-hover table-bordered table-responsive-md" id="tblDefault">
                                 <thead>
                                     <tr style="background-color: #ECF3ED;">
                                         <th>Sl #</th>
@@ -676,6 +676,35 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <asp:Panel ID="pnlStatus" runat="server" Visible="false">
+                            <h2>Status</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="pnlAssign" runat="server" Visible="false">
+                             <h2>Assign</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="pnlProduction" runat="server" Visible="false">
+                             <h2>Production</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="pnelQC" runat="server" Visible="false">
+                             <h2>QC</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="pnelAReject" runat="server" Visible="false">
+                             <h2>Acept/ Reject</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="penlInvoice" runat="server" Visible="false">
+                             <h2>Invoice</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="pnelCollection" runat="server" Visible="false">
+                             <h2>Collection</h2>
+                        </asp:Panel>
+
+
+
+
+
+
+
 
 
 
@@ -734,7 +763,7 @@
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-lg-3">
-                                                <asp:Label ID="Label9" runat="server">Client Name</asp:Label>
+                                                <asp:Label ID="tblClientName" runat="server">Client Name  &nbsp;<asp:LinkButton ID="btnClient" runat="server" OnClick="btnClient_Click" >+</asp:LinkButton></asp:Label>
                                                 <asp:DropDownList ID="ddClientName" runat="server" CssClass="form-control chzn-select">
                                                     <asp:ListItem Value="0">MD. HARUN-UR RASHID (FCMA)</asp:ListItem>
                                                     <asp:ListItem Value="1">MD. EMDADUL HAQUE</asp:ListItem>
@@ -747,6 +776,32 @@
 
 
                                         </div>
+                                       <%-- <div class="row">
+                                            <div class="col-lg-3">
+                                                <asp:Label ID="tblName" Visible="false" runat="server"> Name</asp:Label>
+                                                <asp:TextBox ID="textName" Visible="false" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                               
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <asp:Label ID="tblNumber" Visible="false" runat="server"> Phone Number</asp:Label>
+                                                <asp:TextBox ID="TextNumber" Visible="false" runat="server" TextMode="Number" CssClass="form-control form-control-sm"></asp:TextBox>
+                                               
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <asp:Label ID="tblEmail" Visible="false" runat="server"> Email</asp:Label>
+                                                <asp:TextBox ID="TextEmail" Visible="false" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                               
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <asp:Label ID="textAddess" Visible="false" runat="server"> Address</asp:Label>
+                                                <asp:TextBox ID="TextAddress" Visible="false" runat="server" TextMode="MultiLine" CssClass="form-control form-control-sm"></asp:TextBox>
+                                               
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <asp:LinkButton ID="tbnAdd" runat="server" Visible="false" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="tbnAdd_Click"><i class="fa fa-plus"></i>Add</asp:LinkButton>
+                                               
+                                            </div>
+                                        </div>--%>
                                         <div class="row">
                                             <div class="col-lg-3 mt20">
                                                 <asp:Label ID="Label10" runat="server">Project Type</asp:Label>
@@ -759,10 +814,11 @@
 
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-lg-3 mt20">
-                                                <asp:Label ID="Label11" runat="server">Cost</asp:Label>
-                                                <asp:TextBox ID="tblCost" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
+                                           <div class="col-lg-3 mt20">
+                                                <asp:Label ID="Label13" runat="server">Quantity</asp:Label>
+                                                <asp:TextBox ID="tblQuantity" runat="server"  CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
+                                               <%--<asp:TextBox ID="tblQuantity" runat="server" CssClass="form-control form-control-sm" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>--%>
+
                                             </div>
                                             <div class="col-lg-3 mt20">
                                                 <asp:Label ID="lblSrtTime" runat="server">StartTime
@@ -775,29 +831,45 @@
                                             </div>
                                             <div class="col-lg-3 mt20">
                                                 <asp:Label ID="Label12" runat="server">DeadLine </asp:Label>
-                                                <asp:TextBox ID="tblDeadLine" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                <asp:TextBox ID="tblDeadLine" runat="server" TextMode="DateTimeLocal" CssClass="form-control form-control-sm"></asp:TextBox>
 
-                                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="tblDeadLine"></cc1:CalendarExtender>
+                                                <%--<cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="tblDeadLine"></cc1:CalendarExtender>--%>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3 mt20">
-                                                <asp:Label ID="Label13" runat="server">Quantity</asp:Label>
-                                                <asp:TextBox ID="tblQuantity" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-
+                                                <asp:Label ID="Label15" runat="server">Currency Type</asp:Label>
+                                                <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control chzn-select">
+                                                    <asp:ListItem Value="0">BDT</asp:ListItem>
+                                                    <asp:ListItem Value="1">USD</asp:ListItem>
+                                                   
+                                                </asp:DropDownList>
                                             </div>
-                                            <div class="col-lg-3 mt20">
+                                             <div class="col-lg-3 mt20">
+                                                <asp:Label ID="Label11" runat="server">Cost</asp:Label>
+                                                <asp:TextBox ID="tblCost" runat="server" CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
+                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
+                                            </div>
+                                            <div class="col-lg-6 mt20">
                                                 <asp:Label ID="Label14" runat="server">Remarks</asp:Label>
-                                                <asp:TextBox ID="tblRemarks" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                <asp:TextBox ID="tblRemarks" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine"></asp:TextBox>
 
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="col-lg-5 mt20">
+                                                  <asp:Label ID="Label16" runat="server">Images</asp:Label>
+                                                 
+                                                 <ajaxToolkit:AjaxFileUpload Width="600px" ID="AjaxFileUpload1" runat="server" ThrobberID="myThrobber" MaximumNumberOfFiles="10" AllowedFileTypes="jpg,jpeg,pdf"></ajaxToolkit:AjaxFileUpload>
+
+                                             </div>
                                         </div>
                                         <div class="modal-footer row">
                                             <div class="d-flex justify-content-center">
 
                                                 <%-- <button type="button" class="btn btn-danger  ml-auto  btn-md mt20 mr-1" data-bs-dismiss="modal">Close</button>--%>
-                                                <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1">Save</asp:LinkButton>
+                                                <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1" OnClick="btnSave_Click">Save</asp:LinkButton>
 
                                             </div>
                                         </div>
@@ -820,6 +892,50 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
+                                        <div class="row">
+                                        <div class="col-lg-3 ">
+                                                <asp:Label ID="ltbProject" runat="server">Project Name</asp:Label>
+                                                <asp:TextBox ID="tblProjectName" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
+                                            </div>
+                                        <div class="col-lg-3">
+                                            <asp:Label ID="lbtCustName" runat="server">Customer Name</asp:Label>
+                                                <asp:TextBox ID="tblCustName" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                        </div>
+                                        <div class="col-lg-5">
+                                             <asp:Label ID="Label9" runat="server">Task Description</asp:Label>
+                                                <asp:TextBox ID="tblDescription" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" ></asp:TextBox>
+                                        </div>
+                                        
+                                    </div>
+                                        <div class="row mt-3">
+                                            <div class="col-lg-3">
+                                                <asp:Label ID="Label17" runat="server">Assign Team</asp:Label>
+                                                <asp:TextBox ID="tblAssginTeam" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <asp:Label ID="Label18" runat="server">Quantity</asp:Label>
+                                                <asp:TextBox ID="tblTaskQuantity" runat="server" CssClass="form-control form-control-sm" TextMode="Number" ></asp:TextBox>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                 <asp:Label ID="Label19" runat="server">DeadLine</asp:Label>
+                                                <asp:TextBox ID="tblEndDate" runat="server" CssClass="form-control form-control-sm" TextMode="DateTimeLocal" ></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-lg-5">
+                                                <asp:Label ID="Label20" runat="server">Remarks</asp:Label>
+                                                <asp:TextBox ID="tblTRemarks" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" ></asp:TextBox>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    <div class="modal-footer row">
+                                         <div class="d-flex justify-content-center float-right ">
+
+                                                <%-- <button type="button" class="btn btn-danger  ml-auto  btn-md mt20 mr-1" data-bs-dismiss="modal">Close</button>--%>
+                                                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1" >Task Save</asp:LinkButton>
+
+                                            </div>
                                     </div>
                                 </div>
                             </div>

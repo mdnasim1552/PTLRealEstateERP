@@ -50,14 +50,18 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> 1ad924f26febaf28978fa714e6cbceed1ade06f9
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -803,6 +807,7 @@
     <EmbeddedResource Include="R_23_CR\RptClientDOBMrrDay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientInfo.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptClientLedgerFinlay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02Lanco.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedgerAssure.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02Cube.rdlc" />
@@ -848,6 +853,7 @@
     <EmbeddedResource Include="R_23_CR\RptMonCollcScheduleSummaryENG.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptMonthlyCollReceiptType.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptNetADWork.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptPaymentStatusFinlay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPaymentStatus.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPaymentStatus02.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPrjclientStatus.rdlc" />

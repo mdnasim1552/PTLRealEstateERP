@@ -87,6 +87,24 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.DropDownList ddlSalesperson;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// rbtnAtStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnAtStatus;
+
+        /// <summary>
         /// lnkbtnOk control.
         /// </summary>
         /// <remarks>
