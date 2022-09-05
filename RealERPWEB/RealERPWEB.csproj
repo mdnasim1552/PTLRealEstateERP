@@ -159,9 +159,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3547,7 +3547,6 @@
     <Content Include="LogIn.aspx" />
     <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
-    <Content Include="Microsoft.ReportViewer.WinForms.dll" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
     <Content Include="MyShortCutLink.aspx" />
@@ -3577,7 +3576,6 @@
     <Content Include="RDLCViewer.aspx" />
     <Content Include="F_01_LPA\RptLandDevProposal.aspx" />
     <Content Include="RDLCViewerWin.aspx" />
-    <Content Include="RealERPRPT.dll" />
     <Content Include="RptViewer.aspx" />
     <Content Include="s1.png" />
     <Content Include="Scripts\angular.min.js" />
