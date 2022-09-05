@@ -311,14 +311,14 @@
 
 
 
-                                                                    <asp:HyperLink ID="lblJoinnig" runat="server" Target="_blank" Width="100px"
+                                                                    <asp:HyperLink ID="lblJoinnig" runat="server" Target="_blank" Width="80px"
                                                                            NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry02?Type=10025 &Page=NewRec &advno="+Eval("advno") %>'
-                                                                        CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="") ? " btn btn-primary btn-sm btn-text active ": "btn btn-sm btn-info  disabled " %>'>    
+                                                                        CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="") ? "badge badge-primary active ": "badge badge-info  disabled " %>'>    
                               <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="")?"Apply Joinning":"Joined "%></span>
 
                                                                     </asp:HyperLink>
 
-                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
 
                                                 <asp:LinkButton ID="btnRemove" runat="server" OnClientClick="return confirm('Are You Sure?')" OnClick="btnRemove_Click" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" OnClick="btnEdit_Click"><i class="fa fa-edit"></i></asp:LinkButton>

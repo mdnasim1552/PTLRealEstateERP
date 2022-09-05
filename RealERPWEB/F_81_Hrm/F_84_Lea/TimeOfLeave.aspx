@@ -483,17 +483,17 @@
         <div class="modal fade" id="TimeOffModal" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header order-bottom">
-                        <h6 class="modal-title font-weight-bold" id="">Edit Time Off</h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                    <div class="modal-header order-bottom bg-info mb-3">
+                         <p class="modal-title font-weight-bold text-white" id="">Edit Time Off</p>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            x
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            <div class="card-header bg-info ">
-                                <h6 class="font-weight-bold text-white" id="modalNoticeTitle" runat="server"></h6>
-                            </div>
+                       <%--     <div class="card-header bg-info ">
+                               <h6 class="modal-title font-weight-bold text-white p-0 m-0" id="">Edit Time Off</h6>
+                            </div>--%>
                             <div class="card-body bg-light">
                                 <span runat="server" id="useTime" visible="false"></span>
 
@@ -510,7 +510,7 @@
                                         <asp:TextBox ID="txtmodalintime" runat="server" TextMode="Time"  class="form-control" ></asp:TextBox>
                                     </div>
 
-                                <asp:LinkButton runat="server" ID="lnkTimeUpdate_Click" OnClick="lnkTimeUpdate_Click_Click" CssClass="btn btn-primary btn-sm">Update</asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="lnkTimeUpdate_Click" OnClick="lnkTimeUpdate_Click_Click" CssClass="btn btn-primary btn-sm mb-2">Update</asp:LinkButton>
                             </div>
                         </div>
 
