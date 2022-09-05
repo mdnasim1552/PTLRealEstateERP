@@ -60,6 +60,15 @@ namespace RealERPWEB.F_70_Services
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txttoDate;
 
         /// <summary>
+        /// isPrevCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label isPrevCode;
+
+        /// <summary>
         /// lblQuotation control.
         /// </summary>
         /// <remarks>
@@ -267,6 +276,15 @@ namespace RealERPWEB.F_70_Services
         protected global::System.Web.UI.WebControls.LinkButton lnkMatReq;
 
         /// <summary>
+        /// lnkSubContractor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSubContractor;
+
+        /// <summary>
         /// lnkReceivable control.
         /// </summary>
         /// <remarks>
@@ -427,5 +445,41 @@ namespace RealERPWEB.F_70_Services
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkUpdateResourceModal;
+
+        /// <summary>
+        /// LinkButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+
+        /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// ddlSubContractor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubContractor;
+
+        /// <summary>
+        /// lnkSubContractorSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSubContractorSave;
     }
 }

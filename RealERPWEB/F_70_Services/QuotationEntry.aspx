@@ -42,6 +42,15 @@
 
             $('#addModalResource').modal('toggle');
         }
+        function OpenModalSubContractor() {
+            $('#subContractor').modal('toggle');
+        }
+        function CloseModalSubContractor() {
+
+            $('#subContractor').modal('toggle');
+        }
+
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -76,7 +85,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-
+                                 <asp:Label runat="server" ID="isPrevCode" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="lblQuotation" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="Label5" class="form-label">Quotation No</asp:Label>
                                 <asp:TextBox ID="txtquotno" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
@@ -403,14 +412,23 @@
                         <div class="row d-flex justify-content-center">
                             <asp:LinkButton ID="lnkRefresh" runat="server" CssClass="btn btn-sm btn-warning mx-2 my-2" OnClick="lnkRefresh_Click" Width="100px">
                                 <span class="fa fa-redo " style="color:black;" aria-hidden="true"></span> Refresh</asp:LinkButton>
-                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
-                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
+                            <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-success mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
+                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save" style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
 
                             <asp:Panel runat="server" ID="pnlAccept" Visible="false">
                                 <asp:LinkButton ID="lnkMatReq" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2"
                                     OnClick="lnkMatReq_Click" Width="100px"
                                     OnClientClick="return confirm('Are You Sure?')">
                                 Material Req.</asp:LinkButton>
+
+                                <asp:LinkButton ID="lnkSubContractor" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2"
+                                    OnClick="lnkSubContractor_Click" Width="140px"
+                                    OnClientClick="return confirm('Are You Sure?')">
+                                Sub Contractor</asp:LinkButton>
+
+
+
+
                                 <asp:LinkButton ID="lnkReceivable" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2"
                                     OnClick="lnkReceivable_Click" Width="100px"
                                     OnClientClick="return confirm('Are You Sure?')">
@@ -423,8 +441,8 @@
 
 
 
-                            <asp:LinkButton ID="lnkClose" runat="server" CssClass="btn btn-sm btn-info mx-2 my-2" Width="150px">
-                                <span class="fa fa-cross" style="color:white;" aria-hidden="true"></span>
+                            <asp:LinkButton ID="lnkClose" runat="server" CssClass="btn btn-sm btn-dark mx-2 my-2" Width="150px">
+                                <span class="fa fa-window-close" style="color:white;" aria-hidden="true"></span>
                                 Close
                             </asp:LinkButton>
                         </div>
@@ -488,6 +506,32 @@
                         <div class="modal-footer ">
                             <asp:LinkButton ID="lnkUpdateResourceModal" runat="server" CssClass="btn btn-sm btn-success" OnClick="lnkUpdateResourceModal_Click"
                                 OnClientClick="CloseModalResource();"><span class="glyphicon glyphicon-save"></span>Update</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="subContractor" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light">
+                            <h6 class="modal-title">Select Sub Contractor</h6>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CssClass="close close_btn" OnClientClick="CloseModalSubContractor();" data-dismiss="modal"> &times; </asp:LinkButton>
+                        </div>
+                        <div class="modal-body mt-3">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label10" runat="server">Sub Contactor</asp:Label>
+                                        <asp:DropDownList ID="ddlSubContractor" runat="server" CssClass="form-control chzn-select">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lnkSubContractorSave" runat="server" CssClass="btn btn-sm btn-success" OnClick="lnkSubContractorSave_Click"
+                                OnClientClick="CloseModalSubContractor();"><span class="glyphicon glyphicon-save"></span>Generate Bill</asp:LinkButton>
                         </div>
                     </div>
                 </div>
