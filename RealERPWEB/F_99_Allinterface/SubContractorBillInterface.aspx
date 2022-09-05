@@ -1956,6 +1956,8 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbllisuno" runat="server" Visible="False"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lisuno")) %>'></asp:Label>
+                                                     <asp:Label ID="lblissustatus" runat="server" Visible="False"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issustatus")) %>'></asp:Label>
                                                     <asp:Label ID="lgcResDescscf" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
                                                         Width="110px"></asp:Label>
@@ -2067,6 +2069,9 @@
                                                         Width="70px"></asp:Label>
                                                     <asp:Label ID="lgAPPcordernofiapp" runat="server" Visible="false"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
+                                                        Width="70px"></asp:Label>
+                                                     <asp:Label ID="lblbillstatus" runat="server" Visible="false"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billstatus")) %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
