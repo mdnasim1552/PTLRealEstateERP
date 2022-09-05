@@ -54,7 +54,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        private void PannelVisible()  
+        private void PannelVisible()
         {
             string comcod = this.GetCompCode();
             switch (comcod)
@@ -90,7 +90,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.Panelrpt.Visible = true;
                     //this.txtrefno.ReadOnly = true;
                     break;
-            }     
+            }
 
         }
 
@@ -106,7 +106,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry02?Type=Entry";
             }
-           
+
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -228,7 +228,7 @@ namespace RealERPWEB.F_99_Allinterface
             return frecon;
         }
 
-            private void SaleRequRpt()
+        private void SaleRequRpt()
         {
             string comcod = this.GetCompCode();
             string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
@@ -285,7 +285,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             dt = ((DataTable)ds1.Tables[9]).Copy();
             dv = dt.DefaultView;
-            
+
             this.Data_Bind("gvAllReq", dv.ToTable());
 
 
@@ -985,10 +985,22 @@ namespace RealERPWEB.F_99_Allinterface
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string lisuno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lisuno")).ToString();
+                string issustatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issustatus")).ToString();
+
+
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string isudate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "isudat")).ToString("dd-MMM-yyyy");
-                hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
+                if (issustatus == "S")
+                {
+                    hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillServiceEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + issustatus;
+
+                }
+                else
+                {
+                    hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
+
+                }
 
                 if (comcod == "3340" || comcod == "3101")
                 {
@@ -1212,7 +1224,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink lnkbtnbfinapp = (HyperLink)e.Row.FindControl("lnkbtnbfinapp");
 
                 LinkButton btnDelfinapp = (LinkButton)e.Row.FindControl("btnDelfinapp");
-                
+
 
 
                 // HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
@@ -1224,11 +1236,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
 
-
+                string billstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "billstatus")).ToString();
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ConBillFinalization&billno=" + billno;
 
-                lnkbtnbfinapp.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillConfirmed&genno=" + billno + "&prjcode=" + pactcode + "&sircode=" + sircode; ;
+                lnkbtnbfinapp.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillConfirmed&genno=" + billno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + billstatus;
 
                 // lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
@@ -1458,7 +1470,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //case "3101":
                 case "1103":
-            
+
 
                     thofiapproval = "thapproval";
                     break;
@@ -1719,10 +1731,10 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string blreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-                string recomsup = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString() == ""?  "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString();
+                string recomsup = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString() == "" ? "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString();
                 string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString() == "" ? "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
 
-                hlink1.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSApproval&prjcode=" + pactcode + "&genno=" + blreqno + "&sircode=" + "" + "&recomsup=" + recomsup + "&msrno="+ msrno;
+                hlink1.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSApproval&prjcode=" + pactcode + "&genno=" + blreqno + "&sircode=" + "" + "&recomsup=" + recomsup + "&msrno=" + msrno;
 
                 lnkbtnPrintCSApp.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode + "&pType=" + "CSApproval" + "&msrno=" + msrno;
 
@@ -1754,11 +1766,11 @@ namespace RealERPWEB.F_99_Allinterface
             string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
             string refno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvissuerefbill")).Text.Trim();
             string reqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvbillreqno")).Text.Trim();
-            
-            
 
 
-            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP", null,null,null,msrno, refno, usrid, trmnid, session, Date, reqno, "", "", "", "", "", "", "", ""); 
+
+
+            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP", null, null, null, msrno, refno, usrid, trmnid, session, Date, reqno, "", "", "", "", "", "", "", "");
 
             if (!resulbill)
             {
@@ -1857,7 +1869,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string oderno = ((Label)this.gvReadyForBill.Rows[RowIndex].FindControl("lgvOrerNo")).Text.Trim();
-            string lreqno = ((Label)this.gvReadyForBill.Rows[RowIndex].FindControl("lblgvlreq2")).Text.Trim();            
+            string lreqno = ((Label)this.gvReadyForBill.Rows[RowIndex].FindControl("lblgvlreq2")).Text.Trim();
 
             bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_WORKORDER", null, null, null, oderno, lreqno, "", "", "", "", "", "", "");
 
