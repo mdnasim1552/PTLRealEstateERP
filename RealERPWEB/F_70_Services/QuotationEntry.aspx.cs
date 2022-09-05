@@ -33,6 +33,9 @@ namespace RealERPWEB.F_70_Services
                         lnkSave.Text = "<span class='fa fa-check' style='color:white;' aria-hidden='true'></span> Approval";
                     }
                 }
+                lnkMatReq.Visible = false;
+                lnkReceivable.Visible = false;
+                lnkSubContractor.Visible = false;
             }
         }
         private void EditFunctionality()
@@ -678,6 +681,10 @@ namespace RealERPWEB.F_70_Services
                                 if (type == "Approval")
                                 {
                                     Response.Redirect("/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid);
+                                }
+                                if (type == "Check")
+                                {
+                                    Response.Redirect("/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid);
                                 }
                             }
                         }
