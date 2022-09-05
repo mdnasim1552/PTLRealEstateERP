@@ -808,11 +808,17 @@ namespace RealERPWEB.F_17_Acc
 
 
                 //case "3336":
-                case "3338":// ACME
+
                 case "3339":// Tropical
                 case "1101":
                 case "1102":
                 case "1103":
+                case "3338":// ACME
+                case "1206": 
+                case "1207":
+                case "3369":
+
+
                     CallType = "GETACMEACCBILLINFO";
                     break;
 

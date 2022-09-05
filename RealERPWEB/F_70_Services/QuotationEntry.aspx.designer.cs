@@ -60,6 +60,15 @@ namespace RealERPWEB.F_70_Services
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txttoDate;
 
         /// <summary>
+        /// isPrevCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label isPrevCode;
+
+        /// <summary>
         /// lblQuotation control.
         /// </summary>
         /// <remarks>

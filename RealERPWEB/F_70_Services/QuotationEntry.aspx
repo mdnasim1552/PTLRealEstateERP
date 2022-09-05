@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-
+                                 <asp:Label runat="server" ID="isPrevCode" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="lblQuotation" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="Label5" class="form-label">Quotation No</asp:Label>
                                 <asp:TextBox ID="txtquotno" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
