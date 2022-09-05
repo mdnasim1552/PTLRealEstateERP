@@ -1475,9 +1475,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>1.0875in</Top>
-            <Left>0in</Left>
             <Height>1.21499in</Height>
-            <Width>8.04377in</Width>
+            <Width>8.04375in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2297,8 +2296,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>2.52152in</Top>
-            <Height>0.66042in</Height>
-            <Width>8.05594in</Width>
+            <Height>0.66041in</Height>
+            <Width>8.05596in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -3292,7 +3291,7 @@
             </TablixRowHierarchy>
             <Top>0.06541in</Top>
             <Left>4.90922in</Left>
-            <Height>0.91818in</Height>
+            <Height>0.9182in</Height>
             <Width>3.0875in</Width>
             <ZIndex>3</ZIndex>
             <Style>
@@ -3305,7 +3304,7 @@
         <Height>3.3192in</Height>
         <Style />
       </Body>
-      <Width>8.05594in</Width>
+      <Width>8.05596in</Width>
       <Page>
         <PageHeader>
           <Height>0.67523in</Height>

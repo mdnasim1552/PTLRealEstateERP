@@ -96,6 +96,7 @@ namespace RealERPWEB.F_23_CR
 
             protected void lnkbtnOk_Click(object sender, EventArgs e)
             {
+                Session.Remove("tblpcollection");
                 string comcod = this.GetComeCode();
                 string frmdate = this.txtfrmdate.Text.Trim();
                 string todate = this.txttodate.Text.Trim();

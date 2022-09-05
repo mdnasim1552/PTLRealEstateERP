@@ -46,22 +46,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\..\..\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\..\..\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
-    </Reference>
-    <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\..\..\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\..\..\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -118,10 +115,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\..\..\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\..\..\..\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework">
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.Build.Framework.dll</HintPath>
@@ -135,7 +132,7 @@
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\..\..\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.MSXML, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -220,9 +217,6 @@
     <Reference Include="Microsoft.VisualStudio.TextManager.Interop.8.0">
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll</HintPath>
@@ -234,9 +228,12 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\..\..\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>

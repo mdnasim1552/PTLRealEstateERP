@@ -973,100 +973,129 @@
 
                  <div class="card-body">
                 <asp:View ID="EmpOfftimeSetup" runat="server">
-                    <div class="row">
+                    
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
                                 <asp:Panel ID="pnlDepartment" runat="server">
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">Company</asp:Label>
-                                            <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                            <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnCompany_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-4">
+                                            <div class="form-group">
+
+                                                <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">Company
+                                                <asp:LinkButton ID="imgbtnCompany" runat="server" OnClick="imgbtnCompany_Click"><span class="fas fa-search"> </span></asp:LinkButton>
+                                                </asp:Label>
+                                                <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="form-control"></asp:TextBox>
+
+                                            </div>
                                         </div>
-                                        <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlCompany" OnClick="ddlCompany_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" AutoPostBack="true" TabIndex="2">
-                                            </asp:DropDownList>
-                                            <asp:Label ID="Label5" runat="server" CssClass="form-control dataLblview" Height="22" Style="line-height: 1.5" Visible="false"></asp:Label>
+                                        <div class="col-lg-2 col-md-3 col-sm-4 mt-3">
+                                            <div class="form-group">
+                                                <asp:DropDownList ID="ddlCompany" OnClick="ddlCompany_SelectedIndexChanged" runat="server" CssClass="form-control chzn-select inputTxt" AutoPostBack="true" TabIndex="2">
+                                                </asp:DropDownList>
+                                                <asp:Label ID="Label5" runat="server" CssClass="form-control dataLblview" Style="line-height: 1.5" Visible="false"></asp:Label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Department</asp:Label>
-                                            <asp:TextBox ID="txtSrcDepartment" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                            <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnDeptSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                        </div>
-                                        <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlDepartment"  runat="server" CssClass="form-control inputTxt" TabIndex="2">
-                                            </asp:DropDownList>
-                                            <asp:Label ID="lblDeptDesc" runat="server" CssClass="form-control dataLblview" Height="22" Style="line-height: 1.5" Visible="false"></asp:Label>
-                                        </div>
-                                        <div class="col-md-1 pading5px">
-                                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnShow_Click"
-                                                TabIndex="47">Ok</asp:LinkButton>
+                                          <div class="col-lg-2  col-md-3 col-sm-4">
+                                        <div class="form-group">
+                                          
+                                                <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Department
+                                                     <asp:LinkButton ID="imgbtnDeptSrch" runat="server"  OnClick="imgbtnDeptSrch_Click"><span class="fas fa-search"> </span></asp:LinkButton>
+                                                </asp:Label>
+                                                <asp:TextBox ID="txtSrcDepartment" runat="server" CssClass="form-control"></asp:TextBox>
+                                               
+                                            </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-3 col-sm-4 mt-3">
+                                                 <div class="form-group">
+                                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control inputTxt" TabIndex="2">
+                                                </asp:DropDownList>
+                                                <asp:Label ID="lblDeptDesc" runat="server" CssClass="form-control dataLblview" Style="line-height: 1.5" Visible="false"></asp:Label>
+                                            </div>
+                                                </div>
+                                            <div class="col-lg-1 col-md-2 col-sm-2 mt-3">
+                                                <div class="form-group">
+                                                <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnShow_Click"
+                                                    TabIndex="47">Ok</asp:LinkButton>
+                                            </div>
                                         </div>
                                     </div>
                                 </asp:Panel>
                             </div>
                         </fieldset>
+                       <hr />
+                   
                         <asp:Panel ID="pnlOfftime" runat="server" Visible="False">
                             <fieldset class="scheduler-border fieldset_A">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
+                                <div class="row">
+                                     <div class="col-lg-2 col-md-3 col-sm-4">
+                                            <div class="form-group">
+                                       
                                             <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName" Visible="false">Date</asp:Label>
-                                            <asp:TextBox ID="txtfromdate" runat="server" CssClass=" inputtextbox" Visible="false" Style="width: 85px;"></asp:TextBox>
+                                            <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control" Visible="false" ></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
-
+                                                </div>
                                         </div>
-                                        <div class="col-md-3 pading5px asitCol3">
+                                        <div class="col-lg-2 col-md-3 col-sm-4">
+                                             <div class="form-group">
                                             <asp:Label ID="lbltodate" runat="server" CssClass="lblTxt lblName" Visible="false">To</asp:Label>
-                                            <asp:TextBox ID="txttodate" runat="server" CssClass=" inputtextbox " Visible="false" Style="width: 85px;"></asp:TextBox>
+                                            <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control " Visible="false"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                                         </div>
                                     </div>
 
+                                    </div>
+                                <div class="row">
+                                     <div class="col-lg-2 col-md-3 col-sm-4">
                                     <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
+                                       
                                             <asp:Label ID="lbltOfftime1" runat="server" CssClass="lblTxt lblName">Office InTime</asp:Label>
-                                            <asp:DropDownList ID="ddlOffintimedw" runat="server" CssClass="   ddlPage" TabIndex="2">
+                                            <asp:DropDownList ID="ddlOffintimedw" runat="server" CssClass=" form-control chzn-select  ddlPage" TabIndex="2">
                                             </asp:DropDownList>
-                                        </div>
-
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltOfftime2" runat="server" CssClass="lblTxt lblName">Office OutTime</asp:Label>
-                                            <asp:DropDownList ID="ddlOffouttimedw" runat="server" CssClass=" ddlPage" TabIndex="2">
-                                            </asp:DropDownList>
-                                        </div>
-
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lblmsg2" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltLantime1" runat="server" CssClass="lblTxt lblName">Launch InTime</asp:Label>
-                                            <asp:DropDownList ID="ddlLanintimedw" runat="server" CssClass=" ddlPage" TabIndex="2">
+
+                                    <div class="col-lg-2 col-md-3 col-sm-4">
+                                        <div class="form-group">
+                                            <asp:Label ID="lbltOfftime2" runat="server" CssClass="lblTxt lblName">Office OutTime</asp:Label>
+                                            <asp:DropDownList ID="ddlOffouttimedw" runat="server" CssClass="form-control chzn-select ddlPage" TabIndex="2">
                                             </asp:DropDownList>
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltLantime2" runat="server" CssClass="lblTxt lblName">Launch OutTime</asp:Label>
-                                            <asp:DropDownList ID="ddlLanouttimedw" runat="server" CssClass=" ddlPage" TabIndex="2">
-                                            </asp:DropDownList>
-                                        </div>
-
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:LinkButton ID="lnkbtnUpdateOfftime" runat="server" CssClass="btn btn-danger primaryBtn"
-                                                OnClick="lnkbtnUpdateOfftime_Click"
-                                                TabIndex="52">Update</asp:LinkButton>
-                                        </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-4">
+                                        <asp:Label ID="lblmsg2" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>
                                 </div>
+                                <div class="row">
+
+                                    <div class="col-lg-2 col-md-3 col-sm-4">
+                                        <div class="form-group">
+                                            <asp:Label ID="lbltLantime1" runat="server" CssClass="lblTxt lblName">Launch InTime</asp:Label>
+                                            <asp:DropDownList ID="ddlLanintimedw" runat="server" CssClass="form-control chzn-select ddlPage" TabIndex="2">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4">
+                                    <div class="form-group">
+                                        <asp:Label ID="lbltLantime2" runat="server" CssClass="lblTxt lblName">Launch OutTime</asp:Label>
+                                        <asp:DropDownList ID="ddlLanouttimedw" runat="server" CssClass=" form-control chzn-selectd dlPage" TabIndex="2">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                     </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4">
+                                    <div class="form-group">
+                                        <asp:LinkButton ID="lnkbtnUpdateOfftime" runat="server" CssClass="btn btn-success btn-sm"
+                                            OnClick="lnkbtnUpdateOfftime_Click"
+                                            TabIndex="52">Update</asp:LinkButton>
+                                    </div>
+                                </div>
+                               
                             </fieldset>
 
                         </asp:Panel>
-                    </div>
+                    
 
                 </asp:View>
                     </div>
