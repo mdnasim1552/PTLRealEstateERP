@@ -204,7 +204,7 @@ namespace RealERPWEB
                     break;
 
                 case "3365":
-                case "3102":
+       
                     //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
