@@ -3547,7 +3547,6 @@
     <Content Include="LogIn.aspx" />
     <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
-    <Content Include="Microsoft.ReportViewer.WinForms.dll" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
     <Content Include="MyShortCutLink.aspx" />
@@ -3577,7 +3576,6 @@
     <Content Include="RDLCViewer.aspx" />
     <Content Include="F_01_LPA\RptLandDevProposal.aspx" />
     <Content Include="RDLCViewerWin.aspx" />
-    <Content Include="RealERPRPT.dll" />
     <Content Include="RptViewer.aspx" />
     <Content Include="s1.png" />
     <Content Include="Scripts\angular.min.js" />
