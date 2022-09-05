@@ -161,7 +161,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3157,6 +3157,7 @@
     <Content Include="F_99_Allinterface\RptAuditInterface.aspx" />
     <Content Include="F_99_Allinterface\RptCashPurInterface.aspx" />
     <Content Include="F_99_Allinterface\RptEngInterface.aspx" />
+    <Content Include="F_99_Allinterface\RptServiceInterface.aspx" />
     <Content Include="F_99_Allinterface\RptVehicleMgt.aspx" />
     <Content Include="F_99_Allinterface\RptFacilityInterface.aspx" />
     <Content Include="F_99_Allinterface\RptIndentPurInterface.aspx" />
@@ -5118,6 +5119,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\MKTProInterface.aspx.designer.cs">
       <DependentUpon>MKTProInterface.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptServiceInterface.aspx.cs">
+      <DependentUpon>RptServiceInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptServiceInterface.aspx.designer.cs">
+      <DependentUpon>RptServiceInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\RptVehicleMgt.aspx.cs">
       <DependentUpon>RptVehicleMgt.aspx</DependentUpon>
