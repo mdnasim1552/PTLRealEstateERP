@@ -761,6 +761,7 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopAniversary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopBirthday.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopCongratulation.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptEnvelopMoneyReceipt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopOffice.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
