@@ -1068,15 +1068,18 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.rptGrossComparison": Rpt1a = SetGrossComparison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptTotalSal": Rpt1a = SetTotalSal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptSalsumDept": Rpt1a = SetSalsumDept(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                  
+                
 
 
                 //hrm envelop
                 case "R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop": Rpt1a = SetRptHrmPaySlipEnvelop(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_97_MIS.RptPromotionEnvelop": Rpt1a = SetRptPromotionEnvelop(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptEnvelopMoneyReceipt": Rpt1a = SetRptEnvelopMoneyReceipt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
-
+                    
                 #region Management
                 case "R_34_Mgt.UserLoginInfo": Rpt1a = SetUserLoginInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
@@ -1414,7 +1417,14 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        //envelop
+
         private static LocalReport SetRptEnvelopPrintNew(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEnvelopMoneyReceipt(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
             return Rpt1a;

@@ -188,7 +188,7 @@
 
                         <div class="table-responsive">
                             <asp:GridView ID="gvInterest" runat="server" AllowPaging="false"
-                                AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
+                                AutoGenerateColumns="False" PageSize="15" ShowFooter="true" 
                                 CssClass="table table-striped table-hover table-bordered grvContentarea">
                                 <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                     Mode="NumericFirstLast" />
