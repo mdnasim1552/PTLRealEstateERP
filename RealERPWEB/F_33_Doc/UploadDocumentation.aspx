@@ -183,11 +183,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Details">
+                       <%--                 <asp:TemplateField HeaderText="Details">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblremarks" runat="server" Text='<%#Eval("remarks").ToString().Substring(1,30)%>' Width="150px"></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="File">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblimgpath" runat="server" Text='<%#Eval("imgpath")%>' Visible="false"></asp:Label>

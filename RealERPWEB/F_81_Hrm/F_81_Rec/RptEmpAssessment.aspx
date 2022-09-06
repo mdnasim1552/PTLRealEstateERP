@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptEmpAssessment.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.RptEmpAssessment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEmpAssessment.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.RptEmpAssessment" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -10,6 +10,8 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
+           
+            $('.chzn-select').chosen({ search_contains: true });
         }
 
     </script>
@@ -30,65 +32,76 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-    <div class="container moduleItemWrpper">
+    <div class="card mt-5">
         <div class="contentPart">
-            <div class="row">
-
-                <fieldset class="scheduler-border fieldset_A">
-                    <div class="form-horizontal">
-
-
+            <fieldset class="scheduler-border fieldset_A">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-3">
                         <div class="form-group">
-                            <div class="col-md-3 pading5px asitCol3">
-                                <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Company</asp:Label>
-                                <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                <asp:LinkButton ID="ibtnFindDepartment" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindDepartment_OnClick"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                            </div>
-                            <div class="col-md-4 pading5px asitCol4">
-                                <asp:DropDownList ID="ddlCompanyName" runat="server" Width="233" CssClass="form-control inputTxt pull-left" OnSelectedIndexChanged="ddlCompanyName_OnSelectedIndexChanged" AutoPostBack="true" TabIndex="2">
-                                </asp:DropDownList>
-                                <asp:Label ID="lblCompanyName" runat="server" CssClass="dataLblview" Visible="False" Width="233px"></asp:Label>
-                                <div class="pull-left">
-                                    <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lnkbtnShow_OnClick" Text="Ok"></asp:LinkButton>
-                                </div>
-                            </div>
-
+                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Company
+                                    <asp:LinkButton ID="ibtnFindDepartment" runat="server" OnClick="ibtnFindDepartment_OnClick"><span class="fas fa-search"> </span></asp:LinkButton>
+                            </asp:Label>
+                            <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 mt-4">
                         <div class="form-group">
-                            <div class="col-md-3 pading5px asitCol3">
-                                <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Department</asp:Label>
-                                <asp:TextBox ID="txtSrcDepartment" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnDeptSrch_OnClick"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                            </div>
-                            <div class="col-md-3 pading5px asitCol4">
-                                <asp:DropDownList ID="ddlDepartment" runat="server" Width="233" CssClass="form-control inputTxt" OnSelectedIndexChanged="ddlDepartment_OnSelectedIndexChanged" TabIndex="7">
-                                </asp:DropDownList>
-                                <asp:Label ID="lblDeptDesc" CssClass="dataLblview" runat="server" Visible="False" Width="233"></asp:Label>
-                            </div>
-
+                            <asp:DropDownList ID="ddlCompanyName" runat="server" CssClass="form-control chzn-select inputTxt " OnSelectedIndexChanged="ddlCompanyName_OnSelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                            </asp:DropDownList>
+                            <asp:Label ID="lblCompanyName" runat="server" CssClass="dataLblview" Visible="False"></asp:Label>
                         </div>
-
+                    </div>
+                    <div class="col-lg-2 col-md-3  mt-4">
                         <div class="form-group">
 
-                            <div class="col-md-3 asitCol3 pading5px">
-                                <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName" Text="From:"></asp:Label>
-
-                                <asp:TextBox ID="txtfrmDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtfrmDate_CalendarExtender" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtfrmDate"></cc1:CalendarExtender>
-                            </div>
-                            <div class="col-md-3 asitCol2 pading5px">
-                                <asp:Label ID="lbltodate" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
-
-                                <asp:TextBox ID="txttoDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txttoDate_CalendarExtender" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
-                            </div>
+                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary  pull-left" OnClick="lnkbtnShow_OnClick" Text="Ok"></asp:LinkButton>
 
                         </div>
                     </div>
-                </fieldset>
-            </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 ">
+                        <div class="form-group">
+
+                            <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Department
+                                     <asp:LinkButton ID="imgbtnDeptSrch" runat="server" OnClick="imgbtnDeptSrch_OnClick"><span class="fas fa-search"> </span></asp:LinkButton>
+                            </asp:Label>
+                            <asp:TextBox ID="txtSrcDepartment" runat="server" CssClass="inputTxt form-control"></asp:TextBox>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 mt-4 ">
+                        <div class="form-group">
+                            <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control chzn-select inputTxt" OnSelectedIndexChanged="ddlDepartment_OnSelectedIndexChanged" TabIndex="7">
+                            </asp:DropDownList>
+                            <asp:Label ID="lblDeptDesc" CssClass="dataLblview" runat="server" Visible="False"></asp:Label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 ">
+                        <div class="form-group">
+                            <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName" Text="From:"></asp:Label>
+
+                            <asp:TextBox ID="txtfrmDate" runat="server" CssClass="form-control"></asp:TextBox>
+                            <cc1:CalendarExtender ID="txtfrmDate_CalendarExtender" runat="server" Enabled="True"
+                                Format="dd-MMM-yyyy" TargetControlID="txtfrmDate"></cc1:CalendarExtender>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <asp:Label ID="lbltodate" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
+
+                            <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control"></asp:TextBox>
+                            <cc1:CalendarExtender ID="txttoDate_CalendarExtender" runat="server" Enabled="True"
+                                Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
 
             <div class="row">
 

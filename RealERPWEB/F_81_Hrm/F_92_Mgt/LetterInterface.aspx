@@ -318,8 +318,13 @@
                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
                                         <asp:ListItem Value="10003"></asp:ListItem>
                                         <asp:ListItem Value="10002"></asp:ListItem>
-                                        <asp:ListItem Value="19999"></asp:ListItem>
-                                      <%--   <asp:ListItem Value="10025"></asp:ListItem>--%>
+                             
+                                        <asp:ListItem Value="acceptoffletter"></asp:ListItem>
+                                        <asp:ListItem Value="acceptappletter"></asp:ListItem>
+
+                                        <asp:ListItem Value="reject"></asp:ListItem>
+
+
                                       <%--  <asp:ListItem Value="10003"></asp:ListItem>--%>
                       
                                     </asp:RadioButtonList>
@@ -346,6 +351,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblname" runat="server" Text='<%#Eval("name").ToString()%>' Width="150px"></asp:Label>
                                             </ItemTemplate>
+             
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Designation">
@@ -382,107 +388,51 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lbldept" runat="server" Text='<%#Eval("dept").ToString()%>' Width="100px"></asp:Label>
                                             </ItemTemplate>
+                                    
+                                        </asp:TemplateField>
+
+                                        
+                                <%--        <asp:TemplateField HeaderText="Type" >
+                                            <ItemTemplate>  
+                                                <span class="badge badge-info" runat="server" id="lbltype"></span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                          <asp:TemplateField HeaderText="Status" >
+                                            <ItemTemplate>  
+                                                <%--<span class="badge badge-info" runat="server" id="lblstatus"> </span>--%>
+                                                  <asp:Label ID="lblstatus" runat="server" Text='<%#Eval("sendappflag").ToString()%>' Width="100px"></asp:Label>
+                                            </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Operation">
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" ID="RejectLetter" OnClick="RejectLetter_Click"
-                                                     CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False") ? " btn btn-danger btn-sm btn-text active ": "btn btn-sm btn-danger  disabled " %>'>  
-                                                
-                                                             <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False")?"Reject":"Rejected "%></span>
-                                                </asp:LinkButton>
-                                                <asp:HyperLink  runat="server"  ID="lnkOfferLetter" Target="_blank" CssClass="btn btn-info btn-sm"
-                                                                NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=NewRec &Entry=offer Letter &advno="+Eval("advno") %>'
-                                                                >Offer Letter</asp:HyperLink>
 
-                                                <asp:HyperLink runat="server" ID="lnkAppoint" Target="_blank"
+                                                       <asp:LinkButton runat="server" ID="lnkAccept" OnClick="lnkAccept_Click" ToolTip="Accept Letter" Visible="false">
+                                                <i class="fa fa-check"></i>
+                                        
+                                                </asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="RejectLetter" OnClick="RejectLetter_Click" ToolTip="Reject Letter" Visible="false"
+                                                     CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False") ? " text-danger active ": " disabled " %>'>  
+                                                
+                                                  <%--           <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "isreject"))=="False")?"Reject":"Rejected "%></span>--%>
+                                                    <i class="fa fa-ban"></i>
+                                                </asp:LinkButton>
+                                                <asp:HyperLink  runat="server"  ID="lnkOfferLetter" Target="_blank" CssClass="text-info" ToolTip="Offer Letter"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=NewRec &Entry=offer Letter &advno="+Eval("advno") %>'
+                                                                > <i class="fa fa-envelope"></i></asp:HyperLink>
+
+                                                <asp:HyperLink runat="server" ID="lnkAppoint" Target="_blank" ToolTip="Appointment Letter"
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10002 &Page=NewRec &Entry=appoinment Letter &advno="+Eval("advno") %>'
-                                                                 CssClass="btn btn-primary btn-sm">Appoinment Letter</asp:HyperLink>
+                                                                 CssClass="text-primary"> <i class="fa fa-envelope"></i></asp:HyperLink>
 
                                                  <asp:HyperLink  runat="server" ID="lnkConfirmation" Target="_blank"
                                                                            NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
                                                                            CssClass="btn btn-success btn-sm">Confirmation Letter</asp:HyperLink>
-
-                                               <%-- <div class="dropdown">
-                                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                                        Action
-                                                        
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-
-                                                        <li>
-                                                            <asp:HyperLink ID="lnkOfferLetter" Target="_blank"
-                                                                NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=NewRec &Entry=offer Letter &advno="+Eval("advno") %>'
-                                                                CssClass="dropdown-item " runat="server">Offer Letter</asp:HyperLink>
-                                                        </li>
-
-                                                        <li>
-                                                            <asp:HyperLink ID="lnkAppoint" Target="_blank"
-                                                                NavigateUrl='<%# "~/LetterDefault?Type=10002 &Page=NewRec &Entry=appoinment Letter &advno="+Eval("advno") %>'
-                                                                CssClass="dropdown-item" runat="server">Appoinment Letter</asp:HyperLink>
-                                                        </li>
-
-                                                   
-
-                                                        
-                                                        <li>
-                                                                      
-                                                            
-                                                            
-                                                            <asp:HyperLink ID="lnkConfirmation" Target="_blank"
-                                                                           NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
-                                                                           CssClass="dropdown-item" runat="server">Confirmation Letter</asp:HyperLink>
-
-                                                    
-                                                            </li>
-
-
-                                                                       <li>
-                                                            <asp:HyperLink ID="HyperLink1" Target="_blank"
-                                                                           NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
-                                                                           CssClass="dropdown-item" runat="server">Reject Offer Letter</asp:HyperLink>
-                                                            </li>
-
-                                                                                <li>
-                                                            <asp:HyperLink ID="HyperLink2" Target="_blank"
-                                                                           NavigateUrl='<%# "~/F_81_Hrm/F_92_Mgt/InterfaceHR" %>'
-                                                                           CssClass="dropdown-item" runat="server">All Letter</asp:HyperLink>
-                                                            </li>
-
-
-
-
-                                                    </ul>
-                                                </div>--%>
-
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-
-
-<%--                                        <asp:TemplateField HeaderText="Action">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
-
-                                                <asp:LinkButton ID="btnRemove" runat="server" OnClientClick="return confirm('Are You Sure?')" OnClick="btnRemove_Click" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>
-                                                <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" OnClick="btnEdit_Click"><i class="fa fa-edit"></i></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
-
-
-
-
-                                        <%--                                            <asp:TemplateField HeaderText="Action">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="btn_edit" runat="server" CssClass="btn-sm text-info" OnClick="btn_edit_Click"> <i class="fa fa-edit"></i> 
-                                                    </asp:LinkButton>
-                                                    <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
-                                                    </asp:LinkButton>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
                                     </Columns>
                                 </asp:GridView>
                             </div>
