@@ -255,14 +255,16 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
                 LinkButton lnkMatReq = (LinkButton)e.Row.FindControl("lnkbtnMatReq");
                 LinkButton lnkSubCon = (LinkButton)e.Row.FindControl("lnkbtnSubCon");
+                LinkButton lnkGenBill = (LinkButton)e.Row.FindControl("lnkbtnGenBill");
 
-                bool isedit = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isEdit"));
-                bool ismatreq = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "ismatreq"));
-                bool islisuno = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "islisuno"));
                 string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
                 bool isMatReq = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "ismatreq"));
                 bool isEdit = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isEdit"));
                 bool isSubCon = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "islisuno"));
+                bool islisuno = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "islisuno"));
+                bool isGenBill = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isGenBill"));
+
+                
                 if (isEdit)
                 {
                     hlink.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid;
@@ -289,6 +291,14 @@ namespace RealERPWEB.F_99_Allinterface
                 else
                 {
                     lnkSubCon.Visible = false;
+                }
+                if (isGenBill)
+                {
+                    lnkGenBill.Visible = true;
+                }
+                else
+                {
+                    lnkGenBill.Visible = false;
                 }
             }
         }
@@ -647,7 +657,7 @@ namespace RealERPWEB.F_99_Allinterface
             int isContain = obj.Where(x => x.resourcecode.StartsWith("12")).ToList().Count;
             if (isContain == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Material for Material Requisition" + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Over Head found" + "');", true);
             }
             else
             {
@@ -739,7 +749,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string mPACTCODE = lblActcode.Text == "" ? "" : "16" + ASTUtility.Right(lblActcode.Text, 10);
                 string mRSIRCODE = obj[i].resourcecode;
                 string spcfcod = "000000000000";
-                string billno = Qid;
+                string billno = "";
                 double mProAMT = Convert.ToDouble(obj[i].apramt);
                 double mAPPAMT = Convert.ToDouble("0");
                 double qty = Convert.ToDouble(obj[i].aprqty);
@@ -764,6 +774,12 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
             }
+
+            bool resultMatReq = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEGENERALBILL", Qid, mREQNO, "", "", "", "", "", "",
+                                      "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            ModuleName();
+            getProcess();
 
 
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"General Bill Generated" + "');", true);
