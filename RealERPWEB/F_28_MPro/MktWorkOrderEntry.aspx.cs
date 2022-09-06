@@ -468,6 +468,7 @@ namespace RealERPWEB.F_28_MPro
                 double dgvorderQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderQty")).Text.Trim()));
                 double dgvOrderRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvOrderRate")).Text.Trim()));
                 double dgvAppAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderAmt")).Text.Trim()));
+                string rsirDetDesc = ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvRsirdetDesc1")).Text.Trim();
               
                 if(acttypeCode.Substring(0, 7) == "0199999")
                 {
@@ -479,6 +480,7 @@ namespace RealERPWEB.F_28_MPro
                     dgvAppAmt = dgvorderQty * dgvOrderRate;
                     tbl1.Rows[j]["ordrqty"] = dgvorderQty;
                     tbl1.Rows[j]["ordramt"] = dgvAppAmt;
+                    tbl1.Rows[j]["rsirdetdesc"] = rsirDetDesc;
                 }           
 
             }
@@ -990,7 +992,8 @@ namespace RealERPWEB.F_28_MPro
             {
                 string mREQNO = tbl1.Rows[i]["reqno"].ToString();
                 string acttpe= tbl1.Rows[i]["acttype"].ToString();
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_MKT_REQ", mREQNO, acttpe, mORDERNO, "", "", "", "", "", "", "", "", "");
+                string rSirDetDesc = tbl1.Rows[i]["rsirdetdesc"].ToString();
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_MKT_REQ", mREQNO, acttpe, mORDERNO, rSirDetDesc, "", "", "", "", "", "", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
@@ -1572,7 +1575,9 @@ namespace RealERPWEB.F_28_MPro
 
                     ((DataTable)ViewState["purtermcon"]).Rows[index].Delete();
                     ((DataTable)ViewState["purtermcon"]).AcceptChanges();
-                    gvOrderTerms.DataSource = (DataTable)ViewState["purtermcon"];
+                    //Terms & Conditin ID Serial
+                    DataTable dt = this.GetTermsConIDSerial((DataTable)ViewState["purtermcon"]);
+                    gvOrderTerms.DataSource = dt;
                     gvOrderTerms.DataBind();
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Terms & Condition Deleted Successfully" + "');", true);
@@ -1585,13 +1590,27 @@ namespace RealERPWEB.F_28_MPro
 
                 ((DataTable)ViewState["purtermcon"]).Rows[index].Delete();
                 ((DataTable)ViewState["purtermcon"]).AcceptChanges();
-                gvOrderTerms.DataSource = (DataTable)ViewState["purtermcon"];
+                //Terms & Conditin ID Serial
+                DataTable dt = this.GetTermsConIDSerial((DataTable)ViewState["purtermcon"]);
+                gvOrderTerms.DataSource = dt;
                 gvOrderTerms.DataBind();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Terms & Condition Deleted Successfully" + "');", true);
 
             }
 
+        }
+
+        private DataTable GetTermsConIDSerial(DataTable dt)
+        {
+            double j = 0;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                j++;
+                dt.Rows[i]["termsid"] = ASTUtility.Right("000" + j, 3); 
+                dt.AcceptChanges();
+            }
+            return dt;
         }
 
         protected void gvOrderInfo_RowDataBound(object sender, GridViewRowEventArgs e)

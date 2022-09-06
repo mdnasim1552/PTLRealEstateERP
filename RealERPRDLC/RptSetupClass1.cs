@@ -680,6 +680,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalClntInterest": Rpt1a = SetRptSalClntInterest(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalClntInterestBr": Rpt1a = SetRptSalClntInterestBr(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalClntInterestRup": Rpt1a = SetRptSalClntInterestRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalClntInterestEdison": Rpt1a = SetRptSalClntInterestEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptEarlybenefitADelay": Rpt1a = SetRptEarlybenefitADelay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_22_Sal.rptUnitFxInf": Rpt1a = SetrptUnitFxInf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4130,6 +4131,13 @@ namespace RealERPRDLC
 
 
         private static LocalReport SetRptSalClntInterest(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)UserDataset));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSalClntInterestEdison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset) 
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet2));
