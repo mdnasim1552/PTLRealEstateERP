@@ -355,84 +355,91 @@ namespace RealERPWEB.F_21_MKT
 
         protected void btnaddland_Click(object sender, EventArgs e)
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
-            string usrid = hst["usrid"].ToString();
-            string userrole = hst["userrole"].ToString();
-            if (empid == "" && userrole != "1")
+            try
             {
-                string Messaged = "User ID did not set Employee ID, please contact your supervisor";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                return;
-            }
-
-            GetData();
-
-            if (btnaddland.Text == "Add Lead")
-            {
-                string comcod = this.GetComeCode();
-                //if (comcod == "3315" || comcod == "3316")
-                //{
-                //    Hashtable hst = (Hashtable)Session["tblLogin"];
-                //    string usrid = hst["usrid"].ToString();
-                //    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMP_INTERFACE", "GETDEPTDATA", usrid, "", "", "", "", "", "", "", "", "");
-                //    if (ds1 != null && ds1.Tables[0].Rows.Count == 1)
-                //    {
-                //        this.txtentryEmpID.Text = ds1.Tables[0].Rows[0]["empid"].ToString();
-                //    }
-                //    else
-                //    {
-                //        this.txtentryEmpID.Text = "";
-                //    }
-                //    this.txtentryClient.Text = "";
-                //    this.txtentrymobile.Text = "";
-                //    this.txtentryemail.Text = "";               
-                //    this.txtentrydate.Text = "";              
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAssureModal();", true);
-                //}
-                //else
-                //{
-                this.MultiView1.ActiveViewIndex = 0;
-
-                ShowPersonalInfo();
-                ShowSourceInfo();
-                Showpinfo();
-                ShowhomeInfo();
-                Showbusinfo();
-                ShowMoreInfo();
-                btnaddland.Text = "Cancel";
-
-                string Message = "Add Client Form";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
-
-
-                this.lblnewprospect.Value = "";
-
-
-                string events = hst["events"].ToString();
-                if (Convert.ToBoolean(events) == true)
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string empid = hst["empid"].ToString();
+                string usrid = hst["usrid"].ToString();
+                string userrole = hst["userrole"].ToString();
+                if (empid == "" && userrole != "1")
                 {
-                    string eventtype = "Add Lead (Sales CRM)";
-                    string eventdesc = "Add Lead (Sales CRM)";
-                    string eventdesc2 = "";
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                    string Messaged = "User ID did not set Employee ID, please contact your supervisor";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    return;
+                }
 
+                GetData();
+
+                if (btnaddland.Text == "Add Lead")
+                {
+                    string comcod = this.GetComeCode();
+                    //if (comcod == "3315" || comcod == "3316")
+                    //{
+                    //    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    //    string usrid = hst["usrid"].ToString();
+                    //    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMP_INTERFACE", "GETDEPTDATA", usrid, "", "", "", "", "", "", "", "", "");
+                    //    if (ds1 != null && ds1.Tables[0].Rows.Count == 1)
+                    //    {
+                    //        this.txtentryEmpID.Text = ds1.Tables[0].Rows[0]["empid"].ToString();
+                    //    }
+                    //    else
+                    //    {
+                    //        this.txtentryEmpID.Text = "";
+                    //    }
+                    //    this.txtentryClient.Text = "";
+                    //    this.txtentrymobile.Text = "";
+                    //    this.txtentryemail.Text = "";               
+                    //    this.txtentrydate.Text = "";              
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAssureModal();", true);
+                    //}
+                    //else
+                    //{
+                    this.MultiView1.ActiveViewIndex = 0;
+
+                    ShowPersonalInfo();
+                    ShowSourceInfo();
+                    Showpinfo();
+                    ShowhomeInfo();
+                    Showbusinfo();
+                    ShowMoreInfo();
+                    btnaddland.Text = "Cancel";
+
+                    string Message = "Add Client Form";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
+
+                    this.lblnewprospect.Value = "";
+
+
+                    string events = hst["events"].ToString();
+                    if (Convert.ToBoolean(events) == true)
+                    {
+                        string eventtype = "Add Lead (Sales CRM)";
+                        string eventdesc = "Add Lead (Sales CRM)";
+                        string eventdesc2 = "";
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                    }
+
+
+                    //  }
+                }
+                else
+                {
+                    btnaddland.Text = "Add Lead";
+                    GetGridSummary();
+                    lbllandname.Visible = false;
+                    ViewState["existclientcode"] = null;
+                    this.MultiView1.ActiveViewIndex = 1;
 
 
                 }
-
-
-                //  }
             }
-            else
+            catch(Exception ex)
             {
-                btnaddland.Text = "Add Lead";
-                GetGridSummary();
-                lbllandname.Visible = false;
-                ViewState["existclientcode"] = null;
-                this.MultiView1.ActiveViewIndex = 1;
-
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
 
@@ -482,6 +489,7 @@ namespace RealERPWEB.F_21_MKT
                         //For changing Mobile No by Team Leader
                         switch (comcod)
                         {
+                            case "3102": 
                             case "3367"://Epic
                             //case "3101":
                                 bool teamLeader = IsTeamLeader();
