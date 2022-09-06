@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptLoanStatus.aspx.cs" Inherits="RealERPWEB.F_24_CC.RptLoanStatus" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptLoanStatus.aspx.cs" Inherits="RealERPWEB.F_24_CC.RptLoanStatus" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -45,40 +45,33 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row mt-3">
+                       
+                               
 
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblProject" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
-                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
-
-
-                                        <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
+                                    <div class="col-lg-2 col-md-2 col-sm-6">
+                                        <asp:Label ID="lblProject" runat="server" CssClass="form-label" Text="Project Name"></asp:Label>
+                                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="ibtnFindProject_Click"><i class="fas fa-search"></i></asp:LinkButton>
+                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control" ></asp:TextBox>
+                                         
                                     </div>
-                                    <div class="col-md-5 pading5px ">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="3">
+                                
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mt-3 mr-2">
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select">
                                         </asp:DropDownList>
 
                                     </div>
-                                    <div class="col-md-1">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" TabIndex="4">Ok</asp:LinkButton>
+                                    <div class="col-lg-1 col-md-1 col-sm-6 mt-3">
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                                     </div>
 
 
-
-                                </div>
-                                <div class="form-group">
-
-
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Page Size"></asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage"
+                                    <div class="col-lg-2 col-md-2 col-sm-6">
+                                        <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Page Size"></asp:Label>
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control"
                                             OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem Value="10">10</asp:ListItem>
                                             <asp:ListItem Value="15">15</asp:ListItem>
@@ -92,19 +85,19 @@
                                         </asp:DropDownList>
                                     </div>
 
-                                    <div class="col-md-5 pading5px">
-                                        <asp:Label ID="lblDate" runat="server" CssClass="smLbl_to" Text="Add. No"></asp:Label>
-                                        <asp:TextBox ID="txtdate" runat="server" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
+                                    <div class="col-lg-2 col-md-2 col-sm-6">
+                                        <asp:Label ID="lblDate" runat="server" CssClass="form-label" Text="Add. No"></asp:Label>
+                                        <asp:TextBox ID="txtdate" runat="server" CssClass="form-control inputTxt inpPixedWidth"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
 
                                     </div>
-                                    <asp:Label ID="ConfirmMessage" runat="server" CssClass="btn-danger btn primaryBtn"></asp:Label>
+                                    <asp:Label ID="ConfirmMessage" runat="server" CssClass="btn-danger btn primaryBtn d-none"></asp:Label>
 
-                                </div>
+                               
 
                             </div>
-                        </fieldset>
+                       
                     </div>
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">
