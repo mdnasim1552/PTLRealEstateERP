@@ -37,7 +37,10 @@ namespace RealERPWEB.F_24_CC
             string comcod = this.GetComeCode();
 
             DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", "2431%", "2439%", "", "", "", "", "", "", "");
-
+            if(ds1 == null)
+            {
+                return;
+            }
             DataTable dt1 = new DataTable();
             DataView view = new DataView();
             view.Table = ds1.Tables[0];

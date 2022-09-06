@@ -33,9 +33,9 @@ namespace RealERPWEB.F_70_Services
                         lnkSave.Text = "<span class='fa fa-check' style='color:white;' aria-hidden='true'></span> Approval";
                     }
                 }
+                lnkSubContractor.Visible = false;
                 lnkMatReq.Visible = false;
                 lnkReceivable.Visible = false;
-                lnkSubContractor.Visible = false;
             }
         }
         private void EditFunctionality()
@@ -64,7 +64,7 @@ namespace RealERPWEB.F_70_Services
                     txtquotno.Text = dt1.Rows[0]["quotid1"].ToString();
                     lblActcode.Text = dt1.Rows[0]["mapactcode"].ToString();
                     string reqno = dt1.Rows[0]["reqno"].ToString();
-                    if (reqno == "")
+                    if (reqno == "" || reqno == "00000000000000")
                     {
                         getReqNo();
                     }
