@@ -33,6 +33,9 @@ namespace RealERPWEB.F_70_Services
                         lnkSave.Text = "<span class='fa fa-check' style='color:white;' aria-hidden='true'></span> Approval";
                     }
                 }
+                lnkSubContractor.Visible = false;
+                lnkMatReq.Visible = false;
+                lnkReceivable.Visible = false;
             }
         }
         private void EditFunctionality()
@@ -61,7 +64,7 @@ namespace RealERPWEB.F_70_Services
                     txtquotno.Text = dt1.Rows[0]["quotid1"].ToString();
                     lblActcode.Text = dt1.Rows[0]["mapactcode"].ToString();
                     string reqno = dt1.Rows[0]["reqno"].ToString();
-                    if (reqno == "")
+                    if (reqno == "" || reqno == "00000000000000")
                     {
                         getReqNo();
                     }
@@ -678,6 +681,10 @@ namespace RealERPWEB.F_70_Services
                                 if (type == "Approval")
                                 {
                                     Response.Redirect("/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid);
+                                }
+                                if (type == "Check")
+                                {
+                                    Response.Redirect("/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid);
                                 }
                             }
                         }
