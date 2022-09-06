@@ -35,7 +35,7 @@ namespace RealERPWEB.F_70_Services
                 }
                 lnkSubContractor.Visible = false;
                 lnkMatReq.Visible = false;
-                //lnkReceivable.Visible = false;
+                lnkReceivable.Visible = false;
             }
         }
         private void EditFunctionality()
