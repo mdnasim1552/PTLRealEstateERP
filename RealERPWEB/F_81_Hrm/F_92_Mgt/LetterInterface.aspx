@@ -207,10 +207,11 @@
         .tabMenu a {
             display: block;
             line-height: 30px;
-            font-size: 11px;
+            font-size: 14px;
             color: #000;
             text-align: center;
             float: left;
+            font-weight:bold;
         }
 
         .tbMenuWrp table tr td label span.lbldata {
@@ -316,7 +317,7 @@
 
                                 <div class="tbMenuWrp nav nav-tabs">
                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
-                                        <asp:ListItem Value="10003"></asp:ListItem>
+                                        <asp:ListItem Value="10003" ></asp:ListItem>
                                         <asp:ListItem Value="10002"></asp:ListItem>
                              
                                         <asp:ListItem Value="acceptoffletter"></asp:ListItem>
