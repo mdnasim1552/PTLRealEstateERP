@@ -25,12 +25,12 @@ namespace RealERPWEB.F_99_Allinterface
                 //    Response.Redirect("~/AcceessError");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Service Management Interface";//
 
                 txtfrmdate.Text = System.DateTime.Now.AddDays(-30).ToString("dd-MMM-yyyy");
                 txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 ModuleName();
-                GETTOTAL();
+                getTotalCount();
             }
         }
         private string GetComCode()
@@ -70,11 +70,11 @@ namespace RealERPWEB.F_99_Allinterface
                 item7 = "0";
             }
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item1 + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Total</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item2 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Check" + "</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item2 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Checked" + "</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item3 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
             this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item4 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Process</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item5 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item6 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Complete" + "</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item6 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
             this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item7 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Reject</div></div></div>";
 
 
@@ -91,33 +91,41 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlChecked.Visible = false;
                     pnlApproval.Visible = false;
                     pnlProcess.Visible = false;
-                    GETTOTAL();
+                    getTotalCount();
                     break;
                 case "1":
                     pnlTotalCount.Visible = false;
                     pnlChecked.Visible = true;
                     pnlApproval.Visible = false;
                     pnlProcess.Visible = false;
-                    GETCHECK();
+                    getChecked();
                     break;
                 case "2":
                     pnlTotalCount.Visible = false;
                     pnlChecked.Visible = false;
                     pnlApproval.Visible = true;
                     pnlProcess.Visible = false;
-                    GETAPPROVE();
+                    getApproval();
                     break;
                 case "3":
                     pnlTotalCount.Visible = false;
                     pnlChecked.Visible = false;
                     pnlApproval.Visible = false;
                     pnlProcess.Visible = true;
-                    GETPROCESS();
+                    getProcess();
                     break;
 
             }
         }
-        private void GETTOTAL()
+
+        protected void lnkbtnok_Click(object sender, EventArgs e)
+        {
+            ModuleName();
+            pnlTotalCount.Visible = true;
+            RadioButtonList1_SelectedIndexChanged(null, null);
+        }
+
+        private void getTotalCount()
         {
             string comcod = GetComCode();
             string date1 = txtfrmdate.Text;
@@ -132,10 +140,7 @@ namespace RealERPWEB.F_99_Allinterface
                 0 : ds1.Tables[0].Compute("sum(qamt)", ""))).ToString("#,##0.00;(#,##0.00);");
             }
         }
-
-
-
-        private void GETCHECK()
+        private void getChecked()
         {
             string comcod = GetComCode();
             string date1 = txtfrmdate.Text;
@@ -152,7 +157,7 @@ namespace RealERPWEB.F_99_Allinterface
         }
 
 
-        private void GETAPPROVE()
+        private void getApproval()
         {
             string comcod = GetComCode();
             string date1 = txtfrmdate.Text;
@@ -167,8 +172,7 @@ namespace RealERPWEB.F_99_Allinterface
                 0 : ds1.Tables[0].Compute("sum(qamt)", ""))).ToString("#,##0.00;(#,##0.00);");
             }
         }
-
-        private void GETPROCESS()
+        private void getProcess()
         {
             string comcod = GetComCode();
             string date1 = txtfrmdate.Text;
@@ -184,13 +188,6 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
-
-        protected void lnkbtnok_Click(object sender, EventArgs e)
-        {
-            ModuleName();
-            pnlTotalCount.Visible = true;
-            RadioButtonList1_SelectedIndexChanged(null, null);
-        }
 
 
         protected void lnkUpdateReject_Click(object sender, EventArgs e)
@@ -223,12 +220,12 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
 
                 string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
-
+                string status = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "status"));
                 hlink.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=Edit&QId=" + quotid;
                 hlinkproceed.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=Check&QId=" + quotid;
                 hlink.ToolTip = "Edit";
                 hlink.Visible = true;
-
+                hlinkproceed.Visible = true;
             }
         }
 
@@ -241,12 +238,12 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
 
                 string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
-
+                string status = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "status"));
                 hlink.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid;
                 hlinkproceed.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=Approval&QId=" + quotid;
                 hlink.ToolTip = "Edit";
                 hlink.Visible = true;
-
+                hlinkproceed.Visible = true;
             }
         }
 
@@ -256,25 +253,49 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
-
-                LinkButton lnkMatReq = (LinkButton)e.Row.FindControl("lnkMatReq");
-                LinkButton lnkSubCon = (LinkButton)e.Row.FindControl("lnkSubCon");
+                LinkButton lnkMatReq = (LinkButton)e.Row.FindControl("lnkbtnMatReq");
+                LinkButton lnkSubCon = (LinkButton)e.Row.FindControl("lnkbtnSubCon");
 
                 bool isedit = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isEdit"));
                 bool ismatreq = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "ismatreq"));
                 bool islisuno = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "islisuno"));
                 string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
+                bool isMatReq = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "ismatreq"));
+                bool isEdit = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isEdit"));
+                bool isSubCon = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "islisuno"));
+                if (isEdit)
+                {
+                    hlink.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid;
+                    hlink.ToolTip = "Edit";
+                    hlink.Visible = true;
+                }
+                else
+                {
+                    hlink.Visible = false;
+                }
+                if (isMatReq)
+                {
+                    lnkMatReq.Visible = true;
 
-
-                hlink.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid;
-                hlink.ToolTip = "Edit";
-                hlink.Visible = isedit;
-                lnkMatReq.Visible = ismatreq;
-                lnkSubCon.Visible = islisuno;
+                }
+                else
+                {
+                    lnkMatReq.Visible = false;
+                }
+                if (isSubCon)
+                {
+                    lnkSubCon.Visible = true;
+                }
+                else
+                {
+                    lnkSubCon.Visible = false;
+                }
             }
         }
 
-        private void GetDetailInfo(string QId)
+
+
+        private void GetQuotDataFunctionality(string QId)
         {
             string type = Request.QueryString["Type"] ?? "";
             string comcod = GetComCode();
@@ -309,7 +330,28 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
         }
-        #region Material Requisition
+
+        #region Material Requisition Section
+
+        protected void lnkbtnMatReq_Click(object sender, EventArgs e)
+        {
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblqid")).Text.Trim();
+            GetQuotDataFunctionality(quotid);
+            List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("01")).ToList().Count;
+            if (isContain == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Material for Material Requisition" + "');", true);
+            }
+            else
+            {
+                UpdateMaterialRequisition(quotid);
+            }
+
+        }
+
+
         private void getReqNo()
         {
             string comcod = GetComCode();
@@ -330,7 +372,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblQId")).Text.Trim();
-            GetDetailInfo(quotid);
+            GetQuotDataFunctionality(quotid);
             List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
             int isContain = obj.Where(x => x.resourcecode.StartsWith("01")).ToList().Count;
             if (isContain == 0)
@@ -357,7 +399,7 @@ namespace RealERPWEB.F_99_Allinterface
             tblt01.Columns.Add("sappseson", Type.GetType("System.String"));
             ViewState["tblapproval"] = tblt01;
         }
-        private void UpdateMaterialRequisition(string QId)
+        private void UpdateMaterialRequisition(string Qid)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
@@ -374,14 +416,14 @@ namespace RealERPWEB.F_99_Allinterface
             string pactcode = lblActcode.Text == "" ? "" : "16" + ASTUtility.Right(lblActcode.Text, 10);
             string flrcod = "000";
             string requsrid = "";
-            string mrfno = QId;
+            string mrfno = Qid;
             string reqnar = "";
             string CRMPostedByid = userid;
             string CRMPosttrmid = Terminal;
             string CRMPostSession = Sessionid;
             string CRMPostedDat = Date;
             string checkbyid = userid;
-            string quotid = QId;
+            string quotid = Qid;
             List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("01")).ToList();
 
             DataSet ds1 = new DataSet("ds1");
@@ -449,14 +491,36 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     bool resultMatReq = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEMATREQNO", quotid, reqno, "", "", "", "", "", "",
                                        "", "", "", "", "", "", "", "", "", "", "", "", "");
+
                     ModuleName();
-                    GETPROCESS();
+                    getProcess();
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Material Requisition Generated" + "');", true);
+
                 }
             }
         }
         #endregion
+
         #region Sub Contractor Section
+        protected void lnkbtnSubCon_Click(object sender, EventArgs e)
+        {
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblqid")).Text.Trim();
+            lblQuotation.Text = quotid;
+            GetQuotDataFunctionality(quotid);
+            List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count;
+            if (isContain == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Work Found" + "');", true);
+            }
+            else
+            {
+                getSubContractor();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalSubContractor();", true);
+            }
+        }
+
         private void getSubContractor()
         {
             try
@@ -478,34 +542,13 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
-        protected void lnkSubCon_Click(object sender, EventArgs e)
-        {
-            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblQId")).Text.Trim();
-            GetDetailInfo(quotid);
-            List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-            int isContain = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count;
-            if (isContain == 0)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Work Found" + "');", true);
-            }
-            else
-            {
-                getSubContractor();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalSubContractor();", true);
-            }
-
-
-           
-
-        }
         protected void lnkSubContractorSave_Click(object sender, EventArgs e)
         {
 
             List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList();
             if (obj.Count == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Found" + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Work Found" + "');", true);
             }
             else
             {
@@ -582,7 +625,7 @@ namespace RealERPWEB.F_99_Allinterface
                         bool resultMatReq = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATESUBCONTRACTOR", quotid, mISUNO, "", "", "", "", "", "",
                                            "", "", "", "", "", "", "", "", "", "", "", "", "");
                         ModuleName();
-                        GETPROCESS();
+                        getProcess();
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Sub COntractor Bill Generated" + "');", true);
                     }
                 }
@@ -591,6 +634,156 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
+        #endregion
+
+        #region General Bill
+
+        protected void lnkbtnGenBill_Click(object sender, EventArgs e)
+        {
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblqid")).Text.Trim();
+            GetQuotDataFunctionality(quotid);
+            List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("12")).ToList().Count;
+            if (isContain == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Material for Material Requisition" + "');", true);
+            }
+            else
+            {
+                updateGen(quotid);
+                //UpdateMaterialRequisition(quotid);
+            }
+        }
+
+        protected void GetReqNoGenBill()
+        {
+            string comcod = this.GetComCode();
+            string mREQNO = "NEWREQ";
+
+            string mREQDAT = System.DateTime.Today.ToString();
+            if (mREQNO == "NEWREQ")
+            {
+                DataSet ds2 = _process.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETLASTREQINFO", mREQDAT,
+                       "", "", "", "", "", "", "", "");
+                if (ds2 == null)
+                    return;
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+                    lblGenReqno.Text = ds2.Tables[0].Rows[0]["maxreqno"].ToString();
+                }
+                else
+                {
+                    lblGenReqno.Text = "";
+                }
+            }
+
+        }
+
+        private void updateGen(string Qid)
+        {
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("12")).ToList();
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+
+            string comcod = this.GetComCode();
+            string mMRFNO = "";
+
+            this.GetReqNoGenBill();
+            string mREQDAT = System.DateTime.Today.ToString();
+            string mREQNO = lblGenReqno.Text;
+
+
+            string type = "OreqApproved";
+
+            //log Report
+
+
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string PostedByid = userid;
+
+            string Posttrmid = Terminal;
+
+            string PostSession = Sessionid;
+            string posteddat = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            string ApprovByid = "";
+            string approvdat = "01-Jan-1900";
+            string Approvtrmid = "";
+            string ApprovSession = "";
+
+
+            /////log end
+
+            string nARRATION = "";
+
+            string paytype = "Cheque";
+            string payto = "";
+            string supcode = "000000000000";
+            string termncon = "";
+            string payofmod = "";
+            supcode = (supcode.Trim() == "" ? "000000000000" : supcode);
+            bool result = true;
+            string adjcod = "000000000000";
+            string bundleno = "";
+
+
+            string bankcode = "000000000000";
+            string refnum = ""; //Cheque No
+
+            for (int i = 0; i < obj.Count; i++)
+            {
+                string mPACTCODE = lblActcode.Text == "" ? "" : "16" + ASTUtility.Right(lblActcode.Text, 10);
+                string mRSIRCODE = obj[i].resourcecode;
+                string spcfcod = "000000000000";
+                string billno = Qid;
+                double mProAMT = Convert.ToDouble(obj[i].apramt);
+                double mAPPAMT = Convert.ToDouble("0");
+                double qty = Convert.ToDouble(obj[i].aprqty);
+                double rate = Convert.ToDouble(obj[i].aprrate);
+                double ppdamt = Convert.ToDouble("0");
+
+                string Approval = "";
+                string advanced = "0";
+                string attnper = "";
+
+
+                if (mProAMT > 0)
+                {
+                    result = _process.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTOTHERREQ",
+                             mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
+                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval, advanced, attnper);
+                }
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured saving General bill" + "');", true);
+
+                }
+
+            }
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"General Bill Generated" + "');", true);
+
+
+
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Other Req Entry";
+                string eventdesc = "Update Req";
+                string eventdesc2 = mREQNO;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+        }
+
+
+
+
         #endregion
 
 
