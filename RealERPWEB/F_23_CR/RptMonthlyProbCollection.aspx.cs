@@ -100,10 +100,11 @@ namespace RealERPWEB.F_23_CR
                 string comcod = this.GetComeCode();
                 string frmdate = this.txtfrmdate.Text.Trim();
                 string todate = this.txttodate.Text.Trim();
-
+                string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+                string length = stindex == "0" ? "length" : "";
                 string prjcode = this.ddlPrjName.SelectedValue.ToString()=="000000000000"?"18%": this.ddlPrjName.SelectedValue.ToString()+"%";
                 string salesperson = this.ddlSalesperson.SelectedValue.ToString()=="000000000000"?"%": this.ddlSalesperson.SelectedValue.ToString()+"%";
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RPTMONTHLYPROBABLECOLLECTION", prjcode, frmdate, todate, salesperson, "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RPTMONTHLYPROBABLECOLLECTION", prjcode, frmdate, todate, salesperson, length, "", "", "", "");
                 if (ds1 == null)
                     return;
 
