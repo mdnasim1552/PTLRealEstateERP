@@ -779,6 +779,7 @@
     <EmbeddedResource Include="R_22_Sal\RptMonthWiseNewSales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptOSalesSummary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptReceivedList.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalClntInterestEdison.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterest.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestBr.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestRup.rdlc" />
