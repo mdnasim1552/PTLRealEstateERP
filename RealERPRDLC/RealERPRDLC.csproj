@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -803,6 +803,7 @@
     <EmbeddedResource Include="R_23_CR\RptClientDOBMrrDay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientInfo.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptClientLedgerFinlay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02Lanco.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedgerAssure.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02Cube.rdlc" />
