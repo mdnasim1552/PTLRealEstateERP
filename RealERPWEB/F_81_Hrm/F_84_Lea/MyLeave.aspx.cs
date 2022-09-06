@@ -53,7 +53,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
                     // GetSupvisorCheck();
-                    this.ddlEmpName_SelectedIndexChanged(null, null);
+                   // this.ddlEmpName_SelectedIndexChanged(null, null);
                 }
                 else if (qtype == "COMMON")
                 {

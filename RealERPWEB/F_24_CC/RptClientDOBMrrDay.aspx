@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptClientDOBMrrDay.aspx.cs" Inherits="RealERPWEB.F_24_CC.RptClientDOBMrrDay" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptClientDOBMrrDay.aspx.cs" Inherits="RealERPWEB.F_24_CC.RptClientDOBMrrDay" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -25,8 +25,9 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
+            <div class="card mt-5 moduleItemWrpper">
                 <div class="contentPart">
+                    <div class="card-header">
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewProsClient" runat="server">
                         </asp:View>
@@ -35,26 +36,29 @@
                                 <fieldset class="scheduler-border fieldset_A">
                                     <div class="form-horizontal">
                                         <asp:Panel ID="Panel4" runat="server">
-                                            <div class="form-group">
-                                                <div class="col-md-10 pading5px asitCol10">
+                                            
+                                                <div class="col-lg-10 col-md-10 col-sm-10">
                                                     <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
 
                                                     <asp:TextBox ID="txtDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                                     <asp:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Enabled="True"
                                                         TargetControlID="txtDate" Format="dd-MMM-yyyy"></asp:CalendarExtender>
 
-                                                    <asp:LinkButton ID="lbtnShowBrthDay" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnShowBrthDay_Click">Ok</asp:LinkButton>
+                                                   
+                                                   <%-- <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>--%>
 
-                                                    <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
+                                                </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-10">
+                                                 <asp:LinkButton ID="lbtnShowBrthDay" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnShowBrthDay_Click">Ok</asp:LinkButton>
 
                                                 </div>
 
-                                            </div>
+                                            
                                         </asp:Panel>
-                                    </div>
+                                   
                                 </fieldset>
                             </div>
-
+                            </div>
 
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvClientBrthDay" runat="server" AutoGenerateColumns="False" Width="186px" CssClass=" table-striped table-hover table-bordered grvContentarea"
