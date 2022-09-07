@@ -3237,7 +3237,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     //case "3101": // 160100010004 // WIP-HASNAHENA
                     case "3330": // Bridge and Bridge with Jinnah
-                        if (pactcode == "160100010025")
+                        if (pactcode == "160100010025" || pactcode == "160100010027")
                         {
                             rptwork = new RealERPRPT.R_14_Pro.rptWorkOrderWithoutLogoBR();
                         }
@@ -3335,7 +3335,7 @@ namespace RealERPWEB.F_99_Allinterface
                 }
                 // todo for bridge jinnah project
 
-                if (comcod == "3330" && pactcode == "160100010025")
+                if (comcod == "3330" && (pactcode == "160100010025" || pactcode== "160100010027"))
                 {
 
                 }
@@ -6142,7 +6142,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 //comcod == "3330" && pactcode == "160100010025"
                 //lblSecurity
-                if (pactcode == "160100010025")
+                if (pactcode == "160100010025" || pactcode == "160100010027")
                 {
                     //RptConBillBridgeWithoutLogo
                     rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillBridgeWithoutLogo", lst, null, null);
@@ -6367,7 +6367,7 @@ namespace RealERPWEB.F_99_Allinterface
             //double TAmt = Convert.ToDouble("0" + ((Label)this.gvSubBill.FooterRow.FindControl("lgvFBillAmt")).Text) - Convert.ToDouble("0" + this.txtSDAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtDedAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtPenaltyAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
 
 
-            if (comcod == "3330" && pactcode == "160100010025")
+            if (comcod == "3330" && (pactcode == "160100010025" || pactcode == "160100010027"))
             {
 
             }

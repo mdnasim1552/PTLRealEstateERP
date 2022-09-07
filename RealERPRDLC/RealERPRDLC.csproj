@@ -48,16 +48,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -761,6 +761,7 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopAniversary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopBirthday.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopCongratulation.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptEnvelopMoneyReceipt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopOffice.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
@@ -1184,7 +1185,6 @@
     <EmbeddedResource Include="R_99_AllInterface\Rptcrateappanorder.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptGbFinalApproval.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptNetDuesInfo.rdlc" />
-    <Content Include="Microsoft.ReportViewer.WinForms.dll" />
     <Content Include="R_99_AllInterface\RptPaymentScheduleAssure.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptPurOrder.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptReqSts.rdlc" />

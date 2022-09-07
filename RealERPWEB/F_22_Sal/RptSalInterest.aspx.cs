@@ -284,6 +284,8 @@ namespace RealERPWEB.F_22_Sal
             string permonth = this.txtinpermonth.Text.Trim().Replace("%", "");
 
 
+
+
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTINTEREST", pactcode, custid, frmdate, todate, permonth, "", "", "", "");
             if (ds2 == null)
             {
@@ -293,6 +295,10 @@ namespace RealERPWEB.F_22_Sal
                 this.gvCDHonour.DataBind();
                 this.gvChqnocl.DataSource = null;
                 this.gvChqnocl.DataBind();
+
+
+
+
                 return;
             }
 
@@ -519,10 +525,6 @@ namespace RealERPWEB.F_22_Sal
             }
 
 
-           
-           
-           
-
 
 
             return dt1;
@@ -531,6 +533,7 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_Bind()
         {
+            string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblinterest"];
             string Type = this.Request.QueryString["Type"].ToString().Trim();
             DataView dv1 = new DataView();
@@ -545,7 +548,17 @@ namespace RealERPWEB.F_22_Sal
                     this.FooterCal(dv1.ToTable());
                     this.lblchqdishonour.Visible = false;
                     this.lblchqnotyetCleared.Visible = false;
+                    if (comcod == "3354")
+                    {
+                   
+                            this.gvInterest.Columns[6].Visible = false;
+                            this.gvInterest.Columns[7].Visible = false;
+                            this.gvInterest.Columns[8].Visible = false;
+                            this.gvInterest.Columns[11].Visible = false;
 
+
+                        
+                    }
 
                     //Cheque Not yet Cleared
 
@@ -574,7 +587,7 @@ namespace RealERPWEB.F_22_Sal
                                      0 : dv1.ToTable().Compute("sum(discharge)", ""))).ToString("#,##0;(#,##0); ");
 
                     }
-
+     
                     break;
                 case "registration":
                     this.gvRegis.DataSource = (DataTable)ViewState["tblinterest"];
@@ -2324,5 +2337,7 @@ namespace RealERPWEB.F_22_Sal
             if (this.lbtnOk.Text == "Ok")
                 this.GetProjectName();
         }
+
+       
     }
 }

@@ -33,6 +33,9 @@ namespace RealERPWEB.F_70_Services
                         lnkSave.Text = "<span class='fa fa-check' style='color:white;' aria-hidden='true'></span> Approval";
                     }
                 }
+                lnkMatReq.Visible = false;
+                lnkReceivable.Visible = false;
+                lnkSubContractor.Visible = false;
             }
         }
         private void EditFunctionality()
@@ -86,6 +89,10 @@ namespace RealERPWEB.F_70_Services
                         btnaddcustomer.Enabled = false;
                         btnAddResource.Enabled = false;
                     }
+                }
+                if (dt2.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count == 0)
+                {
+                    lnkSubContractor.Visible = false;
                 }
                 ViewState["MaterialList"] = dt2;
                 lbtnTotal_Click(null, null);
@@ -191,6 +198,44 @@ namespace RealERPWEB.F_70_Services
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
             }
         }
+
+
+        private void getCustomerPactcode()
+        {
+            try
+            {
+                string comcod = GetComCode();
+                string customerid = ddlCustomer.SelectedValue.ToString();
+                //string type = "%";
+                DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETCUSTOMERPACTCODE", customerid, "", "", "", "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                    return;
+                }
+                else
+                {
+                    if (ds.Tables[0].Rows.Count != 0)
+                    {
+                        isPrevCode.Text = ds.Tables[0].Rows[0]["mapactcode"].ToString();
+                    }
+                    else
+                    {
+                        isPrevCode.Text = "";
+                    }
+                    
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{ex.Message.ToString()}" + "');", true);
+            }
+        }
+
+
+
+
         private void Init()
         {
             try
@@ -541,6 +586,7 @@ namespace RealERPWEB.F_70_Services
                 string isCheck = (type == "Check" || type == "CheckEdit") ? "1" : "0";
                 string isAppr = "0";
                 string status = (type == "Check" || type == "CheckEdit") ? "2" : type == "Approval" ? "3" : "1";
+                getCustomerPactcode();
                 List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
                 if (obj.Count == 0)
                 {
@@ -601,17 +647,24 @@ namespace RealERPWEB.F_70_Services
                             }
                             if (type == "Approval")
                             {
-                                string resultCodebook = isMappedCodeDataUpdated();
-                                if (resultCodebook != "")
+                                if (isPrevCode.Text == "")
                                 {
-                                    result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, "", "", "", "",
-                                       "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                    string resultCodebook = lblActcode.Text == "" ? "" : isMappedCodeDataUpdated();
+                                    if (resultCodebook != "")
+                                    {
+                                        string pactcode = "16" + ASTUtility.Right(resultCodebook, 10);
+                                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, "", "", "", "",
+                                           "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                        result = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "INSERTUPDATELINK", userId, pactcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                                    }
                                 }
                                 else
                                 {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-
+                                    result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, isPrevCode.Text, "", "", "", "",
+                                          "", "", "", "", "", "", "", "", "", "", "", "", "");
                                 }
+
 
                             }
                             if (resultQuotArray.Contains(false))
@@ -628,6 +681,10 @@ namespace RealERPWEB.F_70_Services
                                 if (type == "Approval")
                                 {
                                     Response.Redirect("/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid);
+                                }
+                                if (type == "Check")
+                                {
+                                    Response.Redirect("/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid);
                                 }
                             }
                         }
@@ -691,6 +748,9 @@ namespace RealERPWEB.F_70_Services
 
                     DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_MGT", "INSERTPROJECT", SubCode2, ProjectName, ShortName, userid,
                         ProjectNameBN, "", "", "", "", "", "");
+
+
+
                     if (ds == null)
                     {
                         return "";
@@ -740,7 +800,7 @@ namespace RealERPWEB.F_70_Services
 
         private void getApproval()
         {
-            
+
         }
 
 
@@ -770,7 +830,7 @@ namespace RealERPWEB.F_70_Services
             string checkbyid = userid;
             string quotid = lblQuotation.Text;
             List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("01")).ToList();
-            
+
             DataSet ds1 = new DataSet("ds1");
             this.CreateDataTable();
             DataTable dt = (DataTable)ViewState["tblapproval"];
@@ -1069,13 +1129,13 @@ namespace RealERPWEB.F_70_Services
             string Postdat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             //string vounum = this.txtcurrentvou.Text.Trim() + this.txtCurrntlast6.Text.Trim();
 
-            string voudat =System.DateTime.Now.ToString("dd-MMM-yyyy");
-           
+            string voudat = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
             string vounum = getVoucher();
             string refnum = lblQuotation.Text;
             string srinfo = "";
             string vounarration1 = "";
-            string vounarration2 = (vounarration1.Length > 200 ? vounarration1.Substring(200) : "");           
+            string vounarration2 = (vounarration1.Length > 200 ? vounarration1.Substring(200) : "");
             string voutype = "Journal Voucher";
             string cactcode = "000000000000";
             string vtcode = "98";
@@ -1124,7 +1184,7 @@ namespace RealERPWEB.F_70_Services
                             actcode, rescode, cactcode, voudat, trnqty, trnremarks, vtcode, trnamt, spclcode, "", "", "", "", "");
                     if (!resulta)
                     {
-                       
+
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"{_process.ErrorObject["Msg"].ToString()}" + "');", true);
 
                         return;
@@ -1144,7 +1204,7 @@ namespace RealERPWEB.F_70_Services
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Receivable Generated" + "');", true);
 
-                
+
                 if (ConstantInfo.LogStatus == true)
                 {
                     string eventtype = "Sales Journal";
@@ -1153,7 +1213,7 @@ namespace RealERPWEB.F_70_Services
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
                 this.lnkReceivable.Enabled = false;
-               
+
             }
             catch (Exception ex)
             {
@@ -1188,10 +1248,10 @@ namespace RealERPWEB.F_70_Services
                 }
 
                 string VNo3 = "JV";
-                
+
                 DataSet ds4 = _process.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETNEWVOUCHER", entrydate, VNo3, "", "", "", "", "", "", "");
                 DataTable dt4 = ds4.Tables[0];
-                string cvno1 = dt4.Rows[0]["couvounum"].ToString().Substring(0, 8);                
+                string cvno1 = dt4.Rows[0]["couvounum"].ToString().Substring(0, 8);
                 return dt4.Rows[0]["couvounum"].ToString();
 
             }
@@ -1229,149 +1289,95 @@ namespace RealERPWEB.F_70_Services
             getSubContractor();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalSubContractor();", true);
         }
-        private void CreateDataTableLISU()
-        {
-
-            ViewState.Remove("tblapproval");
-            DataTable tblt01 = new DataTable();
-
-
-
-            tblt01.Columns.Add("frecid", Type.GetType("System.String"));
-            tblt01.Columns.Add("frecdat", Type.GetType("System.String"));
-            tblt01.Columns.Add("frectrmid", Type.GetType("System.String"));
-            tblt01.Columns.Add("frecseson", Type.GetType("System.String"));
-            tblt01.Columns.Add("secrecid", Type.GetType("System.String"));
-            tblt01.Columns.Add("secrecdat", Type.GetType("System.String"));
-            tblt01.Columns.Add("secrectrmid", Type.GetType("System.String"));
-            tblt01.Columns.Add("secrecseson", Type.GetType("System.String"));
-            tblt01.Columns.Add("threcid", Type.GetType("System.String"));
-            tblt01.Columns.Add("threcdat", Type.GetType("System.String"));
-            tblt01.Columns.Add("threctrmid", Type.GetType("System.String"));
-            tblt01.Columns.Add("threcseson", Type.GetType("System.String"));
-
-
-            ViewState["tblapproval"] = tblt01;
-        }
 
 
         protected void lnkSubContractorSave_Click(object sender, EventArgs e)
         {
-            string comcod = GetComCode();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string userid = hst["usrid"].ToString();
-            string trmid = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string curdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-            DataSet ds2 = _process.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLASTLABISSUENO", curdate,
-                      "LIS", "", "", "", "", "", "", "");
-
-
-            DataSet ds02 = _process.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "LASTCBILLNO", curdate,
-                       "", "", "", "", "", "", "", "");
-
-            string csircode = ddlSubContractor.SelectedValue.ToString();
-            string pactcode = lblActcode.Text == "" ? "" : "16" + ASTUtility.Right(lblActcode.Text, 10);
-            
-            string billno = ds02.Tables[0].Rows[0]["maxbillno"].ToString();
-            string mISUNO = ds2.Tables[0].Rows[0]["maxmisuno"].ToString();
-            string mISURNAR = "";
-            string Remarks = "";
-            string cbillref = "";
-            string trade = "";
-            string rano = "";
-            string billtype = "";
-            string percentage = Convert.ToDouble("0").ToString();
-            string sdamt = Convert.ToDouble("0").ToString();
-            string dedamt = Convert.ToDouble("0").ToString();
-            string Penalty = Convert.ToDouble("0").ToString();
-            string advamt = Convert.ToDouble("0").ToString();
-            string Reward = Convert.ToDouble("0").ToString();
-            string workorder = "";
-            string EditByid = "";
-            string Editdat = "01-Jan-1900";
-            string EditSession = "";
-            string Edittrmid = "";
-
-            this.CreateDataTableLISU();
-            DataSet ds1 = new DataSet("ds1");
-            DataTable dt = (DataTable)ViewState["tblapproval"];
-            DataRow dr1 = dt.NewRow();
-
-            dr1["frecid"] = userid;
-            dr1["frecdat"] = curdate;
-            dr1["frectrmid"] = trmid;
-            dr1["frecseson"] = Sessionid;
-            dr1["secrecid"] = userid;
-            dr1["secrecdat"] = curdate;
-            dr1["secrectrmid"] = trmid;
-            dr1["secrecseson"] = Sessionid;
-            dr1["threcid"] = userid;
-            dr1["threcdat"] = curdate;
-            dr1["threctrmid"] = trmid;
-            dr1["threcseson"] = Sessionid;
-            dt.Rows.Add(dr1);
-
-
-            ds1.Merge(dt);
-            ds1.Tables[0].TableName = "tbl1";
-            string Approval = ds1.GetXml();
-
-            bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLABISSUEINFO", "PURLISSUEB",
-                             mISUNO, curdate, pactcode, csircode, mISURNAR, Remarks, userid, Sessionid, trmid, trade, rano, 
-                             percentage, sdamt, dedamt, Penalty, advamt, Reward, workorder, "", "");
-
-            result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, 
-                csircode, curdate, Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, userid,
-                curdate, Sessionid, trmid, EditByid, Editdat, EditSession, Edittrmid, Approval);
-
-            if (!result)
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList();
+            if (obj.Count == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Found" + "');", true);
             }
             else
             {
-                List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("04")).ToList();
-                List<bool> resultCompA = new List<bool>();
-                foreach (var item in obj)
-                {
-                    string Flrcod = "000";
-                    string Rsircode = item.resourcecode.ToString();
-                    string prcent= Convert.ToDouble("0").ToString();
-                    string Isuqty = item.aprqty.ToString();
-                    string Isuamt = item.apramt.ToString();
-                    string wrkqty= Convert.ToDouble("0").ToString();
-                    string grp = "001";
-                    string mbbook = "";
-                    string above = Convert.ToDouble("0").ToString();
-                    string dedqty= Convert.ToDouble("0").ToString();
-                    string dedunit = "";
-                    string idedamt= Convert.ToDouble("0").ToString();
+                string comcod = GetComCode();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string userid = hst["usrid"].ToString();
+                string trmid = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string curdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                    bool resultA = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLABISSUEINFO", "PURLISSUEA", mISUNO, Flrcod,
-                            Rsircode, prcent, Isuqty.ToString(), Isuamt.ToString(), wrkqty, grp, mbbook, above, dedqty, dedunit, idedamt, "");
-
-                    result = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLA", billno, Flrcod, Rsircode,
-                        Isuqty.ToString(), Isuamt, mISUNO, grp, above, dedqty, dedunit, idedamt, "", "", "");
+                DataSet ds2 = _process.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLASTLABISSUENO", curdate,
+                          "LIS", "", "", "", "", "", "", "");
+                string csircode = ddlSubContractor.SelectedValue.ToString();
+                string pactcode = lblActcode.Text == "" ? "" : "16" + ASTUtility.Right(lblActcode.Text, 10);
 
 
-                    resultCompA.Add(resultA);
-                    
-                }
-                if (resultCompA.Contains(false))
+                string mISUNO = ds2.Tables[0].Rows[0]["maxmisuno"].ToString();
+                string mISURNAR = "";
+                string Remarks = "N/A";
+                string trade = "";
+                string rano = "";
+                string percentage = Convert.ToDouble("0").ToString();
+                string sdamt = Convert.ToDouble("0").ToString();
+                string dedamt = Convert.ToDouble("0").ToString();
+                string Penalty = Convert.ToDouble("0").ToString();
+                string advamt = Convert.ToDouble("0").ToString();
+                string Reward = Convert.ToDouble("0").ToString();
+                string workorder = "";
+
+
+                bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLABISSUEINFO", "PURLISSUEB",
+                                 mISUNO, curdate, pactcode, csircode, mISURNAR, Remarks, userid, Sessionid, trmid, trade, rano,
+                                 percentage, sdamt, dedamt, Penalty, advamt, Reward, workorder, "", "");
+
+                result = _process.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEPURLISSUEB", mISUNO, "S");
+
+                if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+
                 }
                 else
                 {
-                    string quotid = lblQuotation.Text;
-                    bool resultMatReq = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATESUBCONTRACTOR", billno, mISUNO, "", "", "", "", "", "",
-                                       "", "", "", "", "", "", "", "", "", "", "", "", "");
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Sub COntractor Bill Generated" + "');", true);
+                    List<bool> resultCompA = new List<bool>();
+                    foreach (var item in obj)
+                    {
+                        string Flrcod = "000";
+                        string Rsircode = item.resourcecode.ToString();
+                        string prcent = Convert.ToDouble("0").ToString();
+                        string Isuqty = item.aprqty.ToString();
+                        string Isuamt = item.apramt.ToString();
+                        string wrkqty = Convert.ToDouble("0").ToString();
+                        string grp = "001";
+                        string mbbook = "";
+                        string above = Convert.ToDouble("0").ToString();
+                        string dedqty = Convert.ToDouble("0").ToString();
+                        string dedunit = "";
+                        string idedamt = Convert.ToDouble("0").ToString();
+
+                        bool resultA = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLABISSUEINFO", "PURLISSUEA", mISUNO, Flrcod,
+                                Rsircode, prcent, Isuqty.ToString(), Isuamt.ToString(), wrkqty, grp, mbbook, above, dedqty, dedunit, idedamt, "");
+
+                        resultCompA.Add(resultA);
+
+                    }
+                    if (resultCompA.Contains(false))
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    }
+                    else
+                    {
+                        string quotid = lblQuotation.Text;
+                        bool resultMatReq = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATESUBCONTRACTOR", quotid, mISUNO, "", "", "", "", "", "",
+                                           "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Sub COntractor Bill Generated" + "');", true);
+                    }
                 }
+
             }
 
 

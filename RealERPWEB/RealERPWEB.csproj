@@ -159,9 +159,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -233,7 +233,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
@@ -3157,6 +3157,7 @@
     <Content Include="F_99_Allinterface\RptAuditInterface.aspx" />
     <Content Include="F_99_Allinterface\RptCashPurInterface.aspx" />
     <Content Include="F_99_Allinterface\RptEngInterface.aspx" />
+    <Content Include="F_99_Allinterface\RptServiceInterface.aspx" />
     <Content Include="F_99_Allinterface\RptVehicleMgt.aspx" />
     <Content Include="F_99_Allinterface\RptFacilityInterface.aspx" />
     <Content Include="F_99_Allinterface\RptIndentPurInterface.aspx" />
@@ -3547,7 +3548,6 @@
     <Content Include="LogIn.aspx" />
     <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
-    <Content Include="Microsoft.ReportViewer.WinForms.dll" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
     <Content Include="MyShortCutLink.aspx" />
@@ -3577,7 +3577,6 @@
     <Content Include="RDLCViewer.aspx" />
     <Content Include="F_01_LPA\RptLandDevProposal.aspx" />
     <Content Include="RDLCViewerWin.aspx" />
-    <Content Include="RealERPRPT.dll" />
     <Content Include="RptViewer.aspx" />
     <Content Include="s1.png" />
     <Content Include="Scripts\angular.min.js" />
@@ -5120,6 +5119,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\MKTProInterface.aspx.designer.cs">
       <DependentUpon>MKTProInterface.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptServiceInterface.aspx.cs">
+      <DependentUpon>RptServiceInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\RptServiceInterface.aspx.designer.cs">
+      <DependentUpon>RptServiceInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\RptVehicleMgt.aspx.cs">
       <DependentUpon>RptVehicleMgt.aspx</DependentUpon>

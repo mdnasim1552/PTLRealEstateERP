@@ -340,6 +340,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902071", "F_09_PImp", "PurSubConBillFinal?", "Type=FirstRecom", "Bill Finalization-First Recommendation", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902072", "F_09_PImp", "PurSubConBillFinal?", "Type=SecRecom", "Bill Finalization-Second Recommendation", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902073", "F_09_PImp", "PurSubConBillFinal?", "Type=ThirdRecom", "Bill Finalization-Third Recommendation", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902074", "F_09_PImp", "PurSubConBillFinal?", "Type=BillServiceEntry", "Bill Finalization(Service)", "Project Implementation", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "0902000", "0902076", "F_09_PImp", "ConAssessment?", "Type=ConcAss", "Contractor Assessment", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0902000", "0902077", "F_09_PImp", "RptMonthConAss?", "Type=MnthAss", "Contractor Monthly Assessment", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementation", "False", "False", "False", "False" });

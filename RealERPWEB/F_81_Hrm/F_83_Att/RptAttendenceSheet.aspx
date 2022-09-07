@@ -199,7 +199,7 @@
                                     Emp.Name 
                                     <asp:LinkButton ID="lnkbtnEmp" runat="server" OnClick="lnkbtnEmp_Click">  <i class="fa fa-search"> </i> </asp:LinkButton>
                                     <span class="float-right isFormulaChekcboxdv">
-                                        <asp:CheckBox ID="isResignChekcbox" runat="server" AutoPostBack="True" ForeColor="red" Text="Is Resign" OnCheckedChanged="isResignChekcbox_CheckedChanged" CssClass="margin:0" /></span>
+                                        <asp:CheckBox ID="isResignChekcbox" runat="server" AutoPostBack="True" ForeColor="red" Text="Resign" OnCheckedChanged="isResignChekcbox_CheckedChanged" CssClass="margin:0" /></span>
                                 </label>
 
                                 <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control select2" AutoPostBack="True">
