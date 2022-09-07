@@ -417,7 +417,10 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-                case "3338":
+                case "1206": // acme
+                case "1207": // acme
+                case "3338": // acme
+                case "3369": // acme
                     this.Timer1.Interval = 60000;
                     break;
 
@@ -520,7 +523,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3335": // Edison
                 case "3336": // Suvastu
                 case "3337": // Suvastu
+                case "1206": // Acme
+                case "1207": // Acme
                 case "3338": // Acme
+                case "3369": // Acme
                 case "3339": // Tropical                         
                 case "3344": // Terranova
 
@@ -1852,6 +1858,11 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3359": // Entrust
                     case "3360": // Entrust
                     case "3361": // Entrust 
+
+                    case "1206": // acme 
+                    case "1207": // acme 
+                    case "3338": // acme 
+                    case "3369": // acme 
 
                         hlink1.Visible = false;
                         break;
@@ -5360,12 +5371,14 @@ namespace RealERPWEB.F_99_Allinterface
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             LinkButton lnkRdlcPrint = ((LinkButton)this.grvMRec.Rows[RowIndex].FindControl("lnkRdlcPrint_Recived"));
             string orderno = ((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvorderno")).Text.Trim(); 
-            //lnkRdlcPrint.PostBackUrl= "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
-
+            /*
+            lnkRdlcPrint.PostBackUrl= "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
+            */
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
             string currentptah = "PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
             string totalpath = hostname + currentptah;
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
+            //*/
 
             //hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno+ "&PrintOpt="+ PrintOpt;
         }
