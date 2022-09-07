@@ -43,6 +43,7 @@ namespace RealERPWEB.F_23_CR
 
                 }
                 this.txtSrcPro.Focus();
+                txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
             }
         }
         private void GetComBillnoVisible()
@@ -55,7 +56,7 @@ namespace RealERPWEB.F_23_CR
 
                 case "Billing":
                 case "Service":
-                    
+
                     this.lblbillno.Visible = true;
                     this.ddlbilno.Visible = true;
                     break;
@@ -104,18 +105,18 @@ namespace RealERPWEB.F_23_CR
             ViewState["tblproject"] = ds1.Tables[0];
             ds1.Dispose();
 
-            if(Request.QueryString["Type"]==null)
+            if (Request.QueryString["Type"] == null)
             {
 
             }
             else
             {
-                if(Request.QueryString["Type"].ToString() == "Service")
+                if (Request.QueryString["Type"].ToString() == "Service")
                 {
                     DataTable dt = ds1.Tables[0].Select("actcode like '1861%'").CopyToDataTable();
                     ddlProjectName.SelectedValue = dt.Rows[0]["actcode"].ToString();
                 }
-                
+
             }
 
             //----Show Resource code and Specification Code------------// 
@@ -154,8 +155,8 @@ namespace RealERPWEB.F_23_CR
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
 
             DataTable dt = (DataTable)ViewState["tblproject"];
-            DataRow []dr1 = dt.Select("actcode='" + pactcode + "'");
-            pactcode= dr1[0]["mapactcode"].ToString().Length>0? dr1[0]["mapactcode"].ToString():pactcode;
+            DataRow[] dr1 = dt.Select("actcode='" + pactcode + "'");
+            pactcode = dr1[0]["mapactcode"].ToString().Length > 0 ? dr1[0]["mapactcode"].ToString() : pactcode;
             string txtsrchCustomer = "%" + this.txtSrcCustomer.Text + "%";
             DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERNAME", pactcode, txtsrchCustomer, "", "", "", "", "", "", "");
             this.ddlCustomer.DataTextField = "sirdesc";
@@ -270,7 +271,7 @@ namespace RealERPWEB.F_23_CR
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue;
-           //string Type = this.Request.QueryString["Type"].ToString();
+            //string Type = this.Request.QueryString["Type"].ToString();
             string CallType = this.Request.QueryString["Type"].ToString() == "Service" ? "BILLNOWITHBALANCESER" : "BILLNOWITHBALANCE";
             string usircode = this.ddlCustomer.Items.Count == 0 ? "000000000000" : this.ddlCustomer.SelectedValue.ToString();
 
@@ -565,6 +566,9 @@ namespace RealERPWEB.F_23_CR
         }
         protected void lblAddToTable_Click(object sender, EventArgs e)
         {
+
+
+
             string chequeno = this.txtchqno.Text.Trim();
             if ((DataTable)Session["tblfincoll"] == null)
                 this.Sessiontable();
@@ -739,7 +743,7 @@ namespace RealERPWEB.F_23_CR
             DataTable dt = (DataTable)Session["tblfincoll"];
             string mrrno = this.ddlPreMrr.SelectedValue.ToString().Trim();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string usircode = this.ddlCustomer.SelectedValue.Trim().Length==0? "000000000000":  this.ddlCustomer.SelectedValue.ToString();
+            string usircode = this.ddlCustomer.SelectedValue.Trim().Length == 0 ? "000000000000" : this.ddlCustomer.SelectedValue.ToString();
             string chqno = ((TextBox)this.gvMoneyreceipt.Rows[e.RowIndex].FindControl("txtgvCheckno")).Text.Trim();
             bool result = CustData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "DELETEMRRREFNO", mrrno, pactcode, usircode, chqno, "", "", "", "", "", "", "", "", "", "", "");
 
@@ -761,6 +765,28 @@ namespace RealERPWEB.F_23_CR
             this.Data_Bind();
 
         }
+
+        private bool isBalance()
+        {
+            if (txtBalance.Visible == true)
+            {
+                double ttlAmt = Convert.ToDouble(((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text);
+                double BalAmt = Convert.ToDouble(txtBalance.Text);
+                if (BalAmt > ttlAmt)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         protected void lbtnUpdate_Click(object sender, EventArgs e)
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
@@ -772,214 +798,232 @@ namespace RealERPWEB.F_23_CR
             }
             try
             {
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string logmrno = (ddlPreMrr.Items.Count > 0) ? this.ddlPreMrr.SelectedItem.ToString() : "NEW";
-                DataSet ds3 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETMRNOLOG", logmrno, "", "", "", "", "", "", "", "");
-                Session["UserLog"] = ds3.Tables[0];
-                this.SaveValue();
-                DataTable tbl2 = (DataTable)Session["status"];
-                string SchCode = "";
-                if (ddlPreMrr.Items.Count == 0)
-                    this.GetddlMrNo();
 
-
-                string PactCode = this.ddlProjectName.SelectedValue.ToString();
-                string actlev = (((DataTable)ViewState["tblproject"]).Select("actcode='" + PactCode + "'"))[0]["actelev"].ToString();
-
-                string usircode = (this.ddlCustomer.Items.Count == 0) ? "000000000000" : this.ddlCustomer.SelectedValue.ToString();
-
-                if (actlev == "2")
+                if (isBalance())
                 {
-                    if (usircode == "000000000000")
+
+
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = hst["comcod"].ToString();
+                    string logmrno = (ddlPreMrr.Items.Count > 0) ? this.ddlPreMrr.SelectedItem.ToString() : "NEW";
+                    DataSet ds3 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETMRNOLOG", logmrno, "", "", "", "", "", "", "", "");
+                    Session["UserLog"] = ds3.Tables[0];
+                    this.SaveValue();
+                    DataTable tbl2 = (DataTable)Session["status"];
+                    string SchCode = "";
+                    if (ddlPreMrr.Items.Count == 0)
+                        this.GetddlMrNo();
+
+
+                    string PactCode = this.ddlProjectName.SelectedValue.ToString();
+                    string actlev = (((DataTable)ViewState["tblproject"]).Select("actcode='" + PactCode + "'"))[0]["actelev"].ToString();
+
+                    string usircode = (this.ddlCustomer.Items.Count == 0) ? "000000000000" : this.ddlCustomer.SelectedValue.ToString();
+
+                    if (actlev == "2")
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Select Details Head');", true);
-                        return;
+                        if (usircode == "000000000000")
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Select Details Head');", true);
+                            return;
+
+                        }
 
                     }
 
-                }
 
 
-
-                string mrno = this.lblReceiveNo.Text.Trim();
-                if (mrno.Length == 0)
-                {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Required MR No";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
-                }
-
-
-
-                // string SchCode=
-                string mrdate = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
-                //////////////////////userlog
-                DataTable dtuser = (DataTable)Session["UserLog"];
-                string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
-                string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
-                string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
-                string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["entrydat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
-
-                string userid = hst["usrid"].ToString();
-                string Terminal = hst["compname"].ToString();
-                string Sessionid = hst["session"].ToString();
-                string PostedByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
-                string Posttrmid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
-                string PostSession = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
-                string Posteddat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
-                string EditByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "" : userid;
-                string Editdat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-                DataTable dt1 = (DataTable)Session["tblfincoll"];
-                bool result = true;
-
-                for (int i = 0; i < dt1.Rows.Count; i++)
-                {
-                    string type = dt1.Rows[i]["paytypecod"].ToString(); // this.ddlpaytype.SelectedValue.ToString();repchqno
-
-
-                    double paidamt = ASTUtility.StrPosOrNagative("0" + dt1.Rows[i]["paidamount"].ToString());
-
-                    //  double paidamt = Convert.ToDouble("0" + dt1.Rows[i]["paidamount"].ToString());
-                    string chqno = dt1.Rows[i]["chequeno"].ToString();
-                    string bname = dt1.Rows[i]["bankname"].ToString();
-                    string branchname = dt1.Rows[i]["branchname"].ToString();
-                    string paydate = Convert.ToDateTime(dt1.Rows[i]["paydate"].ToString()).ToString("dd-MMM-yyyy");
-                    string refno = dt1.Rows[i]["refid"].ToString();
-                    string repchqno = dt1.Rows[i]["repchqno"].ToString();
-                    string remrks = dt1.Rows[i]["remarks"].ToString();
-                    string Collfrm = dt1.Rows[i]["collfrm"].ToString();
-                    string RecType = dt1.Rows[i]["recType"].ToString();
-                    string billno = dt1.Rows[i]["billno"].ToString();
-                    paidamt = (RecType == "54097") ? paidamt * -1 : paidamt;
-                    //schamt = schamt + paidamt;
-                    if (paidamt != 0)
-                        result = CustData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, usircode, mrno, type, mrdate, paidamt.ToString(), chqno,
-                                                              bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, SchCode, repchqno, Collfrm, RecType, "0", "", billno);
-
-
-                 
-
-                    if (result == false)
+                    string mrno = this.lblReceiveNo.Text.Trim();
+                    if (mrno.Length == 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Required MR No";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                         return;
                     }
-                    else
+
+
+
+                    // string SchCode=
+                    string mrdate = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+                    //////////////////////userlog
+                    DataTable dtuser = (DataTable)Session["UserLog"];
+                    string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
+                    string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
+                    string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
+                    string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["entrydat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+                    string userid = hst["usrid"].ToString();
+                    string Terminal = hst["compname"].ToString();
+                    string Sessionid = hst["session"].ToString();
+                    string PostedByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
+                    string Posttrmid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
+                    string PostSession = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
+                    string Posteddat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
+                    string EditByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "" : userid;
+                    string Editdat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+                    DataTable dt1 = (DataTable)Session["tblfincoll"];
+                    bool result = true;
+
+                    for (int i = 0; i < dt1.Rows.Count; i++)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-                    }
-                }
+                        string type = dt1.Rows[i]["paytypecod"].ToString(); // this.ddlpaytype.SelectedValue.ToString();repchqno
 
 
-                string Type = this.Request.QueryString["Type"];
+                        double paidamt = ASTUtility.StrPosOrNagative("0" + dt1.Rows[i]["paidamount"].ToString());
 
-
-                if (Type == "CustCare" || Type == "Billing")
-                {
-                    switch (comcod)
-                    {
-                        case "3338":
-                            break;
-
-                        default:
-                            // DataTable dt = (DataTable) Session["tblapprecpt"];
-                            //int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-                            string appid = hst["usrid"].ToString();
-                            string appsession = hst["session"].ToString();
-                            string termid = hst["compname"].ToString();
-                            // string appdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-                            string appdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                            foreach (DataRow dr2 in dt1.Rows)
-                            {
+                        //  double paidamt = Convert.ToDouble("0" + dt1.Rows[i]["paidamount"].ToString());
+                        string chqno = dt1.Rows[i]["chequeno"].ToString();
+                        string bname = dt1.Rows[i]["bankname"].ToString();
+                        string branchname = dt1.Rows[i]["branchname"].ToString();
+                        string paydate = Convert.ToDateTime(dt1.Rows[i]["paydate"].ToString()).ToString("dd-MMM-yyyy");
+                        string refno = dt1.Rows[i]["refid"].ToString();
+                        string repchqno = dt1.Rows[i]["repchqno"].ToString();
+                        string remrks = dt1.Rows[i]["remarks"].ToString();
+                        string Collfrm = dt1.Rows[i]["collfrm"].ToString();
+                        string RecType = dt1.Rows[i]["recType"].ToString();
+                        string billno = dt1.Rows[i]["billno"].ToString();
+                        paidamt = (RecType == "54097") ? paidamt * -1 : paidamt;
+                        //schamt = schamt + paidamt;
+                        if (paidamt != 0)
+                            result = CustData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, usircode, mrno, type, mrdate, paidamt.ToString(), chqno,
+                                                                  bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, SchCode, repchqno, Collfrm, RecType, "0", "", billno);
 
 
 
-                                string chqno = dr2["chequeno"].ToString();
-                                bool result1 = CustData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE",
-                                    "INSERTRECPTAPPROVAL", appid, appdate,
-                                    appsession, termid, chqno, mrno, "", "", "", "", "", "", "", "", "");
 
-                                if (!result1)
-                                {
-                                    ((Label)this.Master.FindControl("lblmsg")).Text =
-                                        CustData.ErrorObject["Msg"].ToString();
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                                        "alert('Update Failed !!!');", true);
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
-                                    return;
-                                }
-                                else
-                                {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                                        "alert('Data Update Successfully !!!.');", true);
-                                }
-
-                            }
-                            break;
-
-                    }
-                }
-
-
-
-                if (Type == "Management")
-                {
-
-                    // DataTable dt = (DataTable) Session["tblapprecpt"];
-                    //int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-                    string appid = hst["usrid"].ToString();
-                    string appsession = hst["session"].ToString();
-                    string termid = hst["compname"].ToString();
-
-                    string appdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-
-                    foreach (DataRow dr2 in dt1.Rows)
-                    {
-
-
-
-                        string chqno = dr2["chequeno"].ToString();
-                        bool result1 = CustData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE",
-                            "INSERTRECPTAPPROVAL", appid, appdate,
-                            appsession, termid, chqno, mrno, "", "", "", "", "", "", "", "", "");
-
-                        if (!result1)
+                        if (result == false)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = CustData.ErrorObject["Msg"].ToString();
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                                "alert('Update Failed !!!');", true);
+                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
                             return;
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                                "alert('Data Update Successfully !!!.');", true);
+                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                         }
+                    }
 
+
+                    string Type = this.Request.QueryString["Type"];
+
+
+                    if (Type == "CustCare" || Type == "Billing")
+                    {
+                        switch (comcod)
+                        {
+                            case "3338":
+                                break;
+
+                            default:
+                                // DataTable dt = (DataTable) Session["tblapprecpt"];
+                                //int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+                                string appid = hst["usrid"].ToString();
+                                string appsession = hst["session"].ToString();
+                                string termid = hst["compname"].ToString();
+                                // string appdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                                string appdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                                foreach (DataRow dr2 in dt1.Rows)
+                                {
+
+
+
+                                    string chqno = dr2["chequeno"].ToString();
+                                    bool result1 = CustData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE",
+                                        "INSERTRECPTAPPROVAL", appid, appdate,
+                                        appsession, termid, chqno, mrno, "", "", "", "", "", "", "", "", "");
+
+                                    if (!result1)
+                                    {
+                                        ((Label)this.Master.FindControl("lblmsg")).Text =
+                                            CustData.ErrorObject["Msg"].ToString();
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                            "alert('Update Failed !!!');", true);
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                            "alert('Data Update Successfully !!!.');", true);
+                                    }
+
+                                }
+                                break;
+
+                        }
                     }
 
 
 
+                    if (Type == "Management")
+                    {
+
+                        // DataTable dt = (DataTable) Session["tblapprecpt"];
+                        //int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+                        string appid = hst["usrid"].ToString();
+                        string appsession = hst["session"].ToString();
+                        string termid = hst["compname"].ToString();
+
+                        string appdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+                        foreach (DataRow dr2 in dt1.Rows)
+                        {
+
+
+
+                            string chqno = dr2["chequeno"].ToString();
+                            bool result1 = CustData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE",
+                                "INSERTRECPTAPPROVAL", appid, appdate,
+                                appsession, termid, chqno, mrno, "", "", "", "", "", "", "", "", "");
+
+                            if (!result1)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Text = CustData.ErrorObject["Msg"].ToString();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                    "alert('Update Failed !!!');", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                                return;
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert",
+                                    "alert('Data Update Successfully !!!.');", true);
+                            }
+
+                        }
+
+
+
+
+
+                    }
+
+
+                    if (txtBalance.Visible == true)
+                    {
+                        UpdateReceivable();
+                    }
+
+                    //Log Report
+                    string eventtype = "Money Receipt";
+                    string eventdesc = "Receipt No: " + mrno + " Dated: " + mrdate;
+                    string eventdesc2 = "";
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
                 }
-
-
-                //Log Report
-                string eventtype = "Money Receipt";
-                string eventdesc = "Receipt No: " + mrno + " Dated: " + mrdate;
-                string eventdesc2 = "";
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
+                else
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Balance Amount exceeded.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
 
 
 
@@ -990,6 +1034,174 @@ namespace RealERPWEB.F_23_CR
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
+        private string getVoucher()
+        {
+            try
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+                string comcod = this.GetCompCode();
+
+                DataSet ds2 = CustData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETOPENINGDATE", "", "", "", "", "", "", "", "", "");
+                if (ds2.Tables[0].Rows.Count == 0)
+                {
+                    return "";
+                }
+
+                DateTime txtopndate = Convert.ToDateTime(ds2.Tables[0].Rows[0]["voudat"]);
+                string entrydate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                if (txtopndate >= Convert.ToDateTime(entrydate))
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Voucher Date Must  Be Greater then Opening Date";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return "";
+
+                }
+
+                string VNo3 = "JV";
+
+                DataSet ds4 = CustData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETNEWVOUCHER", entrydate, VNo3, "", "", "", "", "", "", "");
+                DataTable dt4 = ds4.Tables[0];
+                string cvno1 = dt4.Rows[0]["couvounum"].ToString().Substring(0, 8);
+                return dt4.Rows[0]["couvounum"].ToString();
+
+            }
+            catch (Exception ex)
+            {
+                return "";
+
+            }
+        }
+
+
+        private void CreateDataTable()
+        {
+
+            ViewState.Remove("tblReceivable");
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("rescode", Type.GetType("System.String"));
+            tblt01.Columns.Add("spcode", Type.GetType("System.String"));
+            tblt01.Columns.Add("pactcode", Type.GetType("System.String"));
+            tblt01.Columns.Add("Dr", Type.GetType("System.Double"));
+            tblt01.Columns.Add("Cr", Type.GetType("System.Double"));           
+            ViewState["tblReceivable"] = tblt01;
+        }
+
+        private void UpdateReceivable()
+        {
+            CreateDataTable();
+            //string quotid = lblQuotation.Text;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["trmid"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Postdat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            //string vounum = this.txtcurrentvou.Text.Trim() + this.txtCurrntlast6.Text.Trim();
+
+            string voudat = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+            string vounum = getVoucher();
+            string refnum = "";
+            string srinfo = "";
+            string vounarration1 = "";
+            string vounarration2 = (vounarration1.Length > 200 ? vounarration1.Substring(200) : "");
+            string voutype = "Journal Voucher";
+            string cactcode = "000000000000";
+            string vtcode = "98";
+            string edit = "";
+            try
+            {
+                //-----------Update Transaction B Table-----------------//
+                bool resultb = CustData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE", vounum, voudat, refnum, srinfo,
+                        vounarration1, vounarration2, voutype, vtcode, edit, userid, Terminal, Sessionid, Postdat, "", "");
+
+
+
+
+                if (!resultb)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"{CustData.ErrorObject["Msg"].ToString()}" + "');", true);
+
+                    return;
+                }
+                //-----------Update Transaction A Table-----------------//
+
+                DataTable dt = (DataTable)ViewState["tblReceivable"];
+
+                DataRow dr = dt.NewRow();
+                dr["pactcode"] = ddlProjectName.SelectedValue.ToString();
+                dr["rescode"] = lblCustomerFromService.Text;
+                dr["spcode"] = "000000000000";
+                dr["Dr"] = Convert.ToDouble(((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text);
+                dr["Cr"] = Convert.ToDouble("0");
+                dt.Rows.Add(dr);
+                DataRow dr1 = dt.NewRow();
+                dr1["pactcode"] ="31"+ ASTUtility.Right(ddlProjectName.SelectedValue.ToString(),10);
+                dr1["rescode"] = lblCustomerFromService.Text;
+                dr1["spcode"] = "000000000000";
+                dr1["Cr"] = Convert.ToDouble(((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text);
+                dr1["Dr"] = Convert.ToDouble("0");
+                dt.Rows.Add(dr1);
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string actcode = dt.Rows[i]["pactcode"].ToString();
+                    string rescode = dt.Rows[i]["rescode"].ToString();
+                    string spclcode = dt.Rows[i]["spcode"].ToString();
+                    string trnqty = "0";
+                    double Dramt = Convert.ToDouble("0" + dt.Rows[i]["Dr"].ToString());
+                    double Cramt = Convert.ToDouble("0" + dt.Rows[i]["Cr"].ToString());
+                    string trnamt = Convert.ToString(Dramt - Cramt);
+                    string trnremarks = "";
+                    bool resulta = CustData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE", vounum,
+                            actcode, rescode, cactcode, voudat, trnqty, trnremarks, vtcode, trnamt, spclcode, "", "", "", "", "");
+                    if (!resulta)
+                    {
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"{CustData.ErrorObject["Msg"].ToString()}" + "');", true);
+
+                        return;
+                    }
+
+                    //if (ASTUtility.Left(actcode, 2) == "18")
+                    //{
+                    //    resulta = CustData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEMAINSERVICEJOURNAL", quotid, vounum, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    //    if (!resulta)
+                    //    {
+                    //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"{CustData.ErrorObject["Msg"].ToString()}" + "');", true);
+
+                    //        return;
+                    //    }
+
+                    //}
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Receivable Generated" + "');", true);
+
+                ddlProjectName_SelectedIndexChanged(null, null);
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Sales Journal";
+                    string eventdesc = "Update Journal";
+                    string eventdesc2 = vounum;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+
+        }
+
+
+
+
+
         protected void ddlpaytype_SelectedIndexChanged(object sender, EventArgs e)
         {
             string paytype = this.ddlpaytype.SelectedValue.ToString();
@@ -1000,7 +1212,7 @@ namespace RealERPWEB.F_23_CR
         }
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string comcod = GetCompCode();
             DataTable dt01 = (DataTable)ViewState["tblproject"];
             string search1 = this.ddlProjectName.SelectedValue.ToString().Trim();
             DataRow[] dr1 = dt01.Select("actcode='" + search1 + "'");
@@ -1025,6 +1237,37 @@ namespace RealERPWEB.F_23_CR
                 this.ddlCustomer.Items.Clear();
 
             }
+
+            if (comcod == "1101")
+            {
+
+                string proj = "41" + ASTUtility.Right(ddlProjectName.SelectedValue.ToString(), 10);
+                DataSet ds1 = CustData.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETQUOTATIONPACTCODE", proj, "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                if (ds1.Tables[0].Rows.Count == 0)
+                {
+                    lblBalance.Visible = false;
+                    txtBalance.Visible = false;
+                    txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+                    lblCustomerFromService.Text = "000000000000";
+                }
+                else
+                {
+                    lblBalance.Visible = true;
+                    txtBalance.Visible = true;
+                    txtBalance.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["balamt"]).ToString("#,##0.00;-#,##0.00; ");
+                    lblCustomerFromService.Text = ds1.Tables[0].Rows[0]["customerid"].ToString();
+
+                }
+
+            }
+            else
+            {
+
+            }
+
+
 
 
         }
