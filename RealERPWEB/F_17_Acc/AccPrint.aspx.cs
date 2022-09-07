@@ -110,7 +110,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "2305":
                     vouprint = "VocherPrint4";
                     break;
@@ -189,7 +189,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-                case "3101":
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
@@ -697,7 +696,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "2305": // rupayan land
                     vouprint = "VocherPrint4";
                     break;
@@ -794,7 +793,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEpic";
                     break;
 
-                case "3101":
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
