@@ -33,9 +33,9 @@ namespace RealERPWEB.F_70_Services
                         lnkSave.Text = "<span class='fa fa-check' style='color:white;' aria-hidden='true'></span> Approval";
                     }
                 }
+                lnkSubContractor.Visible = false;
                 lnkMatReq.Visible = false;
                 lnkReceivable.Visible = false;
-                lnkSubContractor.Visible = false;
             }
         }
         private void EditFunctionality()
@@ -64,7 +64,7 @@ namespace RealERPWEB.F_70_Services
                     txtquotno.Text = dt1.Rows[0]["quotid1"].ToString();
                     lblActcode.Text = dt1.Rows[0]["mapactcode"].ToString();
                     string reqno = dt1.Rows[0]["reqno"].ToString();
-                    if (reqno == "")
+                    if (reqno == "" || reqno == "00000000000000")
                     {
                         getReqNo();
                     }
@@ -223,9 +223,9 @@ namespace RealERPWEB.F_70_Services
                     {
                         isPrevCode.Text = "";
                     }
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -595,104 +595,123 @@ namespace RealERPWEB.F_70_Services
                 }
                 else
                 {
-                    bool result = false;
-                    switch (type)
+                    DataTable dt = (DataTable)ViewState["ResourceToActcode"];
+                    string worktype01 = "";
+                    worktype01 = obj[0].worktypecode;
+                    int isCodePresent = dt.Select($"acttdesc='{worktype01}'").Length;
+                    if (isCodePresent == 0)
                     {
-                        case "ApprovalEdit":
-
-                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, lblActcode.Text, "", "", "", "",
-                                        "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            break;
-                        case "Check":
-                        case "CheckEdit":
-                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATECHECKQUOTINFB", quotid, status, userId, "", "", "", "", "",
-                                       "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            break;
-                        default:
-                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFB", quotid, date, customerid, narration, isCheck, isAppr, status, userId,
-                                        "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            break;
-                    }
-
-                    if (result)
-                    {
-                        bool resultdelete = _process.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "DELETEQUOTINFA", quotid);
-                        if (resultdelete)
-                        {
-                            List<bool> resultQuotArray = new List<bool>();
-
-                            foreach (var item in obj)
-                            {
-                                bool resultQuotA = false;
-                                if (item.qamt != 0.00 || item.chkamt != 0.00 || item.apramt != 0.00)
-                                {
-                                    string worktype = item.worktypecode.ToString();
-                                    string resource = item.resourcecode.ToString();
-                                    string qqty = item.qqty.ToString();
-                                    string qamt = item.qamt.ToString();
-                                    string chkqty = item.chkqty.ToString();
-                                    string chkamt = item.chkamt.ToString();
-                                    string aprqty = item.aprqty.ToString();
-                                    string apramt = item.apramt.ToString();
-                                    string percnt = item.percnt.ToString();
-                                    string percntchk = item.chkpercnt.ToString();
-                                    string percntapr = item.aprpercnt.ToString();
-                                    resultQuotA = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFA", quotid, worktype, resource, qqty, qamt,
-                                        chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
-                                    resultQuotArray.Add(resultQuotA);
-
-
-
-                                }
-                            }
-                            if (type == "Approval")
-                            {
-                                if (isPrevCode.Text == "")
-                                {
-                                    string resultCodebook = lblActcode.Text == "" ? "" : isMappedCodeDataUpdated();
-                                    if (resultCodebook != "")
-                                    {
-                                        string pactcode = "16" + ASTUtility.Right(resultCodebook, 10);
-                                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, "", "", "", "",
-                                           "", "", "", "", "", "", "", "", "", "", "", "", "");
-                                        result = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "INSERTUPDATELINK", userId, pactcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-                                    }
-                                }
-                                else
-                                {
-                                    result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, isPrevCode.Text, "", "", "", "",
-                                          "", "", "", "", "", "", "", "", "", "", "", "", "");
-                                }
-
-
-                            }
-                            if (resultQuotArray.Contains(false))
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-                            }
-                            else
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{quotid} - Updated Successful" + "');", true);
-                                if (type == "Entry")
-                                {
-                                    ClearPage();
-                                }
-                                if (type == "Approval")
-                                {
-                                    Response.Redirect("/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid);
-                                }
-                                if (type == "Check")
-                                {
-                                    Response.Redirect("/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid);
-                                }
-                            }
-                        }
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
+                        return;
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured." + "');", true);
+                        bool result = false;
+                        switch (type)
+                        {
+                            case "ApprovalEdit":
+
+                                result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, lblActcode.Text, "", "", "", "",
+                                            "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                break;
+                            case "Check":
+                            case "CheckEdit":
+                                result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATECHECKQUOTINFB", quotid, status, userId, "", "", "", "", "",
+                                           "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                break;
+                            default:
+                                result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFB", quotid, date, customerid, narration, isCheck, isAppr, status, userId,
+                                            "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                break;
+                        }
+
+                        if (result)
+                        {
+                            bool resultdelete = _process.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "DELETEQUOTINFA", quotid);
+                            if (resultdelete)
+                            {
+                                List<bool> resultQuotArray = new List<bool>();
+
+                                foreach (var item in obj)
+                                {
+                                    bool resultQuotA = false;
+                                    if (item.qamt != 0.00 || item.chkamt != 0.00 || item.apramt != 0.00)
+                                    {
+                                        string worktype = item.worktypecode.ToString();
+                                        string resource = item.resourcecode.ToString();
+                                        string qqty = item.qqty.ToString();
+                                        string qamt = item.qamt.ToString();
+                                        string chkqty = item.chkqty.ToString();
+                                        string chkamt = item.chkamt.ToString();
+                                        string aprqty = item.aprqty.ToString();
+                                        string apramt = item.apramt.ToString();
+                                        string percnt = item.percnt.ToString();
+                                        string percntchk = item.chkpercnt.ToString();
+                                        string percntapr = item.aprpercnt.ToString();
+                                        resultQuotA = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFA", quotid, worktype, resource, qqty, qamt,
+                                            chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
+                                        resultQuotArray.Add(resultQuotA);
+
+
+
+                                    }
+                                }
+                                if (type == "Approval")
+                                {
+                                    if (isPrevCode.Text == "")
+                                    {
+                                        string resultCodebook = lblActcode.Text == "" ? "" : isMappedCodeDataUpdated();
+                                        if (resultCodebook == "41")
+                                        {
+
+                                        }
+                                        else if (resultCodebook != "")
+                                        {
+                                            string pactcode = "16" + ASTUtility.Right(resultCodebook, 10);
+                                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, "", "", "", "",
+                                               "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                            result = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "INSERTUPDATELINK", userId, pactcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, isPrevCode.Text, "", "", "", "",
+                                              "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                    }
+
+
+                                }
+                                if (resultQuotArray.Contains(false))
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                                }
+                                else
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{quotid} - Updated Successful" + "');", true);
+                                    if (type == "Entry")
+                                    {
+                                        ClearPage();
+                                    }
+                                    if (type == "Approval")
+                                    {
+                                        Response.Redirect("/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid);
+                                    }
+                                    if (type == "Check")
+                                    {
+                                        Response.Redirect("/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured." + "');", true);
+                        }
                     }
+
+
+
                 }
 
             }
@@ -722,7 +741,7 @@ namespace RealERPWEB.F_70_Services
             if (dt01.Rows.Count == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Must Link Work Type with Accounts code-41" + "');", true);
-                return "";
+                return "41";
             }
             else
             {

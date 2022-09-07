@@ -499,8 +499,7 @@ namespace RealERPWEB.F_28_MPro
                 }
 
 
-                //Update Requisition Details Description form Market Survey          
-
+                //Update Requisition Details Description form Market Survey      
                 for (int i = 0; i < tbl2.Rows.Count; i++)
                 {
                     string mREQNO = tbl2.Rows[i]["reqno"].ToString();

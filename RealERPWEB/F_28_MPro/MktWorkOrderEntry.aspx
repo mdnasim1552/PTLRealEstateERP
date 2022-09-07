@@ -204,10 +204,10 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSuplDesc" runat="server"
                                                     Text='<%# DataBinder.Eval(Container.DataItem, "ssirdesc1").ToString() %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lbtnSelectedOrdr" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbtnSelectedOrdr_Click">Selected Order</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnSelectedOrdr" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbtnSelectedOrdr_Click">Select Order</asp:LinkButton>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
@@ -465,7 +465,7 @@
                                                                          "<B>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")).Trim()+"</B>": "")
                                                                          
                                                                     %>'></asp:Label>
-                                                <asp:TextBox ID="txtgvRsirdetDesc1" runat="server" Font-Bold="False" CssClass="from-control" Width="450px" TextMode="MultiLine" Rows="5"   ReadOnly="true"  
+                                                <asp:TextBox ID="txtgvRsirdetDesc1" runat="server" Font-Bold="False" CssClass="from-control" Width="450px" TextMode="MultiLine" Rows="5"  
                                                     Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdetdesc"))%>'></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>
