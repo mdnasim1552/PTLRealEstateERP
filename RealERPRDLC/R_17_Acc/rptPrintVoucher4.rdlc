@@ -2087,7 +2087,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>MD (RLDL)</Value>
+                          <Value>Advisor</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>cambria</FontFamily>
