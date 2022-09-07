@@ -87,7 +87,11 @@ namespace RealERPRDLC
 
                     /// test 
                 case "R_81_Hrm.Rnd": Rpt1a = SetupRND(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                    /// 
+                /// 
+
+
+                //epic monthly attendance create by robi
+                case "R_81_Hrm.R_83_Att.RptMonAttendanceEPIC": Rpt1a = SetRptMonAttendanceEPIC(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
             }
             Rpt1a.Refresh();
@@ -322,6 +326,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptMonAttendanceBTI02(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
+            return rpt1a;
+        }
+        private static LocalReport SetRptMonAttendanceEPIC(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.RptMntAttenReport>)rptDataSet));
             return rpt1a;
         }
         private static LocalReport SetRptMonAttendanceBTI(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
