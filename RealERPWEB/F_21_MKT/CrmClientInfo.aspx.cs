@@ -4664,37 +4664,27 @@ namespace RealERPWEB.F_21_MKT
                 Empid = hst["empid"].ToString();
             }
 
-
-
             string tdate = this.txttodate.Text.ToString();
             string fempid = (this.ddlEmpid.SelectedValue.ToString() == "000000000000" ? "93" : this.ddlEmpid.SelectedValue.ToString()) + "%";
             DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONDETAILS", "8301%", Empid, type, tdate, fempid);
-            //var lst = ds1.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.CrmNotifications>();
-            //var jsonSerialiser = new JavaScriptSerializer();
-            //var json = jsonSerialiser.Serialize(lst);
-            //return json;
-            ////if (ds1.Tables[0].Rows.Count != 0)
-            ////{
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + JData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
+
             Session["tblsummData"] = ds1.Tables[0];
             if (rtype == "databank")
             {
                 this.gvSummary.Columns[24].Visible = true;
             }
-            if (rtype == "DWS" && (comcod=="3315" || comcod=="3316"))
+            else if (rtype == "dws" && (comcod=="3315" || comcod=="3316"))
             {
                 this.gvSummary.Columns[26].HeaderText = "Today's <br> Followup";
                 this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
                 this.gvSummary.Columns[26].Visible = true;                
                 this.gvSummary.Columns[17].Visible = true;
-            }
-
-            if (rtype == "tdt")
-            {
-                this.gvSummary.Columns[26].Visible = true;
-                this.gvSummary.Columns[26].HeaderText = "Today's <br> Followup";
-                this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
-                this.gvSummary.Columns[17].Visible = true;
-            }
+            }          
             else
             {
                 this.gvSummary.Columns[26].HeaderText = "Next Followup Date";
@@ -4702,10 +4692,8 @@ namespace RealERPWEB.F_21_MKT
                 this.gvSummary.Columns[24].Visible = false;
                 this.gvSummary.Columns[26].Visible = false;
             }
+
             this.Data_Bind();
-
-            // }
-
             this.gvkpi.DataSource = null;
             this.gvkpi.DataBind();
 
