@@ -161,13 +161,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-=======
-
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
->>>>>>> 623cdb73fbeaa2ffc52bba37fb0d6312c0d5e112
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2810,6 +2804,7 @@
     <Content Include="F_36_Vehcl\VehicleApply.aspx" />
     <Content Include="F_36_Vehcl\VehicleInfoEntry.aspx" />
     <Content Include="F_36_Vehcl\VehicleMgt.aspx" />
+    <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
     <Content Include="F_39_MyPage\CustomerDetail.aspx" />
@@ -4516,6 +4511,13 @@
     </Compile>
     <Compile Include="F_36_Vehcl\VehicleMgt.aspx.designer.cs">
       <DependentUpon>VehicleMgt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_37_LOwner\LOMoneyReciptapp.aspx.cs">
+      <DependentUpon>LOMoneyReciptapp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_37_LOwner\LOMoneyReciptapp.aspx.designer.cs">
+      <DependentUpon>LOMoneyReciptapp.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>
