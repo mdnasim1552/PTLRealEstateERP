@@ -53,7 +53,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
                     // GetSupvisorCheck();
-                    this.ddlEmpName_SelectedIndexChanged(null, null);
+                   // this.ddlEmpName_SelectedIndexChanged(null, null);
                 }
                 else if (qtype == "COMMON")
                 {
@@ -227,7 +227,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             string qtype = this.Request.QueryString["Type"] ?? "";
             string comcod = this.GetComeCode();
-            if (comcod == "3365" || comcod == "3354" || comcod == "3101")
+            if (comcod == "3365" || comcod == "3354" || comcod == "3101" || comcod=="3102")
             {
                 this.sspnlv.Visible = true;
 

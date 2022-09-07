@@ -3237,7 +3237,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     //case "3101": // 160100010004 // WIP-HASNAHENA
                     case "3330": // Bridge and Bridge with Jinnah
-                        if (pactcode == "160100010025")
+                        if (pactcode == "160100010025" || pactcode == "160100010027")
                         {
                             rptwork = new RealERPRPT.R_14_Pro.rptWorkOrderWithoutLogoBR();
                         }
@@ -3335,7 +3335,7 @@ namespace RealERPWEB.F_99_Allinterface
                 }
                 // todo for bridge jinnah project
 
-                if (comcod == "3330" && pactcode == "160100010025")
+                if (comcod == "3330" && (pactcode == "160100010025" || pactcode== "160100010027"))
                 {
 
                 }
@@ -5060,7 +5060,9 @@ namespace RealERPWEB.F_99_Allinterface
                         terms7 = termscondition.FindAll(p => p.termsid == "007").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString().Length > 0 ? "7." + (termscondition.FindAll(p => p.termsid == "007")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "");
                         terms8 = termscondition.FindAll(p => p.termsid == "008").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString().Length > 0 ? "8." + (termscondition.FindAll(p => p.termsid == "008")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString()) : "");
                         terms9 = termscondition.FindAll(p => p.termsid == "009").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "");
-                        cperson = termscondition.FindAll(p => p.termsid == "010").Count == 0 ? "" : (termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "");
+                        terms10 = termscondition.FindAll(p => p.termsid == "010").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString().Length > 0 ? "10." + (termscondition.FindAll(p => p.termsid == "010")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "");
+                        terms11 = termscondition.FindAll(p => p.termsid == "011").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "011")[0].termsdesc.ToString().Length > 0 ? "11." + (termscondition.FindAll(p => p.termsid == "011")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "011")[0].termsdesc.ToString()) : "");
+                        terms12 = termscondition.FindAll(p => p.termsid == "012").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "012")[0].termsdesc.ToString().Length > 0 ? "12." + (termscondition.FindAll(p => p.termsid == "012")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "012")[0].termsdesc.ToString()) : "");
 
                         break;
 
@@ -6142,7 +6144,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 //comcod == "3330" && pactcode == "160100010025"
                 //lblSecurity
-                if (pactcode == "160100010025")
+                if (pactcode == "160100010025" || pactcode == "160100010027")
                 {
                     //RptConBillBridgeWithoutLogo
                     rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillBridgeWithoutLogo", lst, null, null);
@@ -6367,7 +6369,7 @@ namespace RealERPWEB.F_99_Allinterface
             //double TAmt = Convert.ToDouble("0" + ((Label)this.gvSubBill.FooterRow.FindControl("lgvFBillAmt")).Text) - Convert.ToDouble("0" + this.txtSDAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtDedAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtPenaltyAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
 
 
-            if (comcod == "3330" && pactcode == "160100010025")
+            if (comcod == "3330" && (pactcode == "160100010025" || pactcode == "160100010027"))
             {
 
             }

@@ -25,6 +25,10 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         {
             if (!IsPostBack)
             {
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.getDept();
                 this.getSection();
                 this.getDesig();
@@ -119,7 +123,17 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             DataSet ds = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GEETCODE", advno, "", "", "", "", "", "");
             if (ds == null || ds.Tables[0].Rows.Count == 0)
                 return;
+
             DataTable dt = ds.Tables[0];
+            DataView dv2;
+
+            if (comcod == "3365")
+            {
+                dv2 = ds.Tables[0].DefaultView;
+                dv2.RowFilter = "gcod <> '04002' and gcod <> '04003' and gcod <> '04004' and gcod <> '97999'";
+                dt = dv2.ToTable();
+            }
+       
             DataTable dt1 = (DataTable)ViewState["dtDesig"];
             DataTable dt2 = (DataTable)ViewState["tbldept"];
             DataTable dt3 = (DataTable)ViewState["tblsec"];
@@ -129,6 +143,10 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             gvNewRec.DataSource = ds.Tables[0];
             gvNewRec.DataBind();
 
+
+       
+
+      
 
             string gvalue = "";
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -248,15 +266,20 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
                         break;
                     default:
+             
                         gvalue = dt.Rows[i]["value"].ToString();
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text = gvalue;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = true;
                         ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
-
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
-
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
+
+                        if (comcod == "3365" && gcod == "04001")
+                        {
+                            ((Label)this.gvNewRec.Rows[i].FindControl("lblgdesc")).Text = "Joining Salary";
+                            
+                        }
 
                         break;
 
@@ -290,12 +313,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     dr["gval"] = gval.Substring(0, 12);
                     dt1.Rows.Add(dr);
 
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select department";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
                 }
                 //section
 
@@ -306,12 +323,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     dr["gval"] = gval.Substring(0, 12);
                     dt1.Rows.Add(dr);
 
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select section";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                  
                 }
                 //designation
                 else if (gcode == "97007")
@@ -321,12 +333,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     dr["gval"] = gval;
                     dt1.Rows.Add(dr);
 
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select designation";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+                 
                 }
 
                 //designation
@@ -337,12 +344,6 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     dr["gval"] = gval;
                     dt1.Rows.Add(dr);
 
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select gender";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
                 }
                 else if (gcode == "97103")
                 {
@@ -351,12 +352,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     dr["gval"] = gval;
                     dt1.Rows.Add(dr);
 
-                    if (gval.Length == 0)
-                    {
-                        string Message = "Select Type to continue";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-                        return;
-                    }
+         
                 }
 
                 else if (gcode == "97104")
@@ -371,68 +367,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
 
 
-                //grade
-
-                //mobile
-                //else if (gcode == "97019")
-                //{
-                //    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
-                //    dr["gcod"] = gcode;
-                //    dr["gval"] = gval;
-                //    dt1.Rows.Add(dr);
-
-
-                //}
-
-                //email
-                //else if (gcode == "97020")
-                //{
-                //    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
-                //    dr["gcod"] = gcode;
-                //    dr["gval"] = gval;
-                //    dt1.Rows.Add(dr);
-
-
-                //}
-
-
-
-
-                //else if (gcode == "97003")
-                //{
-                //    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Text.ToString();
-                //    dr["gcod"] = gcode;
-                //    dr["gval"] = gval;
-                //    dt1.Rows.Add(dr);
-
-
-                //}
-
-                //else if (gcode == "51001")
-                //{
-                //    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
-                //    dr["gcod"] = gcode;
-                //    dr["gval"] = gval;
-                //    dt1.Rows.Add(dr);
-                //}
-
-                //else if (gcode == "51002")
-                //{
-                //    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
-                //    dr["gcod"] = gcode;
-                //    dr["gval"] = gval;
-                //    dt1.Rows.Add(dr);
-
-                //}
-
-                //else if (gcode == "51003")
-                //{
-                //    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
-                //    dr["gcod"] = gcode;
-                //    dr["gval"] = gval;
-                //    dt1.Rows.Add(dr);
-
-                //}
+              
 
                 else if (gcode == "04001")
                 {
@@ -468,41 +403,12 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     dt1.Rows.Add(dr);
 
                 }
-                //else if (gcode == "97098")
-                //{
-                //    gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
-                //    dr["gcod"] = gcode;
-                //    dr["gval"] = gval;
-                //    dt1.Rows.Add(dr);
-                //}
+
         
                 else if (gcode == "97999")
                 {
    
-                    //if (((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).HasFile)
-                    //{
-
-
-                    //    string filePath = ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).PostedFile.FileName;
-                    //    string filename1 = Path.GetFileName(filePath); // getting the file name of uploaded file  
-                    //    string ext = Path.GetExtension(filename1);
-
-                    //    if (ext == ".pdf")
-                    //    {
-
-                    //        string imgName = Guid.NewGuid() + ext;
-                    //        //sets the image path           
-                    //        imgPath = "~/Upload/HRM/Doc/" + imgName;
-                    //        //then save it to the Folder  
-                    //        ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).SaveAs(Server.MapPath(imgPath));
-                    //    }
-                    //    else
-                    //    {
-                    //        string msgfail = "Please select pdf file only";
-                    //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgfail + "');", true);
-                    //        return;
-                    //    }
-                    //}
+                   
                     gval = imgPath;
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;

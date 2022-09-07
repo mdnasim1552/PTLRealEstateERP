@@ -91,7 +91,7 @@ namespace RealERPWEB.F_24_CC
                 case "Registration":
                     this.lblProject.Visible = false;
                     this.txtSrcPro.Visible = false;
-                    this.ibtnFindProject.Visible = false;
+                   // this.ibtnFindProject.Visible = false;
                     this.ddlProjectName.Visible = false;
                     this.lblDate.Visible = false;
                     this.txtdate.Visible = false;

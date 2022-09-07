@@ -680,6 +680,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalClntInterest": Rpt1a = SetRptSalClntInterest(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalClntInterestBr": Rpt1a = SetRptSalClntInterestBr(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalClntInterestRup": Rpt1a = SetRptSalClntInterestRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalClntInterestEdison": Rpt1a = SetRptSalClntInterestEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptEarlybenefitADelay": Rpt1a = SetRptEarlybenefitADelay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_22_Sal.rptUnitFxInf": Rpt1a = SetrptUnitFxInf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1068,15 +1069,18 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.rptGrossComparison": Rpt1a = SetGrossComparison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptTotalSal": Rpt1a = SetTotalSal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptSalsumDept": Rpt1a = SetSalsumDept(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                  
+                
 
 
                 //hrm envelop
                 case "R_81_Hrm.R_97_MIS.RptHrmPaySlipEnvelop": Rpt1a = SetRptHrmPaySlipEnvelop(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_97_MIS.RptPromotionEnvelop": Rpt1a = SetRptPromotionEnvelop(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptEnvelopMoneyReceipt": Rpt1a = SetRptEnvelopMoneyReceipt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
-
+                    
                 #region Management
                 case "R_34_Mgt.UserLoginInfo": Rpt1a = SetUserLoginInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
@@ -1414,7 +1418,14 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        //envelop
+
         private static LocalReport SetRptEnvelopPrintNew(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEnvelopMoneyReceipt(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EnvelopModel>)RptDataSet));
             return Rpt1a;
@@ -4120,6 +4131,13 @@ namespace RealERPRDLC
 
 
         private static LocalReport SetRptSalClntInterest(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)UserDataset));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSalClntInterestEdison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset) 
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet2));

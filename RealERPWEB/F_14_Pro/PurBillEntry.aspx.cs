@@ -967,7 +967,7 @@ namespace RealERPWEB.F_14_Pro
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
             LocalReport rpt = new LocalReport();
-            if (pactcode == "160100010025")
+            if (pactcode == "160100010025" || pactcode == "160100010027")
             {
                 rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillConfirmBridgeWithoutLogo", list, null, null);
                 rpt.EnableExternalImages = true;
