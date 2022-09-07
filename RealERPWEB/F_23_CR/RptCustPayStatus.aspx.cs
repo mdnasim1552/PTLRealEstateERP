@@ -522,8 +522,8 @@ namespace RealERPWEB.F_23_CR
                 case "3330":
                     // case "3101":
                     procedure = "SP_REPORT_SALSMGT03";
-                    break;               
-                
+                    break;
+
                 case "3368":
                 case "3101":
                     procedure = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
@@ -544,7 +544,7 @@ namespace RealERPWEB.F_23_CR
         {
 
             string comcod = this.GetComeCode();
-            string delserial ;
+            string delserial;
             switch (comcod)
             {
                 case "3354": //Edison Real Estate
@@ -1057,12 +1057,11 @@ namespace RealERPWEB.F_23_CR
             string udesc = dtcust.Rows[0]["udesc"].ToString();
 
             string usize = Convert.ToDouble(dtcust.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
-
             string Price = Convert.ToDouble(dtcust.Rows[0]["aptamt"]).ToString("#,##0;(#,##0); ");
             string Utility = Convert.ToDouble(dtcust.Rows[0]["utamt"]).ToString("#,##0;(#,##0); ");
             string Parking = Convert.ToDouble(dtcust.Rows[0]["caramt"]).ToString("#,##0;(#,##0); ");
             string cooperative = Convert.ToDouble(dtcust.Rows[0]["copamt"]).ToString("#,##0;(#,##0); ");
-            string txtTotal = Convert.ToDouble(dtcust.Rows[0]["totalamt"]).ToString("#,##0;(#,##0); "); 
+            string txtTotal = Convert.ToDouble(dtcust.Rows[0]["totalamt"]).ToString("#,##0;(#,##0); ");
 
             double SAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lfAmt")).Text);
             double PAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lgvfpayamt")).Text);
@@ -1083,6 +1082,27 @@ namespace RealERPWEB.F_23_CR
                     Rpt1.SetParameters(new ReportParameter("cooperative", cooperative));
                     Rpt1.SetParameters(new ReportParameter("txtTotal", txtTotal));
                     Rpt1.SetParameters(new ReportParameter("txtMobile", custmob));
+                    break;
+
+                case "3101":
+                case "3354":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatusEdison", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    title = "Client Payment Status";
+                    string txtTerms = "* If you have already made the payment, please accept our thanks and disregard this communication. " +
+                        "\n* All dates & calculations mentioned here are based on Payment Agreement, Allotment Letter or Purchase Deed. " +
+                        "\n* Please note that 2 % delay charge will be added per month on amount of payment delayed. " +
+                        "\n* Delay Fees are non - waiveable.No apartment will be handed over unless the Delay Fee is cleared off. " +
+                        "\n* Sanction of Loan &processing time are not Developer's liabilities. No delay due to loan processing will be waived. " ;
+                    /*
+                    *If you have already made the payment, please accept our thanks and disregard this communication.
+* All dates & calculations mentioned here are based on Payment Agreement, Allotment Letter or Purchase Deed.
+* Please note that 2 % delay charge will be added per month on amount of payment delayed.
+ * Delay Fees are non - waiveable.No apartment will be handed over unless the Delay Fee is cleared off.
+*Sanction of Loan &processing time are not Developer's liabilities. No delay due to loan processing will be waived.*/
+
+                    Rpt1.SetParameters(new ReportParameter("txtTerms", txtTerms));
+
 
                     break;
                 default:
@@ -1526,7 +1546,7 @@ namespace RealERPWEB.F_23_CR
             string udesc = drc[0]["udesc"].ToString();
             string usize = Convert.ToDouble(drc[0]["usize"].ToString()).ToString("#,##0;(#,##0); ") + " " + drc[0]["unit"].ToString();
 
-           
+
             double totalreceived = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ? 0.00 : dt.Compute("Sum(paidamt)", "")));
 
             double totalscheduleamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", "")));
@@ -1844,7 +1864,7 @@ namespace RealERPWEB.F_23_CR
 
             double Schamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(schamt)", "")) ? 0.00 : tbl6.Compute("Sum(schamt)", "")));
             double rcvamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(paidamt)", "")) ? 0.00 : tbl6.Compute("Sum(paidamt)", "")));
-            double baldues = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(balamt)", "")) ? 0.00 : tbl6.Compute("Sum(balamt)", "")));        
+            double baldues = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(balamt)", "")) ? 0.00 : tbl6.Compute("Sum(balamt)", "")));
 
 
             double balamt = Schamt - rcvamt;
@@ -2192,8 +2212,8 @@ namespace RealERPWEB.F_23_CR
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
             //                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-        }   
-        private void PrintCleintLedgerFinlay() 
+        }
+        private void PrintCleintLedgerFinlay()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
@@ -2456,7 +2476,7 @@ namespace RealERPWEB.F_23_CR
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
             //                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-        } 
+        }
         private void PrintCleintLedgerLanco()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2583,7 +2603,7 @@ namespace RealERPWEB.F_23_CR
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-           
+
 
         }
         private void PrintCleintLedgerAssure()
@@ -2708,7 +2728,7 @@ namespace RealERPWEB.F_23_CR
             Session["Report1"] = Rpt1;
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";          
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
         private void PrintCleintLedgerCube()
@@ -2835,7 +2855,7 @@ namespace RealERPWEB.F_23_CR
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-  
+
 
         }
         private void PrintCleintLedger()
@@ -2886,8 +2906,8 @@ namespace RealERPWEB.F_23_CR
                     this.PrintCleintLedgerManama();
                     break;
 
-               // case"3101":
-                case"3357":
+                // case"3101":
+                case "3357":
                     this.PrintCleintLedgerCube();
                     break;
 
@@ -2897,12 +2917,12 @@ namespace RealERPWEB.F_23_CR
                 case "3316":
                     this.PrintCleintLedgerAssure();
                     break;
-                  
+
                 case "3101":
                 case "3366":
                     this.PrintCleintLedgerLanco();
                     break;
-                
+
                 case "3368":
                     this.PrintCleintLedgerFinlay();
                     break;
@@ -2969,7 +2989,7 @@ namespace RealERPWEB.F_23_CR
                 Label lblRcvAmnt = (Label)e.Row.FindControl("lblRcvAmnt");
                 Label lblUnClr = (Label)e.Row.FindControl("lblUnClr");
 
-                
+
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
 
 
@@ -2986,7 +3006,7 @@ namespace RealERPWEB.F_23_CR
                     lblRcvAmnt.Font.Bold = true;
                     lblUnClr.Font.Bold = true;
 
-                    
+
                     lblParticlr.Font.Size = 11;
                     lblDueAmnt.Font.Size = 11;
                     lblRcvAmnt.Font.Size = 11;
@@ -3009,7 +3029,7 @@ namespace RealERPWEB.F_23_CR
                 }
             }
 
-            
+
 
 
 

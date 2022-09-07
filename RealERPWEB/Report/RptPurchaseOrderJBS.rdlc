@@ -1415,7 +1415,7 @@
                               <DataSetName>DataSet1</DataSetName>
                               <Top>0.37617in</Top>
                               <Height>1.16042in</Height>
-                              <Width>7.82584in</Width>
+                              <Width>7.82583in</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -2965,7 +2965,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Carring Cost</Value>
+                                  <Value>Carrying Cost</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -3592,7 +3592,6 @@
                           </Style>
                         </Textbox>
                         <ColSpan>11</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -4115,7 +4114,7 @@
             <Top>0.20708in</Top>
             <Left>0.05in</Left>
             <Height>6.45614in</Height>
-            <Width>7.82584in</Width>
+            <Width>7.82583in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

@@ -110,7 +110,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "2305":
                     vouprint = "VocherPrint4";
                     break;
@@ -170,7 +170,10 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 //case "3101":
-                case "3338":
+                case "1206": //acme
+                case "1207": //acme
+                case "3338": //acme
+                case "3369": //acme
                     vouprint = "VocherPrintAcme";
                     break;
 
@@ -186,7 +189,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-                case "3101":
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
@@ -237,7 +239,11 @@ namespace RealERPWEB.F_17_Acc
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
                 case "3333"://  Alliance
+                case "1206"://  ACME
+                case "1207"://  ACME
                 case "3338"://  ACME
+                case "3369"://  ACME
+
                 case "3339"://  Tropical
                 case "3340"://  Urban
                 case "3101":// Pintech  
@@ -690,7 +696,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "2305": // rupayan land
                     vouprint = "VocherPrint4";
                     break;
@@ -787,7 +793,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEpic";
                     break;
 
-                case "3101":
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
@@ -3060,7 +3065,7 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
                 LocalReport rpt1 = new LocalReport();
 
-                if (comcod == "3338")
+                if (comcod == "1206" || comcod == "1207" || comcod == "3338" || comcod == "3369")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAcme", hshtbl, null, null);
                 }
@@ -3635,7 +3640,7 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["amt"] = Convert.ToDouble(toamt).ToString("#,##0;(#,##0); ") + "/-";
                 LocalReport rpt1 = new LocalReport();
 
-                if (comcod == "3338")
+                if (comcod == "1206" || comcod == "1207" || comcod == "3338" || comcod == "3369")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAcme", hshtbl, null, null);
                 }
