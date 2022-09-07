@@ -25,6 +25,10 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         {
             if (!IsPostBack)
             {
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.getDept();
                 this.getSection();
                 this.getDesig();
@@ -119,7 +123,17 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             DataSet ds = RecData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "GEETCODE", advno, "", "", "", "", "", "");
             if (ds == null || ds.Tables[0].Rows.Count == 0)
                 return;
+
             DataTable dt = ds.Tables[0];
+            DataView dv2;
+
+            if (comcod == "3365")
+            {
+                dv2 = ds.Tables[0].DefaultView;
+                dv2.RowFilter = "gcod <> '04002' and gcod <> '04003' and gcod <> '04004' and gcod <> '97999'";
+                dt = dv2.ToTable();
+            }
+       
             DataTable dt1 = (DataTable)ViewState["dtDesig"];
             DataTable dt2 = (DataTable)ViewState["tbldept"];
             DataTable dt3 = (DataTable)ViewState["tblsec"];
@@ -129,6 +143,10 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             gvNewRec.DataSource = ds.Tables[0];
             gvNewRec.DataBind();
 
+
+       
+
+      
 
             string gvalue = "";
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -248,15 +266,20 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 
                         break;
                     default:
+             
                         gvalue = dt.Rows[i]["value"].ToString();
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text = gvalue;
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Visible = true;
                         ((DropDownList)this.gvNewRec.Rows[i].FindControl("ddldesig")).Visible = false;
                         ((FileUpload)this.gvNewRec.Rows[i].FindControl("imgFileUpload")).Visible = false;
-
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtarea")).Visible = false;
-
                         ((TextBox)this.gvNewRec.Rows[i].FindControl("txtjoindat")).Visible = false;
+
+                        if (comcod == "3365" && gcod == "04001")
+                        {
+                            ((Label)this.gvNewRec.Rows[i].FindControl("lblgdesc")).Text = "Joining Salary";
+                            
+                        }
 
                         break;
 

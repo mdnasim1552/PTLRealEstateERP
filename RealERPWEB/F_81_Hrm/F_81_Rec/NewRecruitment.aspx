@@ -110,13 +110,13 @@
 
 
                             <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False" BorderStyle="None" Width="100%"
-                                CssClass="">
+                                 howFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
 
-                                    <asp:TemplateField HeaderText="Code" ControlStyle-CssClass="classhidden" Visible="false">
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgcode" ClientIDMode="Static" runat="server"
+                                            <asp:Label ID="lblgcode" ClientIDMode="Static" runat="server" Visible="false" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -124,7 +124,7 @@
 
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgdesc" runat="server" Width="130px"
+                                            <asp:Label ID="lblgdesc" runat="server" Width="130px" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -148,7 +148,7 @@
 
                        <div class="form-group">
                                
-                                <asp:TextBox ID="txtjoindat" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtjoindat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtjoindat_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtjoindat"></cc1:CalendarExtender>
                             </div>
 
@@ -318,7 +318,7 @@
 
                                                                     </asp:HyperLink>
 
-                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
 
                                                 <asp:LinkButton ID="btnRemove" runat="server" OnClientClick="return confirm('Are You Sure?')" OnClick="btnRemove_Click" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" OnClick="btnEdit_Click"><i class="fa fa-edit"></i></asp:LinkButton>

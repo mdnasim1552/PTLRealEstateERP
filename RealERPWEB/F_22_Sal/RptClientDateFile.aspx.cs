@@ -280,7 +280,7 @@ namespace RealERPWEB.F_22_Sal
                             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopCongratulation", list, null, null);
                             break;
                         case "7200002":
-                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopMoneyReceipt", list, null, null);
                             break;
                         case "7200003":
                             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEnvelopOffice", list, null, null);

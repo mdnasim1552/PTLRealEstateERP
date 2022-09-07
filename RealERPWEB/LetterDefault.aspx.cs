@@ -211,7 +211,9 @@ namespace RealERPWEB
 
             string lbody = string.Empty;
             string letterType = this.Request.QueryString["Type"].ToString().Trim();
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
 
             switch (letterType)
             {
@@ -334,6 +336,89 @@ namespace RealERPWEB
                        "<p></p>" +
                        "<div><p style='border-top:1px solid; display:inline-block;margin-bottom:-11px;min-width:120px;'><strong>" + name + "</strong></p></div>";
                     }
+                    else if (this.GetCompCode() == "3365")
+                    {
+
+                        lbody = "<div style='font-size:13px; font-family: TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif'><p style='margin-bottom:-11px'>Ref: "+refno+"</p><p >" + System.DateTime.Now.ToString("dd MMM yyyy")
+                            + "</p><p style='margin-bottom:-11px'> To </p><p style='margin-bottom:-11px'><strong>"+surname+" " + name + "</strong></p>" +
+                            "<p style='margin-bottom:-11px'>Address: "+preadd+"</p>" +
+                            "<p style='margin:5px 0'><br>Mobile : " + mobile + "</p><p></p><p><strong> <u> Appointment Letter" +
+                            "</u></strong></p><p>Dear <strong> "+surname+" "  + name + "," + "</strong></p>" +
+                            "<p>Reference is made herewith to your application for the position of <strong>  “" + desig + ", " + sec + "” </strong>  and subsequent interview with us, the Management is pleased to give you a career" +
+                            " opportunity with “" + comnam + "” as per the following terms and conditions.<br></p>" +
+                            "<p><strong>1.</strong> Postion: <strong> " + desig + ", " + sec + "</strong></p>" +
+                            "<p><strong>2.</strong> Job Location: <strong>"+comadd+"</strong></p>" +
+                            "<p style='text-align: justify;'><strong>3.</strong> <strong>Date of Commencement: </strong>Your employment shall commence on <strong> " + doj+ " </strong> and shall continue until separated/terminated as per the provision " +
+                            "of company rules or resigned in accordance with terms of this letter of Appointment or rules of the company.<br> </p>" +
+                            "<p style='text-align: justify;'><strong>4.</strong> <strong>Probation:</strong>" +
+                            "<p style='text-align: justify;'>4.1  On appointment, you shall be on probation for a period of "+probduration+" from the date of joining. Upon satisfactory completion of probation, you will be confirmed in the regular service of the company according to the Management decision.</p> " +
+                            "<p style='text-align: justify;'>4.2  During the probationary period, your service may be terminated at any time without assigning any reason whatsoever or issuing any notice or payment of salary in lieu thereof.  </p> " +
+                            "<p style='text-align: justify;'>4.3  If no letter is issued for extension of probation period or for confirmation of service it will be deemed by default that probation has been extended and will continue indefinitely until the letter of confirmation is issued.</p> " +
+
+                             "<p style='text-align: justify;'><strong>5.</strong> <strong>Compensation /Pay Scale: </strong> Gross Salary/Month: <strong> Taka "+bsal+"/- (In word: "+ ASTUtility.Trans(Convert.ToDouble(bsal), 2) + ").</strong></p>" +
+                             "<p style='text-align: justify;'><strong>6. </strong><strong>Salary Review: </strong> Salary will be reviewed after completion of 01 (one) year or at the discretion of Management. </p>" +
+                             "<p style='text-align: justify;'><strong>7. </strong><strong>Festival Bonus: </strong>You are entitled to two festival bonuses in Eid-Ul-Fitr & Eid-Ul-Adha as per company policy. </p>" +
+                             "<p style='text-align: justify;'><strong>8. </strong><strong>Income Taxes: </strong>All taxes on salaries and allowances shall be borne by you in accordance with laws of the land. Income Tax at source will be deducted monthly or by other manner as deemed fit by the management.</p>" +
+                             "<p style='text-align: justify;'><strong>9. </strong><strong>Gratuity: </strong>Gratuity equivalent to one month’s basic pay for each completed year’s of service payable after three years of service. </p>" +
+                             "<p style='text-align: justify;'><strong>10. </strong><strong >Obligation of Confidence: </strong>You may have access during the course of employment to or become acquainted with information, which may be designated by the company as confidential or reasonably be regarded as a trade secret. " +
+                             "</p>" +
+                             "<p style='text-align: justify;'>10.1  The confidential information may include (without limitation), any document or information marked as confidential, and any other information, which you may receive or develop in the course of your employment, which is not publicly available and relates to the business. E.g. operations, finance, legal affairs and other conditions of the company or its associated companies and other matters not readily available to persons not connected with the company or its associated companies either at all or without a significant expenditure of labor, skill and money. </p> " +
+                             "<p style='text-align: justify;'>10.2  You shall agree, both during and after your employment, to maintain the confidentiality of this information and to take reasonable measures to prevent unauthorized disclosure or to use by any other person or entity. You shall also agree not to use, both during and after employment the confidential information for any purpose other than the benefit of the company as determined by the Management. Indulgence in such activity shall render you liable for termination with immediate effect notwithstanding any other terms mentioned in the appointment letter.  </p> " +
+
+                            "<p style='text-align: justify;'><strong>11. Leave: </strong></p>" +
+
+                            "<p style='text-align: justify;'>11.1  Existing company rules shall be applicable.  </p> " +
+                            "<p style='text-align: justify;'>11.2  Leave is a facility and cannot be claimed as a right.  </p> " +
+                            "<p style='text-align: justify;'>11.3  16 days Earned Leave for each completed year of service or pay in lieu thereof as per company policy. </p> " +
+                            "<p style='text-align: justify;'>11.4  10 days Casual Leave and 14 days Sick Leave for every twelve months’ of service. </p> " +
+                            "<p style='text-align: justify;'>11.5  Annual leave entitlement is calculated on period of service based on a calendar year. </p> " +
+                            "<p style='text-align: justify;'>11.6  Approval of leave shall remain at the sole discretion of the company depending on the workloads and the business needs. </p> " +
+                            "<p style='text-align: justify;'>11.7  In case of employment in middle of a calendar year, the calculation of leave will be on prorata basis.   </p> " +
+
+
+                            "<p style='text-align: justify;'><strong>12. Disciplinary Action: </strong>Company service rules shall prevail. Company reserves the right to proceed with legal and other action in case of serious irregularities" +
+                            "including financial and other related matters mentioned in company rules.</p>" +
+                             "<p style='text-align: justify;'><strong>13. Transfer: </strong>Your service are at the disposal of the Management and are transferable to any Project, sister concerns or offices at any location and you may be entrusted with some other jobs as and when deemed fit by the management. </p>" +
+                             "<p style='text-align: justify;'><strong>14. Separation from Services:</strong>" +
+
+                             "<p style='text-align: justify;'>14.1  On confirmation, your services may be terminated with 30 (Thirty) days notice or pay in lieu thereof from either side.</p> " +
+                             "<p style='text-align: justify;'>14.2  You are required to deal with the Company's money, material and documents with utmost honesty and professional ethics. If you are found guilty at any point of time of moral turpitude or misappropriation regardless of the value involved, your services would be terminated with immediate" +
+                             "effect notwithstanding other terms and conditions mentioned in this letter. </p> " +
+                             "<p style='text-align: justify;'>14.3  You have been engaged on the presumption that the particulars furnished by you in your application and/ or bio-data are correct. In case the said particulars are found to be incorrect or that you have concealed or withheld some other relevant facts, " +
+                             "your appointment with the company shall stand terminated/ canceled without any notice. </p> " +
+                              "<p style='text-align: justify;'>14.4 For other reasons and systems of separation e.g.Dismissal, termination, discharge etc. company policy shall prevail.</p> " +
+
+
+                             "<p><strong>15. Work Conditions: </strong>" +
+                             "<p>15.1  You are employed as <strong> “" + desig + ", " + sec + "” </strong> and vested with such powers to enable you to function and perform your duties.</p> " +
+                             "<p style='text-align: justify;'>15.2  You are required to perform your function strictly in accordance with the instructions of your superiors and according to working program provided to you by the Company.  </p> " +
+                             "<p style='text-align: justify;'>15.3  You will not engage yourself in any other employment, occupation, or business of any nature for remuneration or profit. </p> " +
+                             "<p style='text-align: justify;'>15.4  Your services will be governed by the Rules of the Company in force from time to time. </p> " +
+
+                            "<p style='text-align: justify;'><strong>16. Required Documents: </strong> You are requested to submit the following documents within 07 (seven) days from the date of receipt of this appointment letter: " +
+
+                             "<p style='text-align: justify;'>16.1  Original & photocopies of all academic certificates.  </p> " +
+                             "<p style='text-align: justify;'>16.2  Original & photocopies of Letter of acceptance of resignation in the Company Letter Head from the previous employer.  </p> " +
+                             "<p style='text-align: justify;'>16.3  Original & photocopies of all Experience Certificate(s). </p> " +
+                             "<p style='text-align: justify;'>16.4  4 copies Passport size photograph  </p> " +
+                             "<p style='text-align: justify;'>16.5  2 copies Passport size photograph for Employee Nominee. </p> " +
+                             "<p style='text-align: justify;'>16.6  Photocopy of passport / any other photo ID / photocopy of National ID Card. </p> " +
+                             "<p style='text-align: justify;'>16.7  You are to submit us your clearance letter, which has been duly issued by your previous employer at the time of joining. </p> " +
+
+                             "<p style='text-align: justify;'><strong>17. Acceptance: </strong> Please signify your acceptance of the above terms and conditions of your employment in the company by signing the duplicate copy of this letter of appointment as a token of your acceptance. </p>" +
+                             "<p style='text-align: justify;'><strong>18. Miscellaneous: </strong>Other terms and conditions of service will be in accordance with the company rules and regulations, which may be altered by the company from time to time.</p>" +
+
+
+                            "<p>&nbsp;For <strong>" + comnam + " </strong>," +
+                            "</p><p>&nbsp;</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director and Head of HR" + "</p><p>" + "Admin and Security Department" + "</p>" +
+                            "<p style='text-align:center'><strong><u>ACCEPTANCE</u></strong></p>" +
+                            "<p style='text-align: justify;'>I, <strong> " + name + " </strong>  have read and fully understood the terms and conditions set out in the Letter of Appointment dated <strong>" + System.DateTime.Now.ToString("dd MMM yyyy") +
+                            "</strong> in particular, I have read and  fully understood clauses of the Letter of Appointment. I do hear by confirm my acceptance of the terms and conditions in the aforesaid document and agree to be bound by the terms accordingly. </p>" +
+
+                            "<p>Signature:-------------------------------------Date:------------------ </p>" +
+                            "</div>";
+
+                    }
                     break;
 
                     //offer letter
@@ -391,7 +476,7 @@ namespace RealERPWEB
                     {
                         lbody = "<p style='margin-bottom:0'><br/><br/>Ref: "+refno+"</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
        "<p style='margin-bottom:-11px'>Address: "+peradd+" </p>" +
-       "<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : "+ mobile + "</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>Mr " + name + "," + "</strong></p>" +
+       "<p style='margin-bottom:0'><br>Mobile : "+ mobile + "</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>Mr " + name + "," + "</strong></p>" +
        "<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + desig + ", " + sec + ",</strong> in " + dept + ", which shall commence on or before <strong> " + doj + " </strong>." +
        "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
        "<li style='margin-top:5px'>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li style='margin-top:5px'>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li style='margin-top:5px'>Photocopy of National ID card/ Passport (employee and nominee).</li><li style='margin-top:5px'>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
