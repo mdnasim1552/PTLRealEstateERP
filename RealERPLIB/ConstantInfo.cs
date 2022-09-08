@@ -641,6 +641,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1603000", "1603015", "F_16_Bill", "RptBillStatus?", "Type=ProStatus", "Project Status", "Billing", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1602000", "1602018", "F_16_Bill", "CustOthMoneyReceipt?", "Type=Billing", "Collection -Other's", "Billing", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1603000", "1603019", "F_22_Sal", "RptMktMoneyReceipt?", "Type=Billing", "Money Receipt", "Billing", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1602000", "1602024", "F_16_Bill", "CustOthMoneyReceipt?", "Type=Billing&pactcode=", "Collection -Other's", "Billing", "False", "False", "False", "False" }); ;
 
 
             tblObj.Rows.Add(new Object[] { "1603000", "1603030", "F_16_Bill", "RptProBillStatus?", "Type=Billstatus", "Progress Bill Status", "Billing", "False", "False", "False", "False" });
@@ -1827,6 +1828,17 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3703000", "3703001", "F_22_Sal", "RptTransactionSt?", "Type=LOTransDateWise", "Day Wise Collection(L/O)", "Landowner Managementn", "False", "False", "False", "False" });
 
             #endregion
+
+
+            #region Service Management
+
+            tblObj.Rows.Add(new Object[] { "7051000", "7051001", "F_99_Allinterface", "RptServiceInterface", "", "Service Interface", "Service Management", "False", "False", "False", "False" });
+
+
+            #endregion
+
+
+
 
             //37. Automated Identify Tasks
             #region Automated Identify Tasks
