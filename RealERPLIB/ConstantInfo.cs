@@ -1825,7 +1825,9 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "3702000", "3702010", "F_37_LOwner", "LOMoneyReciptapp?", "Type=Entry", "Money Receipt Approval", "Landowner Management", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "3703000", "3703001", "F_22_Sal", "RptTransactionSt?", "Type=LOTransDateWise", "Day Wise Collection(L/O)", "Landowner Managementn", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3703000", "3703001", "F_22_Sal", "RptTransactionSt?", "Type=LOTransDateWise", "Day Wise Collection (L/O)", "Landowner Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3703000", "3703010", "F_23_CR", "RptCustPayStatus?", "Type=LOClLedger", "Client Ledger (L/O)", "Landowner Management", "False", "False", "False", "False" });
+
 
             #endregion
 
@@ -10251,14 +10253,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0258000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0259000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0260000000", "", "", "", true, "" });
+            
 
-
-
-
-
-            mnuTbl1.Rows.Add(new Object[] { "0301000000", "01. Day Wise Collection(L/O)", "F_22_Sal/RptTransactionSt?Type=LOTransDateWise", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000000", "01. Customer Payment Schedule (LO)", "F_22_Sal/RptSalInterest?Type=LO", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000000", "", "", "", true, "" });           
+            mnuTbl1.Rows.Add(new Object[] { "0301000000", "01. Customer Payment Schedule (L/O)", "F_22_Sal/RptSalInterest?Type=LO", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000000", "02. Day Wise Collection(L/O)", "F_22_Sal/RptTransactionSt?Type=LOTransDateWise", "", true, "" });          
+            mnuTbl1.Rows.Add(new Object[] { "0303000000", "03. Client Ledger (L/O)", "F_23_CR/RptCustPayStatus?Type=LOClLedger", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0306000000", "", "", "", true, "" });
