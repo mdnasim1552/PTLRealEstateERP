@@ -702,6 +702,9 @@ namespace RealERPWEB.F_22_Sal
             this.ddlFloor_SelectedIndexChanged(null, null);
         }
 
+        protected void lbtnOk_Click1(object sender, EventArgs e)
+        {
 
+        }
     }
 }
