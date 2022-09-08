@@ -652,23 +652,25 @@ namespace RealERPWEB.F_70_Services
                                             chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
                                         resultQuotArray.Add(resultQuotA);
 
-
-
+                                       
                                     }
                                 }
                                 if (type == "Approval")
                                 {
+                                    string countMat = obj.Where(x => x.resourcecode.StartsWith("01")).ToList().Count == 0 ? "0" : "1";
+                                    string countSubCon = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count == 0 ? "0" : "1";
+                                    string countOH = obj.Where(x => x.resourcecode.StartsWith("12")).ToList().Count == 0 ? "0" : "1";
+
+                                    string ttlCount = countMat + countSubCon + countOH;
+                                   
                                     if (isPrevCode.Text == "")
                                     {
                                         string resultCodebook = lblActcode.Text == "" ? "" : isMappedCodeDataUpdated();
-                                        if (resultCodebook == "41")
+                                        if (resultCodebook != "")
                                         {
 
-                                        }
-                                        else if (resultCodebook != "")
-                                        {
                                             string pactcode = "16" + ASTUtility.Right(resultCodebook, 10);
-                                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, "", "", "", "",
+                                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, ttlCount.ToString(), "", "", "",
                                                "", "", "", "", "", "", "", "", "", "", "", "", "");
                                             result = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "INSERTUPDATELINK", userId, pactcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
@@ -676,7 +678,7 @@ namespace RealERPWEB.F_70_Services
                                     }
                                     else
                                     {
-                                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, isPrevCode.Text, "", "", "", "",
+                                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, isPrevCode.Text, ttlCount.ToString(), "", "", "",
                                               "", "", "", "", "", "", "", "", "", "", "", "", "");
                                     }
 

@@ -42,6 +42,17 @@ namespace RealERPWEB.F_23_CR
                     this.chkPrevious.Visible = false;
 
                 }
+
+                string pactcode = Request.QueryString["pactcode"] == null ? "" : Request.QueryString["pactcode"].ToString();
+
+                if (pactcode != "")
+                {
+                    ddlProjectName.SelectedValue = pactcode;
+                    ddlProjectName.Enabled = false;
+                    ddlProjectName_SelectedIndexChanged(null, null);
+                }
+
+
                 this.txtSrcPro.Focus();
                 txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
             }
