@@ -232,6 +232,24 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
 
             }
         }
+        [Serializable]
+        public class ERptGroupAtt
+        {
+            public string comcod { get; set; }
+            public string comnam { get; set; }
+            public double ttlstap { get; set; }
+            public double present { get; set; }
+            public double late { get; set; }
+            public double earlyLev { get; set; }
+            public double onlev { get; set; }
+            public double absnt { get; set; }
+
+
+            public ERptGroupAtt()
+            {
+
+            }
+        }
 
 
     }
