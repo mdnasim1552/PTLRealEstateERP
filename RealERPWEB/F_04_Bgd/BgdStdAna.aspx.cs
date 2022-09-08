@@ -538,13 +538,13 @@ namespace RealERPWEB.F_04_Bgd
 
             }
             dtstd = ((DataTable)Session["tblirstdana"]).Clone();
-          
+
             string rsircode = "";
             foreach (DataRow dr1 in tbl1.Rows)
             {
 
                 flr = 0;
-                 rsircode = dr1["rsircode"].ToString();
+                rsircode = dr1["rsircode"].ToString();
                 //  int grpst= (ASTUtility.Left(comcod, 1) == "2") ? 51 : 1; 
 
                 for (int j = 1; j <= tocount; j++)
@@ -557,19 +557,20 @@ namespace RealERPWEB.F_04_Bgd
                     drstd["rstdqty"] = rstdqty;
                     dtstd.Rows.Add(drstd);
 
-                   // result = bgdData.UpdateXmlTransInfo(comcod, "SP_ENTRY_IRSTDANA", "UPDATEANASHT", null, null, null, ItmCod, rsircode, flrcod, rstdqty, usrid, PostedDat, trmid, sessionid, "", "");
+                    // result = bgdData.UpdateXmlTransInfo(comcod, "SP_ENTRY_IRSTDANA", "UPDATEANASHT", null, null, null, ItmCod, rsircode, flrcod, rstdqty, usrid, PostedDat, trmid, sessionid, "", "");
 
 
                 }
             }
-
+            // todo for analysis tracking 
+            string irstdatrack = this.IsAanalysisTrack();
 
             DataSet ds1 = new DataSet("ds1");
             ds1.Merge(dtstd);
             ds1.Tables[0].TableName = "tbl1";
             //string xml = ds1.GetXml();
-           // return;
-            bool result = bgdData.UpdateXmlTransInfo(comcod, "SP_ENTRY_IRSTDANA", "UPDATEANASHT", ds1, null, null, ItmCod, "", "", "", usrid, PostedDat, trmid, sessionid);
+            // return;
+            bool result = bgdData.UpdateXmlTransInfo(comcod, "SP_ENTRY_IRSTDANA", "UPDATEANASHT", ds1, null, null, ItmCod, "", "", "", usrid, PostedDat, trmid, sessionid, irstdatrack);
 
             if (!result)
             {
@@ -626,7 +627,44 @@ namespace RealERPWEB.F_04_Bgd
         }
 
 
+        private string IsAanalysisTrack()
+        {
+            string comcod = this.GetCompCode();
+            string istreck = "";
+            switch (comcod)
+            {
 
+                case "3101":
+
+                case "1108": //assure
+                case "1109": //assure
+                case "3315": //assure
+                case "3316": //assure
+                case "3330":
+                case "3339":
+                case "3340":
+                case "1205": //p2p
+                case "3351": //p2p
+                case "3352": //p2p
+
+                case "3354": //edison
+                case "3355": // greenwood
+                case "3336": // shuvastu
+                case "3337": // shuvastu
+
+                case "1206": // acme
+                case "1207": // acme
+                case "3338": // acme
+                case "3369": // acme
+
+                    istreck = "AnalysisTrack";
+                    break;
+                default:
+                    istreck = "";
+                    break;
+            }
+            return istreck;
+        }
         private void CreateTable()
         {
             DataTable tblt01 = new DataTable();
@@ -759,7 +797,7 @@ namespace RealERPWEB.F_04_Bgd
 
             if (result)
             {
-                bool result2 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE02", Itemcode,Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                bool result2 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE02", Itemcode, Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
                 int rowindex = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + e.RowIndex;
                 dt.Rows[rowindex].Delete();
             }

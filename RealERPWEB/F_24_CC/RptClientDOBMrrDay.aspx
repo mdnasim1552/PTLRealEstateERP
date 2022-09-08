@@ -26,21 +26,21 @@
                 </asp:UpdateProgress>
             </div>
             <div class="card mt-5 moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="card-header">
+                <div class="card-header">
+                    
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewProsClient" runat="server">
                         </asp:View>
                         <asp:View ID="ViewClntBrthDay" runat="server">
-                            <div class="row">
-                                <fieldset class="scheduler-border fieldset_A">
-                                    <div class="form-horizontal">
-                                        <asp:Panel ID="Panel4" runat="server">
+                       
+                               
+                                   
+                                        <asp:Panel ID="Panel4" runat="server" class="row mt-1 mb-2">
                                             
-                                                <div class="col-lg-10 col-md-10 col-sm-10">
-                                                    <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                    <asp:Label ID="lblDate" runat="server"  CssClass="form-label" Text="Date:"></asp:Label>
 
-                                                    <asp:TextBox ID="txtDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control"></asp:TextBox>
                                                     <asp:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Enabled="True"
                                                         TargetControlID="txtDate" Format="dd-MMM-yyyy"></asp:CalendarExtender>
 
@@ -48,7 +48,7 @@
                                                    <%-- <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>--%>
 
                                                 </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-10">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 mt-4">
                                                  <asp:LinkButton ID="lbtnShowBrthDay" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnShowBrthDay_Click">Ok</asp:LinkButton>
 
                                                 </div>
@@ -56,11 +56,11 @@
                                             
                                         </asp:Panel>
                                    
-                                </fieldset>
-                            </div>
-                            </div>
+                              
+                           
+                          
 
-                            <div class="table table-responsive">
+                            <div class="table table-responsive mt-1">
                                 <asp:GridView ID="gvClientBrthDay" runat="server" AutoGenerateColumns="False" Width="186px" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True">
                                    
@@ -139,22 +139,23 @@
                             </div>
                         </asp:View>
                         <asp:View ID="ViewClientMrrgDay" runat="server">
-                            <asp:Panel ID="Panel1" runat="server">
-                                <div class="form-group">
-                                    <div class="col-md-10 pading5px asitCol10">
-                                        <asp:Label ID="LblmDate" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                            <asp:Panel ID="Panel1" runat="server" class="row mt-1 mb-2">
+                                
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <asp:Label ID="LblmDate" runat="server" CssClass="form-label" Text="Date:"></asp:Label>
 
-                                        <asp:TextBox ID="TxtmDate" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="TxtmDate" runat="server" CssClass="form-control"></asp:TextBox>
                                         <asp:CalendarExtender ID="CalendarExtender1" runat="server" Enabled="True" TargetControlID="TxtmDate"
                                             Format="dd-MMM-yyyy"></asp:CalendarExtender>
+                                        </div>
+                                 <div class="col-lg-1 col-md-1 col-sm-6 mt-3">
+                                        <asp:LinkButton ID="lbtnShowMrgDay" runat="server" CssClass="btn btn-primary " OnClick="lbtnShowMrgDay_Click">Ok</asp:LinkButton>
 
-                                        <asp:LinkButton ID="lbtnShowMrgDay" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnShowMrgDay_Click">Ok</asp:LinkButton>
-
-                                        <asp:Label ID="LblmMsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
+                                        <asp:Label ID="LblmMsg" runat="server" CssClass="btn btn-danger primaryBtn d-none"></asp:Label>
 
                                     </div>
 
-                                </div>
+                                
                             </asp:Panel>
 
 
