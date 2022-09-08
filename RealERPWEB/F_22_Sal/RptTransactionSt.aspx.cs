@@ -65,6 +65,7 @@ namespace RealERPWEB.F_22_Sal
                     : (type == "ServicePayment") ? "Service Charge Payment Details "
                     : (type == "ServiceCollection") ? "Service Charge Collection Details "
                     : (type == "Modification") ? " Modification Service Charge  "
+                    : (type == "LOTransDateWise") ? "Day Wise Collection(L/O)"
                     : "Daily Transaction(Date Wise) Report";
 
             }
@@ -97,6 +98,9 @@ namespace RealERPWEB.F_22_Sal
                     this.rbtnList1.SelectedIndex = 0;
                     break;
 
+
+                    
+                case "LOTransDateWise":
                 case "TransDateWise":
                     this.MultiView1.ActiveViewIndex = 1;
                     this.rbtnList1.Visible = true;
@@ -166,6 +170,9 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
 
+
+
+
             }
         }
 
@@ -173,13 +180,14 @@ namespace RealERPWEB.F_22_Sal
         {
 
             string comcod = this.GetCompCode();
-            string txtSProject = this.Request.QueryString["prjcode"].Length > 0 ? this.Request.QueryString["prjcode"] + "%" : "%" + this.txtSrcPro.Text + "%";
+            string qpactcode = this.Request.QueryString["prjcode"] ?? "";
+            string txtSProject = (qpactcode.Length > 0 ? qpactcode : "%" + this.txtSrcPro.Text) + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETFIANDONPRONAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "pactdesc";
             this.ddlProjectName.DataValueField = "pactcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
-            this.ddlProjectName.SelectedValue = this.Request.QueryString["prjcode"].Length > 0 ? this.Request.QueryString["prjcode"] : "000000000000";
+            this.ddlProjectName.SelectedValue = qpactcode.Length > 0 ? qpactcode : "000000000000";
 
         }
 
@@ -194,6 +202,7 @@ namespace RealERPWEB.F_22_Sal
                 //    this.RptPrjWise();
                 //    break;
                 case "TransDateWise":
+                case "LOTransDateWise":
                     this.RptPrjWise();
                     break;
                 case "ClientStat":
@@ -834,7 +843,12 @@ namespace RealERPWEB.F_22_Sal
                     this.LoadGrid();
                     break;
                 case "TransDateWise":
+                
                     this.LoadGridDateWise();
+                    break;
+
+                case "LOTransDateWise":
+                    this.LoMoneyReciept();
                     break;
                 case "ClientStat":
                     this.LoadClintStat();
@@ -955,6 +969,34 @@ namespace RealERPWEB.F_22_Sal
             string coltype = this.companytype();
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", coltype, fromdate, todate, pactcode, actual, "", "", "", "", "");
+            if (ds1 == null)
+            {
+                this.grvTrnDatWise.DataSource = null;
+                this.grvTrnDatWise.DataBind();
+                return;
+            }
+            Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 3) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 4) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 5) ? HiddenSameData(ds1.Tables[0]) : CollectCurDate(HiddenSameData(ds1.Tables[0]));
+            DataTable dt = (DataTable)Session["DailyTrns"];
+            this.Data_Bind();
+
+        }
+
+
+        private void LoMoneyReciept()
+        {
+
+            Session.Remove("DailyTrns");
+            string comcod = this.GetCompCode();
+            string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+
+            string actual = (this.rbtnList1.SelectedIndex == 2) ? "Actualdate"
+                     : (this.rbtnList1.SelectedIndex == 3) ? "Reconcliedate" : (this.rbtnList1.SelectedIndex == 4) ? "EntryDate" : (this.rbtnList1.SelectedIndex == 5) ? "Depositeddate" : "";
+
+            string coltype = this.companytype();
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "TRANSACTION_STATEMENT2", fromdate, todate, pactcode, actual, "", "", "", "", "");
             if (ds1 == null)
             {
                 this.grvTrnDatWise.DataSource = null;
@@ -1213,9 +1255,7 @@ namespace RealERPWEB.F_22_Sal
                     this.FooterCalculation();
                     break;
                 case "TransDateWise":
-
-
-
+                case "LOTransDateWise":
                     this.grvTrnDatWise.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.grvTrnDatWise.DataSource = (DataTable)Session["DailyTrns"];
                     this.grvTrnDatWise.DataBind();
@@ -1367,6 +1407,7 @@ namespace RealERPWEB.F_22_Sal
 
                     break;
                 case "TransDateWise":
+                case "LOTransDateWise":
 
                     grp = dt1.Rows[0]["grp"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
@@ -1451,6 +1492,7 @@ namespace RealERPWEB.F_22_Sal
                                0 : dt1.Compute("sum(chqamt)", ""))).ToString("#,##0;(#,##0); ");
                     break;
                 case "TransDateWise":
+                case "LOTransDateWise":
 
 
                     DataTable dt4 = dt1.Copy();
