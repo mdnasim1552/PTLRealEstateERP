@@ -1166,13 +1166,22 @@
                                                             </ItemTemplate>
                                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>                                
+                                                        <asp:TemplateField HeaderText="Order No">                                                            
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lgorderno" runat="server"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")) %>'
+                                                                    Width="80px"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
 
 
                                                         <asp:TemplateField HeaderText="Bill Ref">
 
                                                             <HeaderTemplate>
-                                                                <asp:TextBox ID="txtSearchBillRef" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Bill Ref" onkeyup="Search_Gridview(this,3,'gvPurchase')"></asp:TextBox><br />
+                                                                <asp:TextBox ID="txtSearchBillRef" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Bill Ref" onkeyup="Search_Gridview(this,4,'gvPurchase')"></asp:TextBox><br />
 
                                                             </HeaderTemplate>
                                                             <ItemTemplate>
@@ -1224,7 +1233,7 @@
                                                         <asp:TemplateField HeaderText="Supplier Name">
 
                                                             <HeaderTemplate>
-                                                                <asp:TextBox ID="txtSearchSupplirName" BackColor="Transparent" BorderStyle="None" runat="server" Width="180px" placeholder="Supplier Name" onkeyup="Search_Gridview(this,6,'gvPurchase')"></asp:TextBox><br />
+                                                                <asp:TextBox ID="txtSearchSupplirName" BackColor="Transparent" BorderStyle="None" runat="server" Width="180px" placeholder="Supplier Name" onkeyup="Search_Gridview(this,7,'gvPurchase')"></asp:TextBox><br />
 
                                                             </HeaderTemplate>
                                                             <ItemTemplate>
