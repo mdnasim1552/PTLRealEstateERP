@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-6 mt-3 ">
+                        <div class="col-lg-3 col-md-3 col-sm-6  ">
                             <div class="form-group">
                                 <asp:Label ID="Label3" CssClass="d-block" runat="server">Type of Catagory</asp:Label>
 
@@ -105,13 +105,15 @@
                                 <asp:Label ID="lblBankLock" runat="server" CssClass="form-control " Visible="False" Width="233"></asp:Label>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 mt-3 ">
+                        <div class="col-lg-3 col-md-5 col-sm-6  ">
+                            <div class="form-group">
                             <asp:Label ID="Label4" runat="server">Type of Employee</asp:Label>
 
-                            <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="form-control"
-                                Font-Size="14px" Height="16px" RepeatColumns="14" RepeatDirection="Horizontal"
+                            <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass=" d-done"
+                                Font-Size="14px"  RepeatColumns="14" 
                                 Visible="false">
                             </asp:RadioButtonList>
+                                </div>
                         </div>
 
 
