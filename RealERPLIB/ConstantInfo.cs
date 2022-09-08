@@ -1272,10 +1272,10 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "2303000", "2303130", "F_23_CR", "CustChDishoner", "", "List of Return Cheque -01", "Credit Realization", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2303000", "2303140", "F_23_CR", "RptTransactionSt?", "Type=TransDateWise", "Daily Collection(Date Wise)", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303140", "F_22_Sal", "RptTransactionSt?", "Type=TransDateWise", "Daily Collection(Date Wise)", "Credit Realization", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "2303000", "2303141", "RptTransactionSt?", "Type=TransPrjWise", "Daily Collection(Project Wise)", "Credit Realization", "False", "False", "False", "False" });;
-            tblObj.Rows.Add(new Object[] { "2303000", "2303142", "F_23_CR", "RptTransactionSt?", "Type=TransSummary", "Day Wise Collection Summary", "Credit Realization", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2303000", "2303145", "F_23_CR", "RptTransactionSt?", "Type=RepChq", "Replacement Cheque Report", "Credit Realization", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2303000", "2303142", "F_22_Sal", "RptTransactionSt?", "Type=TransSummary", "Day Wise Collection Summary", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303145", "F_22_Sal", "RptTransactionSt?", "Type=RepChq", "Replacement Cheque Report", "Credit Realization", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2303000", "2303155", "F_23_CR", "RptReceivedList02?", "Type=DuesCollCR", "Dues Collection Statment 02", "Credit Realization", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2303000", "2303156", "F_23_CR", "RptReceivedList02?", "Type=ProClientst", "Project Wise Clieint Status", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303163", "F_23_CR", "RptSalInterest?", "Type=DueCollAll", "Invoice Print", "Credit Realization", "False", "False", "False", "False" });
@@ -1820,6 +1820,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3702000", "3702003", "F_22_Sal", "MktSalsLOPayment?Type=Sales", "", "SalesWith Payment Schedule", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3702000", "3702005", "F_23_CR", "MktLOMoneyReceipt?", "Type=CustCare", "Collection Sales", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3702000", "3702006", "F_22_Sal", "RptSalInterest?", "Type=LO", "Customer Payment Schedule (LO)", "Landowner Management", "False", "False", "False", "False" });
+
+
+            tblObj.Rows.Add(new Object[] { "3702000", "3702010", "F_37_LOwner", "LOMoneyReciptapp?", "Type=Entry", "Money Receipt Approval", "Landowner Management", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "3703000", "3703001", "F_22_Sal", "RptTransactionSt?", "Type=LOTransDateWise", "Day Wise Collection(L/O)", "Landowner Managementn", "False", "False", "False", "False" });
 
             #endregion
 
@@ -10169,12 +10174,15 @@ namespace RealERPLIB
         private static void MenuLO(DataTable mnuTbl1)
         {
 
-           
+
+          
+
+
 
             mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Unit Fixation", "F_22_Sal/MktEntryUnit?Type=LandOwner", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Sales Payment Schedule", "F_22_Sal/MktSalsLOPayment?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "03. Money Receipt Create", "F_23_CR/MktLOMoneyReceipt?Type=CustCare", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0204000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0204000000", "04. Money Receipt Approval", "F_37_LOwner/LOMoneyReciptapp?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "", "", "", true, "" });
@@ -10233,10 +10241,12 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0260000000", "", "", "", true, "" });
 
 
-          
-            mnuTbl1.Rows.Add(new Object[] { "0301000000", "01. Customer Payment Schedule (LO)", "F_22_Sal/RptSalInterest?Type=LO", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000000", "", "", "", true, "" });
+
+
+
+            mnuTbl1.Rows.Add(new Object[] { "0301000000", "01. Day Wise Collection(L/O)", "F_22_Sal/RptTransactionSt?Type=LOTransDateWise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000000", "01. Customer Payment Schedule (LO)", "F_22_Sal/RptSalInterest?Type=LO", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000000", "", "", "", true, "" });           
             mnuTbl1.Rows.Add(new Object[] { "0304000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0306000000", "", "", "", true, "" });
@@ -10297,24 +10307,24 @@ namespace RealERPLIB
 
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0401000001", "", "", "", true, "" });
+          
 
-            mnuTbl1.Rows.Add(new Object[] { "0401000002", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000003", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000004", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000005", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000006", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000007", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000008", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000009", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000010", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000011", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000012", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000013", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000014", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000015", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000016", "", "", "", true, "" });
+
+          
+            mnuTbl1.Rows.Add(new Object[] { "0402000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0405000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0406000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0407000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401100000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401200000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401300000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401400000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401500000", "", "", "", true, "" });          
             mnuTbl1.Rows.Add(new Object[] { "0418000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0419000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0420000000", "", "", "", true, "" });
