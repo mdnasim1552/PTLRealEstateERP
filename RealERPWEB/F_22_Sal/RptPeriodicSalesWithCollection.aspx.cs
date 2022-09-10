@@ -187,7 +187,7 @@ namespace RealERPWEB.F_22_Sal
         {
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
             this.gvsaleswithcoll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvsaleswithcoll.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
+            //this.gvsaleswithcoll.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
             this.gvsaleswithcoll.DataSource = dt;
             this.gvsaleswithcoll.DataBind();
 
@@ -199,6 +199,7 @@ namespace RealERPWEB.F_22_Sal
 
         private void FooterCalculation()
         {
+            
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
             if (dt.Rows.Count == 0)
                 return;
@@ -209,6 +210,13 @@ namespace RealERPWEB.F_22_Sal
 
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFSalesval")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(suamt)", "")) ?
                        0.00 : dt.Compute("Sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFbookdues")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bookdues)", "")) ?
+                  0.00 : dt.Compute("Sum(bookdues)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFInsdues")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(insdues)", "")) ?
+                  0.00 : dt.Compute("Sum(insdues)", ""))).ToString("#,##0;(#,##0); ");
+
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFbookam")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cbookam)", "")) ?
                 0.00 : dt.Compute("Sum(cbookam)", ""))).ToString("#,##0;(#,##0); ");
 
@@ -218,12 +226,17 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFtocall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tocollam)", "")) ?
                 0.00 : dt.Compute("Sum(tocollam)", ""))).ToString("#,##0;(#,##0); ");
 
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFnetbooking")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netbookam)", "")) ?
+            0.00 : dt.Compute("Sum(netbookam)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFnetIns")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netinsdues)", "")) ?
+                0.00 : dt.Compute("Sum(netinsdues)", ""))).ToString("#,##0;(#,##0); ");
+
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFbalance")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balance)", "")) ?
                 0.00 : dt.Compute("Sum(balance)", ""))).ToString("#,##0;(#,##0); ");
 
             Session["Report1"] = gvsaleswithcoll;
             ((HyperLink)this.gvsaleswithcoll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
 
 
 
@@ -285,14 +298,14 @@ namespace RealERPWEB.F_22_Sal
 
 
                 TableCell cell08 = new TableCell();
-                cell08.Text = "Dues";
+                cell08.Text = "Receivable";
                 cell08.HorizontalAlign = HorizontalAlign.Center;
                 cell08.ColumnSpan = 2;
                 cell08.Font.Bold = true;
 
 
                 TableCell cell09 = new TableCell();
-                cell09.Text = "Collection";
+                cell09.Text = "Received (Encash)";
                 cell09.HorizontalAlign = HorizontalAlign.Center;
                 cell09.ColumnSpan = 2;
                 cell09.Font.Bold = true;
@@ -304,10 +317,10 @@ namespace RealERPWEB.F_22_Sal
                 cell10.ColumnSpan = 1;
 
                 TableCell cell11 = new TableCell();
-                cell11.Text = "";
+                cell11.Text = "Balance";
                 cell11.HorizontalAlign = HorizontalAlign.Center;
-                cell11.ColumnSpan = 1;
-
+                cell11.ColumnSpan = 3;
+                cell11.Font.Bold = true;
                 //TableCell cell12 = new TableCell();
                 //cell12.Text = "";
                 //cell12.HorizontalAlign = HorizontalAlign.Center;
@@ -332,9 +345,6 @@ namespace RealERPWEB.F_22_Sal
                 gvrow.Cells.Add(cell11);
                 //gvrow.Cells.Add(cell12);
                 //gvrow.Cells.Add(cell13);
-
-
-
 
                 gvsaleswithcoll.Controls[0].Controls.AddAt(0, gvrow);
             }
