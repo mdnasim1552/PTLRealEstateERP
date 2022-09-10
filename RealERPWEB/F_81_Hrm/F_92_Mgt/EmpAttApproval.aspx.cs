@@ -44,7 +44,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
             string id = this.Request.QueryString["ltrnid"] ?? "";
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST", fDate, tDate, usrid, type, DeptHead, id, "%%", "", "");
+            DataSet ds1 = HRData.GetTransInfoNew(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETALLATTREQUEST",null,null,null, fDate, tDate, usrid, type, DeptHead, id, "%%", "%", "%","%","%","%");
                if (ds1 == null)
                 return;
             ViewState["tblattreq"] = ds1.Tables[0];
@@ -87,6 +87,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataTable dt1 = (DataTable)ViewState["tblattreq"];
             string reqtype = this.Request.QueryString["Reqtype"]??"";
             string empid = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empid"].ToString();
+
             string empUsrID = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empuserid"].ToString();
             string empEmail = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empEmail"].ToString();
             string idcard = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["idcard"].ToString();
