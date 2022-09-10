@@ -622,7 +622,7 @@
                                     <div>
                                         <asp:Panel ID="pnlTotalCount" runat="server">
                                             <div class="row">
-                                                <h6 class="mx-4">Total</h6>
+                                                <h6 class="mx-4">Status</h6>
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvTotal" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" ShowFooter="True">
@@ -843,7 +843,7 @@
                                         </asp:Panel>
                                         <asp:Panel ID="pnlApproval" runat="server" Visible="false">
                                             <div class="row">
-                                                <h6 class="mx-4">Approval</h6>
+                                                <h6 class="mx-4">Accept/Reject</h6>
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvApproval" runat="server" AutoGenerateColumns="False"
