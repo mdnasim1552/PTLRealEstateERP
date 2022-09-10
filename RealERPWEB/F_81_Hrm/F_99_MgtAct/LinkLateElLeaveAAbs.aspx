@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="LinkLateElLeaveAAbs.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_99_MgtAct.LinkLateElLeaveAAbs" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="LinkLateElLeaveAAbs.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_99_MgtAct.LinkLateElLeaveAAbs" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
