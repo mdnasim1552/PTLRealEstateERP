@@ -623,7 +623,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3367": //Epic
-                case "3101": //Epic
+                //case "3101": //Epic
                     chkSecondApp = "Mgt App.";
                     reqcheckapp = "Checked App.";
                     break;
@@ -5378,7 +5378,6 @@ namespace RealERPWEB.F_99_Allinterface
             string currentptah = "PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
             string totalpath = hostname + currentptah;
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
-            //*/
 
             //hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno+ "&PrintOpt="+ PrintOpt;
         }

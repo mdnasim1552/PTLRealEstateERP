@@ -838,7 +838,7 @@ namespace RealERPWEB.F_12_Inv
             string PrintReq = "";
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "2305":
                 case "3305":
                 case "3306":
@@ -1700,7 +1700,7 @@ namespace RealERPWEB.F_12_Inv
                         // case "3338": //ACME
                         case "3348": //Credence
                         case "3367": //EPic
-                        case "3101": //EPic
+                        //case "3101": //EPic
                                      //case "3368": //Finlay
                                      //  case "3101": //Model
                             break;
@@ -2317,7 +2317,7 @@ namespace RealERPWEB.F_12_Inv
                     }
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3336":
                 case "3337":
 
