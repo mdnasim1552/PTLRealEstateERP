@@ -325,11 +325,12 @@ namespace RealERPWEB.F_09_PImp
 
 
             string billno = this.ddlPrevBillList.SelectedValue.ToString();
+            string PrintOpt = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             //if(billno==""){
             //    billno = this.lblCurNo1.Text.Trim().Substring(0, 3) + this.txtCurDate.Text.Trim().Substring(7, 4) + this.lblCurNo1.Text.Trim().Substring(3, 2) + this.lblCurNo2.Text.Trim();
             //}
             // string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            string currentptah = this.ResolveUrl("~/F_99_Allinterface/PurchasePrint.aspx?Type=ConBillFinalization&billno=" + billno);
+            string currentptah = this.ResolveUrl("~/F_99_Allinterface/PurchasePrint.aspx?Type=ConBillFinalization&billno=" + billno +"&PrintOpt=" + PrintOpt);
             // string totalpath =  currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + currentptah + "', target='_blank');</script>";
 

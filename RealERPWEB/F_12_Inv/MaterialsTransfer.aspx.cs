@@ -304,7 +304,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3101":
                 case "3368":
-                    dv1.RowFilter = "mspcfcod = '" + mResCode + "";
+                    dv1.RowFilter = "mspcfcod = '" + mResCode + "'";
                     break;
                 default:
                     dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";

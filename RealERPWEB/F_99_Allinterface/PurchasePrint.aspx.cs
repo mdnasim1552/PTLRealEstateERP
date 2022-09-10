@@ -5962,7 +5962,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBill01";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill02";
                     break;
@@ -6127,7 +6127,8 @@ namespace RealERPWEB.F_99_Allinterface
             string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-
+            string PrintOpt2 = Request.QueryString.AllKeys.Contains("PrintOpt") ? this.Request.QueryString["PrintOpt"].ToString() : "";
+            string PrintOpt = PrintOpt2.Length > 0 ? PrintOpt2 : ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
             // For  Image withdrawn 
 
@@ -6375,17 +6376,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             // var TAmt = lst.Select(p => p.billamt).Sum();
             double netamt = toamt + Convert.ToDouble("0" + dtd.Rows[0]["reward"]) - Convert.ToDouble("0" + dtd.Rows[0]["sdamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["dedamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["penamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["advamt"]);
             //double TAmt = Convert.ToDouble("0" + ((Label)this.gvSubBill.FooterRow.FindControl("lgvFBillAmt")).Text) - Convert.ToDouble("0" + this.txtSDAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtDedAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtPenaltyAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
@@ -6419,9 +6409,11 @@ namespace RealERPWEB.F_99_Allinterface
 
             //  Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(TAmt), 2)));
             Session["Report1"] = rptbill;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
 
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
 
 
 
