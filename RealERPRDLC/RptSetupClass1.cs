@@ -690,7 +690,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalPayScheduleLanco": Rpt1a = SetRptSalPayScheduleLanco(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 //periodic sales collection robi
-                case "R_22_Sal.RptPeriodicSalesCollection": Rpt1a = SetRptPeriodicSalesCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptPeriodicSalesWithCollection": Rpt1a = SetRptPeriodicSalesWithCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
                 #region Credit Realization(CR)
@@ -4194,7 +4194,7 @@ namespace RealERPRDLC
         }
 
 
-        private static LocalReport SetRptPeriodicSalesCollection(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetRptPeriodicSalesWithCollection(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.perodicsalesColl>)RptDataSet));
             return Rpt1a;
