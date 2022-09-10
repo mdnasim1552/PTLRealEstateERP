@@ -162,7 +162,7 @@
                                             </ItemTemplate>
                                              <FooterTemplate>
                                                 <asp:Label ID="lgvTotalnagad" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Style="text-align: right"  Text="Total"></asp:Label>
+                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
 
 
@@ -212,8 +212,15 @@
                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "saldat")).ToString("dd-MMM-yyyy") %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
+                                 <FooterTemplate>
+                                                <asp:Label ID="lgvFsalesdate" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right"  Text="Total :"></asp:Label>
+                                     </FooterTemplate>
+
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="left" />
+                                 <FooterStyle HorizontalAlign="Right" />
+
                             </asp:TemplateField>
 
                              <asp:TemplateField HeaderText="Budgeted Amount">
@@ -252,7 +259,7 @@
                                  <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
 
-                               <asp:TemplateField HeaderText="Booking ">
+                               <asp:TemplateField HeaderText="Booking">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvbookdues" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bookdues")).ToString("#,##0;(#,##0); ") %>'
@@ -317,41 +324,10 @@
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
 
-                           <%--  <asp:TemplateField HeaderText="Booking">
-                                <ItemTemplate>
-                                    <asp:Label ID="lgvnetbooking" runat="server" Style="text-align: right"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netbookam")).ToString("#,##0;(#,##0); ") %>'
-                                        Width="90px"></asp:Label>
-                                </ItemTemplate>
-
-                                <FooterTemplate>
-                                   <asp:Label ID="lgvFnetbooking" runat="server" Font-Bold="True" Font-Size="12px"
-                                         ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
-                                </FooterTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <FooterStyle HorizontalAlign="Right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                            </asp:TemplateField>
-
-
-                            <asp:TemplateField HeaderText="Installment">
-                                <ItemTemplate>
-                                    <asp:Label ID="lgvnetIns" runat="server" Style="text-align: right"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netinsdues")).ToString("#,##0;(#,##0); ") %>'
-                                        Width="90px"></asp:Label>
-                                </ItemTemplate>
-
-                                <FooterTemplate>
-                                   <asp:Label ID="lgvFnetIns" runat="server" Font-Bold="True" Font-Size="12px"
-                                         ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
-                                </FooterTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <FooterStyle HorizontalAlign="Right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                            </asp:TemplateField>
+                       
 
                             
-                            <asp:TemplateField HeaderText="Total Dues">
+                       <%--     <asp:TemplateField HeaderText="Total Dues">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvtdues" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tduesamt")).ToString("#,##0;(#,##0); ") %>'
@@ -383,11 +359,43 @@
                                 <FooterStyle HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                       
-                       
-                            
 
-                            <asp:TemplateField HeaderText="Balance">
+                              <asp:TemplateField HeaderText="Booking">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgvnetbooking" runat="server" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netbookam")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="90px"></asp:Label>
+                                </ItemTemplate>
+
+                                <FooterTemplate>
+                                   <asp:Label ID="lgvFnetbooking" runat="server" Font-Bold="True" Font-Size="12px"
+                                         ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
+                                </FooterTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <FooterStyle HorizontalAlign="Right" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
+
+                            <asp:TemplateField HeaderText="Installment">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgvnetIns" runat="server" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netinsdues")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="90px"></asp:Label>
+                                </ItemTemplate>
+
+                                <FooterTemplate>
+                                   <asp:Label ID="lgvFnetIns" runat="server" Font-Bold="True" Font-Size="12px"
+                                         ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
+                                </FooterTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <FooterStyle HorizontalAlign="Right" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+                       
+                       
+                           
+                            <asp:TemplateField HeaderText="Total">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvbalance" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balance")).ToString("#,##0;(#,##0); ") %>'
