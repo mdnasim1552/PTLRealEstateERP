@@ -14,6 +14,7 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
 
 namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 {
@@ -36,6 +37,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
 
         }
 
@@ -103,7 +105,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
 
         }
-
+      
+        
 
 
 
