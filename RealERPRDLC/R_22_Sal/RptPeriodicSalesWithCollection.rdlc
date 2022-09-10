@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>d8dc9d72-2e28-4024-845d-fbb4858b3d80</rd:DataSourceID>
+      <rd:DataSourceID>f4de9814-5f32-4ff3-a1e9-b889ac08883b</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -19,6 +19,14 @@
       <Fields>
         <Field Name="balance">
           <DataField>balance</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bgdamt">
+          <DataField>bgdamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bookdues">
+          <DataField>bookdues</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="cbookam">
@@ -37,12 +45,36 @@
           <DataField>custname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="insdues">
+          <DataField>insdues</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="netbookam">
+          <DataField>netbookam</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="netinsdues">
+          <DataField>netinsdues</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="pactcode">
+          <DataField>pactcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="pactdesc">
           <DataField>pactdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="saldat">
+          <DataField>saldat</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="salvalues">
           <DataField>salvalues</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="suamt">
+          <DataField>suamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="tocollam">
@@ -52,6 +84,10 @@
         <Field Name="udesc">
           <DataField>udesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="usize">
+          <DataField>usize</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -1740,7 +1776,7 @@
       <Width>10.74834in</Width>
       <Page>
         <PageHeader>
-          <Height>0.89345in</Height>
+          <Height>0.85178in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1766,9 +1802,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox12</rd:DefaultName>
               <Top>0.60178in</Top>
-              <Left>1.32962in</Left>
+              <Left>1.87129in</Left>
               <Height>0.20833in</Height>
-              <Width>7.71243in</Width>
+              <Width>7.32701in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1800,10 +1836,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox12</rd:DefaultName>
-              <Top>0.33789in</Top>
-              <Left>1.33087in</Left>
+              <Top>0.324in</Top>
+              <Left>1.87129in</Left>
               <Height>0.25in</Height>
-              <Width>7.71583in</Width>
+              <Width>7.32701in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1837,9 +1873,9 @@
               </Paragraphs>
               <rd:DefaultName>companyname</rd:DefaultName>
               <Top>0.04622in</Top>
-              <Left>1.32962in</Left>
+              <Left>1.87129in</Left>
               <Height>0.25in</Height>
-              <Width>7.71708in</Width>
+              <Width>7.32701in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1883,7 +1919,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox12</rd:DefaultName>
-              <Top>0.05556in</Top>
+              <Top>0.04167in</Top>
               <Left>7.82876in</Left>
               <Height>0.18056in</Height>
               <Width>2.91958in</Width>
