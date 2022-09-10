@@ -652,7 +652,7 @@ namespace RealERPWEB.F_70_Services
                                             chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
                                         resultQuotArray.Add(resultQuotA);
 
-                                       
+
                                     }
                                 }
                                 if (type == "Approval")
@@ -662,7 +662,7 @@ namespace RealERPWEB.F_70_Services
                                     string countOH = obj.Where(x => x.resourcecode.StartsWith("12")).ToList().Count == 0 ? "0" : "1";
 
                                     string ttlCount = countMat + countSubCon + countOH;
-                                   
+
                                     if (isPrevCode.Text == "")
                                     {
                                         string resultCodebook = lblActcode.Text == "" ? "" : isMappedCodeDataUpdated();
@@ -691,18 +691,32 @@ namespace RealERPWEB.F_70_Services
                                 else
                                 {
                                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{quotid} - Updated Successful" + "');", true);
+                                    /*
+                                    lnkRdlcPrint.PostBackUrl= "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
+                                    */
+                                    string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_70_Services/";
+                                    string currentptah = "";
+                                   
                                     if (type == "Entry")
                                     {
                                         ClearPage();
                                     }
                                     if (type == "Approval")
                                     {
-                                        Response.Redirect("/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid);
+                                        currentptah = "QuotationEntry?Type=ApprovalEdit&QId=" + quotid;
+                                        string totalpath = hostname + currentptah;
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
+                                        //Response.Redirect("~/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid, false);
                                     }
                                     if (type == "Check")
                                     {
-                                        Response.Redirect("/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid);
+                                        //Response.Redirect("~/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid, false);
+                                        currentptah = "QuotationEntry?Type=CheckEdit&QId=" + quotid;
+                                        string totalpath = hostname + currentptah;
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
+
                                     }
+
                                 }
                             }
                         }
