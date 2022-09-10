@@ -78,7 +78,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
-            this.PrintProjectWiseCollection();
+            this.PrintRptPeriodicSalesWithCollection();
 
 
 
@@ -86,7 +86,7 @@ namespace RealERPWEB.F_22_Sal
         }
 
 
-        private void PrintProjectWiseCollection()
+        private void PrintRptPeriodicSalesWithCollection()
         {
 
 
@@ -106,11 +106,11 @@ namespace RealERPWEB.F_22_Sal
             string Date = "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string ProjectName = "Project Name: " + this.ddlProjectName.SelectedItem.Text.ToString();
 
-            DataTable dt = (DataTable)Session["tblPrjstatus"];
-            var lst = dt.DataTableToList<RealEntity.C_17_Acc.RptProjectWiseCollectionStatus>();
+            DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.perodicsalesColl>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptProjectWiseCollection", lst, null, null);
-            //Rpt1.EnableExternalImages = true;
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPeriodicSalesCollection", lst, null, null);
+            Rpt1.EnableExternalImages = true;
             //Rpt1.SetParameters(new ReportParameter("comname", comnam));
             //Rpt1.SetParameters(new ReportParameter("Date", Date));
             //Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
@@ -118,6 +118,7 @@ namespace RealERPWEB.F_22_Sal
             //Rpt1.SetParameters(new ReportParameter("txtTitle", "Project Wise Collection Status"));
             // Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_32_Mis.RptProjCancellationUnit", lst, null, null);
             Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("date1", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("Rpttitle", ProjectName));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
