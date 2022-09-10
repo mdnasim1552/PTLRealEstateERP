@@ -76,7 +76,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                case "3101":
+                //case "3101":
                 case "1205":
                 case "3351":
                 case "3352":
@@ -1002,7 +1002,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 }
 
-                if (comcod == "3340" || comcod == "3101")
+                if (comcod == "3340")
                 {
                     lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
@@ -1706,7 +1706,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
 
-                    case "3101":   //ASIT                      
+                    //case "3101":   //ASIT                      
                     case "1205":   //p2p
                     case "3351":   //p2p
                     case "3352":   //p2p
