@@ -784,6 +784,7 @@
     <EmbeddedResource Include="R_22_Sal\RptMonthlyProbCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthWiseNewSales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptOSalesSummary.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptPeriodicSalesWithCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptReceivedList.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestEdison.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterest.rdlc" />
@@ -949,6 +950,7 @@
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintSuvasto.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusISBL.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatus.rdlc" />
+    <EmbeddedResource Include="R_34_Mgt\RptReqAdjustment.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLogDetails.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLoginInfo.rdlc" />
     <EmbeddedResource Include="R_41_GAcc\RptProProgBillStatus.rdlc" />
