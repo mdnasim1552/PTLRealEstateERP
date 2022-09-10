@@ -42,6 +42,17 @@ namespace RealERPWEB.F_23_CR
                     this.chkPrevious.Visible = false;
 
                 }
+
+                string pactcode = Request.QueryString["pactcode"] == null ? "" : Request.QueryString["pactcode"].ToString();
+
+                if (pactcode != "")
+                {
+                    ddlProjectName.SelectedValue = pactcode;
+                    ddlProjectName.Enabled = false;
+                    ddlProjectName_SelectedIndexChanged(null, null);
+                }
+
+
                 this.txtSrcPro.Focus();
                 txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
             }
@@ -1238,7 +1249,7 @@ namespace RealERPWEB.F_23_CR
 
             }
 
-            if (comcod == "1101")
+            if (comcod == "1207") //This Part is Only For Acme Services Only
             {
 
                 string proj = "41" + ASTUtility.Right(ddlProjectName.SelectedValue.ToString(), 10);

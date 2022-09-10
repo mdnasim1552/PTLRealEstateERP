@@ -232,6 +232,48 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
 
             }
         }
+        [Serializable]
+        public class ERptGroupAtt
+        {
+            public string comcod { get; set; }
+            public string comnam { get; set; }
+            public double ttlstap { get; set; }
+            public double present { get; set; }
+            public double late { get; set; }
+            public double earlyLev { get; set; }
+            public double onlev { get; set; }
+            public double absnt { get; set; }
+
+
+            public ERptGroupAtt()
+            {
+
+            }
+        }
+        [Serializable]
+        public class Elvlateabbs
+        {
+            public string comcod { get; set; }
+            public string comnam { get; set; }
+            public string inempname { get; set; }
+            public string incomm { get; set; }
+            public string outcomm { get; set; }
+            public string lempname { get; set; }
+            public string lcomm { get; set; }
+            public string elempname { get; set; }
+            public string elcomm { get; set; }
+            public string olempname { get; set; }
+            public string olcomm { get; set; }
+            public string aempname { get; set; }
+            public string acomm { get; set; }
+
+
+            public Elvlateabbs()
+            {
+
+            }
+        }
+
 
 
     }

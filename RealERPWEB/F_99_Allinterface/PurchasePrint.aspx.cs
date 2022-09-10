@@ -469,7 +469,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             // rdlc start for manama
-            if (comcod == "3353" || comcod == "3101")
+            if (comcod == "3353" )
             {
 
                 string txtcrno = dt1.Rows[0]["reqno1"].ToString(); ;
@@ -1229,7 +1229,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3356":
-                case "3101":
+                //case "3101":
                     PrintReq = "PrintReqiNTECH";
                     break;
 
@@ -2633,6 +2633,11 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3360": // Entrust
                 case "3361": // Entrust 
 
+                case "1206": // acme 
+                case "1207": // acme 
+                case "3338": // acme 
+                case "3369": // acme 
+
 
                     this.OrderPrintRDLC();
                     break;
@@ -2863,8 +2868,10 @@ namespace RealERPWEB.F_99_Allinterface
                         // sign end 
                         break;
 
-
+                    case "1206":
+                    case "1207":
                     case "3338":
+                    case "3369":
                         // case "3101":
 
                         rptwork = new RealERPRPT.R_14_Pro.rptWorkOrderAcme();
@@ -3909,7 +3916,10 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
+                    case "1206": // Acme Technologies
+                    case "1207": // Acme Technologies
                     case "3338": // Acme Technologies
+                    case "3369": // Acme Technologies
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqfaprname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqfaprdat"].ToString();
@@ -4009,7 +4019,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     // Epic ratepbyid	ratepname	ratepdate
-                    case "3101":
+                    //case "3101":
                     case "3367":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4143,7 +4153,10 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
+                    case "1206": //Acme Technologies
+                    case "1207": //Acme Technologies
                     case "3338": //Acme Technologies
+                    case "3369": //Acme Technologies
                         terms1 = termscondition.Find(p => p.termsid == "001").ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
                         terms2 = termscondition.Find(p => p.termsid == "002").ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
                         terms3 = termscondition.Find(p => p.termsid == "003").ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "";
@@ -4254,7 +4267,10 @@ namespace RealERPWEB.F_99_Allinterface
                 switch (comcod)
                 {
 
+                    case "1206": //Acme Technologies
+                    case "1207": //Acme Technologies
                     case "3338": //Acme Technologies
+                    case "3369": //Acme Technologies
                         Reportpath = "~/Report/RptPurchaseOrderAcme.rdlc";
                         break;
 
@@ -4359,7 +4375,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEntrust.rdlc";
                         break;
 
-                    case "3101": //Pintech                        
+                    //case "3101": //Pintech                        
                     case "3367": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
@@ -4646,7 +4662,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                 case "3368":
                 case "3354":
-                case "3101":
+                //case "3101":
                     isDynamic = true;
                     break;
                 default:
@@ -5002,7 +5018,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
                     case "3354": //Edison Real Estate
-                    case "3101":
+                    //case "3101":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
@@ -5050,7 +5066,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
                     case "3354": // Edison Real estate
-                    case "3101":
+                    //case "3101":
                         terms1 = termscondition.FindAll(p => p.termsid == "001").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "");
                         terms2 = termscondition.FindAll(p => p.termsid == "002").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "");
                         terms3 = termscondition.FindAll(p => p.termsid == "003").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "");
@@ -5080,7 +5096,7 @@ namespace RealERPWEB.F_99_Allinterface
                 switch (comcod)
                 {
                     case "3354": //Edison Real Estate
-                    case "3101":
+                    //case "3101":
                         Reportpath = "~/Report/RptMktPurchaseOrder.rdlc";
                         break;
 
@@ -5255,13 +5271,16 @@ namespace RealERPWEB.F_99_Allinterface
                 // case "3101":
                 case "3332":
                 case "3335":
-                case "3338":
-                case "3336":
+                case "1206": // acme
+                case "1207": // acme
+                case "3338": // acme
+                case "3369": // acme
+                case "3336": 
                 case "3337":
                     PrintReq = "PrintBill05";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3333":
                     PrintReq = "PrintBill06";
                     break;
@@ -5959,7 +5978,10 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
+                case "1206"://ACME
+                case "1207"://ACME
                 case "3338"://ACME
+                case "3369"://ACME
                     PrintReq = "PrintBill05";
                     break;
 
@@ -6817,7 +6839,10 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
 
+                case "1206":
+                case "1207":
                 case "3338":
+                case "3369":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.rptLabIssueAcme", lst, null, null);
 
                     break;

@@ -587,7 +587,10 @@
 
                 switch (comcod) {
 
+                    case 1206:   // ACME   
+                    case 1207:   // ACME   
                     case 3338:   // ACME   
+                    case 3369:   // ACME   
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
@@ -742,7 +745,7 @@
 
 
                     case 3367:  //Epic  
-                    case 3101:  //Epic
+                    //case 3101:  //Epic
                                              
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
                         //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval

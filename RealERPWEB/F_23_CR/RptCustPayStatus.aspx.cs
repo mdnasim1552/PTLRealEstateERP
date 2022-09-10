@@ -53,7 +53,12 @@ namespace RealERPWEB.F_23_CR
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string Type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = Type == "ClLedger" ? "Client Ledger" : Type == "ClPayDetails" ? "Client Payment Details" : "PAYMENT STATUS";
+                ((Label)this.Master.FindControl("lblTitle")).Text =
+                    Type == "ClLedger" ? "Client Ledger": 
+                    Type == "LOClLedger" ? "Client Ledger(L/O)":
+                    Type == "ClPayDetails" ? "Client Payment Details" : "PAYMENT STATUS";
+
+                
                 //Type == "RecPayABal" ? "RECEIVED AND PAYMENT STATUS" : "CUSTOMER PAYMENT STATUS"; // "RECEIVED AND PAYMENT STATUS";
 
             }
@@ -126,6 +131,7 @@ namespace RealERPWEB.F_23_CR
                     }
                     break;
 
+                case "LOClLedger":
                 case "ClLedger":
                     //this.lbtnOk.Visible = false;
                     this.MultiView1.ActiveViewIndex = 1;
@@ -266,7 +272,8 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, "", "", "", "", "", "", "");
+            string islandowner = this.Request.QueryString["Type"] == "LOClLedger" ? "1" : "0";
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, islandowner, "", "", "", "", "", "");
             this.ddlCustName.DataTextField = "custnam";
             this.ddlCustName.DataValueField = "custid";
             this.ddlCustName.DataSource = ds2.Tables[0];
@@ -293,7 +300,7 @@ namespace RealERPWEB.F_23_CR
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
             string Type = this.Request.QueryString["Type"].ToString();
-            if (Type == "ClLedger")
+            if (Type == "ClLedger" || Type == "LOClLedger")
             {
                 //this.upben.Visible = true;
                 this.showClLedger();
@@ -329,7 +336,12 @@ namespace RealERPWEB.F_23_CR
             string length = comcod == "3348" ? "length" : "";
 
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, length, "", "", "", "", "");
+            string Procedure = this.ProcedureType();
+            // DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, length, "", "", "", "", "");
+
+
+          //  DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, length, "", "", "", "", "");
             //DataSet ds2= purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "INSTALLMANTWITHMRR", pactcode, custid, Date, "", "", "", "", "", "");
 
             if (ds2 == null)
@@ -522,8 +534,8 @@ namespace RealERPWEB.F_23_CR
                 case "3330":
                     // case "3101":
                     procedure = "SP_REPORT_SALSMGT03";
-                    break;               
-                
+                    break;
+
                 case "3368":
                 case "3101":
                     procedure = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
@@ -544,7 +556,7 @@ namespace RealERPWEB.F_23_CR
         {
 
             string comcod = this.GetComeCode();
-            string delserial ;
+            string delserial;
             switch (comcod)
             {
                 case "3354": //Edison Real Estate
@@ -697,6 +709,8 @@ namespace RealERPWEB.F_23_CR
 
                 case "ClPayDetails":
                 case "ClLedger":
+                case "LOClLedger":
+                    
 
 
                     for (int j = 1; j < dt1.Rows.Count; j++)
@@ -791,7 +805,7 @@ namespace RealERPWEB.F_23_CR
             string Type = this.Request.QueryString["Type"].ToString();
             DataTable dt = (DataTable)Session["tblCustPayment"];
 
-            if (Type == "ClLedger")
+            if (Type == "ClLedger" || Type == "LOClLedger")
             {
 
                 bool result = this.chkConsolidate.Checked;
@@ -1057,12 +1071,11 @@ namespace RealERPWEB.F_23_CR
             string udesc = dtcust.Rows[0]["udesc"].ToString();
 
             string usize = Convert.ToDouble(dtcust.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
-
             string Price = Convert.ToDouble(dtcust.Rows[0]["aptamt"]).ToString("#,##0;(#,##0); ");
             string Utility = Convert.ToDouble(dtcust.Rows[0]["utamt"]).ToString("#,##0;(#,##0); ");
             string Parking = Convert.ToDouble(dtcust.Rows[0]["caramt"]).ToString("#,##0;(#,##0); ");
             string cooperative = Convert.ToDouble(dtcust.Rows[0]["copamt"]).ToString("#,##0;(#,##0); ");
-            string txtTotal = Convert.ToDouble(dtcust.Rows[0]["totalamt"]).ToString("#,##0;(#,##0); "); 
+            string txtTotal = Convert.ToDouble(dtcust.Rows[0]["totalamt"]).ToString("#,##0;(#,##0); ");
 
             double SAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lfAmt")).Text);
             double PAmount = Convert.ToDouble("0" + ((Label)this.gvCustPayment.FooterRow.FindControl("lgvfpayamt")).Text);
@@ -1083,6 +1096,27 @@ namespace RealERPWEB.F_23_CR
                     Rpt1.SetParameters(new ReportParameter("cooperative", cooperative));
                     Rpt1.SetParameters(new ReportParameter("txtTotal", txtTotal));
                     Rpt1.SetParameters(new ReportParameter("txtMobile", custmob));
+                    break;
+
+                case "3101":
+                case "3354":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptPaymentStatusEdison", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    title = "Client Payment Status";
+                    string txtTerms = "* If you have already made the payment, please accept our thanks and disregard this communication. " +
+                        "\n* All dates & calculations mentioned here are based on Payment Agreement, Allotment Letter or Purchase Deed. " +
+                        "\n* Please note that 2 % delay charge will be added per month on amount of payment delayed. " +
+                        "\n* Delay Fees are non - waiveable.No apartment will be handed over unless the Delay Fee is cleared off. " +
+                        "\n* Sanction of Loan &processing time are not Developer's liabilities. No delay due to loan processing will be waived. " ;
+                    /*
+                    *If you have already made the payment, please accept our thanks and disregard this communication.
+* All dates & calculations mentioned here are based on Payment Agreement, Allotment Letter or Purchase Deed.
+* Please note that 2 % delay charge will be added per month on amount of payment delayed.
+ * Delay Fees are non - waiveable.No apartment will be handed over unless the Delay Fee is cleared off.
+*Sanction of Loan &processing time are not Developer's liabilities. No delay due to loan processing will be waived.*/
+
+                    Rpt1.SetParameters(new ReportParameter("txtTerms", txtTerms));
+
 
                     break;
                 default:
@@ -1526,7 +1560,7 @@ namespace RealERPWEB.F_23_CR
             string udesc = drc[0]["udesc"].ToString();
             string usize = Convert.ToDouble(drc[0]["usize"].ToString()).ToString("#,##0;(#,##0); ") + " " + drc[0]["unit"].ToString();
 
-           
+
             double totalreceived = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ? 0.00 : dt.Compute("Sum(paidamt)", "")));
 
             double totalscheduleamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", "")));
@@ -1844,7 +1878,7 @@ namespace RealERPWEB.F_23_CR
 
             double Schamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(schamt)", "")) ? 0.00 : tbl6.Compute("Sum(schamt)", "")));
             double rcvamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(paidamt)", "")) ? 0.00 : tbl6.Compute("Sum(paidamt)", "")));
-            double baldues = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(balamt)", "")) ? 0.00 : tbl6.Compute("Sum(balamt)", "")));        
+            double baldues = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(balamt)", "")) ? 0.00 : tbl6.Compute("Sum(balamt)", "")));
 
 
             double balamt = Schamt - rcvamt;
@@ -1943,7 +1977,9 @@ namespace RealERPWEB.F_23_CR
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
 
             string CallType = this.ClientCalltype();
-            DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            string Procedure = this.ProcedureType();
+           // DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            DataSet ds5 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, "", "", "", "", "", "");
 
             DataTable tblins = this.HiddenSameDate2(ds5.Tables[0]);
 
@@ -2192,8 +2228,30 @@ namespace RealERPWEB.F_23_CR
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
             //                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-        }   
-        private void PrintCleintLedgerFinlay() 
+        }
+
+        private string ProcedureType()
+        {
+
+            string Type = this.Request["Type"].ToString();
+            string procedure = "";
+            switch (Type)
+            {
+                case "LOClLedger":
+                    procedure = "SP_REPORT_LANDOWNERMGT01";
+                    break;
+
+                default:
+                    procedure = "SP_REPORT_SALSMGT01";
+                    break;
+
+
+
+            }
+            return procedure;
+        
+        }
+        private void PrintCleintLedgerFinlay()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
@@ -2207,7 +2265,8 @@ namespace RealERPWEB.F_23_CR
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
 
             string CallType = this.ClientCalltype();
-            DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            string Procedure = this.ProcedureType();
+            DataSet ds5 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, "", "", "", "", "", "");
 
             DataTable tblins = this.HiddenSameDate2(ds5.Tables[0]);
 
@@ -2271,13 +2330,16 @@ namespace RealERPWEB.F_23_CR
 
             var lst = tblins.DataTableToList<RealEntity.C_23_CRR.EClassSales_03.EClassClientPayDetails>();
             LocalReport Rpt1 = new LocalReport();
+            string type= this.Request.QueryString["Type"].ToString();
+
+            
 
             Rpt1 = RptSetupClass1.GetLocalReport("R_23_CR.RptClientLedgerFinlay", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("ComLogo", comlogo));
             Rpt1.SetParameters(new ReportParameter("CompName", comnam));
             Rpt1.SetParameters(new ReportParameter("Compadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("title", "Payment Schedule & Payment Status"));
+            Rpt1.SetParameters(new ReportParameter("title", type== "LOClLedger" ? "Payment Schedule & Payment Status(L/O)" : "Payment Schedule & Payment Status"));
             Rpt1.SetParameters(new ReportParameter("txtDate", txtdate));
 
             Rpt1.SetParameters(new ReportParameter("rptcustname", rptcustname));
@@ -2456,7 +2518,7 @@ namespace RealERPWEB.F_23_CR
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
             //                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-        } 
+        }
         private void PrintCleintLedgerLanco()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2583,7 +2645,7 @@ namespace RealERPWEB.F_23_CR
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-           
+
 
         }
         private void PrintCleintLedgerAssure()
@@ -2708,7 +2770,7 @@ namespace RealERPWEB.F_23_CR
             Session["Report1"] = Rpt1;
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";          
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
         private void PrintCleintLedgerCube()
@@ -2835,7 +2897,7 @@ namespace RealERPWEB.F_23_CR
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-  
+
 
         }
         private void PrintCleintLedger()
@@ -2886,8 +2948,8 @@ namespace RealERPWEB.F_23_CR
                     this.PrintCleintLedgerManama();
                     break;
 
-               // case"3101":
-                case"3357":
+                // case"3101":
+                case "3357":
                     this.PrintCleintLedgerCube();
                     break;
 
@@ -2897,12 +2959,14 @@ namespace RealERPWEB.F_23_CR
                 case "3316":
                     this.PrintCleintLedgerAssure();
                     break;
-                  
-                case "3101":
+
+               
                 case "3366":
                     this.PrintCleintLedgerLanco();
                     break;
-                
+
+
+                case "3101":// MOdel
                 case "3368":
                     this.PrintCleintLedgerFinlay();
                     break;
@@ -2969,7 +3033,7 @@ namespace RealERPWEB.F_23_CR
                 Label lblRcvAmnt = (Label)e.Row.FindControl("lblRcvAmnt");
                 Label lblUnClr = (Label)e.Row.FindControl("lblUnClr");
 
-                
+
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
 
 
@@ -2986,7 +3050,7 @@ namespace RealERPWEB.F_23_CR
                     lblRcvAmnt.Font.Bold = true;
                     lblUnClr.Font.Bold = true;
 
-                    
+
                     lblParticlr.Font.Size = 11;
                     lblDueAmnt.Font.Size = 11;
                     lblRcvAmnt.Font.Size = 11;
@@ -3009,7 +3073,7 @@ namespace RealERPWEB.F_23_CR
                 }
             }
 
-            
+
 
 
 

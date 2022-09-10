@@ -152,6 +152,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EnvelopModel.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+MonSalPerTarWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+perodicsalesColl.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDues.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
@@ -168,7 +169,9 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpAttnIdWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttendence.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+RptMntAttenReport.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+applytimeoff.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+birthdayDate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet.datasource" />
@@ -255,8 +258,11 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceAttApp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceLeave.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+Elvlateabbs.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmpOfferLetter.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+ERptGroupAtt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+ERptLateleaveaabs.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
@@ -851,6 +857,7 @@
     <EmbeddedResource Include="R_23_CR\RptMonCollcScheduleSummaryENG.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptMonthlyCollReceiptType.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptNetADWork.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptPaymentStatusEdison.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPaymentStatusFinlay.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPaymentStatus.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptPaymentStatus02.rdlc" />
@@ -976,6 +983,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendanceBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendanceAlli.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendanceEPIC.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonthlyLateAttn03.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonthPre.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyEarlyLeaveEmp.rdlc" />
@@ -1153,6 +1161,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpEvaluation.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpperformance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\EmpFinalSettmnt.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptGroupAtt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceAttApp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceLeave.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptDateWiseEmpHold.rdlc" />

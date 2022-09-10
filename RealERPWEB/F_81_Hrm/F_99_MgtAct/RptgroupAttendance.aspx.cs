@@ -14,6 +14,7 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
 
 namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 {
@@ -25,10 +26,10 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
         {
             if (!IsPostBack)
             {
-                if (prevPage.Length == 0)
-                {
-                    prevPage = Request.UrlReferrer.ToString();
-                }
+                //if (prevPage.Length == 0)
+                //{
+                //    prevPage = Request.UrlReferrer.ToString();
+                //}
 
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
@@ -36,7 +37,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 this.txtFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Group Attendence";
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Group Attandance Report";
 
                 //((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Diagnosis Entry";
@@ -68,22 +69,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
         }
 
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnLedger")).Click += new EventHandler(lnkbtnLedger_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnTranList")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler();
-            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Click += new EventHandler(lnkbtnAdd_Click1);
-            //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Click += new EventHandler(lnkbtnEdit_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkDiagEnrty_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Click += new EventHandler(lnkbtnDelete_Click);
-            //  ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
-            //((CheckBox)this.Master.FindControl("chkBoxN")).Checked += new EventHandler(chkBoxN_Click);
-        }
-
+       
         protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
             this.ShowGroupAttendance();
@@ -123,6 +109,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string todydate = this.txtFdate.Text;
 
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE", "GETGROUPATTENDENCE", todydate, "", "", "", "", "", "", "", "");
+            
+
             if (ds == null)
             {
                 return;
@@ -130,6 +118,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
             ViewState["tblgroupAttendace"] = ds.Tables[0];
             ViewState["tblgroupAttenPersen"] = ds.Tables[1];
+            
+
 
             this.Data_Bind();
         }
@@ -219,6 +209,58 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
 
             }
+        }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnLedger")).Click += new EventHandler(lnkbtnLedger_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Click += new EventHandler(lbtnPrint_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnTranList")).Click += new EventHandler(lbtnPrint_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler();
+            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Click += new EventHandler(lnkbtnAdd_Click1);
+            //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Click += new EventHandler(lnkbtnEdit_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkDiagEnrty_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnPrint_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Click += new EventHandler(lnkbtnDelete_Click);
+            //  ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+            //((CheckBox)this.Master.FindControl("chkBoxN")).Checked += new EventHandler(chkBoxN_Click);
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+        }
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+          
+            string todydate = this.txtFdate.Text;
+
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE02", "RPTLATEEONANDABSENTDET", todydate, "", "", "", "", "", "", "", "");
+            ViewState["tblLVatlet"] = ds1.Tables[0];
+            DataTable dt = (DataTable)ViewState["tblgroupAttendace"];
+            DataTable dt1 = (DataTable)ViewState["tblLVatlet"];
+          
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.ERptGroupAtt>();
+            var lst1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.Elvlateabbs>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptGroupAtt", lst, lst1, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compname", comname));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Group Attendence"));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
     }
 }

@@ -47,6 +47,8 @@ namespace RealERPWEB.F_99_Allinterface
             string date1 = txtfrmdate.Text;
             string date2 = txttoDate.Text;
             DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_INTERFACE_SERVICES]", "GETCOUNT", date1, date2, "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = _process.GetTransInfo(comcod, "[dbo_Services].[SP_INTERFACE_SERVICES]", "GETPROCESS", date1, date2, "", "", "", "", "", "", "");
+            DataSet ds2 = _process.GetTransInfo(comcod, "[dbo_Services].[SP_INTERFACE_SERVICES]", "GETINVOICE", date1, date2, "", "", "", "", "", "", "");
             string item1, item2, item3, item4, item5, item6, item7;
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
@@ -69,9 +71,29 @@ namespace RealERPWEB.F_99_Allinterface
                 item6 = "0";
                 item7 = "0";
             }
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item1 + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Total</div></div></div>";
+            if (ds1.Tables[2].Rows.Count == 0)
+            {
+                item4 = "0";
+                item6 = "0";
+            }
+            else
+            {
+                item4 = ds1.Tables[2].Rows[0]["countval"].ToString();
+                item6 = ds1.Tables[2].Rows[1]["countval"].ToString();
+
+            }
+            if (ds2.Tables[1].Rows.Count == 0)
+            {
+               
+                item5 = "0";
+            }
+            else
+            {
+                item5 = ds2.Tables[1].Rows[0]["countval"].ToString();  
+            }
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item1 + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + item2 + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "Checked" + "</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item3 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item3 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Accept/Reject</div></div></div>";
             this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item4 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Process</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + item5 + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + item6 + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
@@ -91,6 +113,8 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlChecked.Visible = false;
                     pnlApproval.Visible = false;
                     pnlProcess.Visible = false;
+                    pnlInvoice.Visible = false;
+                    pnlComplete.Visible = false;
                     getTotalCount();
                     break;
                 case "1":
@@ -98,6 +122,8 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlChecked.Visible = true;
                     pnlApproval.Visible = false;
                     pnlProcess.Visible = false;
+                    pnlInvoice.Visible = false;
+                    pnlComplete.Visible = false;
                     getChecked();
                     break;
                 case "2":
@@ -105,6 +131,8 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlChecked.Visible = false;
                     pnlApproval.Visible = true;
                     pnlProcess.Visible = false;
+                    pnlInvoice.Visible = false;
+                    pnlComplete.Visible = false;
                     getApproval();
                     break;
                 case "3":
@@ -112,6 +140,26 @@ namespace RealERPWEB.F_99_Allinterface
                     pnlChecked.Visible = false;
                     pnlApproval.Visible = false;
                     pnlProcess.Visible = true;
+                    pnlInvoice.Visible = false;
+                    pnlComplete.Visible = false;
+                    getProcess();
+                    break;
+                case "4":
+                    pnlTotalCount.Visible = false;
+                    pnlChecked.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlProcess.Visible = false;
+                    pnlInvoice.Visible = true;
+                    pnlComplete.Visible = false;
+                    getInvoice();
+                    break;
+                case "5":
+                    pnlTotalCount.Visible = false;
+                    pnlChecked.Visible = false;
+                    pnlApproval.Visible = false;
+                    pnlProcess.Visible = false;
+                    pnlInvoice.Visible = false;
+                    pnlComplete.Visible = true;
                     getProcess();
                     break;
 
@@ -180,14 +228,36 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds1 = _process.GetTransInfo(comcod, "[dbo_Services].[SP_INTERFACE_SERVICES]", "GETPROCESS", date1, date2, "", "", "", "", "", "", "");
             gvProcess.DataSource = ds1.Tables[0];
             gvProcess.DataBind();
+            
+            gvComplete.DataSource = ds1.Tables[1];
+            gvComplete.DataBind();
 
             if (ds1.Tables[0].Rows.Count > 0)
             {
                 ((Label)this.gvProcess.FooterRow.FindControl("lblgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[0].Compute("sum(qamt)", "")) ?
                 0 : ds1.Tables[0].Compute("sum(qamt)", ""))).ToString("#,##0.00;(#,##0.00);");
             }
+            if (ds1.Tables[1].Rows.Count > 0)
+            {
+                ((Label)this.gvComplete.FooterRow.FindControl("lblgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("sum(qamt)", "")) ?
+                0 : ds1.Tables[1].Compute("sum(qamt)", ""))).ToString("#,##0.00;(#,##0.00);");
+            }
         }
+        private void getInvoice()
+        {
+            string comcod = GetComCode();
+            string date1 = txtfrmdate.Text;
+            string date2 = txttoDate.Text;
+            DataSet ds1 = _process.GetTransInfo(comcod, "[dbo_Services].[SP_INTERFACE_SERVICES]", "GETINVOICE", date1, date2, "", "", "", "", "", "", "");
+            gvInvoice.DataSource = ds1.Tables[0];
+            gvInvoice.DataBind();
 
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                ((Label)this.gvInvoice.FooterRow.FindControl("lblgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[0].Compute("sum(qamt)", "")) ?
+                0 : ds1.Tables[0].Compute("sum(qamt)", ""))).ToString("#,##0.00;(#,##0.00);");
+            }
+        }
 
 
         protected void lnkUpdateReject_Click(object sender, EventArgs e)
@@ -264,7 +334,7 @@ namespace RealERPWEB.F_99_Allinterface
                 bool islisuno = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "islisuno"));
                 bool isGenBill = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "isGenBill"));
 
-                
+
                 if (isEdit)
                 {
                     hlink.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid;
@@ -800,8 +870,19 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
+
         #endregion
 
+        protected void gvInvoice_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
 
+                string pactcode = "18"+ ASTUtility.Right(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mapactcode")).ToString(), 10);
+                hlinkproceed.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt?Type=Billing";               
+                hlinkproceed.Visible = true;
+            }
+        }
     }
 }

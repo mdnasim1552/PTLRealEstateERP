@@ -15,6 +15,8 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
+
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class RptPeriodicSalesWithCollection : System.Web.UI.Page
@@ -78,7 +80,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
-            this.PrintProjectWiseCollection();
+            this.PrintRptPeriodicSalesWithCollection();
 
 
 
@@ -86,7 +88,7 @@ namespace RealERPWEB.F_22_Sal
         }
 
 
-        private void PrintProjectWiseCollection()
+        private void PrintRptPeriodicSalesWithCollection()
         {
 
 
@@ -106,10 +108,13 @@ namespace RealERPWEB.F_22_Sal
             string Date = "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string ProjectName = "Project Name: " + this.ddlProjectName.SelectedItem.Text.ToString();
 
-            DataTable dt = (DataTable)Session["tblPrjstatus"];
-            var lst = dt.DataTableToList<RealEntity.C_17_Acc.RptProjectWiseCollectionStatus>();
+            DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("pactcode <> ''");
+            dt = dv.ToTable();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.perodicsalesColl>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptProjectWiseCollection", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPeriodicSalesWithCollection", lst, null, null);
             //Rpt1.EnableExternalImages = true;
             //Rpt1.SetParameters(new ReportParameter("comname", comnam));
             //Rpt1.SetParameters(new ReportParameter("Date", Date));
@@ -117,12 +122,14 @@ namespace RealERPWEB.F_22_Sal
             //Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
             //Rpt1.SetParameters(new ReportParameter("txtTitle", "Project Wise Collection Status"));
             // Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_32_Mis.RptProjCancellationUnit", lst, null, null);
-            Rpt1.SetParameters(new ReportParameter("comname", comnam));
+           Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("date1", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("Rpttitle", ProjectName));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
 
+            
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -180,27 +187,36 @@ namespace RealERPWEB.F_22_Sal
         {
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
             this.gvsaleswithcoll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvsaleswithcoll.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
+            //this.gvsaleswithcoll.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
             this.gvsaleswithcoll.DataSource = dt;
             this.gvsaleswithcoll.DataBind();
 
             this.FooterCalculation();
+
 
         }
 
 
         private void FooterCalculation()
         {
+            
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
             if (dt.Rows.Count == 0)
                 return;
 
 
-            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFBudgetamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(salvalues)", "")) ?
-                        0.00 : dt.Compute("Sum(salvalues)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFBudgetamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdamt)", "")) ?
+                        0.00 : dt.Compute("Sum(bgdamt)", ""))).ToString("#,##0;(#,##0); ");
 
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFSalesval")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(suamt)", "")) ?
                        0.00 : dt.Compute("Sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFbookdues")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bookdues)", "")) ?
+                  0.00 : dt.Compute("Sum(bookdues)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFInsdues")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(insdues)", "")) ?
+                  0.00 : dt.Compute("Sum(insdues)", ""))).ToString("#,##0;(#,##0); ");
+
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFbookam")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cbookam)", "")) ?
                 0.00 : dt.Compute("Sum(cbookam)", ""))).ToString("#,##0;(#,##0); ");
 
@@ -210,12 +226,17 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFtocall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tocollam)", "")) ?
                 0.00 : dt.Compute("Sum(tocollam)", ""))).ToString("#,##0;(#,##0); ");
 
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFnetbooking")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netbookam)", "")) ?
+            0.00 : dt.Compute("Sum(netbookam)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFnetIns")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netinsdues)", "")) ?
+                0.00 : dt.Compute("Sum(netinsdues)", ""))).ToString("#,##0;(#,##0); ");
+
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFbalance")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balance)", "")) ?
                 0.00 : dt.Compute("Sum(balance)", ""))).ToString("#,##0;(#,##0); ");
 
             Session["Report1"] = gvsaleswithcoll;
             ((HyperLink)this.gvsaleswithcoll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
 
 
 
@@ -230,6 +251,103 @@ namespace RealERPWEB.F_22_Sal
         {
             this.gvsaleswithcoll.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void gvsaleswithcoll_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell01 = new TableCell();
+                cell01.Text = "";
+                cell01.HorizontalAlign = HorizontalAlign.Center;
+                cell01.ColumnSpan = 1;
+
+                TableCell cell02 = new TableCell();
+                cell02.Text = "";
+                cell02.HorizontalAlign = HorizontalAlign.Center;
+                cell02.ColumnSpan = 1;
+
+
+                TableCell cell03 = new TableCell();
+                cell03.Text = "";
+                cell03.HorizontalAlign = HorizontalAlign.Center;
+                cell03.ColumnSpan = 2;
+
+                TableCell cell04 = new TableCell();
+                cell04.Text = "";
+                cell04.HorizontalAlign = HorizontalAlign.Center;
+                cell04.ColumnSpan = 1;
+
+                TableCell cell05 = new TableCell();
+                cell05.Text = "";
+                cell05.HorizontalAlign = HorizontalAlign.Center;
+                cell05.ColumnSpan = 1;
+
+                TableCell cell06 = new TableCell();
+                cell06.Text = "";
+                cell06.HorizontalAlign = HorizontalAlign.Center;
+                cell06.ColumnSpan = 1;
+
+                TableCell cell07 = new TableCell();
+                cell07.Text = "";
+                cell07.HorizontalAlign = HorizontalAlign.Center;
+                cell07.ColumnSpan = 1;
+
+
+                TableCell cell08 = new TableCell();
+                cell08.Text = "Receivable";
+                cell08.HorizontalAlign = HorizontalAlign.Center;
+                cell08.ColumnSpan = 2;
+                cell08.Font.Bold = true;
+
+
+                TableCell cell09 = new TableCell();
+                cell09.Text = "Received (Encash)";
+                cell09.HorizontalAlign = HorizontalAlign.Center;
+                cell09.ColumnSpan = 2;
+                cell09.Font.Bold = true;
+
+
+                TableCell cell10 = new TableCell();
+                cell10.Text = "";
+                cell10.HorizontalAlign = HorizontalAlign.Center;
+                cell10.ColumnSpan = 1;
+
+                TableCell cell11 = new TableCell();
+                cell11.Text = "Balance";
+                cell11.HorizontalAlign = HorizontalAlign.Center;
+                cell11.ColumnSpan = 3;
+                cell11.Font.Bold = true;
+                //TableCell cell12 = new TableCell();
+                //cell12.Text = "";
+                //cell12.HorizontalAlign = HorizontalAlign.Center;
+                //cell12.ColumnSpan = 1;
+
+                //TableCell cell13 = new TableCell();
+                //cell13.Text = "";
+                //cell13.HorizontalAlign = HorizontalAlign.Center;
+                //cell13.ColumnSpan = 1;
+
+
+                gvrow.Cells.Add(cell01);
+                gvrow.Cells.Add(cell02);
+                gvrow.Cells.Add(cell03);
+                gvrow.Cells.Add(cell04);
+                gvrow.Cells.Add(cell05);
+                gvrow.Cells.Add(cell06);
+                gvrow.Cells.Add(cell07);
+                gvrow.Cells.Add(cell08);
+                gvrow.Cells.Add(cell09);
+                gvrow.Cells.Add(cell10);
+                gvrow.Cells.Add(cell11);
+                //gvrow.Cells.Add(cell12);
+                //gvrow.Cells.Add(cell13);
+
+                gvsaleswithcoll.Controls[0].Controls.AddAt(0, gvrow);
+            }
         }
     }
 }

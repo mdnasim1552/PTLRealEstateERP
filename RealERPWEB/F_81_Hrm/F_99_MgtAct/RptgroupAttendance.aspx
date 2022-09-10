@@ -1,6 +1,5 @@
 ﻿
-
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptgroupAttendance.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_99_MgtAct.RptgroupAttendance" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptgroupAttendance.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_99_MgtAct.RptgroupAttendance" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -28,39 +27,42 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
+    <div class="card mt-5">
+        <div class="card-header">
             <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-3 pading5px">
-                                <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">From</asp:Label>
-                                <asp:TextBox ID="txtFdate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
+               
+                    
+                       
+                            <div class="col-md-3 ">
+                                <asp:Label ID="lblfrmdate" runat="server" CssClass="form-label">From</asp:Label>
+                                <asp:TextBox ID="txtFdate" runat="server" CssClass="form-control"></asp:TextBox>
 
                                 <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server"
                                                       Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtFdate"
                                                       PopupButtonID="Image2"></cc1:CalendarExtender>
 
-                                <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
+                               
 
+                            </div>
+                            <div  class="col-md-2 mt-4">
+                           <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
                             </div>
                             <div class="col-md-4" runat="server" id="comlist" Visible="False">
                                 <asp:label CssClass="smLbl_to" runat="server">Companies</asp:label>
                                 <asp:DropDownList ID="ddlComName" class="ComName form-control ClCompAndMod" runat="server" TabIndex="2" Width="224">
                                 </asp:DropDownList>
                                    
-                                <div class="clearfix"></div>
+                               
                             </div>
 
-                        </div>
+                        
 
 
 
-                    </div>
-                </fieldset>
+                    
+               </div>
 
-                <div class="row table-responsive">
+                <div class="row table-responsive mt-3">
                     <div class="col-md-7 col-sm-7 col-lg-7">
                         <asp:GridView ID="gvRptAttn" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                             ShowFooter="false" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvRptAttn_RowDataBound">
