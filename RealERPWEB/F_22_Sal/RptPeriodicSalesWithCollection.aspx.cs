@@ -196,8 +196,8 @@ namespace RealERPWEB.F_22_Sal
                 return;
 
 
-            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFBudgetamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(salvalues)", "")) ?
-                        0.00 : dt.Compute("Sum(salvalues)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFBudgetamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdamt)", "")) ?
+                        0.00 : dt.Compute("Sum(bgdamt)", ""))).ToString("#,##0;(#,##0); ");
 
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFSalesval")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(suamt)", "")) ?
                        0.00 : dt.Compute("Sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
@@ -230,6 +230,105 @@ namespace RealERPWEB.F_22_Sal
         {
             this.gvsaleswithcoll.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void gvsaleswithcoll_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell01 = new TableCell();
+                cell01.Text = "";
+                cell01.HorizontalAlign = HorizontalAlign.Center;
+                cell01.ColumnSpan = 1;
+
+                TableCell cell02 = new TableCell();
+                cell02.Text = "";
+                cell02.HorizontalAlign = HorizontalAlign.Center;
+                cell02.ColumnSpan = 1;
+
+
+                TableCell cell03 = new TableCell();
+                cell03.Text = "";
+                cell03.HorizontalAlign = HorizontalAlign.Center;
+                cell03.ColumnSpan = 2;
+
+                TableCell cell04 = new TableCell();
+                cell04.Text = "";
+                cell04.HorizontalAlign = HorizontalAlign.Center;
+                cell04.ColumnSpan = 1;
+
+                TableCell cell05 = new TableCell();
+                cell05.Text = "";
+                cell05.HorizontalAlign = HorizontalAlign.Center;
+                cell05.ColumnSpan = 1;
+
+                TableCell cell06 = new TableCell();
+                cell06.Text = "";
+                cell06.HorizontalAlign = HorizontalAlign.Center;
+                cell06.ColumnSpan = 1;
+
+                TableCell cell07 = new TableCell();
+                cell07.Text = "";
+                cell07.HorizontalAlign = HorizontalAlign.Center;
+                cell07.ColumnSpan = 1;
+
+
+                TableCell cell08 = new TableCell();
+                cell08.Text = "Dues";
+                cell08.HorizontalAlign = HorizontalAlign.Center;
+                cell08.ColumnSpan = 2;
+                cell08.Font.Bold = true;
+
+
+                TableCell cell09 = new TableCell();
+                cell09.Text = "Collection";
+                cell09.HorizontalAlign = HorizontalAlign.Center;
+                cell09.ColumnSpan = 2;
+                cell09.Font.Bold = true;
+
+
+                TableCell cell10 = new TableCell();
+                cell10.Text = "";
+                cell10.HorizontalAlign = HorizontalAlign.Center;
+                cell10.ColumnSpan = 1;
+
+                TableCell cell11 = new TableCell();
+                cell11.Text = "";
+                cell11.HorizontalAlign = HorizontalAlign.Center;
+                cell11.ColumnSpan = 1;
+
+                //TableCell cell12 = new TableCell();
+                //cell12.Text = "";
+                //cell12.HorizontalAlign = HorizontalAlign.Center;
+                //cell12.ColumnSpan = 1;
+
+                //TableCell cell13 = new TableCell();
+                //cell13.Text = "";
+                //cell13.HorizontalAlign = HorizontalAlign.Center;
+                //cell13.ColumnSpan = 1;
+
+
+                gvrow.Cells.Add(cell01);
+                gvrow.Cells.Add(cell02);
+                gvrow.Cells.Add(cell03);
+                gvrow.Cells.Add(cell04);
+                gvrow.Cells.Add(cell05);
+                gvrow.Cells.Add(cell06);
+                gvrow.Cells.Add(cell07);
+                gvrow.Cells.Add(cell08);
+                gvrow.Cells.Add(cell09);
+                gvrow.Cells.Add(cell10);
+                gvrow.Cells.Add(cell11);
+                //gvrow.Cells.Add(cell12);
+                //gvrow.Cells.Add(cell13);
+
+
+
+                gvsaleswithcoll.Controls[0].Controls.AddAt(0, gvrow);
+            }
         }
     }
 }
