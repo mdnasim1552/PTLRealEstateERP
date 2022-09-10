@@ -1249,7 +1249,7 @@ namespace RealERPWEB.F_23_CR
 
             }
 
-            if (comcod == "1101")
+            if (comcod == "1207") //This Part is Only For Acme Services Only
             {
 
                 string proj = "41" + ASTUtility.Right(ddlProjectName.SelectedValue.ToString(), 10);
