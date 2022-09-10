@@ -123,6 +123,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
 
+            
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -185,6 +186,7 @@ namespace RealERPWEB.F_22_Sal
             this.gvsaleswithcoll.DataBind();
 
             this.FooterCalculation();
+
 
         }
 
@@ -337,6 +339,7 @@ namespace RealERPWEB.F_22_Sal
                 gvrow.Cells.Add(cell11);
                 //gvrow.Cells.Add(cell12);
                 //gvrow.Cells.Add(cell13);
+
 
 
 
