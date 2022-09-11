@@ -2143,6 +2143,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
+
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102071", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=PenEmpCon", "Pending Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102072", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpCon", "Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
@@ -2427,7 +2429,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "4503000", "4503015", "F_45_GrAcc", "RptYearlyCollectionStatus", "", "Yearly Collection Forcasting", "GROUP MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "4503000", "4503016", "F_45_GrAcc", "RptGrpMisDailyActiviteisJq", "", "Management Interface", "GROUP MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "4502000", "4502047", "F_45_GrAcc", "UserImage", "", "User Image Upload", "GROUP MIS", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "4503000", "4503050", "F_45_GrAcc", "RptgroupAttendance?", "Type=Report", "Group Attendance Summary", "GROUP MIS", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "4503000", "4503050", "F_45_GrAcc", "RptgroupAttendance?", "Type=GRP", "Group Attendance Summary", "GROUP MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "4503000", "4503060", "F_45_GrAcc", "RptWeekPresence", "", "Weekly Presence Graph", "GROUP MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "4503000", "4503070", "F_45_GrAcc", "RptMonthlyLate", "", "Monthly Late Attendance Information", "GROUP MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "4503000", "4503080", "F_45_GrAcc", "RptEmpMonthLeave", "", "Employee Monthly Leave Information", "GROUP MIS", "False", "False", "False", "False" }); ;
@@ -15840,6 +15842,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0403000013", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000014", "07. Employee Absent Count List", "F_81_Hrm/F_83_Att/RptEmpAbsCount?Type=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000015", "08. Yearly Holidays", "F_81_Hrm/F_84_Lea/YearlyHoliday?Type=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000016", "09. Employee Daily Attendance(Department Wise)", "F_81_Hrm/F_99_MgtAct/RptgroupAttendance?Type=Dept", "", true, "" });
             // d. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0404000001", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
