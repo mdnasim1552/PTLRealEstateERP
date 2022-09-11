@@ -84,5 +84,9 @@ namespace RealEntity.C_34_Mgt
         public string firmname { get; set; }
         public GenBillSupdesc() { }
     }
-  
+
+    
+
+
+
 }
