@@ -14,6 +14,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_34_Mgt
 {
     public partial class PurReqAdjst : System.Web.UI.Page
@@ -391,13 +394,50 @@ namespace RealERPWEB.F_34_Mgt
             {
 
                 case "ReqAdjust":
-
+                    this.PrintReqAdjustment();
                     break;
                 case "ProMargin":
                     this.RptPoMargin();
                     break;
 
             }
+        }
+
+        private void PrintReqAdjustment()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+           
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt = (DataTable)Session["tblreqadj"];
+
+          
+            //DataView dv = dt.DefaultView;
+            //dv.RowFilter = ("pactcode <> '' or pactcode <> '1899AAAAAAAA'");
+            //dt = dv.ToTable();
+
+            LocalReport Rpt1 = new LocalReport();
+            var list = dt.DataTableToList<RealEntity.C_34_Mgt.EClassSalPurAcc.RequisationAdjust>();          
+            Rpt1 = RptSetupClass1.GetLocalReport("R_34_Mgt.RptReqAdjustment", list, null, null);
+            Rpt1.EnableExternalImages = true;        
+
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));           
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+
         }
         private void RptPoMargin()
         {

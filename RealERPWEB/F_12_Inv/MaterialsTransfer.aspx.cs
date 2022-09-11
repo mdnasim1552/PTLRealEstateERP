@@ -299,7 +299,18 @@ namespace RealERPWEB.F_12_Inv
             this.ddlResSpcf.Items.Clear();
             DataTable tbl1 = (DataTable)ViewState["tblspcf"];
             DataView dv1 = tbl1.DefaultView;
-            dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+                    dv1.RowFilter = "mspcfcod = '" + mResCode + "'";
+                    break;
+                default:
+                    dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
+                    break;
+            }
+            
             DataTable dt = dv1.ToTable();
             this.ddlResSpcf.DataTextField = "spcfdesc";
             this.ddlResSpcf.DataValueField = "spcfcod";

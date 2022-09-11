@@ -15,6 +15,8 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
+
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class RptPeriodicSalesWithCollection : System.Web.UI.Page
@@ -78,7 +80,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
-            this.PrintProjectWiseCollection();
+            this.PrintRptPeriodicSalesWithCollection();
 
 
 
@@ -86,7 +88,7 @@ namespace RealERPWEB.F_22_Sal
         }
 
 
-        private void PrintProjectWiseCollection()
+        private void PrintRptPeriodicSalesWithCollection()
         {
 
 
@@ -101,28 +103,36 @@ namespace RealERPWEB.F_22_Sal
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string fromdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodat.Text).ToString("dd-MMM-yyyy");
+
 
 
             string Date = "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string ProjectName = "Project Name: " + this.ddlProjectName.SelectedItem.Text.ToString();
 
-            DataTable dt = (DataTable)Session["tblPrjstatus"];
-            var lst = dt.DataTableToList<RealEntity.C_17_Acc.RptProjectWiseCollectionStatus>();
+            DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("pactcode <> ''");
+            dt = dv.ToTable();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.perodicsalesColl>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptProjectWiseCollection", lst, null, null);
-            //Rpt1.EnableExternalImages = true;
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPeriodicSalesWithCollection", lst, null, null);
+            Rpt1.EnableExternalImages = true;
             //Rpt1.SetParameters(new ReportParameter("comname", comnam));
             //Rpt1.SetParameters(new ReportParameter("Date", Date));
             //Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
             //Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
             //Rpt1.SetParameters(new ReportParameter("txtTitle", "Project Wise Collection Status"));
             // Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_32_Mis.RptProjCancellationUnit", lst, null, null);
-            Rpt1.SetParameters(new ReportParameter("comname", comnam));
-            Rpt1.SetParameters(new ReportParameter("date1", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
+           Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("date1", "From  " + fromdate + " To " + todate));
             Rpt1.SetParameters(new ReportParameter("Rpttitle", ProjectName));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
 
+            
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -186,11 +196,13 @@ namespace RealERPWEB.F_22_Sal
 
             this.FooterCalculation();
 
+
         }
 
 
         private void FooterCalculation()
         {
+            
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
             if (dt.Rows.Count == 0)
                 return;
@@ -222,13 +234,12 @@ namespace RealERPWEB.F_22_Sal
 
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFnetIns")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netinsdues)", "")) ?
                 0.00 : dt.Compute("Sum(netinsdues)", ""))).ToString("#,##0;(#,##0); ");
-       
+
             ((Label)this.gvsaleswithcoll.FooterRow.FindControl("lgvFbalance")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balance)", "")) ?
                 0.00 : dt.Compute("Sum(balance)", ""))).ToString("#,##0;(#,##0); ");
 
             Session["Report1"] = gvsaleswithcoll;
             ((HyperLink)this.gvsaleswithcoll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
 
 
 
@@ -337,8 +348,6 @@ namespace RealERPWEB.F_22_Sal
                 gvrow.Cells.Add(cell11);
                 //gvrow.Cells.Add(cell12);
                 //gvrow.Cells.Add(cell13);
-
-
 
                 gvsaleswithcoll.Controls[0].Controls.AddAt(0, gvrow);
             }
