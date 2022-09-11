@@ -6409,7 +6409,7 @@ namespace RealERPRDLC
         }
         private static LocalReport SetRptReqAdjustment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassSalPurAcc.RequisationAdjust>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassEnventory.RequisationAdjust>)RptDataSet));
             return Rpt1a;
         }
         
@@ -6417,7 +6417,7 @@ namespace RealERPRDLC
         {
            
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.ERptGroupAtt>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.Elvlateabbs>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.Elvlateabbs02>)RptDataSet2));
             return Rpt1a;
         }
     }

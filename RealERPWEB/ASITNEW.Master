@@ -908,8 +908,11 @@
                                 <li class="menu-item has-active">
                                     <a href="AllGraph" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
                                 </li>
+                                <%--<li class="menu-item">
+                                    <a href=<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Purchase") %> target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Tickets"></span><span class="menu-text">Tickets</span></a>
+                                </li>--%>
                                 <li class="menu-item">
-                                    <a href="Tickets/Index" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Tickets"></span><span class="menu-text">Tickets</span></a>
+                                    <a href="Tickets/Index.aspx" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Ticket"></span><span class="menu-text">Tickets</span></a>
                                 </li>
                             </ul>
 

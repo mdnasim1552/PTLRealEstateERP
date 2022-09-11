@@ -783,7 +783,7 @@ namespace RealERPWEB.F_23_CR
             {
                 double ttlAmt = Convert.ToDouble(((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text);
                 double BalAmt = Convert.ToDouble(txtBalance.Text);
-                if (BalAmt > ttlAmt)
+                if (BalAmt >= ttlAmt)
                 {
                     return true;
                 }
