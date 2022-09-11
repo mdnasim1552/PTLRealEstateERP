@@ -48,7 +48,7 @@
             padding: 0.2rem 1rem !important;
         }
     </style>
-
+   
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -68,6 +68,7 @@
         function ViewEmpModal() {
             $('#ViewEmpModal').modal('toggle');
         }
+        
 
     </script>
 
@@ -135,8 +136,8 @@
                                         <ItemTemplate>
 
                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control form-control-sm"
-                                                AutoPostBack="true"></asp:TextBox>
-
+                                                AutoPostBack="true" ></asp:TextBox>
+                                 
                                             <asp:TextBox ID="txtarea" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control " TextMode="MultiLine"
                                                 AutoPostBack="true"></asp:TextBox>
 
