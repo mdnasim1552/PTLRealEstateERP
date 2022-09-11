@@ -419,7 +419,9 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 }
                 else
                 {
+                 
                     gval = ((TextBox)this.gvNewRec.Rows[i].FindControl("txtgvVal")).Text.ToString();
+                    
                     dr["gcod"] = gcode;
                     dr["gval"] = gval;
                     dt1.Rows.Add(dr);
