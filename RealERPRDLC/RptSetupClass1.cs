@@ -6409,7 +6409,7 @@ namespace RealERPRDLC
         }
         private static LocalReport SetRptReqAdjustment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassSalPurAcc.RequisationAdjust>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassEnventory.RequisationAdjust>)RptDataSet));
             return Rpt1a;
         }
         
