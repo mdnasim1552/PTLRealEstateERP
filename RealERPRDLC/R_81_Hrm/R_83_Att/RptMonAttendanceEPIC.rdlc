@@ -1911,7 +1911,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+<<<<<<< HEAD
                                   <Value>=format(Fields!casuallev.Value+Fields!siclev.Value+Fields!spl.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt.Value+Fields!holyday.Value,"#,##0;(#,##0); ")</Value>
+=======
+                                  <Value>=Format(Sum(Fields!casuallev.Value + Fields!spl.Value+Fields!siclev.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt+Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
+>>>>>>> ed46642602a88fa4f3f8f51513de2d62be944381
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1946,7 +1950,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format((Fields!tpayable.Value-Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!tpayable.Value - Fields!holyday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>

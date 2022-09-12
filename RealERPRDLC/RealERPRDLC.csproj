@@ -32,14 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cquential.Microsoft.ReportViewer.Common.10.0.40219.1\lib\net35\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -102,6 +99,7 @@
     <Folder Include="R_98_Purchase\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+AgeingDays.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProdCostAnalysis.datasource" />
@@ -782,6 +780,7 @@
     <EmbeddedResource Include="R_22_Sal\RptMonthlyProbCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthWiseNewSales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptOSalesSummary.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptPeriodicSalesWithCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptReceivedList.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestEdison.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterest.rdlc" />
