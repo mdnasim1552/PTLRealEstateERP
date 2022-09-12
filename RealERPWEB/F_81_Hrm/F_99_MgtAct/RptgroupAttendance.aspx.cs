@@ -84,14 +84,14 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string calltype = this.Request.QueryString["Type"].ToString() == "Dept" ? "GETDEPARTATTENDENCE" : "GETGROUPATTENDENCE";
 
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE", calltype, todydate, "", "", "", "", "", "", "", "");
-            if (ds == null)
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
             {
                 return;
             }
             ViewState["tblgroupAttendace"] = ds.Tables[0];
             ViewState["tblgroupAttenPersen"] = ds.Tables[1];
             this.Data_Bind();
-        }     
+        }
 
 
 
@@ -164,7 +164,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
                 hlnkgvdept.Font.Bold = true;
                 hlnkgvdept.Style.Add("color", "Maroon");
-                hlnkgvdept.NavigateUrl = "~/F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" + comcod + "&Date=" + Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy") +"&dept="+ deptcode; 
+                hlnkgvdept.NavigateUrl = "~/F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" + comcod + "&Date=" + Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy") + "&dept=" + deptcode;
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)

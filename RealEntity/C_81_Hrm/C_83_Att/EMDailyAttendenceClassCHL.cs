@@ -418,8 +418,8 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public double abslate { get; set; }
             public string grpcod { get; set; }
             public string grpdesc { get; set; }
-            public Double spl { get; set; }
-            public Double mtl { get; set; }
+            public double spl { get; set; }
+            public double mtl { get; set; }
             public RptMntAttenReport()
             {
 
