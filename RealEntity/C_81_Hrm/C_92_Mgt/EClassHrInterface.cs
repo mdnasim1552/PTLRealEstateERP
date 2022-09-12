@@ -237,6 +237,7 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
         {
             public string comcod { get; set; }
             public string comnam { get; set; }
+            public string deptdesc { get; set; }
             public double ttlstap { get; set; }
             public double present { get; set; }
             public double late { get; set; }
@@ -269,6 +270,45 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
 
 
             public Elvlateabbs()
+            {
+
+            }
+        }
+        [Serializable]
+        public class Elvlateabbs02
+        {
+            public string comcod { get; set; }
+            public string comnam { get; set; }
+
+            public string lempname { get; set; }
+            public string lempdisg { get; set; }
+            public string lempdept { get; set; }
+            public string lcomm { get; set; }
+            public string lresaon { get; set; }
+
+            public string elempname { get; set; }
+            public string elempdisg { get; set; }
+            public string elemdept { get; set; }
+            public string elcomm { get; set; }
+
+            public string olempname { get; set; }
+            public string olempdisg { get; set; }
+            public string olemdept { get; set; }
+            public string olcomm { get; set; } 
+
+            public string inempname { get; set; }
+            public string inempdisg { get; set; }
+            public string ineemdept { get; set; }
+            public string incomm { get; set; }
+
+            public string aempname { get; set; }
+            public string aempdisg { get; set; }
+            public string aeemdept { get; set; }
+            public string acomm { get; set; }
+
+            public string outcomm { get; set; }
+
+            public Elvlateabbs02()
             {
 
             }

@@ -51,31 +51,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.DropDownList ddlyearmon;
 
         /// <summary>
-        /// Label1 control.
+        /// lblCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// ibtnFindDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ibtnFindDepartment;
-
-        /// <summary>
-        /// txtSrcCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcCompany;
+        protected global::System.Web.UI.WebControls.Label lblCompanyName;
 
         /// <summary>
         /// ddlCompanyName control.
@@ -87,40 +69,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.DropDownList ddlCompanyName;
 
         /// <summary>
-        /// lblCompanyName control.
+        /// lblDeptDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCompanyName;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// imgbtnDeptSrch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnDeptSrch;
-
-        /// <summary>
-        /// txtSrcDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcDepartment;
+        protected global::System.Web.UI.WebControls.Label lblDeptDesc;
 
         /// <summary>
         /// ddlDepartment control.
@@ -132,49 +87,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
 
         /// <summary>
-        /// lblDeptDesc control.
+        /// Label10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDeptDesc;
-
-        /// <summary>
-        /// lnkbtnShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
-
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-
-        /// <summary>
-        /// imgbtnSecSrch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnSecSrch;
-
-        /// <summary>
-        /// txtSrcSec control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcSec;
+        protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
         /// ddlSection control.
@@ -240,13 +159,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.LinkButton btnUploadovrtime;
 
         /// <summary>
-        /// rbtnlistsaltype control.
+        /// lnkbtnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtnlistsaltype;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
 
         /// <summary>
         /// pnlDedEarnExcel control.
@@ -274,6 +193,96 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnDedorOtherEernExcelAdjust;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// ibtnFindDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ibtnFindDepartment;
+
+        /// <summary>
+        /// txtSrcCompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcCompany;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// imgbtnDeptSrch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton imgbtnDeptSrch;
+
+        /// <summary>
+        /// txtSrcDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcDepartment;
+
+        /// <summary>
+        /// rbtnlistsaltype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnlistsaltype;
+
+        /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
+        /// imgbtnSecSrch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton imgbtnSecSrch;
+
+        /// <summary>
+        /// txtSrcSec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcSec;
 
         /// <summary>
         /// MultiView1 control.
@@ -429,6 +438,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.View ViewOtherDeduction;
 
         /// <summary>
+        /// Chkother control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Chkother;
+
+        /// <summary>
         /// Pnlother control.
         /// </summary>
         /// <remarks>
@@ -483,15 +501,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.LinkButton lblbtncopyoth;
 
         /// <summary>
-        /// Chkother control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Chkother;
-
-        /// <summary>
         /// gvEmpOtherded control.
         /// </summary>
         /// <remarks>
@@ -526,6 +535,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View Viewarersalary;
+
+        /// <summary>
+        /// chkarrearcopy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkarrearcopy;
 
         /// <summary>
         /// Pnlarrer control.
@@ -564,15 +582,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.LinkButton lnkarrearcopy;
 
         /// <summary>
-        /// chkarrearcopy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkarrearcopy;
-
-        /// <summary>
         /// gvarrear control.
         /// </summary>
         /// <remarks>
@@ -589,6 +598,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View ViewOtherEarn;
+
+        /// <summary>
+        /// ChkEarn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkEarn;
 
         /// <summary>
         /// PnlEarn control.
@@ -643,15 +661,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCopyEarn;
-
-        /// <summary>
-        /// ChkEarn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkEarn;
 
         /// <summary>
         /// gvothearn control.

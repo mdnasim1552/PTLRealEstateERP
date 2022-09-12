@@ -26,11 +26,6 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
         {
             if (!IsPostBack)
             {
-                //if (prevPage.Length == 0)
-                //{
-                //    prevPage = Request.UrlReferrer.ToString();
-                //}
-
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
@@ -38,25 +33,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
                 this.txtFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Group Attendence";
-                //((Label)this.Master.FindControl("lblTitle")).Text = "Group Attandance Report";
 
-                //((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Diagnosis Entry";
-
-                //((Label)this.Master.FindControl("lblANMgsBox")).Visible = false;
-                //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
-
-                //((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
-                //((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
-                //((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
-                //((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
-
-                //((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
-                //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
-                //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-                //((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-                // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
-                //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
-                //((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 this.ShowGroupAttendance();
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
@@ -64,12 +41,9 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                     this.comlist.Visible = true;
                     this.Company();
                 }
-
             }
-
         }
 
-       
         protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
             this.ShowGroupAttendance();
@@ -107,22 +81,17 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
         {
             string comcod = this.GetCompCode();
             string todydate = this.txtFdate.Text;
+            string calltype = this.Request.QueryString["Type"].ToString() == "Dept" ? "GETDEPARTATTENDENCE" : "GETGROUPATTENDENCE";
 
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE", "GETGROUPATTENDENCE", todydate, "", "", "", "", "", "", "", "");
-            
-
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE", calltype, todydate, "", "", "", "", "", "", "", "");
             if (ds == null)
             {
                 return;
             }
-
             ViewState["tblgroupAttendace"] = ds.Tables[0];
             ViewState["tblgroupAttenPersen"] = ds.Tables[1];
-            
-
-
             this.Data_Bind();
-        }
+        }     
 
 
 
@@ -133,10 +102,6 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
             this.gvRptAttn.DataSource = dt;
             this.gvRptAttn.DataBind();
-
-
-
-
 
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "drawChart();", true);
 
@@ -182,48 +147,28 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
         protected void gvRptAttn_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
                 HyperLink hlnkgvcomname = (HyperLink)e.Row.FindControl("hlnkgvcomname");
-
-
-
+                HyperLink hlnkgvdept = (HyperLink)e.Row.FindControl("hlnkgvdept");
                 //  string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString();
                 string comcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
-
+                string deptcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptcode")).ToString();
                 if (comcod == "")
                 {
                     return;
                 }
-
-
                 hlnkgvcomname.Font.Bold = true;
                 hlnkgvcomname.Style.Add("color", "blue");
+                hlnkgvcomname.NavigateUrl = "~/F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" + comcod + "&Date=" + Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
 
-                hlnkgvcomname.NavigateUrl = "~/F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" + comcod + "&Date=" + Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy"); ;
-
-
-
-
-
+                hlnkgvdept.Font.Bold = true;
+                hlnkgvdept.Style.Add("color", "Maroon");
+                hlnkgvdept.NavigateUrl = "~/F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" + comcod + "&Date=" + Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy") +"&dept="+ deptcode; 
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnLedger")).Click += new EventHandler(lnkbtnLedger_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnTranList")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler();
-            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Click += new EventHandler(lnkbtnAdd_Click1);
-            //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Click += new EventHandler(lnkbtnEdit_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkDiagEnrty_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnPrint_Click);
-            //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Click += new EventHandler(lnkbtnDelete_Click);
-            //  ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
-            //((CheckBox)this.Master.FindControl("chkBoxN")).Checked += new EventHandler(chkBoxN_Click);
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
@@ -234,18 +179,19 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
-          
+
             string todydate = this.txtFdate.Text;
+            string title = this.Request.QueryString["Type"].ToString() == "Dept" ? "Daily Attendence Department wise" : "Daily Attendence Group";
 
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE02", "RPTLATEEONANDABSENTDET", todydate, "", "", "", "", "", "", "", "");
-            ViewState["tblLVatlet"] = ds1.Tables[0];
+            ViewState["tblLVatlet"] = ds1.Tables[2];
             DataTable dt = (DataTable)ViewState["tblgroupAttendace"];
             DataTable dt1 = (DataTable)ViewState["tblLVatlet"];
-          
+
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.ERptGroupAtt>();
-            var lst1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.Elvlateabbs>();
+            var lst1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.Elvlateabbs02>();
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptGroupAtt", lst, lst1, null);
@@ -253,7 +199,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             Rpt1.SetParameters(new ReportParameter("compname", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Group Attendence"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", title));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
 
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));

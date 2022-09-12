@@ -40,7 +40,7 @@ namespace RealERPWEB.Tickets
             DataSet ds1 = _linkVendorDb.GetcheckUser(comcod, userId);
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
             {
-                string Url1 = "Dashboard.aspx";
+                string Url1 = "RequestTicketId";
                 Response.Redirect(Url1);
             }
             else

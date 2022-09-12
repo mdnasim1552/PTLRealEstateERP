@@ -422,13 +422,14 @@ namespace RealERPWEB.F_34_Mgt
             //dt = dv.ToTable();
 
             LocalReport Rpt1 = new LocalReport();
-            var list = dt.DataTableToList<RealEntity.C_34_Mgt.EClassSalPurAcc.RequisationAdjust>();          
+            var list = dt.DataTableToList<RealEntity.C_34_Mgt.EClassEnventory.RequisationAdjust>();          
             Rpt1 = RptSetupClass1.GetLocalReport("R_34_Mgt.RptReqAdjustment", list, null, null);
             Rpt1.EnableExternalImages = true;        
 
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));           
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Requisition Adjustment"));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
 
             Session["Report1"] = Rpt1;

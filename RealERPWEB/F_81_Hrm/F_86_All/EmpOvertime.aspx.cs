@@ -491,35 +491,35 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (this.lnkbtnShow.Text == "Ok")
             {
                 this.ddlyearmon.Enabled = false;
-                this.ddlCompanyName.Visible = false;
-                this.ddlDepartment.Visible = false;
-                this.ddlSection.Enabled = false;
-
-                this.lblCompanyName.Visible = true;
-                this.lblDeptDesc.Visible = true;
+               //this.ddlCompanyName.Visible = false;
+                //this.ddlDepartment.Visible = false;
+                //this.ddlSection.Enabled = false;
+                
+               // this.lblCompanyName.Visible = true;
+                //this.lblDeptDesc.Visible = true;
 
                 //this.lblPage.Visible = true;
                 //this.ddlpagesize.Visible = true;
                 this.lnkbtnShow.Text = "New";
-                this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
-                this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
+                //this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
+               // this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
                 this.SectionView();
                 return;
             }
             this.MultiView1.ActiveViewIndex = -1;
             this.ddlyearmon.Enabled = true;
-            this.ddlCompanyName.Visible = true;
-            this.ddlDepartment.Visible = true;
+            //this.ddlCompanyName.Visible = true;
+            //this.ddlDepartment.Visible = true;
             this.ddlSection.Enabled = true;
 
-            this.lblCompanyName.Visible = false;
-            this.lblDeptDesc.Visible = false;
+           // this.lblCompanyName.Visible = false;
+            //this.lblDeptDesc.Visible = false;
             //this.lblPage.Visible = false;
             //this.ddlpagesize.Visible = false;
             this.gvEmpOverTime.DataSource = null;
             this.gvEmpOverTime.DataBind();
             this.lnkbtnShow.Text = "Ok";
-            this.lblCompanyName.Text = "";
+            //this.lblCompanyName.Text = "";
 
 
 

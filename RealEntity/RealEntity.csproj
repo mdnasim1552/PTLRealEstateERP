@@ -104,6 +104,7 @@
     <Compile Include="C_30_Facility\EClass_Facility_Mgt.cs" />
     <Compile Include="C_32_Mis\EClassAcc_03.cs" />
     <Compile Include="C_33_Doc\EClassDoc.cs" />
+    <Compile Include="C_34_Mgt\EClassEnventory.cs" />
     <Compile Include="C_34_Mgt\EClassSalPurAcc.cs" />
     <Compile Include="C_34_Mgt\EClassUserLog.cs" />
     <Compile Include="C_34_Mgt\EntityClassConversion.cs" />
@@ -216,6 +217,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassClientLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+RptProjectAnalysis.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_34_Mgt.EClassEnventory+RequisationAdjust.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttendence.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet.datasource" />

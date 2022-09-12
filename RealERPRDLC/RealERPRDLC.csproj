@@ -35,9 +35,6 @@
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
@@ -259,6 +256,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceAttApp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceLeave.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+Elvlateabbs.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+Elvlateabbs02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmpOfferLetter.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+ERptGroupAtt.datasource" />
@@ -784,7 +782,6 @@
     <EmbeddedResource Include="R_22_Sal\RptMonthlyProbCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthWiseNewSales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptOSalesSummary.rdlc" />
-    <EmbeddedResource Include="R_22_Sal\RptPeriodicSalesWithCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptReceivedList.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestEdison.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterest.rdlc" />
