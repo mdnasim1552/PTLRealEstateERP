@@ -701,7 +701,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             }
                             this.DelaisAttinfo.Visible = true;
                             this.SummaryAttinfo.Visible = false;
-
                             this.gvMonthlyAtt.DataSource = dt;
                             this.gvMonthlyAtt.DataBind();
                         }
