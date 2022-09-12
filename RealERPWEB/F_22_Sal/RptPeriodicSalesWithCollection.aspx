@@ -17,6 +17,9 @@
         }
 
 </script>
+    
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <div class="RealProgressbar">
@@ -344,7 +347,7 @@
                             </asp:TemplateField>--%>
                        
                        
-                            <asp:TemplateField HeaderText="Total Collection">
+                            <asp:TemplateField HeaderText="Total">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvtocoll" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tocollam")).ToString("#,##0;(#,##0); ") %>'
@@ -421,5 +424,7 @@
             </div>
         </div>
     </div>
+      </ContentTemplate>
+    </asp:UpdatePanel>
 
 </asp:Content>
