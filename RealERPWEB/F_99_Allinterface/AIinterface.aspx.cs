@@ -159,10 +159,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        protected void AddCustomerModal_Click(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddCustomer();", true);
-        }
+       
 
         protected void tblAddProjectModal_Click(object sender, EventArgs e)
         {
