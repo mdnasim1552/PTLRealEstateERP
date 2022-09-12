@@ -310,20 +310,20 @@ namespace RealERPWEB.F_22_Sal
                 TableCell cell09 = new TableCell();
                 cell09.Text = "Received (Encash)";
                 cell09.HorizontalAlign = HorizontalAlign.Center;
-                cell09.ColumnSpan = 2;
+                cell09.ColumnSpan = 3;
                 cell09.Font.Bold = true;
 
 
-                TableCell cell10 = new TableCell();
-                cell10.Text = "";
-                cell10.HorizontalAlign = HorizontalAlign.Center;
-                cell10.ColumnSpan = 1;
+                //TableCell cell10 = new TableCell();
+                //cell10.Text = "";
+                //cell10.HorizontalAlign = HorizontalAlign.Center;
+                //cell10.ColumnSpan = 1;
 
-                TableCell cell11 = new TableCell();
-                cell11.Text = "Balance";
-                cell11.HorizontalAlign = HorizontalAlign.Center;
-                cell11.ColumnSpan = 3;
-                cell11.Font.Bold = true;
+                TableCell cell10 = new TableCell();
+                cell10.Text = "Balance";
+                cell10.HorizontalAlign = HorizontalAlign.Center;
+                cell10.ColumnSpan = 3;
+                cell10.Font.Bold = true;
                 //TableCell cell12 = new TableCell();
                 //cell12.Text = "";
                 //cell12.HorizontalAlign = HorizontalAlign.Center;
@@ -345,7 +345,7 @@ namespace RealERPWEB.F_22_Sal
                 gvrow.Cells.Add(cell08);
                 gvrow.Cells.Add(cell09);
                 gvrow.Cells.Add(cell10);
-                gvrow.Cells.Add(cell11);
+                //gvrow.Cells.Add(cell11);
                 //gvrow.Cells.Add(cell12);
                 //gvrow.Cells.Add(cell13);
 
