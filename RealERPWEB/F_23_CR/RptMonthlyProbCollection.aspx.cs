@@ -181,6 +181,8 @@ namespace RealERPWEB.F_23_CR
                 dv.RowFilter = ("pactcode <> ' ' ");
                 dt = dv.ToTable();
 
+              string RptTittle = this.Request.QueryString["Type"]== "LoMonProColl" ? "Monthly Probable Collection Report(L/O)" : "Monthly Probable Collection Report";
+
                 LocalReport Rpt1 = new LocalReport();
                 var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptMonthlyProbCollection>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptMonthlyProbCollection", list, null, null);
@@ -189,7 +191,7 @@ namespace RealERPWEB.F_23_CR
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Probable Collection Report"));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", RptTittle));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("date", "( From " + fromdate + " To " + todate + ") "));
