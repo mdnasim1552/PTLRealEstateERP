@@ -3461,9 +3461,13 @@
                     </ChartAxisScaleBreak>
                   </ChartAxis>
                 </ChartValueAxes>
+                <ChartThreeDProperties>
+                  <Enabled>true</Enabled>
+                </ChartThreeDProperties>
                 <Style>
-                  <BackgroundColor>#00ffffff</BackgroundColor>
+                  <BackgroundColor>White</BackgroundColor>
                   <BackgroundGradientType>None</BackgroundGradientType>
+                  <ShadowColor>LightGrey</ShadowColor>
                 </Style>
               </ChartArea>
             </ChartAreas>
@@ -3472,8 +3476,8 @@
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>8pt</FontSize>
+                  <ShadowColor>Black</ShadowColor>
                 </Style>
-                <Position>RightCenter</Position>
                 <ChartLegendTitle>
                   <Caption>Legend Title</Caption>
                   <Style>
@@ -3518,18 +3522,18 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.19792in</Top>
-            <Left>7.03125in</Left>
-            <Height>2in</Height>
-            <Width>3in</Width>
+            <Top>0.17274in</Top>
+            <Left>7.14583in</Left>
+            <Height>2.19878in</Height>
+            <Width>3.04167in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>LightBlue</BackgroundColor>
-              <BackgroundGradientType>LeftRight</BackgroundGradientType>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
               <BackgroundGradientEndColor>Gold</BackgroundGradientEndColor>
             </Style>
           </Chart>
